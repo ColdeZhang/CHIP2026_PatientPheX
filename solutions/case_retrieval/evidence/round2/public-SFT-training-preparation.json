@@ -1,0 +1,190 @@
+{
+  "status": "CPU_preparation_complete_no_new_training",
+  "source": {
+    "prepare.py": {
+      "path": "solutions/case_retrieval/operations/public_sft_training/prepare.py",
+      "bytes": 11799,
+      "sha256": "2130b350f03916e97b81967786851a81500ca3a2b5d6b3cf1d2855a0eb0b3df9"
+    },
+    "token_audit.py": {
+      "path": "solutions/case_retrieval/operations/public_sft_training/token_audit.py",
+      "bytes": 3881,
+      "sha256": "4ce7830fce93cabfc4e2060b190fa14ad69d970f6bbe1cfc48e42c0fe0015445"
+    }
+  },
+  "artifacts": {
+    "input-only-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/input-only-freeze.json",
+      "bytes": 10876,
+      "sha256": "a8107b48672ab0c9e7f36462b811f42b1c84623f43db62e7365c031f36611fb7"
+    },
+    "preparation-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/preparation-manifest.json",
+      "bytes": 6668,
+      "sha256": "90ab7651644db2c30f5e6a2d595751e9b9c33fd64bb6a59879dd7c24d1fcbfb5"
+    },
+    "train.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/train.jsonl",
+      "bytes": 2795967,
+      "sha256": "0cfd0e6c1e9e39c99e51fc7ed1ed4d9d73271aa1b985c5bbbc12011b05b3b1d3"
+    },
+    "new.train.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/new.train.jsonl",
+      "bytes": 1072483,
+      "sha256": "a277e48bff0223ac020c9bff8cbc33db74c951cfc481dfce4729a349ced014e8"
+    },
+    "tokenizer-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/tokenizer-audit.json",
+      "bytes": 126597,
+      "sha256": "583fcf7bd28bea4b4f325147fe2a97878167213c792d3a312182777c7987a807"
+    },
+    "actual-tokenizer-command.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/actual-tokenizer-command.json",
+      "bytes": 3102,
+      "sha256": "91df70e70d578a1fbc98b55b732bf303200cba542c2901acdc104b7941baebf2"
+    },
+    "a800-disk-current.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/a800-disk-current.json",
+      "bytes": 171,
+      "sha256": "55f06dc6ffa2c256ced85c2f74ec2398fa9bde10f1b2b6c70362e7befa92b2f7"
+    },
+    "feasibility.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/feasibility.json",
+      "bytes": 8433,
+      "sha256": "a2c9674af66918020c6fc9b12cae0765e9a434dc0eaac9a34587d3bde1d73a16"
+    }
+  },
+  "stats": {
+    "old": {
+      "rows": 124,
+      "documents": 32,
+      "concepts": 880,
+      "pairs": 2506,
+      "positive": 594,
+      "negative": 1912,
+      "all_empty_rows": 7,
+      "covered_truth": 594
+    },
+    "new": {
+      "rows": 88,
+      "documents": 32,
+      "concepts": 622,
+      "pairs": 1712,
+      "positive": 119,
+      "negative": 1593,
+      "all_empty_rows": 29,
+      "covered_truth": 119
+    },
+    "combined": {
+      "rows": 212,
+      "concepts": 1502,
+      "pairs": 4218,
+      "positive": 713,
+      "negative": 3505,
+      "all_empty_rows": 36,
+      "covered_truth": 713,
+      "documents": 32
+    }
+  },
+  "literal_candidate_upper_bound": {
+    "convention": "literal original gold_associations; only syntactically complete compound HPO split, no alt remap",
+    "truth": 818,
+    "old_covered": 594,
+    "old_missing": 224,
+    "newly_covered": 119,
+    "remaining_missing": 105,
+    "oracle_candidate_upper_bound_not_model_quality": true
+  },
+  "token_stats": {
+    "old": {
+      "rows": 124,
+      "tokens": 402594,
+      "prefix_tokens": 395424,
+      "supervised_tokens": 7170,
+      "minimum": 591,
+      "median": 3311.0,
+      "p90": 4586,
+      "p95": 4723,
+      "maximum": 5523,
+      "longest_row": "11235872:relations:8",
+      "exceed_counts": {
+        "5523": 0,
+        "6144": 0,
+        "6400": 0,
+        "7168": 0,
+        "8192": 0,
+        "14000": 0
+      }
+    },
+    "new": {
+      "rows": 88,
+      "tokens": 248918,
+      "prefix_tokens": 244614,
+      "supervised_tokens": 4304,
+      "minimum": 775,
+      "median": 2824.5,
+      "p90": 4068,
+      "p95": 4289,
+      "maximum": 4821,
+      "longest_row": "11235872:public_new_union:8",
+      "exceed_counts": {
+        "5523": 0,
+        "6144": 0,
+        "6400": 0,
+        "7168": 0,
+        "8192": 0,
+        "14000": 0
+      }
+    },
+    "combined": {
+      "rows": 212,
+      "tokens": 651512,
+      "prefix_tokens": 640038,
+      "supervised_tokens": 11474,
+      "minimum": 591,
+      "median": 3016.0,
+      "p90": 4398,
+      "p95": 4664,
+      "maximum": 5523,
+      "longest_row": "11235872:relations:8",
+      "exceed_counts": {
+        "5523": 0,
+        "6144": 0,
+        "6400": 0,
+        "7168": 0,
+        "8192": 0,
+        "14000": 0
+      }
+    }
+  },
+  "old124_bytes_and_encoded_arrays_exact": true,
+  "CPU_elapsed_seconds": 2.453080262057483,
+  "projected_two_epochs_optimizer_calls": 54,
+  "cost_seconds": {
+    "old32_actual": 1149.460371017456,
+    "old32_token_linear": 1860.154958201873,
+    "old32_row_linear": 1965.2064407717796,
+    "full64_token_linear": 1842.7727475271504,
+    "uncertainty": "Estimates from old same model/LoRA JSON trainer, not measured new training; changed row lengths/shuffle/padding and final-only save differ. Both token estimates exceed former1800s budget. No existing training authorization applied.",
+    "future_F1_62_old_measured_generation": 203.803
+  },
+  "storage": {
+    "current_free_bytes": 362332160,
+    "measured_at_utc": "2026-10-23T23:22:26.630892+00:00",
+    "old48_full64_duplicate_adapters_bytes": 346364718,
+    "potential_free_after_explicit_authorized_duplicate_release": 708696878,
+    "one_final_adapter_plus_FP32Adam_rng_approx_bytes": 520000000,
+    "proposed_min_free_guard_bytes": 680000000,
+    "guard_after_release_would_pass": true,
+    "remaining_after_one_final_approx_bytes": 188696878,
+    "current_no_room_for_final": true,
+    "minimal_future_strategy": "Only after root authorization: reverify .100 old48/full64 adapter full hashes and no active loader, release only these duplicate original four files; keep optimizer states/A30 backups/restore locators. New run final-only ~520MB atomically rename same staging directory, preserve recoverable partial at optimizer boundary on soft cap. No overlapping partial+final copies. Do not save both epochs. No deletion/copy performed now.",
+    "restoration_not_tested": true,
+    "optimizer_states_still_only_on_A800": true,
+    "alternative": "Existing A100 persistent base and own ample disk; needs root resource scheduling and actual runtime/device checks; no new transfer or GPU now."
+  },
+  "H40": "Only strict F2/F3 old16-to16 generators plus fixed public pretrained candidate caches. No F0/F1-derived gate/resource or new heldout labels.",
+  "quality": null,
+  "no_GPU_no_delete": true,
+  "independent_review": "pending"
+}

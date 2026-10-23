@@ -57,3 +57,7 @@
 - **固定槽正式训练完整终点**：fresh2ep/32 optimizer calls（含首lr0）、1222.669s、峰allocated25.653GB，未触发partial；唯一epoch002 adapter776ceaf1，Adam/RNG完整。23:03:17Z GPU2空、watch63323结束。真实绑定双80推断plan284e16d3已准备，300+30总限，不重训；[终点](evidence/round2/fixed-slot-binary-training-complete.json)。
 - **后继仅CPU接口核查**：F0旧58prompt/415CID/1166pair/47patient，208999tokens/max6872，0超7168/0literal冲突；先逐对象重放F1全80输入exact。实际5.704s，无CUDA/新预测/quality。仅准备二特征互补方案的可行性，binary仍32训练而旧F0 JSON为48（含F1合法），不称同训练规模；[证据](evidence/round2/fixed-slot-F0-cpu-inventory.json)。
 - **单次F0 binary32前向已完成**：58prompt/1166pair，adapter776ceaf1不重训；native66.246s/forward43.478s，完整scorefreeze29ee8fbd、p6fe3a795，仅原两logit/p不作.5输出。23:15:25Z A800 GPU2空释放，watch44659结束；已交本体做F1-only两特征LR与唯一F0期望F1评价。本方案无F0gold/新质量读取、不迁dev；[终点](evidence/round2/fixed-slot-F0-forward-result.json)。
+
+- **公开候选训练适配仅CPU准备**：旧124字节/编码完全保留，新88提示622concept/1712pairs（119正1593负），合212/4218/713正；literal候选上界594/818→713/818。实际651512tokens/最长5523/0截断，2epoch54calls估31–33min，超过旧1800s预算。A800余362MB，已核旧adapter双副本可后续按授权释放346MB并final-only，现无删除/训练。严格排F1/F0 learned gate，见[方案](research/public-candidate-SFT-training-preparation.md)。
+- **唯一9B与rules交集CPU控制**：保留全部nonrelation、literal逐患者交集，0.184s；.695443948→.702672183，225TP36FP154FN，micro/macro均升，仍低rules .711354。来源/政策/完整freeze与唯一评分已由策略协作者提交401fd73，待独审；[结果](evidence/round2/sft-rule-intersection-result.json)。
+- **F0二特征下游结案指针**：本体仅F1拟合logit差+旧SFT hard，唯一F0期望F1 .695443948→.696545689，micro不变/macro+.004407；独审0b44186b通过，无自动原dev迁移。此处复用其结果，没有新评分。
