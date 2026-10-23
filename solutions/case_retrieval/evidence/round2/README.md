@@ -96,3 +96,5 @@
 - [身份桥接双fresh正式准备](patient-identity-bridge-formal-preparation.json)：同4127/969训练、无标签1166外层输入；共享训练1500s/每臂900s、各唯一终点推理300s。固定[运行计划](patient-identity-bridge-formal-plan.json)和[双预测freeze后评测计划](patient-identity-bridge-evaluation-plan.json)，尚未启动。
 
 - [身份桥接双fresh正式启动](patient-identity-bridge-formal-start.json)：20:12:09Z、共享训练deadline20:37:08.390Z，已push02e1634/入口独审通过，无质量结果。
+
+- [身份桥接首臂FP16工程失败](patient-identity-bridge-attempt1-failure.json)：无epoch/checkpoint/评分，GPU已释放；原日志/源冻结，后续仅透明BF16数值修复。

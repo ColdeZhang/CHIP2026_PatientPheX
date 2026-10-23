@@ -1,0 +1,43 @@
+{
+  "launcher_sha256": "d4f0143d446d0e1bc16be99b705b8e4ed69e0c9937440a915ed247f5e1ab3157",
+  "training_plan_sha256": "a7634d147bdcb262fe0114a9e330233a5f830edd8a2a7d6bfa426b0dda0e7e10",
+  "trainer_sha256": "b3d7e6ce719d4bcbf938e7f5e71491121ef983cddce8a72a4c9833d2b269b2c4",
+  "actual_cpu_contract_sha256": "545a06598c034aaac1dcf09b8f2b527b2180bbe5f6b209467f83ff8ae2819427",
+  "hard_budget_seconds": 300,
+  "kill_grace_seconds": 30,
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "cwd": "case-retrieval/patient-identity-bridge/bf16-v2",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "argv": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "300",
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "diagnose_precision.py",
+    "--plan",
+    "diagnostic-plan.json",
+    "--output",
+    "diagnostic-v1"
+  ],
+  "remote_sources": {
+    "train_encoded_ce.py": "02b5c3ae6f075d80649290bbc6f2ac86ed619f3afa149179a1fad567c102cf64",
+    "diagnose_precision.py": "b3d7e6ce719d4bcbf938e7f5e71491121ef983cddce8a72a4c9833d2b269b2c4",
+    "diagnostic-plan.json": "a7634d147bdcb262fe0114a9e330233a5f830edd8a2a7d6bfa426b0dda0e7e10",
+    "diagnostic-train-plan.json": "c2fa8f945ee8afc295170a570b658341975a17daaeb64e05a2c9ac1dd30b67c4"
+  },
+  "source_note": "Root-authorized numerical repair diagnostic only; original failure immutable, no formal automatic successor."
+}
