@@ -1,5 +1,7 @@
 # 2026-10-23 接手审计证据
 
+> 历史证据，已冻结归档。以下入口仅用于复核旧项目；新实验从活动区重新建立。`manifest.json` 的 `source_inputs` 路径相对 `archive/legacy-20261023/`，`artifacts` 路径相对本目录；原始 JSON、诊断脚本及其校验值保持不变。
+
 结论和解释见 [仓库审查报告](../../REPOSITORY_REVIEW.md)。这些文件保存本次审查的观察结果和诊断方法，供复核；不是正式评测器或新版本预测方案。
 
 ## 文件索引
@@ -26,9 +28,13 @@
 
 ## 重跑诊断
 
-以下命令在仓库根目录执行。CPU 复现使用 Python 3.12.14、`pyahocorasick==2.3.1`；不需要 torch、transformers、模型文件或网络推理。可在现有 Python 环境中安装 pyahocorasick。脚本默认把生成结果写到 `/tmp`，不会覆盖仓库已有预测或本目录快照。
+以下命令先从仓库根目录进入归档根，再执行旧诊断。CPU 复现使用 Python 3.12.14、`pyahocorasick==2.3.1`；不需要 torch、transformers、模型文件或网络推理。可在现有 Python 环境中安装 pyahocorasick。脚本默认把生成结果写到 `/tmp`，不会覆盖归档已有预测或本目录快照。
 
 ```bash
+# 从当前仓库根目录进入冻结的旧项目；禁止在归档内写入 Python 缓存
+cd archive/legacy-20261023
+export PYTHONDONTWRITEBYTECODE=1
+
 # 现有规则管线复现
 python src/local_predict.py --inp data/B/PatientPheX-V1-B.jsonl --out /tmp/review_B.jsonl --dict dict/hpo_dict_augmented.json
 python src/local_predict.py --inp data/train/PatientPheX-train.jsonl --out /tmp/review_train.jsonl --dict dict/hpo_dict_augmented.json --self
@@ -50,6 +56,6 @@ PYTHONDONTWRITEBYTECODE=1 python docs/review/2026-10-23/scripts/audit_outputs.py
 PYTHONDONTWRITEBYTECODE=1 python docs/review/2026-10-23/scripts/diagnose_models.py --repo . --out /tmp/review_model_diagnostics.json
 ```
 
-诊断脚本为本次审查的辅助代码，归档时仅调整仓库定位方式及临时目录创建；它们不修改项目源码。实体或关联输出中集合的遍历顺序、错误样例的选择顺序可能随 Python 进程变化；比较时应使用集合语义和汇总统计。
+诊断脚本为本次审查的辅助代码，最初保存审计证据时仅调整仓库定位方式及临时目录创建；本次整体搬迁未修改脚本，保留的目录层级使其相对路径仍指向旧项目归档根。它们不修改项目源码。实体或关联输出中集合的遍历顺序、错误样例的选择顺序可能随 Python 进程变化；比较时应使用集合语义和汇总统计。
 
 `output_audit.json` 的 `_verification` 字段记录单独执行的 CPU 重跑对比，结构检查脚本本身不重新生成该补充字段。诊断结果适用的原文件版本见 manifest；未来修改模型或数据后应另存新审计日期，不覆盖本次证据。

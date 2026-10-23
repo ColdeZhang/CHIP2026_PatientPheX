@@ -9,7 +9,7 @@
 | 内容 | 本地文件 |
 |---|---|
 | 任务、数据、评分、提交要求和赛程速查 | 本文 |
-| 仓库数据及本地评测与官方的差异 | [LOCAL_NOTES.md](LOCAL_NOTES.md) |
+| 仓库数据及本地评测与官方的差异 | [旧仓库核对记录](../../archive/legacy-20261023/docs/competition/LOCAL_NOTES.md) |
 | 天池比赛介绍原文：规则、提交、赛程、联系方式 | [tianchi-introduction.md](sources/2026-10-23/tianchi-introduction.md) |
 | 天池赛题与数据原文：完整字段、指标公式 | [tianchi-information.md](sources/2026-10-23/tianchi-information.md) |
 | 天池参赛协议原文 | [tianchi-agreement.md](sources/2026-10-23/tianchi-agreement.md) |
@@ -21,7 +21,7 @@
 
 ## 任务与硬性约束
 
-输入为 PMC 生物医学文献全文及指定患者信息，本仓库数据为英文文本。
+输入为 PMC 生物医学文献全文及指定患者信息，已核对的比赛数据为英文文本。
 
 1. **Task 1：全文表型概念识别。** 找出表型实体在全文中的字符位置，并标准化为 HPO 概念。
 2. **Task 2：特定患者表型概念识别。** 为每位给定患者输出其表型概念集合。患者指称仅提供部分有效 mention，需要处理其他指称及跨句、跨段关联。
@@ -35,7 +35,7 @@
 - A 榜答案不公开，也不用于 B 榜模型训练。
 - 比赛数据仅用于本次评测；其他用途需联系组织者。
 
-仓库现有 `data/hp.obo` 为 **2026-09-01** 版，与指定版本不同；现有评测脚本也不等价于官方口径，详见 [本地核对记录](LOCAL_NOTES.md)。
+已归档的旧 `archive/legacy-20261023/data/hp.obo` 为 **2026-09-01** 版，与指定版本不同；旧评测脚本也不等价于官方口径，新项目不会默认沿用，详见 [旧仓库核对记录](../../archive/legacy-20261023/docs/competition/LOCAL_NOTES.md)。
 
 ## 数据规模
 
@@ -52,7 +52,7 @@
 | 患者表型关联数 | 2,307 | 563 | 2,786 | 5,656 |
 | 患者相关唯一 HPO ID 数 | 1,091 | 351 | 1,252 | 1,995 |
 
-本仓库已有 [训练集](../../data/train/PatientPheX-train.jsonl) 和 [B 集](../../data/B/PatientPheX-V1-B.jsonl)，未找到 A 集。当前未登录的公开数据接口仅显示两个脱敏压缩包名称，未返回下载地址；本次保存了[返回内容](sources/2026-10-23/tianchi-datasets.json)，未补下载比赛数据。
+前任保存的 [训练集](../../archive/legacy-20261023/data/train/PatientPheX-train.jsonl) 和 [B 集](../../archive/legacy-20261023/data/B/PatientPheX-V1-B.jsonl) 已移入历史归档，未找到 A 集；新项目的数据入口尚未建立，后续独立核验来源与版本。当前未登录的公开数据接口仅显示两个脱敏压缩包名称，未返回下载地址；本次保存了[返回内容](sources/2026-10-23/tianchi-datasets.json)，未补下载比赛数据。
 
 ## 数据字段与坐标
 
@@ -95,7 +95,7 @@ JSONL 为 UTF-8 编码，每行一篇文献。
 - **无 ID 表型 `-1`**：官方说明为实体位置正确即正确；其 docF1 集合表示未进一步说明，不自行推定。
 - **患者金标和预测集合均为空**：该患者 Precision、Recall、F1 都为 **1**。
 
-完整公式和原文见 [官方赛题快照](sources/2026-10-23/tianchi-information.md)。截至本次查询，官方 GitHub 仅提供说明和 LICENSE，没有公开评测脚本；本仓库 `src/evaluate.py` 不能被当作官方实现。
+完整公式和原文见 [官方赛题快照](sources/2026-10-23/tianchi-information.md)。截至本次查询，官方 GitHub 仅提供说明和 LICENSE，没有公开评测脚本；归档中的旧 `src/evaluate.py` 不能被当作官方实现。
 
 ## 提交要求
 

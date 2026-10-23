@@ -1,6 +1,8 @@
 # 本地仓库与官方规则核对
 
-核对日期：2026-10-23。官方依据为[天池赛题原文](sources/2026-10-23/tianchi-information.md)及[官方 GitHub 说明](sources/2026-10-23/official-github/README.md)。本文件记录仓库现状，相关代码和数据未在本次资料整理中修改。
+> 历史核对，已冻结归档。下文的本地文件和实现均指 `archive/legacy-20261023/` 内的旧项目，不描述从头研发后的活动区；官方资料仍维护在仓库根的 `docs/competition/`。
+
+核对日期：2026-10-23。官方依据为[天池赛题原文](../../../../docs/competition/sources/2026-10-23/tianchi-information.md)及[官方 GitHub 说明](../../../../docs/competition/sources/2026-10-23/official-github/README.md)。本文件记录当时仓库现状，相关代码和数据未在本次资料整理中修改。
 
 ## 本地数据
 
@@ -55,4 +57,4 @@ data-version: hp/releases/2026-09-01
 - 赛后评测的每日次数、登录账号的具体权限、群内通知未获取。
 - 仓库 README 中旧实验的分数、方法来源及“达标”等说法属于历史记录，本次公开榜单不能据此对应到用户队伍或验证每次实验成绩。
 
-本地文件校验值记录于 [来源清单](sources/2026-10-23/manifest.json) 的 `local_repository_checks`，用于后续确认这些核对结论适用的文件版本。
+本地文件校验值记录于 [来源清单](../../../../docs/competition/sources/2026-10-23/manifest.json) 的 `local_repository_checks`，用于后续确认这些核对结论适用的文件版本；其中旧本地路径现在相对归档根解析。
