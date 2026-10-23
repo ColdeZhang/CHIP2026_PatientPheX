@@ -1,0 +1,102 @@
+{
+  "reviewed_utc": "2026-10-23T13:50:28.522347+00:00",
+  "status": "passed_training_data_and_candidate_provenance_review",
+  "scope": {
+    "external_artifacts_only": true,
+    "repository_modified": false,
+    "gpu_used": false,
+    "official_submission": false,
+    "outer_fold0_or_original_dev_gold_read": false,
+    "neural_candidate_generation_rerun": false,
+    "tokenizer_audit_rerun": false,
+    "trained_model_quality_assessed": false
+  },
+  "frozen_data": {
+    "manifest": "528a6364bcbdf0aaff6d27754f65b743c18a18434078815c14592d3c735c33af",
+    "train_sft": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77",
+    "gold_source_outer_train48": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "excluded_outer_fold0_input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "excluded_original_dev_input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "frozen_prompt_source": {
+    "commit": "332c8bd9c4b511d7cbe4b1ec4e299b8022f4d490",
+    "files_sha256": {
+      "prepare_relation_sft.py": "1b590ef6124f6797073c3014612f0bdd05b2190ae6d6a46fb84ac99429d74c1a",
+      "prepare_pair_rag.py": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+      "run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    }
+  },
+  "counts": {
+    "documents": 48,
+    "patients": 126,
+    "training_rows": 204,
+    "candidate_decisions": 1477,
+    "candidate_keys_from_entities": 1477,
+    "positive_patient_pairs": 967,
+    "negative_patient_pairs": 3160,
+    "all_negative_batches": 12,
+    "gold_relations_total": 1338,
+    "gold_relations_not_in_candidates": 371,
+    "patient_anchor_rows_missing": 0,
+    "candidate_codes_without_any_evidence": 0,
+    "non_hpo_candidate_keys": 3,
+    "documents_without_candidates": 0
+  },
+  "checks": {
+    "actual_inner16_sets_disjoint_and_cover_outer_train48": true,
+    "every_actual_train32_excludes_own_inner16_outer_fold0_original_dev": true,
+    "train32_records_equal_corresponding_outer_train48": true,
+    "inner_input16_records_equal_stripped_outer_train48": true,
+    "crf_alias_linker_and_relation_training_only_corresponding_train32": true,
+    "semantic_label_bank_and_span_probability_fit_only_corresponding_train32": true,
+    "public_sapbert_frozen_no_task_label_finetuning": true,
+    "actual_remote_source_train_input_hpo_model_cache_hashes_verified": true,
+    "all_three_crf_refits_and_cached_assemblies_byte_identical": true,
+    "all_204_prompts_reproduced_byte_identically_after_removing_candidate_associations": true,
+    "gold_answers_only_appended_as_assistant_targets": true,
+    "all_patient_candidate_pairs_supervised_once_and_all_covered_gold_targets_preserved": true,
+    "gold_not_used_to_add_candidates": true
+  },
+  "limitations": [
+    "Candidate probability=0.65 and cosine=0.92 inherit an earlier 18-combination scan on outer fold0. Its labels did not enter fitting these examples, but fold0 is development validation, not an untouched outer test.",
+    "The candidate pool covers 967 of 1338 training relations; 371 are unreachable by this fixed-pool relation selector. This is a training diagnostic, not a score or permission to insert gold candidates.",
+    "Neural SapBERT encoding/span-detector fitting were not rerun. Their frozen source and actual remote model/train/input/cache hashes were checked; independent CPU reproduction begins with CRF retraining and uses verified semantic caches.",
+    "The tokenizer audit is separately produced route evidence, inspected and SHA-bound rather than duplicated. Formal checkpoints and model effectiveness are outside this data review."
+  ],
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/relation-sft-review.json",
+    "sha256": "fbe7b47abaaed6479cce7dd9964a858902eae535fd4684d2662020e512201b75"
+  },
+  "formal_run_binding": {
+    "status": "passed",
+    "checked_at_utc": "2026-10-23T13:50:13Z",
+    "files": {
+      "run_manifest": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/relation-sft-fold0/formal2ep/run_manifest.json",
+        "bytes": 4276,
+        "sha256": "0e50f97a8e03ad84d4d93b6b45e6cd20c7e97ec9c7f79879ed5a2f94bc52a8cd"
+      },
+      "train": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/relation-sft-fold0/train.jsonl",
+        "bytes": 2836639,
+        "sha256": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77"
+      },
+      "excluded_input": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/relation-sft-fold0/excluded.input.jsonl",
+        "bytes": 350409,
+        "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+      },
+      "entrypoint": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/relation-sft-fold0/train_relation_lora.py",
+        "bytes": 24477,
+        "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423"
+      },
+      "saved_source": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/relation-sft-fold0/formal2ep/train_lora.source.py",
+        "bytes": 24477,
+        "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423"
+      }
+    }
+  }
+}

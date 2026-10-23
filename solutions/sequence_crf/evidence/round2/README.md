@@ -16,3 +16,7 @@
 - `table-policy-train.json` / `tables-fold0.json`：训练输入侧预冻结政策与负结果，源表/解析器/原始输入SHA；Task1不变。
 
 - `relation-sft-data.json`：嵌套OOF候选与训练标签覆盖统计、来源SHA；完整样本/嵌套重放命令外存。
+
+- `relation-sft-independent-review.json`：3套CRF重训/增强装配和204提示反事实重放、全部监督目标、实际远端训练绑定；明确开发验证和未重跑Sap的范围。
+
+- `relation-sft-training.json`：完整2epoch/52step训练统计、固定epoch2所有产物SHA、独立数据审核来源和磁盘预算；尚不表示评测收益。
