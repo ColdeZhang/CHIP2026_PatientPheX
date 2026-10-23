@@ -16,6 +16,7 @@ SYSTEM = """You identify the clinical phenotypes of specific patients in biomedi
 Return exactly one JSON object mapping EVERY supplied patient ID to a list of candidate codes.
 Use only the listed candidate codes. A code means that its phenotype is present in that patient.
 Use the patient's aliases and the full clinical evidence, including later paragraphs and coreference.
+Inline [PATIENT P1: ...] markers identify the supplied patient mention spans exactly.
 Do not assign a phenotype from general disease descriptions, references, other patients, relatives,
 or an explicitly negative finding. Do not infer unmentioned symptoms from a disease name.
 If a patient has no supported phenotype, return an empty list. No explanation or markdown."""
@@ -37,6 +38,25 @@ def patient_text(doc):
                      for p in doc.get("patient", []))
 
 
+def mark_patients(text, absolute_start, doc):
+    """Expose supplied patient span identities; generic aliases otherwise become ambiguous."""
+    groups = defaultdict(set)
+    for patient in doc.get("patient", []):
+        for mention in patient.get("mention", []):
+            start = int(mention["offset"]) - absolute_start
+            end = start + int(mention.get("length", len(mention["text"])))
+            if 0 <= start < end <= len(text):
+                groups[(start, end)].add(str(patient["patient_id"]))
+    pieces, position = [], 0
+    for (start, end), patients in sorted(groups.items()):
+        if start < position:
+            continue
+        pieces.extend([text[position:start], "[PATIENT " + "/".join(sorted(patients)) + ": " + text[start:end] + "]"])
+        position = end
+    pieces.append(text[position:])
+    return "".join(pieces)
+
+
 def context_text(doc, entities, char_budget):
     selected = []
     mentions = [m for p in doc.get("patient", []) for m in p.get("mention", [])]
@@ -52,9 +72,12 @@ def context_text(doc, entities, char_budget):
         if priority == 0:
             continue
         body = passage["text"]
+        window_start = 0
         if len(body) > 7000:
             anchor = min((int(m["offset"])-begin for m in patient_mentions+phenotype_mentions), default=0)
-            body = body[max(0, anchor-1200):max(0, anchor-1200)+7000]
+            window_start = max(0, anchor-1200)
+            body = body[window_start:window_start+7000]
+        body = mark_patients(body, begin+window_start, doc)
         selected.append((priority, index, f"Passage {index} ({section}): {body}"))
     chosen, used = [], 0
     for _, index, text in sorted(selected, key=lambda x: (-x[0], x[1])):
@@ -67,7 +90,10 @@ def context_text(doc, entities, char_budget):
     return "\n".join(text for _, text in sorted(chosen))
 
 
-def query_document(doc, entities, char_budget):
+def query_document(doc, entities, char_budget, visible_candidates_only=False):
+    context = context_text(doc, entities, char_budget)
+    if visible_candidates_only:
+        entities = [e for e in entities if str(e["text"]).casefold() in context.casefold()]
     concepts = concepts_of(entities)
     code_map = {f"C{i:03d}": identifier for i, identifier in enumerate(sorted(concepts), 1)}
     lines = []
@@ -79,7 +105,7 @@ def query_document(doc, entities, char_budget):
                    for e in concepts[identifier]):
                 passages.append(index)
         lines.append(f"{code} ({identifier}): " + " / ".join(surfaces[:4]) + "; passages " + ",".join(map(str, passages)))
-    content = "Patients:\n"+patient_text(doc)+"\n\nCandidate phenotypes:\n"+"\n".join(lines)+"\n\nClinical evidence:\n"+context_text(doc,entities,char_budget)
+    content = "Patients:\n"+patient_text(doc)+"\n\nCandidate phenotypes:\n"+"\n".join(lines)+"\n\nClinical evidence:\n"+context
     return content, code_map
 
 
@@ -106,11 +132,13 @@ def main():
         messages=[{'role':'system','content':SYSTEM}]
         for index in nearest:
             ex=train[int(index)]
-            example,map_example=query_document(ex,ex.get('entities',[]),2800)
+            example,map_example=query_document(ex,ex.get('entities',[]),2800,visible_candidates_only=True)
             code_reverse={identifier:code for code,identifier in map_example.items()}
             labels={str(p['patient_id']):[] for p in ex.get('patient',[])}
             for row in ex.get('association',[]):
-                labels[str(row['patient_id'])]=sorted(code_reverse[v] for v in row.get('phenotype',[]) if v in code_reverse)
+                labels[str(row['patient_id'])]=sorted({code_reverse[part] for value in row.get('phenotype',[])
+                                                       for raw_part in (str(value).split(';') if str(value).startswith('HP:') else [value])
+                                                       if (part := raw_part.strip()) in code_reverse})
             messages.append({'role':'user','content':example})
             messages.append({'role':'assistant','content':json.dumps(labels,separators=(',',':'))})
         messages.append({'role':'user','content':text})

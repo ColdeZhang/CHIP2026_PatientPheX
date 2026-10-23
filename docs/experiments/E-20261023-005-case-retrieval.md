@@ -60,7 +60,9 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python solutions/case
 
 采用实际查阅并核实参数的 `Qwen/Qwen3-8B`（8.2B，Apache-2.0），BF16、单张 A30、关闭 thinking、greedy 解码。按全文病例 TF-IDF 相似度检索 2 个**训练折**标注示例，输入给定患者、候选概念及临床原文，生成患者→候选代码映射；代码只能映回已有实体候选，不允许凭空造 HPO 或坐标。无效 JSON/遗漏患者会显式记录并回退 CPU 关联，不能静默当成功。
 
-远端挂载 `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，项目内 `case-retrieval/`，GPU UUID `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`，启动前已核对空闲。创建环境时发现系统 `ensurepip` 缺失；改为私有 `venv --without-pip` + 官方 get-pip，自有目录安装，不修改已有环境。首次环境作业 `proc_59da4887-66d1-42dd-bf1e-3f78f59fcc3b` 因此失败；恢复作业 `proc_6dbc492f-8bed-42de-abab-3bcf56d16481` 正在安装依赖和下载模型。未启动正式 GPU 预测，未提交平台。
+远端挂载 `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，项目内 `case-retrieval/`，GPU UUID `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`，启动前已核对空闲。创建环境时发现系统 `ensurepip` 缺失；改为私有 `venv --without-pip` + 官方 get-pip，自有目录安装，不修改已有环境。首次环境作业 `proc_59da4887-66d1-42dd-bf1e-3f78f59fcc3b` 因此失败；恢复作业 `proc_6dbc492f-8bed-42de-abab-3bcf56d16481` 正在安装依赖和下载模型。为并行下载模型另启作业 `proc_9986fff9-376f-4944-b624-86435a439bd2`，固定官方模型 revision `b968826d9c46dd6066d109eabc6255188de91218`。未启动正式 GPU 预测，未提交平台。
+
+首次 GPU 推理前做只读同伴审计，修复四处实际问题：同名 `patient` 缺患者位置消歧（现在使用官方给定 span 插入患者编号）；训练组合 HPO 标签未拆分（27 条关联/17 篇受影响）；示例正文裁剪后仍列出无证据概念（现在按保留文本筛选示例候选及标签）；续跑仅按 pmc 跳过会混入旧配置（现在强制 prompts/模型/config/代码指纹一致）。这些问题均在首次推理前发现，未使用 dev 金标调参。
 
 ### 产物与版本
 

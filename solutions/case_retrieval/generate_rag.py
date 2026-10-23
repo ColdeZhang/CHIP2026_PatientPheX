@@ -13,10 +13,22 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--model',required=True);ap.add_argument('--prompts',required=True)
+    ap.add_argument('--model-revision',default='b968826d9c46dd6066d109eabc6255188de91218')
     ap.add_argument('--output',required=True);ap.add_argument('--max-input-tokens',type=int,default=11500)
     ap.add_argument('--max-new-tokens',type=int,default=1300)
     args=ap.parse_args()
     start=time.time();torch.set_num_threads(2)
+    output=Path(args.output);output.parent.mkdir(parents=True,exist_ok=True)
+    fingerprint={'prompts_sha256':hashlib.sha256(Path(args.prompts).read_bytes()).hexdigest(),
+                 'model_revision':args.model_revision,
+                 'model_config_sha256':hashlib.sha256((Path(args.model)/'config.json').read_bytes()).hexdigest(),
+                 'max_input_tokens':args.max_input_tokens,'max_new_tokens':args.max_new_tokens,
+                 'code_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+    checkpoint=output.with_suffix('.checkpoint.json')
+    if output.exists() and output.stat().st_size:
+        if not checkpoint.exists() or json.loads(checkpoint.read_text())!=fingerprint:
+            raise RuntimeError('Existing responses do not match prompts/model/generation configuration')
+    checkpoint.write_text(json.dumps(fingerprint,indent=2)+'\n')
     if not torch.cuda.is_available() or torch.cuda.device_count()!=1:
         raise RuntimeError('Exactly one allocated visible CUDA device is required')
     tok=AutoTokenizer.from_pretrained(args.model,local_files_only=True)
@@ -60,7 +72,7 @@ def main():
             print(json.dumps({'completed':i+1,'documents':len(rows),'seconds':result['elapsed_seconds'],
                               'input_tokens':input_tokens,'output_tokens':result['output_tokens']}),flush=True)
     metadata={'model':'Qwen/Qwen3-8B','parameter_count':parameter_count,'torch':torch.__version__,
-              'dtype':'bfloat16','device':torch.cuda.get_device_name(0),'configuration':vars(args),
+              'dtype':'bfloat16','device':torch.cuda.get_device_name(0),'configuration':vars(args),'fingerprint':fingerprint,
               'elapsed_seconds':round(time.time()-start,3),'prompts_sha256':hashlib.sha256(Path(args.prompts).read_bytes()).hexdigest(),
               'output_sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
               'max_gpu_allocated_bytes':torch.cuda.max_memory_allocated()}
