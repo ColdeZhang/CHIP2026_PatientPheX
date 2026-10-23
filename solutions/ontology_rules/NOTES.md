@@ -130,3 +130,12 @@
 
 
 - 成熟AutoPCR结构参考（不改变当前100ep控制）：root缓存MIT代码c2b46a9c088c696533a43c5cb8e50c7500f055fe与btag304论文于外部research/autopcr。其BioNER/句法协调短语拆解、Sap置信路由、定义/同义词链接与本体hard正负自监督可作为后续假设；现成30B/80B超过模型限制、Stanza i2b2人工临床源/GSC选择不能照搬。本项目8B链接对照不应称完整AutoPCR复现。当前仅记录，不取其语料/结果/权重。
+
+
+### 协调短语公开方法研究（100ep训练期间只读，尚无新模型实验）
+
+AutoPCR固定MIT commit c2b46a9c088c696533a43c5cb8e50c7500f055fe 的 [benepar.py](https://github.com/yctao7/AutoPCR/blob/c2b46a9c088c696533a43c5cb8e50c7500f055fe/src/ee/benepar.py) 用依存conj与成分树，把共享前后缀同每个分支重组成虚拟query；其区别是查询词面不连续，单纯扩大1–8gram不能产生此词面。普通≤8词名词短语通常已在宽池，不能默认句法提取提高召回。
+
+关键迁移限制：上游可给虚拟query保留整个父短语坐标，论文按同概念+跨度重叠评价；本赛要求精确offset/length且text必须等于原文切片。必须分开source token intervals、model query、output原文span，不能用虚拟字符串长度造坐标。后续可分别控制：①仅新增连续句法span；②固定物理span仅改共享成分query；③固定概念/关系仅比较父跨度与分支anchor投影。每项都应先训练内冻结，不同时混改、不把重叠命中冒充exact命中。
+
+只读fold0 train48计数：3612肯定记录去重3609跨度，内部含and/or/逗号83（2.30%），其中26多ID、57单ID；同词法句1923相邻非重叠跨度对中1598的间隔含连接标记，主要是独立列表。列表不证明共享头/ellipsis，也不证明当前模型漏检；83跨度与1598跨度对不能相加估收益，and不能一律拆成多个肯定表型。未加载解析器、未下载模型、未读验证/dev gold或运行预测。完整备忘、计数定义、匿名例型、可复现脚本都外存，只收[小索引](evidence/round2/coordination-research-index.json)。这组假设不改变进行中的固定100ep。
