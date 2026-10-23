@@ -1,0 +1,331 @@
+{
+  "scope": "One public GLiNER-BioMed nested16 zero-shot development control; no task-label span training or originaldev",
+  "status": "completed; independent fullchain review pending",
+  "at_utc": "2026-10-23T19:31:51.359363+00:00",
+  "public_checkpoint": {
+    "repo": "Ihor/gliner-biomed-large-v1.0",
+    "revision": "f79771210ab2111a2081ef31620fdb7342f602e9",
+    "weight_sha256": "7e3591fd58c3ee7ebe9a957fafeba6e635634e16ab5fa9329b6ad80d330ad8f9",
+    "actual_parameters": 477981696,
+    "source_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed/source-manifest.json",
+    "source_manifest_sha256": "f9064831e6de39c2a6aef83f6bb458972fe5191546854f3f426092bb7407c65a",
+    "task_span_training_manifest": null
+  },
+  "fixed_policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "overlap_order": "GLiNER score descending,length descending,offset ascending",
+    "existing_entities": "unchanged",
+    "relation": "same fixed rules",
+    "unmapped_new_spans": "discard; preserve original NIL"
+  },
+  "span_decoder": {
+    "label": [
+      "phenotype"
+    ],
+    "threshold": 0.5,
+    "token_budget": 384,
+    "max_width": 12,
+    "overlap_words": 12,
+    "flat_ner": false
+  },
+  "actual": {
+    "parameters": 477981696,
+    "windows": 594,
+    "raw_unique_spans": 2085,
+    "inference_seconds": 24.928108842112124,
+    "inference_total_seconds": 39.59046464134008,
+    "peak_gpu_allocated_bytes": 2139420672,
+    "gpu": "NVIDIA A30",
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "pipeline_stages": [
+      {
+        "name": "inference",
+        "start_utc": "2026-10-23T19:29:18.795321+00:00",
+        "command": [
+          "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+          "run_gliner_biomed.py",
+          "--model-dir",
+          "../pretrained-gliner-biomed-large-v1",
+          "--tokenizer-dir",
+          "../pretrained-gliner-biomed-large-v1",
+          "--input",
+          "../../ontology-round2/data/fold-1/input.jsonl",
+          "--output-dir",
+          "inference"
+        ],
+        "timeout_seconds": 300,
+        "exit_code": 0,
+        "end_utc": "2026-10-23T19:30:00.971169+00:00",
+        "freeze_sha256": "f5f1471736d506cdf7844da11c7f86e17c080d0be8ffa7c9f1a36a21cd1987bb"
+      },
+      {
+        "name": "link",
+        "start_utc": "2026-10-23T19:30:00.974666+00:00",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+          "link_public_gliner.py",
+          "--train",
+          "../../ontology-round2/data/nested-outer0-inner1/train.jsonl",
+          "--input",
+          "../../ontology-round2/data/fold-1/input.jsonl",
+          "--hpo",
+          "../../semantic-neural/data/hp.obo",
+          "--candidates",
+          "inference/candidates.jsonl",
+          "--candidate-freeze",
+          "inference/prediction-freeze.json",
+          "--span-source-manifest",
+          "../pretrained-gliner-biomed-large-v1/source-manifest.json",
+          "--semantic-source",
+          "../../semantic-neural/run.py",
+          "--model-dir",
+          "../../semantic-neural/model",
+          "--output-dir",
+          "linked"
+        ],
+        "timeout_seconds": 300,
+        "exit_code": 0,
+        "end_utc": "2026-10-23T19:30:14.682331+00:00"
+      }
+    ],
+    "training": false
+  },
+  "metrics": {
+    "menF1": 0.676923076923077,
+    "docF1": 0.7566371681415929,
+    "micF1": 0.6209598432908913,
+    "macF1": 0.5535369138359517,
+    "Score": 0.6520142505478782
+  },
+  "baseline_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6161515453639083,
+    "macF1": 0.5479558936740699,
+    "Score": 0.6447615937066596
+  },
+  "medium32_fresh10_metrics": {
+    "menF1": 0.6817311374952125,
+    "docF1": 0.7573529411764706,
+    "micF1": 0.6206225680933852,
+    "macF1": 0.5552734616418699,
+    "Score": 0.6537450271017345
+  },
+  "delta_vs_baseline": 0.007252656841218563,
+  "delta_vs_medium10": -0.001730776553856339,
+  "counts": {
+    "mention": {
+      "tp": 880,
+      "fp": 367,
+      "fn": 473,
+      "precision": 0.7056936647955092,
+      "recall": 0.6504065040650406,
+      "f1": 0.676923076923077
+    },
+    "document": {
+      "tp": 513,
+      "fp": 98,
+      "fn": 232,
+      "precision": 0.839607201309329,
+      "recall": 0.6885906040268457,
+      "f1": 0.7566371681415929
+    },
+    "relation": {
+      "tp": 317,
+      "fp": 184,
+      "fn": 203,
+      "precision": 0.6327345309381237,
+      "recall": 0.6096153846153847,
+      "f1": 0.6209598432908913
+    }
+  },
+  "net_counts_vs_baseline": {
+    "mention": {
+      "tp": 32,
+      "fp": 26,
+      "fn": -32
+    },
+    "document": {
+      "tp": 15,
+      "fp": 9,
+      "fn": -15
+    },
+    "relation": {
+      "tp": 8,
+      "fp": 10,
+      "fn": -8
+    }
+  },
+  "span_metrics": {
+    "gliner": {
+      "f1": 0.45380116959064326,
+      "fn": 559,
+      "fp": 1309,
+      "precision": 0.3721822541966427,
+      "recall": 0.5812734082397004,
+      "tp": 776
+    },
+    "nonoverlap_union": {
+      "f1": 0.5487804878048781,
+      "fn": 345,
+      "fp": 1283,
+      "precision": 0.43554773427188737,
+      "recall": 0.7415730337078652,
+      "tp": 990
+    },
+    "oof_crf_sap": {
+      "f1": 0.6909667194928685,
+      "fn": 463,
+      "fp": 317,
+      "precision": 0.7333894028595458,
+      "recall": 0.6531835205992509,
+      "tp": 872
+    }
+  },
+  "span_marginal": {
+    "accepted_fp": 966,
+    "accepted_tp": 118,
+    "eligible_fp": 1010,
+    "eligible_tp": 122,
+    "new_overlap_rejected": 48,
+    "overlaps_original": 953
+  },
+  "comparison": {
+    "existing_medium10_full_score": 0.6537450271017345,
+    "existing_medium_zero_shot_pure_span_f1": 0.2772946859903382,
+    "medium_zero_full_score": null,
+    "note": "No existing medium-zero same-policy linked cache identified; do not invent Score or run extra arm to fill table.",
+    "existing_medium10_metrics_sha256": "df32ea44aafbfc44b8d39ce625ef1fefd0cbbe87a513a6b62ed2104e1c40be8c"
+  },
+  "format": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "decision": "No replacement or further training automatically; positive linked increment but fullchain below same-layer medium32 fine-tuned10. Raw spans have excessive false positives. Await parent next research decision.",
+  "limitations": [
+    "Public model source review reports four teacher biomedical demonstrations have unspecified origin; no found evidence of benchmark-finetuned release.",
+    "Public pretrained zero-shot checkpoint vs medium supervised checkpoint is not a pure capacity or training-budget comparison.",
+    "The nested validation has been used for development.",
+    "No cached same-policy medium zero-shot fullchain Score; do not fabricate one.",
+    "Span-only F1 differs from task Score."
+  ],
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/plan.json",
+      "sha256": "5833dc0482cd2002886cac51c61bfbb0d5f584b953b650100eeb29bbbf16be4f"
+    },
+    "commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/commands.json",
+      "sha256": "2657cff4d8625bda7b746eac272af79b139d2596aaf851e02b396402fad1ebb7"
+    },
+    "run_fixed.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/run_fixed.py",
+      "sha256": "2688f27b5464b8194152fe7d691c253b80b8e2bfedf897b869c73aec3cacad17"
+    },
+    "launch_fixed.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/launch_fixed.py",
+      "sha256": "21eeb4560dfacd480ce446d2627402c60969cbe4738f8bdff2394f9bbb79e7ce"
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/job.json",
+      "sha256": "765978b743316719f9204d2f9f1aa72e4a6a6ee2c32330dd89cf1321035ca478"
+    },
+    "state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/state.json",
+      "sha256": "1a7e760cf796782d35cf89e401caac7468c1f969037d3b8b9d3a40677f2d17ec"
+    },
+    "gpu-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/gpu-preflight.json",
+      "sha256": "5128c1a1721d81c361fce7e3cfeae5a757db98119ffda987026bad08b7cc8108"
+    },
+    "artifacts-transfer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/artifacts-transfer.json",
+      "sha256": "14d7a921a01321fd3a28b8cde674d28fca0795f3f4ebcf87e195fddf97cdba71"
+    },
+    "inference/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/inference/manifest.json",
+      "sha256": "4590fabed7a8bea52f31d3b0490ce7fbe7447683c973b28203d9838f0fd91760"
+    },
+    "inference/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/inference/prediction-freeze.json",
+      "sha256": "f5f1471736d506cdf7844da11c7f86e17c080d0be8ffa7c9f1a36a21cd1987bb"
+    },
+    "inference/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/inference/candidates.jsonl",
+      "sha256": "8b1bb6fd15a3adcf7fa46322af91a2179952dbad671f9c070fb9bac03c7aaa57"
+    },
+    "linked/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/linked/manifest.json",
+      "sha256": "ece782ff5577369c1124e9ba71d459f2a701a5d1a452e3b902adfb8594db04ac"
+    },
+    "linked/scored-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/linked/scored-candidates.jsonl",
+      "sha256": "6e563de70d1bc6ad5f4e9a9668392bbc3994e422dd0f7c4f91ab9b521e372a28"
+    },
+    "assembled/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/assembled/manifest.json",
+      "sha256": "f3f2c1c0926fa9e4be79eedcd1b7749146e74671783b2f03b1aedd30d68700ec"
+    },
+    "assembled/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/assembled/augmented.jsonl",
+      "sha256": "b70d99e237a7986508fd8fcf002973c6c4bf4ca0ce564a6136a8d05037825c7a"
+    },
+    "assembled/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/assembled/augmented.metrics.json",
+      "sha256": "94e208069879eb3728cbdf4c7e5296d05219e1fe2a6beec91ca81512a80e1936"
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/assembled/validation.json",
+      "sha256": "4db8e1149b44693ecbe6058e8ddc0304f54a35d14ceb4c279f7bf005eee45ec7"
+    },
+    "cpu.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/cpu.commands.json",
+      "sha256": "29d12002cf9471258c56933e09153da6631ee7d01ac481f25e797556048f3ef7"
+    },
+    "cpu.execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/cpu.execution.json",
+      "sha256": "f1e0f794da1fb33758bf66ed0861c05a789ee65a6bcbf35b72ad10681804f7ab"
+    },
+    "span-diagnostic.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/span-diagnostic.json",
+      "sha256": "198a8e68656da56f256fe1d0dda9b317d45d7478fa4d626d8ae97dbd752d1d32"
+    },
+    "actual-wrapper-hash-probe.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/actual-wrapper-hash-probe.json",
+      "sha256": "e8d4b6136e852538ffe7cacf792045dc2cc9599ad90c56c6860479b06de8d26c"
+    },
+    "attempt1-pythonhash/job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/attempt1-pythonhash/job.json",
+      "sha256": "f5a3a981b8b212f0040f289fa7c28874fb72e6f58aabb375e2036dbd41395eb1"
+    },
+    "attempt1-pythonhash/run_fixed.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/attempt1-pythonhash/run_fixed.py",
+      "sha256": "75a949417381c5fbd47ecbfbe601ec534548a0f1515e3d909f5062c05a43e41d"
+    },
+    "attempt1-pythonhash/stderr.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/attempt1-pythonhash/stderr.json",
+      "sha256": "a6249fa546d6f1511fd32b3d36b040a7bafd2bab492b27dddbf5fdfcbacffcef"
+    }
+  },
+  "gpu_release": {
+    "exit_code": 0,
+    "stdout": "{\"checked_at_utc\": \"2026-10-23T19:30:52.051370+00:00\", \"target_gpu_empty\": true, \"compute_apps\": \"GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\\n\", \"free_bytes\": 203756294144}\n"
+  },
+  "launcher_failure": {
+    "process": "proc_95858070-d380-4fea-bce1-f44c2712be42",
+    "failed_before_model_or_gpu": true,
+    "reason": "Python3.10 stdlib hashlib has no file_digest (introduced3.11)",
+    "remediation": "stream hashlib.sha256 over8MiB blocks; no model/decoder change",
+    "prior_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-nested/attempt1-pythonhash"
+  },
+  "hash_probe_timing": "CPU hash test was added after successful relaunch; actual driver itself verified full source/input/weights before inference.",
+  "source_commit": "7fd9c5beaa29e5d093157ad90f0e47fc2c8afc8c"
+}

@@ -74,3 +74,9 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 ## GLiNER-BioMed 接口候选（2026-10-23，仅下载/CPU预检授权）
 
 固定 `Ihor/gliner-biomed-large-v1.0@f7977121` 公开权重1.912GB，来源独审未发现其为benchmark few-shot成品，仍保留teacher四示范来源未披露边界。它是1024维head/24层DeBERTa，已有完整 `encoder_config` 和保存的128003词表（ENT128001/SEP128002），不能原样使用旧legacy loader：重复传encoder_config会报错，无条件添加FLERT会改变词表和类token索引。独立CPU入口保留新格式配置，strictload且weights_only；原large训练入口不动。SPM官方SHA与现有模型一致，可核验复用；新增tokenizer JSON/映射按准确revision保存。max_len2048不意味着本次扩大输入，仍只验既有384预算窗口；训练数据、当前BCE和在跑参数都不变。来源/限制/预算见[预检计划](evidence/round2/gliner-biomed-interface-plan.json)，尚无新GPU或泛化分数。
+
+## 2026-10-23 large-v2 完整管线与启动器兼容
+
+固定训练48的large-v2纯span union .769904优于medium48 .757484，完整固定Sap/rules总分却.720152低于medium .721504。不要把更强跨度识别或模型容量当成完整任务成功的替代指标；这次checkpoint替换已关闭，不迁移原dev或围绕同fold调参。来源/head/上游recipe也不同，因此不能把差异只归因参数数量。实际终点、两独立审查、真实model/state恢复位置见gliner-large-terminal-results.json。
+
+远端系统 `python3` 实为3.10.12，新的外部launcher使用3.11新增 `hashlib.file_digest` 会在模型前退出。已改现有项目使用的流式 `sha256.update`，保留原job/原wrapper SHA/trace及实际解释器CPU hash自检。模型入口和decoder未改变；失败只计启动器问题，不计模型负结果。今后必须依据实际执行解释器版本检查标准库API，而非本地Python版本。外存gliner-biomed-nested/attempt1-pythonhash/与actual-wrapper-hash-probe.json；selftest在成功重启后补做，时序如实记录。
