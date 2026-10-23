@@ -25,3 +25,5 @@ root已授权一次≤300秒+TERM30的98分支GPU诊断，不训练、不重新�
 [完整小证据](../evidence/round2/conditional-subset-likelihood-result.json)。
 
 统一增量独审5204f184通过：全部98实际分数、26边际、固定指标独立exact，token契约复用dcc2f1f5，原失败/修复/实际模型和同绝对预算链均核验。配置结案，无自动后续运行。
+
+后继同12提示的全部80CID控制也负，旧12CID结果保留。完整530合法分支中旧98精确复用、新432只forward333.460秒（其中307.520秒forward），统一freeze后预定158pair统计：greedy34TP7FP4FN→固定边际.5 24TP21FP14FN。找回2个旧FN、丢失12个旧TP、新增18FP、移除4旧FP；Brier/AUC均变差。因此关闭这一原始条件分数+固定.5政策，不在局部集上校准温度/阈值；不是对重新训练判别目标或一切连续信号的否定。完整终点独审ddd3e009通过，GPU释放；[证据](../evidence/round2/conditional-all80cid-result.json)。

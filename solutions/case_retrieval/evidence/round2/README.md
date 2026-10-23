@@ -125,3 +125,5 @@
 - [公开新增概念关系F1结果](public-new-relations-result.json)：旧实体/关系全保留，+72TP121FP，.660942→.669751；训练侧开发小正，原v2与canonical分母单列，未迁移原dev。
 
 - [条件子集似然CPU/计划](conditional-subset-likelihood-plan.json)与[完整98分支机制pilot](conditional-subset-likelihood-result.json)：实际79.071秒/52.680秒forward，先freeze再固定26pair统计；原greedy全对，新.5未改善，不能检验补召回；原absolute deadline内一次工程恢复，GPU已释放。
+
+- [同12提示全80CID冻结计划](conditional-all80cid-plan.json)与[终点](conditional-all80cid-result.json)：530分支/158pair，旧98exact复用；找回2FN却丢12TP/新增18FP，固定.5负结案，独审ddd3e009通过，GPU已释放，不扩调参。

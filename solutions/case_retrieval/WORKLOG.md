@@ -24,7 +24,7 @@
 - **F1固定支持过滤**：只保留新增HPO落在固定cut.3文档实体者，原旧输出不变，Score .660942→raw .669751→support **.682128804**；新增65=41TP24FP，比raw少31TP97FP。这是见F1后提出的开发控制，非盲测；不改已冻outer计划，等共同终点。[结果](evidence/round2/public-new-relations-F1-support-result.json)。
 - **原dev唯一支持追加完成**：原6401 .732257765→**.736526555**（+.004268790）；新增35=18TP17FP，旧1004entities/333assoc全保留，关系291TP77FP162FN，micro+.014235/macro+.002840。42strict/276CID/0触顶回退，139.727s；fullfreeze36fd0124先于唯一新arm评分，pred e9b30447，raw未评分。2026-10-23T21:57:55.235482+00:00 A800 GPU2 fresh空释放、watcher9688结束，勿重启；独审245c1f00通过，无GPU后继/不上传。[结果](evidence/round2/public-new-relations-dev-result.json)。
 - **条件子集分数诊断完成**：固定12CID/26pair/98分支全部有限，79.071s总/52.680s实际forward，22:11:31.682Z在原22:11:42截止内；22:11:39.721Z A800 GPU2 fresh空释放，watcher94304结束。先完整scores/边际freeze再预写统计：旧greedy6TP0FP0FN，新固定.5为4TP2FP2FN/Brier .103977；样本原本无FN，不能检验补召回或外推Score。首attempt在加载元数据序列化时零forward失败，仅修serializer且同绝对预算内完成，不记质量负；无后续GPU。独审5204f184通过（98数值/26边际/指标exact及同预算修复谱系）。[结果](evidence/round2/conditional-subset-likelihood-result.json)。
-- **当前全CID机制检查**：保留旧12CID负pilot；同12篇/同12prompt全部80CID/158pair/530分支，未按错误选样。actual CPU6.544s，530完整编码/1,725,321tokens/最长4191；旧98全部字段exact可复用，新432=1,475,324tokens。新600+30一次A800前向，预计约311s forward加约26s导入/加载（代理非实测）；全部530共同freeze后预写固定.5/Brier/TPFPFN及旧FN回收、新损失计数，无训练/dev/扫描。源f7480c47已push/plan1950824c；实际proc_15bb43db于22:16:35.724Z启动，watcher99868，native截止22:26:35.724+TERM30。恢复先核原job勿重启。[计划](evidence/round2/conditional-all80cid-plan.json)。
+- **全80CID条件分数已负结案**：同12prompt/158pair/530分支（旧98exact复用），旧greedy34TP7FP4FN/F1 .860759→新.5 24TP21FP14FN/F1 .578313；回收2FN却丢12TP、新18FP/移4旧FP，Brier/AUC均负。新432总333.460s/forward307.520s，22:22:09.253Z完整、22:22:14.936732Z fresh空释放，watcher99868结束；独审ddd3e009通过。全部530先共同freeze再唯一预写统计，不扫cut/温度、不迁移dev。[结果](evidence/round2/conditional-all80cid-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -49,4 +49,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `a6fca61`（完整负对照与独立质量审查），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `c86c2e3`（全CID准备与实际作业恢复检查点），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
