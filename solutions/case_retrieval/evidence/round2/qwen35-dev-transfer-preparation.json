@@ -1,0 +1,72 @@
+{
+  "status": "input_only_cpu_prepared_actual_a30_probe_in_progress",
+  "preparation": {
+    "status": "cpu_prepared_not_inferred_not_evaluated",
+    "source_files": {
+      "/workspace/patientphex-data/day1/dev16.input.jsonl": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "/workspace/patientphex-data/hp.obo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prepare_pair_rag.py": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+      "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prompts.jsonl": "e09bcc41553e6aca540ffae8d2dcab77022f0ad71870d0a2e9164fbeb8aa975d"
+    },
+    "documents": 16,
+    "patients": 36,
+    "entities": 955,
+    "prompts": 64,
+    "document_concepts": 466,
+    "candidate_patient_pairs": 1006,
+    "source_prediction_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/manifest.json",
+      "sha256": "40b063dc8c5ecd2268249c8b7a32e5b75b7d1a5d269a19513b32d84ede442fec"
+    },
+    "source_scales": "CRF/Sap/LR train64; extra GLiNER model only train48 true subset64; Qwen3.5 relation adapter only innerfold0 train48. No retraining/full64 adapter.",
+    "input_policy": "Only stripped dev input and fixed predicted entities; source candidate association not read into prompts. No gold entities, no annotation, no retrieval demonstrations.",
+    "protocol": "Same original204/58 local8CID/500char/max4evidence; base and fixedepoch002 same prompts/decoder/merger; no fullcontext/coref/PhenoTagger/nested extras.",
+    "gpu_status": "not authorized to start yet; preparation and budget only, after existing fullcontext and OOF queue."
+  },
+  "actual_token_summary": {
+    "prompts": 64,
+    "total_input_tokens": 202743,
+    "max_input_tokens": 5194,
+    "longest": "12126309:relations:8",
+    "over_cap": 0,
+    "cuda_initialized": false
+  },
+  "token_audit": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/tokenizer-audit.json",
+    "sha256": "4efbb04d4aae353ccca69e581b9397d9b78e22ef4fabec11464562dd495bf748",
+    "bytes": 33717
+  },
+  "adapter_transfer": {
+    "status": "complete_full_sha",
+    "files": {
+      "adapter_config.json": {
+        "size": 1287,
+        "sha256": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9"
+      },
+      "adapter_model.safetensors": {
+        "size": 173181072,
+        "sha256": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513"
+      }
+    },
+    "seconds": 18.62018918991089,
+    "source_epoch": 2,
+    "source_training_global_step": 52,
+    "source_gpu": "A800",
+    "no_optimizer_copied": true
+  },
+  "adapter_source_closed": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/adapter-source-closed.json",
+    "sha256": "dee1e8f66f69212caec0a84906dcfb327e17f0f1fdd39f843151505530e57573",
+    "bytes": 85
+  },
+  "probe_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/probe-plan.json",
+    "sha256": "cea70b9de0e481a9886112dcdc617b08409ee003d8d30dc1de29f5159c92ca43",
+    "bytes": 5550
+  },
+  "formal_budget_seconds": 2100,
+  "formal_status": "not started, wait both input-only probes complete and same-A30 budget freeze",
+  "scope": "Original dev once, two unchanged local8CID/500-context prompts and strict original parser; mixed train64 candidate modules and train48 GLiNER/SFT stated explicitly. No dev gold read."
+}

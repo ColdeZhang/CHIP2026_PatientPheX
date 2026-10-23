@@ -58,3 +58,7 @@
 - `full-context9b-cap-equivalence.json`：实际CPU两cap最终encoded输入/decoder全同，支持复用原同A800 base58；全文尚未推断。
 
 - `qwen35-relation-paired-result.json`：原58同设备base→epoch002完整结果、schema次控制和事后错类；SFT .695444仍低rules，原dev未动。
+
+- `llm-feature-tree-preparation.json` / `llm-feature-tree-contract.json`：204严格OOF官方base决策作为四个事实特征，配对HGB固定协议与实际CPU/8合成控制；尚未推理204或拟合树。
+- `qwen35-a30-persistent-copy.json`：15文件实际SHA独立复核与源进程/端口关闭，保留持久副本。
+- `qwen35-dev-transfer-preparation.json`：原dev64纯输入提示/固定955实体、实际token预算、epoch002复制和probe准备；尚无原dev新分。
