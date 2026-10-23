@@ -1,6 +1,6 @@
 # CRF 序列标注工作台账
 
-实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `bc5f61f`，干净检查点正常合并 `4c6b45a` 已推送；只更新共享文档/备份脚本，方案和评测源码不变。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
+实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。共享主分支已正常合并至 `0f8901e`，merge `773d12e` 已推送；同步前后本方案 Git tree 字节一致。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
 
 ## 目标与可信最佳结果
 
@@ -32,6 +32,8 @@
 
 
 14. **公开新来源选择器准备（CPU/源码，不训练）**：严格OOF本体/Sap/CRF HGB已能删旧实体、替换冲突边界/ID，四折source/confidence和严格CE入树均已完成，不能称新机制。当前未有GLiNER/publicPheno完整同折池；最小新控制为旧source-HGB±公开Pheno候选/真实来源分数，复用三train32 OOF与秒级CPU训练入口。固定公开模型可无标签缓存train64后按篇跨折复用，赛事别名/CRF/Sap-LR/任务NER和二层标签仍按折；待bio helper的64cache与schema，尚未训练/推断/评分。[短判断与唯一提案](experiments/public-source-selector-readiness.md)、[11快照/12配置哈希证据](evidence/round2/selector-readiness.json)。
+
+15. **唯一public source-HGB控制已冻结、待缓存**：原source baseline `59bf4fa3`/预测`8ec02c6c`（.710359060）直接复用，新增真实publicPheno候选+六来源/分数字段；不加GLiNER、CE、margin或阈值扫描。旧head ID/列及词典来源保留，可删换整个池实体。CPU边界合同已过，拟合/推断硬cap120秒，三train32 OOF与旧HGB160/.4不变。先两完整预测共同freeze再一次outer0评分，拆新增来源与旧实体删换TP/FP；不触原dev。[固定计划](evidence/round2/public-selector-plan.json)，外存 `public-selector-control/plan.json` 与 `source-snapshot/`；当前没有本路线活动GPU。
 
 
 ## 已完成的近期结论
