@@ -89,7 +89,9 @@ def main():
                     'candidate_sha256':sha(stage_out/'candidates.jsonl'),
                     'raw_span_sha256':sha(stage_out/'raw-spans.jsonl'),
                     'manifest_sha256':sha(stage_out/'manifest.json'),
-                    'input_sha256':manifest['input_sha256'],'stage':stage['name']}
+                    'input_sha256':manifest['input_sha256'],'stage':stage['name'],
+                    'model_sha256':next(v for k,v in manifest['files'].items() if k.endswith('/pytorch_model.bin')),
+                    'source_sha256':manifest['source_sha256']}
             save(stage_out/'prediction-freeze.json',frozen);event['prediction_freeze']=frozen
         save(state_path,state)
         print(json.dumps({'stage':stage['name'],'completed_at_utc':now(),'seconds':event['seconds']}),flush=True)
