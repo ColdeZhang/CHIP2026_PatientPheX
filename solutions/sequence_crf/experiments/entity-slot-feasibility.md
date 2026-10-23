@@ -86,3 +86,5 @@ root在微批实测后授权原门控train32的637提示/2430候选，fresh公�
 终点只在同一F1纯输入398提示/1589机械候选上，载最终适配器一次，用disable_adapter得到公开base，再启用final；原head双列、同右padding微批/同原顺序、固定**p≥.5**。双臂推断共享600+30秒，保存每一原key的真实两logits/概率，无生成/无搜索。两概率和两完整预测共同freeze后唯一F1实体质量检查，**不原dev**。
 
 装配沿旧calibrate的`(-p,-length,offset)`稳定排序（完全并列沿冻结gated-prompt候选顺序），greedy拒任何重叠；相接允许，原candidate ID/compound/`-1`不改，统一type=Phenotype/note=None，无额外否定/NIL门。仅替换entities，原`7ef8b73d…`F1语义+本体baseline全部非entity对象逐项不变，不重新分配患者。5个输入边界CPU检查已过。当前**77列gate候选家族不含当前best97列公开多源完整池**；public-base对final的提升不等于超过现有best。候选F3→F2/F2→F3及train32→F1隔离、train32 resub gate偏差保持披露。完整计划与source恢复见[formal计划](../evidence/round2/entity-slot-formal-plan.json)。
+
+正式入口增量独审 `eca2f72e` PASS：五个decoder合同与合成398行/1589键双装配、非entity对象保全、缺final/错key拒绝，以及实际推断前计划→training manifest→epoch002闭环通过。此仅源码/CPU合同；正式训练及真实预测质量尚未完成。
