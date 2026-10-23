@@ -28,7 +28,7 @@
 
 12. **本体覆盖诊断及CPU exact控制已结案、负结果**：原train48三套OOF的908无重叠FN仅54被HPO name/EXACT正确覆盖，高置信Sap40、并集60，不优先全HPO短语预适配。只解除`c.exact`跳过，旧三对照byteexact、三新预测统一freeze后评：pooled **.667647648→.666761145**，等权平均.669729202→.668894975，一升两降；新增实体40TP58FP、移除1TP3FP，新增关系6TP22FP、移除1TP。保留旧政策，不扫阈值/不触原dev/不占GPU；独立复核PASS（6e49d0c8），六预测byteexact/全部新指标一致。[短机制结论](experiments/ontology-miss-mechanism.md)、[完整结果与复现入口](evidence/round2/exact-gate-control-results.json)。
 
-13. **固定focal CPU准备完成，尚未GPU**：BioMed官方配置明确.75/2/sum；本路线8份实际训练均BCE，未重复旧实验。新纯函数保原valid-span mean，10组数值/梯度/mask合同通过（CUDA=false）。不是正例塌缩修复；优先建议.100同runtime fresh medium32 BCE/focal配对，估共23–30min，因原1150 BCE训练来自A800，旧同卡推理不能替代训练对照。root已条件授权；A800仅2.0GB余盘拒绝，采用.100两fresh臂共享1800s/每臂1200s+TERM30，实际CPU/最长单步已通过，20:30:10Z启动proc_483790e9，实际训练共享截止2026-10-23T21:00:12.063790+00:00。入口/actualCPU与单步独审PASS（cc5e8486），原BCE入口不改，新holdout未读。[启动/恢复](evidence/round2/focal-pair-launch.json)。[固定配对计划](evidence/round2/focal-pair-plan.json)、[短提案](experiments/focal-loss-proposal.md)、[CPU证据](evidence/round2/focal-loss-cpu.json)。
+13. **固定focal配对训练进行中**：BioMed官方配置明确.75/2/sum；本路线此前8份实际训练均BCE，未重复旧实验。新纯函数保原valid-span mean，10组数值/梯度/mask合同通过（CUDA=false）。不是正例塌缩修复；采用.100同runtime fresh medium32 BCE/focal配对，估共23–30min，因原1150 BCE训练来自A800，旧同卡推理不能替代训练对照。root已条件授权；A800仅2.0GB余盘拒绝，采用.100两fresh臂共享1800s/每臂1200s+TERM30，实际CPU/最长单步已通过，20:30:10Z启动proc_483790e9，实际训练共享截止2026-10-23T21:00:12.063790+00:00。入口/actualCPU与单步独审PASS（cc5e8486），原BCE入口不改，新holdout未读。[启动/恢复](evidence/round2/focal-pair-launch.json)。[固定配对计划](evidence/round2/focal-pair-plan.json)、[短提案](experiments/focal-loss-proposal.md)、[CPU证据](evidence/round2/focal-loss-cpu.json)。
 
 ## 已完成的近期结论
 
