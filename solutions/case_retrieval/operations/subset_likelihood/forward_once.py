@@ -20,6 +20,7 @@ def main():
  adapter={n:sha(Path(p.adapter)/n) for n in ['adapter_config.json','adapter_model.safetensors']};assert adapter==plan['adapter_files']
  config=Qwen3_5TextConfig.from_pretrained(p.model,local_files_only=True)
  model,loading=Qwen3_5ForCausalLM.from_pretrained(p.model,config=config,dtype=torch.bfloat16,device_map='cuda:0',attn_implementation='sdpa',local_files_only=True,output_loading_info=True)
+ loading=json.loads(json.dumps(loading,default=helper.json_default))
  assert all(not loading.get(k) for k in ['missing_keys','unexpected_keys','mismatched_keys','error_msgs']);assert sum(p.numel() for p in model.parameters())==8953803264
  model=PeftModel.from_pretrained(model,p.adapter,is_trainable=False);model.eval();assert sum(p.numel() for p in model.parameters())==8997081600 and not any(p.requires_grad for p in model.parameters())
  save(b/'run_manifest.json',dict(plan_sha256=sha(b/'remote-plan.json'),source_sha256=sha(__file__),encoded_sha256=sha(encoded),model_files=actualbase,adapter_files=adapter,runtime=dict(torch=torch.__version__,transformers=transformers.__version__,peft=peft.__version__,cuda=torch.version.cuda,gpu=torch.cuda.get_device_name(0),gpu_uuid=plan['gpu_uuid']),configuration=dict(dtype='bfloat16',log_softmax='float32',batch_size=1,use_cache=False,no_generate=True,no_training=True),loading=loading,trainable_parameters=0))
@@ -36,6 +37,6 @@ def main():
    if i%12==0:print(json.dumps(dict(completed=i+1,total=98,elapsed_seconds=time.monotonic()-start)),flush=True)
  for key in {(x['row_id'],x['cid']) for x in branches}:
   group=[x for x in done if (x['row_id'],x['cid'])==key];assert {x['mask'] for x in group}==set(range(1<<len(group[0]['patient_ids'])))
- elapsed=time.monotonic()-start;assert elapsed<300
- save(b/'complete.json',dict(status='all98_float32_conditional_scores_complete',rows=98,CIDs=12,score_sha256=sha(b/'scores.jsonl'),manifest_sha256=sha(b/'run_manifest.json'),plan_sha256=sha(b/'remote-plan.json'),longest_sha256=sha(b/'longest-actual.json'),elapsed_seconds=elapsed,forward_seconds=time.monotonic()-forward_start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),no_gold=True,no_cache=True,no_generation=True,no_training=True));print('COMPLETE98',flush=True)
+ elapsed=time.monotonic()-start;assert elapsed<300 and time.time()<plan['absolute_deadline_epoch']
+ save(b/'complete.json',dict(status='all98_float32_conditional_scores_complete',rows=98,CIDs=12,score_sha256=sha(b/'scores.jsonl'),manifest_sha256=sha(b/'run_manifest.json'),plan_sha256=sha(b/'remote-plan.json'),longest_sha256=sha(b/'longest-actual.json'),completed_epoch=time.time(),elapsed_seconds=elapsed,forward_seconds=time.monotonic()-forward_start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),no_gold=True,no_cache=True,no_generation=True,no_training=True));print('COMPLETE98',flush=True)
 if __name__=='__main__':main()
