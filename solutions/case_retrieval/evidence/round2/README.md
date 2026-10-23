@@ -105,4 +105,4 @@
 
 - [身份桥接完整固定配对结果](patient-identity-bridge-paired-result.json)：same947实体，fresh BF16 CE .652285→bridge .641438，低rules .711354；双freeze后唯一评测，无原dev迁移，GPU已释放。
 
-- [Full64训练目标CPU诊断](qwen35-full64-objective-diagnostic.json)：真实265行mask/token exact，数量与loss贡献分开；[唯一12篇训练拟合计划](qwen35-full64-training-fit12-plan.json)，尚未生成，不是泛化Score。
+- [Full64训练目标CPU诊断](qwen35-full64-objective-diagnostic.json)：真实265行mask/token exact，数量与loss贡献分开；[唯一12篇训练拟合计划](qwen35-full64-training-fit12-plan.json)，[实际12篇结果](qwen35-full64-training-fit12-result.json)：训练关系F1 .883721、strict12/exact7，独审通过且GPU释放；不是泛化Score。

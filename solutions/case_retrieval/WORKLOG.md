@@ -13,7 +13,7 @@
 - **身份桥接已结案（负）**：同4127 OOF训练/1166外层候选/947实体，fresh BF16 CE baseline **.652284538**→bridge **.641437506**（−.010847），低rules **.711353522**，不迁移原dev/不扫阈值。217TP/133FP→225TP/123FP虽改善micro，macro .561125→.494091使Score下降。两臂4ep/1032真实更新、133.25+133.43s；双pred先freeze、唯一新两臂评分，独立终审b1dc09f5通过（质量e05bbac2/谱系93905390），配置关闭。[结果](evidence/round2/patient-identity-bridge-paired-result.json)。A30 GPU1 20:24:45.882Z fresh空已交root，watcher28859结束，无GPU后继；原FP16失败与BF16数值修复分开保留。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
-- **当前新诊断**：full64目标CPU审计完成，265行真实token/mask exact；CID49.53%/标点28.04%但含1908空/非空决策分支，19/265全空，不能据数量直接改loss。在线loss .114268→.060500不等于最终自由生成拟合。root已授权唯一12篇训练prompt的epoch2固定生成≤300+30，输入/计划已冻结，尚未启动；[诊断](research/full64-objective-diagnostic.md)。
+- **当前新诊断**：full64目标CPU审计完成，265行真实token/mask exact；CID49.53%/标点28.04%但含1908空/非空决策分支，19/265全空，不能据数量直接改loss。在线loss .114268→.060500不等于最终自由生成拟合。唯一12篇训练prompt的epoch2生成67.126s完成：strict12/12、57TP/6FP/9FN、F1 .883721、exact7/12；只说明训练侧已学习，不是Score/泛化、不据15错误追加epoch。独审a9c0ccb1通过，20:40:37Z A800 GPU2已释放，watcher7739结束；[诊断](research/full64-objective-diagnostic.md)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -38,4 +38,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `bbd3bdf`（完整负对照与独立质量审查），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `8a17859`（完整负对照与独立质量审查），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。

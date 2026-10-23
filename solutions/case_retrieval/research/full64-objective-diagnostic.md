@@ -27,3 +27,11 @@
 root已授权只用full64 epoch002和原greedy decoder/解析做一次≤300秒（TERM宽限30秒）的A800训练侧生成。最初可选的teacher-forced分组NLL建议**不执行**。检查严格格式、候选归属P/R/F1、整行完全一致率；不是公共v2 Score或泛化评估，不比较epoch、不改阈值、不重试。若该小样本拟合已高，就关闭“仅因训练没拟合而追加轮数”的依据；若差，仍不能单独区分优化不足、输入歧义和监督噪声。没有自动新增训练预算。
 
 详细统计、逐token角色和真实日志留仓库外；入口见[小证据](../evidence/round2/qwen35-full64-objective-diagnostic.json)及[固定12运行计划](../evidence/round2/qwen35-full64-training-fit12-plan.json)。
+
+## 固定12条实际终点
+
+唯一epoch002生成已完成：runner 67.126秒，其中生成44.403秒；12/12严格JSON、90候选均合法、0触顶。训练候选关系57TP/6FP/9FN，P **.904762**、R **.863636**、F1 **.883721**；7/12行患者归属集合完全一致（58.33%，按语义集合而非JSON空格/顺序）。这是12篇已训练输入的拟合自检，**不是公共v2 Score、全训练准确率或泛化结果**。
+
+结果支持关系链路确实学习，关闭“关系监督几乎未学所以理应多训”的依据；仍有15个集合错误，但不能由此判断追加epoch收益，也不能区分优化、输入/监督歧义及teacher-forcing与生成差异。没有追加训练或推断预算。原dev best仍为.715759605。
+
+实际job `proc_7b638261-c052-42e1-88a4-c710fe11029a` 已结束，20:40:37.734Z fresh核A800 GPU2空/81156MiB并释放；本地watcher7739 exit0，MCP仅给stopped状态、不冒称独立取得远端rc。独立合并审查 `a9c0ccb1…` 逐行复现选择、prefix计数、57/6/9和7exact；原runner没有逐行记录实际input-ID digest，报告明确冻结messages/模板重建SHA与实际token counts的证据边界。[完整小证据](../evidence/round2/qwen35-full64-training-fit12-result.json)。
