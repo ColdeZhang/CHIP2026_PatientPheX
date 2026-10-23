@@ -1,0 +1,84 @@
+{
+  "report": "/workspace/patientphex-runs/round2-20261023/validation/coreference-fold0-review.json",
+  "report_sha256": "e60a171ca85fd7ab517ceabe751ecaefe3f5410292b82de1742e4de92c8a06dd",
+  "scope": "独立 CPU/input-only 共指机械与语义检查、冻结三组规则及 no-op 重放、冻结后统一 v2 评分；不含尚未回收的 SFT 短批推断。",
+  "source_commit": "64d4b460ad9af1a1f5c02dce9590da24ad2d0bf2",
+  "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+  "expanded_sha256": "e9c8ad8d6f7512002a458a04b8f83353a01d33c49af376d3c07dfb69759c1c52",
+  "mechanical": {
+    "documents": 16,
+    "patients": 47,
+    "original_mentions_preserved": 158,
+    "new_mentions": 18,
+    "accepted_evidence": 88,
+    "input_fields_and_patient_ids_unchanged": true
+  },
+  "semantic": {
+    "protocol_before_gold": true,
+    "all_new_mentions_reviewed": 18,
+    "counts": {
+      "reviewed": 18,
+      "supported_identity_in_context": 17,
+      "ambiguous_due_to_input_identity_conflict": 1,
+      "unambiguous_wrong_identity_established": 0
+    },
+    "interpretation": "17项有原文语义支持；1项输入ID/原始anchor与后文临床编号关系冲突，不能可靠确认主体，也不直接宣称原标注或新增span错误。代理语言模型阅读不是人工金标，不估计总体精度。",
+    "no_filter_or_prediction_change": true
+  },
+  "replay": {
+    "byte_identical_artifacts": 10,
+    "all_six_control_outputs_equal_original_baseline": true,
+    "anchors": {
+      "original": 176,
+      "offset": 194,
+      "broadcast": 207,
+      "new_literal_offsets": 18,
+      "extra_broadcast_only": 13
+    }
+  },
+  "results": {
+    "original": {
+      "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.711353521870099
+      },
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "expanded-aliases": {
+      "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.711353521870099
+      },
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "expanded-offsets": {
+      "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.711353521870099
+      },
+      "error_count": 0,
+      "warning_count": 0
+    }
+  },
+  "conclusion": "输入保留、定位、患者ID和独立重放通过；三种规则输出均与旧基线逐字节一致，Score 0.711353521870099，0错误0警告，无得分收益。",
+  "limitations": [
+    "上下文唯一性仅针对实际展示请求窗口，不宣称全篇唯一；完整原文边界已独立核对。",
+    "机械grounding不证明主体身份；保留1项未决，不按复核结果删改已冻结实验。",
+    "仅审查SFT58提示，29项messages变化；29旧响应复用及新短批模型/decoder/输出尚待后续独立审核。",
+    "使用开发内fold0；没有读取原dev标签，没有GPU训练或官方网站操作。"
+  ]
+}

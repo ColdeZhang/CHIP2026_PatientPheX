@@ -10,16 +10,16 @@
 
 ## 正在执行与恢复入口
 
-1. **共指 CPU 已完成**：fold0 72窗全部回收，严格定位后新增18mentions；原规则/旧alias/offset-only三路预测与原baseline逐字节相同，Score仍.711353522。GPU1已复查释放，无待恢复的旧共指作业。见 [运行与结果索引](evidence/round2/coreference-fold0.json)。
-2. **正在等待 SFT 配对**：58提示已冻结，其中完整row相同29条复用原raw响应，changed29已上传A800；候选/患者映射不变，仅改mentions、不重训、不改实体。复用前核验实际模型/adapter/源码/decoder/runtime；逐行来源见外存stage2-reuse/。恢复外存 `coreference-fold0/sft-queued-job.json`（状态尚未启动），实际作业开始后另存 `sft-job.json`。
-3. **资源/后续**：A800 GPU2优先检索集合SFT，等待其明确释放再查进程后运行；完成即交回其配对推理。独立共指控制审查正在进行。当前不启动新共指协议、不按gold修新增mentions。
+1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
+2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
+3. **当前后续**：缓存/CPU装配独立复核收尾；本轮不推广原dev、不替换最佳模型。主线程协调下一方向前，不继续按fold0结果修改共指协议。完整外存coreference-fold0/stage2-reuse/保存命令、raw/合成响应、逐行来源、预测冻结与指标。
 
 ## 已完成的近期结论
 
 - 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。
 - 本体校准池的 24 个新概念/26 支持跨度经现有 adapter 判断，保留原实体及规则关系，仅增 14 项关系（4TP/10FP），fold0 `.712942`。边际精度较低，尚不推广。
 - 训练锚点诊断独立复算通过：967 个 SFT 候选内正关系中，363 项实际局部证据无目标患者 marker；全局 anchors 仍可见，不能称不可回答率。完整全文 LLM 共指此前没有实际运行。
-- 共指首轮训练输入 pilot 因子串定位与身份混淆失败；同 3 篇仅修订一次为唯一原文 context＋完整词边界，严格保留 4 项新增且逐条身份检查通过，召回保守。已按此协议复验fold0，新增18mentions但规则零变化；SFT配对尚待运行，不继续按结果调提示。
+- 共指首轮训练输入 pilot 因子串定位与身份混淆失败；同 3 篇仅修订一次为唯一原文 context＋完整词边界，严格保留 4 项新增且逐条身份检查通过，召回保守。已按此协议复验fold0，新增18mentions但规则零变化；同adapter SFT有小增益但未超规则，不继续按结果调提示。
 - 神经 NER、HPO 重排、零样本关系、thinking 小样本、O 编号锚点、外部表格等正负结果与限制均保留在实验报告。O 编号四折不稳定、表格新增关系均为本地 FP，未升级默认。未使用包含本地 dev 的赛事公开成品权重。
 
 ## 证据与下一步

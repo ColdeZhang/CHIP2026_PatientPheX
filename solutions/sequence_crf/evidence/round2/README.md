@@ -28,3 +28,7 @@
 
 - `coreference-plan.json` / `coreference-pilot-failure.json` / `coreference-context-pilot.json`：输入侧预选3篇、原型定位/身份失败与唯一context协议复验，不是gold共指准确率。
 - `coreference-fold0.json`：正式72窗、原文定位、冻结规则三控制和SFT58排队入口；当前三rules预测byteexact，阶段二结果待回收。
+
+- `coreference-independent-review.json`：72窗输入/18新增定位及三规则/no-op独立字节复现，17身份支持/1未决；规则零收益，SFT变更29短批另评。
+
+- `coreference-sft-results.json`：共指只改mentions同adapter控制，29新＋29严格缓存逐行来源；fold0 .674333→.686853，仍低于rules，原dev不动。
