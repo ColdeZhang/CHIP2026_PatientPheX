@@ -94,3 +94,5 @@
 - [身份桥接唯一A30单步成本](patient-identity-bridge-probe-result.json)：实际.569s/4.096GB allocated，warmup首lr0正确方向梯度且不保存状态，GPU释放；双臂约19.57min仅粗估，未正式训练。
 
 - [身份桥接双fresh正式准备](patient-identity-bridge-formal-preparation.json)：同4127/969训练、无标签1166外层输入；共享训练1500s/每臂900s、各唯一终点推理300s。固定[运行计划](patient-identity-bridge-formal-plan.json)和[双预测freeze后评测计划](patient-identity-bridge-evaluation-plan.json)，尚未启动。
+
+- [身份桥接双fresh正式启动](patient-identity-bridge-formal-start.json)：20:12:09Z、共享训练deadline20:37:08.390Z，已push02e1634/入口独审通过，无质量结果。
