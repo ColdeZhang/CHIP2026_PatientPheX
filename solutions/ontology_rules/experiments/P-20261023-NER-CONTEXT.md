@@ -41,4 +41,4 @@
 
 静态 AST 已核：masked BCE／计数函数、AdamW、warmup／scheduler 与原70c5入口精确一致，整个epoch循环除collator调用替换外也精确一致。仍保留1150窗、batch4、10ep／2880步、原训练probe和恢复状态；不从当前epoch10继续训练。推理固定单窗batch、.5、nested overlap规则、目标原文offset与max-score去重，要求实际新训练终点SHA，再冻结raw预测。
 
-两个入口均有 `--cpu-prepare-only`，只读tokenizer/config和固定四窗，不构造模型或读取权重。实际fingerprint覆盖新入口／helper／adapter、GLiNER所有Python源、分词配置与依赖版本；未因准备安装新环境。下一步仅做这两个CPU入口实例检查和新增源审，不跑GPU、Sap或评分。来源与条件计划见[小索引](../evidence/round2/ner-context-entry-preparation.json)。
+两个入口均有 `--cpu-prepare-only`，只读tokenizer/config和固定四窗，不构造模型或读取权重。实际fingerprint覆盖新入口／helper／adapter、GLiNER所有Python源、分词配置与依赖版本；未因准备安装新环境。两个CPU入口已于20:02:46–20:02:59 UTC完成，分别5.479秒和6.783秒、rc0、stderr空。训练四窗21正例／7524有效跨度保持；推理从nested16输入重建594窗，仅对固定四窗做无标签编码，不生成预测。实际绑定37份GLiNER Python源与5个包版本；新增入口独审PASS（513b66cb…），不跑GPU、Sap或评分。正式推理另补训练/推理的adapter、helper、GLiNER源码、依赖版本、分词配置必须相等的硬门；此修订仅GPU路径，CPU执行源1294与新源8b0b分别保存，CPU分支逐字相同。来源与条件计划见[小索引](../evidence/round2/ner-context-entry-preparation.json)。

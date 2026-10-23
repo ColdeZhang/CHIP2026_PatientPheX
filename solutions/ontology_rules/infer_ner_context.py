@@ -59,7 +59,9 @@ def main():
     assert trained['fingerprint']['raw_train_sha256'] == runtime.RAW_TRAIN_SHA
     assert trained['fingerprint']['excluded_input_sha256'] == sha(args.input)
     assert trained['fingerprint']['base_weight_sha256'] == runtime.BIO_BASE_SHA
-    assert trained['fingerprint']['dependencies']['adapter_sha256'] == sha(ner_context.__file__)
+    for key in ['adapter_sha256', 'runtime_helper_sha256', 'gliner_python_sources', 'package_versions']:
+        assert trained['fingerprint']['dependencies'][key] == dependencies[key], key
+    assert trained['fingerprint']['model_config_tokenizer'] == model_files
     final = trained['epoch_results'][-1]
     assert final['epoch'] == 10 and final['step'] == 2880
     weight = Path(args.model_dir)/'pytorch_model.bin'
