@@ -109,3 +109,5 @@ Bioformer原生CPU随后已实测通过：固定公开h5全SHA，137变量逐一
 完整系统需约2.424GB并依赖Stanza；本次只取官方434,159,420字节pair checkpoint，不取CNN/fastText/Stanza或第二份BioBERT基座。固定官方源码87文件、完整本地/服务器权重SHA `353fc588…`一致，原生fastNLP未改；实际201张量/108,312,579参数由独立同config模块NaN填充后strict完整恢复，12.377秒CPU，无CUDA初始化。5个合成词对及2×12短pair输出有限，独审 `5a8a7185…` 通过；原Torch版本的5条SourceChangeWarning和成品选模谱系不确定性保留，不能称旧环境逐bit复现或比赛质量提升。
 
 三列原序为Not Match/Related/Match，Related的上游构造是query→祖先方向，不能当对称相似度。下一控制只对当前冻结top3候选的原文短语与指定HPO preferred name编码，保留旧键/特征，与Sap余弦及赛事微调CE分别比较；先核真实pair规模和GPU短吞吐，不根据合成结果扩成质量结论。来源与完成索引见[清单](round2-research-sources.json)。
+
+实际135000唯一输入缓存随后189.654秒完成（forward176.622秒），均为当前池原文与当前HPO名称，max48tokens、无截断；完整键/顺序/三列finite与归一独审 `0eef457c…` 通过，缺失/重复/额外均0。22:35:59 GPU已核空；CPU/GPU及不同padding形状的约1e-6数值差异保留，不把公开匹配三类当全HPO后验。小型自有运行源码已在序列分支 `f79490c` 按实际字节归档，大缓存留外部；后继HGB与固定边界ID重排质量另见方案记录。
