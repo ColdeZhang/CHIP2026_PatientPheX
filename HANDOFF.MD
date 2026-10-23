@@ -257,6 +257,12 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 
 **避免方法**：验证集改变或增加下游模型时，沿候选生成、词典、门控、特征模型的训练文献集合核查新留出集；不仅核对被评分文献自身。此次在使用前已拦住，改用F3→F2、F2→F3及train32→F1资源，两条训练链与F1交集均0；仅依赖公开固定权重的无标签缓存可共享。新HGB只用train32拟合，其对自身训练样本的筛选明确标为resubstitution，不称OOF或泛化召回。旧资源对原目标仍有效，不据这次复用风险否定旧结果。证据：外部 `sequence_crf/entity-slot-feasibility/isolation-check.json`，SHA `f794767a48ce41e547736dc387401f816ed8588883626e7c9cc98b2e284eb59b`；只核文献ID/资源来源，未进行新质量评测，详见[序列分支记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
 
+## H41：复用加载代码时，也要复用已验证的后端环境配置
+
+私有 TensorFlow 2.12 / Transformers 4.30.1 环境中，`import tensorflow` 成功不保证 Transformers 的后端探测认为 TensorFlow 可用。BioBERT 新启动器遗漏旧加载入口的 `FORCE_TF_AVAILABLE=1`，5.375秒后在 `TFAutoModel.from_config` 退出，尚未构建编码器、加载H5或forward；这是此前已遇到的环境问题再次出现，不能记成模型质量失败。
+
+**避免方法**：复用入口时检查完整命令和环境，而非只复制模型代码；在首次导入 Transformers 前设置已验证的后端开关，不在已缓存后端状态的进程里补设。CPU检查继续隐藏CUDA、共享依赖只读。此次仅在独立attempt2补上上述变量，原模型/配置/词表和检查代码不变，20.054秒完成201变量、121,587,826参数严格恢复和4条合成短语接口检查；两次共25.430秒，原失败证据保留。结果 `research/public-phenotagger-biobert/attempt2/native-h5-result.json` SHA `545eadcb6f9d5419aece46ab89031d5dcc27b347f30a2949c22c5e75d47aee5f`，独审 `validation/public-biobert-native-review/review.json` SHA `f954be78a92fae7a88c720ea153aaa2edb6d8cb8e7c64f4860cc8a9baef3806d`；仅证明实际加载/接口通过，未证明赛事质量。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
