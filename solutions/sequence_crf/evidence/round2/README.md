@@ -57,3 +57,5 @@
 - `gliner-full64-plan.json`：2372窗/5930步固定规模控制、准备独审/实际smoke、同runtime48对照与45分钟训练硬cap；终点前不表示新分数。
 
 - `gliner-nested-control-plan.json`：只允许不同HPO的proper containment，原nested预测字节复现；单次outer48实体-only控制，既有GPU64政策不变。
+
+- `gliner-nested-transfer-plan.json` / `gliner-nested-control-results.json`：outer31与原dev35追加，关系保留；原dev总分微升但mention下降，完整负分项与双freeze，独审排队；64次臂预先固定。

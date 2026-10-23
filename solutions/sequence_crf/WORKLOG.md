@@ -17,7 +17,7 @@
 5. **原dev迁移两臂已完成**：明确span48原文/标签是linker64子集且dev隔离；不重训64、不扫阈值。1103原始跨度经固定Sap等处理新增32实体（22TP/10FP），entity-only **.706111684**；同LR新增关联12TP/9FP、未移除旧关系，full-LR **.711324992**。两臂17:46:38Z统一冻结、零错警，独审PASS。[结果及全部恢复入口](evidence/round2/gliner-dev-transfer-results.json)；GPU1于17:45:11Z交检索、GPU0于17:46:11Z释放，无活动GPU。等待根预先固定其他有效候选组合，不自行扫顺序/阈值。
 6. **固定GLiNER→Pheno组合已结案**：只追加12实体（4TP/8FP），保旧关系臂 **.712586161**；同LR臂 **.712070726**（新增2TP/5FP）。两臂独审PASS；mention分项略降，只有小总分收益，不扫组合顺序/阈值。[完整结果](evidence/round2/gliner-pheno-joint-dev.json)。
 7. **全train64 fresh10正式运行中**：2372窗/5930steps，64与dev隔离、48旧1744窗为真子集，准备独审PASS；.3 A30 GPU0最长4×384单步1.156秒/4.484GB通过。固定control48同环境推理→公共base fresh64×10→唯一终点，45分钟训练硬cap，实际runtime torch2.7.0cu128/transformers4.50。同环境48控制候选完整byteexact，旧Sap64/LR严格缓存复用；首轮训练probe P.7122/R.6577，未全负塌缩，不据此挑epoch。计划/命令/源/数据/恢复入口见[64计划](evidence/round2/gliner-full64-plan.json)，外存gliner-full64/。17:55:07Z已启动`proc_dca76792-08e5-4112-a2cd-ae4444b04ef6`，恢复`gliner-full64/job.json`及`paired-fixed.state.json`；预计18:18–25终点（训练硬cap45分钟）。原48模型复制全SHA通过、临时服务关闭；正式训练不复用smoke/48微调权重，比较仍以原48 .711324991，不混Pheno组合。
-8. **并行CPU结构控制**：训练侧固定strict nesting政策已在自身入口字节复现57新增/原预测2d24bb99；只允许异HPO严格包含，保旧实体/全部关系，拒crossing/同界/同ID/无重叠。正执行outer48同候选一次实体-only验证，先freeze后评分；不改变在跑full64终点政策。[计划](evidence/round2/gliner-nested-control-plan.json)。
+8. **固定嵌套实体控制完成**：nested57字节复现2d24bb99；同proper containment/HPO不交政策，outer48追加31（12TP/19FP），.721504→.723440；原dev48追加35（10TP/25FP），.711325→.712147，mention分下降而doc分升，所有旧关系不变、0错警，独审排队。只保留温和收益，不扫规则；在跑64主终点原政策不变，已预声明额外nested实体-only臂，统一freeze后评分。[结果](evidence/round2/gliner-nested-control-results.json)。
 
 ## 已完成的近期结论
 
