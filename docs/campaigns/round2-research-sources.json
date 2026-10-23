@@ -154,5 +154,156 @@
         "sha256": "1326684fdcade156aba554324a909a6c5d6de2daec170b73ce8903ceb6eddf8e"
       }
     ]
-  }
+  },
+  "gliner_biomed_feasibility_review": {
+    "scope": "Documentary provenance only; weights, exact parameters, runtime and project quality pending. No new GPU from this review.",
+    "model": "Ihor/gliner-biomed-large-v1.0",
+    "revision": "f79771210ab2111a2081ef31620fdb7342f602e9",
+    "source_revision": "f295279fdc1e8937e66044358871de43bffee529",
+    "paper": "https://arxiv.org/abs/2504.00676v2",
+    "files": [
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/independent-review.json",
+        "bytes": 13437,
+        "sha256": "32fcebae482790f92dcdd6b31c274db7ec121e265bcaee50bf97daf3d9344cfd"
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/availability-manifest.json",
+        "bytes": 1633,
+        "sha256": "6fbb0d46123feca041e2e252e75a0221985cba81e5538762351e0bee72dc6a9b"
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/card-manifest.json",
+        "bytes": 1152,
+        "sha256": "e89e5b784ca4c6177d6c70b6193cd189706cdbbbae822bdd1c8c8935d111c79b"
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/provenance-manifest.json",
+        "bytes": 989,
+        "sha256": "25ca8b427dd7942ab7253cb735ad27e17fa64b265171a5beb71e90c31e3dc36f"
+      }
+    ],
+    "notes": "Synthetic biomedical pretraining plus mixed human general NER/synthetic posttraining; four teacher biomedical demonstrations have undisclosed annotation origin. No evidence of benchmark-finetuned release; no claim of complete lineage attestation. Exact ModelScope path checks404 with positivecontrol200; fixed HF fallback allowed. Preserve saved encoder config and 128003 token vocabulary in new loader."
+  },
+  "biomed_actual_interface_and_adaptation": [
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/interface-actual-review.json",
+      "bytes": 6809,
+      "sha256": "90b615df33265478d41516d94e30dca4c082b1a262e06544a7376fbb3c7b38e2"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/zero-shot-interface-review.json",
+      "bytes": 7086,
+      "sha256": "1d66d03950c31e432fa8fff4cdf183a7eef062463496da6a5fdf2b166da6240d"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/supervised-adaptation-proposal.json",
+      "bytes": 11629,
+      "sha256": "b475dab99944ca9b866495a12ecb0eff210c3c34ddb97f825414d83c18597e61"
+    }
+  ],
+  "patient_identity_context_research": [
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/recommendation.md",
+      "bytes": 13269,
+      "sha256": "d9b757e7f622e01f62ea70a713cd04006e761d5b9e9812e865a87c8019b34ddf"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/recommendation-sources.json",
+      "bytes": 5631,
+      "sha256": "b9e50ec6758346b73bcbc0b7f4ae376009a65f948137785b2eec8cc25fc31593"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/training-anchor-truncation-audit.json",
+      "bytes": 134845,
+      "sha256": "74556121a72e8a4b084ce9ee91c1cae11600e6151e6e100020a825fa7e0428db"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/fixed-training-visibility-reading.json",
+      "bytes": 18562,
+      "sha256": "a90208f8a0250b796c8ba9e6dc224c238dce0fe1bfd200953d101e425766ef81"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/positive-label-convention-audit.json",
+      "bytes": 2671,
+      "sha256": "dc316b7c3aed36109d6709e302a359063de5dd20d7cbada13bcce456953db2de"
+    }
+  ],
+  "a100_runtime_readiness": {
+    "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/a100-resource-readiness/read-only-resource-report.json",
+    "bytes": 5989,
+    "sha256": "0ff5346f829ea5a9b818d32fb38adfbfbe2d254435efc9bf8ca44342832db398",
+    "scope": "Read-only resource/dependency feasibility; private CPU runtime preparation is separate and not yet complete."
+  },
+  "a100_private_cpu_runtime": {
+    "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/a100-resource-readiness/private-runtime-readiness.json",
+    "bytes": 9342,
+    "sha256": "3faa88857cf99347acf2025b2311d21694c3afe85938bcc28206a81ae2657742",
+    "scope": "Private pinned CPU imports and tokenizer equivalence passed; no model weights or GPU forward, shared environment unchanged."
+  },
+  "generative_ner_train_only_review": [
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/generative-ner-feasibility/REPORT.md",
+      "bytes": 9063,
+      "sha256": "060b3c3a2c20564c054db96e278db495948a9cbd5775bd6aea6aa0297e480f7b"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/generative-ner-feasibility/source-manifest.json",
+      "bytes": 8046,
+      "sha256": "ca9d30948d0926ba4d2dcbc89d9863d9888fe398b105564591dc7b35c078a8fc"
+    }
+  ],
+  "public_phenotagger_native_reuse": {
+    "status": "CPU native strict load passed; actual entity control remains preparation",
+    "model": "lingbionlp/PhenoTagger_v1.2",
+    "revision": "02ce3f529820dccca46bae168c1933ba25253125",
+    "weight": "pubmedbert_PT_v1.2.h5",
+    "weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+    "parameters": 122759794,
+    "references": [
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/review.md",
+        "bytes": 3914,
+        "sha256": "67e28096d2a8af6aedc8e28939580f3901ca8ca8791b8b60118371e5a33ec2fa"
+      },
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/readiness.json",
+        "bytes": 1137,
+        "sha256": "1b0c02cd28855ba12c5d962896762ce0eb15f670c69c79980365707571384986"
+      },
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-h5-result.json",
+        "bytes": 2370,
+        "sha256": "d6ed2d31bf8a4dd3fd483f7658ea42ddc5be72a830124442a603bbe38b62e900"
+      },
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/variable-coverage.json",
+        "bytes": 69033,
+        "sha256": "212590cc9d3b4e6429131eb2413a117ab1f747c33ffe1e9e60b47b1accbbc8f9"
+      },
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/weight-source-manifest.json",
+        "bytes": 698,
+        "sha256": "0d22fb21a26acc915607e1ac92b7dd3ca693d0dd29de73b828edd4a916e599a1"
+      },
+      {
+        "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/source-snapshots.json",
+        "bytes": 5477,
+        "sha256": "e8f2b8d9fccd6baeece934d74d90a1943c85633ec7e0fbe9862392870fe9f91c"
+      }
+    ],
+    "scope": "No external human phenotype labels or competition-finetuned weights. Source uncertainty alone is not an explicit rule prohibition; reasonable public-model trial based on rules, overview and fixed Agriv model card, not an organizer ruling. No quality estimate from synthetic probes."
+  },
+  "public_phenotagger_training_class_coverage": [
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train-coverage/check_coverage.py",
+      "bytes": 2864,
+      "sha256": "fc354910103684fb20be31f1c015ca1e8e2fd19caaee6b4295b7c561b77d1ded"
+    },
+    {
+      "local_artifact": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train-coverage/report.json",
+      "bytes": 2443,
+      "sha256": "54fc5b7df1edd8e6a24828de99ea1a0c36e209cfd32dffb41284d5525544594a"
+    }
+  ]
 }
