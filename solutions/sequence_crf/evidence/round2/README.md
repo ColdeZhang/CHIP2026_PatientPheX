@@ -87,5 +87,5 @@
 - [选择器复用条件](selector-readiness.json)：11不可变源快照、12既有配置来源核对；已有全池OOF树允许删换，缺新公开来源完整缓存。唯一建议source-HGB±publicPheno，无新训练/推断/金标评分；固定公开前向跨折可共享，任务学习资源仍逐折。
 # 最新有界CPU准备
 
-- [public-selector-plan.json](public-selector-plan.json)：原严格OOF source-HGB加公开Pheno真实源/分数，120秒CPU上限，旧基线复用；当前等待公共64cache，尚无新分数。
+- [public-selector-plan.json](public-selector-plan.json)、[public-selector-results.json](public-selector-results.json)：原严格OOF source-HGB加公开Pheno真实源/分数；CPU13.40秒，outer0 .710359→.732901，四项升，旧基线复用/新来源与旧删换损益齐；当前一次独立新fit复现中，原dev未动。
 

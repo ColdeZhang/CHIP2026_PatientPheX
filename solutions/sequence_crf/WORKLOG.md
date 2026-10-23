@@ -33,7 +33,7 @@
 
 14. **公开新来源选择器准备（CPU/源码，不训练）**：严格OOF本体/Sap/CRF HGB已能删旧实体、替换冲突边界/ID，四折source/confidence和严格CE入树均已完成，不能称新机制。当前未有GLiNER/publicPheno完整同折池；最小新控制为旧source-HGB±公开Pheno候选/真实来源分数，复用三train32 OOF与秒级CPU训练入口。固定公开模型可无标签缓存train64后按篇跨折复用，赛事别名/CRF/Sap-LR/任务NER和二层标签仍按折；待bio helper的64cache与schema，尚未训练/推断/评分。[短判断与唯一提案](experiments/public-source-selector-readiness.md)、[11快照/12配置哈希证据](evidence/round2/selector-readiness.json)。
 
-15. **唯一public source-HGB控制已冻结、待缓存**：原source baseline `59bf4fa3`/预测`8ec02c6c`（.710359060）直接复用，新增真实publicPheno候选+六来源/分数字段；不加GLiNER、CE、margin或阈值扫描。旧head ID/列及词典来源保留，可删换整个池实体。CPU边界合同已过，拟合/推断硬cap120秒，三train32 OOF与旧HGB160/.4不变。先两完整预测共同freeze再一次outer0评分，拆新增来源与旧实体删换TP/FP；不触原dev。[固定计划](evidence/round2/public-selector-plan.json)，外存 `public-selector-control/plan.json` 与 `source-snapshot/`；当前没有本路线活动GPU。
+15. **唯一public source-HGB控制完成、独审中**：原source baseline `59bf4fa3`/预测`8ec02c6c`（.710359060）复用；真实公开64缓存6064项来源核验后，新pool训练+887/外层+257，六新特征、HGB160/.4/三train32 OOF不变，CPU13.40秒<120cap。两fullpred21:14:44Z共同freeze后唯一outer0评，新Score **.732901229**（+.022542168），四项升、0错警。实体增61TP38FP/删12TP39FP，public-only增23TP13FP、原池重选增38TP25FP；关系净+14TP/+7FP。支持新来源+特征整体方法，未触原dev/不宣称.8；一次新fit独立复现已交validation。[完整结果与恢复](evidence/round2/public-selector-results.json)、[固定计划](evidence/round2/public-selector-plan.json)，外存 `public-selector-control/`。无本路线活动GPU。
 
 
 ## 已完成的近期结论

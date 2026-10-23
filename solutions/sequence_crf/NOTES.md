@@ -100,3 +100,7 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 ### 不要把已有全池选择器误认为只能追加
 
 `calibrate_multi.py`已严格OOF训练并在全池greedy选实体：旧CRF/本体可被删除或冲突跨度替换，已有源flag/CRF置信度和CE入树对照。缺的是新GLiNER/publicPheno真实同折源，不能重复宣称“学习融合”未做过。公开未用赛事标签的Pheno前向可缓存train64再按篇共享；监督alias/Sap判别/CRF/NER和二层标签仍须按折。最小下一项只加已冻public来源到原HGB，原64缓存未齐前不伪造confidence或做神经重训。完整判断见experiments/public-source-selector-readiness.md。
+
+### 公开新来源的收益包括旧池重选，也包括删对项损失
+
+唯一outer0控制以同source-HGB为基线 .710359，加入真实公开Pheno池与六特征后 .732901（四项全升）。新增61TP38FP中，public-only仅23TP13FP，已有候选重新入选38TP25FP；同时删除12TP39FP，不能只展示补漏数。旧池选择变化源于新训练样本与source特征共同作用，不是纯增加一个分数列的因果对照。相同boundary换ID只清2FP，重叠换boundary清2TP6FP，无新重叠删10TP31FP；总目标改善仍应计删除正确项的代价。公开分数是原native hybrid score（词典/缩写/神经flags可并存），public-only Sap.5/0只是已声明missing占位，不是测得语义相似度。此为使用过的outer0开发验证，不能外推原dev或全部折；独立新fit与来源重放正在进行。见public-selector-results.json。

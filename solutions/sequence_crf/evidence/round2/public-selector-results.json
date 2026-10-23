@@ -1,0 +1,225 @@
+{
+  "scope": "One outer0 development control: learned whole-pool source-HGB + publicPheno candidates and six source/confidence features; no originaldev, new NN, GPU or sweep.",
+  "source_commit": "0c21e8c034ac6eba6219d3d2a783d93e332830b1",
+  "conclusion": "Positive method increment pending one independent new-selector refit; no >=.8 or originaldev claim.",
+  "baseline": {
+    "menF1": 0.7328316086547507,
+    "docF1": 0.7308085977482088,
+    "micF1": 0.6937669376693767,
+    "macF1": 0.6840290971369651,
+    "Score": 0.7103590603023253
+  },
+  "augmented": {
+    "menF1": 0.7617295308187673,
+    "docF1": 0.7693836978131213,
+    "micF1": 0.7114624505928854,
+    "macF1": 0.6890292358390238,
+    "Score": 0.7329012287659494
+  },
+  "deltas": {
+    "menF1": 0.028897922164016543,
+    "docF1": 0.03857510006491249,
+    "micF1": 0.017695512923508683,
+    "macF1": 0.005000138702058621,
+    "Score": 0.022542168463624113
+  },
+  "changes": {
+    "entity_added_tp": 61,
+    "entity_added_fp": 38,
+    "entity_removed_tp": 12,
+    "entity_removed_fp": 39,
+    "relation_added_tp": 21,
+    "relation_added_fp": 21,
+    "relation_removed_tp": 7,
+    "relation_removed_fp": 14
+  },
+  "entity_change_origins": {
+    "added_from_public_only_pool": {
+      "tp": 23,
+      "fp": 13,
+      "atomic_units": 36
+    },
+    "added_from_existing_pool": {
+      "tp": 38,
+      "fp": 25,
+      "atomic_units": 63
+    },
+    "removed_without_new_overlap": {
+      "tp": 10,
+      "fp": 31,
+      "atomic_units": 41
+    },
+    "removed_same_boundary_different_id": {
+      "tp": 0,
+      "fp": 2,
+      "atomic_units": 2
+    },
+    "removed_overlapping_boundary_replacement": {
+      "tp": 2,
+      "fp": 6,
+      "atomic_units": 8
+    }
+  },
+  "counts": {
+    "training_documents": 48,
+    "old_training_examples": 45113,
+    "added_public_training_examples": 887,
+    "training_examples": 46000,
+    "training_positive": 3098,
+    "old_input_candidates": 14543,
+    "added_public_input_candidates": 257
+  },
+  "feature_count": 90,
+  "CPU_stages": {
+    "prepare": {
+      "started_at_utc": "2026-10-23T21:14:29.362978+00:00",
+      "ended_at_utc": "2026-10-23T21:14:31.032711+00:00",
+      "seconds": 1.669755556002201,
+      "returncode": 0
+    },
+    "fit": {
+      "started_at_utc": "2026-10-23T21:14:31.033126+00:00",
+      "ended_at_utc": "2026-10-23T21:14:44.435214+00:00",
+      "seconds": 13.40211079599976,
+      "returncode": 0
+    }
+  },
+  "evaluation": {
+    "source_sha256": "7685acae47e8de06f5a15a2df12602a2c4e03779bc24513aafadeec985c7b908",
+    "started_at_utc": "2026-10-23T21:14:44.463928+00:00",
+    "ended_at_utc": "2026-10-23T21:14:46.133531+00:00",
+    "seconds": 1.6696226169951842,
+    "returncode": 0,
+    "freeze_sha256": "48ff6759a39d118489ac55249ec3c3b7d4a3fda55409c483226402e7232449e5"
+  },
+  "frozen_at_utc": "2026-10-23T21:14:44.435664+00:00",
+  "evaluated_at_utc": "2026-10-23T21:14:45.961819+00:00",
+  "format": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "source_snapshot_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/source-snapshot",
+  "source_snapshots": {
+    "check_public_selector.py": "d40bca266d6b6275efc43ba6e5309559d08ea0daa03f3cba6c99a643670ada33",
+    "evaluate_exact_gate_control.py": "c1997a0bc45e449eaa2fbd18bfe4722ff72281435f024fe22b84e4683feb70fd",
+    "evaluate_public_selector.py": "87d422ef331b1a2d489304323c72f9bd93611cf35808ed46876ef53ac901213a",
+    "legacy/calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+    "legacy/calibrate_multi.py": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+    "legacy/enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "legacy/evaluate.py": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+    "legacy/merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "legacy/run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "legacy/validate_predictions.py": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+    "prepare_public_selector.py": "e8187e464bef2c628298dd3e567a40c7d809b91ef1a261e93fb00d0169872bbd",
+    "run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "select_public_candidates.py": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6"
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/plan.json",
+      "sha256": "d9dfd51daf92685d4d9b5a209aa3e030eb7a9543cd127285f66009050d90f724",
+      "bytes": 5374
+    },
+    "execute_control.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/execute_control.py",
+      "sha256": "7685acae47e8de06f5a15a2df12602a2c4e03779bc24513aafadeec985c7b908",
+      "bytes": 4017
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/job.json",
+      "sha256": "085dcd53af50b78abb12eb92336ce7bf69b63058664fd059d5a2a5e8bd4b1604",
+      "bytes": 2960
+    },
+    "evaluation-execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/evaluation-execution.json",
+      "sha256": "0614889d5b57372827a12c391deb73fa355caaee597f044c23ff7b99007275aa",
+      "bytes": 339
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/complete-freeze.json",
+      "sha256": "48ff6759a39d118489ac55249ec3c3b7d4a3fda55409c483226402e7232449e5",
+      "bytes": 2302
+    },
+    "prepared/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/prepared/manifest.json",
+      "sha256": "9a98a5951fcb364621fba4631d88b524b323285b6b26a57825944355b3e34992",
+      "bytes": 1504
+    },
+    "prepared/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/prepared/candidates.jsonl",
+      "sha256": "8b8949c110049df1db3f1001faf29f56919a22ed35a2127cc9d3adbe006894fb",
+      "bytes": 2008470
+    },
+    "fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/fitted/manifest.json",
+      "sha256": "2286578bfb1384d723079461014ee13912688769d3af8a7e7cb85f47dd9a2e40",
+      "bytes": 6730
+    },
+    "fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/fitted/baseline.jsonl",
+      "sha256": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65",
+      "bytes": 125393
+    },
+    "fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/fitted/augmented.jsonl",
+      "sha256": "bfd4c0f6e1d0fc85471fef6ee7632e26d0958d712d3f1681ef0a9d19d6692bdb",
+      "bytes": 131809
+    },
+    "fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/fitted/selector-scores.jsonl",
+      "sha256": "9079d14e7a4f9e264e56de3995382da909d54303005a0e006ca4091218a38757",
+      "bytes": 7573070
+    },
+    "augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/augmented.metrics.json",
+      "sha256": "06b2f4ba053ccbcdc67502956199cd871ea9fcb7848b8ce13b678f2c3c79029b",
+      "bytes": 12930
+    },
+    "augmented.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/augmented.validation.json",
+      "sha256": "fcae036308433f120689a696f49d8471b91a71def8d5a24fd9689f3c17b38fe4",
+      "bytes": 424
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-control/results.json",
+      "sha256": "c7b5a23e9f68b39bc92cec1998b7c8239c050e9663de8bada4bd7a278c801e1d",
+      "bytes": 2536
+    },
+    "public-cache/plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/plan.json",
+      "sha256": "0243e1707c2ca59a7d79211de5ccc771a241b27c5197584785de418d10280d49",
+      "bytes": 7916
+    },
+    "public-cache/input-contract-check.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/input-contract-check.json",
+      "sha256": "14b9f7b5abc325c3454776b9c4206f7b4138e64ff01029a7cc0f9a4a4e693776",
+      "bytes": 1868
+    },
+    "public-cache/terminal/native-train64-cache/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/manifest.json",
+      "sha256": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87",
+      "bytes": 8929
+    },
+    "public-cache/terminal/native-train64-cache/canonical-entities.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/canonical-entities.jsonl",
+      "sha256": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7",
+      "bytes": 1580994
+    },
+    "public-cache/terminal/native-train64-cache/source-provenance.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/source-provenance.jsonl",
+      "sha256": "3a7ab2c7bb1fe42f769924d6577e797a5d7518d8f63c97db7ba25c2c1320e45c",
+      "bytes": 1837436
+    }
+  },
+  "limitations": [
+    "New public candidate source plus six corresponding features: method increment, not one feature causal effect.",
+    "Outer0 has participated in earlier development; originaldev remains untouched.",
+    "Public-only missing Sap values use explicit old CRF-only placeholders, not measured Sap confidence.",
+    "Change-group TP/FP uses v2 NIL matching separately; complete report counts govern total performance.",
+    "Old entities can be removed/replaced; no source/threshold/ordering sweep."
+  ],
+  "independent_review": {
+    "status": "requested; pending actual new fit replay",
+    "agent": "/root/round2_validation_resume"
+  }
+}
