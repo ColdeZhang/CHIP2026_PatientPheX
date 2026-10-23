@@ -48,7 +48,8 @@ def main():
     assert all('entities' not in d and 'association' not in d for d in inputs)
     torch.set_num_threads(1);random.seed(20261023);np.random.seed(20261023);torch.manual_seed(20261023);torch.cuda.manual_seed_all(20261023)
     device=torch.device('cuda');linker=base.Linker(train,a.hpo);linker.negative_labels=a.learn_negation;vec,rel,relstats=base.fit_relation(train,linker)
-    fp={'train':base.sha(a.train),'hpo':base.sha(a.hpo),'source_hashes':hashes,
+    model_files = {f.name: base.sha(f) for f in sorted(Path(a.model).iterdir()) if f.is_file() and (f.suffix in {'.bin', '.safetensors'} or f.name in {'config.json', 'tokenizer.json', 'tokenizer_config.json', 'vocab.txt'})}
+    fp={'pretrained_model_sha256': model_files, 'train':base.sha(a.train),'hpo':base.sha(a.hpo),'source_hashes':hashes,
         'epochs':a.epochs,'learning_rate':a.learning_rate,'batch_size':a.batch_size,'max_length':a.max_length,'seed':20261023,
         'learn_negation':a.learn_negation,'ontology_augmentation':a.ontology_augmentation}
     if a.reuse_model and (work/'ner-fingerprint.json').exists():

@@ -6,6 +6,7 @@ import unittest
 sys.path.insert(0,str(Path(__file__).parent))
 import run
 import run_round2
+import run_relation_features
 
 class Round2Tests(unittest.TestCase):
     def test_compound_training_targets_keep_natural_text(self):
@@ -25,6 +26,14 @@ class Round2Tests(unittest.TestCase):
         self.assertNotIn('entities',out);self.assertNotIn('association',out)
         self.assertEqual([m['offset'] for m in out['patient'][0]['mention']],[0,8,21])
         self.assertEqual(len(out['patient'][1]['mention']),1)
+    def test_cohort_scope_requires_matching_explicit_count(self):
+        f=run_relation_features.cohort_evidence
+        self.assertTrue(f("Both patients had seizures",2,"CASE"))
+        self.assertFalse(f("Both patients had seizures",3,"CASE"))
+        self.assertTrue(f("All three siblings had seizures",3,"RESULTS"))
+        self.assertFalse(f("All three siblings had seizures",4,"RESULTS"))
+        self.assertFalse(f("These patients often present with seizures",2,"INTRO"))
+        self.assertTrue(f("Our patients had seizures",2,"DISCUSS"))
     def test_concept_grouping_combines_repeated_mentions(self):
         entities=[{'identifier':'HP:0000252','text':'small head'},{'identifier':'HP:0000252;HP:0001250','text':'combined'},{'identifier':'-1','text':'unmapped; text'}]
         groups=run_round2.concept_groups(entities)
