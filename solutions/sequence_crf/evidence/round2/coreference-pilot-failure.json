@@ -1,0 +1,98 @@
+{
+  "configuration": {
+    "input": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot/input.jsonl",
+    "prompts": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot/prompts.jsonl",
+    "responses": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot/responses.jsonl",
+    "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot/expanded.input.jsonl"
+  },
+  "stats": {
+    "valid_responses": 15,
+    "grounded_items_including_duplicates": 40,
+    "unmatched_or_cross_passage_quote": 56,
+    "added_mentions": 36
+  },
+  "source_sha256": "88de53287a1db688ec272fd45ffa5b4cfbeca054a88540a835b170a87120d047",
+  "parser_sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+  "files": {
+    "input": "26c68fd742f7e22c35f243939604b2a6dab7bde012110ad3a17e3c38b2d74e3b",
+    "prompts": "01d6666242b43be0479be720607d78675f915c97bbab5af6f8ef1ca9bb6b6f5c",
+    "responses": "19f5cd1ad1670017e79b11642124dc457aed8a04b3afdef317a609260727156a",
+    "output": "8be9d63d3c2b444b7ca71980665e553acd3ed79211f2bba951a34a00f4570058"
+  },
+  "policy": "only grounded same-passage spans; preserve all original mentions in original order, append sorted novel spans; no generated patient IDs; invalid/truncated replies rejected",
+  "selection": {
+    "selection": "input-only, patient-count strata 1 / 2-3 / >=4; lowest provided mentions per patient, ties lexicographic pmc_id; all windows; no labels or scores consulted",
+    "source_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "selected": [
+      {
+        "pmc_id": "5793168",
+        "patients": 1,
+        "mentions": 1,
+        "text_chars": 32108,
+        "windows": 8
+      },
+      {
+        "pmc_id": "12811285",
+        "patients": 2,
+        "mentions": 3,
+        "text_chars": 14141,
+        "windows": 4
+      },
+      {
+        "pmc_id": "5789735",
+        "patients": 5,
+        "mentions": 5,
+        "text_chars": 11207,
+        "windows": 3
+      }
+    ],
+    "input_sha256": "26c68fd742f7e22c35f243939604b2a6dab7bde012110ad3a17e3c38b2d74e3b"
+  },
+  "manual_input_only_review": {
+    "status": "failed; do not promote",
+    "raw_items": 96,
+    "types": [
+      "short pronoun occurrence indexed inside longer words",
+      "phenotype noun incorrectly emitted as patient reference",
+      "historical target patient incorrectly merged with current children"
+    ],
+    "labels_used": false,
+    "specific_review_scope": "all 36 novel grounded mentions, original patient anchors and corresponding original passages",
+    "whole_fold_inference_started": false
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot",
+  "inference": {
+    "configuration": {
+      "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+      "prompts": "prompts.jsonl",
+      "output": "responses.jsonl",
+      "adapter": null,
+      "max_input_tokens": 14000,
+      "max_new_tokens": 3072,
+      "batch_size": 1,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+        "prompts": "prompts.jsonl",
+        "output": "responses.jsonl",
+        "adapter": null,
+        "max_input_tokens": 14000,
+        "max_new_tokens": 3072,
+        "batch_size": 1,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "01d6666242b43be0479be720607d78675f915c97bbab5af6f8ef1ca9bb6b6f5c",
+      "code_sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 16812238336,
+    "elapsed_seconds": 66.496,
+    "output_sha256": "19f5cd1ad1670017e79b11642124dc457aed8a04b3afdef317a609260727156a"
+  }
+}

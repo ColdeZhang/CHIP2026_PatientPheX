@@ -25,8 +25,8 @@
     }
   ],
   "input_sha256": "26c68fd742f7e22c35f243939604b2a6dab7bde012110ad3a17e3c38b2d74e3b",
-  "prepare_source_sha256": "fcb8fdb7839da9559dd342261831480a6794fb23fa362b4c74cb25242cab7bd6",
-  "merge_source_sha256": "2bfb5350f92a72badf6ea6901c84bbb52c9022f748cae6324de2080327a0dced",
+  "prepare_source_sha256": "35b251a1c667230fd98542bd53b41614a83c3de52aee3037bf4c71799c2473ef",
+  "merge_source_sha256": "88de53287a1db688ec272fd45ffa5b4cfbeca054a88540a835b170a87120d047",
   "runner_source_sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
   "configuration": {
     "chunk_chars": 5000,
@@ -37,7 +37,8 @@
     "thinking": false,
     "max_input_tokens": 14000,
     "max_new_tokens": 3072,
-    "batch_size": 1
+    "batch_size": 1,
+    "per_patient_window_mention_cap": 25
   },
   "protocol": "exact patient-ID and original substrings with 1-based occurrence, reject truncated/invalid rows; preserve original anchors first; no phenotype labels requested",
   "upstream": {
@@ -45,5 +46,8 @@
     "prepare_coreference.py": "cd6a022b8616a8ffff376222e0451aa978e4a7716882094d2dae85efa4ec8d44",
     "prepare_extraction.py": "738abb682c91de3b0d5f9b67caeba99d4bc7764bb8f37122288418631bedeb0d",
     "merge_coreference.py": "70ed64c2e7231795ae242bd22758766e7ef7e91953abd8d224642710eba99c51"
-  }
+  },
+  "official_source": "https://arxiv.org/pdf/2610.29606 Fig2 Stage1, rendered image inspected; local adaptation, not literal template",
+  "official_adaptations": "5000-char packed passages; exact string plus occurrence with program-computed global offsets; original anchors first",
+  "prompts_sha256": "01d6666242b43be0479be720607d78675f915c97bbab5af6f8ef1ca9bb6b6f5c"
 }

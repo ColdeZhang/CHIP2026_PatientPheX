@@ -34,8 +34,8 @@ def windows(doc, max_chars=4000, overlap=250):
 from prepare_pair_rag import patient_anchors
 
 SYSTEM='''Locate expressions in TEXT that clearly refer to one of the supplied target patients.
-Use the supplied original identity anchors to resolve patient numbers, pedigree labels, relatives, and unambiguous pronouns. Target patients can be relatives; preserve their individual IDs. Do not merge different patients because they share a family or diagnosis. Do not map unrelated cited cases or general disease populations to a supplied patient.
-Return only a JSON array of objects {"patient_id":"P1","text":"exact substring","occurrence":1}. occurrence is the 1-based occurrence of that exact case-sensitive string inside TEXT, counting left to right. Include only unambiguous references and list each supported occurrence separately. A phrase may identify several target patients only if it explicitly names the corresponding group. Do not invent IDs, text or offsets. Return [] when no identity can be confidently resolved.'''
+Use the supplied original identity anchors to resolve patient numbers, pedigree labels, relatives, and unambiguous pronouns. Target patients can be relatives; preserve their individual IDs. Do not merge different patients because they share a family or diagnosis. Do not assign relatives, controls, authors, unrelated cited cases or generic patient groups to a different supplied target patient. Assign pronouns or generic descriptions only when the referent is clear from the local context; omit ambiguous mentions.
+Return only a JSON array of objects {"patient_id":"P1","text":"exact substring","occurrence":1}. occurrence is the 1-based occurrence of that exact case-sensitive string inside TEXT, counting left to right. Include only unambiguous references and list each supported occurrence separately, at most 25 mentions for each supplied patient in this TEXT. A phrase may identify several target patients only if it explicitly names the corresponding group. Do not invent IDs, text or offsets. Return [] when no identity can be confidently resolved.'''
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)

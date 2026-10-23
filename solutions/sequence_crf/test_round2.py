@@ -13,6 +13,9 @@ import merge_pair_rag
 import patient_id_anchors
 import table_relations
 import prepare_relation_sft
+import merge_coreference
+import apply_coreference_relations
+import copy
 import xml.etree.ElementTree as ET
 import json
 import contextlib
@@ -20,6 +23,28 @@ import io
 from unittest.mock import patch
 
 class Round2Tests(unittest.TestCase):
+    def test_coreference_grounding_rejects_internal_word_and_ambiguous_context(self):
+        text='The mother met him yesterday, but he left quietly.'
+        prompt={'text':text,'segments':[{'text':text,'offset':100}]}
+        self.assertEqual(merge_coreference.locate_context(prompt,'he',text),134)
+        self.assertIsNone(merge_coreference.locate_context(prompt,'he','The mother met him yesterday,'))
+        repeated=text+' '+text
+        p={'text':repeated,'segments':[{'text':repeated,'offset':0}]}
+        self.assertIsNone(merge_coreference.locate_context(p,'he',text))
+        p={'text':'He saw her.\n\nShe saw him.','segments':[{'text':'He saw her.','offset':10},{'text':'She saw him.','offset':100}]}
+        self.assertIsNone(merge_coreference.locate_context(p,'her',p['text']))
+    def test_generated_reference_cannot_become_global_alias_in_safe_control(self):
+        text='The patient attended. Their scan was abnormal. Their neighbor was healthy.'
+        original={'pmc_id':'x','full_text':[{'text':text,'offset':0}], 'patient':[{'patient_id':'P1','mention':[{'text':'patient','offset':4,'length':7}]}]}
+        expanded=copy.deepcopy(original)
+        start=text.index('Their');later=text.index('Their',start+1)
+        expanded['patient'][0]['mention'].append({'text':'Their','offset':start,'length':5})
+        apply_coreference_relations.check_expansion(original,expanded)
+        safe=apply_coreference_relations.offset_anchors(original,expanded)
+        broadcast=apply_coreference_relations.combine.ontology.patient_anchors(expanded)
+        self.assertIn((start,start+5,'P1'),safe)
+        self.assertNotIn((later,later+5,'P1'),safe)
+        self.assertIn((later,later+5,'P1'),broadcast)
     def test_compound_training_targets_keep_natural_text(self):
         doc={'patient':[{'patient_id':'P1'}], 'association':[{'patient_id':'P1','phenotype':['HP:0000252;HP:0001250','small; weak','HP:0000252;bad']} ]}
         self.assertEqual(run.gold_associations(doc)['P1'],{'HP:0000252','HP:0001250','small; weak','HP:0000252;bad'})

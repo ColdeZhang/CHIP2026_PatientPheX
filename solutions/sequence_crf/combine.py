@@ -16,8 +16,9 @@ spec=importlib.util.spec_from_file_location('sequence_ontology_rules',path)
 ontology=importlib.util.module_from_spec(spec);sys.modules[spec.name]=ontology;spec.loader.exec_module(ontology)
 
 
-def assign(doc,entities):
-    anchors=ontology.patient_anchors(doc);out={p['patient_id']:set() for p in doc.get('patient',[])};active=None;previous=None
+def assign(doc,entities,anchors=None):
+    if anchors is None:anchors=ontology.patient_anchors(doc)
+    out={p['patient_id']:set() for p in doc.get('patient',[])};active=None;previous=None
     by_passage={}
     for e in entities:
         pi,p=sequence.passage_for(doc,e['offset']);by_passage.setdefault(int(p.get('offset',0)),[]).append(e)

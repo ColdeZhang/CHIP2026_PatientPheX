@@ -30,10 +30,34 @@ def locate(prompt, text, occurrence):
     return None
 
 
+def locate_context(prompt, text, context):
+    """Unique verbatim context + exactly one complete-word reference, no guessed offset."""
+    if not isinstance(text, str) or not text or not isinstance(context, str) or not 20 <= len(context) <= 300:
+        return None
+    joined = '\n\n'.join(segment['text'] for segment in prompt['segments'])
+    assert joined == prompt['text']
+    contexts = list(re.finditer(re.escape(context), joined))
+    refs = list(re.finditer(r'(?<!\w)'+re.escape(text)+r'(?!\w)', context))
+    if len(contexts) != 1 or len(refs) != 1:
+        return None
+    begin = contexts[0].start()+refs[0].start()
+    end = begin+len(text)
+    if (begin and joined[begin-1].isalnum()) or (end < len(joined) and joined[end].isalnum()):
+        return None
+    cursor = 0
+    for segment in prompt['segments']:
+        bound = cursor+len(segment['text'])
+        if cursor <= contexts[0].start() < contexts[0].end() <= bound and cursor <= begin < end <= bound:
+            return int(segment['offset'])+begin-cursor
+        cursor = bound+2
+    return None
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ['input', 'prompts', 'responses', 'output']:
         parser.add_argument('--' + name, required=True)
+    parser.add_argument('--grounding', choices=['occurrence', 'context'], default='occurrence')
     args = parser.parse_args()
     inputs, prompt_rows, responses = map(read_jsonl, [args.input, args.prompts, args.responses])
     assert all('entities' not in doc and 'association' not in doc for doc in inputs)
@@ -55,12 +79,17 @@ def main():
             stats['invalid_or_truncated_responses'] += 1
             continue
         stats['valid_responses'] += 1
+        accepted_per_patient = Counter()
         for item in parsed:
             if not isinstance(item, dict) or item.get('patient_id') not in prompt['patient_ids']:
                 stats['invalid_item_or_patient_id'] += 1
                 continue
             text, pid = item.get('text'), item['patient_id']
-            offset = locate(prompt, text, item.get('occurrence'))
+            if accepted_per_patient[pid] >= 25:
+                stats['over_patient_window_cap'] += 1
+                continue
+            offset = (locate_context(prompt, text, item.get('context')) if args.grounding == 'context'
+                      else locate(prompt, text, item.get('occurrence')))
             if offset is None:
                 stats['unmatched_or_cross_passage_quote'] += 1
                 continue
@@ -69,9 +98,10 @@ def main():
                        for p in doc['full_text'])
             found[str(prompt['pmc_id'])][pid][(offset, len(text))] = {
                 'offset': offset, 'length': len(text), 'text': text}
+            accepted_per_patient[pid] += 1
             evidence.append({'pmc_id': prompt['pmc_id'], 'row_id': prompt['row_id'],
                              'patient_id': pid, 'text': text, 'offset': offset,
-                             'occurrence': item['occurrence']})
+                             'occurrence': item.get('occurrence'), 'context': item.get('context')})
             stats['grounded_items_including_duplicates'] += 1
     outputs = copy.deepcopy(inputs)
     for doc in outputs:
@@ -89,7 +119,7 @@ def main():
     manifest = {'configuration': vars(args), 'stats': dict(stats),
                 'source_sha256': sha(__file__), 'parser_sha256': sha(Path(__file__).with_name('merge_pair_rag.py')),
                 'files': {k: sha(getattr(args, k)) for k in ['input', 'prompts', 'responses', 'output']},
-                'policy': 'only grounded same-passage spans; preserve all original mentions in original order, append sorted novel spans; no generated patient IDs; invalid/truncated replies rejected'}
+                'policy': 'only grounded same-passage spans; preserve all original mentions in original order, append sorted novel spans; no generated patient IDs; invalid/truncated replies rejected; context mode requires unique 20-300-character context and a single complete-word reference'}
     out.with_suffix('.manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
     print(json.dumps(manifest))
 
