@@ -83,3 +83,5 @@
 - [focal同环境配对计划](focal-pair-plan.json)：A800存储不足后选择.100 fresh BCE/focal；原1150窗/10ep，shared1800s与TERM30，CPU/单步条件及同固定Sap装配。
 
 - [focal三臂固定终点](focal-pair-results.json)：同A30 fresh BCE .655316、focal .653881、评分前唯一解析cut .655256；两focal均不升级。三fullpred、真实model/state、1400.51秒共享训练预算、GPU释放与独审cdbd1f23完整索引。原.5仅候选cut，Sap .65/.92保持；无原dev/阈值扫描。
+
+- [选择器复用条件](selector-readiness.json)：11不可变源快照、12既有配置来源核对；已有全池OOF树允许删换，缺新公开来源完整缓存。唯一建议source-HGB±publicPheno，无新训练/推断/金标评分；固定公开前向跨折可共享，任务学习资源仍逐折。

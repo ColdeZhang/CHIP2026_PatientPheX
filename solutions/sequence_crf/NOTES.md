@@ -96,3 +96,7 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 ### 固定focal配方需匹配训练对照，并区分前置cut与全链决策
 
 2026-10-23：同`.100 A30`原1150窗fresh BCE/focal10ep，Score .655316/.653881；评分前加入唯一解析q*=.60117595167控制后.655256，仍未超BCE。原A800历史.653745只能描述，若只比较它会误报focal涨分。alpha/gamma同时改变类别/难例权重与输出刻度；GLiNER .5是候选前置门槛，最终还有固定Sap .65/.92、否定/非重叠及患者关系，不可把最终质量归因单独.5。解析理论风险的决策边界不等于实际校准。负结果关闭此固定配置，不否定所有focal，不因小差值追加网格。三臂先freeze再评，独审cdbd1f23通过，详见evidence/round2/focal-pair-results.json。
+
+### 不要把已有全池选择器误认为只能追加
+
+`calibrate_multi.py`已严格OOF训练并在全池greedy选实体：旧CRF/本体可被删除或冲突跨度替换，已有源flag/CRF置信度和CE入树对照。缺的是新GLiNER/publicPheno真实同折源，不能重复宣称“学习融合”未做过。公开未用赛事标签的Pheno前向可缓存train64再按篇共享；监督alias/Sap判别/CRF/NER和二层标签仍须按折。最小下一项只加已冻public来源到原HGB，原64缓存未齐前不伪造confidence或做神经重训。完整判断见experiments/public-source-selector-readiness.md。

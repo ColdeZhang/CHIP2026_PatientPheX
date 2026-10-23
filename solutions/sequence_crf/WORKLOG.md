@@ -31,6 +31,9 @@
 13. **同A30固定focal三臂完成、均不升级**：原1150窗、两fresh medium32固定10ep/2880steps；BCE训练685.10秒、focal693.25秒，各峰6.030GB。完整训练子进程共1400.51秒<1800硬cap，六GPU阶段均exit0。评分前另冻唯一解析score cut .6011759516702939（实际loss梯度/解析零点CPU通过），其余Sap .65/.92与原装配不变；原两臂保留，三预测20:57:04Z统一freeze后唯一nested16评分。BCE **.655315611**，focal **.653881260**（-.001434351），解析cut **.655256389**（-.000059222）；后者实体两项小升/关系两项降。三臂均0错警、独立重装/指标/来源预算和解析过滤PASS（cdbd1f23）。只关闭这套固定配方，不泛化所有focal；未触原dev/不扫阈值。20:55:34Z fresh核GPU1空，实余446.93GB，managed proc_483790e9已完整退出，无本路线活动GPU。[完整结果/模型状态与复现入口](evidence/round2/focal-pair-results.json)，外存focal-loss-control/；原[启动](evidence/round2/focal-pair-launch.json)、[配对计划](evidence/round2/focal-pair-plan.json)与[解析CPU臂](evidence/round2/focal-analytic-endpoint-plan.json)均保留。
 
 
+14. **公开新来源选择器准备（CPU/源码，不训练）**：严格OOF本体/Sap/CRF HGB已能删旧实体、替换冲突边界/ID，四折source/confidence和严格CE入树均已完成，不能称新机制。当前未有GLiNER/publicPheno完整同折池；最小新控制为旧source-HGB±公开Pheno候选/真实来源分数，复用三train32 OOF与秒级CPU训练入口。固定公开模型可无标签缓存train64后按篇跨折复用，赛事别名/CRF/Sap-LR/任务NER和二层标签仍按折；待bio helper的64cache与schema，尚未训练/推断/评分。[短判断与唯一提案](experiments/public-source-selector-readiness.md)、[11快照/12配置哈希证据](evidence/round2/selector-readiness.json)。
+
+
 ## 已完成的近期结论
 
 - 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。

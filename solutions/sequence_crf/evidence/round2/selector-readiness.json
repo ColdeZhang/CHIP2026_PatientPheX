@@ -1,0 +1,137 @@
+{
+  "status": "read-only complete; no new model/inference/evaluation",
+  "conclusion": "Existing strict OOF selector allows full-pool deletion/replacement for ontology/Sap/CRF; lacks GLiNER/publicPheno full matched-fold features. One proposed publicPheno source augmentation of fixed HGB only.",
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/report.json",
+    "sha256": "29b29ecb706a5666b6c0a237174e2886bc2111c7aecd1980f69f40c6d124d9dd"
+  },
+  "source_sha256": "2f49d2c8e61c961a0239ce0c8902d805860f0b414b700ffa520681f71bc773ef",
+  "snapshots": [
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/00-calibrate.py",
+      "sha256": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+      "bytes": 8131
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate_multi.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/01-calibrate_multi.py",
+      "sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+      "bytes": 7928
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/crf_confidence.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/02-crf_confidence.py",
+      "sha256": "d6e9209673343e695b487e2d48fc47bd787a85088309586183cb9134be38ceb9",
+      "bytes": 3878
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/context_calibrate.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/03-context_calibrate.py",
+      "sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+      "bytes": 10354
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/ce_oof_control.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/04-ce_oof_control.py",
+      "sha256": "4db8c289b224fe11adeb72dc435b99dc4521c60c8c1fd5bc28d4202d2467fd64",
+      "bytes": 21712
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/multi-fourfold-strategy-freeze.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/05-multi-fourfold-strategy-freeze.json",
+      "sha256": "7ec3814246a8b6a164a48975840451eaf5715102f199b79f95322cb1f9de3cf6",
+      "bytes": 10447
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/ce-oof-results.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/06-ce-oof-results.json",
+      "sha256": "01c03689ea3ac325773aaac3f2848b59be9dfdde9d870ce97125261174227020",
+      "bytes": 5856
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/run_native_entities.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/07-run_native_entities.py",
+      "sha256": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
+      "bytes": 10713
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/full-inference-plan.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/08-full-inference-plan.json",
+      "sha256": "1196949530b959005ddd2373b296e2fce00f0b73b55c2dc41ed840bc899eb3c8",
+      "bytes": 4831
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/gpu-native-smoke.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/09-gpu-native-smoke.json",
+      "sha256": "8d0ed6465ec09c8894de2bba54b7d7791f78b847d9942ddb18ddea5ae2a6f185",
+      "bytes": 1964
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/review.md",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-readiness-final/source-snapshots/10-review.md",
+      "sha256": "67e28096d2a8af6aedc8e28939580f3901ca8ca8791b8b60118371e5a33ec2fa",
+      "bytes": 3914
+    }
+  ],
+  "existing_selected": "source",
+  "existing_pooled": {
+    "without-crf": {
+      "menF1": 0.7115340518229764,
+      "docF1": 0.7580607747622361,
+      "micF1": 0.6678635547576302,
+      "macF1": 0.605893220925009,
+      "Score": 0.6858379005669629
+    },
+    "source": {
+      "menF1": 0.7139917695473251,
+      "docF1": 0.7598152424942263,
+      "micF1": 0.6674648308889554,
+      "macF1": 0.6288374465623898,
+      "Score": 0.6925273223732241
+    },
+    "confidence": {
+      "menF1": 0.7148557747121195,
+      "docF1": 0.7598434262030854,
+      "micF1": 0.667463400059755,
+      "macF1": 0.6297351942699083,
+      "Score": 0.6929744488112171
+    }
+  },
+  "existing_CE": {
+    "base": {
+      "menF1": 0.7364960075152653,
+      "docF1": 0.7359836901121305,
+      "micF1": 0.6982408660351827,
+      "macF1": 0.6885101084254033,
+      "Score": 0.7148076680219955
+    },
+    "CE": {
+      "menF1": 0.7246653919694073,
+      "docF1": 0.7227926078028748,
+      "micF1": 0.6957708049113234,
+      "macF1": 0.6622596396476664,
+      "Score": 0.7013721110828179
+    },
+    "delta": {
+      "menF1": -0.01183061554585807,
+      "docF1": -0.013191082309255697,
+      "micF1": -0.0024700611238592796,
+      "macF1": -0.026250468777736846,
+      "Score": -0.013435556939177529
+    },
+    "campaign_seconds": 289.1833866639063
+  },
+  "existing_source_tree_cost_seconds": [
+    10.21661604700057,
+    10.590367221000633,
+    10.800151301998994,
+    12.390873475000262
+  ],
+  "public_reuse_condition": "Same fixed public model, tokenizer/dictionary/current-HPO mapping/protocol, no task labels; one input-only train64 cache split by document. All task-fitted generators remain fold-specific.",
+  "next_candidate": "Existing source-HGB vs same selector plus public-native canonical candidates and true source confidence; original full-pool conflict selection, no new GLiNER/CE/Sap GPU features.",
+  "pending": "Public source native16 terminal and then complete input-only64 cache; current native wrapper hardcodes16 and must receive independently frozen parameterization.",
+  "new_training": false,
+  "new_inference": false,
+  "new_gold_evaluation": false
+}
