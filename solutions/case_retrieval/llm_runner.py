@@ -50,7 +50,7 @@ def main():
                 generated=model.generate(**encoded,max_new_tokens=args.max_new_tokens,do_sample=False,pad_token_id=tok.pad_token_id,use_cache=True)
             for item,output in zip(batch,generated):
                 length,row,prompt,removed=item;answer=tok.decode(output[width:],skip_special_tokens=True)
-                record={'row_id':row.get('row_id',str(row['pmc_id'])),'pmc_id':row['pmc_id'],'response':answer,'input_tokens':length,'output_tokens':int((output[width:]!=tok.pad_token_id).sum()),'removed_demonstrations':removed,'hit_token_limit':int(output.shape[0]-width)>=args.max_new_tokens,'batch_seconds':round(time.time()-began,3)}
+                record={'row_id':row.get('row_id',str(row['pmc_id'])),'pmc_id':row['pmc_id'],'response':answer,'input_tokens':length,'output_tokens':int((output[width:]!=tok.pad_token_id).sum()),'removed_demonstrations':removed,'hit_token_limit':int((output[width:]!=tok.pad_token_id).sum())>=args.max_new_tokens and int(output[-1])!=tok.eos_token_id,'batch_seconds':round(time.time()-began,3)}
                 f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush()
             print(json.dumps({'completed':begin+len(batch),'remaining_total':len(prepared),'batch_seconds':round(time.time()-began,2),'padded_input':width}),flush=True)
     meta={'configuration':vars(args),'fingerprint':fingerprint,'parameter_count':count,'torch':torch.__version__,'transformers':transformers.__version__,'gpu':torch.cuda.get_device_name(0),'max_gpu_allocated_bytes':torch.cuda.max_memory_allocated(),'elapsed_seconds':round(time.time()-start,3),'output_sha256':digest(out)}

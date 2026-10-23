@@ -11,34 +11,44 @@ from run import read_jsonl, sha256
 
 SYSTEM = '''Extract every explicitly mentioned human clinical phenotype from the supplied biomedical text.
 Return a JSON array of exact quoted text strings, and nothing else. Each string must be a contiguous substring of the supplied TEXT, with exactly the same spelling and case.
-Include signs, symptoms, abnormal morphology, abnormal development and abnormal laboratory or imaging findings. Include general phenotype mentions in discussion as well as findings of individual patients. Exclude disease/diagnosis names, gene names, treatments, normal findings, explicitly absent/negated findings, and isolated anatomical structure names. Do not infer a phenotype from a disease.
+Include signs, symptoms, abnormal morphology, abnormal development and abnormal laboratory or imaging findings. Include general phenotype mentions in discussion as well as findings of individual patients. Exclude etiological syndrome names, gene names, treatments, normal findings, explicitly absent/negated findings, and isolated anatomical structure names. Clinical abnormalities that also sound like diagnoses (for example diabetes mellitus or glaucoma) ARE phenotypes and should be included when explicitly mentioned. Do not infer a phenotype from a disease.
 Prefer the complete specific phenotype phrase without unrelated modifiers; preserve modifiers that define the abnormality. A phrase may contain several jointly expressed phenotypes. List each distinct quoted phrase once; do not explain and do not emit HPO IDs.'''
 
 
 def windows(doc, max_chars=4000, overlap=250):
-    """Keep full short passages and split long passages at sentence boundaries."""
+    """Pack adjacent passages, preserving an explicit original-coordinate segment map."""
+    segments=[]
     for pi, passage in enumerate(doc['full_text']):
-        body = passage['text'];start = 0
+        body=passage['text'];start=0
         if not body.strip():continue
-        while start < len(body):
-            end = min(start + max_chars, len(body))
-            if end < len(body):
-                ends = [m.end() for m in re.finditer(r'[.!?;]\s+', body[start:end])]
-                if ends and ends[-1] > max_chars//2:end=start+ends[-1]
-            yield {'pmc_id':str(doc['pmc_id']),'passage_index':pi,'start':start,'end':end,
-                   'offset':int(passage['offset'])+start,'text':body[start:end],
-                   'section':str(passage.get('section_type',''))+' '+str(passage.get('type',''))}
-            if end == len(body):break
+        while start<len(body):
+            end=min(start+max_chars,len(body))
+            if end<len(body):
+                ends=[m.end() for m in re.finditer(r'[.!?;]\s+',body[start:end])]
+                if ends and ends[-1]>max_chars//2:end=start+ends[-1]
+            segments.append({'passage_index':pi,'start':start,'end':end,'offset':int(passage['offset'])+start,
+                             'text':body[start:end],'section':str(passage.get('section_type',''))+' '+str(passage.get('type',''))})
+            if end==len(body):break
             start=max(start+1,end-overlap)
+    batch=[];length=0;index=0
+    for segment in segments:
+        if batch and length+len(segment['text'])+2>max_chars:
+            yield {'pmc_id':str(doc['pmc_id']),'chunk_index':index,'segments':batch,'text':'\n\n'.join(x['text'] for x in batch)}
+            index+=1;batch=[];length=0
+        batch.append(segment);length+=len(segment['text'])+2
+    if batch:yield {'pmc_id':str(doc['pmc_id']),'chunk_index':index,'segments':batch,'text':'\n\n'.join(x['text'] for x in batch)}
 
 
 def gold_quotes(doc, window):
-    begin=window['offset'];end=begin+len(window['text']);found=[]
+    found=[]
     for e in doc.get('entities',[]):
+        if str(e.get('note','')).upper()=='NO':continue
         a=int(e['offset']);b=a+int(e['length'])
-        if str(e.get('note','')).upper()=='NO' or not(begin<=a<b<=end):continue
-        if window['text'][a-begin:b-begin]!=e['text']:continue
-        if e['text'] not in found:found.append(e['text'])
+        for segment in window['segments']:
+            begin=segment['offset'];end=begin+len(segment['text'])
+            if begin<=a<b<=end and segment['text'][a-begin:b-begin]==e['text']:
+                if e['text'] not in found:found.append(e['text'])
+                break
     return found
 
 
@@ -72,7 +82,7 @@ def main():
                 for i in chosen:
                     x=examples[i];messages += [{'role':'user','content':'TEXT:\n'+x['text']},{'role':'assistant','content':json.dumps(x['quotes'],ensure_ascii=False)}]
             messages.append({'role':'user','content':'TEXT:\n'+w['text']})
-            row_id=f"{doc['pmc_id']}:{w['passage_index']}:{w['start']}:{w['end']}"
+            row_id=f"{doc['pmc_id']}:extract:{w['chunk_index']}"
             out.append(dict(w,row_id=row_id,messages=messages,retrieved_training_documents=[examples[i]['pmc_id'] for i in chosen] if args.fewshot else []))
     path=Path(args.output);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n' for x in out))
     manifest={'stage':'exact phenotype extraction','configuration':vars(args),'documents':len(inputs),'chunks':len(out),'training_examples':len(examples),'code_sha256':sha256(__file__),'files':{k:sha256(getattr(args,k)) for k in ['train','input','output']}}

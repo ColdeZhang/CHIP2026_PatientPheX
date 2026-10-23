@@ -1,0 +1,64 @@
+{
+  "method": "sparse patient case kNN",
+  "version": 1,
+  "hpo_version": "hp/releases/2026-06-23",
+  "configuration": {
+    "train": "/workspace/patientphex-data/day1/train64.jsonl",
+    "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+    "hpo": "/workspace/patientphex-data/hp.obo",
+    "output": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-inner-selected-dev/predictions.jsonl",
+    "work_dir": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-inner-selected-dev",
+    "neighbors": 21,
+    "association_threshold": 0.35
+  },
+  "training_documents": 64,
+  "prediction_documents": 16,
+  "train_input_overlap": 0,
+  "labelled_prediction_input": false,
+  "files": {
+    "train": {
+      "path": "/workspace/patientphex-data/day1/train64.jsonl",
+      "sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "bytes": 2003594
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "bytes": 294884
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "output": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-inner-selected-dev/predictions.jsonl",
+      "sha256": "772039cfd385e89b54ec30c0da20c6f8961d898f4434e7ef5ec9f46f1402e457",
+      "bytes": 110660
+    }
+  },
+  "code_sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+  "lexical_memory": {
+    "alias_keys": 43758,
+    "positive_contexts": 4700
+  },
+  "case_memory": {
+    "training_cases": 6719,
+    "positive_cases": 1697,
+    "text_features": 26000,
+    "structural_features": 24,
+    "neighbors": 21,
+    "association_threshold": 0.35
+  },
+  "totals": {
+    "documents": 16,
+    "entities": 843,
+    "patients": 36,
+    "links": 324
+  },
+  "elapsed_seconds": 2.078,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  }
+}
