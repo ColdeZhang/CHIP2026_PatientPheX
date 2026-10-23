@@ -1,0 +1,181 @@
+{
+  "status": "frozen_single_new_adapter_arm_no_gold",
+  "frozen_at_utc": "2026-10-23T19:38:40.677914+00:00",
+  "driver_sha256": "3662b5cdc7ac2bd2a747d895e93b3753be482fa682b14622bebb5b8fcc25ed09",
+  "proposal_sha256": "edf29025dc054b64842d5112e7e23f9fec0d3c2e771b6439dbe160034336e571",
+  "gpu_handoff_sha256": "bcc4978ecff83cf5f866573cf8b587b29dc7cf5b29eae0b187530f29784b5422",
+  "source_runtime_preflight_sha256": "0867ff7ea8ce6bf7cf195e822b6d10ebdda29e2a198f895f0e68a4f45987c6c8",
+  "runner_argv": [
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "dev-relation-transfer/qwen35_runner.snapshot.py",
+    "--model",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "--source-manifest",
+    "dev-relation-transfer/model-source-manifest.json",
+    "--prompts",
+    "dev-relation-transfer/prompts.jsonl",
+    "--max-input-tokens",
+    "14000",
+    "--max-new-tokens",
+    "1600",
+    "--output",
+    "full64-dev-transfer/full64-adapter.responses.jsonl",
+    "--adapter",
+    "full64-dev-transfer/adapter-epoch002"
+  ],
+  "command": "/usr/bin/timeout --signal=TERM --kill-after=30s 900 /home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u dev-relation-transfer/qwen35_runner.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B --source-manifest dev-relation-transfer/model-source-manifest.json --prompts dev-relation-transfer/prompts.jsonl --max-input-tokens 14000 --max-new-tokens 1600 --output full64-dev-transfer/full64-adapter.responses.jsonl --adapter full64-dev-transfer/adapter-epoch002",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "cwd": "case-retrieval/qwen35-preparation",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "execution_cap_seconds": 900,
+  "kill_grace_seconds": 30,
+  "expected_rows": 64,
+  "old_control_prediction_freeze_sha256": "ad68570c2853b195d00984776ffc22a11c316909acaf0f0b65580c6fe8d69ef9",
+  "old_control_summary_sha256": "7402bd73cf35c3f8e6e3db3dd437b41f797307dda500157be4c74f57313112ff",
+  "evaluation_contract": {
+    "schema": "full64-dev-fixed-arm-v1",
+    "evaluator_source_sha256": "affbab18549825aa3c0fe051befff6201b68209471f5cfd14352070af12fd016",
+    "training": {
+      "complete": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/training_complete.json",
+        "bytes": 526,
+        "sha256": "16b674d6a4d960086f8f208995c79f0c5c940eda880752a8e2dfa94d21ef7bf2"
+      },
+      "checkpoint": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/checkpoint.json",
+        "bytes": 10774,
+        "sha256": "f217bdc5bd191fe4319c38c99b46ef7b8d1f505d5f89d8c4d2e21a9425511e87"
+      },
+      "actual_hashes": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/checkpoint-actual-hashes.json",
+        "bytes": 999,
+        "sha256": "2a02be458ba8971140502dd533c10aabfd5b29d71bd4252af5e0a83856239bfa"
+      },
+      "run_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/run_manifest.json",
+        "bytes": 10650,
+        "sha256": "7918e5e703f5a517d1f11d2ab01f0d13e9b5b6bd09a4b0a72d96910b22ff2af7"
+      }
+    },
+    "adapter_files": {
+      "adapter_config.json": {
+        "bytes": 1287,
+        "sha256": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2"
+      },
+      "adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+      }
+    },
+    "adapter_transfer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/adapter-transfer-evidence.json",
+      "bytes": 1020,
+      "sha256": "2951532884a82f62e4e1938e1e13658062214011d89358ad552d6b61fc83aea8"
+    },
+    "expected_runner_fingerprint": {
+      "configuration": {
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+        "source_manifest": "dev-relation-transfer/model-source-manifest.json",
+        "prompts": "dev-relation-transfer/prompts.jsonl",
+        "output": "full64-dev-transfer/full64-adapter.responses.jsonl",
+        "adapter": "full64-dev-transfer/adapter-epoch002",
+        "max_input_tokens": 14000,
+        "max_new_tokens": 1600
+      },
+      "batch_size": 1,
+      "thinking": false,
+      "precision": "text_only_bfloat16_sdpa_no_quantization",
+      "source_sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+      "prompts_sha256": "e09bcc41553e6aca540ffae8d2dcab77022f0ad71870d0a2e9164fbeb8aa975d",
+      "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "model_files": {
+        "LICENSE": {
+          "bytes": 11544,
+          "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+        },
+        "README.md": {
+          "bytes": 77643,
+          "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0"
+        },
+        "chat_template.jinja": {
+          "bytes": 7756,
+          "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+        },
+        "config.json": {
+          "bytes": 3126,
+          "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+        },
+        "merges.txt": {
+          "bytes": 3353259,
+          "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+        },
+        "model.safetensors-00001-of-00004.safetensors": {
+          "bytes": 5276436216,
+          "sha256": "db6f444b43d318c92f360a13a25561a6a65b10c0631b8ed305a426dbaa6c380e"
+        },
+        "model.safetensors-00002-of-00004.safetensors": {
+          "bytes": 5335161512,
+          "sha256": "31c7d7e2dd5d207840b31cc59083c8f4c4718959149e0358c0364052bb9a0330"
+        },
+        "model.safetensors-00003-of-00004.safetensors": {
+          "bytes": 5368717440,
+          "sha256": "7ec36ba3a4176a44c3c0876ad80c56a2f70c84bf008d82e9501df642f17dadec"
+        },
+        "model.safetensors-00004-of-00004.safetensors": {
+          "bytes": 3325995712,
+          "sha256": "b62b0c4cd7e44edee103ee8f4fe225f246d5e768e07bfd5f25b63a8aa1fdd0c6"
+        },
+        "model.safetensors.index.json": {
+          "bytes": 79657,
+          "sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5"
+        },
+        "preprocessor_config.json": {
+          "bytes": 390,
+          "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+        },
+        "tokenizer.json": {
+          "bytes": 12807982,
+          "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+        },
+        "tokenizer_config.json": {
+          "bytes": 16710,
+          "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+        },
+        "video_preprocessor_config.json": {
+          "bytes": 385,
+          "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+        },
+        "vocab.json": {
+          "bytes": 6722759,
+          "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+        }
+      },
+      "runtime": {
+        "torch": "2.7.1+cu126",
+        "transformers": "5.20.2",
+        "peft": "0.21.2",
+        "tokenizers": "0.23.1",
+        "cuda": "12.6",
+        "gpu": "NVIDIA A30",
+        "visible_gpu": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539"
+      },
+      "adapter_files": {
+        "adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+        "adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+      }
+    }
+  },
+  "scope": "Fixed955entities/64prompts; new full64 epoch002 only. Prior same-A30 base/SFT48/fullLR reused. No prompt/schema/threshold/epoch tuning. Originaldev already used for research, not blind."
+}

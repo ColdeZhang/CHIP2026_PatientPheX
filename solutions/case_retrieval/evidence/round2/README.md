@@ -82,3 +82,7 @@
 - [full64 原dev唯一新adapter臂准备](qwen35-full64-dev-single-arm-preparation.json)：同A30单臂900+30，旧三对照按SHA复用；实际权重待训练终点，当前仅CPU准备/10合成检查。源码快照位于`../../operations/full64_dev/`。
 
 - [关系连续置信度只读判断](continuous-relation-confidence.json)：无现成LLM logprobs，训练内4127pair真实CPU预算4.145M tokens；仅后续候选，无新GPU/质量结果。
+
+- [fresh full64正式训练完整终点](qwen35-full64-training-complete.json)：265×2/68updates、40.77min、唯一epoch002 actual SHA1a703b24；A800已释放，尚无质量结果。
+
+- [full64 原dev唯一新臂实际runplan](qwen35-full64-dev-run-plan.json)：实际epoch002/adapter双端SHA与同A30全部15基座/runtime已绑定；固定900+30、64条输入，旧对照不重跑。
