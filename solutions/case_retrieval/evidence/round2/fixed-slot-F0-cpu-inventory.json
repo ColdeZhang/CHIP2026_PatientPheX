@@ -1,0 +1,70 @@
+{
+  "status": "CPU_only_complete_no_new_prediction_or_quality",
+  "statistics": {
+    "rows": 58,
+    "docs": 16,
+    "CIDs": 415,
+    "pairs": 1166,
+    "patients": 47,
+    "literal_units": 1166,
+    "compound_expansion_pairs": 0,
+    "duplicate_literal_conflicts": [],
+    "one_to_one": true,
+    "non_atomic_HPO": [
+      [
+        "10553122:relations:40",
+        "C000",
+        "metabolic diseases"
+      ]
+    ],
+    "full_tokens": 208999,
+    "max_tokens": 6872,
+    "over7168": 0,
+    "F1_exact_replay_rows": 80,
+    "disjoint": true,
+    "elapsed_seconds": 5.704144089017063,
+    "cost_seconds_token_linear": 43.495218391708605,
+    "cost_boundary": "Prior F1 adapter80 actual55.7799s forward scaled by tokens, not actual F0 or loading estimate.",
+    "model_scope": "binary32 is trained only F2+F3; old JSON SFT48 uses F1+F2+F3. Both exclude F0, but are different training sizes.",
+    "no_GPU_initialized": true
+  },
+  "sources": {
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/summary.json",
+      "bytes": 2822,
+      "sha256": "f0356026910baaefabb6ad8fe3483ef630df193447dbeebc16d7810ec1de629a"
+    },
+    "execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/execution.json",
+      "bytes": 3199,
+      "sha256": "7a38abf104db28df6c702fd878144cf2110a51bf5ffa543f847f6bfc03d8e19d"
+    },
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/plan.json",
+      "bytes": 2255,
+      "sha256": "978060bb01f00a3680d5fd42cf57869a1b649fd9528925ff569bc6bfc81910bc"
+    },
+    "local-source-index.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/local-source-index.json",
+      "bytes": 2486,
+      "sha256": "d80d9440d5f632d2522ab8bb92bd898f849725d8160d073c094ce5a6fa71c4cf"
+    },
+    "F0-slot-inputs.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/F0-slot-inputs.json.gz",
+      "bytes": 260509,
+      "sha256": "744f85f14d91334655300d38b16591d147a96fa8f6fe4e6baec6fb61540659b2"
+    },
+    "outer_token_inventory.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/outer_token_inventory.py",
+      "bytes": 4445,
+      "sha256": "99d21ff18f1f2dcbae8ea59cad46aa65fe2b8aa6a48bb28ab48a5f8d955349d9"
+    },
+    "cpu_design.snapshot.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/cpu_design.snapshot.py",
+      "bytes": 24582,
+      "sha256": "6a03402c231c39333181b3f54dd3b50ba8839b5fe6a25976c5d4392ed93013c6"
+    }
+  },
+  "existing_binary_adapter": "fixed-slot-formal-v2/epoch-002/adapter;776ceaf1f7113bd1f345cacfcb68c1d4ed54049998329b6ec686742953a9df73",
+  "boundary": "Only validates reusable F0 inputs. F1 binary32 and JSON32, prospective F0 binary32 and JSON48; F0 old candidates/prompts also use their original train48 resources. No full64 model, new calibration fit, threshold selection, GPU or new quality."
+}
