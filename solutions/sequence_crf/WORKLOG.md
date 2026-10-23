@@ -41,10 +41,11 @@
 17. **固定原dev迁移已完成、独审PASS**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。独立新fit/全概率/两预测/全部指标与关联保留复核PASS（1112ced2）。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
 
 
-18. **独立Bioformer四fold控制完成、待独审**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，root暂不迁移、等待另一固定池控制；独审已请求。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
+18. **独立Bioformer四fold控制完成、独审PASS**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，四新fit/全概率/预测/分数/实际cache谱系独审PASS（0efe738e）；root关闭负的lowgate，不做联合，转预设OOF cut校准。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
 
 
-19. **统一OOF cut校准预先冻结**：.4最初为事前预设，未找到训练侧优化记录。固定Bioformer四fold完整OOF概率，九点.1… .9、同greedy解码，只按pooled(menF1+docF1)/2选一个全局cut；并列距.4近再较高，.4完整pred须byteexact。120秒CPU，无新fit/GPU/原dev，选择后的train64分为校准拟合分而非新盲验证。[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/；当前未计算。
+19. **统一OOF cut校准完成、待独审**：固定九点.1… .9/原greedy，36完整decode21:35:13Z先freeze后读取train64实体标签，.4四fullpred逐字节复现。总2.125秒CPU，按pooled(menF1+docF1)/2唯一选 **.3**：.777993968@.4→.780192596@.3，实体men .763831/doc .796554、4315条（+161）；mention+70TP91FP/doc+41TP48FP，fold目标Δ[+.003036,+.007263,-.004463,+.001727]。这是全train64选择后的**校准拟合指标**，不是新盲验证Score；无关系选型、无原dev。等待一次独立CPU复核，然后仅固定.4/.3同SFT关系共同迁移；不扩网格。[结果](evidence/round2/public-bioformer-cut-results.json)、[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/。
+
 
 ## 已完成的近期结论
 

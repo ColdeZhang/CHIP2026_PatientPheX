@@ -116,3 +116,5 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 独立Bioformer四fold终点：四次fit总51.494秒、全exit0，21:31:35Z四新fullpred及旧对照共同freeze后一次各fold/pooled评。pooled .72265102197→.72455607448，四分项升但首fold -.000862，其余 +.000012/+.007617/+.001178。实体净+19TP/-12FP、关联+4TP/+2FP。不同模型score/head/source分别保留；选中集合无Bioformer-only键，新增实体107项全为原pool重选，不能将新增候选和六字段贡献拆成因果结论。原dev未读，不扫门槛；root要求先结案/独审，等待本体另一低门槛控制，不立即原dev。完整源码、41个产物指针与SHA见 evidence/round2/public-bioformer-selector-results.json。
 
 阈值历史已核：最早bd1ba48初版manifest明确fixed a priori .4，无实证优化记录。root预先授权一次九点全局cut训练侧校准（.1… .9），使用严格四fold HGB OOF完整概率，选择pooled两实体F1均值、并列距.4近再高；不关系选型/不逐折阈值/不原dev。全部解码先freeze，.4逐字节复现控制；所选same64表现仅是校准拟合，非独立泛化成绩。原Bioformer .4单独迁移计划取消，后续仅固定.4/选定cut同SFT关系一次共同dev评，须先本次完成/独审。
+
+九点OOF cut校准唯一结果：2.125秒CPU，固定选择.3；pooled两实体F1均值 .777993968→.780192596，men .763831/doc .796554。四fold目标3升1降（第2折-.004463），增加70mentionTP同时91FP，保留精确率回撤。36完整decode先freeze，.4四fullpred及原两实体指标exact；不计算关系选型/不原dev。该曲线直接用train64标签选全局cut，因此最优数值是校准拟合而非无偏CV，后继只能按已冻.4/.3一次迁移检验。双模型原.4方法独审0efe738e已PASS；校准来源/曲线待一次CPU独审，不追加网格。

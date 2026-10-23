@@ -1,0 +1,111 @@
+{
+  "summary": {
+    "status": "completed; independent review pending",
+    "source_commit": "0190620",
+    "selected_cut": 0.3,
+    "objective": "pooled (menF1 + docF1)/2; no relation metric used",
+    "selected_pooled": {
+      "menF1": 0.7638311830308332,
+      "docF1": 0.7965540092776673,
+      "objective": 0.7801925961542502,
+      "counts": {
+        "mention": {
+          "tp": 3493,
+          "fp": 825,
+          "fn": 1335,
+          "precision": 0.8089393237610004,
+          "recall": 0.7234879867439934,
+          "f1": 0.7638311830308332
+        },
+        "document": {
+          "tp": 1803,
+          "fp": 273,
+          "fn": 648,
+          "precision": 0.8684971098265896,
+          "recall": 0.7356181150550796,
+          "f1": 0.7965540092776673
+        }
+      },
+      "entity_records": 4315
+    },
+    "fixed_point_four": {
+      "menF1": 0.7619365609348915,
+      "docF1": 0.7940513744930149,
+      "objective": 0.7779939677139531,
+      "counts": {
+        "mention": {
+          "tp": 3423,
+          "fp": 734,
+          "fn": 1405,
+          "precision": 0.8234303584315612,
+          "recall": 0.7089892294946147,
+          "f1": 0.7619365609348915
+        },
+        "document": {
+          "tp": 1762,
+          "fp": 225,
+          "fn": 689,
+          "precision": 0.8867639657775541,
+          "recall": 0.718890248878009,
+          "f1": 0.7940513744930149
+        }
+      },
+      "entity_records": 4154
+    },
+    "objective_delta": 0.002198628440297057,
+    "fold_objective_deltas": [
+      0.003036191190425308,
+      0.007263011198988423,
+      -0.004462909884412891,
+      0.0017271840382733217
+    ],
+    "seconds_process": 2.1254351909956313,
+    "seconds_script": 0.9668752750003478,
+    "decoded_freeze_at_utc": "2026-10-23T21:35:13.965487+00:00",
+    "all_nine_cuts_completed": true,
+    "point_four_byteexact": true,
+    "limits": [
+      "Scores are strictly held-out final-selector predictions, with nested task-fit candidate generators.",
+      "Selection uses all train64 labels; same64 best objective is a calibration fit result, not a fresh independent estimate.",
+      "Existing train64 folds were already used for source/method development; no originaldev labels accessed here.",
+      "No extra cut/feature/ranking/overlap rule search; fixed .4 predictions and entity metrics exactly replayed.",
+      "No assumptions of calibrated probabilities; this is an empirical global operating point for the stated Task1 objective.",
+      "Rule relationship fields copied only to preserve record schema; they do not enter this calibration objective."
+    ],
+    "next": "One future fixed .4 / calibrated .3 full64 Bioformer-entity migration, both preserve same aa107 SFT relations, after independent review and cache readiness; no originaldev evaluation yet."
+  },
+  "external_directory": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/plan.json",
+      "sha256": "4e1da0fbcb465d501fc41ce4150901742819906d0fc347364d9f7a1d97b0b343",
+      "bytes": 8862
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/job.json",
+      "sha256": "5a2abb5f7d24fec42d6cc744a434b908e85aca50d15e8d55b1d6cc53e68c68a5",
+      "bytes": 606
+    },
+    "decoded-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/decoded-freeze.json",
+      "sha256": "c24b446b35ff470aad804ed52a2b140431758e3596f92cfc9fb98970fd26b523",
+      "bytes": 11422
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/results.json",
+      "sha256": "6646e70ecdaf58e84d8d10e3cc941e86bf3d30a8ba432fac58616b3f37908b1d",
+      "bytes": 35065
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/summary.json",
+      "sha256": "af7b36e49735df631f6b63a45c6effed1e94d381ae8ace7df326b47ce37d7777",
+      "bytes": 2654
+    }
+  },
+  "decoded_predictions": "36 external files indexed by decoded-freeze.json; .4 matches previous fullpred bytes",
+  "immutable_source_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/source-snapshot",
+  "independent_review": {
+    "status": "requested",
+    "agent": "/root/round2_validation_resume"
+  }
+}
