@@ -1,0 +1,227 @@
+{
+  "recorded_at_utc": "2026-10-23T09:38:35.290611+00:00",
+  "reviewed_commit": "919d7a2",
+  "review_scope": "Read-only source review, CPU reproduction, local train diagnostics, relation sample reconstruction and decoder stubs; no GPU training or platform submissions.",
+  "source_inputs": [
+    {
+      "path": "src/build_hpo_dict_v2.py",
+      "sha256": "248157984f88fdbdc9c1a1b62600f8e8a738a456cfd5313732160ff2222c5086",
+      "bytes": 3599
+    },
+    {
+      "path": "src/evaluate.py",
+      "sha256": "9f19f670c39e5718d1dcd1439dfb835badf6d34a2273eaa73ad601ea9a44a708",
+      "bytes": 3955
+    },
+    {
+      "path": "src/local_predict.py",
+      "sha256": "73e19663a1c971d3478f52700aa1d567362a7b9d8b6952d432d2762a023501ed",
+      "bytes": 5317
+    },
+    {
+      "path": "src/v10_predict.py",
+      "sha256": "8b91f661a28883bf787ba25ee09a966a9905b49390c50634178a213ca3d2de23",
+      "bytes": 3948
+    },
+    {
+      "path": "src/v1_dict_predict.py",
+      "sha256": "59f8cc51b5957950f9d1b3fbb46165cab30aa6af7ccc2a4802b1b55d976bbab2",
+      "bytes": 4839
+    },
+    {
+      "path": "src/v2_dict_predict_ac.py",
+      "sha256": "29b3b42b1e360828134f98ecb5bb0d4dc686c8f39b5ce9525df413effd21db52",
+      "bytes": 4228
+    },
+    {
+      "path": "src/v3_build_rel_data.py",
+      "sha256": "90ce9967cd49775bb3bf86f5fb56e75d90d36101def07378c638e4c360e10f80",
+      "bytes": 4751
+    },
+    {
+      "path": "src/v3_train_rel.py",
+      "sha256": "1718b533eb5ef2e3bd2a007a65e2da2b713b287c2260021c0ffbc90f70bd2b22",
+      "bytes": 4155
+    },
+    {
+      "path": "src/v4_predict.py",
+      "sha256": "1e5135622d105650d097ff1eb46da64cd0577bbcfb6c24fa7b608f37a57acfd6",
+      "bytes": 6344
+    },
+    {
+      "path": "src/v5_predict_ner_union.py",
+      "sha256": "6b64251413e695775d219ac5ee0c0d02fc3b8221c8b3f6e14591939eb933066c",
+      "bytes": 8621
+    },
+    {
+      "path": "src/v5_train_ner.py",
+      "sha256": "0e324044ed419fa35ab5c2d59017d4a566b7dd8acf2353e814e17f499b94dbda",
+      "bytes": 7027
+    },
+    {
+      "path": "src/v6_predict_ner_rel04.py",
+      "sha256": "e1f712aabe1dbb45035077fa458849e44fb49d5fa5490895da4163e275fbb1a0",
+      "bytes": 7889
+    },
+    {
+      "path": "src/v8_rule_same_section.py",
+      "sha256": "4f122a73734a3f9e87f23b21c39794b7e25f42c6b23f41379fb40b40ee4580fc",
+      "bytes": 6833
+    },
+    {
+      "path": "src/v9_pure_dict_rule.py",
+      "sha256": "2df0a6e29b62f0f00fcf318492d364ee6c1161d0606da26e4d5f0bc792b526b8",
+      "bytes": 4094
+    },
+    {
+      "path": "data/B/PatientPheX-V1-B.jsonl",
+      "sha256": "4dafea5aa59bfd5f90151ee3732ee475323512b8691f370f4d4678b628cdb62a",
+      "bytes": 2027053
+    },
+    {
+      "path": "data/hp.obo",
+      "sha256": "93dace952fcb3ec4728818857f6ba76bc2d5312f4d83266519b8694b8e798f22",
+      "bytes": 10863613
+    },
+    {
+      "path": "data/train/PatientPheX-train.jsonl",
+      "sha256": "5029544d59a1e812de83c07a56d841c09b88cae222d4266fd2930b4c9a224786",
+      "bytes": 2343549
+    },
+    {
+      "path": "dict/hpo_dict.json",
+      "sha256": "51d81f512632c1b21a15a518bbde7bc143afa1a45ffeab2b7e89a3c70da36fb6",
+      "bytes": 2396582
+    },
+    {
+      "path": "dict/hpo_dict_augmented.json",
+      "sha256": "6d177b8c5c8eb1105e6b1964d2c0bfdfc378b747449fdd8ed26e8c8e3c82b59c",
+      "bytes": 1057449
+    },
+    {
+      "path": "outputs/B_v1.jsonl",
+      "sha256": "441372945ba690513633ed316e878624327a464fd66d91ee27d5e6d108a6a5c0",
+      "bytes": 549445
+    },
+    {
+      "path": "outputs/B_v10.jsonl",
+      "sha256": "3228706f9d7e019d2c43f6f8c7f2c17efee73ae891b589bedf476acd87dca5e6",
+      "bytes": 879687
+    },
+    {
+      "path": "outputs/B_v2.jsonl",
+      "sha256": "fc1fb05ad69165f95e3331ab7fb4afbfbcd884cf2f8af524c8242757e6198ee6",
+      "bytes": 860137
+    },
+    {
+      "path": "outputs/B_v4.jsonl",
+      "sha256": "da00abee50587ab026380dc19aed3d0bbba3678bfb2cf862aa3e31fd884224e4",
+      "bytes": 783936
+    },
+    {
+      "path": "outputs/B_v5.jsonl",
+      "sha256": "28f5844abf20a63a835fad149fc63bdc3b4e08c89acc093574b90dfa6ac91a74",
+      "bytes": 1466780
+    },
+    {
+      "path": "outputs/B_v6_t04.jsonl",
+      "sha256": "4edafe33a9bffeecc0c62990892ac24225c651d807238b786729293082284012",
+      "bytes": 1471898
+    },
+    {
+      "path": "outputs/B_v8_rule.jsonl",
+      "sha256": "039a8238543a887768d277f64ddbe6b257fa18883773bbec86775167ac659314",
+      "bytes": 1441304
+    },
+    {
+      "path": "outputs/B_v9.jsonl",
+      "sha256": "4bf32ba15e09053336c651ab2827f5cac3476d82d65c1505f73c277489e29c59",
+      "bytes": 958921
+    },
+    {
+      "path": "outputs/local_B_v10.jsonl",
+      "sha256": "a662f5fd91193e69c1d8339a59b240a377a04bf0f0241a0f85750592950ed2b3",
+      "bytes": 879687
+    },
+    {
+      "path": "outputs/local_pro_v10.jsonl",
+      "sha256": "94076b327c255f34147c184d9666021190c18b69f0a2a5de39723fa11bad808b",
+      "bytes": 704578
+    },
+    {
+      "path": "outputs/local_train_v10.jsonl",
+      "sha256": "b8c74e3ffd93fd680fb735438ef147e0c27fa865f3676f37381b0a005a248623",
+      "bytes": 1139242
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "abbreviations.json",
+      "sha256": "b3c77ff9b4cfc5fe8938b849121e3b7c4bb1b4065bda95d1b3f56a9bf9d2f4b7",
+      "bytes": 4085
+    },
+    {
+      "path": "dictionary_overlap.json",
+      "sha256": "bcebcbc588da3e9033b923176cf447e2ac812a7be080e8c994a88de142507476",
+      "bytes": 629
+    },
+    {
+      "path": "evaluation_results.json",
+      "sha256": "6e3f3a10278bd0ec2bd6786ac01f946959b8def0157cc2144f20ef725e1d1584",
+      "bytes": 8572
+    },
+    {
+      "path": "model_diagnostics.json",
+      "sha256": "0de84cfa2da617aab63d3a72b8764bc380d74e29ae4679914b56206f876e53f8",
+      "bytes": 1660
+    },
+    {
+      "path": "output_audit.json",
+      "sha256": "de139aa6a3b2440bf97ae0b8a4c0c076f2107bfeadc742cec35728a1d93c87ce",
+      "bytes": 14825
+    },
+    {
+      "path": "relation_samples.json",
+      "sha256": "b5884477df821b58a3cfdf9b49794dc5a7612d8e891a12cb6fada6996546284e",
+      "bytes": 372
+    },
+    {
+      "path": "rule_ablations.json",
+      "sha256": "426848875b6419cfc28c19c169e733e38a3ac129bad10945adde3a2a635fdabe",
+      "bytes": 2335
+    },
+    {
+      "path": "rule_audit.json",
+      "sha256": "1c5e0c4c6c2ca29ba78a1e107bd48c9a0f01643a6c1bd95f2f1b8c70d646eede",
+      "bytes": 27258
+    },
+    {
+      "path": "scripts/ablate_rules.py",
+      "sha256": "31978dedfbb190c7b90d55b6c37d8bfabff704b6c9b6a2b6cd0007b735060ba6",
+      "bytes": 3106
+    },
+    {
+      "path": "scripts/audit_outputs.py",
+      "sha256": "e8dc108d474f3004b255649d052c6199a6a10cb815b68d6d5cf7784884db9295",
+      "bytes": 4855
+    },
+    {
+      "path": "scripts/audit_rules.py",
+      "sha256": "9b7c25da37defc22177255a324c15c064ba5eca02eaf30ee55f5c4348a140975",
+      "bytes": 4760
+    },
+    {
+      "path": "scripts/diagnose_evaluation.py",
+      "sha256": "c291c6be25c32b5a2266ee6f421bd1e489de953929c43d95a5aa19eaa2088423",
+      "bytes": 8509
+    },
+    {
+      "path": "scripts/diagnose_models.py",
+      "sha256": "1403e06a516199669419580d7e18e9aba45c7912d60d2448ca272c76d13a905e",
+      "bytes": 7203
+    }
+  ],
+  "script_changes_on_archiving": "Replace fixed repository path with path relative to script; create temporary evaluation output directory if missing. Original project source not modified.",
+  "metric_caveat": "All train metrics are retrospective diagnostics, not holdout results. evaluation_results and rule_ablations intentionally differ in -1 and duplicate matching assumptions.",
+  "manual_addendum": "output_audit.json _verification contains separately executed CPU reproduction checks; audit_outputs.py itself regenerates only per-file structural statistics."
+}

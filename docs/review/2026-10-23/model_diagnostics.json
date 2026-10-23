@@ -1,0 +1,71 @@
+{
+  "recorded_at_utc": "2026-10-23T09:35:52.456797+00:00",
+  "repository": "/workspace/CHIP2026_PatientPheX",
+  "method": "In-memory relation reconstruction with archived seed/split; AST-extracted NER decoder with fixed stubs. No model training.",
+  "input_sha256": {
+    "src/v3_build_rel_data.py": "90ce9967cd49775bb3bf86f5fb56e75d90d36101def07378c638e4c360e10f80",
+    "src/v5_predict_ner_union.py": "6b64251413e695775d219ac5ee0c0d02fc3b8221c8b3f6e14591939eb933066c",
+    "dict/hpo_dict_augmented.json": "6d177b8c5c8eb1105e6b1964d2c0bfdfc378b747449fdd8ed26e8c8e3c82b59c",
+    "data/train/PatientPheX-train.jsonl": "5029544d59a1e812de83c07a56d841c09b88cae222d4266fd2930b4c9a224786"
+  },
+  "relation": {
+    "samples_total": 26339,
+    "train_after_balance": 21492,
+    "dev_samples": 2633,
+    "train_docs": 80,
+    "dev_docs": 79,
+    "overlap_docs": 79,
+    "dev_identical_text_in_train": 255,
+    "all_unique_feature_texts": 24439,
+    "ambiguous_feature_texts": 117,
+    "samples_with_ambiguous_text": 392,
+    "positive_samples": 7954,
+    "positive_but_candidate_hpo_not_associated": 1160
+  },
+  "ner_tail_decode": {
+    "text": "with fever",
+    "tokens": [
+      "[CLS]",
+      "with",
+      "fever",
+      "[SEP]"
+    ],
+    "offsets": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "predicted_labels": [
+      "O",
+      "O",
+      "B-PHEN",
+      "O"
+    ],
+    "expected_spans": [
+      [
+        5,
+        10
+      ]
+    ],
+    "actual_spans": [
+      [
+        5,
+        0
+      ]
+    ],
+    "matches_expected": false
+  }
+}

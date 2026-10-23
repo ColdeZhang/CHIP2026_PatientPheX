@@ -1,0 +1,414 @@
+{
+  "scope": "train memorization/backfit diagnostic only; no generalization estimate",
+  "assumptions": [
+    "All supplied full_text segments; exact official body filter unavailable. Gold includes TITLE and ABSTRACT.",
+    "NO entities excluded; semicolon HPOs split.",
+    "Mention units deduplicated; gold pure -1 exact spans match predicted IDs as wildcard; mixed HPO;-1 uses literal units (not specified publicly).",
+    "Document no-ID represented by exact text; omission/sentinel sensitivities reported.",
+    "Not the official platform score."
+  ],
+  "old_evaluator": {
+    "menF1": 0.7658592848904269,
+    "docF1": 0.7668886904561832,
+    "micF1": 0.6416407251419153,
+    "macF1": 0.5694795705380719,
+    "Score": 0.6859670677566493
+  },
+  "public_rule_approximation": {
+    "mention": {
+      "tp": 5658,
+      "fp": 3329,
+      "fn": 276,
+      "precision": 0.6295760543006566,
+      "recall": 0.9534883720930233,
+      "f1": 0.7583942095033845
+    },
+    "document": {
+      "tp": 2877,
+      "fp": 573,
+      "fn": 134,
+      "precision": 0.8339130434782609,
+      "recall": 0.9554965127864496,
+      "f1": 0.8905742145178764
+    },
+    "span_only_positive": {
+      "tp": 5584,
+      "fp": 3128,
+      "fn": 262,
+      "precision": 0.6409550045913682,
+      "recall": 0.9551830311323982,
+      "f1": 0.7671383431790081
+    },
+    "fp_categories": {
+      "no_overlap_with_gold": 1008,
+      "overlap_with_gold_but_wrong_boundary": 2181,
+      "id_mismatch_at_exact_positive_span": 140
+    },
+    "fn_categories": {
+      "no_overlap_with_prediction": 252,
+      "overlap_with_prediction_but_wrong_boundary": 15,
+      "id_mismatch_at_exact_positive_span": 9
+    },
+    "examples": {
+      "fp_no_overlap_with_gold": [
+        {
+          "pmc_id": "10313222",
+          "span": [
+            806,
+            4
+          ],
+          "identifier": "HP:0004904",
+          "text": [
+            "MODY"
+          ]
+        },
+        {
+          "pmc_id": "10313222",
+          "span": [
+            4148,
+            4
+          ],
+          "identifier": "HP:0004904",
+          "text": [
+            "MODY"
+          ]
+        },
+        {
+          "pmc_id": "10313222",
+          "span": [
+            4380,
+            4
+          ],
+          "identifier": "HP:0004904",
+          "text": [
+            "MODY"
+          ]
+        },
+        {
+          "pmc_id": "10313222",
+          "span": [
+            11860,
+            4
+          ],
+          "identifier": "HP:0004904",
+          "text": [
+            "MODY"
+          ]
+        }
+      ],
+      "fp_overlap_with_gold_but_wrong_boundary": [
+        {
+          "pmc_id": "10313222",
+          "span": [
+            7138,
+            15
+          ],
+          "identifier": "HP:0005978",
+          "text": [
+            "type 2 diabetes"
+          ]
+        },
+        {
+          "pmc_id": "10313222",
+          "span": [
+            923,
+            9
+          ],
+          "identifier": "HP:0000819",
+          "text": [
+            "diabetes,"
+          ]
+        },
+        {
+          "pmc_id": "10313222",
+          "span": [
+            3009,
+            9
+          ],
+          "identifier": "HP:0000819",
+          "text": [
+            "diabetes,"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "span": [
+            10345,
+            6
+          ],
+          "identifier": "HP:0000980",
+          "text": [
+            "pallor"
+          ]
+        }
+      ],
+      "fp_id_mismatch_at_exact_positive_span": [
+        {
+          "pmc_id": "10553122",
+          "span": [
+            1917,
+            20
+          ],
+          "identifier": "HP:0012759",
+          "text": [
+            "developmental delays"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "span": [
+            1997,
+            20
+          ],
+          "identifier": "HP:0012759",
+          "text": [
+            "developmental delays"
+          ]
+        },
+        {
+          "pmc_id": "11203018",
+          "span": [
+            8802,
+            17
+          ],
+          "identifier": "HP:0000529",
+          "text": [
+            "visual impairment"
+          ]
+        },
+        {
+          "pmc_id": "11203018",
+          "span": [
+            5992,
+            9
+          ],
+          "identifier": "HP:0001290",
+          "text": [
+            "hypotonia"
+          ]
+        }
+      ]
+    },
+    "negation": {
+      "gold_no": 171,
+      "pred_positive_at_gold_no": 60,
+      "pred_no_at_gold_no": 0
+    },
+    "duplicate_units": {
+      "gold_original": 10,
+      "pred_original": 0
+    },
+    "association": {
+      "micro": {
+        "tp": 1752,
+        "fp": 1579,
+        "fn": 378,
+        "precision": 0.5259681777244071,
+        "recall": 0.8225352112676056,
+        "f1": 0.6416407251419154
+      },
+      "macro": {
+        "precision": 0.5124552377187002,
+        "recall": 0.8392992951128764,
+        "f1": 0.5838336375237179
+      },
+      "n_patients": 209,
+      "empty_empty": [
+        [
+          "5368377",
+          "P3"
+        ],
+        [
+          "5368377",
+          "P4"
+        ],
+        [
+          "5793168",
+          "P1"
+        ]
+      ],
+      "empty_gold_with_fp": [
+        [
+          "11906559",
+          "OIII-2",
+          8
+        ],
+        [
+          "12078887",
+          "P2",
+          8
+        ],
+        [
+          "4607013",
+          "P3",
+          24
+        ],
+        [
+          "4678370",
+          "OII:3",
+          13
+        ],
+        [
+          "4678370",
+          "OII:4",
+          13
+        ],
+        [
+          "4678370",
+          "OIII:5",
+          13
+        ],
+        [
+          "4678370",
+          "OIII:6",
+          13
+        ],
+        [
+          "5866036",
+          "P2",
+          6
+        ],
+        [
+          "5959423",
+          "OII-2",
+          6
+        ]
+      ],
+      "gold_nonempty_pred_empty": [
+        [
+          "6063015",
+          "OII-4",
+          9
+        ]
+      ]
+    },
+    "score": 0.7186106966717236
+  },
+  "sensitivity": {
+    "omit_doc_noid": {
+      "document": {
+        "tp": 2872,
+        "fp": 573,
+        "fn": 44,
+        "precision": 0.8336719883889695,
+        "recall": 0.9849108367626886,
+        "f1": 0.9030026725357648
+      },
+      "score": 0.7217178111761957
+    },
+    "sentinel_doc_noid": {
+      "document": {
+        "tp": 2877,
+        "fp": 573,
+        "fn": 73,
+        "precision": 0.8339130434782609,
+        "recall": 0.9752542372881355,
+        "f1": 0.8990625
+      },
+      "score": 0.7207327680422544
+    },
+    "multiset_mentions": {
+      "tp": 5658,
+      "fp": 3331,
+      "fn": 286,
+      "precision": 0.6294359773055958,
+      "recall": 0.9518842530282638,
+      "f1": 0.7577847719815174
+    }
+  },
+  "counterexamples": {
+    "wrong_id_same_span": [
+      [
+        1.0,
+        1.0
+      ],
+      "Both men and doc return 1 despite every HPO ID being wrong."
+    ],
+    "two_docs_one_empty_prediction": [
+      [
+        0.6666666666666666,
+        1.0
+      ],
+      "docF1 ignores the all-missed second document."
+    ],
+    "truncated_predictions": [
+      [
+        1.0,
+        1.0
+      ],
+      "Both metrics return 1; missing tail document silently ignored by zip."
+    ],
+    "wrong_doc_id": [
+      [
+        1.0,
+        1.0
+      ],
+      "Both metrics return 1 despite mismatched document IDs."
+    ],
+    "empty_patient_both": [
+      [
+        0,
+        0.0
+      ],
+      "macro gives 0; official text requires 1 for this patient."
+    ]
+  },
+  "no_id_coverage": {
+    "positive_pure_noid_entities": 105,
+    "exact_span_predicted_count": 5,
+    "gold_non_hpo_association_count": 43,
+    "pred_non_hpo_association_count": 0,
+    "examples": [
+      [
+        "11203018",
+        "P1",
+        "dysmorphic traits"
+      ],
+      [
+        "11919040",
+        "P1",
+        "transferase abnormal"
+      ],
+      [
+        "11919040",
+        "P1",
+        "hemogram"
+      ],
+      [
+        "12059664",
+        "O1",
+        "low-set"
+      ],
+      [
+        "12779223",
+        "P1",
+        "restrictive diet"
+      ],
+      [
+        "2866573",
+        "P1",
+        "abnormal orientation of the nasal spine"
+      ],
+      [
+        "2964533",
+        "O1",
+        "finger chewing"
+      ],
+      [
+        "3563609",
+        "O1P3",
+        "gums appeared healthy"
+      ],
+      [
+        "3563609",
+        "O6P",
+        "gums appeared healthy"
+      ],
+      [
+        "3563609",
+        "O7P",
+        "gums appeared healthy"
+      ]
+    ]
+  }
+}
