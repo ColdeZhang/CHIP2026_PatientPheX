@@ -1,0 +1,56 @@
+{
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/run-plan.json",
+    "bytes": 8053,
+    "sha256": "d9d8ebda2ef5298dbd0f1f02ccf399b3f32593942516eb4799165507565b6eba"
+  },
+  "native_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/remote-plan.json",
+    "bytes": 873,
+    "sha256": "ee976c5541cbdab7af7cdba622e9c184b2427185c8f887256d996f0100d0070c"
+  },
+  "source": {
+    "infer_outer_slots.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/infer_outer_slots.py",
+      "bytes": 5660,
+      "sha256": "2ad097572b2685786a5b798afad0bf2b5808782cd23c0700ca22752d8c423e4b"
+    },
+    "launch_outer.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/launch_outer.py",
+      "bytes": 4481,
+      "sha256": "45abbd35ce24d351a17fe361fb426a39895dd9fc6f1b8b967d36943976a54eb4"
+    },
+    "slot_model.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/slot_model.py",
+      "bytes": 4959,
+      "sha256": "e8baf724a8aaf31d7686e53586033fdf0b07290d5f92f43e5617e436d1473647"
+    }
+  },
+  "input_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-cpu-inventory/summary.json",
+    "bytes": 2822,
+    "sha256": "f0356026910baaefabb6ad8fe3483ef630df193447dbeebc16d7810ec1de629a"
+  },
+  "protocol": {
+    "rows": 58,
+    "CIDs": 415,
+    "pairs": 1166,
+    "patients": 47,
+    "full_tokens": 208999,
+    "max_tokens": 6872,
+    "cap_tokens": 7168,
+    "truncation": false,
+    "policy": null,
+    "only_current_binary32_epoch002": true,
+    "no_base_arm": true,
+    "no_generation": true,
+    "no_F0_gold": true,
+    "calibrator_ownership": "ontology branch only, F1 fit and unique F0 decode/eval after full scores freeze"
+  },
+  "cost": {
+    "forward_token_linear_seconds": 43.495218391708605,
+    "reference_F1_actual_forward": 55.779866865836084,
+    "projection_not_measurement": true
+  },
+  "boundary": "F1 uses binary32 and JSON32, F0 uses same binary32 and cached JSON48; both exclude F0, training sizes/candidate resources differ transparently. No newSFT/full64/dev."
+}
