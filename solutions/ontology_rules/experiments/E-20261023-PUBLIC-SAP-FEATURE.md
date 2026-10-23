@@ -13,3 +13,5 @@ CPU阶段首次启动早于异步文件部署完成，在读取脚本前因文�
 同源799词面一次编码含加载5.340秒（2026-10-23 22:22:12–18 UTC），向量799×768／SHA eae4acb2…；22:24:28 fresh目标GPU4MiB且无计算PID，已释放。候选cosine CPU4.164秒，136,409唯一phrase-ID中135,250 observed、1,159明确missing，共548,942次alias点积，无全库检索。747,178重复池行仅追加两列，旧键/字段/顺序/类型完整保留；21个固定SHA抽样与compound/NIL边界的实际query和全部alias向量留外部供独审。准备耗时与网络传输另记，不冒称GPU占用。
 
 [实际准备证据/恢复](../evidence/round2/public-sap-feature-preparation.json)，[正式四fit与九点冻结计划](../evidence/round2/public-sap-feature-formal-plan.json)。按旧实际145.395秒及两列/额外开销估163.25秒；硬限仍四fit合计240秒。所有新预测冻结后才读质量标签。
+
+四fold实际全部rc0、合计 217.670秒，仍在原240秒内；前两折较慢，主线程曾在未读质量前允许资源恢复，但后两折加快，因此没有更改live source/预算、没有重跑或使用额外授权。八完整预测已共同冻结；九点具体输出绑定见[校准计划](../evidence/round2/public-sap-feature-cut-plan.json)，接着只做此一次校准。
