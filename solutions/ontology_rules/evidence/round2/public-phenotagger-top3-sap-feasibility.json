@@ -1,0 +1,97 @@
+{
+  "status": "CPU resource feasibility complete, partial cache reuse possible",
+  "conclusion": "All sixteen query caches present and publicly pretrained; correct HPO-specific cosine can be computed for cached phrases against public-only HPO aliases. Not full coverage:727 added-ID phrases/799 whole-pool phrases lack the verified query/public cache. No cosine features computed or new encoding/fit started.",
+  "facts": {
+    "cache_count": 16,
+    "known_unique_query_phrases": 33275,
+    "public_terms": 19119,
+    "public_unique_alias_phrases": 41099,
+    "public_alias_memberships": 41100,
+    "all_atomic_phrase_ID_pairs": 135154,
+    "all_unique_phrases": 34094,
+    "added_atomic_phrase_ID_pairs": 98168,
+    "added_unique_phrases": 26279,
+    "added_phrases_in_query_caches": 25537,
+    "added_missing_known_phrases": 727,
+    "all_missing_known_phrases": 799,
+    "added_pairs_missing_query_or_bank": 2213,
+    "new_embedding_bytes_float32": 2233344,
+    "newpair_alias_dot_products": 414554,
+    "newpair_alias_dot_dimensions": 318377472,
+    "other_identifier_rows": {
+      "unlinked_or_compound_rows": 6869
+    },
+    "seconds": 8.992302764003398
+  },
+  "representation": "SapBERT CLS; FP16 model forward; float32 L2-normalized768 vectors; max_length32; norm lower()+whitespace squeeze; sorted unique query rows",
+  "aliases": "Old bank has one training-frequency best_id per surface and mixed public/train aliases. A new public-only feature must ignore old label_ids: rebuild public current-HPO name/EXACT all-ID mapping and aggregate actual cosines over these aliases; never transfer task-derived best_id across folds.",
+  "interpretation": "Old similarity is nearest-bank maximum, including exact-span ID overrides, not guaranteed candidate-specific. Missing top-k/ID is not zero. Reuse only text-only frozen-encoder vectors with explicit content/source mapping. Compound/NIL handling must be specified before any feature trial.",
+  "resources": {
+    "mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+    "model": "semantic-neural/model",
+    "source": "semantic-neural/run.py",
+    "public_bank": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/frozen-fold0-sapbert/embeddings/19ab05a4a614bbc869be5c1d2943e08962c4e82f968026bcb41aa259e617d242.npy",
+      "sha256": "d8bb8709a238a562b45913c19878c78e45584eaf755678fdbe3429fdb76220b8",
+      "bytes": 129749120
+    },
+    "model_revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+    "existing_npy_files": 288,
+    "existing_npy_bytes": 3217628160
+  },
+  "cost": {
+    "missing_all_pool_phrases": 799,
+    "batch256_batches": 4,
+    "missing_all_pool_fp32_vector_bytes": 2454528,
+    "extra_alias_vectors_needed": 0,
+    "historic_encode_42236_seconds": 3.799,
+    "historic_encode_897_seconds": 0.06,
+    "new_forward_seconds_linear_scaling": 0.0718676247750734,
+    "new_forward_estimate_limit": "Historical throughput scaling only; not measured fresh job time, excludes import/model load/GPU availability. A future approved job can conservatively cap60s for missing-only public frozen-encoder extraction; no current GPU authorization.",
+    "new_alias_similarity_math": "414554 public-alias dot products for98168 added unique phrase-ID pairs =318377472 scalar multiplies/adds; feature assembly overhead not measured."
+  },
+  "feature_boundaries": [
+    "Do not copy old nearest-bank similarity into arbitrary new IDs; do not replace existing fields.",
+    "Rebuild canonical public name/EXACT alias-to-all-ID mapping; do not use training-frequency best_id or train-only aliases from any other fold.",
+    "Model is frozen public encoder so text-only vectors may be reused across folds; select deterministic vector source and verify per-cache hash before any actual numeric computation. Cache header/digest mapping was checked here, not every3.2GB value.",
+    "Compound/NIL old candidates need explicit missing/aggregation handling before any new feature control; no arbitrary zero posterior or cosine.",
+    "727/799 are missing relative to verified query+public caches; unexamined detector-training caches might reduce this upper bound, but are not claimed covered."
+  ],
+  "refs": {
+    "remote-inventory.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-sap-feasibility/remote-inventory.json",
+      "sha256": "b34ab6d6ac2b86986ce32e30af8e789724fe74cad13bbf460b01744c1b9fda01",
+      "bytes": 99019
+    },
+    "remote-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-sap-feasibility/remote-job.json",
+      "sha256": "7d010d4bbbb56b24c30c066ab0765bf9bb6e58a869872ea8960d9b48094e6f2b",
+      "bytes": 287
+    },
+    "reuse-analysis.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-sap-feasibility/reuse-analysis.json",
+      "sha256": "9025439d7a19b2a165792207143bada2b5329558cf2f68b7d010d3fc6eaae757",
+      "bytes": 56581
+    },
+    "model-stat-and-historical-timing.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-sap-feasibility/model-stat-and-historical-timing.json",
+      "sha256": "7ca9a839b15d0582dc3da79c8c7652339425af073c0719fc1a2f3bb294d769b3",
+      "bytes": 1354
+    },
+    "bank-binding.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-sap-feasibility/bank-binding.json",
+      "sha256": "a34c938066f758c878c5b07c9f2d877b663f3ac67da1ace73b0ea42d84aecdac",
+      "bytes": 925
+    }
+  },
+  "sources": {
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/inspect_sap_cache.py": "cbdc4764f1e4e7dab2ba0da80087bc5b650d185af4afd93235a6cece1203367b",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/analyze_sap_reuse.py": "4af8ef1b127ea5c7d690534c434fe4a3989e894f2a7254a1dd08ec98c0e624b2"
+  },
+  "no_training": true,
+  "no_new_embeddings": true,
+  "no_quality_evaluation": true,
+  "no_originaldev": true,
+  "no_GPU": true
+}
