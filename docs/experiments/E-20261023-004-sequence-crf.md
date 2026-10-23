@@ -84,3 +84,7 @@ CUDA_VISIBLE_DEVICES=GPU-07726469-bf7a-b832-9dee-019dc276dc1d OMP_NUM_THREADS=1 
 ```
 
 正式启动前再次检查指定卡空闲，并与共享该卡的语义路线交接；不并占。固定比较成功标准：同一 64/16 划分、相同链接/关系头、v2 评测的总分是否超过 CRF 0.684734。若不提升则选择 CRF；若提升则按同配置完整训练 80 篇生成 B。未进行验证集阈值搜索。
+
+实际启动：2026-10-23 11:28:15.956 UTC，远端进程 `proc_99d9c1fc-da71-4dbb-a17a-ced54a26e2a8`（PID 1109842），mount `1593f159-19bc-41ca-8b4c-2e7455f5db99`。启动前 GPU0 使用 4 MiB、利用率 0%，已与语义路线完成交接。实际模型参数 108,893,955；train64 共 2,364 窗口、241,952 编码 token（含重叠/特殊符号），592 优化步骤。可通过 MCP `read_process_output` 检查进程；运行位置 `sequence-crf/runs/biomedbert-dev-v1/`。
+
+备份状态：此前 `150bce8` 已 push 并读取远端 SHA 核验一致；`d569bb7` 之后 GitHub token 认证失效，暂为本地已提交，主线程统一恢复认证并保存额外 Git bundle，不反复重试或暴露令牌。
