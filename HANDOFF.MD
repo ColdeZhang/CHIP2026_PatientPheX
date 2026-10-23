@@ -151,6 +151,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：用稳定角色名或仓库相对路径作为键，保留全部依赖的SHA；旧记录另附补充证据，不能静默改写。CRF分支 `9d3da67` 已补实际远端依赖哈希、角色键实现及同名文件回归检查，详见[方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
 
+## H24：LLM的JSON可解析，不代表患者键与输入一致
+
+两条Qwen路线遇到含冒号的患者ID：提示中的“ID: 别名”被模型整体用作键，例如 `OII:3: II:3`，真实ID为 `OII:3`。这属于身份字段格式失败，不能误报为患者人数翻倍或模型没有作答；也不能把未匹配结果静默丢弃。
+
+**避免方法**：用可逆P001等局部编号或明确结构化身份字段，严格验证患者/候选集合与截断状态。本体22窗口中3个失败窗口仅按格式、未看gold选择一次修复，最终22/22通过；旧raw、回退版本、重跑来源及SHA分别保留，修复后分数仍下降。证据见[本体分支实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
