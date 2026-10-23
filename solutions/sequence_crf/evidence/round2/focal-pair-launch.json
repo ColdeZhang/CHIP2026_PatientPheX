@@ -1,0 +1,111 @@
+{
+  "status": "formal_pair_running_after_CPU_and_smoke_pass",
+  "commit": "7b6023d",
+  "resource": "same .100 A30 GPU1, UUID GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "A800_decision": "Rejected1.87GiB real free space; no deletion.",
+  "managed_job": {
+    "at_utc": "2026-10-23T20:30:10.969348+00:00",
+    "arguments": {
+      "command": "python3 run_gliner_loss_pair.py --plan pair-plan.json --stage formal",
+      "cwd": "sequence-round2/focal-loss-control",
+      "env": {
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1"
+      }
+    },
+    "result": {
+      "command": "python3 run_gliner_loss_pair.py --plan pair-plan.json --stage formal",
+      "id": "proc_483790e9-1628-4c71-904e-ec14cad664df",
+      "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "pid": 2465690,
+      "port": 35765,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-23T20:30:10.83450002Z"
+    }
+  },
+  "training_started_at_utc": "2026-10-23T20:30:12.063759+00:00",
+  "training_deadline_utc": "2026-10-23T21:00:12.063790+00:00",
+  "budgets": {
+    "shared_training_seconds": 1800,
+    "per_arm_training_seconds": 1200,
+    "TERM_grace_seconds": 30,
+    "per_inference_or_link_seconds": 300
+  },
+  "artifacts": {
+    "pair-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/pair-plan.json",
+      "sha256": "098d6854fdbc84c6295d8efc265bdb8e40451879446aa915db0731df1dd0a388",
+      "bytes": 20531
+    },
+    "pair-cpu-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/pair-cpu-job.json",
+      "sha256": "09ea9e57da51636154e54d1bbb3854bb98377fdcaeb555949695a70533a7e39e",
+      "bytes": 740
+    },
+    "a30/cpu.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/cpu.state.json",
+      "sha256": "8879743695b0010e334951ff7e869ee11c04b84b0deee77ed354db245d02e744",
+      "bytes": 2110
+    },
+    "a30/cpu-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/cpu-preflight.json",
+      "sha256": "b5fbc5657cbe69da16a9b2a817433d0f61cae768d2b0dc1107edf603115bed6c",
+      "bytes": 1299
+    },
+    "a30/cpu-loss.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/cpu-loss.json",
+      "sha256": "26fb80374f300a292d7cb558f6593c9a2b7a9ca7ac553da927c390ac3ce06d20",
+      "bytes": 2235
+    },
+    "pair-smoke-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/pair-smoke-job.json",
+      "sha256": "5dec43657708f6a986515e36812f8a04cee98e0b9bdc4da813758f5853c344cc",
+      "bytes": 710
+    },
+    "a30/smoke.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/smoke.state.json",
+      "sha256": "611247a42678a48c6e30e1461fa8a831397384b088df2cf72c6c1072c62554a1",
+      "bytes": 1895
+    },
+    "a30/smoke/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/smoke/run_manifest.json",
+      "sha256": "fbed424ffd047cc0b8b0aa07e3b4c37c21a6731c7b2eedc333c1f2670b5392a8",
+      "bytes": 21502
+    },
+    "pair-formal-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/pair-formal-job.json",
+      "sha256": "e7a0521a49b67b39a01594ec7d40466bd553447b497f326a3c98feeece83aa06",
+      "bytes": 711
+    },
+    "a30/formal.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/a30/formal.state.json",
+      "sha256": "5506c07131c606d09637d6b5ccf1a60184d7a0b75df0c62dcfadfd925d450044",
+      "bytes": 1858
+    }
+  },
+  "smoke": {
+    "elapsed_seconds": 0.9633851959370077,
+    "smoke_loss": 0.004679907578974962,
+    "smoke_gradient_norm": 0.1215503066778183,
+    "max_gpu_allocated_bytes": 4459473408,
+    "parameters": 195175936,
+    "versions": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "gliner": "0.2.22"
+    },
+    "smoke_counts": {
+      "gold_positive": 33,
+      "predicted_positive": 2,
+      "gold_negative": 16251,
+      "tp": 0,
+      "fp": 2,
+      "positive_probability_sum": 3.1385645866394043,
+      "negative_probability_sum": 19.096609115600586
+    }
+  },
+  "recovery": "Read existing managed proc_483790e9-1628-4c71-904e-ec14cad664df; remote sequence-round2/focal-loss-control/{formal.state.json,bce/run_manifest.json,focal/run_manifest.json}. Do not restart based on local session state.",
+  "quality_results": "pending; no heldout labels read in this launch"
+}
