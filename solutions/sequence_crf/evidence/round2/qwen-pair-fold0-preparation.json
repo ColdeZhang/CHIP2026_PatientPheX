@@ -1,0 +1,41 @@
+{
+  "preparation": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "batch_concepts": 8,
+      "context_radius": 500
+    },
+    "documents": 16,
+    "prompts": 58,
+    "code_sha256": "2641d73a46ed8d5972c5a3ee8ece300da7f06fa491cde735d0e653b36ee5873f",
+    "files": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "candidates": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "output": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    }
+  },
+  "readiness": {
+    "prompts": 58,
+    "max_input_tokens": 6042,
+    "min_input_tokens": 722,
+    "sum_input_tokens": 195969,
+    "runner_sha256": "cd720e547ae454fdba996a530d1f2f728d23df4d1af51833a8d862805073b7d7",
+    "prompt_sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+    "max_input_budget": 14000,
+    "query_truncation": false
+  },
+  "job": {
+    "command": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/llm_runner.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B --prompts prompts.jsonl --output responses.jsonl --batch-size 1 --max-input-tokens 14000 --max-new-tokens 1600",
+    "id": "proc_50178f7d-5848-4eb2-b728-ad5ed9ccc544",
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "pid": 2181448,
+    "port": 36283,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T13:05:52.74906051Z"
+  }
+}

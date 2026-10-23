@@ -1,0 +1,65 @@
+{
+  "pool_manifest": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "base": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-extra-fold0/pool.jsonl",
+      "extra_output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-extra-fold0/extra.jsonl",
+      "candidates": [
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-ner8-sapbert/sapbert.pred.jsonl",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-ner8-posneg/sapbert.pred.jsonl",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-biolinklarge-ner8/sapbert.pred.jsonl"
+      ],
+      "votes": 2
+    },
+    "stats": {
+      "new_document_concepts": 180,
+      "supporting_spans": 274,
+      "documents_with_new_concepts": 16
+    },
+    "source_sha256": "dc6b1c5106dd8832aca3309e380867834827352d39afc22097e3682795f9f695",
+    "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "inputs": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "base": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a"
+    },
+    "candidate_sources": {
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-ner8-sapbert/sapbert.pred.jsonl": "f1695be88d2c8aeb64723d11a150fbdb9ba3377a441640c1ef0279dbdc1f7530",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-ner8-posneg/sapbert.pred.jsonl": "0fd2bfcb136c713f3867d82ce62a87d1b72d35be6e5130b772f5b950ad128325",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-biolinklarge-ner8/sapbert.pred.jsonl": "e9b9a0431e6eb18dc13ba134babb3720cba7a7c24cde432ea5ad613217528612"
+    },
+    "output_sha256": "97713fe8518e59b8bd3d053a95200dbd5a566f500d9259d3d7cc7501318cfa57",
+    "extra_output_sha256": "774fa5733d17c530beb55e0ea692ec69e9f381a8e00cdb594361a16ec8ef57f6",
+    "purpose": "Relations only: do not substitute these hypotheses for final entity predictions",
+    "input_annotations_used": false
+  },
+  "prompt_manifest": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-extra-fold0/extra.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-extra-fold0/prompts.jsonl",
+      "row_prefix": "extra-relations",
+      "batch_concepts": 8,
+      "context_radius": 500
+    },
+    "documents": 16,
+    "prompts": 29,
+    "code_sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+    "files": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "candidates": "774fa5733d17c530beb55e0ea692ec69e9f381a8e00cdb594361a16ec8ef57f6",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "output": "f87408c0a0708725dc582e1f0d10aad0cb7eeadca7d99cd69248767032cc47b3"
+    }
+  },
+  "diagnostic": {
+    "scope": "Gold-aware planning diagnostic only; no gold enters pool generation/prompts; valid HPO-like relation strings only, not an evaluator score.",
+    "counts": {
+      "gold_hpo_patient_relations": 363,
+      "base_concept_cover": 266,
+      "broader_concept_cover": 295
+    }
+  },
+  "llm_inference_run": false
+}

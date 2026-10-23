@@ -23,13 +23,15 @@ def parse_json(text):
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
-    for k in ['input','entities','prompts','responses','output']:ap.add_argument('--'+k,required=True)
-    ap.add_argument('--fallback',choices=['none','baseline'],default='baseline')
+    for k in ['input','entities','prompts','responses','output','final_entities'] if getattr(args,k,None):ap.add_argument('--'+k,required=True)
+    ap.add_argument('--final-entities');ap.add_argument('--fallback',choices=['none','baseline'],default='baseline')
     args=ap.parse_args();inputs=read_jsonl(args.input);pred={str(x['pmc_id']):x for x in read_jsonl(args.entities)}
     prompts=[json.loads(x) for x in Path(args.prompts).read_text().splitlines() if x.strip()];responses=[json.loads(x) for x in Path(args.responses).read_text().splitlines() if x.strip()]
     by_id={x['row_id']:x for x in responses};assert len(by_id)==len(responses)
     assert set(by_id)=={x['row_id'] for x in prompts},'Require complete immutable prompt results'
     assert all('entities' not in d and 'association' not in d for d in inputs)
+    final={str(x['pmc_id']):x for x in read_jsonl(args.final_entities)} if args.final_entities else pred
+    assert set(final)==set(pred)
     relations=defaultdict(lambda:defaultdict(set));stats=Counter()
     for prompt in prompts:
         response=by_id.get(prompt['row_id']);parsed=parse_json(response['response']) if response else None
@@ -46,8 +48,8 @@ def main():
             for pid in value:relations[pmc][str(pid)].add(concept)
     outputs=[]
     for doc in inputs:
-        pmc=str(doc['pmc_id']);outputs.append({'pmc_id':doc['pmc_id'],'pmid':doc.get('pmid'),'entities':pred[pmc]['entities'],'association':[{'patient_id':p['patient_id'],'phenotype':sorted(relations[pmc][str(p['patient_id'])])} for p in doc.get('patient',[])]})
+        pmc=str(doc['pmc_id']);outputs.append({'pmc_id':doc['pmc_id'],'pmid':doc.get('pmid'),'entities':final[pmc]['entities'],'association':[{'patient_id':p['patient_id'],'phenotype':sorted(relations[pmc][str(p['patient_id'])])} for p in doc.get('patient',[])]})
     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n' for x in outputs))
-    manifest={'configuration':vars(args),'stats':dict(stats),'code_sha256':sha256(__file__),'files':{k:sha256(getattr(args,k)) for k in ['input','entities','prompts','responses','output']}}
+    manifest={'configuration':vars(args),'stats':dict(stats),'code_sha256':sha256(__file__),'files':{k:sha256(getattr(args,k)) for k in ['input','entities','prompts','responses','output','final_entities'] if getattr(args,k,None)}}
     out.with_suffix('.manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest))
 if __name__=='__main__':main()

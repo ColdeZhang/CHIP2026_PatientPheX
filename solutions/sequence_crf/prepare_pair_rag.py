@@ -79,7 +79,7 @@ def evidence(doc,entities,radius):
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--input',required=True);ap.add_argument('--candidates',required=True);ap.add_argument('--hpo',required=True);ap.add_argument('--output',required=True)
-    ap.add_argument('--batch-concepts',type=int,default=8);ap.add_argument('--context-radius',type=int,default=500)
+    ap.add_argument('--row-prefix',default='relations');ap.add_argument('--batch-concepts',type=int,default=8);ap.add_argument('--context-radius',type=int,default=500)
     args=ap.parse_args();inputs=read_jsonl(args.input);pred={str(x['pmc_id']):x for x in read_jsonl(args.candidates)};terms,_,_,_=load_hpo(args.hpo)
     assert not any(x.get('entities') or x.get('association') for x in inputs)
     assert set(pred)=={str(x['pmc_id']) for x in inputs}
@@ -91,7 +91,7 @@ def main():
             for code,identifier in code_map.items():
                 items.append({'code':code,'meaning':terms.get(identifier,{}).get('name',identifier),'evidence':evidence(doc,concepts[identifier],args.context_radius)})
             content='Patient identities and global anchors:\n'+anchors+'\n\nCandidate phenotypes:\n'+json.dumps(items,ensure_ascii=False)
-            rows.append({'row_id':f"{doc['pmc_id']}:relations:{start}",'pmc_id':doc['pmc_id'],'code_map':code_map,'patient_ids':[str(p['patient_id']) for p in doc.get('patient',[])],'messages':[{'role':'system','content':SYSTEM},{'role':'user','content':content}]})
+            rows.append({'row_id':f"{doc['pmc_id']}:{args.row_prefix}:{start}",'pmc_id':doc['pmc_id'],'code_map':code_map,'patient_ids':[str(p['patient_id']) for p in doc.get('patient',[])],'messages':[{'role':'system','content':SYSTEM},{'role':'user','content':content}]})
     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n' for x in rows))
     out.with_suffix('.manifest.json').write_text(json.dumps({'configuration':vars(args),'documents':len(inputs),'prompts':len(rows),'code_sha256':sha256(__file__),'files':{k:sha256(getattr(args,k)) for k in ['input','candidates','hpo','output']}},indent=2)+'\n');print(json.dumps({'prompts':len(rows),'bytes':out.stat().st_size}))
 if __name__=='__main__':main()

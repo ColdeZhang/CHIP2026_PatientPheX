@@ -9,6 +9,11 @@ import run_round2
 import run_relation_features
 import source_fingerprint
 import apply_linker_scores
+import merge_pair_rag
+import json
+import contextlib
+import io
+from unittest.mock import patch
 
 class Round2Tests(unittest.TestCase):
     def test_compound_training_targets_keep_natural_text(self):
@@ -28,6 +33,21 @@ class Round2Tests(unittest.TestCase):
         self.assertNotIn('entities',out);self.assertNotIn('association',out)
         self.assertEqual([m['offset'] for m in out['patient'][0]['mention']],[0,8,21])
         self.assertEqual(len(out['patient'][1]['mention']),1)
+    def test_relation_candidate_pool_does_not_replace_final_entities(self):
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d)
+            objects={
+                'input':[{'pmc_id':'x','patient':[{'patient_id':'P1'}]}],
+                'pool':[{'pmc_id':'x','entities':[{'identifier':'HP:0000252','text':'tiny head','offset':0,'length':9}],'association':[{'patient_id':'P1','phenotype':[]}]}],
+                'final':[{'pmc_id':'x','entities':[]}],
+                'prompts':[{'row_id':'x:1','pmc_id':'x','patient_ids':['P1'],'code_map':{'C000':'HP:0000252'}}],
+                'responses':[{'row_id':'x:1','response':'{"C000":["P1"]}'}]}
+            for name,rows in objects.items():(d/name).write_text(''.join(json.dumps(x)+'\n' for x in rows))
+            argv=['merge_pair_rag','--input',str(d/'input'),'--entities',str(d/'pool'),'--final-entities',str(d/'final'),'--prompts',str(d/'prompts'),'--responses',str(d/'responses'),'--output',str(d/'output')]
+            with patch.object(sys,'argv',argv),contextlib.redirect_stdout(io.StringIO()):merge_pair_rag.main()
+            result=json.loads((d/'output').read_text())
+            self.assertEqual(result['entities'],[])
+            self.assertEqual(result['association'][0]['phenotype'],['HP:0000252'])
     def test_crossencoder_without_nil_class_cannot_replace_nil(self):
         group={"original_identifier":"-1","protected_exact":False,"candidates":[{"identifier":"HP:0000252","probability":.999}]}
         self.assertEqual(apply_linker_scores.select(group),"-1")
