@@ -8,6 +8,7 @@ import run
 import run_round2
 import run_relation_features
 import source_fingerprint
+import apply_linker_scores
 
 class Round2Tests(unittest.TestCase):
     def test_compound_training_targets_keep_natural_text(self):
@@ -27,6 +28,13 @@ class Round2Tests(unittest.TestCase):
         self.assertNotIn('entities',out);self.assertNotIn('association',out)
         self.assertEqual([m['offset'] for m in out['patient'][0]['mention']],[0,8,21])
         self.assertEqual(len(out['patient'][1]['mention']),1)
+    def test_crossencoder_without_nil_class_cannot_replace_nil(self):
+        group={"original_identifier":"-1","protected_exact":False,"candidates":[{"identifier":"HP:0000252","probability":.999}]}
+        self.assertEqual(apply_linker_scores.select(group),"-1")
+        group["original_identifier"]="HP:0001250"
+        self.assertEqual(apply_linker_scores.select(group),"HP:0000252")
+        group["protected_exact"]=True
+        self.assertEqual(apply_linker_scores.select(group),"HP:0001250")
     def test_source_hashes_preserve_same_named_dependencies(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d);(p/"crf").mkdir();(p/"semantic").mkdir()

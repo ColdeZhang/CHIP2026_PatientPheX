@@ -87,7 +87,7 @@ def rows_for(doc,entities,linker,retrieved,names,counts,sources,topk,training=Fa
             row={'context':context(doc,e),'concept':concept_text(hid,linker),'identifier':hid,'similarity':similarity}
             if training:row['label']=int(hid==gold)
             rows.append(row)
-        groups.append({'pmc_id':pid,'entity_index':ei,'start':start,'end':len(rows),'protected_exact':len(exact)==1,'original_identifier':gold})
+        groups.append({'pmc_id':pid,'entity_index':ei,'start':start,'end':len(rows),'protected_exact':len(exact)==1,'exact_identifier':next(iter(exact)) if len(exact)==1 else None,'original_identifier':gold})
     return rows,groups,stats
 
 
@@ -163,7 +163,7 @@ def main():
     changes=0;scored=[]
     for g in groups:
         candidates=[dict(row,probability=prob[i]) for i,row in enumerate(test[g['start']:g['end']],g['start'])]
-        best=max(candidates,key=lambda x:x['probability']);chosen=g['original_identifier'] if g['protected_exact'] else best['identifier']
+        best=max(candidates,key=lambda x:x['probability']);chosen=g['original_identifier'] if g['protected_exact'] or g['original_identifier']=='-1' else best['identifier']
         e=lookup[g['pmc_id']]['entities'][g['entity_index']];changes+=chosen!=e['identifier'];e['identifier']=chosen
         scored.append({**g,'chosen':chosen,'candidates':[{k:v for k,v in x.items() if k not in {'context','concept'}} for x in candidates]})
     vec,rel,relstats=base.fit_relation(train,linker);out=work/'pred.jsonl'

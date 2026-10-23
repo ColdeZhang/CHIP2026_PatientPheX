@@ -1,0 +1,185 @@
+{
+  "metrics": {
+    "menF1": 0.71939736346516,
+    "docF1": 0.7211440245148111,
+    "micF1": 0.611957796014068,
+    "macF1": 0.49849690862996965,
+    "Score": 0.6377490231560021
+  },
+  "assembly": {
+    "config": {
+      "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "predictions": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "scores": "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-linker-ce/scores.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-linker-ce/nil-preserved.pred.jsonl"
+    },
+    "command": [
+      "solutions/sequence_crf/apply_linker_scores.py",
+      "--train",
+      "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "--input",
+      "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "--hpo",
+      "/workspace/patientphex-data/hp.obo",
+      "--predictions",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "--scores",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-linker-ce/scores.jsonl",
+      "--output",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-linker-ce/nil-preserved.pred.jsonl"
+    ],
+    "policy": "Preserve original NIL and exact mappings; rerank only mapped ambiguous/nonexact entities",
+    "source_sha256": "7dd7d7f1ccc2efb66ed2cea47a0d22d6acd7ca6909ac1ae088c5f589fd33b596",
+    "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "inputs": {
+      "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "predictions": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+      "scores": "b3b15320eb0daf55bbf02ac30b5d90062ff6a39647350ba4e51e9b2f6061e1b8"
+    },
+    "output_sha256": "85287b8f12f0b39c0437c9421c7f78edfe6c115b86633e40b8d628400aa216f6",
+    "stats": {
+      "nil_preserved": 2,
+      "identifier_changed": 13,
+      "unique_exact_original_mismatch": 1
+    },
+    "input_annotations_used": false
+  },
+  "training_and_inference": {
+    "fingerprint": {
+      "dependency_sha256": {
+        "gpu_relation_helper": "b83cd189b2683f32d065ab92d6c0ae6e2ed29906e13e3d4c1fe759ea4c86e0af",
+        "semantic_encoder": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+        "fingerprint_helper": "7a306d8da42859cfe70845808b26fb0a9ce27aff4faeb2a025638a299b724d0d"
+      },
+      "source_sha256": "0fcfc1b4097a5ca535e1c60ccfa7d25e5423ba96c3037861daa54a564e6e3299",
+      "base_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "model_sha256": {
+        "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+        "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+        "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      },
+      "sapbert_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "epochs": 3,
+      "batch_size": 24,
+      "max_length": 192,
+      "learning_rate": 2e-05,
+      "top_k": 8
+    },
+    "training_pairs": 18771,
+    "test_pairs": 7577,
+    "training_retrieval": {
+      "examples": 2332,
+      "gold_retrieved": 2217
+    },
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "predictions_sha256": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+    "input_annotations_used": false,
+    "config": {
+      "train": "data/train48.jsonl",
+      "input": "data/validation16.input.jsonl",
+      "predictions": "data/fold0-crf-semantic.pred.jsonl",
+      "hpo": "../sequence-crf/data/hp.obo",
+      "model": "../sequence-crf/pretrained-biomedbert",
+      "sapbert": "../semantic-neural/model",
+      "semantic_source": "../semantic-neural/run.py",
+      "work_dir": "runs/fold0-linker-ce",
+      "epochs": 3,
+      "batch_size": 24,
+      "max_length": 192,
+      "learning_rate": 2e-05,
+      "top_k": 8,
+      "reuse_model": false,
+      "prepare_only": false
+    },
+    "command": [
+      "run_linker_rerank.py",
+      "--train",
+      "data/train48.jsonl",
+      "--input",
+      "data/validation16.input.jsonl",
+      "--predictions",
+      "data/fold0-crf-semantic.pred.jsonl",
+      "--hpo",
+      "../sequence-crf/data/hp.obo",
+      "--model",
+      "../sequence-crf/pretrained-biomedbert",
+      "--sapbert",
+      "../semantic-neural/model",
+      "--semantic-source",
+      "../semantic-neural/run.py",
+      "--work-dir",
+      "runs/fold0-linker-ce",
+      "--epochs",
+      "3",
+      "--batch-size",
+      "24"
+    ],
+    "training_stats": [
+      {
+        "epoch": 1,
+        "loss": 0.44517061575333733,
+        "seconds": 61.82891221623868
+      },
+      {
+        "epoch": 2,
+        "loss": 0.30204573506548865,
+        "seconds": 61.48473590007052
+      },
+      {
+        "epoch": 3,
+        "loss": 0.2234043744434323,
+        "seconds": 61.37640316179022
+      }
+    ],
+    "relation_stats": {
+      "relation_examples": 10201,
+      "relation_positive": 3441
+    },
+    "changed_identifiers": 15,
+    "output_sha256": "d9542274767a9b552e6e8d1a03fd20212762f5e56f2502dd69089dcde48625fe",
+    "total_seconds": 201.85007864236832
+  },
+  "policy_frozen_before_evaluation": true,
+  "unrestricted_hpo_only_driver_output_evaluated": false
+}
