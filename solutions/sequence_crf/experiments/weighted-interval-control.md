@@ -16,4 +16,4 @@
 
 pooled Score **.7256553887000612→.7256553887000612**；men .763831183/doc .796554009/micro .687846109/macro .654390253均不变，四fold全Δ0，实体和关联增删TPFP全0，格式0错0警。该候选池和固定效用下，greedy已达到相同全局最优；合成例能区分两算法，不是实现只回传旧实体。关闭本控制、保原decoder，不改效用/门槛，不迁移原dev。
 
-[完整小摘要及实际恢复入口](../evidence/round2/weighted-interval-results.json)。代码计划2c34d39已推送；独立增量审待回收，当前不宣称独审通过。
+[完整小摘要及实际恢复入口](../evidence/round2/weighted-interval-results.json)。代码计划2c34d39已推送；独立增量审PASS（4802573a）：248穷举小例、反向DP、64篇完整重放和新v2/格式一致。

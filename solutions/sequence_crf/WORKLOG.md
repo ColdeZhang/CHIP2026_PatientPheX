@@ -74,4 +74,8 @@
 
 ### 固定WIS解码控制已完成：零变化
 
-只改旧Bioformer四fold/cut.3非重叠选择，精确p-.3效用与固定tie；80组独立穷举/边界合同通过。实际3.31秒，8fullpred先freeze，新旧64篇全部byteexact、实体/关系TPFP全Δ0，pooled仍.725655389；exact .3候选0。当前池此效用下greedy已同最优，关闭该固定控制，不扫效用、不迁移原dev；无fit/GPU。旧baseline首测指标按同SHA复用，独立新增审待回收。[结果/恢复](evidence/round2/weighted-interval-results.json)、[实验](experiments/weighted-interval-control.md)。
+只改旧Bioformer四fold/cut.3非重叠选择，精确p-.3效用与固定tie；80组独立穷举/边界合同通过。实际3.31秒，8fullpred先freeze，新旧64篇全部byteexact、实体/关系TPFP全Δ0，pooled仍.725655389；exact .3候选0。当前池此效用下greedy已同最优，关闭该固定控制，不扫效用、不迁移原dev；无fit/GPU。旧baseline首测指标按同SHA复用，独立新增审PASS（4802573a）。[结果/恢复](evidence/round2/weighted-interval-results.json)、[实验](experiments/weighted-interval-control.md)。
+
+### 进行中：旧HGB池严格嵌套追加
+
+旧GLiNER纯边界/合法HPO/否定政策机械复用，上游明确换既有HGB .3/原排序；旧实体/关联完整保留，≤30秒CPU控制，无新fit/GPU/原dev。[计划/恢复](experiments/selector-nested-control.md)。

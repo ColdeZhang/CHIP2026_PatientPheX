@@ -1,0 +1,53 @@
+{
+  "status": "frozen before new decode/evaluation",
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/plan.json",
+    "sha256": "f356ff5b9a326b32076b6bb587b3dd0cf3b37073f2771fd27f2b2fa0973fe085",
+    "bytes": 13093
+  },
+  "contracts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/contracts.json",
+    "sha256": "292b2044dbee20d557a706b1a5795e60399d02e7a39c91485429cf3cb88e9201",
+    "bytes": 690
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/decode_nested_selector.py",
+    "sha256": "7f4484fc1db132746f674c8c268832705cbeba7d05bbe65268c1ef0e275a7c7f",
+    "bytes": 2650
+  },
+  "runner": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_nested_selector_control.py",
+    "sha256": "2b34a50f8dca3ec483b320e5fd4c4ed2fdc547f9cddb746250c1cb62a98f7ac8",
+    "bytes": 8194
+  },
+  "policy": {
+    "original_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/append_nested_spans.py",
+      "sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+      "bytes": 5901
+    },
+    "original_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-nested-control/plan.json",
+      "sha256": "e44168cbdf78f41bec7f239fbc25d8dee3077f66371cfd55a126c6ac2a980a41",
+      "bytes": 3954
+    },
+    "original_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-nested-review/review.json",
+      "sha256": "aa56e0f19321814d70afd43fac91b184c673363aa2be9ae25cfaccc9d12ee285",
+      "bytes": 10798
+    },
+    "unchanged": [
+      "overlap",
+      "proper_containment",
+      "may_append",
+      "valid current HPO excluding root/NIL for new entries",
+      "old is_negated function only for new entries"
+    ],
+    "explicit_transfer_changes": [
+      "Original GLiNER score ranking replaced by existing HGB ranking.",
+      "Original Sap .65/.92 prefilter replaced by current HGB >=.3; no second Sap gate.",
+      "Existing HGB entities including old NIL remain unchanged."
+    ],
+    "collisions": "Must overlap at least one accepted entry. Every collision must be proper containment with nonidentical boundaries and disjoint atomic HPO sets. Shared edge containment is allowed. Same-boundary IDs/crossing/shared IDs/nonoverlap rejected. New accepted entries participate in later checks."
+  }
+}
