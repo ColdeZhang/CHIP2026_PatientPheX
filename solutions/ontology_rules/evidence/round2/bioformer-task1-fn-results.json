@@ -1,0 +1,432 @@
+{
+  "status": "completed aggregate-only diagnostic",
+  "completed_at_utc": "2026-10-23T21:43:53.124869+00:00",
+  "source_sha256": "daa8420cdee227cbf1224262e6c789c28c9dd8dd8b2f434a0ba57b0f0f2a3244",
+  "plan_sha256": "802dbee3472cdaba41d323eb6e05bd0fe365251ae7df2b7d37a73d655faeac2f",
+  "cut": 0.3,
+  "counts": {
+    "mention": {
+      "tp": 3493,
+      "fp": 825,
+      "fn": 1335
+    },
+    "document": {
+      "tp": 1803,
+      "fp": 273,
+      "fn": 648
+    }
+  },
+  "aggregates": {
+    "denominators": {
+      "documents": 64,
+      "candidate_records": 61781,
+      "candidate_spans": 61253,
+      "selected_entity_records": 4315,
+      "gold_mention_units": 4828,
+      "gold_document_concepts": 2451,
+      "mixed_linked_nil_gold_spans": 0
+    },
+    "gold_mention_units_by_kind": {
+      "linked": 4730,
+      "unlinked": 98
+    },
+    "mention_tp_by_kind": {
+      "linked": 3488,
+      "unlinked": 5
+    },
+    "mention_fn_top_level": {
+      "below_cut": 544,
+      "pool_support_absent": 682,
+      "greedy_conflict": 109
+    },
+    "mention_fn_mechanisms": {
+      "pool_support_present_all_below_cut": 544,
+      "pool_missing_correct_id_same_span_wrong_id": 298,
+      "pool_missing_exact_span_overlap_only": 269,
+      "pool_support_at_cut_rejected_by_greedy": 109,
+      "pool_missing_any_overlapping_span": 115
+    },
+    "mention_fn_linked": {
+      "pool_support_present_all_below_cut": 498,
+      "pool_missing_correct_id_same_span_wrong_id": 298,
+      "pool_missing_exact_span_overlap_only": 245,
+      "pool_support_at_cut_rejected_by_greedy": 109,
+      "pool_missing_any_overlapping_span": 92
+    },
+    "greedy_blocker_geometry": {
+      "overlap_different_boundary": 106,
+      "same_span_competing_id": 3
+    },
+    "document_fn_mechanisms": {
+      "candidate_concept_absent": 263,
+      "candidate_concept_present_all_below_cut": 319,
+      "candidate_concept_present_at_cut_greedy": 66
+    },
+    "document_fn_linked": {
+      "candidate_concept_absent": 175,
+      "candidate_concept_present_all_below_cut": 319,
+      "candidate_concept_present_at_cut_greedy": 66
+    },
+    "mention_fn_unlinked": {
+      "pool_missing_any_overlapping_span": 23,
+      "pool_support_present_all_below_cut": 46,
+      "pool_missing_exact_span_overlap_only": 24
+    },
+    "document_fn_unlinked": {
+      "candidate_concept_absent": 88
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "counts": {
+        "mention": {
+          "tp": 850,
+          "fp": 193,
+          "fn": 327
+        },
+        "document": {
+          "tp": 397,
+          "fp": 67,
+          "fn": 168
+        }
+      },
+      "aggregates": {
+        "denominators": {
+          "documents": 16,
+          "candidate_records": 14910,
+          "candidate_spans": 14780,
+          "selected_entity_records": 1043,
+          "gold_mention_units": 1177,
+          "gold_document_concepts": 565,
+          "mixed_linked_nil_gold_spans": 0
+        },
+        "gold_mention_units_by_kind": {
+          "linked": 1140,
+          "unlinked": 37
+        },
+        "mention_tp_by_kind": {
+          "linked": 849,
+          "unlinked": 1
+        },
+        "mention_fn_top_level": {
+          "below_cut": 121,
+          "pool_support_absent": 186,
+          "greedy_conflict": 20
+        },
+        "mention_fn_mechanisms": {
+          "pool_support_present_all_below_cut": 121,
+          "pool_missing_correct_id_same_span_wrong_id": 88,
+          "pool_missing_exact_span_overlap_only": 74,
+          "pool_support_at_cut_rejected_by_greedy": 20,
+          "pool_missing_any_overlapping_span": 24
+        },
+        "mention_fn_linked": {
+          "pool_support_present_all_below_cut": 104,
+          "pool_missing_correct_id_same_span_wrong_id": 88,
+          "pool_missing_exact_span_overlap_only": 69,
+          "pool_support_at_cut_rejected_by_greedy": 20,
+          "pool_missing_any_overlapping_span": 10
+        },
+        "greedy_blocker_geometry": {
+          "overlap_different_boundary": 20
+        },
+        "document_fn_mechanisms": {
+          "candidate_concept_absent": 81,
+          "candidate_concept_present_all_below_cut": 74,
+          "candidate_concept_present_at_cut_greedy": 13
+        },
+        "document_fn_linked": {
+          "candidate_concept_absent": 52,
+          "candidate_concept_present_all_below_cut": 74,
+          "candidate_concept_present_at_cut_greedy": 13
+        },
+        "mention_fn_unlinked": {
+          "pool_missing_any_overlapping_span": 14,
+          "pool_support_present_all_below_cut": 17,
+          "pool_missing_exact_span_overlap_only": 5
+        },
+        "document_fn_unlinked": {
+          "candidate_concept_absent": 29
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "counts": {
+        "mention": {
+          "tp": 987,
+          "fp": 238,
+          "fn": 366
+        },
+        "document": {
+          "tp": 563,
+          "fp": 80,
+          "fn": 182
+        }
+      },
+      "aggregates": {
+        "denominators": {
+          "documents": 16,
+          "candidate_records": 16454,
+          "candidate_spans": 16322,
+          "selected_entity_records": 1225,
+          "gold_mention_units": 1353,
+          "gold_document_concepts": 745,
+          "mixed_linked_nil_gold_spans": 0
+        },
+        "gold_mention_units_by_kind": {
+          "linked": 1336,
+          "unlinked": 17
+        },
+        "mention_tp_by_kind": {
+          "linked": 986,
+          "unlinked": 1
+        },
+        "mention_fn_top_level": {
+          "below_cut": 164,
+          "greedy_conflict": 44,
+          "pool_support_absent": 158
+        },
+        "mention_fn_mechanisms": {
+          "pool_support_present_all_below_cut": 164,
+          "pool_support_at_cut_rejected_by_greedy": 44,
+          "pool_missing_any_overlapping_span": 21,
+          "pool_missing_correct_id_same_span_wrong_id": 66,
+          "pool_missing_exact_span_overlap_only": 71
+        },
+        "mention_fn_linked": {
+          "pool_support_present_all_below_cut": 156,
+          "pool_support_at_cut_rejected_by_greedy": 44,
+          "pool_missing_any_overlapping_span": 17,
+          "pool_missing_correct_id_same_span_wrong_id": 66,
+          "pool_missing_exact_span_overlap_only": 67
+        },
+        "greedy_blocker_geometry": {
+          "overlap_different_boundary": 44
+        },
+        "document_fn_mechanisms": {
+          "candidate_concept_present_all_below_cut": 100,
+          "candidate_concept_present_at_cut_greedy": 23,
+          "candidate_concept_absent": 59
+        },
+        "document_fn_linked": {
+          "candidate_concept_present_all_below_cut": 100,
+          "candidate_concept_present_at_cut_greedy": 23,
+          "candidate_concept_absent": 43
+        },
+        "mention_fn_unlinked": {
+          "pool_support_present_all_below_cut": 8,
+          "pool_missing_any_overlapping_span": 4,
+          "pool_missing_exact_span_overlap_only": 4
+        },
+        "document_fn_unlinked": {
+          "candidate_concept_absent": 16
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "counts": {
+        "mention": {
+          "tp": 829,
+          "fp": 220,
+          "fn": 326
+        },
+        "document": {
+          "tp": 413,
+          "fp": 72,
+          "fn": 157
+        }
+      },
+      "aggregates": {
+        "denominators": {
+          "documents": 16,
+          "candidate_records": 15154,
+          "candidate_spans": 14995,
+          "selected_entity_records": 1047,
+          "gold_mention_units": 1155,
+          "gold_document_concepts": 570,
+          "mixed_linked_nil_gold_spans": 0
+        },
+        "gold_mention_units_by_kind": {
+          "linked": 1124,
+          "unlinked": 31
+        },
+        "mention_fn_top_level": {
+          "below_cut": 134,
+          "pool_support_absent": 166,
+          "greedy_conflict": 26
+        },
+        "mention_fn_mechanisms": {
+          "pool_support_present_all_below_cut": 134,
+          "pool_missing_any_overlapping_span": 28,
+          "pool_missing_exact_span_overlap_only": 63,
+          "pool_support_at_cut_rejected_by_greedy": 26,
+          "pool_missing_correct_id_same_span_wrong_id": 75
+        },
+        "mention_fn_linked": {
+          "pool_support_present_all_below_cut": 120,
+          "pool_missing_any_overlapping_span": 24,
+          "pool_missing_exact_span_overlap_only": 53,
+          "pool_support_at_cut_rejected_by_greedy": 26,
+          "pool_missing_correct_id_same_span_wrong_id": 75
+        },
+        "mention_tp_by_kind": {
+          "linked": 826,
+          "unlinked": 3
+        },
+        "greedy_blocker_geometry": {
+          "overlap_different_boundary": 26
+        },
+        "document_fn_mechanisms": {
+          "candidate_concept_present_all_below_cut": 74,
+          "candidate_concept_absent": 63,
+          "candidate_concept_present_at_cut_greedy": 20
+        },
+        "document_fn_linked": {
+          "candidate_concept_present_all_below_cut": 74,
+          "candidate_concept_present_at_cut_greedy": 20,
+          "candidate_concept_absent": 33
+        },
+        "document_fn_unlinked": {
+          "candidate_concept_absent": 30
+        },
+        "mention_fn_unlinked": {
+          "pool_support_present_all_below_cut": 14,
+          "pool_missing_exact_span_overlap_only": 10,
+          "pool_missing_any_overlapping_span": 4
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "counts": {
+        "mention": {
+          "tp": 827,
+          "fp": 174,
+          "fn": 316
+        },
+        "document": {
+          "tp": 430,
+          "fp": 54,
+          "fn": 141
+        }
+      },
+      "aggregates": {
+        "denominators": {
+          "documents": 16,
+          "candidate_records": 15263,
+          "candidate_spans": 15156,
+          "selected_entity_records": 1000,
+          "gold_mention_units": 1143,
+          "gold_document_concepts": 571,
+          "mixed_linked_nil_gold_spans": 0
+        },
+        "gold_mention_units_by_kind": {
+          "linked": 1130,
+          "unlinked": 13
+        },
+        "mention_tp_by_kind": {
+          "linked": 827
+        },
+        "mention_fn_top_level": {
+          "below_cut": 125,
+          "pool_support_absent": 172,
+          "greedy_conflict": 19
+        },
+        "mention_fn_mechanisms": {
+          "pool_support_present_all_below_cut": 125,
+          "pool_missing_exact_span_overlap_only": 61,
+          "pool_missing_correct_id_same_span_wrong_id": 69,
+          "pool_missing_any_overlapping_span": 42,
+          "pool_support_at_cut_rejected_by_greedy": 19
+        },
+        "mention_fn_linked": {
+          "pool_support_present_all_below_cut": 118,
+          "pool_missing_exact_span_overlap_only": 56,
+          "pool_missing_correct_id_same_span_wrong_id": 69,
+          "pool_missing_any_overlapping_span": 41,
+          "pool_support_at_cut_rejected_by_greedy": 19
+        },
+        "document_fn_mechanisms": {
+          "candidate_concept_present_all_below_cut": 71,
+          "candidate_concept_present_at_cut_greedy": 10,
+          "candidate_concept_absent": 60
+        },
+        "document_fn_linked": {
+          "candidate_concept_present_all_below_cut": 71,
+          "candidate_concept_present_at_cut_greedy": 10,
+          "candidate_concept_absent": 47
+        },
+        "mention_fn_unlinked": {
+          "pool_missing_any_overlapping_span": 1,
+          "pool_support_present_all_below_cut": 7,
+          "pool_missing_exact_span_overlap_only": 5
+        },
+        "greedy_blocker_geometry": {
+          "overlap_different_boundary": 16,
+          "same_span_competing_id": 3
+        },
+        "document_fn_unlinked": {
+          "candidate_concept_absent": 13
+        }
+      }
+    }
+  ],
+  "seconds": 0.5464041950035607,
+  "fixtures": {
+    "one_to_one_cases": 5,
+    "nil_supply_cases": 3,
+    "raw_id_no_canonicalization": true,
+    "document_unlinked_literal_text": true
+  },
+  "frozen_predictions_entity_exact": true,
+  "frozen_selected_curve_counts_exact": true,
+  "document_counts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/bioformer-task1-fn-diagnostic/document-counts.json",
+    "sha256": "a3d28fda5fd6bdbdb6409ba5087be36f68540c0455a96d74ea1d823e1db4df1a",
+    "bytes": 112033
+  },
+  "originaldev_read": false,
+  "new_fit": false,
+  "new_threshold_selection": false,
+  "new_predictions_written": false,
+  "limitations": [
+    "This is a post-hoc diagnostic of train64 already used for development and cut calibration, not a new independent estimate.",
+    "Candidate union coverage is diagnostic supply, not an achievable oracle output: overlapping candidates and mixed linked/NIL spans can be incompatible under one-span greedy.",
+    "Candidate absence is relative to the final frozen candidate pool, not proof that a neural generator never proposed it upstream.",
+    "Unlinked document concepts require exact surface text with identifier -1; a linked prediction of that text is not a document-level wildcard.",
+    "No new quality selection, full Score or relation analysis. Gold does not change scores, features, cutoff, predictions, or candidate pools."
+  ],
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/bioformer-task1-fn-diagnostic/plan.json",
+      "sha256": "802dbee3472cdaba41d323eb6e05bd0fe365251ae7df2b7d37a73d655faeac2f",
+      "bytes": 8829
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/bioformer-task1-fn-diagnostic/summary.json",
+      "sha256": "ec0ee958a888843204febbecb9f4cb37b44f83688f267c42d9bc965b5f8bbebc",
+      "bytes": 13102
+    },
+    "document-counts.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/bioformer-task1-fn-diagnostic/document-counts.json",
+      "sha256": "a3d28fda5fd6bdbdb6409ba5087be36f68540c0455a96d74ea1d823e1db4df1a",
+      "bytes": 112033
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/bioformer-task1-fn-diagnostic/job.json",
+      "sha256": "29550883120ffca4f0eb9cbb6ee6fb7743fcaaa2b7ac3cfba14bb30bfd64d249",
+      "bytes": 879
+    }
+  },
+  "interpretation": {
+    "mention": "Candidate support absent accounts for 682/1335=51.09%; 544 below-cut and 109 greedy conflicts account for the rest. Missing support is slightly larger, but neither source expansion nor selection alone covers all errors.",
+    "document": "263/648 concepts absent, 385/648 supported but rejected. Of 263 absent, 88 are literal unlinked-text concepts.",
+    "next_decision": "Prefer a justified source or linker that supplies exact boundaries and raw correct IDs; improve evidence discrimination for already-supported candidates separately. Counts do not authorize a lower threshold or gold-specific patch.",
+    "precision_limit": "Existing fixed predictions still have 825 mention FP; FN mass alone does not show that accepting the rejected candidates would improve the metric.",
+    "coverage_limit": "Same-span wrong-ID 298 is evaluated with literal IDs, not a demonstrated canonical HPO linking failure. This diagnostic has not categorized alternative IDs or upstream stages."
+  },
+  "review_status": "awaiting bounded independent aggregate review"
+}
