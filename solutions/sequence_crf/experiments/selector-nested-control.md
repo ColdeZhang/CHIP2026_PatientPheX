@@ -17,3 +17,7 @@
 pooled Score **.725655389→.727975656**（+.002320267）；men .763831→.766299、doc .796554→.803367，关系两项完全不变。新增实体86TP109FP、doc58TP48FP；无删除、关联增删0，0错警。四fold Score Δ `[+.002327052,+.004209081,+.003453136,-.001194855]`，最后一折men/doc都下降（13TP28FP新增），不得只写均值正。
 
 该结果支持一次固定结构迁移的小收益，仍是开发结果，不是.8或原dev结论。root条件授权仅在本次独审通过后做唯一原dev同政策实体追加、现368条关系不变；当前尚未运行。完整摘要/源码/每次碰撞证据见[结果](../evidence/round2/selector-nested-results.json)。
+
+## 固定原dev迁移计划
+
+四fold独审f5482b85通过，3/4正，满足root事前条件。复用actual c032概率池/e9b30447当前最佳完整预测，仅同7f4484边界政策新增实体；全部原1004实体/368关系/其他对象保留，不用新实体扩大关系支持。两fullpred先freeze后唯一v2、30秒CPU；无fit/GPU/新候选/阈值扫描。计划与源码快照见[dev计划](../evidence/round2/selector-nested-dev-plan.json)，外存selector-nested-dev-transfer/。此处尚未执行新dev质量。
