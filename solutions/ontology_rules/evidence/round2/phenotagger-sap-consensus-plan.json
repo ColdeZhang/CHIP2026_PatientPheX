@@ -1,0 +1,49 @@
+{
+  "frozen_at": "2026-10-23T17:06:45.172857+00:00",
+  "hypothesis": "Existing high-precision Sap detector and top1 ID agreement remove Pheno100 addition false positives without losing baseline output.",
+  "baseline_score": 0.7103590603023253,
+  "parent_score": 0.7125487064528147,
+  "scope": "fold0 development ablation; not blind validation or original-dev performance",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/phenotagger_sap_consensus.py",
+    "sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262"
+  },
+  "request_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/request/request.manifest.json",
+    "sha256": "955176723f75a7dbf760065085e42188a2b3e43b9eb8bdf6657017c08ed47a33"
+  },
+  "request_counts": {
+    "additions": 191,
+    "documents": 16,
+    "bank_rows": 42236
+  },
+  "policy": {
+    "sap_p_gte": 0.65,
+    "sap_cos_gte": 0.92,
+    "pure_nearest_id_equals_pheno_id": true,
+    "preserve_base": true,
+    "reassign_only_retained_additions": true
+  },
+  "cpu_fixture_checks": {
+    "reject": {
+      "byteexact": true,
+      "prediction_sha256": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65",
+      "reference_sha256": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65"
+    },
+    "accept": {
+      "byteexact": true,
+      "prediction_sha256": "90320a43baf83a6b93e2886fea5f2cbc1a52b0ab0fddeeaf1c91216113fdc1ac",
+      "reference_sha256": "90320a43baf83a6b93e2886fea5f2cbc1a52b0ab0fddeeaf1c91216113fdc1ac"
+    }
+  },
+  "constraints": [
+    "No fitting or new labels",
+    "191 actual accepted Pheno100 additions only",
+    "Original train48 reconstructed LR coefficients and bank bytes",
+    "Pure nearest bank label ID, not exact-surface override",
+    "No threshold scan",
+    "Original base entities and associations preserved; only retained additions create new rule associations",
+    "Freeze output SHA before evaluation; no original dev evaluation"
+  ],
+  "expected_gpu_seconds": "~15-30 for encoder load/hash and 191 spans, after sequence release"
+}

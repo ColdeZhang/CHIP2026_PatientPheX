@@ -44,3 +44,5 @@
 
 - [PhenoTagger固定30ep终点结果](phenotagger-endpoint-results.json)：fold0仅+.000094，未升级默认；训练曲线和固定训练自检独立列出。
 - [PhenoTagger独立审查索引](phenotagger-audit-index.json)：实际数据、真实resume及冻结推理接口，完整报告仓库外。
+
+- [100ep终点结果与诊断](phenotagger-endpoint100-results.json)：独立复评通过，误报仍多；[Sap一致性控制预设](phenotagger-sap-consensus-plan.json)仅处理191新增、保持base。
