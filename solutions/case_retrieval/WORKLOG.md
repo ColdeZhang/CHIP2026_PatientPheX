@@ -7,7 +7,7 @@
 - **记录入口**：[实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[小型证据](evidence/round2/README.md)。
 - **运行位置**：外部 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`，完整日志、预测、模型不得入 Git。
 - **当前结果**：内部fold0原版 .613151 → compound修复 .615159；实体不变、关联微升，5项行为测试通过。固定 dev16 已得到 .625073738（原 .613517597），仍未达标；独立复评、重新拟合逐字节复现、36组内部输出复评全部通过。
-- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。原零样本新增跨度噪声较大，主线程已授权305窗口2epoch BF16 LoRA，先真实optimizer续训测试；HPO归一化同步准备。全文关系负结果交训练内错误分类，不在原dev调试。
+- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。真实optimizer续训状态独立检查通过；305窗2epoch BF16 LoRA已训练完成（78steps），.100正在同90窗adapter推断；.3并行69批基础HPO链接。先span边际诊断，再同链路完整Score。全文关系负结果交训练内错误分类，不在原dev调试。
 - **边界**：只修改本方案目录；共享变更与主线程协调；本轮不得上传官方。关键检查点及时 commit/push，回报版本与证据。
 
 ## 运行与恢复
@@ -25,3 +25,5 @@
 
 - 2026-10-23T13:38:11.752256666Z：正式305窗2epoch BF16启动 .100 GPU1，作业`proc_6e1059ff-40f5-47db-bfbd-c5363d13a35c`；远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，每epoch保留adapter+optimizer/scheduler/RNG；大产物外存同名目录。启动前无他人GPU1进程。
 - HPO基础模型链接69批已在 .3 GPU0独立运行，作业`proc_6f907c9a-4fe7-468d-8a28-15a5e4e321ce`，远端`case-retrieval/round2-normalization/full/`；先最短5729/最长8593tokens smoke全部合法无截断，保持同一固定prompt。
+
+- 13:47:55 UTC：正式SFT epoch002固定90窗推断启动，.100 GPU1作业`proc_9329ac93-4399-46d1-8616-1534c5e855d3`，远端`sft-extract-fold0-bf16-v1/inference/`，原prompt SHA55bf2795...；仅推断epoch002，epoch001保留而未选择。

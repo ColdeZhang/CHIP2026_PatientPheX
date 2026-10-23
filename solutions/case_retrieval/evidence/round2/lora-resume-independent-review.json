@@ -1,0 +1,89 @@
+{
+  "status": "actual_optimizer_resume_verified_continuous_numerical_equivalence_not_established",
+  "actual_optimizer_resume_validated": true,
+  "continuous_numerical_equivalence_established": false,
+  "reviewed_at_utc": "2026-10-23T13:40:05Z",
+  "scope": "Read-only checkpoint/resume audit; no GPU, no training, no repeated unit tests",
+  "source_versions": [
+    {
+      "commit": "b48b75f",
+      "sha256": "62cdaf8bdc440097b6b26119fc7eaf4783e4e2a03b5149ae2fdc24154d55706e",
+      "role": "actual completed server3 one-step smoke"
+    },
+    {
+      "commit": "7c693a2b2f04a2df6929a615f335f307f5d82d28",
+      "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+      "role": "actual two-example epoch-pause/resume and uninterrupted-control implementation"
+    }
+  ],
+  "evidence_limits": [
+    "The earlier one-step smoke and inference adapter reload alone did not prove optimizer resume; the later two-example pause/resume state audit supplies that evidence.",
+    "The audited technical runs do not establish formal 305-example training completion or any validation score. Formal training had not started when the completed technical checkpoints were supplied; later training was not audited here.",
+    "Uninterrupted and pause/resume adapter/moment values differ already at epoch1 before resume. Exact continuous numerical equivalence is not established; differences cannot be attributed to resume from this comparison.",
+    "Four RNG families match byte-for-byte at both saved epochs, but no initial/first-step state or per-step loss/gradient trace was preserved in these two-example runs. The source of first-epoch numerical divergence remains undetermined.",
+    "Warmup is zero in the technical test: step1 updates B and step2 can update A. Epoch1 A differences do not independently prove different adapter initialization."
+  ],
+  "conclusion": {
+    "optimizer_state_resume": "verified",
+    "state_alignment_blocker_found": false,
+    "numerical_equivalence": "not_established; both fresh branches already differ before resume",
+    "no_new_training_gate_requested": true,
+    "not_a_model_quality_result": true
+  },
+  "real_resume_acceptance_check": {
+    "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "path": "case-retrieval/round2/resume-test-bf16",
+    "configuration": {
+      "examples": 2,
+      "epochs": 2,
+      "gradient_accumulation": 1,
+      "warmup_ratio": 0,
+      "stop_after_epoch": 1
+    },
+    "required": [
+      "Both frozen checkpoint manifests and file SHAs match actual artifacts and each other semantic fingerprint.",
+      "First invocation records pause at epoch1/global_step2 and second invocation explicitly resumes epoch-001.",
+      "All AdamW parameter steps continue from 2 to 4; moments are finite and changed, not newly initialized one-epoch states.",
+      "Scheduler last_epoch moves 2 to 4, LR 0.00005 to 0 with unchanged total schedule; completed_epochs moves 1 to 2.",
+      "RNG states are present in both checkpoints, controls and terminal state agree, no incomplete directories remain."
+    ],
+    "status": "completed",
+    "observed": {
+      "epoch_transition": [
+        1,
+        2
+      ],
+      "global_step_transition": [
+        2,
+        4
+      ],
+      "adam_parameter_count": 504,
+      "all_parameter_step_transition": [
+        2.0,
+        4.0
+      ],
+      "both_moment_changed_tensor_count": 504,
+      "scheduler_last_epoch_transition": [
+        2,
+        4
+      ],
+      "scheduler_step_count_transition": [
+        3,
+        5
+      ],
+      "optimizer_lr_transition": [
+        5e-05,
+        0.0
+      ],
+      "explicit_pause_then_resume_controls_verified": true,
+      "complete_marker_epoch2_step4": true,
+      "paused_marker_absent_at_complete": true,
+      "incomplete_directories": [],
+      "cpu_only_cuda_initialized": false
+    }
+  },
+  "full_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/lora-checkpoint-review.json",
+    "sha256": "afff7d49ae310494cc36d4c344b52475dcc8319a38f42537ca351d071c6a5302"
+  }
+}
