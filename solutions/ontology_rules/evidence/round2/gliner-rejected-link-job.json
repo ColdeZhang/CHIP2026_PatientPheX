@@ -1,0 +1,38 @@
+{
+  "created_at_utc": "2026-10-23T18:09:44.882060+00:00",
+  "run_plan_sha256": "ec56acd96c1b0d6fbf6b6e7eab736bbcbb19a1f5d2331d8cad41b11d1c57fc2a",
+  "arguments": {
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "cwd": "ontology-round2/gliner-rejected-link-fold0",
+    "command": "timeout --signal=KILL 900s /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest /home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/model-source-manifest.json --prompts prompts.jsonl --output base/responses.jsonl --max-input-tokens 2048 --max-new-tokens 64 > inference.log 2>&1",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false"
+    }
+  },
+  "response": {
+    "command": "timeout --signal=KILL 900s /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest /home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/model-source-manifest.json --prompts prompts.jsonl --output base/responses.jsonl --max-input-tokens 2048 --max-new-tokens 64 > inference.log 2>&1",
+    "id": "proc_93a9cd78-6198-4662-b490-1c24c1d416d2",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 53598,
+    "port": 44003,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T18:09:44.721460766Z"
+  },
+  "explicit_handoff": {
+    "retrieval_2ep_and_original58_completed_and_GPU_released": true,
+    "message_from": "/root/round2_retrieval",
+    "retrieval_fresh_release_at": "2026-10-23T18:09:25.926Z",
+    "received_at_utc": "2026-10-23T18:09:43.135233+00:00",
+    "policy": "Our176 fixed control then return GPU2 to retrieval whole-text probe; no automatic retrieval watcher remaining."
+  }
+}

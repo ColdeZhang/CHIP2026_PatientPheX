@@ -187,6 +187,11 @@ def main():
     marker_names = ['[unused'+str(i)+']' for i in [1, 2, 5, 6]]
     original_vocabulary = len(tokenizer)
     tokenizer.add_special_tokens({'additional_special_tokens': marker_names})
+    tokenizer.save_pretrained(out/'tokenizer')
+    restored = AutoTokenizer.from_pretrained(out/'tokenizer', use_fast=True, local_files_only=True)
+    assert restored.get_vocab() == tokenizer.get_vocab()
+    assert restored.special_tokens_map == tokenizer.special_tokens_map
+    assert restored.encode(' '.join(marker_names)) == tokenizer.encode(' '.join(marker_names))
     training, train_stat = encode_rows(tokenizer, rawtrain)
     testing, input_stat = encode_rows(tokenizer, rawinput)
     check = loss_check(tokenizer, training)
@@ -194,11 +199,12 @@ def main():
                    'base': {p.name: sha(p) for p in sorted(Path(args.model).iterdir()) if p.is_file()},
                    'tokenizer_markers': {'original_vocabulary': original_vocabulary, 'vocabulary': len(tokenizer),
                                          'ids': {name: tokenizer.convert_tokens_to_ids(name) for name in marker_names}},
+                   'saved_tokenizer': {p.name: sha(p) for p in sorted((out/'tokenizer').iterdir()) if p.is_file()},
                    'config': {'epochs': 3, 'learning_rate': 2e-5, 'weight_decay': .01, 'dropout': .1,
                               'seed': 20261023, 'max_tokens': 256, 'max_bags': 8, 'occurrence_batch_budget': 32,
                               'all_occurrences': True, 'BCE_weight': None, 'pooling': 'max_logit', 'threshold': .5}}
     audit = {'fingerprint': fingerprint, 'training': train_stat, 'input': input_stat, 'loss_check': check,
-             'torch': torch.__version__, 'phase': args.phase}
+             'torch': torch.__version__, 'phase': args.phase, 'saved_tokenizer_roundtrip_exact': True}
     write_json(out/'cpucheck.json', audit)
     if args.phase == 'check':
         print(json.dumps(audit)); return

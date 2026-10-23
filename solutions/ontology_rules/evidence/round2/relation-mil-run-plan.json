@@ -5,12 +5,12 @@
   "source_sha256": {
     "diagnose_relation_bags.py": "2d7848796c7a1a8b77190a000c42f7d69fc1da185517d0799ed3ec652ba6bd73",
     "prepare_relation_mil.py": "07a5fe472c13a39d7c800300c7718b971f33d90f3991385a0b786226a1bb90c3",
-    "train_relation_mil.py": "0059bb86cf0444c6562fe03a549dcb3e154eec978eeba56e8917f48cb162192e",
+    "train_relation_mil.py": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94",
     "filter_relation_bags.py": "229ecec1cede8376352de0c9e077e91612c75a8de2ed6142b981798edefe529a",
     "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
   },
   "data_manifest_sha256": "684e089a5d531f02e2d9116582ac512e534079c13ff30069440b0c6db3733e79",
-  "cpucheck_sha256": "96b146e95c35febe1fb9129eda1c9723ea79113d6301478b7839774e0d9dfc03",
+  "cpucheck_sha256": "4111769e9419f20075e0441b8c31fc77b5e470a7016ccb93835cbda7adbee6f6",
   "assembly_fixture_sha256": "61cce1d5cb322072916be8b5c132d4c6d86bc6a91e095ecabfaedf7dd17f25e4",
   "data_counts": {
     "train_bags": 1474,
@@ -27,7 +27,7 @@
     "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
   },
   "model_fingerprint": {
-    "source_sha256": "0059bb86cf0444c6562fe03a549dcb3e154eec978eeba56e8917f48cb162192e",
+    "source_sha256": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94",
     "data_manifest_sha256": "684e089a5d531f02e2d9116582ac512e534079c13ff30069440b0c6db3733e79",
     "base": {
       "LICENSE.md": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66",
@@ -46,6 +46,13 @@
         "[unused5]": 30524,
         "[unused6]": 30525
       }
+    },
+    "saved_tokenizer": {
+      "added_tokens.json": "e588ca7d6ababb033e45bc94907593a267d03e54c7fd5fe04d26c4869d417b26",
+      "special_tokens_map.json": "4dbca61ec7020f6c1cc1c1c7359c241559b5623a5fb11ee2b2972eb2566859fe",
+      "tokenizer.json": "5c30a388dd27e8dd33cd0b371a7b6351092410ff331503555ddc329bd01dab0a",
+      "tokenizer_config.json": "65c6b75e5ae30c7547bb97e7783fd854f21fa29087b12d38ba169fc0b26587cf",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
     },
     "config": {
       "epochs": 3,
@@ -97,5 +104,6 @@
   "outputs": "Atomic latest model/Adam/RNG at each epoch, final model and bag scores only epoch3; no heldout scoring of epoch1/2. No implemented resume CLI; keep failed latest for recovery analysis if interrupted.",
   "evaluation": "Freeze one deletion-only prediction then score fold0 public v2/format; entities and NIL unchanged, no new relations; no threshold scan or originaldev.",
   "gold_read_for_input": false,
-  "GPU_started": false
+  "GPU_started": false,
+  "tokenizer_recovery": "Tokenizer saved in each run output/tokenizer; complete vocab/special tokens/marker encoding roundtrip asserted before training."
 }
