@@ -1,0 +1,75 @@
+{
+  "status": "authorized_all80CID_forward_control_new432_reuse98_no_training",
+  "external_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/all80cid/run-plan.json",
+    "bytes": 12771,
+    "sha256": "1950824cc7d2ce0d91d49ff073a16469b7ce6270e419dcc9597019f6dab3fe03"
+  },
+  "actualCPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/all80cid/token-contract.json",
+    "bytes": 45035,
+    "sha256": "569561dab2703c07a6980fd6fe6a328246772ca0007eac683144499cd0d44528"
+  },
+  "scope": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/all80cid/scope-freeze.json",
+    "bytes": 17653,
+    "sha256": "a0a6e7a130da8657df7fd4bd018eb00b09dae2cc9254a83d4816e8a35d811d0f"
+  },
+  "prior98_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/conditional-subset-likelihood-review/review.json",
+    "bytes": 7320,
+    "sha256": "5204f184efbedb4fd2aa8466fbfbc56ff433502a4bb5bba8086feb90b634c0db"
+  },
+  "protocol": {
+    "sample": "same frozen12F1documents/12prompt all80CID/158pairs; no error-based selection, no new prompt generation",
+    "model": "fixedSFT32 F2+F3 epoch002, excludes all F1; public9B BF16, eval, no grad/train/cache/generate",
+    "branches": 530,
+    "token_work": 1725321,
+    "max_tokens": 4191,
+    "scored_tokens": 3641,
+    "longest_first": true,
+    "scoring": "Full string tokenize, longest common token prefix across ALL legal canonical PID subsets. For complete IDs lengthL and commonprefix s, forward ids[:-1], logits_to_keep=L-s; float32 log_softmax logit at s-1 predicts token s. Sum token logprob including right comma or }. EOS deliberately excluded: scores are complete-value partial-continuation events, not entire assistant answer likelihood.",
+    "normalization": "restricted legal-subset softmax over sumlogp; patient marginal sum of subsets containingPID; odds yesLSE-noLSE conditional on originalprompt and oldgreedy priorCID answers",
+    "length": "Raw sum logprob, no length normalization/PMI/temperature. Longer subset has more factors; perCID common prefix terms cancel but length preference remains. One canonical inputPID ordering excludes other permutations and malformed continuations.",
+    "history": "all80 canonical oldgreedy prior prefixes byteexact startswith original raw response",
+    "quality": "All530 complete score+probability freeze then one local158pair fixed .5/Brier/TPFPFN/F1/AUC; additionally predeclared oldgreedyFN recovered/TP lost/newFP/oldFP removed. MAP difference descriptive only.",
+    "boundaries": "same12prompt mechanism control, notfullScore/generalization/calibrationproof; no originaldev/no search/no training; previous12CID negative retained",
+    "new_forward_branches": 432,
+    "reused_branches": 98,
+    "new_token_work": 1475324
+  },
+  "budget": {
+    "native_seconds": 600,
+    "TERM_grace_seconds": 30,
+    "once_only": true,
+    "timeout_incomplete_means_no_label_evaluation": true,
+    "old98_actual_forward_seconds": 52.68028719397262,
+    "old98_actual_tokens": 249997,
+    "new432_tokens": 1475324,
+    "token_linear_forward_estimate_seconds": 310.88569872502654,
+    "old_nonforward_seconds": 26.391017779242247,
+    "cost_is_projection_not_measurement": true
+  },
+  "sources": {
+    "token_contract.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/subset_allcid/token_contract.py",
+      "bytes": 8142,
+      "sha256": "8d3753a6395ccd7d109e8a066a9a886f3d00de8355192d91c405749276eb2b57"
+    },
+    "forward_once.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/subset_allcid/forward_once.py",
+      "bytes": 6360,
+      "sha256": "3955fc26fd9d3328fc619817561fd8d14618e81b6d3c5b9633ba5988bedd9dbc"
+    },
+    "launch_once.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/subset_allcid/launch_once.py",
+      "bytes": 6764,
+      "sha256": "cb73953c48b0b48d57d736b3cdb30a9a83a1b3113cf6830890093ee1e21423fd"
+    },
+    "evaluate_pilot.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/subset_allcid/evaluate_pilot.py",
+      "bytes": 5304,
+      "sha256": "df235330f3afe959c84cfb0dadf01573afeb2155531b711cb21021180174568c"
+    }
+  }
+}
