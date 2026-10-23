@@ -68,3 +68,5 @@
 - **公开扩充JSON正式运行中**：A800 GPU2 `proc_f062bc89-d476-4007-ac42-caa3aa773bb2`，23:29:00Z启动，native硬截止2026-10-24T00:09:00Z+TERM30，watch10348；外存`public-training-candidate-preparation/formal2ep/{job,monitor,run-plan}.json`。plan910fc8/trainer4a6f/entry独审f421，H32先读原job勿重启。23:28:41Z仅移除两个旧48/64冗余weight共346362144B、已全SHA核.100备份；A800free707502080B/预计final余187502080，config与optimizer未删、旧locator仍有效。详见[启动与存储账](evidence/round2/public-SFT-training-start.json)。
 
 - **原JSON value权重CPU+短probe**：原124数据/完整JSON不变，3220/7170监督token按真实offset覆盖list赋2，含734空列表token；1702跨界token仅连带标点，61.98%仅合并权重系数比例。CPU2.810s/独立offset9464698通过。A100GPU2 `proc_fd56898d` 23:55:27Z启动唯一180s+TERM15真实CE/梯度检查，watch56214，硬截止23:58:27Z；无正式训练/质量。现有A800212训练不改，按[恢复入口](evidence/round2/json-value-weighted-probe-start.json)先读原job不重启。
+
+- **value加权probe失败保留**：上述A100短行追加8masked pad后的loss差超预写容差，完整short数值尚未持久化、最长step未执行，不能报PASS或质量负。23:56:53Z fresh空40339MiB交sequence ICL，不自动重试/放宽容差；[失败与恢复证据](evidence/round2/json-value-weighted-probe-failure.json)。当前212训练51/54、1705.637s正常，继续固定终点。
