@@ -41,3 +41,6 @@
 - [PhenoTagger终点推理冻结计划](phenotagger-inference-plan.json)：固定p.95与既有宽池，仅增量保留基线。
 
 - [PhenoTagger终点训练自检预设](phenotagger-training-probe-plan.json)：固定512+512训练样本，非验证指标。
+
+- [PhenoTagger固定30ep终点结果](phenotagger-endpoint-results.json)：fold0仅+.000094，未升级默认；训练曲线和固定训练自检独立列出。
+- [PhenoTagger独立审查索引](phenotagger-audit-index.json)：实际数据、真实resume及冻结推理接口，完整报告仓库外。
