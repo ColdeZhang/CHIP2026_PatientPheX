@@ -1,0 +1,208 @@
+{
+  "scope": "outer train48 / fixed fold0 development; no originaldev",
+  "status": "complete; independent terminal review in progress",
+  "recorded_at_utc": "2026-10-23T19:27:20.342379+00:00",
+  "model": "urchade/gliner_large-v2@9d0533ed97ade535f232b28dc673999c27c43159",
+  "actual_training": {
+    "fresh": true,
+    "documents": 48,
+    "windows": 1744,
+    "epochs": 10,
+    "steps": 4360,
+    "parameters": 459495168,
+    "elapsed_seconds": 2279.3545859078877,
+    "peak_allocated_bytes": 14327095808,
+    "model_sha256": "34912f549d7d5fb1793331869e9960ee29377ed4d3a948e50fb98baa70eec77e",
+    "interrupted_workspace_did_not_restart_remote_job": true
+  },
+  "fixed_policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "overlap_order": "GLiNER score descending,length descending,offset ascending",
+    "existing_entities": "unchanged",
+    "relation": "same fixed rules",
+    "unmapped_new_spans": "discard; preserve original NIL"
+  },
+  "metrics": {
+    "menF1": 0.7337057728119181,
+    "docF1": 0.7366296670030272,
+    "micF1": 0.7148703956343793,
+    "macF1": 0.6954022772307352,
+    "Score": 0.7201520281700149
+  },
+  "baseline_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.7044198895027625,
+    "macF1": 0.6883173080126084,
+    "Score": 0.711353521870099
+  },
+  "medium48_metrics": {
+    "menF1": 0.7302325581395349,
+    "docF1": 0.7379032258064516,
+    "micF1": 0.7129251700680272,
+    "macF1": 0.7049567711418887,
+    "Score": 0.7215044312889756
+  },
+  "delta_vs_baseline": 0.008798506299915854,
+  "delta_vs_medium48": -0.0013524031189606767,
+  "counts": {
+    "mention": {
+      "tp": 788,
+      "fp": 183,
+      "fn": 389,
+      "precision": 0.811534500514933,
+      "recall": 0.6694987255734919,
+      "f1": 0.7337057728119181
+    },
+    "document": {
+      "tp": 365,
+      "fp": 61,
+      "fn": 200,
+      "precision": 0.8568075117370892,
+      "recall": 0.6460176991150443,
+      "f1": 0.7366296670030272
+    },
+    "relation": {
+      "tp": 262,
+      "fp": 92,
+      "fn": 117,
+      "precision": 0.7401129943502824,
+      "recall": 0.6912928759894459,
+      "f1": 0.7148703956343793
+    }
+  },
+  "net_counts_vs_baseline": {
+    "mention": {
+      "tp": 19,
+      "fp": 5,
+      "fn": -19
+    },
+    "document": {
+      "tp": 8,
+      "fp": 3,
+      "fn": -8
+    },
+    "relation": {
+      "tp": 7,
+      "fp": 2,
+      "fn": -7
+    }
+  },
+  "span_metrics": {
+    "crf_sap": {
+      "f1": 0.7505960896518836,
+      "fn": 363,
+      "fp": 160,
+      "precision": 0.8310454065469906,
+      "recall": 0.6843478260869565,
+      "tp": 787
+    },
+    "gliner": {
+      "f1": 0.7019143117593437,
+      "fn": 380,
+      "fp": 274,
+      "precision": 0.7375478927203065,
+      "recall": 0.6695652173913044,
+      "tp": 770
+    },
+    "nonoverlap_union": {
+      "f1": 0.7699037620297463,
+      "fn": 270,
+      "fp": 256,
+      "precision": 0.7746478873239436,
+      "recall": 0.7652173913043478,
+      "tp": 880
+    }
+  },
+  "span_marginal": {
+    "accepted_fp": 96,
+    "accepted_tp": 93
+  },
+  "format": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "decision": "Do not replace medium48: fullchain slightly lower despite better pure-span union; no tuning, no dev transfer yet.",
+  "limitations": [
+    "This substitutes a disclosed larger checkpoint; upstream head and recipe also differ, so not pure capacity causality.",
+    "Pure span F1 is not competition Score.",
+    "Fold0 has been repeatedly used for development.",
+    "No independent terminal completion claimed yet."
+  ],
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2",
+  "artifacts": {
+    "formal-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/formal-plan.json",
+      "sha256": "e9709172b8999495f9da534624a66a74ed6be00681979ea5e36ca3dd6053c681"
+    },
+    "formal-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/formal-job.json",
+      "sha256": "8ba2e427a362a03a23d484d26ae787459727bccc0bc4c8f9c1a4001f9c8a6347"
+    },
+    "formal.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/formal.state.json",
+      "sha256": "002b2b1c7f44b41ee7083822f8e9fe037b54876d78f1b4c924cfdcb6800c564e"
+    },
+    "formal-fixed10ep/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/formal-fixed10ep/run_manifest.json",
+      "sha256": "ba060deb68cec911ddaf5fc35558517203a788615f445fbb1576e1845609d7e5"
+    },
+    "artifacts-transfer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/artifacts-transfer.json",
+      "sha256": "d3f11210151e48c7c19022f84c64c81efd7bea29e8d39f659703e5a7b86548dd"
+    },
+    "base-outer0/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/base-outer0/prediction-freeze.json",
+      "sha256": "1861ae31de8fa41dc1fdc60efbfa1ed2be2e7c3a12ce273a8a5c8cd03ce773e4"
+    },
+    "finetuned-outer0/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/finetuned-outer0/prediction-freeze.json",
+      "sha256": "6d3a01875206bc3ce9481abfa799743502dc046ead818cf08b5582514063faec"
+    },
+    "linked-final/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/linked-final/manifest.json",
+      "sha256": "d9ac22ab7a6ba8247bc8e7930a116e7d2ee25ea5450373e19d7bff8769db949b"
+    },
+    "linked-final/scored-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/linked-final/scored-candidates.jsonl",
+      "sha256": "045ecd9f3a99f5a78b8d82355b4b83f2588ffe6b9c57ac6f3221b1593a83eb7c"
+    },
+    "link-terminal.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/link-terminal.state.json",
+      "sha256": "21743fbaf16b9c4ba71d7768f446867fe3bb2ea585576a6fe4ebe5d704fa3881"
+    },
+    "assembled/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/assembled/manifest.json",
+      "sha256": "b22fb578fe6eb055a0ab4e05165e73b22164f0836621cce33a3564d6c5089664"
+    },
+    "assembled/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/assembled/augmented.jsonl",
+      "sha256": "c4221918ef09afbd221865854c2a0ad5cd22644ede7b421b2e6fe18d5aec5f30"
+    },
+    "assembled/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/assembled/augmented.metrics.json",
+      "sha256": "ba8bce80bd0768e0fb604101640c6f50654e61bd6a452b1a482cce93f4cb95ca"
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/assembled/validation.json",
+      "sha256": "724b13ad58b797b8bd65dead64062acca2ccebe3986c1a7f078f2d7ae11931da"
+    },
+    "base-span-diagnostic.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/base-span-diagnostic.json",
+      "sha256": "b877dd5c4cb1c3d3f73d039e89dea260755da0379da5565ffc0250de9ba0698b"
+    },
+    "finetuned-span-diagnostic.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/finetuned-span-diagnostic.json",
+      "sha256": "3efe132e68a0d50109f0bfbc6c698074085b352e391dca86015cf65376625b19"
+    },
+    "terminal-cpu.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/terminal-cpu.commands.json",
+      "sha256": "9f751ebbcf9ba7fb81ca1287a4ac649ef6ec20022bae5cac263c025a44dc422a"
+    }
+  },
+  "gpu_release": {
+    "exit_code": 0,
+    "stdout": "{\"checked_at_utc\": \"2026-10-23T19:26:26.922795+00:00\", \"target_gpu_empty\": true, \"compute_apps\": \"GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\\n\", \"free_bytes\": 203925626880}\n"
+  }
+}
