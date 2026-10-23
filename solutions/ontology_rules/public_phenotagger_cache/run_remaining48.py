@@ -44,8 +44,9 @@ for doc in docs:
    annotation+='\n'
   locations=restore_index_nest_fn(text,annotation);assert len(locations)==len(wanted)
   norm=lambda s:s.lower().replace('``','"').replace("''",'"')
+  normalized_source=text.lower().replace('``','" ').replace("''",'" ');assert len(normalized_source)==len(text)
   for w,loc in zip(wanted,locations):
-   a,b=map(int,loc[:2]);assert 0<=a<b<=len(text) and norm(text[a:b])==norm(w),(doc['pmc_id'],pi,a,b,w)
+   a,b=map(int,loc[:2]);assert 0<=a<b<=len(text) and normalized_source[a:b]==norm(w),(doc['pmc_id'],pi,a,b,w)
   bysentence=[];at=0
   for lines in sents:bysentence.append(locations[at:at+len(lines)]);at+=len(lines)
   candidates=[]

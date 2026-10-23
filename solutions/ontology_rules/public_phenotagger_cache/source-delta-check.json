@@ -4,5 +4,20 @@
   "probability_selection_and_native_rounding_equal": true,
   "old_source_sha256": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
   "new_source_sha256": "0624ed58aeabd24c06b1f8fd20b0a52e2700d500ae2b74dff537a795cc674668",
-  "allowed_changes": "input/output/counts, exact immutable public-forward memoization, provenance/manifest only; no neural/decoder policy change"
+  "allowed_changes": "input/output/counts, exact immutable public-forward memoization, provenance/manifest only; no neural/decoder policy change",
+  "quote_validation_correction": {
+    "prior_driver_sha256": "0624ed58aeabd24c06b1f8fd20b0a52e2700d500ae2b74dff537a795cc674668",
+    "source_sha256": "7044ece577300008b6f75f35eb1224f21881a4f169821b3d2dc74560156ec7e7",
+    "change": "Only validation assertion: normalize entire source with exact upstream length-preserving replacements before slicing. Candidate coordinates/model/decoder unchanged.",
+    "fixture": {
+      "pmc_id": "12110755",
+      "passage_index": 34,
+      "token": "``",
+      "offset_start": 519,
+      "offset_end": 520,
+      "original_slice": "'",
+      "normalized_source_slice": "\""
+    },
+    "no_GPU_or_model_load_before_failure": true
+  }
 }

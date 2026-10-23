@@ -11,3 +11,7 @@
 原研究资源根 `/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/`；远端部署为公开模型持久目录的 `train64-cache/`，源码使用其既有cwd资源布局。`source-index.json`给出Git文件与实际原路径/完整SHA对应；固定model/dictionary资源和权重留仓库外。没有原dev输入/质量标签传入native模型。
 
 上游工具MIT许可见 [PHENOTAGGER-LICENSE](../PHENOTAGGER-LICENSE)。当前目标是一次统一输入缓存供本方案固定outer0迁移及sequence严格OOF学习，各实验结果分别记录，缓存自身不产生质量分数。
+
+## CPU检查器修复（revision2）
+
+首版ecffe52的额外逐token断言在余48篇遇成对单引号时退出，尚未GPU。上游restore_index按等长规则将两个引号替换为quote+space；原检查器先切原文再缩短引号，边界不等价。revision2只将检查器改为先按上游等长规则归一化全文再slice；候选/offset、权重、decoder、输入及旧16输出全部保持。首版源码/plan/失败fixture保留外部attempt1-quote-validation和Git ecffe52。实际新source/plan SHA见source-index；正式结果以最终runtime终点为准。

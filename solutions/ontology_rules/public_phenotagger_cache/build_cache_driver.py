@@ -36,4 +36,6 @@ s=s.replace("min(offset+128,len(unique)),'/',len(unique)","min(offset+128,len(mi
 s=s.replace("infer_seconds=time.monotonic()-inferstart;assert len(cache)==65406", "infer_seconds=time.monotonic()-inferstart;assert len(cache)==len(unique) and all(x is not None for x in cache)\nwith (OUT/'unique-raw-predictions.jsonl').open('w') as f:\n for row in cache:f.write(json.dumps(row,ensure_ascii=False)+'\\n')")
 s=s.replace("assert counts['raw_neural_candidates']==75790 and counts['raw_dictionary_candidates']==1174","assert counts['raw_neural_candidates']==n_candidates and counts['raw_dictionary_candidates']==expected_dictionary")
 s=s.replace("'public_model_training_on_task':False,","'public_model_training_on_task':False,'new_forward_keys':len(missing_indices),'reused_forward_keys':len(unique)-len(missing_indices),'cache_parent_sha256':sha(old_cache_path),")
+s=s.replace('  norm=lambda s:s.lower().replace(\'``\',\'"\').replace("\'\'",\'"\')\n','  norm=lambda s:s.lower().replace(\'``\',\'"\').replace("\'\'",\'"\')\n  normalized_source=text.lower().replace(\'``\',\'" \').replace("\'\'",\'" \');assert len(normalized_source)==len(text)\n')
+s=s.replace('norm(text[a:b])==norm(w)','normalized_source[a:b]==norm(w)')
 ast.parse(s);(R/'run_remaining48.py').write_text(s);print(hashlib.sha256(s.encode()).hexdigest())
