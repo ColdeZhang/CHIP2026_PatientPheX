@@ -156,8 +156,8 @@ def backup(args):
                 "remote_manifest": REMOTE + "/" + filename, "chunk_bytes": CHUNK,
                 "credentials": "MCP_URL and MCP_TOKEN environment variables; values never saved",
                 "files": rows, "prediction_count": sum(r["kind"] == "prediction" for r in rows),
-                "backup_command": "python /workspace/patientphex-tools/backup_submissions.py backup",
-                "restore_command": "python /workspace/patientphex-tools/backup_submissions.py restore --manifest "
+                "backup_command": "python scripts/backup_submissions.py backup",
+                "restore_command": "python scripts/backup_submissions.py restore --manifest "
                                    + shlex.quote(str(local_manifest)) + " --destination /workspace/patientphex-restored/submissions",
                 "fetch_manifest_tool": {"name": "read_file", "arguments": {"mount_id": MOUNT, "path": REMOTE + "/" + filename}},
                 "tool_sha256": sha(Path(__file__).read_bytes())}
