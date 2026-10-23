@@ -3,6 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
+- **第三公开BioBERT准备（进行中）**：历史未发现实际head控制；根线程仅授权固定486.6MB H5下载及原TF CPU strict加载/4合成短语接口，配置词表复用已有ModelScope字节。无GPU/任务推断或质量，300秒下载、180秒CPU有界；[源与计划](public_phenotagger_biobert/README.md)。
 - **单词直接追加（四fold负结案，质量独审PASS）**：Bioformer完整13145词CPU239.276秒；固定原top1 native5dp>.95/current映射2516坐标经原否定/非交叠追加391实体，仅17TP/374FP，doc+23TP/142FP。保留nested基底4510旧实体及全部非entities，Score **.727975656→.716642231（−.011333424）**，四fold实体目标全负、关系不变、0错警；唯一端点0.868秒，质量379f2c4b及完整缓存751a5262独审通过。按预定关闭，不换cut/基底/加HGB/原dev，完整缓存仅供复现。[完整结案](experiments/E-20261023-PUBLIC-PHENO-UNIGRAM.md)。
 - **关系两特征校准（微正结案，完整独审PASS）**：F1-only固定LR两特征，F0唯一expected-F1 **.695443948→.696545689（+.001101741）**；micro与226TP50FP153FN全同、macro+.004406964，预定保留true但仍低rules .711353522。独审0b44186b复现模型/1166p/全部k/预测/v2；保留可组合候选，关闭当前试验不自动full64/dev。诊断与固定结果见[完整记录](experiments/E-20261023-BINARY-SFT-CALIBRATION.md)。
 - **固定原门prehybrid控制（负结案，终审PASS）**：原244794对象不变＋7220新来源行，四fit56.999秒/九点1.045秒；best仍.3，实体均值 **.778942536<旧 .780192596（−.001250060）**，mention−7TP/+9FP、doc−5TP/−3FP，2折微正/2折负。池谱系/四实际模型load字节/36cut统一终审PASS07b1d0a9，后置.3归因held新增1806键接纳0，旧共有+56/−54导致−7TP/+9FP；关闭当前C不原dev/A/B扩展，[固定协议/结果](experiments/E-20261023-PUBLIC-PHENO-PREHYBRID.md)。
