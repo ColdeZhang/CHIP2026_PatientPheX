@@ -20,3 +20,5 @@
 嵌套CRF3组及同源outer0重训完成，源快照SHA41ee61…，共享给序列关系SFT；自有输出 `nested-crf/inner{1,2,3}/`。多来源树fold0 .710359，[证据](evidence/round2/multi-candidate-fold0.json)，待跨折。
 
 A800 GPU2只读环境和完整基座已交序列路线，私有解释器 `ontology-round2/qwen-venv/bin/python`；[CUDA/模型实测](evidence/round2/a800-runtime-verification.json)。本路线当前无GPU进程。
+
+待运行：outer1嵌套3组CPU词典/CRF已完成，GPU SapBERT等待retrieval69链接释放；数据已上传且校验。HPO远监督双头检测CPU数据/代码完成，64,036训练行/87,134无标签候选，110,065切片核对，固定预算/阈值见实验第九阶段；不重复CE微调，尚无分数。
