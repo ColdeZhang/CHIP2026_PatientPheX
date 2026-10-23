@@ -179,17 +179,21 @@ def main():
               'upstream_loss_bypassed': True,
               'loss_scale_note': 'Default upstream sum replaced by mean over valid spans only; no smoothing or focal weighting.'}
     record_path.write_text(json.dumps(report, indent=2)+'\n')
+    smoke_selection = runtime.smoke_selection(rows, builder) if args.smoke_only else None
     started = time.monotonic()
     model.train()
     for epoch in range(start_epoch, epochs):
         order = list(range(len(rows)))
         random.Random(seed+epoch).shuffle(order)
         if args.smoke_only:
-            order = sorted(order, key=lambda i: (-rows[i]['tokens'], -len(rows[i]['tokenized_text']), rows[i]['row_id']))[:batch_size]
+            order = [item['index'] for item in smoke_selection]
         losses, epoch_start, running_counts = [], time.monotonic(), Counter()
         for index in range(0, len(order), batch_size):
             batch = [rows[i] for i in order[index:index+batch_size]]
             tensors = {k: v.to('cuda') for k, v in batch_collate(batch).items()}
+            if args.smoke_only:
+                torch.cuda.synchronize()
+                smoke_step_started = time.monotonic()
             optimizer.zero_grad(set_to_none=True)
             outputs = model.model(**{k: v for k, v in tensors.items() if k != 'labels'})
             assert outputs.loss is None
@@ -203,10 +207,14 @@ def main():
             scheduler.step()
             global_step += 1
             losses.append(float(loss.detach()))
+            if args.smoke_only:
+                torch.cuda.synchronize()
+                smoke_step_seconds = time.monotonic()-smoke_step_started
             if global_step % 50 == 0 or args.smoke_only:
                 print(json.dumps({'epoch': epoch+1, 'step': global_step, 'loss': losses[-1]}), flush=True)
         if args.smoke_only:
             report.update(smoke_completed=True, smoke_rows=[rows[i]['row_id'] for i in order],
+                          smoke_selection=smoke_selection, smoke_step_seconds=smoke_step_seconds,
                           smoke_loss=losses[0], smoke_gradient_norm=float(norm),
                           smoke_counts=dict(running_counts),
                           smoke_metrics=count_metrics(running_counts),

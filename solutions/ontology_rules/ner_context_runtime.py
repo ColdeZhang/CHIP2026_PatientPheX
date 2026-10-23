@@ -103,3 +103,25 @@ def cpu_training_fixture(processor, builder, rows):
             'positive_instances': int((on['labels'] > 0).sum()),
             'valid_target_spans': int(on['span_mask'].sum()),
             'context_disabled_and_enabled_supervision_equal': True}
+
+
+def smoke_selection(rows, builder):
+    """Input-only maximal encoder batch that also exercises nonempty context."""
+    info = [{'index': i, 'row_id': r['row_id'], 'target_words': len(r['tokenized_text']),
+             'target_tokens': r['tokens'], 'combined_tokens': builder.context(r)['combined_tokens']}
+            for i, r in enumerate(rows)]
+    maximum = max(x['combined_tokens'] for x in info)
+    longest = [x for x in info if x['combined_tokens'] == maximum]
+    by_words = sorted(longest, key=lambda x: (-x['target_words'], x['row_id']))
+    by_context = sorted(longest, key=lambda x: (-(x['combined_tokens']-x['target_tokens']),
+                                               -x['target_words'], x['row_id']))
+    selected = [by_words[0]]
+    for item in [by_context[0]]+by_words:
+        if item['index'] not in {x['index'] for x in selected}:
+            selected.append(item)
+        if len(selected) == 4:
+            break
+    assert len(selected) == 4 and maximum == 384
+    assert any(x['combined_tokens'] > x['target_tokens'] for x in selected)
+    assert selected[0]['target_words'] == max(x['target_words'] for x in longest)
+    return selected

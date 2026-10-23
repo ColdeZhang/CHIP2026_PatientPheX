@@ -1,0 +1,177 @@
+{
+  "control": "BioMed context-on fixed10ep nested32, baseline same-machine context-off .6544243018006951",
+  "training_rows": 1150,
+  "training_epochs": 10,
+  "training_steps": 2880,
+  "fresh_public_base": true,
+  "public_base_sha256": "7e3591fd58c3ee7ebe9a957fafeba6e635634e16ab5fa9329b6ad80d330ad8f9",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "state_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/run",
+  "cost_projection_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/cost-projection.json",
+  "source_and_input_sha256": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/ner_context.py": "a97927e7a398d66dec8b3068bf69c4a30f7f9b1566d8af129324829f19320ce7",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/ner_context_runtime.py": "ec07b0f863ac150491aca09e3a31798fa567413a33030f445e75a35e4eafd02d",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/train_ner_context.py": "8267aaeceb696da1b73fd4235e0361de83a14631d8153d9f5062e30bff82ef23",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/infer_ner_context.py": "8b0b296fe24679237220bd8626fd7d1f774aafd4d47a79e8e54194be02c1322e",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/check_ner_context_model.py": "e8b164ef0a2a8fd5f04a49599aa755e345a8e09de8968a78d19d07aa306e3e93",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/run_ner_context_stage.py": "b44643081671088134b56756c45cd638c8c0918cf9d892066de9f5cf33ed5eae",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control/fold1/train32.jsonl": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/nested_train32.jsonl": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/data-manifest.json": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+  },
+  "stages": {
+    "cpu": {
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/check_ner_context_model.py",
+        "--raw-train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control/fold1/train32.jsonl",
+        "--train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/nested_train32.jsonl",
+        "--input",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--reference-trainer",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/train_gliner_supervised.py",
+        "--output",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/cpu-result.json"
+      ],
+      "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/cpu-result.json",
+      "timeout_seconds": 240,
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": ""
+      }
+    },
+    "smoke": {
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/train_ner_context.py",
+        "--data-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/data-manifest.json",
+        "--train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/nested_train32.jsonl",
+        "--raw-train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control/fold1/train32.jsonl",
+        "--excluded-input",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--output-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/smoke",
+        "--smoke-only"
+      ],
+      "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/smoke",
+      "timeout_seconds": 300
+    },
+    "train": {
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/train_ner_context.py",
+        "--data-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/data-manifest.json",
+        "--train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/nested_train32.jsonl",
+        "--raw-train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control/fold1/train32.jsonl",
+        "--excluded-input",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--output-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/formal-fixed10ep",
+        "--prune-old-epochs"
+      ],
+      "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/formal-fixed10ep",
+      "timeout_seconds": 3600
+    },
+    "infer": {
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/infer_ner_context.py",
+        "--input",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/formal-fixed10ep/epoch-010",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-biomed-large-v1",
+        "--output-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/finetuned-inner1",
+        "--training-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/formal-fixed10ep/run_manifest.json"
+      ],
+      "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/finetuned-inner1",
+      "timeout_seconds": 300
+    },
+    "link": {
+      "command": [
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/link_gliner_candidates.py",
+        "--train",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control/fold1/train32.jsonl",
+        "--input",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/data/fold-1/input.jsonl",
+        "--hpo",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/data/hp.obo",
+        "--candidates",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/finetuned-inner1/candidates.jsonl",
+        "--candidate-freeze",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/finetuned-inner1/prediction-freeze.json",
+        "--span-training-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/formal-fixed10ep/run_manifest.json",
+        "--span-data-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-biomed-supervised/data-manifest.json",
+        "--semantic-source",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/run.py",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+        "--output-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/linked-final"
+      ],
+      "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-context-control/linked-final",
+      "timeout_seconds": 300,
+      "environment": {
+        "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages"
+      }
+    }
+  },
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d"
+  },
+  "terminate_grace_seconds": 30,
+  "quality_policy": {
+    "target_windows_labels_valid_span_denominator_unchanged": true,
+    "baseline_score": 0.6544243018006951,
+    "fixed_checkpoint": "epoch10",
+    "threshold": 0.5,
+    "subword_budget": 384,
+    "span_width": 12,
+    "link_threshold": 0.65,
+    "exact_threshold": 0.92,
+    "no_originaldev_or_official": true,
+    "full_prediction_freeze_before_gold": true
+  },
+  "authorization": "parent /root 2026-10-23: actual CPU gate, discard one longest GPU step; if projection <=3600 run one fresh fixed10ep, infer/link each300s, no further confirmation",
+  "smoke_policy": "input-only: actual combined384; maximum target-head row, maximum added-context row, then largest targets; no label selection; CPU selection excluded from cuda step timer",
+  "scope": "One conditional controlled experiment; context-off training reused, no additional threshold/epoch search"
+}

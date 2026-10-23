@@ -42,3 +42,11 @@
 静态 AST 已核：masked BCE／计数函数、AdamW、warmup／scheduler 与原70c5入口精确一致，整个epoch循环除collator调用替换外也精确一致。仍保留1150窗、batch4、10ep／2880步、原训练probe和恢复状态；不从当前epoch10继续训练。推理固定单窗batch、.5、nested overlap规则、目标原文offset与max-score去重，要求实际新训练终点SHA，再冻结raw预测。
 
 两个入口均有 `--cpu-prepare-only`，只读tokenizer/config和固定四窗，不构造模型或读取权重。实际fingerprint覆盖新入口／helper／adapter、GLiNER所有Python源、分词配置与依赖版本；未因准备安装新环境。两个CPU入口已于20:02:46–20:02:59 UTC完成，分别5.479秒和6.783秒、rc0、stderr空。训练四窗21正例／7524有效跨度保持；推理从nested16输入重建594窗，仅对固定四窗做无标签编码，不生成预测。实际绑定37份GLiNER Python源与5个包版本；新增入口独审PASS（513b66cb…），不跑GPU、Sap或评分。正式推理另补训练/推理的adapter、helper、GLiNER源码、依赖版本、分词配置必须相等的硬门；此修订仅GPU路径，CPU执行源1294与新源8b0b分别保存，CPU分支逐字相同。来源与条件计划见[小索引](../evidence/round2/ner-context-entry-preparation.json)。
+
+## 同源 BioMed 固定上下文控制（2026-10-23 20:06Z 授权）
+
+序列路线同 BioMed、同 train32 的 context-off 唯一终点经独审为 **Score .6544243018006951**（见外存 `validation/gliner-biomed-supervised-terminal-review/review.json`）。主线程据此授权一次 context-on 控制；不重训 off、不继续 medium 基座、不迁移原 dev。
+
+[冻结运行计划](../evidence/round2/ner-context-control-plan.json)使用原 `.3` A30 GPU0／原依赖／fresh 公共 BioMed 权重。1150 窗、2236 正例、87 NO、1,125,538 有效跨度、batch4、10 轮、2880 步、原 BCE／优化器／seed 全部保持；仅上下文 collator 和目标 decoder 变化。先 CPU strict-load + 全 1150 监督窗口和 594 个无标签留出窗口检查，再在同训练入口做一次最长 batch 单步并丢弃状态。该 batch 以输入排序选择，四窗实际均 384 tokens，包含最大 target-head 及最多非空上下文，不按金标选样。
+
+预算：CPU 240 秒、单步 300 秒；实际成本投影 ≤3600 秒才启动 fresh 正式训练，硬限 3600 秒后 TERM、最多 30 秒后 KILL 自己的进程组。唯一 epoch10 推理及 Sap 后链各 300 秒。模型和真实状态保留外存，旧 epoch 权重仅核 SHA 后清理。完整预测先冻结，再按原 Sap .65/.92 和固定装配作唯一 nested 留出评分；不搜阈值／轮次，不读 originaldev gold。此前 CPU 准备并非质量实验；本次实际 GPU 状态与结果另记，不将计划冒充完成。
