@@ -1,0 +1,83 @@
+{
+  "external_directory": "/workspace/patientphex-runs/round2-20261023/validation/ner-audit/boundary-drop",
+  "method": "Reject any input span with an endpoint strictly inside a Unicode word (regex \\w), unless its casefolded exact surface is one of train48 positive intra-word annotations; never expand boundaries. Recompute unchanged original LR @ .55 after deletion; require exact replay on unmodified entities first.",
+  "train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+  "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+  "source_sha256": "eb05135e31752e26d5bc83789eacdc2fd9ff3478e1cfd32fff79abd7b177d550",
+  "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+  "source_manifest_sha256": "682da95e877ede9ffad3d1735f5e1096618b7b3087ba754b8099ec6fb50dd16e",
+  "results_sha256": "8e1d23d3ec358771409900bc1d917d29b217bc4a247d476a3854c64aa205d54e",
+  "policy_train_positive_intra_word_instances": 5,
+  "policy_unique_surface_whitelist": 3,
+  "prediction_replay_before_filter": {
+    "biomed_positive": 16,
+    "biomed_posneg": 16,
+    "biolink_large": 16
+  },
+  "results": {
+    "biomed_positive": {
+      "removed": 22,
+      "before": {
+        "menF1": 0.6104702750665484,
+        "docF1": 0.6531332744924978,
+        "micF1": 0.5259938837920489,
+        "macF1": 0.5101018814731275,
+        "Score": 0.5749248287060557
+      },
+      "after": {
+        "menF1": 0.6164874551971327,
+        "docF1": 0.6547406082289803,
+        "micF1": 0.5378151260504201,
+        "macF1": 0.5205278095778499,
+        "Score": 0.5823927497635958
+      },
+      "delta_score": 0.007467921057540128,
+      "prediction_sha256": "83fbac70a40f38327f513c5c3f793c94b991bc07dd8485525c5fb25629a84f3e",
+      "evaluator_version": "patientphex-public-approx-v2",
+      "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "biomed_posneg": {
+      "removed": 17,
+      "before": {
+        "menF1": 0.6146297948260482,
+        "docF1": 0.6547725245316681,
+        "micF1": 0.5345911949685535,
+        "macF1": 0.5191178200886343,
+        "Score": 0.580777833603726
+      },
+      "after": {
+        "menF1": 0.6193258426966292,
+        "docF1": 0.6612466124661247,
+        "micF1": 0.5375661375661376,
+        "macF1": 0.520590076123427,
+        "Score": 0.5846821672130796
+      },
+      "delta_score": 0.003904333609353605,
+      "prediction_sha256": "7cab77b657a163e381216dfd59f3e02823e4da2314777394161d40b82dc531df",
+      "evaluator_version": "patientphex-public-approx-v2",
+      "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "biolink_large": {
+      "removed": 40,
+      "before": {
+        "menF1": 0.6172624237140366,
+        "docF1": 0.6572687224669603,
+        "micF1": 0.5237613751263903,
+        "macF1": 0.43274652138040165,
+        "Score": 0.5577597606719472
+      },
+      "after": {
+        "menF1": 0.6282165039929015,
+        "docF1": 0.6678700361010831,
+        "micF1": 0.5283797729618163,
+        "macF1": 0.43332777528149274,
+        "Score": 0.5644485220843234
+      },
+      "delta_score": 0.006688761412376176,
+      "prediction_sha256": "6cd290bdd55029d50a0660a8887ffb85bcad999647993500b2cff5209cae6024",
+      "evaluator_version": "patientphex-public-approx-v2",
+      "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    }
+  },
+  "not_promoted_to_default": true
+}
