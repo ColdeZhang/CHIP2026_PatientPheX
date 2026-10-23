@@ -20,4 +20,12 @@ pooled Score **.725655389→.727975656**（+.002320267）；men .763831→.76629
 
 ## 固定原dev迁移计划
 
-四fold独审f5482b85通过，3/4正，满足root事前条件。复用actual c032概率池/e9b30447当前最佳完整预测，仅同7f4484边界政策新增实体；全部原1004实体/368关系/其他对象保留，不用新实体扩大关系支持。两fullpred先freeze后唯一v2、30秒CPU；无fit/GPU/新候选/阈值扫描。计划与源码快照见[dev计划](../evidence/round2/selector-nested-dev-plan.json)，外存selector-nested-dev-transfer/。此处尚未执行新dev质量。
+四fold独审f5482b85通过，3/4正，满足root事前条件。复用actual c032概率池/e9b30447当前最佳完整预测，仅同7f4484边界政策新增实体；全部原1004实体/368关系/其他对象保留，不用新实体扩大关系支持。两fullpred先freeze后唯一v2、30秒CPU；无fit/GPU/新候选/阈值扫描。计划与源码快照见[dev计划](../evidence/round2/selector-nested-dev-plan.json)，外存selector-nested-dev-transfer/。该唯一原dev终点已完成，见下。
+
+## 原dev唯一终点
+
+计划25420d5推送后执行2.173秒CPU（主体.643秒）、exit0；两完整预测22:13:11前共同freeze f1d7e752，之后唯一新v2，0错警。49个原overlap拒项中1否定、10未满足所有碰撞政策、38追加。全部原1004实体/368关系/非entity对象不变，新实体不扩关系支持池。
+
+当前e9 baseline **.736526555→.737585917**（+.001059362），新预测d531f2ee；新增14TP24FP，men **.786729858→.785847300**下降，doc **.816874401→.821994408**上升，micro .708891596/macro .633610366保持。doc增加15TP15FP，与mention差异源于概念去重；无实体删除/关系增删。仍未.8，仅此固定结构政策迁移的温和收益，不再扫cut/顺序。
+
+[完整结果/恢复与碰撞证据](../evidence/round2/selector-nested-dev-results.json)。独立增量审待回收；当前已保存原概率池/模型和旧best，主线程将在审查PASS后另外备份新完整输出，不把Git当大产物备份。

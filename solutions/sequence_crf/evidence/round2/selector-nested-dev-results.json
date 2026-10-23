@@ -1,0 +1,144 @@
+{
+  "status": "unique originaldev control complete; new modest candidate best, independent review pending",
+  "source_commit": "25420d5d80ccd397c794672cdf7ad47befb060d9",
+  "references": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/plan.json",
+      "sha256": "24412008fda559e26c35704e44f0ab5c1981472db0a4b20a0efd16ffe29eef7b",
+      "bytes": 6283
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/job.json",
+      "sha256": "6d8e6e41d125bfed4de25d75f79f0d40b3de54e65873af66a19e07afa0b0be95",
+      "bytes": 751
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/complete-freeze.json",
+      "sha256": "f1d7e752641d0e7e3fa72383fc21c11e60dfab2f17dc0fb4632898c63d67a501",
+      "bytes": 1145
+    },
+    "input-only-diagnostics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/input-only-diagnostics.json",
+      "sha256": "28181dfd4db1ecd9d4c874a6e8c1b40c2aa5c4cab99bf2279f470b00a8af475c",
+      "bytes": 24247
+    },
+    "baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/baseline.jsonl",
+      "sha256": "e9b30447cbb9264354ae0a3f5acadb165b5135112379479dc533db86e6d02fcf",
+      "bytes": 132401
+    },
+    "nested.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.jsonl",
+      "sha256": "d531f2ee098d56dc7a40551eca147c046eb548469f8bff11947555afff557440",
+      "bytes": 137435
+    },
+    "nested.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.metrics.json",
+      "sha256": "271dbdf0fe447f8a186fae16a7b6d35aec0e72cd6ba9b7cb43efdd161625314d",
+      "bytes": 12877
+    },
+    "nested.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.validation.json",
+      "sha256": "12022a0df17d051b63c1911df12b579c2f2505c89c2f6eb478efd92904f3b565",
+      "bytes": 425
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/results.json",
+      "sha256": "57075ca1b1410353e3278ee09054a424ab44890b0e523aefedb887080ee6ec14",
+      "bytes": 2630
+    }
+  },
+  "runner": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_nested_selector_dev_transfer.py",
+    "sha256": "57fff00c96b9c29dc02f2b465051312a8534d087a10aac862e61bf833234d159",
+    "bytes": 4863
+  },
+  "decoder": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/decode_nested_selector.py",
+    "sha256": "7f4484fc1db132746f674c8c268832705cbeba7d05bbe65268c1ef0e275a7c7f",
+    "bytes": 2650
+  },
+  "baseline": {
+    "menF1": 0.7867298578199052,
+    "docF1": 0.8168744007670182,
+    "micF1": 0.7088915956151035,
+    "macF1": 0.633610365933178,
+    "Score": 0.7365265550338013
+  },
+  "nested": {
+    "menF1": 0.7858472998137802,
+    "docF1": 0.8219944082013048,
+    "micF1": 0.7088915956151035,
+    "macF1": 0.633610365933178,
+    "Score": 0.7375859173908417
+  },
+  "deltas": {
+    "menF1": -0.0008825580061250227,
+    "docF1": 0.005120007434286533,
+    "micF1": 0.0,
+    "macF1": 0.0,
+    "Score": 0.0010593623570404054
+  },
+  "changes": {
+    "entity_added_tp": 14,
+    "entity_added_fp": 24,
+    "entity_removed_tp": 0,
+    "entity_removed_fp": 0,
+    "relation_added_tp": 0,
+    "relation_added_fp": 0,
+    "relation_removed_tp": 0,
+    "relation_removed_fp": 0
+  },
+  "counts": {
+    "mention": {
+      "tp": 844,
+      "fp": 198,
+      "fn": 262,
+      "precision": 0.8099808061420346,
+      "recall": 0.7631103074141049,
+      "f1": 0.7858472998137802
+    },
+    "document": {
+      "tp": 441,
+      "fp": 72,
+      "fn": 119,
+      "precision": 0.8596491228070176,
+      "recall": 0.7875,
+      "f1": 0.8219944082013048
+    },
+    "relation": {
+      "tp": 291,
+      "fp": 77,
+      "fn": 162,
+      "precision": 0.7907608695652174,
+      "recall": 0.6423841059602649,
+      "f1": 0.7088915956151035
+    }
+  },
+  "candidate_decisions": {
+    "all_candidates": 13144,
+    "already_selected": 1004,
+    "below_cut": 12091,
+    "original_overlap_rejection": 49,
+    "invalid_hpo_or_nil": 0,
+    "negated": 1,
+    "not_distinct_proper_nesting": 10,
+    "added": 38
+  },
+  "errors": 0,
+  "warnings": 0,
+  "all_old_1004_entities_preserved": true,
+  "all_old_368_relations_and_nonentities_preserved": true,
+  "frozen_at_utc": "2026-10-23T22:13:11.478418+00:00",
+  "evaluation_started_utc": "2026-10-23T22:13:11.483022+00:00",
+  "seconds": 0.6429062159950263,
+  "independent_review": "pending",
+  "limitations": [
+    "Originaldev has been used repeatedly for development; not blind/generalization estimate.",
+    "This transfers old nesting structure/valid-HPO/negation rules to HGB, not full GLiNER/Sap pipeline reproduction.",
+    "No new candidate pool, probabilities, model, fit, GPU or official submission.",
+    "Existing 368 relationship entries and all nonentity fields remain byte-equivalent objects; new entities do not expand relation support or trigger new inference.",
+    "Old baseline metrics reused; only one new quality evaluation."
+  ],
+  "deployment_note": "This is a postprocessor of the existing loaded HGB output. No new fitted object; prior selector.pkl and c032 score pool remain unchanged. Do not rebuild Task2 candidates/support from these new entities."
+}
