@@ -1,0 +1,558 @@
+{
+  "scope": "one fresh public BioMed train32 fixed10epoch -> nested16 development; no originaldev",
+  "status": "completed; independent endpoint review pending",
+  "at_utc": "2026-10-23T20:06:47.459408+00:00",
+  "public_base": {
+    "repo": "Ihor/gliner-biomed-large-v1.0",
+    "revision": "f79771210ab2111a2081ef31620fdb7342f602e9",
+    "weight_sha256": "7e3591fd58c3ee7ebe9a957fafeba6e635634e16ab5fa9329b6ad80d330ad8f9",
+    "actual_parameters": 477981696,
+    "source_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed/source-manifest.json",
+    "source_manifest_sha256": "f9064831e6de39c2a6aef83f6bb458972fe5191546854f3f426092bb7407c65a",
+    "task_span_training_manifest": null
+  },
+  "source_shas": {
+    "train_gliner_biomed.py": "39c38ed1d211c057aa5dcccdeed9f3cd4ea2b1e01702522cf4b0463287787d95",
+    "check_gliner_biomed_training.py": "e48160ed18bb0dc6bc1fc2fd5354567ea820327c0446c073e99fb0d3886bf3f0",
+    "check_gliner_biomed.py": "2a59a99501df9d6b27ed3b9885c9a1f48428cb49ab99fb0c909610e42f0700a5",
+    "train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+    "run_gliner_biomed.py": "600181f3a53d4a72fe32b32b90d6b3ff269fd40c7a9a757bc68067bb07877e5e",
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+    "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0"
+  },
+  "source_commit": "5aa2c7c64754bafb283bcac3610333f231fc2928",
+  "data": {
+    "train_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/nested_train32.jsonl",
+    "train_sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+    "input_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "data_manifest_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/manifest.json",
+    "windows": 1150,
+    "documents": 32,
+    "raw_train_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+    "raw_train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03"
+  },
+  "configuration": {
+    "epochs": 10,
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "seed": 20261023,
+    "precision": "float32",
+    "gradient_clip": 1.0,
+    "loss": "binary CE sum over valid spans / valid span count",
+    "label": "phenotype",
+    "all_valid_negative_spans": true,
+    "checkpoint_choice": "epoch10 only; no validation selection",
+    "training_part": "nested_train32"
+  },
+  "fixed_policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "overlap_order": "GLiNER score descending,length descending,offset ascending",
+    "existing_entities": "unchanged",
+    "relation": "same fixed rules",
+    "unmapped_new_spans": "discard; preserve original NIL"
+  },
+  "decoder": {
+    "label": "phenotype",
+    "threshold": 0.5,
+    "token_budget": 384,
+    "max_width": 12,
+    "overlap_words": 12,
+    "flat_ner": false
+  },
+  "actual_training": {
+    "fingerprint": {
+      "configuration": {
+        "epochs": 10,
+        "batch_size": 4,
+        "encoder_lr": 1e-05,
+        "other_lr": 5e-05,
+        "weight_decay": 0.01,
+        "warmup_fraction": 0.05,
+        "seed": 20261023,
+        "precision": "float32",
+        "gradient_clip": 1.0,
+        "loss": "binary CE sum over valid spans / valid span count",
+        "label": "phenotype",
+        "all_valid_negative_spans": true,
+        "checkpoint_choice": "epoch10 only; no validation selection",
+        "training_part": "nested_train32"
+      },
+      "source_sha256": "39c38ed1d211c057aa5dcccdeed9f3cd4ea2b1e01702522cf4b0463287787d95",
+      "loader_source_sha256": "2a59a99501df9d6b27ed3b9885c9a1f48428cb49ab99fb0c909610e42f0700a5",
+      "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+      "train_sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+      "excluded_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "base_weight_sha256": "7e3591fd58c3ee7ebe9a957fafeba6e635634e16ab5fa9329b6ad80d330ad8f9"
+    },
+    "fingerprint_id": "490d099001f4cdd4420ad41f0ff5854d2c594b6e60e47ff9d606c2189d3affae",
+    "parameters": 477981696,
+    "documents": 32,
+    "rows": 1150,
+    "total_steps": 2880,
+    "completed_epochs": 10,
+    "elapsed_seconds": 1660.1564781526104,
+    "max_gpu_allocated_bytes": 14795897344,
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22"
+    },
+    "gpu": "NVIDIA A30"
+  },
+  "actual_final_epoch": {
+    "epoch": 10,
+    "step": 2880,
+    "mean_loss": 0.00021165207810958512,
+    "seconds": 160.35211182711646,
+    "model_file": "epoch-010/pytorch_model.bin",
+    "training_online_counts": {
+      "gold_positive": 2236,
+      "predicted_positive": 2245,
+      "gold_negative": 1123302,
+      "tp": 2183,
+      "fp": 62,
+      "positive_probability_sum": 2145.5801490545273,
+      "negative_probability_sum": 84.53828285374382
+    },
+    "training_probe_rows": [
+      "11203018:0:0",
+      "11235872:3:0",
+      "11765409:0:0",
+      "12059664:0:0",
+      "12078887:2:0",
+      "12110755:1:0",
+      "12110769:1:0",
+      "12118522:2:0",
+      "12250201:1:0",
+      "12334843:3:0",
+      "12405443:1:0",
+      "12628480:1:0",
+      "12646972:4:0",
+      "12798528:3:0",
+      "12811285:0:0",
+      "12846941:6:0",
+      "2866573:2:0",
+      "4644339:2:0",
+      "5023785:1:0",
+      "5368377:0:0",
+      "5422868:0:0",
+      "5574094:2:0",
+      "5763540:0:0",
+      "5773845:0:0",
+      "5793168:1:0",
+      "5866036:0:0",
+      "5970456:2:0",
+      "6057141:0:0",
+      "6059678:1:0",
+      "6134758:4:0",
+      "6219255:0:0",
+      "6390251:1:0"
+    ],
+    "training_probe_counts": {
+      "gold_positive": 122,
+      "predicted_positive": 129,
+      "gold_negative": 36959,
+      "tp": 122,
+      "fp": 7,
+      "positive_probability_sum": 120.97372484207153,
+      "negative_probability_sum": 7.588496150565334
+    },
+    "training_probe_metrics": {
+      "precision": 0.9457364341085271,
+      "recall": 1.0,
+      "positive_mean_probability": 0.99158790854157,
+      "negative_mean_probability": 0.00020532200953936344
+    },
+    "model_sha256": "aed0d582f70643638c6400878be9fb9d5da537d96beb7f630d3f8b0ce2aa2188",
+    "state_sha256": "f4e01084e27b684721d429e4f3edf67aaa62d0142587d3bfaa9a624978a168b0"
+  },
+  "actual_inference": {
+    "model_parameters": 477981696,
+    "unique_spans": 1390,
+    "inference_seconds": 24.80971887568012,
+    "total_seconds": 39.12995561072603,
+    "max_gpu_allocated_bytes": 2139420672,
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "gpu": "NVIDIA A30"
+  },
+  "pipeline_stages": [
+    {
+      "name": "train",
+      "started_at_utc": "2026-10-23T19:37:02.588932+00:00",
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "train_gliner_biomed.py",
+        "--data-manifest",
+        "data-manifest.json",
+        "--train",
+        "nested_train32.jsonl",
+        "--excluded-input",
+        "../../ontology-round2/data/fold-1/input.jsonl",
+        "--model-dir",
+        "../pretrained-gliner-biomed-large-v1",
+        "--tokenizer-dir",
+        "../pretrained-gliner-biomed-large-v1",
+        "--epochs",
+        "10",
+        "--training-part",
+        "nested_train32",
+        "--output-dir",
+        "formal-fixed10ep",
+        "--prune-old-epochs"
+      ],
+      "timeout_seconds": 2400,
+      "exit_code": 0,
+      "finished_at_utc": "2026-10-23T20:04:59.940501+00:00",
+      "training_manifest_sha256": "da217eeb43f6d53a5d249f397e2192c0d96a31bedd307e668e5c52ddd4a44482"
+    },
+    {
+      "name": "inference",
+      "started_at_utc": "2026-10-23T20:05:02.213121+00:00",
+      "command": [
+        "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+        "run_gliner_biomed.py",
+        "--model-dir",
+        "formal-fixed10ep/epoch-010",
+        "--tokenizer-dir",
+        "../pretrained-gliner-biomed-large-v1",
+        "--input",
+        "../../ontology-round2/data/fold-1/input.jsonl",
+        "--output-dir",
+        "finetuned-inner1"
+      ],
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "finished_at_utc": "2026-10-23T20:05:43.968638+00:00",
+      "raw_freeze_sha256": "907398a10c50ecbdac6aeddc5a2c8dee582d99a0c5e295c0fd9449fe4f374c47"
+    },
+    {
+      "name": "link",
+      "started_at_utc": "2026-10-23T20:05:44.006967+00:00",
+      "command": [
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "link_gliner_candidates.py",
+        "--train",
+        "../../ontology-round2/data/nested-outer0-inner1/train.jsonl",
+        "--input",
+        "../../ontology-round2/data/fold-1/input.jsonl",
+        "--hpo",
+        "../../semantic-neural/data/hp.obo",
+        "--candidates",
+        "finetuned-inner1/candidates.jsonl",
+        "--candidate-freeze",
+        "finetuned-inner1/prediction-freeze.json",
+        "--span-training-manifest",
+        "formal-fixed10ep/run_manifest.json",
+        "--span-data-manifest",
+        "data-manifest.json",
+        "--semantic-source",
+        "../../semantic-neural/run.py",
+        "--model-dir",
+        "../../semantic-neural/model",
+        "--output-dir",
+        "linked-final"
+      ],
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "finished_at_utc": "2026-10-23T20:05:56.840801+00:00"
+    }
+  ],
+  "filter_counts": {
+    "all_candidates": 1390,
+    "semantic_filter": 433,
+    "overlap_original": 879,
+    "negated": 19,
+    "accepted": 58,
+    "overlap_added": 1
+  },
+  "metrics": {
+    "menF1": 0.6846153846153846,
+    "docF1": 0.7586715867158672,
+    "micF1": 0.6209598432908913,
+    "macF1": 0.5534503925806373,
+    "Score": 0.6544243018006951
+  },
+  "counts": {
+    "mention": {
+      "tp": 890,
+      "fp": 357,
+      "fn": 463,
+      "precision": 0.7137129109863672,
+      "recall": 0.6577974870657798,
+      "f1": 0.6846153846153846
+    },
+    "document": {
+      "tp": 514,
+      "fp": 96,
+      "fn": 231,
+      "precision": 0.8426229508196721,
+      "recall": 0.6899328859060403,
+      "f1": 0.7586715867158672
+    },
+    "relation": {
+      "tp": 317,
+      "fp": 184,
+      "fn": 203,
+      "precision": 0.6327345309381237,
+      "recall": 0.6096153846153847,
+      "f1": 0.6209598432908913
+    }
+  },
+  "baselines": {
+    "crf_sap_rules": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6161515453639083,
+      "macF1": 0.5479558936740699,
+      "Score": 0.6447615937066596
+    },
+    "medium32_fixed10": {
+      "menF1": 0.6817311374952125,
+      "docF1": 0.7573529411764706,
+      "micF1": 0.6206225680933852,
+      "macF1": 0.5552734616418699,
+      "Score": 0.6537450271017345
+    },
+    "biomed_public_zero": {
+      "menF1": 0.676923076923077,
+      "docF1": 0.7566371681415929,
+      "micF1": 0.6209598432908913,
+      "macF1": 0.5535369138359517,
+      "Score": 0.6520142505478782
+    }
+  },
+  "score_deltas": {
+    "crf_sap_rules": 0.009662708094035466,
+    "medium32_fixed10": 0.0006792746989605636,
+    "biomed_public_zero": 0.0024100512528169027
+  },
+  "net_counts_vs_baseline": {
+    "mention": {
+      "tp": 42,
+      "fp": 16,
+      "fn": -42
+    },
+    "document": {
+      "tp": 16,
+      "fp": 7,
+      "fn": -16
+    },
+    "relation": {
+      "tp": 8,
+      "fp": 10,
+      "fn": -8
+    }
+  },
+  "span_metrics": {
+    "gliner": {
+      "f1": 0.6965137614678899,
+      "fn": 386,
+      "fp": 441,
+      "precision": 0.6827338129496403,
+      "recall": 0.7108614232209738,
+      "tp": 949
+    },
+    "nonoverlap_union": {
+      "f1": 0.702247191011236,
+      "fn": 335,
+      "fp": 513,
+      "precision": 0.6609385327164574,
+      "recall": 0.7490636704119851,
+      "tp": 1000
+    },
+    "oof_crf_sap": {
+      "f1": 0.6909667194928685,
+      "fn": 463,
+      "fp": 317,
+      "precision": 0.7333894028595458,
+      "recall": 0.6531835205992509,
+      "tp": 872
+    }
+  },
+  "span_marginal": {
+    "accepted_fp": 196,
+    "accepted_tp": 128,
+    "eligible_fp": 206,
+    "eligible_tp": 128,
+    "new_overlap_rejected": 10,
+    "overlaps_original": 1056
+  },
+  "format": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "full_prediction_frozen_at_utc": "2026-10-23T20:06:42.218923+00:00",
+  "prediction_sha256": "ddd685dbb88d88e9ce0992e815fb9f8e237b40da5db96b386648384c50cf7b83",
+  "actual_checkpoint_hashes": {
+    "exit_code": 0,
+    "stdout": "{\"model\": {\"path\": \"formal-fixed10ep/epoch-010/pytorch_model.bin\", \"bytes\": 1912076651, \"sha256\": \"aed0d582f70643638c6400878be9fb9d5da537d96beb7f630d3f8b0ce2aa2188\"}, \"state\": {\"path\": \"formal-fixed10ep/latest-state.pt\", \"bytes\": 3824218315, \"sha256\": \"f4e01084e27b684721d429e4f3edf67aaa62d0142587d3bfaa9a624978a168b0\"}}\n"
+  },
+  "gpu_release": {
+    "exit_code": 0,
+    "stdout": "{\"checked_at_utc\": \"2026-10-23T20:06:37.739414+00:00\", \"target_gpu_empty\": true, \"compute_apps\": \"GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\\n\", \"free_bytes\": 197849190400}\n"
+  },
+  "limitations": [
+    "Nested16 has been used for development; this is not a new blind validation estimate.",
+    "No originaldev predictions or official submissions in this task.",
+    "Only fixed epoch10; no selection among checkpoints or new thresholds.",
+    "Training probe is a training-only diagnostic, not validation quality.",
+    "Medium historical run used A800; this BioMed run uses A30, alongside a different pretrained checkpoint.",
+    "Published BioMed provenance leaves four teacher demonstrations unspecified, as disclosed in source review.",
+    "Span-only F1 is not the full task Score."
+  ],
+  "recovery": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "remote_root": "sequence-round2/gliner-biomed-supervised",
+    "managed_id": "proc_64f58b79-5525-42a4-bf64-1db4e0345da9",
+    "final_model": "formal-fixed10ep/epoch-010/pytorch_model.bin",
+    "latest_state": "formal-fixed10ep/latest-state.pt"
+  },
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/plan.json",
+      "sha256": "60029482bcf0645877307c85f29daa5c388b5c5bb358bc675ddfc90bb658fb7a",
+      "bytes": 4386
+    },
+    "gpu.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/gpu.commands.json",
+      "sha256": "bc4eb2a55d55b03f992601323f189f41eef563c6213d1dc4f51bd2122e27a5ac",
+      "bytes": 5873
+    },
+    "run_gpu_stage.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/run_gpu_stage.py",
+      "sha256": "08867bab785ea05bf5aaedfecac8221532c44ae7500fd717c1e12e72b7440abf",
+      "bytes": 4817
+    },
+    "launch_gpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/launch_gpu.py",
+      "sha256": "a69ba2f587d296fa495ffb6d897b9c0794cf657aae60778de66e21fdebaa0bf9",
+      "bytes": 1716
+    },
+    "formal-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal-job.json",
+      "sha256": "4ce955125669b45586985604930e0c2130653641f9baccdf0a5018bad19de1c0",
+      "bytes": 999
+    },
+    "formal.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal.state.json",
+      "sha256": "59b799cc15d8771e983c5287a4f0abf699b920b516a2184068cc4f8b0de39083",
+      "bytes": 3651
+    },
+    "formal-artifacts-transfer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal-artifacts-transfer.json",
+      "sha256": "e6396c06149b9f8f6cc9675c6b14cb5d0f79956fa209f5eeef1b5e89f5d59582",
+      "bytes": 2150
+    },
+    "actual-final-checkpoint-hashes.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/actual-final-checkpoint-hashes.json",
+      "sha256": "d893eec8d76efdd089fd7cd8d1f4b13fd2713e45de9e9f80edd096e83003c952",
+      "bytes": 383
+    },
+    "formal-gpu-idle.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal-gpu-idle.json",
+      "sha256": "3350e201b6124c3e1cfe69c0f18a0c62329f13629d4ce3d0b0c3c36510d70d24",
+      "bytes": 360
+    },
+    "formal-fixed10ep/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal-fixed10ep/run_manifest.json",
+      "sha256": "da217eeb43f6d53a5d249f397e2192c0d96a31bedd307e668e5c52ddd4a44482",
+      "bytes": 57121
+    },
+    "finetuned-inner1/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/finetuned-inner1/manifest.json",
+      "sha256": "b471fdf976b2b4a6c2340ef8b07d9088c636d4b07ae2b2ea80cea9c8d3953aa4",
+      "bytes": 2470
+    },
+    "finetuned-inner1/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/finetuned-inner1/prediction-freeze.json",
+      "sha256": "907398a10c50ecbdac6aeddc5a2c8dee582d99a0c5e295c0fd9449fe4f374c47",
+      "bytes": 565
+    },
+    "finetuned-inner1/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/finetuned-inner1/candidates.jsonl",
+      "sha256": "950593a098abe87ea7e18e70b1da22d7d0d1de0b7c69428cd2120d70b707f088",
+      "bytes": 253507
+    },
+    "linked-final/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/linked-final/manifest.json",
+      "sha256": "46749b34bcd683f0623f35b0d8594e91b9327bc9f1fed2960bf3f05c1d5ba911",
+      "bytes": 6725
+    },
+    "linked-final/scored-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/linked-final/scored-candidates.jsonl",
+      "sha256": "51b87d9277754a93ef742af6861b7efeca3154e74804a10292bbe417e800d36d",
+      "bytes": 421516
+    },
+    "assembled/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/assembled/manifest.json",
+      "sha256": "ecca417d2a23337a1fe275b1d99a01e9d5c05323a1761f66e4c956562bf98627",
+      "bytes": 2617
+    },
+    "assembled/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/assembled/baseline.jsonl",
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "bytes": 155574
+    },
+    "assembled/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/assembled/augmented.jsonl",
+      "sha256": "ddd685dbb88d88e9ce0992e815fb9f8e237b40da5db96b386648384c50cf7b83",
+      "bytes": 163114
+    },
+    "assembled/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/assembled/augmented.metrics.json",
+      "sha256": "d784253ddbf79d8465280d858e7ee47b9ee087799b5843d0bb2ee748e418b41f",
+      "bytes": 13192
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/assembled/validation.json",
+      "sha256": "2c4ddb21aeb9feab9a6b07509ce4eeb5b9a678691f8523b65bf7229f13f321fc",
+      "bytes": 686
+    },
+    "cpu.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/cpu.commands.json",
+      "sha256": "69d8e619e452576e6fb5ce66f8b84025f66e64869c04fda012b5112143c62465",
+      "bytes": 3385
+    },
+    "cpu.execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/cpu.execution.json",
+      "sha256": "995d1a827534487c9f366400a5c551b1a82436119065d83ba0d431bd03e05ea4",
+      "bytes": 6748
+    },
+    "finalize_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/finalize_cpu.py",
+      "sha256": "65174899c60018e1790700b2e14b7a3c622f121e35029b3aa180d98ad985cae2",
+      "bytes": 3082
+    },
+    "span-diagnostic.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/span-diagnostic.json",
+      "sha256": "0902ae5bd86f37d9bbf259e15f9fa2f764a4c74f7a649af804b53901a989d25d",
+      "bytes": 24256
+    },
+    "summarize_terminal.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/summarize_terminal.py",
+      "sha256": "1f2b8c8c97bd6def2d6640d3a7713bf3a294a8741e22a1e5fdf7a64761f53915",
+      "bytes": 5500
+    }
+  },
+  "external_summary_sha256": "d8f42eb67bd5da22b3fd18cfe3010d9eb29554552c33218003b57dbe25aa91e2",
+  "decision": "Fixed supervised endpoint is a small development improvement over same-layer medium32 (+0.000679275); no automatic outer48/originaldev expansion. Preserve controls, request independent endpoint review, await root research/resource decision.",
+  "independent_review": {
+    "status": "pending",
+    "assigned_agent": "/root/round2_validation_resume",
+    "scope": "actual new endpoint provenance and single CPU replay/metrics; reuse approved native/1150/smoke readiness"
+  }
+}

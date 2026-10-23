@@ -80,3 +80,7 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 固定训练48的large-v2纯span union .769904优于medium48 .757484，完整固定Sap/rules总分却.720152低于medium .721504。不要把更强跨度识别或模型容量当成完整任务成功的替代指标；这次checkpoint替换已关闭，不迁移原dev或围绕同fold调参。来源/head/上游recipe也不同，因此不能把差异只归因参数数量。实际终点、两独立审查、真实model/state恢复位置见gliner-large-terminal-results.json。
 
 远端系统 `python3` 实为3.10.12，新的外部launcher使用3.11新增 `hashlib.file_digest` 会在模型前退出。已改现有项目使用的流式 `sha256.update`，保留原job/原wrapper SHA/trace及实际解释器CPU hash自检。模型入口和decoder未改变；失败只计启动器问题，不计模型负结果。今后必须依据实际执行解释器版本检查标准库API，而非本地Python版本。外存gliner-biomed-nested/attempt1-pythonhash/与actual-wrapper-hash-probe.json；selftest在成功重启后补做，时序如实记录。
+
+### BioMed领域预训练的固定监督对照
+
+同nested32/1150窗、原BCE/固定10轮后，BioMed .654424仅略超medium32 .653745；新增实体同42TP、FP由27降16，但关系macro略低。公开BioMed零样本 .652014 到本监督 .654424 的增幅也有限。当前证据支持“此固定实现改善实体精度”，不支持用模型领域名称推断能大幅改善患者归属，也不支持仅根据训练probe R=1选择更多轮次。实际模型/状态、预算与完整分项在[终点证据](evidence/round2/gliner-biomed-supervised-results.json)，原dev没有新评估。
