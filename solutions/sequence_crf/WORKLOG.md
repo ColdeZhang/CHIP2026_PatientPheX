@@ -41,6 +41,8 @@
 17. **固定原dev迁移已完成、独审PASS**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。独立新fit/全概率/两预测/全部指标与关联保留复核PASS（1112ced2）。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
 
 
+18. **独立Bioformer来源四fold固定控制已准备**：保持旧PubMed .95六字段与HGB160/.4，新增独立Bioformer .95候选/六字段，两个模型分数不混；公开64缓存5869项原文/source通过，合并边界CPU通过。四新fit/infer共120秒cap、全预测共同freeze后唯一pooled/各fold评；旧.722651 pooled复用、不原dev。计划见[evidence](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/；当前未fit。
+
 ## 已完成的近期结论
 
 - 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。

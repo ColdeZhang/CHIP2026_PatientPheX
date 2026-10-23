@@ -110,3 +110,5 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 原dev固定A规则全链 .659239仍明显弱于现有SFT关联。预定义B只换实体、完整保留原aa107关联后 .728795，相比.715760提升.013035；men/doc提升而关系完全不变。Task2不要求关联集合是最终Task1子集，强行删除已确认关联会凭空耦合两个任务。这个B只是实体模块与旧关系模块的合法固定组合，不能宣称关系学习也变强。历史dev已用于开发比较、当前两新臂先共同freeze，原source-HGB匹配对照只能用.639287，不能用外折或其他管线分数冒充。详见public-selector-dev-results.json，独审进行中。
 
 原dev public-selector 两臂独审已完成：`validation/public-selector-dev-transfer-review/review.json` SHA `1112ced231cc43f7769482ff189fde4e980dd895fb91d5807d9244d256b157c4`。独立一次新全64 fit与全部概率/A/B预测逐字节一致，v2/格式全同；B .7287945949、原aa107关联完整保留。旧对照未重训/重评，不改变原dev已用于比较的限制。
+
+独立Bioformer四fold控制预先冻结：新候选+六个独立来源字段；PubMed来源/分数与旧OOF下层资源不变，HGB160/.4、legacy关系规则不变。公开模型无本赛fit，64纯input forward可跨折共用；task标签仍按每外fold train48拟合。以pooled>.722651为主要成功信号，披露所有fold/分项；120秒总CPU、不新GPU/不原dev、不得结果后扫门槛。详见public-bioformer-selector-plan.json与外存plan。
