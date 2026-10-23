@@ -93,3 +93,5 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 
 公开Pheno的其他head只读可行性（21:10 UTC）：Bioformer-8L是原cased-v1.0的官方改名，配置推算含同17,266类head约51,380,594参数，公开h5为205,710,168字节；BioBERT约121,587,826参数、486,624,416字节。均尚未下载权重/载入/测质量，不把文件小等同吞吐或互补收益。BioBERT配置和vocab已从魔搭固定revision下载，与原HF版本逐字节相同；Bioformer准确魔搭路径404，固定HF配置/卡可用。上游即使设置cased tokenizer，load_data仍逐word.lower()，应保持真实预训练表示；候选词串可重用，跨模型forward不可重用。先结案当前PubMedBERT跨折与选择器控制，再决定是否做较轻Bioformer的互补来源实验；完整静态报告及快照在外部 `research/public-phenotagger-other-heads/`，report SHA `d0d09fbe…`。
+
+Bioformer原生CPU随后已实测通过：固定公开h5全SHA，137变量逐一NaN覆盖后原生严格恢复并与H5数组完全相同，实际51,380,594参数/17,266原列序；四合成词接口无任务质量含义。原生阶段9.323秒不含导入，合成forward0.380秒。root增量源码/实际证据复核 `c481da2a…`，沿用既有TF环境和HPO映射；计划在原dev的PubMedBERT缓存完成后，再做独立train64无标签Bioformer候选缓存，不把静态可用性当互补收益。
