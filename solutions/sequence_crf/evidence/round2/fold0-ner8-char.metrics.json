@@ -1,0 +1,88 @@
+{
+  "metrics": {
+    "menF1": 0.577639751552795,
+    "docF1": 0.6086956521739131,
+    "micF1": 0.4934804413239719,
+    "macF1": 0.4942324663199579,
+    "Score": 0.5435120778426594
+  },
+  "counts": {
+    "mention": {
+      "tp": 651,
+      "fp": 426,
+      "fn": 526,
+      "precision": 0.6044568245125348,
+      "recall": 0.5531011045029737,
+      "f1": 0.577639751552795
+    },
+    "document": {
+      "tp": 350,
+      "fp": 235,
+      "fn": 215,
+      "precision": 0.5982905982905983,
+      "recall": 0.6194690265486725,
+      "f1": 0.6086956521739131
+    },
+    "relation": {
+      "tp": 246,
+      "fp": 372,
+      "fn": 133,
+      "precision": 0.39805825242718446,
+      "recall": 0.6490765171503958,
+      "f1": 0.4934804413239719
+    }
+  },
+  "documents": 16,
+  "patients": 47,
+  "evaluator_version": "patientphex-public-approx-v2",
+  "result_type": "local_public_rule_approximation_not_official",
+  "configuration": {
+    "body_scope": "all",
+    "unlinked_document_mode": "text",
+    "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+    "duplicate_entities": "deduplicated by span and split HPO ID",
+    "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+    "empty_patient_f1": 1.0
+  },
+  "caveats": [
+    "Official evaluator source is unavailable; these numbers are not official scores.",
+    "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+    "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+    "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+    "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+    "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+    "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+  ],
+  "sensitivity": {
+    "unlinked_doc_ignore": {
+      "menF1": 0.577639751552795,
+      "docF1": 0.6571428571428571,
+      "micF1": 0.4934804413239719,
+      "macF1": 0.4942324663199579,
+      "Score": 0.5556238790848955
+    },
+    "unlinked_doc_shared_id": {
+      "menF1": 0.577639751552795,
+      "docF1": 0.659217877094972,
+      "micF1": 0.4934804413239719,
+      "macF1": 0.4942324663199579,
+      "Score": 0.5561426340729242
+    },
+    "scope_body": {
+      "menF1": 0.5715741212429954,
+      "docF1": 0.6206896551724138,
+      "micF1": 0.4934804413239719,
+      "macF1": 0.4942324663199579,
+      "Score": 0.5449941710148347
+    },
+    "strict_unlinked_identifier": {
+      "menF1": 0.5678793256433008,
+      "docF1": 0.6086956521739131,
+      "micF1": 0.4934804413239719,
+      "macF1": 0.4942324663199579,
+      "Score": 0.541071971365286
+    }
+  },
+  "gold_sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+  "prediction_sha256": "020ae1429b843d252a2cbb43b02ced628f170e83f4378d8ab0b2e515b5b0f413"
+}
