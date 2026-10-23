@@ -285,7 +285,8 @@ def main():
     assert original_count == reference['training_examples']
     assert old_count == old_fit['training_examples'] == prepared['old_train_rows']
     assert old_positive == old_fit['training_positive']
-    assert len(ys) == prepared['new_train_rows'] and old_count <= len(ys) <= 3 * old_count
+    assert plan['maximum_training_row_ratio'] == 3.1
+    assert len(ys) == prepared['new_train_rows'] and old_count <= len(ys) <= plan['maximum_training_row_ratio'] * old_count
     vectorizer = single.DictVectorizer(sparse=False)
     matrix = vectorizer.fit_transform(xs)
     assert vectorizer.feature_names_ == sorted(old_fit['features'] + TOP3_FEATURES)
@@ -366,7 +367,7 @@ def main():
                     'numpy': single.np.__version__},
         'assertions': {'old_keys_and_order_preserved': True, 'old_candidate_fields_equal': True,
                        'old_labels_equal': True, 'old_feature_columns_preserved': True,
-                       'new_ids_only_at_old_spans': True, 'training_rows_at_most_threefold': True,
+                       'new_ids_only_at_old_spans': True, 'training_rows_at_most_revised_limit': True,
                        'strict_three_train32_to_input16': True, 'baseline_cut03_replayed': True,
                        'all_nonentity_fields_equal': True},
         'relation': 'Copy all frozen cut .3 baseline non-entity fields, including unchanged .4-origin association.',

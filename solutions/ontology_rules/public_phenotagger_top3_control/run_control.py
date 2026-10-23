@@ -55,9 +55,16 @@ def main():
     for path, digest in plan['sources'].items():
         assert sha(path) == digest, path
     prep = read(checked(plan['prepared_manifest']))
-    assert prep['authorized_fit_size_cost_gate_passed'] is True
+    # Preserve the original failed 3x precheck; only the pre-quality resource
+    # budget revision authorizes the unchanged full pool at the new 3.1x cap.
+    assert prep['authorized_fit_size_cost_gate_passed'] is False
+    assert plan['maximum_training_row_ratio'] == 3.1
+    revision = read(checked(plan['budget_revision']))
+    assert revision['new_training_row_ratio_limit'] == 3.1
+    assert revision['unchanged_fit_infer_hard_cap_seconds'] == 240
+    assert revision['prepared_manifest'] == plan['prepared_manifest']
     assert prep['estimated_four_fit_infer_seconds'] <= 240
-    assert all(f['new_train_rows'] <= 3 * f['old_train_rows'] for f in prep['folds'])
+    assert all(f['new_train_rows'] <= plan['maximum_training_row_ratio'] * f['old_train_rows'] for f in prep['folds'])
     assert [f['fold'] for f in prep['folds']] == [0, 1, 2, 3]
     assert [f['fold'] for f in plan['folds']] == [0, 1, 2, 3]
     fit_source = Path(__file__).resolve().with_name('fit_control.py')

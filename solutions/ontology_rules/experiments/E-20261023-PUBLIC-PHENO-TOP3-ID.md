@@ -28,3 +28,9 @@
 按旧真实端到端耗时×实际行数倍率×新增维度，附25%余量及15秒固定开销，四fit估计218.60秒。**时间估计通过，但四折都超预定3倍行数独立硬门，因此未启动fit、未生成新预测/分数。**没有事后裁候选、调整特征、提高门槛或触碰原dev。fit/evaluate/run入口仅保存为未执行准备；未冻结正式训练计划。
 
 [预检结果与实际SHA](../evidence/round2/public-phenotagger-top3-precheck.json)、[小lookup源索引](../evidence/round2/public-phenotagger-top3-lookup-index.json)；全池/lookup留仓库外，复原命令为 `python prepare_new_pools.py --plan <pool-plan.json>`（输出须改为全新目录并另存新plan，不能覆盖本次）。这不是质量负结果，只是预算门槛停止。
+
+## 无标签资源预算修订 v2（训练前）
+
+主线程在未fit、未生成新quality前确认3倍属于预设资源保护门，允许按实际最大3.05642倍将行数上限修订为3.1倍；共享fit+infer240秒硬限不变。原3倍停止记录及提交2efd764完整保留，原池字节不变，不裁候选、不更改模型/标签/cut/评测。新计划独立冻结；同span六字段区分只作为接口证据，不预言收益。
+
+[预算修订](../evidence/round2/public-phenotagger-top3-budget-revision-v2.json)、[正式计划](../evidence/round2/public-phenotagger-top3-formal-plan-v2.json)。正式执行入口 `run_control.py --plan <formal-plan-v2.json>`；先四fold fit+infer共同冻结，随后 `evaluate_control.py --plan <formal-plan-v2.json>`。当前计划已准备，运行结果后补。
