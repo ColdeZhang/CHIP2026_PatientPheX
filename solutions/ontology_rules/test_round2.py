@@ -4,9 +4,21 @@ import enhance
 import prepare_context
 import merge_context
 import adjust_prior
+import calibrate_multi
 
 
 class EvidenceBoundaryTests(unittest.TestCase):
+    def test_crf_source_union_preserves_semantic_scores_and_new_spans(self):
+        e={'offset':0,'length':4,'identifier':'HP:0000001','text':'pain'}
+        other={'offset':8,'length':5,'identifier':'-1','text':'other'}
+        raw=[dict(e,probability=.8,similarity=.9,exact=False)]
+        cs=calibrate_multi.pool({}, {'entities':[e]}, raw, {'entities':[e,other]})
+        self.assertEqual(len(cs),2)
+        self.assertEqual(cs[0]['probability'],.8)
+        self.assertTrue(cs[0]['is_base'] and cs[0]['crf'] and cs[0]['crf_span'])
+        self.assertTrue(cs[1]['crf'] and cs[1]['crf_span'])
+        self.assertFalse(cs[1]['semantic_source'] or cs[1]['is_base'])
+
     def test_compound_relation_only_splits_complete_hpo_codes(self):
         doc={'association':[{'patient_id':'P1','phenotype':['HP:0000001;HP:0000002','pain; weakness','HP:0000001;bad']} ]}
         self.assertEqual(enhance.relation_gold(doc)['P1'],{'HP:0000001','HP:0000002','pain; weakness','HP:0000001;bad'})
