@@ -1,0 +1,87 @@
+{
+  "frozen_at_utc": "2026-10-23T17:14:51.344349+00:00",
+  "scope": "outer train48 -> fixed fold0 DEVELOPMENT full-chain control; original dev untouched",
+  "selection_basis": "nested32->inner16 fixed10ep+Sap Score .644761594->.653745027;4 components improved; this motivated expansion",
+  "sources": {
+    "train_gliner_supervised.py": "06b965ac81b35201801e698053d07a6b791a8a56b7358f4b8dc9c33d0ef83b5c",
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "687fd735f21943079a9e9a1b0c2ca9ab65086382bca0fca0a90c41719ee8927e",
+    "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+    "combine.py": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d"
+  },
+  "data": {
+    "training_part": "train48",
+    "documents": 48,
+    "windows": 1744,
+    "prepared_train_sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+    "raw_train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "baseline_947_entities_sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145"
+  },
+  "configuration": {
+    "initialization": "fresh exact public GLiNER medium-v2",
+    "epochs": 10,
+    "optimizer_steps": 4360,
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "warmup_fraction": 0.05,
+    "weight_decay": 0.01,
+    "precision": "float32",
+    "gradient_clip": 1,
+    "seed": 20261023,
+    "loss": "unchanged explicit valid-span BCE mean",
+    "decoder": "phenotype strict>.5/maxwidth12/nested=true/crossing greedy",
+    "semantic_filter": "same rawtrain48 System detector/bank, p>=.65 cos>=.92",
+    "assembly": "preserve947originalentities, originalnegation, GLiNERscore-order nonoverlap add, fixedrules",
+    "checkpoint": "epoch10only;atomic latest/model then SHA-checked old model pruning"
+  },
+  "runtime_cpu_preflight": {
+    "strict_load": true,
+    "parameters": 195175936,
+    "cuda_initialized": false,
+    "training_docs": 48,
+    "training_rows": 1744,
+    "input_docs": 16,
+    "versions": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "actual_model_files": {
+      "gliner_config.json": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391",
+      "pytorch_model.bin": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91",
+      "source-manifest.json": "53cbed8c1ad9480325b5766a7d0f04a5556be249543cff0aad01ce97259842ed",
+      "tokenizer/config.json": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+      "tokenizer/source-manifest.json": "5aa0848919e467ccee9c2d97f65171e3fbf75e492be9d92e18c5ee753eba97e8",
+      "tokenizer/spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "tokenizer/tokenizer_config.json": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+      "transfer-complete.json": "a7990ef0bc0662f1608a3cc9fc1dbeef7f1f0c98700ad1ef4eef2802b029101e"
+    },
+    "train_sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "free_bytes": 479577219072
+  },
+  "resource": {
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "pythonpath": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "budget_seconds": 2400,
+    "estimated_minutes": "15-25; measure actual longest batch first",
+    "device_difference": "A30/Python3.10 vs nested controls A800/Python3.11; paired base rerun here"
+  },
+  "protocol": [
+    "CPU strict base/model/tokenizer SHA and all48training IDs separation pass",
+    "Fresh idleGPU check then longest4x384 train-only smoke; do not save/reuse smoke weights",
+    "Fresh idleGPU recheck then basezero inputs -> fresh10 training -> onlyepoch10 inference",
+    "Freeze all rawcandidates/actualsource/model hashes before localgold scores",
+    "Apply fixed same-fold Sap and assembly then freeze final predictions before full-chain evaluation",
+    "No intermediate validation, no2ep rerun or thresholds/aliases/classes updated from fold0 errors",
+    "Baseline zero is rawspan control, full-chain comparison preserves existing947 CRF/Sap baseline"
+  ],
+  "evidence_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30"
+}

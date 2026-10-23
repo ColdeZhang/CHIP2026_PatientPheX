@@ -72,6 +72,7 @@ def main():
     parser.add_argument('--smoke-only', action='store_true')
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--epochs', type=int, choices=[2, 10], default=2)
+    parser.add_argument('--training-part', choices=['nested_train32', 'train48'], default='nested_train32')
     parser.add_argument('--prune-old-epochs', action='store_true',
                         help='Keep only latest model/state after atomic checkpoint save; record old hashes.')
     args = parser.parse_args()
@@ -82,15 +83,18 @@ def main():
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     data = json.loads(Path(args.data_manifest).read_text())
-    expected = data['artifacts']['nested_train32']
+    expected = data['artifacts'][args.training_part]
     assert sha(args.train) == expected['sha256']
     rows = [json.loads(x) for x in Path(args.train).read_text().splitlines()]
     ids = {r['pmc_id'] for r in rows}
     excluded = [json.loads(x) for x in Path(args.excluded_input).read_text().splitlines()]
     assert all('entities' not in d and 'association' not in d for d in excluded)
-    assert ids == set(expected['pmc_ids']) and len(ids) == 32
+    assert ids == set(expected['pmc_ids']) and len(ids) == (32 if args.training_part == 'nested_train32' else 48)
     assert not ids & {str(d['pmc_id']) for d in excluded}
-    assert not ids & set(data['artifacts']['nested_validation16']['pmc_ids'])
+    if args.training_part == 'nested_train32':
+        assert {str(d['pmc_id']) for d in excluded} == set(data['artifacts']['nested_validation16']['pmc_ids'])
+    else:
+        assert sha(args.excluded_input) == data['files']['excluded_input']
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
     configuration = {'epochs': epochs, 'batch_size': batch_size, 'encoder_lr': 1e-5,
@@ -98,7 +102,8 @@ def main():
                      'seed': seed, 'precision': 'float32', 'gradient_clip': 1.,
                      'loss': 'binary CE sum over valid spans / valid span count',
                      'label': 'phenotype', 'all_valid_negative_spans': True,
-                     'checkpoint_choice': f'epoch{epochs} only; no validation selection'}
+                     'checkpoint_choice': f'epoch{epochs} only; no validation selection',
+                     'training_part': args.training_part}
     fingerprint = {'configuration': configuration, 'source_sha256': sha(__file__),
                    'loader_source_sha256': sha(run_gliner_pilot.__file__),
                    'data_manifest_sha256': sha(args.data_manifest), 'train_sha256': sha(args.train),

@@ -34,11 +34,13 @@ def main():
     assert sha(args.input) == freeze['input_sha256']
     training = json.loads(Path(args.span_training_manifest).read_text())
     prepared = json.loads(Path(args.span_data_manifest).read_text())
+    training_part = training['fingerprint']['configuration'].get('training_part', 'nested_train32')
+    assert training_part in {'nested_train32', 'train48'}
     assert training['fingerprint']['data_manifest_sha256'] == sha(args.span_data_manifest)
-    assert training['fingerprint']['train_sha256'] == prepared['artifacts']['nested_train32']['sha256']
+    assert training['fingerprint']['train_sha256'] == prepared['artifacts'][training_part]['sha256']
     assert training['fingerprint']['excluded_input_sha256'] == freeze['input_sha256']
     assert training['epoch_results'][-1]['model_sha256'] == freeze['model_sha256']
-    assert prepared['files']['nested_train'] == sha(args.train)
+    assert prepared['files']['nested_train' if training_part == 'nested_train32' else 'train'] == sha(args.train)
     spec = importlib.util.spec_from_file_location('gliner_semantic_source', args.semantic_source)
     sem = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(sem)
