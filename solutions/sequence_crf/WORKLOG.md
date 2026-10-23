@@ -14,7 +14,7 @@
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
 3. **GLiNER训练内控制结案**：nested32→16固定fresh2ep/10ep的纯span非重叠组合为.700614/.702135；固定10ep+Sap全链.644762→.653745，69新增=42TP/27FP，四项均升，独审PASS。见[2ep](evidence/round2/gliner-supervised-results.json)、[10ep](evidence/round2/gliner-long10ep-results.json)、[固定链接](evidence/round2/gliner-link-results.json)。
 4. **outer48→fold0同政策已完成**：A30 fresh10/4360steps耗996.64秒、峰值6.028GB；零样本/终点预测先冻结。固定原947实体+Sap筛选新增26项（16TP/10FP），关联7TP/4FP，Score **.711353522→.721504431**、四项均升。纯span及真实来源已独审PASS，全链独审进行中。GPU1于17:35:57Z、Sap GPU0于17:37:29Z复查释放；只保留final模型+latest，实际余477.22GB。详见[终点结果/完整恢复](evidence/round2/gliner-outer0-results.json)，外存gliner-outer0-a30/、gliner-link-outer0/，无活动GPU作业。
-5. **下一步原dev迁移控制**：根已预先授权外层正收益后复用同train48模型，以既有train64 CRF+Sap/LR .700635947为基准，固定两臂：只加实体保留旧关系、同LR重算完整关系。不先训练64、不扫阈值；当前尚未运行，原dev最佳仍不变。
+5. **原dev迁移控制准备冻结**：根已预先授权外层正收益后复用同train48模型，以既有train64 CRF+Sap/LR .700635947为基准，固定两臂：只加实体保留旧关系、同LR重算完整关系。不先训练64、不扫阈值；显式核span48原文/标签是linker64子集、dev与二者不交。零候选fixture已独立重拟合旧LR，三输出均逐字节复现原baseline。见[协议及源码](evidence/round2/gliner-dev-transfer-plan.json)，当前准备短GPU推理，原dev最佳仍不变。
 
 ## 已完成的近期结论
 

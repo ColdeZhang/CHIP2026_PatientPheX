@@ -1,0 +1,63 @@
+{
+  "frozen_at_utc": "2026-10-23T17:43:48.405375+00:00",
+  "scope": "single originaldev DEVELOPMENT transfer after fixed outer0 gain; no new64 training",
+  "selection_basis": "root predefined outer0 positiveScore/entity gain; actual .711353522->.721504431 independently reviewed",
+  "span_training": {
+    "documents": 48,
+    "raw_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "prepared_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "final_model_sha256": "25bb0b35782f0a9c84ce7e3c564c4561c3fbb051cd98fcac139a2ed0b0602f23",
+    "original_excluded_fold": "fold0; the current input is separately checked disjoint from actual48 training"
+  },
+  "semantic_relation_training": {
+    "documents": 64,
+    "raw_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+    "policy": "same System seed20261023/max_candidates6000/negatives_per_doc500; same Linker/fit_relation@.55"
+  },
+  "inference_input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-dev/lr.pred.jsonl",
+    "sha256": "55f4305eb013d3a89677874fe889a821bdf9b745c1a5a161da639079bd600e95",
+    "Score": 0.7006359474798057
+  },
+  "policy": {
+    "span_decoder": "unchanged phenotype strict>.5/maxwidth12/max384/12word overlap,nested allowed/crossinggreedy",
+    "semantic_probability": 0.65,
+    "cosine_similarity": 0.92,
+    "negation": "unchanged ontology.is_negated",
+    "overlap": "preserve every baseline entity; new GLiNERscore,length,offset greedy",
+    "arms": [
+      "same augmented entity list, original relations unchanged",
+      "same augmented entity list, original LR all-pair>=.55"
+    ],
+    "original_entity_order": "sort by offset,length,identifier as previous control",
+    "no_sweeps": true
+  },
+  "sources": {
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "6f8894bf8c8ced005c7d5a6be9797207c6f9161857ca8107550996222b69d41b",
+    "assemble_gliner_transfer.py": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d",
+    "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+    "run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "combine.py": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d"
+  },
+  "noop_check": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/noop-review.json",
+    "sha256": "d45ebb466f0ca6dba693af7823d8633a2a2974924a6695e31f515ef4c4eda0be",
+    "result": "all3outputsbyteexact55f4305e; LR refit onlytrain64; no gold/evaluation"
+  },
+  "resources": {
+    "span": "same .100 A30GPU1/runtime as outer48, exact model retained; onlyone inference; retrieval handed shortwindow",
+    "link": "existing .3 Sap readonly, explicit ontology GPU handoff required",
+    "estimated_gpu_seconds": 60
+  },
+  "protocol": [
+    "span48 docs and labels must be exact subset of linker64 training; currentdev disjoint fromboth",
+    "decode once andfreeze actualmodel/input/source/candidateSHA before any evaluation",
+    "score candidates with64 semantic resources, retain48 span training provenance explicitly",
+    "assemble bothpredeclaredarms andbaseline byteexact, freezeall before scoring",
+    "evaluate v2all/text+format; reportboth even ifnegative; no thresholds/aliases/classes/checkpoint tuning"
+  ],
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer"
+}

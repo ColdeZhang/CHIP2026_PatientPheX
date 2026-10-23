@@ -23,6 +23,8 @@ def main():
                  'span-training-manifest', 'span-data-manifest',
                  'semantic-source', 'model-dir', 'output-dir']:
         parser.add_argument('--'+name, required=True)
+    parser.add_argument('--span-training-documents',
+                        help='Explicit raw training documents for transferring a frozen span model to a new input')
     args = parser.parse_args()
     started = time.monotonic()
     out = Path(args.output_dir)
@@ -38,13 +40,23 @@ def main():
     assert training_part in {'nested_train32', 'train48'}
     assert training['fingerprint']['data_manifest_sha256'] == sha(args.span_data_manifest)
     assert training['fingerprint']['train_sha256'] == prepared['artifacts'][training_part]['sha256']
-    assert training['fingerprint']['excluded_input_sha256'] == freeze['input_sha256']
     assert training['epoch_results'][-1]['model_sha256'] == freeze['model_sha256']
-    assert prepared['files']['nested_train' if training_part == 'nested_train32' else 'train'] == sha(args.train)
+    span_training_documents = args.span_training_documents or args.train
+    assert prepared['files']['nested_train' if training_part == 'nested_train32' else 'train'] == sha(span_training_documents)
+    if not args.span_training_documents:
+        assert training['fingerprint']['excluded_input_sha256'] == freeze['input_sha256']
     spec = importlib.util.spec_from_file_location('gliner_semantic_source', args.semantic_source)
     sem = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(sem)
     train, inputs = sem.read_jsonl(args.train), sem.read_jsonl(args.input)
+    span_train = sem.read_jsonl(span_training_documents)
+    span_ids = {str(d['pmc_id']) for d in span_train}
+    assert len(span_ids) == len(span_train) == training['documents']
+    train_by_id = {str(d['pmc_id']): d for d in train}
+    assert len(train_by_id) == len(train)
+    assert span_ids <= set(train_by_id), 'Span-training documents must belong to the linker training pool'
+    assert all(d == train_by_id[str(d['pmc_id'])] for d in span_train), 'Same ID must identify the same training document and labels'
+    assert not span_ids & {str(d['pmc_id']) for d in inputs}
     candidates = {str(d['pmc_id']): d['candidates'] for d in sem.read_jsonl(args.candidates)}
     assert not {str(d['pmc_id']) for d in train} & {str(d['pmc_id']) for d in inputs}
     assert all('entities' not in d and 'association' not in d for d in inputs)
@@ -101,6 +113,13 @@ def main():
                            ['train', 'input', 'hpo', 'candidates', 'candidate_freeze',
                             'span_training_manifest', 'span_data_manifest']},
                 'training_document_ids': sorted(str(d['pmc_id']) for d in train),
+                'span_training_provenance': {
+                    'raw_path': span_training_documents,
+                    'sha256': sha(span_training_documents),
+                    'document_ids': sorted(span_ids),
+                    'transfer_explicitly_enabled': bool(args.span_training_documents),
+                    'original_excluded_input_sha256': training['fingerprint']['excluded_input_sha256'],
+                    'current_input_sha256': freeze['input_sha256']},
                 'input_document_ids': sorted(str(d['pmc_id']) for d in inputs),
                 'training': system.training_stats, 'counts': counts,
                 'model_source': model_source, 'actual_model_file_shas': actual_model_files,
