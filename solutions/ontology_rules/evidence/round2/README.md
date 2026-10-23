@@ -19,3 +19,5 @@
 - [远监督双头五控制](distant-detector-results.json)：同宽池仅微小增益，保留负结果，不升级。
 
 - [原dev前冻结的四折选型](multi-fourfold-strategy-freeze.json)：预设最简选择规则，source入选，含全部12预测SHA。
+
+- [唯一预选原dev](multi-selected-dev.json)：.639287，低于v1最好分，不升级默认。
