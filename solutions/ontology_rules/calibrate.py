@@ -49,6 +49,7 @@ def main():
     for k in ['training-manifest','train','input','base','candidates','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--threshold',type=float,default=.4)
     ap.add_argument('--early-stopping',choices=['off','auto'],default='off')
+    ap.add_argument('--scores-output')
     a=ap.parse_args();started=time.monotonic();source_sha=baseline.sha256(__file__);training=baseline.read_jsonl(a.train);inputs=baseline.read_jsonl(a.input);trainids={d['pmc_id'] for d in training};inputids={d['pmc_id'] for d in inputs};assert not trainids&inputids;assert all('entities' not in d and 'association' not in d for d in inputs)
     specs=json.loads(Path(a.training_manifest).read_text());seen=set();x=[];y=[];training_by_id={d['pmc_id']:d for d in training}
     for spec in specs:
@@ -66,9 +67,10 @@ def main():
     assert seen==trainids
     vec=DictVectorizer(sparse=False);matrix=vec.fit_transform(x)
     model=HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023,early_stopping=('auto' if a.early_stopping=='auto' else False)).fit(matrix,y)
-    raw=read_candidates(a.candidates);base={d['pmc_id']:d for d in baseline.read_jsonl(a.base)};pred=[]
+    raw=read_candidates(a.candidates);base={d['pmc_id']:d for d in baseline.read_jsonl(a.base)};pred=[];scored=[]
     for d in inputs:
         cs=pool(d,base[d['pmc_id']],raw[d['pmc_id']]);probs=model.predict_proba(vec.transform([features(d,c,base[d['pmc_id']]) for c in cs]))[:,1]
+        scored.append({'pmc_id':d['pmc_id'],'candidates':[dict(c,previous_probability=c['probability'],probability=float(p)) for c,p in zip(cs,probs)]})
         selected=[]
         for c,p in sorted(zip(cs,probs),key=lambda cp:(-cp[1],-cp[0]['length'],cp[0]['offset'])):
             if p<a.threshold:continue
@@ -78,5 +80,10 @@ def main():
         selected.sort(key=lambda e:e['offset']);pred.append({'pmc_id':d['pmc_id'],'pmid':d.get('pmid'),'entities':selected,'association':merge_semantic.assign(d,selected)})
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(''.join(json.dumps(d,ensure_ascii=False)+'\n' for d in pred))
     meta={'config':vars(a),'source_sha256':source_sha,'dependency_sha256':{m.__name__:baseline.sha256(m.__file__) for m in [baseline,enhance,merge_semantic]},'runtime':{'python':platform.python_version(),'sklearn':sklearn.__version__,'numpy':np.__version__},'input_hashes':{k:baseline.sha256(getattr(a,k)) for k in ['training_manifest','train','input','base','candidates']},'training_examples':len(y),'training_positive':sum(y),'training_documents':len(trainids),'candidate_origins':f'{len(specs)} fold OOF, each document excluded from its generating model','feature_count':matrix.shape[1],'estimator':model.get_params(),'actual_iterations':model.n_iter_,'early_stopping_performed':model.do_early_stopping_,'threshold_selection':'fixed a priori .4; no dev threshold search','output_sha256':baseline.sha256(output),'seconds':time.monotonic()-started}
+    if a.scores_output:
+        Path(a.scores_output).parent.mkdir(parents=True,exist_ok=True)
+        with gzip.open(a.scores_output,'wt') as f:
+            for row in scored:f.write(json.dumps(row,ensure_ascii=False)+'\n')
+        meta['scores_sha256']=baseline.sha256(a.scores_output)
     output.with_suffix('.manifest.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(meta))
 if __name__=='__main__':main()

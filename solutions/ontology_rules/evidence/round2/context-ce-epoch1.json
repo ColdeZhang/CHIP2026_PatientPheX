@@ -1,0 +1,725 @@
+{
+  "experiment": "E-20261023-007",
+  "stage": "nested train48 context CE epoch1",
+  "status": "negative; no dev run, no default change",
+  "job": {
+    "arguments": {
+      "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+      "cwd": "ontology-round2",
+      "command": "../semantic-neural/venv/bin/python -u context_calibrate.py fit --train-examples context-fold0/data/train.jsonl.gz --input-examples context-fold0/data/input.jsonl.gz --model ../sequence-crf/pretrained-biomedbert --output-dir context-fold0/epoch1 --epochs 1 --batch-size 32 --max-length 160 --learning-rate 0.00002 > context-fold0/epoch1.log 2>&1",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "TOKENIZERS_PARALLELISM": "false",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    "result": {
+      "command": "../semantic-neural/venv/bin/python -u context_calibrate.py fit --train-examples context-fold0/data/train.jsonl.gz --input-examples context-fold0/data/input.jsonl.gz --model ../sequence-crf/pretrained-biomedbert --output-dir context-fold0/epoch1 --epochs 1 --batch-size 32 --max-length 160 --learning-rate 0.00002 > context-fold0/epoch1.log 2>&1",
+      "id": "proc_d0d9c543-457a-40ae-871d-d30b6aab3b2d",
+      "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+      "pid": 1117319,
+      "port": 37631,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-23T13:16:53.121708774Z"
+    }
+  },
+  "training": {
+    "config": {
+      "mode": "fit",
+      "train_examples": "context-fold0/data/train.jsonl.gz",
+      "input_examples": "context-fold0/data/input.jsonl.gz",
+      "model": "../sequence-crf/pretrained-biomedbert",
+      "output_dir": "context-fold0/epoch1",
+      "epochs": 1,
+      "batch_size": 32,
+      "max_length": 160,
+      "learning_rate": 2e-05
+    },
+    "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+    "input_hashes": {
+      "train_examples": "25d7327a352e19c88eb516bad8dcbb66306312f25ce33bbed204a9cea05cdffb",
+      "input_examples": "7eb0187a67554c972358e8754609581f9a8c240b1899a11ba9b542e5f7751ef4"
+    },
+    "base_model_files": {
+      "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+      "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+      "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    },
+    "parameter_count": 109483778,
+    "training_examples": 11180,
+    "training_positive": 2795,
+    "training_losses": [
+      0.2862174601322423
+    ],
+    "epochs": 1,
+    "torch": "2.7.0+cu128",
+    "transformers": "4.50.0",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 3657572352,
+    "trained_model_sha256": "001a510ce66750c3c4eba87ff7248953d8af45be2eecb471b5fe00098924fd95",
+    "output_sha256": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7",
+    "seconds": 45.41870194580406
+  },
+  "prior_correction": {
+    "config": {
+      "population_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-nested-calibration-off/pred.manifest.json",
+      "model_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/training.manifest.json",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+      "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+      "positive_weight": 3.0
+    },
+    "source_sha256": "4c6c9a5603a898bdaf7ac09a33312fd9cdffc185330db8b6d0a97051eb2542e9",
+    "inputs": {
+      "population_manifest": "70ae0c58483970577f53e7a00618865ebaf1a62d881e363b79947bc5bd537f73",
+      "model_manifest": "f23435bfd8183acd44b764cef5ad0e45ce464364b5b8f2cd61fd593e11e8e268",
+      "candidates": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7"
+    },
+    "population_prior": 0.06213044058151425,
+    "effective_prior": 0.5,
+    "correction_source": "training population and effective weighted sampled training counts only",
+    "assumption": "class conditional scores stable under sampling; approximation, not guaranteed posterior calibration",
+    "output_sha256": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c"
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce",
+  "source_sha256": {
+    "context_calibrate.py": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+    "adjust_prior.py": "4c6c9a5603a898bdaf7ac09a33312fd9cdffc185330db8b6d0a97051eb2542e9",
+    "blend_scores.py": "6a65c8506808b425fbd2c2ab3b910a55aa9e846c0bac3fb1619f69f589298524",
+    "calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6"
+  },
+  "comparators": {
+    "semantic_abbreviation": 0.7047902822,
+    "same_pool_HGB_fixed160": 0.7050228134357808
+  },
+  "next_control": "Same preparation, pretrained initialization, 3 epochs; same fixed thresholds, no dev tuning.",
+  "threshold_results": [
+    {
+      "threshold": 0.3,
+      "metrics": {
+        "menF1": 0.6186305732484076,
+        "docF1": 0.6308943089430894,
+        "micF1": 0.5913978494623656,
+        "macF1": 0.6183913813058188,
+        "Score": 0.6148285282399204
+      },
+      "counts": {
+        "mention": {
+          "tp": 777,
+          "fp": 558,
+          "fn": 400,
+          "precision": 0.5820224719101124,
+          "recall": 0.6601529311809685,
+          "f1": 0.6186305732484076
+        },
+        "document": {
+          "tp": 388,
+          "fp": 277,
+          "fn": 177,
+          "precision": 0.5834586466165413,
+          "recall": 0.6867256637168142,
+          "f1": 0.6308943089430894
+        },
+        "relation": {
+          "tp": 275,
+          "fp": 276,
+          "fn": 104,
+          "precision": 0.49909255898366606,
+          "recall": 0.7255936675461742,
+          "f1": 0.5913978494623656
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/p03/pred.jsonl",
+          "threshold": 0.3
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7",
+        "output_sha256": "bdfb2c90bf6e07b6077e90347a56e979ea5d396cc9d587e2d9de57efb467c4e1"
+      }
+    },
+    {
+      "threshold": 0.5,
+      "metrics": {
+        "menF1": 0.6325276526013929,
+        "docF1": 0.6481481481481481,
+        "micF1": 0.6129753914988815,
+        "macF1": 0.6261296477358569,
+        "Score": 0.6299452099960698
+      },
+      "counts": {
+        "mention": {
+          "tp": 772,
+          "fp": 492,
+          "fn": 405,
+          "precision": 0.6107594936708861,
+          "recall": 0.6559048428207307,
+          "f1": 0.6325276526013929
+        },
+        "document": {
+          "tp": 385,
+          "fp": 238,
+          "fn": 180,
+          "precision": 0.6179775280898876,
+          "recall": 0.6814159292035398,
+          "f1": 0.6481481481481481
+        },
+        "relation": {
+          "tp": 274,
+          "fp": 241,
+          "fn": 105,
+          "precision": 0.5320388349514563,
+          "recall": 0.7229551451187335,
+          "f1": 0.6129753914988815
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/p05/pred.jsonl",
+          "threshold": 0.5
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7",
+        "output_sha256": "24be37a68c863b4243c4e316da63175e713f912e6239b6bf9d02c9671948b872"
+      }
+    },
+    {
+      "threshold": 0.7,
+      "metrics": {
+        "menF1": 0.641318124207858,
+        "docF1": 0.6579634464751958,
+        "micF1": 0.6212471131639723,
+        "macF1": 0.6281339869337241,
+        "Score": 0.6371656676951876
+      },
+      "counts": {
+        "mention": {
+          "tp": 759,
+          "fp": 431,
+          "fn": 418,
+          "precision": 0.6378151260504201,
+          "recall": 0.6448598130841121,
+          "f1": 0.641318124207858
+        },
+        "document": {
+          "tp": 378,
+          "fp": 206,
+          "fn": 187,
+          "precision": 0.6472602739726028,
+          "recall": 0.6690265486725664,
+          "f1": 0.6579634464751958
+        },
+        "relation": {
+          "tp": 269,
+          "fp": 218,
+          "fn": 110,
+          "precision": 0.5523613963039015,
+          "recall": 0.7097625329815304,
+          "f1": 0.6212471131639723
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/p07/pred.jsonl",
+          "threshold": 0.7
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7",
+        "output_sha256": "3b3e0b3114a94700a527e9252eac815da1a13989eaa293671e2989f61f68e260"
+      }
+    }
+  ],
+  "prior_results": [
+    {
+      "threshold": 0.3,
+      "metrics": {
+        "menF1": 0.6471615720524018,
+        "docF1": 0.6726943942133815,
+        "micF1": 0.637125748502994,
+        "macF1": 0.6386875456125958,
+        "Score": 0.6489173150953432
+      },
+      "counts": {
+        "mention": {
+          "tp": 741,
+          "fp": 372,
+          "fn": 436,
+          "precision": 0.6657681940700808,
+          "recall": 0.6295666949872557,
+          "f1": 0.6471615720524018
+        },
+        "document": {
+          "tp": 372,
+          "fp": 169,
+          "fn": 193,
+          "precision": 0.6876155268022182,
+          "recall": 0.6584070796460177,
+          "f1": 0.6726943942133815
+        },
+        "relation": {
+          "tp": 266,
+          "fp": 190,
+          "fn": 113,
+          "precision": 0.5833333333333334,
+          "recall": 0.7018469656992085,
+          "f1": 0.637125748502994
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-p03/pred.jsonl",
+          "threshold": 0.3
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c",
+        "output_sha256": "52ba7190ff5318bf2ac37a3c686fae64b6e543d7239cf9ba84d3a4bda2a62302"
+      }
+    },
+    {
+      "threshold": 0.5,
+      "metrics": {
+        "menF1": 0.6548269581056466,
+        "docF1": 0.6805293005671077,
+        "micF1": 0.649810366624526,
+        "macF1": 0.6568226645521495,
+        "Score": 0.6604973224623575
+      },
+      "counts": {
+        "mention": {
+          "tp": 719,
+          "fp": 300,
+          "fn": 458,
+          "precision": 0.7055937193326791,
+          "recall": 0.610875106202209,
+          "f1": 0.6548269581056466
+        },
+        "document": {
+          "tp": 360,
+          "fp": 133,
+          "fn": 205,
+          "precision": 0.7302231237322515,
+          "recall": 0.6371681415929203,
+          "f1": 0.6805293005671077
+        },
+        "relation": {
+          "tp": 257,
+          "fp": 155,
+          "fn": 122,
+          "precision": 0.6237864077669902,
+          "recall": 0.6781002638522428,
+          "f1": 0.649810366624526
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-p05/pred.jsonl",
+          "threshold": 0.5
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c",
+        "output_sha256": "14ab336f6cee9dd05498e5cff791efbf9e5f4adcee307a766fca5bb6f488edf1"
+      }
+    },
+    {
+      "threshold": 0.7,
+      "metrics": {
+        "menF1": 0.6274900398406374,
+        "docF1": 0.6700924974306269,
+        "micF1": 0.6424581005586593,
+        "macF1": 0.5864412839377412,
+        "Score": 0.6316204804419162
+      },
+      "counts": {
+        "mention": {
+          "tp": 630,
+          "fp": 201,
+          "fn": 547,
+          "precision": 0.7581227436823105,
+          "recall": 0.5352591333899746,
+          "f1": 0.6274900398406374
+        },
+        "document": {
+          "tp": 326,
+          "fp": 82,
+          "fn": 239,
+          "precision": 0.7990196078431373,
+          "recall": 0.5769911504424778,
+          "f1": 0.6700924974306269
+        },
+        "relation": {
+          "tp": 230,
+          "fp": 107,
+          "fn": 149,
+          "precision": 0.6824925816023739,
+          "recall": 0.6068601583113457,
+          "f1": 0.6424581005586593
+        }
+      },
+      "manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-p07/pred.jsonl",
+          "threshold": 0.7
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c",
+        "output_sha256": "c549f0a0058f5871fc05c0b0a37ba21cb6c0e11557e69966c57cb2b853de12ca"
+      }
+    }
+  ],
+  "augment_results": [
+    {
+      "threshold": 0.3,
+      "metrics": {
+        "menF1": 0.7189066059225513,
+        "docF1": 0.7263581488933601,
+        "micF1": 0.6977363515312917,
+        "macF1": 0.6735560776685232,
+        "Score": 0.7041392960039315
+      },
+      "counts": {
+        "mention": {
+          "tp": 789,
+          "fp": 229,
+          "fn": 388,
+          "precision": 0.775049115913556,
+          "recall": 0.6703483432455395,
+          "f1": 0.7189066059225513
+        },
+        "document": {
+          "tp": 361,
+          "fp": 68,
+          "fn": 204,
+          "precision": 0.8414918414918415,
+          "recall": 0.6389380530973451,
+          "f1": 0.7263581488933601
+        },
+        "relation": {
+          "tp": 262,
+          "fp": 110,
+          "fn": 117,
+          "precision": 0.7043010752688172,
+          "recall": 0.6912928759894459,
+          "f1": 0.6977363515312917
+        }
+      },
+      "manifest": {
+        "config": {
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p03/pred.jsonl",
+          "probability": 0.3,
+          "similarity": 0.92,
+          "policy": "augment",
+          "relation_candidates": "entities",
+          "relation_probability": 0.8,
+          "relation_similarity": 0.95
+        },
+        "source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+        "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+          "base": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333",
+          "candidates": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7"
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p03/pred.jsonl",
+          "bytes": 133397,
+          "sha256": "97656277903dbd2fefbf2b349c9b93445defb72bea493ded97cd6facb5429d3d"
+        }
+      }
+    },
+    {
+      "threshold": 0.5,
+      "metrics": {
+        "menF1": 0.7183934276586034,
+        "docF1": 0.7258064516129032,
+        "micF1": 0.696,
+        "macF1": 0.6723787166391733,
+        "Score": 0.7031446489776699
+      },
+      "counts": {
+        "mention": {
+          "tp": 787,
+          "fp": 227,
+          "fn": 390,
+          "precision": 0.7761341222879684,
+          "recall": 0.6686491079014444,
+          "f1": 0.7183934276586034
+        },
+        "document": {
+          "tp": 360,
+          "fp": 67,
+          "fn": 205,
+          "precision": 0.8430913348946136,
+          "recall": 0.6371681415929203,
+          "f1": 0.7258064516129032
+        },
+        "relation": {
+          "tp": 261,
+          "fp": 110,
+          "fn": 118,
+          "precision": 0.7035040431266847,
+          "recall": 0.6886543535620053,
+          "f1": 0.696
+        }
+      },
+      "manifest": {
+        "config": {
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p05/pred.jsonl",
+          "probability": 0.5,
+          "similarity": 0.92,
+          "policy": "augment",
+          "relation_candidates": "entities",
+          "relation_probability": 0.8,
+          "relation_similarity": 0.95
+        },
+        "source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+        "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+          "base": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333",
+          "candidates": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7"
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p05/pred.jsonl",
+          "bytes": 132882,
+          "sha256": "404494ff677482682944c141796a3e66a383712d1f3760af64ecc392fa6502b5"
+        }
+      }
+    },
+    {
+      "threshold": 0.7,
+      "metrics": {
+        "menF1": 0.7191937700412276,
+        "docF1": 0.7246963562753036,
+        "micF1": 0.6934404283801874,
+        "macF1": 0.6681721440088223,
+        "Score": 0.7013756746763853
+      },
+      "counts": {
+        "mention": {
+          "tp": 785,
+          "fp": 221,
+          "fn": 392,
+          "precision": 0.7803180914512923,
+          "recall": 0.6669498725573492,
+          "f1": 0.7191937700412276
+        },
+        "document": {
+          "tp": 358,
+          "fp": 65,
+          "fn": 207,
+          "precision": 0.8463356973995272,
+          "recall": 0.6336283185840708,
+          "f1": 0.7246963562753036
+        },
+        "relation": {
+          "tp": 259,
+          "fp": 109,
+          "fn": 120,
+          "precision": 0.7038043478260869,
+          "recall": 0.683377308707124,
+          "f1": 0.6934404283801874
+        }
+      },
+      "manifest": {
+        "config": {
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/scored-candidates.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p07/pred.jsonl",
+          "probability": 0.7,
+          "similarity": 0.92,
+          "policy": "augment",
+          "relation_candidates": "entities",
+          "relation_probability": 0.8,
+          "relation_similarity": 0.95
+        },
+        "source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+        "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+          "base": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333",
+          "candidates": "6870d28bc453f52f431f0415969d88e9fc1aedea09ed307ed54e0fd896e2deb7"
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/augment-p07/pred.jsonl",
+          "bytes": 131860,
+          "sha256": "170ece5003c96a33da1f2acd7a5dd806190da5c929e50b818465217c2986751b"
+        }
+      }
+    }
+  ],
+  "blend_results": [
+    {
+      "mode": "arithmetic",
+      "secondary_weight": 0.25,
+      "threshold": 0.4,
+      "metrics": {
+        "menF1": 0.7271019257867544,
+        "docF1": 0.7315573770491803,
+        "micF1": 0.7009472259810555,
+        "macF1": 0.6606938613204671,
+        "Score": 0.7050750975343644
+      },
+      "counts": {
+        "mention": {
+          "tp": 774,
+          "fp": 178,
+          "fn": 403,
+          "precision": 0.8130252100840336,
+          "recall": 0.6576040781648258,
+          "f1": 0.7271019257867544
+        },
+        "document": {
+          "tp": 357,
+          "fp": 54,
+          "fn": 208,
+          "precision": 0.8686131386861314,
+          "recall": 0.631858407079646,
+          "f1": 0.7315573770491803
+        },
+        "relation": {
+          "tp": 259,
+          "fp": 101,
+          "fn": 120,
+          "precision": 0.7194444444444444,
+          "recall": 0.683377308707124,
+          "f1": 0.7009472259810555
+        }
+      },
+      "blend_manifest": {
+        "config": {
+          "primary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-nested-hgb-scores/scored-candidates.jsonl.gz",
+          "secondary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-arithmetic/scored.jsonl.gz",
+          "secondary_weight": 0.25,
+          "mode": "arithmetic"
+        },
+        "source_sha256": "6a65c8506808b425fbd2c2ab3b910a55aa9e846c0bac3fb1619f69f589298524",
+        "inputs": {
+          "primary": "5a4619349e98ec1e2740e783d1e59a3dea92e1816eb03c7ec6e8aa7e8c7f374d",
+          "secondary": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c"
+        },
+        "input_annotations_used": false,
+        "output_sha256": "ad6edb879b21edd24f5f70fbbbd6cd45d1c3623439464aba2c6da275b356b68b"
+      },
+      "assembly_manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-arithmetic/scored.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-arithmetic/pred.jsonl",
+          "threshold": 0.4
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "ad6edb879b21edd24f5f70fbbbd6cd45d1c3623439464aba2c6da275b356b68b",
+        "output_sha256": "cb7c69394521ed03315a0981bd470b6cf36c0cf852d38449dbfff639e0076aba"
+      }
+    },
+    {
+      "mode": "geometric",
+      "secondary_weight": 0.5,
+      "threshold": 0.4,
+      "metrics": {
+        "menF1": 0.7206092336982389,
+        "docF1": 0.7293388429752066,
+        "micF1": 0.6968449931412894,
+        "macF1": 0.6601671250545245,
+        "Score": 0.7017400487173149
+      },
+      "counts": {
+        "mention": {
+          "tp": 757,
+          "fp": 167,
+          "fn": 420,
+          "precision": 0.8192640692640693,
+          "recall": 0.643160577740017,
+          "f1": 0.7206092336982389
+        },
+        "document": {
+          "tp": 353,
+          "fp": 50,
+          "fn": 212,
+          "precision": 0.8759305210918115,
+          "recall": 0.6247787610619469,
+          "f1": 0.7293388429752066
+        },
+        "relation": {
+          "tp": 254,
+          "fp": 96,
+          "fn": 125,
+          "precision": 0.7257142857142858,
+          "recall": 0.6701846965699209,
+          "f1": 0.6968449931412894
+        }
+      },
+      "blend_manifest": {
+        "config": {
+          "primary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-nested-hgb-scores/scored-candidates.jsonl.gz",
+          "secondary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/prior-corrected.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-geometric/scored.jsonl.gz",
+          "secondary_weight": 0.5,
+          "mode": "geometric"
+        },
+        "source_sha256": "6a65c8506808b425fbd2c2ab3b910a55aa9e846c0bac3fb1619f69f589298524",
+        "inputs": {
+          "primary": "5a4619349e98ec1e2740e783d1e59a3dea92e1816eb03c7ec6e8aa7e8c7f374d",
+          "secondary": "bd3d9360fea59e20ea4bd0e506e08221ebc3a8aedf334a6ad2dfeba6d59c767c"
+        },
+        "input_annotations_used": false,
+        "output_sha256": "dbabf9e27d34fbc81a8eb88588ed80b259a82db9fd8b128be26dfb4908f1464a"
+      },
+      "assembly_manifest": {
+        "config": {
+          "mode": "assemble",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-geometric/scored.jsonl.gz",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-context-ce/epoch1/blend-geometric/pred.jsonl",
+          "threshold": 0.4
+        },
+        "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+        "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "candidates_sha256": "dbabf9e27d34fbc81a8eb88588ed80b259a82db9fd8b128be26dfb4908f1464a",
+        "output_sha256": "aca942e37304d84fed973adce1a66c121d2807688dae0d2936f8219551c53b23"
+      }
+    }
+  ]
+}

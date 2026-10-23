@@ -3,6 +3,7 @@ from collections import defaultdict
 import enhance
 import prepare_context
 import merge_context
+import adjust_prior
 
 
 class EvidenceBoundaryTests(unittest.TestCase):
@@ -29,6 +30,12 @@ class EvidenceBoundaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):merge_context.parse('{"P1": ["C001"]')
         with self.assertRaises(ValueError):merge_context.parse('I believe {"P1":[]}')
         self.assertEqual(merge_context.parse('```json\n{"P1":[]}\n```'),{'P1':[]})
+
+    def test_prior_correction_restores_training_population_and_endpoints(self):
+        self.assertAlmostEqual(adjust_prior.corrected(.5,.062,.5),.062)
+        self.assertEqual(adjust_prior.corrected(0.,.062,.5),0.)
+        self.assertEqual(adjust_prior.corrected(1.,.062,.5),1.)
+        self.assertLess(adjust_prior.corrected(.8,.062,.5),adjust_prior.corrected(.9,.062,.5))
 
     def test_patient_identity_codes_preserve_colon_ids_reversibly(self):
         doc={'pmc_id':'example','patient':[{'patient_id':'OII:3','mention':[{'offset':0,'length':4,'text':'II:3'}]},{'patient_id':'OIII:1','mention':[]}],
