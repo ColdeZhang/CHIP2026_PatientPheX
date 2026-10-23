@@ -1,0 +1,83 @@
+{
+  "purpose": "One format-only retry after frozen original90 paired SFT inference; not Score",
+  "source": {
+    "retry_code_sha256": "56e79919bdcab03a15d7c34d03930f794ce55dd7dc04cc7e2762f00115939407",
+    "normalization_code_sha256": "4cd1aa35743537defd450a3e24630f0de855fd27f18f98089a6f82d11be5928c"
+  },
+  "retry": {
+    "criterion": "only missing/invalid JSON array or token-limit response; no evaluation labels",
+    "configuration": {
+      "prompts": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/prompts.jsonl",
+      "responses": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/responses.jsonl",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/retry",
+      "retry_responses": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/retry/responses.jsonl",
+      "chunk_chars": 1800
+    },
+    "failed_original_row_ids": [
+      "12444410:extract:4",
+      "5452357:extract:2",
+      "5452357:extract:6",
+      "5575846:extract:0",
+      "5575846:extract:2",
+      "5959423:extract:3"
+    ],
+    "retry_requests": 17,
+    "code_sha256": "56e79919bdcab03a15d7c34d03930f794ce55dd7dc04cc7e2762f00115939407",
+    "input_files": {
+      "prompts": "55bf2795c1af17a6ea3877a650e61780d35607b70662d755aeeccd92ef6b1faa",
+      "responses": "ca82948b547fe2f494d015ce7450becea32203175c33d2c37d47a9999734371b"
+    },
+    "retry_responses_sha256": "383c6d3304f26605fd0b774b14f4a83d30c4ed9ed88353eed354531b27d46b2b",
+    "remaining_invalid_or_truncated": 0,
+    "output_files": {
+      "retry-prompts.jsonl": "5524705ebf95773c2bc90901d2c82c832f6bca94355ab0e19014eaa7b797ef78",
+      "combined-prompts.jsonl": "891bd8864541e1e6bea6b315cb7111b5a5bc97dcb9dd4a864f5fbe3a45620fb7",
+      "combined-responses.jsonl": "89f9b7c7dec655fa2455ceecbb18b5a6df6f6e834b6e364dda780facec7279ae"
+    }
+  },
+  "span_only": {
+    "baseline": {
+      "tp": 787,
+      "fp": 160,
+      "fn": 363,
+      "precision": 0.8310454065469906,
+      "recall": 0.6843478260869565,
+      "f1": 0.7505960896518836
+    },
+    "extracted": {
+      "tp": 621,
+      "fp": 447,
+      "fn": 529,
+      "precision": 0.5814606741573034,
+      "recall": 0.54,
+      "f1": 0.5599639314697926
+    },
+    "novel_coordinates": {
+      "tp": 105,
+      "fp": 386,
+      "fn": 1045,
+      "precision": 0.21384928716904278,
+      "recall": 0.09130434782608696,
+      "f1": 0.12797074954296161
+    },
+    "nonoverlapping": {
+      "tp": 79,
+      "fp": 289,
+      "fn": 1071,
+      "precision": 0.21467391304347827,
+      "recall": 0.06869565217391305,
+      "f1": 0.10408432147562582
+    },
+    "union": {
+      "tp": 892,
+      "fp": 546,
+      "fn": 258,
+      "precision": 0.6203059805285118,
+      "recall": 0.7756521739130435,
+      "f1": 0.6893353941267388
+    }
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/retry",
+  "elapsed_seconds": 49.458,
+  "status": "retry completed; downstream HPO mapping pending"
+}

@@ -9,3 +9,4 @@
 - `sft-extract-fold0-formal-manifest.json` / `sft-extract-fold0-training-complete.json` / `sft-extract-fold0-final-checkpoint.json`：train48-only305窗2epoch与最终adapter身份；原始状态/权重外置，推断再做实际流式hash。
 - `sft-extraction-raw-paired-summary.json`：原90窗严格paired跨度收益和6条触顶，非Score。
 - `qwen-linked-control-summary.json`：零样本实体HPO完整负控制，明确区分固定关系消融与重建k21/.35完整管线。
+- `sft-extraction-format-recovery.json`：6失败窗唯一17子窗恢复，101合并请求全合法；补充跨度诊断与原90配对结果分开。

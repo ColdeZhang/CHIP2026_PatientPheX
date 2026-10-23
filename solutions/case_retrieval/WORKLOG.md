@@ -7,7 +7,7 @@
 - **记录入口**：[实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[小型证据](evidence/round2/README.md)。
 - **运行位置**：外部 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`，完整日志、预测、模型不得入 Git。
 - **当前结果**：内部fold0原版 .613151 → compound修复 .615159；实体不变、关联微升，5项行为测试通过。固定 dev16 已得到 .625073738（原 .613517597），仍未达标；独立复评、重新拟合逐字节复现、36组内部输出复评全部通过。
-- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。真实optimizer续训状态独立检查通过；305窗2epoch BF16 LoRA及原90窗推断均完成：span-F1 .3983→.5392，仍不是Score。当前.100处理6失败窗的唯一17子窗恢复，之后A800运行同构HPO链；基座完整HPO控制为负，详见r2-08。全文关系负结果交训练内错误分类，不在原dev调试。
+- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。真实optimizer续训状态独立检查通过；305窗2epoch BF16 LoRA及原90窗推断均完成：span-F1 .3983→.5392，仍不是Score。6失败窗唯一17子窗恢复已全部合法，正在准备A800同构HPO链；基座完整HPO控制为负，详见r2-08。全文关系负结果交训练内错误分类，不在原dev调试。
 - **边界**：只修改本方案目录；共享变更与主线程协调；本轮不得上传官方。关键检查点及时 commit/push，回报版本与证据。
 
 ## 运行与恢复
@@ -28,4 +28,6 @@
 
 - 13:47:55 UTC：正式SFT epoch002固定90窗推断启动，.100 GPU1作业`proc_9329ac93-4399-46d1-8616-1534c5e855d3`，远端`sft-extract-fold0-bf16-v1/inference/`，原prompt SHA55bf2795...；仅推断epoch002，epoch001保留而未选择。
 
-- 14:01:49 UTC：.100 GPU1唯一17窗格式恢复`proc_b672ed53-ccb7-4ed7-a2ad-9ef6e5694d6a`，远端`sft-extract-fold0-bf16-v1/inference/retry/`。原90响应已完成且永久冻结；外部inference-plan.json标注完成状态，inference-job.json保存实际原作业。
+- 14:01:49 UTC（现已完成）：.100 GPU1唯一17窗格式恢复`proc_b672ed53-ccb7-4ed7-a2ad-9ef6e5694d6a`，远端`sft-extract-fold0-bf16-v1/inference/retry/`。原90响应已完成且永久冻结；外部inference-plan.json标注完成状态，inference-job.json保存实际原作业。
+
+- 14:18 UTC：SFT后HPO的43请求已冻结（SHA61df3dab…，4155–7832tokens），A800 GPU2已从sequence正式接回；先最短/最长2条smoke，再batch1/maxnew1600同构正式链接。完整命令/env/基座与来源差异见外部`sft-extract-fold0-bf16-v1/hpo-inference-plan.json`；实际作业在同目录`hpo-smoke-job.json` / `hpo-inference-job.json`（后者启动后写）。
