@@ -115,3 +115,5 @@
 - [SFT学习型融合只读库存](qwen35-sft-fusion-reuse-review.json)：base四事实负不等同SFT融合负；严格split及缺失32模型/候选方向/粗略成本，无新训练。
 
 - [SFT32 单meta-fold融合运行计划](sft-meta1-run-plan.json)：32训练/16meta/16outer严格隔离，固定LR共同基础±SFT四列，实际CPU通过；正式质量待完成。
+
+- [SFT32 单meta-fold融合结果](sft-meta1-result.json)：同LR+上下文 .673525→加SFT .683810，有增量但低规则/直接SFT48；未迁移原dev，完整预测冻结后唯一评分，独审待回收。

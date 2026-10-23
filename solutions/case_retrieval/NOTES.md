@@ -50,3 +50,8 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 同候选/同旧384前缀保留、尾部最多128 token原文身份锚点的严格fresh CE对照，训练579个缺目标marker正例中378获得新身份上下文，但外层Score .652285→.641438，低同实体规则.711354。关系净增8TP并少10FP让micro提升，患者macro下降仍使总分降低；不能仅凭结构覆盖、train loss或净TP宣布改善。结论只针对本次追加原句/CE/4ep/.5控制，原句可含临床事实，不声称单独身份token因果，也不泛化为所有身份模型无效。详见[固定配对结果](evidence/round2/patient-identity-bridge-paired-result.json)。
 
 数值检查须兼顾正常恢复机制：FP16 GradScaler的非有限梯度可触发跳步/降scale，若在其step/update前直接fatal，会把可恢复溢出变为中断。原最长probe有限不足以覆盖真实shuffle batch；新诊断同顺序重现有限forward/2个梯度溢出，原生scaler确实skip且不动权重。双方共同改BF16 autocast、保留FP32参数/Adam和全部输入/监督后完成1032真实更新；这是透明数值修复，不是质量调参或对旧精度的质量比较。原失败、原因诊断与正式评分分开冻结。
+
+
+### SFT概率/事实融合的证据边界
+
+单meta-fold中，用fresh SFT32生成F1、cachedSFT48生成outer0，共同LR+上下文两HGB只±SFT四事实，Score .673525→.683810：相同控制下有正增量，与旧公开基座四事实负结果不同。仍低规则 .711354/直接SFT48 .695444，因此当前配置不迁移原dev。不能把这次16篇meta训练等同完整3折OOF，也不能把新共同LR特征加成归于SFT。原始结果与固定来源见[结果](evidence/round2/sft-meta1-result.json)。

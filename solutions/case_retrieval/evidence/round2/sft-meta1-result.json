@@ -1,0 +1,358 @@
+{
+  "status": "complete_positive_increment_below_strong_controls_review_pending",
+  "experiment_id": "E-20261023-008",
+  "scope": "F2F3 SFT32 / F1 HGB-meta16 / outer0 eval16; not complete3foldOOF; previously researched outer0",
+  "training": {
+    "smoke_only": false,
+    "epochs": 2,
+    "global_step": 32,
+    "base_parameters": 8953803264,
+    "trainable_adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "elapsed_seconds": 1149.460371017456,
+    "max_gpu_allocated_bytes": 36633378816,
+    "max_gpu_reserved_bytes": 81109450752,
+    "device": "NVIDIA A800 80GB PCIe",
+    "source_sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1",
+    "result_type": "training_only_no_evaluation_score",
+    "new_resume_numerical_equivalence_tested": false
+  },
+  "meta_inference": {
+    "rows": 80,
+    "strict_json_rows": 80,
+    "hit_token_limit": 0,
+    "valid_CIDs": 587,
+    "unresolved_CIDs": 0,
+    "runner_seconds": 282.502,
+    "generation_seconds": 258.474,
+    "output_tokens": 4644
+  },
+  "results": {
+    "status": "complete_single_meta_fold_control",
+    "at_utc": "2026-10-23T21:29:02.793130+00:00",
+    "scope": "F2F3 SFT32 / F1 HGB-meta16 / outer0 eval16; not complete3foldOOF; previously researched outer0",
+    "arms": {
+      "without_llm": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6282245827010622,
+          "macF1": 0.6132004814841803,
+          "Score": 0.673525488537567
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 207,
+            "fp": 73,
+            "fn": 172,
+            "precision": 0.7392857142857143,
+            "recall": 0.5461741424802111,
+            "f1": 0.6282245827010622
+          }
+        },
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/without_llm.predictions.jsonl",
+          "bytes": 123993,
+          "sha256": "943c5ed9d1c216023a7e5c76f8e125fb6a8f94f8547dc84494438a31f037a6f3"
+        },
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/without_llm.metrics.json",
+          "bytes": 12974,
+          "sha256": "cb5cbf1d3d0bf5954184c8fad61619334372ac91fb57d8f5d9b7e56674ddc7de"
+        },
+        "validation_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/without_llm.validation.json",
+          "bytes": 685,
+          "sha256": "ff6e0a0b6c726495401cad6a94d9c807563f8be1d20132fc37b9182d2c0544f9"
+        }
+      },
+      "with_llm": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6798179059180577,
+          "macF1": 0.60274404983177,
+          "Score": 0.6838097114287133
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 224,
+            "fp": 56,
+            "fn": 155,
+            "precision": 0.8,
+            "recall": 0.5910290237467019,
+            "f1": 0.6798179059180577
+          }
+        },
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/with_llm.predictions.jsonl",
+          "bytes": 123993,
+          "sha256": "16890a27431989193bb6f6046e9c5c9162a11fc798b0576a9ded90cab55da0e4"
+        },
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/with_llm.metrics.json",
+          "bytes": 13031,
+          "sha256": "1ee4dfd24876de414fde305c4c43443c6ab25083a2b27332fb08b6d12fe353f6"
+        },
+        "validation_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/with_llm.validation.json",
+          "bytes": 685,
+          "sha256": "8a8c2065ec85e12683c00fa99ba314f4bff1cc730a6aaba853b5ef88ec261562"
+        }
+      }
+    },
+    "controls": {
+      "rules": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.7044198895027625,
+          "macF1": 0.6883173080126084,
+          "Score": 0.711353521870099
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 255,
+            "fp": 90,
+            "fn": 124,
+            "precision": 0.7391304347826086,
+            "recall": 0.6728232189973615,
+            "f1": 0.7044198895027625
+          }
+        }
+      },
+      "lr": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6152046783625731,
+          "macF1": 0.5002539793232106,
+          "Score": 0.6420338869127022
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 263,
+            "fp": 213,
+            "fn": 116,
+            "precision": 0.5525210084033614,
+            "recall": 0.6939313984168866,
+            "f1": 0.6152046783625731
+          }
+        }
+      },
+      "sft48": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6900763358778625,
+          "macF1": 0.6390225644829467,
+          "Score": 0.6954439475814587
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 226,
+            "fp": 50,
+            "fn": 153,
+            "precision": 0.8188405797101449,
+            "recall": 0.5963060686015831,
+            "f1": 0.6900763358778625
+          }
+        }
+      }
+    },
+    "delta_with_to_without": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": 0.0515933232169955,
+      "macF1": -0.01045643165241028,
+      "Score": 0.010284222891146277
+    },
+    "delta_with_to_controls": {
+      "rules": -0.027543810441385763,
+      "lr": 0.04177582451601103,
+      "sft48": -0.011634236152745392
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/paired-predictions-freeze.json",
+      "bytes": 7602,
+      "sha256": "0e119020bdee85474d11be59c9140677af257d7b900e6bdf61259b8e433d18e4"
+    },
+    "production": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/production.json",
+      "bytes": 11577,
+      "sha256": "dcdc68a2b615bba27bc7bfbab2f5d30e779cd694e0f451815761f6a5e8d30f43"
+    },
+    "threshold": 0.5,
+    "originaldev_read": false,
+    "official_submission": false,
+    "limitations": [
+      "One meta fold only; same F1 fitting for both new arms",
+      "SFT32 F1 candidate generators train16; cachedSFT48 outer generated32",
+      "Both add LR probabilities to old context basis; old299 tree is not this baseline",
+      "No threshold/epoch search"
+    ]
+  },
+  "references": {
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/run-plan.json",
+      "bytes": 13675,
+      "sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28"
+    },
+    "fusion-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-plan.json",
+      "bytes": 7149,
+      "sha256": "a035fb78b8014ab3907d2f1c2ac1a6cf7439ac36274199cdb5d09da9edbbfd5d"
+    },
+    "formal2ep/training_complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "d52918ed293c83e20f40faee2825cc7fc2eb5b0484cc94972d8bccdc5dcff20b"
+    },
+    "formal2ep/epoch-002/checkpoint.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10435,
+      "sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120"
+    },
+    "checkpoint-actual-hashes.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/checkpoint-actual-hashes.json",
+      "bytes": 901,
+      "sha256": "80a40c2c741f7abca19dc542b02771f4c1b229a685a942acbaf3195b10ce160e"
+    },
+    "actual-inference-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/actual-inference-plan.json",
+      "bytes": 1279,
+      "sha256": "5ba6e20a2205dafc203f765ec1d58d68f7bfb39861b6a1db2340bb2599dd4bb8"
+    },
+    "meta.responses.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+      "bytes": 25270,
+      "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+    },
+    "meta.responses.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.manifest.json",
+      "bytes": 4142,
+      "sha256": "84e0eec5c9a005d5ee9e372e69fe34afbf764c8539db2b4a8b11b209302e7733"
+    },
+    "meta-responses-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta-responses-freeze.json",
+      "bytes": 601,
+      "sha256": "b563820ac9af78d7c9397360343c9f52cf52fbf095995a6a899aef4ac73a5fc9"
+    },
+    "fusion-results/production.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-results/production.json",
+      "bytes": 11577,
+      "sha256": "dcdc68a2b615bba27bc7bfbab2f5d30e779cd694e0f451815761f6a5e8d30f43"
+    },
+    "paired-predictions-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/paired-predictions-freeze.json",
+      "bytes": 7602,
+      "sha256": "0e119020bdee85474d11be59c9140677af257d7b900e6bdf61259b8e433d18e4"
+    },
+    "evaluation-started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/evaluation-started.json",
+      "bytes": 380,
+      "sha256": "c46ee3e0b80978b013d637fc68a9878e7866274fb968ef99e5a19e053a248338"
+    },
+    "paired-summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/paired-summary.json",
+      "bytes": 7682,
+      "sha256": "26e8ad71138a8884748f3830ffc62bb707b95ce501f54233f261ec8bf233483c"
+    },
+    "infer-gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/infer-gpu-release.json",
+      "bytes": 441,
+      "sha256": "52bf3b1123822fb67f6017dd00032c44b4053dc2522f577aa655c411d128b85b"
+    }
+  },
+  "resource_release": {
+    "at_utc": "2026-10-23T21:28:40.539471+00:00",
+    "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "empty": true,
+    "device": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 81156 MiB"
+  },
+  "formal_source_commit": "e07331c3d937194339289ead7cb8ace7f069000a",
+  "fusion_source_commit": "07a3737d1f41a152e30b4a75a0fe430c1926b024",
+  "latest_confirmed_pushed_checkpoint": "b5ff444e1ff137f8b0b1750ada9350a923e31b4e",
+  "decision": "Positive SFT increment under this F1-only matched control, but not above rules or standalone SFT48. No originaldev migration, no automatic remainingfold training or threshold changes.",
+  "independent_terminal_review": "pending"
+}
