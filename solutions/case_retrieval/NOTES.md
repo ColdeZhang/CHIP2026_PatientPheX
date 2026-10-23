@@ -44,3 +44,9 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 - 重复fresh运行环境检查应写新的launch-preflight文件，逐项比较解析后的模型/环境/SHA语义；不要覆写已有freeze所绑定的初次preflight，也不要把可能含耗时元数据的整份新响应SHA当作环境是否等价的判断。
 
 - [关系连续置信度判断](research/continuous-relation-confidence.md)：现有Qwen raw无logprobs，不能直接调置信阈值；monoT5式yes/no logits是不同的连续信号，但4127训练pair实际prefix为4.145M（原6.39倍），收益/运行时间未证。患者CE、max-MIL、span-ID CE入树已做过的机制分别列明；当前只读保留，不追加GPU。
+
+### 身份上下文覆盖不等于目标总分收益
+
+同候选/同旧384前缀保留、尾部最多128 token原文身份锚点的严格fresh CE对照，训练579个缺目标marker正例中378获得新身份上下文，但外层Score .652285→.641438，低同实体规则.711354。关系净增8TP并少10FP让micro提升，患者macro下降仍使总分降低；不能仅凭结构覆盖、train loss或净TP宣布改善。结论只针对本次追加原句/CE/4ep/.5控制，原句可含临床事实，不声称单独身份token因果，也不泛化为所有身份模型无效。详见[固定配对结果](evidence/round2/patient-identity-bridge-paired-result.json)。
+
+数值检查须兼顾正常恢复机制：FP16 GradScaler的非有限梯度可触发跳步/降scale，若在其step/update前直接fatal，会把可恢复溢出变为中断。原最长probe有限不足以覆盖真实shuffle batch；新诊断同顺序重现有限forward/2个梯度溢出，原生scaler确实skip且不动权重。双方共同改BF16 autocast、保留FP32参数/Adam和全部输入/监督后完成1032真实更新；这是透明数值修复，不是质量调参或对旧精度的质量比较。原失败、原因诊断与正式评分分开冻结。
