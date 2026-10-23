@@ -48,6 +48,7 @@ def main():
     ap=argparse.ArgumentParser()
     for k in ['training-manifest','train','input','base','candidates','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--threshold',type=float,default=.4)
+    ap.add_argument('--early-stopping',choices=['off','auto'],default='off')
     a=ap.parse_args();started=time.monotonic();source_sha=baseline.sha256(__file__);training=baseline.read_jsonl(a.train);inputs=baseline.read_jsonl(a.input);trainids={d['pmc_id'] for d in training};inputids={d['pmc_id'] for d in inputs};assert not trainids&inputids;assert all('entities' not in d and 'association' not in d for d in inputs)
     specs=json.loads(Path(a.training_manifest).read_text());seen=set();x=[];y=[];training_by_id={d['pmc_id']:d for d in training}
     for spec in specs:
@@ -64,7 +65,7 @@ def main():
                 x.append(features(d,c,base[d['pmc_id']]));y.append(target)
     assert seen==trainids
     vec=DictVectorizer(sparse=False);matrix=vec.fit_transform(x)
-    model=HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023,early_stopping=False).fit(matrix,y)
+    model=HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023,early_stopping=('auto' if a.early_stopping=='auto' else False)).fit(matrix,y)
     raw=read_candidates(a.candidates);base={d['pmc_id']:d for d in baseline.read_jsonl(a.base)};pred=[]
     for d in inputs:
         cs=pool(d,base[d['pmc_id']],raw[d['pmc_id']]);probs=model.predict_proba(vec.transform([features(d,c,base[d['pmc_id']]) for c in cs]))[:,1]

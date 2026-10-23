@@ -1,0 +1,112 @@
+{
+  "scope": "train64 inner fold0 only; original dev16 labels not read; diagnostic post-hoc evidence, not model fitting or new predictions",
+  "sources": {
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+      "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+    },
+    "pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/abbreviations.jsonl",
+      "sha256": "a1515d0d416ca48b92e11aa60b9de516d650b3c50ab3d44191e74590b839a971"
+    },
+    "candidate_pool": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/scored-candidates.jsonl.gz",
+      "sha256": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac"
+    }
+  },
+  "summary": {
+    "gold_relations": 379,
+    "covered_final_entities": 266,
+    "covered_any_scored_candidate_or_final": 312,
+    "covered_positive_gold_entities": 374,
+    "covered_high_scored_candidate_or_final": 275,
+    "fn": 118,
+    "fn_outside_candidate_pool": 67,
+    "tp": 261,
+    "fn_candidate_only": 46,
+    "fp": 109,
+    "fp_document_gold_concept_not_patient": 56,
+    "fp_not_positive_gold_document_concept": 36,
+    "fp_gold_other_patient": 17,
+    "fn_covered_final": 5,
+    "fn_final_assigned_other_patient": 3,
+    "fn_final_assigned_wrong_other_patient": 2,
+    "fn_final_not_assigned_any_patient": 2
+  },
+  "metrics": {
+    "menF1": 0.7225034514496088,
+    "docF1": 0.7265388496468214,
+    "micF1": 0.6969292389853138,
+    "macF1": 0.6731895885442786,
+    "Score": 0.7047902821565056
+  },
+  "coverage_rates": {
+    "final_entities": 0.7018469656992085,
+    "all_pool_or_final": 0.8232189973614775,
+    "high_score_pool_or_final": 0.7255936675461742,
+    "recall_conditioned_on_final_concept_coverage": 0.981203007518797,
+    "fn_final_covered": 0.0423728813559322,
+    "fn_candidate_only": 0.3898305084745763,
+    "fn_outside_pool": 0.5677966101694916
+  },
+  "oracle_diagnostics_not_predictions": {
+    "remove_all_false_positive_relations": {
+      "menF1": 0.7225034514496088,
+      "docF1": 0.7265388496468214,
+      "micF1": 0.815625,
+      "macF1": 0.8009153501393195,
+      "Score": 0.7663956628089375
+    },
+    "perfect_selection_of_final_entity_concepts": {
+      "menF1": 0.7225034514496088,
+      "docF1": 0.7265388496468214,
+      "micF1": 0.8248062015503876,
+      "macF1": 0.8516885160502601,
+      "Score": 0.7813842546742695
+    },
+    "warning": "Post-hoc gold-derived ceiling calculations only. No oracle predictions are saved or eligible for selection/submission."
+  },
+  "recommendations": [
+    {
+      "priority": 1,
+      "name": "Context-aware overlapping candidate competition",
+      "logic": "Keep candidate groups by intersecting span; compute lexical score, Sap score and margin, ontology specificity, boundary/content modifiers, patient-clinical assertion, negation, and whether a shorter exact span loses a semantic modifier. Learn ranking on training-fold OOF only. Emit one coherent span/concept (or justified compound), not every ancestor.",
+      "reason": "Eight of nine high-scoring missing concepts overlap selected alternative concepts; uniform threshold lowering does not solve competition.",
+      "ablation": "Hold candidate pool fixed and swap only selection ranker; inspect menF1/docF1 and relation precision on fold0 then all frozen folds."
+    },
+    {
+      "priority": 2,
+      "name": "Typed local assertion state",
+      "logic": "Expose polarity, hypothetical/test-target/general assertion and developmental inability as features, not blanket section exclusions. Extend scoped not-have/show/present/observe patterns and pseudo-negation. Build from training evidence, preserve original offsets.",
+      "reason": "Current final concept coverage recall is 98.1%, while 109 relation FPs remain. Assertion quality can improve precision without indiscriminate all-patient expansion.",
+      "ablation": "Compare individual features, including patient-token distance. Count clinically valid but gold-absent cases separately to avoid overgeneralizing annotation quirks."
+    },
+    {
+      "priority": 3,
+      "name": "Bounded patient and cohort scope",
+      "logic": "Maintain topic patient, sentence experiencer and explicit cohort separately. Both/all/each expands only a resolved set of target IDs; scope ends at contrast, one/the other, next explicit subject or case header. Unlisted patient/pedigree anchors break inheritance. Resolve former/latter only between two unique antecedents; abstain when unknown.",
+      "reason": "All five final-covered FNs mostly need local lexical normalization or narrow coreference; global all-patient fallback risks the 17 wrong-patient FPs.",
+      "ablation": "Shared cohort, unlisted-anchor barrier and latter resolution separately, before combined model; report FP/TP changes and unresolved-subject rate."
+    },
+    {
+      "priority": 4,
+      "name": "Coordination-normalized candidate views",
+      "logic": "Generate virtual matching views for A and B were MODIFIER and MODIFIER A and B, and measurement/anatomy heads; map proposed concepts back to original continuous evidence spans, preserving start/end. Propagate modifiers only when grammar supports both conjuncts. Use full phrase reranking to avoid treating ordinary anatomy or analyte names as abnormalities.",
+      "reason": "Predicative poor eye contact, limbs weakness, specific cough, and directional biochemical abnormalities are not fixed by nearest-patient logic.",
+      "ablation": "Candidate recall and precision measured separately; synthetic alias templates derived from HPO and train-fold evidence only, never this validation document identity."
+    }
+  ],
+  "limitations": [
+    "Only train64 inner fold0 was examined; no original dev16 gold was read. These are explanatory post-hoc diagnostics, not an independent evaluation of any new method.",
+    "Final document-level concept coverage is an optimistic bound: a concept occurring for another patient or in generic discussion is not evidence for the target patient.",
+    "Candidate pool is the frozen scored pool supplied for this snapshot, not an exhaustive set of all possible HPO phrases.",
+    "Error examples are evidence only and must not become document/patient/concept-specific runtime rules.",
+    "Context lists in raw error records are truncated to six occurrences or best three candidates; curated findings inspect relevant full passages.",
+    "Gold-relative FP categories do not establish clinical falsehood; several clear annotation granularity/incompleteness examples exist.",
+    "No repository files, model parameters, output predictions or official submissions were modified."
+  ],
+  "full_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-relation-research.json",
+    "sha256": "dcbeb8fdc82846b7200eef4c3f6b35a3233c5efeeeb7ae06263b3d061179c369"
+  }
+}
