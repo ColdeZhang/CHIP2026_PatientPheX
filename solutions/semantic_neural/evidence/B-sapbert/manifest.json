@@ -1,0 +1,83 @@
+{
+  "experiment": "E-20261023-006",
+  "elapsed_seconds": 25.530955289956182,
+  "parameters": {
+    "train": "data/train80.jsonl",
+    "input": "data/B.input.jsonl",
+    "hpo": "data/hp.obo",
+    "output": "B-sapbert/predictions.jsonl",
+    "work_dir": "B-sapbert",
+    "model_dir": "model",
+    "encoder": "sapbert",
+    "device": "cuda",
+    "threads": 1,
+    "batch_size": 128,
+    "seed": 20261023,
+    "max_candidates": 1600,
+    "negatives_per_doc": 300,
+    "exact_threshold": 0.48,
+    "neural_threshold": 0.72,
+    "min_similarity": 0.87,
+    "patient_threshold": 0.6
+  },
+  "training": {
+    "positive_spans": 5828,
+    "negative_spans": 23932,
+    "training_docs": 80,
+    "semantic_bank": 42849,
+    "detector_iterations": 18
+  },
+  "counts": {
+    "documents": 100,
+    "entities": 6143,
+    "links": 2024
+  },
+  "source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+  "model_source": {
+    "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+    "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+    "files": {
+      "config.json": {
+        "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+        "bytes": 462,
+        "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+      },
+      "tokenizer_config.json": {
+        "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+        "bytes": 198,
+        "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+      },
+      "special_tokens_map.json": {
+        "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+        "bytes": 112,
+        "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+      },
+      "vocab.txt": {
+        "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+        "bytes": 226150,
+        "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      },
+      "model.safetensors": {
+        "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+        "bytes": 437955508,
+        "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+      }
+    },
+    "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+    "derived_weights": {
+      "bytes": 218990904,
+      "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+    }
+  },
+  "inputs": {
+    "data/train80.jsonl": "3880983ee40428399f579478029342aa46678b36e4021d20494f25d8873dcdbd",
+    "data/B.input.jsonl": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+    "data/hp.obo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "output": {
+    "path": "B-sapbert/predictions.jsonl",
+    "sha256": "f12d2ffb5a65edf16889d8f349a34f70c7fd3132cd145d6d385a123132d412d2",
+    "bytes": 801072
+  },
+  "evaluation": "Not performed in prediction; use shared evaluator on independent gold."
+}

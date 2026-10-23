@@ -1,6 +1,6 @@
 # E-20261023-006：神经语义概念识别与患者图传播
 
-状态：MiniLM CPU独立验证完成，B备用预测运行中；SapBERT权重已下载并转换，中转服务器后等待GPU时段。分支 `day1/semantic-neural`，起点 `ac8a752`。目标是提供区别于精确词典、模糊排序、监督 BIO、病例检索迁移的首日方案。
+状态：首日实验完成。两个encoder独立验证完成，选择SapBERT；全量B预测已核验并回收到本地交给主线程，GPU已释放。分支 `day1/semantic-neural`，起点 `ac8a752`。目标是提供区别于精确词典、模糊排序、监督 BIO、病例检索迁移的首日方案。
 
 ## 假设与首版设计
 
@@ -32,7 +32,7 @@ GPU已由主线程分配：10.5.2.3 的 A30 GPU0（24GB），开始前核验无�
 
 2026-10-23 运行过程：远端直连 Hugging Face 报 `Network is unreachable`，IPv4连接和 hf-mirror 也超时。因此改为本机下载固定版本，再由 MCP 分片传输；大请求曾触发 HTTP413，384KiB 原始块转base64成功。远端独立venv只读继承既有torch2.7.0/transformers4.50.0，新装sklearn1.6.1和pyahocorasick2.3.1，不改共享环境。该环境初始化与网络失败不会计为模型效果失败。
 
-SapBERT原始权重437,955,508字节，使用 `prepare_model.py` 的numpy/safetensors转换为FP16副本218,990,904字节，派生SHA-256为 `dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814`；转换不改变训练内容。GPU尚未占用，由sequence路线先使用、结束后再交接。CPU MiniLM 验证开始，已完成42,575条本体/训练别名编码，单核耗时71.153秒。
+SapBERT原始权重437,955,508字节，使用 `prepare_model.py` 的numpy/safetensors转换为FP16副本218,990,904字节，派生SHA-256为 `dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814`；转换不改变训练内容。下载期间GPU未占用，后续根据两路线模型到位时间协调交接。CPU MiniLM 验证先完成42,575条本体/训练别名编码，单核耗时71.153秒。
 
 外部目录根为 `/workspace/patientphex-runs/day1-20261023/semantic-neural/`：`dev-minilm/` 为CPU对照，`sapbert-model/`为原始权重，`sapbert-fp16/`为转换权重；远端位于10.5.2.3项目挂载的 `semantic-neural/` 子目录。权重、缓存和完整日志均不进入Git。
 
@@ -70,4 +70,30 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python solutions/semantic_neural/run.py
 
 总耗时247.556秒；预测100文献244患者、5,394实体、1,820关系项。`validate_predictions.py`检查零错误/警告。文件703,874字节，SHA `810b45a984bc6e4ffec611c62f64c9a111e268bb1af1cec579107a5c1738f3c8`，位于外部根目录`B-minilm/predictions.jsonl`；manifest与验证报告在 [evidence/B-minilm](../../solutions/semantic_neural/evidence/B-minilm)。依赖真实版本在 [environment-cpu.json](../../solutions/semantic_neural/evidence/environment-cpu.json)。
 
-待SapBERT验证完成，再根据相同口径比较并推荐本路线最多一个候选；本代理不操作网站。
+### SapBERT GPU独立验证与选择
+
+SapBERT权重中转完成后，远端组装并再次核对SHA；GPU0在开始前无计算进程、24,160MiB空闲。固定模型revision见上，原始FP32权重SHA `a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614`，FP16派生SHA见模型准备过程。模型及参数未微调；阈值与MiniLM一致。实际运行代码为 `635fdd2` 的run.py，SHA `b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a`；后续文档提交没有改变该文件。
+
+GPU dev作业 `proc_48396640-0da6-4116-a839-350eeb622c27`，2026-10-23 11:27:34 UTC开始，实际15.077秒，训练64篇、4,744正/19,132负跨度、42,575概念表面形式。完整命令与模型manifest保存在 [evidence/dev-sapbert](../../solutions/semantic_neural/evidence/dev-sapbert)。与MiniLM相比，除encoder之外运行后端/精度和依赖环境也不同：GPU torch2.7.0+cu128、transformers4.50.0、numpy1.26.4、sklearn1.6.1，因此这是实际方案对照，不声称严格隔离了所有数值库影响。
+
+| 同一64/16划分、公共v2评测 | menF1 | docF1 | micF1 | macF1 | Score |
+|---|---:|---:|---:|---:|---:|
+| MiniLM CPU对照 | 0.690076 | 0.703665 | 0.380420 | 0.297210 | 0.517843 |
+| **SapBERT GPU首版** | **0.701621** | **0.738916** | **0.429907** | **0.310659** | **0.545275** |
+| 独立方案3 CRF参照 | 0.732540 | 0.745303 | 0.648472 | 0.612620 | 0.684734 |
+
+SapBERT相对MiniLM提升0.027433，四项均升，选择它作为本路线唯一提交候选。相对CRF仍低0.139458，尤其micF1低0.218565、macF1低0.301962；不能将医学encoder优于通用encoder表述为神经路线已优于其他基线。CRF指标读取其 `crf-dev-v1/metrics.eval-v2.json`，不是复用其模型、代码或预测。
+
+dev输出992实体、296关系项、16文献36患者，格式检查零错误/警告。文件129,277字节，SHA `c5eb86a5bcf894e7ab5d2812ca8d62d386733951e762faf83e8577a049a0de1f`；本地回收后再次核对hash。语义新表面词179项，其中80项匹配金标跨度/ID；其余新词包含正常解剖名词误报。12名患者仍无预测，292个关系漏报中164项概念已识别但未分配、128项实体概念缺失；135误报中93项是文献已有金标概念分错患者、42项为额外概念。只读诊断入口为 `analyze_errors.py`，没有用诊断结果再次调阈值。
+
+dev结束后已复查GPU0无本路线进程，并把时段交给sequence。sequence完成后，11:29:58 UTC再次复查空闲，启动完整train80→B，作业 `proc_f38f6ea6-1df4-412c-aee9-ac134a9a46b6`。该路线只在主线程完成平台提交后才能称为已提交；本代理不操作网站。
+
+### SapBERT最终B候选与结论
+
+完整train80重新拟合与B推理共25.531秒，使用5,828正/23,932负跨度、42,849语义词表项。输出100篇文献、244名指定患者、6,143实体与2,024关系项，格式核验零错误/警告。实际代码、模型、阈值与SapBERT dev一致，仅训练数据增为全部80篇、推理输入改为B；对应完整命令见 [remote-B-job.json](../../solutions/semantic_neural/evidence/remote-B-job.json)。依赖真实版本见 [environment-gpu.json](../../solutions/semantic_neural/evidence/environment-gpu.json)。
+
+最终文件 `/workspace/patientphex-runs/day1-20261023/semantic-neural/B-sapbert/predictions.jsonl`，801,072字节，SHA-256 **`f12d2ffb5a65edf16889d8f349a34f70c7fd3132cd145d6d385a123132d412d2`**。服务器持久副本位于10.5.2.3挂载项目 `semantic-neural/B-sapbert/`，本地回收与服务器校验一致；模型和embedding缓存仍留仓库外。小型证据在 [evidence/B-sapbert](../../solutions/semantic_neural/evidence/B-sapbert)。该文件已交主线程作为第五路线候选，官方接受状态与成绩应查主线程提交记录，不能从本地分数推断。
+
+2026-10-23 11:30 UTC后检查：两个GPU作业均 `running=false`，GPU0没有计算进程；未修改或终止其他卡的进程。完成状态证据为 [remote-job-completion.json](../../solutions/semantic_neural/evidence/remote-job-completion.json)。未测GPU显存峰值。GitHub认证在中间检查点曾失效，主线程已处理恢复；不能将短暂推送失败称为已备份，最终Git检查点由主线程台账统一记录。
+
+**结论**：本轮医学语义编码器比通用MiniLM有效，提供了词表外表述识别能力；现阶段整体成绩受患者关系图拖累，明显弱于同划分CRF路线。作为独立首版提交以收集官方反馈，下一轮优先改共享家系/表格患者分配、跨句指代与正常解剖名词过滤；今日不继续试阈值，不追加其他外部人工表型训练数据。

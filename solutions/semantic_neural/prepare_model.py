@@ -11,6 +11,7 @@ import urllib.request
 
 MODEL = 'cambridgeltl/SapBERT-from-PubMedBERT-fulltext'
 REVISION = '090663c3ae57bf35ffe4d0d468a2a88d03051a4d'
+WEIGHTS_SHA256 = 'a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614'
 FILES = ['config.json', 'tokenizer_config.json', 'special_tokens_map.json', 'vocab.txt', 'model.safetensors']
 
 
@@ -39,6 +40,8 @@ def main():
                     stream.write(chunk)
             pending.replace(path)
         manifest['files'][name] = {'source': url, 'bytes': path.stat().st_size, 'sha256': digest(path)}
+        if name == 'model.safetensors' and manifest['files'][name]['sha256'] != WEIGHTS_SHA256:
+            raise ValueError('SapBERT weights differ from the recorded pinned-source SHA-256')
     (args.output / 'manifest.json').write_text(json.dumps(manifest, indent=2))
     if args.fp16_output:
         import numpy as np

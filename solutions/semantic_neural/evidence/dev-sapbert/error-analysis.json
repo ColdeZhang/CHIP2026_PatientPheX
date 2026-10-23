@@ -1,0 +1,134 @@
+{
+  "purpose": "Read-only diagnosis after frozen predictions; no model fitting or threshold selection.",
+  "counts": {
+    "patients_empty_prediction": 12,
+    "fn_recognized_but_not_assigned": 164,
+    "fn_missing_entity_concept": 128,
+    "fp_gold_document_concept_wrong_patient": 93,
+    "fp_not_gold_document_concept": 42,
+    "entities_with_known_lexical_surface": 813,
+    "dense_new_surface_entities": 179,
+    "dense_new_surface_matching_gold_span_id": 80
+  },
+  "large_patient_misses": [
+    {
+      "pmc_id": "6096008",
+      "patient_id": "P1",
+      "gold": 12,
+      "predicted": 2,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OIII:4",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OIV:4",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OV:4",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OV:5",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OV:6",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OV:7",
+      "gold": 10,
+      "predicted": 0,
+      "missing_recognized": 7
+    },
+    {
+      "pmc_id": "12126309",
+      "patient_id": "OVI:1",
+      "gold": 11,
+      "predicted": 0,
+      "missing_recognized": 8
+    }
+  ],
+  "novel_surface_examples": [
+    {
+      "pmc_id": "12147048",
+      "text": "pigmentosa",
+      "identifier": "HP:0001000",
+      "matched": false
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "pallor optic discs",
+      "identifier": "HP:0000543",
+      "matched": true
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "high cholesterol",
+      "identifier": "HP:0003124",
+      "matched": true
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "increased pigmentation",
+      "identifier": "HP:0000953",
+      "matched": true
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "arteriolar narrowing",
+      "identifier": "HP:0100545",
+      "matched": false
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "poor pupil reaction to light",
+      "identifier": "HP:0030211",
+      "matched": true
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "thinning of the entire retina",
+      "identifier": "HP:0030329",
+      "matched": true
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "narrowing of the vessels",
+      "identifier": "HP:0100545",
+      "matched": false
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "absence of the foveal structures",
+      "identifier": "HP:0025010",
+      "matched": false
+    },
+    {
+      "pmc_id": "12147048",
+      "text": "atrophic macula",
+      "identifier": "HP:0007401",
+      "matched": false
+    }
+  ],
+  "caveat": "Novel entity exact-match count is a diagnostic, not a separately official metric."
+}
