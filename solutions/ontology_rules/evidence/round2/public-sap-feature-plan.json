@@ -1,0 +1,54 @@
+{
+  "experiment": "Public-only candidate-specific Sap cosine incremental control",
+  "vector_source_sha256": "5f6a6b384704559c22bdccf950409a7d82eea92c763e0f44960d2181ba529105",
+  "request_sha256": "7c030cacc87c6d2ce65b60fd455d250fa39f70d76a9f42f08a94e81bdfa7abf3",
+  "request_manifest_sha256": "4b8fcd4403a335555dc0a06088899d5a072dbec4806e7aac5c068ade473681a2",
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "remote_cwd": "ontology-round2/public-sap-feature-control",
+  "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+  "model_revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+  "model_manifest_sha256": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8",
+  "encoder_signature": "sapbertc0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "public_bank": "ontology-round2/frozen-fold0-sapbert/embeddings/19ab05a4a614bbc869be5c1d2943e08962c4e82f968026bcb41aa259e617d242.npy",
+  "public_bank_key": "19ab05a4a614bbc869be5c1d2943e08962c4e82f968026bcb41aa259e617d242",
+  "public_bank_sha256": "d8bb8709a238a562b45913c19878c78e45584eaf755678fdbe3429fdb76220b8",
+  "expected_missing_phrases": 799,
+  "GPU_UUID": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "GPU_encode_hard_seconds": 60,
+  "TERM_grace_seconds": 5,
+  "CPU_prepare_cap_seconds": 120,
+  "CPU_cosine_cap_seconds": 120,
+  "fit_infer_total_CPU_seconds": 240,
+  "decode_calibrate_total_CPU_seconds": 30,
+  "features": [
+    "public_sap_cosine",
+    "public_sap_observed"
+  ],
+  "policy": "Only existing fullpool candidate IDs; no retrieval/newspans/IDs. Atomic max public alias cosine; compound min atom maxima; NIL/missing explicitly false and numeric placeholder0. Preserve every old field including six rawtop3 observation fields.",
+  "training": "Same four outerfolds/three nested train32\u219216 origins, same HGB160/seed20261023/cut.3, 4fits <=240s, all nonentities oldcut.3 exactly.",
+  "cuts": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "selection": "Freeze all36 complete predictions before one train64-only pooled(menF1+docF1)/2; tie nearest.4 then higher. Compare old calibratedbest.7801925961542502; also fixed.3 versus prior top3 negative. No dev, no further cuts/features; if not positive close.",
+  "runtime": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+    "environment": {
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  }
+}

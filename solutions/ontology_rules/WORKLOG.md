@@ -3,6 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
+- **新独立Sap真实两特征控制（准备）**：同扩展池/旧字段全保留，公开alias指定ID真实cos+observed；仅799缺词同原模型≤60秒，四fit≤240秒/事前九点≤30秒，36pred先冻后校准，不dev。[固定协议](experiments/E-20261023-PUBLIC-SAP-FEATURE.md)。
 - **top3-ID四fold控制（固定与校准均负、均已独审结案）**：按无新quality资源修订3.1倍后保留完整机械池，四fit145.395秒<240，8完整pred共同freeze后唯一v2；pooled **.725655389→.723467295（−.002188093）**、4fold全负，mention−5TP/+69FP、doc+3TP/+18FP，关系完全不变、0错警。终点独审PASS8368ffa1；另获准旧九点校准2.872秒，新best cut.4目标.777516517仍低于旧.780192596（Δ−.002676080）、各fold全负，校准独审PASS cae2eabf，关闭完整配方，不改写固定.3负结论，不新fit/原dev。[完整记录](experiments/E-20261023-PUBLIC-PHENO-TOP3-ID.md)、[结果/恢复](evidence/round2/public-phenotagger-top3-control-results.json)。
 - **Sap匹配信号资源核查（CPU完成，无新实验）**：16套完整缓存存在；公共HPO41,099词面向量可复用，新增ID的26,279词面中仅727缺已核缓存，全池799缺失。旧nearest similarity/训练best_id不可冒充任意新ID真实cos；需公共alias-all-ID映射、独立新字段及明确缺失语义。未新编码/fit/GPU/dev，[事实与估计](evidence/round2/public-phenotagger-top3-sap-feasibility.json)。
 - **当前 CPU 研究（完成，已独审）**：298个同跨度错ID漏检中，两公开模型raw top1/top3并集供给71/155，rank2/3净补84（四折25/25/19/15）；22无raw（19unigram），旧head固定映射后25个literal目标不可达；现成字典多ID增量0。程序15.397秒/外层19.059秒，无NN/权重/原dev/新预测。建议另项先核全部旧跨度的统一top3 ID池与真实per-ID概率/rank特征，当前HGB仅来源/混合score不足；诊断独审PASS95f38f35，统一池后续另记，[结果与边界](experiments/P-20261023-PUBLIC-PHENO-TOP3.md)。
