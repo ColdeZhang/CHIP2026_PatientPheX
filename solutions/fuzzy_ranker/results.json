@@ -1,0 +1,1177 @@
+{
+  "experiment_id": "E-20261023-003",
+  "result_type": "local_public_rule_approximation_not_official",
+  "selected_run": "full-v1",
+  "selected_source_commit": "3eff30a0cdfc454168ed0eb2d7913945a8766c6b",
+  "runs": {
+    "dev-v1": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:11:15.820291+00:00",
+        "training": {
+          "mention_candidates": 9748,
+          "mention_positives": 4710,
+          "training_documents": 64,
+          "hpo_terms": 19120,
+          "aliases": 42283,
+          "relation_candidates": 13437,
+          "relation_positives": 4434
+        },
+        "prediction": {
+          "candidates": 1738,
+          "entities": 689,
+          "associations": 402
+        },
+        "input_documents": 16,
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "output_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643",
+        "output_bytes": 93327,
+        "fingerprint": {
+          "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "5f3614f3859a74d98dc989a963ed32f34c131f31ae30e40073006bb2b69d3c5f"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train64.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/dev16.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 16.100900940999963,
+        "max_rss_kib": 708348,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 689,
+          "relations": 402,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/error_analysis.json",
+          "bytes": 1942,
+          "sha256": "dcaff442b7c45b9edd7bd7f4eaab2866ece631fde17aa5842d9a3c266ccd00a1",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/metrics.json",
+          "bytes": 12834,
+          "sha256": "a61e1bb26c6387f6132f373b44b4a4a6b7a92cd73a8966a739f7972990cd3d9b",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/model.joblib",
+          "bytes": 5138742,
+          "sha256": "1e291d47c3a72913b4952b0fc8d66bbd93e10312d3a16d41ac0fe880228e1555",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/predictions.jsonl",
+          "bytes": 93327,
+          "sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/run.json",
+          "bytes": 1753,
+          "sha256": "44c2f2c55fa05f58ad7300aeba9f48ca2fa1e0476f426b954b7942e4cb9aec18",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/run.log",
+          "bytes": 438,
+          "sha256": "56c870f9d8429bcbc4c4e4f85a85bcfac96a1984f4687912d9fe4b682fa96d8a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/validation.json",
+          "bytes": 685,
+          "sha256": "b1f0b014cee84bebfeb0ab30a69dcb465906c39558f325f768c2ab3c9b55d0c6",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/metrics.eval-v2.json",
+          "bytes": 13083,
+          "sha256": "c365eb013fb759f61f7d9bcf84299494bf1583eeb256dcb23ed02963a48b2657",
+          "retention": "retain externally; evaluator v2 supersedes original metrics without changing predictions"
+        }
+      ],
+      "metrics": {
+        "metrics": {
+          "menF1": 0.6651810584958218,
+          "docF1": 0.7019867549668874,
+          "micF1": 0.591283863368669,
+          "macF1": 0.5732323242940577,
+          "Score": 0.632921000281359
+        },
+        "counts": {
+          "mention": {
+            "tp": 597,
+            "fp": 92,
+            "fn": 509,
+            "precision": 0.8664731494920174,
+            "recall": 0.5397830018083183,
+            "f1": 0.6651810584958218
+          },
+          "document": {
+            "tp": 318,
+            "fp": 28,
+            "fn": 242,
+            "precision": 0.9190751445086706,
+            "recall": 0.5678571428571428,
+            "f1": 0.7019867549668874
+          },
+          "relation": {
+            "tp": 251,
+            "fp": 151,
+            "fn": 196,
+            "precision": 0.6243781094527363,
+            "recall": 0.5615212527964206,
+            "f1": 0.591283863368669
+          }
+        },
+        "documents": 16,
+        "patients": 36,
+        "evaluator_version": "patientphex-public-approx-v1",
+        "result_type": "local_public_rule_approximation_not_official",
+        "configuration": {
+          "body_scope": "all",
+          "unlinked_document_mode": "text",
+          "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+          "duplicate_entities": "deduplicated by span and split HPO ID",
+          "empty_patient_f1": 1.0
+        },
+        "caveats": [
+          "Official evaluator source is unavailable; these numbers are not official scores.",
+          "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+          "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+          "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+          "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+          "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+        ],
+        "sensitivity": {
+          "unlinked_doc_ignore": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7082405345211581,
+            "micF1": 0.591283863368669,
+            "macF1": 0.5732323242940577,
+            "Score": 0.6344844451699266
+          },
+          "unlinked_doc_shared_id": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7043189368770764,
+            "micF1": 0.591283863368669,
+            "macF1": 0.5732323242940577,
+            "Score": 0.6335040457589062
+          },
+          "scope_body": {
+            "menF1": 0.6627756160830091,
+            "docF1": 0.7029478458049887,
+            "micF1": 0.591283863368669,
+            "macF1": 0.5732323242940577,
+            "Score": 0.6325599123876811
+          },
+          "strict_unlinked_identifier": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7019867549668874,
+            "micF1": 0.591283863368669,
+            "macF1": 0.5732323242940577,
+            "Score": 0.632921000281359
+          }
+        },
+        "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+        "prediction_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643"
+      },
+      "diagnosis": {
+        "kind": "posthoc_validation_diagnosis_not_used_for_training",
+        "counts": {
+          "false_negative_below_mention_threshold": 166,
+          "false_negative_missing_retrieval_candidate": 310,
+          "false_negative_overlap_or_id_selection": 12,
+          "false_negative_negation_filter": 23,
+          "false_positive_overlapping_wrong_boundary": 68,
+          "false_positive_no_gold_overlap": 12,
+          "selected_exact": 689,
+          "true_positive_exact": 599,
+          "relation_fn_concept_absent": 153,
+          "relation_fn_concept_present": 43,
+          "false_positive_wrong_id_same_span": 10
+        },
+        "examples": [
+          {
+            "pmc_id": "12147048",
+            "text": "Retinopathy",
+            "identifier": "HP:0000488",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal diseases",
+            "identifier": "HP:0000479",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal diseases",
+            "identifier": "HP:0000479",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "nystagmus",
+            "identifier": "HP:0000639",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "residual visual acuity",
+            "identifier": "HP:0000529",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "abnormal signals on an ERG",
+            "identifier": "HP:0000512",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal pigment",
+            "identifier": "HP:0000580",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "RP",
+            "identifier": "HP:0000510",
+            "reason": "missing_retrieval_candidate"
+          }
+        ],
+        "note": "Counts use strict split-HPO span matching; -1 matching and duplicate assumptions may differ slightly from the shared evaluator."
+      },
+      "metrics_eval_v2": {
+        "metrics": {
+          "menF1": 0.6651810584958218,
+          "docF1": 0.7019867549668874,
+          "micF1": 0.5871345029239766,
+          "macF1": 0.5694919126589092,
+          "Score": 0.6309485572613988
+        },
+        "counts": {
+          "mention": {
+            "tp": 597,
+            "fp": 92,
+            "fn": 509,
+            "precision": 0.8664731494920174,
+            "recall": 0.5397830018083183,
+            "f1": 0.6651810584958218
+          },
+          "document": {
+            "tp": 318,
+            "fp": 28,
+            "fn": 242,
+            "precision": 0.9190751445086706,
+            "recall": 0.5678571428571428,
+            "f1": 0.7019867549668874
+          },
+          "relation": {
+            "tp": 251,
+            "fp": 151,
+            "fn": 202,
+            "precision": 0.6243781094527363,
+            "recall": 0.5540838852097131,
+            "f1": 0.5871345029239766
+          }
+        },
+        "documents": 16,
+        "patients": 36,
+        "evaluator_version": "patientphex-public-approx-v2",
+        "result_type": "local_public_rule_approximation_not_official",
+        "configuration": {
+          "body_scope": "all",
+          "unlinked_document_mode": "text",
+          "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+          "duplicate_entities": "deduplicated by span and split HPO ID",
+          "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+          "empty_patient_f1": 1.0
+        },
+        "caveats": [
+          "Official evaluator source is unavailable; these numbers are not official scores.",
+          "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+          "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+          "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+          "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+          "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+          "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+        ],
+        "sensitivity": {
+          "unlinked_doc_ignore": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7082405345211581,
+            "micF1": 0.5871345029239766,
+            "macF1": 0.5694919126589092,
+            "Score": 0.6325120021499664
+          },
+          "unlinked_doc_shared_id": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7043189368770764,
+            "micF1": 0.5871345029239766,
+            "macF1": 0.5694919126589092,
+            "Score": 0.6315316027389459
+          },
+          "scope_body": {
+            "menF1": 0.6627756160830091,
+            "docF1": 0.7029478458049887,
+            "micF1": 0.5871345029239766,
+            "macF1": 0.5694919126589092,
+            "Score": 0.6305874693677209
+          },
+          "strict_unlinked_identifier": {
+            "menF1": 0.6651810584958218,
+            "docF1": 0.7019867549668874,
+            "micF1": 0.5871345029239766,
+            "macF1": 0.5694919126589092,
+            "Score": 0.6309485572613988
+          }
+        },
+        "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+        "prediction_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643"
+      }
+    },
+    "dev-v2": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:14:34.869982+00:00",
+        "training": {
+          "mention_candidates": 7211,
+          "mention_positives": 3235,
+          "training_documents": 64,
+          "hpo_terms": 19120,
+          "aliases": 42283,
+          "relation_candidates": 9656,
+          "relation_positives": 3384
+        },
+        "prediction": {
+          "candidates": 1738,
+          "entities": 674,
+          "associations": 385
+        },
+        "input_documents": 16,
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "output_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "output_bytes": 90984,
+        "fingerprint": {
+          "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "7cfa3cb838f003eb5c679fa5947b9947c812aa95f005e396ee7a41a7531906fa"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train64.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/dev16.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 20.73468030800086,
+        "max_rss_kib": 700420,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 674,
+          "relations": 385,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/error_analysis.json",
+          "bytes": 1992,
+          "sha256": "40a618eeaaea70b4b82cdc189ef4b69069032c48a2d935100b176c3ab5b95e99",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/metrics.json",
+          "bytes": 12729,
+          "sha256": "89eff81de553282388dd7dcfa6f9eff4c1032443209decf117fa708b64092606",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/model.joblib",
+          "bytes": 5066070,
+          "sha256": "5d67a1d9936f0d68e1ca03959b46491131f381c427ecd86b052b46b7c5c21fc7",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/predictions.jsonl",
+          "bytes": 90984,
+          "sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/run.json",
+          "bytes": 1751,
+          "sha256": "8f6d2d78f738fa7b101a7c7f6a51bd6970a21134aa6dcb15268ae3a8e224d43d",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/run.log",
+          "bytes": 438,
+          "sha256": "c16d4d7f396fd3887705ec6c6c59171d9bc7c7e44431ad510e916f2affa6a3f5",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/validation.json",
+          "bytes": 685,
+          "sha256": "4e4e144ceef7e19ef0e7016e73d43a4012ab61f6745e93ab2831f7ac4d93c257",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2/metrics.eval-v2.json",
+          "bytes": 12998,
+          "sha256": "778cfa4eaa3a0fb20ddf3be17ac0273366024bbab7dcab33329c03c9374b193a",
+          "retention": "retain externally; evaluator v2 supersedes original metrics without changing predictions"
+        }
+      ],
+      "metrics": {
+        "metrics": {
+          "menF1": 0.647191011235955,
+          "docF1": 0.6815642458100558,
+          "micF1": 0.5576923076923077,
+          "macF1": 0.5449057538929908,
+          "Score": 0.6078383296578274
+        },
+        "counts": {
+          "mention": {
+            "tp": 576,
+            "fp": 98,
+            "fn": 530,
+            "precision": 0.8545994065281899,
+            "recall": 0.5207956600361664,
+            "f1": 0.647191011235955
+          },
+          "document": {
+            "tp": 305,
+            "fp": 30,
+            "fn": 255,
+            "precision": 0.9104477611940298,
+            "recall": 0.5446428571428571,
+            "f1": 0.6815642458100558
+          },
+          "relation": {
+            "tp": 232,
+            "fp": 153,
+            "fn": 215,
+            "precision": 0.6025974025974026,
+            "recall": 0.5190156599552572,
+            "f1": 0.5576923076923077
+          }
+        },
+        "documents": 16,
+        "patients": 36,
+        "evaluator_version": "patientphex-public-approx-v1",
+        "result_type": "local_public_rule_approximation_not_official",
+        "configuration": {
+          "body_scope": "all",
+          "unlinked_document_mode": "text",
+          "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+          "duplicate_entities": "deduplicated by span and split HPO ID",
+          "empty_patient_f1": 1.0
+        },
+        "caveats": [
+          "Official evaluator source is unavailable; these numbers are not official scores.",
+          "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+          "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+          "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+          "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+          "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+        ],
+        "sensitivity": {
+          "unlinked_doc_ignore": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6869369369369369,
+            "micF1": 0.5576923076923077,
+            "macF1": 0.5449057538929908,
+            "Score": 0.6091815024395476
+          },
+          "unlinked_doc_shared_id": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6838565022421524,
+            "micF1": 0.5576923076923077,
+            "macF1": 0.5449057538929908,
+            "Score": 0.6084113937658515
+          },
+          "scope_body": {
+            "menF1": 0.6474442988204456,
+            "docF1": 0.6781609195402298,
+            "micF1": 0.5576923076923077,
+            "macF1": 0.5449057538929908,
+            "Score": 0.6070508199864935
+          },
+          "strict_unlinked_identifier": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6815642458100558,
+            "micF1": 0.5576923076923077,
+            "macF1": 0.5449057538929908,
+            "Score": 0.6078383296578274
+          }
+        },
+        "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66"
+      },
+      "diagnosis": {
+        "kind": "posthoc_validation_diagnosis_not_used_for_training",
+        "counts": {
+          "false_negative_below_mention_threshold": 179,
+          "false_negative_missing_retrieval_candidate": 310,
+          "false_negative_overlap_or_id_selection": 20,
+          "false_negative_negation_filter": 23,
+          "false_positive_overlapping_wrong_boundary": 74,
+          "selected_exact": 667,
+          "true_positive_exact": 576,
+          "relation_fn_concept_absent": 170,
+          "relation_fn_concept_present": 45,
+          "false_positive_wrong_id_same_span": 9,
+          "false_positive_no_gold_overlap": 13,
+          "selected_fuzzy": 7,
+          "true_positive_fuzzy": 2
+        },
+        "examples": [
+          {
+            "pmc_id": "12147048",
+            "text": "Retinopathy",
+            "identifier": "HP:0000488",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "Retinal Dystrophy",
+            "identifier": "HP:0000556",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal dystrophy",
+            "identifier": "HP:0000556",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal diseases",
+            "identifier": "HP:0000479",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal dystrophy",
+            "identifier": "HP:0000556",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "retinal diseases",
+            "identifier": "HP:0000479",
+            "reason": "missing_retrieval_candidate"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "nystagmus",
+            "identifier": "HP:0000639",
+            "reason": "below_mention_threshold"
+          },
+          {
+            "pmc_id": "12147048",
+            "text": "residual visual acuity",
+            "identifier": "HP:0000529",
+            "reason": "missing_retrieval_candidate"
+          }
+        ],
+        "note": "Counts use strict split-HPO span matching; -1 matching and duplicate assumptions may differ slightly from the shared evaluator."
+      },
+      "retrieval_subtypes": {
+        "false_negative_below_mention_threshold": 179,
+        "false_negative_missing_retrieval_candidate": 310,
+        "false_negative_overlap_or_id_selection": 20,
+        "false_negative_negation_filter": 23,
+        "false_positive_overlapping_wrong_boundary": 74,
+        "selected_exact": 667,
+        "true_positive_exact": 576,
+        "relation_fn_concept_present": 45,
+        "relation_fn_concept_absent": 170,
+        "false_positive_wrong_id_same_span": 9,
+        "false_positive_no_gold_overlap": 13,
+        "selected_fuzzy": 7,
+        "selected_approximate": 6,
+        "true_positive_fuzzy": 2,
+        "true_positive_approximate": 1,
+        "selected_morphology": 1,
+        "true_positive_morphology": 1
+      },
+      "metrics_eval_v2": {
+        "metrics": {
+          "menF1": 0.647191011235955,
+          "docF1": 0.6815642458100558,
+          "micF1": 0.5536992840095465,
+          "macF1": 0.5422614981850096,
+          "Score": 0.6061790098101417
+        },
+        "counts": {
+          "mention": {
+            "tp": 576,
+            "fp": 98,
+            "fn": 530,
+            "precision": 0.8545994065281899,
+            "recall": 0.5207956600361664,
+            "f1": 0.647191011235955
+          },
+          "document": {
+            "tp": 305,
+            "fp": 30,
+            "fn": 255,
+            "precision": 0.9104477611940298,
+            "recall": 0.5446428571428571,
+            "f1": 0.6815642458100558
+          },
+          "relation": {
+            "tp": 232,
+            "fp": 153,
+            "fn": 221,
+            "precision": 0.6025974025974026,
+            "recall": 0.5121412803532008,
+            "f1": 0.5536992840095465
+          }
+        },
+        "documents": 16,
+        "patients": 36,
+        "evaluator_version": "patientphex-public-approx-v2",
+        "result_type": "local_public_rule_approximation_not_official",
+        "configuration": {
+          "body_scope": "all",
+          "unlinked_document_mode": "text",
+          "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+          "duplicate_entities": "deduplicated by span and split HPO ID",
+          "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+          "empty_patient_f1": 1.0
+        },
+        "caveats": [
+          "Official evaluator source is unavailable; these numbers are not official scores.",
+          "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+          "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+          "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+          "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+          "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+          "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+        ],
+        "sensitivity": {
+          "unlinked_doc_ignore": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6869369369369369,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.607522182591862
+          },
+          "unlinked_doc_shared_id": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6838565022421524,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6067520739181659
+          },
+          "scope_body": {
+            "menF1": 0.6474442988204456,
+            "docF1": 0.6781609195402298,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6053915001388079
+          },
+          "strict_unlinked_identifier": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6815642458100558,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6061790098101417
+          }
+        },
+        "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66"
+      }
+    },
+    "full-v1": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:12:18.613817+00:00",
+        "training": {
+          "mention_candidates": 12162,
+          "mention_positives": 5785,
+          "training_documents": 80,
+          "hpo_terms": 19120,
+          "aliases": 42553,
+          "relation_candidates": 15769,
+          "relation_positives": 5425
+        },
+        "prediction": {
+          "candidates": 10542,
+          "entities": 4411,
+          "associations": 2391
+        },
+        "input_documents": 100,
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "output_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "output_bytes": 594642,
+        "fingerprint": {
+          "train_sha256": "3880983ee40428399f579478029342aa46678b36e4021d20494f25d8873dcdbd",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "5f3614f3859a74d98dc989a963ed32f34c131f31ae30e40073006bb2b69d3c5f"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train80.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/B.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/B.predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 26.61345118099962,
+        "max_rss_kib": 724552,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 100,
+          "entities": 4411,
+          "relations": 2391,
+          "patients": 244
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "prediction_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/B.predictions.jsonl",
+          "bytes": 594642,
+          "sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/model.joblib",
+          "bytes": 5229869,
+          "sha256": "db08ca0d03a0a2945679073f346e2e5c317390900e3b6727265535b84673e0c3",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/run.json",
+          "bytes": 1758,
+          "sha256": "38190a60023c28b23b2024fefd3b081a92dd1bbedf77ed7622c7f71e3539eb26",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/run.log",
+          "bytes": 913,
+          "sha256": "15a15dc6145e59485c269f37a2a55233b8f93118d83cf2c18de98ca6ab5462c3",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/validation.json",
+          "bytes": 689,
+          "sha256": "dacdf9f6e5b53c73af45f73c9eb16c6e1010da2a9520ff342433259da69ae2cc",
+          "retention": "retain externally; reproducible using recorded command and code"
+        }
+      ]
+    }
+  },
+  "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+  "training_limitations": [
+    "Gold relation composite HPO strings are not atomized: 26 train64 entries affected; retained in both v1 and v2, to fix in a later experiment."
+  ],
+  "reproduction_checks": {
+    "full-v1-repro": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:18:23.815518+00:00",
+        "training": {
+          "mention_candidates": 12162,
+          "mention_positives": 5785,
+          "training_documents": 80,
+          "hpo_terms": 19120,
+          "aliases": 42553,
+          "relation_candidates": 15769,
+          "relation_positives": 5425
+        },
+        "prediction": {
+          "candidates": 10542,
+          "entities": 4411,
+          "associations": 2391
+        },
+        "input_documents": 100,
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "output_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "output_bytes": 594642,
+        "fingerprint": {
+          "train_sha256": "3880983ee40428399f579478029342aa46678b36e4021d20494f25d8873dcdbd",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+          "training_candidate_policy": "full-index"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train80.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/B.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--training-candidate-policy",
+          "full-index",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/B.predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 31.270874089000245,
+        "max_rss_kib": 726504,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 100,
+          "entities": 4411,
+          "relations": 2391,
+          "patients": 244
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "prediction_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/B.predictions.jsonl",
+          "bytes": 594642,
+          "sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/model.joblib",
+          "bytes": 5221810,
+          "sha256": "3358b15482cf1617adecf9ef3973ad0b77f6c08b7d077d8b4dfb9882ffece1c9",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/run.json",
+          "bytes": 1871,
+          "sha256": "55fa8e3a22f97a28836915db7feb38ec43892ffd2e5e0dbd340a6b031586b74a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/run.log",
+          "bytes": 913,
+          "sha256": "2e7e8dc7b892f3205bf915275923735836bf502ae36a88ba31b54f23f9870235",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/validation.json",
+          "bytes": 689,
+          "sha256": "dacdf9f6e5b53c73af45f73c9eb16c6e1010da2a9520ff342433259da69ae2cc",
+          "retention": "retain externally; reproducible using recorded command and code"
+        }
+      ],
+      "prediction_byte_identical_to": "full-v1"
+    },
+    "dev-v2-repro": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:19:17.539219+00:00",
+        "training": {
+          "mention_candidates": 7211,
+          "mention_positives": 3235,
+          "training_documents": 64,
+          "hpo_terms": 19120,
+          "aliases": 42283,
+          "relation_candidates": 9656,
+          "relation_positives": 3384
+        },
+        "prediction": {
+          "candidates": 1738,
+          "entities": 674,
+          "associations": 385
+        },
+        "input_documents": 16,
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "output_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "output_bytes": 90984,
+        "fingerprint": {
+          "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+          "training_candidate_policy": "leave-one-document-out"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train64.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/dev16.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--training-candidate-policy",
+          "leave-one-document-out",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 16.67647196100006,
+        "max_rss_kib": 700508,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 674,
+          "relations": 385,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/metrics.eval-v2.json",
+          "bytes": 12998,
+          "sha256": "778cfa4eaa3a0fb20ddf3be17ac0273366024bbab7dcab33329c03c9374b193a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/model.joblib",
+          "bytes": 5068912,
+          "sha256": "1fcaa7ca7a23b444a8292bc967525768cc2bc7e91d6ceebcacb2e524fbef75d7",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/predictions.jsonl",
+          "bytes": 90984,
+          "sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/run.json",
+          "bytes": 1887,
+          "sha256": "30519735ad7647069cc843b87348b6938b87e4c381e169ea91f04b7a29505e93",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/run.log",
+          "bytes": 438,
+          "sha256": "fd364364cfb9708f050ad12f00ff3d3065af4c9a2e3626c11686ece1af6a8c47",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/validation.json",
+          "bytes": 685,
+          "sha256": "4e4e144ceef7e19ef0e7016e73d43a4012ab61f6745e93ab2831f7ac4d93c257",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/metrics.eval-v2.json",
+          "bytes": 12998,
+          "sha256": "778cfa4eaa3a0fb20ddf3be17ac0273366024bbab7dcab33329c03c9374b193a",
+          "retention": "retain externally; evaluator v2 supersedes original metrics without changing predictions"
+        }
+      ],
+      "prediction_byte_identical_to": "dev-v2",
+      "metrics_eval_v2": {
+        "metrics": {
+          "menF1": 0.647191011235955,
+          "docF1": 0.6815642458100558,
+          "micF1": 0.5536992840095465,
+          "macF1": 0.5422614981850096,
+          "Score": 0.6061790098101417
+        },
+        "counts": {
+          "mention": {
+            "tp": 576,
+            "fp": 98,
+            "fn": 530,
+            "precision": 0.8545994065281899,
+            "recall": 0.5207956600361664,
+            "f1": 0.647191011235955
+          },
+          "document": {
+            "tp": 305,
+            "fp": 30,
+            "fn": 255,
+            "precision": 0.9104477611940298,
+            "recall": 0.5446428571428571,
+            "f1": 0.6815642458100558
+          },
+          "relation": {
+            "tp": 232,
+            "fp": 153,
+            "fn": 221,
+            "precision": 0.6025974025974026,
+            "recall": 0.5121412803532008,
+            "f1": 0.5536992840095465
+          }
+        },
+        "documents": 16,
+        "patients": 36,
+        "evaluator_version": "patientphex-public-approx-v2",
+        "result_type": "local_public_rule_approximation_not_official",
+        "configuration": {
+          "body_scope": "all",
+          "unlinked_document_mode": "text",
+          "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+          "duplicate_entities": "deduplicated by span and split HPO ID",
+          "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+          "empty_patient_f1": 1.0
+        },
+        "caveats": [
+          "Official evaluator source is unavailable; these numbers are not official scores.",
+          "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+          "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+          "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+          "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+          "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+          "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+        ],
+        "sensitivity": {
+          "unlinked_doc_ignore": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6869369369369369,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.607522182591862
+          },
+          "unlinked_doc_shared_id": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6838565022421524,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6067520739181659
+          },
+          "scope_body": {
+            "menF1": 0.6474442988204456,
+            "docF1": 0.6781609195402298,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6053915001388079
+          },
+          "strict_unlinked_identifier": {
+            "menF1": 0.647191011235955,
+            "docF1": 0.6815642458100558,
+            "micF1": 0.5536992840095465,
+            "macF1": 0.5422614981850096,
+            "Score": 0.6061790098101417
+          }
+        },
+        "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66"
+      }
+    }
+  },
+  "reported_fit_inference_seconds": 111.39637848000075,
+  "primary_evaluator_version": "patientphex-public-approx-v2",
+  "selected_dev_metrics": {
+    "menF1": 0.6651810584958218,
+    "docF1": 0.7019867549668874,
+    "micF1": 0.5871345029239766,
+    "macF1": 0.5694919126589092,
+    "Score": 0.6309485572613988
+  },
+  "primary_evaluator_source_commit": "92fa1f8",
+  "primary_evaluator_source_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+}
