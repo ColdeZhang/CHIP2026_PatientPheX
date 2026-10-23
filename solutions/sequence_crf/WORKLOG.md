@@ -10,4 +10,4 @@
 - **复现/证据**：[实验过程](experiments/E-20261023-009.md)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整预测、模型、过程日志位于 `/workspace/patientphex-runs/round2-20261023/sequence_crf/`，不入Git。
 - **接手顺序**：先读根 HANDOFF.MD/AGENTS.md，再读本页和E-009当前结论；最高候选为 `crf-semantic-dev/lr.pred.jsonl`，独立审计在根外存 `validation/crf-semantic-review.json`。GPU作业/源码/缓存manifest按各实验目录查看，不可复用无指纹的旧模型。
 
-- **最新恢复入口**：关系SFT已完成，无需继续旧作业；先读 [固定内折结果与产物索引](evidence/round2/relation-sft-fold0-results.json)。该索引给出 `paired-inference-job.json`、完整两份响应/预测SHA及CPU装配命令位置。A800共享base与本路线epoch2 adapter可只读复用。新增10条已完成，见 [新池结果](evidence/round2/new-ontology-relation-results.json)；下一步共指依据见 [训练锚点诊断](evidence/round2/patient-anchor-audit.json)。当前无运行作业，A800 GPU2交回检索；旧29条弱池不扩展。
+- **最新恢复入口**：关系SFT已完成，无需继续旧作业；先读 [固定内折结果与产物索引](evidence/round2/relation-sft-fold0-results.json)。该索引给出 `paired-inference-job.json`、完整两份响应/预测SHA及CPU装配命令位置。A800共享base与本路线epoch2 adapter可只读复用。新增10条已完成，见 [新池结果](evidence/round2/new-ontology-relation-results.json)；下一步共指依据见 [训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 GPU2交回检索；当前准备在空闲.100 GPU1跑15窗input-only共指pilot，计划见coreference-plan.json，作业入口将存coreference-pilot/job.json；旧29条弱池不扩展。
