@@ -1,0 +1,302 @@
+{
+  "scope": "Preparation and CPU audit only, not trained/evaluated",
+  "source_sha256": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+  "test_source_sha256": "345ba522780119c6032f7ebd53964df303d36015f1c3f890803a010f6cfe44df",
+  "system_template_sha256": "6de8dcbbaa28222959b09397b65860471ea8dc64ce90b991b36629f4b39acd30",
+  "train_manifest": {
+    "configuration": {
+      "command": "prepare-train",
+      "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "excluded_input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0/train"
+    },
+    "source_sha256": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+    "marker_source_sha256": "f83b90629044a4cbc7c2ae00116b49718f7c94dace5a6710a4fd242f106fcddd",
+    "hpo_loader_source_sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+    "hpo_version": "hp/releases/2026-06-23",
+    "valid_concepts": 19120,
+    "files": {
+      "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "excluded_input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "document_ids": [
+      "10313222",
+      "11203018",
+      "11235872",
+      "11765409",
+      "11871647",
+      "11906559",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12386172",
+      "12405443",
+      "12455887",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "12891056",
+      "2866573",
+      "2964533",
+      "4607013",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5415817",
+      "5422868",
+      "5425407",
+      "5473715",
+      "5538066",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5789735",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6048891",
+      "6057141",
+      "6059678",
+      "6063015",
+      "6134758",
+      "6219255",
+      "6390251",
+      "9327653"
+    ],
+    "excluded_document_ids": [
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11919040",
+      "12444410",
+      "12652105",
+      "12779223",
+      "3563609",
+      "4678370",
+      "5452357",
+      "5537416",
+      "5575846",
+      "5959423",
+      "6338757",
+      "6491447"
+    ],
+    "stats": {
+      "documents": 48,
+      "patients": 126,
+      "raw_atomic_target_units": 1338,
+      "target_decisions": {
+        "included": 1327,
+        "hpo_outside_branch": 4,
+        "no_positive_entity": 6,
+        "malformed_hpo": 1
+      },
+      "assistant_items": 1327,
+      "empty_assistant_targets": 7
+    },
+    "output_sha256": "416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d",
+    "decisions_sha256": "9386b1e5bf19fa87e06cdfb05c7714a099f8ba680830551d38990cd6f222418d",
+    "prompt_has_gold": false,
+    "candidate_hpo_input": false,
+    "quote_selection": "Training-only nearest given patient mention interval; ties offset/length/text/segment; no attribution proof.",
+    "format": "One row per patient, full original report, no truncation; all given patients marked."
+  },
+  "inference_manifest": {
+    "configuration": {
+      "command": "prepare-inference",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0/inference"
+    },
+    "source_sha256": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+    "marker_source_sha256": "f83b90629044a4cbc7c2ae00116b49718f7c94dace5a6710a4fd242f106fcddd",
+    "hpo_loader_source_sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+    "hpo_version": "hp/releases/2026-06-23",
+    "valid_concepts": 19120,
+    "files": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "document_ids": [
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11919040",
+      "12444410",
+      "12652105",
+      "12779223",
+      "3563609",
+      "4678370",
+      "5452357",
+      "5537416",
+      "5575846",
+      "5959423",
+      "6338757",
+      "6491447"
+    ],
+    "excluded_document_ids": [],
+    "stats": {
+      "documents": 16,
+      "patients": 47,
+      "raw_atomic_target_units": 0,
+      "target_decisions": {}
+    },
+    "output_sha256": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8",
+    "decisions_sha256": null,
+    "prompt_has_gold": false,
+    "candidate_hpo_input": false,
+    "quote_selection": "Training-only nearest given patient mention interval; ties offset/length/text/segment; no attribution proof.",
+    "format": "One row per patient, full original report, no truncation; all given patients marked."
+  },
+  "targets": {
+    "hpo": 1303,
+    "nil": 24
+  },
+  "cpu_token_audit": {
+    "scope": "Actual quoted patient-set targets; train48 labels and held-out input only; no model/GPU loaded",
+    "configuration": {
+      "model": "models/Qwen3-8B",
+      "trainer": "patient-set-fold0/audit-src/train_lora.py",
+      "train": "patient-set-fold0/train/train.jsonl",
+      "excluded_input": "patient-set-fold0/validation16.input.jsonl",
+      "prompts": "patient-set-fold0/inference/prompts.jsonl",
+      "output": "patient-set-fold0/token-audit.json"
+    },
+    "source_sha256": "ef8a5f5c749105c0c4706ed6ff4b786d420ed3837cc86c59bb50301b36afa5b9",
+    "trainer_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+    "files": {
+      "train": "416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d",
+      "excluded_input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "prompts": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8"
+    },
+    "tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+    "train": {
+      "rows": 126,
+      "documents": 48,
+      "prefix": {
+        "min": 1728,
+        "median": 5010.0,
+        "max": 10639,
+        "mean": 5355.380952380952,
+        "total": 674778
+      },
+      "answer": {
+        "min": 7,
+        "median": 231.0,
+        "max": 1188,
+        "mean": 297.3968253968254,
+        "total": 37472
+      },
+      "full": {
+        "min": 1972,
+        "median": 5306.0,
+        "max": 11709,
+        "mean": 5652.777777777777,
+        "total": 712250
+      },
+      "all_prefixes_match": true,
+      "encode_example_maxseq12288_failures": []
+    },
+    "inference": {
+      "rows": 47,
+      "documents": 16,
+      "prefix": {
+        "min": 2821,
+        "median": 5613,
+        "max": 10543,
+        "mean": 6493.191489361702,
+        "total": 305180
+      }
+    },
+    "recommended_max_new_tokens": 1792,
+    "generation_budget_rule": "max(1024, ceil(1.5 * max_train_answer_tokens / 256) * 256)",
+    "inference_max_input_plus_generation": 12335,
+    "model_context_limit": 40960,
+    "truncation": false,
+    "cuda_visible_devices": ""
+  },
+  "external_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0",
+  "artifacts": {
+    "train/train.jsonl": {
+      "bytes": 5598389,
+      "sha256": "416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d"
+    },
+    "train/target-decisions.jsonl": {
+      "bytes": 500996,
+      "sha256": "9386b1e5bf19fa87e06cdfb05c7714a099f8ba680830551d38990cd6f222418d"
+    },
+    "train/manifest.json": {
+      "bytes": 2827,
+      "sha256": "47fe1722986eeaeaadac15c7989ed522de81270e38fe49848f13607fe1fb1907"
+    },
+    "inference/prompts.jsonl": {
+      "bytes": 2341668,
+      "sha256": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8"
+    },
+    "inference/manifest.json": {
+      "bytes": 1668,
+      "sha256": "b4fd1cba6e5c67fb29daa65f9080fc3162f07f0b45f3a7718c7093439db87063"
+    },
+    "token-audit.json": {
+      "bytes": 35861,
+      "sha256": "485ea468acb4c84c44c63ac41c9018f8ff417f3edfdda2effe1c3130e167e3c7"
+    },
+    "token-audit-command.json": {
+      "bytes": 2723,
+      "sha256": "ddaa1939d82ef054d06c3180480206f3df1f17f8fb75bc2c97f7a5e143bd3aed"
+    },
+    "audit_tokens.py": {
+      "bytes": 4128,
+      "sha256": "ef8a5f5c749105c0c4706ed6ff4b786d420ed3837cc86c59bb50301b36afa5b9"
+    }
+  },
+  "prepare_commands": [
+    [
+      "python",
+      "solutions/case_retrieval/patient_set.py",
+      "prepare-train",
+      "--train",
+      "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "--excluded-input",
+      "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "--hpo",
+      "/workspace/patientphex-data/hp.obo",
+      "--output-dir",
+      "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0/train"
+    ],
+    [
+      "python",
+      "solutions/case_retrieval/patient_set.py",
+      "prepare-inference",
+      "--input",
+      "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "--hpo",
+      "/workspace/patientphex-data/hp.obo",
+      "--output-dir",
+      "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0/inference"
+    ]
+  ],
+  "tests": {
+    "command": "python -m unittest discover -s solutions/case_retrieval -p test_patient_set.py -v",
+    "passed": 7
+  },
+  "generation_recommendation": {
+    "max_input_tokens": 12288,
+    "max_new_tokens": 1792,
+    "batch_size": 1,
+    "greedy": true,
+    "thinking": false,
+    "same_base_adapter": true,
+    "reason": "CPU training-answer maximum 1188 *1.5 rounded up to256; no heldout labels used."
+  }
+}

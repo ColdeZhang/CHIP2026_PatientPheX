@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "cwd": "case-retrieval/round2",
+    "command": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python patient-set-fold0/audit_tokens.py --model models/Qwen3-8B --trainer patient-set-fold0/audit-src/train_lora.py --train patient-set-fold0/train/train.jsonl --excluded-input patient-set-fold0/validation16.input.jsonl --prompts patient-set-fold0/inference/prompts.jsonl --output patient-set-fold0/token-audit.json",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "runtime",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "timeout_seconds": 45
+  },
+  "result": {
+    "exit_code": 0,
+    "stdout": "{\"scope\": \"Actual quoted patient-set targets; train48 labels and held-out input only; no model/GPU loaded\", \"configuration\": {\"model\": \"models/Qwen3-8B\", \"trainer\": \"patient-set-fold0/audit-src/train_lora.py\", \"train\": \"patient-set-fold0/train/train.jsonl\", \"excluded_input\": \"patient-set-fold0/validation16.input.jsonl\", \"prompts\": \"patient-set-fold0/inference/prompts.jsonl\", \"output\": \"patient-set-fold0/token-audit.json\"}, \"source_sha256\": \"ef8a5f5c749105c0c4706ed6ff4b786d420ed3837cc86c59bb50301b36afa5b9\", \"trainer_sha256\": \"2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423\", \"files\": {\"train\": \"416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d\", \"excluded_input\": \"ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37\", \"prompts\": \"ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8\"}, \"tokenizer_sha256\": \"aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4\", \"model_config_sha256\": \"f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30\", \"train\": {\"rows\": 126, \"documents\": 48, \"prefix\": {\"min\": 1728, \"median\": 5010.0, \"max\": 10639, \"mean\": 5355.380952380952, \"total\": 674778}, \"answer\": {\"min\": 7, \"median\": 231.0, \"max\": 1188, \"mean\": 297.3968253968254, \"total\": 37472}, \"full\": {\"min\": 1972, \"median\": 5306.0, \"max\": 11709, \"mean\": 5652.777777777777, \"total\": 712250}, \"all_prefixes_match\": true, \"encode_example_maxseq12288_failures\": []}, \"inference\": {\"rows\": 47, \"documents\": 16, \"prefix\": {\"min\": 2821, \"median\": 5613, \"max\": 10543, \"mean\": 6493.191489361702, \"total\": 305180}}, \"recommended_max_new_tokens\": 1792, \"generation_budget_rule\": \"max(1024, ceil(1.5 * max_train_answer_tokens / 256) * 256)\", \"inference_max_input_plus_generation\": 12335, \"model_context_limit\": 40960, \"truncation\": false, \"cuda_visible_devices\": \"\"}\n"
+  }
+}
