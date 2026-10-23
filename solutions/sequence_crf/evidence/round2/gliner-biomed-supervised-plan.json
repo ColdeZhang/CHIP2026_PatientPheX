@@ -1,0 +1,87 @@
+{
+  "frozen_at_utc": "2026-10-23T19:33:01.524587+00:00",
+  "scope": "one fresh public BioMed train32 fixed10epoch -> nested16 development; no originaldev",
+  "authorization": "root conditional: CPU full1150/native-loader-only review then longest4 smoke; if finite gradients/resources no risk, fresh10 formal, no second approval needed",
+  "public_model": {
+    "repo": "Ihor/gliner-biomed-large-v1.0",
+    "revision": "f79771210ab2111a2081ef31620fdb7342f602e9",
+    "weight_sha256": "7e3591fd58c3ee7ebe9a957fafeba6e635634e16ab5fa9329b6ad80d330ad8f9",
+    "actual_parameters": 477981696,
+    "source_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed/source-manifest.json",
+    "source_manifest_sha256": "f9064831e6de39c2a6aef83f6bb458972fe5191546854f3f426092bb7407c65a",
+    "task_span_training_manifest": null
+  },
+  "data": {
+    "train_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/nested_train32.jsonl",
+    "train_sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+    "input_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "data_manifest_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/manifest.json",
+    "windows": 1150,
+    "documents": 32,
+    "raw_train_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+    "raw_train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03"
+  },
+  "configuration": {
+    "epochs": 10,
+    "steps": 2880,
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "precision": "float32",
+    "gradient_clip": 1.0,
+    "seed": 20261023,
+    "loss": "same explicit valid-span mean BCE; upstream focal config is bypassed",
+    "checkpoint": "unique epoch10 only; keep final+one recoverable latest state; prune previous own model copies after SHA check",
+    "initialization": "fresh public base, never smoke weights/state"
+  },
+  "comparison": {
+    "medium32_10ep_score": 0.6537450271017345,
+    "same_public_base_zero_shot_score": 0.6520142505478782,
+    "base_crf_sap_rules": 0.6447615937066596
+  },
+  "decoder": {
+    "label": "phenotype",
+    "threshold": 0.5,
+    "token_budget": 384,
+    "max_width": 12,
+    "overlap_words": 12,
+    "flat_ner": false
+  },
+  "link": {
+    "entry": "link_gliner_candidates.py",
+    "train": "same nested32",
+    "probability": 0.65,
+    "cosine": 0.92,
+    "provenance": "real task training/data manifest, final weightSHA; do not use public linker"
+  },
+  "resource": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "smoke_cap_seconds": 300,
+    "training_cap_seconds": 2400,
+    "inference_cap_seconds": 300,
+    "link_cap_seconds": 300,
+    "cpu_threads": 1,
+    "estimated_training_minutes": [
+      25,
+      30
+    ],
+    "minimum_free_disk_bytes_before_launch": 21474836480,
+    "disk_guard_note": "Legacy trainer4GiB epoch guard remains unchanged; launcher requires20GiB for model+Adam+atomic temporary files (~11.5GB output peak)."
+  },
+  "source_shas": {
+    "train_gliner_biomed.py": "39c38ed1d211c057aa5dcccdeed9f3cd4ea2b1e01702522cf4b0463287787d95",
+    "check_gliner_biomed_training.py": "e48160ed18bb0dc6bc1fc2fd5354567ea820327c0446c073e99fb0d3886bf3f0",
+    "check_gliner_biomed.py": "2a59a99501df9d6b27ed3b9885c9a1f48428cb49ab99fb0c909610e42f0700a5",
+    "train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+    "run_gliner_biomed.py": "600181f3a53d4a72fe32b32b90d6b3ff269fd40c7a9a757bc68067bb07877e5e",
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+    "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0"
+  },
+  "stop": "no epoch/loss/threshold sweep; no originaldev; abort if smoke nonfinite/OOM/source mismatch or explicit budget risk"
+}

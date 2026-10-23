@@ -69,3 +69,7 @@
 - `gliner-large-formal-plan.json`：授权fresh train48×10/4360步，75min训练硬cap，先等本体交卡；同原947实体池/Sap/rules，唯一终点，不碰原dev。
 
 - `gliner-loss-research.json`：论文/实际上层默认BCE与底层focal默认区分，旧训练侧计数不支持positive塌缩；本轮不启动focal，不修改large固定训练。
+
+- `gliner-large-terminal-results.json`：459M固定48终点与完整来源、真实model/state恢复、两独审PASS；.720152略低medium48，关闭替换、不迁移原dev。
+- `gliner-biomed-interface-results.json` / `gliner-biomed-nested-plan.json` / `gliner-biomed-nested-results.json`：公开生医基座来源/实际CPU与唯一nested零样本固定全链.652014，失败启动器证据与GPU释放，不能虚构medium-zero完整Score。
+- `gliner-biomed-supervised-plan.json`：独立native-loader训练32×10固定适配，CPU1150窗/单步资源条件、2400秒训练硬cap；计划不代表训练结果。

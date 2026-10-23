@@ -22,7 +22,9 @@
 
 9. **large-v2 固定终点完成、不升级**：fresh train48/1744窗/459,495,168参数、固定10ep4360steps耗2279.35秒，峰13.34GiB；工作区中断未重启远端。base/final/raw/Sap均exit0，19:26:36Z完整输出先freeze，格式0错警。固定原947实体+Sap/rules新增24项，Score **.720152028**，较原.711354升.008799但低于medium48 .721504431（-.001352403）；mention/micro较medium升，document/macro降。纯span非重叠93TP96FP、union .769904，不能拿纯span收益代替完整Score。GPU0 19:26:26Z fresh空，实际余203.93GB。保留medium，不扫参/不自行迁移原dev；终点CPU重放及实际谱系独审均PASS；root关闭本次替换、不迁移原dev。[完整结果/源码/全部恢复入口](evidence/round2/gliner-large-terminal-results.json)，外存gliner-large-v2/terminal-summary.json；原训练与最后链接managed均已结束。
 
-10. **GLiNER-BioMed唯一nested16零样本完成**：公开f7977121实际477,981,696参数，来源/CPU/接口均独审通过；594窗2085跨度推理24.93秒、峰2.139GB。固定Sap32/.65/.92/原rules新增58实体（32TP/26FP），关联8TP/10FP，Score **.644761594→.652014251**，四项升，但略低同层medium32训练10ep .653745027；原dev未触。裸span F1 .453801高于已存medium-zero .277295，未经Sap非重叠union却.548780（118TP/966FP），不可直接叠原池。两阶段exit0，完整输出先freeze、格式0错警；新全链独审进行中。GPU0 19:30:52Z fresh空释放，无活动GPU。第一次launcher因Python3.10缺file_digest在模型前退出，保留trace并修流式SHA，非模型负结果。新作业proc_b66bb6f7已完成；[完整结果/全部恢复与失败证据](evidence/round2/gliner-biomed-nested-results.json)，外存gliner-biomed-nested/。不自行训练/扫参，等待根下一研究决策。
+10. **GLiNER-BioMed唯一nested16零样本完成**：公开f7977121实际477,981,696参数，来源/CPU/接口均独审通过；594窗2085跨度推理24.93秒、峰2.139GB。固定Sap32/.65/.92/原rules新增58实体（32TP/26FP），关联8TP/10FP，Score **.644761594→.652014251**，四项升，但略低同层medium32训练10ep .653745027；原dev未触。裸span F1 .453801高于已存medium-zero .277295，未经Sap非重叠union却.548780（118TP/966FP），不可直接叠原池。两阶段exit0，完整输出先freeze、格式0错警；新全链CPU重放/实际谱系独审均PASS 4b925364。GPU0 19:30:52Z fresh空释放，无活动GPU。第一次launcher因Python3.10缺file_digest在模型前退出，保留trace并修流式SHA，非模型负结果。新作业proc_b66bb6f7已完成；[完整结果/全部恢复与失败证据](evidence/round2/gliner-biomed-nested-results.json)，外存gliner-biomed-nested/。root现授权一次独立native-loader监督适配，见第11项，不更改本零样本终点。
+
+11. **BioMed监督适配准备**：根条件授权同nested32原1150窗、fresh公开基座、固定10ep2880steps；新trainer只换native loader及准确fingerprint，显式BCE/优化器/循环不变。先完整CPU对齐/入口审，再唯一最长4×384smoke；若参数/梯度/显存正常，fresh正式训练2400s cap，final推断和真实task-manifest Sap各300s。原dev、epoch/loss/阈值扫描均禁止。[计划](evidence/round2/gliner-biomed-supervised-plan.json)，外存gliner-biomed-supervised/。当前尚未GPU启动；零样本/medium32同层基线冻结保留。
 
 ## 已完成的近期结论
 
