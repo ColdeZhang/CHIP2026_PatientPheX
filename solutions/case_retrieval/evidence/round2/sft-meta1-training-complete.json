@@ -1,0 +1,109 @@
+{
+  "status": "SFT32_complete_meta80_running_no_quality_yet",
+  "complete": {
+    "smoke_only": false,
+    "epochs": 2,
+    "global_step": 32,
+    "base_parameters": 8953803264,
+    "trainable_adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "elapsed_seconds": 1149.460371017456,
+    "max_gpu_allocated_bytes": 36633378816,
+    "max_gpu_reserved_bytes": 81109450752,
+    "device": "NVIDIA A800 80GB PCIe",
+    "source_sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1",
+    "result_type": "training_only_no_evaluation_score",
+    "new_resume_numerical_equivalence_tested": false
+  },
+  "actual_checkpoint_sha256": {
+    "epoch-001": {
+      "files": {
+        "adapter/README.md": "9054672de2e89b26ae5d91135c9b20743333493d3a24ff945b6c2d8c288bfbab",
+        "adapter/adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+        "adapter/adapter_model.safetensors": "bf1ee0f5fd5b78287eb7ea2cd9cfa18c036c82db213c6854b127cb3c9937ea1a",
+        "training_state.pt": "95abf3297ca67e36e9a6bbb37f7dae2779039296532c036f41a0cb618fcb6e07"
+      },
+      "completed_epochs": 1,
+      "global_step": 16
+    },
+    "epoch-002": {
+      "files": {
+        "adapter/README.md": "9054672de2e89b26ae5d91135c9b20743333493d3a24ff945b6c2d8c288bfbab",
+        "adapter/adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+        "adapter/adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff",
+        "training_state.pt": "26794f1e97b1335d6ea6137825b4a8259a920af205665ae94e9c2f0f1e6cc300"
+      },
+      "completed_epochs": 2,
+      "global_step": 32
+    }
+  },
+  "references": {
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/run-plan.json",
+      "bytes": 13675,
+      "sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28"
+    },
+    "formal2ep/training_complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "d52918ed293c83e20f40faee2825cc7fc2eb5b0484cc94972d8bccdc5dcff20b"
+    },
+    "checkpoint-actual-hashes.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/checkpoint-actual-hashes.json",
+      "bytes": 901,
+      "sha256": "80a40c2c741f7abca19dc542b02771f4c1b229a685a942acbaf3195b10ce160e"
+    },
+    "train-gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train-gpu-release.json",
+      "bytes": 441,
+      "sha256": "e0b49a5572ca80058c8804ff7f2108e435326afff1ae96dd86c84ae67febff59"
+    },
+    "epoch1-progress.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/epoch1-progress.json",
+      "bytes": 368,
+      "sha256": "921544f50a23b1b7a3daea702ffe5b5c56a19444ba9267d21f8dfe38948b06d2"
+    },
+    "actual-inference-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/actual-inference-plan.json",
+      "bytes": 1279,
+      "sha256": "5ba6e20a2205dafc203f765ec1d58d68f7bfb39861b6a1db2340bb2599dd4bb8"
+    },
+    "infer-gpu-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/infer-gpu-preflight.json",
+      "bytes": 442,
+      "sha256": "ee8fa2f6b8092f5f4ed73d41b72bcf814caedd7932264e043279619235573857"
+    },
+    "infer-source-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/infer-source-preflight.json",
+      "bytes": 1381,
+      "sha256": "2b20aae9340c880c56a0a825d2f5b098fafd420ae8df12dbb2cc207edb8f2b3e"
+    },
+    "infer-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/infer-job.json",
+      "bytes": 942,
+      "sha256": "3ffbeac0552284b121027bcc6ba770bd9db3e4d9242f2a8705331de37f3de482"
+    }
+  },
+  "infer_job": {
+    "job": {
+      "command": "/usr/bin/timeout --signal=TERM --kill-after=30s 900 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u sft-meta1-fusion/qwen35_runner.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest model-source-manifest.json --prompts sft-meta1-fusion/meta.prompts.jsonl --output sft-meta1-fusion/meta.responses.jsonl --adapter sft-meta1-fusion/formal2ep/epoch-002/adapter --max-input-tokens 14000 --max-new-tokens 1600",
+      "id": "proc_d68e5031-a680-40cf-b46b-d841e3eff329",
+      "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+      "pid": 5529,
+      "port": 43891,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-23T21:23:49.934172929Z"
+    },
+    "plan_sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28",
+    "cap_seconds": 900,
+    "started_utc": "2026-10-23T21:23:50.130320+00:00"
+  },
+  "infer_deadline_utc": "2026-10-23T21:38:49.934Z",
+  "grace_seconds": 30,
+  "watcher_session_id": 6422,
+  "train_watcher_exitcode": 0,
+  "remote_process_exitcode_not_returned_by_MCP": true,
+  "formal2ep_checkpoint_persistent_remote_directory": "69b991ee-183f-4add-af1a-579af92479c9:case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep",
+  "no_new_quality_evaluation": true
+}
