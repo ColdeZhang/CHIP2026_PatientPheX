@@ -1,0 +1,64 @@
+{
+  "method": "sparse patient case kNN",
+  "version": 1,
+  "hpo_version": "hp/releases/2026-06-23",
+  "configuration": {
+    "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+    "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "hpo": "/workspace/patientphex-data/hp.obo",
+    "output": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-compound-fold0/predictions.jsonl",
+    "work_dir": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-compound-fold0",
+    "neighbors": 11,
+    "association_threshold": 0.48
+  },
+  "training_documents": 48,
+  "prediction_documents": 16,
+  "train_input_overlap": 0,
+  "labelled_prediction_input": false,
+  "files": {
+    "train": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "bytes": 1495673
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "bytes": 350409
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "output": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-compound-fold0/predictions.jsonl",
+      "sha256": "c381097b26c5db03567cecb7f96ff5e975afeb9ae011d128838cb3644496d2a6",
+      "bytes": 110714
+    }
+  },
+  "code_sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+  "lexical_memory": {
+    "alias_keys": 43437,
+    "positive_contexts": 3573
+  },
+  "case_memory": {
+    "training_cases": 5113,
+    "positive_cases": 1324,
+    "text_features": 26000,
+    "structural_features": 24,
+    "neighbors": 11,
+    "association_threshold": 0.48
+  },
+  "totals": {
+    "documents": 16,
+    "entities": 848,
+    "patients": 47,
+    "links": 254
+  },
+  "elapsed_seconds": 2.451,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  }
+}

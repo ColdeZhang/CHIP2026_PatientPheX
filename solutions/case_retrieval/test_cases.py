@@ -5,6 +5,10 @@ from run import LexicalMemory, normalize_id, patient_pair, mentions_by_patient
 
 
 class Cases(unittest.TestCase):
+    def test_association_units_preserve_non_hpo_text(self):
+        from run import association_ids
+        self.assertEqual(association_ids(["HP:0000252;HP:0001250", "some; text", "MESH:X;Y", "HP:123"]), {"HP:0000252", "HP:0001250", "some; text", "MESH:X;Y", "HP:123"})
+
     def setUp(self):
         self.terms = {"HP:0000508": {"aliases": ["ptosis"]}, "HP:0001250": {"aliases": ["seizures"]}}
         self.canonical = {key: key for key in self.terms}

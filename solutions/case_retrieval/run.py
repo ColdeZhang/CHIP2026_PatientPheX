@@ -107,6 +107,12 @@ def normalize_id(value, canonical):
     return ";".join(sorted(set(parts)))
 
 
+def association_ids(values):
+    """Split only complete legal compound HPO values; preserve free text labels."""
+    return {part for value in values for part in
+            (str(value).split(";") if re.fullmatch(r"HP:[0-9]{7}(?:;HP:[0-9]{7})+", str(value)) else [str(value)])}
+
+
 def entity_ids(entity):
     identifier = str(entity["identifier"])
     return [entity["text"]] if identifier == "-1" else identifier.split(";")
@@ -344,7 +350,7 @@ class CaseRetriever:
         texts, structures, labels, doc_ids = [], [], [], []
         for doc in training:
             targets = mentions_by_patient(doc)
-            gold = {str(row["patient_id"]): set(row.get("phenotype", [])) for row in doc.get("association", [])}
+            gold = {str(row["patient_id"]): association_ids(row.get("phenotype", [])) for row in doc.get("association", [])}
             concepts = grouped_concepts(flatten_entities(doc, canonical))
             for patient_id in targets:
                 for concept, entities in sorted(concepts.items()):
