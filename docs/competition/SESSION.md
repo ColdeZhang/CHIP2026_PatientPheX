@@ -1,6 +1,6 @@
 # 天池登录会话的使用与恢复
 
-本页记录恢复方法；实际登录状态、核验时间和比赛权限只维护在 [WORKLOG.md](../../WORKLOG.md)。当前环境使用 Chromium 与 Python Playwright；手机号从 `ALI_PHONE` 环境变量读取，不输出其值。
+本页记录恢复方法；实际登录状态、核验时间和比赛权限只维护在 [WORKLOG.md](../../WORKLOG.md)。当前环境使用 Chromium 与 Python Playwright。按用户指定使用 `ALI_ACCOUNT` 与 `ALI_PASSWD` 环境变量中的用户名、密码；`ALI_PHONE` 仅在需要手机验证或用户明确选择手机号登录时使用，所有值均不输出。
 
 ## 保存位置
 
@@ -13,10 +13,14 @@
 ## 恢复顺序
 
 1. 优先用 `playwright.chromium.connect_over_cdp("http://127.0.0.1:9222")` 连接已有浏览器，在原 context 中操作。结束一次工具调用时保留该浏览器及 context。
-2. 浏览器未运行时，先确认没有进程占用 profile，再启动同一 Chromium profile。使用 `--user-data-dir=/workspace/.local-state/tianchi-browser`、`--remote-debugging-address=127.0.0.1`、`--remote-debugging-port=9222`。本环境需要 headless 模式。
+2. 浏览器未运行时，先确认没有进程占用 profile，再启动同一 Chromium profile。使用 `--user-data-dir=/workspace/.local-state/tianchi-browser`、`--remote-debugging-address=127.0.0.1`、`--remote-debugging-port=9222`。本环境需要 headless 模式。已观察到跨轮次后浏览器退出、只剩僵尸进程的情况；不能假定端口持续可用。仅在确认没有活跃进程占用该 profile 后，才处理残留的 `SingletonLock/SingletonSocket/SingletonCookie` 链接。
 3. 如需恢复到新 context，使用 `browser.new_context(storage_state="/workspace/.local-state/tianchi-storage-state.json")`，打开天池官网并核验。快照已实际通过独立 context 的登录恢复检查。
 4. 登录成功后，以 `umask 077` 和受限目录保存 `context.storage_state(path=..., indexed_db=True)`，确保文件权限为 `600`；不要输出该方法返回的数据。若使用新 context 工作，后续刷新其快照。
-5. 会话过期后使用官方登录流程。可从环境变量取得手机号；短信验证码由用户提供，仅用于当次认证。不能通过轮询、无意义提交或修改客户端过期时间承诺永久登录。
+5. 会话过期后使用官方登录流程，优先登录用户指定的用户名账号；短信验证码由用户提供，仅用于当次认证。手机号入口可能选择另一个绑定账号，不能用它替代指定的用户名账号。不能通过轮询、无意义提交或修改客户端过期时间承诺永久登录。
+
+## 切换账号
+
+在当前 context 中打开阿里云官方退出地址 `https://account.aliyun.com/logout/logout.htm?oauth_callback=<编码后的天池回跳地址>`，回到天池核验 `getSession` 已为未登录；退出确认后移除旧恢复快照，防止误恢复旧账号。再从 `https://tianchi.aliyun.com/home/auth/aliyun/login?site=cn` 进入账密登录，使用环境变量。新账号通过天池登录、报名权限及快照恢复验证后，保存新的快照。仅删除天池单域 Cookie 不等于退出阿里云 SSO。
 
 ## 每次提交前的只读核验
 
