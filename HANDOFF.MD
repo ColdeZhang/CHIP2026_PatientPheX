@@ -89,7 +89,7 @@
 
 远端 Hugging Face 与镜像连接失败，本机可下载；MCP `write_file` 较大请求返回 HTTP 413。直接把模型或数据一次写入不可行。
 
-**避免方法**：按用户最新偏好，先复用已核验副本，新下载优先 ModelScope（魔搭）；固定对应revision并核对权重、配置与tokenizer的SHA，不能只凭模型同名认定等价。当前Qwen3.5-9B正在从魔搭下载，已核对源端四个权重分片的大小/LFS SHA与指定HF版本一致，下载完成还须逐文件实际校验；许可证文件差异单独记录。魔搭缺少所需版本或无法核对时再尝试原始HF来源。2026-10-23另一条已验证路径：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验；优先续传，不重复下载。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及方案模型manifest。
+**避免方法**：按用户最新偏好，先复用已核验副本，新下载优先 ModelScope（魔搭）；固定对应revision并核对权重、配置与tokenizer的SHA，不能只凭模型同名认定等价。当前Qwen3.5-9B已从魔搭下载完成，15文件共19,329,392,091字节逐文件实际SHA通过，源端四个权重分片的大小/LFS SHA与指定HF版本一致；许可证文件差异单独记录。魔搭缺少所需版本或无法核对时再尝试原始HF来源。2026-10-23另一条已验证路径：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验；优先续传，不重复下载。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及方案模型manifest。
 
 ## H14：官方附件元数据中的相对路径不等于可下载 URL
 
@@ -186,6 +186,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 整患者自由生成实验同时输出HPO ID与原文quote，格式/分支/坐标检查均可通过，但仍出现 `short stature` 配成 `HP:0001250`（Seizure）、`cardiac abnormalities` 配成 `HP:0000252`（Microcephaly）。不读验证gold，仅按指定HPO及train48唯一词面核对：微调模型42个原文支持项中14项编码冲突、28项词典未知；后者不能据此判错。另44条合法响应中26条为空，说明格式改善也不等于召回改善。
 
 **避免方法**：分别核验原文定位、HPO语义与患者归属，不能把任一项通过代替其他项。优先让模型选择带名称/定义的有限候选或可逆编号；自由生成编码若要保留，应单独验证其标准化质量。词典匹配仍不证明患者归属，歧义词面和未匹配长quote不能强行修正。本次仅保存诊断与负结果，未依据gold打补丁或追加重链接评分；证据见[检索实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/case-retrieval/solutions/case_retrieval/experiments/E-20261023-008.md)及外部 `patient-set-fold0-bf16-v1/diagnostics/exact-quote-id-summary.json`。
+
+## H30：第三方训练loss能正常运行，仍可能因位置参数错位反向优化
+
+实际A800私有环境的 `gliner==0.2.22`（`modeling/base.py` SHA `b3ef985596410c07a447f18f5e199339b97ca4f603441a9ff36f9242d949e5bd`）中，`SpanModel.loss` 调用 `_loss` 漏传 `prob_margin`，使 `negatives=1` 落到 `label_smoothing=1`，所有标签变成0.5。CPU最小复验：两有效logit `[2,-2]`、标签 `[1,0]` 加一个padding，库loss为1.126928且正例梯度为正；声明的有效跨度BCE为0.126928且正例梯度为负。正常退出和有限loss不能证明监督正确。
+
+**避免方法**：监督训练前核对实际版本的调用签名，以可手算正负样本验证loss、梯度方向及padding mask。已绕过：方案 `45e107c` 改用自有入口显式计算logits上的BCE和有效跨度mask，不改共享库；实际A800 CPU独审已通过正负梯度、极端padding、masked标签翻转不变及按总有效span归一，修复报告SHA `0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2`。本次在GPU单步及正式训练前发现，既有零样本推理不经过loss，因此不受影响。结论只适用于该已核对源码，不泛化到所有GLiNER版本；数值证据在外部 `validation/gliner-supervised-review/actual-runtime-probe.json`（SHA `de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1`），方案入口见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
 
 ## 更新方式
 

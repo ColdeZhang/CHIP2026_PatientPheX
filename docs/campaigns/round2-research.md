@@ -17,6 +17,8 @@
 
 冠军公开[权重卡](https://huggingface.co/rigidk/CHIP2026-PatientPheX-Agriv) revision `7a98ca95683eb920b09cc9141cdf512dc5f1fa41` 声明所有自训标签来自官方80篇。可研究结构（BioLinkBERT-large、Qwen3-8B LoRA r16、单/多患者LGBM），但这些已训练权重包括本仓库dev16，不能直接用于本轮本地验证；五折成员未公开核验，也不能推定兼容。本轮只读取模型卡/元数据，没有下载该自训权重。
 
+17:29 UTC重查本项目已失败的上下文CE与上述模型卡：旧实现只对固定span-ID做二分类（局部前后180字符、max160），随后直接阈值或固定权重与树混分，未获得收益；冠军卡描述的是折外CE分数作为二阶段树的训练特征，且有不同的候选来源。因此旧负结果只关闭已试配置，不证明所有上下文融合无效。若实施新控制，须补相应训练范围内的折外特征及候选来源，不能用训练内CE分数冒充折外，也不能为复现借用含原dev的成品权重；当前尚未启动这一新训练，先验证新候选池的实际增益。旧实验入口为[本体E-007](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)第七阶段。
+
 [PhenoTagger](https://github.com/ncbi-nlp/PhenoTagger)提供从本体构造远程监督样本的流程，无需额外人工表型标注。现成v1.2的HPO2023词表与比赛指定2026版本不同，且示例外部GSC开发集不能照搬；若采用，使用指定HPO与当前训练折重新构建，保留原文跨度。
 
 已进一步审查 PhenoTagger v1.2 固定代码 `10f8ee3e` 与权重卡：代码MIT、权重Apache-2.0。梯度训练使用HPO远监督，官方示例另用GSC人工开发集选择checkpoint；代码也允许无dev固定轮次，但成品实际选模谱系未公开，不能断言每个权重都用过GSC或全为纯弱监督。旧softmax头为17,265个HPO加None，当前2026分支有2,036个ID不在旧头，不能仅替换词表。本轮从已有通用Biomed编码器与2026本体重新训练，多类encoder全量微调区别于此前冻结encoder二元MLP；先测真实耗时，不把小预算试验说成完整100epoch复现。完整源码接口/多父节点限制和来源SHA见外部 `research/phenotagger-v1.2-review/` 与来源清单。
