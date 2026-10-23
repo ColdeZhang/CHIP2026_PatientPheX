@@ -1,0 +1,1309 @@
+{
+  "comparison": "inner4 fold0, not original dev16",
+  "results": [
+    {
+      "run_id": "fold0-baseline",
+      "metrics": {
+        "menF1": 0.698140200286123,
+        "docF1": 0.6837060702875399,
+        "micF1": 0.6554149085794655,
+        "macF1": 0.6488256849285337,
+        "Score": 0.6715217160204155
+      },
+      "counts": {
+        "mention": {
+          "tp": 732,
+          "fp": 188,
+          "fn": 445,
+          "precision": 0.7956521739130434,
+          "recall": 0.6219201359388276,
+          "f1": 0.698140200286123
+        },
+        "document": {
+          "tp": 321,
+          "fp": 53,
+          "fn": 244,
+          "precision": 0.8582887700534759,
+          "recall": 0.5681415929203539,
+          "f1": 0.6837060702875399
+        },
+        "relation": {
+          "tp": 233,
+          "fp": 99,
+          "fn": 146,
+          "precision": 0.7018072289156626,
+          "recall": 0.6147757255936676,
+          "f1": 0.6554149085794655
+        }
+      },
+      "manifest": {
+        "recorded_at_utc": "2026-10-23T12:12:00.328158+00:00",
+        "method": "ontology_rules_v1",
+        "hpo_version": "hp/releases/2026-06-23",
+        "training_documents": 48,
+        "input_documents": 16,
+        "entities": 920,
+        "patient_phenotype_links": 332,
+        "fit_seconds": 0.7703417730008368,
+        "predict_seconds": 0.11994219299958786,
+        "lexicon": {
+          "allowed_hpo_concepts": 19120,
+          "normalized_terms": 41518,
+          "training_aliases": 1818,
+          "blocked_unannotated_terms": 1,
+          "ignored_training_labels": {
+            "HP:0031135": 1,
+            "HP:0001466": 1,
+            "HP:0020094": 1,
+            "HP:0002686": 1,
+            "HP:0100613": 1,
+            "HP:0025237": 1,
+            "HP:0003819": 1,
+            "HP:0012824": 1,
+            "HP:000328": 1,
+            "HP:6000529": 2,
+            "HP:0040006": 1,
+            "HP:0031375": 1
+          }
+        },
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+          "bytes": 120177,
+          "sha256": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333"
+        },
+        "source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-aggregate-hist",
+      "metrics": {
+        "menF1": 0.7003467062902426,
+        "docF1": 0.6827661909989023,
+        "micF1": 0.6124401913875598,
+        "macF1": 0.5539371797309599,
+        "Score": 0.6373725671019161
+      },
+      "counts": {
+        "mention": {
+          "tp": 707,
+          "fp": 135,
+          "fn": 470,
+          "precision": 0.8396674584323041,
+          "recall": 0.6006796941376381,
+          "f1": 0.7003467062902426
+        },
+        "document": {
+          "tp": 311,
+          "fp": 35,
+          "fn": 254,
+          "precision": 0.8988439306358381,
+          "recall": 0.5504424778761062,
+          "f1": 0.6827661909989023
+        },
+        "relation": {
+          "tp": 192,
+          "fp": 56,
+          "fn": 187,
+          "precision": 0.7741935483870968,
+          "recall": 0.5065963060686016,
+          "f1": 0.6124401913875598
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-hist/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-hist",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "aggregate-hist",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-hist/pred.jsonl",
+          "sha256": "baa1d7f6318870d849fd4442061aa843e253c5054933c1ec4173e648f5f885bc",
+          "bytes": 109967
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 3813,
+          "positive": 2352
+        },
+        "relation_model": {
+          "examples": 3819,
+          "positive": 912,
+          "model_type": "hist",
+          "unit": "patient-concept"
+        },
+        "fit_seconds": 2.74161089700101,
+        "predict_seconds": 0.5500043789998017,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-hist/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-aggregate-lr",
+      "metrics": {
+        "menF1": 0.7003467062902426,
+        "docF1": 0.6827661909989023,
+        "micF1": 0.6228571428571429,
+        "macF1": 0.5279823571723168,
+        "Score": 0.6334880993296512
+      },
+      "counts": {
+        "mention": {
+          "tp": 707,
+          "fp": 135,
+          "fn": 470,
+          "precision": 0.8396674584323041,
+          "recall": 0.6006796941376381,
+          "f1": 0.7003467062902426
+        },
+        "document": {
+          "tp": 311,
+          "fp": 35,
+          "fn": 254,
+          "precision": 0.8988439306358381,
+          "recall": 0.5504424778761062,
+          "f1": 0.6827661909989023
+        },
+        "relation": {
+          "tp": 218,
+          "fp": 103,
+          "fn": 161,
+          "precision": 0.6791277258566978,
+          "recall": 0.575197889182058,
+          "f1": 0.6228571428571429
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-lr/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-lr",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "aggregate-lr",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-lr/pred.jsonl",
+          "sha256": "b9c55d3870e90404a5363f59e973f450a5abb9243774d917751db4798f78e834",
+          "bytes": 110987
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 3813,
+          "positive": 2352
+        },
+        "relation_model": {
+          "examples": 3819,
+          "positive": 912,
+          "model_type": "lr",
+          "unit": "patient-concept"
+        },
+        "fit_seconds": 3.6371034479998343,
+        "predict_seconds": 0.557924141001422,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-aggregate-lr/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-filter",
+      "metrics": {
+        "menF1": 0.7003467062902426,
+        "docF1": 0.6827661909989023,
+        "micF1": 0.5510455104551045,
+        "macF1": 0.4487332470589584,
+        "Score": 0.595722913700802
+      },
+      "counts": {
+        "mention": {
+          "tp": 707,
+          "fp": 135,
+          "fn": 470,
+          "precision": 0.8396674584323041,
+          "recall": 0.6006796941376381,
+          "f1": 0.7003467062902426
+        },
+        "document": {
+          "tp": 311,
+          "fp": 35,
+          "fn": 254,
+          "precision": 0.8988439306358381,
+          "recall": 0.5504424778761062,
+          "f1": 0.6827661909989023
+        },
+        "relation": {
+          "tp": 224,
+          "fp": 210,
+          "fn": 155,
+          "precision": 0.5161290322580645,
+          "recall": 0.5910290237467019,
+          "f1": 0.5510455104551045
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "learned",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter/pred.jsonl",
+          "sha256": "3582b52bf42570e694e09386ef1fbb772b2f245f9a02d719fa9bc1994defa739",
+          "bytes": 112569
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 3813,
+          "positive": 2352
+        },
+        "relation_model": {
+          "examples": 10201,
+          "positive": 3434
+        },
+        "fit_seconds": 2.0730166359990108,
+        "predict_seconds": 0.4773169449999841,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-filter-rules",
+      "metrics": {
+        "menF1": 0.7003467062902426,
+        "docF1": 0.6827661909989023,
+        "micF1": 0.625,
+        "macF1": 0.6102226536109303,
+        "Score": 0.6545838877250189
+      },
+      "counts": {
+        "mention": {
+          "tp": 707,
+          "fp": 135,
+          "fn": 470,
+          "precision": 0.8396674584323041,
+          "recall": 0.6006796941376381,
+          "f1": 0.7003467062902426
+        },
+        "document": {
+          "tp": 311,
+          "fp": 35,
+          "fn": 254,
+          "precision": 0.8988439306358381,
+          "recall": 0.5504424778761062,
+          "f1": 0.6827661909989023
+        },
+        "relation": {
+          "tp": 220,
+          "fp": 105,
+          "fn": 159,
+          "precision": 0.676923076923077,
+          "recall": 0.5804749340369393,
+          "f1": 0.625
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter-rules",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter-rules/pred.jsonl",
+          "sha256": "9797e426d90c88b1d97111d0f6a4526db97a3ea91d4f7b50dce07fe7104b3f32",
+          "bytes": 111049
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 3813,
+          "positive": 2352
+        },
+        "relation_model": {},
+        "fit_seconds": 1.2138258430004498,
+        "predict_seconds": 0.24726654900041467,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-filter-rules/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-learned",
+      "metrics": {
+        "menF1": 0.6651644885083371,
+        "docF1": 0.6823027718550106,
+        "micF1": 0.5572609208972845,
+        "macF1": 0.44782190975763003,
+        "Score": 0.5881375227545655
+      },
+      "counts": {
+        "mention": {
+          "tp": 738,
+          "fp": 304,
+          "fn": 439,
+          "precision": 0.708253358925144,
+          "recall": 0.627017841971113,
+          "f1": 0.6651644885083371
+        },
+        "document": {
+          "tp": 320,
+          "fp": 53,
+          "fn": 245,
+          "precision": 0.8579088471849866,
+          "recall": 0.5663716814159292,
+          "f1": 0.6823027718550106
+        },
+        "relation": {
+          "tp": 236,
+          "fp": 232,
+          "fn": 143,
+          "precision": 0.5042735042735043,
+          "recall": 0.6226912928759895,
+          "f1": 0.5572609208972845
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-learned/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-learned",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "learned",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-learned/pred.jsonl",
+          "sha256": "3cfeefbfe8df0d1093eaeb969b08c9f211366891814847efede5584b8f5ca2b7",
+          "bytes": 135453
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {
+          "examples": 10201,
+          "positive": 3434
+        },
+        "fit_seconds": 1.4562226090001786,
+        "predict_seconds": 0.33999365999989095,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-learned/metrics.json"
+    },
+    {
+      "run_id": "fold0-exact-rules",
+      "metrics": {
+        "menF1": 0.6651644885083371,
+        "docF1": 0.6823027718550106,
+        "micF1": 0.6347469220246238,
+        "macF1": 0.6195457383112413,
+        "Score": 0.6504399801748032
+      },
+      "counts": {
+        "mention": {
+          "tp": 738,
+          "fp": 304,
+          "fn": 439,
+          "precision": 0.708253358925144,
+          "recall": 0.627017841971113,
+          "f1": 0.6651644885083371
+        },
+        "document": {
+          "tp": 320,
+          "fp": 53,
+          "fn": 245,
+          "precision": 0.8579088471849866,
+          "recall": 0.5663716814159292,
+          "f1": 0.6823027718550106
+        },
+        "relation": {
+          "tp": 232,
+          "fp": 120,
+          "fn": 147,
+          "precision": 0.6590909090909091,
+          "recall": 0.6121372031662269,
+          "f1": 0.6347469220246238
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-rules",
+          "mode": "basic",
+          "synonyms": "exact",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-rules/pred.jsonl",
+          "sha256": "81e78181faff092fe61b4f6c5dad425ad2d2a589a3eaf6559ee73147aed6fdb2",
+          "bytes": 133835
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {},
+        "fit_seconds": 0.9356209950001357,
+        "predict_seconds": 0.21762517699971795,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-exact-rules/metrics.json"
+    },
+    {
+      "run_id": "fold0-morph-filter",
+      "metrics": {
+        "menF1": 0.6,
+        "docF1": 0.6409966024915063,
+        "micF1": 0.5243741765480896,
+        "macF1": 0.4713514971321894,
+        "Score": 0.5591805690429463
+      },
+      "counts": {
+        "mention": {
+          "tp": 555,
+          "fp": 118,
+          "fn": 622,
+          "precision": 0.8246656760772659,
+          "recall": 0.4715378079864061,
+          "f1": 0.6
+        },
+        "document": {
+          "tp": 283,
+          "fp": 35,
+          "fn": 282,
+          "precision": 0.889937106918239,
+          "recall": 0.5008849557522124,
+          "f1": 0.6409966024915063
+        },
+        "relation": {
+          "tp": 199,
+          "fp": 181,
+          "fn": 180,
+          "precision": 0.5236842105263158,
+          "recall": 0.525065963060686,
+          "f1": 0.5243741765480896
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-filter/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-filter",
+          "mode": "morph",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "learned",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-filter/pred.jsonl",
+          "sha256": "eb0a5fd38239ce94ad994867f31372d872e6fc6e892d54a2cb369d405de4904d",
+          "bytes": 90816
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 5123,
+          "positive": 2458
+        },
+        "relation_model": {
+          "examples": 10201,
+          "positive": 3434
+        },
+        "fit_seconds": 8.237451501998294,
+        "predict_seconds": 1.3927761869999813,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-filter/metrics.json"
+    },
+    {
+      "run_id": "fold0-morph-learned",
+      "metrics": {
+        "menF1": 0.4726788094180364,
+        "docF1": 0.6993736951983298,
+        "micF1": 0.5578703703703703,
+        "macF1": 0.4542563636210842,
+        "Score": 0.5460448096519552
+      },
+      "counts": {
+        "mention": {
+          "tp": 532,
+          "fp": 542,
+          "fn": 645,
+          "precision": 0.49534450651769085,
+          "recall": 0.4519966015293118,
+          "f1": 0.4726788094180364
+        },
+        "document": {
+          "tp": 335,
+          "fp": 58,
+          "fn": 230,
+          "precision": 0.8524173027989822,
+          "recall": 0.5929203539823009,
+          "f1": 0.6993736951983298
+        },
+        "relation": {
+          "tp": 241,
+          "fp": 244,
+          "fn": 138,
+          "precision": 0.49690721649484537,
+          "recall": 0.6358839050131926,
+          "f1": 0.5578703703703703
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-learned/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-learned",
+          "mode": "morph",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "learned",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-learned/pred.jsonl",
+          "sha256": "41eac99b046fa0461fe584858150b1bad6333798ea3061c242f7eebe887dd531",
+          "bytes": 141045
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {
+          "examples": 10201,
+          "positive": 3434
+        },
+        "fit_seconds": 1.6101128369991784,
+        "predict_seconds": 1.366082581000228,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-learned/metrics.json"
+    },
+    {
+      "run_id": "fold0-morph-rules",
+      "metrics": {
+        "menF1": 0.4726788094180364,
+        "docF1": 0.6993736951983298,
+        "micF1": 0.6406460296096904,
+        "macF1": 0.6306639359072898,
+        "Score": 0.6108406175333366
+      },
+      "counts": {
+        "mention": {
+          "tp": 532,
+          "fp": 542,
+          "fn": 645,
+          "precision": 0.49534450651769085,
+          "recall": 0.4519966015293118,
+          "f1": 0.4726788094180364
+        },
+        "document": {
+          "tp": 335,
+          "fp": 58,
+          "fn": 230,
+          "precision": 0.8524173027989822,
+          "recall": 0.5929203539823009,
+          "f1": 0.6993736951983298
+        },
+        "relation": {
+          "tp": 238,
+          "fp": 126,
+          "fn": 141,
+          "precision": 0.6538461538461539,
+          "recall": 0.6279683377308707,
+          "f1": 0.6406460296096904
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-rules",
+          "mode": "morph",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-rules/pred.jsonl",
+          "sha256": "85c34b925ae3e16f9811a6023a606126125f25ec8acc8fb95224ddd9365d4b2e",
+          "bytes": 139357
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {},
+        "fit_seconds": 0.8400714859999425,
+        "predict_seconds": 1.2324832239992247,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph-rules/metrics.json"
+    },
+    {
+      "run_id": "fold0-morph2-aggregate-hist",
+      "metrics": {
+        "menF1": 0.7117472852912142,
+        "docF1": 0.703344120819849,
+        "micF1": 0.6248037676609105,
+        "macF1": 0.5818914467921263,
+        "Score": 0.655446655141025
+      },
+      "counts": {
+        "mention": {
+          "tp": 721,
+          "fp": 128,
+          "fn": 456,
+          "precision": 0.8492343934040048,
+          "recall": 0.6125743415463042,
+          "f1": 0.7117472852912142
+        },
+        "document": {
+          "tp": 326,
+          "fp": 36,
+          "fn": 239,
+          "precision": 0.9005524861878453,
+          "recall": 0.5769911504424778,
+          "f1": 0.703344120819849
+        },
+        "relation": {
+          "tp": 199,
+          "fp": 59,
+          "fn": 180,
+          "precision": 0.7713178294573644,
+          "recall": 0.525065963060686,
+          "f1": 0.6248037676609105
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-aggregate-hist/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-aggregate-hist",
+          "mode": "morph",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "aggregate-hist",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-aggregate-hist/pred.jsonl",
+          "sha256": "b0498abb4e1d1f2b23dc1cdbae62c1f480efa4bbb40766f57f190f6a652b82cc",
+          "bytes": 111214
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 4091,
+          "positive": 2458
+        },
+        "relation_model": {
+          "examples": 4029,
+          "positive": 945,
+          "model_type": "hist",
+          "unit": "patient-concept"
+        },
+        "fit_seconds": 9.94606705499973,
+        "predict_seconds": 1.453242218000014,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-aggregate-hist/metrics.json"
+    },
+    {
+      "run_id": "fold0-morph2-filter-rules",
+      "metrics": {
+        "menF1": 0.7117472852912142,
+        "docF1": 0.703344120819849,
+        "micF1": 0.6387726638772664,
+        "macF1": 0.6219376838667707,
+        "Score": 0.6689504384637751
+      },
+      "counts": {
+        "mention": {
+          "tp": 721,
+          "fp": 128,
+          "fn": 456,
+          "precision": 0.8492343934040048,
+          "recall": 0.6125743415463042,
+          "f1": 0.7117472852912142
+        },
+        "document": {
+          "tp": 326,
+          "fp": 36,
+          "fn": 239,
+          "precision": 0.9005524861878453,
+          "recall": 0.5769911504424778,
+          "f1": 0.703344120819849
+        },
+        "relation": {
+          "tp": 229,
+          "fp": 109,
+          "fn": 150,
+          "precision": 0.6775147928994083,
+          "recall": 0.604221635883905,
+          "f1": 0.6387726638772664
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-filter-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-filter-rules",
+          "mode": "morph",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-filter-rules/pred.jsonl",
+          "sha256": "9cd9c15c0d0115ed09f8b2491ece6c389282c5c494543e54390c49bd7fadcdb2",
+          "bytes": 112342
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 4091,
+          "positive": 2458
+        },
+        "relation_model": {},
+        "fit_seconds": 5.421410946000833,
+        "predict_seconds": 1.227658664000046,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-morph2-filter-rules/metrics.json"
+    },
+    {
+      "run_id": "fold0-related-filter-rules",
+      "metrics": {
+        "menF1": 0.7125185551707076,
+        "docF1": 0.6957470010905126,
+        "micF1": 0.6346967559943583,
+        "macF1": 0.6151927942087909,
+        "Score": 0.6645387766160924
+      },
+      "counts": {
+        "mention": {
+          "tp": 720,
+          "fp": 124,
+          "fn": 457,
+          "precision": 0.8530805687203792,
+          "recall": 0.6117247238742566,
+          "f1": 0.7125185551707076
+        },
+        "document": {
+          "tp": 319,
+          "fp": 33,
+          "fn": 246,
+          "precision": 0.90625,
+          "recall": 0.5646017699115045,
+          "f1": 0.6957470010905126
+        },
+        "relation": {
+          "tp": 225,
+          "fp": 105,
+          "fn": 154,
+          "precision": 0.6818181818181818,
+          "recall": 0.5936675461741425,
+          "f1": 0.6346967559943583
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-filter-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-filter-rules",
+          "mode": "basic",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": true,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "19faf33275deb27156c74a3a57782f54ac206712ed4aeeb17abd6a8a9d3731d7",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-filter-rules/pred.jsonl",
+          "sha256": "3ecca0513f7b755a96a3b8b52c5fcc20417f9cc820d4e85a5372fee49c78bc24",
+          "bytes": 111559
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {
+          "examples": 3913,
+          "positive": 2397
+        },
+        "relation_model": {},
+        "fit_seconds": 1.8430460649997258,
+        "predict_seconds": 0.25904166200052714,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-filter-rules/metrics.json"
+    },
+    {
+      "run_id": "fold0-related-learned",
+      "metrics": {
+        "menF1": 0.675022381378693,
+        "docF1": 0.693446088794926,
+        "micF1": 0.5580304806565064,
+        "macF1": 0.44829838891020035,
+        "Score": 0.5936993349350814
+      },
+      "counts": {
+        "mention": {
+          "tp": 754,
+          "fp": 303,
+          "fn": 423,
+          "precision": 0.7133396404919584,
+          "recall": 0.6406117247238743,
+          "f1": 0.675022381378693
+        },
+        "document": {
+          "tp": 328,
+          "fp": 53,
+          "fn": 237,
+          "precision": 0.8608923884514436,
+          "recall": 0.5805309734513274,
+          "f1": 0.693446088794926
+        },
+        "relation": {
+          "tp": 238,
+          "fp": 236,
+          "fn": 141,
+          "precision": 0.5021097046413502,
+          "recall": 0.6279683377308707,
+          "f1": 0.5580304806565064
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-learned/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-learned",
+          "mode": "basic",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "learned",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-learned/pred.jsonl",
+          "sha256": "83f87cc3e9d179d230433038ec5df7bea2250d5bef3ddceb4c072433bd75cec0",
+          "bytes": 137401
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {
+          "examples": 10201,
+          "positive": 3434
+        },
+        "fit_seconds": 2.4368177150008705,
+        "predict_seconds": 0.6216144619993429,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-learned/metrics.json"
+    },
+    {
+      "run_id": "fold0-related-rules",
+      "metrics": {
+        "menF1": 0.675022381378693,
+        "docF1": 0.693446088794926,
+        "micF1": 0.6358695652173914,
+        "macF1": 0.6205161802017174,
+        "Score": 0.6562135538981819
+      },
+      "counts": {
+        "mention": {
+          "tp": 754,
+          "fp": 303,
+          "fn": 423,
+          "precision": 0.7133396404919584,
+          "recall": 0.6406117247238743,
+          "f1": 0.675022381378693
+        },
+        "document": {
+          "tp": 328,
+          "fp": 53,
+          "fn": 237,
+          "precision": 0.8608923884514436,
+          "recall": 0.5805309734513274,
+          "f1": 0.693446088794926
+        },
+        "relation": {
+          "tp": 234,
+          "fp": 123,
+          "fn": 145,
+          "precision": 0.6554621848739496,
+          "recall": 0.6174142480211082,
+          "f1": 0.6358695652173914
+        }
+      },
+      "manifest": {
+        "method": "ontology-expanded-evidence-v2",
+        "configuration": {
+          "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "hpo": "/workspace/patientphex-data/hp.obo",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-rules/pred.jsonl",
+          "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-rules",
+          "mode": "basic",
+          "synonyms": "related",
+          "no_abbreviations": false,
+          "entity_model": false,
+          "entity_threshold": 0.45,
+          "relation": "rules",
+          "relation_threshold": 0.5
+        },
+        "source_sha256": "812bdbc912316049628e2cb846c58f9e82df71d35c3f6cbae8900a0c2bd6fe9c",
+        "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "inputs": {
+          "train": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+            "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+          },
+          "input": {
+            "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+            "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+          },
+          "hpo": {
+            "path": "/workspace/patientphex-data/hp.obo",
+            "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+          }
+        },
+        "output": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-rules/pred.jsonl",
+          "sha256": "fe7edaa413856626b33c4c7e0e5c4f5cacc32372d869fc404c07a3b89e83a460",
+          "bytes": 135769
+        },
+        "training_documents": 48,
+        "inference_documents": 16,
+        "candidate_model": {},
+        "relation_model": {},
+        "fit_seconds": 1.4035530199998902,
+        "predict_seconds": 0.18018210899936093,
+        "input_annotations_used": false,
+        "training_candidate_alias_policy": "leave-one-document-out"
+      },
+      "metrics_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-related-rules/metrics.json"
+    }
+  ]
+}

@@ -132,6 +132,7 @@ class OntologyLexicon:
             if str(passage.get('section_type','')).upper() in baseline.STOP_SECTIONS:continue
             text=passage.get('text','');base=int(passage.get('offset',0));toks=list(baseline.TOKEN.finditer(text))
             for i,tok in enumerate(toks):
+                if self.mode != 'basic' and tok.group().lower() in CONNECTORS:continue
                 if tok.group() in abbrev:
                     ids,count,official=abbrev[tok.group()]
                     out.append(Candidate(base+tok.start(),base+tok.end(),ids,key(tok.group(),self.mode),'abbreviation',count,official,baseline.is_negated(text,tok.start(),tok.end())))
@@ -245,25 +246,89 @@ def fit_relation(train,lexicon):
     return (vec,clf),{'examples':len(y),'positive':sum(y)}
 
 
+def active_by_passage(doc,anchors):
+    active=None;previous=None;result={}
+    for index,p in sorted(enumerate(doc['full_text']),key=lambda ip:int(ip[1].get('offset',0))):
+        section=str(p.get('section_type','')).upper()
+        if section in baseline.STOP_SECTIONS:continue
+        if section!=previous and section in baseline.GENERAL_SECTIONS:active=None
+        result[index]=active
+        base=int(p.get('offset',0));local=[a for a in anchors if base<=a[0]<base+len(p.get('text',''))]
+        if local:active=local[-1][2]
+        previous=section
+    return result
+
+
+def aggregate_relations(doc,entities):
+    """One feature row per (patient, concept), aggregating all textual evidence."""
+    by=defaultdict(list)
+    for e in entities:
+        vals=[e['text']] if e['identifier']=='-1' else e['identifier'].split(';')
+        for v in vals:by[v].append(e)
+    anchors=baseline.patient_anchors(doc);active_map=active_by_passage(doc,anchors);rows=[];pairs=[]
+    for hid,mentions in sorted(by.items()):
+        for patient in doc.get('patient',[]):
+            fs=[]
+            for e in mentions:
+                pi,p,a,b=location(doc,e['offset'],e['offset']+e['length'])
+                active=active_map.get(pi)
+                ids=('-1',) if e['identifier']=='-1' else tuple(e['identifier'].split(';'))
+                rule=patient['patient_id'] in baseline.assign_patients(doc,p,baseline.Mention(a,b,(),ids,0),anchors,active)
+                fs.append(relation_features(doc,e,patient,rule))
+            out={'bias':1.,'log_mentions':math.log1p(len(fs)),'patients':len(doc.get('patient',[])),'single':len(doc.get('patient',[]))==1}
+            for k in fs[0]:
+                if k in {'patients','single','bias'}:continue
+                vals=[x[k] for x in fs]
+                if isinstance(vals[0],str):
+                    for v in set(vals):out[k+'='+v]=math.log1p(vals.count(v))
+                else:
+                    out[k+'_min']=min(vals);out[k+'_max']=max(vals);out[k+'_mean']=sum(vals)/len(vals)
+            rows.append(out);pairs.append((patient['patient_id'],hid))
+    return rows,pairs
+
+
+def fit_aggregate_relation(train,lexicon,model_type='lr'):
+    xs=[];ys=[]
+    for d in train:
+        gold=relation_gold(d)
+        # Fold-local candidate source matches inference. Current document's own
+        # annotated aliases are excluded; no gold entities supplied as evidence.
+        cs=nonoverlap(lexicon.candidates(d,exclude=str(d['pmc_id'])))
+        entities=[to_entity(d,c) for c in cs]
+        rows,pairs=aggregate_relations(d,entities)
+        xs.extend(rows);ys.extend(hid in gold.get(pid,set()) for pid,hid in pairs)
+    vec=DictVectorizer(sparse=False);matrix=vec.fit_transform(xs)
+    if model_type=='hist':
+        clf=HistGradientBoostingClassifier(max_iter=120,max_leaf_nodes=15,min_samples_leaf=30,l2_regularization=5.,learning_rate=.06,random_state=20261023).fit(matrix,ys)
+    else:
+        clf=LogisticRegression(C=.3,class_weight='balanced',solver='liblinear',max_iter=500,random_state=20261023).fit(matrix,ys)
+    return (vec,clf),{'examples':len(ys),'positive':sum(ys),'model_type':model_type,'unit':'patient-concept'}
+
+
 def predict(doc,lexicon,entity_model,relation_model,entity_threshold,relation_threshold,relation_mode):
     candidates=nonoverlap(lexicon.candidates(doc),entity_threshold,entity_model,doc)
     entities=[to_entity(doc,c) for c in candidates]
     associations={p['patient_id']:set() for p in doc.get('patient',[])}
     anchors=baseline.patient_anchors(doc)
+    active_map=active_by_passage(doc,anchors)
     prev=None;active=None;rows=[];pairs=[]
     for c,e in zip(candidates,entities):
         pi,p,s,end=location(doc,c.start,c.end)
         if pi!=prev:
-            preceding=[a for a in anchors if a[0]<int(p.get('offset',0))]
-            active=preceding[-1][2] if preceding else None
+            active=active_map.get(pi)
             prev=pi
         rules=baseline.assign_patients(doc,p,baseline.Mention(s,end,c.key,c.ids,c.support),anchors,active)
         vals={e['text']} if c.ids==('-1',) else set(c.ids)
+        if relation_mode.startswith('aggregate'):
+            continue
         if relation_mode=='rules':
             for pid in rules:associations[pid].update(vals)
         else:
             for patient in doc.get('patient',[]):
                 rows.append(relation_features(doc,e,patient,patient['patient_id'] in rules));pairs.append((patient['patient_id'],vals))
+    if relation_mode.startswith('aggregate'):
+        rows,atomic_pairs=aggregate_relations(doc,entities)
+        pairs=[(pid,{hid}) for pid,hid in atomic_pairs]
     if rows:
         vec,clf=relation_model;probs=clf.predict_proba(vec.transform(rows))[:,1]
         for prob,(pid,vals) in zip(probs,pairs):
@@ -274,14 +339,14 @@ def predict(doc,lexicon,entity_model,relation_model,entity_threshold,relation_th
 def main():
     ap=argparse.ArgumentParser()
     for k in ['train','input','hpo','output','work-dir']:ap.add_argument('--'+k,required=True)
-    ap.add_argument('--mode',choices=['basic','morph'],default='basic');ap.add_argument('--synonyms',choices=['exact','related','all'],default='exact');ap.add_argument('--no-abbreviations',action='store_true');ap.add_argument('--entity-model',action='store_true');ap.add_argument('--entity-threshold',type=float,default=.45);ap.add_argument('--relation',choices=['rules','learned'],default='learned');ap.add_argument('--relation-threshold',type=float,default=.5)
+    ap.add_argument('--mode',choices=['basic','morph'],default='basic');ap.add_argument('--synonyms',choices=['exact','related','all'],default='exact');ap.add_argument('--no-abbreviations',action='store_true');ap.add_argument('--entity-model',action='store_true');ap.add_argument('--entity-threshold',type=float,default=.45);ap.add_argument('--relation',choices=['rules','learned','aggregate-lr','aggregate-hist'],default='rules');ap.add_argument('--relation-threshold',type=float,default=.5)
     args=ap.parse_args();started=time.monotonic();src=baseline.sha256(__file__)
     train=baseline.read_jsonl(args.train);inputs=baseline.read_jsonl(args.input)
     assert not {str(x['pmc_id']) for x in train}&{str(x['pmc_id']) for x in inputs},'Training/inference overlap'
     assert all('entities' not in x and 'association' not in x for x in inputs),'Use label-free input'
     lex=OntologyLexicon(args.hpo,train,args.mode,args.synonyms,not args.no_abbreviations)
     em,es=fit_entity(train,lex) if args.entity_model else (None,{})
-    rm,rs=fit_relation(train,lex) if args.relation=='learned' else (None,{})
+    rm,rs=(fit_relation(train,lex) if args.relation=='learned' else fit_aggregate_relation(train,lex,args.relation.split('-')[1]) if args.relation.startswith('aggregate') else (None,{}))
     fitted=time.monotonic();out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
     preds=[predict(d,lex,em,rm,args.entity_threshold,args.relation_threshold,args.relation) for d in inputs]
     out.write_text(''.join(json.dumps(p,ensure_ascii=False)+'\n' for p in preds))
