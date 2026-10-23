@@ -1,0 +1,63 @@
+{
+  "source_sha256": "fdd251986cb1487e553ec506eff4d4f156ae702c56f49aaa3d66acdbe9d76156",
+  "invalid_schemas_rejected": 9,
+  "six_choices_accepted": true,
+  "truncated_valid_json_rejected": true,
+  "all_abstain_full_prediction_byteexact_baseline": true,
+  "baseline_sha256": "431bbc6e8ce8ae673499d2bbb78c8f0db0569c8c68f84e26fe73dc5a4907d0b5",
+  "command": [
+    "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/merge_rejected_links.py",
+    "--input",
+    "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "--hpo",
+    "/workspace/patientphex-data/hp.obo",
+    "--base",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/augmented.jsonl",
+    "--base-manifest",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/manifest.json",
+    "--prompts",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompts.jsonl",
+    "--prompt-manifest",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompt-manifest.json",
+    "--responses",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/parser-fixture/responses.jsonl",
+    "--response-manifest",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/parser-fixture/responses.manifest.json",
+    "--relation-source",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/combine.py",
+    "--output",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/parser-fixture/pred.jsonl"
+  ],
+  "gold_used": false,
+  "all_C1_fixed_order_counts": {
+    "responses": 176,
+    "selected_valid_choice": 176,
+    "added_relations": 87,
+    "added_entities": 173,
+    "overlap_new_rejected": 3
+  },
+  "all_C1_validator": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1146,
+      "relations": 443,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "7faf36b5d4290a8c5e1948171acfe6a32e77fe1f093216e44d1b6ee6ca2d2b73",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "all_C1_fixture_is_not_model_prediction": true
+}

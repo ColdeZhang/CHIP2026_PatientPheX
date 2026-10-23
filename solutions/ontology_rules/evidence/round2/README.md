@@ -59,3 +59,4 @@
 - [原dev两臂结案](phenotagger-original-dev-results.json)：raw .636028负、filtered .646360仅微增，独立CPU复现通过；默认稳定base .646244保留，不追加Pheno-only预算或调阈值。
 - [强base共享组合计划](phenotagger-crf-gliner-dev-plan.json)与[两臂结果](phenotagger-crf-gliner-dev-results.json)：CRF+GLiNER上实体-only .712586、fullLR .712071；两pred冻结后统一评，不冒称本体独立分。
 - [GLiNER弱链接有限选择CPU提案](gliner-rejected-link-proposal.json)：176输入限定跨度、原Sap缓存top5、9B真实token预算与ABSTAIN/NIL边界；尚无LLM效果结果。
+- [有限链接冻结运行计划](gliner-rejected-link-run-plan.json)与[解析/无操作检查](gliner-rejected-link-parser-checks.json)：900秒cap、严格候选码、完整base保留，合成检查不代表模型效果。
