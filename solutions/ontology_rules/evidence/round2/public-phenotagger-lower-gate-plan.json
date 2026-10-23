@@ -1,0 +1,79 @@
+{
+  "experiment_id": "P-20261023-PUBLIC-PHENO-LOWER-GATE",
+  "scope": "CPU-only candidate interface/size/cost at exactly native .95 and prespecified .5; no new NN/weights/labels/quality",
+  "source_sha256": "6d6b1397c63f8a88a31eaccbd507a80ccc82529e74f2f9343a5a1abe4aaa38e5",
+  "thresholds": [
+    0.95,
+    0.5
+  ],
+  "model_resource_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse",
+  "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-lower-gate/output",
+  "model_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+  "native_base_policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "resource_sha256": {
+    "native-pipeline/dictionary-current-HPO.json": "61ffd241f0d2cc24d55ff1a317b3e781c59133dd3de9bebe803ad9abf1b9a10a",
+    "original-column-to-current-HPO.json": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+    "lable.vocab": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+    "native-pipeline/src/ssplit_tokenzier.py": "5925dbe25cbaaaa26ef2ca10291958969eeb95822e69cc2badab8c4177d1b2f7",
+    "native-pipeline/src/ml_ner.py": "9ee418916784f6fd26d1446faa0682ace9c9a07a959a07e9998977840409ef0d",
+    "native-pipeline/src/dic_ner.py": "2c7aa997d8bf4a72568be191169e6c1649242481b95284e5af32071625242ab1",
+    "native-pipeline/src/restore_index.py": "aa53414992c37473c465566b094086c365cd521fb215edca40da9cec9f2c82d8",
+    "native-pipeline/src/combine_result.py": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95",
+    "native-pipeline/src/abbre_resolution.py": "0afe29fa6f9ea7c4e70c4c2042843ae208fabc0e588809a8c7b9b2c63fef97ff",
+    "native-pipeline/dict/noabb_lemma.dic": "a4ffda2506be93053aa6fc2b94ce0ed09087183cb0fb614aa4925f777c36b610",
+    "native-pipeline/dict/word_id_map.json": "3e7649145d09f2778c194ce29033e3da8cf72d1b30e4ff5544734e7d104a866e",
+    "native-pipeline/dict/id_word_map.json": "5d48a49318e5e833e5b1b685db2e0525fead631cea3bd5285b13a42ce6b73e77",
+    "native-train64-cache/manifest.json": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87",
+    "native-train64-cache/canonical-entities.jsonl": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7",
+    "native-train64-cache/source-provenance.jsonl": "3a7ab2c7bb1fe42f769924d6577e797a5d7518d8f63c97db7ba25c2c1320e45c",
+    "native-train64-cache/per-document-reuse.json": "39fb7e16a61000afc2d95eb3ada4e9cd051233c5501af16dee3d9116041d03ba",
+    "train64-cache/train64.input.jsonl": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246",
+    "nltk_data/tokenizers/punkt.zip": "51c3078994aeaf650bfc8e028be4fb42b4a0d177d41c012b6a983979653660ec",
+    "nltk_data/taggers/averaged_perceptron_tagger.zip": "e1f13cf2532daadfd6f3bc481a49859f0b8ea6432ccdcd83e6a49a5f19008de9",
+    "nltk_data/corpora/wordnet.zip": "cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59"
+  },
+  "cache_source_manifest_sha256": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87",
+  "runtime": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "cwd": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-lower-gate",
+    "CPU_cap_seconds": 180,
+    "TERM_grace_seconds": 10,
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    }
+  },
+  "checks": [
+    "all raw296984 local/global offsets and new word-to-character maps equal",
+    "dictionary raw4130 original rows equal",
+    "original .95 full64 canonical byteexact and all sourceflag objects equal before decoding .5",
+    "only old top1 native5dp string gate changes; dict/combine/abbr/current-HPO unchanged",
+    "count raw and final hybrid pool intersections/losses; original hybrid may be nonmonotone",
+    "no model/tensorflow/torch import and no quality gold access"
+  ],
+  "downstream": "Current selector adapter pins .95 plan0243 and cannot consume this as old cache; new explicit provenance/plan and strict threefold OOF refitting required if later authorized."
+}
