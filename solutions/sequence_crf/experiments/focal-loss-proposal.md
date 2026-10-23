@@ -33,3 +33,7 @@ focal假设是减少已容易判负跨度的梯度贡献、相对关注难span�
 独立文件 `focal_loss.py` 不导入模型，`check_focal_loss_cpu.py` 仅合成张量。实际CPU torch2.7.0+cu128/Python3.10.20、CUDA未初始化，10组：闭式loss/解析梯度、上游helper直接关键字调用、中等logit梯度一致；±1000 FP32/64有限；gamma0等价加权BCE及禁权时原BCE；padding含NaN/Inf不参与且零梯度；翻转masked标签无影响；不同文档有效数按总数均值；全负/全正尾批；finite-difference gradcheck；无有效span/非二元/非有限有效logit拒绝。
 
 这只证明纯函数合同，未证明模型backward、吞吐或质量。报告[CPU证据](../evidence/round2/focal-loss-cpu.json) SHA `784f741d6d65f3db5b09a106970a50badec3a91e06da32b9b18678811c458707`；完整出处/旧训练计数/不可变快照和成本见[小提案证据](../evidence/round2/focal-loss-proposal.json)。
+
+### 资源决定与条件授权
+
+根已授权最省可比路径。实际A800 GPU2虽空，磁盘只有2,007,732,224B，不足检查点峰值；不删除旧唯一产物，选择`.100 A30 GPU1`两fresh臂，实际初查451.97GB余盘。固定训练共享1800秒、单臂最多1200秒，超时TERM后30秒KILL；唯一final推断/链接每阶段300秒。独立trainer只加loss-choice/fingerprint，BCE及collate函数不变。已冻结[执行计划](../evidence/round2/focal-pair-plan.json)；先实际同解释器纯函数/1150窗CPU和最长focal单步，状态丢弃，成功后无需重复许可。当前CPU作业准备中，尚无新质量结果。
