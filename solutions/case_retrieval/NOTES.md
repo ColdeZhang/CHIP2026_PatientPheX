@@ -24,3 +24,5 @@ ModelScope对小文件完整Range可能返回200而非206；仅当请求严格�
 训练48抽取风格审计（未用于更改当前冻结zero-shot prompt）：3,612正实体中41含syndrome，INTRO+DISCUSS占48.75%，提示不能把“病例归属”边界套进实体识别。至少134正跨度不含紧邻严重程度/方位修饰，compound正跨度仅30；宽泛“complete specific phrase”可能损失精确边界，需要训练示例或SFT单独验证。305窗口有12个同词同时正/NO，去重quote→所有出现回定位不能完整表达逐出现断言差异。证据外存research-train48-style-notes与research-sft-style-diagnostics。
 
 私有训练依赖在独立`training-runtime`安装peft0.15.2/bitsandbytes0.45.5，不修改已验证推理runtime；CPU隐藏GPU的import通过，不代表CUDA量化kernel已验证，仍须获GPU时做single-step。
+
+原文quote输出即使逐字存在，也未必是正确实体边界：全substring回定位会把短词插入长词，广义临床抽取易加入严重程度修饰或基因/蛋白结构。归一化返回-1只能表示确实存在但未映射的表型，不能代替非表型删除；后续单独验证明确拒绝协议。跨窗口响应按row_id而非pmc_id读取，不能复用要求每文献唯一的read_jsonl。格式恢复只按截断/JSON结构判定选择，一次重试并保留原文件。

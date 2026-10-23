@@ -1,0 +1,1135 @@
+{
+  "purpose": "span-only diagnostic; ignores HPO identity and does not create corrected predictions",
+  "files": {
+    "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/prompts.jsonl": "55bf2795c1af17a6ea3877a650e61780d35607b70662d755aeeccd92ef6b1faa",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/responses.jsonl": "9aaed8179e401dfe00bec3bae0809bd4d05f8aa66d44910da6a6e500d43224d8",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/normalization-char/normalization-items.json": "b0580fc19c0971b55c107aa270fc839b378e2f8efcc5aae53ca6694b04fdb953",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/cpu-compound-fold0/predictions.jsonl": "c381097b26c5db03567cecb7f96ff5e975afeb9ae011d128838cb3644496d2a6",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-extra-fold0/pool.jsonl": "97713fe8518e59b8bd3d053a95200dbd5a566f500d9259d3d7cc7501318cfa57"
+  },
+  "parse_counts": {
+    "valid_responses": 89,
+    "returned_quote_entries": 1032,
+    "unmatched_quote": 58,
+    "invalid_json": 1
+  },
+  "invalid_rows": [
+    "3563609:extract:4"
+  ],
+  "invalid_row_gold_spans": 42,
+  "invalid_row_gold_missed_after_other_overlap": 42,
+  "raw_span_metrics": {
+    "predicted_spans": 1186,
+    "gold_positive_spans": 1150,
+    "tp": 469,
+    "fp": 717,
+    "fn": 681,
+    "precision": 0.3954468802698145,
+    "recall": 0.4078260869565217,
+    "f1": 0.401541095890411
+  },
+  "retained_span_metrics": {
+    "predicted_spans": 1170,
+    "gold_positive_spans": 1150,
+    "tp": 462,
+    "fp": 708,
+    "fn": 688,
+    "precision": 0.39487179487179486,
+    "recall": 0.4017391304347826,
+    "f1": 0.39827586206896554
+  },
+  "span_error_analysis": {
+    "prediction_classes": {
+      "exact_positive": 462,
+      "no_positive_gold_overlap": 421,
+      "inside_gold_too_short": 16,
+      "contains_gold_too_long": 159,
+      "same_start_too_long": 94,
+      "same_start_too_short": 12,
+      "exact_negated_gold": 1,
+      "crossing_overlap": 5
+    },
+    "missed_gold_classes": {
+      "no_overlap": 371,
+      "contains_gold_too_long": 216,
+      "same_start_too_long": 87,
+      "same_start_too_short": 10,
+      "inside_gold_too_short": 3,
+      "crossing_overlap": 1
+    },
+    "examples": {
+      "exact_positive": [
+        {
+          "pmc_id": "10553122",
+          "prediction": "megalodontia",
+          "offset": 200,
+          "length": 12,
+          "gold": "megalodontia",
+          "gold_offset": 200,
+          "gold_length": 12,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "short stature",
+          "offset": 214,
+          "length": 13,
+          "gold": "short stature",
+          "gold_offset": 214,
+          "gold_length": 13,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "skeletal abnormalities",
+          "offset": 229,
+          "length": 22,
+          "gold": "skeletal abnormalities",
+          "gold_offset": 229,
+          "gold_length": 22,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "repeated infections",
+          "offset": 507,
+          "length": 19,
+          "gold": "repeated infections",
+          "gold_offset": 507,
+          "gold_length": 19,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "abdominal distension",
+          "offset": 531,
+          "length": 20,
+          "gold": "abdominal distension",
+          "gold_offset": 531,
+          "gold_length": 20,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "intracranial brain injury",
+          "offset": 651,
+          "length": 25,
+          "gold": "intracranial brain injury",
+          "gold_offset": 651,
+          "gold_length": 25,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "intracranial hemorrhage",
+          "offset": 681,
+          "length": 23,
+          "gold": "intracranial hemorrhage",
+          "gold_offset": 681,
+          "gold_length": 23,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "brain injury",
+          "offset": 1089,
+          "length": 12,
+          "gold": "brain injury",
+          "gold_offset": 1089,
+          "gold_length": 12,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "intracranial hemorrhage",
+          "offset": 1106,
+          "length": 23,
+          "gold": "intracranial hemorrhage",
+          "gold_offset": 1106,
+          "gold_length": 23,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "megalodontia",
+          "offset": 1800,
+          "length": 12,
+          "gold": "megalodontia",
+          "gold_offset": 1800,
+          "gold_length": 12,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        }
+      ],
+      "no_positive_gold_overlap": [
+        {
+          "pmc_id": "10553122",
+          "prediction": "nervous system manifestations",
+          "offset": 257,
+          "length": 29,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "platelets could not rise to normal",
+          "offset": 592,
+          "length": 34,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "nervous system manifestations",
+          "offset": 1857,
+          "length": 29,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "unresponsiveness",
+          "offset": 7900,
+          "length": 16,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "improved muscular tone",
+          "offset": 8123,
+          "length": 22,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "heart rate recorded as >100 bpm",
+          "offset": 8156,
+          "length": 31,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "crying was still not observed in this newborn",
+          "offset": 8229,
+          "length": 45,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "coagulation dysfunction as demonstrated by difficulty in stopping the bleeding on the puncture sites",
+          "offset": 8487,
+          "length": 100,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "C-reactive protein and procalcitonin",
+          "offset": 9062,
+          "length": 36,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "malnourished",
+          "offset": 9296,
+          "length": 12,
+          "gold": null,
+          "gold_offset": null,
+          "gold_length": null,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        }
+      ],
+      "inside_gold_too_short": [
+        {
+          "pmc_id": "10553122",
+          "prediction": "brain injury",
+          "offset": 664,
+          "length": 12,
+          "gold": "intracranial brain injury",
+          "gold_offset": 651,
+          "gold_length": 25,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "congestion in pharyngeal mucosa",
+          "offset": 9570,
+          "length": 31,
+          "gold": "the congestion in pharyngeal mucosa",
+          "gold_offset": 9566,
+          "gold_length": 35,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10789033",
+          "prediction": "dystonia",
+          "offset": 6590,
+          "length": 8,
+          "gold": "intermittent dystonia",
+          "gold_offset": 6577,
+          "gold_length": 21,
+          "source_rows": [
+            "10789033:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "adipic acid",
+          "offset": 1074,
+          "length": 11,
+          "gold": "elevated excretion of 3-OH-butyrate, adipic acid",
+          "gold_offset": 1037,
+          "gold_length": 48,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "3-hydroxyisobutyric acid",
+          "offset": 1173,
+          "length": 24,
+          "gold": "3-aminoisobutyric acid, 3-hydroxyisobutyric acid, 3-hydroxypropionic acid and 2-ethyl-3-hydroxypropionic acids were observed in increased amounts",
+          "gold_offset": 1149,
+          "gold_length": 145,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "3-hydroxypropionic acid",
+          "offset": 1199,
+          "length": 23,
+          "gold": "3-aminoisobutyric acid, 3-hydroxyisobutyric acid, 3-hydroxypropionic acid and 2-ethyl-3-hydroxypropionic acids were observed in increased amounts",
+          "gold_offset": 1149,
+          "gold_length": 145,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "2-ethyl-3-hydroxypropionic acids",
+          "offset": 1227,
+          "length": 32,
+          "gold": "3-aminoisobutyric acid, 3-hydroxyisobutyric acid, 3-hydroxypropionic acid and 2-ethyl-3-hydroxypropionic acids were observed in increased amounts",
+          "gold_offset": 1149,
+          "gold_length": 145,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "3-hydroxypropionic acid",
+          "offset": 1235,
+          "length": 23,
+          "gold": "3-aminoisobutyric acid, 3-hydroxyisobutyric acid, 3-hydroxypropionic acid and 2-ethyl-3-hydroxypropionic acids were observed in increased amounts",
+          "gold_offset": 1149,
+          "gold_length": 145,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "urolithiasis",
+          "offset": 21313,
+          "length": 12,
+          "gold": "cystinic urolithiasis",
+          "gold_offset": 21304,
+          "gold_length": 21,
+          "source_rows": [
+            "5452357:extract:6"
+          ]
+        },
+        {
+          "pmc_id": "5537416",
+          "prediction": "IgG and IgM",
+          "offset": 4574,
+          "length": 11,
+          "gold": "decrease of T-lymphocyte subset, IgG and IgM",
+          "gold_offset": 4541,
+          "gold_length": 44,
+          "source_rows": [
+            "5537416:extract:1"
+          ]
+        }
+      ],
+      "contains_gold_too_long": [
+        {
+          "pmc_id": "10553122",
+          "prediction": "language, motion and height of development is slight falling behind the children of the same age",
+          "offset": 1433,
+          "length": 96,
+          "gold": "motion and height of development is slight falling",
+          "gold_offset": 1443,
+          "gold_length": 50,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "generalized developmental delays",
+          "offset": 1905,
+          "length": 32,
+          "gold": "developmental delays",
+          "gold_offset": 1917,
+          "gold_length": 20,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "significant behavioral abnormalities",
+          "offset": 2045,
+          "length": 36,
+          "gold": "behavioral abnormalities",
+          "gold_offset": 2057,
+          "gold_length": 24,
+          "source_rows": [
+            "10553122:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "significantly increased procalcitonin (100 ng/mL)",
+          "offset": 8367,
+          "length": 49,
+          "gold": "increased procalcitonin",
+          "gold_offset": 8381,
+          "gold_length": 23,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "relatively low platelet count (124 x 109/L)",
+          "offset": 8428,
+          "length": 43,
+          "gold": "low platelet count",
+          "gold_offset": 8439,
+          "gold_length": 18,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "2 apnea episodes",
+          "offset": 9109,
+          "length": 16,
+          "gold": "apnea",
+          "gold_offset": 9111,
+          "gold_length": 5,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "scattered petechiae on the limbs caused by venipuncture",
+          "offset": 9411,
+          "length": 55,
+          "gold": "petechiae",
+          "gold_offset": 9421,
+          "gold_length": 9,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "mild muscular hypertonicity",
+          "offset": 9985,
+          "length": 27,
+          "gold": "hypertonicity",
+          "gold_offset": 9999,
+          "gold_length": 13,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "clinical diagnosis was eventually confirmed as neonatal sepsis, anemia, and thrombocytopenia",
+          "offset": 10443,
+          "length": 92,
+          "gold": "thrombocytopenia",
+          "gold_offset": 10519,
+          "gold_length": 16,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "sustained anemia",
+          "offset": 10938,
+          "length": 16,
+          "gold": "anemia",
+          "gold_offset": 10948,
+          "gold_length": 6,
+          "source_rows": [
+            "10553122:extract:3"
+          ]
+        }
+      ],
+      "same_start_too_long": [
+        {
+          "pmc_id": "10553122",
+          "prediction": "premature delivery at 31 + 2 weeks",
+          "offset": 3949,
+          "length": 34,
+          "gold": "premature delivery",
+          "gold_offset": 3949,
+          "gold_length": 18,
+          "source_rows": [
+            "10553122:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "recurrent infection for 1 month",
+          "offset": 3985,
+          "length": 31,
+          "gold": "recurrent infection",
+          "gold_offset": 3985,
+          "gold_length": 19,
+          "source_rows": [
+            "10553122:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "abdominal distension for half a day",
+          "offset": 4022,
+          "length": 35,
+          "gold": "abdominal distension",
+          "gold_offset": 4022,
+          "gold_length": 20,
+          "source_rows": [
+            "10553122:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "brain injury and intracranial hemorrhage",
+          "offset": 8638,
+          "length": 40,
+          "gold": "brain injury",
+          "gold_offset": 8638,
+          "gold_length": 12,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "elevated levels of white blood cells",
+          "offset": 9024,
+          "length": 36,
+          "gold": "elevated levels of white blood",
+          "gold_offset": 9024,
+          "gold_length": 30,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "less ruddy skin with an uneven texture",
+          "offset": 9367,
+          "length": 38,
+          "gold": "less ruddy skin",
+          "gold_offset": 9367,
+          "gold_length": 15,
+          "source_rows": [
+            "10553122:extract:2"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "increased leukocyte levels beyond the upper limit of normal range",
+          "offset": 10615,
+          "length": 65,
+          "gold": "increased leukocyte levels",
+          "gold_offset": 10615,
+          "gold_length": 26,
+          "source_rows": [
+            "10553122:extract:3"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "lowered platelet counts down to 45 x 109/L",
+          "offset": 10874,
+          "length": 42,
+          "gold": "lowered platelet counts",
+          "gold_offset": 10874,
+          "gold_length": 23,
+          "source_rows": [
+            "10553122:extract:3"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "decrease in hemoglobin with a minimum value of 75 g/L",
+          "offset": 11035,
+          "length": 53,
+          "gold": "decrease in hemoglobin",
+          "gold_offset": 11035,
+          "gold_length": 22,
+          "source_rows": [
+            "10553122:extract:3"
+          ]
+        },
+        {
+          "pmc_id": "10553122",
+          "prediction": "hemolytic anemia to be further confirmed",
+          "offset": 12924,
+          "length": 40,
+          "gold": "hemolytic anemia",
+          "gold_offset": 12924,
+          "gold_length": 16,
+          "source_rows": [
+            "10553122:extract:3"
+          ]
+        }
+      ],
+      "same_start_too_short": [
+        {
+          "pmc_id": "11196099",
+          "prediction": "diabetes",
+          "offset": 2383,
+          "length": 8,
+          "gold": "diabetes,",
+          "gold_offset": 2383,
+          "gold_length": 9,
+          "source_rows": [
+            "11196099:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "12444410",
+          "prediction": "aplasia/hypoplasia of the remaining phalanges",
+          "offset": 2784,
+          "length": 45,
+          "gold": "aplasia/hypoplasia of the remaining phalanges, metacarpals, and metatarsals",
+          "gold_offset": 2784,
+          "gold_length": 75,
+          "source_rows": [
+            "12444410:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "12779223",
+          "prediction": "autism",
+          "offset": 829,
+          "length": 6,
+          "gold": "autism spectrum disorder",
+          "gold_offset": 829,
+          "gold_length": 24,
+          "source_rows": [
+            "12779223:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "12779223",
+          "prediction": "developmental delay",
+          "offset": 3517,
+          "length": 19,
+          "gold": "developmental delays",
+          "gold_offset": 3517,
+          "gold_length": 20,
+          "source_rows": [
+            "12779223:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "elevated excretion of 3-OH-butyrate",
+          "offset": 1037,
+          "length": 35,
+          "gold": "elevated excretion of 3-OH-butyrate, adipic acid",
+          "gold_offset": 1037,
+          "gold_length": 48,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "3-aminoisobutyric acid",
+          "offset": 1149,
+          "length": 22,
+          "gold": "3-aminoisobutyric acid, 3-hydroxyisobutyric acid, 3-hydroxypropionic acid and 2-ethyl-3-hydroxypropionic acids were observed in increased amounts",
+          "gold_offset": 1149,
+          "gold_length": 145,
+          "source_rows": [
+            "5452357:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "5537416",
+          "prediction": "decrease of T-lymphocyte subset",
+          "offset": 4541,
+          "length": 31,
+          "gold": "decrease of T-lymphocyte subset, IgG and IgM",
+          "gold_offset": 4541,
+          "gold_length": 44,
+          "source_rows": [
+            "5537416:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "5575846",
+          "prediction": "autism-like behavior",
+          "offset": 4299,
+          "length": 20,
+          "gold": "autism-like behaviors",
+          "gold_offset": 4299,
+          "gold_length": 21,
+          "source_rows": [
+            "5575846:extract:1"
+          ]
+        },
+        {
+          "pmc_id": "6338757",
+          "prediction": "aortic aneurysm",
+          "offset": 280,
+          "length": 15,
+          "gold": "aortic aneurysm and dissection",
+          "gold_offset": 280,
+          "gold_length": 30,
+          "source_rows": [
+            "6338757:extract:0"
+          ]
+        },
+        {
+          "pmc_id": "6338757",
+          "prediction": "aortic aneurysm",
+          "offset": 1162,
+          "length": 15,
+          "gold": "aortic aneurysm and dissection",
+          "gold_offset": 1162,
+          "gold_length": 30,
+          "source_rows": [
+            "6338757:extract:0"
+          ]
+        }
+      ],
+      "exact_negated_gold": [
+        {
+          "pmc_id": "11196099",
+          "prediction": "seizures",
+          "offset": 8895,
+          "length": 8,
+          "gold": "seizures",
+          "gold_offset": 8895,
+          "gold_length": 8,
+          "source_rows": [
+            "11196099:extract:2"
+          ]
+        }
+      ],
+      "crossing_overlap": [
+        {
+          "pmc_id": "5452357",
+          "prediction": "glyceric acid",
+          "offset": 23382,
+          "length": 13,
+          "gold": "aciduria",
+          "gold_offset": 23391,
+          "gold_length": 8,
+          "source_rows": [
+            "5452357:extract:6"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "glyceric acid",
+          "offset": 23647,
+          "length": 13,
+          "gold": "aciduria",
+          "gold_offset": 23656,
+          "gold_length": 8,
+          "source_rows": [
+            "5452357:extract:6"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "glyceric acid",
+          "offset": 23787,
+          "length": 13,
+          "gold": "aciduria",
+          "gold_offset": 23796,
+          "gold_length": 8,
+          "source_rows": [
+            "5452357:extract:6"
+          ]
+        },
+        {
+          "pmc_id": "5452357",
+          "prediction": "glyceric acid",
+          "offset": 23869,
+          "length": 13,
+          "gold": "aciduria",
+          "gold_offset": 23878,
+          "gold_length": 8,
+          "source_rows": [
+            "5452357:extract:6"
+          ]
+        },
+        {
+          "pmc_id": "5575846",
+          "prediction": "intellectual disability with an absence of speech",
+          "offset": 2851,
+          "length": 49,
+          "gold": "severe intellectual disability",
+          "gold_offset": 2844,
+          "gold_length": 30,
+          "source_rows": [
+            "5575846:extract:0"
+          ]
+        }
+      ]
+    }
+  },
+  "negation_filter_diagnostic": {
+    "spans": 16,
+    "gold_positive": 7,
+    "gold_negative": 1,
+    "examples": [
+      {
+        "pmc_id": "10553122",
+        "text": "levels of immunoglobulin",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 11586
+      },
+      {
+        "pmc_id": "11196099",
+        "text": "cerebellar ataxia",
+        "gold_positive": false,
+        "gold_negative": true,
+        "offset": 8908
+      },
+      {
+        "pmc_id": "11826603",
+        "text": "preservation of integrity of the outer retinae",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 4628
+      },
+      {
+        "pmc_id": "12444410",
+        "text": "abnormal joint formation between the 3rd metacarpal and the 4th proximal phalange of the left hand",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 9854
+      },
+      {
+        "pmc_id": "12444410",
+        "text": "entire right 2nd toe",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 10085
+      },
+      {
+        "pmc_id": "12444410",
+        "text": "distal phalange of the right 3rd toe",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 10115
+      },
+      {
+        "pmc_id": "4678370",
+        "text": "recessive inheritance",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 7396
+      },
+      {
+        "pmc_id": "5452357",
+        "text": "hyperglyceric aciduria",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 25084
+      },
+      {
+        "pmc_id": "5537416",
+        "text": "immunodeficiency",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 14476
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "stereotypic movements",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 2902
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "corpus callosum abnormalities",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 2925
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "seizures",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 2960
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "infantile spasms",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 3178
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "autism-like phenotype",
+        "gold_positive": true,
+        "gold_negative": false,
+        "offset": 3203
+      },
+      {
+        "pmc_id": "5575846",
+        "text": "congenital RTT",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 18750
+      },
+      {
+        "pmc_id": "5959423",
+        "text": "pulmonary fibrosis",
+        "gold_positive": false,
+        "gold_negative": false,
+        "offset": 5832
+      }
+    ]
+  },
+  "baseline_overlap": {
+    "cpu": {
+      "source_span_metrics": {
+        "predicted_spans": 848,
+        "gold_positive_spans": 1150,
+        "tp": 721,
+        "fp": 127,
+        "fn": 429,
+        "precision": 0.8502358490566038,
+        "recall": 0.6269565217391304,
+        "f1": 0.7217217217217218
+      },
+      "shared_spans": 368,
+      "shared_exact_gold": 340,
+      "novel_llm_spans": 802,
+      "novel_llm_exact_gold": 122,
+      "novel_llm_precision": 0.15211970074812967,
+      "source_plus_llm_span_metrics": {
+        "predicted_spans": 1650,
+        "gold_positive_spans": 1150,
+        "tp": 843,
+        "fp": 807,
+        "fn": 307,
+        "precision": 0.5109090909090909,
+        "recall": 0.7330434782608696,
+        "f1": 0.6021428571428571
+      },
+      "novel_llm_false_positive": 680
+    },
+    "crf_semantic": {
+      "source_span_metrics": {
+        "predicted_spans": 947,
+        "gold_positive_spans": 1150,
+        "tp": 787,
+        "fp": 160,
+        "fn": 363,
+        "precision": 0.8310454065469906,
+        "recall": 0.6843478260869565,
+        "f1": 0.7505960896518836
+      },
+      "shared_spans": 387,
+      "shared_exact_gold": 360,
+      "novel_llm_spans": 783,
+      "novel_llm_exact_gold": 102,
+      "novel_llm_precision": 0.13026819923371646,
+      "source_plus_llm_span_metrics": {
+        "predicted_spans": 1730,
+        "gold_positive_spans": 1150,
+        "tp": 889,
+        "fp": 841,
+        "fn": 261,
+        "precision": 0.5138728323699422,
+        "recall": 0.7730434782608696,
+        "f1": 0.6173611111111111
+      },
+      "novel_llm_false_positive": 681
+    },
+    "crf_semantic_final_rules": {
+      "source_span_metrics": {
+        "predicted_spans": 947,
+        "gold_positive_spans": 1150,
+        "tp": 787,
+        "fp": 160,
+        "fn": 363,
+        "precision": 0.8310454065469906,
+        "recall": 0.6843478260869565,
+        "f1": 0.7505960896518836
+      },
+      "shared_spans": 387,
+      "shared_exact_gold": 360,
+      "novel_llm_spans": 783,
+      "novel_llm_exact_gold": 102,
+      "novel_llm_precision": 0.13026819923371646,
+      "source_plus_llm_span_metrics": {
+        "predicted_spans": 1730,
+        "gold_positive_spans": 1150,
+        "tp": 889,
+        "fp": 841,
+        "fn": 261,
+        "precision": 0.5138728323699422,
+        "recall": 0.7730434782608696,
+        "f1": 0.6173611111111111
+      },
+      "novel_llm_false_positive": 681
+    },
+    "crf_qwen_pool": {
+      "source_span_metrics": {
+        "predicted_spans": 1219,
+        "gold_positive_spans": 1150,
+        "tp": 878,
+        "fp": 341,
+        "fn": 272,
+        "precision": 0.7202625102543068,
+        "recall": 0.7634782608695653,
+        "f1": 0.7412410299704517
+      },
+      "shared_spans": 464,
+      "shared_exact_gold": 408,
+      "novel_llm_spans": 706,
+      "novel_llm_exact_gold": 54,
+      "novel_llm_precision": 0.0764872521246459,
+      "source_plus_llm_span_metrics": {
+        "predicted_spans": 1925,
+        "gold_positive_spans": 1150,
+        "tp": 932,
+        "fp": 993,
+        "fn": 218,
+        "precision": 0.4841558441558442,
+        "recall": 0.8104347826086956,
+        "f1": 0.6061788617886179
+      },
+      "novel_llm_false_positive": 652
+    },
+    "all_three_union": {
+      "source_span_metrics": {
+        "predicted_spans": 1256,
+        "gold_positive_spans": 1150,
+        "tp": 893,
+        "fp": 363,
+        "fn": 257,
+        "precision": 0.7109872611464968,
+        "recall": 0.7765217391304348,
+        "f1": 0.742310889443059
+      },
+      "novel_llm_spans": 701,
+      "novel_llm_exact_gold": 52,
+      "source_plus_llm_span_metrics": {
+        "predicted_spans": 1957,
+        "gold_positive_spans": 1150,
+        "tp": 945,
+        "fp": 1012,
+        "fn": 205,
+        "precision": 0.48288196218702095,
+        "recall": 0.8217391304347826,
+        "f1": 0.6083038300611522
+      },
+      "novel_llm_false_positive": 649
+    }
+  },
+  "snapshot": "Original 90-window zero-shot extraction, 89 valid; excludes forthcoming 3-way format-only retry replacing 1 invalid response.",
+  "evaluation_definition": "Deduplicated (pmc_id, offset, length); gold excludes note=NO and includes all other annotated spans regardless of HPO validity. Counts ignore HPO and are not official evaluator metrics.",
+  "final_crf_rules_vs_lr_spans_identical": true
+}

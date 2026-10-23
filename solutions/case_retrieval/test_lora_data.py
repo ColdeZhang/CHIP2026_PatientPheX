@@ -1,10 +1,12 @@
 """CPU-only behavior checks for fold isolation, answer masking and resume guards."""
 import json
+from argparse import Namespace
 from pathlib import Path
 import tempfile
 import unittest
 
-from train_lora import batch_plan, encode_example, load_training_rows, verify_fingerprint
+from train_lora import (batch_plan, encode_example, epoch_outcome, load_training_rows,
+                        semantic_configuration, validate_stop_epoch, verify_fingerprint)
 
 
 class TinyTokenizer:
@@ -85,6 +87,40 @@ class LoraDataTests(unittest.TestCase):
             verify_fingerprint({"smoke": True, "sha": "a"}, {"smoke": False, "sha": "a"})
         with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):
             verify_fingerprint({"smoke": False, "sha": "a"}, {"smoke": False, "sha": "b"})
+
+    def test_pause_control_does_not_change_semantic_fingerprint(self):
+        args = Namespace(epochs=2, learning_rate=1e-4, smoke=False,
+                         resume=None, stop_after_epoch=1)
+        original = semantic_configuration(args)
+        args.resume = "/same-run/epoch-001"
+        args.stop_after_epoch = None
+        verify_fingerprint(original, semantic_configuration(args))
+        args.epochs = 3
+        with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):
+            verify_fingerprint(original, semantic_configuration(args))
+
+    def test_pause_requires_future_epoch_within_schedule(self):
+        validate_stop_epoch(1, 2)
+        validate_stop_epoch(2, 2, completed_epochs=1)
+        validate_stop_epoch(None, 2, completed_epochs=1)
+        for stop in (0, -1, 3):
+            with self.assertRaisesRegex(ValueError, "between"):
+                validate_stop_epoch(stop, 2)
+        with self.assertRaisesRegex(ValueError, "resumed"):
+            validate_stop_epoch(1, 2, completed_epochs=1)
+        with self.assertRaisesRegex(ValueError, "smoke"):
+            validate_stop_epoch(1, 2, smoke=True)
+
+    def test_pause_is_not_completion_and_cannot_overshoot(self):
+        self.assertEqual(epoch_outcome(1, 2, 1), "paused")
+        self.assertEqual(epoch_outcome(1, 2, 2), "running")
+        self.assertEqual(epoch_outcome(1, 2, None), "running")
+        self.assertEqual(epoch_outcome(2, 2, 2), "complete")
+        self.assertEqual(epoch_outcome(2, 2, None), "complete")
+        with self.assertRaisesRegex(ValueError, "beyond"):
+            epoch_outcome(2, 2, 1)
+        with self.assertRaisesRegex(ValueError, "outside"):
+            epoch_outcome(3, 2, None)
 
 
 if __name__ == "__main__":

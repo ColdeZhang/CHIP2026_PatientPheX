@@ -107,6 +107,33 @@ def verify_fingerprint(expected, actual):
         raise ValueError("Exact resume fingerprint mismatch; use a new output directory")
 
 
+def semantic_configuration(args):
+    # Pausing/resuming changes process lifetime, never the optimizer schedule.
+    return {key: value for key, value in vars(args).items()
+            if key not in {"resume", "stop_after_epoch"}}
+
+
+def validate_stop_epoch(stop_after_epoch, epochs, completed_epochs=0, smoke=False):
+    if stop_after_epoch is None:
+        return
+    if smoke:
+        raise ValueError("--stop-after-epoch is not supported with --smoke")
+    if not 1 <= stop_after_epoch <= epochs:
+        raise ValueError("--stop-after-epoch must be between 1 and --epochs")
+    if stop_after_epoch <= completed_epochs:
+        raise ValueError("--stop-after-epoch must be after the resumed completed epoch")
+
+
+def epoch_outcome(completed_epochs, epochs, stop_after_epoch):
+    if not 1 <= completed_epochs <= epochs:
+        raise ValueError("Completed epoch outside configured training schedule")
+    if stop_after_epoch is not None and completed_epochs > stop_after_epoch:
+        raise ValueError("Training advanced beyond the requested stop epoch")
+    if completed_epochs == epochs:
+        return "complete"
+    return "paused" if completed_epochs == stop_after_epoch else "running"
+
+
 def model_files(model_dir):
     directory = Path(model_dir)
     names = {"config.json", "generation_config.json", "tokenizer.json",
@@ -142,6 +169,8 @@ def main():
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--model-revision", default="b968826d9c46dd6066d109eabc6255188de91218")
     parser.add_argument("--resume", help="An epoch checkpoint directory created by this exact run")
+    parser.add_argument("--stop-after-epoch", type=int,
+                        help="Pause after this absolute epoch checkpoint; does not change training configuration")
     parser.add_argument("--max-seq-length", type=int, default=2048)
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--gradient-accumulation", type=int, default=8)
@@ -161,6 +190,10 @@ def main():
     if (min(args.max_seq_length, args.batch_size, args.gradient_accumulation, args.epochs, args.rank, args.alpha) < 1
             or not 0 <= args.warmup_ratio < 1 or not 0 <= args.dropout < 1 or args.learning_rate <= 0):
         parser.error("Invalid training sizes or hyperparameters")
+    try:
+        validate_stop_epoch(args.stop_after_epoch, args.epochs, smoke=args.smoke)
+    except ValueError as exc:
+        parser.error(str(exc))
     for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         os.environ[name] = "1"
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
@@ -203,7 +236,7 @@ def main():
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     encoded = [encode_example(row, tokenizer, args.max_seq_length) for row in rows]
-    configuration = {key: value for key, value in vars(args).items() if key != "resume"}
+    configuration = semantic_configuration(args)
     fingerprint = {"schema": "patientphex-lora-v1", "configuration": configuration,
                    "source_sha256": hashlib.sha256(source_bytes).hexdigest(), "train_sha256": sha256(args.train),
                    "excluded_input_sha256": sha256(args.excluded_input), "training_document_ids": training_ids,
@@ -226,6 +259,7 @@ def main():
                               "resume_unit": "complete epoch; mid-epoch work is replayed from the last checkpoint"})
     (output / "train_lora.source.py").write_bytes(source_bytes)
     checkpoint = Path(args.resume) if args.resume else None
+    resumed_epochs = 0
     if checkpoint:
         if checkpoint.resolve().parent != output.resolve():
             raise ValueError("Resume checkpoint must belong to the original output run")
@@ -239,6 +273,20 @@ def main():
         for name, expected in metadata["files"].items():
             if sha256(checkpoint / name) != expected:
                 raise ValueError("Checkpoint content hash mismatch: " + name)
+        resumed_epochs = int(metadata["completed_epochs"])
+    validate_stop_epoch(args.stop_after_epoch, args.epochs, resumed_epochs, args.smoke)
+    if (output / "training_complete.json").exists() and resumed_epochs < args.epochs:
+        raise ValueError("Completion marker conflicts with the selected checkpoint; inspect before resuming")
+    control_dir = output / "run_controls"
+    control_dir.mkdir(exist_ok=True)
+    control_path = control_dir / f"{time.time_ns()}-{os.getpid()}.json"
+    control = {"resume": args.resume, "stop_after_epoch": args.stop_after_epoch,
+               "started_completed_epochs": resumed_epochs, "configured_epochs": args.epochs,
+               "status": "running", "started_unix_seconds": time.time(), "pid": os.getpid()}
+    write_json(control_path, control)
+    # Each accepted invocation owns the current status. Historical pauses remain
+    # in run_controls, but must not look like the resumed process is still paused.
+    (output / "paused.json").unlink(missing_ok=True)
     load_options = {"torch_dtype": torch.bfloat16, "device_map": {"": "cuda:0"},
                     "attn_implementation": "sdpa", "local_files_only": True}
     if args.load_in_4bit:
@@ -338,6 +386,22 @@ def main():
                                              "mean_microbatch_loss": loss_sum / len(groups),
                                              "epoch_seconds": time.time() - epoch_started,
                                              "checkpoint": str(destination), "smoke_only": args.smoke})
+        outcome = epoch_outcome(epoch + 1, epochs, args.stop_after_epoch)
+        control.update(status=outcome, completed_epochs=epoch + 1, global_step=global_step,
+                       checkpoint=str(destination), updated_unix_seconds=time.time())
+        write_json(control_path, control)
+        if outcome == "paused":
+            write_json(output / "paused.json", {"completed_epochs": epoch + 1,
+                                                "configured_epochs": epochs, "global_step": global_step,
+                                                "checkpoint": str(destination), "control_record": str(control_path),
+                                                "result_type": "paused_at_complete_epoch_not_training_complete"})
+            print(json.dumps({"status": "paused", "completed_epochs": epoch + 1,
+                              "global_step": global_step, "checkpoint": str(destination)}), flush=True)
+            return
+    (output / "paused.json").unlink(missing_ok=True)
+    control.update(status="complete", completed_epochs=epochs, global_step=global_step,
+                   updated_unix_seconds=time.time())
+    write_json(control_path, control)
     write_json(output / "training_complete.json", {"smoke_only": args.smoke, "epochs": epochs,
                                                   "global_step": global_step, "base_parameters": base_count,
                                                   "trainable_adapter_parameters": trainable_count,
