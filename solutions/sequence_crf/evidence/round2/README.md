@@ -6,3 +6,6 @@
 - `relation-features-inner4.json`：两种上下文LR、4内折分项、来源SHA及原dev复验前的固定选型。
 - `ner-negation-hpo-ablation.json`：五标签与纯HPO预适应对照，小型manifest/指标；完整预测与模型留仓库外。
 - `inner4-crf-calibration.json`：保留旧fold0并追加修复版，关系训练标签代码口径显式区分。
+
+- `independent-review-summary.json`：独立CPU重训/缓存装配范围、完整报告SHA与位置、源码/预测SHA及选择限制。
+- `biolink-large-source.json` / `biolinklarge-fold0.json`：通用底座来源、完整权重SHA、NER负结果与basename哈希覆盖补充证据。

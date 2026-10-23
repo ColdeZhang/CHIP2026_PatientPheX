@@ -20,6 +20,7 @@ import torch
 from transformers import AutoTokenizer,AutoModelForTokenClassification
 import run as base
 import run_biomedbert as ner
+import source_fingerprint
 
 
 def associations(doc,entities,vectorizer,relation,threshold):
@@ -42,7 +43,7 @@ def main():
     p.add_argument('--learn-negation',action='store_true')
     p.add_argument('--ontology-augmentation',type=int,default=0)
     a=p.parse_args();start=time.monotonic();work=Path(a.work_dir);work.mkdir(parents=True,exist_ok=True)
-    hashes={Path(x).name:base.sha(x) for x in [__file__,base.__file__,ner.__file__,a.semantic_source]}
+    hashes=source_fingerprint.source_hashes({'driver':__file__, 'crf_base':base.__file__, 'ner':ner.__file__, 'semantic_encoder':a.semantic_source, 'fingerprint_helper':source_fingerprint.__file__})
     train=base.read_jsonl(a.train);inputs=base.read_jsonl(a.input)
     assert not {str(d['pmc_id']) for d in train}&{str(d['pmc_id']) for d in inputs}
     assert all('entities' not in d and 'association' not in d for d in inputs)

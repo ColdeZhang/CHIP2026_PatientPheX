@@ -7,6 +7,7 @@ sys.path.insert(0,str(Path(__file__).parent))
 import run
 import run_round2
 import run_relation_features
+import source_fingerprint
 
 class Round2Tests(unittest.TestCase):
     def test_compound_training_targets_keep_natural_text(self):
@@ -26,6 +27,14 @@ class Round2Tests(unittest.TestCase):
         self.assertNotIn('entities',out);self.assertNotIn('association',out)
         self.assertEqual([m['offset'] for m in out['patient'][0]['mention']],[0,8,21])
         self.assertEqual(len(out['patient'][1]['mention']),1)
+    def test_source_hashes_preserve_same_named_dependencies(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d);(p/"crf").mkdir();(p/"semantic").mkdir()
+            a=p/"crf/run.py";b=p/"semantic/run.py"
+            a.write_text("CRF");b.write_text("SEMANTIC")
+            hashes=source_fingerprint.source_hashes({"crf_base":a,"semantic_encoder":b})
+            self.assertEqual(set(hashes),{"crf_base","semantic_encoder"})
+            self.assertNotEqual(hashes["crf_base"],hashes["semantic_encoder"])
     def test_cohort_scope_requires_matching_explicit_count(self):
         f=run_relation_features.cohort_evidence
         self.assertTrue(f("Both patients had seizures",2,"CASE"))

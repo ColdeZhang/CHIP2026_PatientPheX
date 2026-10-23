@@ -1,0 +1,243 @@
+{
+  "reviewed_utc": "2026-10-23T12:41:31.107141+00:00",
+  "status": "cpu_refit_and_cached_assembly_reproduced_valid_below_0.8_do_not_merge",
+  "official_upload": false,
+  "gpu_used_in_review": false,
+  "evaluator_version": "patientphex-public-approx-v2",
+  "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+  "evaluator_arguments": {
+    "body_scope": "all",
+    "no_id_doc": "text",
+    "wildcard_no_id": true
+  },
+  "source_commit": "654e93d99e705dabeda2b7ab80d00e34036d0720",
+  "source_sha256": {
+    "solutions/sequence_crf/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "solutions/sequence_crf/combine.py": "f150f79e7704c74799634aab30a7dbce5c552857642365f99fdc5df2242d5dcc",
+    "solutions/sequence_crf/augment_semantic.py": "9614dbac29b527f5abdcd3cd2a94eb574f58916163bef8e8bdb75fadfba8b34d",
+    "solutions/sequence_crf/cache_semantic.py": "05e66d658d838b3ec5db67b1cbcf03c50fcfc522dcbbb810a633954c85d7e6c2",
+    "solutions/ontology_rules/run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "solutions/semantic_neural/run.py": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a"
+  },
+  "selection": {
+    "semantic_thresholds": {
+      "probability": 0.65,
+      "similarity": 0.92,
+      "source": "ontology original-order train64-inner fold0 18-combination scan; audit in ontology-sapbert-review.json"
+    },
+    "relation_threshold": 0.55,
+    "dev_comparisons": [
+      "base original LR",
+      "base ontology rules",
+      "semantic ontology rules",
+      "semantic compound-fixed LR"
+    ],
+    "dev_used_to_choose_relation_configuration": true,
+    "inner_four_folds_preferred": "rules",
+    "dev_preferred": "lr",
+    "interpretation": "Dev-selected development candidate, not an untouched final estimate. Thresholds fixed across all reported folds/dev; no rewriting of negative rule result."
+  },
+  "verification_limits": [
+    "GPU encoder/candidate detector was not rerun; its data/source/model/cache checks refer to independent ontology review and frozen candidate SHA.",
+    "Review verifies source, artifacts, fitting isolation, deterministic CPU replay and stated selection usage; it does not prove absence of every unrecorded historical tuning decision.",
+    "Dev was previously used in day1 and multiple round2 configurations, hence this is not an untouched test score."
+  ],
+  "provenance_notes": [
+    "The recorded augment manifest omits combine.py SHA; this review freezes it to commit654e93d and independently reproduces both imported assign and LR paths. Future manifests should include this dependency.",
+    "Actual semantic candidate caches were generated with ontology source SHA dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f. Copied cache_semantic.py additionally defines inactive broad policy; default heads instantiates original System. Its bytes are not the original generator bytes.",
+    "First-day actual run.py reconstructed/snapshotted at SHA022277...; old relation fitting had compound-label issue. New LR uses only train64 with compound fix; reused entity predictions were independently refitted byte-for-byte here."
+  ],
+  "full_external_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/crf-semantic-review.json",
+    "sha256": "fd224cdebe0b5c522757e3a072b6af9ff75a8247301c5fb3f7376baaa4c24701"
+  },
+  "reproduction_scope": {
+    "base_crf_cpu_refits": 5,
+    "enhanced_outputs_reassembled": 10,
+    "all_byte_identical": true,
+    "all_format_hpo_valid": true,
+    "gpu_retrained": false
+  },
+  "runs": [
+    {
+      "run_id": "crf-semantic-dev",
+      "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "base_source_sha256": "0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05",
+      "configs": {
+        "lr": {
+          "metrics": {
+            "menF1": 0.748151798915722,
+            "docF1": 0.7675568743818002,
+            "micF1": 0.660455486542443,
+            "macF1": 0.6263796300792578,
+            "Score": 0.7006359474798057
+          },
+          "prediction_sha256": "55f4305eb013d3a89677874fe889a821bdf9b745c1a5a161da639079bd600e95",
+          "manifest_sha256": "ca2cf9da97aea75d4961c186f9f685b80ca48add4ca5177340696a7272a10b87",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197",
+          "candidate_manifest_sha256": "394fd304f12b45ccd99d0775fb5170c1104080d9c076e60f845d0aeb3c0647bb"
+        },
+        "rules": {
+          "metrics": {
+            "menF1": 0.748151798915722,
+            "docF1": 0.7675568743818002,
+            "micF1": 0.5579078455790785,
+            "macF1": 0.4668261295915074,
+            "Score": 0.635110662117027
+          },
+          "prediction_sha256": "eff6ef5a284b5308cc15affd838fee38ad379fc048bfb815f86a46ed34da6e70",
+          "manifest_sha256": "33a8bca2f45bbe7ba3d3b8019cbfcff61c5f7fbce7e16272632c4a165c069149",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197",
+          "candidate_manifest_sha256": "394fd304f12b45ccd99d0775fb5170c1104080d9c076e60f845d0aeb3c0647bb"
+        }
+      }
+    },
+    {
+      "run_id": "crf-semantic-fold0",
+      "train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "base_source_sha256": "2219fbfd79ab77d4ccce5565993727b09048eb3dbf6e0260eb91fc0f580b758a",
+      "configs": {
+        "lr": {
+          "metrics": {
+            "menF1": 0.724105461393597,
+            "docF1": 0.7285714285714285,
+            "micF1": 0.6152046783625731,
+            "macF1": 0.5002539793232106,
+            "Score": 0.6420338869127022
+          },
+          "prediction_sha256": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+          "manifest_sha256": "7cb9552b384f8bf376ebbdf473b66b8ccbf5a2b865f7fde3a2ec4f43f683eb66",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac",
+          "candidate_manifest_sha256": "042640d40b2ced7a619d856fcfdfe421297dfd9bc1ca4271585b54449f02d275"
+        },
+        "rules": {
+          "metrics": {
+            "menF1": 0.724105461393597,
+            "docF1": 0.7285714285714285,
+            "micF1": 0.7044198895027625,
+            "macF1": 0.6883173080126084,
+            "Score": 0.711353521870099
+          },
+          "prediction_sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+          "manifest_sha256": "be74700a232e04ea827c424c9ab5ef87a548d842c50f8e3167df6b4f145d7e4f",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac",
+          "candidate_manifest_sha256": "042640d40b2ced7a619d856fcfdfe421297dfd9bc1ca4271585b54449f02d275"
+        }
+      }
+    },
+    {
+      "run_id": "crf-semantic-fold1",
+      "train_sha256": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+      "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "configs": {
+        "lr": {
+          "metrics": {
+            "menF1": 0.6775089250297501,
+            "docF1": 0.7470059880239521,
+            "micF1": 0.6017094017094017,
+            "macF1": 0.5186934795770484,
+            "Score": 0.636229448585038
+          },
+          "prediction_sha256": "c190ce044628108897f10f53fee8ce20b38b9d18e9648808c6e5f82c9f97b980",
+          "manifest_sha256": "3fb13e7aa8e95c8670a19b78c8e069f4a06fdad7ae823e5371177acc4802001e",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+          "candidate_manifest_sha256": "e1d1d425ea4c16f6aa7a4f85961b8e796b9ab799ee7ee3e3480a9713c2d7a1c8"
+        },
+        "rules": {
+          "metrics": {
+            "menF1": 0.6775089250297501,
+            "docF1": 0.7470059880239521,
+            "micF1": 0.6101694915254238,
+            "macF1": 0.5445006930981751,
+            "Score": 0.6447962744193253
+          },
+          "prediction_sha256": "71578c80372946506353a9d6a721cbd8b1723fe8f4be334c732ed2ce84e90865",
+          "manifest_sha256": "03cd30f899c41a4d575467b547503575f5bee47ad5b5635daa382ee5b43db5b9",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+          "candidate_manifest_sha256": "e1d1d425ea4c16f6aa7a4f85961b8e796b9ab799ee7ee3e3480a9713c2d7a1c8"
+        }
+      }
+    },
+    {
+      "run_id": "crf-semantic-fold2",
+      "train_sha256": "d61d5fddf15b4c26aa1c0fd1cc09b79ce81a3a7bbb284d67ff448c0043714612",
+      "input_sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+      "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "configs": {
+        "lr": {
+          "metrics": {
+            "menF1": 0.680830516658619,
+            "docF1": 0.7460629921259843,
+            "micF1": 0.586483390607102,
+            "macF1": 0.5299107709743538,
+            "Score": 0.6358219175915147
+          },
+          "prediction_sha256": "aed8fc488f4469f45b0b0ccbfdfb6f0e6174220edb294748fdff100ab5c5a00b",
+          "manifest_sha256": "3175998401b8807ce48c9524f6628e67f3aa950d7f6d56d8899fe68966d65585",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "01c373b06589e728ef3320e17cf92df321c0d7e42af413f473c51c39e38d5eb5",
+          "candidate_manifest_sha256": "c15f77f9d9d9e98bbe24d350068a8e283671d6202be020f86424e4bcf9bf78cc"
+        },
+        "rules": {
+          "metrics": {
+            "menF1": 0.680830516658619,
+            "docF1": 0.7460629921259843,
+            "micF1": 0.6945244956772334,
+            "macF1": 0.6898780767567056,
+            "Score": 0.7028240203046356
+          },
+          "prediction_sha256": "8fefbf63c6e3ab5a06fd829a0acb3d641e44adb15c10b54362f2dd91dc32533a",
+          "manifest_sha256": "b39a9b90e423aed56b35d1103c24e1c2657af97a24c50dcbcd54276bf6eb6a0e",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "01c373b06589e728ef3320e17cf92df321c0d7e42af413f473c51c39e38d5eb5",
+          "candidate_manifest_sha256": "c15f77f9d9d9e98bbe24d350068a8e283671d6202be020f86424e4bcf9bf78cc"
+        }
+      }
+    },
+    {
+      "run_id": "crf-semantic-fold3",
+      "train_sha256": "f4d167043573310ae0eb146adea26528a3147cbc26c8c512cd21b81ef5ea7716",
+      "input_sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+      "base_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "configs": {
+        "lr": {
+          "metrics": {
+            "menF1": 0.7160731472569779,
+            "docF1": 0.7692307692307693,
+            "micF1": 0.6121212121212121,
+            "macF1": 0.4951218857849459,
+            "Score": 0.6481367535984763
+          },
+          "prediction_sha256": "ce9d5c47bf6bdc5eeb8dfb8bf0cc94bcb22acf419931d265d77982c86c6296e0",
+          "manifest_sha256": "c9cfbc71159e187bf7ab80d193aaeebe980d8e38b4adf12e54622e7292795545",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "404e7f14c919803769340d2f60fe765e032e1e614d5163e7131895868d798862",
+          "candidate_manifest_sha256": "11b0de48dab254bab13a3df5b9b9843339cb5d9d7d2391166ab28c4c70db910d"
+        },
+        "rules": {
+          "metrics": {
+            "menF1": 0.7160731472569779,
+            "docF1": 0.7692307692307693,
+            "micF1": 0.6537142857142857,
+            "macF1": 0.5246809383121971,
+            "Score": 0.6659247851285575
+          },
+          "prediction_sha256": "cdfbbf38abe58c01aad596a44ea560739fc2fa33c24126b22937c69e9833968e",
+          "manifest_sha256": "11c9bb277ffac67ed73a71c187c37bafc9184e5fd15b53fabdb40ad07744ab07",
+          "assembly_reproduced_byte_identical": true,
+          "candidate_sha256": "404e7f14c919803769340d2f60fe765e032e1e614d5163e7131895868d798862",
+          "candidate_manifest_sha256": "11b0de48dab254bab13a3df5b9b9843339cb5d9d7d2391166ab28c4c70db910d"
+        }
+      }
+    }
+  ]
+}

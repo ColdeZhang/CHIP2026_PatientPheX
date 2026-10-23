@@ -1,0 +1,278 @@
+{
+  "metrics": {
+    "char": {
+      "menF1": 0.5928509154315605,
+      "docF1": 0.6233538191395961,
+      "micF1": 0.5040160642570282,
+      "macF1": 0.4269330982914653,
+      "Score": 0.5367884742799125
+    },
+    "sapbert": {
+      "menF1": 0.6172624237140366,
+      "docF1": 0.6572687224669603,
+      "micF1": 0.5237613751263903,
+      "macF1": 0.43274652138040165,
+      "Score": 0.5577597606719472
+    }
+  },
+  "manifest": {
+    "method": "BiomedBERT NER + exact-fold-alias / SapBERT dense normalization",
+    "config": {
+      "train": "data/train48.jsonl",
+      "input": "data/validation16.input.jsonl",
+      "hpo": "../sequence-crf/data/hp.obo",
+      "work_dir": "runs/fold0-biolinklarge-ner8",
+      "model": "pretrained-biolinkbert-large",
+      "sapbert": "../semantic-neural/model",
+      "semantic_source": "../semantic-neural/run.py",
+      "epochs": 8,
+      "learning_rate": 3e-05,
+      "batch_size": 8,
+      "max_length": 384,
+      "ner_threshold": 0.55,
+      "relation_threshold": 0.55,
+      "semantic_threshold": 0.65,
+      "reuse_model": false,
+      "learn_negation": false,
+      "ontology_augmentation": 0
+    },
+    "command": [
+      "run_gpu_round2.py",
+      "--train",
+      "data/train48.jsonl",
+      "--input",
+      "data/validation16.input.jsonl",
+      "--hpo",
+      "../sequence-crf/data/hp.obo",
+      "--work-dir",
+      "runs/fold0-biolinklarge-ner8",
+      "--model",
+      "pretrained-biolinkbert-large",
+      "--sapbert",
+      "../semantic-neural/model",
+      "--semantic-source",
+      "../semantic-neural/run.py",
+      "--epochs",
+      "8",
+      "--batch-size",
+      "8"
+    ],
+    "fingerprint": {
+      "pretrained_model_sha256": {
+        "config.json": "ba7be72cf4013c5a69166e88d51f922aee44bfde6927cf9315580c23a6e020a6",
+        "pytorch_model.bin": "fed75e5716547b54198d4dd123e7a3f3c64a82e1172b3492a11deebd6ab4cd4d",
+        "tokenizer.json": "5a797027c356bfdc779fd021b4a7a2b2f341242ddd7035d385f56b8e242dac2a",
+        "tokenizer_config.json": "98632482a9851173e796e4366ede775ddc2900564a0ac659acb89248e39fbbd3",
+        "vocab.txt": "7b36651908a88bc38bda41b728b2a598191e0d3b553cbacf7b1e5f026d5b5b9f"
+      },
+      "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "source_hashes": {
+        "run_gpu_round2.py": "0f0a15ca0ef5ac5af18131c280d99fb3cc6ce4c466e51f5a59fd231bbbd5be55",
+        "run.py": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+        "run_biomedbert.py": "824399be0228960604d2d79faf3f4f9209c849569c1cbafbf2cc194fb8e25c90"
+      },
+      "epochs": 8,
+      "learning_rate": 3e-05,
+      "batch_size": 8,
+      "max_length": 384,
+      "seed": 20261023,
+      "learn_negation": false,
+      "ontology_augmentation": 0
+    },
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "train_pmcs": [
+      "10313222",
+      "11203018",
+      "11235872",
+      "11765409",
+      "11871647",
+      "11906559",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12386172",
+      "12405443",
+      "12455887",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "12891056",
+      "2866573",
+      "2964533",
+      "4607013",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5415817",
+      "5422868",
+      "5425407",
+      "5473715",
+      "5538066",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5789735",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6048891",
+      "6057141",
+      "6059678",
+      "6063015",
+      "6134758",
+      "6219255",
+      "6390251",
+      "9327653"
+    ],
+    "input_pmcs": [
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11919040",
+      "12444410",
+      "12652105",
+      "12779223",
+      "3563609",
+      "4678370",
+      "5452357",
+      "5537416",
+      "5575846",
+      "5959423",
+      "6338757",
+      "6491447"
+    ],
+    "model_parameters": 332429315,
+    "sapbert_manifest": {
+      "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+      "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+      "files": {
+        "config.json": {
+          "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+          "bytes": 462,
+          "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+        },
+        "tokenizer_config.json": {
+          "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+          "bytes": 198,
+          "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+        },
+        "special_tokens_map.json": {
+          "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+          "bytes": 112,
+          "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+        },
+        "vocab.txt": {
+          "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+          "bytes": 226150,
+          "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+        },
+        "model.safetensors": {
+          "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+          "bytes": 437955508,
+          "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+        }
+      },
+      "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+      "derived_weights": {
+        "bytes": 218990904,
+        "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+      }
+    },
+    "training_stats": {
+      "training_chunks": 1739,
+      "optimizer_steps": 1744,
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.21983780821041982,
+          "seconds": 33.011744540184736
+        },
+        {
+          "epoch": 2,
+          "loss": 0.060467936865287966,
+          "seconds": 32.781225386075675
+        },
+        {
+          "epoch": 3,
+          "loss": 0.03141164281920833,
+          "seconds": 32.71719581913203
+        },
+        {
+          "epoch": 4,
+          "loss": 0.0182920700636055,
+          "seconds": 32.58691484807059
+        },
+        {
+          "epoch": 5,
+          "loss": 0.009640868957338821,
+          "seconds": 33.07204595813528
+        },
+        {
+          "epoch": 6,
+          "loss": 0.005623289209575186,
+          "seconds": 33.05226997612044
+        },
+        {
+          "epoch": 7,
+          "loss": 0.002618345266013204,
+          "seconds": 32.980481419246644
+        },
+        {
+          "epoch": 8,
+          "loss": 0.0016318603502190644,
+          "seconds": 33.097057685721666
+        }
+      ]
+    },
+    "relation_stats": {
+      "relation_examples": 10201,
+      "relation_positive": 3441
+    },
+    "outputs": {
+      "char": {
+        "path": "runs/fold0-biolinklarge-ner8/char.pred.jsonl",
+        "sha256": "1cbe557951bd2c2365338e7a34d30d48ae39480ea685dff288c99574628d72fb",
+        "bytes": 150128,
+        "entities": 1117
+      },
+      "sapbert": {
+        "path": "runs/fold0-biolinklarge-ner8/sapbert.pred.jsonl",
+        "sha256": "e9b9a0431e6eb18dc13ba134babb3720cba7a7c24cde432ea5ad613217528612",
+        "bytes": 150242,
+        "entities": 1117
+      }
+    },
+    "fit_seconds": 272.2819095151499,
+    "total_seconds": 284.82424411317334,
+    "peak_cuda_allocated_bytes": 7961504768,
+    "input_annotations_used": false,
+    "runtime_versions": {
+      "python": "3.10.20",
+      "numpy": "1.26.4",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.6.1",
+      "sklearn-crfsuite": "0.5.0",
+      "python-crfsuite": "0.9.12",
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0"
+    }
+  },
+  "provenance_addendum": {
+    "issue": "Manifest originally keyed dependencies by basename: semantic run.py replaced CRF run.py key. Original manifest retained unchanged.",
+    "actual_remote_hashes_checked_after_run": {
+      "crf_base": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "ner": "824399be0228960604d2d79faf3f4f9209c849569c1cbafbf2cc194fb8e25c90",
+      "driver": "0f0a15ca0ef5ac5af18131c280d99fb3cc6ce4c466e51f5a59fd231bbbd5be55",
+      "semantic_encoder": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a"
+    },
+    "verification": "MCP run_command sha256sum after process completion before uploading modified driver; CRF dependency matches 654e93d/3db979d."
+  }
+}
