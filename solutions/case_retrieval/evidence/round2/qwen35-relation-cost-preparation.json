@@ -1,0 +1,89 @@
+{
+  "scope": "One new source file; CPU preparation completed; no GPU initiated by research agent",
+  "source": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/qwen35_relation_cost.py",
+  "source_sha256": "ff52a0859f9e1a05b48c33a8ed9d2dd78c00f8ce2f1f723d643962475e7a7181",
+  "frozen_helper_sha256": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+  "cpu_actual": {
+    "selected_row_id": "6063015:relations:0",
+    "full_tokens": 5787,
+    "prefix_tokens": 5691,
+    "supervised_tokens": 96,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "cuda_initialized": false,
+    "mode": "cpu",
+    "elapsed_seconds": 10.785442113876343,
+    "source_sha256": "ff52a0859f9e1a05b48c33a8ed9d2dd78c00f8ce2f1f723d643962475e7a7181",
+    "run_manifest_sha256": "cd896b1182dae5817af7e2c82f7030775e9a53b5433f205005eadb5434996633",
+    "cost_probe_only": true,
+    "result_type": "cpu_preparation"
+  },
+  "artifacts": {
+    "cpu-v1/causal-loss-cpu-check.json": {
+      "bytes": 403,
+      "sha256": "ce688b381e4ec90140e585a2222864bc143757726b6344048feefff837d41c2e"
+    },
+    "cpu-v1/complete.json": {
+      "bytes": 520,
+      "sha256": "4a6c33c4ea013b9ed2e475eb16226ba74aabbafc167b48378f9861a973cc24d3"
+    },
+    "cpu-v1/meta-coverage.json": {
+      "bytes": 50275,
+      "sha256": "fe36ce32a505bedaf2221feff333cc9d4794694c1a3acae2e7a374274eed1644"
+    },
+    "cpu-v1/run-manifest.json": {
+      "bytes": 7159,
+      "sha256": "cd896b1182dae5817af7e2c82f7030775e9a53b5433f205005eadb5434996633"
+    },
+    "cpu-v1/selection.json": {
+      "bytes": 160400,
+      "sha256": "ba8a0f33e33cd765483aed0258ad420017b4c96b5735cc47846e48eefacbd0d7"
+    },
+    "cpu-v1/status.json": {
+      "bytes": 83,
+      "sha256": "f5974b3096efb8e557a46d0758978f5e572617776fe8e1228cdd29edf8b0b6ed"
+    },
+    "cpu-v1/token-mask-audit.json": {
+      "bytes": 34148,
+      "sha256": "883193f999d3d522833041f8b471586a3650f608a938b8bb6e8eb113a7822433"
+    },
+    "local-cpu-invariants.json": {
+      "sha256": "8b70379188dd8026f1a92c65e2291f2b99aead57679c2074ed30a5340d14ec88"
+    }
+  },
+  "data": {
+    "rows": 204,
+    "train_docs": 48,
+    "excluded_input_docs": 16,
+    "total_full_tokens": 660330,
+    "total_supervised_tokens": 11921,
+    "train_sha256": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77",
+    "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "implementation_guards": [
+    "Exact source/helper/data/revision bytes; input-only exclusion and document disjointness",
+    "All 204 examples exact rendered/text-token assistant prefix, im_end supervision, no truncation",
+    "Longest 5787 full sample, deterministic row-id tie-break; no validation labels",
+    "Explicit Qwen3_5ForCausalLM and TextConfig; complete checkpoint text loading",
+    "248 Linear target modules, only LoRA trains, exact text+adapter count under10B",
+    "Nonreentrant gradient checkpoint, finite loss, finite nonzero gradients and B changes in DeltaNet/fullattention/MLP",
+    "CUDA-synchronized separate forward/backward/gradient-check-clip/optimizer phase timings and stage peak memory",
+    "Safe probe-adapter weights+config retained; no optimizer checkpoint or resume claim",
+    "Actual package and code sources, model bytes, data bytes, parameter/tensor fingerprints; failure artifacts"
+  ],
+  "gpu_not_measured": true,
+  "cost_estimation_after_gpu": {
+    "microbatches": 408,
+    "accumulation8_updates": 52,
+    "longest_sample_envelope": "408 * measured single longest sample forward+backward+diagnostic/clip+optimizer time",
+    "token_scaled": "(1320660/5787)*measured forward+backward +52*measured diagnostic/clip+first optimizer time",
+    "limitations": "Planning estimates only; not a guaranteed upper bound or measured full training. Longest envelope deliberately counts408 rather than52 updates; token scaling ignores attention nonlinearity. Excludes load/hash/checkpoints/evaluation/contention and alloc/kernel variation."
+  },
+  "limitations": [
+    "CPU result does not validate GPU kernels, memory use, or throughput",
+    "Actual A800 GPU runtime differs from A100 CPU torch version; GPU run will independently fingerprint it",
+    "LoRA probe is fresh from base and not a formal trained candidate or quality estimate",
+    "GPU cost mode saves one-step adapter but does not reload it or exercise optimizer resume; separate short smoke handles adapter reload",
+    "No official website, heldout labels, or predicted validation outputs are used"
+  ]
+}

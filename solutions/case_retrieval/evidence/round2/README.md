@@ -30,3 +30,6 @@
 - `qwen35-runtime-wheel-provenance.json`：私有5个包镜像wheel与官方PyPI SHA一致，不修改共享环境。
 
 - `qwen35-download-complete.json` / `qwen35-resource-checkpoint.json`：15文件实际SHA完成；首轮GPU前检他人占用阻断，未启动smoke，资源协调后再试。
+
+- `qwen35-a800-migration.json`：A100卡被占后的只读内网迁移、SHM易失边界/目录权限、隔离runtime真实CPU导入与恢复入口；启动快照，实时状态看台账。
+- `qwen35-relation-cost-preparation.json`：完整204行最长5787token、assistant mask/因果loss/12类LoRA meta计数；GPU成本尚未实测。

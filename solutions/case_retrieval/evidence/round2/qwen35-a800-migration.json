@@ -1,0 +1,50 @@
+{
+  "status": "transfer_running_no_gpu_started",
+  "persistent_source": {
+    "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "path": "case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "complete_sha256": "b9c52e927851a157d49f895fb3c368704ee7b824026644b60028278e4aa802b8"
+  },
+  "ephemeral_target": {
+    "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "path": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "warning": "SHM is a volatile inference cache, not persistent backup; persistent source retained"
+  },
+  "source_server_job": {
+    "command": "python3 -u a800-migration/qwen-transfer-server.py --directory models/Qwen3.5-9B --manifest a800-migration/transfer-manifest.json --bind 10.5.3.12",
+    "id": "proc_8408c689-2c42-454d-aaec-3de9951fb60d",
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "pid": 160768,
+    "port": 38462,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T16:34:24.036596722Z"
+  },
+  "transfer_job": {
+    "command": "python3 -u qwen-transfer-ranged.py --manifest transfer-manifest.json --source http://10.5.3.12:41235 --output /dev/shm/patientphex-qwen35-1045-c20223623576 --workers 8 --chunk-mib 64",
+    "id": "proc_3472f814-4998-49d7-874e-905aea730145",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 47199,
+    "port": 41933,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T16:34:36.995207317Z"
+  },
+  "resource_check": {
+    "exit_code": 0,
+    "stdout": "{\"target\": \"/dev/shm/patientphex-qwen35-1045-c20223623576\", \"exists_before\": false, \"uid\": 1045, \"mode\": \"0o700\", \"free_bytes\": 270325469184, \"MemAvailable\": 495899062272}\n"
+  },
+  "source_access_check": {
+    "exit_code": 0,
+    "stdout": "{\"config_sha_verified\": true, \"blocked_paths\": {\"\": 404, \"../model-source-manifest.json\": 404, \"%2e%2e/model-source-manifest.json\": 404, \"download-complete.json\": 404}}\n"
+  },
+  "runtime_cpu": {
+    "returncode": 0,
+    "stdout": "{\"torch\": \"2.7.1+cu126\", \"transformers\": \"5.20.2\", \"peft\": \"0.21.2\", \"accelerate\": \"1.15.0\", \"cuda_initialized\": false}\n",
+    "stderr": "",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python"
+  },
+  "transfer_source_sha256": "e065f6766a2a799acc04ebb9bb0310a1f2997850bdb408a300b1f02747b77599",
+  "external_recovery": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/a800-migration",
+  "gpu_policy": "A800GPU2 temporarily sequence GLiNER10ep until explicit release; A100 readonly5min checks allowed; no current GPU process"
+}
