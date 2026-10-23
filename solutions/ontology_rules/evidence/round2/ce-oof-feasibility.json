@@ -1,0 +1,174 @@
+{
+  "stage": "CPU feasibility only; no new GPU/fit/inference",
+  "hypothesis": "Strict OOF binary span-ID CE probability as one additional existing HGB feature; distinct from direct CE threshold/fixed blend and from doc-HPO MIL.",
+  "alignment": {
+    "outer": {
+      "existing_scores": 14511,
+      "current_multi_candidates": 14543,
+      "exact_key_shared": 14511,
+      "new_scores_required": 32,
+      "old_not_current": 0,
+      "surface_mismatch": 0
+    },
+    "nested": [
+      {
+        "inner": 1,
+        "target_score_candidates": 15869,
+        "training_documents": 32,
+        "old_training_rows_in_these_docs_but_not_safe_OOF_reuse": 6920,
+        "old_positive_rows_in_these_docs": 1730,
+        "heldout_docs": 16
+      },
+      {
+        "inner": 2,
+        "target_score_candidates": 14486,
+        "training_documents": 32,
+        "old_training_rows_in_these_docs_but_not_safe_OOF_reuse": 7808,
+        "old_positive_rows_in_these_docs": 1952,
+        "heldout_docs": 16
+      },
+      {
+        "inner": 3,
+        "target_score_candidates": 14758,
+        "training_documents": 32,
+        "old_training_rows_in_these_docs_but_not_safe_OOF_reuse": 7632,
+        "old_positive_rows_in_these_docs": 1908,
+        "heldout_docs": 16
+      }
+    ],
+    "existing_outer_score_sha256": "755019a06a263581dd32e01ba342cf588052280c95608a545771fceb7138f5c9",
+    "original_dev_read": false
+  },
+  "outer_model": {
+    "remote_mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "remote": "ontology-round2/context-fold0/epoch3/model",
+    "trained_model_sha256": "f05d4fd321934b19276805f46cc3bf834f8814eaa7efb5f89b82ea7018409063",
+    "actual_weight_bytes": 437958648,
+    "actual_model_hash_reverified_cpu": true,
+    "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+    "old_training_rows": 11180,
+    "old_training_positive": 2795,
+    "old_3epoch_total_seconds": 99.6806757808663,
+    "new_training_required_for_outer48": false,
+    "new_inference_only_rows": 32
+  },
+  "strict_nesting_issue": [
+    {
+      "CE_heldout_inner": 1,
+      "CE_train_docs": 32,
+      "old_candidate_origins": [
+        {
+          "candidate_doc_fold": 2,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "2b7f9fb33dd6f9e8d1d4783745a657a5221409afd9bd3b5b5f4803796c524d9f"
+        },
+        {
+          "candidate_doc_fold": 3,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "bb14bff13c89eaf8a90e95c25bb563388612d3db36f4993a7ccd86611127a92e"
+        }
+      ],
+      "safe_to_reuse_old_subset_for_strict_nested_CE": false
+    },
+    {
+      "CE_heldout_inner": 2,
+      "CE_train_docs": 32,
+      "old_candidate_origins": [
+        {
+          "candidate_doc_fold": 1,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+        },
+        {
+          "candidate_doc_fold": 3,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "bb14bff13c89eaf8a90e95c25bb563388612d3db36f4993a7ccd86611127a92e"
+        }
+      ],
+      "safe_to_reuse_old_subset_for_strict_nested_CE": false
+    },
+    {
+      "CE_heldout_inner": 3,
+      "CE_train_docs": 32,
+      "old_candidate_origins": [
+        {
+          "candidate_doc_fold": 1,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+        },
+        {
+          "candidate_doc_fold": 2,
+          "candidate_docs": 16,
+          "heldout_CE_docs_in_generator_training": 16,
+          "generator_train_sha256": "2b7f9fb33dd6f9e8d1d4783745a657a5221409afd9bd3b5b5f4803796c524d9f"
+        }
+      ],
+      "safe_to_reuse_old_subset_for_strict_nested_CE": false
+    }
+  ],
+  "required_rebuild": {
+    "candidate_generators": 3,
+    "generator_training_documents": 16,
+    "target_sets_per_generator": 2,
+    "target_documents_per_set": 16,
+    "new_semantic_candidate_pools": 6,
+    "CRF16_retraining_required": false,
+    "reason_no_CRF16": "Keep old CE fitting recipe semantic+ontology candidates only; candidate source metadata is not an input to CE. CE still scores all current CRF+Sap candidate keys.",
+    "new_CE_models": 3,
+    "documents_per_CE_model": 32,
+    "CE_epochs": 3,
+    "new_OOF_score_rows": 45113,
+    "additional_outer48_score_rows": 32,
+    "exact_new_CE_training_row_counts": "Not yet knowable without rebuilt lower-layer semantic pools and frozen original sampling; old subsets6920/7808/7632 sum22360 are only size proxies, unsafe as training inputs."
+  },
+  "estimated_cost": {
+    "lower_candidates_gpu_seconds": "approximately45-90 across3 train16 generators each predicting32 documents; old train32->16 runs actually12.9-13.2s each, not direct measurement of new setup",
+    "CE_fit_and_score_gpu_seconds": "approximately200-260 for3 models, using old11180row3epoch+14511score cost99.68s and size proxies; includes all45113scores",
+    "outer32_only_seconds": "approximately5-15 loading immutable parent48 model; no refit",
+    "total_gpu_budget_estimate": "about4-6minutes, not measured; recommend one hard10min budget only after regenerated CPU counts/lineage and model-check protocol frozen",
+    "CPU": "3 train16 ontology baseline fits/predictions + CE example preparation + identical tree fit, estimated under1minute excluding transfer",
+    "additional_models_downloaded": 0
+  },
+  "constraints": [
+    "Do not join old outer48 CE train-in-sample probabilities onto its training rows.",
+    "Do not subset old CE training examples for newtrain32: every such origin generator includes all16 CE-heldout docs.",
+    "Three train16 generators exclude both scored train16 docs and the future CE-heldout16; preserve byte order and seed.",
+    "Add only CE probability to unchanged HGB features/160iterations/threshold/relations; no head/top-k/marker/loss changes.",
+    "Existing32 missing outer candidates require frozen inference-only loader; do not refit parent48.",
+    "Choose and freeze precise existing HGB baseline (suggest current confidence .714807668) and prove no-feature replay before testing; no originaldev."
+  ],
+  "source_checks": {
+    "context_calibrate_current_equals_executed_ce843": true,
+    "alignment_uses_full_current_14543_candidate_pool": true,
+    "old_model_does_not_include_outerfold0_docs": true
+  },
+  "original_dev_read": false,
+  "alternative_B": {
+    "definition": "For each CE train32 generate candidates using only that same train32 (in-sample candidate generation permitted for training), then score heldout16; fit a new outer48 CE from self-generatedtrain48 for matched inference recipe. No CE-heldout labels in aliases/detector or candidates.",
+    "new_candidate_jobs": 4,
+    "training_sizes": [
+      32,
+      32,
+      32,
+      48
+    ],
+    "candidate_input_documents_total": 144,
+    "new_CE_models": 4,
+    "old_outer48_model_reusable_as_matched_recipe": false,
+    "new_CE_scoring_rows": 59656,
+    "training_rows_exact": "Not determined without generating the self-training candidate pools and applying fixed sampling. In-sample aliases likely increase easy exact positives; cannot claim old11180 counts persist.",
+    "rough_GPU_budget": "about6-9minutes including4candidate passes/4CE3ep models/59656 scores; estimate using old99.68s/11180fit14511score, not measured",
+    "extra_variables": [
+      "Training candidate self-inclusion instead of OOF: changes positive difficulty and alias distribution, relates to known H17 self-containment failure.",
+      "Must retrain outer48 consistently; replacing only inner32 recipe while reusing old outer48 would mix recipe/distribution.",
+      "If pure HPO dictionary candidates are used instead, no learned-generator crossfold leakage but candidate coverage and negative-link definition change further. This is a different CE training recipe, not reproduction."
+    ],
+    "engineering_tradeoff": "Fewer fold-specific lineage artifacts than3train16/6pools, but more full CE training and loses valid existing outer48 asset; not clearly cheaper."
+  },
+  "recommendation": "No GPU now. Wait for concurrent LLM-feature tree result. If one CE feature experiment is still worthwhile, A is the cleaner bounded test (approximately4-6min GPU,3CE models, oldouter48+32only inference). B is valid if explicit but changes recipe and likely costs more; do not choose merely to avoid recording deeper folds."
+}

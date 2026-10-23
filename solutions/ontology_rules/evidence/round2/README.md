@@ -61,5 +61,7 @@
 - [GLiNER弱链接有限选择CPU提案](gliner-rejected-link-proposal.json)：运行前冻结的176输入跨度、原Sap缓存top5、9B真实token预算与ABSTAIN/NIL边界；实际负结果见下方终点。
 - [有限链接冻结运行计划](gliner-rejected-link-run-plan.json)与[解析/无操作检查](gliner-rejected-link-parser-checks.json)：900秒cap、严格候选码、完整base保留，合成检查不代表模型效果。
 - [有限链接真实终点](gliner-rejected-link-results.json)：完整176响应且格式正确，Score下降.010365；负结果保留，不继续修提示或原dev迁移。
-- [OOF doc-HPO袋训练诊断](relation-bag-training-diagnostics.json)、[固定MIL预算](relation-mil-run-plan.json)、[真实CPU检查](relation-mil-cpucheck.json)和[独审入口](relation-mil-audit-index.json)：纯关系背景过滤，准备通过尚不代表模型效果。
+- [OOF doc-HPO袋训练诊断](relation-bag-training-diagnostics.json)、[固定MIL预算](relation-mil-run-plan.json)、[真实CPU检查](relation-mil-cpucheck.json)和[独审入口](relation-mil-audit-index.json)：纯关系背景过滤，准备与真实终点独审均通过；质量为下方负结果。
 - [固定3ep MIL真实终点](relation-mil-results.json)：同实体纯关系删除控制.711354→.702753，删除27TP/45FP；不调阈值/epoch，原dev未运行。
+
+- [严格OOF CE特征入树可行性](ce-oof-feasibility.json)：旧outer模型/分数资产、二级候选来源泄漏核对、两种隔离方案成本；仅CPU提案，未新增训练。

@@ -155,3 +155,10 @@ root复核冠军卡与旧context_calibrate.py的结构差异：旧CE是±180字�
 后续root按训练证据批准一次不同目标的max-MIL过滤：1474个OOF doc-HPO袋中783正/691负，原规则394FP中319是整篇概念无患者关系，其中177仍有gold正实体。过滤器只判“是否关联任一给定患者”，不重分患者；75个正确概念错患者FP不在它的能力范围。417/783正袋所有±220窗都无给定patient mention，因此不能将无marker当负标签。旧患者CE与旧aggregate树负结果均保留；新控制同时改变候选分布/目标/聚合机制，若有益也不能归因为单一因素。[训练诊断](evidence/round2/relation-bag-training-diagnostics.json)与[唯一固定运行](evidence/round2/relation-mil-run-plan.json)。
 
 BiomedBERT词表不等于BERT原始词表：本地实际30522词中无[unused1/2/5/6]，直接convert四者均为UNK=1，初始CPU guard因此失败。新MIL显式注册四special tokens为30522..30525、固定seed扩embedding，并逐出现核完整表型和成对patient标记，3949个实际输入均通过且无截断。旧患者CE传的是字符串，可能拆成普通WordPiece；不能把本次直接ID错误外推为旧模型必然无效。失败事实/修复在外存relation-mil-fold0/initial-marker-failure.json；检查在[CPU证据](evidence/round2/relation-mil-cpucheck.json)。
+
+
+### 多层OOF要追踪候选生成器的训练来源
+
+将旧CE的11180训练行按文献切成train32/heldout16，表面上没有同文献，却不能构成严格OOF：旧行来自另一个train32候选生成器，它包含未来CE-heldout16的全部标签。实际三种切片的两个候选来源均与CE留出集交叠16篇。应将每个派生资源的训练来源沿整个链追到原文献，而非只看最终分类器的行ID。记录在ce-oof-feasibility/isolation-matrix.json；本次在新训练前发现，未产生不合格新模型或分数。
+
+若保持旧CE的OOF候选训练recipe，需三种train16生成器各预测另外两组16，产生六池再组成三个CEtrain32。旧outer48仍有效，可复用14511分数并补32个CRF-only键；新增内层45113分数。若改用CE自身train32候选，heldout隔离可以成立，但训练自包含使难度/别名分布改变，且必须重训一致的outer48，不能称旧recipe复现。当前成本建议只是估算，无新GPU/训练；[可行性证据](evidence/round2/ce-oof-feasibility.json)。
