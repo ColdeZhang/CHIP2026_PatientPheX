@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T23:11:22.690306+00:00",
+  "generated_utc": "2026-10-23T23:44:13.206586+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -12645,21 +12645,411 @@
           "bytes": 6643
         }
       ]
+    },
+    {
+      "id": "binary-F0-fusion-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/binary-F0-fusion-review/review.json",
+        "sha256": "0b44186b59d2da5111ab2318e66b42dc81a8cf61fcfb9a7acdd1ae1cf7faec96",
+        "bytes": 9051
+      },
+      "source_report_path": "validation/binary-F0-fusion-review/review.json",
+      "completed_review_scope": "PASS_incremental_F1_fixed_LR_F0_probability_and_unique_expected_F1_terminal",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "F1既有1557对只读互补诊断后固定两特征LR，F1-only fit先冻结；新binary32 F0仅58前向/1166对、66.246秒，旧SFT48 hard规模变化明确。唯一期望F1控制 .695443948→.696545689，micro完全相同、macro+.004406964，符合预设但增益很小；无原dev。",
+      "limitations": [
+        "Only F1 fits LR; F0 is previously developed validation, not blind test.",
+        "Old SFT hard and candidate generator scale from32 on F1 to48 on F0; F0 train48 includes F1 but excludes F0.",
+        "Expected patient F1 assumes independent calibrated candidate probabilities; it is not guaranteed to maximize public micro+macro.",
+        "One relation arm only; complete entities and all nonassociation fields match old SFT48.",
+        "CPU re-fit verifies only the newly introduced two-parameter-source calibrator; no F1 fitting score is reported.",
+        "Input/scale shifts fromSFT32/candidate32 on F1 toSFT48/candidate48 on F0 remain, despite both excluding their target fold.",
+        "Managed GPU process terminal provides running:false, not direct remote exit code."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/binary-F0-fusion-review/input-review.json",
+          "sha256": "f15cba7e39d06924bc3f94e7f2bc0390bcb711f30975613cca7ea982474a1153",
+          "bytes": 5190
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/binary-F0-fusion-review/audit_input.py",
+          "sha256": "fe9186888bcddc2dc347e6871288ed0003548abb4f581b59b260edc8e376259e",
+          "bytes": 5183
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/binary-F0-fusion-review/audit_terminal.py",
+          "sha256": "d5598d7e5c04ca621a60d43f882a8979e0df3e872876750a5abc9dcd615c35e2",
+          "bytes": 10192
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/binary-sft-complement-review/review.json",
+          "sha256": "c8ac0e037366837f8faad18fc55ed9cc529c08e9b53a72fb8e20924096aeb73f",
+          "bytes": 3862
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/binary-sft-complement-review/audit.py",
+          "sha256": "771ef7935c21a7d8a23c250c1d6db22540c7fe4b352891870e1a3a81566b4690",
+          "bytes": 6276
+        },
+        {
+          "path": "validation/index-next-20261023-2345/batch-manifest.json",
+          "sha256": "0a4be60aa2463833a61c12e43abbe6ccc0368bcff133df45a715ccea0599f33e",
+          "bytes": 26140
+        }
+      ]
+    },
+    {
+      "id": "sft-rule-intersection-F0-F1-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/sft-rule-intersection-F1-review/review.json",
+        "sha256": "c71a7f05f6320e685fe2ecc0b2f3679cf4eaf5213baea15c6d5847a3a4bd975f",
+        "bytes": 4802
+      },
+      "source_report_path": "validation/sft-rule-intersection-F1-review/review.json",
+      "completed_review_scope": "PASS_negative_fixed_F1_intersection_transfer",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "9B固定literal交集F0删15=1TP14FP，.695443948→.702672183；独立F1迁移保留原65支持追加、仅旧383交集，删除63=40TP23FP，.682128804→.661533824。两终点fullpred/v2精确；两关系项均降的F1关闭政策，不迁原dev；旧8B交集负记录不覆盖。",
+      "limitations": [
+        "Previously developedF0 prompted thisF1 transfer, both are reused development folds, not blind generalization",
+        "Support65 membership came from pooled64 cut.3 includingF1; existing support retained unchanged, not rescanned",
+        "All real retained old/new strings are atomic HP identifiers, no alt normalization; compound/text core contracts reused from F0 review",
+        "No originaldev transfer supported: predefined micro+macro and macro criteria fail",
+        "Existing rules replay source and input lineage is SHA-bound and reused; no repeated old model/training/rule quality"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/sft-rule-intersection-F1-review/audit.py",
+          "sha256": "f0b000121ed303567ffe888a8408a4fd48fd4a695283562180ac7f2e303dd65e",
+          "bytes": 8625
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/sft-rule-intersection-F0-review/review.json",
+          "sha256": "f05f880c558c3e473e7ceb7464bb5d777b480fc9d91676bbeadd828f41cd09c4",
+          "bytes": 6816
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/sft-rule-intersection-F0-review/audit.py",
+          "sha256": "fff1e630d9c5d6c97839870e5350c61f62ac7300fd9b3cb51215728c77abd424",
+          "bytes": 11792
+        }
+      ]
+    },
+    {
+      "id": "public-SFT212-data-and-entry-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/public-SFT-training-expansion-review/review.json",
+        "sha256": "f0c1a70c73ab8b73b0289455bc48053a0054a36168ca22689d542eac2bbfd429",
+        "bytes": 3018
+      },
+      "source_report_path": "validation/public-SFT-training-expansion-review/review.json",
+      "completed_review_scope": "PASS",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "仅新增data/entry已完成：严格train32排F1/F0，旧124字节保持，固定公开95union减全部旧concept新增88，合212/4218pairs/713正；651512tokens/11474监督/max5523≤6144，无裁剪。原JSON算法不变，fresh2ep54calls/3warm、2400+30与可恢复partial/final-only入口及actualCPU通过；正式运行尚无本批质量终点。",
+      "limitations": [
+        "Candidate label coverage713/818 is an oracle upper bound, not learned quality",
+        "Preparation is input-label isolated but changes training candidate mix/count; it does not establish GPU cost or score benefit",
+        "Actual CPU tokenizer source imports torch without initializing CUDA; independent token replay uses tokenizers only",
+        "No new training/model/source-loop/optimizer/GPU entry or quality accepted by this report"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT-training-expansion-review/data-review.json",
+          "sha256": "e9e606a6f4b18cc27175cf2b7e630014817612bcb02feafe0d8f66bdb1b7e693",
+          "bytes": 9748
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT-training-expansion-review/token-review.json",
+          "sha256": "f6efe5d36caf8ecbff4314060cada1ad120110c2233c26d68b3246da547d1b08",
+          "bytes": 4301
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT-training-expansion-review/audit_data.py",
+          "sha256": "1b979d02521cc288c95c65397487bd4257c68593e42fa16e9de7e5a5b82bf9f0",
+          "bytes": 8341
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT-training-expansion-review/audit_tokens.py",
+          "sha256": "cd0c5e9905a29c3a0eab001d3bcbd23c1b1ef6a87d00b4b16a268a86d7f69231",
+          "bytes": 4398
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT212-training-entry-review/review.json",
+          "sha256": "f421ed999a59549fcf57d077724c7368f0b7e2c46631b86ec4fdd82ef468f6f1",
+          "bytes": 6197
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-SFT212-training-entry-review/audit.py",
+          "sha256": "4497d8dbe45958353c54c46a29c16277dfbc16998270c297d51ccda55cd69084",
+          "bytes": 10104
+        }
+      ]
+    },
+    {
+      "id": "public-unigram-complete-control-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/public-unigram-quality-review/terminal-review.json",
+        "sha256": "617d43233b21f6519ecc0700bd6fe2daa8ee9f8143876d95ebac64594c53cc84",
+        "bytes": 2772
+      },
+      "source_report_path": "validation/public-unigram-quality-review/terminal-review.json",
+      "completed_review_scope": "PASS_complete_unigram_control_negative_quality",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "原native1gram分支纯input census及CPU256/完整13145缓存已审；CPU239.276秒，复用首256，固定round5>.95/currentHPO接受529词/2516坐标。唯一追加到四fold已审nested基底、全部4510旧对象保留：新增391=17TP374FP，Score .727975656→.716642231，四fold实体目标全负；按事前规则关闭，无新fit/GPU/原dev。",
+      "limitations": [
+        "Full probability matrices and token arrays are not retained; actual completed CPU assertions cover them, independently checked retained top3/keys/sidecar do not reproduce NN",
+        "Same predeclared>.95 gate and nested baseline were retained after quality; all fourfold entity objectives decline",
+        "Training-side development only; no originaldev/official action, new model fit, threshold scan or acceptance merge",
+        "CUDA_NO_DEVICE stderr occurred with hidden GPUs and actual CPU placement; no claim that TensorFlow never attempted CUDA initialization"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/review.json",
+          "sha256": "d912148982cca60a93e21ecacfa3aee392e6fc5ff80124c8878323dade7d4a9f",
+          "bytes": 8791
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/CPU-probe-review.json",
+          "sha256": "88ba241bb137486034fc8983d95e5d66b2e952d58f7cb5b896a3714869890c0d",
+          "bytes": 7458
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/full-cache-review.json",
+          "sha256": "751a5262bea01c92444d8bed470704a60bacc50ce81a3157c15b14156fa61665",
+          "bytes": 10914
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/audit.py",
+          "sha256": "cfb3edc6f7125486d019ac7f7e960571de72c7aee036c62c7ffb5942dc28cdbd",
+          "bytes": 15277
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/audit_cpu_probe.py",
+          "sha256": "f0b958745e3ad28046677e5035a17022b068755a45cad1661a04ab7dbadc1ce1",
+          "bytes": 10492
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-preparation-review/audit_full_cache.py",
+          "sha256": "300e57068b9152e1f6cd60aaf969f6c13bfce9ad024f16bab20d30b05c0350f5",
+          "bytes": 19083
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-quality-review/review.json",
+          "sha256": "379f2c4bea14897841a2f2ee93b90f0461faf7d295034f064756025959fe01b8",
+          "bytes": 6148
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-unigram-quality-review/audit.py",
+          "sha256": "402aeabc9b540d7014d0aa83a35832a653899de2a3b0dc028454c32ed67a4e84",
+          "bytes": 9964
+        }
+      ]
+    },
+    {
+      "id": "entity-slot-formal-terminal-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/review.json",
+        "sha256": "f8f503579106b5c3d668614b593926644c8454df055f6013893ec72533933a00",
+        "bytes": 6264
+      },
+      "source_report_path": "validation/entity-slot-formal-terminal-review/review.json",
+      "completed_review_scope": "PASS_complete_fixed_entity_slot_fresh32_training_and_two_arm_F1_terminal",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "实体槽fresh32正式637prompt/2430候选、2ep160调用(159非0LR)实际1460.803秒；base/final同398prompt/1589候选唯一推断230.765秒。固定.5实体替换Score .561134423→.650311382，men .503219→.701740/doc .604003→.762191，Task2/非实体逐对象保持。两fullpred/v2精确；仅旧77gate家族F1开发，不能称超过当前97best，无原dev迁移或.8达标。",
+      "limitations": [
+        "Only one fixed F1 development endpoint, no official/originaldev result or 0.8 attainment.",
+        "Gate is train32 resubstitution HGB77 p>=.1, not OOF selection and not the current public97 best candidate family. Its newly enforced F1 exclusion does not retroactively classify older scopes as leakage.",
+        "Base and trained arms share fixed1589 candidates; all Task2 and nonentity objects are inherited from baseline7ef8. Score change reflects Task1 only.",
+        "No epoch, cutoff or decoder scan. Fixed final epoch2 and cutoff.5 were frozen before quality.",
+        "Large checkpoint bytes were hashed by actual training save and adapter hashes rechecked by the frozen successful inference source. Reviewer independently hashes small records and replays CPU scores/decoding, without new GPU or downloading/reloading weights.",
+        "Managed process API exposes running=false without remote exit_code. Completion markers, actual artifacts and release are used; no remote rc is invented.",
+        "Reviewer checked previously-known F1 gold file SHA before its own replay, but did not parse/use labels until both independent full predictions were reconstructed and frozen. Owner actual fullpred freeze precedes first gold access.",
+        "Earlier source/probe/numerical tolerances remain their original scope; this report adds the actual complete training and new two-arm quality only."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/training-review.json",
+          "sha256": "41bb79fb33a2c46b9a213978f7b95375ffd62f24f2727c9b3b45e8bb723fbe62",
+          "bytes": 19052
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/quality-review.json",
+          "sha256": "3566d75aac5cdab44cbe0e20e090c362e037c50c382c0336fefe6d2c68a2e647",
+          "bytes": 8726
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/audit_training.py",
+          "sha256": "1e7ec1f6522c1182aa53d4fbd55746a306a14b3fb4a1a9ff2f5ab564caadce8d",
+          "bytes": 18507
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/audit_quality.py",
+          "sha256": "a70e3fc3a22863ac5e16aa803e6f872a489836eaf1bca0612133d150a2228c07",
+          "bytes": 12882
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-terminal-review/finalize_review.py",
+          "sha256": "02465ac20252978da4a11416966741ee5e31a573e14073f735fc06d4d2ce2600",
+          "bytes": 3872
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-entry-review/source-review.json",
+          "sha256": "eca2f72e02046f0b9ab9306cfb5b08c519e63ceb218061507f9b237adf9208cf",
+          "bytes": 12444
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/entity-slot-formal-entry-review/audit_source.py",
+          "sha256": "5fda7330787b0dbfc69830f332bc22885973329bd6842602e323a416c8bf0abb",
+          "bytes": 11215
+        }
+      ]
+    },
+    {
+      "id": "remaining-gap-method-research-snapshot-index",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/remaining-gap-research-index-preparation.json",
+        "sha256": "6fa8b08881f759d2eb7020c54e3febe7e6d3c95d33fe82ab63a8a1e64513ae20",
+        "bytes": 7776
+      },
+      "source_report_path": "validation/remaining-gap-research-index-preparation.json",
+      "completed_review_scope": "PASS_local_research_reference_list_prepared_only",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "训练侧只读方法复盘及16来源快照，保留report/sources与实际快照完整SHA；仅研究与来源备份，不新增质量证据、不重跑模型或旧质量。",
+      "limitations": [
+        "Only the report, catalog and16 captured snapshots were read/hashed. Mutable original source paths are provenance metadata; their current bytes were not substituted for the recorded snapshot.",
+        "Research advice and arithmetic are not new quality evidence; historical future-tense proposals remain as captured. No new source search, network, raw gold, model, candidate generation, inference, fit or scoring.",
+        "No formal/candidate index edits, publication or archive. The old2053 references were counted from index JSON only, not recursively opened. Auxiliary result.json and intersection-history.json are outside this requested18-reference list."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/report.md",
+          "sha256": "95879902f6b7d6de3591c7ce7aa52de9bb8a009662b6f5ba8e47274bc632d802",
+          "bytes": 9580
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/sources.json",
+          "sha256": "ef9406426131db6dcad677b1eb0d901ff0ca0cf22eefcc80936f66624a60635b",
+          "bytes": 6464
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/boundary-summary.json",
+          "sha256": "60ca3b099a1a1ecf55ef5eb44e86820b9a2deb7a7f04011f1df488f99f767e06",
+          "bytes": 9625
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/entity-fn-summary.json",
+          "sha256": "ec0ee958a888843204febbecb9f4cb37b44f83688f267c42d9bc965b5f8bbebc",
+          "bytes": 13102
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/candidate-generator.py",
+          "sha256": "1569e545fc83e5adf66406678e8b15dd315fa4437fc541a78a6cc0e9f3f966e7",
+          "bytes": 5574
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/upstream-ml-ner.py",
+          "sha256": "87499e4da50375cd6040a311e22a358599007e207d6d5039bed87a83fe66b2e4",
+          "bytes": 22572
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/bioformer-cache-manifest.json",
+          "sha256": "142e3297aed7f6f866c6ce16e82c2f2401332efac85b230c3a14d200e1411ca0",
+          "bytes": 3700
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/relation-F1-diagnostic.json",
+          "sha256": "c8fe02a171a69c9b6c973d464fe650c56ef6f9f27fdbb51cfeec1ee6e0cedb6d",
+          "bytes": 7707
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/F1-public-support-result.json",
+          "sha256": "0e471386579583b73938a79861c176875c0a80899cc6a58f0a48cd115ed9f322",
+          "bytes": 2540
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/F1-patient-balance-report.md",
+          "sha256": "44aed1cf531ce814bdb003c7ebb4c90b8bc544b06c9145def9c93b26b3f13156",
+          "bytes": 6011
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/retrieval-experiments.md",
+          "sha256": "af83e72ef0ab3728c2be10afe02c477d7fb7f4ca10e651adf179445be229c7f4",
+          "bytes": 96758
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/ontology-NOTES.md",
+          "sha256": "913ddeb62dfc7c1d24302c444136256a8e5c3a064bdc8eddcb97c003b8467f21",
+          "bytes": 31774
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/calibrate-multi.py",
+          "sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+          "bytes": 7928
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/union-9b-review.json",
+          "sha256": "ab6ef25693cdb00df71bf1e9b89d2ba4b51feb6eed5361cf020c7a9fbb0bbcbb",
+          "bytes": 2205
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/union-9b-freeze.json",
+          "sha256": "daa0637a4d808800c269ab65e9194c57d64a90778878761cda0f29e17bb511b5",
+          "bytes": 1349
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/sft8b-set-controls.json",
+          "sha256": "24f034a49e3db6d9098b4147d609886a6b49f4c58af8f2984bfb02b4a405362b",
+          "bytes": 8848
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/sft9b-metrics.json",
+          "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218",
+          "bytes": 13036
+        },
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/research/remaining-gap-strategy/snapshots/upstream-README.md",
+          "sha256": "4b8feeadd5414b0343d2fdfdfde55739f525ed94ea64a82f593362c858cac22c",
+          "bytes": 8802
+        }
+      ]
+    },
+    {
+      "id": "public-biobert-native-review",
+      "report": {
+        "path": "validation/index-next-20261023-2345/snapshots/public-biobert-native-review/review.json",
+        "sha256": "f954be78a92fae7a88c720ea153aaa2edb6d8cb8e7c64f4860cc8a9baef3806d",
+        "bytes": 14281
+      },
+      "source_report_path": "validation/public-biobert-native-review/review.json",
+      "completed_review_scope": "PASS_incremental_public_BioBERT_native_CPU_readiness_only",
+      "scope": "增量审查和只读研究；只归档小报告、独立脚本及指定研究快照，不递归复制历史模型/数据。",
+      "conclusion": "公开第三BioBERT head native严格CPU恢复与合成接口准备；仅source/下载/实际201变量121587826参数及17266列映射核验，首失败环境修复与剩余预算保留。无赛事输入、神经缓存、训练或质量，不能视为方案效果。",
+      "limitations": [
+        "No new network/download, model/tokenizer-library load, H5 read, NN forward, task corpus/gold, fit or evaluation by reviewer. Actual model restoration evidence is completed source/retained inventory/receipts; no independent rerun of121587826 numerical values.",
+        "Only synthetic top1 outputs and full input tensors are retained. Full4x17266 softmax finiteness/sum-to-one is asserted by the completed actual checker, not independently recalculated from missing logits.",
+        "Four fixed phrases are interface probes, not precision/recall or score evidence. No inference about candidate complementarity or quality follows from this readiness pass.",
+        "Original public head historical training/selection provenance limits are inherited from the existing public-model source review. New audit does not prove its historical external-data selection procedure.",
+        "Budget is aggregateCPU180seconds with a bounded174second recovery after5.375second failed attempt; elapsed wall time between attempts was not represented as model compute. Download has its separate300second cap.",
+        "No owner/main/index edits, publication, official upload or archival action."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2345/snapshots/public-biobert-native-review/audit.py",
+          "sha256": "1717f778239435e8667a27632aac96c11234d430b7fc84acbec75c4f0e867fbb",
+          "bytes": 16158
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "entity-slot-formal-terminal",
-      "status": "root已授权fresh实体train32两epoch160调用，2200+30；owner正在冻结正式plan。随后base/final同1589pairs/398输入固定.5，两臂完整freeze后一次F1评，600+30。尚无正式完整或质量终点，不记完成；不原dev。"
-    },
-    {
-      "id": "binary-complementarity-and-F0-cost-preparation",
-      "status": "仅CPU核新binary概率与旧SFT hard互补性及F0输入成本；未fit/GPU/新质量终点，不记完成。"
+      "id": "public212-JSON-SFT-formal-and-F1-terminal",
+      "status": "root已授权fresh212两epoch54调用2400+30，23:29:00启动/00:09:00+TERM30截止。仅完整最终epoch2后对既有62新concept提示推断600+30；原80响应/383旧关联/支持政策不改，只唯一supported预测先freeze后F1一次v2。尚无本批训练质量终点，不记完成。"
     }
   ],
-  "previous_live_index_sha256": "dc51174fde8629d50b164aceb7401511e2a13bc1676fb4da13e507a20d82b378",
+  "previous_live_index_sha256": "6bb9669fb3360dfa2e0fafd299cfbe6f88880eb2fc37d449a9915e8f15a6a802",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批128→132：原门槛raw绕过hybrid并入旧池及九点校准负关闭，事后新增键未选中；关系固定槽完整训练/base-adapter固定.5及预定期望F1终点已审，最高F1开发 .648033仍低旧JSON .660942；实体槽来源隔离、单行probe和microbatch工程probe完成，尚无实体正式训练质量。旧128对象/2018refs及当前最高d531/.737585917整对象不变。未达.8，无官方上传。",
+  "live_index_note": "本批补F0两特征LR/期望F1微增、9B交集F0正而F1负关闭、unigram完整CPU缓存及nested追加负关闭、实体槽正式唯一F1两臂终点、public212数据/入口与只读方法研究。旧132对象/2053refs及当前最高d531/.737585917整对象不变。未达.8，无官方上传；public212仍在正式训练，本批无其质量。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
