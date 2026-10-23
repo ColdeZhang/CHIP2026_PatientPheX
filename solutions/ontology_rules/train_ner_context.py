@@ -137,7 +137,7 @@ def main():
     assert fingerprint['base_weight_sha256'] == runtime.BIO_BASE_SHA
     model = runtime.load_model(args.model_dir, args.tokenizer_dir, runtime.BIO_BASE_SHA).to('cuda')
     # The no-weight processor and strict model loader use the same frozen config/tokenizer.
-    assert model.config.to_dict() == processor.config.to_dict()
+    runtime.assert_native_processor_equivalent(model, processor)
     torch.cuda.reset_peak_memory_stats()
     grouped = {}
     names = {}

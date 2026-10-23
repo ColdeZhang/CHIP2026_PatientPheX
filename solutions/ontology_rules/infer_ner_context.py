@@ -67,7 +67,7 @@ def main():
     weight = Path(args.model_dir)/'pytorch_model.bin'
     assert sha(weight) == final['model_sha256']
     model = runtime.load_model(args.model_dir, args.tokenizer_dir, final['model_sha256']).to('cuda')
-    assert model.config.to_dict() == processor.config.to_dict()
+    runtime.assert_native_processor_equivalent(model, processor)
     model.eval()
     torch.cuda.reset_peak_memory_stats()
     decoder = SpanDecoder(config)

@@ -125,3 +125,15 @@ def smoke_selection(rows, builder):
     assert any(x['combined_tokens'] > x['target_tokens'] for x in selected)
     assert selected[0]['target_words'] == max(x['target_words'] for x in longest)
     return selected
+
+
+def assert_native_processor_equivalent(model, processor):
+    """Permit exactly Transformers' observed construction-only autoset flag."""
+    actual, nominal = model.config.to_dict(), processor.config.to_dict()
+    assert actual['encoder_config'].pop('_attn_implementation_autoset') is True
+    assert nominal['encoder_config'].pop('_attn_implementation_autoset') is False
+    assert actual == nominal
+    assert model.config.encoder_config._attn_implementation == 'eager'
+    assert processor.config.encoder_config._attn_implementation == 'eager'
+    return {'encoder_config._attn_implementation_autoset': {'nominal':False, 'constructed':True},
+            'attention_implementation':'eager', 'all_other_config_fields_exact':True}

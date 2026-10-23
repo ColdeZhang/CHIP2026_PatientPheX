@@ -39,7 +39,7 @@ def main():
     assert not {d['pmc_id'] for d in inputs} & {str(d['pmc_id']) for d in held}
     model = runtime.load_model(args.model_dir, args.tokenizer_dir, runtime.BIO_BASE_SHA)
     _, _, nominal, files = runtime.native_processor(args.model_dir, args.tokenizer_dir)
-    assert model.config.to_dict() == nominal.config.to_dict()
+    config_comparison = runtime.assert_native_processor_equivalent(model, nominal)
     processor = model.data_processor
     builder = ner_context.ContextBuilder(inputs, processor.transformer_tokenizer, model.config)
     rebuilt = builder.input_rows()
@@ -95,7 +95,7 @@ def main():
         'source_dependencies': runtime.source_fingerprint(__file__),
         'reference_trainer_sha256': sha(args.reference_trainer), 'model_config_tokenizer': files,
         'data_sha256': {k:sha(getattr(args,k)) for k in ['raw_train','train','input']},
-        'weight_sha256': runtime.BIO_BASE_SHA, 'strict_state_load':True,
+        'weight_sha256': runtime.BIO_BASE_SHA, 'strict_state_load':True, 'config_comparison':config_comparison,
         'model_parameters':sum(p.numel() for p in model.parameters()), 'counts':dict(counts),
         'label_free_held_input':dict(input_stats), 'smoke_selection':selection,
         'smoke_supervision': {'positive':probe_positive, 'valid_negative':probe_valid-probe_positive,

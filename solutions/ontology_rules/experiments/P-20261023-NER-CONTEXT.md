@@ -50,3 +50,5 @@
 [冻结运行计划](../evidence/round2/ner-context-control-plan.json)使用原 `.3` A30 GPU0／原依赖／fresh 公共 BioMed 权重。1150 窗、2236 正例、87 NO、1,125,538 有效跨度、batch4、10 轮、2880 步、原 BCE／优化器／seed 全部保持；仅上下文 collator 和目标 decoder 变化。先 CPU strict-load + 全 1150 监督窗口和 594 个无标签留出窗口检查，再在同训练入口做一次最长 batch 单步并丢弃状态。该 batch 以输入排序选择，四窗实际均 384 tokens，包含最大 target-head 及最多非空上下文，不按金标选样。
 
 预算：CPU 240 秒、单步 300 秒；实际成本投影 ≤3600 秒才启动 fresh 正式训练，硬限 3600 秒后 TERM、最多 30 秒后 KILL 自己的进程组。唯一 epoch10 推理及 Sap 后链各 300 秒。模型和真实状态保留外存，旧 epoch 权重仅核 SHA 后清理。完整预测先冻结，再按原 Sap .65/.92 和固定装配作唯一 nested 留出评分；不搜阈值／轮次，不读 originaldev gold。此前 CPU 准备并非质量实验；本次实际 GPU 状态与结果另记，不将计划冒充完成。
+
+CPU strict-load 首轮（20:15:04Z，14.656 秒）在 config 全字典相等处阻断，尚无 GPU/前向/评分。单独 CPU 差异定位确认唯一变化为 Transformers 在模型构造后将 `encoder_config._attn_implementation_autoset` 从 false 设为 true，其他字段完全相同。入口改为显式验证这一个已观测标记迁移，并要求两侧 attention 均为 eager、其余配置严格相等；不更改模型或 tokenizer。首轮计划／源／失败 state 与 stderr 保留外存根目录，新执行使用 `revision2`／本地 `attempt2`，不覆盖失败证据。
