@@ -88,5 +88,5 @@
 # 最新有界CPU准备
 
 - [public-selector-plan.json](public-selector-plan.json)、[public-selector-results.json](public-selector-results.json)：原严格OOF source-HGB加公开Pheno真实源/分数；CPU13.40秒，outer0 .710359→.732901，四项升，旧基线复用/新来源与旧删换损益齐；当前一次独立新fit复现中，原dev未动。
-- [public-selector-followup-plan.json](public-selector-followup-plan.json)：固定同法补outer1/2/3，九套旧OOF低层资源SHA齐，三次CPU共享120秒上限；不重训神经模型，待三预测共同冻结后统一评估。
+- [public-selector-followup-plan.json](public-selector-followup-plan.json)、[四折结果](public-selector-followup-results.json)：三新CPU共47.06秒，统一freeze后评分，四折Score均升，pooled .692527→.722651；fold2关系两项降如实保留。outer0独审PASS，三新fit/谱系独审中。
 

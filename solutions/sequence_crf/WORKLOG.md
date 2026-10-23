@@ -35,7 +35,7 @@
 
 15. **唯一public source-HGB控制完成、独审中**：原source baseline `59bf4fa3`/预测`8ec02c6c`（.710359060）复用；真实公开64缓存6064项来源核验后，新pool训练+887/外层+257，六新特征、HGB160/.4/三train32 OOF不变，CPU13.40秒<120cap。两fullpred21:14:44Z共同freeze后唯一outer0评，新Score **.732901229**（+.022542168），四项升、0错警。实体增61TP38FP/删12TP39FP，public-only增23TP13FP、原池重选增38TP25FP；关系净+14TP/+7FP。支持新来源+特征整体方法，未触原dev/不宣称.8；一次新fit独立复现已交validation。[完整结果与恢复](evidence/round2/public-selector-results.json)、[固定计划](evidence/round2/public-selector-plan.json)，外存 `public-selector-control/`。无本路线活动GPU。
 
-16. **固定public selector其他三折复验准备**：root授权同方法outer1/2/3，只放宽新副本入口的三份旧reference SHA白名单，学习与选择代码不变。9套既有train32资源及三份source-HGB对照均已实际SHA核齐；共享已校验公开64缓存、不新增NN，三次CPU拟合/推断合计120秒硬cap。三新fullpred共同freeze后才一次各fold/pooled4/mean4评；outer0结果与旧指标复用，不扫参数/不触原dev。[计划及资源清单](evidence/round2/public-selector-followup-plan.json)，外存 `public-selector-followup/`。
+16. **固定public selector四fold已完成、三新独审中**：source-HGB同法outer1/2/3仅改reference白名单，9套旧train32资源SHA/隔离齐；三次CPU共47.06秒<120cap，无新NN。三新fullpred21:18:45Z共同freeze后一次评分，f1 .663220→.720292、f2 .721467→.738304、f3 .680343→.703019；f2关系两项降仍保留。加复用f0四折Score全升，pooled **.692527322→.722651022**、mean .693847251→.723628971；pooled四项升、实体净+281TP/-51FP、关系+61TP/+23FP。无原dev。outer0独审8107cc27已PASS；三新fit/谱系复核中。[完整结果](evidence/round2/public-selector-followup-results.json)、[计划](evidence/round2/public-selector-followup-plan.json)，外存 `public-selector-followup/`。
 
 
 ## 已完成的近期结论
