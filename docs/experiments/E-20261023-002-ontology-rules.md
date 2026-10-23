@@ -2,7 +2,7 @@
 
 状态：**已完成本地验证和 B 候选，建议保留**；是否提交由主线程统一决定。本路线没有操作平台。
 
-分支 `day1/ontology-rules`，起点 `ac8a752`，实际代码提交 `2cf6fee`。代码 SHA-256：`56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a`。运行环境 Python 3.12.14，仅标准库，CPU 单线程，无 GPU/外部推理服务。
+分支 `day1/ontology-rules`，起点 `ac8a752`，实际方案代码提交 `2cf6fee`；共同评测/校验/数据基础来自 `90d52d0`，已 cherry-pick 到本分支，方案代码与已生成预测均未变。代码 SHA-256：`56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a`。运行环境 Python 3.12.14，仅标准库，CPU 单线程，无 GPU/外部推理服务。
 
 ## 假设与成功标准
 
