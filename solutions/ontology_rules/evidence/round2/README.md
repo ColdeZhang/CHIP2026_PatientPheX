@@ -27,3 +27,7 @@
 - [聚合归属第二折固定复验](aggregate-relation-fold1.json)：替换及union仍负，不推广原dev。
 
 - [真实PhenoTagger结构与设计](phenotagger-design.json)：与旧二元冻结encoder区分，当前仅成本测量准备。
+
+- [PhenoTagger训练材料](phenotagger-preparation.json)与[100步成本测量](phenotagger-measure100.json)：真实encoder梯度/更新、耗时/显存，尚无效果分数。
+
+- [PhenoTagger batch256×30吞吐测量](phenotagger-measure256x30.json)：分组正类/None训练loss，非验证分数。

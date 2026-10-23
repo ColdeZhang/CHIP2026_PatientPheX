@@ -76,6 +76,9 @@ def main():
     head_before = model.classifier.weight.detach().float().cpu().clone()
     optimizer = torch.optim.Adam(model.parameters(), lr=5e-6)
     model.train(); losses = []; step_times = []; seen_classes = set(); seen_positive = 0
+    group_loss_sum = {'hpo_positive': 0., 'reject_none': 0.}
+    group_count = {'hpo_positive': 0, 'reject_none': 0}
+    group_correct = {'hpo_positive': 0, 'reject_none': 0}
     first_encoder_gradient = None; started = time.monotonic(); torch.cuda.reset_peak_memory_stats()
     for step, batch in enumerate(loader):
         if step >= a.steps: break
@@ -83,7 +86,8 @@ def main():
         optimizer.zero_grad(set_to_none=True); torch.cuda.synchronize(); begin = time.monotonic()
         with torch.autocast('cuda', dtype=torch.bfloat16):
             logits = model(ids, mask, segments)
-            loss = nn.functional.cross_entropy(logits.float(), y)
+            per_row_loss = nn.functional.cross_entropy(logits.float(), y, reduction='none')
+            loss = per_row_loss.mean()
         assert bool(torch.isfinite(loss))
         loss.backward()
         if step == 0:
@@ -92,6 +96,10 @@ def main():
             assert first_encoder_gradient > 0
         optimizer.step(); torch.cuda.synchronize()
         step_times.append(time.monotonic() - begin); losses.append(float(loss.item()))
+        for group, selected in [('hpo_positive', y != 0), ('reject_none', y == 0)]:
+            group_count[group] += int(selected.sum().item())
+            group_loss_sum[group] += float(per_row_loss.detach()[selected].sum().item())
+            group_correct[group] += int(((logits.detach().argmax(-1) == y) & selected).sum().item())
         seen_classes.update(int(v) for v in y.cpu().tolist()); seen_positive += int((y != 0).sum().item())
         if (step + 1) % 10 == 0:
             print(json.dumps({'event': 'training_step', 'step': step + 1, 'loss': losses[-1]}), flush=True)
@@ -113,6 +121,9 @@ def main():
         'measured_steps': len(losses), 'examples_seen': min(a.steps * a.batch_size, len(rows)),
         'positive_examples_seen': seen_positive, 'unique_classes_seen_in_pilot': len(seen_classes),
         'loss_first': losses[0], 'loss_last': losses[-1], 'loss_mean': sum(losses) / len(losses),
+        'online_training_groups': {group: {'examples': group_count[group],
+            'mean_loss': group_loss_sum[group] / max(1, group_count[group]),
+            'accuracy': group_correct[group] / max(1, group_count[group])} for group in group_count},
         'all_losses_finite': all(math.isfinite(x) for x in losses), 'encoder_probe': probe_name,
         'encoder_gradient_norm_first_step': first_encoder_gradient, 'encoder_parameter_delta_l2': encoder_delta,
         'classifier_parameter_delta_l2': classifier_delta, 'train_elapsed_seconds': train_elapsed,

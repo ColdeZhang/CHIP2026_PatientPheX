@@ -1,0 +1,67 @@
+{
+  "config": {
+    "data_dir": "phenotagger-fold0/data",
+    "model_dir": "../sequence-crf/pretrained-biomedbert",
+    "output_dir": "phenotagger-fold0/measure100",
+    "steps": 100,
+    "batch_size": 64,
+    "max_length": 32,
+    "seed": 20261023
+  },
+  "source_sha256": "c3b02f66865a973a256639057135749440da762b544856e0a169a35e7bdaf5d5",
+  "data_manifest_sha256": "b3afa763169bc4fe29612b14e04f67327cabf13e0db13125de0c70b4d66311f5",
+  "base_source_files": {
+    "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+    "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+    "LICENSE.md": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66",
+    "README.md": "33ee2e0c3178e144af68c8e8c741a227373304151a6b53660c8542306fffb0d4",
+    "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+  },
+  "runtime": {
+    "python": "3.10.20",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.50.0",
+    "gpu": "NVIDIA A30",
+    "cuda": "12.8",
+    "cpu_threads": 1
+  },
+  "architecture": "[CLS] last hidden -> linear(all HPO + reject) softmax; all encoder weights trainable; no extra dropout",
+  "encoder_parameters": 109482240,
+  "classifier_parameters": 14703280,
+  "optimizer": {
+    "type": "torch.optim.Adam",
+    "lr": 5e-06,
+    "weight_decay": 0.0,
+    "epsilon": 1e-08
+  },
+  "token_audit": {
+    "rows": 117118,
+    "max_tokens_with_special": 33,
+    "truncated_rows": 1,
+    "truncation_policy": "Explicit original-recipe max32 for cost measurement; no performance claim."
+  },
+  "measured_steps": 100,
+  "examples_seen": 6400,
+  "positive_examples_seen": 3197,
+  "unique_classes_seen_in_pilot": 2859,
+  "loss_first": 9.842179298400879,
+  "loss_last": 6.405323028564453,
+  "loss_mean": 7.632857928276062,
+  "all_losses_finite": true,
+  "encoder_probe": "encoder.layer.0.attention.self.query.weight",
+  "encoder_gradient_norm_first_step": 0.09401943534612656,
+  "encoder_parameter_delta_l2": 0.054465435445308685,
+  "classifier_parameter_delta_l2": 1.6326873302459717,
+  "train_elapsed_seconds": 6.642945529893041,
+  "steady_step_seconds_mean": 0.05988386277005904,
+  "steps_per_epoch": 1830,
+  "estimated_epoch_seconds_from_training_only": 109.58746886920804,
+  "estimated_30epoch_minutes_from_training_only": 54.79373443460402,
+  "estimated_100epoch_minutes_from_training_only": 182.64578144868008,
+  "peak_allocated_bytes": 2651627520,
+  "peak_reserved_bytes": 2912944128,
+  "heldout_annotations_or_inference_used": false,
+  "model_checkpoint_saved": false,
+  "status": "cost and gradient smoke only; not an accuracy evaluation or trained model"
+}
