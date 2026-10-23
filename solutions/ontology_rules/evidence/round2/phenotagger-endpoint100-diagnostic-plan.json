@@ -1,0 +1,24 @@
+{
+  "frozen_at_utc": "2026-10-23T16:17:16.817208+00:00",
+  "execution": "After final100 prediction and public-v2 evaluation only; not yet executed",
+  "source_sha256": "1a33aa1f0c563d51a6dcc8a0b21ec5da00a7f6ea34cb59f5818ae3b7205df818",
+  "unchanged_pipeline": "No model/source100/training/inference threshold/candidate/base change",
+  "units": "Deduplicated document-offset-length-splitID, NO excluded; -1 wildcard exact-ID-first separately",
+  "diagnostics": [
+    "All linked gold: exact physical span in pool, label support, top1 correct, top3 contains correct, top1 correct and fixedp.95",
+    "Mutually exclusive stages: baseline already covered; pool absent; unsupported target; top1 wrong with/without gold in top3; correcttop1 belowp.95; overlength; negation; originalbase overlap; retainednew; higher-rankednew overlap",
+    "Baseline-missing stage counts stratified by exact actual training surface correctID / otherpositiveID / weaknegative / unseen",
+    "Duplicate/multiID counts; -1 wildcard counts separate; actual added TP/FP checked against exact-ID-first semantics"
+  ],
+  "constraints": [
+    "No alternative predictions/oracle score",
+    "No threshold sweep, checkpoint selection or intermediate heldout inference",
+    "No per-document error table/string dump",
+    "Original dev not read"
+  ],
+  "artifact_sha256": {
+    "base": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65",
+    "data_manifest": "b3afa763169bc4fe29612b14e04f67327cabf13e0db13125de0c70b4d66311f5"
+  },
+  "interpretation": "Training near1 but small endpoint gain can reflect missing exact spans, unseen/ambiguous lexical generalization, conservative confidence, or unchanged assembly overlap/negation; top3 presence does not establish a realizable model Score."
+}
