@@ -1,0 +1,120 @@
+{
+  "created_at": "2026-10-23T23:12:54.524786+00:00",
+  "scope": "Authorized F1-only fixed two-feature LR; no F0 labels, no training quality evaluation",
+  "source_sha256": "905b8ea558b68c117486d6515c32ff10a5f79f65b36dc8cf824fb29420d23ade",
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/fitted",
+  "features": [
+    "binary_logit",
+    "old_sft_positive"
+  ],
+  "estimator": {
+    "C": 1.0,
+    "penalty": "l2",
+    "fit_intercept": true,
+    "class_weight": null,
+    "solver": "lbfgs",
+    "max_iter": 1000
+  },
+  "CPU_cap_seconds": 60,
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "diagnostic_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/plan.json",
+    "sha256": "c6a128df9f1ac7586bd2ab4d0232baaecceddee3d96e63e55401530be906bb68",
+    "bytes": 4030
+  },
+  "diagnostic_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/output/summary.json",
+    "sha256": "71bdd1099d3038ef3349db0dad00e90fde632638a0bba2762e094a0fa10df847",
+    "bytes": 8063
+  },
+  "training_pairs": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/output/literal-pairs.jsonl",
+    "sha256": "7a23367d6fb03d21ed33c8610a15a3116c4536e98229429edfab516db4b2df1c",
+    "bytes": 349241
+  },
+  "F1_training_document_ids": [
+    "10313222",
+    "11871647",
+    "11906559",
+    "12386172",
+    "12455887",
+    "12891056",
+    "2964533",
+    "4607013",
+    "5415817",
+    "5425407",
+    "5473715",
+    "5538066",
+    "5789735",
+    "6048891",
+    "6063015",
+    "9327653"
+  ],
+  "excluded_F0_document_ids": [
+    "10553122",
+    "10789033",
+    "11196099",
+    "11826603",
+    "11919040",
+    "12444410",
+    "12652105",
+    "12779223",
+    "3563609",
+    "4678370",
+    "5452357",
+    "5537416",
+    "5575846",
+    "5959423",
+    "6338757",
+    "6491447"
+  ],
+  "binary_probability_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/adapter.probabilities.jsonl",
+    "sha256": "b14ef30bda31e70e7e3861eaf183634b85fa9ab10ba6a1eb959554aefa0f9c71",
+    "bytes": 100919
+  },
+  "old_sft_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+    "bytes": 25270,
+    "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+  },
+  "source_checks": {
+    "isolation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/binary-complement-design/source-check.json",
+      "sha256": "4af6c224f8a401abcfa679a91ce7e410a2dc1f6b061753a70b6d1dfb8bb39170",
+      "bytes": 5540
+    },
+    "diagnostic_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/binary-sft-complement-review/review.json",
+      "sha256": "c8ac0e037366837f8faad18fc55ed9cc529c08e9b53a72fb8e20924096aeb73f",
+      "bytes": 3862
+    }
+  },
+  "future_endpoint": {
+    "decoder": "Exact independent Bernoulli expected patient F1 among stable probability-ranked top-k sets including empty; exact score ties smaller k",
+    "math": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/binary_sft_complement/expected_f1_math.py",
+      "sha256": "6537fadb7bd8c7eb5adb09c2edf30c4538f25b3b0a79959112245a20f3bd2085",
+      "bytes": 3105
+    },
+    "original_policy": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/expected-f1-policy.json",
+      "sha256": "1b4a258a7bafbe06a430295d34f4f2b0453cb0630402e6cef903ef6bad26d7ac",
+      "bytes": 2638
+    },
+    "nonrelation_fields": "Exact old SFT48 full prediction objects; replace association only",
+    "retention": "delta(micF1+macF1)>0 AND delta(macF1)>=0",
+    "CPU_assembly_and_evaluation_cap_seconds": 30,
+    "no_fixed05_quality_arm": true,
+    "no_originaldev": true,
+    "require_fit_and_freeze_pushed_before_F0_gold": true
+  }
+}
