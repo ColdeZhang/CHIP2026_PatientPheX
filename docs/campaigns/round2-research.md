@@ -90,3 +90,6 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 实际CPU原生加载已通过：201变量、122,759,794参数先置NaN，再由Keras H5按拓扑严格恢复，每个变量与原文件逐元素相等，完整检查16.459秒；未转换PyTorch、未下载第二份基座。原17266列映射后覆盖当前17090个概念（178旧alt列规范化、3列无效丢弃），仍缺2030当前类；只在原argmax后映射，不提前删列重算概率。首次因Transformers4.30.1未发现tensorflow-cpu失败，使用上游FORCE_TF_AVAILABLE/USE_TF开关后通过，未修改共享库。四条合成词只说明接口与标签列正确，实体控制和实际吞吐仍在准备。冻结短报告及来源见[清单](round2-research-sources.json)。
 
 另按固定train64统计类覆盖（不读held/dev）：4765正mention中100为NIL/非HPO，余4665个linked mention有4626个（99.16%）在原head规范后至少一个ID可覆盖；1406种canonical类中覆盖1378。原字面ID覆盖4617，公共v2并不统一规范所有alt ID，不能把语义覆盖当实际匹配率。旧head缺2030本体类目前未构成训练侧的大频次缺口，但不代表候选抽取、阈值或任务分数；来源见清单。原生候选的跨句上限问题和无标签修复证据已写[H36](../../HANDOFF.MD#h36第三方候选生成器会因跨句可变状态静默漏项)。CPU实测256候选26.972秒，65,406种词序列估约115分钟，转为自有TF2.12/cuDNN8 GPU环境准备，未把估计当实际全量耗时。
+
+
+公开Pheno的其他head只读可行性（21:10 UTC）：Bioformer-8L是原cased-v1.0的官方改名，配置推算含同17,266类head约51,380,594参数，公开h5为205,710,168字节；BioBERT约121,587,826参数、486,624,416字节。均尚未下载权重/载入/测质量，不把文件小等同吞吐或互补收益。BioBERT配置和vocab已从魔搭固定revision下载，与原HF版本逐字节相同；Bioformer准确魔搭路径404，固定HF配置/卡可用。上游即使设置cased tokenizer，load_data仍逐word.lower()，应保持真实预训练表示；候选词串可重用，跨模型forward不可重用。先结案当前PubMedBERT跨折与选择器控制，再决定是否做较轻Bioformer的互补来源实验；完整静态报告及快照在外部 `research/public-phenotagger-other-heads/`，report SHA `d0d09fbe…`。
