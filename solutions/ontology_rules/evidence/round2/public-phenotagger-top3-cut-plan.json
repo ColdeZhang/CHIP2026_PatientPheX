@@ -1,0 +1,170 @@
+{
+  "frozen_at": "2026-10-23T22:09:07.143984+00:00",
+  "scope": "Separate training-side scale/ranking diagnostic after original fixed.3 negative endpoint; does not replace it.",
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-cut-calibration",
+  "cuts": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "CPU_cap_seconds": 30,
+  "TERM_grace_seconds": 5,
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "sources": {
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/calibrate_cut.py": "0373f52888ce700cecdaea8997f441bf9a854c625f6a8e20f6bb192ee23769e7",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/legacy/calibrate_public_selector_cut.py": "9b25256202e9bd010073792fbb332632d6043207e35c45ca7edc7706c1e0439d",
+    "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "evaluation_source": "/workspace/CHIP2026_PatientPheX/scripts",
+  "folds": [
+    {
+      "fold": 0,
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/selector-scores.jsonl",
+        "sha256": "73c6daee7ee87a362c015ba0dc0e88ea742b517f4b92381c56fe5cce3203b032",
+        "bytes": 36965631
+      },
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/manifest.json",
+        "sha256": "0a2c24112eefbb841c784a4e8a4e260eee99a1619fd26285c7678450a9d6d3a5",
+        "bytes": 12447
+      },
+      "baseline_prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/augmented.jsonl",
+        "sha256": "8cc9b3a46ff725a5b67d29cc2e933c6660fd4a4ae857640b97abdae61e9fc38b",
+        "bytes": 138225
+      },
+      "old_template": {
+        "fold": 0,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold0.jsonl",
+        "sha256": "298cc8747c1c1e72fd1ddf5a0c88228d446c1ac2f731bd06d3dd60137ec70f8b",
+        "entities": 1043
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/top3.metrics.json",
+        "sha256": "e31a0c772a1716d3f3aa075fa94de1ab14697265ceec422c4d28209ecb3f7244",
+        "bytes": 12924
+      }
+    },
+    {
+      "fold": 1,
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/selector-scores.jsonl",
+        "sha256": "e4ae57d5a2b0c36fcc43bb31e1224ad541235a13bfb96efd01894bc17c7b6e4c",
+        "bytes": 41214289
+      },
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/manifest.json",
+        "sha256": "a299c6d27f48c6ac879a37dac3a00ba8b156b2b033bb0a97fce23ee008c6a0d7",
+        "bytes": 12413
+      },
+      "baseline_prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/augmented.jsonl",
+        "sha256": "5197ccaeed8f85cacd1acedff79e697804c74cd6386ff7679f312fdb0bcb307d",
+        "bytes": 164751
+      },
+      "old_template": {
+        "fold": 1,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold1.jsonl",
+        "sha256": "8ea3a1da772d8aeacb9fa376d1908601a8121d519094b66277fca075f303a426",
+        "entities": 1225
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/top3.metrics.json",
+        "sha256": "ef348b82e003a4b4dbe2404043d981576e0941175d81a8e04010abcd60ce1df1",
+        "bytes": 12985
+      }
+    },
+    {
+      "fold": 2,
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/selector-scores.jsonl",
+        "sha256": "431bd2b0bb9bc8cac21b0a20d03b35ac3c9f3f4bdee4679942da0ea8bdd2e7a2",
+        "bytes": 38108845
+      },
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/manifest.json",
+        "sha256": "a15d5e9fb4ac142bd51fa5008f02631feffa0c31fe51aa998cc920092bc069db",
+        "bytes": 12460
+      },
+      "baseline_prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/augmented.jsonl",
+        "sha256": "56b1e9ba335ba63b8c61186dbf19f71fda79c9a6c9df4b87b1a578dfc37fdcd5",
+        "bytes": 142003
+      },
+      "old_template": {
+        "fold": 2,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold2.jsonl",
+        "sha256": "1981720362f9cab36eedca9f52a9bc4a0fa42d3d4b0231e93810d72fbf26423c",
+        "entities": 1047
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/top3.metrics.json",
+        "sha256": "36bab9fdc52bf580f7a555e223562abe1b1beb773ad82bd57b18068eede010f9",
+        "bytes": 12909
+      }
+    },
+    {
+      "fold": 3,
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/selector-scores.jsonl",
+        "sha256": "e6748328ff9289c916156c82f309211b2d0672083916c0dbdaff6e031681e914",
+        "bytes": 37951256
+      },
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/manifest.json",
+        "sha256": "c908c29820282a9fb762fba2685a019d2735bb1f040a2b03faa5212ed2eaa08d",
+        "bytes": 12460
+      },
+      "baseline_prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/augmented.jsonl",
+        "sha256": "c9fc7527d2253c7e0c330bc41d52068d18447a4dfa09b483366b3f1a5acb209b",
+        "bytes": 134008
+      },
+      "old_template": {
+        "fold": 3,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold3.jsonl",
+        "sha256": "3d4606ae970e6d97fe2be9837454bb8add3f8c342042b87fe9fabf9cbcaef66b",
+        "entities": 1000
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/top3.metrics.json",
+        "sha256": "1f8d0456896ca395bde963d5d80cc26c3a454ff3a57524a8baa4d0c71e124477",
+        "bytes": 12937
+      }
+    }
+  ],
+  "train64": {
+    "path": "/workspace/patientphex-data/day1/train64.jsonl",
+    "sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+    "bytes": 2003594
+  },
+  "old_calibration_results": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/results.json",
+    "sha256": "6646e70ecdaf58e84d8d10e3cc941e86bf3d30a8ba432fac58616b3f37908b1d",
+    "bytes": 35065
+  },
+  "fixed03_results": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/results.json",
+    "sha256": "429112dd66b978baa32536f9ff5e5aa8e4bd7cf80b68671672616e03193a10d8",
+    "bytes": 17563
+  },
+  "objective": "pooled (menF1+docF1)/2",
+  "tie_break": "nearest .4 then higher; integer grid distance",
+  "source_equivalence": "decode/entity_counts/summarize AST exact old9b252562; standalone dependency binding and anchor .3 adaptation only",
+  "limits": "No model fitting, new cuts/features/labels, NN, GPU or originaldev. All36 complete predictions frozen jointly before train64 labels; every nonentity copied oldcut.3 exact. Selected maximum is calibration-fit diagnostic, not unbiased generalization/Score/.8 success."
+}
