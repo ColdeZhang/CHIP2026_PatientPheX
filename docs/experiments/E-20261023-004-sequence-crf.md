@@ -66,3 +66,5 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /workspace/patientphe
 两次 CPU 正式运行使用 Python 3.11、sklearn-crfsuite 0.5.0、python-crfsuite 0.9.12、scikit-learn 1.8.0、numpy 2.3.5、scipy 1.17.0。保存于 manifest 的实际算法源 SHA-256 为 `0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05`；后续提交加入运行库版本记录，不改变模型算法。
 
 远端获取 BiomedBERT 初次尝试失败：`huggingface.co` 报 `Network is unreachable`，尚未启动 GPU 训练。正在检查镜像/可验证缓存；该失败属于资源获取问题，不据此淘汰技术路线。
+
+BiomedBERT 权重来源已固定到 revision `e1354b7a3a09615f6aba48dfad4b7a613eef7062`。原始 `pytorch_model.bin` 为 440,474,434 字节，官方 LFS SHA-256 `ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193`，本机下载校验一致。远端模型站点均不可连接，改本机中转；MCP `write_file` 请求大于约 1 MB 会返回 413，改为 512,000 字节原始数据分块，经 base64 上传后在自有目录合并校验。所有数据在远端解压后与共享源 SHA-256 一致，未传验证金标。远端裸 `python` 命令不存在，应始终使用项目 `.venv/bin/python`。
