@@ -251,6 +251,12 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 
 **避免方法**：公共运行辅助逻辑沿用已核接口，新增manifest写入用真实返回对象或包含空/非空集合的契约检查。对支持的类型显式转换，对未知类型报错；不要一概 `str()` 隐藏数据结构。保存失败源码/无forward证据，核实原进程和GPU已释放后，用独立attempt目录恢复，不覆盖失败产物或重启重复作业。既有helper检查在外部 `case_retrieval/qwen35-preparation/loading-info-serialization-fix.json`；本次仅序列化修复提交 `0a2fada`，模型/98分支输入不变，终点与实际耗时见检索方案记录。
 
+## H40：逐文OOF资源不自动满足新验证划分的隔离
+
+准备train32（F2+F3）→F1的新实体判别时，旧四fold HGB给F2/F3的概率、旧outer0内层候选都对各自目标文献隔离，但其训练资源均包含新F1的16篇。直接拿它们筛选或构造新训练样本，会让本应留出的F1信息进入下游；“是OOF”不能替代完整资源依赖核查。
+
+**避免方法**：验证集改变或增加下游模型时，沿候选生成、词典、门控、特征模型的训练文献集合核查新留出集；不仅核对被评分文献自身。此次在使用前已拦住，改用F3→F2、F2→F3及train32→F1资源，两条训练链与F1交集均0；仅依赖公开固定权重的无标签缓存可共享。新HGB只用train32拟合，其对自身训练样本的筛选明确标为resubstitution，不称OOF或泛化召回。旧资源对原目标仍有效，不据这次复用风险否定旧结果。证据：外部 `sequence_crf/entity-slot-feasibility/isolation-check.json`，SHA `f794767a48ce41e547736dc387401f816ed8588883626e7c9cc98b2e284eb59b`；只核文献ID/资源来源，未进行新质量评测，详见[序列分支记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
