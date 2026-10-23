@@ -188,3 +188,5 @@ FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcesso
 ## 公开原生 PhenoTagger 与从头弱监督控制分开
 
 2026-10-23 新控制复用公开完整H5原生17266列，不继承项目HPO100ep权重；来源/许可和历史选模谱系不确定性见实验 E-20261023-PUBLIC-PHENOTAGGER-NATIVE。上游ngram跨句状态漏项已事前修复并写共享H36；decoder必须保留float32概率先round5再严格>.95，不能换成rawfloat阈值。候选推断完整完成不等于质量提升；固定实体only对照保留原关系，先完整predfreeze后评分。
+
+公开原生固定实体补充唯一nested终点独审PASS：+.013595473，308新增中134TP/174FP，关系不变。结果支持公开原生模型确有互补召回；不能用之前从头HPO训练边际结果替代其判断，也不能从单折提升推断外折/官方提升。下一由同政策outer0迁移检验，避免看完本折再扫阈值。

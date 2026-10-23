@@ -24,4 +24,18 @@ main共享更新已同步 `4b92005`，221个solutions文件SHA集合不变。研
 
 原生完整小终点 `research/public-phenotagger-reuse/native-pipeline/terminal/`：canonical SHA `de7de49e…`，manifest `2fc80461…`，transfer `d86cec42…`。31.6MB unique raw和47.0MB全文候选仅留远端持久目录，完整SHA/大小见manifest/transfer；权重/依赖同机持久可恢复。Git仅源/小计划/摘要。
 
-当前状态：原生推断完成且未读heldgold；装配源码、协议与关键CPU检查已冻结，接下来按唯一CPU入口先完整freeze后评价。质量结论待实际终点与独立复评，不将候选数或接口通过当作质量提升。
+## 唯一完整质量终点与决定
+
+21:01:47.903Z先冻结完整pred `24d18da2…`（freeze `ee7bfb29…`），21:01:48.234Z才启动唯一v2。1769原生候选中1374与原实体重叠、60否定、27与先接受新增实体重叠，接受308；所有原实体/所有非entities字段完全保留。格式0错/0警。
+
+| 指标 | base | 固定原生实体补充 | 差值 |
+|---|---:|---:|---:|
+| menF1 | .667191188 | .689122807 | +.021931619 |
+| docF1 | .747747748 | .780198020 | +.032450272 |
+| micF1 | .616151545 | .616151545 | 0 |
+| macF1 | .547955894 | .547955894 | 0 |
+| Score | .644761594 | **.658357066** | **+.013595473** |
+
+新增实体134TP/174FP（精度43.51%）；文档+93TP/90FP，关系TP/FP/FN全部不变。独审 `validation/public-phenotagger-terminal-review/review.json` SHA `7ed866e20c6a68522d40edaee8fe226d9e078cfade114cc2c1327c80010cdad6`：独立CPU重装字节一致、v2完整字段相等、来源/预算/GPU释放及先freeze后gold通过，复用原生201变量/候选证据，无重复NN。
+
+**结论：本固定公开原生模型提供有用的互补实体召回，总分明显提高，但新增精度较低，单个反复使用的训练内留出不证明跨fold稳定。** 不扫描阈值、不改关系、不原dev。root授权下一独立控制：相同固定政策迁移outer0，直接复用helper正在构建的train64无标签原生缓存；本路线不重复NN，sequence另负责严格OOF可学习删换。[完整结果与恢复引用](../evidence/round2/public-phenotagger-native-results.json)。
