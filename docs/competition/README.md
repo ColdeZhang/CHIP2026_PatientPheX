@@ -9,6 +9,7 @@
 | 内容 | 本地文件 |
 |---|---|
 | 任务、数据、评分、提交要求和赛程速查 | 本文 |
+| 登录会话恢复与提交前权限核验 | [SESSION.md](SESSION.md) |
 | 仓库数据及本地评测与官方的差异 | [旧仓库核对记录](../../archive/legacy-20261023/docs/competition/LOCAL_NOTES.md) |
 | 天池比赛介绍原文：规则、提交、赛程、联系方式 | [tianchi-introduction.md](sources/2026-10-23/tianchi-introduction.md) |
 | 天池赛题与数据原文：完整字段、指标公式 | [tianchi-information.md](sources/2026-10-23/tianchi-information.md) |
