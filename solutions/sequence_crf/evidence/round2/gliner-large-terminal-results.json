@@ -1,6 +1,6 @@
 {
   "scope": "outer train48 / fixed fold0 development; no originaldev",
-  "status": "complete; independent terminal review in progress",
+  "status": "complete; independent CPU replay and actual lineage PASS; larger checkpoint replacement closed",
   "recorded_at_utc": "2026-10-23T19:27:20.342379+00:00",
   "model": "urchade/gliner_large-v2@9d0533ed97ade535f232b28dc673999c27c43159",
   "actual_training": {
@@ -123,12 +123,11 @@
     "errors": 0,
     "warnings": 0
   },
-  "decision": "Do not replace medium48: fullchain slightly lower despite better pure-span union; no tuning, no dev transfer yet.",
+  "decision": "Keep medium48; root closed this larger-checkpoint substitution, no originaldev transfer or epoch/threshold tuning.",
   "limitations": [
     "This substitutes a disclosed larger checkpoint; upstream head and recipe also differ, so not pure capacity causality.",
     "Pure span F1 is not competition Score.",
-    "Fold0 has been repeatedly used for development.",
-    "No independent terminal completion claimed yet."
+    "Fold0 has been repeatedly used for development."
   ],
   "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2",
   "artifacts": {
@@ -204,5 +203,28 @@
   "gpu_release": {
     "exit_code": 0,
     "stdout": "{\"checked_at_utc\": \"2026-10-23T19:26:26.922795+00:00\", \"target_gpu_empty\": true, \"compute_apps\": \"GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\\n\", \"free_bytes\": 203925626880}\n"
+  },
+  "remote_recovery": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "directory": "sequence-round2/gliner-large-v2",
+    "model": "formal-fixed10ep/epoch-010/pytorch_model.bin",
+    "model_sha256": "34912f549d7d5fb1793331869e9960ee29377ed4d3a948e50fb98baa70eec77e",
+    "state": "formal-fixed10ep/latest-state.pt",
+    "state_sha256": "ad8fa5f4d56f44455484a7293f1f66c64b9f230110de11709e603a6b8f9bcd3d",
+    "formal_managed": "proc_b554a946-3034-416e-94b7-bc12084e6b44",
+    "link_managed": "proc_52914004-675c-4343-9e32-bf75c6ee7b5a",
+    "all_managed_stopped": true
+  },
+  "independent_reviews": {
+    "replay-review.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-large-terminal-review/replay-review.json",
+      "sha256": "473aad257f837b08e7ce9fd6a7fcf34b7b931fb68f222d1bec9daedff1368da9",
+      "status": "PASS"
+    },
+    "lineage-review.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-large-terminal-review/lineage-review.json",
+      "sha256": "d6d432ea74527804d00092ad7fa3954c94a643112d60005109d670b2514574d7",
+      "status": "PASS"
+    }
   }
 }
