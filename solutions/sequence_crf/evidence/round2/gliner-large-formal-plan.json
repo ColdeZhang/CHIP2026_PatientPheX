@@ -1,0 +1,128 @@
+{
+  "frozen_at_utc": "2026-10-23T18:34:10.458866+00:00",
+  "scope": "Fresh public large-v2 checkpoint substitution, fixed official outertrain48 -> outerfold0 development control. No originaldev input/gold.",
+  "authorization": "Root authorized one fresh fixed10ep with75min training cap after ontology12min CE GPU release. Not pure capacity causal attribution.",
+  "goal": "Does the larger disclosed NuNER checkpoint add reliable complementary spans/HPO/patient relations beyond fixed medium48 pipeline?",
+  "base_checkpoint": {
+    "repo": "urchade/gliner_large-v2",
+    "revision": "9d0533ed97ade535f232b28dc673999c27c43159",
+    "weight_sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+    "actual_parameters": 459495168,
+    "no_smoke_or_previous_finetuned_initialization": true,
+    "same_declared_NuNER_but_upstream_recipe_and_head_differ": true
+  },
+  "source": {
+    "solution_commit": "ad9ebafd1a20691f3e7af6ba2cf25f39911c9581",
+    "source_hashes": {
+      "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+      "run_formal_pair.py": "eb55fce20f8b5a6d810738cf9cc3241a43f91fc36eac5d17ca994276d1b76125",
+      "data-manifest.json": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+      "train48.jsonl": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+      "excluded.input.jsonl": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "../pretrained-gliner-large-v2/pytorch_model.bin": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+      "../pretrained-gliner-large-v2/gliner_config.json": "8e88b694bcb0bfd4f93302951dd43d89261849c9817140681efc819a10472d9f",
+      "../pretrained-gliner-large-v2/tokenizer/config.json": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d",
+      "../pretrained-gliner-large-v2/tokenizer/spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "../pretrained-gliner-large-v2/tokenizer/tokenizer_config.json": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d"
+    },
+    "driver_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/run_formal_pair.py",
+    "commands_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/formal.commands.json",
+    "commands_sha256": "768703112f88c8966c372f29b7684b89553d5303c63ed4be9e682e30b49bbebc"
+  },
+  "data": {
+    "raw_train48_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "prepared_train48_sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+    "prepared_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "training_documents": 48,
+    "training_rows": 1744,
+    "validation_documents": 16,
+    "train_input_id_intersection": 0,
+    "actual_large_collation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/cpu-preflight.json",
+      "sha256": "add6bca15edaac4c907f10fb0b621d4bc1500b01fe52db359b9f09d9b782fcc7"
+    },
+    "data_origin_note": "Prepared data records the medium checkpoint used to define windows; this check validates all those frozen windows with the new actual checkpoint/tokenizer."
+  },
+  "configuration": {
+    "epochs": 10,
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "seed": 20261023,
+    "precision": "float32",
+    "gradient_clip": 1.0,
+    "loss": "binary CE sum over valid spans / valid span count",
+    "label": "phenotype",
+    "all_valid_negative_spans": true,
+    "checkpoint_choice": "epoch10 only; no validation selection",
+    "training_part": "train48"
+  },
+  "prediction": {
+    "labels": [
+      "phenotype"
+    ],
+    "threshold_strict_greater_than": 0.5,
+    "max_width_words": 12,
+    "token_budget": 384,
+    "overlap_words": 12,
+    "flat_ner": false,
+    "selection": "epoch10 only; freeze base and terminal predictions before scoring, no validation checkpoint/threshold scan"
+  },
+  "full_chain": {
+    "preserve_original_947_base_sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+    "medium48_comparator_sha256": "431bbc6e8ce8ae673499d2bbb78c8f0db0569c8c68f84e26fe73dc5a4907d0b5",
+    "medium48_score": 0.7215044312889756,
+    "medium48_new_entity_tp_fp": [
+      16,
+      10
+    ],
+    "sap_detector_probability": 0.65,
+    "sap_cosine": 0.92,
+    "same_raw_train48_semantic_bank_and_detector": true,
+    "entity_assembly": "originalnegation/GLiNERscoredesc,lengthdesc,offsetasc/nonoverlap additions; no newnested/Pheno",
+    "relation": "same original rules; no LR switch",
+    "evaluator": "v2 all/text unchanged",
+    "source_shas": {
+      "link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+      "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+      "combine.py": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+      "run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    }
+  },
+  "resources": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "cwd": "sequence-round2/gliner-large-v2",
+    "python": "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+    "runtime": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime",
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "cpu_threads": 1,
+    "measured_smoke_seconds": 1.3076725210994482,
+    "measured_smoke_peak_bytes": 10602658304,
+    "training_hard_cap_seconds": 4500,
+    "inference_hard_cap_seconds_per_arm": 300,
+    "estimated_minutes": [
+      20,
+      60
+    ],
+    "estimate_limit": "One cold longeststep not throughput; estimate is not measured full training cost.",
+    "checkpoints": "latest model+Adam/RNG, atomic writes/prune old only after verified current; minimum20GiB free prelaunch",
+    "free_bytes_last_observed": 213626077184,
+    "launch_only_after_ontology_explicit_release_and_fresh_empty_check": true
+  },
+  "success_or_stop": {
+    "success": "Frozen same-policy full-chain beats medium .721504431 with documented entity/relationship increments; only then root decides originaldev migration. Any component decrease must remain visible.",
+    "stop": "No added epoch/threshold/loss/modelselection on thisfold; if 75min cap or failure, preserve last atomic state+actual elapsed, report incompletion, no automatic budget extension. If negative terminal, retain medium."
+  },
+  "status": "CPU frozen; source/plan checkpoint and independent lightweight review before GPU launch; ontology owns current slot"
+}

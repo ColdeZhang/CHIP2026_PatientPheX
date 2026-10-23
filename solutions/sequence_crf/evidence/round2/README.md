@@ -65,3 +65,5 @@
 - `gliner-large-feasibility.json` / `gliner-large-smoke-plan.json`：同NuNER large-v2确切来源与上游配方差异，ModelScope查询/HF回退、静态兼容与仅训练侧单步授权；尚无新模型分数。
 
 - `gliner-large-smoke-results.json`：459.495M实际严格加载、1744窗对齐和最长4×384单步1.308秒/10.603GB、显式释放；正式10ep未运行，没有新分数。
+
+- `gliner-large-formal-plan.json`：授权fresh train48×10/4360步，75min训练硬cap，先等本体交卡；同原947实体池/Sap/rules，唯一终点，不碰原dev。
