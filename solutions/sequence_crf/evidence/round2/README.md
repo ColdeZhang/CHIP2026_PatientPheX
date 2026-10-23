@@ -22,3 +22,6 @@
 - `relation-sft-training.json`：完整2epoch/52step训练统计、固定epoch2所有产物SHA、独立数据审核来源和磁盘预算；尚不表示评测收益。
 
 - `relation-sft-fold0-results.json`：配对58提示完整结果、所有固定集合负结果、作业恢复与响应/预测SHA；原dev最佳不变，无官方提交。
+
+- `new-ontology-relation-pool.json` / `new-ontology-relation-results.json`：同折校准新候选、10提示固定adapter、仅追加关系的小幅开发收益与较低边际精度；不推广。
+- `patient-anchor-audit.json`：仅train48锚点密度、gold同概念跨度的乐观距离代理和实际204提示marker覆盖，全文聚合外存；不是模型分数。

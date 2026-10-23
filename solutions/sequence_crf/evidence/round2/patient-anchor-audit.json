@@ -1,0 +1,121 @@
+{
+  "scope": "outer fold0 train48 only; aggregate gold-aware diagnostic, not model score",
+  "configuration": {
+    "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+    "excluded_input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "sft_train": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/train.jsonl",
+    "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/patient-anchor-audit/train48.json"
+  },
+  "counts": {
+    "patients": 126,
+    "patient_mentions": 417,
+    "patients_at_most_1_mention": 47,
+    "patients_at_most_3_mentions": 91,
+    "patients_all_mentions_in_one_passage": 56,
+    "gold_relations": 1338,
+    "has_matching_positive_gold_entity": 1329,
+    "any_gold_span_within_100_chars_of_target": 367,
+    "any_gold_span_within_500_chars_of_target": 1003,
+    "any_gold_span_within_1000_chars_of_target": 1199,
+    "any_gold_span_within_2000_chars_of_target": 1297,
+    "every_gold_span_beyond_500_chars_of_target": 326,
+    "any_gold_span_same_passage_as_target": 1144,
+    "any_gold_span_target_marker_visible_radius500": 870,
+    "no_gold_span_target_marker_visible_radius500": 459,
+    "in_sft_candidates": 967,
+    "sft_selected_evidence_target_marker_visible": 604,
+    "sft_selected_evidence_target_marker_absent": 363,
+    "sft_selected_evidence_no_patient_marker": 276,
+    "sft_selected_evidence_only_other_patient_markers": 87,
+    "not_in_sft_candidates": 371,
+    "no_matching_positive_gold_entity": 9
+  },
+  "strata": {
+    "one_patient": {
+      "gold_relations": 379,
+      "has_matching_positive_gold_entity": 377,
+      "any_gold_span_within_100_chars_of_target": 111,
+      "any_gold_span_within_500_chars_of_target": 292,
+      "any_gold_span_within_1000_chars_of_target": 342,
+      "any_gold_span_within_2000_chars_of_target": 358,
+      "every_gold_span_beyond_500_chars_of_target": 85,
+      "any_gold_span_same_passage_as_target": 325,
+      "any_gold_span_target_marker_visible_radius500": 271,
+      "no_gold_span_target_marker_visible_radius500": 106,
+      "in_sft_candidates": 253,
+      "sft_selected_evidence_target_marker_visible": 183,
+      "sft_selected_evidence_target_marker_absent": 70,
+      "sft_selected_evidence_no_patient_marker": 70,
+      "sft_selected_evidence_only_other_patient_markers": 0,
+      "not_in_sft_candidates": 126,
+      "no_matching_positive_gold_entity": 2
+    },
+    "multiple_patients": {
+      "gold_relations": 959,
+      "has_matching_positive_gold_entity": 952,
+      "any_gold_span_within_100_chars_of_target": 256,
+      "any_gold_span_within_500_chars_of_target": 711,
+      "any_gold_span_within_1000_chars_of_target": 857,
+      "any_gold_span_within_2000_chars_of_target": 939,
+      "every_gold_span_beyond_500_chars_of_target": 241,
+      "any_gold_span_same_passage_as_target": 819,
+      "any_gold_span_target_marker_visible_radius500": 599,
+      "no_gold_span_target_marker_visible_radius500": 353,
+      "in_sft_candidates": 714,
+      "sft_selected_evidence_target_marker_visible": 421,
+      "sft_selected_evidence_target_marker_absent": 293,
+      "sft_selected_evidence_no_patient_marker": 206,
+      "sft_selected_evidence_only_other_patient_markers": 87,
+      "not_in_sft_candidates": 245,
+      "no_matching_positive_gold_entity": 7
+    }
+  },
+  "patient_mention_count": {
+    "count": 126,
+    "min": 1,
+    "median": 2.0,
+    "max": 19,
+    "mean": 3.3095238095238093
+  },
+  "document_patient_count": {
+    "count": 48,
+    "min": 1,
+    "median": 2.0,
+    "max": 14,
+    "mean": 2.625
+  },
+  "document_mentions_per_1000_chars": {
+    "count": 48,
+    "min": 0.031144886009717206,
+    "median": 0.4005855544017538,
+    "max": 1.6770849214819332,
+    "mean": 0.5629854981434993
+  },
+  "minimum_gold_entity_to_target_mention_gap_chars": {
+    "count": 1329,
+    "min": 1,
+    "median": 250,
+    "max": 4243,
+    "mean": 410.4018058690745
+  },
+  "documents": 48,
+  "sft_prompts": 204,
+  "source_sha256": "9918b477daf681ec44b29b4099395f1d333a111e0b9b96955bcaa289c3d42535",
+  "base_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+  "prompt_source_sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+  "files": {
+    "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "excluded_input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "sft_train": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77"
+  },
+  "limitations": [
+    "A gold patient-concept association has no gold evidence-span pointer; any positive matching concept span is used. This is optimistic anchor availability, not proof that a span belongs to that patient.",
+    "Raw evaluator-compatible compound splitting and NIL text keys; no alt-ID canonicalization or score change.",
+    "Distances use interval gaps over original global coordinates. Visible markers additionally require the original patient mention to fit inside the same passage-clipped radius500 context.",
+    "Actual SFT selected contexts are read from the frozen 204 prompts. Global patient anchor text is present separately even when no target marker is in local candidate evidence.",
+    "No full-document LLM coreference extension was used in this route or its SFT data. O-ID control was separate and not adopted.",
+    "No gold labels are written into inference resources or used to generate new candidates."
+  ],
+  "full_report": "/workspace/patientphex-runs/round2-20261023/sequence_crf/patient-anchor-audit/train48.json",
+  "full_report_sha256": "490368157f4ef2dd21d1c61bd90a62467a4c51429964adfea89f1c7f5c440c87"
+}
