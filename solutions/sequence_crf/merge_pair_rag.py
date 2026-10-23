@@ -10,9 +10,10 @@ import re
 
 def parse_json(text):
     text=text.strip()
-    if text.startswith('<think>'):
-        if '</think>' not in text:return None
-        text=text.split('</think>',1)[1].strip()
+    if '</think>' in text:
+        text=text.rsplit('</think>',1)[1].strip()
+    elif text.startswith('<think>'):
+        return None
     text=re.sub(r'^```(?:json)?\s*','',text);text=re.sub(r'\s*```$','',text)
     try:return json.loads(text)
     except json.JSONDecodeError:

@@ -11,6 +11,8 @@ import source_fingerprint
 import apply_linker_scores
 import merge_pair_rag
 import patient_id_anchors
+import table_relations
+import xml.etree.ElementTree as ET
 import json
 import contextlib
 import io
@@ -46,6 +48,20 @@ class Round2Tests(unittest.TestCase):
     def test_unfinished_thinking_cannot_be_parsed_as_a_decision(self):
         self.assertIsNone(merge_pair_rag.parse_json('<think>Maybe use {"C000":["P1"]}'))
         self.assertEqual(merge_pair_rag.parse_json('<think>draft {"C000":["P1"]}</think>{"C000":[]}'),{'C000':[]})
+        self.assertEqual(merge_pair_rag.parse_json('draft {"C000":["P1"]}</think>{"C000":[]}'),{'C000':[]})
+    def test_table_positive_negative_unknown_and_footnote_mapping(self):
+        wrap=ET.fromstring('<table-wrap id="t"><caption>Clinical features</caption><table><thead><tr><th>Feature</th><th>Case 1</th></tr></thead><tbody><tr><td>Seizures</td><td>Y</td></tr><tr><td>Small head</td><td>No</td></tr><tr><td>Cognition</td><td>MID</td></tr><tr><td>Weight</td><td>23</td></tr></tbody></table><table-wrap-foot><fn>Abbreviations: MID, mild intellectual disability;</fn></table-wrap-foot></table-wrap>')
+        table=table_relations.structure.parse_table(wrap.find('table'),wrap,0)
+        doc={'pmc_id':'x','patient':[{'patient_id':'O1','mention':[{'text':'Patient 1'}]}]}
+        bank={'seizures':('HP:1',),'small head':('HP:2',),'mild intellectual disability':('HP:3',)}
+        evidence,_=table_relations.extract(doc,[table],bank)
+        self.assertEqual({x['identifier'] for x in evidence},{'HP:1','HP:3'})
+        table['caption']='Previously reported clinical features'
+        self.assertEqual(table_relations.extract(doc,[table],bank)[0],[])
+    def test_table_identity_does_not_merge_pedigree_punctuation(self):
+        identify=table_relations.structure.identifier
+        self.assertEqual(identify('Individual III‐3'),identify('III-3'))
+        self.assertNotEqual(identify('III-3'),identify('III:3'))
     def test_relation_candidate_pool_does_not_replace_final_entities(self):
         with tempfile.TemporaryDirectory() as d:
             d=Path(d)
