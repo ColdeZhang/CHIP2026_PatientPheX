@@ -39,15 +39,18 @@ def main():
     p.add_argument('--batch-size',type=int,default=16);p.add_argument('--max-length',type=int,default=384)
     p.add_argument('--ner-threshold',type=float,default=.55);p.add_argument('--relation-threshold',type=float,default=.55)
     p.add_argument('--semantic-threshold',type=float,default=.65);p.add_argument('--reuse-model',action='store_true')
+    p.add_argument('--learn-negation',action='store_true')
+    p.add_argument('--ontology-augmentation',type=int,default=0)
     a=p.parse_args();start=time.monotonic();work=Path(a.work_dir);work.mkdir(parents=True,exist_ok=True)
     hashes={Path(x).name:base.sha(x) for x in [__file__,base.__file__,ner.__file__,a.semantic_source]}
     train=base.read_jsonl(a.train);inputs=base.read_jsonl(a.input)
     assert not {str(d['pmc_id']) for d in train}&{str(d['pmc_id']) for d in inputs}
     assert all('entities' not in d and 'association' not in d for d in inputs)
     torch.set_num_threads(1);random.seed(20261023);np.random.seed(20261023);torch.manual_seed(20261023);torch.cuda.manual_seed_all(20261023)
-    device=torch.device('cuda');linker=base.Linker(train,a.hpo);vec,rel,relstats=base.fit_relation(train,linker)
+    device=torch.device('cuda');linker=base.Linker(train,a.hpo);linker.negative_labels=a.learn_negation;vec,rel,relstats=base.fit_relation(train,linker)
     fp={'train':base.sha(a.train),'hpo':base.sha(a.hpo),'source_hashes':hashes,
-        'epochs':a.epochs,'learning_rate':a.learning_rate,'batch_size':a.batch_size,'max_length':a.max_length,'seed':20261023}
+        'epochs':a.epochs,'learning_rate':a.learning_rate,'batch_size':a.batch_size,'max_length':a.max_length,'seed':20261023,
+        'learn_negation':a.learn_negation,'ontology_augmentation':a.ontology_augmentation}
     if a.reuse_model and (work/'ner-fingerprint.json').exists():
         if json.loads((work/'ner-fingerprint.json').read_text())!=fp:raise ValueError('NER cache mismatch')
         tokenizer=AutoTokenizer.from_pretrained(work/'ner',use_fast=True)
@@ -55,9 +58,25 @@ def main():
         stats=json.loads((work/'training-stats.json').read_text())
     else:
         tokenizer=AutoTokenizer.from_pretrained(a.model,use_fast=True)
-        model=AutoModelForTokenClassification.from_pretrained(a.model,num_labels=3,id2label=ner.LABELS,label2id={v:k for k,v in ner.LABELS.items()})
+        labels=ner.NEGATION_LABELS if a.learn_negation else ner.LABELS
+        model=AutoModelForTokenClassification.from_pretrained(a.model,num_labels=len(labels),id2label=labels,label2id={v:k for k,v in labels.items()})
         torch.manual_seed(20261023);torch.nn.init.normal_(model.classifier.weight,mean=0.,std=model.config.initializer_range);torch.nn.init.zeros_(model.classifier.bias)
+        augmentation_stats=None
+        if a.ontology_augmentation:
+            # Ontology-only distant supervision; no validation phrases or labels.
+            pool=sorted({(hid,name) for hid in linker.allowed if hid!='HP:0000118' for name in linker.terms[hid]['names']
+                         if 4<=len(name)<=100 and len(name.split())<=12})
+            rng=random.Random(20261023);rng.shuffle(pool);synthetic=[]
+            for i,(hid,name) in enumerate(pool[:a.ontology_augmentation]):
+                prefix=['The patient presented with ','Clinical examination revealed ','The proband had ','The child showed '][i%4]
+                text=prefix+name+'.'
+                synthetic.append({'pmc_id':'ontology-synthetic-'+str(i),'patient':[],'association':[],
+                    'full_text':[{'offset':0,'text':text,'section_type':'CASE','type':'paragraph'}],
+                    'entities':[{'identifier':hid,'text':name,'offset':len(prefix),'length':len(name),'note':None}]})
+            pre=argparse.Namespace(**vars(a));pre.epochs=2
+            augmentation_stats=ner.train_model(synthetic,linker,tokenizer,model,pre,device)
         stats=ner.train_model(train,linker,tokenizer,model,a,device)
+        if augmentation_stats:stats['ontology_pre_adaptation']=augmentation_stats
         model.save_pretrained(work/'ner');tokenizer.save_pretrained(work/'ner')
         (work/'ner-fingerprint.json').write_text(json.dumps(fp,indent=2)+'\n');(work/'training-stats.json').write_text(json.dumps(stats,indent=2)+'\n')
     fitted=time.monotonic();raw=[]

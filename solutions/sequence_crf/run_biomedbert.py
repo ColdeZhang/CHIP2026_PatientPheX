@@ -26,6 +26,7 @@ from transformers import AutoModelForTokenClassification, AutoTokenizer, get_lin
 from run import Linker, association_keys, fit_relation, pair_features, read_jsonl, runtime_versions, sha
 
 LABELS = {0: "O", 1: "B", 2: "I"}
+NEGATION_LABELS = {0: "O", 1: "B", 2: "I", 3: "B-NEG", 4: "I-NEG"}
 
 
 def document_chunks(doc, tokenizer, linker, length, training=False):
@@ -39,10 +40,11 @@ def document_chunks(doc, tokenizer, linker, length, training=False):
         spans = []
         if training:
             for entity in sorted(doc.get("entities", []), key=lambda e: -int(e.get("length", 0))):
-                if str(entity.get("note", "")).upper() == "NO": continue
+                negative = str(entity.get("note", "")).upper() == "NO"
+                if negative and not getattr(linker, "negative_labels", False): continue
                 if not linker.canonical(entity.get("identifier", "-1")): continue
                 start = int(entity["offset"]) - base; end = start + int(entity["length"])
-                if 0 <= start < end <= len(text): spans.append((start, end))
+                if 0 <= start < end <= len(text): spans.append((start, end, negative))
         for ci, offsets in enumerate(encoding["offset_mapping"]):
             sample = {key: encoding[key][ci] for key in ("input_ids", "attention_mask", "token_type_ids") if key in encoding}
             if training:
@@ -51,9 +53,9 @@ def document_chunks(doc, tokenizer, linker, length, training=False):
                     if end <= start:
                         targets.append(-100); continue
                     label = 0
-                    for a, b in spans:
+                    for a, b, negative in spans:
                         if a <= start and end <= b:
-                            label = 1 if start == a else 2
+                            label = (3 if start == a else 4) if negative else (1 if start == a else 2)
                             break
                     targets.append(label)
                 sample["labels"] = targets
@@ -110,7 +112,7 @@ def predict_entities(doc, tokenizer, model, linker, args, device):
     samples, provenance = document_chunks(doc, tokenizer, linker, args.max_length, training=False)
     loader = DataLoader(samples, batch_size=args.batch_size, shuffle=False, collate_fn=Collator(tokenizer), num_workers=0)
     # Overlap windows are combined before BIO decoding, avoiding boundary duplicates.
-    accumulated = defaultdict(lambda: defaultdict(lambda: [np.zeros(3, dtype=np.float32), 0]))
+    accumulated = defaultdict(lambda: defaultdict(lambda: [np.zeros(model.config.num_labels, dtype=np.float32), 0]))
     cursor = 0
     model.eval()
     with torch.inference_mode():
@@ -129,7 +131,7 @@ def predict_entities(doc, tokenizer, model, linker, args, device):
         passage = doc["full_text"][pi]; text = passage["text"]; base = int(passage.get("offset", 0))
         tokens = sorted(token_probs)
         probabilities = [token_probs[key][0] / token_probs[key][1] for key in tokens]
-        labels = [int(prob.argmax()) for prob in probabilities]
+        labels = [int(prob.argmax()) if int(prob.argmax()) < 3 else 0 for prob in probabilities]
         begin = None
         for i in range(len(tokens) + 1):
             label = labels[i] if i < len(tokens) else 0
@@ -158,6 +160,7 @@ def main():
     parser.add_argument("--relation-threshold", type=float, default=0.55)
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--reuse-model", action="store_true")
+    parser.add_argument("--learn-negation", action="store_true")
     args = parser.parse_args()
     torch.set_num_threads(1)
     random.seed(20261023); np.random.seed(20261023); torch.manual_seed(20261023)
@@ -168,9 +171,15 @@ def main():
     work = Path(args.work_dir); work.mkdir(parents=True, exist_ok=True)
     auxiliary = work / "auxiliary.pkl"
     train_hash, hpo_hash = sha(args.train), sha(args.hpo)
+    fingerprint = {"train_sha256": train_hash, "hpo_sha256": hpo_hash,
+                   "source_sha256": sha(__file__), "common_source_sha256": sha(Path(__file__).with_name("run.py")),
+                   "training_config": {k: getattr(args, k) for k in
+                       ("epochs", "batch_size", "max_length", "learning_rate", "learn_negation")}}
     if args.reuse_model:
         with auxiliary.open("rb") as handle: state = pickle.load(handle)
         assert state["train_sha256"] == train_hash and state["hpo_sha256"] == hpo_hash
+        if state.get("fingerprint") != fingerprint:
+            raise ValueError("Neural checkpoint does not match code or training configuration")
         linker = Linker.__new__(Linker); linker.__dict__.update(state["linker_state"])
         vectorizer, relation, training_stats = state["heads"]
         tokenizer = AutoTokenizer.from_pretrained(work / "ner", use_fast=True)
@@ -178,10 +187,12 @@ def main():
     else:
         train = read_jsonl(args.train)
         linker = Linker(train, args.hpo)
+        linker.negative_labels = args.learn_negation
         vectorizer, relation, relation_stats = fit_relation(train, linker)
         tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
-        model = AutoModelForTokenClassification.from_pretrained(args.model, num_labels=3,
-                    id2label=LABELS, label2id={label: key for key, label in LABELS.items()})
+        labels = NEGATION_LABELS if args.learn_negation else LABELS
+        model = AutoModelForTokenClassification.from_pretrained(args.model, num_labels=len(labels),
+                    id2label=labels, label2id={label: key for key, label in labels.items()})
         # A cached base model may contain a newly initialized classifier. Reset
         # only that task head with an explicit seed, leaving the encoder intact.
         torch.manual_seed(20261023)
@@ -192,7 +203,8 @@ def main():
         model.save_pretrained(work / "ner"); tokenizer.save_pretrained(work / "ner")
         with auxiliary.open("wb") as handle:
             pickle.dump({"linker_state": linker.__dict__, "heads": (vectorizer, relation, training_stats),
-                         "train_sha256": train_hash, "hpo_sha256": hpo_hash}, handle, protocol=5)
+                         "train_sha256": train_hash, "hpo_sha256": hpo_hash,
+                         "fingerprint": fingerprint}, handle, protocol=5)
     fitted = time.monotonic()
     inputs = read_jsonl(args.input)
     output = Path(args.output); output.parent.mkdir(parents=True, exist_ok=True)
@@ -226,7 +238,7 @@ def main():
                 "documents": len(inputs), "entities": total_entities, "patient_phenotypes": total_links,
                 "fit_seconds": fitted - start, "predict_seconds": time.monotonic() - fitted,
                 "training_stats": training_stats,
-                "config": {key: getattr(args, key) for key in ["epochs", "batch_size", "max_length", "learning_rate", "ner_threshold", "relation_threshold", "device"]},
+                "config": {key: getattr(args, key) for key in ["epochs", "batch_size", "max_length", "learning_rate", "ner_threshold", "relation_threshold", "device", "learn_negation"]},
                 "source_sha256": sha(__file__), "common_source_sha256": sha(Path(__file__).with_name("run.py")),
                 "runtime_versions": {**runtime_versions(), "torch": torch.__version__,
                                      "transformers": __import__("transformers").__version__},

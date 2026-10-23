@@ -1,0 +1,88 @@
+{
+  "metrics": {
+    "menF1": 0.748151798915722,
+    "docF1": 0.7675568743818002,
+    "micF1": 0.5579078455790785,
+    "macF1": 0.4668261295915074,
+    "Score": 0.635110662117027
+  },
+  "counts": {
+    "mention": {
+      "tp": 759,
+      "fp": 164,
+      "fn": 347,
+      "precision": 0.8223185265438786,
+      "recall": 0.6862567811934901,
+      "f1": 0.748151798915722
+    },
+    "document": {
+      "tp": 388,
+      "fp": 63,
+      "fn": 172,
+      "precision": 0.8603104212860311,
+      "recall": 0.6928571428571428,
+      "f1": 0.7675568743818002
+    },
+    "relation": {
+      "tp": 224,
+      "fp": 126,
+      "fn": 229,
+      "precision": 0.64,
+      "recall": 0.49448123620309054,
+      "f1": 0.5579078455790785
+    }
+  },
+  "documents": 16,
+  "patients": 36,
+  "evaluator_version": "patientphex-public-approx-v2",
+  "result_type": "local_public_rule_approximation_not_official",
+  "configuration": {
+    "body_scope": "all",
+    "unlinked_document_mode": "text",
+    "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+    "duplicate_entities": "deduplicated by span and split HPO ID",
+    "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+    "empty_patient_f1": 1.0
+  },
+  "caveats": [
+    "Official evaluator source is unavailable; these numbers are not official scores.",
+    "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+    "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+    "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+    "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+    "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+    "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+  ],
+  "sensitivity": {
+    "unlinked_doc_ignore": {
+      "menF1": 0.748151798915722,
+      "docF1": 0.7744510978043913,
+      "micF1": 0.5579078455790785,
+      "macF1": 0.4668261295915074,
+      "Score": 0.6368342179726748
+    },
+    "unlinked_doc_shared_id": {
+      "menF1": 0.748151798915722,
+      "docF1": 0.7698412698412699,
+      "micF1": 0.5579078455790785,
+      "macF1": 0.4668261295915074,
+      "Score": 0.6356817609818944
+    },
+    "scope_body": {
+      "menF1": 0.7413793103448276,
+      "docF1": 0.7650050864699899,
+      "micF1": 0.5579078455790785,
+      "macF1": 0.4668261295915074,
+      "Score": 0.6327795929963509
+    },
+    "strict_unlinked_identifier": {
+      "menF1": 0.748151798915722,
+      "docF1": 0.7675568743818002,
+      "micF1": 0.5579078455790785,
+      "macF1": 0.4668261295915074,
+      "Score": 0.635110662117027
+    }
+  },
+  "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+  "prediction_sha256": "eff6ef5a284b5308cc15affd838fee38ad379fc048bfb815f86a46ed34da6e70"
+}
