@@ -115,3 +115,15 @@
 真实PhenoTagger与简化试验的边界：官方BERT分支微调整个encoder、CLS→全HPO+reject多类softmax、maxlen32/Adam5e-6/batch64/默认100ep；旧双头冻结encoder，只学二元表型/肯定，HPO链接另由SapBERT做。后者负结果不是前者复现。上游成品checkpoint未公开完整选择谱系；README示例GSC早停不能证明所有权重都如此，也不足以作为纯远监督来源保证，故本轮从通用Biomed和2026新head独立训练。不得把HP:None reject与本赛真实未链接表型-1混淆。
 
 短文献负例不足：将总负样本平均分配给每篇文献会使短文本在避让gold/本体词面后耗尽；不复制负例硬凑。当前改为每篇最多两倍配额的合格池，再全局无放回抽取到正负1:1，记录实际每篇分布及全部来源，仍只是弱负例。
+
+多类远监督的诊断：HPO正词面与None弱负约1:1时，19k随机分类头初期可以只学None而让总loss/accuracy看似变好。必须拆分正HPO与None的loss、accuracy及None输出比例；用固定终点训练样本自检区分欠拟合和推理链故障，不能据此选heldout checkpoint。早期“先做语义原型、不从随机19k头起步”是当时的低成本建议，已在Sap/树/二元头对照后按root决策转向真实全encoder多类方法，不是禁止研究该方法的规则。
+
+当前30ep之后才考虑的未检验假设：若正HPO仍欠训练，可用同一Biomed encoder的HPO词面向量按类聚合初始化类原型，或使用规范化metric classifier，减少随机头稀疏曝光。必须同一编码空间、固定类词面/多ID冲突与norm/temperature协议；已有Sap bank不能直接作为Biomed分类器权重。当前训练、LR、epoch和p.95推理均不因此改动，不预先声称原型更优。
+
+弱负“去重”的范围：当前每文献词面/坐标不重复，但不同文献可出现同一字符串（58,559行只有51,574全局唯一词面）；完整词面不与已知正例冲突也不排除其包含正例子串，不能把所有弱负都称人工确认负例。实际全局计数与160子短语风险已独立审查，未据此临时改冻结数据。
+
+断点校验需先确认两份作业均已到比较终点：本轮第一次读取split文件时仍step2，和direct4自然不同；managed退出后两边step4、model/Adam/全RNG逐项完全一致。不能把进程尚在运行的旧checkpoint误报为resume数值漂移。训练自检的样本顺序、offset与Adam moments/RNG都应验证，不能仅凭重新加载成功认定恢复正确。
+
+原型初始化的成熟来源：[Qi等，Low-Shot Learning With Imprinted Weights，CVPR2018](https://openaccess.thecvf.com/content_cvpr_2018/html/Qi_Low-Shot_Learning_With_CVPR_2018_paper.html)将同一网络embedding按适当缩放直接设为新类权重，并可继续SGD；论文的视觉任务结果不等于本赛医学文本收益。已保存公开abstract/来源SHA，不下载外部标注数据。该文支持可检验的初始化思路，不决定本任务温度、负类原型或预算。
+
+冻结阈值边界的差异：本项目采用原始softmax p≥.95；上游v1.2先round(p,5)再严格>.95。两者数值默认相同但边界不逐位等价，本轮保持已经冻结的项目适配，不因为审查发现该差异回扫阈值。
