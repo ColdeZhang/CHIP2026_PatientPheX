@@ -34,6 +34,7 @@ def main():
             assert abs(pr-q)<2e-7
         count+=len(keys)
     assert count==1166 and sum(len(x['code_map']) for x in prompts)==415
+    assert len({(str(x['pmc_id']),pid) for x in prompts for pid in x['patient_ids']})==47
     release=read(b/'gpu-release.json');assert release['exit_code']==0 and read_json_string(release['stdout'])['empty']
     freeze=dict(status='all58_1166_F0_probabilities_frozen_before_any_new_quality',
         at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),source=ref(Path(__file__)),
@@ -41,7 +42,7 @@ def main():
         probabilities=ref(b/'probabilities.jsonl'),inputs=ref(b/'F0-slot-inputs.json.gz'),
         prompts=index['F0_prompts'],cached_SFT48_raw=index['adapter58.responses.jsonl'],
         cached_SFT48_prediction=index['adapter58.pred.jsonl'],GPU_release=ref(b/'gpu-release.json'),
-        rows=58,CIDs=415,pairs=1166,no_gold=True,no_new_decoding_policy=True,no_new_predictions=True,
+        rows=58,CIDs=415,pairs=1166,patients=47,no_gold=True,no_new_decoding_policy=True,no_new_predictions=True,
         feature_semantics='Actual raw logits[0,1] at fixedslot end; p=FP32softmax(logits)[1]. Calibrator may use logit1-logit0 without clipping.')
     with (b/'scores-freeze.json').open('x') as f:f.write(json.dumps(freeze,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(ref(b/'scores-freeze.json')))
