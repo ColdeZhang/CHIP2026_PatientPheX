@@ -37,6 +37,8 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 补查原GLiNER论文§2.2 Eq3及实际0.2.22上层调用：默认是未加权BCE（alpha=-1/gamma=0）；底层函数名含focal不代表实际启用focal。旧medium48训练末正/负logit梯度绝对量约630.53/626.82，未支持数量失衡导致正例塌缩，不能据此追加focal训练。训练48严格OOF漏项1364中908无重叠、411边界/嵌套、45同跨度ID错；其中4是gold alt ID与已预测canonical的口径差异。纯链接错误不是本池主要瓶颈，不追加大规模Sap微调；详细训练侧来源在两路线记录。
 
+本体后续研究 [Dai/Adel COLING 2020 的 NER 数据增强](https://aclanthology.org/2020.coling-main.343/)：i2b2少量50句时完整mention替换F1 35.1→40.1，但500句仅70.2→70.8、完整数据87.8不变，不能将小样本收益外推。本项目只借鉴方法，将官方训练折中完整实体替换为同canonical HPO的name/EXACT词面；没有引入论文的人工临床标签。CPU已保留1150原窗并追加353窗，全部真实分词/跨度/NO标签校验通过；数据和更新数同时增加，属于配方初筛。独审通过后一次固定10轮短训练，完整Score是否改善仍未知。相邻段落上下文（FLERT）仅作备选研究，尚未实施。来源、边界与初始方案见[本体短提案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/P-20261023-NER-AUGMENTATION.md)，执行计划以最新台账为准。
+
 ## 其他同赛开源记录
 
 `irryxeek/patientphex-chip2026` 的多来源跨度、SapBERT不同概念margin、上下文关系融合及正负报告值得研究；`yuanpinz/chip2026-PatientPheX` 给出逐occurrence、逐患者与联合患者判断、结构范围筛选；`AnXin-HITSZ/...` 与 `xi-ix/HPO` 有词典未覆盖片段的语义候选做法。其自报分数未独立复现，训练划分和评测不同，不能直接排名或沿用阈值。许可未明确的实现只参考思想；没有引入他们的标注或预测。
