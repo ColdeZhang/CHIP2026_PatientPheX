@@ -1,0 +1,132 @@
+{
+  "status": "research_only_no_training_or_prediction",
+  "training_scope": {
+    "scope": "train48-only aggregate feasibility; no validation/dev gold; no training or prediction",
+    "counts": {
+      "documents": 48,
+      "patients": 126,
+      "single_patient_documents": 22,
+      "empty_patients": 7,
+      "patient_mentions": 417,
+      "atomic_relations": 1338,
+      "hpo_relations": 1313,
+      "hpo_outside_valid_branch": 4,
+      "text_relations": 25,
+      "text_relation_not_literal_in_fulltext": 1
+    },
+    "relation_set_size": 1338,
+    "unique_relation_items": 792,
+    "unique_hpo_items": 767,
+    "relations_with_any_positive_gold_entity_same_document": 1329,
+    "relations_without_positive_gold_entity_same_document": 9,
+    "entity_match_policy": "Existing sequence association_keys: NIL by text; other entity IDs split by semicolon. This leaves the malformed compound training relation unresolved.",
+    "oof_candidate_relationships": 967,
+    "oof_candidate_missing_relationships": 371,
+    "missed_but_positive_entity_in_document": 362,
+    "document_chars": {
+      "min": 4815,
+      "median": 16483.0,
+      "max": 38364,
+      "sum": 839554
+    },
+    "patient_relation_counts": {
+      "min": 0,
+      "median": 8.5,
+      "max": 44,
+      "mean": 10.619047619047619
+    },
+    "patient_id_strings_reused_across_documents": 20,
+    "patients_affected_by_reused_patient_id_strings": 107,
+    "files": {
+      "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "sft": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77",
+      "source": "70319f86eac6b1275f6133cfa29ef17429ccbad8edb953ecc4313e4c5db8f764"
+    },
+    "positive_entity_coverage_is_only_a_proxy": "Matching concept somewhere in document is not proof the local occurrence belongs to target patient; no gold chosen evidence or local target labels are generated.",
+    "rare_item_counts": {
+      "items_occurring_in_one_patient": 533,
+      "items_occurring_in_one_document": 615
+    },
+    "duplicate_input_screen": {
+      "policy": "normalized whole passages >=150 chars, train48 only",
+      "cross_document_exact_duplicate_passages": 0,
+      "limitation": "Not evidence of absence of same real person across publications; no global patient identifier exists."
+    },
+    "train_edge_cases": {
+      "out_of_branch_hpo_relations": 4,
+      "malformed_hpo_compound_relations": 1,
+      "genuine_non_hpo_literal_relations": 24,
+      "nonliteral_values": [
+        "HP:0003645;HP:000328"
+      ],
+      "policy": "No guessing missing digits; no automatic gold repair in this study."
+    }
+  },
+  "token_budget": {
+    "scope": "train48 full-article patient-set feasibility; no model loaded or trained",
+    "rows": 126,
+    "documents": 48,
+    "source_data_sha256": "dfde8888041025cbbf63064015b91f13b1cddf099ccbc5545750797bb5a0953b",
+    "tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "prefix": {
+      "min": 1478,
+      "median": 4564.0,
+      "max": 10018,
+      "mean": 4962.936507936508,
+      "total": 625330
+    },
+    "answer": {
+      "min": 12,
+      "median": 92.5,
+      "max": 451,
+      "mean": 116.67460317460318,
+      "total": 14701
+    },
+    "full": {
+      "min": 1579,
+      "median": 4670.0,
+      "max": 10419,
+      "mean": 5079.611111111111,
+      "total": 640031
+    },
+    "above": {
+      "8192": 10,
+      "12288": 0,
+      "16384": 0
+    },
+    "all_prefixes_match": true,
+    "truncation": false,
+    "cuda_visible_devices": ""
+  },
+  "existing_pair_sft": {
+    "rows": 204,
+    "documents": 48,
+    "total_train_tokens": 661265,
+    "mean_train_tokens": 3241.4950980392155,
+    "max_train_tokens": 5799,
+    "max_completion_tokens": 116,
+    "train_sha256": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77"
+  },
+  "scope_guards": {
+    "only_train48_labels_read": true,
+    "fold0_gold_read": false,
+    "original_dev_gold_read": false,
+    "model_loaded": false,
+    "gpu_used": false,
+    "trained_adapters_downloaded": false,
+    "formal_training_data_produced": false,
+    "predictions_produced": false
+  },
+  "files": {
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-feasibility/audit_train.py": "70319f86eac6b1275f6133cfa29ef17429ccbad8edb953ecc4313e4c5db8f764",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-feasibility/token-budget-probes.jsonl": "dfde8888041025cbbf63064015b91f13b1cddf099ccbc5545750797bb5a0953b",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-feasibility/token-budget.json": "a37f996a35f4739fc40424148959c50baa9be151791f83f8d16a68200ae4ffc9",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-feasibility/token-budget-command.json": "6aeb60615c6ab599c81b7b8114391a30bfdc6aca0052cf54c1d8ecddb06c6545",
+    "/workspace/patientphex-runs/round2-20261023/research/overview.txt": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861",
+    "/workspace/patientphex-runs/round2-20261023/research/agriv-model-card.md": "f7159c603f2203a0f18f4cbb7db8f8cb4713a1556785657b423bb8c20a1d1250",
+    "solutions/case_retrieval/prepare_rag.py": "f83b90629044a4cbc7c2ae00116b49718f7c94dace5a6710a4fd242f106fcddd",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/prepare_relation_sft.py": "1b590ef6124f6797073c3014612f0bdd05b2190ae6d6a46fb84ac99429d74c1a",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/prepare_pair_rag.py": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+  }
+}

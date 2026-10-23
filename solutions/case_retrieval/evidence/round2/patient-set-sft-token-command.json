@@ -1,0 +1,19 @@
+{
+  "arguments": {
+    "cwd": "case-retrieval/round2",
+    "command": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -c 'from pathlib import Path\nimport json,hashlib,statistics,os\nfrom transformers import AutoTokenizer\nassert os.environ.get(\"CUDA_VISIBLE_DEVICES\")==\"\"\nroot=Path(\"patient-set-feasibility\");f=root/\"token-budget-probes.jsonl\"\ntok=AutoTokenizer.from_pretrained(\"models/Qwen3-8B\",local_files_only=True)\nrows=[json.loads(l) for l in f.read_text().splitlines()]\nrecords=[]\nfor r in rows:\n prefix=tok.apply_chat_template(r[\"messages\"],tokenize=True,add_generation_prompt=True,enable_thinking=False)\n full=tok.apply_chat_template(r[\"messages\"]+[{\"role\":\"assistant\",\"content\":r[\"answer\"]}],tokenize=True,add_generation_prompt=False,enable_thinking=False)\n assert full[:len(prefix)]==prefix\n records.append({\"pmc_id\":r[\"pmc_id\"],\"patient_id\":r[\"patient_id\"],\"prefix_tokens\":len(prefix),\"answer_tokens\":len(full)-len(prefix),\"full_tokens\":len(full)})\ndef stats(k):\n x=[r[k] for r in records];return {\"min\":min(x),\"median\":statistics.median(x),\"max\":max(x),\"mean\":statistics.mean(x),\"total\":sum(x)}\nresult={\"scope\":\"train48 full-article patient-set feasibility; no model loaded or trained\",\"rows\":len(rows),\"documents\":len(set(r[\"pmc_id\"] for r in rows)),\"source_data_sha256\":hashlib.sha256(f.read_bytes()).hexdigest(),\"tokenizer_sha256\":hashlib.sha256(Path(\"models/Qwen3-8B/tokenizer.json\").read_bytes()).hexdigest(),\"prefix\":stats(\"prefix_tokens\"),\"answer\":stats(\"answer_tokens\"),\"full\":stats(\"full_tokens\"),\"above\":{\"8192\":sum(r[\"full_tokens\"]>8192 for r in records),\"12288\":sum(r[\"full_tokens\"]>12288 for r in records),\"16384\":sum(r[\"full_tokens\"]>16384 for r in records)},\"all_prefixes_match\":True,\"truncation\":False,\"cuda_visible_devices\":\"\",\"records\":records}\n(root/\"token-budget.json\").write_text(json.dumps(result,indent=2)+\"\\n\")\nprint(json.dumps({k:v for k,v in result.items() if k!=\"records\"}))\n'",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "runtime",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "timeout_seconds": 40
+  },
+  "result": {
+    "exit_code": 0,
+    "stdout": "{\"scope\": \"train48 full-article patient-set feasibility; no model loaded or trained\", \"rows\": 126, \"documents\": 48, \"source_data_sha256\": \"dfde8888041025cbbf63064015b91f13b1cddf099ccbc5545750797bb5a0953b\", \"tokenizer_sha256\": \"aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4\", \"prefix\": {\"min\": 1478, \"median\": 4564.0, \"max\": 10018, \"mean\": 4962.936507936508, \"total\": 625330}, \"answer\": {\"min\": 12, \"median\": 92.5, \"max\": 451, \"mean\": 116.67460317460318, \"total\": 14701}, \"full\": {\"min\": 1579, \"median\": 4670.0, \"max\": 10419, \"mean\": 5079.611111111111, \"total\": 640031}, \"above\": {\"8192\": 10, \"12288\": 0, \"16384\": 0}, \"all_prefixes_match\": true, \"truncation\": false, \"cuda_visible_devices\": \"\"}\n"
+  }
+}
