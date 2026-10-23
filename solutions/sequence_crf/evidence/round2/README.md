@@ -77,3 +77,5 @@
 - [BioMed监督32固定10终点](gliner-biomed-supervised-results.json)：.654424，较medium32+.000679，58实体42TP16FP；实际模型/状态/命令/成本完整，新终点独审PASS（cd5afba8）。
 
 - [本体漏项覆盖](ontology-miss-coverage.json)、[唯一exact控制计划](exact-gate-control-plan.json)与[结果](exact-gate-control-results.json)：既有train48三嵌套诊断及固定CPU对照；解除exact过滤pooled下降.0008865、两折退步，六预测与新指标独审PASS（6e49d0c8），保旧政策，不扩GPU/原dev。
+
+- [固定focal提案](focal-loss-proposal.json)与[纯CPU合同](focal-loss-cpu.json)：BioMed配置.75/2来源、实际BCE训练清单、10组数学/梯度/mask通过与同环境成本；无新GPU或质量结论。

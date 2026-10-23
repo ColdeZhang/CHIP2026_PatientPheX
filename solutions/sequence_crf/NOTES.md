@@ -88,3 +88,7 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 ### 全本体类型预适配暂不投入
 
 训练48已有OOF聚合显示，908无重叠漏项仅54能由指定HPO name/EXACT同ID直接覆盖，原Sap高置信覆盖40，合计60；未见训练词面不等于本体已有词面。孤立短语HPO多类预适配重复已做PhenoTagger；全HPO合成上下文跨度目标虽不同于353同HPO替换，但对多数未知表达迁移缺少直接证据。唯一CPU exact gate控制已否定：虽补40TP，但伴58实体FP、22关系FP，pooled Score下降.0008865、三折两降，保留旧政策并结案。现有覆盖缺口不应只按已知TP修接口，必须统计同时引入的误报与关系传播。细节与来源见[短机制结论](experiments/ontology-miss-mechanism.md)，不增加GPU或原dev实验。
+
+### BioMed的focal配置提供新依据，但不是BCE塌缩证据
+
+此前通用GLiNER上层默认BCE的结论仍成立；新BioMed固定配置另有.75/2/sum，不能混为同一个默认。实际本路线未跑过focal。固定配方可同时增加正类相对权重、压低容易span贡献，但训练probe已高，计数1:502不证明负梯度支配。CPU数学合同通过后仍只是一条待检验学习目标假设；保持mean而非上游sum以免再改变分母政策，不拆参数网格。跨A800/A30的相同权重推理复现不足以当作训练对照，`.100`如运行应fresh两臂，来源/成本见[提案](experiments/focal-loss-proposal.md)。

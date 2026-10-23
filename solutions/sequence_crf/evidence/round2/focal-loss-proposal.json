@@ -1,0 +1,207 @@
+{
+  "scope": "Bounded source/history review and synthetic CPU loss validation only; no task data/model/GPU or new heldout labels",
+  "at_utc": "2026-10-23T20:24:35.130127+00:00",
+  "upstream": {
+    "model_revision": "Ihor/gliner-biomed-large-v1.0@f79771210ab2111a2081ef31620fdb7342f602e9",
+    "url": "https://huggingface.co/Ihor/gliner-biomed-large-v1.0/blob/f79771210ab2111a2081ef31620fdb7342f602e9/gliner_config.json",
+    "recorded_recipe": {
+      "loss_alpha": 0.75,
+      "loss_gamma": 2,
+      "loss_reduction": "sum",
+      "label_smoothing": 0
+    },
+    "actual_library": "gliner0.2.22 Trainer forwards TrainingArguments defaults alpha=-1,gamma=0 rather than automatically using those saved model metadata fields. The direct focal helper supports explicit .75/2. H30 broken SpanModel.loss is bypassed.",
+    "limits": "Saved official config demonstrates intended recipe; model card/paper and available repository do not prove the complete historical training call. Our proposal retains valid-span mean, not official sum."
+  },
+  "history": {
+    "actual_manifest_count": 8,
+    "unique_recorded_losses": [
+      "binary CE sum over valid spans / valid span count"
+    ],
+    "inventory": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/training-loss-inventory.json",
+      "sha256": "3a3bb7ff4a6ceeb0199cf2fe827f53c2d8be559b51b74a67c72493cd12ef5bad",
+      "bytes": 3546
+    },
+    "conclusion": "No previous explicit GLiNER focal run found; old focal review was static and no GPU experiment. BioMed adaptation explicitly disabled config focal."
+  },
+  "training32": {
+    "valid_spans": 1125538,
+    "positive": 2236,
+    "negative": 1123302,
+    "negative_positive_ratio": 502.371198568873,
+    "medium_probe_recall": 0.9262295081967213,
+    "biomed_probe_recall": 1.0,
+    "medium_online_raw_bce_logit_gradient_mass_positive": 424.7286398410797,
+    "medium_online_raw_bce_logit_gradient_mass_negative": 433.34374745342564,
+    "interpretation": "No observed positive collapse; fixed class-and-difficulty weighting is a new learning-objective hypothesis. Counts and train-mode online gradients are not proof of generalization or parameter-gradient domination."
+  },
+  "sources": {
+    "biomed_pinned_config": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/alternate-span-models/biomed-config.json",
+      "sha256": "f747cc67847f8b5412dca016377cb1a8c1642c802657dfb1949aca4d22354b76",
+      "bytes": 3858,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/biomed_pinned_config.json"
+    },
+    "upstream_focal_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/modeling/loss_functions.py",
+      "sha256": "8c6716151a2c19295563308c122b6c1bb3583ff21cd9102b233b6bf4b970506e",
+      "bytes": 3910,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/upstream_focal_helper.py"
+    },
+    "upstream_trainer_defaults": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/training/trainer.py",
+      "sha256": "130d22fc2c81ad2f97414964999c78aedeb3a55ab71b8bd5befdc53a674821c6",
+      "bytes": 13144,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/upstream_trainer_defaults.py"
+    },
+    "upstream_span_model": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/modeling/base.py",
+      "sha256": "b3ef985596410c07a447f18f5e199339b97ca4f603441a9ff36f9242d949e5bd",
+      "bytes": 33890,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/upstream_span_model.py"
+    },
+    "old_static_research": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/evidence/round2/gliner-loss-research.json",
+      "sha256": "3fe6cfcfec2ab78c15b46447dec61303a82cb9af1ac94a3f39a83fa24d1387be",
+      "bytes": 8929,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/old_static_research.json"
+    },
+    "medium32_training": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-long10ep-a800/formal-fixed10ep/run_manifest.json",
+      "sha256": "5ffc5df71c34d162bf61bc10d92b8f8383b2f75447b3aab5dc9a725b9ad617a2",
+      "bytes": 40733,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/medium32_training.json"
+    },
+    "biomed32_training": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised/formal-fixed10ep/run_manifest.json",
+      "sha256": "da217eeb43f6d53a5d249f397e2192c0d96a31bedd307e668e5c52ddd4a44482",
+      "bytes": 57121,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/biomed32_training.json"
+    },
+    "augmentation_training": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/formal-fixed10ep/run_manifest.json",
+      "sha256": "e03fa0efa86b70810eeec6fbbc29216f1f5b6af32935583daf4d6c7bb441b05d",
+      "bytes": 40572,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/augmentation_training.json"
+    },
+    "augmentation_runtime_replay": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/baseline-runtime-comparison.json",
+      "sha256": "803e638f2ea35e2ddf30bf01d7a017c37114a8337b177ae22fcf05bbf71bf1f4",
+      "bytes": 496,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/augmentation_runtime_replay.json"
+    },
+    "old_medium_trainer": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/train_gliner_supervised.py",
+      "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+      "bytes": 14816,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/old_medium_trainer.py"
+    },
+    "old_biomed_trainer": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/train_gliner_biomed.py",
+      "sha256": "39c38ed1d211c057aa5dcccdeed9f3cd4ea2b1e01702522cf4b0463287787d95",
+      "bytes": 14853,
+      "immutable_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/source-evidence/old_biomed_trainer.py"
+    }
+  },
+  "cpu_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/cpu-report.json",
+    "sha256": "784f741d6d65f3db5b09a106970a50badec3a91e06da32b9b18678811c458707",
+    "bytes": 2235
+  },
+  "cpu_execution": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control/cpu-execution.json",
+    "sha256": "346393d597de93a6246d2eeca2f46e69ae1d412f3e67d3e81ebef09281ef456f",
+    "bytes": 1355
+  },
+  "loss_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/focal_loss.py",
+    "sha256": "dcc2489d7bc5aecf5c9f0e55250f1a8f045a3c44e6fc89f99023409bbc47a55a",
+    "bytes": 2048
+  },
+  "cpu_checker_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/check_focal_loss_cpu.py",
+    "sha256": "297f79dacec2dbcdccfcd2a8c26035e191d90fa1bd350c7e369ffd026fb48b7a",
+    "bytes": 8107
+  },
+  "cost_and_controls": {
+    "preferred_if_A30_used": "Fresh paired medium32 BCE and focal on the same .100 runtime/GPU, 1150 original windows and2880steps each. Historical A800 training cannot be treated as same-hardware training control.",
+    "medium_historical_A800": {
+      "seconds": 519.0346791129559,
+      "max_gpu_allocated_bytes": 6036967936,
+      "versions": {
+        "torch": "2.7.1",
+        "transformers": "4.51.3",
+        "gliner": "0.2.22"
+      },
+      "Score_from_existing_frozen_result": 0.6537450271017345
+    },
+    "augmentation_actual_A30": {
+      "seconds": 896.3912356221117,
+      "steps": 3760,
+      "rows": 1503,
+      "max_gpu_allocated_bytes": 5981723648,
+      "versions": {
+        "torch": "2.7.1+cu126",
+        "transformers": "4.51.3",
+        "gliner": "0.2.22"
+      }
+    },
+    "A30_per_arm_linear_step_estimate_seconds": 686.5975421786387,
+    "A30_two_arm_estimate_seconds": 1373.1950843572774,
+    "estimate_limit": "Only a planning estimate: augmentation length distribution differs; model smoke needed before any future formal run. Propose15min/arm average allowance and20min/arm hardcap, plus inference/linking.",
+    "historical_A800_reuse_option": "If exact old A800 Python/runtime/base still usable, one new focal arm can compare to its frozen BCE endpoint; no same-device/same-version equivalence assumed for another GPU. Historical8.65min is not a fresh throughput guarantee.",
+    "A30_inference_only_replay": {
+      "scope": "input-only same checkpoint A800->A30 inference comparison; no gold or Score",
+      "old_candidate_sha256": "b92ab0a5588e384a4d03e0fc8470e80b7865e8041df26be52d1be83c39f95532",
+      "new_candidate_sha256": "abb3c32bbdd104d6212dec7b1933d8ca91ea51102a28fd83ede0a7110ac9d035",
+      "old_count": 1378,
+      "new_count": 1378,
+      "exact_span_text_keys_equal": true,
+      "old_only_count": 0,
+      "new_only_count": 0,
+      "scores_exact_count": 493,
+      "max_abs_shared_score_difference": 1.722574234008789e-05
+    },
+    "biomed_same_A30_BCE_control": {
+      "seconds": 1660.1564781526104,
+      "max_gpu_allocated_bytes": 14795897344,
+      "versions": {
+        "torch": "2.7.0+cu128",
+        "transformers": "4.50.0",
+        "gliner": "0.2.22"
+      },
+      "Score_from_existing_frozen_result": 0.6544243018006951
+    },
+    "biomed_option_limit": "One comparable focal arm would still cost approximately27.7min and wait for ongoing context training; not preferred for initial cheap loss hypothesis."
+  },
+  "proposed_control": {
+    "model": "fixed public medium-v2, fresh both arms; same original1150 nested32 windows",
+    "only_variable": "loss recipe: unweighted valid-span BCE vs alpha=.75,gamma=2 focal with the same valid-span denominator",
+    "fixed": {
+      "epochs": 10,
+      "steps": 2880,
+      "batch_size": 4,
+      "precision": "float32",
+      "encoder_lr": 1e-05,
+      "other_lr": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_fraction": 0.05,
+      "seed": 20261023,
+      "gradient_clip": 1.0,
+      "decoder_threshold": 0.5,
+      "max_input_tokens": 384,
+      "max_span_words": 12,
+      "link_probability": 0.65,
+      "link_cosine": 0.92,
+      "relation_policy": "same frozen rules"
+    },
+    "stop": "One final epoch10 only; freeze both raw and full predictions before one nested16 comparison. No alpha/gamma/decoder/epoch grid. Close if complete Score does not improve; no originaldev.",
+    "current_authorization": "CPU preparation only; no trainer adaptation, GPU smoke or formal run started. Root chooses resource/budget next."
+  },
+  "scientific_limits": [
+    "Focal weights change absolute loss scale under same denominator, affecting clipping/Adam and score calibration. Treat as one fixed recipe, not isolated gamma causality.",
+    "At logit0 positive weight is3x negative, but overall negatives still outnumber positives; focal only suppresses easy samples relative to hard ones.",
+    "Unweighted BCE already fits training positives; expected quality benefit remains untested."
+  ]
+}

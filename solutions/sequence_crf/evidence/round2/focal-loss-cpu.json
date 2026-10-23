@@ -1,0 +1,44 @@
+{
+  "status": "PASS_CPU_synthetic_only",
+  "at_utc": "2026-10-23T20:23:29.125114+00:00",
+  "formula": "mean_valid alpha_t * sigmoid(-(2y-1)z)^gamma * BCEWithLogits(z,y)",
+  "fixed_proposed_parameters": {
+    "alpha": 0.75,
+    "gamma": 2.0,
+    "normalization": "actual valid-span mean"
+  },
+  "checks": {
+    "independent_formula_and_analytic_gradient": {
+      "loss": 0.9820139016478047,
+      "maximum_gradient_error": 1.3877787807814457e-17
+    },
+    "upstream_direct_helper_moderate_logits": "value and gradient equal with explicit keyword parameters; no broken SpanModel.loss call",
+    "gamma_zero": "alpha .75 exactly weighted BCE; alpha -1 exactly unweighted BCE, including gradients",
+    "zero_logits_and_alpha_direction": {
+      "loss": 0.08664339756999316,
+      "positive_to_negative_gradient_ratio": 2.9999999999999996
+    },
+    "extreme_logits": "FP32/FP64 +/-1000 finite; hard mistakes retain correcting gradients, easy saturation zero",
+    "padding_and_masked_target_flip": "loss/valid gradients exact; all invalid gradients zero, including NaN/Inf padding",
+    "unequal_document_counts_denominator": "sum over four actual valid spans / 4, not per-document means or padded slots",
+    "all_negative_or_positive_tail_batch": "finite correct-sign gradients",
+    "finite_difference_gradcheck": true,
+    "invalid_arguments_and_zero_valid_guard": true
+  },
+  "versions": {
+    "python": "3.10.20",
+    "torch": "2.7.0+cu128"
+  },
+  "cuda_initialized": false,
+  "task_data_read": false,
+  "model_loaded": false,
+  "source_sha256": "297f79dacec2dbcdccfcd2a8c26035e191d90fa1bd350c7e369ffd026fb48b7a",
+  "loss_source_sha256": "dcc2489d7bc5aecf5c9f0e55250f1a8f045a3c44e6fc89f99023409bbc47a55a",
+  "upstream_helper_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime/gliner/modeling/loss_functions.py",
+  "upstream_helper_sha256": "8c6716151a2c19295563308c122b6c1bb3583ff21cd9102b233b6bf4b970506e",
+  "limitations": [
+    "No model backward, resource smoke, training or quality evaluation.",
+    "Stable BCE differs from upstream epsilon-clamped log formula at extreme logits.",
+    "Keep valid-span mean to isolate objective weighting; not upstream sum-reduction reproduction."
+  ]
+}
