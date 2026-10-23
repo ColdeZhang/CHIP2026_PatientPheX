@@ -39,6 +39,8 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 本体后续研究 [Dai/Adel COLING 2020 的 NER 数据增强](https://aclanthology.org/2020.coling-main.343/)：i2b2少量50句时完整mention替换F1 35.1→40.1，但500句仅70.2→70.8、完整数据87.8不变，不能将小样本收益外推。本项目只借鉴方法，将官方训练折中完整实体替换为同canonical HPO的name/EXACT词面；没有引入论文的人工临床标签。CPU已保留1150原窗并追加353窗，全部真实分词/跨度/NO标签校验通过；数据和更新数同时增加，属于配方初筛。独审通过后一次固定10轮短训练，完整Score是否改善仍未知。相邻段落上下文（FLERT）仅作备选研究，尚未实施。来源、边界与初始方案见[本体短提案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/P-20261023-NER-AUGMENTATION.md)，执行计划以最新台账为准。
 
+另发现 [GLiNER-BioMed large](https://huggingface.co/Ihor/gliner-biomed-large-v1.0/tree/f79771210ab2111a2081ef31620fdb7342f602e9) 可作为后续领域基座候选。[论文v2](https://arxiv.org/abs/2504.00676v2)声明105k自动医学标注预训练与19k通用后训练，后者含1878条WNUT/OntoNotes/MultiNERD人工通用NER；teacher有4个医学示范，其人工/生成来源未声明。发布资料支持这是预训练基座，未发现八个人工医学benchmark的微调权重混入证据，但不声称全链路无人为医学示范。公开zero-shot microF1 59.77相对large-v2 37.38只说明值得试验，不是本赛Score；充分监督下的提升也未显著。源码/论文/发布元数据只读独审通过（`32fcebae…`），只授权固定版本下载与CPU预检；实际参数量、权重和零样本质量尚待核验。ModelScope准确模型/文件API均404、阳性对照200后可回退固定HF源；只说明已查准确路径。新配置内嵌encoder_config且词表128003，与旧loader有两处接口差异，应使用独立入口，不能更改正在运行的large训练。完整来源见[清单](round2-research-sources.json)。
+
 ## 其他同赛开源记录
 
 `irryxeek/patientphex-chip2026` 的多来源跨度、SapBERT不同概念margin、上下文关系融合及正负报告值得研究；`yuanpinz/chip2026-PatientPheX` 给出逐occurrence、逐患者与联合患者判断、结构范围筛选；`AnXin-HITSZ/...` 与 `xi-ix/HPO` 有词典未覆盖片段的语义候选做法。其自报分数未独立复现，训练划分和评测不同，不能直接排名或沿用阈值。许可未明确的实现只参考思想；没有引入他们的标注或预测。
