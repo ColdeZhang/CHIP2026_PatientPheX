@@ -34,3 +34,11 @@
 数据仅使用冻结 nested train32 和原准备1150窗；模型配置／tokenizer 复用已核验的 BioMed 本地副本，当前无新增外部标签或 HPO 词面。本阶段不据此选择训练基座；之后的模型基座、对照、成本 probe、固定轮次和预算仍由主线程决定。当前统计已独审通过，实际适配器 CPU 运行19:53:48–19:54:43 UTC，检查54.061秒／wrapper55.154秒、rc0、CUDA未初始化；新增接口独审PASS（42fb9b45…）。实际 Torch2.7.0+cu128／Transformers4.50.0／GLiNER0.2.22／tokenizers0.21.4；原本地统计tokenizers0.22.1，各实际输入总量和覆盖数一致。原参考处理器仅提示 tokenizer 没有默认 max_length 而不截断；新适配器显式不截断，全部实际输入仍逐行≤384。
 
 统计、实际来源 SHA、短计划与后续证据入口见[小索引](../evidence/round2/ner-context-feasibility.json)；全1150行统计和报告留仓库外，不保存新训练文本或大日志。
+
+## 条件性训练与推理入口准备
+
+主线程随后授权继续不依赖质量结果的 CPU 源码准备。新增 `train_ner_context.py`、`infer_ner_context.py` 与 `ner_context_runtime.py`，原序列入口保持不动。当前候选明确为 fresh BioMed 原生基座；最终是否执行和同源对照须等序列10轮结果，由主线程选择。准备若关闭，只表示没有选择运行，不能算该方法失败。
+
+静态 AST 已核：masked BCE／计数函数、AdamW、warmup／scheduler 与原70c5入口精确一致，整个epoch循环除collator调用替换外也精确一致。仍保留1150窗、batch4、10ep／2880步、原训练probe和恢复状态；不从当前epoch10继续训练。推理固定单窗batch、.5、nested overlap规则、目标原文offset与max-score去重，要求实际新训练终点SHA，再冻结raw预测。
+
+两个入口均有 `--cpu-prepare-only`，只读tokenizer/config和固定四窗，不构造模型或读取权重。实际fingerprint覆盖新入口／helper／adapter、GLiNER所有Python源、分词配置与依赖版本；未因准备安装新环境。下一步仅做这两个CPU入口实例检查和新增源审，不跑GPU、Sap或评分。来源与条件计划见[小索引](../evidence/round2/ner-context-entry-preparation.json)。
