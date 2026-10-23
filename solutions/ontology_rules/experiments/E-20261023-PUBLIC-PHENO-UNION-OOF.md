@@ -9,3 +9,5 @@
 [冻结计划](../evidence/round2/public-phenotagger-union-plan.json)绑定原3378/c258源码快照、全部旧reference/数据/指标、新canonical/provenance及CPU证明。当前尚未新fit或质量评估；数据准备和增量独审可并行，不额外增加逐步审批。
 
 第一次CPU准备在0.165秒因调用本体模块不存在的parse_hpo退出；本体真实接口名是load_hpo（parse_hpo属于sequence），只修函数名，原HPO/allowed政策不变。失败源/计划/执行/stderr保留于外部attempt1-HPO-loader；尚未候选处理、拟合或质量评估。
+
+正式四fit共49.192秒/120限内，21:32:32.988四pred共同冻结后21:32:39唯一评。pooled .722651022→.718046744（−.004604278），四分项均降，四fold中三负；root判定本配方关闭，不扫阈值、组合Bioformer或原dev。完整终点独审待完成。随后另授权仅已有结果聚合，区分2157新public键是否原pool已有及真实新增候选被选择多少，不能因果区分重拟合/特征/greedy，不创建oracle预测或gold补丁。
