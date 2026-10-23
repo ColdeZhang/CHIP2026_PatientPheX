@@ -23,7 +23,7 @@ def main():
  actual={};paths={str(Path(p).resolve()) for p in WEIGHTS};dirs={str(Path(p).resolve().parents[1]) for p in WEIGHTS}
  for name,(_,h) in WEIGHTS.items():
   p=Path(name);assert p.is_file() and p.stat().st_size==173181072 and sha(p)==h;actual[name]=dict(sha256=h,bytes=p.stat().st_size)
- matches=[]
+ matches=[];restricted_fd_maps=[]
  for pd in Path('/proc').iterdir():
   if not pd.name.isdigit() or int(pd.name)==os.getpid():continue
   try:
@@ -36,7 +36,9 @@ def main():
    maps=(pd/'maps').read_text()
    if any(p in maps for p in paths):matches.append(dict(pid=int(pd.name),kind='mapped_weight'))
   except PermissionError:
-   if pd.exists() and pd.stat().st_uid==os.getuid():raise
+   # proc cmdline is checked first; some same-UID services deny fd/maps via
+   # dumpability. Record the visibility limit; GPU2 must independently be empty.
+   restricted_fd_maps.append(int(pd.name))
   except (FileNotFoundError,ProcessLookupError):continue
  assert not matches,matches
  apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_gpu_memory','--format=csv,noheader'],text=True)
@@ -46,7 +48,7 @@ def main():
  if a.delete_authorized_two_weights:
   for name in WEIGHTS:Path(name).unlink()
  after=shutil.disk_usage('.').free
- report=dict(at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),source_sha256=sha(__file__),backup_check_sha256=sha(a.backup_check),backup_mount=backup['mount_id'],old_files=actual,backup_paths={p:v[0] for p,v in WEIGHTS.items()},active_path_matches=matches,gpu_uuid=UUID,gpu_empty=True,deleted_only_exact_two_weights=a.delete_authorized_two_weights,deleted_bytes=will_release if a.delete_authorized_two_weights else 0,free_before=before,free_after=after,min_free_guard=680000000,final_checkpoint_estimate=520000000,final_residual_estimate=after-520000000,configs_optimizer_other_checkpoints_untouched=True,backup_restore_tested=False)
+ report=dict(at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),source_sha256=sha(__file__),backup_check_sha256=sha(a.backup_check),backup_mount=backup['mount_id'],old_files=actual,backup_paths={p:v[0] for p,v in WEIGHTS.items()},active_command_or_visible_fd_matches=matches,restricted_fd_maps_pids=restricted_fd_maps,process_visibility="All accessible cmdlines checked; restricted fd/maps explicitly listed, no claim of global descriptor visibility",gpu_uuid=UUID,gpu_empty=True,deleted_only_exact_two_weights=a.delete_authorized_two_weights,deleted_bytes=will_release if a.delete_authorized_two_weights else 0,free_before=before,free_after=after,min_free_guard=680000000,final_checkpoint_estimate=520000000,final_residual_estimate=after-520000000,configs_optimizer_other_checkpoints_untouched=True,backup_restore_tested=False)
  with Path(a.output).open('x') as f:f.write(json.dumps(report,indent=2)+'\n')
  print(json.dumps(report,indent=2))
 if __name__=='__main__':main()
