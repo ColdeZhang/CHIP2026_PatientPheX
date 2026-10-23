@@ -2,6 +2,8 @@
 
 这些是 biomed helper 已实际使用的自有小型脚本逐字副本；`manifest.json` 固定原位置、大小及 SHA。保留它们是为了能恢复真实接口，不代表在当前目录直接运行即可。
 
+后补 `manifest-v2.json` 是严格扩展胶囊，增加 full cache 的 prepare/start/collect 三个脚本；旧 manifest 保持原字节，已引用的准备证据不失效。`candidate-plan/full-source-index.json` 固定这次真实任务的源和计划索引，活跃输出另由最终 completion 绑定。
+
 - `pair-native/` 对应外部 `research/phenobert-pair-native/`；`candidate-plan/` 对应 `research/phenobert-pair-candidate-plan/`。恢复时按原目录结构放回，使用实际 plan/manifest 的路径和 SHA，不修改正在运行的原文件。
 - 官方 87 个源码文件不复制入 Git；`fetch_source.py` 与 `upstream-source-index.json` 绑定 `EclipseCN/PhenoBERT@195d5df2ad9c6265e1de523f139694c7646eee29` 和各 Git blob/SHA，可重取。权重、词表、配置、数据及响应在外部持久目录，完整指针见方案计划。
 - 原模型是固定官方完整 Python pickle；只有验证来源/SHA/实际类后原生加载。不要把当前 `torch.load(..., weights_only=False)` 用于任意用户 checkpoint。已完成独立原生加载审查 `5a8a7185`，不为本特征控制重新转换模型。

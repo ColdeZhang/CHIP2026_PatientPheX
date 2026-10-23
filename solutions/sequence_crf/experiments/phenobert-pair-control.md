@@ -1,6 +1,6 @@
 # 指定 HPO 名称的公开三类 pair 特征
 
-当前阶段：CPU/source 准备完成，公共短吞吐已由 biomed 测量；尚无本控制的批量缓存、HGB 拟合或质量结果，原 dev 不运行。目标是检验现有相同边界多个 HPO ID 之间，真实公开 pair 语义分数能否帮助选择器排序，而不是再扩大跨度或重复调整门槛。
+当前阶段：CPU/source 准备完成，135000公共缓存已完成并独审0eef457c通过；正式plan8963ca27冻结，尚无HGB拟合或质量结果，原dev不运行。目标是检验现有相同边界多个 HPO ID 之间，真实公开 pair 语义分数能否帮助选择器排序，而不是再扩大跨度或重复调整门槛。
 
 ## 固定方法与边界
 
@@ -26,3 +26,9 @@ biomed 的 512 实际无标签输入 pilot：8×64 native FP32，forward3.18秒�
 后继固定 .3 完整四fold预测统一 freeze，再一次 v2/format；旧 top3 对照及已有曲线直接复用。随后只用预定九点 [.1,.2,…,.9]，以 pooled `(menF1+docF1)/2` 选统一 cut，tie 距 .4 最近再较高；完整36预测先冻结再读本轮校准标签，不按关系分数选点。匹配 top3 已校准最佳 .4 objective=.777516517；保留当前 Bioformer .3 的 .780192596 作实际旧最佳参照。全 train64 标签参与校准，最大值不称独立泛化；不扫描额外阈值、特征或模型，不自动迁移原 dev。
 
 小索引：[准备证据](../evidence/round2/phenobert-pair-preparation.json)。外部根 `/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/`，完整请求、模型和批量响应不入 Git。
+
+## 在首次fit/质量前补充的固定边界ID臂
+
+root预注册一个30秒CPU解码控制：完整保留原Bioformer cut.3的实体边界、数量、顺序和其他字段，只在每个原边界的完整top3候选中按本次新HGB概率argmax选identifier。原ID必须exact存在，真并列先原ID、再identifier稳定序；不加cut、不加/删/挪跨度、不重分关联。8项区别性合同通过，方案v2 bf1469ad/正式plan8963ca27已在任何任务fit或新评分前冻结。四个主臂、四个固定边界臂以及匹配旧top3/原Bioformer完整对照共同freeze后各新臂只评一次；该臂不参与九cut选择。
+
+公共缓存实测189.654秒（forward176.622）<600，135000键完整、归一/finite、6500NIL不请求模型，GPU已释放。批量缓存及2110batch来源独审0eef457c沿用，不重复NN。完整指针见[正式准备](../evidence/round2/phenobert-pair-launch.json)。
