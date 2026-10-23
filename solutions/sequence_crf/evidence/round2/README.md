@@ -52,3 +52,6 @@
 - `gliner-outer0-results.json`：同A30训练/零样本/唯一终点来源、实际保留检查点、纯跨度与固定Sap完整增量；fold0 .711354→.721504，原dev未在本控制评测。
 - `gliner-dev-transfer-plan.json`：原dev单次迁移两臂、span48/linker64分立来源、旧LR零新增字节复现；未在计划阶段评分。
 - `gliner-dev-transfer-results.json`：原dev两臂统一冻结，entity-only .706112 / full-LR .711325，32实体/21关系增量、来源与GPU释放证据。
+
+- `gliner-pheno-joint-dev.json`：固定跨路线追加两臂、全部增量与独审PASS；实体-only .712586，关系重算较差，停止扫描。
+- `gliner-full64-plan.json`：2372窗/5930步固定规模控制、准备独审/实际smoke、同runtime48对照与45分钟训练硬cap；终点前不表示新分数。

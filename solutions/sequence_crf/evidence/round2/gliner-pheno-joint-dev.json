@@ -1,0 +1,330 @@
+{
+  "source_commit": "e728a222ad8f042c224bf32f289bc3618837f2c7",
+  "scope": "root-predefined GLiNER then Pheno development combination on originaldev, no parameter/order search",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+    "sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+    "metrics": {
+      "menF1": 0.7578845220766618,
+      "docF1": 0.7797270955165692,
+      "micF1": 0.6707193515704154,
+      "macF1": 0.6369689968461091,
+      "Score": 0.7113249915024389
+    }
+  },
+  "ontology_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/plan.json",
+    "sha256": "bd19adafbf6c4724e0e722b3a249c193c8012a5cf2229be275cfcc9ad30c6209",
+    "bytes": 5371
+  },
+  "arm1_freeze": {
+    "frozen_at_utc": "2026-10-23T17:48:43.075137+00:00",
+    "base_sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+    "train64_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+    "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "arm1_sha256": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+    "plan_sha256": "bd19adafbf6c4724e0e722b3a249c193c8012a5cf2229be275cfcc9ad30c6209",
+    "runner_sha256": "4d4ced624ea44606b167241f76dab3f926fb8f81ab2cbfed5eaf01d09071e0e1",
+    "commands": [
+      {
+        "stage": "raw",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/../semantic-neural/venv/bin/python",
+          "-u",
+          "phenotagger-dev16/source/phenotagger_augment.py",
+          "--input",
+          "../semantic-neural/data/dev16.input.jsonl",
+          "--base",
+          "phenotagger-crf-gliner-dev16/base.jsonl",
+          "--scored",
+          "phenotagger-dev16/prediction/scored.jsonl.gz",
+          "--hpo",
+          "../semantic-neural/data/hp.obo",
+          "--output",
+          "phenotagger-crf-gliner-dev16/raw/pred.jsonl"
+        ]
+      },
+      {
+        "stage": "prepare",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/../semantic-neural/venv/bin/python",
+          "-u",
+          "phenotagger-dev16/source/phenotagger_sap_consensus.py",
+          "prepare",
+          "--train",
+          "../semantic-neural/data/train64.jsonl",
+          "--input",
+          "../semantic-neural/data/dev16.input.jsonl",
+          "--hpo",
+          "../semantic-neural/data/hp.obo",
+          "--base",
+          "phenotagger-crf-gliner-dev16/base.jsonl",
+          "--parent",
+          "phenotagger-crf-gliner-dev16/raw/pred.jsonl",
+          "--semantic-source",
+          "../semantic-neural/run.py",
+          "--reconstruction-manifest",
+          "phenotagger-dev16/reconstruction/reconstruction.manifest.json",
+          "--output-dir",
+          "phenotagger-crf-gliner-dev16/sap/request"
+        ]
+      },
+      {
+        "stage": "score",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/../semantic-neural/venv/bin/python",
+          "-u",
+          "phenotagger-dev16/source/phenotagger_sap_consensus.py",
+          "score",
+          "--request-dir",
+          "phenotagger-crf-gliner-dev16/sap/request",
+          "--reconstruction-dir",
+          "phenotagger-dev16/reconstruction",
+          "--semantic-source",
+          "../semantic-neural/run.py",
+          "--model-dir",
+          "../semantic-neural/model",
+          "--bank",
+          "dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+          "--output-dir",
+          "phenotagger-crf-gliner-dev16/sap/scored"
+        ]
+      },
+      {
+        "stage": "filtered",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/../semantic-neural/venv/bin/python",
+          "-u",
+          "phenotagger-dev16/source/phenotagger_sap_consensus.py",
+          "merge",
+          "--request-dir",
+          "phenotagger-crf-gliner-dev16/sap/request",
+          "--scores",
+          "phenotagger-crf-gliner-dev16/sap/scored/scores.jsonl",
+          "--base",
+          "phenotagger-crf-gliner-dev16/base.jsonl",
+          "--input",
+          "../semantic-neural/data/dev16.input.jsonl",
+          "--output",
+          "phenotagger-crf-gliner-dev16/filtered/pred.jsonl"
+        ]
+      },
+      {
+        "stage": "arm1",
+        "command": [
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/../semantic-neural/venv/bin/python",
+          "-u",
+          "phenotagger-crf-gliner-dev16/preserve_base_relations.py",
+          "--base",
+          "phenotagger-crf-gliner-dev16/base.jsonl",
+          "--candidate",
+          "phenotagger-crf-gliner-dev16/filtered/pred.jsonl",
+          "--output",
+          "phenotagger-crf-gliner-dev16/entity-only/pred.jsonl"
+        ]
+      }
+    ],
+    "gold_read": false,
+    "next_step": "Sequence same train64 LR arm2, then freeze both predictions before any evaluation."
+  },
+  "lr_freeze": {
+    "configuration": {
+      "train": "/workspace/patientphex-data/day1/train64.jsonl",
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "baseline": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.jsonl",
+      "candidate_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.manifest.json",
+      "handoff": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/handoff.json",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned"
+    },
+    "inputs": {
+      "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "baseline": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "candidates": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+      "candidate_manifest": "2d58b31ca7532b8613b176f61c9a14f47b1af90cea9d0c394b34584897b16bbe",
+      "handoff": "7b825a05ac2394b39075a26922bf24c81b1ca420a31d28e906eb9f4c74672ffc"
+    },
+    "source_sha256": "76839a287bc3f3e9076ab6f8c984891690eba7f349bd1b191c02327479508932",
+    "dependencies": {
+      "sequence_base": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "transfer_relation": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d"
+    },
+    "policy": "unchanged train-fold LR>=.55; exact baseline replay; preserve frozen entity pool and old relations",
+    "relation_training": {
+      "relation_examples": 13740,
+      "relation_positive": 4606
+    },
+    "added_entities": 12,
+    "frozen_at_utc": "2026-10-23T17:50:19.063676+00:00",
+    "outputs": {
+      "baseline.jsonl": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "full-lr.jsonl": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb"
+    },
+    "gold_read": false
+  },
+  "arms": {
+    "entity-only": {
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.jsonl",
+        "sha256": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+        "bytes": 129954
+      },
+      "metrics": {
+        "menF1": 0.7573564881813797,
+        "docF1": 0.7852998065764023,
+        "micF1": 0.6707193515704154,
+        "macF1": 0.6369689968461091,
+        "Score": 0.7125861607935766
+      },
+      "delta": {
+        "menF1": -0.0005280338952821095,
+        "docF1": 0.005572711059833146,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": 0.0012611692911377315
+      },
+      "count_delta": {
+        "mention": {
+          "tp": 4,
+          "fp": 8,
+          "fn": -4
+        },
+        "document": {
+          "tp": 6,
+          "fp": 2,
+          "fn": -6
+        },
+        "relation": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 967,
+          "relations": 534,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    },
+    "full-lr": {
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned/full-lr.jsonl",
+        "sha256": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb",
+        "bytes": 130052
+      },
+      "metrics": {
+        "menF1": 0.7573564881813797,
+        "docF1": 0.7852998065764023,
+        "micF1": 0.670020120724346,
+        "macF1": 0.6356064893665351,
+        "Score": 0.7120707262121657
+      },
+      "delta": {
+        "menF1": -0.0005280338952821095,
+        "docF1": 0.005572711059833146,
+        "micF1": -0.0006992308460693764,
+        "macF1": -0.0013625074795740044,
+        "Score": 0.0007457347097268308
+      },
+      "count_delta": {
+        "mention": {
+          "tp": 4,
+          "fp": 8,
+          "fn": -4
+        },
+        "document": {
+          "tp": 6,
+          "fp": 2,
+          "fn": -6
+        },
+        "relation": {
+          "tp": 2,
+          "fp": 5,
+          "fn": -2
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 967,
+          "relations": 541,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    }
+  },
+  "artifacts": {
+    "handoff.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/handoff.json",
+      "sha256": "7b825a05ac2394b39075a26922bf24c81b1ca420a31d28e906eb9f4c74672ffc",
+      "bytes": 1000
+    },
+    "command.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/command.json",
+      "sha256": "344dcb711b986c516f9677bbd5c8ca4ccfd7efd051410aa53f82ec5a6254fc7a",
+      "bytes": 968
+    },
+    "reassigned/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned/manifest.json",
+      "sha256": "fdbc542d182d7175ec870142aa6c7e0a809064600bd8bd76907e4683ea42704f",
+      "bytes": 2254
+    },
+    "evaluation-commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/evaluation-commands.json",
+      "sha256": "e9f2c105e3ff0fe864fb1058f0e5adfb4cb6d4cebbec5bf9198391869796518d",
+      "bytes": 2865
+    },
+    "evaluation/entity-only.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/evaluation/entity-only.metrics.json",
+      "sha256": "1bfd7268c83e230eef1e1ca540f92d7597037d05682f33000a533091ca8be615",
+      "bytes": 13187
+    },
+    "evaluation/full-lr.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/evaluation/full-lr.metrics.json",
+      "sha256": "05dc0750eba67fc1aa000105b6fdbacca2c6605c568aab0f86ecb629745edf1e",
+      "bytes": 13127
+    }
+  },
+  "conclusion": "Very small positive total Score; mention precision worsens, and LR adds2TP5FP. Preserve both arms, stop sweeping this combination. Full64 training remains a separate comparison against48 GLiNER .711325.",
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-pheno-joint-review/review.json",
+    "sha256": "82f7f2c0b3b14a8ac2f7bab292eaabf8f4d921ddb7ca78671fc7d38946e42e96",
+    "status": "PASS: both predictions/base byteexact; complete metrics and increments independent"
+  },
+  "no_official_submission": true
+}

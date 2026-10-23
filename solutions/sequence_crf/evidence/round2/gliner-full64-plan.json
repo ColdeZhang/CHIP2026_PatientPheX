@@ -14,7 +14,7 @@
   "training": {
     "part": "train64",
     "documents": 64,
-    "windows": "measure exact before GPU",
+    "windows": 2372,
     "epochs": 10,
     "batch_size": 4,
     "encoder_lr": 1e-05,
@@ -26,7 +26,9 @@
     "clip": 1,
     "loss": "unchanged explicit validspan BCE mean",
     "initialization": "fresh public47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91; never48trainedweight",
-    "checkpoint": "uniqueepoch10 only; atomiclatest+final; pruneSHAchecked previousweights"
+    "checkpoint": "uniqueepoch10 only; atomiclatest+final; pruneSHAchecked previousweights",
+    "steps_per_epoch": 593,
+    "total_optimizer_steps": 5930
   },
   "data_policy": "unchanged actualtoken384/regexwordspanwidth12/12wordoverlap; count/skipunrepresentable positives, never snap; NOtargetsnegative; allactualtensor checks; explicitlyexclude16dev",
   "controls": {
@@ -45,6 +47,54 @@
     "estimated_minutes": "22-30; measuredafterdata/smoke",
     "handoff": "ontology combinedSap finished; freshcheckbeforeownGPU"
   },
-  "status": "CPUpreparation only; actualalignment/runtime/budgetcounts pending",
-  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64"
+  "status": "Prepared alignment and independent readiness PASS; longest GPU batch PASS; ready for fixed formal launch",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64",
+  "prepared": {
+    "manifest_sha256": "c3be9f4a3eccdc4d90edce17876beb7f6bbb911a692a16783a6db11ad81fa3b6",
+    "train_sha256": "d2d2ef387d1ba870bef8c141b2f5c060aef7da2e94f5e491be92874f5e63f18f",
+    "counts": {
+      "positive_unique_spans": 4759,
+      "no_unique_spans": 155,
+      "positive_window_instances": 4676,
+      "no_window_instances": 155,
+      "valid_candidate_span_instances": 2317026,
+      "windows_without_positive": 1483,
+      "represented_unique_positive_spans": 4668,
+      "positive_window_boundary_loss": 0,
+      "positive_word_boundary_mismatch": 86,
+      "positive_above_max_width": 5
+    },
+    "cpu_seconds": 37.21141843125224,
+    "actual_base_sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91",
+    "parameters": 195175936,
+    "alignment": true
+  },
+  "control48_transfer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/control-transfer/transfer-complete.json",
+    "sha256": "9f6efb7a7fac568224dbd085af127a2fc1bc40b15e2fd882df5b23999df434fb",
+    "seconds": 7.7744457721710205,
+    "all_verified": true,
+    "server_closed_and_port_refused": true
+  },
+  "smoke": {
+    "elapsed_seconds": 1.155650720000267,
+    "max_gpu_allocated_bytes": 4483899392,
+    "smoke_loss": 0.009538942016661167,
+    "smoke_gradient_norm": 0.10502523183822632,
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22"
+    }
+  },
+  "independent_preparation_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-train64-review/preparation-review.json",
+    "sha256": "3aba756241c842083332e3fe7390cb7ef16724406d4ef2c08083a24b1772f5ab",
+    "status": "PASS: preparation only"
+  },
+  "formal_commands": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/paired-fixed.commands.json",
+    "sha256": "4084ebdb18271bc09952c1db8407d3cd37e4a164b7dc7273779bbf4aa7524031",
+    "driver_sha256": "921c30037dfa75b24a33e509879a50bb6b79196353e9332ca062c007a2492222"
+  }
 }
