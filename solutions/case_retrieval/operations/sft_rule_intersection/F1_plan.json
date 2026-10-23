@@ -1,0 +1,104 @@
+{
+  "scope": "One fixed F1 transfer: old SFT383 intersection same-source train32 rules483 gives320, plus exactly same public supported65 gives385; no new no-supported arm.",
+  "created_at_utc": "2026-10-23T23:26:49.564951+00:00",
+  "source_sha256": "6dce7d0bbaf704b1020b91e4a53dc1a9bf93dd50d89d101d32b44ba698fdd6e9",
+  "cpu_limit_seconds": 30,
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1",
+  "references": {
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+      "bytes": 10539
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+      "bytes": 12208
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "sft": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "rules": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "bytes": 155574
+    },
+    "supported": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/support-cut03-control/supported.pred.jsonl",
+      "bytes": 155080,
+      "sha256": "17c2646d92270b01be26bcb6f018dd50f4620a539369a8385a29d574595d018d"
+    },
+    "supported65": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/support-cut03-control/addition-keys.json",
+      "bytes": 3390,
+      "sha256": "b4b7ec6bf99bc684c72264407cce22e4f91a8f8db005efaed6f4a689aef93c2b"
+    },
+    "supported_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/support-cut03-control/prediction-freeze.json",
+      "bytes": 2892,
+      "sha256": "49d613a87407261417af06bc198eaeff6e5ad53afc4c4ac3550e96f2c0459f3b"
+    },
+    "intersection_core": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/sft_rule_intersection/run.py",
+      "bytes": 8706,
+      "sha256": "0d1280d2058b6fd31c36074535be281f82033c2cd541e4d9476a82c7bf51274e"
+    },
+    "preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/sft-rule-intersection-F1-preparation/preparation.json",
+      "sha256": "b23c4e9fd1dad696dbe5095418306a6509d2e6c77bb06904afe9fecef74415ba",
+      "bytes": 6759
+    },
+    "preparation_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/sft-rule-intersection-F1-preparation/prepare.py",
+      "sha256": "8917bb7b021eeb657ced8153a7e089be3b264375b66abeae421cad78cc4dc8b8",
+      "bytes": 7036
+    },
+    "sft_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+      "bytes": 13115
+    },
+    "supported_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/support-cut03-control/metrics.json",
+      "sha256": "d785afb3444236eb0058b39a95487d149744ba9d76854658d07907eff5f9b02e",
+      "bytes": 13170
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    }
+  },
+  "expected_counts_without_gold": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "sft_atoms": 383,
+    "rules_atoms": 483,
+    "old_intersection": 320,
+    "old_removed": 63,
+    "supported_additions": 65,
+    "supported_baseline": 448,
+    "final_atoms": 385
+  },
+  "criterion": "delta(micF1+macF1)>0 and delta(macF1)>=0 relative to frozen supported65 baseline Score0.6821288043976663; oldSFT metrics contextual only",
+  "quality_protocol": "Source/plan committed and pushed first; full prediction freeze before F1 gold open; exactly one new all/text public-v2 quality arm; no original-dev.",
+  "limitations": [
+    "F0 inspired this transfer and both F0 and F1 have repeatedly been used for development; neither is a blind estimate.",
+    "Existing supported65 gate cut0.3 was developed using pooled64 calibration includingF1; only its previously frozen membership is preserved here, without refitting or resweeping.",
+    "Rule predictions and oldSFT base are strictly trained onF2+F3 train32; rule replay full bytes exact on F0 andF1.",
+    "Nonrelation and association metadata preserved; exact literal/text semantics; no alt-ID normalization.",
+    "No threshold, new gate, new training, GPU, original-dev evaluation, official submission, or new no-supported arm."
+  ]
+}
