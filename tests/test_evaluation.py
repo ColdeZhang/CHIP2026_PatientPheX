@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from evaluate import evaluate, mention_counts
+from evaluate import associations, evaluate, mention_counts
 from validate_predictions import index_documents, read_hpo, validate_predictions
 
 
@@ -72,6 +72,32 @@ class EvaluationTests(unittest.TestCase):
     def test_unlinked_gold_can_match_one_span_but_not_cheat_linked_gold(self):
         self.assertEqual(mention_counts({(1, 3): {"-1"}}, {(1, 3): {"HP:0000001", "HP:0000002"}}), (1, 1, 0))
         self.assertEqual(mention_counts({(1, 3): {"HP:0000001"}}, {(1, 3): {"-1"}}), (0, 1, 1))
+
+    def test_compound_relation_gold_matches_atomic_predictions_and_deduplicates(self):
+        gold = document(phenotypes=["HP:0000001;HP:0000002", "HP:0000001"])
+        pred = document(phenotypes=["HP:0000001", "HP:0000002"])
+        result = evaluate([gold], [pred])
+        self.assertEqual(result["counts"]["relation"]["tp"], 2)
+        self.assertEqual(result["metrics"]["micF1"], 1)
+        self.assertEqual(result["metrics"]["macF1"], 1)
+
+    def test_partial_compound_relation_prediction_gets_one_fn(self):
+        gold = document(phenotypes=["HP:0000001;HP:0000002"])
+        pred = document(phenotypes=["HP:0000001"])
+        result = evaluate([gold], [pred])
+        self.assertEqual(result["counts"]["relation"]["tp"], 1)
+        self.assertEqual(result["counts"]["relation"]["fp"], 0)
+        self.assertEqual(result["counts"]["relation"]["fn"], 1)
+        self.assertAlmostEqual(result["metrics"]["micF1"], 2 / 3)
+
+    def test_relation_normalization_preserves_non_hpo_and_malformed_values(self):
+        values = ["alpha; beta", "MESH:D009069;MESH:D014786", "HP:0000001;alpha",
+                  "HP:0000001;MESH:D009069", "HP:0000001;", "HP:0000001;HP:123",
+                  "HP:0000001;HP:００００００２", "-1", "HP:0000001"]
+        self.assertEqual(associations(document(phenotypes=values))["P1"], set(values))
+        gold = document(phenotypes=["alpha; beta", "MESH:D009069;MESH:D014786"])
+        pred = document(phenotypes=["alpha; beta", "MESH:D009069;MESH:D014786"])
+        self.assertEqual(evaluate([gold], [pred])["metrics"]["micF1"], 1)
 
     def test_empty_patient_macro_is_one(self):
         gold = document(entities=[], phenotypes=[])
