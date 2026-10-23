@@ -143,18 +143,23 @@ class Retriever:
         top=sum(self.idf.get(g,1.)**2 for g in qg&ag)
         denominator=math.sqrt(sum(self.idf.get(g,1.)**2 for g in qg))*self.alias_norms[idx]
         return top/max(denominator,1e-9)
-    def retrieve(self,query):
-        if query in self.cache:return self.cache[query]
+    def active(self,alias,hid,exclude_doc):
+        if (alias,hid) in self.official:return True
+        support=self.training_docs.get((alias,hid),set())
+        return bool(support-({exclude_doc} if exclude_doc is not None else set()))
+    def retrieve(self,query,exclude_doc=None):
+        cache_key=(query,exclude_doc)
+        if cache_key in self.cache:return self.cache[cache_key]
         self.query_count+=1
         toks=query.split();matches=[]
         if query in self.alias_ids:
-            matches.extend((hid,query,1.,True) for hid in sorted(self.alias_ids[query]))
-        elif len(query)>=5:
+            matches.extend((hid,query,1.,True) for hid in sorted(self.alias_ids[query]) if self.active(query,hid,exclude_doc))
+        if not matches and len(query)>=5:
             stemquery=' '.join(map(stem,toks))
             indices=self.stem_aliases.get(stemquery,[])
             for idx in indices:
                 a=self.aliases[idx]
-                matches.extend((hid,a,self.similarity(query,idx),False) for hid in sorted(self.alias_ids[a]))
+                matches.extend((hid,a,self.similarity(query,idx),False) for hid in sorted(self.alias_ids[a]) if self.active(a,hid,exclude_doc))
         if not matches and len(query)>=7 and len(toks)<=7:
             candidates=self.heads.get(stem(toks[-1]),[])
             if len(candidates)>250:
@@ -163,6 +168,7 @@ class Retriever:
             qset=set(map(stem,toks))
             for idx in candidates[:500]:
                 a=self.aliases[idx];at=self.alias_tokens[idx]
+                if not any(self.active(a,hid,exclude_doc) for hid in self.alias_ids[a]):continue
                 if abs(len(at)-len(toks))>1:continue
                 if len(toks)==1 and a!=query and ratio(a,query)<92:continue
                 overlap=len(qset&set(map(stem,at)))/max(len(qset|set(map(stem,at))),1)
@@ -176,14 +182,14 @@ class Retriever:
                 fuzzy.append((score,idx))
             for score,idx in sorted(fuzzy,reverse=True)[:3]:
                 a=self.aliases[idx]
-                matches.extend((hid,a,score,False) for hid in sorted(self.alias_ids[a]))
+                matches.extend((hid,a,score,False) for hid in sorted(self.alias_ids[a]) if self.active(a,hid,exclude_doc))
         # Different aliases can name the same concept; keep its strongest retrieval.
         best={}
         for match in matches:
             if match[0] not in best or match[2]>best[match[0]][2]:best[match[0]]=match
-        result=list(best.values())[:6];self.cache[query]=result
+        result=list(best.values())[:6];self.cache[cache_key]=result
         return result
-    def candidates(self,doc):
+    def candidates(self,doc,exclude_doc=None):
         result=[]
         for pid,passage in enumerate(doc.get('full_text',[])):
             text=passage.get('text','');offset=int(passage.get('offset',0));tokens=list(TOKEN.finditer(text))
@@ -197,7 +203,7 @@ class Retriever:
                     begin=window[0].start();finish=window[-1].end()
                     surface=text[begin:finish];query=' '.join(m.group().lower() for m in window)
                     if len(query)<3 and not surface.isupper():continue
-                    for hid,matched,similarity,exact in self.retrieve(query):
+                    for hid,matched,similarity,exact in self.retrieve(query,exclude_doc):
                         result.append(Candidate(pid,offset+begin,offset+finish,surface,query,hid,matched,similarity,exact))
         return result
 
@@ -348,7 +354,7 @@ def main():
         print(json.dumps({'stage':'retrieval_ready','hpo_terms':len(hpo),'aliases':len(retriever.aliases)}),flush=True)
         rows=[];labels=[];doc_candidates=[]
         for doc in train:
-            cs=retriever.candidates(doc);gold=gold_mentions(doc,alt);doc_candidates.append(cs)
+            cs=retriever.candidates(doc,exclude_doc=str(doc['pmc_id']));gold=gold_mentions(doc,alt);doc_candidates.append(cs)
             for c in cs:
                 rows.append(mention_features(doc,c,retriever,training=True));labels.append(int((c.start,c.end,c.hid) in gold))
         mention_model=fit_classifier(rows,labels)
