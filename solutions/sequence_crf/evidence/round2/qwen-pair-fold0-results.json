@@ -1,0 +1,135 @@
+{
+  "main_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.5204081632653061,
+    "macF1": 0.4993960217006293,
+    "Score": 0.6181202687327403
+  },
+  "main_counts": {
+    "mention": {
+      "tp": 769,
+      "fp": 178,
+      "fn": 408,
+      "precision": 0.8120380147835269,
+      "recall": 0.653355989804588,
+      "f1": 0.724105461393597
+    },
+    "document": {
+      "tp": 357,
+      "fp": 58,
+      "fn": 208,
+      "precision": 0.8602409638554217,
+      "recall": 0.631858407079646,
+      "f1": 0.7285714285714285
+    },
+    "relation": {
+      "tp": 255,
+      "fp": 346,
+      "fn": 124,
+      "precision": 0.4242928452579035,
+      "recall": 0.6728232189973615,
+      "f1": 0.5204081632653061
+    }
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 947,
+      "relations": 601,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "2098e8215c55afd8698e1f7522646792d3a96529a42f5fb74cd18efaea1e429e",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "assembly": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "entities": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "prompts": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "responses": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/responses.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/pred.jsonl",
+      "final_entities": null,
+      "fallback": "baseline"
+    },
+    "stats": {
+      "valid_candidate_decisions": 413,
+      "unresolved_candidate_decisions": 2
+    },
+    "code_sha256": "31494a7da6c7dd29f50dcbaf726a04fe2aed2b22e616a1e095b05509dabc2c37",
+    "files": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "entities": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+      "prompts": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+      "responses": "14f2093aa452a4c9c59d5b159cba9b6d49c2fa2ce2687b7506d145219e996912",
+      "output": "2098e8215c55afd8698e1f7522646792d3a96529a42f5fb74cd18efaea1e429e"
+    }
+  },
+  "inference": {
+    "configuration": {
+      "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+      "prompts": "prompts.jsonl",
+      "output": "responses.jsonl",
+      "max_input_tokens": 14000,
+      "max_new_tokens": 1600,
+      "batch_size": 1,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+        "prompts": "prompts.jsonl",
+        "output": "responses.jsonl",
+        "max_input_tokens": 14000,
+        "max_new_tokens": 1600,
+        "batch_size": 1,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+      "code_sha256": "cd720e547ae454fdba996a530d1f2f728d23df4d1af51833a8d862805073b7d7",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 17933336576,
+    "elapsed_seconds": 272.023,
+    "output_sha256": "14f2093aa452a4c9c59d5b159cba9b6d49c2fa2ce2687b7506d145219e996912"
+  },
+  "consensus_ablation": {
+    "rule-intersection": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.7053824362606232,
+      "macF1": 0.6840028245616495,
+      "Score": 0.7105155376968246
+    },
+    "rule-union": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.5230460921843687,
+      "macF1": 0.49433249199442914,
+      "Score": 0.6175138685359558
+    },
+    "majority": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.6709677419354839,
+      "macF1": 0.6455978950001332,
+      "Score": 0.6923106317251606
+    }
+  }
+}
