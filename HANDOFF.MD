@@ -205,6 +205,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：恢复后先核本地Git状态、方案台账与已保存job/manifest，再读取原managed进程、实际checkpoint和目标GPU的UUID/进程。确认已有作业状态后才恢复监控或重建代理；不要以代理消失推断训练失败，也不要重新跑已完成实验。若确需重启，使用独立输出目录并记录旧进程终态。当前原作业 `proc_b554a946-3034-416e-94b7-bc12084e6b44` 已确认持续运行，未重启；恢复入口见[序列方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)（检查点 `31361f9`）和[总记录](docs/campaigns/round2-20261023.md)。
 
+## H33：标准库辅助函数也依赖实际 Python 版本
+
+GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_digest`，而实际系统解释器为 3.10.12，首次在校验文件时退出，尚未加载模型或使用GPU。模型库能导入不代表外围启动器的标准库调用兼容。
+
+**避免方法**：按运行命令所用解释器核对版本，对新增辅助函数先做相同环境的CPU检查；跨3.10/3.11的文件哈希使用分块 `hashlib.sha256().update()`。已修复兼容调用，wrapper SHA `2688f27b…`；实际3.10.12哈希检查通过，重启作业也通过文件绑定并进入推断。专门CPU自检发生在重启后，不能记成启动前已执行。首次失败、原源码和修复记录保存在外部 `sequence_crf/gliner-biomed-nested/attempt1-pythonhash/`、`attempt1-failure.json`、`actual-wrapper-hash-probe.json`；模型/解码协议未改变，不能将启动器失败记成模型质量负结果。后续质量结论见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
