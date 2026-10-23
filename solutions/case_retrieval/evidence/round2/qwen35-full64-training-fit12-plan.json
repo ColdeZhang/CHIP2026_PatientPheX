@@ -1,0 +1,167 @@
+{
+  "status": "frozen_training_only_12_generations_no_new_training",
+  "driver_sha256": "e3e08972a465fe0d048a922203c630830c3017d2c48f41bbcfd05e84ae89e387",
+  "evaluator_sha256": "b4d6fb982950ab98d8494186ddb4f8d3930b58077ec62ab2d3275fba9beeb557",
+  "runner_sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+  "prompts_sha256": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3",
+  "model_source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+  "hard_cap_seconds": 300,
+  "kill_grace_seconds": 30,
+  "argv": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "300",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "full64-training-fit12/qwen35_runner.py",
+    "--model",
+    "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "--source-manifest",
+    "model-source-manifest.json",
+    "--prompts",
+    "full64-training-fit12/prompts.jsonl",
+    "--output",
+    "full64-training-fit12/epoch2.responses.jsonl",
+    "--adapter",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter",
+    "--max-input-tokens",
+    "14000",
+    "--max-new-tokens",
+    "1600"
+  ],
+  "runner_configuration": {
+    "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "source_manifest": "model-source-manifest.json",
+    "prompts": "full64-training-fit12/prompts.jsonl",
+    "output": "full64-training-fit12/epoch2.responses.jsonl",
+    "adapter": "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter",
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600
+  },
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "cwd": "case-retrieval/qwen35-preparation",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "adapter_files": {
+    "adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+    "adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+  },
+  "local_references": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/prompts.jsonl",
+      "bytes": 174266,
+      "sha256": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3"
+    },
+    "targets": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12.targets.jsonl",
+      "bytes": 2414,
+      "sha256": "569927da3c45939b6fe5872c870d9ded8efe4ebb7163a3cf1b8fdcb7563c835c"
+    },
+    "selection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-proposal.json",
+      "bytes": 2117,
+      "sha256": "c88d780967659311133d3e865792c27a4387554ebd67695f870c843d67aaea0e"
+    },
+    "CPU_objective": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/summary.json",
+      "bytes": 10706,
+      "sha256": "a614f60874ab3462627f629bb8ccd52a5a9d7836d4a1133a3f058ab15a94ef4c"
+    },
+    "original_parser": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/merge_pair_rag.py",
+      "bytes": 3684,
+      "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1"
+    },
+    "runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/qwen35_runner.py",
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/evaluate_fit.py",
+      "bytes": 4040,
+      "sha256": "b4d6fb982950ab98d8494186ddb4f8d3930b58077ec62ab2d3275fba9beeb557"
+    },
+    "training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "16b674d6a4d960086f8f208995c79f0c5c940eda880752a8e2dfa94d21ef7bf2"
+    },
+    "epoch002_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10774,
+      "sha256": "f217bdc5bd191fe4319c38c99b46ef7b8d1f505d5f89d8c4d2e21a9425511e87"
+    },
+    "model_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "remote_sha256": {
+    "full64-training-fit12/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "full64-training-fit12/prompts.jsonl": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3",
+    "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter/adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter/adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+  },
+  "row_documents": {
+    "12455887:relations:24": "12455887",
+    "12846941:relations:8": "12846941",
+    "12405443:relations:16": "12405443",
+    "5415817:relations:0": "5415817",
+    "6057141:relations:8": "6057141",
+    "5538066:relations:0": "5538066",
+    "5425407:relations:0": "5425407",
+    "10313222:relations:8": "10313222",
+    "12652105:relations:0": "12652105",
+    "12078887:relations:24": "12078887",
+    "5789735:relations:0": "5789735",
+    "11235872:relations:8": "11235872"
+  },
+  "prefix_tokens": {
+    "12455887:relations:24": 3305,
+    "12846941:relations:8": 3422,
+    "12405443:relations:16": 3593,
+    "5415817:relations:0": 3061,
+    "6057141:relations:8": 3457,
+    "5538066:relations:0": 3629,
+    "5425407:relations:0": 3873,
+    "10313222:relations:8": 2609,
+    "12652105:relations:0": 3545,
+    "12078887:relations:24": 1655,
+    "5789735:relations:0": 3725,
+    "11235872:relations:8": 4923
+  },
+  "rendered_prefix_sha256": {
+    "12455887:relations:24": "07a066a85261ec1b7979db94d2cf3a89f1ce2ce6e9944bc34e1e06a53548f54d",
+    "12846941:relations:8": "4bff45fd8465efc216d29c6dcf0d26b0b20d4cb3568ecfd66ff7efc37fd038cf",
+    "12405443:relations:16": "9b6ed486cb43dbdf1dc77bd1239101e426eec0ac42425e426f3d926a55f5347b",
+    "5415817:relations:0": "ca69f07f5d9d741ee1d046f1662fb94e609cdbd2f0470e7d2a1c1e355f3a0cab",
+    "6057141:relations:8": "cb6aec5b91285f163d35f973855b02b52b1dc5fddfd76b414530c91cfe2131cc",
+    "5538066:relations:0": "4af95022b5297cf94e95432cf8dac759538f60a3afce726a0b5607e6c682a69b",
+    "5425407:relations:0": "6402b0c220e940462085f22e526d647be218cdd9971e6b7a7f57c3cfd6f03f25",
+    "10313222:relations:8": "185e00861b429d5aa2d0ada6f0ea9d343d5ffc33350aad86f19a5bc0825ced3c",
+    "12652105:relations:0": "bc35cc6f4bf998f011c05f35c95278e3c89e723870b2fa6c1a3cfeed67aed0cf",
+    "12078887:relations:24": "39eb5b68e9455f3bd9fd5d91900a05218ead902af19b144d460fb33e57a1f156",
+    "5789735:relations:0": "2d9b443e7cc355b0028fe9396215b44a789427560e2727e99e4017d339c7b4b4",
+    "11235872:relations:8": "1f3305c6046b7c9cfd2af63eec445cd6e9e6ab737989d5a9c9d45478c72b7c57"
+  },
+  "selection_independent_of_targets": true,
+  "targets_not_uploaded": true,
+  "original_decoder_and_parser_preserved": true,
+  "scope": "Only originaltrain64 fixed12, one greedy epoch002 generation each. Root chose generation-only; initial optional teacher-forced category-NLL proposal is not executed. No originaldev/outergold/official activity or automatic retry/extra epochs.",
+  "quality_contract": "Strict JSON schema, relation P/R/F1 and exact-row set assignment only. This is not publicv2 Score or generalization."
+}

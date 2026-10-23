@@ -1,0 +1,73 @@
+{
+  "status": "CPU_complete_fixed12_training_generation_authorized_not_started",
+  "training_documents": 64,
+  "rows": 265,
+  "totals": {
+    "candidate_count": 1908,
+    "positive_pairs": 1229,
+    "negative_pairs": 4099,
+    "empty_values": 919,
+    "nonempty_values": 989,
+    "supervised_tokens": 15410,
+    "full_tokens": 864937,
+    "prefix_tokens": 849527,
+    "list_value_overlap_tokens": 6852,
+    "first_branch_tokens": 1908,
+    "first_empty_branch_tokens": 919,
+    "first_nonempty_branch_tokens": 989,
+    "patient_id_overlap_tokens": 2927,
+    "patient_or_first_branch_tokens": 4835
+  },
+  "lexical_counts": {
+    "structure": 4321,
+    "cid_copy": 7632,
+    "patient_id": 2927,
+    "chat_eos": 265,
+    "post_eos_newline": 265
+  },
+  "all_empty_prompts": 19,
+  "nonempty_prompts": 246,
+  "all_empty_documents": 1,
+  "epoch_online_loss": [
+    0.11426781427101507,
+    0.06050015168308592
+  ],
+  "loss_mask": "Assistant only; all849527 prefix masked, all15410 suffix included including265EOS+265newline",
+  "objective": "Per-row answer-token CE mean, then accumulation-group mean;33 groups8 +1 group1 each epoch",
+  "interpretation": "Many copied CID/format tokens but token count is not loss/gradient contribution. Empty-list punctuation is part of actual relation decision. Existing online mixed loss does not establish final greedy fit or benefit of more epochs.",
+  "evidence": {
+    "summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/summary.json",
+      "bytes": 10706,
+      "sha256": "a614f60874ab3462627f629bb8ccd52a5a9d7836d4a1133a3f058ab15a94ef4c"
+    },
+    "selection_proposal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-proposal.json",
+      "bytes": 2117,
+      "sha256": "c88d780967659311133d3e865792c27a4387554ebd67695f870c843d67aaea0e"
+    },
+    "source_snapshot": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/source-snapshots/audit_full64_objective.py",
+      "bytes": 12678,
+      "sha256": "af1243f477d8911a951180a7f41f58c2e721ba9ad4f4e23bd7efe6c155a86d4d"
+    },
+    "trainer_snapshot": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/source-snapshots/train_qwen35_full64.py",
+      "bytes": 28823,
+      "sha256": "f83236587d8f307bb6e51ca44c9c69177efce27661b0f889bd00745808030f03"
+    },
+    "run_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/run-plan.json",
+      "bytes": 8600,
+      "sha256": "dab33988ed1ea13143c41bff71f404025b643212033efbe3aede0e625ab9f2bc"
+    },
+    "runtime_cpu": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/runtime-cpu-preflight.json",
+      "bytes": 227,
+      "sha256": "7c594c48c1e3e7dd52cd2e3e29f4737ec5bb5ab412528dc98ca8d292fe6c4082"
+    }
+  },
+  "source_execution_cwd": "/workspace/patientphex-worktrees/round2-case-retrieval",
+  "gpu_used_for_this_CPU_report": false,
+  "no_originaldev_or_outergold": true
+}
