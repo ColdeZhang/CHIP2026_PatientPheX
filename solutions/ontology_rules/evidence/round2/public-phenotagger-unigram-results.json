@@ -1,0 +1,369 @@
+{
+  "status": "negative_fixed_unigram_append_closed_all_incremental_reviews_PASS",
+  "experiment_id": "E-20261023-PUBLIC-PHENO-UNIGRAM",
+  "execution_commit": "ee008b3efb78ba0df503abad43198f9065ac4ed4",
+  "scope": "Training-side fixed fourfold development control; no originaldev/official/fit or threshold search",
+  "baseline": "audited selector-nested-control; all4510 entity objects including195 nested retained; all nonentities exact",
+  "policy": "Bioformer top1 notNone, native5dp strictly>.95, fixed currentHPO map; original negation and nonoverlap append",
+  "result": {
+    "pooled": {
+      "baseline": {
+        "menF1": 0.7662991114441708,
+        "docF1": 0.8033671487157349,
+        "micF1": 0.6878461090061206,
+        "macF1": 0.6543902534856236,
+        "Score": 0.7279756556629124
+      },
+      "new": {
+        "menF1": 0.7390053431976983,
+        "docF1": 0.7853272196748645,
+        "micF1": 0.6878461090061206,
+        "macF1": 0.6543902534856236,
+        "Score": 0.7166422313410767
+      },
+      "delta": {
+        "menF1": -0.02729376824647256,
+        "docF1": -0.018039929040870373,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.011333424321835706
+      },
+      "entity_objective_delta": -0.022666848643671467,
+      "counts_old": {
+        "mention": {
+          "tp": 3579,
+          "fp": 934,
+          "fn": 1249,
+          "precision": 0.7930423221803679,
+          "recall": 0.7413007456503728,
+          "f1": 0.7662991114441708
+        },
+        "document": {
+          "tp": 1861,
+          "fp": 321,
+          "fn": 590,
+          "precision": 0.8528872593950504,
+          "recall": 0.7592819257445941,
+          "f1": 0.8033671487157349
+        },
+        "relation": {
+          "tp": 1180,
+          "fp": 534,
+          "fn": 537,
+          "precision": 0.6884480746791132,
+          "recall": 0.6872451951077461,
+          "f1": 0.6878461090061206
+        }
+      },
+      "counts_new": {
+        "mention": {
+          "tp": 3596,
+          "fp": 1308,
+          "fn": 1232,
+          "precision": 0.733278955954323,
+          "recall": 0.7448218724109362,
+          "f1": 0.7390053431976983
+        },
+        "document": {
+          "tp": 1884,
+          "fp": 463,
+          "fn": 567,
+          "precision": 0.8027268853855987,
+          "recall": 0.7686658506731946,
+          "f1": 0.7853272196748645
+        },
+        "relation": {
+          "tp": 1180,
+          "fp": 534,
+          "fn": 537,
+          "precision": 0.6884480746791132,
+          "recall": 0.6872451951077461,
+          "f1": 0.6878461090061206
+        }
+      }
+    },
+    "retention": {
+      "pooled_entity_objective_strictly_improved": false,
+      "nondecreasing_folds": 0,
+      "retain": false
+    },
+    "counts": {
+      "native_candidates": 2516,
+      "reject_overlap_original": 2007,
+      "reject_negated": 118,
+      "added_entities": 391,
+      "added_relations": 0
+    },
+    "format_errors": 0,
+    "format_warnings": 0,
+    "all_nonentities_exact": true,
+    "all_old_entities_including_nested_preserved": true
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "baseline": {
+        "menF1": 0.7680709534368071,
+        "docF1": 0.7786259541984732,
+        "micF1": 0.712401055408971,
+        "macF1": 0.6844387608518604,
+        "Score": 0.735884180974028
+      },
+      "new": {
+        "menF1": 0.7262054507337526,
+        "docF1": 0.7477148080438757,
+        "micF1": 0.712401055408971,
+        "macF1": 0.6844387608518604,
+        "Score": 0.7176900187596149
+      },
+      "delta": {
+        "menF1": -0.04186550270305445,
+        "docF1": -0.030911146154597557,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.018194162214413057
+      },
+      "added_entities": 130
+    },
+    {
+      "fold": 1,
+      "baseline": {
+        "menF1": 0.7726586102719033,
+        "docF1": 0.8211267605633803,
+        "micF1": 0.6595538312318138,
+        "macF1": 0.6592399471314652,
+        "Score": 0.7281447872996406
+      },
+      "new": {
+        "menF1": 0.7513691128148959,
+        "docF1": 0.8070892978868439,
+        "micF1": 0.6595538312318138,
+        "macF1": 0.6592399471314652,
+        "Score": 0.7193130472662547
+      },
+      "delta": {
+        "menF1": -0.021289497457007367,
+        "docF1": -0.014037462676536383,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.008831740033385937
+      },
+      "added_entities": 91
+    },
+    {
+      "fold": 2,
+      "baseline": {
+        "menF1": 0.7545494895694629,
+        "docF1": 0.7944700460829494,
+        "micF1": 0.7046070460704607,
+        "macF1": 0.7349417473850429,
+        "Score": 0.747142082276979
+      },
+      "new": {
+        "menF1": 0.7262664963814389,
+        "docF1": 0.7747105966162066,
+        "micF1": 0.7046070460704607,
+        "macF1": 0.7349417473850429,
+        "Score": 0.7351314716132873
+      },
+      "delta": {
+        "menF1": -0.028282993188023964,
+        "docF1": -0.019759449466742796,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.01201061066369169
+      },
+      "added_entities": 96
+    },
+    {
+      "fold": 3,
+      "baseline": {
+        "menF1": 0.7688787185354691,
+        "docF1": 0.812962962962963,
+        "micF1": 0.6858407079646017,
+        "macF1": 0.547780924175251,
+        "Score": 0.7038658284095712
+      },
+      "new": {
+        "menF1": 0.7507746790615316,
+        "docF1": 0.8043087971274686,
+        "micF1": 0.6858407079646017,
+        "macF1": 0.547780924175251,
+        "Score": 0.6971762770822132
+      },
+      "delta": {
+        "menF1": -0.01810403947393746,
+        "docF1": -0.008654165835494387,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.006689551327358045
+      },
+      "added_entities": 74
+    }
+  ],
+  "CPU_seconds": {
+    "cache_program": 238.2882363051176,
+    "cache_wrapper": 239.27555534988642,
+    "new_forward": 221.98574145510793,
+    "quality_program": 0.8048330579986214,
+    "quality_wrapper": 0.868412473
+  },
+  "decision": "Close this direct-append policy. Do not sweep threshold, switch baseline, add an HGB fit, or move to originaldev. Complete raw cache retained for reproducibility, not treated as valid entities.",
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/plan.json",
+      "sha256": "a7ca15c259709b969d330da08e4ab12e7f1e8e2dfab8fb6d0631087bffb56d46",
+      "bytes": 10115
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_unigram_preparation/control/evaluate_control.py",
+      "sha256": "aeb0376fdd4e9d1e37e0afa03b91a28161c3f3bb842fef5f7398fa5e7a404214",
+      "bytes": 9245
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/job.json",
+      "sha256": "6646113cb335bde3b5c123dbcfdd024cc4ad6cacbd54ce88840706e0c3b57256",
+      "bytes": 820
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/summary.json",
+      "sha256": "2aafa651683b6b31d0b2510a062e47a6f39783166cc23d9b2513e5c520f85dae",
+      "bytes": 13368
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/complete-freeze.json",
+      "sha256": "47f3d6422351808d00a7ce78036cd66a7982fd5551bbc17c19b50bcd3b9053c1",
+      "bytes": 5933
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/plan.json",
+      "sha256": "fe59e8549eeafa471d9017299879a0d513814160f814c0ecceb027d44c2c4a8b",
+      "bytes": 8064
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/terminal/run-state.json",
+      "sha256": "301019f2f6437ffe75844930be5625cde701c1ad1355dc5bae3272880329352d",
+      "bytes": 739
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/terminal/output/summary.json",
+      "sha256": "023791b9d4f19889dc14710999633f1557f45b50911170dea4231385f54ad6f1",
+      "bytes": 4431
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/terminal/output/unique-raw-predictions.jsonl",
+      "sha256": "f65ed6f7e7cdfbb605e2f36a8abe711914728356aef65a53ea3ac188b15be9ea",
+      "bytes": 6446915
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/terminal/output/unigram-sidecar.jsonl",
+      "sha256": "884de72bdf2f875967faa334fbb05fbfe139a60e90ce73ea6cf5b170ebdcfede",
+      "bytes": 1584006
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/recovered-contract-check.json",
+      "sha256": "9edb67d6171053eb423f1aa73d705d1eece4be7a1bb2b1ba5ecf532f3c86aef8",
+      "bytes": 544
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-unigram-quality-review/review.json",
+      "sha256": "379f2c4bea14897841a2f2ee93b90f0461faf7d295034f064756025959fe01b8",
+      "bytes": 6148
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold0/prediction.jsonl",
+      "sha256": "6810242156d9a69dbdaf7f61a35434666ea94f1850ec27d95912ced977ec0ecf",
+      "bytes": 156994
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold0/assembly-manifest.json",
+      "sha256": "9f4561fbee09696f5fc407cc14a2be82554370e8fd670556193f3b2788a71bdd",
+      "bytes": 1276
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold0/validation.json",
+      "sha256": "e4e7fe6e336094bf94e908f21a827b2d3affaa887495c8ac37598281c35265a3",
+      "bytes": 425
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold0/metrics.json",
+      "sha256": "c25ce6a45830833c91dec5e3fadd16f4b8b65e9a4a2e820fbbbaf6aae0ef5719",
+      "bytes": 13203
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold1/prediction.jsonl",
+      "sha256": "88e4df435f9b16a4f663f54e18775e68739237ea8e248f7c34bb9c0b39fe0074",
+      "bytes": 181718
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold1/assembly-manifest.json",
+      "sha256": "f100a17f89433e94a4220dbd6b3a44fa5648cec6b7da8f17a572bdfc642b0d55",
+      "bytes": 1275
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold1/validation.json",
+      "sha256": "c3ed16ffdf7739f6db506b02cbcea003274070b36c04cf83c283a909eba6e61d",
+      "bytes": 425
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold1/metrics.json",
+      "sha256": "1598797b5d51a7e7ead522473ecaf04317fb2d99a1cb8867b479015da21d29fa",
+      "bytes": 13220
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold2/prediction.jsonl",
+      "sha256": "da080846f9f13d9433865e1e033fb562fba64274af67c63878d30e1c8cfc3cc2",
+      "bytes": 155110
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold2/assembly-manifest.json",
+      "sha256": "27913b66ec0f2b6008b2c16f1998c9647a76d38b013708bab52affb74ec24c30",
+      "bytes": 1275
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold2/validation.json",
+      "sha256": "ec409a3e555dde986c1f3a45367abdf2b4e6c2a44eb4c3b441554f93d14658cd",
+      "bytes": 425
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold2/metrics.json",
+      "sha256": "90147c836a92906688dee7a30bb4aa67efd89ff707ab9f5619acb6c776f89507",
+      "bytes": 13106
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold3/prediction.jsonl",
+      "sha256": "691da547b51d2c6ca26ca872e26919447a308461cfb3ae2e485766cc3b6edd22",
+      "bytes": 147288
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold3/assembly-manifest.json",
+      "sha256": "d4b9cb440fb59075766ea94781e10dbf529a1d7cc92ff34c342249280170c155",
+      "bytes": 1275
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold3/validation.json",
+      "sha256": "17a700b5b732581dcd0902e70fa69e5c8e07cd7425cd048cbb43601787e19f67",
+      "bytes": 425
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/fold3/metrics.json",
+      "sha256": "6c120003ad6ac307608263bf58be46ca88b7ae1958b1d98c6951565372488415",
+      "bytes": 13090
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/pooled.prediction.jsonl",
+      "sha256": "37fc9d79f0ed3b993785df2600e420191fe41c8a28d4e1900df86e47989ce992",
+      "bytes": 641110
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/control/terminal/pooled.metrics.json",
+      "sha256": "dcaebd82cf62c4e644a674de959ffc9c2228c7e636489d3c18806c895390a61c",
+      "bytes": 42743
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-unigram-preparation-review/full-cache-review.json",
+      "sha256": "751a5262bea01c92444d8bed470704a60bacc50ce81a3157c15b14156fa61665",
+      "bytes": 10914
+    }
+  ]
+}
