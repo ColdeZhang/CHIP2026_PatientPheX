@@ -187,6 +187,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：分别核验原文定位、HPO语义与患者归属，不能把任一项通过代替其他项。优先让模型选择带名称/定义的有限候选或可逆编号；自由生成编码若要保留，应单独验证其标准化质量。词典匹配仍不证明患者归属，歧义词面和未匹配长quote不能强行修正。本次仅保存诊断与负结果，未依据gold打补丁或追加重链接评分；证据见[检索实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/case-retrieval/solutions/case_retrieval/experiments/E-20261023-008.md)及外部 `patient-set-fold0-bf16-v1/diagnostics/exact-quote-id-summary.json`。
 
+## H30：第三方训练loss能正常运行，仍可能因位置参数错位反向优化
+
+实际A800私有环境的 `gliner==0.2.22`（`modeling/base.py` SHA `b3ef985596410c07a447f18f5e199339b97ca4f603441a9ff36f9242d949e5bd`）中，`SpanModel.loss` 调用 `_loss` 漏传 `prob_margin`，使 `negatives=1` 落到 `label_smoothing=1`，所有标签变成0.5。CPU最小复验：两有效logit `[2,-2]`、标签 `[1,0]` 加一个padding，库loss为1.126928且正例梯度为正；声明的有效跨度BCE为0.126928且正例梯度为负。正常退出和有限loss不能证明监督正确。
+
+**避免方法**：监督训练前核对实际版本的调用签名，以可手算正负样本验证loss、梯度方向及padding mask。已绕过：方案 `45e107c` 改用自有入口显式计算logits上的BCE和有效跨度mask，不改共享库；实际A800 CPU独审已通过正负梯度、极端padding、masked标签翻转不变及按总有效span归一，修复报告SHA `0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2`。本次在GPU单步及正式训练前发现，既有零样本推理不经过loss，因此不受影响。结论只适用于该已核对源码，不泛化到所有GLiNER版本；数值证据在外部 `validation/gliner-supervised-review/actual-runtime-probe.json`（SHA `de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1`），方案入口见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
