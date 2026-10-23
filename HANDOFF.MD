@@ -243,6 +243,12 @@ PhenoTagger v1.2 的 `build_ngram_testset_filted` 把参数 `Ngram=8` 在遇短�
 
 **避免方法**：先对每条完整合法续写分词，再取得候选间真正共同的token前缀，按causal next-token位置计算后缀概率，并固定分支结束分隔符。检查所有分支的完整token复原与分歧位置，不从字符边界推断token边界；也不能把只枚举固定JSON顺序的子集归一值称为无条件患者概率。实际98分支的共同前缀/后缀契约已通过，源码 `9b2a33b3…`，证据为外部 `case_retrieval/qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/token-contract.json`（SHA `e1d170ab…`）；实际GPU数值、耗时和质量另按后续终点记录，本条不宣称其已通过。
 
+## H39：模型加载成功后，记录元数据也可能使任务退出
+
+Transformers的实际loading info可包含Python `set`。早期Qwen入口已为此实现显式JSON序列化，但新的条件似然入口重新用了普通writer，加载模型后、任何forward之前再次因 `set is not JSON serializable` 退出。该次没有分数，不能记成模型数值或质量失败；新入口复用已验证的writer后，在原绝对截止内完成98分支。
+
+**避免方法**：公共运行辅助逻辑沿用已核接口，新增manifest写入用真实返回对象或包含空/非空集合的契约检查。对支持的类型显式转换，对未知类型报错；不要一概 `str()` 隐藏数据结构。保存失败源码/无forward证据，核实原进程和GPU已释放后，用独立attempt目录恢复，不覆盖失败产物或重启重复作业。既有helper检查在外部 `case_retrieval/qwen35-preparation/loading-info-serialization-fix.json`；本次仅序列化修复提交 `0a2fada`，模型/98分支输入不变，终点与实际耗时见检索方案记录。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
