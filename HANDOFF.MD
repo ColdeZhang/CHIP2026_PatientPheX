@@ -225,6 +225,12 @@ GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_di
 
 **避免方法**：保留AMP的skip/backoff语义并正确协调scheduler，或统一采用硬件支持的BF16策略；同时检查有效loss、真实参数更新和数值状态，不能只检查退出码。此次两对照臂统一改为BF16、参数和Adam仍FP32；实际正式顺序前三batch及最长batch均有限，非零学习率下参数更新，诊断状态丢弃后重新fresh训练。旧FP16失败/来源独立保留，不记作质量负结果。证据：外部 `case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-diagnostic-complete.json`，SHA `171e5f82356d3f84e75797fd7666df7b1d9dac987cc4261444ce47cf861e35c7`；正式新终点以方案台账为准。
 
+## H36：第三方候选生成器会因跨句可变状态静默漏项
+
+PhenoTagger v1.2 的 `build_ngram_testset_filted` 把参数 `Ngram=8` 在遇短句时原地减小，后续长句继续沿用变小的上限。它正常返回且坐标合法，因此仅检查退出码和格式无法发现召回损失。固定16篇无标签输入的CPU对照中，原70,971候选，改为每句独立 `min(8, sentence_length)` 后75,790候选，增加4,819项、影响72段；52,185个token的原文坐标均通过，修复后的坐标集合包含全部原候选。
+
+**避免方法**：复用候选代码时检查跨样本参数是否被修改，以前置短句/后置长句的构造例和输入级集合对照验证。只修局部上限，不借机改过滤或阈值；事前固定修复版并保存上游差异，不必为了原样复现再跑已知错误版质量。上述只是无标签候选检查，尚不证明新增候选正确或得分改善。证据：外部 `research/public-phenotagger-reuse/native-pipeline/candidate-census.json`，SHA `aac89791d14b7984361ee692940927772f67d8e1f4a8ce86a1d1e4255c203f0e`；固定函数 `1569e545…`，后续质量状态见方案台账。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
