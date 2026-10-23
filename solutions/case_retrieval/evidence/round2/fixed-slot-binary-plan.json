@@ -1,0 +1,206 @@
+{
+  "status": "CPU_contract_pass_probe_authorized_not_yet_started",
+  "chosen": "readable fixed slots, max7168 rejection-only; no truncation",
+  "cpu": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/v3-local-config/cpu-design-report.json",
+    "bytes": 97982,
+    "sha256": "3c847c36424fab6de8878edcfe59f767dfb50191f7bdbb3c95e331eb339fbfb0"
+  },
+  "cpu_execution": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/v3-local-config/actual-cpu-execution.json",
+    "bytes": 3377,
+    "sha256": "5cd21930eec181ad801b5eae93e277295ef596d96e4189d44aebdbbddbf6d9c4"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/decision_target_design/cpu_design.py",
+    "bytes": 24582,
+    "sha256": "6a03402c231c39333181b3f54dd3b50ba8839b5fe6a25976c5d4392ed93013c6"
+  },
+  "compact_comparison": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/v4-compact-slots/cpu-design-report.json",
+    "bytes": 98040,
+    "sha256": "398e9fc3e50f16aa1ff24c7de6493137a31eb1d421dc077a5af66b2ea3aaaae8"
+  },
+  "train": {
+    "rows": 124,
+    "total_tokens": 424087,
+    "maximum": 6777,
+    "over6144": 1,
+    "over6400": 1,
+    "over14000": 0
+  },
+  "F1_input": {
+    "rows": 80,
+    "total_tokens": 268028,
+    "maximum": 6091,
+    "over6144": 0,
+    "over6400": 0,
+    "over14000": 0
+  },
+  "labels": {
+    "total": 2506,
+    "positive": 594,
+    "negative": 1912
+  },
+  "no_answers_in_input": true,
+  "all_labels_flip_input_exact": true,
+  "native_interface": {
+    "native_class": "Qwen3_5ForCausalLM",
+    "backbone": "Qwen3_5TextModel",
+    "head_type": "Linear",
+    "head_shape": [
+      248320,
+      4096
+    ],
+    "head_frozen": true,
+    "trainable_parameters": 43278336,
+    "all_parameters_meta_no_real_weights": true,
+    "native_forward": {
+      "path": "sft-meta1-fusion/decision-target-context-design/v3-local-config/actual-native-forward.txt",
+      "bytes": 2329,
+      "sha256": "b59434aff25beac0c2d1624bbe036a4fad8919270bd5d70574bc225eb107d5f3"
+    },
+    "peft_forward": {
+      "path": "sft-meta1-fusion/decision-target-context-design/v3-local-config/actual-peft-forward.txt",
+      "bytes": 4019,
+      "sha256": "739d74fe48e688aabd241921d2578bc57add6f6e239dc1b07f66c1e4a1bd864b"
+    },
+    "adapter_config": {
+      "path": "sft-meta1-fusion/formal2ep/epoch-002/adapter/adapter_config.json",
+      "bytes": 1287,
+      "sha256": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9"
+    },
+    "implementation": "Use wrapped(..., logits_to_keep=slot_positions, use_cache=False), no labels argument; output[0].index_select(-1,[token0,token1]), custom CE with slot targets. No shifted token labels and no new head.",
+    "real_GPU_equivalence_and_gradient_tested": false
+  },
+  "ar_comparator": {
+    "rows": 124,
+    "total_tokens": 410855,
+    "maximum": 5802,
+    "over6144": 0,
+    "over6400": 0,
+    "over14000": 0
+  },
+  "context_inventory": {
+    "train32": {
+      "counts": {
+        "evidence_contexts": 1550,
+        "uniquely_located_contexts": 1550,
+        "local_context_not_whole_passage": 1028,
+        "candidate_CIDs": 880,
+        "candidate_patient_pairs": 2506,
+        "old_local_visible_pairs": 665,
+        "new_local_visible_pairs": 1004,
+        "new_local_visibility_pairs": 339,
+        "lost_local_visibility_pairs": 0,
+        "preceding_same_structure_patient_passage": 190
+      },
+      "tokens": {
+        "rows": 124,
+        "total_tokens": 578854,
+        "maximum": 11395,
+        "over6144": 23,
+        "over6400": 19,
+        "over14000": 0
+      }
+    },
+    "F1_input16": {
+      "counts": {
+        "evidence_contexts": 982,
+        "uniquely_located_contexts": 982,
+        "local_context_not_whole_passage": 714,
+        "preceding_same_structure_patient_passage": 145,
+        "candidate_CIDs": 587,
+        "candidate_patient_pairs": 1557,
+        "old_local_visible_pairs": 351,
+        "new_local_visible_pairs": 576,
+        "new_local_visibility_pairs": 225,
+        "lost_local_visibility_pairs": 0
+      },
+      "tokens": {
+        "rows": 80,
+        "total_tokens": 385820,
+        "maximum": 9624,
+        "over6144": 15,
+        "over6400": 14,
+        "over14000": 0
+      }
+    }
+  },
+  "selected_projection": {
+    "rows": 124,
+    "epochs": 2,
+    "updates": 32,
+    "warmup_updates": 2,
+    "rank": 16,
+    "learning_rate": 0.0001,
+    "token_ratio": 1.053386289909934,
+    "old_actual_training_seconds": 1149.460371017456,
+    "token_linear_training_seconds": 1210.8257956245743,
+    "old_forward_seconds": 307.519982336089,
+    "old_forward_tokens": 1475324,
+    "meta_token_linear_forward_seconds": 55.86838269124427,
+    "GPU_cost_unmeasured": true
+  },
+  "compact_tokens": {
+    "rows": 124,
+    "total_tokens": 419502,
+    "maximum": 6553,
+    "over6144": 1,
+    "over6400": 1,
+    "over14000": 0
+  },
+  "planned": {
+    "initialization": "Fresh same public9B, same r16/alpha32/.05/seed20261023, no SFT32/probe adapter inheritance",
+    "scope": "Native full vs tensor selected slot logit numerical check on actual shortest>=2slots row880; longest6777 actual CE/backward/nonzeroLRstep. No quality.",
+    "position": "Read direct question delimiter token; no -1, no native labels, no answer token in input.",
+    "loss": "Existing frozen LM head columns15/16 only; FP32 unweighted two-class CE per-row mean. Actual training original microbatch1/accum8, last group4 divided by4.",
+    "threshold": ".5 fixed after two-way softmax, no temperature/cut search.",
+    "same_pairs": "same124/train32 F2+F3 strict candidate source and 2506 raw-HPO targets; F1 unchanged80/587CID/1557pairs",
+    "formal_if_probe_passes": {
+      "epochs": 2,
+      "updates": 32,
+      "warmup_steps": 2,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "batch_size": 1,
+      "accumulation": 8,
+      "max_seq_length": 7168,
+      "training_cap": 1800,
+      "training_grace": 30,
+      "inference_cap": 300,
+      "inference_grace": 30,
+      "only_final_epoch2": true,
+      "fresh_again": true,
+      "checkpoint": "Final epoch002 adapter+Adam/scheduler/RNG only; no checkpoint per intermediate epoch, no automatic resume.",
+      "no_original_dev": true
+    },
+    "inference": "single forward per prompt, all independent fixed slots; no generation/subset enumeration/previous answers",
+    "evaluation": "All80 probabilities/complete prediction freeze first; unique fixed.5 full F1 v2/format plus same1557pair TPFPFN/Brier/AUC and original SFT32 changes. Same entity/None assembly; no fold48 comparator; no public candidate expansion."
+  },
+  "probe_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-probe-v1/run-plan.json",
+    "bytes": 8049,
+    "sha256": "525018ddf7035c1e5829aa73572beab313569e3406a0bc8965471ca9d45d7c2d"
+  },
+  "prior_CPU_engineering_failures": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/actual-cpu-execution.json",
+      "bytes": 1449,
+      "sha256": "52344aa6c6547574dea3ad2ac57af2b2bc736f4740bc55c6c7cea4b2b9226dc9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/v2-fixed-slots/actual-cpu-execution.json",
+      "bytes": 1976,
+      "sha256": "6622de850d6afc6fdd48494a6727de6064c9b3601c0cb9d8eb8b3c04e598ed1c"
+    }
+  ],
+  "independent_tokens": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/fixed-slot-binary-review/token-replay.json",
+    "bytes": 3609,
+    "sha256": "f8e7c8ce91418fce33c7d7ed6582025047ccb774ff74e06c346ba941cbcbe1cd"
+  },
+  "no_GPU_result_yet": true,
+  "no_quality_claim": true
+}
