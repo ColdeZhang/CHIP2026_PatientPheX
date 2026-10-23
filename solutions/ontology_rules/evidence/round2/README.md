@@ -80,3 +80,5 @@
 - [NER增强真实启动](ner-augmentation-job.json)：已推送源d9ab108，fresh medium1503×10，训练deadline19:37:55Z；包含旧32兼容推理冻结，不是新效果结果。
 
 - [NER增强固定后链](ner-augmentation-postlink-plan.json)：旧32/new32均走同A30 Sap环境、原阈值/装配；谱系轻审ce6847d4通过，1378旧跨度键一致，浮点分数最大差1.72e-5；完整分数待终点。
+
+- [NER增强唯一终点](ner-augmentation-results.json)：旧完整链字节复现、.653745→.653937极微正增益（仅1TP/−1FP）；无实质改善，关闭当前配方，不追加GPU/原dev；完整真实产物与恢复路径仓库外保留；终点独立重装/评分/谱系审查PASS（1ece6446…）。

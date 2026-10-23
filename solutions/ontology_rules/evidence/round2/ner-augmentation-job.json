@@ -42,7 +42,7 @@
       "source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f"
     }
   },
-  "status": "fresh-public-base training running; no terminal or new Score yet",
+  "status": "completed_all_five_GPU_stages_rc0; assigned_GPU_released",
   "restore": {
     "root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control",
     "remote_root": "ontology-round2/ner-augmentation-control",
@@ -200,6 +200,102 @@
   "postlink_runner_review": {
     "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-augmentation-preparation-review/postlink-runner-review.json",
     "sha256": "f25d7039d5fbae28f9336bed37bb910b86f26549b484a3f7e797045fc7756915",
+    "status": "PASS"
+  },
+  "postlink_completed_state": {
+    "started_at_utc": "2026-10-23T19:28:27.940451+00:00",
+    "source_sha256": "89463b8974c44292dddf0e11513f0daeec6de28c3543f5ca1be45ae349babee1",
+    "commands_sha256": "6f1c9044f4383810353b23752be8171416b9f7d450a4c3433aaf98d5ea5dcf71",
+    "formal_state_sha256": "d674c2e5ef9e4c46b389229682c394737868c65bba08b00bba8d6ccf079486e9",
+    "cuda_visible_devices": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "gold_read": false,
+    "stages": [
+      {
+        "name": "baseline-runtime",
+        "command": [
+          "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+          "resources/link_gliner_candidates.py",
+          "--train",
+          "nested.train32.jsonl",
+          "--input",
+          "inner1.input.jsonl",
+          "--hpo",
+          "hp.obo",
+          "--candidates",
+          "baseline-runtime/candidates.jsonl",
+          "--candidate-freeze",
+          "baseline-runtime/prediction-freeze.json",
+          "--span-training-manifest",
+          "resources/nested32-baseline/training-manifest.json",
+          "--span-data-manifest",
+          "original-prepared-manifest.json",
+          "--semantic-source",
+          "resources/semantic_source.py",
+          "--model-dir",
+          "resources/sap-model",
+          "--output-dir",
+          "baseline-runtime-sap"
+        ],
+        "started_at_utc": "2026-10-23T19:28:28.070249+00:00",
+        "timeout_seconds": 300,
+        "gpu_preflight": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, NVIDIA A30, 24164 MiB\n",
+        "compute_apps_preflight": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2422535, 3158 MiB\n",
+        "pid": 2426316,
+        "return_code": 0,
+        "finished_at_utc": "2026-10-23T19:28:44.937531+00:00",
+        "seconds": 16.86659753601998,
+        "outputs": {
+          "manifest.json": "aa0d316a7945f991d47172e8305ff0eef49e193408e5e7fedb6eef92c382f0ca",
+          "scored-candidates.jsonl": "378ac4e19037bc2fbad9fed07fc9a7508e99e9378039ae21e7d653dbfa1ef760"
+        }
+      },
+      {
+        "name": "augmented-runtime",
+        "command": [
+          "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+          "resources/link_gliner_candidates.py",
+          "--train",
+          "nested.train32.jsonl",
+          "--input",
+          "inner1.input.jsonl",
+          "--hpo",
+          "hp.obo",
+          "--candidates",
+          "augmented-runtime/candidates.jsonl",
+          "--candidate-freeze",
+          "augmented-runtime/prediction-freeze.json",
+          "--span-training-manifest",
+          "formal-fixed10ep/run_manifest.json",
+          "--span-data-manifest",
+          "prepared/manifest.json",
+          "--semantic-source",
+          "resources/semantic_source.py",
+          "--model-dir",
+          "resources/sap-model",
+          "--output-dir",
+          "augmented-runtime-sap"
+        ],
+        "started_at_utc": "2026-10-23T19:28:45.068774+00:00",
+        "timeout_seconds": 300,
+        "gpu_preflight": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, NVIDIA A30, 24164 MiB\n",
+        "compute_apps_preflight": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2422535, 3158 MiB\n",
+        "pid": 2426340,
+        "return_code": 0,
+        "finished_at_utc": "2026-10-23T19:28:57.520854+00:00",
+        "seconds": 12.451300878077745,
+        "outputs": {
+          "manifest.json": "1b09a063ffd9b7f0651c8f917401971708e672ad61c25a89a491517e11b33d9c",
+          "scored-candidates.jsonl": "04ea7bc7d021aad1398ae77b0819775307b6a2c7a6feddad4bca7d3a5bacf253"
+        }
+      }
+    ],
+    "complete": true,
+    "finished_at_utc": "2026-10-23T19:28:57.523937+00:00"
+  },
+  "release_evidence_sha256": "f3bc3c0740a9a47d4edfe91f38bafe2df3dbae408d968a6322c8908690375b6b",
+  "terminal_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-augmentation-terminal-review/review.json",
+    "sha256": "1ece6446cefa0427e89c88d036bf5259c2f861a18ee4f5b8e0e1ff4fca2acb4d",
     "status": "PASS"
   }
 }
