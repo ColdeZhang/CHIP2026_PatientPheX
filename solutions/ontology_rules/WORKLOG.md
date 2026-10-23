@@ -3,6 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
+- **关系互补CPU预检（完成，无fit）**：同F1 1557字面对，旧SFT正/负组新binary概率AUC .677751/.782704、AP .885837/.173556，存在有限组内信号；fixed.5修33旧错却增70新错。0.042秒/含导入1.056秒，无新预测/cut/F0 gold；来源排F0已核，下一仅提出F1两特征LR→F0的条件建议，[事实/提案](experiments/P-20261023-BINARY-SFT-COMPLEMENT.md)。
 - **固定原门prehybrid控制（负结案，终审PASS）**：原244794对象不变＋7220新来源行，四fit56.999秒/九点1.045秒；best仍.3，实体均值 **.778942536<旧 .780192596（−.001250060）**，mention−7TP/+9FP、doc−5TP/−3FP，2折微正/2折负。池谱系/四实际模型load字节/36cut统一终审PASS07b1d0a9，后置.3归因held新增1806键接纳0，旧共有+56/−54导致−7TP/+9FP；关闭当前C不原dev/A/B扩展，[固定协议/结果](experiments/E-20261023-PUBLIC-PHENO-PREHYBRID.md)。
 - **全raw边界供给普查（完成）**：29.178秒；A无门槛top1新7408跨度/最大train×1.228，B全top3新262699跨度/×20.47，C原>.95top1 bypass新1572跨度/×1.032。217实际损失为None/门槛/hybrid，27正确原子确在hybrid消失；无NN/fit/新质量，[结果](experiments/P-20261023-PUBLIC-PHENO-RAW-CENSUS.md)。
 - **边界供给只读诊断（完成，增量独审PASS）**：384原子/333跨度中217/199已有原坐标但native消失，167/134无供给（89单词、53>8词、20原过滤、5未对齐）；词串仅缓存0。已生成部分top1/top3并集条件供给95/162，不是新分数；程序24.692秒，无NN/fit/原dev。下一仅全输入统一供给普查/阶段分层，[固定边界](experiments/P-20261023-PUBLIC-PHENO-BOUNDARY.md)。
