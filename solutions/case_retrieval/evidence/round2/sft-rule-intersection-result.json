@@ -1,0 +1,123 @@
+{
+  "status": "complete_single_fixed_F0_development_control_pending_independent_incremental_review",
+  "recorded_at_utc": "2026-10-23T23:23:08.387875+00:00",
+  "source_checkpoint_before_run": "b3a32e428202776cd1a1dfec226c1ef51af26b3c",
+  "remote_checkpoint_verified_before_run": true,
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "30s",
+    "python",
+    "solutions/case_retrieval/operations/sft_rule_intersection/run.py",
+    "--plan",
+    "solutions/case_retrieval/operations/sft_rule_intersection/plan.json"
+  ],
+  "exit_code": 0,
+  "contracts_passed": 8,
+  "elapsed_seconds": 0.18378769099945202,
+  "metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.703125,
+    "macF1": 0.6548868412026769,
+    "Score": 0.7026721827919256
+  },
+  "counts": {
+    "mention": {
+      "tp": 769,
+      "fp": 178,
+      "fn": 408,
+      "precision": 0.8120380147835269,
+      "recall": 0.653355989804588,
+      "f1": 0.724105461393597
+    },
+    "document": {
+      "tp": 357,
+      "fp": 58,
+      "fn": 208,
+      "precision": 0.8602409638554217,
+      "recall": 0.631858407079646,
+      "f1": 0.7285714285714285
+    },
+    "relation": {
+      "tp": 225,
+      "fp": 36,
+      "fn": 154,
+      "precision": 0.8620689655172413,
+      "recall": 0.5936675461741425,
+      "f1": 0.703125
+    }
+  },
+  "delta_vs_sft9b": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": 0.013048664122137454,
+    "macF1": 0.01586427671973023,
+    "Score": 0.0072282352104668934
+  },
+  "strong_rules_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.7044198895027625,
+    "macF1": 0.6883173080126084,
+    "Score": 0.711353521870099
+  },
+  "keep_by_predeclared_criterion": true,
+  "invariants": {
+    "documents": 16,
+    "patients": 47,
+    "entities": 947,
+    "sft_atoms": 276,
+    "rules_atoms": 345,
+    "kept_atoms": 261,
+    "removed_atoms": 15,
+    "compound_sft_strings": 0,
+    "raw_text_sft_strings": 0
+  },
+  "format_errors": 0,
+  "format_warnings": 0,
+  "limits": [
+    "F0 previously used for development; not a blind estimate.",
+    "Old Qwen3-8B intersection was already tested and below rules; this uses the distinct fixed9B SFT.",
+    "Only one new intersection; no threshold or subset selection, no original-dev evaluation or transfer.",
+    "Non-HPO text remains literal; no alt-ID normalization."
+  ],
+  "references": {
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/summary.json",
+      "bytes": 3367,
+      "sha256": "0e6d523d3f83ccefeab58f0e2b550847c99132bdcee020c75242aefa4f4af5d2"
+    },
+    "prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/prediction-freeze.json",
+      "bytes": 718,
+      "sha256": "bf786cce6c9d44247cfdf1ca4d0ec807df170acbabebffcd6974b20d0bdad67a"
+    },
+    "metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/metrics.json",
+      "bytes": 12923,
+      "sha256": "d02dc786d607896bbaeb021dacc77a1b83d30ea28726f5715bba13b3832566e1"
+    },
+    "validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/validation.json",
+      "bytes": 685,
+      "sha256": "d1e870269f89da4a616dd37f93bb5cdb8afa56ecf3ea3a2932301a480256c7eb"
+    },
+    "intersection.pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/intersection.pred.jsonl",
+      "bytes": 123731,
+      "sha256": "e0cdc22e57b2f951bcf265b70ee8d7bb168668b38c44f7d174e808fc1613a2f3"
+    },
+    "frozen-run.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/frozen-run.py",
+      "bytes": 8706,
+      "sha256": "0d1280d2058b6fd31c36074535be281f82033c2cd541e4d9476a82c7bf51274e"
+    },
+    "frozen-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F0/frozen-plan.json",
+      "bytes": 2786,
+      "sha256": "63f36ef67820eb93e6cce0116f4822eaeaba7425a47c734135f906607a7b4dfe"
+    }
+  }
+}
