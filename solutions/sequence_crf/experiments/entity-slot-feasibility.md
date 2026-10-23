@@ -58,3 +58,20 @@
 仅29训练行按原epoch0组输入长度预选，不用标签选择：最短完整组warmup后再测一次、median padded成本组、最大padded成本组、真实尾5行；共5次真正optimizer更新。实际训练dropout仍.05，数学对照eval关闭dropout。全程含15文件SHA与加载145秒+TERM/KILL5秒，所有临时状态丢弃，无F1输入/标签/质量。新目录`entity-slot-feasibility/microbatch-probe-v1`，旧probe不改。详见[evidence](../evidence/round2/entity-slot-microbatch-probe-plan.json)。正式训练仍待root根据实测决定。
 
 首轮probe统一独审已完成：`validation/entity-slot-probe-review/review.json` SHA `c0a286eb227d3314c0949ca633dc88d0a886c27215c7c04b399d87035da4f139`，复用数据审3009d56c，不重复旧模型或数据检查。
+
+
+### 微批实际终点
+
+新probe `proc_f8e9909c-8ee3-4360-a2db-af81a521f4fe` 23:07:08.213Z开始，**115.957秒**完整结束，含15文件SHA/加载/数值和梯度检查；23:09:12.212Z目标GPU2已空。完整终点SHA`9c0ef0d3`，实际源`16d45ce6`。不保存模型或optimizer，无F1输入/标签/质量。
+
+| 实际组 | 真实／padded tokens | 微批行数 | 秒 |
+|---|---:|---|---:|
+| 短组warmup | 3828／5232 | 8 | 4.230 |
+| 暖短组 | 3828／5232 | 8 | 4.085 |
+| 暖median组 | 5049／8731 | 7+1 | 8.568 |
+| 暖maxpad组 | 8050／14860 | 4+4 | 15.497 |
+| 暖尾组 | 3589／6115 | 5 | 5.568 |
+
+峰allocated **26.786GB** /reserved32.204GB。native同batch两列与原head两行F.linear差0、padding token毒化差0；batch与unpadding逐行最大差**.25**，满足事前atol.125+rtol.02而非bitwise相同。实际LoRA_B三家族native/compact梯度relativeL2为.008759–.011753、cos≥.999931，原head不变；五组真正非零lr更新均通过。CPU独审`25d81432`确认原8行组/尾5/逐行mean和无新head；actual增量独审继续。
+
+完整2epoch计数160 optimizer组、291微批、920138真实tokens/1458446paddedtokens。仅按四个暖组成本，两种透明代理估计更新阶段 **1407.54–1429.45秒**（约23.5–23.8分钟），再建议给hash/load/save约150秒余量；**这是预算代理不是实测整轮，也不是硬保证**，微批形状和动态kernel仍有影响。不再用旧冷短行线性截距62分钟估计。保持原目标和顺序，但batch改变dropout RNG消耗/浮点归约，应记新工程变体，不能声称等价复刻旧batch1轨迹。完整可重算成本与SHA见[结果](../evidence/round2/entity-slot-microbatch-probe-results.json)。是否正式训练仍由root决定，probe状态全部丢弃。

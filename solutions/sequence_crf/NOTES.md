@@ -171,3 +171,6 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 准备9B实体问题槽时发现，当前四fold OOF pool只保证目标文献未参与自身生成，若再取F2+F3训练一个F1评估模型，其候选生成器仍可能曾见F1。准备阶段改用已核F3→F2、F2→F3两条train16→16链，F1用train32→F1；未实际用错资源，不据此称旧四fold结果失效。也不能复用旧CE按金标平衡后的train子样本作为输入驱动筛选。全池成本太大后，只另冻一次train32 HGB p≥.1门控普查；训练概率是resubstitution，不冒称OOF，不进入9B文本。[完整设计](experiments/entity-slot-feasibility.md)。
 
 实体槽成本不能只按最长行token线性缩放：固定门控后637行平均722tokens，实际短259tokens一步2.545s、长2418tokens4.348s，提示/反传的固定开销不可忽略。短步另含首次Adam分配，正式accum8会少做optimizer；只能把27.6–62min作为两种代理估计，不能称训练实际用时。唯一probe84.067s完成并丢弃，F1只finite形状检查，无新质量。
+
+
+动态微批实体槽探针保留每行槽mean和原8行组真实分母、8192单微批pad上限，实际native原head双列与F.linear exact；按同head两行取值不增加参数。右padding毒化0但batch-vs-row BF16 logits max差.25，在事前相对容差内，不能宣称bitwise等价。2epoch291微批替代1274逐行调用，warm组实测4.09–15.50s，预算代理约23.5–23.8分钟更新阶段，不是正式训练耗时。参见entity-slot-microbatch-probe-results.json；未用F1标签/质量，未正式训练。

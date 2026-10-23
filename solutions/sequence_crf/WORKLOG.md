@@ -87,4 +87,4 @@
 
 旧GLiNER纯边界/合法HPO/否定政策复用，上游明确换HGB .3/原排序；2.63秒CPU，pooled .725655389→.727975656（+.002320267），195新增86TP109FP，全部旧实体/关联保留。三fold正、f3−.001194855，完整碰撞/拒绝证据外存，0错警；独审PASS f5482b85；唯一原dev迁移已完成 .736526555→.737585917（+.001059362），38实体14TP24FP、men降/doc升，368关系不变，0错警，新增端点独审PASS（9c068d49）。仍无fit/GPU。[结果/恢复](evidence/round2/selector-nested-results.json)。
 
-- 2026-10-23 新动态微批探针：原8行组/8192 padded tokens/冻结head两行数学，同A100最多150秒；先CPU合同与source freeze，无正式训练，入口见 entity-slot-microbatch-probe-plan.json。
+- 2026-10-23 动态微批探针已115.957秒PASS/卡释放：五组真实更新、native双列exact/梯度通过，峰26.786GB；预计更新阶段23.5–23.8分钟但尚无正式训练。入口 evidence/round2/entity-slot-microbatch-probe-results.json，actual独审待回。
