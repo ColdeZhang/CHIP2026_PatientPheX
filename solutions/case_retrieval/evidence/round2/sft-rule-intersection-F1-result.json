@@ -1,0 +1,130 @@
+{
+  "status": "complete_single_fixed_F1_development_transfer",
+  "elapsed_seconds": 0.20533639700443018,
+  "plan_sha256": "d305a96ecca9f40d9bc944b90c943e26a003816976d73c22a3351b354cb851e0",
+  "source_sha256": "6dce7d0bbaf704b1020b91e4a53dc1a9bf93dd50d89d101d32b44ba698fdd6e9",
+  "freeze_sha256": "79108410e159a4c5910852443621e3ed082a297fb8897926bd2f4f823c860e84",
+  "prediction_sha256": "467a16daa0bd252285ade1ac1c54d6d2b2bb73eaa0a1eed9f1efb9019cb52de9",
+  "metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.687292817679558,
+    "macF1": 0.5439035429655907,
+    "Score": 0.6615338241084523
+  },
+  "counts": {
+    "mention": {
+      "tp": 848,
+      "fp": 341,
+      "fn": 505,
+      "precision": 0.7132043734230445,
+      "recall": 0.6267553584626755,
+      "f1": 0.6671911880409127
+    },
+    "document": {
+      "tp": 498,
+      "fp": 89,
+      "fn": 247,
+      "precision": 0.848381601362862,
+      "recall": 0.6684563758389261,
+      "f1": 0.7477477477477478
+    },
+    "relation": {
+      "tp": 311,
+      "fp": 74,
+      "fn": 209,
+      "precision": 0.8077922077922078,
+      "recall": 0.5980769230769231,
+      "f1": 0.687292817679558
+    }
+  },
+  "delta_vs_same_supported65_baseline": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.03791379389068994,
+    "macF1": -0.044466127266165945,
+    "Score": -0.020594980289214027
+  },
+  "supported65_baseline_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.7252066115702479,
+    "macF1": 0.5883696702317567,
+    "Score": 0.6821288043976663
+  },
+  "context_only_old_sft_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6866002214839424,
+    "macF1": 0.5422288533401712,
+    "Score": 0.6609420026531936
+  },
+  "keep_by_predeclared_criterion": false,
+  "invariants": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "sft_atoms": 383,
+    "rules_atoms": 483,
+    "old_intersection": 320,
+    "old_removed": 63,
+    "supported_additions": 65,
+    "supported_baseline": 448,
+    "final_atoms": 385
+  },
+  "supported65_membership_exact": true,
+  "format_errors": 0,
+  "format_warnings": 0,
+  "limits": [
+    "F0 inspired this transfer and both F0 and F1 have repeatedly been used for development; neither is a blind estimate.",
+    "Existing supported65 gate cut0.3 was developed using pooled64 calibration includingF1; only its previously frozen membership is preserved here, without refitting or resweeping.",
+    "Rule predictions and oldSFT base are strictly trained onF2+F3 train32; rule replay full bytes exact on F0 andF1.",
+    "Nonrelation and association metadata preserved; exact literal/text semantics; no alt-ID normalization.",
+    "No threshold, new gate, new training, GPU, original-dev evaluation, official submission, or new no-supported arm."
+  ],
+  "outputs": {
+    "prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1/prediction-freeze.json",
+      "sha256": "79108410e159a4c5910852443621e3ed082a297fb8897926bd2f4f823c860e84",
+      "bytes": 812
+    },
+    "intersection-supported.pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1/intersection-supported.pred.jsonl",
+      "sha256": "467a16daa0bd252285ade1ac1c54d6d2b2bb73eaa0a1eed9f1efb9019cb52de9",
+      "bytes": 154200
+    },
+    "metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1/metrics.json",
+      "sha256": "e1325708605b4b879b53c0bd0f0fda12db4b436d9ab302d8e7c81280e4ebb0cf",
+      "bytes": 13146
+    },
+    "validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1/validation.json",
+      "sha256": "64ea0d536055d21b1db97cac68a80ba8dc0cb9922c5104331a8521edd85edf90",
+      "bytes": 686
+    }
+  },
+  "source_plan_prepushed_commit": "4cfe7aa18fef81fa31e4e087e230129505dcb3eb",
+  "summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-rule-intersection-F1/summary.json",
+    "sha256": "fcee93de55cce53d483017ea9453f4f788de74a8675bb42417551aaa8c4ce2cb",
+    "bytes": 4023
+  },
+  "invocation_receipt": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/sft-rule-intersection-F1-preparation/F1-invocation-receipt.json",
+    "sha256": "f98790cf77825d2bc5c929dd97284fa9aa1b54d4d94d9a2dcf263b9906668c99",
+    "bytes": 1234
+  },
+  "source_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/sft-rule-intersection-F1-preparation/preparation.json",
+    "sha256": "b23c4e9fd1dad696dbe5095418306a6509d2e6c77bb06904afe9fecef74415ba",
+    "bytes": 6759
+  },
+  "cross_fold_decision": {
+    "F0_delta_score": 0.0072282352104668934,
+    "F0_keep": true,
+    "F1_delta_score": -0.020594980289214027,
+    "F1_keep": false,
+    "recommendation": "Close this fixed intersection policy for original-dev transfer: F1 fails the declared criterion. Do not tune a fold-specific gate or resweep."
+  }
+}
