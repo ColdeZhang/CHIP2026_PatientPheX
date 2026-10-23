@@ -1,0 +1,88 @@
+{
+  "result_type": "full64_longest_probe_and_cpu_guard_not_training_or_score",
+  "probe": {
+    "selected_row_id": "3563609:relations:0",
+    "full_tokens": 6153,
+    "prefix_tokens": 6040,
+    "supervised_tokens": 113,
+    "optimizer_steps": 1,
+    "loss": 0.30624011158943176,
+    "three_families_nonzero_gradient": true,
+    "three_families_B_changed": true,
+    "measured_step_seconds": 11.66309485398233,
+    "peak_allocated_bytes": 38139823616,
+    "peak_reserved_bytes": 43662704640,
+    "adapter_parameters": 43278336,
+    "full_parameters": 8997081600,
+    "mode": "gpu",
+    "elapsed_seconds": 47.52240991592407,
+    "source_sha256": "28fd9161956b684f3dd34aa55b2f85fea59da0f5739a738140357da604341e80",
+    "run_manifest_sha256": "e3c3f58ac5ba549f7e8dced88860d68f8795c088f5e7eb0575c2091c1c3f1ef4",
+    "cost_probe_only": true,
+    "result_type": "one_longest_train_sample_gpu_cost"
+  },
+  "estimates": {
+    "measured_longest_forward_backward_seconds": 11.539596448186785,
+    "measured_longest_update_including_gradient_diagnostics_seconds": 0.12349840579554439,
+    "measured_one_sample_step_seconds": 11.66309485398233,
+    "assumed_two_pass_microbatches": 530,
+    "assumed_accum8_optimizer_updates": 68,
+    "conservative_530_times_longest_seconds": 6181.440272610635,
+    "token_scaled_two_pass_seconds": 3252.676758197488,
+    "these_are_measurements": false,
+    "interpretation": "Planning envelope and token-linear estimate from one cold longest sample; neither guarantees total training wall time.",
+    "assumptions": "530 examples vs68 accumulated updates; token estimate assumes proportional forward/backward cost. Longest envelope deliberately overcounts optimizer updates.",
+    "excluded": "Base loading/hash checks, data pipeline, checkpoints, evaluation, scheduling contention, allocator/kernel variability. No full training was run."
+  },
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/full64-run-plan.json",
+      "sha256": "5f36de31452a4666b31454c38c0c903f15a29a5203d4e55cd8785a1fd5e1cd25"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/probe-job.json",
+      "sha256": "36269cadd3c108d8aab3295bdcb225cb956c86d845c3719f12b75f4a6a054fa4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/probe-preflight.json",
+      "sha256": "b749c0bb9fd5d1a11651a8895174cc4f9c7d9ca4d606ccda678cb08b493c5e79"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/probe-release.json",
+      "sha256": "74ad5ecf532f02200349f67ec69e4171884c7380080adc0f0b35fbdca60e1f33"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/cpu-trainer-v1/cpu_complete.json",
+      "sha256": "27eb3abeafa3e3f533b89fd2424e8d47f4dd90f6a681bbc59bd6adea27576dc9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/cost-gpu-v1/run-manifest.json",
+      "sha256": "e3c3f58ac5ba549f7e8dced88860d68f8795c088f5e7eb0575c2091c1c3f1ef4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/cost-gpu-v1/timings.json",
+      "sha256": "8d169ecbbab8aa5a8bb73afbf1dbb401ec4d5c868008bbac79aa38757b00d467"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/cost-gpu-v1/single-step.json",
+      "sha256": "741571d7b0de599ad72674a9b4e51a85a11bf9bf2550a01a99788e8d6bfebdc9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/cost-gpu-v1/adapter-checkpoint.json",
+      "sha256": "bb81889e9da798aadd7a06715e406f00b24156595ea227b2ebec1d9f37b537c4"
+    }
+  ],
+  "readiness_reviews": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-full64-preparation-review/data-review.json",
+      "sha256": "54ea2e18dac0fc732b7fe51f589ed424f06f9c70ed33917da115c779a20850fd"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-full64-preparation-review/guard-review.json",
+      "sha256": "8e33f406e3685e05233afdf56ddb2763352287a6154d5d7983e1b67614641d5f"
+    }
+  ],
+  "fresh_formal_required": true,
+  "probe_weights_not_reused": true,
+  "formal_training_not_yet_started": true
+}

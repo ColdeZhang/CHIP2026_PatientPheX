@@ -1,0 +1,199 @@
+{
+  "status": "completed; frozen training-only calibration applied once to outerfold0",
+  "completed_at_utc": "2026-10-23T18:52:31.783028+00:00",
+  "source_sha256": "ebe5d39e319d0e2abce2da14a3f717380e105b13017d46456e9ac6b2470a5c02",
+  "driver_sha256": "f3de9b558e78307413d022b982d1fa09d6b059b8259ee9fed824764cf2c08c4f",
+  "plan_sha256": "2bf9af2224e5f9621722f34adac2ef64d236c69de9cdfd5bbc918bf2dafab803",
+  "training_rows": 2506,
+  "training_positive": 594,
+  "meta_rows": 1557,
+  "meta_features": 297,
+  "selected_threshold": 0.3,
+  "meta_selected_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6201873048907388,
+    "macF1": 0.5211057375177574,
+    "Score": 0.6390579945492891
+  },
+  "outer_original_0.5_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.6222910216718266,
+    "macF1": 0.5378002639084333,
+    "Score": 0.6531920438863213
+  },
+  "outer_calibrated_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.6557377049180327,
+    "macF1": 0.567599070398658,
+    "Score": 0.669003416320429
+  },
+  "outer_original_counts": {
+    "mention": {
+      "tp": 769,
+      "fp": 178,
+      "fn": 408,
+      "precision": 0.8120380147835269,
+      "recall": 0.653355989804588,
+      "f1": 0.724105461393597
+    },
+    "document": {
+      "tp": 357,
+      "fp": 58,
+      "fn": 208,
+      "precision": 0.8602409638554217,
+      "recall": 0.631858407079646,
+      "f1": 0.7285714285714285
+    },
+    "relation": {
+      "tp": 201,
+      "fp": 66,
+      "fn": 178,
+      "precision": 0.7528089887640449,
+      "recall": 0.5303430079155673,
+      "f1": 0.6222910216718266
+    }
+  },
+  "outer_calibrated_counts": {
+    "mention": {
+      "tp": 769,
+      "fp": 178,
+      "fn": 408,
+      "precision": 0.8120380147835269,
+      "recall": 0.653355989804588,
+      "f1": 0.724105461393597
+    },
+    "document": {
+      "tp": 357,
+      "fp": 58,
+      "fn": 208,
+      "precision": 0.8602409638554217,
+      "recall": 0.631858407079646,
+      "f1": 0.7285714285714285
+    },
+    "relation": {
+      "tp": 240,
+      "fp": 113,
+      "fn": 139,
+      "precision": 0.6798866855524079,
+      "recall": 0.633245382585752,
+      "f1": 0.6557377049180327
+    }
+  },
+  "delta_metrics": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": 0.033446683246206144,
+    "macF1": 0.029798806490224705,
+    "Score": 0.015811372434107684
+  },
+  "outer_prediction_sha256": "ac709cfc2116c78f097f3b9a690e457749287d27ef53277ca47c7b1cfa89af40",
+  "outer_freeze_sha256": "0cf289d16683b1c7f38cabde83c0e85889a52a234c3577ad32ec89a2dfaebb90",
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 947,
+      "relations": 353,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "ac709cfc2116c78f097f3b9a690e457749287d27ef53277ca47c7b1cfa89af40",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "CPU_features_seconds": 37.344724770999164,
+  "CPU_remaining_seconds": 6.893479616002878,
+  "CRF_seconds": {
+    "crf2to3": 7.8453881299938075,
+    "crf3to2": 8.254078742000274
+  },
+  "GPU_used": false,
+  "outer_threshold_tuning": false,
+  "originaldev_read": false,
+  "selection_scope": "F1 meta-val16 only, trained on strict nested F2+F3=32; original full48 model reused unchanged.",
+  "limits": [
+    "Single meta-validation fold; not a blind study because earlier outerfold0 development exists.",
+    "Original .5 and all prior outputs retained; no originaldev migration or official upload."
+  ],
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/strict-meta-calibration-run",
+  "artifacts": {
+    "features-complete.json": {
+      "bytes": 5632,
+      "sha256": "fc2b8c9190b33b3d573ac523cd5315837a9a8e53e95551355977cc20bff42acd"
+    },
+    "train-rows.jsonl": {
+      "bytes": 17950257,
+      "sha256": "a634cf1c16d7cad450bc70669e013ca4e8464d9639d9f442b664ef0ed417131e"
+    },
+    "meta-rows.jsonl": {
+      "bytes": 11027662,
+      "sha256": "217c380f0a20d30ad1138e1b9091ed8845fce0ebd46db74a66f655c7df8e2290"
+    },
+    "meta-scores.jsonl": {
+      "bytes": 161986,
+      "sha256": "6308c610875884827e75357b042f1f4c0e4ba0a910282323234a5dfeba34bfae"
+    },
+    "meta-model.joblib": {
+      "bytes": 407271,
+      "sha256": "a7579c59ad567163cdae956afab3b2918a265fdb54b3c64f05b7c7bf8f6dafc7"
+    },
+    "meta-scores-freeze.json": {
+      "bytes": 7641,
+      "sha256": "86a7dada086ada3c798a3312f930d21cf06cab5f9d4e1ef86521353dee874ef5"
+    },
+    "threshold-selection.json": {
+      "bytes": 17131,
+      "sha256": "dff7fde8f50c2b1b34dc24f76a57ab6b195f3c26d04032d63bc18d8bba95d185"
+    },
+    "outer-predictions-freeze.json": {
+      "bytes": 637,
+      "sha256": "0cf289d16683b1c7f38cabde83c0e85889a52a234c3577ad32ec89a2dfaebb90"
+    },
+    "outer-calibrated.predictions.jsonl": {
+      "bytes": 125015,
+      "sha256": "ac709cfc2116c78f097f3b9a690e457749287d27ef53277ca47c7b1cfa89af40"
+    },
+    "outer.metrics.json": {
+      "bytes": 13043,
+      "sha256": "f148c40b4228aca5bead1a6bfff0c9b04fc465d7f6d033ca1371d7a040eb6f58"
+    },
+    "outer.validation.json": {
+      "bytes": 685,
+      "sha256": "27ec26199bd09b0d86c0745bed4c2a592496720eddf669f025387d649a7045ab"
+    },
+    "before-outer-evaluation.json": {
+      "bytes": 401,
+      "sha256": "bf7a426edecc0ee7684f3d2817e271a804a15f88b41366ba22661cd6b36e3ede"
+    },
+    "phase-events.json": {
+      "bytes": 3673,
+      "sha256": "418bcb55e27ef42b03d20922a9ae5b4f219c964fcaab8192c81aa33987837218"
+    },
+    "execution-state.json": {
+      "bytes": 527,
+      "sha256": "e9a06a05a0abc02a2306105697af390679cec9c13f239b8e3bef80e1373d0f7f"
+    },
+    "finish_and_evaluate.py": {
+      "bytes": 5326,
+      "sha256": "f3de9b558e78307413d022b982d1fa09d6b059b8259ee9fed824764cf2c08c4f"
+    },
+    "summary.json": {
+      "bytes": 3982,
+      "sha256": "2ac67aba253324909c09e278caa244645474fc99787e48522c4f65a9fa5861b6"
+    }
+  },
+  "reproduce": "Use frozen run-plan with a new output_dir; features with plan.crf_python, fit/select/apply with plan.fit_python. Only evaluate outerfold0 after outer-predictions-freeze passes. Original frozen .5 model and all outputs retained.",
+  "decision": "Improves original no-LLM fixed0.5 tree by0.0158113724, but remains below same-entity rules0.711353522. No originaldev transfer, no more threshold grid."
+}
