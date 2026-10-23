@@ -98,4 +98,4 @@
 
 - [统一九点OOF cut校准](public-bioformer-cut-results.json)：事先网格选.3、两实体目标.780193（校准拟合值）；.4 byteexact，3折升1折降，2.125秒CPU，无原dev，独审PASS234064fe。
 
-- [双公开模型原dev固定两cut](public-bioformer-dev-results.json)：.4 .731446/.3 .732258，同SFT全部关联；14.755秒fit、真实model295637B已存，待独立增量审，未.8。
+- [双公开模型原dev固定两cut](public-bioformer-dev-results.json)：.4 .731446/.3 .732258，同SFT全部关联；14.755秒fit、真实model295637B已存，独立增量审PASS（fc98e9ca）、16篇全部13144概率重载exact，未.8。

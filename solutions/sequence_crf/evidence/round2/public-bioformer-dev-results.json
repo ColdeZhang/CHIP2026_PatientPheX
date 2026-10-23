@@ -1,9 +1,9 @@
 {
-  "status": "completed; independent review pending",
+  "status": "completed; independent incremental review PASS",
   "external_directory": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer",
   "source_commit": "b89ebed",
   "summary": {
-    "status": "completed; independent review pending",
+    "status": "completed; independent incremental review PASS",
     "source_commit": "b89ebed",
     "plan_sha256": "0990c11ec33e11eac450a70fec321a4f4549547c05a4088d5b57173b3e322022",
     "frozen_at_utc": "2026-10-23T21:40:00.512452+00:00",
@@ -175,7 +175,7 @@
       "Both arms preserve every aa107 SFT association object regardless of final entity set; relation metrics cannot improve here.",
       "No rule-relation arm, new threshold grid, extra model/source-order selection, or official submission."
     ],
-    "disposition": "Nominal new development best .732257765 remains below .8; unique independent endpoint review pending, no more cuts/official submission.",
+    "disposition": "Independent endpoint PASS: development best .732257765 remains below .8; no more cuts, acceptance merge, or official submission.",
     "backup": "Old16cd independently uploaded/restored by root as main docs/campaigns/round2-best-dev-backup.json. New actual model/prediction artifacts ready for separate root archive after independent PASS."
   },
   "artifacts": {
@@ -297,7 +297,35 @@
   },
   "immutable_sources": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/source-snapshot",
   "independent_review": {
-    "status": "requested",
-    "agent": "/root/round2_validation_resume"
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/public-bioformer-dev-transfer-review/review.json",
+    "sha256": "fc98e9cab02606d50837530c9721b03de79a95bb9dbe1d7c568650eca2b4f834",
+    "bytes": 6236,
+    "status": "PASS_complete_new_Bioformer_originaldev_transfer",
+    "new_fits": 1,
+    "old_baseline_fits": 0,
+    "NN_repeated": false,
+    "candidate_probabilities_both_predictions_and_pickle_byteexact": true,
+    "actual_model_reload_all_16_documents_13144_probabilities_exact": true,
+    "format_errors": 0,
+    "format_warnings": 0,
+    "scope_limitations": [
+      "Originaldev has been used historically; this fixed transfer is not blind testing.",
+      "Preselected .3 improves Score but mentionF1 decreases versus .4; all results retained.",
+      "Best .732257765 remains below .8; no acceptance merge or official submission.",
+      "Public cache lineage reviewed separately; no H5/model neural reload or NN repeated.",
+      "Model pickle backed by current source/version/hash and actual full16 reload, unlike previous unsaved selector."
+    ],
+    "reports": [
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/public-bioformer-dev-transfer-review/replay-review.json",
+        "sha256": "8380a697bb9ccb16267b7e2c7f016cb84bbc0d9eb28605afdcb9fbfe4812f7c5",
+        "bytes": 8896
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/public-bioformer-dev-transfer-review/cache-lineage-review.json",
+        "sha256": "cd5b675ed883256f6e76da953cede2b8fd4f94f7083c8b9402ae57e52a42a166",
+        "bytes": 8025
+      }
+    ]
   }
 }

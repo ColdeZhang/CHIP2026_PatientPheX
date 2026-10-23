@@ -8,7 +8,7 @@
 - 本路线原政策 dev **.711324992**（独审PASS）：原CRF+Sap/LR基线保留，增加固定train48 GLiNER终点、train64 Sap筛选跨度，再沿既有LR；源码`4adf9da`，预测`gliner-dev-transfer/assembled/full-lr.jsonl`。对应仅增实体不改关系控制.706111684；独立train64 LR重拟合、三输出/全部指标逐字节复现，格式/HPO零错警。前一独审最佳.700635947及完整证据继续保留。
 - 跨路线Pheno实体-only组合候选 **.712586161** 已独审PASS；固定nested48候选.712146627也已独审PASS。两项都只有温和增益，mention分项有下降，均未达.8。
 - 新跨路线候选 **.728794595** 已独审PASS：全train64 source-HGB+公开Pheno新实体，原best aa107790 SFT关联对象完全保留；较原best .715759605 +.013034990，只提升实体两项。详见台账17；新fit/全概率/预测与指标独立复现（1112ced2），仍未达.8。
-- 新双公开模型候选 **.732257765** 待独审：同完整SFT关联、全64双来源HGB+训练OOF预选cut.3；固定.4对照.731445835也提高。仅实体变化、仍未.8；真实295637B模型已保存，见台账20。
+- 新双公开模型候选 **.732257765** 已独审PASS（fc98e9ca）：同完整SFT关联、全64双来源HGB+训练OOF预选cut.3；固定.4对照.731445835也提高。仅实体变化、仍未.8；真实295637B模型已保存，见台账20。
 - 内四折规则关系优于 LR，原 dev 相反；LR/rules 都评过原 dev，该选择使用过 dev，不能声称盲验证。尚未达到 .8。
 
 ## 正在执行与恢复入口
@@ -48,7 +48,7 @@
 19. **统一OOF cut校准完成、独审PASS**：固定九点.1… .9/原greedy，36完整decode21:35:13Z先freeze后读取train64实体标签，.4四fullpred逐字节复现。总2.125秒CPU，按pooled(menF1+docF1)/2唯一选 **.3**：.777993968@.4→.780192596@.3，实体men .763831/doc .796554、4315条（+161）；mention+70TP91FP/doc+41TP48FP，fold目标Δ[+.003036,+.007263,-.004463,+.001727]。这是全train64选择后的**校准拟合指标**，不是新盲验证Score；无关系选型、无原dev。独立36预测/全曲线/OOF来源/选点复核PASS（234064fe）；后继仅固定.4/.3同SFT关系共同迁移，不扩网格。[结果](evidence/round2/public-bioformer-cut-results.json)、[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/。
 
 
-20. **双公开模型原dev两cut已完成、待独审**：全train64/4×48 OOF、61781例4147正/97自然列，CPU fit14.755秒、三阶段exit0；两新+旧16cd/model/prob21:40:00Z共同freeze后唯一v2，0错警。固定.4 **.731445835**（较旧+.002651）、OOF预选.3 **.732257765**（+.003463；比.4+.000812）。.3 men .786730/doc .816874，较.4 men下降/doc上升；全部aa107关系TP273/FP60/FN180及micro/macro完全相同。相对旧best实体净+14TP/+10FP，未.8，不追加cut。模型selector.pkl295637B SHA db2fc288已实际保存，Python3.12.14/sklearn1.8.0重载末篇全概率exact；根将独审PASS后另备份。旧16cd31成员备份059d680a保留。[完整结果/恢复](evidence/round2/public-bioformer-dev-results.json)、[计划](evidence/round2/public-bioformer-dev-plan.json)，外存public-bioformer-dev-transfer/；无活动GPU/新训练任务。
+20. **双公开模型原dev两cut已完成、独审PASS**：全train64/4×48 OOF、61781例4147正/97自然列，CPU fit14.755秒、三阶段exit0；两新+旧16cd/model/prob21:40:00Z共同freeze后唯一v2，0错警。固定.4 **.731445835**（较旧+.002651）、OOF预选.3 **.732257765**（+.003463；比.4+.000812）。.3 men .786730/doc .816874，较.4 men下降/doc上升；全部aa107关系TP273/FP60/FN180及micro/macro完全相同。相对旧best实体净+14TP/+10FP，未.8，不追加cut。模型selector.pkl295637B SHA db2fc288已实际保存，Python3.12.14/sklearn1.8.0，独立重fit概率/预测/模型byteexact，实际模型重载16篇全部13144概率exact；根负责另备份。旧16cd31成员备份059d680a保留。[完整结果/恢复](evidence/round2/public-bioformer-dev-results.json)、[计划](evidence/round2/public-bioformer-dev-plan.json)，外存public-bioformer-dev-transfer/；无活动GPU/新训练任务。源码与终点检查点`8b830ec`已推送，当前只补独审结案。
 
 
 ## 已完成的近期结论
