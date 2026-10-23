@@ -63,3 +63,4 @@ GLiNER两epoch监督控制表明通用span预训练可学本题边界：nested16
 large-v2（9d0533ed）与medium-v2均明确NuNER/C4自动标注来源，许可Apache2；large-v2.1改为pile-mistral且卡缺完整谱系，GLiNER2-large精确训练配方映射不明，因此本轮不采用后二者。large-v2官方API参数459,495,168，encoder12层768→24层1024，head512→768；tokenizer_config和spm均与现有实际SHA相同，max_len384/max_width12/markerV0未变。loader按config建projection并严格加载，显式BCE无需换算法，尚须真实权重CPU加载及单步确认。
 
 同NuNER不等于只改容量：上游config还记max_neg_type_ratio1→2、warmup5000→.1；完整checkpoint训练/选择清单未公开。后续即使固定赛事train48/10ep/loss/lr/decoder，也只能研究较大公开checkpoint替换，不做纯容量因果结论。ModelScope两准确ID实际404、Qwen正控制200，平台全局搜索不完整，只能说未找到可核镜像；不拿同名v2.1代替。FP32参数/梯度/两Adam矩理论7.352GB，加activation未知，encoder算量比例约3.56×；先实测最长4×384，不能拿medium17分钟承诺large同成本。
+- large实际单步只1.308秒却峰值10.603GB，不能从一次首步与medium1.270秒接近就断言整轮同成本：首步冷启动、不同runtime、训练中平均文本长和checkpoint IO都混入时间。记录实测及假设分开的预算范围，不把算量比当真实耗时。CPU严格加载与训练窗对齐已通过，只证明兼容，不证明较大公开checkpoint能加分。

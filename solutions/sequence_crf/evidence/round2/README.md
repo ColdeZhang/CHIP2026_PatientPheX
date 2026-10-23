@@ -63,3 +63,5 @@
 - `gliner-full64-results.json`：全64唯一终点主.705869/nested.706234，未超过48；同runtime旧模型字节复用、训练/真实状态SHA、三臂统一freeze、存储和GPU释放，终点与对照复用独审PASS。
 
 - `gliner-large-feasibility.json` / `gliner-large-smoke-plan.json`：同NuNER large-v2确切来源与上游配方差异，ModelScope查询/HF回退、静态兼容与仅训练侧单步授权；尚无新模型分数。
+
+- `gliner-large-smoke-results.json`：459.495M实际严格加载、1744窗对齐和最长4×384单步1.308秒/10.603GB、显式释放；正式10ep未运行，没有新分数。

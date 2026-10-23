@@ -1,0 +1,271 @@
+{
+  "completed_at_utc": "2026-10-23T18:32:37.897437+00:00",
+  "status": "PASS source, strict CPU checkpoint load/all frozen training collation, single GPU optimizer step; NO formal10ep/new heldout prediction/score",
+  "source_commit": "ad9ebafd1a20691f3e7af6ba2cf25f39911c9581",
+  "download": {
+    "repo_id": "urchade/gliner_large-v2",
+    "revision": "9d0533ed97ade535f232b28dc673999c27c43159",
+    "source_resolve_url": "https://huggingface.co/urchade/gliner_large-v2/resolve/9d0533ed97ade535f232b28dc673999c27c43159/pytorch_model.bin",
+    "weight_bytes": 1838173066,
+    "weight_sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+    "small_files": [
+      {
+        "name": "README.md",
+        "bytes": 4485,
+        "sha256": "a0d6cec989b7e15995be6b2c807054c8805b9a579ac095325816936a683a2c40",
+        "official_git_blob": "6c091a12ae6b8227ea5a76eb82a192fd9faf6ef9"
+      },
+      {
+        "name": "gliner_config.json",
+        "bytes": 474,
+        "sha256": "8e88b694bcb0bfd4f93302951dd43d89261849c9817140681efc819a10472d9f",
+        "official_git_blob": "dd914617ec28b012a2fa1531c769ea765c78425c"
+      }
+    ],
+    "download_complete": true,
+    "verified_full_weight_sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+    "cpu_load_check": {
+      "torch": "2.7.0+cu128",
+      "state_tensors": 416,
+      "parameters": 459495168,
+      "span_mode": "markerV0",
+      "max_width": 12,
+      "cpu_only": true
+    },
+    "download_seconds": 209.67218445288017,
+    "temporary_url_config_removed": true,
+    "download_script_sha256": "e799c24fddb4b942bf20706eca50da78181e91607af9c3c19d3815fe8acb7665"
+  },
+  "cpu": {
+    "strict_state_load": true,
+    "parameters": 459495168,
+    "cuda_initialized": false,
+    "actual_all_training_collation_pass": true,
+    "counts": {
+      "rows": 1744,
+      "documents": 48,
+      "positive_instances": 3558,
+      "valid_spans": 1708711,
+      "max_tokens": 384
+    },
+    "seconds": 29.06619639415294,
+    "sources": {
+      "checker": "a77e13289352841c3be64c515519eb17c65650568e349457babd4c1e49e511d6",
+      "loader": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "trainer_collator": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9"
+    },
+    "artifacts": {
+      "train": {
+        "path": "train48.jsonl",
+        "sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33"
+      },
+      "data_manifest": {
+        "path": "data-manifest.json",
+        "sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03"
+      },
+      "excluded_input": {
+        "path": "excluded.input.jsonl",
+        "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+      },
+      "weight": {
+        "path": "../pretrained-gliner-large-v2/pytorch_model.bin",
+        "sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14"
+      },
+      "gliner_config": {
+        "path": "../pretrained-gliner-large-v2/gliner_config.json",
+        "sha256": "8e88b694bcb0bfd4f93302951dd43d89261849c9817140681efc819a10472d9f"
+      },
+      "encoder_config": {
+        "path": "../pretrained-gliner-large-v2/tokenizer/config.json",
+        "sha256": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d"
+      },
+      "spm": {
+        "path": "../pretrained-gliner-large-v2/tokenizer/spm.model",
+        "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+      },
+      "tokenizer_config": {
+        "path": "../pretrained-gliner-large-v2/tokenizer/tokenizer_config.json",
+        "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d"
+      }
+    },
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    }
+  },
+  "smoke": {
+    "parameters": 459495168,
+    "smoke_rows": [
+      "4607013:16:0",
+      "12891056:14:0",
+      "12891056:10:0",
+      "6219255:17:0"
+    ],
+    "smoke_loss": 0.013086921535432339,
+    "smoke_gradient_norm": 7.694543361663818,
+    "smoke_counts": {
+      "gold_positive": 34,
+      "predicted_positive": 0,
+      "gold_negative": 16682,
+      "tp": 0,
+      "fp": 0,
+      "positive_probability_sum": 0.5456644892692566,
+      "negative_probability_sum": 4.939697265625
+    },
+    "smoke_metrics": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "positive_mean_probability": 0.01604895556674284,
+      "negative_mean_probability": 0.0002961094152754466
+    },
+    "elapsed_seconds": 1.3076725210994482,
+    "max_gpu_allocated_bytes": 10602658304,
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22"
+    },
+    "fingerprint": {
+      "configuration": {
+        "epochs": 10,
+        "batch_size": 4,
+        "encoder_lr": 1e-05,
+        "other_lr": 5e-05,
+        "weight_decay": 0.01,
+        "warmup_fraction": 0.05,
+        "seed": 20261023,
+        "precision": "float32",
+        "gradient_clip": 1.0,
+        "loss": "binary CE sum over valid spans / valid span count",
+        "label": "phenotype",
+        "all_valid_negative_spans": true,
+        "checkpoint_choice": "epoch10 only; no validation selection",
+        "training_part": "train48"
+      },
+      "source_sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+      "loader_source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+      "train_sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+      "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "base_weight_sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14"
+    },
+    "fingerprint_id": "768461787a568df5ff1516b9aa8dfa774c8d0878a3e9f1a6ba73c9a35dfc0e39",
+    "upstream_loss_bypassed": true,
+    "loss_scale_note": "Default upstream sum replaced by mean over valid spans only; no smoothing or focal weighting."
+  },
+  "gpu_release": {
+    "checked_at_utc": "2026-10-23T18:31:30.372968+00:00",
+    "target_gpu_empty": true,
+    "compute_apps": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\n",
+    "free_bytes": 213626077184,
+    "smoke_weight_or_state_saved": false
+  },
+  "quality_limit": "Initial public checkpoint predicts zero >.5 positives in this fixed34-positive training batch; one pre-update smoke batch is neither trained performance nor generalization evidence. No comparison based on heldout gold.",
+  "cost_estimate": {
+    "formal_steps_if_approved": 4360,
+    "formal_rows": 1744,
+    "formal_epochs": 10,
+    "same_four_rows_as_old_medium_smoke": true,
+    "medium_same_rows_smoke_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/smoke-run-manifest.json",
+    "medium_same_rows_smoke_sha256": "a88ca1171de10029cf2bb3ce43985b3e51e2051c053c0888ccd453452e9fcf90",
+    "medium_smoke_seconds": 1.2702061519958079,
+    "large_smoke_seconds": 1.3076725210994482,
+    "smoke_ratio": 1.0294962900665938,
+    "medium_outer48_training_seconds": 996.639,
+    "parameter_gradient_adam_memory_bound_bytes": 7351922688,
+    "observed_peak_gib": 9.874495029449463,
+    "encoder_squared_width_layer_ratio": 3.5555555555555554,
+    "compute_ratio_estimated_minutes": 59.06008888888889,
+    "proposed_planning_range_minutes": [
+      20,
+      60
+    ],
+    "proposed_hard_cap_minutes": 75,
+    "limitations": [
+      "Single first optimizer step includes cold overhead and is not mean epoch time.",
+      "Old medium exact same-row smoke used torch2.7.1cu126/TF4.51.3 on other A30; current2.7.0cu128/4.50.0.",
+      "Architecture ratio approximates encoder arithmetic, not actual walltime; checkpoint IO and token length distribution also matter.",
+      "Formal budget is a proposal only; root has not authorized training."
+    ]
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/plan.json",
+      "bytes": 5786,
+      "sha256": "e034f8c2c520d38d60375a1b410a7b19eabae056b92b4ccd8950838fbc5c16ea"
+    },
+    "download/job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/download/job.json",
+      "bytes": 1298,
+      "sha256": "9ebc0983f5ad1418de84f82f50966c6d8e50e9eb5ff7e1619caad0bfc3d241a7"
+    },
+    "download/source-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/download/source-manifest.json",
+      "bytes": 1309,
+      "sha256": "e335048cf667d66855e95f1a71cc2f6942f60f1bdf1f8d63d191286d1274c93c"
+    },
+    "cpu-command.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/cpu-command.json",
+      "bytes": 1353,
+      "sha256": "454df69fe5f9f9d695df4ac47341bb22cf52b59dc4aa2bd27cdbb210ee9f17d3"
+    },
+    "cpu-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/cpu-job.json",
+      "bytes": 973,
+      "sha256": "2957a401ecd0b5886de226c16a79c327911e85e69a389cf5e31fb8e86e0210d0"
+    },
+    "cpu-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/cpu-preflight.json",
+      "bytes": 2722,
+      "sha256": "add6bca15edaac4c907f10fb0b621d4bc1500b01fe52db359b9f09d9b782fcc7"
+    },
+    "cpu-driver-state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/cpu-driver-state.json",
+      "bytes": 1226,
+      "sha256": "deb8a1f555fb38a5848c073f77c89b4626b0461b4b4f75ec044f9d93e9324882"
+    },
+    "preflight-upload.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/preflight-upload.json",
+      "bytes": 1971,
+      "sha256": "1d3feb50046ba94eb578ef1c87f013a0e8af43954262427b92e46a4e6b3a3cf8"
+    },
+    "smoke-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/smoke-job.json",
+      "bytes": 1736,
+      "sha256": "ed476aa6c155c295385eeb5e50d4faf05867b0ceee248a37ce76958b1e7afec1"
+    },
+    "smoke-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/smoke-preflight.json",
+      "bytes": 359,
+      "sha256": "fc3a34287ce76f760c25f0d759058b0d17d6bcc4a53ae966b214b70563007170"
+    },
+    "smoke/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/smoke/run_manifest.json",
+      "bytes": 37772,
+      "sha256": "12fe87af7e48c96b21717d32ae49fdb18f32b31705032fb2c22f7c96b12a85d5"
+    },
+    "smoke-stdout.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/smoke-stdout.json",
+      "bytes": 345,
+      "sha256": "1cc1cbb21fc666e0ba9a522294d424418d96e3c33e5ceba296426a52483e11d4"
+    },
+    "smoke-stderr.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/smoke-stderr.json",
+      "bytes": 714,
+      "sha256": "f67b77d8e4669a66f721308c3d1f8cd1704f6f39338d9372e18703322132cc49"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-large-v2/gpu-release.json",
+      "bytes": 399,
+      "sha256": "dc795798727f7a47d7cbb3d34083857f81c024b93ff2b830ec3f25c68ac8c05d"
+    }
+  },
+  "independent_review": {
+    "status": "Requested lightweight source/actual longestbatch/runtime review; pending",
+    "scope": "No repeated BCE/training-data/gold audit required"
+  },
+  "next": "Keep medium48 best unchanged. CPU budget proposal to root; GPU0 explicitly handed ontology. Await fixed formal scheduling decision; no autonomous large10 training."
+}
