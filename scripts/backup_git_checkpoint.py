@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a self-contained main/day1 Git bundle and verify its independent MCP backup."""
+"""Create a self-contained main and experiment-branch Git bundle and verify its independent MCP backup."""
 import argparse
 from datetime import datetime, timezone
 import json
@@ -19,16 +19,23 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=Path("/workspace/CHIP2026_PatientPheX"))
     parser.add_argument("--output-dir", type=Path, default=Path("/workspace/patientphex-runs/day1-20261023/git-backups"))
+    parser.add_argument("--branch-prefix", action="append", dest="prefixes", help="Experiment branch prefix; repeatable (default: day1 and round2).")
     args = parser.parse_args()
     try:
-        names = git(args.repo, "for-each-ref", "--format=%(refname)", "refs/heads/main", "refs/heads/day1").splitlines()
-        if "refs/heads/main" not in names or not all(n == "refs/heads/main" or n.startswith("refs/heads/day1/") for n in names):
+        prefixes = args.prefixes or ["day1", "round2"]
+        for prefix in prefixes:
+            if not prefix or prefix.startswith("-") or any(c in prefix for c in " *?[]~^: "):
+                raise ValueError("InvalidBranchPrefix")
+            git(args.repo, "check-ref-format", "refs/heads/" + prefix + "/checkpoint")
+        refs = ["refs/heads/main"] + ["refs/heads/" + p for p in prefixes]
+        names = git(args.repo, "for-each-ref", "--format=%(refname)", *refs).splitlines()
+        if "refs/heads/main" not in names or not all(n == "refs/heads/main" or any(n.startswith("refs/heads/" + p + "/") for p in prefixes) for n in names):
             raise ValueError("UnexpectedGitReferences")
         created = datetime.now(timezone.utc)
         tag = created.strftime("%Y%m%dT%H%M%S%fZ")
         main_head = git(args.repo, "rev-parse", "refs/heads/main").strip()
         args.output_dir.mkdir(parents=True, exist_ok=True)
-        bundle = args.output_dir / ("patientphex-main-day1-" + main_head[:12] + "-" + tag + ".bundle")
+        bundle = args.output_dir / ("patientphex-main-experiments-" + main_head[:12] + "-" + tag + ".bundle")
         if bundle.exists():
             raise FileExistsError("BundleAlreadyExists")
         git(args.repo, "bundle", "create", str(bundle), *names)
@@ -48,9 +55,10 @@ def main():
                     "clone_command": "git clone -b main /workspace/patientphex-restored/git/" + bundle.name
                         + " /workspace/CHIP2026_PatientPheX-restored",
                     "restore_all_branches_command": "git -C /workspace/CHIP2026_PatientPheX-restored fetch "
-                        + "/workspace/patientphex-restored/git/" + bundle.name + " 'refs/heads/day1/*:refs/heads/day1/*'",
+                        + "/workspace/patientphex-restored/git/" + bundle.name + " "
+                        + " ".join(shlex.quote("refs/heads/" + p + "/*:refs/heads/" + p + "/*") for p in prefixes),
                     "fetch_manifest_tool": {"name": "read_file", "arguments": {"mount_id": MOUNT, "path": GIT_REMOTE + "/" + filename}},
-                    "notes": "Contains committed main and day1 branches plus complete reachable history; excludes uncommitted files and external model/data artifacts.",
+                    "notes": "Contains committed main and configured experiment branches plus complete reachable history; excludes uncommitted files and external model/data artifacts.",
                     "tool_sha256": sha(Path(__file__).read_bytes())}
         data = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode()
         with manifest_path.open("xb") as out:

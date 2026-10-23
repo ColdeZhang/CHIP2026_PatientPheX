@@ -6,7 +6,7 @@
 
 - 任务：全文表型位置识别、HPO 标准化、指定患者表型归属。
 - 约束：模型不超过 10B；HPO v2026-06-23 的 HP:0000118 分支；禁止外部人工标注表型数据集。详见[比赛资料](docs/competition/README.md)。
-- 当前五条新路线进展见 [首日计划](docs/campaigns/day1-20261023.md)。旧 CPU 复现及全部旧产物仅保存在 [归档](archive/legacy-20261023/ARCHIVE.md)，不作为新实验默认起点。
+- 首日五路线已全部合并；当前三路线本地优化见 [第二轮总记录](docs/campaigns/round2-20261023.md)。旧 CPU 复现及全部旧产物仅保存在 [归档](archive/legacy-20261023/ARCHIVE.md)，不作为新实验默认起点。
 - 完整证据：[接手审查](archive/legacy-20261023/docs/REPOSITORY_REVIEW.md)、[审计统计与脚本](archive/legacy-20261023/docs/review/2026-10-23/README.md)。原 README 的历史路线结论不能直接作事实依据。
 
 下方 H01–H08 中的 `src/`、`data/` 等路径均相对 `archive/legacy-20261023/`；链接已指向归档证据。
@@ -89,7 +89,7 @@
 
 远端 Hugging Face 与镜像连接失败，本机可下载；MCP `write_file` 较大请求返回 HTTP 413。直接把模型或数据一次写入不可行。
 
-**避免方法**：本机下载并校验来源 SHA，在独立项目目录按不超过 512 KiB 原始字节分片传输、合并后核对完整 SHA；并发保持有限。模型和全量日志不入 Git。远端默认 `python` 或依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。证据见各 GPU 路线实验记录。
+**避免方法**：先尝试固定revision的官方直连。2026-10-23验证：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端可直接有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag也不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及CRF分支模型manifest。
 
 ## H14：官方附件元数据中的相对路径不等于可下载 URL
 
@@ -132,6 +132,54 @@ dev 金标包含 6 项 `HP:ddddddd;HP:ddddddd` 关联。公共评测初版保留
 提交页仅显示文件名、时间和“测评完成”；完整 precision/recall/F1 在“我的成绩”接口，UI只显示四位小数。成绩记录通过 `fileId` 对应上传列表的 `id`，不能只按页面顺序关联路线。
 
 **避免方法**：读取官方完整精度，核对比赛/赛季、fileId、文件名、时间、大小和冻结 SHA，保存白名单字段，不保留账号或认证数据。CDP重新连接后的视口可能恢复为窄屏，桌面“我的成绩”菜单消失；在同一连接设置视口再导航，或使用已确认的 `/score` 路由。接口与字段见[会话说明](docs/competition/SESSION.md)。
+
+## H21：同一文献集合不代表训练字节及随机过程一致
+
+第二轮本体首次远端 fold0 重建保留原 train64 文献顺序，后续批次使用冻结 fold 文件的排序；文献成员相同且仍与验证隔离，但负例随机抽样顺序改变，导致同配置 Score .702788 与 .703333 不同。这不是四舍五入，也不是评测口径变化。
+
+**避免方法**：远端直接传输冻结输入，重建时同时检查文件 SHA，而不仅比较 pmc_id 集合。种子不能消除输入顺序变化。记录实际运行源码/配置/数据字节，保留第一批结果，不能在原结果上改写来源。证据/状态：本体分支 `0673f85` 记录两批差异；最终四折与原dev均按冻结输入 SHA 核验，第一批只作历史选型。详见[本体最新台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/WORKLOG.md)。
+
+## H22：公开的比赛自训权重可能已包含本地验证文献
+
+Agriv公开模型卡声明自训标签来自官方80篇，其中包含本仓库固定dev16；下载可用和参数合规不等于可作本地留出验证。其五折模型的折成员也尚未核对，不能按同名fold0推定与本仓库划分相同。
+
+**避免方法**：区分公开通用预训练与本赛已微调权重，先核对训练文献来源/折成员，再决定用途。本轮只读取公开模型卡和元数据；本地比较需从允许的预训练基座按自己的train48/train64重训。没有使用该比赛成品权重。来源和固定revision见[研究索引](docs/campaigns/round2-research.md)。
+
+## H23：按文件名记录源码哈希会覆盖同名依赖
+
+CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫 `run.py`，后写入者覆盖前者，manifest遗漏了一个实际依赖。模型输出仍存在，但仅凭该manifest不足以精确复现。
+
+**避免方法**：用稳定角色名或仓库相对路径作为键，保留全部依赖的SHA；旧记录另附补充证据，不能静默改写。CRF分支 `9d3da67` 已补实际远端依赖哈希、角色键实现及同名文件回归检查，详见[方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
+
+## H24：LLM的JSON可解析，不代表患者键与输入一致
+
+两条Qwen路线遇到含冒号的患者ID：提示中的“ID: 别名”被模型整体用作键，例如 `OII:3: II:3`，真实ID为 `OII:3`。这属于身份字段格式失败，不能误报为患者人数翻倍或模型没有作答；也不能把未匹配结果静默丢弃。
+
+**避免方法**：用可逆P001等局部编号或明确结构化身份字段，严格验证患者/候选集合与截断状态。本体22窗口中3个失败窗口仅按格式、未看gold选择一次修复，最终22/22通过；旧raw、回退版本、重跑来源及SHA分别保留，修复后分数仍下降。证据见[本体分支实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)。
+
+## H25：外部原论文的临床事实未必属于比赛标注范围
+
+原论文表格通常比给定输入的caption包含更多临床信息，但直接补患者关系并不必然加分。按训练侧预先冻结的严格患者匹配/表型词典政策，在固定内fold0给rules新增31条、给LR新增29条关系，全部为该评测口径下的FP，Score分别 .711354→.698422、.642034→.631899；没有改Task1实体。
+
+**避免方法**：先确认标注范围，再评估外部证据的收益，不把“原论文确实记载”当作gold包含的保证。训练诊断中99.185%的gold关系可在给定正实体中找到，当前优先改进原文跨度和患者归属。保留表格来源及负结果，不把单一政策/单折负结果泛化为所有表格无用。证据见[CRF表格对照](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/evidence/round2/tables-fold0.json)。
+
+## H26：WordPiece标签合法，不代表解码跨度落在词边界
+
+神经NER曾输出 `lipomatosis` 中的 `lip`、`microcephaly` 中的 `haly` 等词内碎片；token标签、字符切片和JSON格式都可以通过，仍是错误表型边界。独立审计已核实训练标签往返覆盖99.22%，没有大规模mask/窗口故障，不能把这些碎片误判为整个训练链路损坏。
+
+**避免方法**：单独检查推理跨度的词边界；保留训练标注确有词内跨度的例外，不一概修改gold。仅按train48冻结的过滤控制让三种神经NER在内fold0改善约 .004–.0075 Score，仍未超过CRF；已交方案负责人，尚未宣称跨折稳定或全局替换。证据见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)，完整审查在仓库外 `validation/ner-audit/`。
+
+## H27：短代词的子串定位会生成合法但错误的患者指代
+
+全文共指首轮训练输入pilot的15窗都能解析JSON，但 `he` 的普通子串出现次序会数到 `the`、`mother`、`phenotype` 内部。输出原文切片存在，仍不代表正确患者指代；还出现把表型短语当患者称谓、把已指定历史病例混为当前病例的身份错误。因此没有扩大到验证折。
+
+**避免方法**：对短指代检查完整词边界；用唯一匹配的原文上下文定位，拒绝无法唯一定位或患者身份不清的项。新增共指仅在已验证坐标起作用，不能把 `they` 等新词面自动广播到全文。先做训练input-only身份检查，再冻结验证协议；不依据gold修指代。修正原型同3篇复验保留4处新增称谓，逐项身份检查通过；另35项被严格定位规则拒绝，召回很保守，尚未证明验证集得分收益。首轮响应SHA `19f5cd1ad1670017e79b11642124dc457aed8a04b3afdef317a609260727156a`；源码快照和取舍见[CRF方案实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
+
+## H28：长期worktree不会自动收到主分支的新规则
+
+三条实验分支从同一基点创建后，主线程持续更新共享规则与踩坑记录，但分支里的根文档仍停在早期版本。直接在该worktree读 `HANDOFF.MD` 会漏掉主分支已确认的新坑，方案自己的实验记录却可能是最新的。
+
+**避免方法**：新任务同时检查当前main的共享文档，可用 `git show main:HANDOFF.MD`；方案源码/实验记录仍读自己的工作分支。阶段检查点干净后正常合并main的共享更新，检查是否意外改变方案源码或评测器并推送。三路线已安排同步，不要求每个总台账提交都触发merge，也不把未提交实验混入同步。规则见[AGENTS第1节](AGENTS.md#1-开始任务与恢复上下文)。
 
 ## 更新方式
 

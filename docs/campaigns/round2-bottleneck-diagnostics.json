@@ -1,0 +1,837 @@
+{
+  "warning": "Diagnostic oracle metrics use validation gold and are NOT model scores. They cannot qualify for the 0.8 gate, train any model, or be submitted.",
+  "generator_sha256": "0c2ed7d9dbf09aaff24a0b87f2cfe2c90b54b08fba393acb0e155f8d46eff0aa",
+  "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+  "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+  "routes": {
+    "ontology-rules": {
+      "prediction_path": "../patientphex-runs/day1-20261023/ontology-rules/dev-v1/predictions.jsonl",
+      "prediction_sha256": "5a994261965f7887f2bfef384401380d49581940435bbe46d19604f6e4868e4b",
+      "current_relations_outside_entity_output": 0,
+      "baseline": {
+        "menF1": 0.7258145363408521,
+        "docF1": 0.7371663244353183,
+        "micF1": 0.5303030303030303,
+        "macF1": 0.4571046539297161,
+        "Score": 0.6125971362522292
+      },
+      "counts": {
+        "mention": {
+          "tp": 724,
+          "fp": 165,
+          "fn": 382,
+          "precision": 0.8143982002249719,
+          "recall": 0.6546112115732369,
+          "f1": 0.7258145363408521
+        },
+        "document": {
+          "tp": 359,
+          "fp": 55,
+          "fn": 201,
+          "precision": 0.8671497584541062,
+          "recall": 0.6410714285714286,
+          "f1": 0.7371663244353183
+        },
+        "relation": {
+          "tp": 210,
+          "fp": 129,
+          "fn": 243,
+          "precision": 0.6194690265486725,
+          "recall": 0.46357615894039733,
+          "f1": 0.5303030303030303
+        }
+      },
+      "required_mean_relation_f1_if_entities_fixed": 0.8685095696119147,
+      "required_mean_entity_f1_if_relations_fixed": 1.106296157883627,
+      "perfect_relation_score_with_current_entities": 0.8657452151940426,
+      "perfect_entity_score_with_current_relations": 0.7468519210581865,
+      "entity_candidate_coverage_relation_oracle": {
+        "tp": 316,
+        "fn": 137,
+        "fp": 0,
+        "micF1": 0.8218465539661899,
+        "macF1": 0.8115414251945872,
+        "Score_with_current_entities": 0.7740922099842369
+      },
+      "perfect_entity_fp_filter_score_with_current_relations": 0.6399871297965991,
+      "per_document_candidate_coverage": [
+        {
+          "pmc_id": "12147048",
+          "patients": 3,
+          "gold_relations": 32,
+          "candidate_covered_gold_relations": 19,
+          "missing_from_entity_output": 13
+        },
+        {
+          "pmc_id": "6151044",
+          "patients": 1,
+          "gold_relations": 7,
+          "candidate_covered_gold_relations": 4,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "5562981",
+          "patients": 3,
+          "gold_relations": 31,
+          "candidate_covered_gold_relations": 18,
+          "missing_from_entity_output": 13
+        },
+        {
+          "pmc_id": "6332535",
+          "patients": 2,
+          "gold_relations": 16,
+          "candidate_covered_gold_relations": 8,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "6096008",
+          "patients": 4,
+          "gold_relations": 15,
+          "candidate_covered_gold_relations": 14,
+          "missing_from_entity_output": 1
+        },
+        {
+          "pmc_id": "12733031",
+          "patients": 1,
+          "gold_relations": 6,
+          "candidate_covered_gold_relations": 3,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12126309",
+          "patients": 8,
+          "gold_relations": 79,
+          "candidate_covered_gold_relations": 58,
+          "missing_from_entity_output": 21
+        },
+        {
+          "pmc_id": "6220403",
+          "patients": 2,
+          "gold_relations": 21,
+          "candidate_covered_gold_relations": 19,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "5693559",
+          "patients": 2,
+          "gold_relations": 53,
+          "candidate_covered_gold_relations": 42,
+          "missing_from_entity_output": 11
+        },
+        {
+          "pmc_id": "6049015",
+          "patients": 1,
+          "gold_relations": 17,
+          "candidate_covered_gold_relations": 9,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "12640707",
+          "patients": 1,
+          "gold_relations": 44,
+          "candidate_covered_gold_relations": 28,
+          "missing_from_entity_output": 16
+        },
+        {
+          "pmc_id": "4899602",
+          "patients": 1,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "11986149",
+          "patients": 2,
+          "gold_relations": 77,
+          "candidate_covered_gold_relations": 61,
+          "missing_from_entity_output": 16
+        },
+        {
+          "pmc_id": "11221135",
+          "patients": 3,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "12017973",
+          "patients": 1,
+          "gold_relations": 8,
+          "candidate_covered_gold_relations": 6,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "6036836",
+          "patients": 1,
+          "gold_relations": 23,
+          "candidate_covered_gold_relations": 13,
+          "missing_from_entity_output": 10
+        }
+      ]
+    },
+    "case-retrieval": {
+      "prediction_path": "../patientphex-runs/day1-20261023/case-retrieval/dev-cpu/predictions.jsonl",
+      "prediction_sha256": "7835dcc35003c52939becb3b76f5aaedef3e7d34c38493eac9149236f950a91f",
+      "current_relations_outside_entity_output": 0,
+      "baseline": {
+        "menF1": 0.7316572601334017,
+        "docF1": 0.7492195629552549,
+        "micF1": 0.5424200278164116,
+        "macF1": 0.4307735388347408,
+        "Score": 0.6135175974349523
+      },
+      "counts": {
+        "mention": {
+          "tp": 713,
+          "fp": 130,
+          "fn": 393,
+          "precision": 0.8457888493475683,
+          "recall": 0.6446654611211573,
+          "f1": 0.7316572601334017
+        },
+        "document": {
+          "tp": 360,
+          "fp": 41,
+          "fn": 200,
+          "precision": 0.8977556109725686,
+          "recall": 0.6428571428571429,
+          "f1": 0.7492195629552549
+        },
+        "relation": {
+          "tp": 195,
+          "fp": 71,
+          "fn": 258,
+          "precision": 0.7330827067669173,
+          "recall": 0.4304635761589404,
+          "f1": 0.5424200278164116
+        }
+      },
+      "required_mean_relation_f1_if_entities_fixed": 0.8595615884556718,
+      "required_mean_entity_f1_if_relations_fixed": 1.1134032166744239,
+      "perfect_relation_score_with_current_entities": 0.8702192057721642,
+      "perfect_entity_score_with_current_relations": 0.7432983916627881,
+      "entity_candidate_coverage_relation_oracle": {
+        "tp": 320,
+        "fn": 133,
+        "fp": 0,
+        "micF1": 0.8279430789133247,
+        "macF1": 0.8187959987116307,
+        "Score_with_current_entities": 0.7819039751784029
+      },
+      "perfect_entity_fp_filter_score_with_current_relations": 0.6349373715131598,
+      "per_document_candidate_coverage": [
+        {
+          "pmc_id": "12147048",
+          "patients": 3,
+          "gold_relations": 32,
+          "candidate_covered_gold_relations": 18,
+          "missing_from_entity_output": 14
+        },
+        {
+          "pmc_id": "6151044",
+          "patients": 1,
+          "gold_relations": 7,
+          "candidate_covered_gold_relations": 4,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "5562981",
+          "patients": 3,
+          "gold_relations": 31,
+          "candidate_covered_gold_relations": 18,
+          "missing_from_entity_output": 13
+        },
+        {
+          "pmc_id": "6332535",
+          "patients": 2,
+          "gold_relations": 16,
+          "candidate_covered_gold_relations": 8,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "6096008",
+          "patients": 4,
+          "gold_relations": 15,
+          "candidate_covered_gold_relations": 14,
+          "missing_from_entity_output": 1
+        },
+        {
+          "pmc_id": "12733031",
+          "patients": 1,
+          "gold_relations": 6,
+          "candidate_covered_gold_relations": 3,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12126309",
+          "patients": 8,
+          "gold_relations": 79,
+          "candidate_covered_gold_relations": 65,
+          "missing_from_entity_output": 14
+        },
+        {
+          "pmc_id": "6220403",
+          "patients": 2,
+          "gold_relations": 21,
+          "candidate_covered_gold_relations": 19,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "5693559",
+          "patients": 2,
+          "gold_relations": 53,
+          "candidate_covered_gold_relations": 42,
+          "missing_from_entity_output": 11
+        },
+        {
+          "pmc_id": "6049015",
+          "patients": 1,
+          "gold_relations": 17,
+          "candidate_covered_gold_relations": 9,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "12640707",
+          "patients": 1,
+          "gold_relations": 44,
+          "candidate_covered_gold_relations": 28,
+          "missing_from_entity_output": 16
+        },
+        {
+          "pmc_id": "4899602",
+          "patients": 1,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "11986149",
+          "patients": 2,
+          "gold_relations": 77,
+          "candidate_covered_gold_relations": 60,
+          "missing_from_entity_output": 17
+        },
+        {
+          "pmc_id": "11221135",
+          "patients": 3,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "12017973",
+          "patients": 1,
+          "gold_relations": 8,
+          "candidate_covered_gold_relations": 6,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "6036836",
+          "patients": 1,
+          "gold_relations": 23,
+          "candidate_covered_gold_relations": 12,
+          "missing_from_entity_output": 11
+        }
+      ]
+    },
+    "sequence-crf": {
+      "prediction_path": "../patientphex-runs/day1-20261023/sequence-crf/crf-dev-v1/pred.jsonl",
+      "prediction_sha256": "b7bcdeabc23f8d5915f2d1b5f9b6631b7565c66d78a60460fc405aee3286942b",
+      "current_relations_outside_entity_output": 0,
+      "baseline": {
+        "menF1": 0.7325400931195034,
+        "docF1": 0.7453027139874739,
+        "micF1": 0.648471615720524,
+        "macF1": 0.6126201280049394,
+        "Score": 0.6847336377081101
+      },
+      "counts": {
+        "mention": {
+          "tp": 708,
+          "fp": 119,
+          "fn": 398,
+          "precision": 0.8561064087061668,
+          "recall": 0.6401446654611211,
+          "f1": 0.7325400931195034
+        },
+        "document": {
+          "tp": 357,
+          "fp": 41,
+          "fn": 203,
+          "precision": 0.8969849246231156,
+          "recall": 0.6375,
+          "f1": 0.7453027139874739
+        },
+        "relation": {
+          "tp": 297,
+          "fp": 166,
+          "fn": 156,
+          "precision": 0.6414686825053996,
+          "recall": 0.6556291390728477,
+          "f1": 0.648471615720524
+        }
+      },
+      "required_mean_relation_f1_if_entities_fixed": 0.8610785964465114,
+      "required_mean_entity_f1_if_relations_fixed": 0.9694541281372684,
+      "perfect_relation_score_with_current_entities": 0.8694607017767444,
+      "perfect_entity_score_with_current_relations": 0.8152729359313658,
+      "entity_candidate_coverage_relation_oracle": {
+        "tp": 320,
+        "fn": 133,
+        "fp": 0,
+        "micF1": 0.8279430789133247,
+        "macF1": 0.8153420937903743,
+        "Score_with_current_entities": 0.7802819949526691
+      },
+      "perfect_entity_fp_filter_score_with_current_relations": 0.7050782668183602,
+      "per_document_candidate_coverage": [
+        {
+          "pmc_id": "12147048",
+          "patients": 3,
+          "gold_relations": 32,
+          "candidate_covered_gold_relations": 15,
+          "missing_from_entity_output": 17
+        },
+        {
+          "pmc_id": "6151044",
+          "patients": 1,
+          "gold_relations": 7,
+          "candidate_covered_gold_relations": 4,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "5562981",
+          "patients": 3,
+          "gold_relations": 31,
+          "candidate_covered_gold_relations": 18,
+          "missing_from_entity_output": 13
+        },
+        {
+          "pmc_id": "6332535",
+          "patients": 2,
+          "gold_relations": 16,
+          "candidate_covered_gold_relations": 8,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "6096008",
+          "patients": 4,
+          "gold_relations": 15,
+          "candidate_covered_gold_relations": 13,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "12733031",
+          "patients": 1,
+          "gold_relations": 6,
+          "candidate_covered_gold_relations": 3,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12126309",
+          "patients": 8,
+          "gold_relations": 79,
+          "candidate_covered_gold_relations": 65,
+          "missing_from_entity_output": 14
+        },
+        {
+          "pmc_id": "6220403",
+          "patients": 2,
+          "gold_relations": 21,
+          "candidate_covered_gold_relations": 19,
+          "missing_from_entity_output": 2
+        },
+        {
+          "pmc_id": "5693559",
+          "patients": 2,
+          "gold_relations": 53,
+          "candidate_covered_gold_relations": 42,
+          "missing_from_entity_output": 11
+        },
+        {
+          "pmc_id": "6049015",
+          "patients": 1,
+          "gold_relations": 17,
+          "candidate_covered_gold_relations": 9,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "12640707",
+          "patients": 1,
+          "gold_relations": 44,
+          "candidate_covered_gold_relations": 29,
+          "missing_from_entity_output": 15
+        },
+        {
+          "pmc_id": "4899602",
+          "patients": 1,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "11986149",
+          "patients": 2,
+          "gold_relations": 77,
+          "candidate_covered_gold_relations": 62,
+          "missing_from_entity_output": 15
+        },
+        {
+          "pmc_id": "11221135",
+          "patients": 3,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "12017973",
+          "patients": 1,
+          "gold_relations": 8,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 1
+        },
+        {
+          "pmc_id": "6036836",
+          "patients": 1,
+          "gold_relations": 23,
+          "candidate_covered_gold_relations": 12,
+          "missing_from_entity_output": 11
+        }
+      ]
+    },
+    "fuzzy-ranker": {
+      "prediction_path": "../patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/predictions.jsonl",
+      "prediction_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643",
+      "current_relations_outside_entity_output": 0,
+      "baseline": {
+        "menF1": 0.6651810584958218,
+        "docF1": 0.7019867549668874,
+        "micF1": 0.5871345029239766,
+        "macF1": 0.5694919126589092,
+        "Score": 0.6309485572613988
+      },
+      "counts": {
+        "mention": {
+          "tp": 597,
+          "fp": 92,
+          "fn": 509,
+          "precision": 0.8664731494920174,
+          "recall": 0.5397830018083183,
+          "f1": 0.6651810584958218
+        },
+        "document": {
+          "tp": 318,
+          "fp": 28,
+          "fn": 242,
+          "precision": 0.9190751445086706,
+          "recall": 0.5678571428571428,
+          "f1": 0.7019867549668874
+        },
+        "relation": {
+          "tp": 251,
+          "fp": 151,
+          "fn": 202,
+          "precision": 0.6243781094527363,
+          "recall": 0.5540838852097131,
+          "f1": 0.5871345029239766
+        }
+      },
+      "required_mean_relation_f1_if_entities_fixed": 0.9164160932686454,
+      "required_mean_entity_f1_if_relations_fixed": 1.0216867922085573,
+      "perfect_relation_score_with_current_entities": 0.8417919533656772,
+      "perfect_entity_score_with_current_relations": 0.7891566038957214,
+      "entity_candidate_coverage_relation_oracle": {
+        "tp": 295,
+        "fn": 158,
+        "fp": 0,
+        "micF1": 0.7887700534759359,
+        "macF1": 0.78267583427822,
+        "Score_with_current_entities": 0.7346534253042163
+      },
+      "perfect_entity_fp_filter_score_with_current_relations": 0.6455289175268989,
+      "per_document_candidate_coverage": [
+        {
+          "pmc_id": "12147048",
+          "patients": 3,
+          "gold_relations": 32,
+          "candidate_covered_gold_relations": 16,
+          "missing_from_entity_output": 16
+        },
+        {
+          "pmc_id": "6151044",
+          "patients": 1,
+          "gold_relations": 7,
+          "candidate_covered_gold_relations": 4,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "5562981",
+          "patients": 3,
+          "gold_relations": 31,
+          "candidate_covered_gold_relations": 17,
+          "missing_from_entity_output": 14
+        },
+        {
+          "pmc_id": "6332535",
+          "patients": 2,
+          "gold_relations": 16,
+          "candidate_covered_gold_relations": 8,
+          "missing_from_entity_output": 8
+        },
+        {
+          "pmc_id": "6096008",
+          "patients": 4,
+          "gold_relations": 15,
+          "candidate_covered_gold_relations": 12,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12733031",
+          "patients": 1,
+          "gold_relations": 6,
+          "candidate_covered_gold_relations": 3,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12126309",
+          "patients": 8,
+          "gold_relations": 79,
+          "candidate_covered_gold_relations": 58,
+          "missing_from_entity_output": 21
+        },
+        {
+          "pmc_id": "6220403",
+          "patients": 2,
+          "gold_relations": 21,
+          "candidate_covered_gold_relations": 15,
+          "missing_from_entity_output": 6
+        },
+        {
+          "pmc_id": "5693559",
+          "patients": 2,
+          "gold_relations": 53,
+          "candidate_covered_gold_relations": 41,
+          "missing_from_entity_output": 12
+        },
+        {
+          "pmc_id": "6049015",
+          "patients": 1,
+          "gold_relations": 17,
+          "candidate_covered_gold_relations": 8,
+          "missing_from_entity_output": 9
+        },
+        {
+          "pmc_id": "12640707",
+          "patients": 1,
+          "gold_relations": 44,
+          "candidate_covered_gold_relations": 29,
+          "missing_from_entity_output": 15
+        },
+        {
+          "pmc_id": "4899602",
+          "patients": 1,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 6,
+          "missing_from_entity_output": 6
+        },
+        {
+          "pmc_id": "11986149",
+          "patients": 2,
+          "gold_relations": 77,
+          "candidate_covered_gold_relations": 56,
+          "missing_from_entity_output": 21
+        },
+        {
+          "pmc_id": "11221135",
+          "patients": 3,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 7,
+          "missing_from_entity_output": 5
+        },
+        {
+          "pmc_id": "12017973",
+          "patients": 1,
+          "gold_relations": 8,
+          "candidate_covered_gold_relations": 5,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "6036836",
+          "patients": 1,
+          "gold_relations": 23,
+          "candidate_covered_gold_relations": 10,
+          "missing_from_entity_output": 13
+        }
+      ]
+    },
+    "semantic-neural": {
+      "prediction_path": "../patientphex-runs/day1-20261023/semantic-neural/dev-sapbert/predictions.jsonl",
+      "prediction_sha256": "c5eb86a5bcf894e7ab5d2812ca8d62d386733951e762faf83e8577a049a0de1f",
+      "current_relations_outside_entity_output": 0,
+      "baseline": {
+        "menF1": 0.7016205910390848,
+        "docF1": 0.7389162561576355,
+        "micF1": 0.42990654205607476,
+        "macF1": 0.3106585033084132,
+        "Score": 0.545275473140302
+      },
+      "counts": {
+        "mention": {
+          "tp": 736,
+          "fp": 256,
+          "fn": 370,
+          "precision": 0.7419354838709677,
+          "recall": 0.6654611211573237,
+          "f1": 0.7016205910390848
+        },
+        "document": {
+          "tp": 375,
+          "fp": 80,
+          "fn": 185,
+          "precision": 0.8241758241758241,
+          "recall": 0.6696428571428571,
+          "f1": 0.7389162561576355
+        },
+        "relation": {
+          "tp": 161,
+          "fp": 135,
+          "fn": 292,
+          "precision": 0.543918918918919,
+          "recall": 0.3554083885209713,
+          "f1": 0.42990654205607476
+        }
+      },
+      "required_mean_relation_f1_if_entities_fixed": 0.8797315764016399,
+      "required_mean_entity_f1_if_relations_fixed": 1.2297174773177562,
+      "perfect_relation_score_with_current_entities": 0.86013421179918,
+      "perfect_entity_score_with_current_relations": 0.685141261341122,
+      "entity_candidate_coverage_relation_oracle": {
+        "tp": 325,
+        "fn": 128,
+        "fp": 0,
+        "micF1": 0.8354755784061697,
+        "macF1": 0.7908723831931724,
+        "Score_with_current_entities": 0.7667212021990156
+      },
+      "perfect_entity_fp_filter_score_with_current_relations": 0.5854588654333955,
+      "per_document_candidate_coverage": [
+        {
+          "pmc_id": "12147048",
+          "patients": 3,
+          "gold_relations": 32,
+          "candidate_covered_gold_relations": 21,
+          "missing_from_entity_output": 11
+        },
+        {
+          "pmc_id": "6151044",
+          "patients": 1,
+          "gold_relations": 7,
+          "candidate_covered_gold_relations": 4,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "5562981",
+          "patients": 3,
+          "gold_relations": 31,
+          "candidate_covered_gold_relations": 21,
+          "missing_from_entity_output": 10
+        },
+        {
+          "pmc_id": "6332535",
+          "patients": 2,
+          "gold_relations": 16,
+          "candidate_covered_gold_relations": 12,
+          "missing_from_entity_output": 4
+        },
+        {
+          "pmc_id": "6096008",
+          "patients": 4,
+          "gold_relations": 15,
+          "candidate_covered_gold_relations": 12,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12733031",
+          "patients": 1,
+          "gold_relations": 6,
+          "candidate_covered_gold_relations": 3,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "12126309",
+          "patients": 8,
+          "gold_relations": 79,
+          "candidate_covered_gold_relations": 57,
+          "missing_from_entity_output": 22
+        },
+        {
+          "pmc_id": "6220403",
+          "patients": 2,
+          "gold_relations": 21,
+          "candidate_covered_gold_relations": 20,
+          "missing_from_entity_output": 1
+        },
+        {
+          "pmc_id": "5693559",
+          "patients": 2,
+          "gold_relations": 53,
+          "candidate_covered_gold_relations": 40,
+          "missing_from_entity_output": 13
+        },
+        {
+          "pmc_id": "6049015",
+          "patients": 1,
+          "gold_relations": 17,
+          "candidate_covered_gold_relations": 10,
+          "missing_from_entity_output": 7
+        },
+        {
+          "pmc_id": "12640707",
+          "patients": 1,
+          "gold_relations": 44,
+          "candidate_covered_gold_relations": 33,
+          "missing_from_entity_output": 11
+        },
+        {
+          "pmc_id": "4899602",
+          "patients": 1,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 9,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "11986149",
+          "patients": 2,
+          "gold_relations": 77,
+          "candidate_covered_gold_relations": 59,
+          "missing_from_entity_output": 18
+        },
+        {
+          "pmc_id": "11221135",
+          "patients": 3,
+          "gold_relations": 12,
+          "candidate_covered_gold_relations": 5,
+          "missing_from_entity_output": 7
+        },
+        {
+          "pmc_id": "12017973",
+          "patients": 1,
+          "gold_relations": 8,
+          "candidate_covered_gold_relations": 5,
+          "missing_from_entity_output": 3
+        },
+        {
+          "pmc_id": "6036836",
+          "patients": 1,
+          "gold_relations": 23,
+          "candidate_covered_gold_relations": 14,
+          "missing_from_entity_output": 9
+        }
+      ]
+    }
+  },
+  "three_route_union_relation_candidate_coverage": {
+    "tp": 330,
+    "fn": 123
+  }
+}
