@@ -67,3 +67,5 @@
 - [严格OOF CE特征入树可行性](ce-oof-feasibility.json)：旧outer模型/分数资产、二级候选来源泄漏核对、两种隔离方案成本；仅CPU提案，未新增训练。
 
 - [CE唯一OOF运行计划](ce-oof-run-plan.json)与[CPU实际准备](ce-oof-preparation.json)：严格3×16/6池隔离、旧84列/.4 byteexact、总720秒预算；终点尚未运行。
+
+- [CE实际作业](ce-oof-training-job.json)与[独审索引](ce-oof-audit-index.json)：18:38:18Z开始，720秒硬cap；作业状态看WORKLOG，不把启动等同终点。
