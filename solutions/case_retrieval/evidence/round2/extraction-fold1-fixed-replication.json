@@ -1,0 +1,225 @@
+{
+  "purpose": "Predeclared fold1 replication; no adaptive threshold/epoch/prompt selection on gold",
+  "created_utc": "2026-10-23T15:49:00.947267+00:00",
+  "conclusion": "No stable Task1 gain versus the same fold1 CRF+Sap baseline. Filtered retrieval has small paired gain but remains below unchanged-rule baseline. No original-dev claim.",
+  "metrics": {
+    "baseline.rules": {
+      "menF1": 0.6775089250297501,
+      "docF1": 0.7470059880239521,
+      "micF1": 0.6101694915254238,
+      "macF1": 0.5445006930981751,
+      "Score": 0.6447962744193253
+    },
+    "baseline.retrieval": {
+      "menF1": 0.6775089250297501,
+      "docF1": 0.7470059880239521,
+      "micF1": 0.5773809523809523,
+      "macF1": 0.47714532300801504,
+      "Score": 0.6197602971106674
+    },
+    "new-only": {
+      "menF1": 0.5072088724584104,
+      "docF1": 0.6021220159151194,
+      "micF1": 0.6101694915254238,
+      "macF1": 0.5445006930981751,
+      "Score": 0.5660002682492822
+    },
+    "union.rules": {
+      "menF1": 0.6198514517218096,
+      "docF1": 0.679876160990712,
+      "micF1": 0.6101694915254238,
+      "macF1": 0.5445006930981751,
+      "Score": 0.6135994493340301
+    },
+    "union.retrieval": {
+      "menF1": 0.6198514517218096,
+      "docF1": 0.679876160990712,
+      "micF1": 0.5417348608837971,
+      "macF1": 0.5091182744546215,
+      "Score": 0.587645187012735
+    },
+    "filtered.rules": {
+      "menF1": 0.6764705882352942,
+      "docF1": 0.7441176470588236,
+      "micF1": 0.6101694915254238,
+      "macF1": 0.5445006930981751,
+      "Score": 0.6438146049794291
+    },
+    "filtered.retrieval": {
+      "menF1": 0.6764705882352942,
+      "docF1": 0.7441176470588236,
+      "micF1": 0.585838991270611,
+      "macF1": 0.48342610768543753,
+      "Score": 0.6224633335625416
+    }
+  },
+  "paired_deltas": {
+    "filtered_vs_rules": {
+      "menF1": -0.001038336794455974,
+      "docF1": -0.0028883409651285774,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": -0.0009816694398961934
+    },
+    "filtered_vs_retrieval": {
+      "menF1": -0.001038336794455974,
+      "docF1": -0.0028883409651285774,
+      "micF1": 0.008458038889658681,
+      "macF1": 0.006280784677422491,
+      "Score": 0.0027030364518741967
+    },
+    "union_vs_rules": {
+      "menF1": -0.05765747330794058,
+      "docF1": -0.06712982703324011,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": -0.0311968250852952
+    },
+    "union_vs_retrieval": {
+      "menF1": -0.05765747330794058,
+      "docF1": -0.06712982703324011,
+      "micF1": -0.03564609149715525,
+      "macF1": 0.0319729514466065,
+      "Score": -0.03211511009793233
+    }
+  },
+  "marginal_filtered": {
+    "span_only": {
+      "tp": 29,
+      "fp": 31,
+      "fn": 1306,
+      "precision": 0.48333333333333334,
+      "recall": 0.021722846441947566,
+      "f1": 0.04157706093189964
+    },
+    "span_and_hpo_v2": {
+      "tp": 20,
+      "fp": 43,
+      "fn": 1333,
+      "precision": 0.31746031746031744,
+      "recall": 0.014781966001478197,
+      "f1": 0.02824858757062147
+    }
+  },
+  "marginal_unfiltered": {
+    "span_only": {
+      "tp": 98,
+      "fp": 336,
+      "fn": 1237,
+      "precision": 0.22580645161290322,
+      "recall": 0.07340823970037454,
+      "f1": 0.11079706048615037
+    },
+    "span_and_hpo_v2": {
+      "tp": 64,
+      "fp": 377,
+      "fn": 1289,
+      "precision": 0.14512471655328799,
+      "recall": 0.04730229120473023,
+      "f1": 0.0713489409141583
+    }
+  },
+  "filter_counts": {
+    "linked": 1336,
+    "overlapping_baseline": 902,
+    "eligible_nonoverlap": 434,
+    "filtered_additions": 374,
+    "accepted_additions": 60
+  },
+  "link_counts": {
+    "out_of_candidate_ids": 19,
+    "exact_links": 693,
+    "llm_links": 643,
+    "documents": 16,
+    "entities": 1336,
+    "extracted_entities": 1336,
+    "unresolved_occurrences": 19
+  },
+  "timings_seconds": {
+    "train2epochs": 542.0377886295319,
+    "original88_extract": 958.495,
+    "once_retry23": 132.652,
+    "hpo56": 699.325
+  },
+  "source_data": {
+    "train48_sha256": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+    "train305_sha256": "cb547200b6330dd14f000ccd3a8c41a0aa111750dcf12e97856411f6b764d28d",
+    "heldout_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "adapter_epoch002_sha256": "fa1d4f3d9cb2cd0a439667b168e1745151021db2e4034af880b7db22a31aaa56"
+  },
+  "validation": {
+    "arms": 7,
+    "all_valid": true,
+    "errors": 0,
+    "warnings": 0
+  },
+  "limits": [
+    "No fold1 base extraction run: cannot attribute fold1 gain/loss to SFT versus base.",
+    "One remaining invalid extraction window after the only declared retry is retained as failure; no repeated repair.",
+    "Rules arms preserve the baseline association exactly; this is a Task1 ablation, not rules rerun on added entities.",
+    "New-only retains baseline associations and is a Task1 diagnostic pool, not an independently complete generator.",
+    "Span-only scores ignore identifiers and are not competition Score.",
+    "All 7 predictions were constructed and hashed before heldout gold evaluation. No thresholds selected from gold.",
+    "Fixed HPO decoding uses base Qwen3-8B without extraction adapter; 19 out-of-candidate outputs rejected by frozen merge.",
+    "Frozen Sap reconstruction replays original fold1 pool p exactly; new FP16 batches show small p/cos drift but zero common-pool threshold-decision differences.",
+    "These are internal fold1 public-evaluator v2 all/text approximations, not original dev16 acceptance or official scores."
+  ],
+  "gpu": {
+    "host": "10.5.2.100",
+    "uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "released": true
+  },
+  "files": {
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/training-plan.json": "04332d4d01fc334602ff445f4a682e55f0bfcc8c6c915f773b93bad52a3a9287",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/training-verification.json": "091a5e5d38949c818da6890dec3502d21e5b062ac177ec5889fec0e9e50d82e9",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/training_complete.json": "f724519d0bbb2983c44ea13576c8cf8468842600f6fa1d607e682584c8de3bc6",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/inference/responses.jsonl": "59a41137eeccbc1d2f72cdcc95d76090c2d0db1379a2e81eafedd1878377b62a",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/inference/original88-span-diagnostics.json": "1f155f9c47f542a64e8718095ce5c3d5f6e7b979e6522c7048608a8154e66d9d",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/inference/retry/combined-responses.jsonl": "cbd06dde54c76aa499c45e642fdf81d587b2170f29215b9373f98492389de46f",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/inference/retry/repaired103-span-diagnostics.json": "cfb6993194da4afc212227e0e239ffe4f99c350a2397e17cb1af4d95e5f6d782",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/normalization-repaired-dense/normalization-items.json": "92a9ec1fe60595490ed1db57b9035a9ecb8d2a354a1a1e0a2b28d49d845091fc",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/hpo-inference/responses.jsonl": "1e6355db426766cac9698f03d0ac6afa9a28b7ec8d1b84081ed5319691c313da",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/hpo-inference/summary.json": "0f4556b1aad71ded2e3db0ce665b45cd8fd0a95b682380a334ff2fef257246f9",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/frozen-before-evaluation.json": "c6013cf32241356d6ade54a7482185103e48bd49511ca6cd91044998ef6ccb65",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/summary.json": "99cc1f5fc42f8500a983b787dbcbafaf47837642af5c37e128b7894362e3b55e",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/filtered.marginal-diagnostics.json": "8cdc370cff08ce6d9b54fd75afdf6406295cb9f3aee0ab2e60074fd9c509d220",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/filtered.entities.jsonl": "115ac3ccfbc54cf26ee80181c58f20ba60d65d58b2faa8beae9ad10eb591b360",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/filtered.retrieval.jsonl": "85e16008b887c227be0fcfeda473306bac6df7bdb20111db61c7bcb75d9562c3",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/scored/scores.jsonl": "5b9cb7bce5d9705f3f2708043ddf82d4352b7e968127ec5745e60ab6c1b53296",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/scoring-overlap-audit.json": "51b4d0918e38b6c91fdf38ef8eaccc833075ed2e3c135875f803eb350e92b37d",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/reconstruction/reconstruction.manifest.json": "5f170d592f0acb9c3bf7caf6d9b1085898860f6aa7bb18b9ef41e4d5dd993fa6",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/gpu-release-check.json": "1ba00524b750b4faaa4547e41bfe3f368cf7692be2ae92b1d519ad41b2e0c6dc",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/finish_controls.py": "e13fe7b48efc98eba506cbac99c72abd91ab5c2346a3758d62c1cdf237a7599a",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/collect_hpo.py": "8e99fef568282b718df879704ba32463007d0ccdbb298a224d776d5fa200d03f"
+  },
+  "predictions": {
+    "baseline.rules": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold1/rules.pred.jsonl",
+      "sha256": "71578c80372946506353a9d6a721cbd8b1723fe8f4be334c732ed2ce84e90865"
+    },
+    "baseline.retrieval": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/baseline.retrieval.jsonl",
+      "sha256": "40d8ba604f5ebf4f01c487e40b7abc64943a1c563c6fe07b263db064cf86ba91"
+    },
+    "new-only": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/new-only.jsonl",
+      "sha256": "741ac301149efac8feec4eb02eba5eec7281f7fe312666650d61fa904bc9232c"
+    },
+    "union.rules": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/union.jsonl",
+      "sha256": "f9387c712e780bb230eb3b7d161526f8b20482c063560cd5a261f39a5f116d30"
+    },
+    "union.retrieval": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/linked-original/union.retrieval.jsonl",
+      "sha256": "f5bf18eefedd901bc296699e589118b6a888524e670b8f30f34b918ad5141ea5"
+    },
+    "filtered.rules": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/filtered.entities.jsonl",
+      "sha256": "115ac3ccfbc54cf26ee80181c58f20ba60d65d58b2faa8beae9ad10eb591b360"
+    },
+    "filtered.retrieval": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sap-filter-control/fold1/repaired103/filtered.retrieval.jsonl",
+      "sha256": "85e16008b887c227be0fcfeda473306bac6df7bdb20111db61c7bcb75d9562c3"
+    }
+  }
+}

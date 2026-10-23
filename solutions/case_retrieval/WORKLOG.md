@@ -5,10 +5,11 @@
 ## 当前状态
 
 - **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
-- **固定dev最佳**：CPU四折选出的 k21/.35 为 **.625073738**（首日 .613517597）；独立重训/逐字节预测复现通过。后续GPU研究均在train64内部fold0，尚未重评dev。
+- **固定dev最佳**：CPU四折选出的 k21/.35 为 **.625073738**（首日 .613517597）；独立重训/逐字节预测复现通过。后续GPU研究仅在train64内部fold0/fold1，尚未重评dev。
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
-- **当前任务**：优先整患者开放集合SFT的带原文证据版本。126行带quote目标与47个完整文献患者输入独审通过；最长11709token smoke通过。A800正式2epoch/32step已完整结束（654.41秒、峰值42.096GB），实际两个checkpoint全SHA核验通过。最长3条base触顶重复/adapter合法空数组；资源检查通过，完整47×2同卡batch3配对推理进行中，尚无此项验证分。
-- **后续**：抽取fold1固定2epoch复验已训练完成，研究子代理在.100 GPU1推断88验证输入窗；只用自身train48从base新LoRA训练相同2epoch，既有阈值，不扫参数、不提前评dev。
+- **最新结论**：整患者开放集合SFT完整47×2配对严重负：base grounded .375189、epoch002 grounded .396343，同实体规则 .711354；adapter 44合法中26空数组，3触顶，停止这套配置。原文quote存在不代表自由HPO ID正确。
+- **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
+- **当前任务**：完成上述负结果独审/诊断；在新A100自有目录准备固定Qwen3.5-9B通用基座与隔离runtime。只下载/CPU兼容性检查，未开始新GPU训练或推理；后续最小接口smoke须重新核GPU与主线程排期。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -21,12 +22,12 @@
 
 ## 当前任务与恢复
 
-1. 整患者新任务：A800 `10.5.4.7` mount `69b991ee-183f-4add-af1a-579af92479c9`，GPU2 `GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc`。自有cwd `case-retrieval/round2-patient-set/`；正式作业 `proc_db5057e8-780c-49dc-a33f-0492811b0045`已完成并退出，sequence changed29短批已结束并交回。完整base47 `proc_8eb8c4d2-940d-4f37-a376-7238b3625fb5`于15:15:03 UTC启动，完成后同GPU/同batch3接epoch002全47。完整命令/env与源码/输入SHA见外存 `patient-set-fold0-bf16-v1/training-plan.json`、实际作业见`training-job.json`。训练结果见`monitor/training_complete.json`和`checkpoint-actual-hashes.json`；推断计划见`inference-plan.json`与`inference-base-job.json`；本地只读监控/已授权顺序接力入口`setup/run_patient_pair_monitor.py`（session96434）会记录epoch002实际job。先读plan/monitor-state与远端进程，不能盲目重启。
-2. A800解释器只读 `/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python`；base只读同目录`pretrained-qwen3-8b`；PEFT只读`PYTHONPATH=/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/peft-runtime`。CPU核验torch2.7.1cu126/transformers4.51.3/PEFT.15.2通过；不修改共享环境。
-3. 已完成抽取SFT：.100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，保留epoch001/002及optimizer状态；原推断`inference/`与唯一恢复`inference/retry/`均已结束。实际作业/配置/全SHA在外存同名目录。原fold0均已结束；当前.100 GPU1已由sequence释放，本子代理管理fold1：训练 `proc_75f1bb0c-af15-4d82-9147-13d5d267e7a4`已结束（542.04秒/78step），推断`proc_d6ca6115-72cd-43ce-a041-ae1941fa1e3c`于15:02:36 UTC启动；外存`sft-extract-fold1-bf16-v1/`保存实际plan/job。
-4. 完整HPO作业`proc_855aacdd-70a5-45bb-b204-80b6d205a02f`已完成并释放A800 GPU2，外存`hpo-inference-plan.json`明确completed；响应/manifest/检查点全部回收。CPU重装命令在`sft-extract-fold0-bf16-v1/linked-original/commands.json`与`sap-filter-control/repaired101/merge-evaluation-commands.json`。
-5. .3 GPU0现在由本体真实PhenoTagger训练使用，不能启动原预想的fold1抽取。全部GPU都须重新确认资源归属和空闲进程；任何旧启动凭据中的running字段只是当时快照。
+1. 整患者47×2已完成，A800 GPU2已重新查询无进程并释放。外存`patient-set-fold0-bf16-v1/`的`training-plan.json`、`checkpoint-actual-hashes.json`、`inference-plan.json`、`evaluation-plan.json`、`evaluation-summary.json`是完整入口；base作业`proc_8eb8c4d2-940d-4f37-a376-7238b3625fb5`、adapter作业`proc_a5346f44-e7d1-4b09-bfee-841b6a30ec11`均结束，本地session96434也已退出，不要重启。
+2. fold1抽取全链也已完成，.100 GPU1由研究子代理重新查询无进程并释放。外存`sft-extract-fold1-bf16-v1/fold1-final-report.json`、`linked-original/summary.json`绑定7臂预测、自己的train48重训/原88窗/唯一23子窗恢复/HPO56/冻结Sap来源。研究子代理当前仅CPU做整患者quote/ID一致性诊断，不管理运行中GPU。
+3. 新模型准备：10.5.3.12 mount`476f81cf-09e7-445b-a7f0-d0e12b12e50f`，自有cwd`case-retrieval/qwen35-preparation`，唯一模型目标`models/Qwen3.5-9B`；下载作业`proc_b557721e-c2e8-4cb1-89d6-b432e3211eba`于15:45:37 UTC启动。固定HF revision`c202236235762e1c871ad0ccb60c8ee5ba337b9a`；完整来源在`qwen35-preparation/model-source-manifest.json`与仓库小摘要，下载结束必须检查`download-complete.json`全SHA，不能用partial。
+4. A100系统glibc2.17，默认Python无torch；两套旧peft环境导入libcurand失败。已找到只读`/dataset/miniforge3/envs/vlm-det/bin/python`（Python3.10.21/torch2.6.0+cu124）CPU import成功，CUDA未初始化。私有`runtime/`安装TF5.20.2/PEFT0.21.2/Accelerate1.15.0/hfhub1.31/tokenizers.23.1，作业`proc_947a0f6b-0a9d-416b-989f-997ba971e357`；只写本目录，不修改共享/系统环境，安装完成还需CPU实际import。
+5. 新A100 GPU3 UUID`GPU-f5417237-913f-06e6-77bc-00d0ce84b68b`由root预留，尚未使用，开跑前再核。A800/.100已释放，.3 GPU0由本体持有；任何历史running字段只是启动快照。原Qwen3-8B/runtime/两个SFTcheckpoint继续保留，不覆盖。
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `69720c1`（含整患者数据独审/训练启动、正常merge共享main@811b8cc，方案/评测源码SHA不变），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `01b2e72`（含整患者完整47配对前冻结；此前正常merge共享main@811b8cc，方案/评测源码SHA不变），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。

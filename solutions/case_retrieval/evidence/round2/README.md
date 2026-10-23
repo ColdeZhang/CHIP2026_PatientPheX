@@ -18,3 +18,7 @@
 - `extraction-fold1-cpu-preparation.json`：一次固定跨折复验的自身train48/88输入/token预算；实际训练作业更新于台账及外存plan/job。
 - `patient-set-training-complete.json`：整患者正式32step完整训练、两个实际checkpoint SHA核验与环境/数据来源；start文件是历史启动快照，当前状态以台账与外存plan为准。
 - `patient-set-inference-preflight.json`：最长3条同协议资源/格式分离、实际adapter加载与EOS、完整47×2固定batch3决策；pilot无gold、不当得分。
+
+- `patient-set-paired-control-summary.json`：完整47×2同卡对照与四种raw/grounded负结果；所有失败/空数组保留，实体不变、0错警，未达标。
+- `extraction-fold1-fixed-replication.json`：一次固定跨折复验的7组对照、训练/推断/格式恢复/标准化/Sap来源与全预测SHA；实体增益不稳定，不继续阈值扫描。
+- `qwen35-source-manifest.json`：固定9B基座15文件来源/size/SHA；仅来源已核、下载/环境准备中，不能当模型可用或得分证据。

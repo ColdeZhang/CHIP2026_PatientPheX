@@ -26,3 +26,8 @@ ModelScope对小文件完整Range可能返回200而非206；仅当请求严格�
 私有训练依赖在独立`training-runtime`安装peft0.15.2/bitsandbytes0.45.5，不修改已验证推理runtime；CPU隐藏GPU的import通过，不代表CUDA量化kernel已验证，仍须获GPU时做single-step。
 
 原文quote输出即使逐字存在，也未必是正确实体边界：全substring回定位会把短词插入长词，广义临床抽取易加入严重程度修饰或基因/蛋白结构。归一化返回-1只能表示确实存在但未映射的表型，不能代替非表型删除；后续单独验证明确拒绝协议。跨窗口响应按row_id而非pmc_id读取，不能复用要求每文献唯一的read_jsonl。格式恢复只按截断/JSON结构判定选择，一次重试并保留原文件。
+
+
+Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于固定HF commit，但LICENSE内容不同；保存HF原版并明确传输来源，不能声称两个仓库完全一致。模型合计9.653B仍须另计LoRA参数；新DeltaNet投影不能盲用旧Qwen3七target列表。
+
+新A100服务器系统glibc2.17；同机某Python里torch2.5.1cu121导入会通过libcurand触发缺GLIBC2.27，而另一个torch2.6.0cu124 CPU导入成功。因此必须验证实际解释器/动态依赖链，不能按“版本更旧”推断兼容。只读复用成功环境、私有target更新必要包，不修改系统glibc或共享环境。CPU import通过仍不等于GPU/长上下文通过。
