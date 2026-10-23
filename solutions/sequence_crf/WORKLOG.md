@@ -5,7 +5,8 @@
 ## 目标与可信最佳结果
 
 - 原 train64/dev16、指定 HPO 2026-06-23、公共 evaluator v2 all/text，**Score ≥ .8** 才申请主线程验收合并。本轮不上传官方。
-- 最新 dev **.711324992**（独审PASS）：原CRF+Sap/LR基线保留，增加固定train48 GLiNER终点、train64 Sap筛选跨度，再沿既有LR；源码`4adf9da`，预测`gliner-dev-transfer/assembled/full-lr.jsonl`。对应仅增实体不改关系控制.706111684；独立train64 LR重拟合、三输出/全部指标逐字节复现，格式/HPO零错警。前一独审最佳.700635947及完整证据继续保留。
+- 本路线原政策 dev **.711324992**（独审PASS）：原CRF+Sap/LR基线保留，增加固定train48 GLiNER终点、train64 Sap筛选跨度，再沿既有LR；源码`4adf9da`，预测`gliner-dev-transfer/assembled/full-lr.jsonl`。对应仅增实体不改关系控制.706111684；独立train64 LR重拟合、三输出/全部指标逐字节复现，格式/HPO零错警。前一独审最佳.700635947及完整证据继续保留。
+- 跨路线Pheno实体-only组合候选 **.712586161** 已独审PASS；固定nested48候选.712146627也已独审PASS。两项都只有温和增益，mention分项有下降，均未达.8。
 - 内四折规则关系优于 LR，原 dev 相反；LR/rules 都评过原 dev，该选择使用过 dev，不能声称盲验证。尚未达到 .8。
 
 ## 正在执行与恢复入口
@@ -16,8 +17,8 @@
 4. **outer48→fold0同政策已完成**：A30 fresh10/4360steps耗996.64秒、峰值6.028GB；零样本/终点预测先冻结。固定原947实体+Sap筛选新增26项（16TP/10FP），关联7TP/4FP，Score **.711353522→.721504431**、四项均升，纯span/来源/完整输出重放独审均PASS。只保留final模型+latest，实际余477.22GB。详见[终点结果/完整恢复](evidence/round2/gliner-outer0-results.json)，外存gliner-outer0-a30/、gliner-link-outer0/。
 5. **原dev迁移两臂已完成**：明确span48原文/标签是linker64子集且dev隔离；不重训64、不扫阈值。1103原始跨度经固定Sap等处理新增32实体（22TP/10FP），entity-only **.706111684**；同LR新增关联12TP/9FP、未移除旧关系，full-LR **.711324992**。两臂17:46:38Z统一冻结、零错警，独审PASS。[结果及全部恢复入口](evidence/round2/gliner-dev-transfer-results.json)；GPU1于17:45:11Z交检索、GPU0于17:46:11Z释放，无活动GPU。等待根预先固定其他有效候选组合，不自行扫顺序/阈值。
 6. **固定GLiNER→Pheno组合已结案**：只追加12实体（4TP/8FP），保旧关系臂 **.712586161**；同LR臂 **.712070726**（新增2TP/5FP）。两臂独审PASS；mention分项略降，只有小总分收益，不扫组合顺序/阈值。[完整结果](evidence/round2/gliner-pheno-joint-dev.json)。
-7. **全train64 fresh10正式运行中**：2372窗/5930steps，64与dev隔离、48旧1744窗为真子集，准备独审PASS；.3 A30 GPU0最长4×384单步1.156秒/4.484GB通过。固定control48同环境推理→公共base fresh64×10→唯一终点，45分钟训练硬cap，实际runtime torch2.7.0cu128/transformers4.50。同环境48控制候选完整byteexact，旧Sap64/LR严格缓存复用；首轮训练probe P.7122/R.6577，未全负塌缩，不据此挑epoch。计划/命令/源/数据/恢复入口见[64计划](evidence/round2/gliner-full64-plan.json)，外存gliner-full64/。17:55:07Z已启动`proc_dca76792-08e5-4112-a2cd-ae4444b04ef6`，恢复`gliner-full64/job.json`及`paired-fixed.state.json`；预计18:18–25终点（训练硬cap45分钟）。原48模型复制全SHA通过、临时服务关闭；正式训练不复用smoke/48微调权重，比较仍以原48 .711324991，不混Pheno组合。
-8. **固定嵌套实体控制完成**：nested57字节复现2d24bb99；同proper containment/HPO不交政策，outer48追加31（12TP/19FP），.721504→.723440；原dev48追加35（10TP/25FP），.711325→.712147，mention分下降而doc分升，所有旧关系不变、0错警，独审排队。只保留温和收益，不扫规则；在跑64主终点原政策不变，已预声明额外nested实体-only臂，统一freeze后评分。[结果](evidence/round2/gliner-nested-control-results.json)。
+7. **全train64固定10已完成、未改善**：fresh64/2372窗/5930steps耗1300.262秒，峰6.021GB，最终model e7985761、真实Adam/RNG state8026c3a8再哈希通过，仅保epoch10+latest。原48同runtime候选byteexact。64主fullLR **.705869445**（较48下降.005456），entity-only.705271539；预先固定nested次臂.706234066，仍较差。所有输出18:18:59Z统一freeze后评，0错警；模型跨度净+2TP/+3FP但关系-1TP/+9FP，不能因全量训练就替换旧模型。GPU于18:18:39Z fresh核空交本体，实余217.22GB，暂无本路线GPU任务。下一步仅调研更强通用span基座的确切来源/许可/兼容性与成本，尚不下载大权重或训练。新终点独审PASS、三预测/全部指标独立复现；[完整结果与恢复入口](evidence/round2/gliner-full64-results.json)。
+8. **固定嵌套实体控制完成**：nested57字节复现2d24bb99；同proper containment/HPO不交政策，outer48追加31（12TP/19FP），.721504→.723440；原dev48追加35（10TP/25FP），.711325→.712147，mention分下降而doc分升，所有旧关系不变、0错警，三路独立重放PASS。只保留温和收益，不扫规则；64主终点原政策及预声明nested次臂已统一freeze/评，均未超过48。[结果](evidence/round2/gliner-nested-control-results.json)。
 
 ## 已完成的近期结论
 

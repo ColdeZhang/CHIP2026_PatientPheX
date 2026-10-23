@@ -59,3 +59,5 @@
 - `gliner-nested-control-plan.json`：只允许不同HPO的proper containment，原nested预测字节复现；单次outer48实体-only控制，既有GPU64政策不变。
 
 - `gliner-nested-transfer-plan.json` / `gliner-nested-control-results.json`：outer31与原dev35追加，关系保留；原dev总分微升但mention下降，完整负分项与双freeze，独审排队；64次臂预先固定。
+
+- `gliner-full64-results.json`：全64唯一终点主.705869/nested.706234，未超过48；同runtime旧模型字节复用、训练/真实状态SHA、三臂统一freeze、存储和GPU释放，终点与对照复用独审PASS。

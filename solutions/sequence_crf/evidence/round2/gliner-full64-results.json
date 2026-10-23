@@ -1,0 +1,1044 @@
+{
+  "experiment": "E-20261023-009",
+  "scope": "Original train64/dev16 fixed10epoch final-only DEVELOPMENT control; explicit original-policy primary and predeclared nested entity-only secondary. Not a blind test.",
+  "source_training_commit": "e728a222ad8f042c224bf32f289bc3618837f2c7",
+  "launch_plan_commit": "1081307c18dd52295c6e19c98a0baaec5d536035",
+  "nested_source_commit": "3f0008145480dbbe0ad1b684cf156e5b15e933a1",
+  "nested_plan_commit": "4e750fae89bdaa7f78586a31c94b5105dad86c22",
+  "training": {
+    "fingerprint": {
+      "configuration": {
+        "epochs": 10,
+        "batch_size": 4,
+        "encoder_lr": 1e-05,
+        "other_lr": 5e-05,
+        "weight_decay": 0.01,
+        "warmup_fraction": 0.05,
+        "seed": 20261023,
+        "precision": "float32",
+        "gradient_clip": 1.0,
+        "loss": "binary CE sum over valid spans / valid span count",
+        "label": "phenotype",
+        "all_valid_negative_spans": true,
+        "checkpoint_choice": "epoch10 only; no validation selection",
+        "training_part": "train64"
+      },
+      "source_sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+      "loader_source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "data_manifest_sha256": "c3be9f4a3eccdc4d90edce17876beb7f6bbb911a692a16783a6db11ad81fa3b6",
+      "train_sha256": "d2d2ef387d1ba870bef8c141b2f5c060aef7da2e94f5e491be92874f5e63f18f",
+      "excluded_input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "base_weight_sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91"
+    },
+    "fingerprint_id": "63aea0b705c29ce8cc66071a1abc22c3fa7294eb7ea7208b2179e00cafbf02f3",
+    "arguments": {
+      "data_manifest": "prepared/manifest.json",
+      "train": "prepared/train64.jsonl",
+      "excluded_input": "../../semantic-neural/data/dev16.input.jsonl",
+      "model_dir": "../pretrained-gliner-medium-v2",
+      "tokenizer_dir": "../pretrained-gliner-medium-v2/tokenizer",
+      "output_dir": "formal-fixed10ep",
+      "smoke_only": false,
+      "resume": false,
+      "epochs": 10,
+      "training_part": "train64",
+      "prune_old_epochs": true
+    },
+    "documents": 64,
+    "rows": 2372,
+    "steps_per_epoch": 593,
+    "total_steps": 5930,
+    "parameters": 195175936,
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22"
+    },
+    "gpu": "NVIDIA A30",
+    "completed_epochs": 10,
+    "elapsed_seconds": 1300.2621747129597,
+    "max_gpu_allocated_bytes": 6020843520,
+    "gold_validation_read": false
+  },
+  "epoch_summaries": [
+    {
+      "epoch": 1,
+      "step": 593,
+      "mean_loss": 0.00500068802095724,
+      "seconds": 126.43582932511345,
+      "model_sha256": "0e516a84513962950703f19968933f7a4ba6990a4dabff2e0c2dbca9cd87a666",
+      "state_sha256": "a2602370c4b1cf0267d7f75fc73ad8b283362ff842a4953ae3059eb8c56da898",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 2745,
+        "gold_negative": 2312350,
+        "tp": 1842,
+        "fp": 903,
+        "positive_probability_sum": 1868.3992989362523,
+        "negative_probability_sum": 2893.691238885047
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 205,
+        "gold_negative": 59134,
+        "tp": 146,
+        "fp": 59,
+        "positive_probability_sum": 135.1955053806305,
+        "negative_probability_sum": 91.32875460386276
+      },
+      "training_probe_metrics": {
+        "precision": 0.7121951219512195,
+        "recall": 0.6576576576576577,
+        "positive_mean_probability": 0.6089887629758131,
+        "negative_mean_probability": 0.00154443728825824
+      }
+    },
+    {
+      "epoch": 2,
+      "step": 1186,
+      "mean_loss": 0.0036044684546515967,
+      "seconds": 124.7564355917275,
+      "model_sha256": "2e007873c6829e5b7de24831217f97fa41cf67e54adafda3cd36b24cbb979903",
+      "state_sha256": "4e923afb45e2113cb0ac696c3c56cc239c45b870fb0798d024ec234904add697",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 3669,
+        "gold_negative": 2312350,
+        "tp": 2726,
+        "fp": 943,
+        "positive_probability_sum": 2460.81279342268,
+        "negative_probability_sum": 2247.3414150658646
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 207,
+        "gold_negative": 59134,
+        "tp": 155,
+        "fp": 52,
+        "positive_probability_sum": 143.54415798187256,
+        "negative_probability_sum": 77.01150071620941
+      },
+      "training_probe_metrics": {
+        "precision": 0.748792270531401,
+        "recall": 0.6981981981981982,
+        "positive_mean_probability": 0.6465953062246511,
+        "negative_mean_probability": 0.0013023218574121386
+      }
+    },
+    {
+      "epoch": 3,
+      "step": 1779,
+      "mean_loss": 0.00297418466662231,
+      "seconds": 125.30664895288646,
+      "model_sha256": "a8e4c9c9d4a1342419be5a9692fad75ac82c66632d6786ef270e5901dad48884",
+      "state_sha256": "36f1ebfcc9f6f9d1dc1a269bdb389795a0a9034d34bd7ca2e7ef258a72927c5b",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 3955,
+        "gold_negative": 2312350,
+        "tp": 3063,
+        "fp": 892,
+        "positive_probability_sum": 2764.9718785523437,
+        "negative_probability_sum": 1938.0892095088566
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 211,
+        "gold_negative": 59134,
+        "tp": 179,
+        "fp": 32,
+        "positive_probability_sum": 165.72331047058105,
+        "negative_probability_sum": 64.56266778707504
+      },
+      "training_probe_metrics": {
+        "precision": 0.8483412322274881,
+        "recall": 0.8063063063063063,
+        "positive_mean_probability": 0.7465013985161308,
+        "negative_mean_probability": 0.001091802817111561
+      }
+    },
+    {
+      "epoch": 4,
+      "step": 2372,
+      "mean_loss": 0.0025575707000992758,
+      "seconds": 127.96166283404455,
+      "model_sha256": "1a213077565a8c402430cf009b1a4510c6f05f6c25920ba775bcabea3a76cb8f",
+      "state_sha256": "23ce3896eda70023c987322b0dc13357580a1d374276e211c9e87929f428ed85",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4071,
+        "gold_negative": 2312350,
+        "tp": 3267,
+        "fp": 804,
+        "positive_probability_sum": 3007.9912349106744,
+        "negative_probability_sum": 1671.0127510217428
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 214,
+        "gold_negative": 59134,
+        "tp": 193,
+        "fp": 21,
+        "positive_probability_sum": 178.29962015151978,
+        "negative_probability_sum": 56.62868478894234
+      },
+      "training_probe_metrics": {
+        "precision": 0.9018691588785047,
+        "recall": 0.8693693693693694,
+        "positive_mean_probability": 0.8031514421239629,
+        "negative_mean_probability": 0.0009576332531021466
+      }
+    },
+    {
+      "epoch": 5,
+      "step": 2965,
+      "mean_loss": 0.002171379874960905,
+      "seconds": 128.82647055620328,
+      "model_sha256": "fbbfffefee67104b72bd6b84f2f75074b8dd075f87fe5f172953693ccea193a6",
+      "state_sha256": "36286086edaab2087773689aa77fd184d942065684caf8542f7804671509d9c1",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4130,
+        "gold_negative": 2312350,
+        "tp": 3445,
+        "fp": 685,
+        "positive_probability_sum": 3216.7166358319573,
+        "negative_probability_sum": 1440.3468714747758
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 204,
+        "gold_negative": 59134,
+        "tp": 189,
+        "fp": 15,
+        "positive_probability_sum": 176.34292078018188,
+        "negative_probability_sum": 39.125569581985474
+      },
+      "training_probe_metrics": {
+        "precision": 0.9264705882352942,
+        "recall": 0.8513513513513513,
+        "positive_mean_probability": 0.7943374809918103,
+        "negative_mean_probability": 0.0006616425336014049
+      }
+    },
+    {
+      "epoch": 6,
+      "step": 3558,
+      "mean_loss": 0.0018385729871831164,
+      "seconds": 128.6850882107392,
+      "model_sha256": "f2b2ac4739779e42dfb92268911f9382c576b9211831a724e2b594d93cd4afbe",
+      "state_sha256": "bb0e5c0b7d0edbaf098110ed51bc781aa64e226f5b1d63dcba40aa0f4fefc789",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4195,
+        "gold_negative": 2312350,
+        "tp": 3603,
+        "fp": 592,
+        "positive_probability_sum": 3424.4141951054335,
+        "negative_probability_sum": 1243.3548628000292
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 221,
+        "gold_negative": 59134,
+        "tp": 203,
+        "fp": 18,
+        "positive_probability_sum": 193.84886646270752,
+        "negative_probability_sum": 35.70812286436558
+      },
+      "training_probe_metrics": {
+        "precision": 0.918552036199095,
+        "recall": 0.9144144144144144,
+        "positive_mean_probability": 0.8731930921743581,
+        "negative_mean_probability": 0.0006038509633098653
+      }
+    },
+    {
+      "epoch": 7,
+      "step": 4151,
+      "mean_loss": 0.0016857280796967657,
+      "seconds": 126.85742466524243,
+      "model_sha256": "4c05aa344e63c7b03f83cc22245f6c242cc26ebf2c505753c966ea53498c4b3a",
+      "state_sha256": "c3e9c4d3d4f11c8f216673b9cf69c9a666d0df261773aa55d1858402b205151e",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4265,
+        "gold_negative": 2312350,
+        "tp": 3733,
+        "fp": 532,
+        "positive_probability_sum": 3558.9224995411932,
+        "negative_probability_sum": 1106.4528215884966
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 216,
+        "gold_negative": 59134,
+        "tp": 200,
+        "fp": 16,
+        "positive_probability_sum": 196.30323791503906,
+        "negative_probability_sum": 30.63583068549633
+      },
+      "training_probe_metrics": {
+        "precision": 0.9259259259259259,
+        "recall": 0.9009009009009009,
+        "positive_mean_probability": 0.8842488194371129,
+        "negative_mean_probability": 0.00051807472326405
+      }
+    },
+    {
+      "epoch": 8,
+      "step": 4744,
+      "mean_loss": 0.0014261222516640977,
+      "seconds": 127.82112766709179,
+      "model_sha256": "2b66c78672e178a5c350b9f663767bd70432c1691e5792e7e6cc2af2198a87b3",
+      "state_sha256": "7fd8d606d06a25d7c27c1f93d766e291497499185062feed38448fed5d5fcf34",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4330,
+        "gold_negative": 2312350,
+        "tp": 3863,
+        "fp": 467,
+        "positive_probability_sum": 3701.06835792365,
+        "negative_probability_sum": 968.7759545957422
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 227,
+        "gold_negative": 59134,
+        "tp": 206,
+        "fp": 21,
+        "positive_probability_sum": 203.41722536087036,
+        "negative_probability_sum": 30.314475774765015
+      },
+      "training_probe_metrics": {
+        "precision": 0.9074889867841409,
+        "recall": 0.9279279279279279,
+        "positive_mean_probability": 0.9162938079318484,
+        "negative_mean_probability": 0.0005126403722860793
+      }
+    },
+    {
+      "epoch": 9,
+      "step": 5337,
+      "mean_loss": 0.0012684107667907398,
+      "seconds": 127.48661750322208,
+      "model_sha256": "9c70cf3e66d69be78d8482b055d55ae3b84ed4621ac87cfe1c9d0886e4c1a618",
+      "state_sha256": "b98c4cdba6749e38d990fcbe70694d128552338d43eb67e20a136ecb89d0b79c",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4376,
+        "gold_negative": 2312350,
+        "tp": 3955,
+        "fp": 421,
+        "positive_probability_sum": 3818.5531300604343,
+        "negative_probability_sum": 844.4161590845227
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 232,
+        "gold_negative": 59134,
+        "tp": 210,
+        "fp": 22,
+        "positive_probability_sum": 205.71915817260742,
+        "negative_probability_sum": 32.0972920358181
+      },
+      "training_probe_metrics": {
+        "precision": 0.9051724137931034,
+        "recall": 0.9459459459459459,
+        "positive_mean_probability": 0.9266628746513847,
+        "negative_mean_probability": 0.0005427891236144706
+      }
+    },
+    {
+      "epoch": 10,
+      "step": 5930,
+      "mean_loss": 0.001131660956317318,
+      "seconds": 124.60944427922368,
+      "model_sha256": "e7985761ed807f9e47fc638080b73110c834695ae41bb36cdc8abbce063a8983",
+      "state_sha256": "8026c3a86dbcc5c1f87902273fa8333d11b748f0635c4f98fd374268518fccfe",
+      "training_online_counts": {
+        "gold_positive": 4676,
+        "predicted_positive": 4402,
+        "gold_negative": 2312350,
+        "tp": 4023,
+        "fp": 379,
+        "positive_probability_sum": 3881.946526851505,
+        "negative_probability_sum": 789.6215517085933
+      },
+      "training_probe_counts": {
+        "gold_positive": 222,
+        "predicted_positive": 235,
+        "gold_negative": 59134,
+        "tp": 212,
+        "fp": 23,
+        "positive_probability_sum": 207.8995761871338,
+        "negative_probability_sum": 30.18374990671873
+      },
+      "training_probe_metrics": {
+        "precision": 0.902127659574468,
+        "recall": 0.954954954954955,
+        "positive_mean_probability": 0.9364845774195216,
+        "negative_mean_probability": 0.0005104297004552158
+      }
+    }
+  ],
+  "inference": {
+    "configuration": {
+      "model_dir": "formal-fixed10ep/epoch-010",
+      "tokenizer_dir": "../pretrained-gliner-medium-v2/tokenizer",
+      "input": "../../semantic-neural/data/dev16.input.jsonl",
+      "output_dir": "finetuned64-dev",
+      "preflight_only": false
+    },
+    "source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "label": [
+      "phenotype"
+    ],
+    "threshold": 0.5,
+    "flat_ner": false,
+    "overlap_words": 12,
+    "token_budget": 384,
+    "model_parameters": 195175936,
+    "strict_state_dict": true,
+    "files": {
+      "formal-fixed10ep/epoch-010/pytorch_model.bin": "e7985761ed807f9e47fc638080b73110c834695ae41bb36cdc8abbce063a8983",
+      "formal-fixed10ep/epoch-010/gliner_config.json": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391",
+      "../pretrained-gliner-medium-v2/tokenizer/config.json": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+      "../pretrained-gliner-medium-v2/tokenizer/spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "../pretrained-gliner-medium-v2/tokenizer/tokenizer_config.json": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d"
+    },
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "stats": {
+      "source_words": 44657,
+      "chunks": 532,
+      "documents": 16,
+      "max_input_tokens": 384,
+      "max_words_per_window": 352
+    },
+    "all_source_word_indices_covered": true,
+    "all_actual_word_masks_and_token_counts_match_no_truncation": true,
+    "gold_read": false,
+    "hpo_linking": false,
+    "prediction_scoring": false,
+    "inference_seconds": 11.412473434582353,
+    "total_seconds": 21.3914578827098,
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 899536896,
+    "raw_spans": 1141,
+    "unique_spans": 1139,
+    "all_returned_spans_match_full_words_and_original_coordinates": true,
+    "candidates_sha256": "a0a1b3eeb6988bbb56f7a3dcdbdc05eefc540dd5e7284c05b737e844f885624f"
+  },
+  "control48_reuse": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/control48-reuse.json",
+    "sha256": "50f76f84aee78029b15c2c25a4313a7c7d8bb5683cd52c64b2c7097cd750f582",
+    "actual_candidate_bytes_equal": true,
+    "previous_score": 0.7113249915024389,
+    "limitation": "Same-model inference is byte-identical across the two runtimes; it does not establish equivalent fresh-training numerical trajectories. Prior48 used torch2.7.1cu126/transformers4.51.3, new64 torch2.7.0cu128/transformers4.50 on A30.",
+    "independent_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-train64-review/control48-reuse-review.json",
+      "sha256": "0ff32496936a761134b90385fbc4898b60547659e023b9eec254303645d74541",
+      "status": "PASS actual10artifactSHA/size/candidatebytes/model input tokenizer identity; no gold/GPU; runtime versions explicitly differ"
+    }
+  },
+  "freeze": {
+    "all_frozen_at_utc": "2026-10-23T18:18:59.524751+00:00",
+    "gold_read_for_new64": false,
+    "commands_sha256": "82ab44dc574d959381eb943a6aa743536d9e23ed1f4172a0147a12ecdcd5ceae",
+    "main_assembly": "2026-10-23T18:18:57.212833+00:00",
+    "nested_assembly": "2026-10-23T18:18:59.357523+00:00",
+    "outputs": {
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/entity-only.jsonl": "4d16ec86024c454ae60a7b63b75585585852139cb8107b075275a1787201b3ce",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/full-lr.jsonl": "8e16695f6f75c3e764572a4099c86bd05c00ac2446b9899a504fc602758dd8ac",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/nested64/pred.jsonl": "965230171b9f700278d1e5d6ba85237ab5a2d0d494f8f65f8971111ebd8d65d5"
+    }
+  },
+  "assembly": {
+    "configuration": {
+      "train": "/workspace/patientphex-data/day1/train64.jsonl",
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "base": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-dev/lr.pred.jsonl",
+      "base_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-dev/lr.pred.manifest.json",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/scored-candidates.jsonl",
+      "candidate_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/manifest.json",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64"
+    },
+    "inputs": {
+      "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "base": "55f4305eb013d3a89677874fe889a821bdf9b745c1a5a161da639079bd600e95",
+      "base_manifest": "ca2cf9da97aea75d4961c186f9f685b80ca48add4ca5177340696a7272a10b87",
+      "candidates": "ae5d69337831d38c1fac99970ea9641e026e5f5e2d4dcba36c25f380d11089fd",
+      "candidate_manifest": "86ac317a9c9f2c4fcf74a7abf8be2a1d877ebda2e532137b2a79d69a4e5d4768"
+    },
+    "source_sha256": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d",
+    "dependencies": {
+      "sequence_base": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "combine": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+      "ontology": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "original_assembly": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0"
+    },
+    "policy": {
+      "probability": 0.65,
+      "similarity": 0.92,
+      "relation_threshold": 0.55,
+      "order": "GLiNER score descending,length descending,offset ascending",
+      "arms": [
+        "same augmented entities, unchanged prior relations",
+        "same augmented entities, existing LR all-pairs recomputation"
+      ],
+      "baseline": "train64 CRF+Sap LR; exact no-op relation and full-byte reconstruction"
+    },
+    "relation_training": {
+      "relation_examples": 13740,
+      "relation_positive": 4606
+    },
+    "counts": {
+      "all_candidates": 1139,
+      "overlap_original": 716,
+      "semantic_filter": 361,
+      "accepted": 37,
+      "negated": 25
+    },
+    "frozen_at_utc": "2026-10-23T18:18:57.212833+00:00",
+    "outputs": {
+      "baseline.jsonl": "55f4305eb013d3a89677874fe889a821bdf9b745c1a5a161da639079bd600e95",
+      "entity-only.jsonl": "4d16ec86024c454ae60a7b63b75585585852139cb8107b075275a1787201b3ce",
+      "full-lr.jsonl": "8e16695f6f75c3e764572a4099c86bd05c00ac2446b9899a504fc602758dd8ac"
+    },
+    "gold_read": false
+  },
+  "nested_assembly": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "baseline": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/full-lr.jsonl",
+      "baseline_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/manifest.json",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/scored-candidates.jsonl",
+      "candidate_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/manifest.json",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/nested64"
+    },
+    "inputs": {
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "baseline": "8e16695f6f75c3e764572a4099c86bd05c00ac2446b9899a504fc602758dd8ac",
+      "baseline_manifest": "72ddc42e4fc4132494db4b9e1afc82f52c0a06eb9a6452a5350d0aee0da14bc7",
+      "candidates": "ae5d69337831d38c1fac99970ea9641e026e5f5e2d4dcba36c25f380d11089fd",
+      "candidate_manifest": "86ac317a9c9f2c4fcf74a7abf8be2a1d877ebda2e532137b2a79d69a4e5d4768"
+    },
+    "source_sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+    "dependencies": {
+      "sequence": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "combine": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+      "ontology": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+    },
+    "policy": {
+      "probability_gte": 0.65,
+      "similarity_gte": 0.92,
+      "order": "GLiNER score descending,length descending,offset ascending",
+      "new": "At least one overlap; proper containment and disjoint HPO IDs against every overlapping selected entity",
+      "rejected": "crossing, identical boundaries, shared HPO IDs, non-overlap",
+      "relations_unchanged": true,
+      "all_prior_entities_preserved": true
+    },
+    "counts": {
+      "all_candidates": 1139,
+      "not_distinct_proper_nesting": 717,
+      "semantic_filter": 361,
+      "negated": 25,
+      "added_rows": 36
+    },
+    "gold_read": false,
+    "frozen_at_utc": "2026-10-23T18:18:59.357523+00:00",
+    "output_sha256": "965230171b9f700278d1e5d6ba85237ab5a2d0d494f8f65f8971111ebd8d65d5"
+  },
+  "results": {
+    "previous48": {
+      "menF1": 0.7578845220766618,
+      "docF1": 0.7797270955165692,
+      "micF1": 0.6707193515704154,
+      "macF1": 0.6369689968461091,
+      "Score": 0.7113249915024389
+    },
+    "original_crf_sap": {
+      "menF1": 0.748151798915722,
+      "docF1": 0.7675568743818002,
+      "micF1": 0.660455486542443,
+      "macF1": 0.6263796300792578,
+      "Score": 0.7006359474798057
+    },
+    "arms": {
+      "entity_only64": {
+        "metrics": {
+          "menF1": 0.7579864472410455,
+          "docF1": 0.7762645914396887,
+          "micF1": 0.660455486542443,
+          "macF1": 0.6263796300792578,
+          "Score": 0.7052715388256088
+        },
+        "delta_vs48": {
+          "menF1": 0.00010192516438367605,
+          "docF1": -0.003462504076880424,
+          "micF1": -0.010263865027972385,
+          "macF1": -0.010589366766851294,
+          "Score": -0.006053452676830107
+        },
+        "count_delta_vs48": {
+          "mention": {
+            "tp": 2,
+            "fp": 3,
+            "fn": -2
+          },
+          "document": {
+            "tp": -1,
+            "fp": 3,
+            "fn": 1
+          },
+          "relation": {
+            "tp": -12,
+            "fp": -9,
+            "fn": 12
+          }
+        },
+        "count_delta_vs_crf_sap": {
+          "mention": {
+            "tp": 24,
+            "fp": 13,
+            "fn": -24
+          },
+          "document": {
+            "tp": 11,
+            "fp": 6,
+            "fn": -11
+          },
+          "relation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "delta_vs_corresponding48_entity_only": {
+          "menF1": 0.00010192516438367605,
+          "docF1": -0.003462504076880424,
+          "micF1": 0.0,
+          "macF1": 0.0,
+          "Score": -0.0008401447281241037
+        }
+      },
+      "full_lr64": {
+        "metrics": {
+          "menF1": 0.7579864472410455,
+          "docF1": 0.7762645914396887,
+          "micF1": 0.6633165829145728,
+          "macF1": 0.625910157581005,
+          "Score": 0.705869444794078
+        },
+        "delta_vs48": {
+          "menF1": 0.00010192516438367605,
+          "docF1": -0.003462504076880424,
+          "micF1": -0.007402768655842551,
+          "macF1": -0.011058839265104092,
+          "Score": -0.005455546708360903
+        },
+        "count_delta_vs48": {
+          "mention": {
+            "tp": 2,
+            "fp": 3,
+            "fn": -2
+          },
+          "document": {
+            "tp": -1,
+            "fp": 3,
+            "fn": 1
+          },
+          "relation": {
+            "tp": -1,
+            "fp": 9,
+            "fn": 1
+          }
+        },
+        "count_delta_vs_crf_sap": {
+          "mention": {
+            "tp": 24,
+            "fp": 13,
+            "fn": -24
+          },
+          "document": {
+            "tp": 11,
+            "fp": 6,
+            "fn": -11
+          },
+          "relation": {
+            "tp": 11,
+            "fp": 18,
+            "fn": -11
+          }
+        }
+      },
+      "nested64": {
+        "metrics": {
+          "menF1": 0.7545195052331113,
+          "docF1": 0.781190019193858,
+          "micF1": 0.6633165829145728,
+          "macF1": 0.625910157581005,
+          "Score": 0.7062340662306368
+        },
+        "delta_vs48": {
+          "menF1": -0.0033650168435505057,
+          "docF1": 0.001462923677288841,
+          "micF1": -0.007402768655842551,
+          "macF1": -0.011058839265104092,
+          "Score": -0.005090925271802105
+        },
+        "count_delta_vs48": {
+          "mention": {
+            "tp": 12,
+            "fp": 29,
+            "fn": -12
+          },
+          "document": {
+            "tp": 7,
+            "fp": 9,
+            "fn": -7
+          },
+          "relation": {
+            "tp": -1,
+            "fp": 9,
+            "fn": 1
+          }
+        },
+        "count_delta_vs_crf_sap": {
+          "mention": {
+            "tp": 34,
+            "fp": 39,
+            "fn": -34
+          },
+          "document": {
+            "tp": 19,
+            "fp": 12,
+            "fn": -19
+          },
+          "relation": {
+            "tp": 11,
+            "fp": 18,
+            "fn": -11
+          }
+        },
+        "delta_vs_full64": {
+          "metrics": {
+            "menF1": -0.0034669420079341817,
+            "docF1": 0.004925427754169265,
+            "micF1": 0.0,
+            "macF1": 0.0,
+            "Score": 0.00036462143655879853
+          },
+          "counts": {
+            "mention": {
+              "tp": 10,
+              "fp": 26,
+              "fn": -10
+            },
+            "document": {
+              "tp": 8,
+              "fp": 6,
+              "fn": -8
+            },
+            "relation": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        }
+      }
+    },
+    "previous48_entity_only": {
+      "menF1": 0.7578845220766618,
+      "docF1": 0.7797270955165692,
+      "micF1": 0.660455486542443,
+      "macF1": 0.6263796300792578,
+      "Score": 0.7061116835537329
+    }
+  },
+  "validation": {
+    "entity_only": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 960,
+        "relations": 513,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "4d16ec86024c454ae60a7b63b75585585852139cb8107b075275a1787201b3ce",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "full_lr": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 960,
+        "relations": 542,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "8e16695f6f75c3e764572a4099c86bd05c00ac2446b9899a504fc602758dd8ac",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "nested": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 996,
+        "relations": 542,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "965230171b9f700278d1e5d6ba85237ab5a2d0d494f8f65f8971111ebd8d65d5",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "storage": {
+    "retained": [
+      {
+        "path": "formal-fixed10ep/epoch-010/pytorch_model.bin",
+        "bytes": 780784379,
+        "sha256": "e7985761ed807f9e47fc638080b73110c834695ae41bb36cdc8abbce063a8983"
+      },
+      {
+        "path": "formal-fixed10ep/latest-state.pt",
+        "bytes": 1561609531,
+        "sha256": "8026c3a86dbcc5c1f87902273fa8333d11b748f0635c4f98fd374268518fccfe"
+      }
+    ],
+    "remaining_model_files": [
+      "formal-fixed10ep/epoch-010/pytorch_model.bin"
+    ],
+    "free_bytes": 217284349952
+  },
+  "GPU_release": {
+    "checked_at_utc": "2026-10-23T18:18:39.141155+00:00",
+    "target_gpu_empty": true,
+    "compute_apps": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\n",
+    "free_bytes": 217215393792
+  },
+  "independent_review": {
+    "status": "PASS: endpoint independently reproduced, not recommended replacement",
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-full64-terminal-review/review.json",
+    "sha256": "4a03399eb691b462ffce249b85c96d127d53505102dadde1e688abec77b8c386",
+    "scope": "Fresh64/5930 provenance,1139 candidate field/order preservation, train64 LR refit,3 predictions byteexact,all metrics,0 warnings/errors,original objects/relations retained,nestedentity-only,unifiedfreeze"
+  },
+  "conclusion": "Do not replace the48 main model. Fixed64 fullLR drops .005455547 from .711324991 to .705869445; mention net+2TP+3FP but relation net-1TP+9FP. Nested adds10TP26FP, total+.000364621 while mention falls; still lower than48. Preserve the negative result, do not sweep epoch/threshold/order or mix Pheno into this comparison.",
+  "no_official_submission": true,
+  "recovery": {
+    "remote_mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "remote_root": "sequence-round2/gliner-full64",
+    "model": "formal-fixed10ep/epoch-010/pytorch_model.bin",
+    "state": "formal-fixed10ep/latest-state.pt",
+    "formal_job": "proc_dca76792-08e5-4112-a2cd-ae4444b04ef6",
+    "link_job": "proc_6a97f642-7c7d-444b-93cc-10522684f0ea",
+    "status": "Both managed processes completed; GPU handed to ontology after fresh empty check; only CPU review pending"
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/plan.json",
+      "sha256": "5d3fb96d9d5f5c9715714b8dd7362010f1420b4f15152133ef4642155619f560",
+      "bytes": 6296
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/job.json",
+      "sha256": "8309715a1e585a26ea739ed298afb131ff1ea3245e4fd838e6974668f07ef24b",
+      "bytes": 1040
+    },
+    "paired-fixed.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/paired-fixed.commands.json",
+      "sha256": "4084ebdb18271bc09952c1db8407d3cd37e4a164b7dc7273779bbf4aa7524031",
+      "bytes": 3009
+    },
+    "run_fixed_pair.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/run_fixed_pair.py",
+      "sha256": "921c30037dfa75b24a33e509879a50bb6b79196353e9332ca062c007a2492222",
+      "bytes": 2518
+    },
+    "paired-fixed.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/paired-fixed.state.json",
+      "sha256": "e8b6d84579aa54da94724decee8a9afe84cc1c67b8ddf5c6f581d28a39eb5726",
+      "bytes": 3419
+    },
+    "formal-fixed10ep/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/formal-fixed10ep/run_manifest.json",
+      "sha256": "51a4d6fe4dcf610ae67ac402be211913025224c30d9b873ba6805f2aea30e53a",
+      "bytes": 48066
+    },
+    "prepared/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/prepared/manifest.json",
+      "sha256": "c3be9f4a3eccdc4d90edce17876beb7f6bbb911a692a16783a6db11ad81fa3b6",
+      "bytes": 29916
+    },
+    "prepared/train64.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/prepared/train64.jsonl",
+      "sha256": "d2d2ef387d1ba870bef8c141b2f5c060aef7da2e94f5e491be92874f5e63f18f",
+      "bytes": 6001222
+    },
+    "finetuned64-dev/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/finetuned64-dev/candidates.jsonl",
+      "sha256": "a0a1b3eeb6988bbb56f7a3dcdbdc05eefc540dd5e7284c05b737e844f885624f",
+      "bytes": 207880
+    },
+    "finetuned64-dev/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/finetuned64-dev/manifest.json",
+      "sha256": "b0dd3c3665cf3701b7f9f7d70910b8eeb553d48024c3a5cfe2940cbba58563e9",
+      "bytes": 2120
+    },
+    "finetuned64-dev/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/finetuned64-dev/prediction-freeze.json",
+      "sha256": "63b1308c9a7186a6d240436efa5233e31f43566b33933b056152707e644242b0",
+      "bytes": 517
+    },
+    "control48-reuse.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/control48-reuse.json",
+      "sha256": "50f76f84aee78029b15c2c25a4313a7c7d8bb5683cd52c64b2c7097cd750f582",
+      "bytes": 3807
+    },
+    "link-paired.commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/link-paired.commands.json",
+      "sha256": "9a93bd194dfa0d2a0935bd393c753b0176fe82be74950eec5df2ce9857466522",
+      "bytes": 2869
+    },
+    "link-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/link-job.json",
+      "sha256": "0ea3931a6e5f6931b816eefeb13535f2394975fc8dc990b6dd0cb08af3ac1c40",
+      "bytes": 996
+    },
+    "link-single.state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/link-single.state.json",
+      "sha256": "6c3899d4737afd84264678261dbc2dd1d4364dd020de461cff1b3a015721706d",
+      "bytes": 1043
+    },
+    "linked-finetuned64/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/manifest.json",
+      "sha256": "86ac317a9c9f2c4fcf74a7abf8be2a1d877ebda2e532137b2a79d69a4e5d4768",
+      "bytes": 7788
+    },
+    "linked-finetuned64/scored-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/linked-finetuned64/scored-candidates.jsonl",
+      "sha256": "ae5d69337831d38c1fac99970ea9641e026e5f5e2d4dcba36c25f380d11089fd",
+      "bytes": 345381
+    },
+    "cpu-commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/cpu-commands.json",
+      "sha256": "82ab44dc574d959381eb943a6aa743536d9e23ed1f4172a0147a12ecdcd5ceae",
+      "bytes": 5937
+    },
+    "all-predictions-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/all-predictions-freeze.json",
+      "sha256": "1f0c5343eab5703ecf2d659f80904afd11a40cd7b51e5858ccf0c1da2ab3b944",
+      "bytes": 828
+    },
+    "assembled64/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/manifest.json",
+      "sha256": "72ddc42e4fc4132494db4b9e1afc82f52c0a06eb9a6452a5350d0aee0da14bc7",
+      "bytes": 2885
+    },
+    "assembled64/entity-only.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/entity-only.jsonl",
+      "sha256": "4d16ec86024c454ae60a7b63b75585585852139cb8107b075275a1787201b3ce",
+      "bytes": 128718
+    },
+    "assembled64/full-lr.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/full-lr.jsonl",
+      "sha256": "8e16695f6f75c3e764572a4099c86bd05c00ac2446b9899a504fc602758dd8ac",
+      "bytes": 129124
+    },
+    "assembled64/entity-only.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/entity-only.metrics.json",
+      "sha256": "e5d25ac65e927b974f220a2bc2d80c27c31712d435d9bb220374334dfe9b009d",
+      "bytes": 13178
+    },
+    "assembled64/full-lr.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/assembled64/full-lr.metrics.json",
+      "sha256": "9acf0d09558e431336b5b38fdce1aea9b11d08fac19dc995d01af30a7ac8c213",
+      "bytes": 13138
+    },
+    "nested64/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/nested64/manifest.json",
+      "sha256": "d28742103d67297e88c7d3b4d1b3409b0542529747d863e12cfad16f138adf6d",
+      "bytes": 2392
+    },
+    "nested64/pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/nested64/pred.jsonl",
+      "sha256": "965230171b9f700278d1e5d6ba85237ab5a2d0d494f8f65f8971111ebd8d65d5",
+      "bytes": 133774
+    },
+    "nested64/metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/nested64/metrics.json",
+      "sha256": "8cdfc3583eee0eb76b049c69303b613e8e9e58ee086e12466a6f0fd88e30cd16",
+      "bytes": 13187
+    },
+    "results-summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/results-summary.json",
+      "sha256": "a1db3ccb50ed407a77f1f732e8e850719096b4e9c3c957fc56706eed0775910b",
+      "bytes": 4665
+    },
+    "storage-verification.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/storage-verification.json",
+      "sha256": "68a667433ced20b21b2444c0c3b02879b148aac014cd3704dfafcb6ff0672d75",
+      "bytes": 484
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/gpu-release.json",
+      "sha256": "b26bce4c7bbc0cecc0161cdc0f31ff80bd7e3c5874a5f6289a5625638da2fd19",
+      "bytes": 359
+    }
+  },
+  "sources": {
+    "train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+    "prepare_gliner_supervised.py": "f71f90a37025a849a6c46b440dbb8ce4941b46a33821e4c132f353a87e31a9a4",
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+    "assemble_gliner_transfer.py": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d",
+    "append_nested_spans.py": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+    "run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "combine.py": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+    "assemble_gliner_linked.py": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0"
+  }
+}

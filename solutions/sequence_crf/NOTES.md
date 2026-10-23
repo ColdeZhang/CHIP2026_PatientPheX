@@ -55,3 +55,5 @@ GLiNER两epoch监督控制表明通用span预训练可学本题边界：nested16
 - 固定跨来源追加也可能总体微升而实体mention下降：Pheno追加12只有4TP/8FP，同LR新增关系2TP/5FP。保留entity-only小收益.712586但停止扫描；全64规模对照仍隔离于这项组合。硬件/torch版本换机时复跑原48模型同输入，不能以复制权重SHA相同推断输出必同。
 
 - GLiNER支持nested span但旧装配一概拒overlap，会无意把表达能力压回平铺实体。训练侧固定异概念proper containment在nested/outer/原dev总分均温和正，然而原dev新增35只10TP、mention下降；合法嵌套能力与值得全收不同。保原池/全部关系的单变量实体控制能分离这种取舍，拒crossing/同界/共享ID，不按结果继续扫策略。
+
+- 全64fresh10不能按惯例替换48模型：同固定过滤/LR主Score.711325→.705869，mention净+2TP3FP但关联-1TP+9FP。相同权重跨runtime推理byteexact排除了该控制的解码差异，不保证torch训练轨迹等价；保留版本差异并以实际目标指标取舍。nested64小增仍未追回，停止当前规模/epoch扫描。
