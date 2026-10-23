@@ -184,3 +184,7 @@ FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcesso
 - 2026-10-23 context strict-load：Transformers 在构造 encoder 后会把嵌套 `_attn_implementation_autoset` 设为 true。无权重 processor 的配置与实际构造模型不能未经检查就按整个字典相等。先实查唯一差异，只允许这个 false→true 构造标记、要求 eager 和其余字段完全一致；不要泛化忽略所有私有字段。CPU 失败证据在 `ontology_rules/ner-context-control/run/cpu.state.json`，修复独立 `attempt2`。
 
 - 2026-10-23 同源BioMed上下文控制固定10轮结案：同监督/有效跨度/2880步、同GPU/依赖，完整Score .654424302→.654314434，训练耗时+18.82%，无实质改善。保留off，不迁原dev/扩此配置。CPU接口正确与训练有限不代表泛化改善；独立终审0ad60147…，完整证据见 `evidence/round2/ner-context-control-results.json`。公开原生PhenoTagger后续控制必须与此前从头HPO弱监督模型明确区分。
+
+## 公开原生 PhenoTagger 与从头弱监督控制分开
+
+2026-10-23 新控制复用公开完整H5原生17266列，不继承项目HPO100ep权重；来源/许可和历史选模谱系不确定性见实验 E-20261023-PUBLIC-PHENOTAGGER-NATIVE。上游ngram跨句状态漏项已事前修复并写共享H36；decoder必须保留float32概率先round5再严格>.95，不能换成rawfloat阈值。候选推断完整完成不等于质量提升；固定实体only对照保留原关系，先完整predfreeze后评分。

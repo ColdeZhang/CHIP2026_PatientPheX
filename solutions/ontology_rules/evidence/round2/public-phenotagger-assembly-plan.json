@@ -1,0 +1,152 @@
+{
+  "experiment_id": "E-20261023-PUBLIC-PHENOTAGGER-NATIVE",
+  "scope": "one fixed native public PhenoTagger entity-only augmentation on repeatedly used nested16; no original dev / official submission",
+  "local_inputs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "bytes": 342703
+    },
+    "base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "bytes": 155574
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "native_plan": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/public-phenotagger-native-plan.json",
+      "sha256": "1196949530b959005ddd2373b296e2fce00f0b73b55c2dc41ed840bc899eb3c8",
+      "bytes": 4831
+    }
+  },
+  "assembly_sources": {
+    "assembler": "d9481ea8301a59601e47a81d1f81f4d2bf1b740e1b53deed618a0158d9cdb2a7",
+    "baseline": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+  },
+  "policy": {
+    "native_decoder": "unchanged original rounded5dp top1 > .95; dictionary + original abbreviations; no new downstream probability gate",
+    "sort": "score descending, length descending, offset ascending, canonical HPO ID ascending",
+    "negation": "original run.is_negated",
+    "overlap": "reject any overlap with original entities then previously accepted additions",
+    "base_entities": "all original objects retained",
+    "relations": "all original association values preserved exactly; do not assign new relations",
+    "ancestor_expansion": false
+  },
+  "comparison": {
+    "baseline_score": 0.6447615937066596,
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.metrics.json",
+      "sha256": "cf70f6d920840754253edf3e1191285a2e0e636dd347b8bac3c67f65fe8b7c35",
+      "bytes": 13170
+    },
+    "same_input_base_required": true,
+    "success": "single frozen quality endpoint beats same base with positive mention/document contribution; no claim of train64/dev16 target"
+  },
+  "sources": {
+    "native_inference": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_native.py",
+      "sha256": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
+      "bytes": 10713
+    },
+    "fixed_candidate_function": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_candidate_function.py",
+      "sha256": "1569e545fc83e5adf66406678e8b15dd315fa4437fc541a78a6cc0e9f3f966e7",
+      "bytes": 5574
+    },
+    "MIT_license": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/PHENOTAGGER-LICENSE",
+      "sha256": "681616a1f867e5967a8891c63b8bd72d22838ea6943d332cd1bf5631bdcf4cf8",
+      "bytes": 1104
+    },
+    "native_upstream_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/source-manifest.json",
+      "sha256": "4bb4f298f831a12e9aa65bc225c24e3ed9870acf1dfd6631ee7646f0060fd26d",
+      "bytes": 3381
+    },
+    "native_readiness": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/readiness.json",
+      "sha256": "1b0c02cd28855ba12c5d962896762ce0eb15f670c69c79980365707571384986",
+      "bytes": 1137
+    },
+    "native_gpu_readiness": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/gpu-readiness.json",
+      "sha256": "255702ed3065e7d9a77a596989cd317ca84bec843ace705c3f865cc6113cc70f",
+      "bytes": 2213
+    },
+    "native_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/full-CPU-preparation.json",
+      "sha256": "42aa71c9ed0c0661a5a57dafb685622ab3e97e321ebc9d96d8b47782f091f993",
+      "bytes": 256
+    },
+    "native_job": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/full-inference-job.json",
+      "sha256": "8823b301d8572f6fed32f04fc0aff79a407911e60cedad2e2b3cff13d85ecd82",
+      "bytes": 1382
+    },
+    "assembly_cpu_check": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembly-cpu-check.json",
+      "sha256": "20c269e49c0f1683b16332cfe5fa778caf0d82b05a3c758e740ff5333f57dd94",
+      "bytes": 612
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/scripts/evaluate.py",
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+      "bytes": 10539
+    },
+    "format_validator": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/scripts/validate_predictions.py",
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+      "bytes": 12208
+    },
+    "endpoint": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/run_public_phenotagger_endpoint.py",
+      "sha256": "3d6d70fe46725dc562a70af34db3f622c32679db4eaa4bf891d85595501695a4",
+      "bytes": 4931
+    }
+  },
+  "artifacts": {
+    "root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native",
+    "native_remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16",
+    "native_local_root": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal",
+    "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembled"
+  },
+  "freeze_order": [
+    "input-only native inference and complete raw manifest",
+    "input-only assembly, verify relations/base entities and write complete prediction freeze",
+    "input-only format check",
+    "unique public evaluator v2 all/text; baseline metrics reused unchanged",
+    "independent CPU replay/metric review"
+  ],
+  "stopping_rule": "no cutoff/model/combination search; no original dev migration without root decision",
+  "native_terminal": {
+    "entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/canonical-entities.jsonl",
+      "sha256": "de7de49e5e005c6f87c171c1d8a3d0bded459b8d887da191cd5ef0c48d46dc8a",
+      "bytes": 462334
+    },
+    "manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/manifest.json",
+      "sha256": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a",
+      "bytes": 3171
+    },
+    "state": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/native-full-state.json",
+      "sha256": "a215a774a725127395668140043679aeea354b69f15e24b2afcebc56ef87b9a2",
+      "bytes": 463
+    },
+    "transfer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/transfer.json",
+      "sha256": "d86cec42f93e54a1a5a529aa5d2997d0ec6c36d5df676c3c84e57fdacf7875fd",
+      "bytes": 3270
+    },
+    "release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/gpu-release.json",
+      "sha256": "7bc41ffcb4a065ae2108786c36848f3e8a4142f7dc47e8ec1cdd41c15ff95105",
+      "bytes": 135
+    }
+  }
+}
