@@ -1,0 +1,107 @@
+{
+  "metrics": {
+    "menF1": 0.7568627450980392,
+    "docF1": 0.7718253968253969,
+    "micF1": 0.5661764705882353,
+    "macF1": 0.4901127205662429,
+    "Score": 0.6462443332694785
+  },
+  "counts": {
+    "mention": {
+      "tp": 772,
+      "fp": 162,
+      "fn": 334,
+      "precision": 0.8265524625267666,
+      "recall": 0.6980108499095841,
+      "f1": 0.7568627450980392
+    },
+    "document": {
+      "tp": 389,
+      "fp": 59,
+      "fn": 171,
+      "precision": 0.8683035714285714,
+      "recall": 0.6946428571428571,
+      "f1": 0.7718253968253969
+    },
+    "relation": {
+      "tp": 231,
+      "fp": 132,
+      "fn": 222,
+      "precision": 0.6363636363636364,
+      "recall": 0.5099337748344371,
+      "f1": 0.5661764705882353
+    }
+  },
+  "manifest": {
+    "config": {
+      "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/oof-calibration-manifest.json",
+      "train": "/workspace/patientphex-data/day1/train64.jsonl",
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "base": "/workspace/patientphex-runs/day1-20261023/ontology-rules/dev-v1/predictions.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/scored-candidates.jsonl.gz",
+      "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-oof-calibration/pred.jsonl",
+      "threshold": 0.4
+    },
+    "source_sha256": "2ead04828dfdf38918d395a862f4deb74cd4a0dd538631732248105276645c35",
+    "input_hashes": {
+      "training_manifest": "de577e76058937e7896dd889fb5e3c877cbc7d5db45cf67d4eac71dc2580430a",
+      "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "base": "5a994261965f7887f2bfef384401380d49581940435bbe46d19604f6e4868e4b",
+      "candidates": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197"
+    },
+    "training_examples": 60031,
+    "training_positive": 3720,
+    "training_documents": 64,
+    "candidate_origins": "4 fold OOF, each document excluded from its generating model",
+    "feature_count": 80,
+    "estimator": {
+      "categorical_features": "from_dtype",
+      "class_weight": null,
+      "early_stopping": "auto",
+      "interaction_cst": null,
+      "l2_regularization": 5.0,
+      "learning_rate": 0.06,
+      "loss": "log_loss",
+      "max_bins": 255,
+      "max_depth": null,
+      "max_features": 1.0,
+      "max_iter": 160,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 35,
+      "monotonic_cst": null,
+      "n_iter_no_change": 10,
+      "random_state": 20261023,
+      "scoring": "loss",
+      "tol": 1e-07,
+      "validation_fraction": 0.1,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "threshold_selection": "fixed a priori .4; no dev threshold search",
+    "output_sha256": "1ac4bd1c4444db1a56d252e6030910ebfed99a881db3f0b8343e0486762c8645",
+    "seconds": 22.77598217800005
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 934,
+      "relations": 363,
+      "patients": 36
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "prediction_sha256": "1ac4bd1c4444db1a56d252e6030910ebfed99a881db3f0b8343e0486762c8645",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  }
+}
