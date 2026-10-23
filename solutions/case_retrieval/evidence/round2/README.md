@@ -86,3 +86,5 @@
 - [fresh full64正式训练完整终点](qwen35-full64-training-complete.json)：265×2/68updates、40.77min、唯一epoch002 actual SHA1a703b24；A800已释放，尚无质量结果。
 
 - [full64 原dev唯一新臂实际runplan](qwen35-full64-dev-run-plan.json)：实际epoch002/adapter双端SHA与同A30全部15基座/runtime已绑定；固定900+30、64条输入，旧对照不重跑。
+
+- [full64 原dev唯一新臂完整结果](qwen35-full64-dev-result.json)：共享955实体 Score .715759605，较SFT48 +.004549、fullLR +.004435，64/466全合法；预测先freeze、仅新臂评分、GPU已释放，独立终审待回。
