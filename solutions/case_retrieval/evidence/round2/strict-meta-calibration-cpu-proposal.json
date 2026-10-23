@@ -1,0 +1,221 @@
+{
+  "status": "CPU feasibility only; no new CRF fit, tree fit, threshold calibration or GPU requested/performed",
+  "objective": "Determine whether a threshold calibrated on strictly nested train48-only data can address fixed0.5 under-recall of the no-LLM relationship tree.",
+  "scope": "One predeclared fold. Meta train=F2+F3 (32 documents), meta calibration=F1 (16 documents), outer F0 and originaldev excluded. All F values refer to frozen inner4 validation groups.",
+  "split": {
+    "meta_training_documents": 32,
+    "meta_training_patients": 87,
+    "meta_validation_documents": 16,
+    "meta_validation_patients": 39,
+    "excluded_outer_fold": 0,
+    "meta_training_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ],
+    "meta_validation_ids": [
+      "10313222",
+      "11871647",
+      "11906559",
+      "12386172",
+      "12455887",
+      "12891056",
+      "2964533",
+      "4607013",
+      "5415817",
+      "5425407",
+      "5473715",
+      "5538066",
+      "5789735",
+      "6048891",
+      "6063015",
+      "9327653"
+    ]
+  },
+  "source_matrix": [
+    {
+      "generator_fold": 2,
+      "scored_fold": 3,
+      "future_meta_validation_fold": 1,
+      "generator_train": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/generator2/train16.jsonl",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-3/validation16.input.jsonl",
+      "semantic_pool": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/pool2-to3",
+      "new_CRF_required": true,
+      "generator_intersections": {
+        "scored": [],
+        "future_meta_validation": []
+      }
+    },
+    {
+      "generator_fold": 3,
+      "scored_fold": 2,
+      "future_meta_validation_fold": 1,
+      "generator_train": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/generator3/train16.jsonl",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-2/validation16.input.jsonl",
+      "semantic_pool": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/pool3-to2",
+      "new_CRF_required": true,
+      "generator_intersections": {
+        "scored": [],
+        "future_meta_validation": []
+      }
+    }
+  ],
+  "metaval_reuse": {
+    "candidate_generator_train": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+    "CRF_prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/inner1/pred.jsonl",
+    "semantic_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1",
+    "entities": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+    "entities_count": 1189,
+    "concepts": 587,
+    "patient_concept_rows": 1557,
+    "existing_prompt_batches": 80,
+    "raw_feature_rows_reusable": 1557,
+    "raw_feature_rows_do_not_require_new_CRFGPU": true,
+    "labels_used_only_after_meta_predictions_frozen": true
+  },
+  "meta_training_new_counts": {
+    "exact_rows": "Not known before two missing CRF16 predictions + fixedSap merging; do not substitute old train32-generated rows.",
+    "historical_proxy_only": {
+      "same_target_documents_old_generator_train32_pairs": 2570,
+      "entities": 1817,
+      "concepts": 890
+    },
+    "existing_Sap_rules_pool_state": "Remote .3 generated per owner; local scored pools not fully collected at this snapshot. Wait for actual manifest/parent+split SHA before use."
+  },
+  "model_protocol": {
+    "LLM_features": false,
+    "estimator": "Existing fixed HGB160/leaves15/minleaf20/lr.06/L2=5/seed20261023/no earlystop/no weights",
+    "feature_recipe": "Same original299-column aggregate recipe, but fit DictVectorizer only on new meta-train32 rows; actual vocabulary count may differ. Do not infer a forced299 vocabulary from heldout rows.",
+    "concept_universe": "Only fixed CRF+Sap selected concepts for each fold, all given patients; wider occurrence features can use the same broad pool in both baseline and calibrated arms.",
+    "threshold": "Retain0.5 baseline. Any candidate threshold set/selection/tie policy must be preregistered before fit; optimize (micF1+macF1), equivalent to Score for unchanged entities. No threshold selected in this proposal.",
+    "final_application": "If approved, fit meta tree32, freeze raw calibration scores before reading F1 relation labels, select threshold within F1; apply frozen threshold to original no-LLM full48 tree/outerF0 without refitting against outer labels. Full48 model has own model/SHA provenance."
+  },
+  "cost": {
+    "new_GPU_seconds": 0,
+    "LLM_requests": 0,
+    "new_CRF_fits": 2,
+    "CRF_training_documents_each": 16,
+    "CRF_inference_documents_each": 16,
+    "empirical_previous_train32_to16_seconds": [
+      11.93726396560669,
+      11.518370866775513,
+      17.831708669662476
+    ],
+    "previous_aggregate_48train_plus16input_seconds": 41.229383712001436,
+    "current_fixed_HGB4127row_fit_seconds": 2.169137728997157,
+    "planning_total_CPU_minutes": [
+      2,
+      5
+    ],
+    "estimate_not_actual_or_guarantee": true,
+    "CPU_threads": 1,
+    "RAM_peak": "Not measured; matrix~rows*columns*8bytes plus feature dictionaries, HPO TFIDF and CRF. No new GPU runtime/model downloads."
+  },
+  "reuse_cautions": [
+    "Current 48-document OOF rows must not simply be split for meta-calibration; other training-row generators may have seen meta-validation labels.",
+    "The two train16 semantic pools exclude both their scored group and future meta validation. Existing train32 CRF predictions are not legal replacements.",
+    "The original .65/.92 Sap recipe and outerF0 have participated in earlier development; this is stricter isolation for the new calibration stage, not a retrospective blind benchmark.",
+    "Single16 calibration is high variance; threshold stability/generalization is not guaranteed.",
+    "No originaldev or outerF0 gold opened by this proposal."
+  ],
+  "files": {
+    "crf_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/crf-run.snapshot.py",
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    "crf_old_jobs": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/all-jobs.json",
+      "sha256": "8e42dbc51c35f985a3a92aec2f7b890c7c2153a3a6ff40c2335d7e74889a7f11"
+    },
+    "aggregator_source": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/aggregate_relation.py",
+      "sha256": "400a293558756a792640fc91c2f101a4d8427e1e13aff00fadb332fd336d2f3e"
+    },
+    "old_aggregate_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold0/preparation.manifest.json",
+      "sha256": "590008b3a2fe460a644c16c2c506fa1a96b19d38aff197ec891bb879b56356fe"
+    },
+    "old_aggregate_rows": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold0/training-rows.jsonl.gz",
+      "sha256": "071ca2f2f0fd3abc6c7d216f2470c83a0d7e614c1ca35cc9b8880cf074507997"
+    },
+    "semantic_new_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/preparation.json",
+      "sha256": "2a032ad7e50c9dd9663b3e294dd974a3e2713e59652716fc5629311b74124e16"
+    },
+    "metaval_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "metaval_augmentation_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.manifest.json",
+      "sha256": "7117879119183856b680cb6134a225600d5395db03263f2392066c1ebac4656c"
+    },
+    "original_tree_source": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/llm_feature_tree.py",
+      "sha256": "6093741856c42fe56dc0f13d365b3eaf4c962e2f67befa5fa3ce865362989bef"
+    },
+    "augment_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/augment_semantic.py",
+      "sha256": "9614dbac29b527f5abdcd3cd2a94eb574f58916163bef8e8bdb75fadfba8b34d"
+    },
+    "fold1_stripped_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "fold2_stripped_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-2/validation16.input.jsonl",
+      "sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f"
+    },
+    "fold3_stripped_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-3/validation16.input.jsonl",
+      "sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf"
+    },
+    "generator2_train16": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/generator2/train16.jsonl",
+      "sha256": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb"
+    },
+    "generator3_train16": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control/generator3/train16.jsonl",
+      "sha256": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59"
+    }
+  },
+  "calibration_feature_identity": {
+    "raw_rows_subset_count": 1557,
+    "sorted_key_sha256": "f505bcc64703f50ed3437089c4213e524d3af9c37327068d0e389c8d0a5e26fd"
+  },
+  "references": {
+    "ontology_owner_message": "generator2 predicts F3, generator3 predicts F2; six pools generated approximately18:39:12Z; no CRF16 trained; batch local collection pending."
+  },
+  "external_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/strict-meta-calibration-cpu-preparation/proposal.json",
+  "external_sha256": "ecf185f7c2c2c722266a9007e4eaf0c752ec39cef7d91597c7dc267b6ddca4b7"
+}

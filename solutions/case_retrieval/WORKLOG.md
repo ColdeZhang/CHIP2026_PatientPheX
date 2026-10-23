@@ -11,6 +11,7 @@
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
 - **当前任务**：两GPU完整终点均已回收并fresh释放，只做CPU可行性：①fresh full64关系SFT的合法四fold候选/token预算；②无LLM关系树严格二层校准单折的来源/成本。不得使用原dev或outer16选阈值，尚未授权新GPU。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
+- **校准可行性已清点**：固定F1为meta校准16、F2+F3为训练32；复用train16语义/规则2池，新增2次CPU CRF16，无GPU/LLM，估2–5分钟。候选来源排除meta校准，尚未fit或选阈值；见[提案](evidence/round2/strict-meta-calibration-cpu-proposal.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -35,4 +36,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `fcc51db`（全文负/两配对启动；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `bb82eda`（两终点/固定关系并集负；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。

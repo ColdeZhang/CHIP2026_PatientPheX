@@ -70,3 +70,5 @@
 - `llm-feature-tree-result.json`：204严格OOF官方base完整响应、两固定HGB共同freeze后负结果；未校准阈值/未读原dev。
 
 - `rules-union-qwen35-sft-result.json`：唯一无条件规则∪9B SFT关系并集控制，新增1TP/14FP、内部Score下降，停止不移dev。
+
+- `strict-meta-calibration-cpu-proposal.json`：严格train32/meta16单折校准的来源矩阵、两个缺失CPU CRF16与可复用语义池；仅CPU可行性，未fit/选阈值。
