@@ -16,6 +16,7 @@ import prepare_relation_sft
 import merge_coreference
 import apply_coreference_relations
 import reuse_relation_responses
+import diagnose_nested_losses
 import copy
 import xml.etree.ElementTree as ET
 import json
@@ -24,6 +25,13 @@ import io
 from unittest.mock import patch
 
 class Round2Tests(unittest.TestCase):
+    def test_loss_diagnostic_preserves_evaluator_nil_one_to_one(self):
+        truth={(0,4):{'-1','HP:0000001'},(10,3):{'HP:0000002'}}
+        guess={(0,4):{'HP:0000009'},(10,2):{'HP:0000002'}}
+        missing=set(diagnose_nested_losses.missing_units(truth,guess))
+        self.assertEqual(missing,{((0,4),'HP:0000001'),((10,3),'HP:0000002')})
+        self.assertEqual(len(missing),diagnose_nested_losses.evaluate.mention_counts(truth,guess)[2])
+        self.assertFalse(diagnose_nested_losses.overlaps((0,4),(4,1)))
     def test_cached_responses_require_same_weights_and_decoder(self):
         config={'model':'/m','adapter':'epoch/adapter','max_input_tokens':14000,
                 'max_new_tokens':1600,'batch_size':1,'model_revision':'rev'}

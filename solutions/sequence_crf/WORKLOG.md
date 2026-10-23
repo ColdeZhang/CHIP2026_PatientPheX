@@ -1,6 +1,6 @@
 # CRF 序列标注工作台账
 
-实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `d13ab17`，合并检查点 `338256e` 已推送；方案代码不因同步而变化。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
+实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `811b8cc`，合并检查点 `51ccd76` 已推送；方案代码不因同步而变化。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
 
 ## 目标与可信最佳结果
 
@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **当前后续**：缓存/CPU装配独立复核收尾；本轮不推广原dev、不替换最佳模型。主线程协调下一方向前，不继续按fold0结果修改共指协议。完整外存coreference-fold0/stage2-reuse/保存命令、raw/合成响应、逐行来源、预测冻结与指标。
+3. **当前后续**：缓存/CPU装配独立复核已通过。当前仅以outer train48三嵌套OOF做损失分解与下一方案设计；不读新的dev、不启动GPU、不按fold0错例写补丁。完整外存coreference-fold0/stage2-reuse/保存命令、raw/合成响应、逐行来源、预测冻结与指标。
 
 ## 已完成的近期结论
 

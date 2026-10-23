@@ -1,0 +1,77 @@
+{
+  "scope": "独立实际29缓存+29新响应逐行来源与模型绑定核对；冻结源CPU组装原/新SFT控制，再以冻结公共v2评分。",
+  "source_commit": "f28ade98ff093aa86a417e220e9f64634ed79f20",
+  "actual_cache_audit": {
+    "58_unique_complete": true,
+    "complete_object_same_rows_cached": 29,
+    "fresh_changed_rows": 29,
+    "all_provenance_object_and_source_file_hashes_correct": true,
+    "cached_and_combined_raw_lines_exact_source": true,
+    "old_new_5weights_2adapter_config_source_precision_decoder_recorded_runtime_equal": true,
+    "model_small_files_source_transfer_sidecar_equal": 8,
+    "current_peft": "0.15.2",
+    "removed_demonstrations": 0,
+    "hit_token_limit_rows": 0,
+    "max_input_tokens": 6042,
+    "max_output_tokens": 154
+  },
+  "independent_cpu_replay": {
+    "changed.prompts.jsonl": true,
+    "cached.responses.jsonl": true,
+    "combined.responses.jsonl": true,
+    "row-provenance.json": true,
+    "original_pred_byteexact": true,
+    "expanded_pred_byteexact": true
+  },
+  "evaluation": {
+    "contract": "innerfold0/public v2/all/text, frozen predictions before evaluation; original dev not read",
+    "original": {
+      "prediction_sha256": "c31574728477fbe0490e7198a826e18920f9316224396f5ff803e444840ea23f",
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6627218934911243,
+        "macF1": 0.5819349416424389,
+        "Score": 0.6743334312746472
+      }
+    },
+    "expanded": {
+      "prediction_sha256": "c873337356a29355a99e6bfbdb502aef753711c861e88e7b004895208867135c",
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6715758468335787,
+        "macF1": 0.623159001642091,
+        "Score": 0.6868529346101738
+      }
+    },
+    "Score_delta": 0.01251950333552665,
+    "fixed_rules_Score": 0.711353521870099,
+    "expanded_vs_rules_delta": -0.02450058725992521,
+    "both_formats": {
+      "original": {
+        "error_count": 0,
+        "warning_count": 0
+      },
+      "expanded": {
+        "error_count": 0,
+        "warning_count": 0
+      }
+    },
+    "same_entities": 947,
+    "association_added": 6,
+    "association_removed": 3,
+    "expanded_parser_valid_candidate_decisions": 414,
+    "expanded_unresolved_candidate_decisions_with_frozen_baseline_fallback": 1
+  },
+  "conclusion": "来源/复用/独立组装与格式通过；SFT .6743334313→.6868529346，小幅改善但低于固定rules .7113535219，不升级当前最佳或达到0.8。",
+  "limitations": [
+    "同fold0已反复开发，不能作为盲测/跨折泛化证据；无原dev或官方成绩。",
+    "沿用固定fallback，1候选未决已公开保留；无按gold筛新增mentions/响应。",
+    "语义审查17支持+1身份未决不变；literal/唯一context不等于正确主体，代理阅读非人工金标。",
+    "独立复核绑定真实运行manifest与冻结缓存，不重复GPU生成/远端16GB权重hash；8模型小文件有来源/传输/当前侧车一致证据。",
+    "旧manifest未单独记录PEFT，当前侧车0.15.2及既有同路径私有安装证据仅补强，未倒填旧包版本；旧缓存时间不能当新推断性能。"
+  ],
+  "report": "/workspace/patientphex-runs/round2-20261023/validation/coreference-sft-review.json",
+  "report_sha256": "6b03da27ac4fd5063d268ec90badbf0699b60e7f79dc430e82ba4f6b63a88a5b"
+}

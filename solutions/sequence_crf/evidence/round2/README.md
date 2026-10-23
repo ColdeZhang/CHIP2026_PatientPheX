@@ -32,3 +32,7 @@
 - `coreference-independent-review.json`：72窗输入/18新增定位及三规则/no-op独立字节复现，17身份支持/1未决；规则零收益，SFT变更29短批另评。
 
 - `coreference-sft-results.json`：共指只改mentions同adapter控制，29新＋29严格缓存逐行来源；fold0 .674333→.686853，仍低于rules，原dev不动。
+
+- `coreference-sft-independent-review.json`：实际29缓存＋29新响应最终独立核验、6产物byteexact、两分数一致。
+
+- `training-loss-diagnosis.json`：仅outertrain48三nested OOF实体/关系损失分解，用于下一路线选择，不是新dev分。
