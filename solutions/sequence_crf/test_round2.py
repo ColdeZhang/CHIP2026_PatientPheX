@@ -17,6 +17,7 @@ import merge_coreference
 import apply_coreference_relations
 import reuse_relation_responses
 import diagnose_nested_losses
+import run_gliner_pilot
 import copy
 import xml.etree.ElementTree as ET
 import json
@@ -25,6 +26,17 @@ import io
 from unittest.mock import patch
 
 class Round2Tests(unittest.TestCase):
+    def test_gliner_windows_cover_full_words_and_span_overlap(self):
+        import re
+        splitter=lambda text: [(m.group(),m.start(),m.end()) for m in re.finditer(r'\w+',text)]
+        tokenizer=lambda words,**kwargs: {'input_ids':list(range(len(words)+2))}
+        text='one two three four five six seven eight nine ten eleven'
+        result=list(run_gliner_pilot.windows(text,splitter,tokenizer,['type'],8,3))
+        self.assertEqual(result[0]['tokens'],8)
+        self.assertEqual(result[-1]['end'],len(text))
+        for i in range(len(splitter(text))-2):
+            self.assertTrue(any(c['word_start']<=i and c['word_end']>=i+3 for c in result))
+        self.assertTrue(all(text[c['start']:c['end']]==c['text'] for c in result))
     def test_loss_diagnostic_preserves_evaluator_nil_one_to_one(self):
         truth={(0,4):{'-1','HP:0000001'},(10,3):{'HP:0000002'}}
         guess={(0,4):{'HP:0000009'},(10,2):{'HP:0000002'}}

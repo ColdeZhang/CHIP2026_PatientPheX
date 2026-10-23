@@ -36,3 +36,5 @@
 - `coreference-sft-independent-review.json`：实际29缓存＋29新响应最终独立核验、6产物byteexact、两分数一致。
 
 - `training-loss-diagnosis.json`：仅outertrain48三nested OOF实体/关系损失分解，用于下一路线选择，不是新dev分。
+
+- `training-loss-independent-review.json`：三nested全部计数/分层/marker丢失独立复算。GLiNER候选结构设计见P-20261023-GLINER.md，当前无新评测分数。

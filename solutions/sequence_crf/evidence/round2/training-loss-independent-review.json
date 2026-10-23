@@ -1,0 +1,47 @@
+{
+  "scope": "outer train48三组nested train32→16 OOF聚合诊断独立复核，未读outerfold0/originaldev标签，无GPU",
+  "source_commit": "80cc2ea660ffd8ebe5cb80d403d0ed54cc4f26ca",
+  "source_sha256": "d52acff9ffca158c779ba6e4f886f2251c12f0ecf0c3fe51a48c22349fb39c51",
+  "conclusion": "实际总计/三折/单多患者分层全部独立重算一致；FN分类互斥穷尽，候选仅来自冻结模型，未用gold补候选。",
+  "entities": {
+    "unit": "去重(pmc,offset,length,atomic ID)，先消费v2一对一NIL wildcard",
+    "FN": 1364,
+    "no_overlap": 908,
+    "nonexact_overlap": 411,
+    "exact_span_missing_correct_ID": 45
+  },
+  "relations": {
+    "FN": 501,
+    "candidate_absent": 371,
+    "candidate_present": 130,
+    "candidate_groups": 1477,
+    "gold_relations": 1338,
+    "covered": 967
+  },
+  "marker_proxy": {
+    "selected_target_present": 604,
+    "any_span_target_present": 607,
+    "lost_by4_cap": 3,
+    "meaning": "仅局部marker可见性，不代表患者归属的真实证据跨度或证明MIL无价值"
+  },
+  "replay": "冻结源码CLI生成报告与原JSON对象完全一致；字节顺序可因Counter/Python set插入次序不同，不是数值差异。",
+  "limits": [
+    "411非精确重叠不能都称可修边界错误；45可能包含同跨度compound部分缺ID。",
+    "训练32少于最终48；阈值曾用开发fold0选型，不称盲测。"
+  ],
+  "supplemental_dependency": {
+    "path": "solutions/sequence_crf/audit_patient_anchors.py",
+    "sha256": "9918b477daf681ec44b29b4099395f1d333a111e0b9b96955bcaa289c3d42535",
+    "note": "原诊断manifest遗漏此直接导入，独审已补绑定。"
+  },
+  "full_report": {
+    "path": "validation/nested-loss-review/review.json",
+    "sha256": "fe4274ea937f79df753a0a60035cb7c5d64d1695cf88a8afd3461ee6031beb57"
+  },
+  "independent_script": {
+    "path": "validation/nested-loss-review/audit_actual.py",
+    "sha256": "b996c461ba855712eceb7569ae93dd583fe8469829aacd10f7109e988f2e2ae4"
+  },
+  "external_report": "/workspace/patientphex-runs/round2-20261023/validation/nested-loss-review/summary.json",
+  "report_sha256": "2101e7b4d2aa68af91b267355b18622fa2a0a259c3d0be13594873600f704f7e"
+}

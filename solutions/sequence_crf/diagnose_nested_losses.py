@@ -12,6 +12,7 @@ import sys
 
 import run as base
 import prepare_pair_rag as prompts
+import audit_patient_anchors
 from audit_patient_anchors import tagged_patients
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
@@ -157,7 +158,7 @@ def main():
               'manifest': args.sft_manifest, 'manifest_sha256': base.sha(args.sft_manifest),
               'train_sha256': base.sha(train_path), 'source_sha256': base.sha(__file__),
               'dependencies': {str(Path(p).relative_to(Path(__file__).resolve().parents[2])): base.sha(p)
-                               for p in [base.__file__, prompts.__file__, evaluate.__file__]},
+                               for p in [base.__file__, prompts.__file__, evaluate.__file__, audit_patient_anchors.__file__]},
               'frozen_oof_rule_metrics': metrics['metrics'], 'counts': dict(total), 'folds': folds,
               'strata': {k: dict(v) for k, v in strata.items()}, 'sources': sources,
               'limitations': ['Gold-aware aggregate planning only; no new prediction, gold candidate, or per-example correction exported.',
@@ -167,7 +168,7 @@ def main():
                              'All reported splits are members of outer training48; no new dev or outer-fold0 gold read.']}
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(result, indent=2)+'\n')
+    path.write_text(json.dumps(result, indent=2, sort_keys=True)+'\n')
     print(json.dumps({'metrics': metrics['metrics'], 'counts': dict(total)}))
 
 

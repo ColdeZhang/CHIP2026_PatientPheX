@@ -1,0 +1,53 @@
+{
+  "scope": "metadata provenance review and training-input-only pilot preparation; no new validation or finetuning",
+  "proposal": "experiments/P-20261023-GLINER.md",
+  "model_id": "urchade/gliner_medium-v2",
+  "revision": "f7da09ddffab92deb4f2a815662d88b7e0d909d5",
+  "weight_bytes": 780806090,
+  "weight_sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91",
+  "source_review": "/workspace/patientphex-runs/round2-20261023/research/gliner-source-review/review.json",
+  "source_review_sha256": "5139706febea37d409b053e3e9af1a0a4fbb73ef3f8eb6fe8bd8761f59c32726",
+  "selection": {
+    "source_train_path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+    "source_train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "input_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/selected.input.jsonl",
+    "input_sha256": "b8a865c69f961d50ae1167dde1b3e2ed817631e9c9dd84aa191be785b9d85896",
+    "selection": [
+      {
+        "stratum": "one",
+        "pmc_id": "10313222",
+        "patient_count": 1,
+        "characters": 13663,
+        "selection": "lower median text character count within input patient-count stratum; pmc ID breaks ties",
+        "stratum_documents": 22
+      },
+      {
+        "stratum": "two_three",
+        "pmc_id": "6390251",
+        "patient_count": 2,
+        "characters": 15234,
+        "selection": "lower median text character count within input patient-count stratum; pmc ID breaks ties",
+        "stratum_documents": 14
+      },
+      {
+        "stratum": "four_plus",
+        "pmc_id": "6063015",
+        "patient_count": 4,
+        "characters": 16951,
+        "selection": "lower median text character count within input patient-count stratum; pmc ID breaks ties",
+        "stratum_documents": 12
+      }
+    ],
+    "gold_labels_used_for_selection": false
+  },
+  "download_job": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/download/job.json",
+  "download_process_id": "proc_8e4adbed-d48b-4e9c-8b6d-fb75f152087d",
+  "runtime_install_job": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/runtime-install-job.json",
+  "runtime_isolated_target": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime",
+  "read_only_python": "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+  "dependency_tokenizer_check": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/dependency-tokenizer-check.json",
+  "gliner_wheel_sha256": "9d12298db26d53b95c49d684ec5d768fbd20833501612bb9865c95e6ec4359c1",
+  "tokenizer_revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
+  "source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+  "current_status": "download active; imports and tokenizer-only101windows CPU pass; model strict CPU preflight pending full SHA"
+}

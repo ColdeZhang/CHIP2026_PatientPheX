@@ -28,3 +28,11 @@
 - 新共指短语不能隐式升级成全文alias：保留原始给定alias处理，generated mentions只使用核验过的真实坐标；旧alias广播另作可归因控制，不修改共享规则。
 
 - LLM响应缓存复用必须比对完整输入row和实际模型/adapter/解码器/运行时身份；同row_id或prompt条数相同不足以证明可复用。变更行重推、未变行复用时逐行记录原响应文件SHA。
+
+## GLiNER 结构方向：准确版本比家族名称重要
+
+三nested训练诊断将下一步放在跨度覆盖：1364实体FN仅45同跨度缺ID；371/501关系FN来自候选外。411“有重叠”只是操作性分类，不能全部算可修边界；四context上限仅损失3个marker，不足以优先再做同池MIL。诊断已独立复算，完整范围/边界见training-loss-diagnosis与review。
+
+优先研究 [GLiNER medium-v2](https://huggingface.co/urchade/gliner_medium-v2/tree/f7da09ddffab92deb4f2a815662d88b7e0d909d5)：官方卡明确NuNER数据，模型/代码Apache2.0，数据MIT；[NuNER论文](https://arxiv.org/abs/2402.15343)明确C4原文→GPT3.5自动注释，通用语义类别与span匹配不同于现有任务BIO。v2.1的pile-mistral卡仅license，不能因同GLiNER家族就继承v2谱系；v1含非商用许可，不作为首选。独立来源审查确认公开谱系，但全checkpoint训练/选择清单未公开，保留限制。没有使用含本赛train80的成品模型。
+
+[冻结最小提案](experiments/P-20261023-GLINER.md)只先在train48按输入患者数/字符中位选择三篇，固定phenotype/.50、完整词与实际token预算、原passage坐标；只资源/定位pilot。后续若获分配才做同折Sap过滤与不重叠增量，固定阈值/规则比较，避免把多个改动同时包装为增益。可选2epoch自训只列计划，未启动。
