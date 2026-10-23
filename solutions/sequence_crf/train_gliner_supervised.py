@@ -71,10 +71,13 @@ def main():
         parser.add_argument('--'+name, required=True)
     parser.add_argument('--smoke-only', action='store_true')
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--epochs', type=int, choices=[2, 10], default=2)
+    parser.add_argument('--prune-old-epochs', action='store_true',
+                        help='Keep only latest model/state after atomic checkpoint save; record old hashes.')
     args = parser.parse_args()
     import torch
     torch.set_num_threads(1)
-    seed, epochs, batch_size = 20261023, 2, 4
+    seed, epochs, batch_size = 20261023, args.epochs, 4
     random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -95,7 +98,7 @@ def main():
                      'seed': seed, 'precision': 'float32', 'gradient_clip': 1.,
                      'loss': 'binary CE sum over valid spans / valid span count',
                      'label': 'phenotype', 'all_valid_negative_spans': True,
-                     'checkpoint_choice': 'epoch2 only; no validation selection'}
+                     'checkpoint_choice': f'epoch{epochs} only; no validation selection'}
     fingerprint = {'configuration': configuration, 'source_sha256': sha(__file__),
                    'loader_source_sha256': sha(run_gliner_pilot.__file__),
                    'data_manifest_sha256': sha(args.data_manifest), 'train_sha256': sha(args.train),
@@ -228,6 +231,17 @@ def main():
                       max_gpu_allocated_bytes=torch.cuda.max_memory_allocated(),
                       free_bytes_after=shutil.disk_usage(out).free)
         record_path.write_text(json.dumps(report, indent=2)+'\n')
+        if args.prune_old_epochs:
+            # The current state already refers to this epoch's complete model.
+            # Do not delete unknown files or silently lose the prior identity.
+            for prior in report['epoch_results'][:-1]:
+                old_model = out/prior['model_file']
+                if old_model.exists():
+                    assert old_model != out/model_file
+                    assert sha(old_model) == prior['model_sha256']
+                    old_model.unlink()
+                    prior['model_pruned_after_epoch'] = epoch+1
+            record_path.write_text(json.dumps(report, indent=2)+'\n')
         print(json.dumps(result), flush=True)
 
 
