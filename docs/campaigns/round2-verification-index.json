@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T20:58:35.984952+00:00",
+  "generated_utc": "2026-10-23T21:22:59.943258+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -9324,17 +9324,1078 @@
         }
       ],
       "completed_review_scope": "same_A30_fresh_BCE_focal_fixed10ep_and_single_analytic_CPU_cut_terminal"
+    },
+    {
+      "id": "public-native-phenotagger-first-nested-entity-only-terminal",
+      "report": {
+        "path": "validation/public-phenotagger-terminal-review/review.json",
+        "sha256": "7ed866e20c6a68522d40edaee8fe226d9e078cfade114cc2c1327c80010cdad6",
+        "bytes": 6254
+      },
+      "completed_review_scope": "completed_fixed_public_native_nested_entity_only_quality_terminal",
+      "scope": "公开原生PubMedBERT PhenoTagger固定政策首次nested16完整实体only终点；基线实体/非实体字段保持，独立CPU装配及v2核验。",
+      "conclusion": "原生75790神经候选+1174词典候选，缩写合并后1769；神经45.882秒/完整wrapper82.047秒并释放GPU。新增308实体（134TP/174FP）、0关系，Score .6447615937→.6583570665（+.0135954728），关系指标完全保持。完整预测字节及全部v2相等，0错警；属于重复nested开发验证，不是原dev或.8验收。",
+      "limitations": [
+        "Repeated nested16 development control; no originaldev, official score or .8 acceptance.",
+        "Public model unchanged; no training on competition labels and no new neural inference by reviewer.",
+        "This fixed control preserves all baseline relations, so its relation metrics are expected to be identical.",
+        "Large native raw outputs remain remote with SHA receipts; reviewer verifies local canonical/small terminal evidence and does not download or recompute NN."
+      ],
+      "support": [
+        {
+          "path": "ontology_rules/public-phenotagger-native/assembled/manifest.json",
+          "sha256": "5495f4cd61f488b52ea9f04f2628e1f14a843bf40c91dec8566d46227c044ff6",
+          "bytes": 1770
+        },
+        {
+          "path": "ontology_rules/public-phenotagger-native/assembled/metrics.json",
+          "sha256": "1704bdc0e4c9f742747434ecd229be406abecf4f8032916e43a4160c230d9516",
+          "bytes": 13238
+        },
+        {
+          "path": "ontology_rules/public-phenotagger-native/assembled/prediction-freeze.json",
+          "sha256": "ee7bfb29402ec2d313d18e7ade08348df370c8eb844360d1e6aef17528ef9cae",
+          "bytes": 439
+        },
+        {
+          "path": "ontology_rules/public-phenotagger-native/assembly-plan.json",
+          "sha256": "69c20c69e3b7d9ff2a59a0c90a0f2bb093ce2f86ca64be45729c1700e353d2ec",
+          "bytes": 7863
+        },
+        {
+          "path": "ontology_rules/public-phenotagger-native/cpu-terminal/before-evaluation-freeze.json",
+          "sha256": "f0700c7271d721465e6f9db9885146768eec708f820230a7b18c658b5d2ab53c",
+          "bytes": 365
+        },
+        {
+          "path": "ontology_rules/public-phenotagger-native/cpu-terminal/jobs.json",
+          "sha256": "c663cb7f7c95be86ef3cd20b9815b1e76ff686f1ff0a4a186a10b24c244fc07d",
+          "bytes": 2661
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/terminal/gpu-release.json",
+          "sha256": "7bc41ffcb4a065ae2108786c36848f3e8a4142f7dc47e8ec1cdd41c15ff95105",
+          "bytes": 135
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/terminal/manifest.json",
+          "sha256": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a",
+          "bytes": 3171
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/terminal/native-full-state.json",
+          "sha256": "a215a774a725127395668140043679aeea354b69f15e24b2afcebc56ef87b9a2",
+          "bytes": 463
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/terminal/transfer.json",
+          "sha256": "d86cec42f93e54a1a5a529aa5d2997d0ec6c36d5df676c3c84e57fdacf7875fd",
+          "bytes": 3270
+        },
+        {
+          "path": "validation/index-next-20261023-2055/dependency-support-flag-clarification.json",
+          "sha256": "9fdf390fab00a74b45f18cd6b744ca4acd53461a29a6ac96e02ec6ca8341b663",
+          "bytes": 750
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-dependency-verification.json",
+          "sha256": "9c11ee0113e9a44432b4cb5a6b8988af1b65010584ee695fa677ab025a7e6f79",
+          "bytes": 95663
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source-inventory.json",
+          "sha256": "b56cc6fd268cda0665208b7f5222b5c0f4873cc774a68e536703866279553cac",
+          "bytes": 40332
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source/8b843bc8d021/public-phenotagger-terminal-audit.py",
+          "sha256": "8b843bc8d021f0a2155b46974315ec0f30b9332f4bacce9ed3721eb9e4d875d9",
+          "bytes": 8937
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/commands.json",
+          "sha256": "761cfe4aabd989f48402a9446f8e8b050ba0b92c513fc9ccc349551b52c15d68",
+          "bytes": 5407
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/independent-before-gold-freeze.json",
+          "sha256": "7e1d1ed9524455d787e49dde5bd2714658466f4713e22d9dd2c406cfc33db8f4",
+          "bytes": 572
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/replay/manifest.json",
+          "sha256": "b6abe4ad26aa73ebb3b39c98a3a0955d7d524580f9d7f4aeacc17605030a5fd4",
+          "bytes": 1770
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/replay/metrics.json",
+          "sha256": "1704bdc0e4c9f742747434ecd229be406abecf4f8032916e43a4160c230d9516",
+          "bytes": 13238
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/replay/prediction-freeze.json",
+          "sha256": "9a97ae8c199f44c5406a0d77dbc9a3c8d52739771afdc800bb4aaa9e69357edb",
+          "bytes": 439
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/replay/validation.json",
+          "sha256": "190dedf0f5ff1929d3c22220d2c7ef2d455d3bbcb006b708603abf2197b1e9fd",
+          "bytes": 686
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/source/assemble_public_phenotagger.py",
+          "sha256": "d9481ea8301a59601e47a81d1f81f4d2bf1b740e1b53deed618a0158d9cdb2a7",
+          "bytes": 6913
+        },
+        {
+          "path": "validation/public-phenotagger-terminal-review/source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        }
+      ]
+    },
+    {
+      "id": "sft-meta1-fresh32-data-plan-and-paired-fusion-entry",
+      "report": {
+        "path": "validation/sft-meta1-entry-review/fusion-entry-review.json",
+        "sha256": "1415580ca316a13d3cc839bbacc4f8b143ac1e03358cd0ee8dff1e0c7dc2e28c",
+        "bytes": 3361
+      },
+      "completed_review_scope": "completed_data_CPU_guard_bounded_driver_and_paired_fusion_entry_only",
+      "scope": "F2+F3 fresh train32 SFT新数据/实际CPU与计划，及单F1配对HGB融合入口；本批未收录正式训练或融合质量终点。",
+      "conclusion": "32训练文献124行，与F0/F1共32文献隔离；880候选、594正/1912负、402594总token/7170监督token、最长5523<6144且0截断。fresh2ep/32steps计划训练1800秒、F1推断900秒；实际CPU与adapter验证通过。HGB两臂共享F1 1557pairs/365正例、299基础特征，第二臂只加4个SFT特征；outer0 1166pairs复用旧SFT48，无新外层推断。训练尚在进行，不声明完成或质量提升；不是完整48OOF。",
+      "limitations": [
+        "Actual tokenizer/encoder is existing audited helper; reviewer binds new124-row report and actual CPU output rather than loading9B or repeating old loss tests.",
+        "SFT answer convention retains raw HPO compound expansion without canonical alt remapping, as old48/64.",
+        "Single metaF1 training stage will be developmental, not complete48OOF; meta32 generators16 versus old48 generators32 is disclosed.",
+        "No training success, F1 inference quality or fusion improvement claimed at CPU-preparation stage.",
+        "This review binds prepared driver/plan, not training completion or GPU outcome.",
+        "F1 labels are legitimately consumed only for the meta training preparation; no outer/originaldev gold opened by this review.",
+        "Outer LR48 and SFT48 use more base-training documents than F1 LR32/SFT32; this one-meta-fold design is disclosed, not full48OOF.",
+        "New paired HGB source/complete prediction freeze and quality endpoint require actual later evidence; no quality gain claimed.",
+        "CPU299 is naturally fitted from F1 includingLR2; its count matching an older299 vocabulary does not mean that old baseline is reused.",
+        "SingleF1 meta training, not all48OOF; SFT32/48 and16/32 candidate-generator scale difference disclosed.",
+        "This entry review does not claim future training completion or quality gain. Actual endpoint will require fresh CPU replay/metrics."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/actual-entry-cpu.json",
+          "sha256": "340b38bf44472f7effc90696e1a73cda761c9bf55e7584c7807fe55fbb561662",
+          "bytes": 999
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/cpu-contract/cpu_complete.json",
+          "sha256": "433f2b93513f3d19115d11cff567657b476cb8e30e2a00edceff7d2bc541e512",
+          "bytes": 450
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/cpu-contract/run_manifest.json",
+          "sha256": "6397dc203caf998823102fcf7ac550fa047fca03dde65af27bb7a081e99cec86",
+          "bytes": 8581
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/cpu-contract/token-mask-audit.json",
+          "sha256": "d97f3438a4bab5996caada009b2bb659a1e679e93ae657893f05fcd1e206a86c",
+          "bytes": 17505
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-cpu-prepared.json",
+          "sha256": "bcd65c2ae5fdbe1382ba3e560bc00185475a8230dfa43b6c832ec39d56d4e2db",
+          "bytes": 8445
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/preparation.json",
+          "sha256": "e64af5c476d54c6201945dd17da588b451f67fd302dd01fff99defaa7d9e7d20",
+          "bytes": 9090
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-plan.json",
+          "sha256": "a035fb78b8014ab3907d2f1c2ac1a6cf7439ac36274199cdb5d09da9edbbfd5d",
+          "bytes": 7149
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+          "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47",
+          "bytes": 9323
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/run-plan.json",
+          "sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28",
+          "bytes": 13675
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/fusion.py",
+          "sha256": "53a954f0b31db34e87e64ccf8733446d426defeb084e4fa2ba3623489a3b7942",
+          "bytes": 13984
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/llm_feature_tree.py",
+          "sha256": "6093741856c42fe56dc0f13d365b3eaf4c962e2f67befa5fa3ce865362989bef",
+          "bytes": 21699
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/prepare_fusion_inputs.py",
+          "sha256": "69ed4c6e52f039fa394a93d3ca5f9cbe786f2fb01a7f6a9587b642b1c2ed74bc",
+          "bytes": 6946
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/run_bounded.py",
+          "sha256": "a699a2ea050a6476fabe5ff4033e6727097b5e76dc86c47d94388e2e9d78cea9",
+          "bytes": 8628
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/sft-meta1-fusion/tokenizer-audit.json",
+          "sha256": "46b005eff0cabad879c2a74034a7d2b3d4c1a0dc552338a339fc9b463b211555",
+          "bytes": 73773
+        },
+        {
+          "path": "validation/index-next-20261023-2055/dependency-support-flag-clarification.json",
+          "sha256": "9fdf390fab00a74b45f18cd6b744ca4acd53461a29a6ac96e02ec6ca8341b663",
+          "bytes": 750
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-dependency-verification.json",
+          "sha256": "9c11ee0113e9a44432b4cb5a6b8988af1b65010584ee695fa677ab025a7e6f79",
+          "bytes": 95663
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source-inventory.json",
+          "sha256": "b56cc6fd268cda0665208b7f5222b5c0f4873cc774a68e536703866279553cac",
+          "bytes": 40332
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source/08fc142c6b9a/train_qwen35_meta32.py",
+          "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1",
+          "bytes": 28818
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source/33fd07018002/sft-meta1-entry-audit.py",
+          "sha256": "33fd07018002faf697bd5141de8285c2b9adcd2465bc718b58a8596fdadb2bdb",
+          "bytes": 8567
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source/7f06c78eb1de/sft-meta1-fusion-entry-audit.py",
+          "sha256": "7f06c78eb1de7d1b72a20f5ff1aee0ad656fc5a3680e061fcedf2f99e0c89426",
+          "bytes": 6139
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source/b08b95823728/sft-meta1-plan-audit.py",
+          "sha256": "b08b95823728297cfc852c521fe124bb4c7afe79a128788e5cd6f7fd7c25adbd",
+          "bytes": 6337
+        },
+        {
+          "path": "validation/sft-meta1-entry-review/data-guard-review.json",
+          "sha256": "bbf318ac72bd99bea80a647ab30e10fa5c1adb90e92cd39303c40b6415bc6e3c",
+          "bytes": 4908
+        },
+        {
+          "path": "validation/sft-meta1-entry-review/plan-review.json",
+          "sha256": "c6c39db8ec11dd6ec7032ae88971c9779412400c32929eca12568e9afa4dedc5",
+          "bytes": 3835
+        },
+        {
+          "path": "validation/sft-meta1-entry-review/trainer-delta.diff",
+          "sha256": "71a6cec097f0db6c1f1da649e56271e22829ba2ae5ff5ffdaa3965f5d385199b",
+          "bytes": 13049
+        }
+      ]
+    },
+    {
+      "id": "public-other-heads-static-and-bioformer-native-CPU-readiness",
+      "report": {
+        "path": "validation/public-bioformer-readiness-review.json",
+        "sha256": "c481da2a4bda3547b9280885d81389caf6ed666c121f05ad04ce2b810c2f7c99",
+        "bytes": 2229
+      },
+      "completed_review_scope": "completed_other_heads_static_sources_and_actual_Bioformer_CPU_readiness_without_quality",
+      "scope": "Bioformer/BioBERT来源/config/词表静态研究，进一步完成公开Bioformer原生H5 CPU恢复与root增量源码/变量核验；仍无NER质量。",
+      "conclusion": "静态预期Bioformer51380594、BioBERT121587826参数，BioBERT config/vocab跨源字节相同；仅Bioformer进一步实际137变量/51380594参数先NaN后严格加载并逐元素匹配H5，17266head列保持。保留上游先word.lower再cased tokenizer，不重解释表示。205710168B公开H5下载27.229秒；CPU native9.323秒（不含import）、四合成短语.380秒，无GPU/比赛输入/质量。BioBERT仍只静态，不能把参数公式当已核权重。",
+      "limitations": [
+        "四条合成短语仅证明接口，不是质量、互补性或真实吞吐；CPU9.323秒不含Python导入。",
+        "本索引只核已有证据文件，未重新加载/下载权重或执行模型；205710168B权重完整SHA沿用实际下载和native receipt。",
+        "BioBERT许可证元数据仍有限：ModelScope other、HF卡缺license，不作更强推断；实际H5未加载。",
+        "共享候选不等于共享不同tokenizer/model的预测；正式Bioformer质量尚未纳入。"
+      ],
+      "support": [
+        {
+          "path": "research/public-phenotagger-bioformer/CPU-job.json",
+          "sha256": "f3a16907b73f6de395faef8cc9237b0df8b92d1e0600fff49427d94e359d34d9",
+          "bytes": 1696
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/completion.json",
+          "sha256": "958e1bb0aaf3d840b22ddf612efe61b0c9290980c8e09f076ee9fba686c89155",
+          "bytes": 3318
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/deployment-failures.json",
+          "sha256": "4e98bf1a8ba91152d2fc8b985c42efac7fde7d9fb856086119da396461c0b9c5",
+          "bytes": 463
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/deployment.json",
+          "sha256": "ef311f9529c3f03c59ab5706947b8e4dfaca25e005065c90a54811c688528ba9",
+          "bytes": 822
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/download-job.json",
+          "sha256": "4f1cadaf162d2af4f1b96bb901e11f09410f4a58d6f4470b27fa4129b9e4a225",
+          "bytes": 1160
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/download-status.json",
+          "sha256": "20607fe308647dea76f7345036eb41445c40d77e3b6a7ccd1e2e43454aae095f",
+          "bytes": 197
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/managed-process-terminal.json",
+          "sha256": "9b72af180637350f51d405132cc2ac16b646270635b3a1ceb40ab41b9ea4ba40",
+          "bytes": 4738
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/native-h5-result.json",
+          "sha256": "760892527e926330aff7a9b1573084ac29084e1e103ab1486dc945e7fad53f80",
+          "bytes": 2927
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/plan.json",
+          "sha256": "93ce9f24b705adf3a34badbddf526b72565699c0fcc99b46be14c2a3bb9f445f",
+          "bytes": 2415
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/synthetic-representation.json",
+          "sha256": "fd57af6b1d21cac8a9878f3f20abf3a3ecbbd99397aff0d10bc690bf018b2391",
+          "bytes": 3948
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/variable-coverage.json",
+          "sha256": "92ee9820e9bc606c3e23dde757a2b4ba621a7f5e994189c39140412f22e8bf98",
+          "bytes": 46885
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/weight-download-plan.json",
+          "sha256": "eec1577913838956ac2d247907e406bf62e2ce77fad5fe5d10212b4f90d5c795",
+          "bytes": 521
+        },
+        {
+          "path": "research/public-phenotagger-bioformer/weight-source-manifest.json",
+          "sha256": "ee145fc2de1ebdfa94b4040b018344591b1b4baf2962d3a94f03a260d8c476b0",
+          "bytes": 697
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/biobert-hf-config.json",
+          "sha256": "a51b82d83d616bffaea11e629c4c82cca1e71b71460f133d55ebb4444ee9582e",
+          "bytes": 1110
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/biobert-hf-vocab.txt",
+          "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+          "bytes": 213450
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/biobert-ms-config.json",
+          "sha256": "a51b82d83d616bffaea11e629c4c82cca1e71b71460f133d55ebb4444ee9582e",
+          "bytes": 1110
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/biobert-ms-vocab.txt",
+          "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+          "bytes": 213450
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/bioformer-README.md",
+          "sha256": "10eaa78c9982a8d38ba03c32aee27aed2c0c27e3d5a0fced29249ab5eb99baec",
+          "bytes": 6656
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/bioformer-config.json",
+          "sha256": "236526893dc68119741d4482455059f53fa6bdd225716e96e915176467580e7c",
+          "bytes": 383
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/bioformer-tokenizer_config.json",
+          "sha256": "a5064475340d80a560463f49921407d901eef3e89667a931eb81a186633eff4b",
+          "bytes": 24
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/bioformer-vocab.txt",
+          "sha256": "c96a7e8e64f7194de4d985cb9f4a59fa152c67f3b62336927c60af3ec4755a07",
+          "bytes": 247686
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/hf-biobert-metadata.json",
+          "sha256": "e163707438e81f04d458a37af8186c08c109a3b3dfd3cca4ca8155e4be29cbe4",
+          "bytes": 2200
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/hf-bioformer-metadata.json",
+          "sha256": "7f4f12bb8f5e9f128065368d3032bdbb946dba1ba3ed02867d985e59a21ff070",
+          "bytes": 2260
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/manifest.json",
+          "sha256": "35c43a0687c67d663acca968a7c5e86230567de3064c9cd0b1f695e7ddbf05ad",
+          "bytes": 3444
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/metadata-fetch.json",
+          "sha256": "8ff904a6f73003790e82feaf4fb5ae8843638cacdf233f8c2c2ab9e29852371a",
+          "bytes": 894
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/modelscope-check.json",
+          "sha256": "3af1c1b4c7999e4a0481e41450745d341d7c5ba5d3de8c3a675875dcde9c4f4b",
+          "bytes": 563
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/ms-biobert-files.json",
+          "sha256": "1230dbb6976c881ea6502cd50ef7cc917bcf8c027537f63da9b63f371ce4d597",
+          "bytes": 2675
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/ms-biobert.json",
+          "sha256": "73b967df74cc4717715dbca1525d8ae7d2233d73d90b4dde188c14cc237a59e6",
+          "bytes": 5287
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/ms-bioformer.json",
+          "sha256": "7e56a80e3bd80f4e907e163565950d982faaf1f505b125032778002687b0117a",
+          "bytes": 152
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/report.json",
+          "sha256": "d0d09fbe291f1b82b645677bb4aeb7c85cc25309a2443b41b4a673715d688206",
+          "bytes": 2237
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/small-source-fetch.json",
+          "sha256": "5ed920f87edf5f590833e93337edc097654726b83de8edceb70fe573a5a64ca3",
+          "bytes": 2574
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/upstream-snapshots/PhenoTagger_tagging.py",
+          "sha256": "9742c05f9bd080897518e7834732281fe83705f16c0584a3f9ae3b3a8f12e1d3",
+          "bytes": 10918
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/upstream-snapshots/hf-model-metadata.json",
+          "sha256": "ba3bee8246020df498b0cbad03b05e5fa7776abaff00e5222d962602d46fc47e",
+          "bytes": 1800
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/upstream-snapshots/nn_model.py",
+          "sha256": "7543d6712fb497ff658b73b26c393832135c9152a23d15f547b839270dbcfeb7",
+          "bytes": 5878
+        },
+        {
+          "path": "research/public-phenotagger-other-heads/upstream-snapshots/nn_represent.py",
+          "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf",
+          "bytes": 11161
+        },
+        {
+          "path": "validation/index-next-20261023-2055/dependency-support-flag-clarification.json",
+          "sha256": "9fdf390fab00a74b45f18cd6b744ca4acd53461a29a6ac96e02ec6ca8341b663",
+          "bytes": 750
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-dependency-verification.json",
+          "sha256": "9c11ee0113e9a44432b4cb5a6b8988af1b65010584ee695fa677ab025a7e6f79",
+          "bytes": 95663
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/3b1dc54aa4e3/nn_represent.py",
+          "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf",
+          "bytes": 11161
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/47314601cc68/download_public_h5.py",
+          "sha256": "47314601cc68932f72378bc2aa43dcfdcd8ed38e78abd97be756379119e1a9c6",
+          "bytes": 5874
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/df0f96f86ed8/check_native_h5.py",
+          "sha256": "df0f96f86ed8b1c92d023697b0c164368a4f39acdc4cdec07ebba4b915b163a1",
+          "bytes": 6882
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source-inventory.json",
+          "sha256": "b56cc6fd268cda0665208b7f5222b5c0f4873cc774a68e536703866279553cac",
+          "bytes": 40332
+        }
+      ]
+    },
+    {
+      "id": "public-native-cache64-and-fixed-entity-only-outer0-transfer",
+      "report": {
+        "path": "validation/public-phenotagger-outer0-review/review.json",
+        "sha256": "a78d20138b371d8675836b26dde7cc49c736024d9a904601a88dca8375fa1ecf",
+        "bytes": 5107
+      },
+      "completed_review_scope": "completed_label_stripped_cache64_lineage_and_fixed_outer0_entity_only_terminal",
+      "scope": "公开模型复用旧16/只补48无标签缓存，完成64文献缓存谱系及既定实体only政策跨到不重叠outer0的完整CPU终点。",
+      "conclusion": "64输入仅4字段，旧1769行+新4295行=6064，逐文献行hash/原文坐标/HPO/来源键相符；补48 GPU183.453<600秒，union4.073<120秒并释放。outer0从父缓存精确投影1418行，保留947原实体及全部其他字段，新增241实体/0关系。独立预测字节、全部v2及0错警通过；Score .7113535219→.7135760316（+.0022225097），关系完全不变。这是政策开发后的重复outer0迁移，不是原dev。",
+      "limitations": [
+        "This is a disclosed repeated-development outer0 transfer following nested policy selection; not originaldev, official score or .8 acceptance.",
+        "Public neural cache source validated from actual completed manifest/transfer lineage; reviewer did not repeat neural inference, download weights or use GPU.",
+        "Only entities are added; every other baseline field and all relationships remain exactly equal by independent structural checks.",
+        "Recorded freeze/command chronology is not an OS-wide access audit. Old baseline metrics were reused, not recomputed.",
+        "No model weight reload or neural inference; actual model identity is reused from the earlier independent native review and bound runtime manifests.",
+        "Large raw neural/dictionary/hybrid files remain remote. Provenance flag construction was statically checked; this review verifies transferred sidecar keys and row consistency, not a second raw-file flag reconstruction.",
+        "Only label-stripped input documents were parsed; raw train64 label-containing file was not reopened, and no gold or originaldev was read.",
+        "Runtime return codes and release are observed through frozen wrapper state, not a new independent remote process observation."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2055/dependency-support-flag-clarification.json",
+          "sha256": "9fdf390fab00a74b45f18cd6b744ca4acd53461a29a6ac96e02ec6ca8341b663",
+          "bytes": 750
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-dependency-verification.json",
+          "sha256": "9c11ee0113e9a44432b4cb5a6b8988af1b65010584ee695fa677ab025a7e6f79",
+          "bytes": 95663
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/16f58aad1c66/replay_cpu.py",
+          "sha256": "16f58aad1c6668243263f605abd9ac3a5584d1018c3f70403fa022643c4a4066",
+          "bytes": 10910
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/c260908e6ac3/audit_cache_lineage.py",
+          "sha256": "c260908e6ac3845a3531889e4ce4a305dbeee32aefb4443aa625693f48c3b78e",
+          "bytes": 12301
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source-inventory.json",
+          "sha256": "b56cc6fd268cda0665208b7f5222b5c0f4873cc774a68e536703866279553cac",
+          "bytes": 40332
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/cache-lineage-review.json",
+          "sha256": "85274832a27df5a41209855b5dcb1fd37f1a17019471b285fb871a290e3dbb3e",
+          "bytes": 5625
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evaluation-event.json",
+          "sha256": "bc60860074807c9d546c163baa7f7be8c8dfcb1735bce43f2dbb59d366d4ff4a",
+          "bytes": 375
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/assembly-manifest.json",
+          "sha256": "f9d460e2ea7c7702869bcfc173e47f334819aaf32c46174a1f788d1d9048de48",
+          "bytes": 1558
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/0-plan.json",
+          "sha256": "0243e1707c2ca59a7d79211de5ccc771a241b27c5197584785de418d10280d49",
+          "bytes": 7916
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/1-input-manifest.json",
+          "sha256": "fd029f12ae49294191ed2bfe55f121fa3beae9ff82fc9151f4ffe08ac5a97512",
+          "bytes": 3124
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/2-artifacts-transfer.json",
+          "sha256": "59408dcf7b9e462245228c2ae397542d7cfb565f28b181eba828fb45f1d32025",
+          "bytes": 2371
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/3-source-equivalence-v2.json",
+          "sha256": "24560af6cf36e8863eb1acf7afa716dd3f5ad8a68005a93484ecd8eed3036612",
+          "bytes": 1172
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/4-run-state.json",
+          "sha256": "8a750f9eea597f111eb0f539c682562e246a48d42b700f7d4d25edc022bd7155",
+          "bytes": 3605
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/5-manifest.json",
+          "sha256": "9f48611404c0c2ce4232da3d6e217674fa2d0ba44753c0b37984f0b5a9056000",
+          "bytes": 3483
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/6-manifest.json",
+          "sha256": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87",
+          "bytes": 8929
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/7-per-document-reuse.json",
+          "sha256": "39fb7e16a61000afc2d95eb3ada4e9cd051233c5501af16dee3d9116041d03ba",
+          "bytes": 10889
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/8-run_remaining48.py",
+          "sha256": "7044ece577300008b6f75f35eb1224f21881a4f169821b3d2dc74560156ec7e7",
+          "bytes": 12649
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/cache/9-unify_cache64.py",
+          "sha256": "b4cb2b1d7ade17c58f6af113af4fcee04522f6b05c0a2a9c8ac3c2a43bf42dd5",
+          "bytes": 7104
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/jobs.json",
+          "sha256": "f47d9df221eac99856e6878fce7b0bbb2075b5056c44efa58479afb10d520787",
+          "bytes": 1665
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/plan.json",
+          "sha256": "6cc2237183198347d9d93985b319151d50d313ba07b26a36a7253a1ebef4bf18",
+          "bytes": 10697
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/prediction-freeze.json",
+          "sha256": "53735b440f9cd28cdc0170befd316aa2571de45d34b4128b4b6269685aee9472",
+          "bytes": 430
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/preparation.json",
+          "sha256": "50f6d1e37b68f88dc53895ec9477f9eaa7f744010a788c510fcc092fd6ed5e42",
+          "bytes": 3635
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/projection-manifest.json",
+          "sha256": "7e501a89fa3b267379e9199646195ef77ab4885913dca16596744da194c5202d",
+          "bytes": 1054
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/evidence/summary.json",
+          "sha256": "82a1897814d6f1901cb8959d4a0bea300df89d6d67744f9bea37330b8ad5b7c1",
+          "bytes": 2979
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/independent-before-gold-freeze.json",
+          "sha256": "5635b535b6a319a3fda0dc07adfb81a90fbe42522c96c4f615d2c2ab7c45118f",
+          "bytes": 503
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/preparation-review.json",
+          "sha256": "afa2cbbf133b66cb3a20afc3252def74dd53f3ed2bf31ed7756a21e162fca168",
+          "bytes": 1931
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/replay/metrics.json",
+          "sha256": "4d845f773e33558ec0b7919e0ca898e83a69cb379eab3d061fbdd69bfb1f0c67",
+          "bytes": 12994
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/replay/validation.json",
+          "sha256": "d1c19c4de87b9d8b7b648f58a4ec982359ff16561ba1b615cb1b98d38e864983",
+          "bytes": 425
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/source/assemble_public_phenotagger.py",
+          "sha256": "d9481ea8301a59601e47a81d1f81f4d2bf1b740e1b53deed618a0158d9cdb2a7",
+          "bytes": 6913
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/source/run_public_phenotagger_migration.py",
+          "sha256": "5c410d943945a1f96e5c36948cdd8a9cf68e7ae21c966e247e6d731a8009dabb",
+          "bytes": 7710
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        }
+      ]
+    },
+    {
+      "id": "public-source-HGB-selector-outer0-and-fourfold-development-control",
+      "report": {
+        "path": "validation/public-selector-followup-review/review.json",
+        "sha256": "c9428a9e573052045b17725bf0f83e8bdaf8c9fb1cb27f2debc7f22bf1360af5",
+        "bytes": 3030
+      },
+      "completed_review_scope": "completed_new_public_source_selector_outer0_and_fixed_three_fold_followup",
+      "scope": "既有嵌套隔离HGB加入公开候选和6个source/confidence特征，outer0一次独立新fit后，固定追加outer1/2/3各一次独立fit；共四fold开发控制。",
+      "conclusion": "outer0 46000训练行/3098正例、90特征、固定.4，Score .7103590603→.7329012288（+.0225421685）。随后三新fold与原fold0所有Score差为+.02254217/+.05707157/+.01683707/+.02267607；四fold pooled .6925273224→.7226510220（+.0301236996），非加权均值.7236289708。三新实际CPU共47.060<120秒，完整冻结先评；独立候选概率/预测字节及v2全部相等、0错警。pooled不是原dev，outer2关系micro/macro仍下降；不凭此宣称.8达标或验收合并。",
+      "limitations": [
+        "Outer0 is reused development validation; this is not untouched originaldev, official score or .8 acceptance.",
+        "This changes candidate coverage plus six source/confidence features, not a single-feature causal ablation.",
+        "Public-only missing Sap fields use old CRF-only placeholders (.5,0), explicitly not measured Sap scores.",
+        "No old baseline refit/evaluation or new neural forward; old metrics and independent cache lineage are SHA-bound.",
+        "Public provenance raw files remain remote; the reused cache audit verifies source construction and transferred sidecar identity without repeating neural inference.",
+        "Added/removed group NIL matching is diagnostic; complete evaluator counts determine total scores.",
+        "Outer0 positive result motivated this fixed three-fold follow-up; all fourfold results are development evidence, not blind originaldev or official results.",
+        "All four total Scores improve, but outer2 relation micro/macro decline; pooled four metrics improve.",
+        "The increment includes new public candidates and six source/confidence features, not a single-feature effect.",
+        "Current pooled Score .722651 remains below .8; no acceptance merge is justified by this result alone."
+      ],
+      "support": [
+        {
+          "path": "ontology_rules/nested-crf/calibrated/metrics.json",
+          "sha256": "3593de59197be1ed4a1134928a7f5fe8037b3ec3295c88c98ef39ca582701de7",
+          "bytes": 13033
+        },
+        {
+          "path": "ontology_rules/nested-crf/source-control-reproduction/pred.manifest.json",
+          "sha256": "59bf4fa3960f6d2432eb5a7f839bebeccbcc2daa209e4388441403123498a2a8",
+          "bytes": 4521
+        },
+        {
+          "path": "sequence_crf/public-selector-control/complete-freeze.json",
+          "sha256": "48ff6759a39d118489ac55249ec3c3b7d4a3fda55409c483226402e7232449e5",
+          "bytes": 2302
+        },
+        {
+          "path": "sequence_crf/public-selector-control/evaluation-execution.json",
+          "sha256": "0614889d5b57372827a12c391deb73fa355caaee597f044c23ff7b99007275aa",
+          "bytes": 339
+        },
+        {
+          "path": "sequence_crf/public-selector-control/fitted/manifest.json",
+          "sha256": "2286578bfb1384d723079461014ee13912688769d3af8a7e7cb85f47dd9a2e40",
+          "bytes": 6730
+        },
+        {
+          "path": "sequence_crf/public-selector-control/job.json",
+          "sha256": "085dcd53af50b78abb12eb92336ce7bf69b63058664fd059d5a2a5e8bd4b1604",
+          "bytes": 2960
+        },
+        {
+          "path": "sequence_crf/public-selector-control/plan.json",
+          "sha256": "d9dfd51daf92685d4d9b5a209aa3e030eb7a9543cd127285f66009050d90f724",
+          "bytes": 5374
+        },
+        {
+          "path": "sequence_crf/public-selector-control/prepared/manifest.json",
+          "sha256": "9a98a5951fcb364621fba4631d88b524b323285b6b26a57825944355b3e34992",
+          "bytes": 1504
+        },
+        {
+          "path": "sequence_crf/public-selector-control/results.json",
+          "sha256": "c7b5a23e9f68b39bc92cec1998b7c8239c050e9663de8bada4bd7a278c801e1d",
+          "bytes": 2536
+        },
+        {
+          "path": "sequence_crf/public-selector-followup/complete-freeze.json",
+          "sha256": "688261f22433d64b21fbf3f51126de1fe50c05097faab16a01f2d5d61710dd5c",
+          "bytes": 4641
+        },
+        {
+          "path": "sequence_crf/public-selector-followup/job.json",
+          "sha256": "daa9a22328090113dbad9fdeabe3206a9a104fdd2ba8c38b571868648c499a1c",
+          "bytes": 3792
+        },
+        {
+          "path": "sequence_crf/public-selector-followup/plan.json",
+          "sha256": "361c530ba65a80fd3d8d15f958b645651ff6ae6de69c911945a5767ebb9b900f",
+          "bytes": 9802
+        },
+        {
+          "path": "sequence_crf/public-selector-followup/results.json",
+          "sha256": "af38a6fbaf0f4ce887721e65ab7e85d4ae752ec1425caf137b6107db721f3c79",
+          "bytes": 8153
+        },
+        {
+          "path": "validation/index-next-20261023-2055/dependency-support-flag-clarification.json",
+          "sha256": "9fdf390fab00a74b45f18cd6b744ca4acd53461a29a6ac96e02ec6ca8341b663",
+          "bytes": 750
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-dependency-verification.json",
+          "sha256": "9c11ee0113e9a44432b4cb5a6b8988af1b65010584ee695fa677ab025a7e6f79",
+          "bytes": 95663
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/5078bf6a2d91/public-selector-followup-audit.py",
+          "sha256": "5078bf6a2d910262a4a8b0d215f33247e95cfd0bca1e05f72e2fac8b0111aa87",
+          "bytes": 8521
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/a852f41dac30/public-phenotagger-selector-terminal-audit.py",
+          "sha256": "a852f41dac30a65f4431e058e479efabe72f8b138a17f58543dc4ddfebadd636",
+          "bytes": 10007
+        },
+        {
+          "path": "validation/index-next-20261023-2115/final-source/c2c1133d50ce/audit_lineage.py",
+          "sha256": "c2c1133d50ce999f8c2cc26e11e816b70f99cae1348075c7a72cd1ee60f2ff99",
+          "bytes": 11901
+        },
+        {
+          "path": "validation/index-next-20261023-2115/source-inventory.json",
+          "sha256": "b56cc6fd268cda0665208b7f5222b5c0f4873cc774a68e536703866279553cac",
+          "bytes": 40332
+        },
+        {
+          "path": "validation/public-phenotagger-outer0-review/cache-lineage-review.json",
+          "sha256": "85274832a27df5a41209855b5dcb1fd37f1a17019471b285fb871a290e3dbb3e",
+          "bytes": 5625
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/commands.json",
+          "sha256": "ba40a7d766e7b8e63c9b8e74369361f443b8573a5292dff8c56cb2b36accd749",
+          "bytes": 4208
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/fitted-replay/manifest.json",
+          "sha256": "afd425f49033dd0fd27cc318baa5e519170f3542d25ef89caeff5c2d8d9b689f",
+          "bytes": 6801
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/independent-before-gold-freeze.json",
+          "sha256": "f90ccecfdbb9b7e0fc8b20fb7483e5e432e19f46c3ddd88363864e5f98cd5024",
+          "bytes": 1391
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/legacy-source/calibrate.py",
+          "sha256": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+          "bytes": 8131
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/legacy-source/calibrate_multi.py",
+          "sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+          "bytes": 7928
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/legacy-source/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/legacy-source/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/legacy-source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/prepared-replay/manifest.json",
+          "sha256": "9a98a5951fcb364621fba4631d88b524b323285b6b26a57825944355b3e34992",
+          "bytes": 1504
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/replay.metrics.json",
+          "sha256": "06b2f4ba053ccbcdc67502956199cd871ea9fcb7848b8ce13b678f2c3c79029b",
+          "bytes": 12930
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/replay.validation.json",
+          "sha256": "fcae036308433f120689a696f49d8471b91a71def8d5a24fd9689f3c17b38fe4",
+          "bytes": 424
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/review.json",
+          "sha256": "8107cc27437ba13f09f96eb3585ebc0c0d7e2ed74f9191b241bcf8b238392ae7",
+          "bytes": 8619
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/check_public_selector.py",
+          "sha256": "d40bca266d6b6275efc43ba6e5309559d08ea0daa03f3cba6c99a643670ada33",
+          "bytes": 5009
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/evaluate_exact_gate_control.py",
+          "sha256": "c1997a0bc45e449eaa2fbd18bfe4722ff72281435f024fe22b84e4683feb70fd",
+          "bytes": 7149
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/evaluate_public_selector.py",
+          "sha256": "87d422ef331b1a2d489304323c72f9bd93611cf35808ed46876ef53ac901213a",
+          "bytes": 5816
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/prepare_public_selector.py",
+          "sha256": "e8187e464bef2c628298dd3e567a40c7d809b91ef1a261e93fb00d0169872bbd",
+          "bytes": 4947
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/public-phenotagger-selector-review/source/select_public_candidates.py",
+          "sha256": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
+          "bytes": 11510
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold1-replay/manifest.json",
+          "sha256": "a1dbd78363819edb0db30530559b307abc2dfbe96d222e9b472409e765b7befc",
+          "bytes": 6732
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold1-replay/metrics.json",
+          "sha256": "9383cdbd6c7bdd128d2b1efb2968a6f1faf6618ba768eec3b580927a5fd28b2c",
+          "bytes": 12980
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold1-replay/validation.json",
+          "sha256": "c82c1d70243411bc3df770c8a59f819d9d53e43ac72efd41af5d1666161e6a69",
+          "bytes": 425
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold2-replay/manifest.json",
+          "sha256": "d6ed28771a789b75eb3a9a098ac6d8c6739f8ba854e613c5bccb25f95be81a45",
+          "bytes": 6778
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold2-replay/metrics.json",
+          "sha256": "f5297b7ca0f0bc1c99239a064dab92fd892026b1d3234b06cf8998888b2fe25a",
+          "bytes": 12793
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold2-replay/validation.json",
+          "sha256": "b263cc73bdfadb73311f12daae7886c54122c9caa3c90114994d1fc81302b2f0",
+          "bytes": 424
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold3-replay/manifest.json",
+          "sha256": "e21dd94dc1708d758527d53bc8c6e95a0d0479a918e5d5734a9aa0fb9d8cdf49",
+          "bytes": 6778
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold3-replay/metrics.json",
+          "sha256": "646564311f87e7b69f1293f65d319682a7dec1a50f145013cff9b5cb04069203",
+          "bytes": 12821
+        },
+        {
+          "path": "validation/public-selector-followup-review/fold3-replay/validation.json",
+          "sha256": "707ff8ba53d60cff12d16399e34ce18a3924f1b2304ba1dd95a28ea2ddc1337b",
+          "bytes": 424
+        },
+        {
+          "path": "validation/public-selector-followup-review/independent-full-freeze.json",
+          "sha256": "e6d9d25c723bd80d0d124d81899c28a152bac15cc1ea369abc421456df755af6",
+          "bytes": 3177
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/0-plan.json",
+          "sha256": "361c530ba65a80fd3d8d15f958b645651ff6ae6de69c911945a5767ebb9b900f",
+          "bytes": 9802
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/1-job.json",
+          "sha256": "daa9a22328090113dbad9fdeabe3206a9a104fdd2ba8c38b571868648c499a1c",
+          "bytes": 3792
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/10-manifest.json",
+          "sha256": "a3b40ee40ae290210bb055620d8e5abba4b2b6e109e662a9d1bd4ed59681a887",
+          "bytes": 6750
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/2-complete-freeze.json",
+          "sha256": "688261f22433d64b21fbf3f51126de1fe50c05097faab16a01f2d5d61710dd5c",
+          "bytes": 4641
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/3-evaluation-execution.json",
+          "sha256": "7e1f83be5ef1cd7a240cab57264e2d845224cbce26ace16eeeb6c64e4d7ee621",
+          "bytes": 661
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/4-source-diff.json",
+          "sha256": "6fc10defbda7d0a2d236898d1c9dcb2d04a2488b074a9b5b579fc3d61c635e62",
+          "bytes": 1112
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/5-execute_followup.py",
+          "sha256": "f376d9be68a777e6431ec4397f2558c41e8cadcdde5e73c1a597cd07d2b6d2c6",
+          "bytes": 3544
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/6-select_public_candidates_folds.py",
+          "sha256": "c258115c054e3c32493de45291acb47a0680517c3ef138357b473454684daa54",
+          "bytes": 11673
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/7-evaluate_public_selector_folds.py",
+          "sha256": "8d3a0a90d0f12477b4aeb06a6dbfb7f32e87e08ab485d1d4531e935e550f1d14",
+          "bytes": 5419
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/8-manifest.json",
+          "sha256": "873642433118f8b2647cd0b036f8205b2a4cf117ff8e27d93dd3e16513eca3e7",
+          "bytes": 6703
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-evidence/9-manifest.json",
+          "sha256": "54f15ec428d2aac77d003b02c80366f4991b80f95bcc5619e06ac4d132f9bf57",
+          "bytes": 6750
+        },
+        {
+          "path": "validation/public-selector-followup-review/lineage-review.json",
+          "sha256": "05bdaed8c105374c37b2d5eb5e567a702b616b54f6bbcca5ee564a1b94328bd3",
+          "bytes": 9664
+        },
+        {
+          "path": "validation/public-selector-followup-review/pooled.metrics.json",
+          "sha256": "13e4ba2fe3167486f3d699357b81fb8a4308174b7f13f70557fdb5a81d7d886b",
+          "bytes": 42410
+        },
+        {
+          "path": "validation/public-selector-followup-review/replay-commands.json",
+          "sha256": "7fd797c3fb1cc3fef76a3b02f00fd65606ae5bda77da401ea27d0f327775bf00",
+          "bytes": 4670
+        },
+        {
+          "path": "validation/public-selector-followup-review/replay-review.json",
+          "sha256": "aac4fc2375636c44ddeb8ce09f589cd4531f77f01079f553c046277fd341d5bb",
+          "bytes": 10798
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/evaluate_exact_gate_control.py",
+          "sha256": "c1997a0bc45e449eaa2fbd18bfe4722ff72281435f024fe22b84e4683feb70fd",
+          "bytes": 7149
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/evaluate_public_selector.py",
+          "sha256": "87d422ef331b1a2d489304323c72f9bd93611cf35808ed46876ef53ac901213a",
+          "bytes": 5816
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/evaluate_public_selector_folds.py",
+          "sha256": "8d3a0a90d0f12477b4aeb06a6dbfb7f32e87e08ab485d1d4531e935e550f1d14",
+          "bytes": 5419
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/select_public_candidates.py",
+          "sha256": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
+          "bytes": 11510
+        },
+        {
+          "path": "validation/public-selector-followup-review/source/select_public_candidates_folds.py",
+          "sha256": "c258115c054e3c32493de45291acb47a0680517c3ef138357b473454684daa54",
+          "bytes": 11673
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "public-phenotagger-native-pipeline-formal-quality",
-      "status": "公开原生CPU严格加载、列映射、候选/offset修复及固定first256 CPU吞吐已完成；GPU/runtime与正式预测质量仍未完成，本批不纳入进行中GPU环境或质量产物。"
+      "id": "sft-meta1-fresh32-formal-and-fusion-terminal",
+      "status": "数据/CPU/预算/配对融合入口已核；SFT32正式训练及后续F1生成、完整融合质量未纳入本批，不宣称完成。"
+    },
+    {
+      "id": "public-phenotagger-original-dev-fixed-transfer-and-selector-terminal",
+      "status": "train64公共缓存与开发outer0/四fold已完成；原固定dev16公共缓存、迁移/selector另在准备，当前原dev状态保持，终点留下一批。"
     }
   ],
-  "previous_live_index_sha256": "58979d65abe1e4a96f0fa5c4ed253437865b23f6dfee20aa4d538e4765b8ae01",
+  "previous_live_index_sha256": "1acd2995b8ea7739ea18bd35f8e6dd553e0d85bad935f0d76e8f6062787b3ea2",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批91→96：full64 fixed12已训练提示拟合诊断、公开PhenoTagger原生CPU就绪及新增独立终点报告，完成范围逐条标注。旧91对象/1364引用及全部current原dev状态保持，原dev最高仍.715759605；训练拟合F1与Pheno合成探针不作泛化质量。旧两项不可恢复背景声明原样保留，无官方提交。",
+  "live_index_note": "本批96→101：公开Pheno首次nested实体only完整终点、固定cache64/outer0迁移、公开来源HGB四fold开发控制、SFT32数据/计划/融合入口及其他head静态研究+实际Bioformer CPU就绪。旧96对象/1530引用与全部current原dev状态保持；四fold pooled .722651022是开发结果，不是原dev，原dev最高仍.715759605。未纳入正在准备的原dev公共缓存/迁移质量或未完成SFT正式终点，无官方提交。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
