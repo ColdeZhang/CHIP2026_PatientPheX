@@ -11,11 +11,11 @@
 ## 已查阅的成熟方法（2026-10-23）
 
 - [sklearn-crfsuite 官方教程](https://sklearn-crfsuite.readthedocs.io/en/latest/tutorial.html)：词形、前后词上下文与 L-BFGS 弹性网训练。复用软件包，独立实现本任务特征与输出。
-- [BiomedBERT 模型卡](https://huggingface.co/microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext)：MIT；从 PubMed/PMC 无标注文本预训练，作为有 GPU 后的监督 token-classifier 升级候选。未下载或使用权重。
+- [BiomedBERT 模型卡](https://huggingface.co/microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext)：MIT；从 PubMed/PMC 无标注文本预训练，作为有 GPU 后的监督 token-classifier 升级候选。已核验模型卡；权重获取状态见 GPU 升级记录。
 - [GLiNER 官方仓库](https://github.com/urchade/GLiNER)：成熟零样本/可微调 NER 框架；具体 checkpoint 的训练监督资源尚未核验，因此本次不直接使用未知来源权重。
 - BioBERT v1.2 的 Hugging Face README 请求返回 HTTP 错误，未据此断言模型不可用。
 
-当前运行资源只有共享 CPU；远端 GPU 正由主线程接入。先完成可复现 CPU 首版，不把缺 GPU 解释为路线效果差。
+先完成可复现 CPU 首版，再在主线程分配的独立远端目录/GPU 时段比较预训练模型。
 
 ## 计划实现
 
@@ -31,7 +31,7 @@
 
 首个最小自造病例 smoke 已通过：原始非零 passage offset、末尾实体边界、无效 HPO 排除、指定患者覆盖，以及输入中恶意注入 entities/association 不影响预测。CRF 训练 3 轮，1 文档 10 token，端到端约 2.71 秒；这只是工程检查，不是验证分数。指定本体解析得到 19,120 个概念、42,567 个名称/同义词（含该自造训练别名）。
 
-正式划分尚待主线程就绪；实际命令、指标、耗时、输出 SHA-256 与结论将在完成后补充。
+正式数据划分与评测现已就绪，已 cherry-pick 共享基础提交 `90d52d0` 到本分支（本地提交 `cdcdb3e`）。
 
 ## 首个独立验证结果：CRF v1
 
@@ -56,3 +56,13 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /workspace/patientphe
 ## GPU 升级准备
 
 主线程提供 A30 24GB 轮转时段。独立远端目录 `sequence-crf/`，新建自己的 venv，以 `--system-site-packages` 只读复用现有 torch 2.7.0+cu128 / transformers 4.50.0；只向新 venv 安装依赖，未修改原 conda。已实现 BiomedBERT 监督 BIO 首版：384 token、stride 64、4 epochs、batch 16、lr 3e-5、fp16；链接/关系头与 CRF 相同，用于隔离编码器贡献。当前等待权重下载及主线程释放指定 GPU，尚无该模型验证结果。
+
+## 全量训练与 B 预测：CRF v1
+
+通过验证门槛后保持超参数不变，改用 `train80.jsonl` 拟合，并对 `B.input.jsonl` 推理。100 篇/244 位患者输出 5,229 个实体、2,868 条患者表型关联；拟合 21.12 秒、推理 8.90 秒。格式校验 0 错误、0 警告。
+
+产物：`/workspace/patientphex-runs/day1-20261023/sequence-crf/crf-B-v1/pred.jsonl`；SHA-256：`8014f006eb8b90103172838ed7d8b1a3c85b681ef68b63c98200096e8112ae8f`。此文件为可靠候选，主线程将在 BiomedBERT 对比后选本路线一个版本提交，避免消耗两次名额。
+
+两次 CPU 正式运行使用 Python 3.11、sklearn-crfsuite 0.5.0、python-crfsuite 0.9.12、scikit-learn 1.8.0、numpy 2.3.5、scipy 1.17.0。保存于 manifest 的实际算法源 SHA-256 为 `0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05`；后续提交加入运行库版本记录，不改变模型算法。
+
+远端获取 BiomedBERT 初次尝试失败：`huggingface.co` 报 `Network is unreachable`，尚未启动 GPU 训练。正在检查镜像/可验证缓存；该失败属于资源获取问题，不据此淘汰技术路线。
