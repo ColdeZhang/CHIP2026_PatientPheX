@@ -1,0 +1,69 @@
+{
+  "scope": "Authorized C only: complete train64 raw original top1 5dp>.95 current-valid, before hybrid/abbr. No gold/NN/GPU/fit.",
+  "frozen_at_utc": "2026-10-23T22:55:13.261405+00:00",
+  "source_sha256": "f3671e6a46b4dd2b94fac5e79db5d592a379508486e4f02156d2e44564175964",
+  "runner_sha256": "207118da476157edefd3b9d468d37a03f3146f3a6bfb7cdf1692c5f65e2ea728",
+  "public_resource_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse",
+  "resources": {
+    "train64-cache/train64.input.jsonl": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/train64-cache/train64.input.jsonl",
+      "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+    },
+    "lable.vocab": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/lable.vocab",
+      "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b"
+    },
+    "original-column-to-current-HPO.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/original-column-to-current-HPO.json",
+      "sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf"
+    }
+  },
+  "neural_raw": {
+    "pubmed": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16/raw-neural-candidates.jsonl",
+        "sha256": "9c35bd67e207cfac010776f614303ffdf4fe7e5c7afa00e71dd24e278f998813",
+        "bytes": 46975318,
+        "rows": 75790
+      },
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-train48-cache/raw-neural-candidates.jsonl",
+        "sha256": "6794b36aaab93c157c326936ffc35aa57d6623069b62f5c9018577b5ab56ad02",
+        "bytes": 137091466,
+        "rows": 221194
+      }
+    ],
+    "bioformer": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-bioformer/native-train64-cache/raw-neural-candidates.jsonl",
+        "sha256": "b33b4c0e5ab283f7606e055cad9c2c32f2d7d54a2b6e18e9f07ae1b1e5ae12d0",
+        "bytes": 184055310,
+        "rows": 296984
+      }
+    ]
+  },
+  "runtime": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "cwd": "ontology-public-phenotagger-prehybrid-extraction",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "USE_TORCH": "0",
+      "USE_TF": "0",
+      "USE_FLAX": "0"
+    },
+    "CPU_hardcap_seconds": 120,
+    "TERM_grace_seconds": 5
+  },
+  "expected_keys": 7397,
+  "expected_spans": 7355,
+  "census_plan_sha256": "316c01b881b4d44889908b8251ce7f81d43626592446b9a7ab322ca2065193d1"
+}

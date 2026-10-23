@@ -3,7 +3,8 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
-- **全raw边界供给普查（准备）**：统一全64原raw top1/top3，以及唯一原>.95 top1绕过hybrid三项机械规模计数；先保存无标签普查，再对旧217诊断原子定位实际淘汰阶段。仅CPU≤120秒，不fit/新质量，[协议](public_phenotagger_raw_census/README.md)。
+- **固定原门prehybrid控制（准备，已授权）**：仅C全raw原top1 5dp>.95/current-valid绕过hybrid，旧244794对象原样＋7220新来源行=252014；旧关系原样，4fit≤120秒/固定9cut≤30秒。新增raw来源4列只在追加key出现，不能冒充native canonical，[协议](public_phenotagger_prehybrid_control/README.md)。
+- **全raw边界供给普查（完成）**：29.178秒；A无门槛top1新7408跨度/最大train×1.228，B全top3新262699跨度/×20.47，C原>.95top1 bypass新1572跨度/×1.032。217实际损失为None/门槛/hybrid，27正确原子确在hybrid消失；无NN/fit/新质量，[结果](experiments/P-20261023-PUBLIC-PHENO-RAW-CENSUS.md)。
 - **边界供给只读诊断（完成，增量独审PASS）**：384原子/333跨度中217/199已有原坐标但native消失，167/134无供给（89单词、53>8词、20原过滤、5未对齐）；词串仅缓存0。已生成部分top1/top3并集条件供给95/162，不是新分数；程序24.692秒，无NN/fit/原dev。下一仅全输入统一供给普查/阶段分层，[固定边界](experiments/P-20261023-PUBLIC-PHENO-BOUNDARY.md)。
 - **原Bioformer旧池+Sap（负结案，增量终审PASS）**：保留244794原行仅加两列，无top3新键/六字段，4fit55.563秒<120；36预测先冻后九点1.244秒，best .4目标 **.779111432<旧 .780192596（−.001081164）**，3/4fold负；固定.3也负（−.001746793，mention−6TP/+28FP/doc0TP/+2FP）。增量终审079c7382通过（全字段+fold0重训+36cut，0错警），关闭两种当前Sap配方，不原dev/新消融，[完整结果](experiments/E-20261023-PUBLIC-SAP-OLD-POOL.md)。
 - **公开Sap两特征控制（负结案，完整终审PASS）**：799缺词同源编码5.340秒、公开cosine4.164秒；747178池行仅加两列，4fit217.670秒<原240（未使用额外预算），36pred先冻后九点3.883秒。best .3两实体F1均值 **.778190379<旧 .780192596（−.002002217）**，3/4fold负；虽较已负top3固定 .3改善+.002373970，仍未超原best，完整终审c5775cf4通过（四新fit/36cut字节及数值精确、0错警），关闭不dev/扩特征/扫cut。[固定协议与完整结果](experiments/E-20261023-PUBLIC-SAP-FEATURE.md)。
