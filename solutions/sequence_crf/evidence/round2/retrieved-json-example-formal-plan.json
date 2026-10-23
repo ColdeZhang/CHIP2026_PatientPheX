@@ -1,0 +1,121 @@
+{
+  "frozen_at_utc": "2026-10-23T23:57:44.494223+00:00",
+  "schema": "single-train32-retrieved-example-F1-v1",
+  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "remote": "sequence-round2/retrieved-json-example-v1",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/retrieved-json-example-adapter32",
+  "adapter_files": {
+    "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+    "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+  },
+  "adapter_transfer": {
+    "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "host": "10.5.4.7",
+    "port": 41247,
+    "path_prefix": "icl32-4f4815b6-20261023",
+    "source_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/adapter",
+    "cap": 300
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "cap_seconds": 600,
+  "term_grace_seconds": 30,
+  "max_input_tokens": 14000,
+  "max_new_tokens": 1600,
+  "files": {
+    "launch.py": "6386b1c0f855a2e0e93597de71971f131bc6a4e5c8042c0a31d60c6cb619683f",
+    "legacy/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "legacy/merge_pair_rag.py": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+    "legacy/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "prompts.jsonl": "724b8c2e5866c1dce3d8c9a3b47a47a5d1004956037a383162c6c77f530c3b14",
+    "selections.json": "d4d07ef01d7d7503dda2201504a40b94c270ace0db14d2ee5cfd6f1325b7b835",
+    "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+  },
+  "control_sources": {
+    "operations.py": "9f74849e2c3f6b49f2a4da0604e87f8d07ede36da5e3bf6b03d2a8ca01d0237c",
+    "transfer_adapter.py": "5221cd72d6d656e34567e48be47d917ec74b5ad4e01618a5c1e983d10148d11d",
+    "finish.py": "e7b29be5762f2709233b1f948e2a6d869d33ee7076c37fc1e4ea183c3a06dc6d"
+  },
+  "local_references": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "old_response": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+      "bytes": 25270,
+      "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+    },
+    "old_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.manifest.json",
+      "bytes": 4142,
+      "sha256": "84e0eec5c9a005d5ee9e372e69fe34afbf764c8539db2b4a8b11b209302e7733"
+    },
+    "training_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10435,
+      "sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120"
+    },
+    "adapter_actual_hashes": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/checkpoint-actual-hashes.json",
+      "bytes": 901,
+      "sha256": "80a40c2c741f7abca19dc542b02771f4c1b229a685a942acbaf3195b10ce160e"
+    },
+    "CPU_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/report.json",
+      "bytes": 6622,
+      "sha256": "81a771eab7387e8ccbc3cbd08cd4c16399bf653b51c049f949e6844065fa1410"
+    },
+    "CPU_addendum": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/readiness-addendum.json",
+      "bytes": 2046,
+      "sha256": "407886b57ef94d96c43efa8f601086e9b0bf08a6a4c5777dc34f9c0603d84c4f"
+    }
+  },
+  "prepare_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/plan.json",
+    "bytes": 5208,
+    "sha256": "adb5f4709c3264fb4ddd3973a671bd7d1244a422af8ff57350d4813b8fe860f3"
+  },
+  "expected": {
+    "rows": 80,
+    "input_tokens": 389316,
+    "max_input_tokens": 7581,
+    "base_Score": 0.6609420026531936
+  },
+  "assembly": "Unchanged legacy817f parser, original input/entities/fallbackbaseline; all nonassociation fieldsexact. Freeze complete prediction then unique new v2; baseline existingmetrics only.",
+  "keep": "micro+macro strictly increases and macro does not decrease",
+  "runtime_difference": "Baseline A800/torch2.7.1 versus current A100/torch2.6; sameTF5.20.2/PEFT0.21.2, no claim bitwise hardware equivalence.",
+  "no_new_fit": true,
+  "no_originaldev": true,
+  "no_prompt_or_example_count_scan": true
+}

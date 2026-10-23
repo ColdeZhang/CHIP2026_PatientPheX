@@ -14,7 +14,9 @@
 
 ## 正在执行与恢复入口
 
-**当前实体控制均已完成，无活动作业。** 同资源77 HGB固定.4基线独审3c7c12e5：Score.648061812；binary final.650311382仅+.002249570（men升/doc降）。唯一当前nested F1固定veto负：.728144787→.720623999，删除152=71TP81FP，men/doc都降，关系不变；按预设关闭，不扫cut/不迁原dev。95列/train48 base与附加binary32不同资源如实披露；新veto独审待完成。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[veto结果/恢复](evidence/round2/entity-slot-selected-veto-results.json)。
+**关系JSON单检索示例CPU准备完成，唯一GPU推断已授权、待部署。** 原9B/严格train32的124完整示例，按纯输入≤2048token固定短例池22条/19篇，train-only词1–2gramTFIDF为原80 F1提示取1；query/system/code_map不变，EX namespace逆映射user/target逐字节还原，包含空target不按标签筛。全部80选top1、无截断/overflow；真实总输入250696→389316、max5691→7581，14000内。旧同80实际282.502秒，粗成本435.9秒不能称GPU实测或保证5min。仅共享关系模型的输入控制，不改检索代码/权重。root批准旧SFT32单臂600+30秒；检索已23:56:53明确释放A100 GPU2，实际启动仍fresh核空。先仅传2个adapter文件，未启动新job。[CPU证据](evidence/round2/retrieved-json-example-preparation.json)、[正式计划与恢复](experiments/retrieved-json-example.md)。
+
+**当前实体控制均已完成，无活动作业。** 同资源77 HGB固定.4基线独审3c7c12e5：Score.648061812；binary final.650311382仅+.002249570（men升/doc降）。唯一当前nested F1固定veto负：.728144787→.720623999，删除152=71TP81FP，men/doc都降，关系不变；按预设关闭，不扫cut/不迁原dev。95列/train48 base与附加binary32不同资源如实披露；新veto独审a842969e已PASS。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[veto结果/恢复](evidence/round2/entity-slot-selected-veto-results.json)。
 
 **实体二元固定终点完成、独审PASS。** 严格train32候选链/HGB77 gate≥.1，637提示/2430候选；fresh9B独立LoRA、固定2ep160calls，A100训练1460.803秒、峰27.035GB。公共base/唯一epoch2同F1的398提示/1589候选，推断230.765秒，双完整预测先freeze后唯一评：men **.503219→.701740**、doc **.604003→.762191**、Score **.561134423→.650311382**；全部437旧关系及非entity字段保持，0错警。显著优于公开base，但**公开base比较不是当前97列best的直接比较；后补同77 HGB对照仅+.00225**，不升级原dev。训练resub gate偏差与候选覆盖限制保留。新增终点独审f8f50357通过，GPU2 23:43:03.639Z已释放，无本路线活动GPU；同F1 HGB及单次veto已完成，见上；不重GPU/扫阈值。[结果/全部恢复](evidence/round2/entity-slot-formal-results.json)、[过程与边界](experiments/entity-slot-feasibility.md)。
 

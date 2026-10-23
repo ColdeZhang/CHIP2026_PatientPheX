@@ -129,4 +129,4 @@ root已授权**唯一固定veto**：以保留nested F1为base，只删有分数�
 | 已保留nested F1 | .772658610 | .821126761 | .728144787 |
 | 固定binary p<.5 veto | .762820513 | .800881705 | .720623999 |
 
-152删除中71TP/81FP；文档净−38TP/−21FP。men+doc合计 **−.030083153**，关系两项不变，触发事前失败条件，关闭本veto、不扫描cut、不迁原dev。这里binary32不同于train48的95自然列HGB，不能说同训练量；已看过F1旧结果且cut.3由pooled64选择，为开发诊断。训练侧门控分布无明显input-only失配证据，不凭本负结果断言resub偏差、欠拟合或普遍校准失败。[完整产物与来源](../evidence/round2/entity-slot-selected-veto-results.json)，独立增量审已发起。
+152删除中71TP/81FP；文档净−38TP/−21FP。men+doc合计 **−.030083153**，关系两项不变，触发事前失败条件，关闭本veto、不扫描cut、不迁原dev。这里binary32不同于train48的95自然列HGB，不能说同训练量；已看过F1旧结果且cut.3由pooled64选择，为开发诊断。训练侧门控分布无明显input-only失配证据，不凭本负结果断言resub偏差、欠拟合或普遍校准失败。[完整产物与来源](../evidence/round2/entity-slot-selected-veto-results.json)，独立增量审a842969e已PASS：全pred/removed byteexact、新v2/format全同，确认511关系不变、失败关闭。
