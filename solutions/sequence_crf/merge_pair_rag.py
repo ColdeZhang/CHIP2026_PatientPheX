@@ -23,7 +23,7 @@ def parse_json(text):
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
-    for k in ['input','entities','prompts','responses','output','final_entities'] if getattr(args,k,None):ap.add_argument('--'+k,required=True)
+    for k in ['input','entities','prompts','responses','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--final-entities');ap.add_argument('--fallback',choices=['none','baseline'],default='baseline')
     args=ap.parse_args();inputs=read_jsonl(args.input);pred={str(x['pmc_id']):x for x in read_jsonl(args.entities)}
     prompts=[json.loads(x) for x in Path(args.prompts).read_text().splitlines() if x.strip()];responses=[json.loads(x) for x in Path(args.responses).read_text().splitlines() if x.strip()]
