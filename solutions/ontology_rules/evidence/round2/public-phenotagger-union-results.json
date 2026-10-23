@@ -1,0 +1,207 @@
+{
+  "experiment_id": "E-20261023-PUBLIC-PHENO-UNION-OOF",
+  "status": "closed_negative_independent_replay_PASS",
+  "decision": "Fixed union recipe fails pooled criterion and three of four folds; no threshold/feature search, no Bioformer combination, no originaldev migration.",
+  "method": "Old.95 canonical union native.5 canonical, flags OR and actual observed score max; candidate-and-source increment with otherwise exact same nested HGB160/.4.",
+  "pool": {
+    "rows": 8221,
+    "old_keys_retained": 6064,
+    "new_only": 2157,
+    "old_only_retained": 3,
+    "previous_key_feature_changes": {
+      "public_neural": 6,
+      "public_dictionary": 0,
+      "public_abbreviation": 0,
+      "public_score": 0
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "baseline095": 0.7329012287659494,
+      "union": 0.7344227078586332,
+      "delta": 0.0015214790926837418,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "fold": 1,
+      "baseline095": 0.72029184878529,
+      "union": 0.7054861006007004,
+      "delta": -0.014805748184589573,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "fold": 2,
+      "baseline095": 0.738303645195185,
+      "union": 0.7363376679031337,
+      "delta": -0.0019659772920512797,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "fold": 3,
+      "baseline095": 0.7030191602926665,
+      "union": 0.6988177203271858,
+      "delta": -0.004201439965480724,
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "pooled": {
+    "baseline095": {
+      "menF1": 0.7582980619291602,
+      "docF1": 0.7931345980126467,
+      "micF1": 0.6867153284671533,
+      "macF1": 0.6524560994746033,
+      "Score": 0.7226510219708908
+    },
+    "union": {
+      "menF1": 0.7578570629683481,
+      "docF1": 0.7924016282225237,
+      "micF1": 0.6849956127522667,
+      "macF1": 0.6369326701185114,
+      "Score": 0.7180467435154125
+    },
+    "deltas": {
+      "menF1": -0.0004409989608120668,
+      "docF1": -0.0007329697901230503,
+      "micF1": -0.001719715714886605,
+      "macF1": -0.015523429356091856,
+      "Score": -0.004604278455478283
+    },
+    "changes": {
+      "entity_added_tp": 20,
+      "entity_added_fp": 32,
+      "entity_removed_tp": 36,
+      "entity_removed_fp": 53,
+      "relation_added_tp": 11,
+      "relation_added_fp": 26,
+      "relation_removed_tp": 16,
+      "relation_removed_fp": 27
+    }
+  },
+  "unweighted_mean": {
+    "baseline095": {
+      "menF1": 0.7584103519547941,
+      "docF1": 0.7921266454858271,
+      "micF1": 0.6896203552628252,
+      "macF1": 0.6543585303356445,
+      "Score": 0.7236289707597727
+    },
+    "union": {
+      "menF1": 0.7578719982949711,
+      "docF1": 0.7913916122409898,
+      "micF1": 0.6882546005584467,
+      "macF1": 0.6375459855952454,
+      "Score": 0.7187660491724133
+    }
+  },
+  "timing": {
+    "preparation_seconds": 0.6663320640000165,
+    "fit_infer_seconds": 49.191959402000066,
+    "shared_CPU_cap_seconds": 120,
+    "common_freeze_at": "2026-10-23T21:32:32.988178+00:00",
+    "evaluation_started": "2026-10-23T21:32:39.878718+00:00",
+    "evaluation_seconds": 0.5159389869950246
+  },
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/public-phenotagger-union-review/review.json",
+    "sha256": "27c1d665dcfa3f7512d54b3e12426369fc0d8b260543495024ad5c8a3dae8882",
+    "bytes": 9844,
+    "scope": "New union3files and four new fits/probabilities/predictions byteexact; allv2/format equal; no oldrefits orNN."
+  },
+  "aggregate_diagnostic": {
+    "groups": {
+      "truly_new_pool_candidate": {
+        "candidates": 1697,
+        "training_label_semantics_positive": 73,
+        "selected_by_new": 0,
+        "selected_by_new_positive": 0,
+        "selected_by_old": 0
+      },
+      "extra_public_evidence_on_existing_pool": {
+        "candidates": 460,
+        "training_label_semantics_positive": 76,
+        "selected_by_new": 32,
+        "selected_by_new_positive": 23,
+        "selected_by_old": 24
+      },
+      "shared_old_candidates_without_new_public_key": {
+        "candidates": 60864,
+        "selected_by_old": 4123,
+        "selected_by_new": 4078
+      },
+      "all_common_old_pool": {
+        "candidates": 61324,
+        "selected_by_old": 4147,
+        "selected_by_new": 4110
+      }
+    },
+    "atomic_changes": {
+      "added__shared_old_without_new_public_key": {
+        "tp": 17,
+        "fp": 27
+      },
+      "removed__shared_old_without_new_public_key": {
+        "tp": 36,
+        "fp": 53
+      },
+      "added__extra_public_evidence_on_existing_pool": {
+        "tp": 3,
+        "fp": 5
+      }
+    },
+    "interpretation": "None of the1697 truly new whole-pool keys were selected (73 positive under fixed training-label semantics). Of460 new public keys already in the oldpool,32 selected/23positive, previously24 selected. Actual loss occurred in shared-pool reselection, not accepting bad trulynew keys. Refitting and new evidence features are not causally separated.",
+    "scope": "Root-authorized aggregate of already frozen heldfold outputs and pools; no new fitting/evaluation/threshold/oracle predictions. Endpoint review does not claim an independent rerun of this later aggregate."
+  },
+  "evidence": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/plan.json",
+      "sha256": "678584ecf404185424d57897a7a297f9d2a651a81150b9ee7d5d7252fe4bcb0c",
+      "bytes": 16550
+    },
+    "artifacts.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/artifacts.json",
+      "sha256": "0b1d773fba9763fc83fe2ebf948343030beb8907b5cf791bd2a25be8496e33f3",
+      "bytes": 13332
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/complete-freeze.json",
+      "sha256": "3ef867bf373daa52192cf19e7f6437972c7963a5acf3c117c8253c135752a714",
+      "bytes": 6676
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/results.json",
+      "sha256": "8cff76313114ee520353f6daffb191051128f335fabc76dfcc00349a38f1cbe5",
+      "bytes": 6387
+    },
+    "existing-result-diagnostic.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/existing-result-diagnostic.json",
+      "sha256": "931ac61aa0eac535f6dfe64bfec62fdc5118ceefd1117bc40524b13cd71cfbc3",
+      "bytes": 6996
+    },
+    "diagnostic-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/diagnostic-plan.json",
+      "sha256": "ca94bd9ed35d39375d867fe228fbda04568953e5e289d255596ef42ec1254498",
+      "bytes": 925
+    },
+    "diagnostic-execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/diagnostic-execution.json",
+      "sha256": "0157ba19d6bb94f00572b8be923318cb247b86de8b3762e06750f143ea89ab74",
+      "bytes": 985
+    },
+    "runtime.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-union-control/runtime.json",
+      "sha256": "206688d9e03d91c6851821fba6e0f3223d468440b3577590d9ab7aaa441bb0ed",
+      "bytes": 300
+    }
+  },
+  "initial_failure": "First preparation0.165s stopped at wrong parse_hpo API name; own actual load_hpo substituted, all failure files retained, before candidate processing/fit/evaluation.",
+  "limitations": [
+    "Four development folds, not blind originaldev or official score.",
+    "Union preserves3 oldhybrid keys deliberately before new quality; not single threshold causal control.",
+    "All prior .95 and .5 source/model/candidate reviews reused, no repeated NN or old tree fitting."
+  ]
+}
