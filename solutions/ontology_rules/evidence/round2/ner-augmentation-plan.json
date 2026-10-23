@@ -1,0 +1,151 @@
+{
+  "frozen_at_utc": "2026-10-23T19:08:33.689843+00:00",
+  "scope": "one nested train32 -> existing nested validation16 DEVELOPMENT control; no original dev or official actions",
+  "state_dir": "formal-run",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "training_steps": 3760,
+  "training_epochs": 10,
+  "training_timeout_seconds": 1500,
+  "heldout_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+  "source_and_input_sha256": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/run_ner_augmentation.py": "7025234d20a55bcda08c4452b634ea3931f9713a7412c2b78caca7e9c325d7ee",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/train_gliner_supervised.py": "5cb162b78584b53659540698de40b68f00e07c8173345498a03f8726b2fa0e49",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/inner1.input.jsonl": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/prepared/manifest.json": "57ba84204a7c6125d45c581dbbd59782733de03573cc0a77b49c49a3d1737557",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/prepared/augmented_train32.jsonl": "fd0c105212de6353c32950191dcdccee06a38b523f497a5db8d87b8f4be244d3",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/gliner_config.json": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/pytorch_model.bin": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/config.json": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/spm.model": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/tokenizer_config.json": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/resources/nested32-baseline/pytorch_model.bin": "e099bfec6c03cb61c0333519ae18d978fc8357f4577ce88ad781c187a6d85214",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/resources/nested32-baseline/gliner_config.json": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391"
+  },
+  "stages": [
+    {
+      "name": "baseline-runtime",
+      "output": "baseline-runtime",
+      "timeout_seconds": 300,
+      "command": [
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "run_gliner_pilot.py",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/resources/nested32-baseline",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer",
+        "--input",
+        "inner1.input.jsonl",
+        "--output-dir",
+        "baseline-runtime"
+      ]
+    },
+    {
+      "name": "train",
+      "output": "formal-fixed10ep",
+      "timeout_seconds": 1500,
+      "command": [
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "train_gliner_supervised.py",
+        "--data-manifest",
+        "prepared/manifest.json",
+        "--train",
+        "prepared/augmented_train32.jsonl",
+        "--excluded-input",
+        "inner1.input.jsonl",
+        "--model-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer",
+        "--output-dir",
+        "formal-fixed10ep",
+        "--epochs",
+        "10",
+        "--prune-old-epochs"
+      ]
+    },
+    {
+      "name": "augmented-runtime",
+      "output": "augmented-runtime",
+      "timeout_seconds": 300,
+      "command": [
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "run_gliner_pilot.py",
+        "--model-dir",
+        "formal-fixed10ep/epoch-010",
+        "--tokenizer-dir",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer",
+        "--input",
+        "inner1.input.jsonl",
+        "--output-dir",
+        "augmented-runtime"
+      ]
+    }
+  ],
+  "history_baseline": {
+    "Score": 0.6537450271017345,
+    "prediction_sha256": "f203078db95139d59d7842ff80a0d0bed490cfdebc4dea86f25ecae8cafbd810",
+    "old_gpu": "A800",
+    "old_updates": 2880,
+    "new_gpu": "A30",
+    "new_updates": 3760,
+    "limit": "joint change in training data content/amount, update count, schedule and hardware; not isolated causal evidence"
+  },
+  "link_policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "source_sha256": "906bf3dfe38099e04de6c502fe7ad7c78e3293dcb87bbb1e77c607b003fc63cb",
+    "assembler_sha256": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+    "relations": "unchanged combine.assign",
+    "base_sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+    "evaluation": "freeze complete prediction then unique v2 all/text evaluation; no threshold/epoch search"
+  },
+  "training_hyperparameters": {
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "seed": 20261023,
+    "precision": "float32",
+    "gradient_clip": 1,
+    "loss": "unchanged explicit BCE mean over valid spans"
+  },
+  "cost": {
+    "scope": "CPU cost projection only; historical train48 input-length metadata used, no labels used in sample generation or cost model",
+    "historical_A30_seconds": 996.6390397618525,
+    "historical_cost_proxies": {
+      "steps": 4360,
+      "padded_tokens": 3865444,
+      "padded_tokens_squared": 1026572940,
+      "padded_words": 3221556
+    },
+    "augmentation_cost_proxies": {
+      "steps": 3760,
+      "padded_tokens": 3447462,
+      "padded_tokens_squared": 911790560,
+      "padded_words": 2873358
+    },
+    "ratios": {
+      "steps": 0.8623853211009175,
+      "padded_tokens": 0.8918670145007922,
+      "padded_tokens_squared": 0.8881887730257141,
+      "padded_words": 0.8919162044676547
+    },
+    "scaled_seconds": {
+      "steps": 859.4868783267352,
+      "padded_tokens": 888.8694849273397,
+      "padded_tokens_squared": 885.2036058756056,
+      "padded_words": 888.9185095686795
+    },
+    "conservative_training_estimate_seconds": 1022.2562860039814,
+    "hard_cap_seconds": 1500,
+    "limits": "Input shape ratios and15% margin are estimates, not measured augmentation GPU cost. Checkpoint IO and system contention are not modelled exactly.",
+    "source_sha256": {
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/formal-fixed10ep/run_manifest.json": "c867f25b67b96a0752ba4e8d9f060bc267f86559406105b89b484acd1011c699",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/train48.jsonl": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+      "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/prepared/augmented_train32.jsonl": "fd0c105212de6353c32950191dcdccee06a38b523f497a5db8d87b8f4be244d3"
+    }
+  },
+  "start_gate": "Independent data and entry review PASS, source/plan committed+pushed and fresh assigned GPU check; retrieval full64 handoff has priority; currently not launched"
+}

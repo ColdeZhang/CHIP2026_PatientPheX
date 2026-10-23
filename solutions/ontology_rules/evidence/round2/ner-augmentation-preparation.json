@@ -1,0 +1,248 @@
+{
+  "scope": "CPU preparation, official nested_train32 only; no heldout gold read or predictions",
+  "seed": 20261023,
+  "hpo_version": "hp/releases/2026-06-23",
+  "original": {
+    "rows": 1150,
+    "positive_window_spans": 2236,
+    "no_window_spans": 87,
+    "tokens": {
+      "count": 1150,
+      "sum": 122290,
+      "min": 6,
+      "median": 79,
+      "p95": 321,
+      "max": 384
+    },
+    "words": {
+      "count": 1150,
+      "sum": 99137,
+      "min": 1,
+      "median": 63,
+      "p95": 268,
+      "max": 348
+    },
+    "positive_widths": {
+      "count": 2236,
+      "sum": 4842,
+      "min": 1,
+      "median": 2,
+      "p95": 5,
+      "max": 11
+    },
+    "all_negative_windows": 736
+  },
+  "added": {
+    "rows": 353,
+    "positive_window_spans": 1691,
+    "no_window_spans": 55,
+    "tokens": {
+      "count": 353,
+      "sum": 54019,
+      "min": 12,
+      "median": 138,
+      "p95": 322,
+      "max": 383
+    },
+    "words": {
+      "count": 353,
+      "sum": 44683,
+      "min": 6,
+      "median": 112,
+      "p95": 273,
+      "max": 336
+    },
+    "positive_widths": {
+      "count": 1691,
+      "sum": 3839,
+      "min": 1,
+      "median": 2,
+      "p95": 5,
+      "max": 11
+    },
+    "all_negative_windows": 0
+  },
+  "combined": {
+    "rows": 1503,
+    "positive_window_spans": 3927,
+    "no_window_spans": 142,
+    "tokens": {
+      "count": 1503,
+      "sum": 176309,
+      "min": 6,
+      "median": 99,
+      "p95": 321,
+      "max": 384
+    },
+    "words": {
+      "count": 1503,
+      "sum": 143820,
+      "min": 1,
+      "median": 81,
+      "p95": 270,
+      "max": 348
+    },
+    "positive_widths": {
+      "count": 3927,
+      "sum": 8681,
+      "min": 1,
+      "median": 2,
+      "p95": 5,
+      "max": 11
+    },
+    "all_negative_windows": 736
+  },
+  "actual_collator_counts": {
+    "original_valid_spans": 1125538,
+    "original_positive_spans": 2236,
+    "original_negative_spans": 1123302,
+    "augmented_valid_spans": 512914,
+    "augmented_positive_spans": 1691,
+    "augmented_negative_spans": 511223
+  },
+  "skip_reasons": {
+    "no_positive_in_window": 736,
+    "positive_not_represented_in_original_window": 18,
+    "replacement_exceeds_token_budget": 11,
+    "compound_identifier_in_window": 15,
+    "no_unique_same_canonical_alias": 6,
+    "conflicting_duplicate_span": 1,
+    "overlapping_annotations_in_window": 10
+  },
+  "original_rows_preserved_byte_for_byte": true,
+  "new_rows_at_most_one_per_original": true,
+  "all_added_positive_and_NO_annotations_preserved": true,
+  "no_truncation": true,
+  "cpu_only": true,
+  "source_sha256": "8c31b36516d45893dbe0282c5f42085b4298612a48476e9c304122dea09fb743",
+  "ontology_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+  "loader_source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+  "inputs": {
+    "train32": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "prepared32": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+    "prepared_manifest": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "training_change": {
+    "base_steps_per_epoch": 288,
+    "augmented_steps_per_epoch": 376,
+    "base_steps_10epochs": 2880,
+    "augmented_steps_10epochs": 3760,
+    "note": "Both data content/quantity and optimizer update count change; not an equal-compute causal control."
+  },
+  "elapsed_seconds": 24.453172327950597,
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/prepared/preparation.json",
+    "sha256": "3c08ebfc4b608ce1dfbafacfb3353e4917f8f751791921dba32a5b483a4146eb"
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/cpu-collection.json",
+    "sha256": "8842444fcee556952a56781ad1cd30c41fd41888852107ba930d59db9143765f"
+  },
+  "training_file": {
+    "path": "prepared/augmented_train32.jsonl",
+    "sha256": "fd0c105212de6353c32950191dcdccee06a38b523f497a5db8d87b8f4be244d3",
+    "bytes": 4571401
+  },
+  "runtime": {
+    "files": [
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/gliner_config.json",
+        "bytes": 478,
+        "sha256": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/pytorch_model.bin",
+        "bytes": 780806090,
+        "sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/source-manifest.json",
+        "bytes": 1309,
+        "sha256": "53cbed8c1ad9480325b5766a7d0f04a5556be249543cff0aad01ce97259842ed"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/tokenizer/config.json",
+        "bytes": 579,
+        "sha256": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/tokenizer/source-manifest.json",
+        "bytes": 965,
+        "sha256": "5aa0848919e467ccee9c2d97f65171e3fbf75e492be9d92e18c5ee753eba97e8"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/tokenizer/spm.model",
+        "bytes": 2464616,
+        "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/tokenizer/tokenizer_config.json",
+        "bytes": 52,
+        "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d"
+      },
+      {
+        "path": "sequence-round2/pretrained-gliner-medium-v2/transfer-complete.json",
+        "bytes": 759,
+        "sha256": "a7990ef0bc0662f1608a3cc9fc1dbeef7f1f0c98700ad1ef4eef2802b029101e"
+      }
+    ],
+    "versions": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4",
+      "sentencepiece": "0.2.1"
+    },
+    "cpu_only": true
+  },
+  "cost_projection": {
+    "scope": "CPU cost projection only; historical train48 input-length metadata used, no labels used in sample generation or cost model",
+    "historical_A30_seconds": 996.6390397618525,
+    "historical_cost_proxies": {
+      "steps": 4360,
+      "padded_tokens": 3865444,
+      "padded_tokens_squared": 1026572940,
+      "padded_words": 3221556
+    },
+    "augmentation_cost_proxies": {
+      "steps": 3760,
+      "padded_tokens": 3447462,
+      "padded_tokens_squared": 911790560,
+      "padded_words": 2873358
+    },
+    "ratios": {
+      "steps": 0.8623853211009175,
+      "padded_tokens": 0.8918670145007922,
+      "padded_tokens_squared": 0.8881887730257141,
+      "padded_words": 0.8919162044676547
+    },
+    "scaled_seconds": {
+      "steps": 859.4868783267352,
+      "padded_tokens": 888.8694849273397,
+      "padded_tokens_squared": 885.2036058756056,
+      "padded_words": 888.9185095686795
+    },
+    "conservative_training_estimate_seconds": 1022.2562860039814,
+    "hard_cap_seconds": 1500,
+    "limits": "Input shape ratios and15% margin are estimates, not measured augmentation GPU cost. Checkpoint IO and system contention are not modelled exactly.",
+    "source_sha256": {
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/formal-fixed10ep/run_manifest.json": "c867f25b67b96a0752ba4e8d9f060bc267f86559406105b89b484acd1011c699",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/train48.jsonl": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+      "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/prepared/augmented_train32.jsonl": "fd0c105212de6353c32950191dcdccee06a38b523f497a5db8d87b8f4be244d3"
+    }
+  },
+  "control_boundary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-augmentation-preparation-review/control-boundary.json",
+    "sha256": "5f400aa594c3985f0cf2edee088aeda9956f9d769eee0cb0c1a860eabd04d844"
+  },
+  "status": "Independent CPU data and entry review PASS; root authorized one frozen GPU control; launch follows committed plan and fresh GPU check",
+  "source_commit": "4a8a4f8 parent, uncommitted source SHA bound above",
+  "authorization": "Root conditional authorization after independent PASS and source/plan commit-push: one fresh medium10; training cap1500s; input-only inference stages cap300s; no official submission or original dev.",
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-augmentation-preparation-review/review.json",
+    "sha256": "0b25d2721499da798a0fe94c470b822f0590b1ade2915cf98fd3c3b7a9ef5e5e",
+    "result": "PASS",
+    "scope": "independent raw HPO EXACT/1150 decisions/353 variants/1503 actual collator;626 positive and30 NO spans shifted correctly; no GPU or model weights"
+  }
+}
