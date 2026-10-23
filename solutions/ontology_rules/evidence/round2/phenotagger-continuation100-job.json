@@ -1,0 +1,102 @@
+{
+  "job": {
+    "arguments": {
+      "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+      "cwd": "ontology-round2",
+      "command": "../semantic-neural/venv/bin/python -u phenotagger-fold0/source100/phenotagger_train.py --data-dir phenotagger-fold0/data --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/formal100ep-from30 --epochs 100 --batch-size 256 --lr 2e-5 --max-length 32 --save-every-seconds 240 --continue-from phenotagger-fold0/formal30ep --parent-checkpoint-sha 2488fd8b4f27992df42a9800da0f723f653ac7e22f94eb3bc19ee7f2e957d8f7 --parent-trainer-sha d291dc10264e4380350d381f08ac9e3e3c15e52b8bbc6a996e79b92116864665 > phenotagger-fold0/continuation100-train.log 2>&1",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "TOKENIZERS_PARALLELISM": "false",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+      }
+    },
+    "response": {
+      "command": "../semantic-neural/venv/bin/python -u phenotagger-fold0/source100/phenotagger_train.py --data-dir phenotagger-fold0/data --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/formal100ep-from30 --epochs 100 --batch-size 256 --lr 2e-5 --max-length 32 --save-every-seconds 240 --continue-from phenotagger-fold0/formal30ep --parent-checkpoint-sha 2488fd8b4f27992df42a9800da0f723f653ac7e22f94eb3bc19ee7f2e957d8f7 --parent-trainer-sha d291dc10264e4380350d381f08ac9e3e3c15e52b8bbc6a996e79b92116864665 > phenotagger-fold0/continuation100-train.log 2>&1",
+      "id": "proc_fbc1734b-e1e9-484a-a917-0ad5f4249823",
+      "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+      "pid": 1127483,
+      "port": 37527,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-23T15:48:52.832499504Z"
+    },
+    "plan_sha256": "4e9e61a641e8c33b6eb5aec2349f4a26a8c5cfaa644bde1acc5255e0a2bb10a7"
+  },
+  "gpu_preflight": {
+    "exit_code": 0,
+    "stdout": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\n"
+  },
+  "disk": {
+    "exit_code": 0,
+    "stdout": "Filesystem         1B-blocks         Used    Available Use% Mounted on\n/dev/sda2      1081101176832 801016135680 225092685824  79% /\n"
+  },
+  "source_verification": {
+    "exit_code": 0,
+    "stdout": "{\"ontology-round2/phenotagger-fold0/source100/phenotagger_train.py\": \"c7e62fcf19f029b687e20fa5ec146f666460c88184bd77a50ad90d65d95f6d5c\", \"ontology-round2/phenotagger-fold0/source100/phenotagger_measure.py\": \"58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746\", \"ontology-round2/phenotagger-fold0/source100/phenotagger_continuation.py\": \"2e8cb3e588fd52b5749ddc555a1229b77ad59927cc76cce09580b6c1b383f0eb\", \"ontology-round2/phenotagger-fold0/source100/phenotagger_continuation_check.py\": \"6ff58c1a3ce2cf22616d5d3c40d1bf43a15d38ae4c1dd9ce99142819ad05bf25\", \"ontology-round2/phenotagger-fold0/source100/phenotagger_predict.py\": \"a2e7d1df496c1603eb1cc1e0fd14f7ab5927612fb114b11683308bb4b5b19748\", \"ontology-round2/phenotagger-fold0/source100/phenotagger_training_probe.py\": \"9d261d373f64956c06bc59b2ffe94210e0ac4a26cc4fcff775b94ef466c78593\", \"ontology-round2/phenotagger-fold0/source100/continuation100-spec.json\": \"592dc217c896c554cb7173076e34056069c656700a68d8f20ad3f024eb1d1f02\"}\n"
+  },
+  "initial_actual_state": {
+    "checked_at_utc": "2026-10-23T15:50:02.756040+00:00",
+    "restored": [
+      {
+        "event": "completed_parent_exactly_restored",
+        "epoch": 30,
+        "offset": 0,
+        "global_step": 13740,
+        "model_tensor_digest": "7e88635a029c43ecd0768a2e14022d113d4858a94d755e644a62b4ba39f30454",
+        "optimizer_and_rng_exact": true
+      }
+    ],
+    "last_epoch": {
+      "event": "epoch_complete",
+      "epoch": 31,
+      "online_training": {
+        "hpo_positive": {
+          "count": 58559,
+          "loss_sum": 115978.9520111084,
+          "correct": 45204,
+          "predicted_none": 25,
+          "mean_loss": 1.9805487117455625,
+          "accuracy": 0.7719394115336669
+        },
+        "reject_none": {
+          "count": 58559,
+          "loss_sum": 17.987559887231328,
+          "correct": 58559,
+          "predicted_none": 58559,
+          "mean_loss": 0.00030716986094761397,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "last_event": {
+      "event": "training",
+      "epoch": 32,
+      "step": 14200,
+      "offset": 512,
+      "groups": {
+        "hpo_positive": {
+          "count": 239,
+          "loss_sum": 521.628662109375,
+          "correct": 180,
+          "predicted_none": 0,
+          "mean_loss": 2.1825467033865062,
+          "accuracy": 0.7531380753138075
+        },
+        "reject_none": {
+          "count": 273,
+          "loss_sum": 0.0029682768508791924,
+          "correct": 273,
+          "predicted_none": 273,
+          "mean_loss": 1.087280897757946e-05,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "not_yet_complete": true,
+  "resume_policy": "After latest.pt exists, use frozen --resume command. Before first atomic checkpoint, rerun original --continue-from command after confirming process ended; never run both."
+}
