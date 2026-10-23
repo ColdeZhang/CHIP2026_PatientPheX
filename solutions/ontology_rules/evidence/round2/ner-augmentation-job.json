@@ -1,0 +1,55 @@
+{
+  "source_commit": "d9ab108c2637c3ae20cfe54f71b168f964459fee",
+  "plan_sha256": "cc593d5aa9ac777cee70da6df7d594134ccf7392b68b48f106d535020237a9c3",
+  "runner_source_sha256": "7717a4a81b2e9094dbab849d39ac6beb2c37c731754280f811d41640544608ed",
+  "managed_process": "proc_2c1c5b6b-8cf2-4304-8ab2-fc7f1832052a",
+  "managed_started_at_utc": "2026-10-23T19:12:29.90752966Z",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_preflight": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, NVIDIA A30, 24164",
+  "compute_apps_preflight": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2414698\n",
+  "training_started_at_utc": "2026-10-23T19:12:55.184225+00:00",
+  "training_deadline_utc": "2026-10-23T19:37:55.184225+00:00",
+  "training_pid": 2415506,
+  "baseline_runtime": {
+    "name": "baseline-runtime",
+    "command": [
+      "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+      "run_gliner_pilot.py",
+      "--model-dir",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/resources/nested32-baseline",
+      "--tokenizer-dir",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer",
+      "--input",
+      "inner1.input.jsonl",
+      "--output-dir",
+      "baseline-runtime"
+    ],
+    "started_at_utc": "2026-10-23T19:12:31.903751+00:00",
+    "timeout_seconds": 300,
+    "pid": 2415178,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-23T19:12:55.179828+00:00",
+    "seconds": 23.275513851083815,
+    "prediction_freeze": {
+      "frozen_at_utc": "2026-10-23T19:12:55.180887+00:00",
+      "gold_read": false,
+      "candidate_sha256": "abb3c32bbdd104d6212dec7b1933d8ca91ea51102a28fd83ede0a7110ac9d035",
+      "raw_span_sha256": "2438111b298f91a6d63836828d2b9547906d6b127ef13c4ec79227ed620357b5",
+      "manifest_sha256": "68f3b76c7a776f10a2cd38742d124966600bf697dcfa035ab72dcf7d8d47ab4b",
+      "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "stage": "baseline-runtime",
+      "model_sha256": "e099bfec6c03cb61c0333519ae18d978fc8357f4577ce88ad781c187a6d85214",
+      "source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f"
+    }
+  },
+  "status": "fresh-public-base training running; no terminal or new Score yet",
+  "restore": {
+    "root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control",
+    "remote_root": "ontology-round2/ner-augmentation-control",
+    "remote_state": "formal-run/state.json",
+    "remote_training_manifest": "formal-fixed10ep/run_manifest.json",
+    "remote_training_stdout": "formal-run/train.stdout.log"
+  },
+  "gpu_handoff": "retrieval full64 follow-up has priority; announce fresh empty-GPU evidence after our terminal/linker finishes",
+  "official_upload": false
+}

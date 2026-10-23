@@ -76,3 +76,5 @@
 - [受控NER增强只读研究](ner-augmentation-research.json)：两份论文、固定MIT源码、训练32聚合预筛与复算；无样本生成或新模型分数，[可执行备选提案](../../experiments/P-20261023-NER-AUGMENTATION.md)。
 
 - [NER增强CPU准备](ner-augmentation-preparation.json)与[唯一固定计划](ner-augmentation-plan.json)：1150原窗+353新增、真实collator全量核验，fresh medium10/3760步；独审PASS，未将准备当效果分数。
+
+- [NER增强真实启动](ner-augmentation-job.json)：已推送源d9ab108，fresh medium1503×10，训练deadline19:37:55Z；包含旧32兼容推理冻结，不是新效果结果。
