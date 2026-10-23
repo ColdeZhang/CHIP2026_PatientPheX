@@ -56,3 +56,5 @@
 - `qwen35-relation-training-complete.json`：正式fresh204×2完整52更新/30.92分钟、allocated/reserved及两epoch实际SHA；原58 adapter已启动，质量待定。
 - `full-context8b-paired-result.json`：同A30原58/full58完整负结果、冻结SHA/分项/格式；不是跨硬件比较。
 - `full-context9b-cap-equivalence.json`：实际CPU两cap最终encoded输入/decoder全同，支持复用原同A800 base58；全文尚未推断。
+
+- `qwen35-relation-paired-result.json`：原58同设备base→epoch002完整结果、schema次控制和事后错类；SFT .695444仍低rules，原dev未动。
