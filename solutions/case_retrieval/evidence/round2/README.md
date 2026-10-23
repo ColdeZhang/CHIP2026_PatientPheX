@@ -10,3 +10,5 @@
 - `sft-extraction-raw-paired-summary.json`：原90窗严格paired跨度收益和6条触顶，非Score。
 - `qwen-linked-control-summary.json`：零样本实体HPO完整负控制，明确区分固定关系消融与重建k21/.35完整管线。
 - `sft-extraction-format-recovery.json`：6失败窗唯一17子窗恢复，101合并请求全合法；补充跨度诊断与原90配对结果分开。
+- `sft-linked-filtered-control-summary.json`：SFT完整HPO控制及单一冻结Sap筛选的7组正式内部预测、SHA、分项、失败统计和复现命令；过滤后仅小幅内部收益，未达0.8。
+- `sap-filter-control.md` / `sap-filter-classifier-reconstruction.json`：原LR缺失时冻结配方/缓存重建与14,480旧候选全回放，随后只读新跨度评分。
