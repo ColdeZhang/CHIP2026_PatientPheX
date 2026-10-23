@@ -1,0 +1,127 @@
+{
+  "base_preflight": {
+    "stage": "batch3-longest",
+    "rows": 3,
+    "row_coverage": "exact",
+    "files": {
+      "responses.jsonl": {
+        "bytes": 22662,
+        "sha256": "d564f82f17beb1324199fb027d5b406dcdce26b40631c3efb5e55e424400c07e"
+      },
+      "responses.manifest.json": {
+        "bytes": 1382,
+        "sha256": "5aaa3d46f6e05454921a88e2068eb2626fac6565f7d4cc721f1ab8e39b5fb13c"
+      },
+      "responses.checkpoint.json": {
+        "bytes": 661,
+        "sha256": "f1a025725c76d50e257fd1498e3fcdf1f893896fb4fb99ae38d78b8fc7e1e460"
+      }
+    },
+    "elapsed_seconds": 154.918,
+    "max_gpu_allocated_bytes": 24447335424,
+    "output_tokens": [
+      1792,
+      1792,
+      1792
+    ],
+    "token_limit_rows": [
+      "3563609:patient-set:P001",
+      "3563609:patient-set:P002",
+      "3563609:patient-set:P003"
+    ],
+    "invalid_json_rows": [
+      "3563609:patient-set:P001",
+      "3563609:patient-set:P002",
+      "3563609:patient-set:P003"
+    ],
+    "removed_demonstrations": 0,
+    "scope": "input/runtime/format only; no evaluation labels"
+  },
+  "adapter_preflight": {
+    "stage": "batch3-longest-adapter",
+    "rows": 3,
+    "row_coverage": "exact",
+    "files": {
+      "responses.jsonl": {
+        "bytes": 651,
+        "sha256": "47894f8d998af1a190416c255b54b1c99c4f56d55983717fe591a43df69573ca"
+      },
+      "responses.manifest.json": {
+        "bytes": 2618,
+        "sha256": "80806b51cd8e3115267694de90fdf81c335a916bf4e4afe7309a2541cec8b009"
+      },
+      "responses.checkpoint.json": {
+        "bytes": 1811,
+        "sha256": "ae84044dc94ce8cf073b259bd30e27fd5d87847cfca828f1f7a31dcba1290a03"
+      }
+    },
+    "elapsed_seconds": 27.606,
+    "max_gpu_allocated_bytes": 27467488256,
+    "output_tokens": [
+      6,
+      6,
+      6
+    ],
+    "token_limit_rows": [],
+    "invalid_json_rows": [],
+    "removed_demonstrations": 0,
+    "scope": "input/runtime/format only; no evaluation labels"
+  },
+  "generation_config": {
+    "bos_token_id": 151643,
+    "do_sample": true,
+    "eos_token_id": [
+      151645,
+      151643
+    ],
+    "pad_token_id": 151643,
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95,
+    "transformers_version": "4.51.0"
+  },
+  "actual_adapter_sha256": "e6136281543d33709709f51c73d3a1db87c4f6185599ca0de3df62717af79187",
+  "base_parameters": 8190735360,
+  "adapter_model_parameters": 8234382336,
+  "interpretation": "Resource pass for both, base format failed3/3 via repeated item and token limit; adapter all3 valid empty arrays, all from same longest input document, not evidence of score quality. No held-out labels read. Both retain identical greedy decoder; do_sample=False overrides base default sampling settings.",
+  "decision": "Root confirmed full47 both with batch3; do not exclude failed samples or reuse smoke outputs.",
+  "full_inference_plan": {
+    "status": "base_inference_running",
+    "order": [
+      "base",
+      "epoch002"
+    ],
+    "same_device": true,
+    "baseline_entities": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "cwd": "case-retrieval/round2-patient-set",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/peft-runtime",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "max_input_tokens": 12288,
+    "max_new_tokens": 1792,
+    "max_model_context": 40960,
+    "batch_size": 3,
+    "decode": "greedy_thinking_false_BF16",
+    "prompts_sha256": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8",
+    "runner_sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
+    "source_sha256": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+    "commands": {
+      "base": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u llm_runner.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b --prompts data/prompts.jsonl --max-input-tokens 12288 --max-new-tokens 1792 --batch-size 3 --output inference-base/responses.jsonl",
+      "epoch002": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u llm_runner.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b --prompts data/prompts.jsonl --max-input-tokens 12288 --max-new-tokens 1792 --batch-size 3 --adapter formal2ep/epoch-002/adapter --output inference-epoch002/responses.jsonl"
+    },
+    "evaluation_policy": "Same CRF+Sap entities; raw legal-ID and strict original-quote grounded association controls; no gold postprocessing or format retry preauthorized for this task.",
+    "batch_selection": "Input-only longest3: base resource pass but3 truncated repetition; adapter3 valid empty arrays, actual weights/params verified. Root authorizes complete47 both, retaining all failed rows.",
+    "base_process_id": "proc_8eb8c4d2-940d-4f37-a376-7238b3625fb5"
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1"
+}

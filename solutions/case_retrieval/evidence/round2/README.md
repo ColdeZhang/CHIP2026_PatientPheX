@@ -17,3 +17,4 @@
 - `patient-set-training-start.json`：独立数据审查、最长11709token smoke与A800从原base正式2epoch作业/完整配置；运行证据，不是验证收益。
 - `extraction-fold1-cpu-preparation.json`：一次固定跨折复验的自身train48/88输入/token预算；实际训练作业更新于台账及外存plan/job。
 - `patient-set-training-complete.json`：整患者正式32step完整训练、两个实际checkpoint SHA核验与环境/数据来源；start文件是历史启动快照，当前状态以台账与外存plan为准。
+- `patient-set-inference-preflight.json`：最长3条同协议资源/格式分离、实际adapter加载与EOS、完整47×2固定batch3决策；pilot无gold、不当得分。

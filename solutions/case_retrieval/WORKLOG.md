@@ -7,7 +7,7 @@
 - **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
 - **固定dev最佳**：CPU四折选出的 k21/.35 为 **.625073738**（首日 .613517597）；独立重训/逐字节预测复现通过。后续GPU研究均在train64内部fold0，尚未重评dev。
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
-- **当前任务**：优先整患者开放集合SFT的带原文证据版本。126行带quote目标与47个完整文献患者输入独审通过；最长11709token smoke通过。A800正式2epoch/32step已完整结束（654.41秒、峰值42.096GB），实际两个checkpoint全SHA核验通过。随后固定epoch002与同卡基座配对，尚无此项验证分。
+- **当前任务**：优先整患者开放集合SFT的带原文证据版本。126行带quote目标与47个完整文献患者输入独审通过；最长11709token smoke通过。A800正式2epoch/32step已完整结束（654.41秒、峰值42.096GB），实际两个checkpoint全SHA核验通过。最长3条base触顶重复/adapter合法空数组；资源检查通过，完整47×2同卡batch3配对推理进行中，尚无此项验证分。
 - **后续**：抽取fold1固定2epoch复验已训练完成，研究子代理在.100 GPU1推断88验证输入窗；只用自身train48从base新LoRA训练相同2epoch，既有阈值，不扫参数、不提前评dev。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
@@ -21,7 +21,7 @@
 
 ## 当前任务与恢复
 
-1. 整患者新任务：A800 `10.5.4.7` mount `69b991ee-183f-4add-af1a-579af92479c9`，GPU2 `GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc`。自有cwd `case-retrieval/round2-patient-set/`；正式作业 `proc_db5057e8-780c-49dc-a33f-0492811b0045`已完成并退出，GPU2暂交sequence changed29短批，结束明确交回后做最长3输入batch3性能检查，再base/adapter各47配对。完整命令/env与源码/输入SHA见外存 `patient-set-fold0-bf16-v1/training-plan.json`、实际作业见`training-job.json`。训练结果见`monitor/training_complete.json`和`checkpoint-actual-hashes.json`；推断计划见`inference-plan.json`，启动前核实际状态，不能盲目重启。
+1. 整患者新任务：A800 `10.5.4.7` mount `69b991ee-183f-4add-af1a-579af92479c9`，GPU2 `GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc`。自有cwd `case-retrieval/round2-patient-set/`；正式作业 `proc_db5057e8-780c-49dc-a33f-0492811b0045`已完成并退出，sequence changed29短批已结束并交回。完整base47 `proc_8eb8c4d2-940d-4f37-a376-7238b3625fb5`于15:15:03 UTC启动，完成后同GPU/同batch3接epoch002全47。完整命令/env与源码/输入SHA见外存 `patient-set-fold0-bf16-v1/training-plan.json`、实际作业见`training-job.json`。训练结果见`monitor/training_complete.json`和`checkpoint-actual-hashes.json`；推断计划见`inference-plan.json`与`inference-base-job.json`；本地只读监控/已授权顺序接力入口`setup/run_patient_pair_monitor.py`（session96434）会记录epoch002实际job。先读plan/monitor-state与远端进程，不能盲目重启。
 2. A800解释器只读 `/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python`；base只读同目录`pretrained-qwen3-8b`；PEFT只读`PYTHONPATH=/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/peft-runtime`。CPU核验torch2.7.1cu126/transformers4.51.3/PEFT.15.2通过；不修改共享环境。
 3. 已完成抽取SFT：.100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，保留epoch001/002及optimizer状态；原推断`inference/`与唯一恢复`inference/retry/`均已结束。实际作业/配置/全SHA在外存同名目录。原fold0均已结束；当前.100 GPU1已由sequence释放，本子代理管理fold1：训练 `proc_75f1bb0c-af15-4d82-9147-13d5d267e7a4`已结束（542.04秒/78step），推断`proc_d6ca6115-72cd-43ce-a041-ae1941fa1e3c`于15:02:36 UTC启动；外存`sft-extract-fold1-bf16-v1/`保存实际plan/job。
 4. 完整HPO作业`proc_855aacdd-70a5-45bb-b204-80b6d205a02f`已完成并释放A800 GPU2，外存`hpo-inference-plan.json`明确completed；响应/manifest/检查点全部回收。CPU重装命令在`sft-extract-fold0-bf16-v1/linked-original/commands.json`与`sap-filter-control/repaired101/merge-evaluation-commands.json`。
