@@ -7,7 +7,7 @@
 - 原 train64/dev16、指定 HPO 2026-06-23、公共 evaluator v2 all/text，**Score ≥ .8** 才申请主线程验收合并。本轮不上传官方。
 - 本路线原政策 dev **.711324992**（独审PASS）：原CRF+Sap/LR基线保留，增加固定train48 GLiNER终点、train64 Sap筛选跨度，再沿既有LR；源码`4adf9da`，预测`gliner-dev-transfer/assembled/full-lr.jsonl`。对应仅增实体不改关系控制.706111684；独立train64 LR重拟合、三输出/全部指标逐字节复现，格式/HPO零错警。前一独审最佳.700635947及完整证据继续保留。
 - 跨路线Pheno实体-only组合候选 **.712586161** 已独审PASS；固定nested48候选.712146627也已独审PASS。两项都只有温和增益，mention分项有下降，均未达.8。
-- 新跨路线候选 **.728794595** 正在独审：全train64 source-HGB+公开Pheno新实体，原best aa107790 SFT关联对象完全保留；较原best .715759605 +.013034990，只提升实体两项。详见台账17，独审前不作为已验收最佳，更未达.8。
+- 新跨路线候选 **.728794595** 已独审PASS：全train64 source-HGB+公开Pheno新实体，原best aa107790 SFT关联对象完全保留；较原best .715759605 +.013034990，只提升实体两项。详见台账17；新fit/全概率/预测与指标独立复现（1112ced2），仍未达.8。
 - 内四折规则关系优于 LR，原 dev 相反；LR/rules 都评过原 dev，该选择使用过 dev，不能声称盲验证。尚未达到 .8。
 
 ## 正在执行与恢复入口
@@ -38,7 +38,7 @@
 
 16. **固定public selector四fold已完成、独审PASS**：source-HGB同法outer1/2/3仅改reference白名单，9套旧train32资源SHA/隔离齐；三次CPU共47.06秒<120cap，无新NN。三新fullpred21:18:45Z共同freeze后一次评分，f1 .663220→.720292、f2 .721467→.738304、f3 .680343→.703019；f2关系两项降仍保留。加复用f0四折Score全升，pooled **.692527322→.722651022**、mean .693847251→.723628971；pooled四项升、实体净+281TP/-51FP、关系+61TP/+23FP。无原dev。outer0独审8107cc27已PASS；三新fit/全概率及预测/全部指标/谱系独审PASS（c9428a9e）。[完整结果](evidence/round2/public-selector-followup-results.json)、[计划](evidence/round2/public-selector-followup-plan.json)，外存 `public-selector-followup/`。
 
-17. **固定原dev迁移已完成、独审中**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。待一次独立新fit/来源/关联保留复核。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
+17. **固定原dev迁移已完成、独审PASS**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。独立新fit/全概率/两预测/全部指标与关联保留复核PASS（1112ced2）。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
 
 
 ## 已完成的近期结论

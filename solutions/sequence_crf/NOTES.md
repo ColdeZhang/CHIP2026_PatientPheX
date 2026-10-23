@@ -108,3 +108,5 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 四fold固定复验已全部Score正、pooled+.030124并独审PASS；支持一次原dev固定迁移，不能继续扫同fold特征。全64自然特征列从85加6变91，outer0为84加6变90；这来自原训练类别词表差异，不是新增第七特征，也不能删任意列凑数。
 
 原dev固定A规则全链 .659239仍明显弱于现有SFT关联。预定义B只换实体、完整保留原aa107关联后 .728795，相比.715760提升.013035；men/doc提升而关系完全不变。Task2不要求关联集合是最终Task1子集，强行删除已确认关联会凭空耦合两个任务。这个B只是实体模块与旧关系模块的合法固定组合，不能宣称关系学习也变强。历史dev已用于开发比较、当前两新臂先共同freeze，原source-HGB匹配对照只能用.639287，不能用外折或其他管线分数冒充。详见public-selector-dev-results.json，独审进行中。
+
+原dev public-selector 两臂独审已完成：`validation/public-selector-dev-transfer-review/review.json` SHA `1112ced231cc43f7769482ff189fde4e980dd895fb91d5807d9244d256b157c4`。独立一次新全64 fit与全部概率/A/B预测逐字节一致，v2/格式全同；B .7287945949、原aa107关联完整保留。旧对照未重训/重评，不改变原dev已用于比较的限制。

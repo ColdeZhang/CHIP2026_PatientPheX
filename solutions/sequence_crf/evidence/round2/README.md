@@ -91,3 +91,5 @@
 - [public-selector-followup-plan.json](public-selector-followup-plan.json)、[四折结果](public-selector-followup-results.json)：三新CPU共47.06秒，统一freeze后评分，四折Score均升，pooled .692527→.722651；fold2关系两项降如实保留。outer0独审PASS，三新fit/全概率/指标/谱系独审PASS（c9428a9e）。
 - [public-selector-dev-plan.json](public-selector-dev-plan.json)、[原dev两臂结果](public-selector-dev-results.json)：全64 CPU16.71秒/91列，A匹配规则.639287→.659239；B保原SFT关联 .715760→.728795，只提升实体指标。两新/两旧共同freeze后一次评，0错警，独审中、未.8。
 
+
+原dev public-selector 两臂独审已完成：`validation/public-selector-dev-transfer-review/review.json` SHA `1112ced231cc43f7769482ff189fde4e980dd895fb91d5807d9244d256b157c4`。独立一次新全64 fit与全部概率/A/B预测逐字节一致，v2/格式全同；B .7287945949、原aa107关联完整保留。旧对照未重训/重评，不改变原dev已用于比较的限制。
