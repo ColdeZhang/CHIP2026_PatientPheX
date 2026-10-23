@@ -1,0 +1,78 @@
+{
+  "arguments": {
+    "command": "python3 run_gpu_stage.py --stage formal",
+    "cwd": "sequence-round2/gliner-biomed-supervised",
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "result": {
+    "command": "python3 run_gpu_stage.py --stage formal",
+    "id": "proc_64f58b79-5525-42a4-bf64-1db4e0345da9",
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "pid": 1143093,
+    "port": 40347,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T19:37:00.212979854Z"
+  },
+  "wrapper_sha256": "08867bab785ea05bf5aaedfecac8221532c44ae7500fd717c1e12e72b7440abf",
+  "commands_sha256": "bc4eb2a55d55b03f992601323f189f41eef563c6213d1dc4f51bd2122e27a5ac",
+  "plan_sha256": "60029482bcf0645877307c85f29daa5c388b5c5bb358bc675ddfc90bb658fb7a",
+  "actual_cpu_sha256": "cae1489445225768a133e0881e30ec31983232c4e522190de6574b165f67866e",
+  "actual_initial_state": {
+    "stage": "formal",
+    "started_at_utc": "2026-10-23T19:37:02.586278+00:00",
+    "plan_sha256": "60029482bcf0645877307c85f29daa5c388b5c5bb358bc675ddfc90bb658fb7a",
+    "commands_sha256": "bc4eb2a55d55b03f992601323f189f41eef563c6213d1dc4f51bd2122e27a5ac",
+    "wrapper_sha256": "08867bab785ea05bf5aaedfecac8221532c44ae7500fd717c1e12e72b7440abf",
+    "cpu_preflight_sha256": "cae1489445225768a133e0881e30ec31983232c4e522190de6574b165f67866e",
+    "fresh_gpu_empty": true,
+    "compute_apps": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940 MiB\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940 MiB\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956 MiB\n",
+    "free_bytes_before": 203753181184,
+    "gold_read": false,
+    "stages": [
+      {
+        "name": "train",
+        "started_at_utc": "2026-10-23T19:37:02.588932+00:00",
+        "command": [
+          "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+          "train_gliner_biomed.py",
+          "--data-manifest",
+          "data-manifest.json",
+          "--train",
+          "nested_train32.jsonl",
+          "--excluded-input",
+          "../../ontology-round2/data/fold-1/input.jsonl",
+          "--model-dir",
+          "../pretrained-gliner-biomed-large-v1",
+          "--tokenizer-dir",
+          "../pretrained-gliner-biomed-large-v1",
+          "--epochs",
+          "10",
+          "--training-part",
+          "nested_train32",
+          "--output-dir",
+          "formal-fixed10ep",
+          "--prune-old-epochs"
+        ],
+        "timeout_seconds": 2400
+      }
+    ],
+    "smoke_manifest_sha256": "1fb28a55138fa6af92e91895fdb059471df8916622b000b29c82e6cee8287aee"
+  },
+  "training_deadline_utc": "2026-10-23T20:17:02.588932+00:00",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-biomed-supervised",
+  "resume_instructions": "Do not duplicate start; inspect existing managed process, formal.state.json and check_progress.py first. Training is fresh fixed10; prior smoke files have no weights/state.",
+  "expected_not_guaranteed_minutes": [
+    25,
+    31
+  ],
+  "independent_smoke_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-biomed-supervised-preparation-review/actual-smoke-review.json",
+    "sha256": "156504389afa4fce0574338d62eae054ea238ca339aa4b1af64ddb04de29c26c"
+  }
+}
