@@ -3,7 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
-- **关系互补CPU预检（完成，无fit）**：同F1 1557字面对，旧SFT正/负组新binary概率AUC .677751/.782704、AP .885837/.173556，存在有限组内信号；fixed.5修33旧错却增70新错。0.042秒/含导入1.056秒，无新预测/cut/F0 gold；来源排F0已核，独审c8ac0e03通过；已获准F1固定两特征LR→F0唯一期望F1，F1固定fit已冻（0.0105秒），等待F0唯一前向/装配，[事实/提案](experiments/P-20261023-BINARY-SFT-COMPLEMENT.md)。
+- **关系两特征校准（微正结案，完整独审PASS）**：F1-only固定LR两特征，F0唯一expected-F1 **.695443948→.696545689（+.001101741）**；micro与226TP50FP153FN全同、macro+.004406964，预定保留true但仍低rules .711353522。独审0b44186b复现模型/1166p/全部k/预测/v2；保留可组合候选，关闭当前试验不自动full64/dev。诊断与固定结果见[完整记录](experiments/E-20261023-BINARY-SFT-CALIBRATION.md)。
 - **固定原门prehybrid控制（负结案，终审PASS）**：原244794对象不变＋7220新来源行，四fit56.999秒/九点1.045秒；best仍.3，实体均值 **.778942536<旧 .780192596（−.001250060）**，mention−7TP/+9FP、doc−5TP/−3FP，2折微正/2折负。池谱系/四实际模型load字节/36cut统一终审PASS07b1d0a9，后置.3归因held新增1806键接纳0，旧共有+56/−54导致−7TP/+9FP；关闭当前C不原dev/A/B扩展，[固定协议/结果](experiments/E-20261023-PUBLIC-PHENO-PREHYBRID.md)。
 - **全raw边界供给普查（完成）**：29.178秒；A无门槛top1新7408跨度/最大train×1.228，B全top3新262699跨度/×20.47，C原>.95top1 bypass新1572跨度/×1.032。217实际损失为None/门槛/hybrid，27正确原子确在hybrid消失；无NN/fit/新质量，[结果](experiments/P-20261023-PUBLIC-PHENO-RAW-CENSUS.md)。
 - **边界供给只读诊断（完成，增量独审PASS）**：384原子/333跨度中217/199已有原坐标但native消失，167/134无供给（89单词、53>8词、20原过滤、5未对齐）；词串仅缓存0。已生成部分top1/top3并集条件供给95/162，不是新分数；程序24.692秒，无NN/fit/原dev。下一仅全输入统一供给普查/阶段分层，[固定边界](experiments/P-20261023-PUBLIC-PHENO-BOUNDARY.md)。
@@ -35,6 +35,6 @@
 - **审计**：3542ec3 的 fold0 多来源/置信度三控制独立重放全部字节一致；3个train32真实模型导分、outer0导分、3455候选独立BIO/TFIDF复算通过。见外部 validation/calibrate-multi-review.json，SHA77da3227…。
 - **资源/恢复**：context全部GPU结束，20:55:27Z fresh核.3GPU0（UUID07726469…）无PID/free24160MiB并释放；最终模型/恢复状态实际保留，作业/恢复见[evidence](evidence/round2/ner-context-control-job.json)；NER全阶段结束，19:29:12Z fresh核.100GPU1空/free24164MiB并明确交retrieval。CE proc_215c275d已退出，.3GPU0 fresh核空后明确交sequence（其large48已接卡）。ce-oof-control/已回收51份源池/训练/分数SHA，三模型权重只保留远端同目录；progress/complete/collection与双freeze可恢复。MIL/A800之前已归还，父模型和全部负结果保持原位。
 - **恢复入口**：NER增强真实终点与恢复见 `ontology_rules/ner-augmentation-control/results.json` 和本路线结果证据；旧树外部 `/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer{1,2,3}/evaluate_controls.py` 与各 controls-results.json；全量预测/模型/日志不入Git。小证据见[evidence索引](evidence/round2/README.md)，研究与踩坑见[NOTES](NOTES.md)。
-- **最近已核验远端**：bcf0d82（prehybrid 完整负终点/独审07b1d0a9，23:00Z核验）。当前CPU作业全部结束；无GPU/原dev或官方操作。
+- **最近已核验远端**：72619d4（F1模型先freeze/push及F0唯一端点源/计划，23:16Z核验）。当前CPU作业全部结束；检索F0 GPU23:15:25Z已释放，无原dev或官方操作。
 
 来源澄清：冻结首轮Sap候选生成器为016bb77/0084d33的 gpu_candidates.py（SHA dc5cc0…）；0673f85是后续装配证据检查点。原LR没有序列化；检索路线已按同数据/顺序/源码做明确标记的CPU精确重建；原14,480池p完全相同、阈值与原ID策略0差异。本路线只读系数，不重复重建；旧原ID含词典优先，不能冒充纯nearest ID。

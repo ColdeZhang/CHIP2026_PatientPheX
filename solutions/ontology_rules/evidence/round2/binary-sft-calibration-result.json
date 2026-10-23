@@ -1,0 +1,218 @@
+{
+  "status": "Independent complete terminal review PASS; prescribed retention true but small improvement, fixed experiment closed",
+  "decision": "Retain frozen calibrated relation candidate for root coordination; no automatic full64/GPU/originaldev or parameter/decoder expansion",
+  "metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.6900763358778625,
+    "macF1": 0.6434295282140656,
+    "Score": 0.6965456885142385
+  },
+  "baseline_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.6900763358778625,
+    "macF1": 0.6390225644829467,
+    "Score": 0.6954439475814587
+  },
+  "delta": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": 0.0,
+    "macF1": 0.004406963731118929,
+    "Score": 0.0011017409327798156
+  },
+  "relation_counts": {
+    "tp": 226,
+    "fp": 50,
+    "fn": 153,
+    "precision": 0.8188405797101449,
+    "recall": 0.5963060686015831,
+    "f1": 0.6900763358778625
+  },
+  "baseline_relation_counts": {
+    "tp": 226,
+    "fp": 50,
+    "fn": 153,
+    "precision": 0.8188405797101449,
+    "recall": 0.5963060686015831,
+    "f1": 0.6900763358778625
+  },
+  "retention_criterion_pass": true,
+  "retention": "delta(micF1+macF1)>0 AND delta(macF1)>=0",
+  "stronger_same_entity_rules_score": 0.711353521870099,
+  "fit": {
+    "coefficient": [
+      [
+        0.516688992396293,
+        2.2208233493441334
+      ]
+    ],
+    "intercept": [
+      -1.2482764434319533
+    ],
+    "iterations": [
+      11
+    ],
+    "features": [
+      "binary_logit",
+      "old_sft_positive"
+    ],
+    "estimator": {
+      "C": 1.0,
+      "penalty": "l2",
+      "fit_intercept": true,
+      "class_weight": null,
+      "solver": "lbfgs",
+      "max_iter": 1000
+    },
+    "examples": 1557,
+    "positives": 365
+  },
+  "cost_seconds": {
+    "LR_fit": 0.010544345997914206,
+    "LR_fit_with_import": 1.0538315979938488,
+    "F0_neural_program": 66.24562087701634,
+    "F0_neural_forward": 43.47788525884971,
+    "F0_assembly_evaluation": 0.41425543399964226,
+    "F0_assembly_evaluation_with_import": 1.4029852029998438
+  },
+  "validation": {
+    "valid": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "counts": {
+      "documents": 16,
+      "entities": 947,
+      "relations": 276,
+      "patients": 47
+    }
+  },
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/binary-F0-fusion-review/review.json",
+    "sha256": "0b44186b59d2da5111ab2318e66b42dc81a8cf61fcfb9a7acdd1ae1cf7faec96",
+    "bytes": 9051
+  },
+  "artifacts": {
+    "fit-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/fit-plan.json",
+      "sha256": "155f3e787cd816c8307292e5729971635fab70bf0a55f62f415eb65b83013f0c",
+      "bytes": 4370
+    },
+    "fit-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/fit-job.json",
+      "sha256": "66eba02403f73baf06fc143278206826556dce7c88838be61a4d1636c7202edf",
+      "bytes": 858
+    },
+    "fitted/fit-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/fitted/fit-freeze.json",
+      "sha256": "334e0bed053f79b968725ede73cfdbbfadb968358d9c90818a6bedf1d2aaeea0",
+      "bytes": 2443
+    },
+    "fitted/model.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/fitted/model.pkl",
+      "sha256": "5842fc4628f3cdcb217c8ffb345b11f499e2232e3d0ac4c2e6ef2d795f198482",
+      "bytes": 817
+    },
+    "F0-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-plan.json",
+      "sha256": "3edc11a83dc85a2746e6dcce0dffd69cc09c1fbc64fe07a3005c3c1ea3e1579a",
+      "bytes": 7834
+    },
+    "F0-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-job.json",
+      "sha256": "71dd2ac1d304f7f26b1f594de1c144884cd57619736b519ead69b8ad313aeb06",
+      "bytes": 860
+    },
+    "F0-terminal/summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/summary.json",
+      "sha256": "61ef2aabbadb92715943fe725075cb4326e40d4c0f71001936f2ebb3171bb0ac",
+      "bytes": 29726
+    },
+    "F0-terminal/prediction-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/prediction-freeze.json",
+      "sha256": "7e77bff42e475851e7779caa23590784fd9716cc2fbc43578d523f716b0edeff",
+      "bytes": 2354
+    },
+    "F0-terminal/evaluation-started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/evaluation-started.json",
+      "sha256": "0a13f8ae96767e1f4b6aa0db36285ac7ef5e2295b9edf73653ce3073bb485f89",
+      "bytes": 305
+    },
+    "F0-terminal/prediction.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/prediction.jsonl",
+      "sha256": "47cf1e77750ffa8b98ca0f0ca566f162fb05f72d1f73902542e93e2c00bc5225",
+      "bytes": 123939
+    },
+    "F0-terminal/calibrated-pairs.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/calibrated-pairs.jsonl",
+      "sha256": "aff32e8448161719abcd779c354c2e3643eebb2e709055d44bbfdda1fd039f5a",
+      "bytes": 299958
+    },
+    "F0-terminal/input-only-decisions.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/input-only-decisions.json",
+      "sha256": "aab40c4bbb8d077af1c24245c7c19aa01dc9aef1a832aaa4078eee5a82d998bd",
+      "bytes": 46413
+    },
+    "F0-terminal/metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/metrics.json",
+      "sha256": "e49e20aa897dea3f690e3183b826ce17d58edd113ed9d0e55d33933a0220aa60",
+      "bytes": 13013
+    },
+    "F0-terminal/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/validation.json",
+      "sha256": "49f8b1db22f467b4e75209d857be1b91c976f690e343a5d0c64afeb3dbf96b8a",
+      "bytes": 685
+    },
+    "F0-terminal/validation-command.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/validation-command.json",
+      "sha256": "6c7b27e3aeb5893870a8b47dd9ec9bfcbd6423110f0dd9568132249942e53bc0",
+      "bytes": 1444
+    },
+    "F0-terminal/evaluation-command.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/evaluation-command.json",
+      "sha256": "47bcbee6c70d90ea9c1e073804dd16a2b380fdaf5d7acad2d66f8a63c2be9e94",
+      "bytes": 997
+    }
+  },
+  "retrieval_handoff": {
+    "scores-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/scores-freeze.json",
+      "sha256": "29ee8fbd5a8791920cc6e1090c312f16b333936989386dc6c992f7d9be7c4e52",
+      "bytes": 3238
+    },
+    "complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/complete.json",
+      "sha256": "729656e0382f2b2a4584d6c9763f58875bec56ec13c8d13ea9048c22119167ae",
+      "bytes": 647
+    },
+    "run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/run_manifest.json",
+      "sha256": "f05054ab4bfd8957bdc0fca49b23d3c46af9faf0cfe647f601be11d855b3f6be",
+      "bytes": 3276
+    },
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/run-plan.json",
+      "sha256": "d9d8ebda2ef5298dbd0f1f02ccf399b3f32593942516eb4799165507565b6eba",
+      "bytes": 8053
+    },
+    "probabilities.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/probabilities.jsonl",
+      "sha256": "6fe3a7953d45b56f142497faa080b5fcde0806b4fbb5c66fdd8dfc54a9885611",
+      "bytes": 76041
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/gpu-release.json",
+      "sha256": "a1e9f4f410bb1457e74cd3ea3d7de5cb60348be989099bdf441cb097a72829f9",
+      "bytes": 437
+    }
+  },
+  "limitations": [
+    "Only F1 fits LR; F0 is previously developed validation, not blind test.",
+    "Old SFT hard and candidate generator scale from32 on F1 to48 on F0; F0 train48 includes F1 but excludes F0.",
+    "Expected patient F1 assumes independent calibrated candidate probabilities; it is not guaranteed to maximize public micro+macro.",
+    "One relation arm only; complete entities and all nonassociation fields match old SFT48."
+  ],
+  "retention_and_recovery": "Actual tiny LR pickle, raw/calibrated F0 pairs, all patient-k curves and full prediction remain external. Restore frozen paths and SHA, load with Python3.12.14/sklearn1.8.0/numpy2.3.5/scipy1.17.0; use fixed source/plan. Do not overwrite endpoints or silently refit. Existing neural checkpoint and raw input source belong to retrieval branch; retained remote and bound by handoff.",
+  "no_official": true
+}
