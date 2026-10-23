@@ -61,6 +61,8 @@
 
 ## 证据与下一步
 
+- 新增[当前最佳端到端资源清单](experiments/best-pipeline-resource-inventory.md)：只读确认实际HGB/CRF/Sap及关系模块恢复入口，不跑test、不新增训练。F0/F1 cut.3 OOF实体支持集已交检索，明确全train64选cut的开发使用；通用新输入runner与跨目录模型路径适配尚未实施。
+
 - [实验过程](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整产物根目录：`/workspace/patientphex-runs/round2-20261023/sequence_crf/`；权重/预测/原始响应/完整日志不入 Git。
 - [SFT 固定结果与恢复索引](evidence/round2/relation-sft-fold0-results.json)、[新关系池结果](evidence/round2/new-ontology-relation-results.json)、[训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 现有 base 和本路线 epoch2 adapter 可只读复用；旧 180 概念/29 提示弱池未运行。
 - 共指完成后保留全部控制，包括负结果；如无可靠收益，停止当前原型，不以格式通过替代身份或分数验证。后续再协调检索新跨度与本体候选组合，避免混淆本次单变量对照。

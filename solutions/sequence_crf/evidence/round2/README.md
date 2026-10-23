@@ -99,3 +99,5 @@
 - [统一九点OOF cut校准](public-bioformer-cut-results.json)：事先网格选.3、两实体目标.780193（校准拟合值）；.4 byteexact，3折升1折降，2.125秒CPU，无原dev，独审PASS234064fe。
 
 - [双公开模型原dev固定两cut](public-bioformer-dev-results.json)：.4 .731446/.3 .732258，同SFT全部关联；14.755秒fit、真实model295637B已存，独立增量审PASS（fc98e9ca）、16篇全部13144概率重载exact，未.8。
+
+- [当前最佳资源清单及F0/F1支持交接](best-pipeline-resource-inventory.json)：只读29项本地资源实际SHA、两fold隔离和远端历史位置；无新fit/推断，通用新输入入口仍待整合。
