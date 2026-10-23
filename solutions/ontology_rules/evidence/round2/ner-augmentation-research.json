@@ -1,0 +1,112 @@
+{
+  "date_utc": "2026-10-23",
+  "status": "read-only research; no augmentation implementation or generated samples; no training or GPU",
+  "decision": "No stronger project evidence than current large GLiNER. Same-HPO whole-mention replacement is a conditional backup; adjacent-passage context is lower priority. Neither launched.",
+  "constraints": [
+    "no original dev gold read",
+    "no new model weights downloaded",
+    "no external human-annotated phenotype datasets used",
+    "no new predictions or evaluation",
+    "no official website operation"
+  ],
+  "sources": [
+    {
+      "url": "https://aclanthology.org/2020.coling-main.343.pdf",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/simple-ner-augmentation-pdf.pdf",
+      "sha256": "34717e67c0a0bca8d9c36e249f0c5503fd91fc8e4f62cf1324bf8cb7c498d6f4",
+      "bytes": 203523,
+      "license_note": "paper CC BY 4.0; author-code license not verified"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2011.06993v2",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/flert-paper.pdf",
+      "sha256": "f9c6b33ddde08f6878678ac8bbe479d7753becb8d64b1647d0853c4394104f62",
+      "bytes": 382880,
+      "license_note": "paper reference only; no paper redistribution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/flairNLP/flair/d4ea3777998ba67bfbe6b6b8359e024dcf673c3e/flair/embeddings/transformer.py",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/flair-transformer.py",
+      "sha256": "4c1a09e79bcf3497bf8f060bf477f33ee287bfbab73e604c5613b5e879a9afba",
+      "bytes": 68887,
+      "license_note": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/flairNLP/flair/d4ea3777998ba67bfbe6b6b8359e024dcf673c3e/LICENSE",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/flair-license.txt",
+      "sha256": "6dfff442c5ddcd94ce2e116d4a9094eef1d42d70b86a57b5a42053dfdffb0864",
+      "bytes": 1166,
+      "license_note": "MIT"
+    }
+  ],
+  "local_source_and_reproducibility": [
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/run.py",
+      "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "bytes": 16709
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/prepare_gliner_supervised.py",
+      "sha256": "f71f90a37025a849a6c46b440dbb8ce4941b46a33821e4c132f353a87e31a9a4",
+      "bytes": 8841
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_gliner_pilot.py",
+      "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "bytes": 8965
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/count_feasibility.py",
+      "sha256": "2250e98273d6e6c89379df27716ba81552626de0e6b455ca25d76fec9cb85f26",
+      "bytes": 3313
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/train32-feasibility-counts.json",
+      "sha256": "703fd0be8a817d6f83b1d8e042a4bd65ddfde9d382c2859d8373fc39c13576d8",
+      "bytes": 1411
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/ner-augmentation-proposal/recount.json",
+      "sha256": "df0f6226d2ed4f05e135e44538adcd6f3c06b0e2caad73723a67cdf163b0e9ac",
+      "bytes": 471
+    }
+  ],
+  "training32_feasibility": {
+    "scope": "CPU read-only feasibility counts for existing nested_train32 only; no augmented text or predictions generated; no outerfold0/dev gold read",
+    "sources": {
+      "/workspace/patientphex-data/hp.obo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/nested_train32.jsonl": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0"
+    },
+    "documents": 32,
+    "existing_windows": 1150,
+    "synonym_preliminary_counts": {
+      "positive_annotations": 2275,
+      "represented_annotations": 2236,
+      "single_canonical_annotations": 2163,
+      "nonoverlapping_single_canonical": 2143,
+      "has_different_unique_same_HPO_name_or_EXACT": 2010
+    },
+    "eligible_unique_target_spans": 2009,
+    "eligible_existing_windows": 408,
+    "token_screen": "regex word/punctuation count <=12 only; true GLiNER tokenizer/max384/collator must still verify before any training",
+    "context_short_windows_tokens_le256": 1028,
+    "context_short_windows_with_positive": 335,
+    "context_limitations": "Adjacent passage is only a potential context source; no semantic promise and no packed text constructed. Context span losses and cross-passage spans must be masked."
+  },
+  "counts_reproduction": "python count_feasibility.py --ontology-source <ontology_rules/run.py> --train48 <frozen fold0/train48.jsonl> --prepared32 <nested_train32.jsonl> --hpo <hp.obo> --output <new-counts.json>",
+  "count_verification": "A separate saved read-only script reproduced all 7 aggregate top-level fields from the initial count file exactly. This is not predictive validation.",
+  "baseline_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/evidence/round2/gliner-link-results.json",
+    "sha256": "b9b5602f38105d57e8983721945fae8fb56d83abcf19f8cfb3d961f4d3fc36e1",
+    "Score": 0.6537450271017345
+  },
+  "limitations": [
+    "regex token screening is preliminary; actual GLiNER tokenizer/collator not run",
+    "eligibility counts are not missed-span coverage or estimated score gain",
+    "augmentation may introduce grammar and annotation-granularity noise",
+    "FLERT has generic CoNLL evidence only",
+    "nested16 is an already used development split, not blind evaluation"
+  ],
+  "external_artifact_policy": "Papers and source copies remain external and can be re-downloaded at the recorded URL and verified by SHA; only this summary is versioned."
+}

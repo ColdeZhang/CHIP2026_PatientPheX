@@ -72,3 +72,5 @@
 
 - [CE严格OOF真实终点](ce-oof-results.json)：全管线289.183秒，原84列/.4→85列/.4使.714808→.701372，负结果不回扫。
 - [训练侧链接availability聚合](nested-link-diagnostic.json)：复用原train48错误分类，只核同跨度全池/精确字典；无新top-k或预测，不替代模型分数。
+
+- [受控NER增强只读研究](ner-augmentation-research.json)：两份论文、固定MIT源码、训练32聚合预筛与复算；无样本生成或新模型分数，[可执行备选提案](../../experiments/P-20261023-NER-AUGMENTATION.md)。
