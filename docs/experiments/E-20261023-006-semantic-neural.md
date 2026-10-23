@@ -41,8 +41,9 @@ SapBERT原始权重437,955,508字节，使用 `prepare_model.py` 的numpy/safete
 | run | menF1 | docF1 | micF1 | macF1 | Score | 说明 |
 |---|---:|---:|---:|---:|---:|---|
 | dev-minilm / evaluator v1 | 0.690076 | 0.703665 | 0.380818 | 0.291784 | 0.516586 | 16文献36患者；公共规则近似分，非官方 |
+| dev-minilm / evaluator v2 | 0.690076 | 0.703665 | 0.380420 | 0.297210 | 0.517843 | 主线程统一修正合法HPO复合关系项拆分；预测不变 |
 
-完整运行127.927秒，单CPU线程，观察RSS约585MB（未做峰值采样）。训练判别器使用4,744个正跨度、19,132个负跨度，64篇训练文献，42,575个概念表面形式。预测859个实体、262个患者概念项，格式检查零错误/警告、覆盖全部患者。提及precision/recall为0.789290/0.613020，概念为0.850633/0.600000，关系为0.515267/0.302013。公共评测器的合法HPO复合关系拆分正由主线程统一修复；保留此原始v1结果，修复后另存v2，预测文件不变。
+完整运行127.927秒，单CPU线程，观察RSS约585MB（未做峰值采样）。训练判别器使用4,744个正跨度、19,132个负跨度，64篇训练文献，42,575个概念表面形式。预测859个实体、262个患者概念项，格式检查零错误/警告、覆盖全部患者。提及precision/recall为0.789290/0.613020，概念为0.850633/0.600000；v2关系precision/recall为0.519084/0.300221。公共评测器v2修复来源main `92fa1f8`，本分支cherry-pick为`3afb103`；保留原始v1和v2，后续比较统一使用v2。
 
 预测SHA-256 `4b9e6b45866612d1dc3982d37a42bbaf47cd073292d35e9904d964dbee3fc0c2`，111,915字节。小型原始指标、验证、manifest、误差诊断与源码溯源更正保存在 [evidence/dev-minilm](../../solutions/semantic_neural/evidence/dev-minilm)。实际加载代码为 `ed34d40` 的run.py，SHA-256 `0a004a9c81bc1f12a582b39dd99b50ab3714a4d73d6396d47cf4e9dea34046ba`。过程中只扩展模型缓存签名，原程序结束时才计算源码hash，导致原manifest记录的是修改后磁盘文件；已保留原manifest并单独写溯源更正，后续代码改为入口即快照源码hash，长作业另留代码副本。该改动未改变预测逻辑或阈值。
 
@@ -61,4 +62,12 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python solutions/semantic_neural/run.py
   --work-dir /workspace/patientphex-runs/day1-20261023/semantic-neural/dev-minilm
 ```
 
-验后未改阈值，使用train80生成B备用。待SapBERT验证完成，再根据相同口径比较并推荐本路线最多一个候选；本代理不操作网站。
+额外机制诊断：859实体中769项表面词在训练折/本体词表内，90项来自新表面词的dense检索；所有候选均经过语义span判别器。新词示例中 `thinning of the entire retina`、`color vision defects`、`abnormal movement`、`lack of coordination` 命中金标，但 `visual acuity`、`retinal arterioles`、`basal ganglia` 为误报。说明语义链接能补充表面变体，也会将正常解剖结构误映射为异常概念；不能仅凭余弦高就判定存在表型。诊断未用于修改本轮模型。
+
+### MiniLM全量B备用
+
+验后未改阈值，使用train80重新拟合：80文献、5,828正跨度、23,932负跨度、42,849语义词表项。命令将上述train/input/output/work-dir分别改为train80、B.input、B-minilm/predictions.jsonl和B-minilm；实际执行代码副本为B-minilm/run.snapshot.py，SHA `b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a`。
+
+总耗时247.556秒；预测100文献244患者、5,394实体、1,820关系项。`validate_predictions.py`检查零错误/警告。文件703,874字节，SHA `810b45a984bc6e4ffec611c62f64c9a111e268bb1af1cec579107a5c1738f3c8`，位于外部根目录`B-minilm/predictions.jsonl`；manifest与验证报告在 [evidence/B-minilm](../../solutions/semantic_neural/evidence/B-minilm)。依赖真实版本在 [environment-cpu.json](../../solutions/semantic_neural/evidence/environment-cpu.json)。
+
+待SapBERT验证完成，再根据相同口径比较并推荐本路线最多一个候选；本代理不操作网站。
