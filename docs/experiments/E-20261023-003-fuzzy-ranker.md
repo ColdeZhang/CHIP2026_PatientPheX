@@ -93,7 +93,7 @@ v2 在每篇训练文献生成候选时，排除只由该文献提供的别名�
 
 `dev-v1`、`dev-v2`、`full-v1` 全量预测、模型和日志在外部目录保留；Git 仅保存源码、小型摘要、哈希及复现命令。每次改动使用新运行目录，不能覆盖交付文件。首次 v1 命令来自 `3eff30a`，源码 SHA-256 `5f3614f3859a74d98dc989a963ed32f34c131f31ae30e40073006bb2b69d3c5f`；v2 实际运行源码 SHA-256 `7cfa3cb838f003eb5c679fa5947b9947c812aa95f005e396ee7a41a7531906fa`。主线程维护台账和 HANDOFF；已上报“训练特征排除自身支持，仍不能解决候选自包含”的新坑。
 
-v2 源码快照在 `f1472b8`。当前统一 CLI 用 `--training-candidate-policy full-index`（默认）复现 v1，用 `leave-one-document-out` 复现 v2，策略纳入缓存指纹。当前源码 SHA-256 `72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c`；`full-v1-repro` 重新拟合得到的 B 与原交付逐字节一致，耗时 31.27 秒、最大 RSS 726,504 KiB；`dev-v2-repro` 也与原 dev-v2 逐字节一致。两种显式模式的重建验证均通过，没有改变原产物。共享基础 `90d52d0` 已 cherry-pick，11 个评测边界测试通过。
+v2 源码快照在 `f1472b8`。当前统一 CLI 用 `--training-candidate-policy full-index`（默认）复现 v1，用 `leave-one-document-out` 复现 v2，策略纳入缓存指纹。当前源码 SHA-256 `72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c`；`full-v1-repro` 重新拟合得到的 B 与原交付逐字节一致，耗时 31.27 秒、最大 RSS 726,504 KiB；`dev-v2-repro` 也与原 dev-v2 逐字节一致。两种显式模式的重建验证均通过，没有改变原产物。共享基础 `90d52d0` 已 cherry-pick，最初 11 个评测边界测试通过；其后公共修正 `92fa1f8` 也已 cherry-pick，当前 14 个测试全部通过。
 
 例如，在新目录重建选定 B（先安装 requirements 中的固定版本）：
 
