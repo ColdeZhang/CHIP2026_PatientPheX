@@ -1,0 +1,79 @@
+{
+  "status": "authorized_fixed_slot_formal_v2_ready_not_started",
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/run-plan.json",
+    "bytes": 11717,
+    "sha256": "eba5415f7b8e6acc6f0d8069a51515dbdf841addce63266b75e1a2aecaf86116"
+  },
+  "remote_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/remote-plan.json",
+    "bytes": 492,
+    "sha256": "e79fed4bd480848f4a467df1897113b7335bec6826c3689b78483f9028ae8ca4"
+  },
+  "trainer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/train_slots.py",
+    "bytes": 8298,
+    "sha256": "0a1562e9ce030575ce342c041435fea98b252ace4fd35330d7864fa60fa8e9e0"
+  },
+  "infer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/infer_slots.py",
+    "bytes": 5703,
+    "sha256": "d54808e49b41ef87b49f327ed491cadca38e51fe56af9b1acbb7bed7ffeeef19"
+  },
+  "probe": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-probe-v1/complete.json",
+    "bytes": 499,
+    "sha256": "7880c0fe890dc8fd7a50872da27971b5f1f725ff5e6c2fc9f262435e0a8231b9"
+  },
+  "protocol": {
+    "initialization": "Fresh same public9B, same r16/alpha32/.05/seed20261023, no SFT32/probe adapter inheritance",
+    "scope": "Native full vs tensor selected slot logit numerical check on actual shortest>=2slots row880; longest6777 actual CE/backward/nonzeroLRstep. No quality.",
+    "position": "Read direct question delimiter token; no -1, no native labels, no answer token in input.",
+    "loss": "Existing frozen LM head columns15/16 only; FP32 unweighted two-class CE per-row mean. Actual training original microbatch1/accum8, last group4 divided by4.",
+    "threshold": ".5 fixed after two-way softmax, no temperature/cut search.",
+    "same_pairs": "same124/train32 F2+F3 strict candidate source and 2506 raw-HPO targets; F1 unchanged80/587CID/1557pairs",
+    "formal_if_probe_passes": {
+      "epochs": 2,
+      "updates": 32,
+      "warmup_steps": 2,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "batch_size": 1,
+      "accumulation": 8,
+      "max_seq_length": 7168,
+      "training_cap": 1800,
+      "training_grace": 30,
+      "inference_cap": 300,
+      "inference_grace": 30,
+      "only_final_epoch2": true,
+      "fresh_again": true,
+      "checkpoint": "Final epoch002 adapter+Adam/scheduler/RNG only; no checkpoint per intermediate epoch, no automatic resume.",
+      "no_original_dev": true
+    },
+    "inference": "Same fixed80 F1 inputs: publicbase via PEFT.disable_adapter and finalepoch2 adapter, fixed.5 each, two arms complete160prefills in same300s+30 stage; no generation/no prediction-history. All probability/raw/fullpred freeze jointly before labels.",
+    "evaluation": "Both new same-template arms unique publicF1v2/format +1557pair TPFPFN/Brier/AUC and oldgreedy FN recovered/TP lost/newFP/removedFP; cached originalSFT32 .6609420027 reference unmodified, no fold48 mix, no originaldev/outergold/cut search."
+  },
+  "cost": {
+    "actual_longest_step_seconds": 13.12313214596361,
+    "actual_peak_allocated": 25142181888,
+    "token_linear_training_seconds": 1642.422824962452,
+    "conservative_fixed_allowance_seconds": 90,
+    "combined_projection_seconds": 1732.422824962452,
+    "not_actual_training": true,
+    "twoarm_forward_estimate": 111.73676538248854,
+    "inference_budget": 300
+  },
+  "disk": {
+    "last_actual_free_bytes": 890003456,
+    "LoRA_parameters": 43278336,
+    "adapter_FP32_bytes": 173113344,
+    "Adam_two_FP32_moments_bytes": 346226688,
+    "estimated_final_checkpoint_bytes": 520000000,
+    "preflight_minimum_free_bytes": 680000000,
+    "save": "Only finalepoch002 or budget-stop partial, never both; atomic rename, no duplicate copy/epoch1 checkpoint. At group boundary1740soft or nextgroup token-cost+20+60save margin before1800, save adapter/Adam/scheduler/RNG plus exact next epoch/group; partial blocks inference, no automatic resume."
+  },
+  "soft_save_margin_seconds": 60,
+  "soft_elapsed_ceiling": 1740,
+  "former_v1_never_launched": true
+}
