@@ -3,6 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
+- **原Bioformer旧池+Sap（新CPU准备）**：独立保留244794旧行，仅两真实Sap列、无top3新键/六字段；missing全NIL，9.919秒CPU逐对象确认，估4fit86.314秒/硬限120；预定九点30秒。原向量复用不GPU，等待前一终审与新入口冻结，[协议](experiments/E-20261023-PUBLIC-SAP-OLD-POOL.md)。
 - **公开Sap两特征控制（负结案，终审待回收）**：799缺词同源编码5.340秒、公开cosine4.164秒；747178池行仅加两列，4fit217.670秒<原240（未使用额外预算），36pred先冻后九点3.883秒。best .3两实体F1均值 **.778190379<旧 .780192596（−.002002217）**，3/4fold负；虽较已负top3固定 .3改善+.002373970，仍未超原best，关闭不dev/扩特征/扫cut。[固定协议与完整结果](experiments/E-20261023-PUBLIC-SAP-FEATURE.md)。
 - **top3-ID四fold控制（固定与校准均负、均已独审结案）**：按无新quality资源修订3.1倍后保留完整机械池，四fit145.395秒<240，8完整pred共同freeze后唯一v2；pooled **.725655389→.723467295（−.002188093）**、4fold全负，mention−5TP/+69FP、doc+3TP/+18FP，关系完全不变、0错警。终点独审PASS8368ffa1；另获准旧九点校准2.872秒，新best cut.4目标.777516517仍低于旧.780192596（Δ−.002676080）、各fold全负，校准独审PASS cae2eabf，关闭完整配方，不改写固定.3负结论，不新fit/原dev。[完整记录](experiments/E-20261023-PUBLIC-PHENO-TOP3-ID.md)、[结果/恢复](evidence/round2/public-phenotagger-top3-control-results.json)。
 - **Sap匹配信号资源核查（CPU完成，无新实验）**：16套完整缓存存在；公共HPO41,099词面向量可复用，新增ID的26,279词面中仅727缺已核缓存，全池799缺失。旧nearest similarity/训练best_id不可冒充任意新ID真实cos；需公共alias-all-ID映射、独立新字段及明确缺失语义。未新编码/fit/GPU/dev，[事实与估计](evidence/round2/public-phenotagger-top3-sap-feasibility.json)。
