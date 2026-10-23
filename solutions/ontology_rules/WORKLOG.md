@@ -3,7 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
-- **当前新控制（预算修订后待正式CPU运行）**：主线程授权全量旧跨度内top3-ID并集+两模型独立真实p/rank/observed六特征，保旧键/旧字段；实际四折训练行数约3.050–3.056倍，均超过预设≤3倍，虽估计218.60秒仍≤240秒，先停在训练前并保存2efd764；主线程随后在无新quality时明确把资源行数门修订为3.1倍，原池不变，240秒硬限不变。六新观察特征涉及新ID的同span碰撞0，不代表质量。两臂保留旧cut.3全部nonentities，四完整pred先冻后唯一完整v2；不使用298诊断查询选池，不NN/dev/GPU。[执行边界](experiments/E-20261023-PUBLIC-PHENO-TOP3-ID.md)。
+- **top3-ID四fold控制（负，待终审）**：按无新quality资源修订3.1倍后保留完整机械池，四fit145.395秒<240，8完整pred共同freeze后唯一v2；pooled **.725655389→.723467295（−.002188093）**、4fold全负，mention−5TP/+69FP、doc+3TP/+18FP，关系完全不变、0错警。池独审PASS fe12dd82；不扫参/原dev。[完整记录](experiments/E-20261023-PUBLIC-PHENO-TOP3-ID.md)、[结果/恢复](evidence/round2/public-phenotagger-top3-control-results.json)。
 - **当前 CPU 研究（完成，已独审）**：298个同跨度错ID漏检中，两公开模型raw top1/top3并集供给71/155，rank2/3净补84（四折25/25/19/15）；22无raw（19unigram），旧head固定映射后25个literal目标不可达；现成字典多ID增量0。程序15.397秒/外层19.059秒，无NN/权重/原dev/新预测。建议另项先核全部旧跨度的统一top3 ID池与真实per-ID概率/rank特征，当前HGB仅来源/混合score不足；诊断独审PASS95f38f35，统一池后续另记，[结果与边界](experiments/P-20261023-PUBLIC-PHENO-TOP3.md)。
 - **Task1 FN诊断（完成，已独审）**：Bioformer 四折既有 `.3` 的 1,335 个 mention FN 分为池缺682（同跨度错原始ID298/仅重叠269/无重叠115）、全低分544、greedy冲突109；648个doc FN为概念缺263/全低分319/greedy66。程序0.546秒，v2 all/text逐折计数与原冻结曲线完全相等，独立复放PASS6a48c844；不新fit/阈值/预测/原dev/GPU。候选供给与选择均需改善，不据FN降cut或做gold补丁，[结果与边界](experiments/P-20261023-BIOFORMER-TASK1-FN.md)。
 - **当前原 dev**：名义最高 **.646360012**（Pheno48 + HGB/Sap64固定过滤），比稳定基线OOF HGB v1 **.646244333**仅+.000115679，不视为实质提升；默认仍保留稳定base。首日 .612597。v1独立重训字节复现；auto的10%随机候选验证不是文献隔离，但无dev泄漏。
