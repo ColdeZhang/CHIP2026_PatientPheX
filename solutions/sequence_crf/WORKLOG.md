@@ -44,6 +44,8 @@
 18. **独立Bioformer四fold控制完成、待独审**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，root暂不迁移、等待另一固定池控制；独审已请求。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
 
 
+19. **统一OOF cut校准预先冻结**：.4最初为事前预设，未找到训练侧优化记录。固定Bioformer四fold完整OOF概率，九点.1… .9、同greedy解码，只按pooled(menF1+docF1)/2选一个全局cut；并列距.4近再较高，.4完整pred须byteexact。120秒CPU，无新fit/GPU/原dev，选择后的train64分为校准拟合分而非新盲验证。[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/；当前未计算。
+
 ## 已完成的近期结论
 
 - 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。
