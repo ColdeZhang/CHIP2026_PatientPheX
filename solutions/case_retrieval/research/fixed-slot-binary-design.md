@@ -31,3 +31,9 @@
 原 SFT32 实测 1149.46 秒；按真实 token 比例粗估新两轮 1210.83 秒、F1 单 forward 总约 55.87 秒，均不是实测承诺。root 已授权一次 A800 GPU2 `180s + TERM15` probe：实际短行 880 token/3 槽比较原生 full logits 与选位两列；最长 6777/112 槽做有限 loss、三家族 LoRA 梯度及非零 lr 参数变更，验证 LM head 冻结，随后丢弃状态。若实测成本/显存支持，再另一次 fresh 固定训练 `1800s + TERM30`；推断独立 `≤300s + TERM30`。磁盘实查约 890 MB，拟仅保存最终完整 adapter+Adam/scheduler/RNG（约 520 MB），不保存中间大检查点或自动续跑。
 
 源码、全部 CPU 统计和授权 probe 计划见 [小证据](../evidence/round2/fixed-slot-binary-plan.json)。原 CPU 两次工程失败（缺 helper、PEFT config 应传目录）与紧凑比较均在外存独立目录保留，没有 GPU 或质量运行。
+
+## 预写单次 CPU 集合解码对照
+
+固定 .5 主终点结束后，仅对同一 adapter 的概率按患者计算独立 Bernoulli 期望 F1，选择包含空集的 top-k；精确同分选更小 k，概率同分保持原 CID 顺序。实际 1557 CID×patient 对与 literal-v2 关系单元一一对应，compound 扩展/重复冲突均为 0；3 个原文字串原样保留。源码复用研究的 36 组/1059 子集合成契约，新增原评测函数的 compound/mixed-text 合成装配检查通过。整次 CPU ≤30 秒，无 cut/温度扫描；完整预测先冻结再唯一评测。保留标准预写为 Δ(micF1+macF1)>0 且 ΔmacF1≥0，否则关闭。独立性和校准只是模型假设，不保证全量缺失真值或联合评分最优。[计划与来源](../evidence/round2/fixed-slot-expected-f1-plan.json)。
+
+后续资源只读核查：A800 最终约 520 MB 状态保存后不够第二套检查点；A100 GPU2 在 22:50:57Z 当时为空且盘余 66.9 GB，已有持久基座 15 文件大小匹配。只检查 CPU 包导入/文件大小，没有重哈希权重或初始化 CUDA；torch2.6 与本轮2.7.1不同，如将来获准迁移须重新做实际数值接口检查。
