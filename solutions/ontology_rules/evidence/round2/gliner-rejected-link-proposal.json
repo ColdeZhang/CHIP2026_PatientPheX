@@ -1,0 +1,115 @@
+{
+  "prepared_at_utc": "2026-10-23T17:52:57.198628+00:00",
+  "run_id": "gliner-outer0-rejected-sap-top5-qwen35-zero-shot",
+  "stage": "CPU preparation complete; no LLM inference requested by this script, GPU budget awaits root schedule.",
+  "hypothesis": "Among already detected, nonnegated, nonoverlapping GLiNER spans rejected by fixed surface-only Sap thresholds, short contextual selection among five distinct HPO concepts can recover correct additional entities at acceptable precision.",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/augmented.jsonl",
+    "sha256": "431bbc6e8ce8ae673499d2bbb78c8f0db0569c8c68f84e26fe73dc5a4907d0b5",
+    "reported_score": 0.721504,
+    "preserve": "All original CRF+Sap+26 accepted GLiNER entities and associations remain unchanged."
+  },
+  "input_only_selection": {
+    "all": 1062,
+    "sap_already_passes": 752,
+    "pending": 176,
+    "overlap_frozen_base": 132,
+    "negated": 2
+  },
+  "documents": 16,
+  "wording_counts": {
+    "raw_unique_surface": 148,
+    "sap_probability_reject": 43,
+    "sap_similarity_reject": 169,
+    "both": 36,
+    "overlapping_new_candidate_pairs": 3
+  },
+  "retrieval": {
+    "pure_Sap_top_k_distinct_atomic_HPO": 5,
+    "bank_rows": 42236,
+    "compound_or_nonatomic_bank_rows_excluded": 82,
+    "train_documents": 48,
+    "reconstruction": "No fitting and no new vectors; actual original per-document GLiNER Sap vectors and original folded bank read only.",
+    "cache_cpu_seconds": 4.006732809823006,
+    "max_cosine_difference_vs_existing_GPU": 8.940696716308594e-07,
+    "tie": "stable original bank index ascending",
+    "query_norm": "original semantic source lower+whitespace",
+    "no_exact_surface_override": true
+  },
+  "prompt_policy": {
+    "one_original_span_per_request": true,
+    "context_chars_each_side": 240,
+    "definition_max_chars": 480,
+    "missing_definitions": 89,
+    "truncated_definition_occurrences": 34,
+    "candidate_definition_occurrences": 880,
+    "choices": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "ABSTAIN"
+    ],
+    "NO_NIL": "ABSTAIN covers nonphenotype, negated/normal, uncertainty or no equivalent top5 candidate; it adds nothing and does not prove HPO lacks a concept. No new -1 entity in this fixed control. Existing NIL preserved.",
+    "no_patient_assignment_by_LLM": true,
+    "no_disease_inference": true,
+    "no_free_HPO_or_multiple_choice_output": true
+  },
+  "model": {
+    "name": "Qwen/Qwen3.5-9B",
+    "hf_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "modelscope_revision": "aa2aaf6060dd45e8ca24da2d37ffb0172eb985d6",
+    "source_manifest_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+    "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "pretrained_only": true
+  },
+  "proposed_inference": {
+    "enable_thinking": false,
+    "do_sample": false,
+    "batch_size": 1,
+    "max_input_tokens": 2048,
+    "max_new_tokens": 64,
+    "input_truncation": "forbidden; actual max922",
+    "format": "strict entire JSON object with only choice key and one of six codes; invalid/truncated response recorded as failure and no addition; no resampling or answer repair"
+  },
+  "actual_token_budget": {
+    "requests": 176,
+    "total_input_tokens": 110031,
+    "min": 465,
+    "median": 610,
+    "p95": 748,
+    "max": 922,
+    "transformers": "5.20.2"
+  },
+  "proposed_cost": {
+    "new_training_steps": 0,
+    "new_model_download_bytes": 0,
+    "max_generated_tokens": 11264,
+    "estimated_gpu_minutes": "2–5 plus loading; estimate only, actual per-request timing must be measured",
+    "gpu_started": false
+  },
+  "planned_output": "For valid C1..C5 add the exact original span with mapped HPO; resolve overlaps among accepted spans by original GLiNER score desc,length desc,offset asc; preserve entire base and union only original rules assignments from new accepted evidence. One fixed control, not another threshold/order sweep.",
+  "differences_vs_old8B_linking": [
+    "Input from supervised train48 GLiNER, not LLM quote extraction with many candidate-span false positives.",
+    "Pure Sap top5 distinct atomic HPO; old linker mixed char top8 and Sap top8, exact-alias bypass; no new exact bypass.",
+    "One span/context with ontology name and bounded definition; old prompt batched up to18 items with name/alias and shorter context.",
+    "C1..C5 or ABSTAIN strict choice; old emitted raw HPO/semicolon multiple IDs and -1, with actual invalid/out-of-list responses.",
+    "Qwen3.5-9B instead of Qwen3-8B; multiple design differences mean no isolated causal claim about model size."
+  ],
+  "success_criterion": "Positive fixed outerfold0 v2 Score delta versus full frozen .721504 baseline with valid coordinates/HPO and explicit incremental entity/relation TP-FP, after freezing prediction; otherwise close this policy without threshold scan. No originaldev evaluation in this proposal.",
+  "gold_used_in_selection_or_resources": false,
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0",
+  "source_sha256": "aaa839cb26d5a91f1b334f11976774b5955504ebf19ffb3e272f4fbf67f6b0a5",
+  "artifacts": {
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/selected/selection.json": "c609e90e33a5347d5edde8dae5c77ddfef3bc34870b92adb3b9103136aa5ce56",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/selected/requests.jsonl": "1b53e2d59a8c093d507672610164bc2fe7d7d79f6e261bf006e9371f5c0709c1",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/ranking/top5.json": "915f4b03cbfae28f6c7170531907992f128f803ebccc3980283267f5f6d2ab11",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/ranking/ranking.json": "5cfd3aa48314758bb72ab6824fd546ad22bc6edec84cd2e6590dd72f0eb3632c",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompts.jsonl": "f1fb8a099642eedb0e13976cc819e8402bfebc469727a719ae345b34747cf16d",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompt-manifest.json": "89fa6dd5cbb351babc54edc2b6ee96815a30e0b23b6430a26de393eb072192d9",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/token-audit.json": "22ba3b5c90c55a05a2b2dbfbf631a0e022a87acccd83be10635b71ea03232e88",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/ranking-job.json": "be6c27d2b7c012be472f5a1c0c2f6c1b348b9d0e1b5da8cc718c2259c3398dbe",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/token-audit-job.json": "6cde40a76889dd2cd0bcb291c0464160586ba574e48eee2918486fa22a523c02"
+  }
+}
