@@ -169,6 +169,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：单独检查推理跨度的词边界；保留训练标注确有词内跨度的例外，不一概修改gold。仅按train48冻结的过滤控制让三种神经NER在内fold0改善约 .004–.0075 Score，仍未超过CRF；已交方案负责人，尚未宣称跨折稳定或全局替换。证据见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)，完整审查在仓库外 `validation/ner-audit/`。
 
+## H27：短代词的子串定位会生成合法但错误的患者指代
+
+全文共指首轮训练输入pilot的15窗都能解析JSON，但 `he` 的普通子串出现次序会数到 `the`、`mother`、`phenotype` 内部。输出原文切片存在，仍不代表正确患者指代；还出现把表型短语当患者称谓、把已指定历史病例混为当前病例的身份错误。因此没有扩大到验证折。
+
+**避免方法**：对短指代检查完整词边界；用唯一匹配的原文上下文定位，拒绝无法唯一定位或患者身份不清的项。新增共指仅在已验证坐标起作用，不能把 `they` 等新词面自动广播到全文。先做训练input-only身份检查，再冻结验证协议；不依据gold修指代。修正原型同3篇复验保留4处新增称谓，逐项身份检查通过；另35项被严格定位规则拒绝，召回很保守，尚未证明验证集得分收益。首轮响应SHA `19f5cd1ad1670017e79b11642124dc457aed8a04b3afdef317a609260727156a`；源码快照和取舍见[CRF方案实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
