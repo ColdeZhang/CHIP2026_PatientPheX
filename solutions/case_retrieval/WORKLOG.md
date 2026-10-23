@@ -17,7 +17,8 @@
 - **后继只读结论**：旧48完整Adam/RNG仍在但52步日程已lr0，追加必须新协议；两目标候选与已试负控制分开。12份9B实际manifest均thinking=false，模型卡支持接口但adapter能力未证；若后续测试须先验think闭合再strict final。无新训练；[短判断](research/qwen35-successor-readonly-review.md)。
 - **thinking诊断已关闭**：同fixed12/epoch002/greedy/1600只开thinking，首条72.048秒/1600真截断/未闭think、无合法final；root授权据此早停，仅1/12，无fit/不解析targets（launcher仅SHA检查）、不重试。独审67b49e51通过，20:51:01Z A800 GPU2空已释放、watcher30920结束；[结果](evidence/round2/qwen35-thinking12-result.json)。
 - **SFT融合库存只读**：原四事实用base非SFT，不能外推否定SFT+LR。旧48/64均非inner OOF；6语义方向可复用、2已装配、0合格32SFT。完整3模型粗估约62min训练，最小一meta-fold约21min+推断，但均非实测/授权；[边界与来源](evidence/round2/qwen35-sft-fusion-reuse-review.json)。
-- **单meta-fold SFT+LR控制已完成**：新F1-only HGB同LR+上下文 .673525489→加SFT4事实 .683809711（+.010284）；micro+.051593/macro−.010456，仍低rules .711354/单SFT48 .695444。freshSFT32仅F2+F3，2ep32updates/1149.460s；80F1响应282.502s/587CID全有效，双pred先freeze后唯一评分。不迁移原dev、不自动补两折；独立终审待回收。[结果](evidence/round2/sft-meta1-result.json)。A800 GPU2 21:28:40.539Z空已释放，watchers89789/6422已结束，无GPU后继。
+- **单meta-fold SFT+LR控制已完成**：新F1-only HGB同LR+上下文 .673525489→加SFT4事实 .683809711（+.010284）；micro+.051593/macro−.010456，仍低rules .711354/单SFT48 .695444。freshSFT32仅F2+F3，2ep32updates/1149.460s；80F1响应282.502s/587CID全有效，双pred先freeze后唯一评分。不迁移原dev、不自动补两折；独立终审0adcce70通过（actual谱系35a792d5/概率与指标重放通过）。[结果](evidence/round2/sft-meta1-result.json)。A800 GPU2 21:28:40.539Z空已释放，watchers89789/6422已结束，无GPU后继。
+- **最新训练侧误差诊断**：严格SFT32→F1 16篇，520canonical真关联仅366在候选；209FN=154缺候选+31CID空+24非空漏患者。55候选内FN仅3在top4丢光目标marker，31所有±500窗均无但全有global；这些是结构代理，不证明因果。关系改进不能修154上游缺口；下一建议优先候选召回，或有界teacher-forced决策排序可辨别检查，当前只读无GPU。[诊断](research/sft-training-error-diagnostic.md)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果

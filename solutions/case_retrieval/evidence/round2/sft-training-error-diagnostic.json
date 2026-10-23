@@ -1,0 +1,186 @@
+{
+  "status": "training_F1_OOF_structural_error_diagnostic_only",
+  "counts": {
+    "documents": 16,
+    "patients": 39,
+    "prompts": 80,
+    "candidate_CIDs": 587,
+    "candidate_patient_concept_keys": 1557,
+    "raw_gold_relations": 520,
+    "canonical_gold_relations": 520,
+    "raw_covered_positive": 365,
+    "canonical_covered_positive": 366,
+    "candidate_missing_positive": 154,
+    "covered_recall_ceiling": 0.7038461538461539,
+    "prediction_relations": 383,
+    "tp": 311,
+    "fp": 72,
+    "fn": 209,
+    "missing_candidates_part_of_FN": 154,
+    "within_candidates_FN": 55,
+    "within_FN_empty_CID": 31,
+    "within_FN_nonempty_other_patients": 24,
+    "within_FN_nonempty_all_selected_patients_are_gold": 7,
+    "FP_concept_belongs_to_another_supplied_gold_patient": 28,
+    "FP_concept_belongs_to_no_supplied_gold_patient": 44,
+    "missing_with_gold_entity": 153,
+    "missing_with_exact_candidate_span": 7,
+    "missing_with_overlapping_candidate_span": 45
+  },
+  "visibility": {
+    "covered_positive": {
+      "pairs": 366,
+      "target_marker_selected_local": 221,
+      "target_marker_any_local": 224,
+      "target_marker_global": 366,
+      "other_marker_selected_local": 114,
+      "lost_all_target_at_top4": 3,
+      "no_target_marker_any_500char_window": 142,
+      "empty_CID_answer": 31,
+      "nonempty_CID_without_target": 24,
+      "multiple_supplied_patients": 278
+    },
+    "within_FN": {
+      "pairs": 55,
+      "target_marker_selected_local": 21,
+      "target_marker_any_local": 24,
+      "target_marker_global": 55,
+      "other_marker_selected_local": 18,
+      "lost_all_target_at_top4": 3,
+      "no_target_marker_any_500char_window": 31,
+      "empty_CID_answer": 31,
+      "nonempty_CID_without_target": 24,
+      "multiple_supplied_patients": 44
+    },
+    "empty_within_FN": {
+      "pairs": 31,
+      "target_marker_selected_local": 15,
+      "target_marker_any_local": 15,
+      "target_marker_global": 31,
+      "other_marker_selected_local": 8,
+      "lost_all_target_at_top4": 0,
+      "no_target_marker_any_500char_window": 16,
+      "empty_CID_answer": 31,
+      "nonempty_CID_without_target": 0,
+      "multiple_supplied_patients": 20
+    },
+    "other_patient_within_FN": {
+      "pairs": 24,
+      "target_marker_selected_local": 6,
+      "target_marker_any_local": 9,
+      "target_marker_global": 24,
+      "other_marker_selected_local": 10,
+      "lost_all_target_at_top4": 3,
+      "no_target_marker_any_500char_window": 15,
+      "empty_CID_answer": 0,
+      "nonempty_CID_without_target": 24,
+      "multiple_supplied_patients": 24
+    },
+    "TP": {
+      "pairs": 311,
+      "target_marker_selected_local": 200,
+      "target_marker_any_local": 200,
+      "target_marker_global": 311,
+      "other_marker_selected_local": 96,
+      "lost_all_target_at_top4": 0,
+      "no_target_marker_any_500char_window": 111,
+      "empty_CID_answer": 0,
+      "nonempty_CID_without_target": 0,
+      "multiple_supplied_patients": 234
+    },
+    "FP": {
+      "pairs": 72,
+      "target_marker_selected_local": 31,
+      "target_marker_any_local": 32,
+      "target_marker_global": 72,
+      "other_marker_selected_local": 27,
+      "lost_all_target_at_top4": 1,
+      "no_target_marker_any_500char_window": 40,
+      "empty_CID_answer": 0,
+      "nonempty_CID_without_target": 0,
+      "multiple_supplied_patients": 59
+    }
+  },
+  "prior_CE48_visibility": {
+    "pairs": 4127,
+    "positive_pairs": 969,
+    "positive_no_target_any_original_local_context": 579,
+    "positive_lost_all_target_at_top3": 0,
+    "positive_lost_all_target_at_token_truncation": 0
+  },
+  "inference_input_truncated_rows": 0,
+  "inference_output_hit_limit_rows": 0,
+  "labels": "Canonical HPO only in this postrun training diagnosis. Both frozen meta trees trained original raw365; predictions/models/metrics unchanged.",
+  "limitations": [
+    "F1 designated meta training16, strictly excluded by SFT32; not a new outer validation or Score.",
+    "Empty-CID false negatives describe output behavior, not proof of calibrated uncertainty or a correct reason to reject.",
+    "Target marker visibility is not annotated relation evidence/coreference correctness. Categories overlap; do not add visibility counts to disjoint FN counts.",
+    "Top4 audit preserves ±500 original passages; it cannot establish distant missing evidence or whether the retained clue suffices.",
+    "No logprobs saved; no confidence threshold inferred from discrete responses.",
+    "Candidate missing combines span detection/linking; exact/overlap is a structural locator, not a supervised repair result."
+  ],
+  "references": {
+    "source": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/sft_meta1/diagnose_training_errors.py",
+      "bytes": 10285,
+      "sha256": "d167629cde0e63fc8e8051aea776248678a9002901fd7a1e9c3cfa5bd1c4024c"
+    },
+    "F1_gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "F1_candidates": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+      "bytes": 25270,
+      "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+    },
+    "raw_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta-responses-freeze.json",
+      "bytes": 601,
+      "sha256": "b563820ac9af78d7c9397360343c9f52cf52fbf095995a6a899aef4ac73a5fc9"
+    },
+    "SFT32_data": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "prompt_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/prepare_pair_rag.py",
+      "bytes": 6846,
+      "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+    },
+    "base_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/run.py",
+      "bytes": 21153,
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "oldCE_visibility": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/next-direction-review/training-anchor-truncation-audit.json",
+      "bytes": 134845,
+      "sha256": "74556121a72e8a4b084ce9ee91c1cae11600e6151e6e100020a825fa7e0428db"
+    }
+  },
+  "outer_or_originaldev_gold_read": false,
+  "no_new_GPU_or_inference": true
+}
