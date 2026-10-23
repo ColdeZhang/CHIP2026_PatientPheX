@@ -1,0 +1,64 @@
+{
+  "status": "formal_training_running_no_evaluation_score",
+  "training_plan": {
+    "status": "formal_training_running",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u train_lora.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b --train data/train.jsonl --excluded-input data/fold0.input.jsonl --output-dir formal2ep --max-seq-length 12288 --batch-size 1 --gradient-accumulation 8 --epochs 2 --learning-rate 0.0001 --rank 16 --alpha 32 --dropout 0.05 --seed 20261023",
+    "cwd": "case-retrieval/round2-patient-set",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/peft-runtime",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "trainer_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+    "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "max_seq_length": 12288,
+    "training_initialization": "Original base, new LoRA; never smoke checkpoint or fold0 extraction adapter",
+    "epoch_selection": "epoch002 frozen before validation; no scan",
+    "smoke_command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u train_lora.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b --train data/train.jsonl --excluded-input data/fold0.input.jsonl --output-dir smoke-longest --max-seq-length 12288 --batch-size 1 --gradient-accumulation 8 --epochs 2 --learning-rate 0.0001 --rank 16 --alpha 32 --dropout 0.05 --seed 20261023 --smoke",
+    "source_commit": "5d48d2fbafddd85d4c5f86a3f190a1ab41c5aa16",
+    "shared_rules_merge_commit": "b61061df5aac60d32b5c53041b5e366497c7b112",
+    "data_sha256": "416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d",
+    "prompts_sha256": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8",
+    "token_audit_sha256": "485ea468acb4c84c44c63ac41c9018f8ff417f3edfdda2effe1c3130e167e3c7",
+    "patient_set_source_sha256": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+    "max_new_tokens": 1792,
+    "inference_max_input_tokens": 12288,
+    "formal_job_id": "proc_db5057e8-780c-49dc-a33f-0492811b0045",
+    "longest_smoke": "passed_26.0817_seconds_peak41566025728_bytes"
+  },
+  "training_job": {
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u train_lora.snapshot.py --model /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b --train data/train.jsonl --excluded-input data/fold0.input.jsonl --output-dir formal2ep --max-seq-length 12288 --batch-size 1 --gradient-accumulation 8 --epochs 2 --learning-rate 0.0001 --rank 16 --alpha 32 --dropout 0.05 --seed 20261023",
+    "id": "proc_db5057e8-780c-49dc-a33f-0492811b0045",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 33095,
+    "port": 34921,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T14:52:40.07665157Z"
+  },
+  "longest_smoke": {
+    "smoke_only": true,
+    "epochs": 1,
+    "global_step": 1,
+    "base_parameters": 8190735360,
+    "trainable_adapter_parameters": 43646976,
+    "elapsed_seconds": 26.081743240356445,
+    "max_gpu_allocated_bytes": 41566025728,
+    "device": "NVIDIA A800 80GB PCIe",
+    "result_type": "training_only_no_evaluation_score"
+  },
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/open-patient-sft-review.json",
+    "sha256": "aa8a756279c2ca422f2d94757b8766c8ff49253d4f156b29e5a9a667c479240b",
+    "result": "PASS data/schema/mask; not training effect"
+  },
+  "artifacts_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1"
+}

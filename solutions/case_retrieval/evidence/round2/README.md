@@ -12,3 +12,7 @@
 - `sft-extraction-format-recovery.json`：6失败窗唯一17子窗恢复，101合并请求全合法；补充跨度诊断与原90配对结果分开。
 - `sft-linked-filtered-control-summary.json`：SFT完整HPO控制及单一冻结Sap筛选的7组正式内部预测、SHA、分项、失败统计和复现命令；过滤后仅小幅内部收益，未达0.8。
 - `sap-filter-control.md` / `sap-filter-classifier-reconstruction.json`：原LR缺失时冻结配方/缓存重建与14,480旧候选全回放，随后只读新跨度评分。
+
+- `patient-set-sft-method.md` / `patient-set-sft-preparation.json`：整患者开放集合方法、合法训练目标、无gold输入、真实token/mask与严格后处理，区别可行性初稿与实际带quote数据。
+- `patient-set-training-start.json`：独立数据审查、最长11709token smoke与A800从原base正式2epoch作业/完整配置；运行证据，不是验证收益。
+- `extraction-fold1-cpu-preparation.json`：一次固定跨折复验的自身train48/88输入/token预算；实际训练作业更新于台账及外存plan/job。
