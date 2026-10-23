@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T14:32:32.819631+00:00",
+  "generated_utc": "2026-10-23T15:14:39.328639+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不将oracle/训练表示诊断当模型成绩。各best仅指已独审原dev候选，后续fold0新试验单列。",
@@ -307,6 +307,270 @@
           "bytes": 2012
         }
       ]
+    },
+    {
+      "id": "open-patient-set-sft-training-data",
+      "report": {
+        "path": "validation/open-patient-sft-review.json",
+        "sha256": "aa8a756279c2ca422f2d94757b8766c8ff49253d4f156b29e5a9a667c479240b",
+        "bytes": 7829
+      },
+      "scope": "实际126行train48开放集合SFT、47输入patient/segment映射、1327目标覆盖、CPU prepare重放与真实tokenizer assistant mask。",
+      "conclusion": "数据/schema/mask通过，11条训练剔除逐项明确；126训练/47推断完整，无截断、无金标输入。",
+      "limitations": [
+        "仅数据与实现口径，不认证新模型训练/分数。",
+        "同概念最近quote非患者证据指针，literal不证明归属/HPO语义；raw HPO不要求quote。",
+        "12288是训练cap，最长推断总长度12335需使用实际40960模型上下文。"
+      ],
+      "source_commit": "5d48d2fbafddd85d4c5f86a3f190a1ab41c5aa16",
+      "support": [
+        {
+          "path": "validation/open-patient-sft-review.md",
+          "sha256": "dd1bbeb82b59edbbfd37eeeda9d5c477faabce0587ebe60c06774b8ee459fb8b",
+          "bytes": 1485
+        },
+        {
+          "path": "validation/open-patient-sft-review/token-mask-review.json",
+          "sha256": "40d981796ea8fb3160f0bb70fef233732c57f087d5593a3ebe6c6e9256dd9158",
+          "bytes": 7818
+        },
+        {
+          "path": "validation/open-patient-sft-review/audit_data.py",
+          "sha256": "faf5db6940e7274a1df6f56734d8dd3c6521cb7a9d4251d64ab5f7d49bd52991",
+          "bytes": 8284
+        },
+        {
+          "path": "validation/open-patient-sft-review/replay_prepare.py",
+          "sha256": "e7aad12bd45e01a7f674bfdec58de8623ed1d438f0159941e4e5ad9738d0337b",
+          "bytes": 2058
+        },
+        {
+          "path": "validation/open-patient-sft-review/audit_actual_token_mask.py",
+          "sha256": "339457aab6ce30490fc6e62867684f24084784744aa1d3f36354c83ebf158edb",
+          "bytes": 6065
+        }
+      ]
+    },
+    {
+      "id": "coreference-fold0-input-rules-controls",
+      "report": {
+        "path": "validation/coreference-fold0-review.json",
+        "sha256": "e60a171ca85fd7ab517ceabe751ecaefe3f5410292b82de1742e4de92c8a06dd",
+        "bytes": 11802
+      },
+      "scope": "独立 CPU/input-only 共指机械与语义检查、冻结三组规则及 no-op 重放、冻结后统一 v2 评分；不含尚未回收的 SFT 短批推断。",
+      "conclusion": "输入保留、定位、患者ID和独立重放通过；三种规则输出均与旧基线逐字节一致，Score 0.711353521870099，0错误0警告，无得分收益。",
+      "limitations": [
+        "上下文唯一性仅针对实际展示请求窗口，不宣称全篇唯一；完整原文边界已独立核对。",
+        "机械grounding不证明主体身份；保留1项未决，不按复核结果删改已冻结实验。",
+        "使用开发内fold0；没有读取原dev标签，没有GPU训练或官方网站操作。",
+        "该不可变报告仅含SFT提示；实际29+29推断/缓存与配对评分现见coreference-sft-actual-reuse-and-controls条目。"
+      ],
+      "source_commit": "64d4b460ad9af1a1f5c02dce9590da24ad2d0bf2",
+      "support": [
+        {
+          "path": "validation/coreference-fold0-review.md",
+          "sha256": "d2bc9faddf5c0b6e4d438884e6f5abe49445cabd86651f9de2c69382ae369f64",
+          "bytes": 1262
+        },
+        {
+          "path": "validation/coreference-fold0-review/protocol.json",
+          "sha256": "b42eca4c24ae67926970c0ea32fa9bb21d88d4efe167127782cd8c6728d6ac68",
+          "bytes": 907
+        },
+        {
+          "path": "validation/coreference-fold0-review/mechanical-review.json",
+          "sha256": "70e395f3f8d8eded7c014815df1cae0bec39eaea1acd334ce3622758d0d35b99",
+          "bytes": 1134
+        },
+        {
+          "path": "validation/coreference-fold0-review/semantic-review.json",
+          "sha256": "f7d8275c163f9f91c8fbdf3c5fe0635a96fe8c557f52f66e984ef43775c74a28",
+          "bytes": 7083
+        },
+        {
+          "path": "validation/coreference-fold0-review/cpu-replay-review.json",
+          "sha256": "58fdf4a1e55c8c25b8af777ea300f151a54b9f5772c92fffbe0db2cea54fe8a0",
+          "bytes": 5584
+        },
+        {
+          "path": "validation/coreference-fold0-review/evaluation-review.json",
+          "sha256": "6abf7f14ffe1950e2652078285495077160d98e47ada84251cb044c8e8b6d63d",
+          "bytes": 6331
+        },
+        {
+          "path": "validation/coreference-fold0-review/audit_input.py",
+          "sha256": "f53e853f1c1dbcb5f89a89cc5081fe3c4d9a3c5b35b0e15dad99bc472b042569",
+          "bytes": 6043
+        },
+        {
+          "path": "validation/coreference-fold0-review/replay_controls.py",
+          "sha256": "32db89a8369d917ec86008cf4d61b9392d0e1cc230b828a1762e1523d10f2d9d",
+          "bytes": 6988
+        },
+        {
+          "path": "validation/coreference-fold0-review/evaluate_frozen.py",
+          "sha256": "a5e3f54c15104509f9e899f48fd3a83b773a5c29a389a154c273e9820652a359",
+          "bytes": 2442
+        },
+        {
+          "path": "validation/coreference-fold0-review/commands.json",
+          "sha256": "e243e200e5738e4858fc5a09ec0739d71876a29dfb7bd517a7a5e0870ca53ab6",
+          "bytes": 10489
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-encoder-data-and-cost",
+      "report": {
+        "path": "validation/phenotagger-encoder-review/review.json",
+        "sha256": "04c5b68fcf079b5a4246f9168d056fa4a2320e6252140f1f0d8f2d3f5cab14d2",
+        "bytes": 16978
+      },
+      "scope": "真实19,120类数据、58,559 HPO正pair及train48弱负独立CPU重建；100步与batch256×30步测量的源码/梯度/成本证据。",
+      "conclusion": "数据与来源通过；backbone确有更新。batch256×30测量仅支持约21.66分钟的30epoch训练内核外推，不是最终模型分数。",
+      "limitations": [
+        "训练标注用于弱负避让；17双ID词面是独立单类loss样本，1行33tokens按max32截断。",
+        "公开方法的当前HPO/PyTorch改写，不是v1.2逐字节复现。",
+        "在线pre-update accuracy/loss不代表最终固定模型或heldout效果；测量不保存checkpoint。",
+        "成本不含初始化/tokenization/hash/保存/推理，batch改变也改变每epoch更新次数。"
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-encoder-review/review.md",
+          "sha256": "e28f239e71a073d24f4a6ce1527a011acd84b5adbfbd492cd6fe9c22b3634344",
+          "bytes": 3469
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/audit_data.py",
+          "sha256": "fc466c1e9ca2a5e82c35ad3316b6de51fd686c96e0e5dbe708754acef643f6c1",
+          "bytes": 9013
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/data-audit.json",
+          "sha256": "1b8f4ae7a8fbb60308442fb6f80fbf9f8746853d3409fd71b48a0e2af9501a68",
+          "bytes": 3020
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/phenotagger_measure.executed.snapshot.py",
+          "sha256": "c3b02f66865a973a256639057135749440da762b544856e0a169a35e7bdaf5d5",
+          "bytes": 8133
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/phenotagger_measure.batch256.executed.snapshot.py",
+          "sha256": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+          "bytes": 8962
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-encoder-actual-resume",
+      "report": {
+        "path": "validation/phenotagger-encoder-review/resume-readiness.json",
+        "sha256": "de74add050ce604d1b6c5d77d10a2932213f1686753d1d4d68ebca6f6acc80f2",
+        "bytes": 12826
+      },
+      "scope": "实际连续4步与2步暂停后恢复至4步的两份完整checkpoint，独立CPU实读/参数映射及manifest核对。",
+      "conclusion": "201模型tensor、199组非零Adam moments(step4)、四RNG和位置统计13项exact；确为完整状态恢复。",
+      "limitations": [
+        "Exact numeric equality is established for this controlled same-runtime4step experiment, not all future interruptions or hardware environments.",
+        "This proves real full-model/optimizer/RNG restoration rather than adapter-only loading, but does not establish30epoch training completion or final predictive quality.",
+        "实际恢复仅覆盖同runtime epoch内step2→4；epoch边界路径只读源，没有GPU故障注入。",
+        "正式30epoch完成/质量不在本报告范围；初始化叙述字符串不判定resume，以actual command与状态为准。"
+      ],
+      "source_commit": "759aa241636a75572f762eaae0f2a2f8266c843c",
+      "support": [
+        {
+          "path": "validation/phenotagger-encoder-review/resume-readiness.md",
+          "sha256": "ece95ba27d97bcd4956bce7eeedac419610d8011a6d10b819f2ede46e1d431ea",
+          "bytes": 1627
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/audit_resume_cpu.py",
+          "sha256": "46b32080db1c5df202a5fde772448d4774f63ed01805f58544075e4588cfe5b1",
+          "bytes": 5376
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/resume-cpu-audit.json",
+          "sha256": "f43d83d2fddd9304e120bead4c96977d2810dfc95ca947063e92a7fb13a321cf",
+          "bytes": 3770
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/resume-metadata-audit.json",
+          "sha256": "9a100dd4d77031aa9e5ac8f61977bb7f5d9135b9888d2d6fc54d397041934552",
+          "bytes": 3928
+        },
+        {
+          "path": "validation/phenotagger-encoder-review/phenotagger_train.executed.snapshot.py",
+          "sha256": "d291dc10264e4380350d381f08ac9e3e3c15e52b8bbc6a996e79b92116864665",
+          "bytes": 10584
+        }
+      ]
+    },
+    {
+      "id": "coreference-sft-actual-reuse-and-controls",
+      "report": {
+        "path": "validation/coreference-sft-review.json",
+        "sha256": "6b03da27ac4fd5063d268ec90badbf0699b60e7f79dc430e82ba4f6b63a88a5b",
+        "bytes": 5308
+      },
+      "scope": "独立实际29缓存+29新响应逐行来源与模型绑定核对；冻结源CPU组装原/新SFT控制，再以冻结公共v2评分。",
+      "conclusion": "来源/复用/独立组装与格式通过；SFT .6743334313→.6868529346，小幅改善但低于固定rules .7113535219，不升级当前最佳或达到0.8。",
+      "limitations": [
+        "同fold0已反复开发，不能作为盲测/跨折泛化证据；无原dev或官方成绩。",
+        "沿用固定fallback，1候选未决已公开保留；无按gold筛新增mentions/响应。",
+        "语义审查17支持+1身份未决不变；literal/唯一context不等于正确主体，代理阅读非人工金标。",
+        "独立复核绑定真实运行manifest与冻结缓存，不重复GPU生成/远端16GB权重hash；8模型小文件有来源/传输/当前侧车一致证据。",
+        "旧manifest未单独记录PEFT，当前侧车0.15.2及既有同路径私有安装证据仅补强，未倒填旧包版本；旧缓存时间不能当新推断性能。"
+      ],
+      "source_commit": "f28ade98ff093aa86a417e220e9f64634ed79f20",
+      "support": [
+        {
+          "path": "validation/coreference-sft-review.md",
+          "sha256": "46f8a56f2e2bd9aaa4b343498803f39d086b0954bda2e2fa0304ffd4f12ecf2a",
+          "bytes": 1209
+        },
+        {
+          "path": "validation/coreference-fold0-review/reuse-preparation-review.json",
+          "sha256": "d89aa11e2cf71702958cb1a7098e967132b33d22a79bc34a01ad92bf5a045aa9",
+          "bytes": 3826
+        },
+        {
+          "path": "validation/coreference-fold0-review/reuse-runtime-sidecar-review.json",
+          "sha256": "671c13664649beba4545e7b76e9c0c14f5488e58371c7e48e212f8c9fdaa5061",
+          "bytes": 2006
+        },
+        {
+          "path": "validation/coreference-fold0-review/reuse-actual-data-independent.json",
+          "sha256": "346d904c89bf091615695ebc430f4b133b61113f54d8cafa49d05b75f8aec897",
+          "bytes": 9206
+        },
+        {
+          "path": "validation/coreference-fold0-review/sft-replay-review.json",
+          "sha256": "a613d66f8aa75e978a375c7ef88129a04bdc62d2af3023a84f54a2e65d5f4ad0",
+          "bytes": 35823
+        },
+        {
+          "path": "validation/coreference-fold0-review/audit_response_reuse.py",
+          "sha256": "e77df38d59bf91bec34f7ba51ed1d4e437b53e313811489afb8a38daf3b80b54",
+          "bytes": 4424
+        },
+        {
+          "path": "validation/coreference-fold0-review/audit_reuse_actual_data.py",
+          "sha256": "d7378aa333ce6bee3da3cb3b802a3a7159c166b5eefe3ca2d7a190fd2f4d758e",
+          "bytes": 10946
+        },
+        {
+          "path": "validation/coreference-fold0-review/replay_sft.py",
+          "sha256": "f66c3e62246cc944ee0b5ea3e3cc5e0ef5dc5ac51c92d4e5f26a74eb8d46fc24",
+          "bytes": 4224
+        },
+        {
+          "path": "validation/coreference-fold0-review/sft-replay/commands.json",
+          "sha256": "072dc6ac9a07a7bc45265e618fd0e321848f4e65e1ee1d2bc5eb521c67a66e6e",
+          "bytes": 11846
+        }
+      ]
     }
   ],
   "pending_review": [
@@ -314,5 +578,8 @@
       "id": "open-patient-set-sft-training-data",
       "status": "新任务已收，等待路线冻结实际数据/schema后审核；不纳入已通过结论。"
     }
-  ]
+  ],
+  "previous_live_index_sha256": "48890016faae90ada8ef1429d30d60b401bd04e1204abffb756ada1f34573430",
+  "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
+  "live_index_note": "早期12项已由主线程14:36不可变归档并恢复核验；本文件为当前聚合索引。新条目不改变旧报告内容。"
 }
