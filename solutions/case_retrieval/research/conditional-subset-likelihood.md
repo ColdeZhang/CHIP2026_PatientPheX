@@ -15,3 +15,13 @@
 root已授权一次≤300秒+TERM30的98分支GPU诊断，不训练、不重新生成、不读原dev。最长分支排第一，它的数值/内存检查属于这98次之内。全部实际分数和受限边际先freeze，再只在本地读取既有F1 raw-HPO标签：预先固定 .5 边际决策、Brier、TP/FP/FN/F1及双类存在时的ROC-AUC，旧贪心作为0/1对照；MAP仅报告与贪心是否不同，不作为另一质量选型。12CID/26pair是机制pilot，不是公共Score、泛化或校准可靠性的结论。超时保留partial，不能改样本后报完整。
 
 [计划及来源](../evidence/round2/conditional-subset-likelihood-plan.json)。全部token IDs、分支和CPU原始证据在仓库外 `qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/`。
+
+实际终点已完整：全部98分支249,997 token，native79.071秒，其中forward loop52.680秒、其余26.391秒包含导入/来源哈希/模型加载等（没有单独分项计时）；不把上传和工程修复等待计为forward成本。最长4161 token第一分支1.214秒；98分支耗时中位.609秒，allocated峰19.162GB/reserved19.755GB。真实长度—耗时逐分支及分桶保留在外部actual-cost-summary，不用37→98粗线性外推。
+
+首GPU attempt在写run_manifest时无法JSON序列化loading中的set，代码尚未到scores/forward；失败原样保留。唯一修复复用旧runner.json_default，独立新目录，原22:11:42绝对截止不变。修复作业22:10:12.510Z开始，22:11:31.682Z完整，22:11:39.721Z fresh核GPU2空释放；原native300秒范围内完成，不算额外预算。
+
+全98分数与受限边际冻结后，预写固定统计得到26pair/6正：旧greedy6TP0FP0FN，新边际.5为4TP2FP2FN（F1 .666667），Brier0→.103977，ROC-AUC1→.908333；MAP与旧greedy不同3/12。这个input-only小样本旧greedy已全部正确，没有被漏掉的正例，因此不能验证补召回假设；只能说明数值计算可行、固定.5在本pilot没有改善。未扫描阈值/温度/长度处理，不据此全盘否定条件分数，也不直接迁移原dev。当前无新GPU任务。
+
+[完整小证据](../evidence/round2/conditional-subset-likelihood-result.json)。
+
+统一增量独审5204f184通过：全部98实际分数、26边际、固定指标独立exact，token契约复用dcc2f1f5，原失败/修复/实际模型和同绝对预算链均核验。配置结案，无自动后续运行。

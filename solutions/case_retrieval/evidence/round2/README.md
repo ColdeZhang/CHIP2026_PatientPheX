@@ -123,3 +123,5 @@
 - [公开固定候选覆盖上界](public-candidate-coverage.json)与[新增关系控制计划](public-new-relations-plan.json)：固定union449新增concept，保持旧实体/关系，只SFT32追加；600+30、实际token通过，无新训练。
 
 - [公开新增概念关系F1结果](public-new-relations-result.json)：旧实体/关系全保留，+72TP121FP，.660942→.669751；训练侧开发小正，原v2与canonical分母单列，未迁移原dev。
+
+- [条件子集似然CPU/计划](conditional-subset-likelihood-plan.json)与[完整98分支机制pilot](conditional-subset-likelihood-result.json)：实际79.071秒/52.680秒forward，先freeze再固定26pair统计；原greedy全对，新.5未改善，不能检验补召回；原absolute deadline内一次工程恢复，GPU已释放。
