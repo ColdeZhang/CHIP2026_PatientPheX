@@ -26,7 +26,7 @@
 
 11. **BioMed监督32×10已完成、小幅改善**：fresh公开基座/原1150窗/477,981,696参数，固定2880steps耗1660.16秒（27.67min）、峰13.78GiB；实际原生loader/显式BCE及唯一终点不变。训练/final推断/原监督Sap三阶段exit0，20:06:42Z完整freeze后统一评分，0错警。固定新增58实体42TP16FP、关联8TP10FP，Score **.654424302**，较同层medium32 **+.000679275**、较BioMed公开零样本+.002410051；mention/doc升而macro略降，不能夸大微小总分收益。原dev未触，不自动扩大训练。模型aed0d582及真实latest-state f4e01084均再次全SHA核对；20:06:37Z fresh核GPU0空释放，实余197.85GB，managed proc_64f58b79已退出，无本路线活动GPU。[完整结果/实际命令/恢复与成本](evidence/round2/gliner-biomed-supervised-results.json)，外存gliner-biomed-supervised/terminal-summary.json；新终点独审PASS（cd5afba8），完整预测/指标字节复现。原[计划](evidence/round2/gliner-biomed-supervised-plan.json)、[就绪证据](evidence/round2/gliner-biomed-supervised-readiness.json)、[启动指针](evidence/round2/gliner-biomed-supervised-launch.json)均保留，禁止重复开跑已完成作业。
 
-12. **有界本体覆盖诊断/CPU exact控制**：原train48三套OOF重现908无重叠FN，HPO name/EXACT正确54、高置信Sap正确40、并集60；不支持多数只是高置信候选过滤，亦不支持直接全HPO短语预适配能补多数漏项。40高置信项均被旧`c.exact`跳过，根授权唯一CPU解除此gate控制；原阈值/排序/否定/重叠/关系不改，三预测全freeze后评，原dev不动。[短机制结论](experiments/ontology-miss-mechanism.md)、[冻结计划](evidence/round2/exact-gate-control-plan.json)。
+12. **本体覆盖诊断及CPU exact控制已结案、负结果**：原train48三套OOF的908无重叠FN仅54被HPO name/EXACT正确覆盖，高置信Sap40、并集60，不优先全HPO短语预适配。只解除`c.exact`跳过，旧三对照byteexact、三新预测统一freeze后评：pooled **.667647648→.666761145**，等权平均.669729202→.668894975，一升两降；新增实体40TP58FP、移除1TP3FP，新增关系6TP22FP、移除1TP。保留旧政策，不扫阈值/不触原dev/不占GPU；独立复核进行中。[短机制结论](experiments/ontology-miss-mechanism.md)、[完整结果与复现入口](evidence/round2/exact-gate-control-results.json)。
 
 ## 已完成的近期结论
 

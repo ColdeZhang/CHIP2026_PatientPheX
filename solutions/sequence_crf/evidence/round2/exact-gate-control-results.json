@@ -1,0 +1,297 @@
+{
+  "status": "completed_negative_do_not_promote",
+  "decision": "Retain original exact skip policy. Close this control without threshold tuning, originaldev evaluation, GPU work, or full-HPO phrase preadaptation.",
+  "selection_disclosure": "Method was selected after aggregate gold-aware train48 diagnosis; not a blind validation estimate.",
+  "source_commit": "94a149391195060173ced67c1d163603361a01cf",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/augment_semantic_include_exact.py",
+    "sha256": "56081e9c8ca679307fe4ee654897a851aac9842d46ebc69be7e53aea368b6094",
+    "bytes": 4064
+  },
+  "evaluation_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/evaluate_exact_gate_control.py",
+    "sha256": "c1997a0bc45e449eaa2fbd18bfe4722ff72281435f024fe22b84e4683feb70fd",
+    "bytes": 7149
+  },
+  "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+  "validator_sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/ontology-miss-mechanism/exact-gate/plan.json",
+      "sha256": "c03c37c6c5c8dd948e66175c18904ab4b67bca8afa71bf21c6ea7cee3da28e0f",
+      "bytes": 13260
+    },
+    "prediction-execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/ontology-miss-mechanism/exact-gate/prediction-execution.json",
+      "sha256": "68c910e1bda7bb7bc253f88b23b3d8786f176eb133cd48de7c2eefafb1ae3266",
+      "bytes": 7668
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/ontology-miss-mechanism/exact-gate/complete-freeze.json",
+      "sha256": "f16e65cb6e1543a3b89225ad4cbfab586fe4a0e0ed9b962abd938dfd7e105bf2",
+      "bytes": 2638
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/ontology-miss-mechanism/exact-gate/results.json",
+      "sha256": "812873e189861842ed7429d38d351b8dba204e0d0f6aa2ab68555cf3079e80dc",
+      "bytes": 12819
+    }
+  },
+  "frozen_at_utc": "2026-10-23T20:16:23.151895+00:00",
+  "evaluated_at_utc": "2026-10-23T20:16:51.237014+00:00",
+  "old_baseline_replay": "All three baseline output files byte-identical to existing independently reviewed candidates.",
+  "folds": [
+    {
+      "fold": 1,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.6671911880409127,
+            "docF1": 0.7477477477477478,
+            "micF1": 0.6161515453639083,
+            "macF1": 0.5479558936740699,
+            "Score": 0.6447615937066596
+          },
+          "prediction_sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+          "errors": 0,
+          "warnings": 0
+        },
+        "include-exact": {
+          "metrics": {
+            "menF1": 0.6666666666666666,
+            "docF1": 0.7472035794183445,
+            "micF1": 0.6181102362204725,
+            "macF1": 0.5512686681904482,
+            "Score": 0.6458122876239829
+          },
+          "prediction_sha256": "559ee2881002283c6faf65d1fd2e76987f7cd7cba3822b673baf107bb9435890",
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 12,
+        "entity_added_fp": 28,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 2,
+        "relation_added_tp": 5,
+        "relation_added_fp": 8,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "metric_deltas": {
+        "menF1": -0.0005245213742460786,
+        "docF1": -0.000544168329403294,
+        "micF1": 0.0019586908565641936,
+        "macF1": 0.0033127745163782363,
+        "Score": 0.0010506939173232643
+      }
+    },
+    {
+      "fold": 2,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.6835689907362262,
+            "docF1": 0.7395626242544732,
+            "micF1": 0.6946454413892909,
+            "macF1": 0.6677002054255436,
+            "Score": 0.6963693154513835
+          },
+          "prediction_sha256": "bfd51f42281680bc7778a354dd8b811b9549c13f5e8eaf7d63e034d65b6ae6e6",
+          "errors": 0,
+          "warnings": 0
+        },
+        "include-exact": {
+          "metrics": {
+            "menF1": 0.6862367661212705,
+            "docF1": 0.7418397626112759,
+            "micF1": 0.6906474820143885,
+            "macF1": 0.661000995914534,
+            "Score": 0.6949312516653672
+          },
+          "prediction_sha256": "ea18aa979e6eab978f40d2f85010eaea68f1ba8fc5faa535df28b2e3a6a655eb",
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 13,
+        "entity_added_fp": 15,
+        "entity_removed_tp": 1,
+        "entity_removed_fp": 0,
+        "relation_added_tp": 1,
+        "relation_added_fp": 4,
+        "relation_removed_tp": 1,
+        "relation_removed_fp": 0
+      },
+      "metric_deltas": {
+        "menF1": 0.0026677753850442576,
+        "docF1": 0.002277138356802766,
+        "micF1": -0.003997959374902327,
+        "macF1": -0.006699209511009663,
+        "Score": -0.001438063786016297
+      }
+    },
+    {
+      "fold": 3,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.7147699757869249,
+            "docF1": 0.7726829268292683,
+            "micF1": 0.6582857142857143,
+            "macF1": 0.5264881743242987,
+            "Score": 0.6680566978065515
+          },
+          "prediction_sha256": "4214382eb8d715dacc3a8413dd3de2c7e2d32af52605fa1076e04e2b3f10f8e7",
+          "errors": 0,
+          "warnings": 0
+        },
+        "include-exact": {
+          "metrics": {
+            "menF1": 0.7191977077363897,
+            "docF1": 0.7711781888997079,
+            "micF1": 0.6508474576271186,
+            "macF1": 0.5225421914674567,
+            "Score": 0.6659413864326682
+          },
+          "prediction_sha256": "3eed4d99db706a3ba1d7e0eaa7724613a0cf79dc6b20d991fc133662fde8a361",
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 15,
+        "entity_added_fp": 15,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 1,
+        "relation_added_tp": 0,
+        "relation_added_fp": 10,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "metric_deltas": {
+        "menF1": 0.004427731949464775,
+        "docF1": -0.0015047379295604069,
+        "micF1": -0.0074382566585956544,
+        "macF1": -0.003945982856842001,
+        "Score": -0.002115311373883322
+      }
+    }
+  ],
+  "unweighted_fold_mean": {
+    "baseline": {
+      "menF1": 0.6885100515213546,
+      "docF1": 0.7533310996104964,
+      "micF1": 0.6563609003463045,
+      "macF1": 0.5807147578079708,
+      "Score": 0.6697292023215317
+    },
+    "include-exact": {
+      "menF1": 0.6907003801747756,
+      "docF1": 0.7534071769764429,
+      "micF1": 0.6532017252873265,
+      "macF1": 0.5782706185241463,
+      "Score": 0.6688949752406727
+    }
+  },
+  "pooled": {
+    "baseline": {
+      "metrics": {
+        "menF1": 0.6869930910183238,
+        "docF1": 0.7528991971454059,
+        "micF1": 0.6516154145581938,
+        "macF1": 0.5790828912274107,
+        "Score": 0.6676476484873336
+      },
+      "counts": {
+        "mention": {
+          "tp": 2287,
+          "fp": 720,
+          "fn": 1364,
+          "precision": 0.7605586963751247,
+          "recall": 0.6264037250068475,
+          "f1": 0.6869930910183238
+        },
+        "document": {
+          "tp": 1266,
+          "fp": 211,
+          "fn": 620,
+          "precision": 0.8571428571428571,
+          "recall": 0.6712619300106044,
+          "f1": 0.7528991971454059
+        },
+        "relation": {
+          "tp": 837,
+          "fp": 394,
+          "fn": 501,
+          "precision": 0.6799350121852152,
+          "recall": 0.625560538116592,
+          "f1": 0.6516154145581938
+        }
+      }
+    },
+    "include-exact": {
+      "metrics": {
+        "menF1": 0.6889810426540285,
+        "docF1": 0.7528854690736905,
+        "micF1": 0.6486902927580893,
+        "macF1": 0.5764877753922729,
+        "Score": 0.6667611449695203
+      },
+      "counts": {
+        "mention": {
+          "tp": 2326,
+          "fp": 775,
+          "fn": 1325,
+          "precision": 0.7500806191551113,
+          "recall": 0.6370857299370035,
+          "f1": 0.6889810426540285
+        },
+        "document": {
+          "tp": 1272,
+          "fp": 221,
+          "fn": 614,
+          "precision": 0.8519758874748827,
+          "recall": 0.6744432661717922,
+          "f1": 0.7528854690736905
+        },
+        "relation": {
+          "tp": 842,
+          "fp": 416,
+          "fn": 496,
+          "precision": 0.6693163751987281,
+          "recall": 0.6292974588938715,
+          "f1": 0.6486902927580893
+        }
+      }
+    }
+  },
+  "pooled_changes": {
+    "entity_added_tp": 40,
+    "entity_added_fp": 58,
+    "entity_removed_tp": 1,
+    "entity_removed_fp": 3,
+    "relation_added_tp": 6,
+    "relation_added_fp": 22,
+    "relation_removed_tp": 1,
+    "relation_removed_fp": 0
+  },
+  "metric_deltas_pooled": {
+    "menF1": 0.0019879516357046434,
+    "docF1": -1.3728071715402024e-05,
+    "micF1": -0.002925121800104513,
+    "macF1": -0.002595115835137829,
+    "Score": -0.0008865035178132752
+  },
+  "limitations": [
+    "Same train48 used for aggregate mechanism selection; development control, not blind test.",
+    "No originaldev, GPU, new fitting or threshold/order search.",
+    "Added/removed entity TPFP is evaluated separately using v2 NIL matching; net pooled counts are authoritative."
+  ],
+  "independent_review": {
+    "status": "pending",
+    "directory": "/workspace/patientphex-runs/round2-20261023/validation/exact-gate-terminal-review"
+  }
+}
