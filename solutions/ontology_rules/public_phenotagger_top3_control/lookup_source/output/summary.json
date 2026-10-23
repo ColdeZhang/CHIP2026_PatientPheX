@@ -1,0 +1,69 @@
+{
+  "status": "PASS_label_free_all_oldpool_span_top3_lookup",
+  "scope": "train64_all_oldpool_spans_label_free_top3_lookup",
+  "plan_sha256": "4c4efe5f3500e5475212c04a1b5e8fb6854fa81cd0f3fe77aea9f443723eca39",
+  "source_sha256": "5d3e8757263c96cae6db1bf9b11efd639f66e05794491f73977d3758c82c0990",
+  "input_sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246",
+  "whitelist_sha256": "71e72d7e98b0d5f559e30ac8765b6f268b83bbcaae9544bb3c98345172416bc0",
+  "whitelist_rows": 61293,
+  "whitelist_doc_count": 64,
+  "model_statistics": {
+    "pubmed": {
+      "raw_rows": 296984,
+      "raw_distinct_spans": 296984,
+      "whitelist_raw_present_spans": 34285,
+      "whitelist_raw_missing_spans": 27008,
+      "whitelist_kept_raw_occurrences": 34285,
+      "current_id_entries": 75667,
+      "raw_present_all_top3_invalid_spans": 0,
+      "raw_files_verified": [
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16/raw-neural-candidates.jsonl",
+          "rows": 75790,
+          "bytes": 46975318,
+          "sha256": "9c35bd67e207cfac010776f614303ffdf4fe7e5c7afa00e71dd24e278f998813"
+        },
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-train48-cache/raw-neural-candidates.jsonl",
+          "rows": 221194,
+          "bytes": 137091466,
+          "sha256": "6794b36aaab93c157c326936ffc35aa57d6623069b62f5c9018577b5ab56ad02"
+        }
+      ]
+    },
+    "bioformer": {
+      "raw_rows": 296984,
+      "raw_distinct_spans": 296984,
+      "whitelist_raw_present_spans": 34285,
+      "whitelist_raw_missing_spans": 27008,
+      "whitelist_kept_raw_occurrences": 34285,
+      "current_id_entries": 76285,
+      "raw_present_all_top3_invalid_spans": 0,
+      "raw_files_verified": [
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-bioformer/native-train64-cache/raw-neural-candidates.jsonl",
+          "rows": 296984,
+          "bytes": 184055310,
+          "sha256": "b33b4c0e5ab283f7606e055cad9c2c32f2d7d54a2b6e18e9f07ae1b1e5ae12d0"
+        }
+      ]
+    }
+  },
+  "full_raw_span_coordinate_sets_equal": true,
+  "all_raw_coordinates_match_original_train64_input": true,
+  "all_original_top3_columns_and_descending_actual_probabilities_checked": true,
+  "current_mapping_sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+  "label_order_sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+  "policy": "Two independent model lists; only observed top3 valid-current IDs; per same canonical ID take observed maxp and min original rank, retaining original column/rawID/probability/rank tuples. This is not a full canonical posterior. No threshold, candidate selection, labels or quality evaluation.",
+  "model_imported": false,
+  "cuda_visible_devices": "",
+  "seconds": 16.85509255155921,
+  "output": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-top3-lookup/output/lookup.jsonl.gz",
+    "sha256": "4c2400134f9da3f4a2d9d4fa834cddfa9a6fe732660d3f7163e177c789ecb5f7",
+    "bytes": 3476967,
+    "jsonl_sha256": "ef5035c3e54ed3045a50990deef7133a9aa4e1e6e5c8b43f1a55d5563304859e",
+    "jsonl_bytes": 37064249,
+    "rows": 61293
+  }
+}

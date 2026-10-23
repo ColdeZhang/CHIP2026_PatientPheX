@@ -1,0 +1,78 @@
+{
+  "scope": "train64_all_oldpool_spans_label_free_top3_lookup",
+  "frozen_at_utc": "2026-10-23T21:59:24.736913+00:00",
+  "extractor_sha256": "5d3e8757263c96cae6db1bf9b11efd639f66e05794491f73977d3758c82c0990",
+  "whitelist": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-top3-lookup/span-whitelist.jsonl",
+    "sha256": "71e72d7e98b0d5f559e30ac8765b6f268b83bbcaae9544bb3c98345172416bc0",
+    "rows": 61293,
+    "local_origin": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/old-pools/all-old-spans.jsonl",
+    "parent_pool_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/old-pools/manifest.json",
+      "sha256": "87264eb85a1801e249ac6f052faeec5ddeb03fa3044ecb014ca3b9c8d6d220bf"
+    },
+    "meaning": "Union of all previous four outer held pools and each outer training three inner OOF pools; supplied without labels by ontology owner; not the prior298 error-conditioned queries"
+  },
+  "input": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/train64-cache/train64.input.jsonl",
+    "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+  },
+  "labels": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/lable.vocab",
+    "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b"
+  },
+  "mapping": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/original-column-to-current-HPO.json",
+    "sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf"
+  },
+  "neural_raw": {
+    "pubmed": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16/raw-neural-candidates.jsonl",
+        "sha256": "9c35bd67e207cfac010776f614303ffdf4fe7e5c7afa00e71dd24e278f998813",
+        "bytes": 46975318,
+        "rows": 75790
+      },
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-train48-cache/raw-neural-candidates.jsonl",
+        "sha256": "6794b36aaab93c157c326936ffc35aa57d6623069b62f5c9018577b5ab56ad02",
+        "bytes": 137091466,
+        "rows": 221194
+      }
+    ],
+    "bioformer": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-bioformer/native-train64-cache/raw-neural-candidates.jsonl",
+        "sha256": "b33b4c0e5ab283f7606e055cad9c2c32f2d7d54a2b6e18e9f07ae1b1e5ae12d0",
+        "bytes": 184055310,
+        "rows": 296984
+      }
+    ]
+  },
+  "parent_raw_index": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/plan.json",
+    "sha256": "6041f95ac50494d9010cbe196d5047b678d1f8e127e67b0689d0c715e0f07c59",
+    "read_scope": "Only immutable cached raw paths/SHAs used, no diagnostic queries/gold read"
+  },
+  "public_model_weights": {
+    "pubmed": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+    "bioformer": "867819ac932e11250c42ca13c49eba3711a7f24b170e24bfb31b65589d0024a1"
+  },
+  "runtime": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "cwd": "public-phenotagger-top3-lookup",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "CPU_cap_seconds": 120,
+    "TERM_grace_seconds": 10,
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "output_contract": "Every whitelist span, including empty raw misses; per-model independent observed current-ID list {hpo_id,p=max actual observed column probability,rank=min original1..3,observed:true,observations:[column,rawID,p,rank]}. Invalid/None omitted. No crossmodel max, probability renormalization, threshold, labels or formal candidate selection."
+}
