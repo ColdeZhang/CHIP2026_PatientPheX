@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-23T14:32:32.819631+00:00",
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023",
+  "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
+  "scope_note": "独立审查结果索引；不替代原报告，不将oracle/训练表示诊断当模型成绩。各best仅指已独审原dev候选，后续fold0新试验单列。",
+  "evaluation_contract": "原dev16 + 公共近似 evaluator v2 all/text；0.8门槛未改，三路线均未达；无官方提交。",
+  "entries": [
+    {
+      "id": "best-case-retrieval",
+      "report": {
+        "path": "validation/retrieval-cpu-review.json",
+        "sha256": "35de695179b9b5cdfc1f8ee3b7047a9961ada91cd8828b17c6492398f5e71631",
+        "bytes": 22497
+      },
+      "scope": "检索 k21/.35 的训练内四折选型、train64/dev16 隔离、源码与数据绑定、独立 CPU 拟合/评分/格式。",
+      "conclusion": "原 dev Score 0.625073737823035，独立预测逐字节一致，格式零错警；低于0.8。",
+      "limitations": [
+        "公共近似 evaluator v2 all/text，非官方成绩；原dev是开发验证，非盲测。"
+      ],
+      "source_commit": "a6382ea",
+      "original_dev_score": 0.625073737823035
+    },
+    {
+      "id": "best-ontology-calibration",
+      "report": {
+        "path": "validation/ontology-calibration-review.json",
+        "sha256": "7f1da5079a8224919626fe132bfd219fb0320e6c9c274751f60a3c3a1d0a71c3",
+        "bytes": 29002
+      },
+      "scope": "本体校准 v1、off160 与 nested outer0 两控制，共四输出独立 CPU 重训；训练行、候选、依赖与分组来源。",
+      "conclusion": "原 dev 最佳 v1 Score 0.6462443332694785，四输出逐字节复现；确认 v1 的10%行验证不是文献分组早停。",
+      "limitations": [
+        "未重跑 GPU 编码/检测器；当时仅嵌套outer0，后续完整四折见独立条目。",
+        "原dev反复用于开发；nested outer0 对原 abbr 控制基本持平，不能宣称普遍提升。"
+      ],
+      "source_commit": "bd1ba48",
+      "original_dev_score": 0.6462443332694785
+    },
+    {
+      "id": "best-sequence-crf",
+      "report": {
+        "path": "validation/crf-semantic-review.json",
+        "sha256": "fd224cdebe0b5c522757e3a072b6af9ff75a8247301c5fb3f7376baaa4c24701",
+        "bytes": 33384
+      },
+      "scope": "CRF+Sap 新跨度+compound 修复，五份 CRF 独立拟合、十份缓存组装，以及 LR/rules 的真实选型使用。",
+      "conclusion": "原 dev LR Score 0.7006359474798057，独立拟合/组装逐字节一致，格式零错警；低于0.8。",
+      "limitations": [
+        "LR与rules均评过原dev，最好LR是dev候选选择，不能称完全训练内选中。",
+        "未重跑GPU编码，依赖已审源码/模型/训练/缓存SHA。"
+      ],
+      "source_commit": "654e93d",
+      "original_dev_score": 0.7006359474798057
+    },
+    {
+      "id": "ontology-sap-upstream",
+      "report": {
+        "path": "validation/ontology-sapbert-review.json",
+        "sha256": "d4501708238ddc1c7c38936a67de43a839340ad4bb0ece78abd6e49fc683e916",
+        "bytes": 17696
+      },
+      "scope": "五组 Sap 候选缓存的源代码/模型/训练/输入、固定 p=.65/cos=.92 与组装。",
+      "conclusion": "五输出缓存组装逐字节复现；原 dev Score 0.6284838719，训练隔离和格式通过。",
+      "limitations": [
+        "18参数组合在内部fold0选型；fold0不是盲验证。",
+        "未重训神经检测器/编码器；不同顺序的旧fold0缓存不可混用。"
+      ]
+    },
+    {
+      "id": "extraction-lora-training-and-resume",
+      "report": {
+        "path": "validation/lora-formal-review.json",
+        "sha256": "c7f9299b2fc96bf72e4ef8466b7f1731b2539c3e416bf1e0c607867624e7466c",
+        "bytes": 3476
+      },
+      "scope": "实际305窗train48数据、标签覆盖、真实tokenizer assistant-only mask、实际2行暂停续训optimizer/参数/RNG映射。",
+      "conclusion": "3612个非NO训练实体均有目标；max1428无截断；504参数optimizer step2→4等真实续训状态完整。",
+      "limitations": [
+        "连续fresh与暂停两运行在epoch1已出现差异，未证明数值轨迹等价。",
+        "审查不包含正式305窗模型性能；quote-only定位存在已记录歧义，不是标签遗漏。"
+      ],
+      "source_commit": "7c693a2",
+      "support": [
+        {
+          "path": "validation/lora-checkpoint-review.json",
+          "sha256": "afff7d49ae310494cc36d4c344b52475dcc8319a38f42537ca351d071c6a5302",
+          "bytes": 1268233
+        },
+        {
+          "path": "validation/lora-formal-review.md",
+          "sha256": "b79134f741f5ef4fd4a9d1fb510f40ba070ab96f81467cc507ee9d91422a9c43",
+          "bytes": 4912
+        }
+      ]
+    },
+    {
+      "id": "relation-sft-training-data",
+      "report": {
+        "path": "validation/relation-sft-review.json",
+        "sha256": "fbe7b47abaaed6479cce7dd9964a858902eae535fd4684d2662020e512201b75",
+        "bytes": 13783
+      },
+      "scope": "实际204提示、三组nested train32→inner16 CRF/Sap候选、别名与目标映射、去gold重建prompt、正式训练绑定。",
+      "conclusion": "48篇/204提示，967正3160负，1338金标关系中371不在候选池；移除gold association后prompt逐字节一致，无gold补候选。",
+      "limitations": [
+        "p=.65/cos=.92继承旧fold0选型，训练OOF隔离不等于外层完全盲。",
+        "实际max5799/6144引用并绑定路线真实tokenizer证据；不重复全量分词，未重训Sap。",
+        "此报告审查数据与来源，不审查后续关系SFT模型分数。"
+      ],
+      "source_commit": "332c8bd",
+      "support": [
+        {
+          "path": "validation/relation-sft-review.md",
+          "sha256": "c33d91c04bac0d43bbc0521ce2917b141fff2d6939c5cb275e67c46ca7004097",
+          "bytes": 2757
+        }
+      ]
+    },
+    {
+      "id": "calibrate-multi-fold0",
+      "report": {
+        "path": "validation/calibrate-multi-review.json",
+        "sha256": "77da3227e749efc35af19bb8691bfa51b850eb14a81b81aa7a9ce08fda18d839",
+        "bytes": 45385
+      },
+      "scope": "CRF来源特征、token marginal/链接余弦来源与折内Normalizer；三控制同源码独立CPU重训。",
+      "conclusion": "without/source/confidence Score 0.705022813/0.710359060/0.714807668，全部逐字节复现；去gold后所有输入特征不变。",
+      "limitations": [
+        "仅内部fold0开发结果，不能外推；未重跑GPU。",
+        "链接置信度1.0可能是精确别名甚至-1哨兵，不是校准正确率。"
+      ],
+      "source_commit": "3542ec39ce2c548ae9fc1b806f125941b2f73d11",
+      "support": [
+        {
+          "path": "validation/calibrate-multi-review.md",
+          "sha256": "283bce25be1cb3159ac9d43249afbb8a6dbf5e73cfe925e6e67f0dae3cd5cc09",
+          "bytes": 2630
+        },
+        {
+          "path": "validation/calibrate-multi-review/confidence-lineage.json",
+          "sha256": "3231b0525a5338843b08ba18deb8405250af03aec0274166c1383b792c0f40d9",
+          "bytes": 35451
+        }
+      ]
+    },
+    {
+      "id": "ontology-fourfold-selection-and-one-dev",
+      "report": {
+        "path": "validation/ontology-fourfold-selection-review.json",
+        "sha256": "7559e2bd4b640c70eae9a95ce68a72b24008991c84771412a5e26e5172445245",
+        "bytes": 9493
+      },
+      "scope": "四折三控制pooled选型、预dev冻结时间与字节、12预测/manifest、nested来源、唯一原dev独立CPU缓存重训/评分/格式。",
+      "conclusion": "pooled confidence .692974449 与source .692527322差 .000447≤.001，按冻结规则选source；唯一原dev .6392873622870483逐字节复现，低于旧best。",
+      "limitations": [
+        "原dev是开发验证，非盲测；未重跑GPU，旧outer0已审内容复用。",
+        "负结果，不升级best、不追加另一控制dev、不满足0.8。"
+      ],
+      "source_commit": "77085ef9b64153423b15066319307df42f17a396",
+      "freeze_commit": "a45f7ab",
+      "freeze": {
+        "path": "ontology_rules/multi-fourfold/strategy-freeze.json",
+        "sha256": "7ec3814246a8b6a164a48975840451eaf5715102f199b79f95322cb1f9de3cf6",
+        "bytes": 10447
+      },
+      "original_dev_score": 0.6392873622870483,
+      "support": [
+        {
+          "path": "validation/ontology-fourfold-selection-review.md",
+          "sha256": "15ad293105ff1d01711f5f10ed5bd93b9b2dd76269f70720a6530f98bc4060d6",
+          "bytes": 2464
+        },
+        {
+          "path": "validation/ontology-fourfold-selection-review/lineage-final.json",
+          "sha256": "64a2d6ff93895cf4eaaf8b17626818fbaa58cefa496d219caa51400903e564d4",
+          "bytes": 18637
+        },
+        {
+          "path": "validation/ontology-fourfold-selection-review/selected-dev-review.json",
+          "sha256": "1023ec9f71ab4258471281b0876a9b864554b2c17c4cbaa34130f559d9e9daa6",
+          "bytes": 5800
+        }
+      ]
+    },
+    {
+      "id": "neural-ner-training-and-boundary",
+      "report": {
+        "path": "validation/ner-audit/README.md",
+        "sha256": "3ba2aaeb7e38c652bcde5bec8cdb460b23da69acd3297947576cf07c29cca4c0",
+        "bytes": 9537
+      },
+      "scope": "train48真实tokenizer标签往返/窗口/mask、八份历史预测源码绑定，训练白名单固定边界drop对照。",
+      "conclusion": "理想标签往返Recall .99222，未发现大规模训练标签/mask故障；边界drop三模型提高Score约 .004–.0075，仍远低于CRF。",
+      "limitations": [
+        "标签往返是oracle表示能力诊断，不是模型成绩；padding mask仅源码审查。",
+        "固定drop仅内部fold0，无其他折/原dev；没用GPU，不能把关系策略混杂全部归因NER。"
+      ],
+      "support": [
+        {
+          "path": "validation/ner-audit/source-shas.json",
+          "sha256": "3554b088b545e2117726f8b0c55dc4f99194c5144979c415d5fdc4c15efeab63",
+          "bytes": 1815
+        },
+        {
+          "path": "validation/ner-audit/train-alignment.json",
+          "sha256": "d4cf3db7a7c145d0f39d881cc8d3593810c3762c6973ecb115e1788d635b1d39",
+          "bytes": 26485
+        },
+        {
+          "path": "validation/ner-audit/boundary-drop/results.json",
+          "sha256": "8e1d23d3ec358771409900bc1d917d29b217bc4a247d476a3854c64aa205d54e",
+          "bytes": 5894
+        }
+      ]
+    },
+    {
+      "id": "patient-anchor-training-diagnostic",
+      "report": {
+        "path": "validation/patient-anchor-review.json",
+        "sha256": "30bcb44c1c62a5de6b6bbdff929608e1e098c8bbe9fcbe1b1eeb5c8ade4aebe6",
+        "bytes": 6473
+      },
+      "scope": "train48聚合、实际204提示的marker/患者映射、2539证据记录从文本与坐标重建；不读fold0/dev金标。",
+      "conclusion": "363/967覆盖正关系在实际局部证据无目标marker；459/1329在任一同概念正span±500均无目标marker；所有聚合独立复算一致。",
+      "limitations": [
+        "这是结构覆盖代理：同概念goldspan不是该患者证据指针，缺少局部marker不等于不可回答。",
+        "9条关系无同概念正实体，排除于1329分母；不认证尚在开展的共指pilot。"
+      ],
+      "source_commit": "701d3be"
+    },
+    {
+      "id": "handoff-documents-and-git-size",
+      "report": {
+        "path": "validation/handoff-document-review.md",
+        "sha256": "f538512bb89df61b5dc2a9c0ab2cd23bc9cd5eed31533c216f68964232a1b255",
+        "bytes": 4344
+      },
+      "scope": "根与三路线分层文档、重大负结果/恢复入口/SHA路径、109个链接与新增Git文件大小抽审。",
+      "conclusion": "报告记录若干过期状态/错大小写/索引遗漏；链接目标均存在，新增文件无大型日志权重、无>1MiB文件。",
+      "limitations": [
+        "这是当时快照，不是当前未修列表；路线报告已修，未重跑全量文档审查。",
+        "后续报告提交：root eb890c9、retrieval 2fac9ec、ontology 77085ef、sequence bc99032；修复状态为负责人通知。"
+      ],
+      "support": [
+        {
+          "path": "validation/handoff-docs-links-and-size.json",
+          "sha256": "c28e5d0228cca9dd07f2d600f50592637a1d3af18ff0384fa2d8133ef3647cf3",
+          "bytes": 50775
+        },
+        {
+          "path": "validation/handoff-route-detail-links.json",
+          "sha256": "04fe5cef087fc9236b9de9a449c5b3bfed8081c4a603c40ee90d86ca8724913e",
+          "bytes": 9506
+        }
+      ]
+    },
+    {
+      "id": "extraction-sft-fixed-sap-filter-fold0",
+      "report": {
+        "path": "validation/sft-fixed-sap-review.json",
+        "sha256": "cafe5549180a71215fc97b7238f33f1876865cc1b6f3c3c74a1b176139ae7dfc",
+        "bytes": 6198
+      },
+      "scope": "实际重试/训练内normalization/HPO merge/固定Sap筛选、两臂k21/.35关联重训、旧18缓存独立CPU重建与统一评分。",
+      "conclusion": "12产物逐字节复现；18新增实体12 HPO TP/6 FP；规则关联原样保留 .711354→.714061，同k21/.35 .657639→.662397，零格式错警。",
+      "limitations": [
+        "内部fold0既往参与阈值选型，非盲测；未读原dev、未达0.8，不更新原devbest。",
+        "原14480缓存p精确重建；新编码共享829项数值有小差异但阈值决定全同。",
+        "未重跑GPU编码/生成，字面quote回定位歧义仍在。"
+      ],
+      "source_commit": "4ff1b201309a59634a15da8bc22d5b014f7cc036",
+      "support": [
+        {
+          "path": "validation/sft-fixed-sap-review.md",
+          "sha256": "3c2d00a6820005e51681854bbe4e87749f97e9955eb037f8f77fc454859ed6cf",
+          "bytes": 1184
+        },
+        {
+          "path": "validation/sft-sap-reconstruction-review.json",
+          "sha256": "c8fb372979e746b0e861da251d9b3b4dd64cd9da8ea56658245398328f313e03",
+          "bytes": 8079
+        },
+        {
+          "path": "validation/sft-fixed-sap-review/replay-result.json",
+          "sha256": "a04061a44bd1417df443921f2cf03ac620802535e75b130b7e9198f74b864df2",
+          "bytes": 101671
+        },
+        {
+          "path": "validation/sft-fixed-sap-review/inference-lineage.json",
+          "sha256": "88ab633e9574061b84428c54eede899715e7b83c3d9cdd8a397e2077ba0d9ab0",
+          "bytes": 1664
+        },
+        {
+          "path": "validation/sft-fixed-sap-review/replay.py",
+          "sha256": "f89ce39d1e54aada83c45335edf5586df03cc69899c759bc56011326fe56e1bb",
+          "bytes": 8569
+        },
+        {
+          "path": "validation/sft-sap-review-support/remote_cpu_audit.py",
+          "sha256": "32baa037a6cbbb1447dc9c53b9c894c27c16ca2744a5e5d85d039b023db99205",
+          "bytes": 5978
+        },
+        {
+          "path": "validation/sft-sap-review-support/remote-cpu-result.json",
+          "sha256": "dcffe6de262c2ce3ec11af18f70f04700c145f6318682f29675c42941eb8288f",
+          "bytes": 2012
+        }
+      ]
+    }
+  ],
+  "pending_review": [
+    {
+      "id": "open-patient-set-sft-training-data",
+      "status": "新任务已收，等待路线冻结实际数据/schema后审核；不纳入已通过结论。"
+    }
+  ]
+}
