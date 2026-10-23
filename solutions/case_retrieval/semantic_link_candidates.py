@@ -21,7 +21,7 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--model',required=True);ap.add_argument('--aliases',required=True);ap.add_argument('--queries');ap.add_argument('--output',required=True);ap.add_argument('--work-dir',required=True)
     ap.add_argument('--top-k',type=int,default=8);ap.add_argument('--batch-size',type=int,default=256)
-    args=ap.parse_args();torch.set_num_threads(2);start=time.time();assert torch.cuda.device_count()==1 and torch.cuda.is_available()
+    args=ap.parse_args();torch.set_num_threads(1);start=time.time();assert torch.cuda.device_count()==1 and torch.cuda.is_available()
     modelpath=Path(args.model);aliases=json.loads(Path(args.aliases).read_text());queries=json.loads(Path(args.queries).read_text()) if args.queries else []
     signature={'model_manifest':digest(modelpath/'manifest.json'),'aliases_sha256':digest(args.aliases),'code_sha256':digest(__file__),'pooling':'CLS_L2','max_length':32}
     work=Path(args.work_dir);work.mkdir(parents=True,exist_ok=True);key=hashlib.sha256(json.dumps(signature,sort_keys=True).encode()).hexdigest();cache=work/(key+'.npy')
