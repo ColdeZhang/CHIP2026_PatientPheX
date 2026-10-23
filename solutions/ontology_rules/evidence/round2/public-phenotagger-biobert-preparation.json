@@ -1,28 +1,101 @@
 {
-  "status": "planned_third_public_BioBERT_head_download_and_CPU_strict_load_only",
-  "weight_identity_from_pinned_metadata_not_yet_actual": {
-    "file": "biobert_PT_v1.2.h5",
-    "bytes": 486624416,
-    "sha256": "1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573"
+  "status": "complete_CPU_native_readiness_incremental_review_PASS_no_quality",
+  "weight_file": "biobert_PT_v1.2.h5",
+  "weight_bytes": 486624416,
+  "weight_sha256": "1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573",
+  "public_revision": "02ce3f529820dccca46bae168c1933ba25253125",
+  "parameters": 121587826,
+  "native_variables": 201,
+  "class_columns": 17266,
+  "None_index": 17265,
+  "actual_all_native_arrays_exact_H5_equal": true,
+  "tokenizer": {
+    "vocab_size": 28996,
+    "do_lower_case": false,
+    "native_word_lowering_before_tokenizer": true,
+    "max_length": 32,
+    "config_sha256": "a51b82d83d616bffaea11e629c4c82cca1e71b71460f133d55ebb4444ee9582e",
+    "vocab_sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+    "extra_tokenizer_files_synthesized": false
   },
-  "scope": "Independent third public BioBERT native H5 CPU readiness only; no task corpus/gold/GPU/quality/control",
-  "runtime": "Existing A100 private native TF2.12 read-only, CUDA hidden, one CPU thread; no second base or environment migration",
-  "budget_seconds": {
-    "download": 300,
-    "CPU": 180,
-    "TERM": 5
+  "download_seconds": 59.26573479920626,
+  "CPU": {
+    "status": "PASS_owner_recovered_small_evidence_consistency",
+    "report_sha256": "545eadcb6f9d5419aece46ab89031d5dcc27b347f30a2949c22c5e75d47aee5f",
+    "coverage_sha256": "4d3087c2d7f34a25fd191a22e3de59ffa9020f42543934f123caf1340b451abb",
+    "variables": 201,
+    "sum_shape_elements": 121587826,
+    "distinct_model_and_stored_names": 201,
+    "four_synthetic_actual_CLS_SEP_pad_mask_contract": true,
+    "original_failed_CPU_seconds": 5.375175852328539,
+    "recovery_CPU_seconds": 20.054388448596,
+    "total_CPU_seconds": 25.42956430092454,
+    "no_second_model_load_or_full_weight_rescan": true,
+    "no_task_quality": true
   },
-  "no_prior_actual_BioBERT_head_control_found": true,
+  "four_synthetic_forward_seconds": 0.8057640381157398,
+  "physical_GPUs_visible": [],
+  "no_task_corpus_or_labels_or_quality": true,
+  "no_new_base_weight_download": true,
+  "remote_retained_weight": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-biobert/biobert_PT_v1.2.h5",
+    "recovery_uses_symlink_not_duplicate": true
+  },
+  "train64_estimate": {
+    "scope": "Estimate only; no BioBERT task input inference/quality or GPU",
+    "train64_native_fixed_2_to_8_coordinates": 296984,
+    "unique_lower_native_word_tuples": 244938,
+    "old_dictionary_coordinates": 4130,
+    "BioBERT_exact_task_logit_cache_available": false,
+    "cross_model_logits_reusable": false,
+    "new_BioBERT_unique_forward_if_authorized": 244938,
+    "source_policy": "Same fixed original2to8 generator, punctuation/POS/filter, per-sentence min(8,len), current map and native hybrid; NOT closed unigram expansion",
+    "cost_basis": {
+      "same_BERT12x768_PubMed_prior_unique_per_second": [
+        1425.5,
+        1496.7042213420002
+      ],
+      "pure_NN_estimate_A100_seconds_range": [
+        163.6515729075579,
+        171.826025955805
+      ],
+      "allowance_seconds": 100,
+      "estimated_native_A100_total_seconds_upper": 271.826025955805,
+      "not_actual_BioBERT_speed": true,
+      "CPU_full_corpus_estimate": null,
+      "notes": "Four synthetic CPU phrases cannot establish full corpus CPU throughput; require actual bounded same-device probe before any newGPU task. No GPU authorized now."
+    },
+    "refs": [
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-train64-cache/completion.json",
+        "sha256": "6a74f4c19d64df6b416027b3527ab195acfa595acb63367fec3505eeae7aed70",
+        "bytes": 5389
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/completion.json",
+        "sha256": "9871fd46e3ab5b41ba8e03794570641d052254c10a3eca5ba32c97b95d5eaac2",
+        "bytes": 5052
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/manifest.json",
+        "sha256": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a",
+        "bytes": 3171
+      }
+    ],
+    "prior_Bioformer_native_manifest_sha256": "142e3297aed7f6f866c6ce16e82c2f2401332efac85b230c3a14d200e1411ca0",
+    "raw_storage_estimate": "Separate model-specific cache required; no claim of measured BioBERT output bytes."
+  },
+  "limitations": [
+    "No BioBERT GPU throughput, task NN cache or score measured. Different name is not evidence of complementarity.",
+    "Exact ModelScope repository404 does not assert every possible mirror absent.",
+    "Runtime flag error preserved; no weights/encoder/forward before failure."
+  ],
   "references": [
     {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/lable.vocab",
-      "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
-      "bytes": 189923
-    },
-    {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/download_public_h5.py",
-      "sha256": "160db716d7a60aad514ecee642b45524d6811aaf26fa4d77a79d239e0b84c53c",
-      "bytes": 5870
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/plan.json",
+      "sha256": "035abf77654666bc0d55f3c0573287655f02306ea8e94be195d663690d1663d5",
+      "bytes": 2972
     },
     {
       "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/check_native_h5.py",
@@ -30,19 +103,9 @@
       "bytes": 6851
     },
     {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/nn_represent.py",
-      "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf",
-      "bytes": 11161
-    },
-    {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/biobert-base/config.json",
-      "sha256": "a51b82d83d616bffaea11e629c4c82cca1e71b71460f133d55ebb4444ee9582e",
-      "bytes": 1110
-    },
-    {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/biobert-base/vocab.txt",
-      "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
-      "bytes": 213450
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/download_public_h5.py",
+      "sha256": "160db716d7a60aad514ecee642b45524d6811aaf26fa4d77a79d239e0b84c53c",
+      "bytes": 5870
     },
     {
       "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/run_cpu.py",
@@ -55,9 +118,119 @@
       "bytes": 5282
     },
     {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/plan.json",
-      "sha256": "035abf77654666bc0d55f3c0573287655f02306ea8e94be195d663690d1663d5",
-      "bytes": 2972
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/deployment.json",
+      "sha256": "dafb988d073929ab7ca2e57162fdf9664b0658ef6e4036878b72d0a06e5f860a",
+      "bytes": 877
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/download-job.json",
+      "sha256": "a44cc4099c74ddf40903725d6bc68586b1b3d268238d2f6c71e2b539e1f85068",
+      "bytes": 730
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/weight-source-manifest.json",
+      "sha256": "60587cb09b5cf811e30b7653cff2652e08867d7ebbe38808244f43801bf7ad95",
+      "bytes": 695
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/download-status.json",
+      "sha256": "b558cde745d43c3d938142811ba94740c5ae0d93937cb51d7c9d66b5feaaa751",
+      "bytes": 197
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/CPU-job.json",
+      "sha256": "4b4574d7c1eb5f279ebb3e2ab48c160462418214c04d1b3c92f4db9d1c193c9d",
+      "bytes": 1070
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/CPU-state.json",
+      "sha256": "8f74649e0e264b959964905c81526c156459bb58a320a89d9f2e07afc959c6f9",
+      "bytes": 734
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/CPU-stderr.log",
+      "sha256": "3ba70687013abfc24b5cdb305fffd5f717be06d63e77da97cc64f9e2596eb945",
+      "bytes": 1192
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/CPU-recovery-plan.json",
+      "sha256": "8d4e66fae4fe7580eeca2dc14d0ce47c9b89e4d424c8d77861092fbcf9d4a476",
+      "bytes": 534
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/source-delta-check.json",
+      "sha256": "bc8fc08a1cb4e5a5daae2c0c961781e6a8f0795639d179ac8b8f8a13c0b03d6a",
+      "bytes": 1017
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/deploy_recovery.py",
+      "sha256": "8c9d9c5fb03dee399ead3275939b29b41ec83e52d232e24eea54cd410742dbaa",
+      "bytes": 1982
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/collect_final.py",
+      "sha256": "1f6c310d0c811077cca6c51baf0197999d8dd42041ffc1dc847e3c668d19f135",
+      "bytes": 1684
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/cache-scale-estimate.json",
+      "sha256": "e82a25d38445fa5f8a91ed7f5ef0dd60c6948c48db3cdea9a681895456ae315c",
+      "bytes": 2074
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/recovered-contract-check.json",
+      "sha256": "36e696f1d71e0b5950015c3583d56aa0831a45b5dd076d504d48043e46e83ba6",
+      "bytes": 616
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/plan.json",
+      "sha256": "c87f46c6f34b541561f694d87caf1c9eb96b5f4879db0635149abe9644e5de05",
+      "bytes": 3503
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/run_cpu.py",
+      "sha256": "891a79d59ef455f3d471bd29cee9a8a701f11ebb5757769ee35bdf3a45889a72",
+      "bytes": 1522
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/manage.py",
+      "sha256": "3600db67cab8aa5a7ac5ef086fbd6a10714b9c6d4a47eaefbe58f9d307301ab8",
+      "bytes": 5316
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/deployment.json",
+      "sha256": "e0022e12e8884299c841cd541c99447ccd09be3e9e261e072348ff62262499c1",
+      "bytes": 955
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/CPU-job.json",
+      "sha256": "10eb2e4aeff2018de6a06147a4e49553d660247bd4436a019fea923146273228",
+      "bytes": 1101
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/CPU-state.json",
+      "sha256": "cb5953be92df3804534097115830c7ff0a8d9ee3ad1b9a09e4751a64b6c3f053",
+      "bytes": 777
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/native-h5-result.json",
+      "sha256": "545eadcb6f9d5419aece46ab89031d5dcc27b347f30a2949c22c5e75d47aee5f",
+      "bytes": 2832
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/variable-coverage.json",
+      "sha256": "4d3087c2d7f34a25fd191a22e3de59ffa9020f42543934f123caf1340b451abb",
+      "bytes": 69033
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/synthetic-representation.json",
+      "sha256": "9b746aa805e0b9c185495c3613b9a970418260368ea2f99e6a62495ff5c84253",
+      "bytes": 3958
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/attempt2/transfer.json",
+      "sha256": "4126cf70da4d25309e7fec6d7a7c301ffbd53b663d03859dfa60ea7903c2f673",
+      "bytes": 792
     },
     {
       "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-source-check/source-review.json",
@@ -65,14 +238,14 @@
       "bytes": 14802
     },
     {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-source-check/modelscope-exact-model-request.json",
-      "sha256": "7a798f2eead450fccb8c30fb759064cd3660d24aa087dcaefeb2c5a00460a4ae",
-      "bytes": 547
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-source-check/modelscope-tokenizer-addendum.json",
+      "sha256": "71fd1f4de8c145ffb133f72d6866b3956d91c362722dc94711a793d77f344950",
+      "bytes": 3311
     },
     {
-      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-source-check/modelscope-exact-model-metadata.json",
-      "sha256": "bf897f09d4ff064d3425dbfaf24bcf6415c6e8b53acc80a704a4927d49cb5979",
-      "bytes": 152
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-biobert-native-review/review.json",
+      "sha256": "f954be78a92fae7a88c720ea153aaa2edb6d8cb8e7c64f4860cc8a9baef3806d",
+      "bytes": 14281
     }
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "scope": "Estimate only; no BioBERT task input inference/quality or GPU",
+  "train64_native_fixed_2_to_8_coordinates": 296984,
+  "unique_lower_native_word_tuples": 244938,
+  "old_dictionary_coordinates": 4130,
+  "BioBERT_exact_task_logit_cache_available": false,
+  "cross_model_logits_reusable": false,
+  "new_BioBERT_unique_forward_if_authorized": 244938,
+  "source_policy": "Same fixed original2to8 generator, punctuation/POS/filter, per-sentence min(8,len), current map and native hybrid; NOT closed unigram expansion",
+  "cost_basis": {
+    "same_BERT12x768_PubMed_prior_unique_per_second": [
+      1425.5,
+      1496.7042213420002
+    ],
+    "pure_NN_estimate_A100_seconds_range": [
+      163.6515729075579,
+      171.826025955805
+    ],
+    "allowance_seconds": 100,
+    "estimated_native_A100_total_seconds_upper": 271.826025955805,
+    "not_actual_BioBERT_speed": true,
+    "CPU_full_corpus_estimate": null,
+    "notes": "Four synthetic CPU phrases cannot establish full corpus CPU throughput; require actual bounded same-device probe before any newGPU task. No GPU authorized now."
+  },
+  "refs": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-train64-cache/completion.json",
+      "sha256": "6a74f4c19d64df6b416027b3527ab195acfa595acb63367fec3505eeae7aed70",
+      "bytes": 5389
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/completion.json",
+      "sha256": "9871fd46e3ab5b41ba8e03794570641d052254c10a3eca5ba32c97b95d5eaac2",
+      "bytes": 5052
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/manifest.json",
+      "sha256": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a",
+      "bytes": 3171
+    }
+  ],
+  "prior_Bioformer_native_manifest_sha256": "142e3297aed7f6f866c6ce16e82c2f2401332efac85b230c3a14d200e1411ca0",
+  "raw_storage_estimate": "Separate model-specific cache required; no claim of measured BioBERT output bytes."
+}
