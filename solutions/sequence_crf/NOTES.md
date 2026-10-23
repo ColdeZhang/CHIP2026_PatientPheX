@@ -43,3 +43,5 @@ GLiNER训练接口坑（训练前已拦住）：gliner0.2.22的SpanModel.loss位
 
 
 GLiNER两epoch监督控制表明通用span预训练可学本题边界：nested16纯span F1 .2773→.6600，预定融合后相对CRF .6910→.7006。但边际98TP/147FP仅40%精度，不能把单模型提升当最终得分提升，后续先冻结链接过滤及更长训练对照，不能在同inner16扫阈值。epoch2训练probe recall仅.705，有继续固定预算的依据；该inner16已用于路线开发，未来不得称新盲测。原2ep scheduler已走完，真实optimizer/RNG存在也不使追加8ep等同从头总10ep；若改总预算应明确fresh或重启schedule政策。
+
+固定fresh10的训练probe R提升至.926、留出span R .696，监督能继续学习，但更多跨度带来FP；预定union只从2ep .700614到10ep .702135。下一步优先已有HPO语义链接/表型检测对新增跨度的固定过滤，验证“原文跨度→正确概念→患者”全链价值，不继续用span分数替代比赛Score。总10与2ep从头schedule不同，源/设备一致，不能称等价追加8轮。

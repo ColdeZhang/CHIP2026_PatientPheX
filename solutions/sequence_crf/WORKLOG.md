@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **GLiNER固定2epoch配对已完成**：nested32→16、同A800/输入/decoder，训练100.28秒、峰值5.62GiB；纯span F1零样本.277295→监督.659992，仍低于原CRF＋Sap的.690967。按预定非重叠追加98TP/147FP后union .700614（+.009647），新增精度仅40%，没有HPO/比赛Score提升声明。两候选先冻结后评分，epoch2唯一终点，原dev不动；GPU2已复查释放，模型和真实latest optimizer/RNG保持原目录。见[配对结果与恢复入口](evidence/round2/gliner-supervised-results.json)、[固定提案](experiments/P-20261023-GLINER.md)。主线程已授权同nested32 fresh总10epoch开发对照，同A800窗口内运行；只评epoch10，数据/loss/decoder不改，计划见gliner-long10ep-plan.json。16:42:19Z已启动proc_627a5892-885c-42fc-a44b-11d843b8d118，恢复gliner-long10ep-a800/job.json；预计16:51–16:53结束，17:00前交回GPU2。原2ep scheduler末端0，未冒称等价续训。
+3. **GLiNER两轮/十轮控制均结案、独审通过**：同nested32→16、A800/输入/decoder，fresh2ep/10ep分别100.28/519.03秒。纯span F1 .659992/.684851；原CRF＋Sap .690967，预定非重叠组合 .700614/.702135。十轮新增131TP/202FP，边际精度仍低；只作开发信号，没有HPO/比赛Score提升声明。原dev不动。GPU2已16:52:41Z复查释放给检索；10ep仅保留final模型+latest、原2epfinal/latest也保留，真实余4.467GB。完整来源/恢复见[2ep结果](evidence/round2/gliner-supervised-results.json)、[10ep结果](evidence/round2/gliner-long10ep-results.json)。下一步准备预定Sap检测p≥.65/cos≥.92链接过滤与不重叠追加，先确认实际HPO和关系收益，不再追加epoch或扫阈值。
 
 ## 已完成的近期结论
 
