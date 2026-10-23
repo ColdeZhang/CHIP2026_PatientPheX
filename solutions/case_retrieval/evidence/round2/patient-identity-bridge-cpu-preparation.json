@@ -1,0 +1,133 @@
+{
+  "status": "CPU_preparation_complete_independently_reviewed_probe_not_started",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation",
+  "counts": {
+    "rows": 4127,
+    "old_active_tokens": 745241,
+    "extra_active_tokens": 91412,
+    "bridge_rows": 1526,
+    "added_target_identity_rows": 716,
+    "no_old_target_marker_rows": 3524,
+    "newly_visible_target_rows": 625,
+    "same_passage_bridge_rows": 1361,
+    "previous_passage_bridge_rows": 203,
+    "positive_rows": 969,
+    "positive_old_active_tokens": 209322,
+    "positive_extra_active_tokens": 34547,
+    "positive_bridge_rows": 546,
+    "positive_added_target_identity_rows": 450,
+    "positive_no_old_target_marker_rows": 579,
+    "positive_newly_visible_target_rows": 378,
+    "positive_same_passage_bridge_rows": 494,
+    "positive_previous_passage_bridge_rows": 70
+  },
+  "selection_decisions": {
+    "no_anchor_within_structural_boundary": 2926,
+    "candidate_bridge_clause": 1798,
+    "anchor_already_in_old_selected_window": 1732,
+    "whole_clause_exceeds_remaining_127_token_budget": 50,
+    "duplicate_source_clause": 48,
+    "anchor_crosses_source_clause_boundary": 72
+  },
+  "invalid_supplied_anchors": 0,
+  "maximum_added_tokens": 128,
+  "original384_active_prefix_ids_types_positions_unchanged": true,
+  "original_final_SEP_preserved": true,
+  "tensor_length_each_arm": 512,
+  "empty_bridge_rows": 2601,
+  "empty_bridge_all_arrays_exact": true,
+  "same4127_candidate_keys": true,
+  "canonical_positive_labels": 969,
+  "raw_oldSFT_positive_labels": 967,
+  "label_difference": "2 preexisting HPO alt-ID normalization differences; never rewrite old outcomes",
+  "source_selection": "Nearest ANY provided patient mention, same passage; else immediately preceding paragraph only with matching section_type. Do not force target. Exact source clause and every contained identity; skip existing local anchors, conflicts, tie across different identity clauses, whole-clause overbudget.",
+  "critical_limits": [
+    "Source clause may contain clinical facts: identity-context intervention, not isolated identity-token effect.",
+    "378/579 previously missing target-positive rows gain a structural marker; no score/quality inference. Added-target negatives retained, not auto-associated.",
+    "Old CE trained5114 gold candidates; two possible future arms must both freshly train on matched4127 OOF candidates.",
+    "No originaldev/outergold used, no GPU/model/optimizer in prepare."
+  ],
+  "future_recipe": {
+    "fresh_public_base_each_arm": true,
+    "epochs": 4,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "updates_per_arm": 1032,
+    "warmup_steps": 103,
+    "threshold": 0.5,
+    "class_counts": [
+      3158,
+      969
+    ]
+  },
+  "budget": {
+    "scope": "CPU budget only, no new GPU measurement",
+    "rows_each_arm": 4127,
+    "epochs": 4,
+    "batch_size": 16,
+    "optimizer_updates_each_arm": 1032,
+    "warmup_updates_each_arm": 103,
+    "tensor_length_both_arms": 512,
+    "old_active_tokens_per_epoch": 745241,
+    "bridge_extra_active_tokens_per_epoch": 91412,
+    "padded_tokens_per_epoch_each_arm": 2113024,
+    "two_arms_four_epoch_padded_tokens": 16904192,
+    "empty_bridge_rows": 2601,
+    "empty_bridge_arrays_expected_byteexact": true,
+    "stored_arrays_bytes": 37863473,
+    "model_parameter_count_reference": 109483778,
+    "old_training_reference": {
+      "manifest_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-neural-relation/manifest.json",
+      "sha256": "1c7196eac1d9c71ca0f6b7d72fc575c682e62b2cbebd459b9f15d84e6a8e582e",
+      "rows": 5114,
+      "epochs": 4,
+      "maximum_length": 384,
+      "summed_epoch_seconds": 123.15531539078802,
+      "fit_seconds": 128.26109014404938
+    },
+    "quadratic_length_row_scaled_reference_seconds_per_arm": 176.6869114388501,
+    "two_arm_scaled_reference_seconds": 353.3738228777002,
+    "estimate_not_measurement": true,
+    "caveat": "Old dynamic padding, device/kernel/load conditions and gold-entity rows differ. Length-squared scaling is a rough reference, neither lower nor upper bound; measure same-card512 batch16 if root authorizes before choosing a hard formal budget. No optimizer/training occurs in CPU prepare.",
+    "suggested_next_if_authorized": "Single bounded512 batch16 memory/gradient/runtime smoke, fresh public-base training for each of two arms4epochs. Freeze both outerfold0 predictions before scoring; keep threshold.5 and do not read originaldev."
+  },
+  "independent_CPU_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-identity-bridge-cpu-review.json",
+    "sha256": "4d44e051d803c45ee9254c42c839b1b7054e7822a8274665c39a07b31c67569a"
+  },
+  "next_conditional_authorization": "Only one A30 longest16x512 first training step <=300s after actual CPU trainer contract, source/plan push, fresh assigned-GPU check; fresh state discarded. Formal paired training not yet authorized.",
+  "probe_active_lengths": "495–507 actual active tokens, tensor512; natural8positive/8negative, no label selection",
+  "warmup_first_step": "Original schedule LR0: expect finite correct-direction gradients/Adam allocation but no classifier weight update; do not claim training success.",
+  "official_submission": false,
+  "evidence_sha256": {
+    "cpu-plan-v2.json": "daee6123f3f08d21d4c8ac3f540bcdf2417878cdb4dd5e358c53efe0765331d8",
+    "prepare-v2.snapshot.py": "6fa1cf3c3d21363cefb2d1a12d428280034a0b021597929f687433ecef5e728e",
+    "actual-v2/cpu-result.json": "5dacbb662c79079aba96bf6c1131ac6485b763b2713b7a494ec0d07893133377",
+    "actual-v2/inputs.jsonl": "d75a88b07aa8adc0ed3bbfd674857402c1d45833f7f2beaf332616aa964ffd27",
+    "actual-v2/labels.jsonl": "c1966c80d00750535af070e882186233743b2d26bee5f775e974dc1c2ab25b7d",
+    "helper-contract.json": "2d192d761d845141b3ba9cb4daa1ce6019a3c2e8837a91c3da931c8ac5f09213",
+    "helper-source-checks.json": "abc78bc38846d079c4f9c12bc207bbbc152e4928c11f7fd783689dc388ad4eea",
+    "helper-source-checks-v2.json": "27f6ac5c1de8611572524c188d42f853ee02695f66d90f4f6914ad0285df18d2",
+    "probe-batch-index.json": "d7108a9e04000284c21d5621787674cee29aee11c6d68fc79701d274fd81f3da",
+    "probe-batch-selection-input-only.json": "b6f707a65b63c7c7bc82f641a415ff1118f8c8aa0a9dbb4aab97d03f23e98fa0",
+    "cpu-budget.json": "88a7eaff4e0de94892536258825a07fb610691954463509ca3586683249798f2",
+    "model-copy/copy-evidence.json": "36b8e3f91a34e6da3e88af191acb4b26acc7378468f39d779e44bc53c88f730f",
+    "a30-runtime-cpu.json": "a4b7726f62a9d65ae47ce7002a778a8da5c246e4ac4ee7c7668a389a5fc13ba8",
+    "probe-plan.json": "ec41c5b56a7fcbfd8e27d98a76f4e48f81f65bcf392337124d193da1c759808a",
+    "train_encoded_ce.snapshot.py": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+    "encoded-train48.json.gz": "25720000ce8dd6da980279ae7dbe1c487f12fecfbe8c7ef835934cb5e3ade0c7",
+    "actual-trainer-cpu-command.json": "96c5ea3194f32a0002882ad32891e7006933ab2078da86a88b120bd7515f9564",
+    "actual-trainer-cpu-contract.json": "156a87fa29e1b36c2c87ddeb911d2d830032a2d5f9f2593b95032a1f02cf3813",
+    "probe-launch-plan.json": "84a0d0316195f551a6a41d7d43803664ab755a64582eb367564a1b34e605cf20",
+    "run_probe.snapshot.py": "478cd28335367b00ecb2a6760f0bcfc5050b6178cdbe8e28d9bde0ff485db519"
+  },
+  "actual_trainer_cpu_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/actual-trainer-cpu-contract.json",
+    "sha256": "156a87fa29e1b36c2c87ddeb911d2d830032a2d5f9f2593b95032a1f02cf3813",
+    "status": "pass_actual_Torch2.7.1_TF4.51.3_no_CUDA"
+  },
+  "trainer_static_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/trainer-static-review.json",
+    "sha256": "8e8a223eb05f3e6ced34fddf3e4cc7fb62fb711a4114a7fa3e7d0d67859e8d30"
+  }
+}

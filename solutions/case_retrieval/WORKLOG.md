@@ -9,8 +9,8 @@
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
 - **最新结论**：fresh full64唯一epoch002小幅改善原dev关系：273TP/60FP/180FN vs SFT48 271/64/182，Score +.004549；仍较fullLR331TP损召回、未达.8。64条strictJSON、466CID全合法、0触顶回退，固定输入/decoder/955实体。204严格OOF四事实树仍负，既有结果不重跑。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
-- **当前任务**：fresh full64训练及唯一同A30原dev新臂均完整结束，训练40.77min/2ep/68updates；推断341.386秒（生成314.437秒），A800 GPU2和A30 GPU1均已fresh核空释放。先冻结pred aa107790…再唯一新评分 **.715759605**，独立终审进行中；[完整结果](evidence/round2/qwen35-full64-dev-result.json)。原训练/推断watcher均结束，勿重启。
-- **后续仅CPU准备**：待当前唯一dev独审后，按root指示研究患者身份跨局部窗桥接；先固定同OOF候选/标签口径、纯输入来源与禁止whole-case广播边界，再出接口、漏失统计和成本预算。尚未授权新GPU，禁止据原dev调方案。
+- **当前任务**：fresh full64训练及唯一同A30原dev新臂均完整结束，训练40.77min/2ep/68updates；推断341.386秒（生成314.437秒），A800 GPU2和A30 GPU1均已fresh核空释放。先冻结pred aa107790…再唯一新评分 **.715759605**，独立终审81493ebe通过；[完整结果](evidence/round2/qwen35-full64-dev-result.json)。原训练/推断watcher均结束，勿重启。
+- **当前后继**：患者身份桥接CPU准备已独审4d44e051通过，同4127 OOF/969正、1526行新增上下文；原579缺目标marker正行378新增，只有结构覆盖结论。旧384前缀/双方512及2601空bridge exact。root仅条件授权一次A30最长16×512首步≤300s，先实际CPU训练入口核验与source/plan push；尚未启动probe、未授权正式两臂。见[CPU结果](evidence/round2/patient-identity-bridge-cpu-preparation.json)。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
@@ -37,4 +37,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `5a0f8cb`（完整训练、复制及实际单臂runplan），本次终点记录待阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `8dafd33`（完整单新臂终点），独审与后继CPU准备在下个阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。

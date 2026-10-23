@@ -1,0 +1,46 @@
+{
+  "schema": "patient-identity-probe-launch-v1",
+  "frozen_at_utc": "2026-10-23T20:00:46.920376+00:00",
+  "launcher_sha256": "478cd28335367b00ecb2a6760f0bcfc5050b6178cdbe8e28d9bde0ff485db519",
+  "training_plan_sha256": "ec41c5b56a7fcbfd8e27d98a76f4e48f81f65bcf392337124d193da1c759808a",
+  "trainer_sha256": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+  "actual_cpu_contract_sha256": "156a87fa29e1b36c2c87ddeb911d2d830032a2d5f9f2593b95032a1f02cf3813",
+  "hard_budget_seconds": 300,
+  "kill_grace_seconds": 30,
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "cwd": "case-retrieval/patient-identity-bridge",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "argv": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "300",
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "train_encoded_ce.py",
+    "--plan",
+    "probe-plan.json",
+    "--mode",
+    "probe",
+    "--output",
+    "probe-one-step-v1"
+  ],
+  "remote_sources": {
+    "train_encoded_ce.py": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+    "probe-plan.json": "ec41c5b56a7fcbfd8e27d98a76f4e48f81f65bcf392337124d193da1c759808a",
+    "encoded-train48.json.gz": "25720000ce8dd6da980279ae7dbe1c487f12fecfbe8c7ef835934cb5e3ade0c7"
+  },
+  "authorization": "One fresh A30 single-step cost probe only, after reviewed CPU contracts and source/plan pushed; no formal successor."
+}

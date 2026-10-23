@@ -87,4 +87,6 @@
 
 - [full64 原dev唯一新臂实际runplan](qwen35-full64-dev-run-plan.json)：实际epoch002/adapter双端SHA与同A30全部15基座/runtime已绑定；固定900+30、64条输入，旧对照不重跑。
 
-- [full64 原dev唯一新臂完整结果](qwen35-full64-dev-result.json)：共享955实体 Score .715759605，较SFT48 +.004549、fullLR +.004435，64/466全合法；预测先freeze、仅新臂评分、GPU已释放，独立终审待回。
+- [full64 原dev唯一新臂完整结果](qwen35-full64-dev-result.json)：共享955实体 Score .715759605，较SFT48 +.004549、fullLR +.004435，64/466全合法；预测先freeze、仅新臂评分、GPU已释放，独立终审81493ebe通过。
+
+- [患者身份桥接CPU准备](patient-identity-bridge-cpu-preparation.json)：同4127候选/969正、原384前缀不变；378/579新增目标身份仅结构代理，双512/空bridge独审通过。仅授权下一次成本probe，正式两臂尚未批准。

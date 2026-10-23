@@ -1,0 +1,91 @@
+{
+  "schema": "patient-identity-encoded-ce-plan-v1",
+  "frozen_at_utc": "2026-10-23T19:58:42.055614+00:00",
+  "execution_mode": "probe",
+  "arm": "bridge",
+  "max_updates": 1,
+  "hard_budget_seconds": 300,
+  "kill_grace_seconds": 30,
+  "source_sha256": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+  "encoded_file": "encoded-train48.json.gz",
+  "encoded_sha256": "25720000ce8dd6da980279ae7dbe1c487f12fecfbe8c7ef835934cb5e3ade0c7",
+  "input_source_sha256": "d75a88b07aa8adc0ed3bbfd674857402c1d45833f7f2beaf332616aa964ffd27",
+  "labels_source_sha256": "c1966c80d00750535af070e882186233743b2d26bee5f775e974dc1c2ab25b7d",
+  "probe_row_indices": [
+    606,
+    683,
+    684,
+    685,
+    686,
+    755,
+    756,
+    757,
+    758,
+    763,
+    764,
+    765,
+    766,
+    603,
+    604,
+    605
+  ],
+  "probe_index_sha256": "d7108a9e04000284c21d5621787674cee29aee11c6d68fc79701d274fd81f3da",
+  "model_directory": "model-public",
+  "model_files": {
+    "tokenizer_config.json": {
+      "bytes": 28,
+      "sha256": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+    },
+    "pytorch_model.bin": {
+      "bytes": 440474434,
+      "sha256": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193"
+    },
+    "LICENSE.md": {
+      "bytes": 1072,
+      "sha256": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66"
+    },
+    "README.md": {
+      "bytes": 2436,
+      "sha256": "33ee2e0c3178e144af68c8e8c741a227373304151a6b53660c8542306fffb0d4"
+    },
+    "config.json": {
+      "bytes": 385,
+      "sha256": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1"
+    },
+    "vocab.txt": {
+      "bytes": 226150,
+      "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    }
+  },
+  "model_copy_evidence_sha256": "36b8e3f91a34e6da3e88af191acb4b26acc7378468f39d779e44bc53c88f730f",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "runtime_versions": {
+    "torch": "2.7.1+cu126",
+    "cuda": "12.6",
+    "transformers": "4.51.3"
+  },
+  "recipe": {
+    "epochs": 4,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "warmup_steps": 103,
+    "total_steps": 1032,
+    "seed": 20261023,
+    "tensor_length": 512,
+    "loss": "inverse_frequency_weighted_cross_entropy"
+  },
+  "probe_policy": "Only one standard first step, original warmup initialLR0; check finite loss, gradient direction, nonzero encoder/head gradients, optimizer allocation and expected unchanged classifier. Discard state; no saved model/optimizer and no formal plan.",
+  "model_source": "Existing public BiomedBERT6files copied read-only from .3; old gold-CE model never used",
+  "original_CE_runtime_difference": "Old historical CE TF4.50/torch2.7.0cu128 vs current4.51.3/2.7.1cu126. Any later two new arms both use the same current runtime/public initialization; old quality is not the controlled baseline.",
+  "evidence_refs": {
+    "cpu_plan_sha256": "daee6123f3f08d21d4c8ac3f540bcdf2417878cdb4dd5e358c53efe0765331d8",
+    "cpu_result_sha256": "5dacbb662c79079aba96bf6c1131ac6485b763b2713b7a494ec0d07893133377",
+    "cpu_review_sha256": "4d44e051d803c45ee9254c42c839b1b7054e7822a8274665c39a07b31c67569a",
+    "interface_test_sha256": "27f6ac5c1de8611572524c188d42f853ee02695f66d90f4f6914ad0285df18d2"
+  },
+  "no_heldout_or_originaldev": true,
+  "formal_training_authorized": false
+}
