@@ -61,3 +61,6 @@
 - **公开候选训练适配仅CPU准备**：旧124字节/编码完全保留，新88提示622concept/1712pairs（119正1593负），合212/4218/713正；literal候选上界594/818→713/818。实际651512tokens/最长5523/0截断，2epoch54calls估31–33min，超过旧1800s预算。A800余362MB，已核旧adapter双副本可后续按授权释放346MB并final-only，现无删除/训练。严格排F1/F0 learned gate，见[方案](research/public-candidate-SFT-training-preparation.md)。
 - **唯一9B与rules交集CPU控制**：保留全部nonrelation、literal逐患者交集，0.184s；.695443948→.702672183，225TP36FP154FN，micro/macro均升，仍低rules .711354。来源/政策/完整freeze与唯一评分已由策略协作者提交401fd73，待独审；[结果](evidence/round2/sft-rule-intersection-result.json)。
 - **F0二特征下游结案指针**：本体仅F1拟合logit差+旧SFT hard，唯一F0期望F1 .695443948→.696545689，micro不变/macro+.004407；独审0b44186b通过，无自动原dev迁移。此处复用其结果，没有新评分。
+
+- **公开扩充新授权**：root据真实成本批准fresh公共base+r16、212行×2ep/54calls/3warmup、2400s+TERM30，原JSON loss不变；仅final可恢复checkpoint或soft2340 partial，不自动续训/评partial。新数据独审f0c1a70c与实际trainer CPU6.393s通过。只授权清理A800旧48/64两个已复制权重（346362144B，config不删），须fresh核后满足680MB/余150MB才启动。后继唯一F1旧62提示+原support对照，旧80/383不动；[预写计划](evidence/round2/public-SFT-training-run-plan.json)。
+- **交集迁移F1失败关闭**：固定oldSFT∩rules后保留原supported65，.682128804→.661533824；删63中丢40TP、去23FP，micro/macro均降，不迁原dev。策略协作者5229695已push，见[结果](evidence/round2/sft-rule-intersection-F1-result.json)。

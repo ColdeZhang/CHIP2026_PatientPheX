@@ -23,3 +23,5 @@ A800在23:22:26Z实际可用362332160B，不能直接写约520MB新最终完整c
 首个CPU准备进程使用system Python缺少`sklearn_crfsuite`，在读取输入/标签前退出；失败源保留，改用已有CPU venv后完成。工程失败不算质量结果。
 
 来源、实际统计、磁盘和恢复locator见 [小证据](../evidence/round2/public-SFT-training-preparation.json)；全量数据与audit放仓库外 `sft-meta1-fusion/public-training-candidate-preparation/`。
+
+后续授权更新：root已据上述实测授予唯一fresh2ep54calls，2400+TERM30及后继600+30 F1推断。只清理旧48/64两份`adapter_model.safetensors`（346362144B），配置不删；重新核副本/无活跃源使用，实测free≥680MB且预计final余≥150MB后才启动。实际入口沿原JSON损失，CPU6.393秒通过；数据独审f0c1a70c通过。当前恢复入口/实际启动状态以[run plan](../evidence/round2/public-SFT-training-run-plan.json)和台账为准。
