@@ -70,3 +70,5 @@
 - **原JSON value权重CPU+短probe**：原124数据/完整JSON不变，3220/7170监督token按真实offset覆盖list赋2，含734空列表token；1702跨界token仅连带标点，61.98%仅合并权重系数比例。CPU2.810s/独立offset9464698通过。A100GPU2 `proc_fd56898d` 23:55:27Z启动唯一180s+TERM15真实CE/梯度检查，watch56214，硬截止23:58:27Z；无正式训练/质量。现有A800212训练不改，按[恢复入口](evidence/round2/json-value-weighted-probe-start.json)先读原job不重启。
 
 - **value加权probe失败保留**：上述A100短行追加8masked pad后的loss差超预写容差，完整short数值尚未持久化、最长step未执行，不能报PASS或质量负。23:56:53Z fresh空40339MiB交sequence ICL，不自动重试/放宽容差；[失败与恢复证据](evidence/round2/json-value-weighted-probe-failure.json)。当前212训练51/54、1705.637s正常，继续固定终点。
+
+- **公开扩充212训练完整结束**：两epoch/54calls实际1803.222s，唯一final adapter `cb2f3f8e…`/Adam-RNG已真实SHA核；epoch1/2 loss .135688/.059961仅训练记录。2026-10-23T23:59:18.943Z A800GPU2 fresh空，watch10348结束，不重启。仅新62 F1支持追加计划 `cc2bbb40…` 已按actual trainer/data/inputfreeze/policy绑定，源和原decoder不变，待一次600+30执行；[训练终点](evidence/round2/public-SFT-training-complete.json)、[F1计划](evidence/round2/public-SFT-F1-new62-plan.json)。
