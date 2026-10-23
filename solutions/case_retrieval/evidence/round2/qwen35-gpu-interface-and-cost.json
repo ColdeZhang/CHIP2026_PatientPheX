@@ -1,0 +1,145 @@
+{
+  "source_commit": "b52337c",
+  "scope": "Actual resource/interface/cost only; no quality Score",
+  "artifacts": {
+    "short": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/complete.json",
+      "sha256": "60f05fd4892ca697c3318a84240b245aba51174be11fc5ee388b795da9ce1c43",
+      "actual": {
+        "selected_row_id": "6134758:sft-extract:6",
+        "full_tokens": 366,
+        "prefix_tokens": 350,
+        "supervised_tokens": 16,
+        "optimizer_steps": 1,
+        "loss": 0.3769281208515167,
+        "nonzero_gradient": true,
+        "B_changed": true,
+        "adapter_reload_exact": true,
+        "forced_chat_eos_engine_stop_verified": true,
+        "greedy_new_tokens": 16,
+        "parameters": 8957276672,
+        "max_gpu_allocated_bytes": 23883224576,
+        "mode": "gpu",
+        "elapsed_seconds": 32.33592987060547,
+        "smoke_only": true,
+        "cuda_initialized": true,
+        "source_sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+        "run_manifest_sha256": "b64878b4956315d3e43c227fd67fe74ad105d05cce23f050a573fdb3adc99554",
+        "result_type": "gpu_interface_smoke_not_score"
+      }
+    },
+    "probe_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/a800-migration/v2/relation-plan/longest-probe-v1/responses.manifest.json",
+      "sha256": "b0318e403ca0252784209719ea7f25bb1ba44139fda6d943da5063381bf55668"
+    },
+    "probe_output": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/a800-migration/v2/relation-plan/longest-probe-v1/responses.jsonl",
+      "sha256": "6f4f260a491305cf614005ba00c7d7c85f60a6ee8f901ea13e91385d93841e30"
+    },
+    "cost": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/complete.json",
+      "sha256": "0db1764f1bee3b5cf4e9561e72fa6c2cd974fff37a57c5f79cb27a15804d1d59",
+      "actual": {
+        "selected_row_id": "6063015:relations:0",
+        "full_tokens": 5787,
+        "prefix_tokens": 5691,
+        "supervised_tokens": 96,
+        "optimizer_steps": 1,
+        "loss": 0.3801697790622711,
+        "three_families_nonzero_gradient": true,
+        "three_families_B_changed": true,
+        "measured_step_seconds": 10.809828989673406,
+        "peak_allocated_bytes": 36950566912,
+        "peak_reserved_bytes": 42165338112,
+        "adapter_parameters": 43278336,
+        "full_parameters": 8997081600,
+        "mode": "gpu",
+        "elapsed_seconds": 43.50689101219177,
+        "source_sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c",
+        "run_manifest_sha256": "b8e57668bf27c9e6126ab52e0ab2d7dab38494c23f93aa03a68bd3ad024c0d57",
+        "cost_probe_only": true,
+        "result_type": "one_longest_train_sample_gpu_cost"
+      }
+    },
+    "cost_timing": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/training-time-estimates.json",
+      "sha256": "c951d809d4af3f974319c96943aaac9077cc8458bf37b5bddd08a04fe5b301e2",
+      "actual": {
+        "measured_longest_forward_backward_seconds": 10.662027405574918,
+        "measured_longest_update_including_gradient_diagnostics_seconds": 0.1478015840984881,
+        "measured_one_sample_step_seconds": 10.809828989673406,
+        "assumed_two_pass_microbatches": 408,
+        "assumed_accum8_optimizer_updates": 52,
+        "conservative_408_times_longest_seconds": 4410.41022778675,
+        "token_scaled_two_pass_seconds": 2440.883040839783,
+        "these_are_measurements": false,
+        "interpretation": "Planning envelope and token-linear estimate from one cold longest sample; neither guarantees total training wall time.",
+        "assumptions": "408 examples vs52 accumulated updates; token estimate assumes proportional forward/backward cost. Longest envelope deliberately overcounts optimizer updates.",
+        "excluded": "Base loading/hash checks, data pipeline, checkpoints, evaluation, scheduling contention, allocator/kernel variability. No full training was run."
+      }
+    }
+  },
+  "independent_inference_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-interface-review/actual-inference-review.json",
+    "sha256": "da2049bd3adde5d0105e0af10959c37bab173a7eebaaf233cf758025f8d09f55"
+  },
+  "formal_base58": {
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "cwd": "case-retrieval/qwen35-preparation",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "source_sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "status": "started",
+    "argv": [
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+      "-u",
+      "qwen35_runner.v2.py",
+      "--model",
+      "/dev/shm/patientphex-qwen35-1045-c20223623576",
+      "--source-manifest",
+      "model-source-manifest.json",
+      "--prompts",
+      "relation-quality/base58.prompts.jsonl",
+      "--output",
+      "relation-quality/base58.responses.jsonl",
+      "--max-input-tokens",
+      "14000",
+      "--max-new-tokens",
+      "1600"
+    ],
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.v2.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest model-source-manifest.json --prompts relation-quality/base58.prompts.jsonl --output relation-quality/base58.responses.jsonl --max-input-tokens 14000 --max-new-tokens 1600",
+    "source_prompts": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+    "source_prompts_sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+    "scope": "Formal original 58-row zero-shot control; no probe response reused; original 947 entities and LR fallback preserved",
+    "decoder": {
+      "batch_size": 1,
+      "max_input_tokens": 14000,
+      "max_new_tokens": 1600,
+      "do_sample": false,
+      "enable_thinking": false,
+      "eos_token_ids": [
+        248044,
+        248046
+      ]
+    },
+    "actual_job": "proc_7dfc20ee-fd84-451d-aa1f-b430305fff02"
+  },
+  "budget_decision": "root authorized fixed204x2 with90 minute single-job hard budget; token-scaled and longest-sample estimates are not measured total",
+  "limitations": [
+    "No natural EOS quality claim from forced EOS",
+    "Probe 8/8 valid candidate responses are format evidence, not correctness",
+    "Probe never reused in formal58",
+    "Short adapter disk reload is not optimizer resume",
+    "No new original dev evaluation"
+  ]
+}

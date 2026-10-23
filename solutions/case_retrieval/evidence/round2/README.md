@@ -39,3 +39,5 @@
 - `qwen35-smoke-start.json`：A800完整迁移/关闭临时服务后，fresh空闲卡上启动冻结短接口测试的实际job与env；非完成或提分证据。
 
 - `qwen35-loading-info-fix.json`：实际TF5 loading-info set序列化故障的最小修复/源码指纹；v1未到forward，新v2同设置重试，不能当质量负。
+
+- `qwen35-gpu-interface-and-cost.json`：实际短smoke/最长6040推断/5787完整r16单步全部通过，区分资源、格式与质量；正式58新作业与90分钟固定训练预算。
