@@ -46,3 +46,5 @@
 
 - `qwen35-base58-control.json`：9B完整58 base原协议Score .633860、18候选回退、0截断，按身份完整回收。
 - `qwen35-relation-training-start.json`：fresh204×2固定训练作业、90分钟预算、4.277GB盘前检和独审；历史启动快照，不代表完成。
+
+- `full-context58-preparation.json`：原58只追加给定全文/marker、609段/158mentions实际CPU预算与A30准备/迁移；尚无该控制GPU得分。

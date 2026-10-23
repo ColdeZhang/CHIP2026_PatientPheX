@@ -1,0 +1,65 @@
+{
+  "preparation": {
+    "source_sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb",
+    "prepared_prompts_sha256": "d633225256dbf1cd5b64e94c74d7ce7f220b834cd748158082b306f12191fab2",
+    "files": {
+      "prompts.jsonl": "d633225256dbf1cd5b64e94c74d7ce7f220b834cd748158082b306f12191fab2",
+      "manifest.json": "1ab90f1e0fc68b1d85a585a9ee0a7d216c7e5eef3970a1b04e4fcdc1091944f8",
+      "tokenizer-audit.json": "105023729b4ec835552d3099452f5583d5972a4064e366ee968435f93b7201e1",
+      "preparation-checks.json": "b07e37b780cc041f5b66e41826d8956d6832e588d25b78237a8d2c29d4ebe969",
+      "plan.md": "d57621185320cfb0437765b4c2dc94952178c8e6b774cefc458a5257fb3805b8",
+      "cpu-plan.json": "eef39f5a6d9a8289b393d5d9297fa8e8ba06d12e3ad6da0f2e09c5d5af42a2c8",
+      "cpu-execution.json": "b350b53ad7e31884aa517591c6a486e9031656ecf07c4c698e4ac20b5cd771ce"
+    },
+    "input_rows": 58,
+    "documents": 16,
+    "patients": 47,
+    "candidate_decisions": 415,
+    "full_text_passages": 609,
+    "given_mentions": 158,
+    "max_input_tokens": 16245,
+    "planned_input_cap": 16384,
+    "max_new_tokens_unchanged": 1600,
+    "longest_row": {
+      "row_id": "3563609:relations:0",
+      "pmc_id": "3563609",
+      "input_tokens": 16245,
+      "messages_sha256": "4348dd0fa6b971a595708af8fd282d73b15eea8a1f8c6c33644ba5a1592680e2"
+    },
+    "gold_read": false,
+    "gpu_started": false,
+    "prepared_only": true
+  },
+  "source": "solutions/case_retrieval/prepare_full_context_control.py",
+  "constraints": [
+    "Original58 messages preserved exactly except appending complete supplied marked report to final user content",
+    "No extra candidates, output schema changes, external paper tables or gold input",
+    "Different GPU base score cannot be called input-only comparison; sameA30 original58+full58 planned if longest probe resource passes",
+    "New9B transfer does not block ongoing A800 fixed training"
+  ],
+  "a30_new_runtime_cpu": {
+    "exit_code": 0,
+    "stdout": "{\"torch\": \"2.7.1+cu126\", \"transformers\": \"5.20.2\", \"peft\": \"0.21.2\", \"accelerate\": \"1.15.0\", \"regex\": \"2026.9.29\", \"safetensors\": \"0.8.0\", \"cuda_initialized\": false, \"python\": \"/home/zhangyuheng/projects/ScratchVL/.venv/bin/python\", \"sources\": {\"torch\": \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/torch/__init__.py\", \"transformers\": \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/transformers/__init__.py\", \"peft\": \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/peft/__init__.py\", \"accelerate\": \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/accelerate/__init__.py\", \"regex\": \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime/regex/__init__.py\", \"safetensors\": \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/safetensors/__init__.py\"}}\n"
+  },
+  "source_server": {
+    "command": "python3 -u a30-transfer-source/qwen-transfer-server.py --directory /dev/shm/patientphex-qwen35-1045-c20223623576 --manifest a30-transfer-source/transfer-manifest.json --bind 10.5.4.7",
+    "id": "proc_4bf81387-531d-4df2-a6fd-e163a66ce1a8",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 8493,
+    "port": 38139,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T17:37:50.655471347Z"
+  },
+  "model_transfer": {
+    "command": "python3 -u a30-fullcontext/qwen-transfer-ranged.py --manifest a30-fullcontext/transfer-manifest.json --source http://10.5.4.7:41236 --output models/Qwen3.5-9B --workers 8 --chunk-mib 64",
+    "id": "proc_44414248-be3b-4643-948f-c1681bd7e4bc",
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "pid": 2361458,
+    "port": 42129,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T17:38:00.360698127Z"
+  },
+  "status": "CPU prepared; current primary204x2 training ongoing; context GPU not started"
+}
