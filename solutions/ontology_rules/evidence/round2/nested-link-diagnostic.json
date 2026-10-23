@@ -1,0 +1,225 @@
+{
+  "scope": "Only train48, three nested train32->16 selected OOF pools; aggregate planning, not prediction or Score",
+  "source_sha256": "7f6d32332265b2b1f57861e2c2a9bb5e93cb671247a6e8a93758afc13839f82e",
+  "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "existing_diagnostic": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/training-loss-diagnosis/train48.json",
+    "sha256": "fb2243fa2bb5073172af44ca09e173353b95aeaabb310f364d962b90bd502673"
+  },
+  "reused_prior_counts": {
+    "entity_fn_no_overlapping_prediction": 908,
+    "entity_fn_boundary_or_nested_overlap": 411
+  },
+  "counts": {
+    "entity_tp": 2287,
+    "entity_fp": 720,
+    "entity_fn": 1364,
+    "FP_exact_positive_span_wrong_identifier": 44,
+    "FP_other_span": 676,
+    "FN_exact_span_wrong_identifier": 45,
+    "wrong_ID_target_atomic_allowed_HPO": 41,
+    "wrong_ID_target_alt_ID_in_canonical_map": 4,
+    "wrong_ID_target_outside_canonical_map": 0,
+    "wrong_ID_target_NIL": 0,
+    "wrong_ID_target_non_HPO_string": 0,
+    "raw_alt_target_canonical_already_selected": 4,
+    "raw_alt_target_canonical_in_full_same_span_pool": 4,
+    "raw_alt_target_canonical_in_exact_dictionary": 3,
+    "wrong_ID_correct_atomic_in_full_same_span_pool": 0,
+    "wrong_ID_correct_atomic_absent_full_same_span_pool": 45,
+    "wrong_ID_correct_atomic_in_ontology_exact_surface": 0,
+    "wrong_ID_correct_atomic_in_train32_exact_surface": 0,
+    "wrong_ID_correct_atomic_in_union_exact_surface": 0,
+    "wrong_ID_absent_pool_but_present_exact_dictionary": 0,
+    "wrong_ID_correct_atomic_in_semantic": 0,
+    "wrong_ID_correct_atomic_in_dictionary_output": 0,
+    "wrong_ID_correct_atomic_in_CRF": 0
+  },
+  "folds": [
+    {
+      "inner_fold": 1,
+      "counts": {
+        "entity_tp": 848,
+        "entity_fp": 341,
+        "entity_fn": 505,
+        "FP_exact_positive_span_wrong_identifier": 24,
+        "FP_other_span": 317,
+        "FN_exact_span_wrong_identifier": 25,
+        "wrong_ID_target_atomic_allowed_HPO": 23,
+        "wrong_ID_target_alt_ID_in_canonical_map": 2,
+        "wrong_ID_target_outside_canonical_map": 0,
+        "wrong_ID_target_NIL": 0,
+        "wrong_ID_target_non_HPO_string": 0,
+        "raw_alt_target_canonical_already_selected": 2,
+        "raw_alt_target_canonical_in_full_same_span_pool": 2,
+        "raw_alt_target_canonical_in_exact_dictionary": 1,
+        "wrong_ID_correct_atomic_in_full_same_span_pool": 0,
+        "wrong_ID_correct_atomic_absent_full_same_span_pool": 25,
+        "wrong_ID_correct_atomic_in_ontology_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_train32_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_union_exact_surface": 0,
+        "wrong_ID_absent_pool_but_present_exact_dictionary": 0,
+        "wrong_ID_correct_atomic_in_semantic": 0,
+        "wrong_ID_correct_atomic_in_dictionary_output": 0,
+        "wrong_ID_correct_atomic_in_CRF": 0
+      },
+      "source": {
+        "generator_train": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+          "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+        },
+        "gold": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+          "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+        },
+        "input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+        },
+        "base": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/baseline.jsonl",
+          "sha256": "7ef8b73d4c91f82f3e7624ebb4c5ffe3f6d83780d5a068e48bbc724815726433"
+        },
+        "candidates": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/scored-candidates.jsonl.gz",
+          "sha256": "5b5f9d758a6400cb1b91e2e8d36c6bbde06d976a28b77ad0bbd5fd84fe784d96"
+        },
+        "crf": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/inner1/pred.jsonl",
+          "sha256": "a4421d1996c4d2e85346489593db8d6a6367b3856ebc4896cab817147645f440"
+        }
+      },
+      "selected": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+        "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+      }
+    },
+    {
+      "inner_fold": 2,
+      "counts": {
+        "entity_tp": 701,
+        "entity_fp": 195,
+        "entity_fn": 454,
+        "FP_exact_positive_span_wrong_identifier": 8,
+        "FP_other_span": 187,
+        "FN_exact_span_wrong_identifier": 9,
+        "wrong_ID_target_atomic_allowed_HPO": 9,
+        "wrong_ID_target_alt_ID_in_canonical_map": 0,
+        "wrong_ID_target_outside_canonical_map": 0,
+        "wrong_ID_target_NIL": 0,
+        "wrong_ID_target_non_HPO_string": 0,
+        "raw_alt_target_canonical_already_selected": 0,
+        "raw_alt_target_canonical_in_full_same_span_pool": 0,
+        "raw_alt_target_canonical_in_exact_dictionary": 0,
+        "wrong_ID_correct_atomic_in_full_same_span_pool": 0,
+        "wrong_ID_correct_atomic_absent_full_same_span_pool": 9,
+        "wrong_ID_correct_atomic_in_ontology_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_train32_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_union_exact_surface": 0,
+        "wrong_ID_absent_pool_but_present_exact_dictionary": 0,
+        "wrong_ID_correct_atomic_in_semantic": 0,
+        "wrong_ID_correct_atomic_in_dictionary_output": 0,
+        "wrong_ID_correct_atomic_in_CRF": 0
+      },
+      "source": {
+        "generator_train": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner2/train32.jsonl",
+          "sha256": "2b7f9fb33dd6f9e8d1d4783745a657a5221409afd9bd3b5b5f4803796c524d9f"
+        },
+        "gold": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-2/validation16.gold.jsonl",
+          "sha256": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb"
+        },
+        "input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-2/validation16.input.jsonl",
+          "sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f"
+        },
+        "base": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner2/baseline.jsonl",
+          "sha256": "d68bed60bf810edaf029a6ab99e311c0f4bdf49801a4c654e4ad3e2bb28bc146"
+        },
+        "candidates": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner2/scored-candidates.jsonl.gz",
+          "sha256": "e09d4d5d16e8d8fd20037c9f5fcf25c4cb86d7d59993ee352f21a3198b7868c1"
+        },
+        "crf": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/inner2/pred.jsonl",
+          "sha256": "300908981d5b58d803d4bb7c1c3c29ab5d9e381acfabec79f442d66ce87e7446"
+        }
+      },
+      "selected": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner2/candidates.jsonl",
+        "sha256": "bfd51f42281680bc7778a354dd8b811b9549c13f5e8eaf7d63e034d65b6ae6e6"
+      }
+    },
+    {
+      "inner_fold": 3,
+      "counts": {
+        "entity_tp": 738,
+        "entity_fp": 184,
+        "entity_fn": 405,
+        "FP_exact_positive_span_wrong_identifier": 12,
+        "FP_other_span": 172,
+        "FN_exact_span_wrong_identifier": 11,
+        "wrong_ID_target_atomic_allowed_HPO": 9,
+        "wrong_ID_target_alt_ID_in_canonical_map": 2,
+        "wrong_ID_target_outside_canonical_map": 0,
+        "wrong_ID_target_NIL": 0,
+        "wrong_ID_target_non_HPO_string": 0,
+        "raw_alt_target_canonical_already_selected": 2,
+        "raw_alt_target_canonical_in_full_same_span_pool": 2,
+        "raw_alt_target_canonical_in_exact_dictionary": 2,
+        "wrong_ID_correct_atomic_in_full_same_span_pool": 0,
+        "wrong_ID_correct_atomic_absent_full_same_span_pool": 11,
+        "wrong_ID_correct_atomic_in_ontology_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_train32_exact_surface": 0,
+        "wrong_ID_correct_atomic_in_union_exact_surface": 0,
+        "wrong_ID_absent_pool_but_present_exact_dictionary": 0,
+        "wrong_ID_correct_atomic_in_semantic": 0,
+        "wrong_ID_correct_atomic_in_dictionary_output": 0,
+        "wrong_ID_correct_atomic_in_CRF": 0
+      },
+      "source": {
+        "generator_train": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner3/train32.jsonl",
+          "sha256": "bb14bff13c89eaf8a90e95c25bb563388612d3db36f4993a7ccd86611127a92e"
+        },
+        "gold": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-3/validation16.gold.jsonl",
+          "sha256": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59"
+        },
+        "input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-3/validation16.input.jsonl",
+          "sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf"
+        },
+        "base": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner3/baseline.jsonl",
+          "sha256": "b44b9f058243866d12c926ab78fef55136728b745aef83f7293c3d8be3f0279d"
+        },
+        "candidates": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner3/scored-candidates.jsonl.gz",
+          "sha256": "ded1d6202e70f4e72e13997cae06ffa35a729f4771c3499901bd422c61c8eaff"
+        },
+        "crf": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/inner3/pred.jsonl",
+          "sha256": "5e79c9dc3baed2116d1647d98401aff908755389d1155b36ca43d21b54835ed4"
+        }
+      },
+      "selected": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner3/candidates.jsonl",
+        "sha256": "4214382eb8d715dacc3a8413dd3de2c7e2d32af52605fa1076e04e2b3f10f8e7"
+      }
+    }
+  ],
+  "originaldev_read": false,
+  "outerfold0_gold_read": false,
+  "top_k_status": "No frozen top-k cache for these three selected nested pools located. Existing sequence Top8 diagnostic concerns outerfold0, and Pheno top3 is a different model; neither is substituted. No embeddings/ranking generated.",
+  "limitations": [
+    "Missing correct gold atoms and wrong predicted atoms use different denominators; no oracle predictions are created.",
+    "Raw ID mismatch follows frozen evaluator v2. Four gold target atoms use HPO alt IDs; canonical-equivalence availability is reported separately, not used to change evaluation labels or predictions.",
+    "Full same-span pool is current ontology/Sap/CRF union, not a semantic top-k list.",
+    "Exact-surface dictionary uses frozen Sap name+EXACT terms and corresponding train32 aliases, with lower/whitespace normalization. Presence is optimistic availability, not correct routing or calibrated Score.",
+    "The 45 missing HPO atoms describe already selected strong CRF+Sap spans; new GLiNER spans may have a different linking difficulty."
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "scope": "Only original outerfold0 development, strict nested candidate+CE lineage; not originaldev or official. One fixed84/.4 vs85/.4 control; no threshold/epoch selection.",
+  "run_plan_sha256": "8b1f1ae23103497b9104c47e1c74eb317e61b94d54451ec41b5ad9e885d37736",
+  "completion_sha256": "86250aea15f09d566209235aeaef5a3c0cfa4a7f54e4d0c8f24e5c9a3171a3f4",
+  "prediction_freeze": {
+    "frozen_at_utc": "2026-10-23T18:45:48.820452+00:00",
+    "base_sha256": "98ffd7c5fd2305b66201c2e06c2dbd73cf9427b253da848f018fda26b62c6af6",
+    "CE_sha256": "5f11e8151806d4e7feab65f4a524be4897fc0a75940f772ba621419b1e3c3a7f",
+    "plan_sha256": "8b1f1ae23103497b9104c47e1c74eb317e61b94d54451ec41b5ad9e885d37736",
+    "source_sha256": "4db8c289b224fe11adeb72dc435b99dc4521c60c8c1fd5bc28d4202d2467fd64",
+    "gold_read": false,
+    "only_one_new_column": true
+  },
+  "models": [
+    {
+      "inner": 1,
+      "training_examples": 6884,
+      "training_positive": 1721,
+      "inference_examples": 15869,
+      "seconds": 68.11084950622171,
+      "training_losses": [
+        0.3539959514077443,
+        0.1647193559068258,
+        0.1065390417168327
+      ],
+      "model_sha256": "922c7f52983f1f1014c65f6907a7703fab485aa136230d6d2de11334b9d09a7b",
+      "score_sha256": "0eb9e5a8659a66676391c570b83153bd78e75fd0591e455ae4b8b9af950757fa",
+      "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7"
+    },
+    {
+      "inner": 2,
+      "training_examples": 7780,
+      "training_positive": 1945,
+      "inference_examples": 14486,
+      "seconds": 73.69595581805333,
+      "training_losses": [
+        0.34775742572231894,
+        0.16749873862225936,
+        0.10716029775728757
+      ],
+      "model_sha256": "6d230aa13a3bd581f262ec3325b641b9a6131118e73a14f43223c1a9462fa8ea",
+      "score_sha256": "5aeeb8fabf53e6d2bd1651d4d5c0a04528e0dfe8dd186d65db05bdcf21462426",
+      "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7"
+    },
+    {
+      "inner": 3,
+      "training_examples": 7576,
+      "training_positive": 1894,
+      "inference_examples": 14758,
+      "seconds": 72.51774134626612,
+      "training_losses": [
+        0.3428560009318647,
+        0.15605113704894388,
+        0.11275255808915545
+      ],
+      "model_sha256": "aeb611b11d50a9b9a4a0060980139e9a68833069a6fad60039ab852493c10c70",
+      "score_sha256": "fdf2b3604195a1543acda09747c0d2bc9b3851cd7a3f0093610c7e940e956125",
+      "source_sha256": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7"
+    }
+  ],
+  "campaign_seconds": 289.1833866639063,
+  "stages": [
+    {
+      "name": "generator1",
+      "seconds": 15.40362126706168,
+      "returncode": 0
+    },
+    {
+      "name": "generator2",
+      "seconds": 14.902068532072008,
+      "returncode": 0
+    },
+    {
+      "name": "generator3",
+      "seconds": 14.80179922003299,
+      "returncode": 0
+    },
+    {
+      "name": "prepare_examples",
+      "seconds": 8.588861406315118,
+      "returncode": 0
+    },
+    {
+      "name": "fit1",
+      "seconds": 73.0559752411209,
+      "returncode": 0
+    },
+    {
+      "name": "fit2",
+      "seconds": 78.5671447631903,
+      "returncode": 0
+    },
+    {
+      "name": "fit3",
+      "seconds": 77.4142900086008,
+      "returncode": 0
+    },
+    {
+      "name": "outer32",
+      "seconds": 6.431385274045169,
+      "returncode": 0
+    }
+  ],
+  "base": {
+    "menF1": 0.7364960075152653,
+    "docF1": 0.7359836901121305,
+    "micF1": 0.6982408660351827,
+    "macF1": 0.6885101084254033,
+    "Score": 0.7148076680219955
+  },
+  "CE": {
+    "menF1": 0.7246653919694073,
+    "docF1": 0.7227926078028748,
+    "micF1": 0.6957708049113234,
+    "macF1": 0.6622596396476664,
+    "Score": 0.7013721110828179
+  },
+  "delta": {
+    "menF1": -0.01183061554585807,
+    "docF1": -0.013191082309255697,
+    "micF1": -0.0024700611238592796,
+    "macF1": -0.026250468777736846,
+    "Score": -0.013435556939177529
+  },
+  "count_deltas": {
+    "mention": {
+      "tp": -26,
+      "fp": -11,
+      "fn": 26
+    },
+    "document": {
+      "tp": -9,
+      "fp": 2,
+      "fn": 9
+    },
+    "relation": {
+      "tp": -3,
+      "fp": -3,
+      "fn": 3
+    }
+  },
+  "validation": {
+    "base": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 952,
+        "relations": 360,
+        "patients": 47
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "prediction_sha256": "98ffd7c5fd2305b66201c2e06c2dbd73cf9427b253da848f018fda26b62c6af6",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "ce": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 915,
+        "relations": 354,
+        "patients": 47
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "prediction_sha256": "5f11e8151806d4e7feab65f4a524be4897fc0a75940f772ba621419b1e3c3a7f",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "external_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ce-oof-control"
+}
