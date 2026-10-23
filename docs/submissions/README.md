@@ -26,4 +26,4 @@ python scripts/backup_git_checkpoint.py --repo . --output-dir EXTERNAL_BUNDLE_DI
 
 若本地 manifest 丢失，用 MCP `read_file` 从对应远端备份目录读取 manifest；它会列明文件名、大小、SHA、所有分支和恢复命令。先恢复 bundle 到新目录，再执行 `git clone -b main BUNDLE_PATH NEW_CHECKOUT`；恢复五个实验分支使用 `git -C NEW_CHECKOUT fetch BUNDLE_PATH 'refs/heads/day1/*:refs/heads/day1/*'`。不要覆盖现有工作树。
 
-2026-10-23 已对前三份预测及三份回执做实际恢复并逐文件验证 SHA；重复备份确认全部跳过同内容文件。Git bundle 也执行自包含校验，后续最新检查点以保存的 manifest 为准。
+2026-10-23 已对前三份预测及三份回执做实际恢复并逐文件验证 SHA；重复备份确认全部跳过同内容文件。初始 Git bundle 已从服务器下载并独立克隆，六个 refs 一致。最终 bundle 已覆盖 `main@be0cf2e` 及五个最终实验分支，完成自包含和远端 SHA 校验，见 [Git 备份 manifest](day1-20261023-git-backup-manifest.json)。主分支随后仅追加这份备份指针和台账状态，不为记录自身 hash 无限生成备份。
