@@ -57,3 +57,9 @@ GLiNER两epoch监督控制表明通用span预训练可学本题边界：nested16
 - GLiNER支持nested span但旧装配一概拒overlap，会无意把表达能力压回平铺实体。训练侧固定异概念proper containment在nested/outer/原dev总分均温和正，然而原dev新增35只10TP、mention下降；合法嵌套能力与值得全收不同。保原池/全部关系的单变量实体控制能分离这种取舍，拒crossing/同界/共享ID，不按结果继续扫策略。
 
 - 全64fresh10不能按惯例替换48模型：同固定过滤/LR主Score.711325→.705869，mention净+2TP3FP但关联-1TP+9FP。相同权重跨runtime推理byteexact排除了该控制的解码差异，不保证torch训练轨迹等价；保留版本差异并以实际目标指标取舍。nested64小增仍未追回，停止当前规模/epoch扫描。
+
+### 较大 GLiNER checkpoint 的来源与变量边界
+
+large-v2（9d0533ed）与medium-v2均明确NuNER/C4自动标注来源，许可Apache2；large-v2.1改为pile-mistral且卡缺完整谱系，GLiNER2-large精确训练配方映射不明，因此本轮不采用后二者。large-v2官方API参数459,495,168，encoder12层768→24层1024，head512→768；tokenizer_config和spm均与现有实际SHA相同，max_len384/max_width12/markerV0未变。loader按config建projection并严格加载，显式BCE无需换算法，尚须真实权重CPU加载及单步确认。
+
+同NuNER不等于只改容量：上游config还记max_neg_type_ratio1→2、warmup5000→.1；完整checkpoint训练/选择清单未公开。后续即使固定赛事train48/10ep/loss/lr/decoder，也只能研究较大公开checkpoint替换，不做纯容量因果结论。ModelScope两准确ID实际404、Qwen正控制200，平台全局搜索不完整，只能说未找到可核镜像；不拿同名v2.1代替。FP32参数/梯度/两Adam矩理论7.352GB，加activation未知，encoder算量比例约3.56×；先实测最长4×384，不能拿medium17分钟承诺large同成本。

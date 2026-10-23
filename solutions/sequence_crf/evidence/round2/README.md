@@ -61,3 +61,5 @@
 - `gliner-nested-transfer-plan.json` / `gliner-nested-control-results.json`：outer31与原dev35追加，关系保留；原dev总分微升但mention下降，完整负分项与双freeze，独审排队；64次臂预先固定。
 
 - `gliner-full64-results.json`：全64唯一终点主.705869/nested.706234，未超过48；同runtime旧模型字节复用、训练/真实状态SHA、三臂统一freeze、存储和GPU释放，终点与对照复用独审PASS。
+
+- `gliner-large-feasibility.json` / `gliner-large-smoke-plan.json`：同NuNER large-v2确切来源与上游配方差异，ModelScope查询/HF回退、静态兼容与仅训练侧单步授权；尚无新模型分数。

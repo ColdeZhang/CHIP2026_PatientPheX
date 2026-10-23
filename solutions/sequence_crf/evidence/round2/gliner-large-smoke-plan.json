@@ -1,0 +1,98 @@
+{
+  "frozen_at_utc": "2026-10-23T18:26:03.614809+00:00",
+  "authorization": "Root authorized exact checkpoint download and one training-side resource/gradient smoke only; no formal10ep/heldout predictions/gold reading",
+  "model": {
+    "repo": "urchade/gliner_large-v2",
+    "revision": "9d0533ed97ade535f232b28dc673999c27c43159",
+    "license": "Apache-2.0",
+    "declared_dataset": "numind/NuNER; C4 to GPT-3.5 automated annotation as previous independently reviewed NuNER source",
+    "lineage_limit": "No full checkpoint training/selection manifest public; declared permitted lineage does not prove all undisclosed provenance. No external manually phenotype-annotated source declared.",
+    "hf_api_safetensors_parameters": {
+      "parameters": {
+        "F32": 459495168
+      },
+      "total": 459495168
+    },
+    "weight_files": [
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "0a0fe3be06f835c3850cbcc8e02be79718f45afc",
+        "size": 1838042152,
+        "lfs": {
+          "sha256": "32ce07a1c5a41185c97047c42960dae98f33428295098dae1bd51cf401681054",
+          "size": 1838042152,
+          "pointerSize": 135
+        }
+      },
+      {
+        "rfilename": "pytorch_model.bin",
+        "blobId": "1d23d60cf44cfd2949e50dc3a990bebf05ee1c6d",
+        "size": 1838173066,
+        "lfs": {
+          "sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+          "size": 1838173066,
+          "pointerSize": 135
+        }
+      }
+    ]
+  },
+  "review_path": "/workspace/patientphex-runs/round2-20261023/research/gliner-large-feasibility/review.json",
+  "review_sha256": "cfbb73c3849117de42332b2eed8d8192bad9891f33826473a2543a2235359c5a",
+  "download": {
+    "prefer": "ModelScope exact identity unavailable in checked paths; pinned official HF fallback",
+    "destination": "sequence-round2/pretrained-gliner-large-v2",
+    "weight": "pytorch_model.bin",
+    "expected_bytes": 1838173066,
+    "expected_sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+    "temporary_cdn_config_private_and_removed_after_validation": true
+  },
+  "resource": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "python": "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+    "runtime": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime",
+    "fresh_no_other_compute_check_required": true
+  },
+  "sources": {
+    "package": "gliner==0.2.22",
+    "loader": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_gliner_pilot.py",
+      "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f"
+    },
+    "trainer": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/train_gliner_supervised.py",
+      "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9"
+    },
+    "facts": [
+      "Both span_mode markerV0, max_width12, max_len384, first subtoken pooling, dropout.4",
+      "Encoder projection and span/LSTM heads infer dimensions from config; no current trainer fixed768 tensor shape",
+      "Existing loader supports official pytorch_model.bin and strict state load; large encoder config must replace base config",
+      "Explicit BCE over valid span logits bypasses known 0.2.22 loss-call error without modifying shared library"
+    ],
+    "actual_strict_load_yet": false
+  },
+  "smoke": {
+    "rows": "4 longest frozen train48 windows by tokens DESC/words DESC/row_id ASC; same trainer smoke code",
+    "batch_size": 4,
+    "max_tokens": 384,
+    "precision": "float32",
+    "loss": "existing explicit mean valid-span BCE",
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "seed": 20261023,
+    "timeout_seconds": 300,
+    "save_weights": false,
+    "required": [
+      "Full official weight and small file SHA checks",
+      "CPU strict load all model weights; actual parameter count; no CUDA",
+      "Actual large tokenizer+collate label/wordmask/token alignment matches frozen1744 rows",
+      "fresh GPU idle check; single optimizer step finite nonzero loss/gradient, peak bytes/time recorded",
+      "GPU exit and explicit release; formal10ep not auto-started"
+    ]
+  },
+  "prepared_train48": {
+    "sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+    "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+    "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  }
+}

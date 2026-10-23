@@ -1,0 +1,133 @@
+{
+  "created_at_utc": "2026-10-23T18:26:03.614062+00:00",
+  "scope": "Source/static feasibility and authorized resource smoke preparation; no formal training or scoring",
+  "preferred_checkpoint": {
+    "repo": "urchade/gliner_large-v2",
+    "revision": "9d0533ed97ade535f232b28dc673999c27c43159",
+    "license": "Apache-2.0",
+    "declared_dataset": "numind/NuNER; C4 to GPT-3.5 automated annotation as previous independently reviewed NuNER source",
+    "lineage_limit": "No full checkpoint training/selection manifest public; declared permitted lineage does not prove all undisclosed provenance. No external manually phenotype-annotated source declared.",
+    "hf_api_safetensors_parameters": {
+      "parameters": {
+        "F32": 459495168
+      },
+      "total": 459495168
+    },
+    "weight_files": [
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "0a0fe3be06f835c3850cbcc8e02be79718f45afc",
+        "size": 1838042152,
+        "lfs": {
+          "sha256": "32ce07a1c5a41185c97047c42960dae98f33428295098dae1bd51cf401681054",
+          "size": 1838042152,
+          "pointerSize": 135
+        }
+      },
+      {
+        "rfilename": "pytorch_model.bin",
+        "blobId": "1d23d60cf44cfd2949e50dc3a990bebf05ee1c6d",
+        "size": 1838173066,
+        "lfs": {
+          "sha256": "36bb03139034378b093de421ebc4a3052b7cfabbc089f4644d5be16d51aafc14",
+          "size": 1838173066,
+          "pointerSize": 135
+        }
+      }
+    ]
+  },
+  "source_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-large-feasibility/sources.json",
+    "sha256": "1b2daa68d762f9087f1eb6398a5fbfd892a97457b652b2b647ee22b1496e370f"
+  },
+  "previous_lineage_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-source-review/review.json",
+    "sha256": "5139706febea37d409b053e3e9af1a0a4fbb73ef3f8eb6fe8bd8761f59c32726"
+  },
+  "encoder_source_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-large-feasibility/encoder-sources.json",
+    "sha256": "bd1e62069f37a897128cfd07353df9e05c18e5898126d01854ed650603997377"
+  },
+  "modelscope_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-large-feasibility/modelscope-review.json",
+    "sha256": "6f888dc2dc2a35c5e2e82509b1cbac0681c1a570de5be6a3225ce8378704964f",
+    "result": "No verifiable exact mirror found on two checked IDs; not proof of platform-wide absence. Use exact pinned HF fallback."
+  },
+  "gliner_config_changes": {
+    "hidden_size": {
+      "medium": 512,
+      "large": 768
+    },
+    "max_neg_type_ratio": {
+      "medium": 1,
+      "large": 2
+    },
+    "model_name": {
+      "medium": "microsoft/deberta-v3-base",
+      "large": "microsoft/deberta-v3-large"
+    },
+    "name": {
+      "medium": "correct",
+      "large": "abl"
+    },
+    "warmup_ratio": {
+      "medium": 5000,
+      "large": 0.1
+    }
+  },
+  "encoder_config_changes": {
+    "hidden_size": {
+      "medium": 768,
+      "large": 1024
+    },
+    "intermediate_size": {
+      "medium": 3072,
+      "large": 4096
+    },
+    "num_attention_heads": {
+      "medium": 12,
+      "large": 16
+    },
+    "num_hidden_layers": {
+      "medium": 12,
+      "large": 24
+    }
+  },
+  "tokenization": {
+    "spm_sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+    "tokenizer_config_sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+    "same_as_actual_medium": true,
+    "encoder_config_must_change": true,
+    "reusable_prepared_train48_sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+    "all_actual_collation_checks_required": true
+  },
+  "static_compatibility": {
+    "package": "gliner==0.2.22",
+    "loader": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_gliner_pilot.py",
+      "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f"
+    },
+    "trainer": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/train_gliner_supervised.py",
+      "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9"
+    },
+    "facts": [
+      "Both span_mode markerV0, max_width12, max_len384, first subtoken pooling, dropout.4",
+      "Encoder projection and span/LSTM heads infer dimensions from config; no current trainer fixed768 tensor shape",
+      "Existing loader supports official pytorch_model.bin and strict state load; large encoder config must replace base config",
+      "Explicit BCE over valid span logits bypasses known 0.2.22 loss-call error without modifying shared library"
+    ],
+    "actual_strict_load_yet": false
+  },
+  "cost_estimate_only": {
+    "parameters_medium_actual": 195175936,
+    "parameters_large_api": 459495168,
+    "ratio": 2.3542613777960826,
+    "float32_model_gradient_two_adam_moments_bytes": 7351922688,
+    "encoder_linear_quadratic_compute_ratio": 3.5555555555555554,
+    "medium_outer48_train_seconds": 996.639,
+    "theoretical_training_minutes_if_compute_ratio_dominates": 59.060088888888885,
+    "limitations": "Excludes activations/temp buffers; ratio not measured runtime. Actual longest4x384 smoke controls feasibility; no formal budget approved."
+  },
+  "decision": "Proceed only pinned checkpoint download and same train48 longest4x384 resource/gradient smoke, fresh no retained training weights. This is checkpoint substitution, not pure capacity causality because upstream negative ratio/warmup/head differ. Formal10ep awaiting actual measured budget."
+}
