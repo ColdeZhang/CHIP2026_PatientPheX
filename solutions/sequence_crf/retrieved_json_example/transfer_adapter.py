@@ -31,6 +31,10 @@ class Handler(BaseHTTPRequestHandler):
 print('allowlist ready',flush=True)
 ThreadingHTTPServer(('0.0.0.0',PORT),Handler).serve_forever()
 '''.replace('ROOT_PATH',repr(src['source_directory'])).replace('ALLOWED',repr(p['adapter_files'])).replace('PREFIX',repr(src['path_prefix'])).replace('PORT',str(src['port']))
+    mkdir=call(src['mount'],'run_command',dict(command='python3 -c '+shlex.quote(
+        'from pathlib import Path;p=Path('+repr(server_root)+');assert not p.exists();p.mkdir(parents=True)'),cwd='',timeout_seconds=10))
+    assert mkdir['exit_code']==0
+    save('adapter-server-directory.json',mkdir)
     call(src['mount'],'write_file',dict(path=server_root+'/serve.py',encoding='utf8',content=server))
     started=call(src['mount'],'start_process',dict(command='timeout --signal=TERM --kill-after=5s 360s python3 serve.py',cwd=server_root))
     save('adapter-server-job.json',dict(result=started,source_sha256=hashlib.sha256(server.encode()).hexdigest(),allowed=p['adapter_files']))
