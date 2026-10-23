@@ -163,6 +163,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：先确认标注范围，再评估外部证据的收益，不把“原论文确实记载”当作gold包含的保证。训练诊断中99.185%的gold关系可在给定正实体中找到，当前优先改进原文跨度和患者归属。保留表格来源及负结果，不把单一政策/单折负结果泛化为所有表格无用。证据见[CRF表格对照](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/evidence/round2/tables-fold0.json)。
 
+## H26：WordPiece标签合法，不代表解码跨度落在词边界
+
+神经NER曾输出 `lipomatosis` 中的 `lip`、`microcephaly` 中的 `haly` 等词内碎片；token标签、字符切片和JSON格式都可以通过，仍是错误表型边界。独立审计已核实训练标签往返覆盖99.22%，没有大规模mask/窗口故障，不能把这些碎片误判为整个训练链路损坏。
+
+**避免方法**：单独检查推理跨度的词边界；保留训练标注确有词内跨度的例外，不一概修改gold。仅按train48冻结的过滤控制让三种神经NER在内fold0改善约 .004–.0075 Score，仍未超过CRF；已交方案负责人，尚未宣称跨折稳定或全局替换。证据见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)，完整审查在仓库外 `validation/ner-audit/`。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
