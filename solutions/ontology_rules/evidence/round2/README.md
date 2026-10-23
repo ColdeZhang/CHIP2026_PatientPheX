@@ -21,3 +21,5 @@
 - [原dev前冻结的四折选型](multi-fourfold-strategy-freeze.json)：预设最简选择规则，source入选，含全部12预测SHA。
 
 - [唯一预选原dev](multi-selected-dev.json)：.639287，低于v1最好分，不升级默认。
+
+- [OOF聚合归属准备](aggregate-relation-preparation.json)与[fold0固定控制](aggregate-relation-fold0.json)：高召回池诊断、单模型/并集负结果及新增错误类型。
