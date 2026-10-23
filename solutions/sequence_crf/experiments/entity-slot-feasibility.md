@@ -75,3 +75,14 @@
 峰allocated **26.786GB** /reserved32.204GB。native同batch两列与原head两行F.linear差0、padding token毒化差0；batch与unpadding逐行最大差**.25**，满足事前atol.125+rtol.02而非bitwise相同。实际LoRA_B三家族native/compact梯度relativeL2为.008759–.011753、cos≥.999931，原head不变；五组真正非零lr更新均通过。CPU独审`25d81432`确认原8行组/尾5/逐行mean和无新head；actual增量独审继续。
 
 完整2epoch计数160 optimizer组、291微批、920138真实tokens/1458446paddedtokens。仅按四个暖组成本，两种透明代理估计更新阶段 **1407.54–1429.45秒**（约23.5–23.8分钟），再建议给hash/load/save约150秒余量；**这是预算代理不是实测整轮，也不是硬保证**，微批形状和动态kernel仍有影响。不再用旧冷短行线性截距62分钟估计。保持原目标和顺序，但batch改变dropout RNG消耗/浮点归约，应记新工程变体，不能声称等价复刻旧batch1轨迹。完整可重算成本与SHA见[结果](../evidence/round2/entity-slot-microbatch-probe-results.json)。是否正式训练仍由root决定，probe状态全部丢弃。
+
+
+## 正式唯一fresh实体32二元训练（已授权，启动前冻结）
+
+root在微批实测后授权原门控train32的637提示/2430候选，fresh公开9B、独立LoRA43,278,336/r16/alpha32/.05，BF16底座、FP32 adapter与AdamW、lr1e-4/wd.01/clip1，**固定2ep/160 optimizer calls/warmup8**。epoch seed20261023+epoch shuffle，原8行组/尾5及组内8192pad动态微批不变；每行mean再组mean、原冻结0/1 head两行投影不变。公开model、slot与microbatch实际接口全部复用，绝不续probe。
+
+预算训练2200秒+TERM/KILL30秒；每组前固定留180秒保存余量+40秒下组余量，不足则保存partial并禁止推断。保存真实epoch1/epoch2 adapter、Adam/scheduler/RNG，epoch1仅恢复资源，**只评第2轮**。actual成本代理1407–1429秒更新+建议150秒加载保存，不是硬保证。A100预查空卡、持久盘至少4GiB后启动。微批actual独审`0b0c7cb2`已PASS，不重probe。
+
+终点只在同一F1纯输入398提示/1589机械候选上，载最终适配器一次，用disable_adapter得到公开base，再启用final；原head双列、同右padding微批/同原顺序、固定**p≥.5**。双臂推断共享600+30秒，保存每一原key的真实两logits/概率，无生成/无搜索。两概率和两完整预测共同freeze后唯一F1实体质量检查，**不原dev**。
+
+装配沿旧calibrate的`(-p,-length,offset)`稳定排序（完全并列沿冻结gated-prompt候选顺序），greedy拒任何重叠；相接允许，原candidate ID/compound/`-1`不改，统一type=Phenotype/note=None，无额外否定/NIL门。仅替换entities，原`7ef8b73d…`F1语义+本体baseline全部非entity对象逐项不变，不重新分配患者。5个输入边界CPU检查已过。当前**77列gate候选家族不含当前best97列公开多源完整池**；public-base对final的提升不等于超过现有best。候选F3→F2/F2→F3及train32→F1隔离、train32 resub gate偏差保持披露。完整计划与source恢复见[formal计划](../evidence/round2/entity-slot-formal-plan.json)。

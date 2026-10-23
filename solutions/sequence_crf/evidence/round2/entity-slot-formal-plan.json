@@ -1,0 +1,109 @@
+{
+  "status": "authorized fixed formal, not yet launched",
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/plan.json",
+    "sha256": "d7123855cbaffda91ec622210b47d618bcac20f279aa28511e56082c3fe6435b",
+    "bytes": 8335
+  },
+  "recipe": {
+    "fresh_public_base": true,
+    "epochs": 2,
+    "gradient_accumulation": 8,
+    "updates_if_full": 160,
+    "last_group_rows": 5,
+    "learning_rate": 0.0001,
+    "warmup_fraction": 0.05,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "LoRA_rank": 16,
+    "LoRA_alpha": 32,
+    "LoRA_dropout": 0.05,
+    "seed": 20261023,
+    "loss": "mean FP32 CE over row slots, then true accumulation-group mean; fixed frozenLMhead0/1; no labels in input",
+    "base_dtype": "BF16",
+    "trainable_adapter_and_Adam": "FP32",
+    "only_final_epoch": "2",
+    "output": "probability per immutable input candidate key; no HGB integration/quality/decoder experiment yet",
+    "effective_group_rows": 8,
+    "microbatch_padded_token_cap": 8192,
+    "updates": 160,
+    "warmup_steps": 8,
+    "original_order": "seed20261023+epoch shuffle, consecutive8 groups; no intra-group sorting",
+    "checkpoint_policy": "epoch1 recovery only; only epoch2 is final quality; partial never inference",
+    "actual_head": "frozen existing [15,16] via F.linear, no new parameters",
+    "engineering_difference": "same objective/order; microbatch changes dropout draws/floating point reduction vs batch1",
+    "reference_batch_size": 1
+  },
+  "budgets": {
+    "training_seconds": 2200,
+    "training_TERM_KILL_grace": 30,
+    "checkpoint_margin": 180,
+    "next_group_margin": 40,
+    "two_arm_inference_seconds": 600,
+    "inference_TERM_KILL_grace": 30,
+    "minimum_free_bytes": 4294967296
+  },
+  "assembly": {
+    "source_sha256": "d789e7956bf0b8d0e0bb306c4324d1969770043be15ba71af30a911bb182e791",
+    "cut": 0.5,
+    "references": {
+      "input": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+        "bytes": 342703,
+        "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+      },
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/baseline.jsonl",
+        "bytes": 141904,
+        "sha256": "7ef8b73d4c91f82f3e7624ebb4c5ffe3f6d83780d5a068e48bbc724815726433"
+      },
+      "heldout_prompts": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/gate-p01/heldout.prompts.jsonl.gz",
+        "sha256": "2aa7f0230cf288981480830ce7ed885d37d938f4b1acdb7b6bcce9455b706ddf",
+        "bytes": 221609
+      }
+    },
+    "policy": "old calibrate (-prob,-length,offset) greedy, stable frozen gated prompt candidate order tie; any overlap rejected",
+    "entities": "existing input candidate HPO/compound/-1 unchanged, type Phenotype/note None; no new keys or special filters",
+    "nonentities": "exact baseline7ef8 objects unchanged for both arms; no patient reassignment",
+    "comparison": "public9B adapter-disabled vs sole fresh final; same1589 gate77 candidates. Not current public97 HGB pipeline.",
+    "quality": "both complete probabilities and both fullpred frozen first, then one F1 Task1 evaluation; no extra cut/epoch scan/originaldev"
+  },
+  "microbatch_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-microbatch-review/review.json",
+    "sha256": "0b0c7cb2f40fcd57418fc33a64ef5e99bda51bb7e06a75f4ce86ccd33423590c",
+    "bytes": 12861
+  },
+  "assembly_CPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/assembly-cpu-contract.json",
+    "sha256": "f31e109abebcd31b4b5d067e6d1b870106c58f7ab62d2598751f82087139edc1",
+    "bytes": 302
+  },
+  "sources": {
+    "train_entities.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/train_entities.py",
+      "sha256": "b7de7865a158971d044fff38ff9cd9f3d65b76c5bec2ea3bbe828d822e51341d",
+      "bytes": 8445
+    },
+    "infer_entities.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/infer_entities.py",
+      "sha256": "3dff9391eb4db0c419855b6cc3b9dc13744914ca1c834d83bf879a23ae5f3db4",
+      "bytes": 5922
+    },
+    "assemble_entities.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/assemble_entities.py",
+      "sha256": "d789e7956bf0b8d0e0bb306c4324d1969770043be15ba71af30a911bb182e791",
+      "bytes": 4556
+    },
+    "prepare_entity_training.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/prepare_entity_training.py",
+      "sha256": "34e6a3351b65a43f6b3946ca0ec56b0935b04efe0a09221c109197c8f7242f53",
+      "bytes": 4789
+    },
+    "formal_operations.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/formal_operations.py",
+      "sha256": "72bf572e7a255baf74df20e0562f22e6dcc197d3649e53cd54aa421def436d39",
+      "bytes": 7419
+    }
+  }
+}
