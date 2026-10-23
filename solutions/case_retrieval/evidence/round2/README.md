@@ -50,3 +50,5 @@
 - `full-context58-preparation.json`：原58只追加给定全文/marker、609段/158mentions实际CPU预算与A30准备/迁移；尚无该控制GPU得分。
 
 - `pair-schema-control-preparation.json`：预设确定性对象包装投影；7合成tests，原raw/原解析不改，待9B base+adapter齐后同规则配对，未提前重评。
+
+- `full-context8b-resource-check.json`：A30最长16142输入实际显存/格式/成本及固定两臂共享45分钟硬预算，未把probe合法性当得分。
