@@ -64,3 +64,5 @@
 
 - **公开扩充新授权**：root据真实成本批准fresh公共base+r16、212行×2ep/54calls/3warmup、2400s+TERM30，原JSON loss不变；仅final可恢复checkpoint或soft2340 partial，不自动续训/评partial。新数据独审f0c1a70c与实际trainer CPU6.393s通过。只授权清理A800旧48/64两个已复制权重（346362144B，config不删），须fresh核后满足680MB/余150MB才启动。后继唯一F1旧62提示+原support对照，旧80/383不动；[预写计划](evidence/round2/public-SFT-training-run-plan.json)。
 - **交集迁移F1失败关闭**：固定oldSFT∩rules后保留原supported65，.682128804→.661533824；删63中丢40TP、去23FP，micro/macro均降，不迁原dev。策略协作者5229695已push，见[结果](evidence/round2/sft-rule-intersection-F1-result.json)。
+
+- **公开扩充JSON正式运行中**：A800 GPU2 `proc_f062bc89-d476-4007-ac42-caa3aa773bb2`，23:29:00Z启动，native硬截止2026-10-24T00:09:00Z+TERM30，watch10348；外存`public-training-candidate-preparation/formal2ep/{job,monitor,run-plan}.json`。plan910fc8/trainer4a6f/entry独审f421，H32先读原job勿重启。23:28:41Z仅移除两个旧48/64冗余weight共346362144B、已全SHA核.100备份；A800free707502080B/预计final余187502080，config与optimizer未删、旧locator仍有效。详见[启动与存储账](evidence/round2/public-SFT-training-start.json)。
