@@ -65,3 +65,5 @@
 - [固定3ep MIL真实终点](relation-mil-results.json)：同实体纯关系删除控制.711354→.702753，删除27TP/45FP；不调阈值/epoch，原dev未运行。
 
 - [严格OOF CE特征入树可行性](ce-oof-feasibility.json)：旧outer模型/分数资产、二级候选来源泄漏核对、两种隔离方案成本；仅CPU提案，未新增训练。
+
+- [CE唯一OOF运行计划](ce-oof-run-plan.json)与[CPU实际准备](ce-oof-preparation.json)：严格3×16/6池隔离、旧84列/.4 byteexact、总720秒预算；终点尚未运行。

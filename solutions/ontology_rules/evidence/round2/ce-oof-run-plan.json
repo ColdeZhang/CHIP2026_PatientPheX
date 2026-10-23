@@ -1,0 +1,138 @@
+{
+  "run_id": "strict-nested-CE-feature-fold0-A",
+  "frozen_at_utc": "2026-10-23T18:35:55.412353+00:00",
+  "stage": "CPU prepared; no GPU yet",
+  "authorization": "root: recipe A with total additionalGPU cap720seconds; 84/.4 corrected explicitly before run",
+  "source_sha256": {
+    "enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "gpu_candidates_frozen.py": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+    "ce_oof_control.py": "4db8c289b224fe11adeb72dc435b99dc4521c60c8c1fd5bc28d4202d2467fd64",
+    "context_calibrate.py": "ce843f8244b8e8a63f72c98b78ac8dd1a32b08ab22c4c01cf32a26fecfabf9c7",
+    "calibrate_multi.py": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+    "ce_oof_runner.py": "2086a3ba7aca3c925768fae93664f2cf77da5ab9e97c0ef6f832efc23b8257f9"
+  },
+  "preparation_sha256": "2a032ad7e50c9dd9663b3e294dd974a3e2713e59652716fc5629311b74124e16",
+  "legacy_outer48_model_sha256": "f05d4fd321934b19276805f46cc3bf834f8814eaa7efb5f89b82ea7018409063",
+  "old_outer_scores_sha256": "755019a06a263581dd32e01ba342cf588052280c95608a545771fceb7138f5c9",
+  "three_generator_train_documents": 16,
+  "generator_targets_per_train": 2,
+  "six_pool_sources": [
+    {
+      "generator_fold": 1,
+      "scored_fold": 2,
+      "CE_heldout_fold": 3,
+      "generator_train16_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+      "scored_input16_sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    },
+    {
+      "generator_fold": 1,
+      "scored_fold": 3,
+      "CE_heldout_fold": 2,
+      "generator_train16_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+      "scored_input16_sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    },
+    {
+      "generator_fold": 2,
+      "scored_fold": 1,
+      "CE_heldout_fold": 3,
+      "generator_train16_sha256": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+      "scored_input16_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    },
+    {
+      "generator_fold": 2,
+      "scored_fold": 3,
+      "CE_heldout_fold": 1,
+      "generator_train16_sha256": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+      "scored_input16_sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    },
+    {
+      "generator_fold": 3,
+      "scored_fold": 1,
+      "CE_heldout_fold": 2,
+      "generator_train16_sha256": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+      "scored_input16_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    },
+    {
+      "generator_fold": 3,
+      "scored_fold": 2,
+      "CE_heldout_fold": 1,
+      "generator_train16_sha256": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+      "scored_input16_sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+      "future_CE_heldout_ids_intersection": [],
+      "generator_target_intersection": []
+    }
+  ],
+  "CE_models": 3,
+  "CE_train_documents": 32,
+  "CE_recipe": "unchanged context_calibrate.py fit/prepare:3ep,batch32,max160,lr2e-5,seed20261023,negative up to3xpositive/min12,weightedCE,10pctlinearwarmup",
+  "new_training_rows": "actual counts recorded after the new6pools, not old leaking slices",
+  "CE_score_rows": [
+    15869,
+    14486,
+    14758
+  ],
+  "outer_only_missing_rows": 32,
+  "tree_control": {
+    "original_features": 84,
+    "new_features": 85,
+    "threshold": 0.4,
+    "single_new_feature": "CE_probability",
+    "all_old_features_matrix_order_preserved": true,
+    "estimator": {
+      "categorical_features": "from_dtype",
+      "class_weight": null,
+      "early_stopping": false,
+      "interaction_cst": null,
+      "l2_regularization": 5.0,
+      "learning_rate": 0.06,
+      "loss": "log_loss",
+      "max_bins": 255,
+      "max_depth": null,
+      "max_features": 1.0,
+      "max_iter": 160,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 35,
+      "monotonic_cst": null,
+      "n_iter_no_change": 10,
+      "random_state": 20261023,
+      "scoring": "loss",
+      "tol": 1e-07,
+      "validation_fraction": 0.1,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "old_prediction_sha256": "98ffd7c5fd2305b66201c2e06c2dbd73cf9427b253da848f018fda26b62c6af6",
+    "base_CPU_byteexact_verified": true
+  },
+  "evaluation": "freeze both predictions then evaluate originalfold0 only once; no threshold/epoch/grid, originaldev untouched",
+  "GPU": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "remote": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ce-oof-control",
+    "interpreter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/bin/python",
+    "budget_seconds": 720,
+    "generator_and_CE_and_missing_inference_all_counted": true
+  },
+  "guardrails": [
+    "all exact candidate keys and surfaces must match; no missing-value scores",
+    "all6pool generator train16 must exclude candidate docs and futureCEheldout16",
+    "no old11180 subset used for strictnestedCE fitting",
+    "oldouter48 remains immutable; only32absent scores appended",
+    "no GPU until readiness review and sequence explicitrelease/freshUUIDcheck",
+    "if budget exceeded retain completedstates, report actualbottleneck and do not silently add budget"
+  ],
+  "CPU_baseline_manifest_sha256": "5a7c74c7786483a42ddb549957c1da154e639b031b8e36b685805615c93d4e32"
+}
