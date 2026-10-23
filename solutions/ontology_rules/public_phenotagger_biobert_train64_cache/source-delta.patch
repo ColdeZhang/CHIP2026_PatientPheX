@@ -1,0 +1,92 @@
+--- bioformer/run_train64.py
++++ biobert/run_train64.py
+@@ -15,7 +15,7 @@
+ plan=json.loads((R/'train64-cache/plan.json').read_text())
+ for n,digest in plan['remote_source_sha256'].items():assert sha(R/n)==digest,(n,'source SHA mismatch')
+ assert sha(R/'train64-cache/train64.input.jsonl')=='ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246'
+-assert sha(R/'bioformer_PT_v1.2.h5')=='867819ac932e11250c42ca13c49eba3711a7f24b170e24bfb31b65589d0024a1'
++assert sha(R/'biobert_PT_v1.2.h5')=='1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573'
+ import nltk
+ nltk.data.path=[str(SHARED/'nltk_data')]
+ from ssplit_tokenzier import ssplit_token_pos_lemma
+@@ -58,9 +58,11 @@
+   passages.append({'pmc_id':doc['pmc_id'],'passage_index':pi,'passage_offset':p['offset'],'passage_type':p['type'],'text':text,'candidates':candidates,'ml_text':ml_text,'indices':indices,'dictionary_tsv':dic.matching(conll)})
+   n_candidates+=len(candidates);n_tokens+=len(locations)
+ assert len(passages)>0 and n_tokens>0 and n_candidates>0 and len(unique)>0
+-cache=[None]*len(unique);missing_indices=list(range(len(unique))) # Different model: no PubMedBERT logits reused.
++cache=[None]*len(unique);missing_indices=list(range(len(unique))) # Different model: no PubMedBERT or Bioformer logits reused.
+ expected_dictionary=sum(sum(max(0,len(s.splitlines())-1) for s in p['dictionary_tsv'].strip().split('\n\n')) for p in passages)
+ prep={'documents':64,'passages':len(passages),'verified_token_offsets':n_tokens,'candidates':n_candidates,'unique_lower_token_inputs':len(unique),'reused_forward_keys':len(unique)-len(missing_indices),'new_forward_keys':len(missing_indices),'dictionary_candidates':expected_dictionary,'seconds':time.monotonic()-start,'input_sha256':sha(R/'train64-cache/train64.input.jsonl')}
++for key,value in plan['expected_input_only_counts'].items():assert prep[key]==value,(key,prep[key],value)
++assert prep['reused_forward_keys']==0 and prep['new_forward_keys']==244938
+ if not prepare_only:
+  prior=json.loads((R/'native-train64-cache-cpu-preparation/preparation.json').read_text())
+  for key in ['documents','passages','verified_token_offsets','candidates','unique_lower_token_inputs','reused_forward_keys','new_forward_keys','dictionary_candidates','input_sha256']:assert prep[key]==prior[key],key
+@@ -75,21 +77,30 @@
+ tf.config.threading.set_intra_op_parallelism_threads(1);tf.config.threading.set_inter_op_parallelism_threads(1)
+ assert str(SHARED/'tf-gpu-overlay') in tf.__file__
+ labels=(R/'lable.vocab').read_text().strip().split('\n');assert len(labels)==17266
+-rep=BERT_RepresentationLayer(str(R/'bioformer-base'),str(R/'lable.vocab'),lowercase=False)
+-enc=TFAutoModel.from_config(AutoConfig.from_pretrained(R/'bioformer-base',local_files_only=True))
++rep=BERT_RepresentationLayer(str(R/'biobert-base'),str(R/'lable.vocab'),lowercase=False)
++assert len(rep.tokenizer)==28996 and rep.tokenizer.do_lower_case is False
++assert [rep.tokenizer.convert_tokens_to_ids(x) for x in ['[PAD]','[UNK]','[CLS]','[SEP]','[MASK]']]==[0,100,101,102,103]
++enc=TFAutoModel.from_config(AutoConfig.from_pretrained(R/'biobert-base',local_files_only=True))
+ a=tf.keras.layers.Input((32,),dtype=tf.int32);b=tf.keras.layers.Input((32,),dtype=tf.int32);c=tf.keras.layers.Input((32,),dtype=tf.int32)
+-y=tf.keras.layers.Dense(17266,activation='softmax')(enc(a,token_type_ids=b,attention_mask=c)[0][:,0,:]);model=tf.keras.Model([a,b,c],y);model.load_weights(str(R/'bioformer_PT_v1.2.h5'));assert model.count_params()==51380594 and len(model.weights)==137
+-# Complete variable coverage was independently verified in the bound CPU/GPU strict-load reports.
++y=tf.keras.layers.Dense(17266,activation='softmax')(enc(a,token_type_ids=b,attention_mask=c)[0][:,0,:]);model=tf.keras.Model([a,b,c],y);model.load_weights(str(R/'biobert_PT_v1.2.h5'));assert model.count_params()==121587826 and len(model.weights)==201
++# Full201-variable NaN/equality CPU evidence is bound from attempt2; this run uses strict GPU topology load/count and its first real batch interface gate.
+ infer=tf.function(lambda x,y,z:model([x,y,z],training=False));concrete=infer.get_concrete_function(*[tf.TensorSpec([None,32],tf.int32)]*3)
+ inferstart=time.monotonic()
+ with (OUT/'new-forward-predictions.jsonl').open('w') as out:
+  for offset in range(0,len(missing_indices),128):
+   batch_indices=missing_indices[offset:offset+128];batch=[unique[i] for i in batch_indices];inputs,_=rep.load_data([[tuple([w]) for w in key] for key in batch],[],word_max_len=32,training=False)
++  if offset==0:
++   ids,segments,masks=inputs;lengths=masks.sum(1).astype(np.int64)
++   assert all(x.shape==(128,32) for x in inputs) and all(x.dtype==np.int32 for x in inputs)
++   assert ((ids>=0)&(ids<28996)).all() and (segments==0).all() and ((masks==0)|(masks==1)).all()
++   assert ((lengths>=2)&(lengths<=32)).all() and (ids[:,0]==101).all() and (ids[np.arange(128),lengths-1]==102).all()
++   assert np.array_equal(masks,(np.arange(32)[None,:]<lengths[:,None]).astype(masks.dtype)) and (ids[masks==0]==0).all()
++   first_input_contract={'shape':[128,32],'dtype':'int32','vocabulary_size':28996,'CLS':101,'SEP':102,'PAD':0,'min_active_length':int(lengths.min()),'max_active_length':int(lengths.max()),'all_ids_in_vocabulary':True,'type_ids_all_zero':True,'right_padding_mask_exact':True}
+   gpu_tensor=concrete(*inputs);assert gpu_tensor.device.endswith('GPU:0'),gpu_tensor.device
+   probs=gpu_tensor.numpy();assert probs.shape==(len(batch),17266) and np.isfinite(probs).all() and np.allclose(probs.sum(1),1,atol=1e-5)
+   if offset==0:
+    assert len(batch)==128 and len(labels)==17266 and rep.tokenizer.do_lower_case is False
+-   dump('GPU-first-batch.json',{'valid':True,'rows':len(batch),'classes':probs.shape[1],'all_finite':True,'probability_sums_close1':True,'actual_tensor_device':gpu_tensor.device,'seconds_including_first_kernel':time.monotonic()-inferstart,'model_parameters':model.count_params(),'native_variables':len(model.weights),'weight_sha256':sha(R/'bioformer_PT_v1.2.h5'),'CPU_load_report_sha256':sha(R/'native-h5-result.json'),'tokenizer_do_lower_case':rep.tokenizer.do_lower_case,'upstream_word_lowering':True,'batch_source':'first actual train64 unlabelled candidate batch; no discarded quality arm'})
++   dump('GPU-first-batch.json',{'valid':True,'model_type':'biobert','token_input_contract':first_input_contract,'rows':len(batch),'classes':probs.shape[1],'all_finite':True,'probability_sums_close1':True,'actual_tensor_device':gpu_tensor.device,'seconds_including_first_kernel':time.monotonic()-inferstart,'model_parameters':model.count_params(),'native_variables':len(model.weights),'weight_sha256':sha(R/'biobert_PT_v1.2.h5'),'CPU_load_report_sha256':sha(R/'../public-phenotagger-biobert-attempt2/native-h5-result.json'),'tokenizer_do_lower_case':rep.tokenizer.do_lower_case,'upstream_word_lowering':True,'batch_source':'first actual train64 unlabelled candidate batch; no discarded quality arm'})
+   native_lines=output_result(probs,rep.label_2_index,Top_N=3).strip().splitlines();assert len(native_lines)==len(batch)
+   for j,(prob,line) in enumerate(zip(probs,native_lines)):
+    raw=[]
+@@ -127,5 +138,5 @@
+    row={k:p[k] for k in ['pmc_id','passage_index','passage_offset','passage_type']};row.update(local_start=left,local_end=right,offset=p['passage_offset']+left,length=right-left,text=text[left:right],raw_hpo_id=x[2],hpo_id=target,score=float(x[3]));final.write(json.dumps(row,ensure_ascii=False)+'\n');counts['canonical_kept']+=1
+ assert counts['raw_neural_candidates']==n_candidates and counts['raw_dictionary_candidates']==expected_dictionary
+ outputs={p.name:{'sha256':sha(p),'bytes':p.stat().st_size} for p in OUT.iterdir() if p.is_file()}
+-manifest={'status':'complete_predictions_frozen_before_quality_evaluation','plan_sha256':sha(R/'train64-cache/plan.json'),'source_sha256':sha(__file__),'input_sha256':sha(R/'train64-cache/train64.input.jsonl'),'model_weight_sha256':sha(R/'bioformer_PT_v1.2.h5'),'model_parameters':model.count_params(),'model_variables':len(model.weights),'strict_native_CPU_load_sha256':sha(R/'native-h5-result.json'),'GPU_first_batch_validation_sha256':sha(OUT/'GPU-first-batch.json'),'old_label_order_sha256':sha(R/'lable.vocab'),'public_model_training_on_task':False,'model_type':'bioformer','reused_other_model_logits':False,'new_forward_keys':len(missing_indices),'reused_forward_keys':len(unique)-len(missing_indices),'fixed_policy':plan['policy'],'counts':counts,'inference_seconds':infer_seconds,'elapsed_seconds':time.monotonic()-start,'gpu_uuid':os.environ['CUDA_VISIBLE_DEVICES'],'memory_growth':True,'tf32_default_enabled':tf.config.experimental.tensor_float_32_execution_enabled(),'GPU_peak_memory':tf.config.experimental.get_memory_info('GPU:0'),'outputs':outputs}
++manifest={'status':'complete_predictions_frozen_before_quality_evaluation','plan_sha256':sha(R/'train64-cache/plan.json'),'source_sha256':sha(__file__),'input_sha256':sha(R/'train64-cache/train64.input.jsonl'),'model_weight_sha256':sha(R/'biobert_PT_v1.2.h5'),'model_parameters':model.count_params(),'model_variables':len(model.weights),'strict_native_CPU_load_sha256':sha(R/'../public-phenotagger-biobert-attempt2/native-h5-result.json'),'GPU_first_batch_validation_sha256':sha(OUT/'GPU-first-batch.json'),'old_label_order_sha256':sha(R/'lable.vocab'),'public_model_training_on_task':False,'model_type':'biobert','reused_other_model_logits':False,'new_forward_keys':len(missing_indices),'reused_forward_keys':len(unique)-len(missing_indices),'fixed_policy':plan['policy'],'counts':counts,'inference_seconds':infer_seconds,'elapsed_seconds':time.monotonic()-start,'gpu_uuid':os.environ['CUDA_VISIBLE_DEVICES'],'memory_growth':True,'tf32_default_enabled':tf.config.experimental.tensor_float_32_execution_enabled(),'GPU_peak_memory':tf.config.experimental.get_memory_info('GPU:0'),'outputs':outputs}
+ dump('manifest.json',manifest);print(json.dumps(manifest),flush=True)
+
+--- bioformer/make_provenance.py
++++ biobert/make_provenance.py
+@@ -1,4 +1,4 @@
+-"""CPU-only input-preserving provenance for Bioformer train64; exact evidence source flags; no quality labels."""
++"""CPU-only input-preserving provenance for BioBERT train64; exact evidence source flags; no quality labels."""
+ import os,json,hashlib,time,collections
+ from pathlib import Path
+ R=Path.cwd();assert os.environ.get('CUDA_VISIBLE_DEVICES')=='';start=time.monotonic();OUT=R/'native-train64-final-cache';OUT.mkdir(exist_ok=False)
+@@ -14,7 +14,7 @@
+ for d in docs:assert set(d)=={'pmc_id','pmid','patient','full_text'}
+ labels=(R/'lable.vocab').read_text().strip().splitlines();assert len(labels)==17266
+ alllines={d['pmc_id']:[] for d in docs};allflags={};perdoc_reuse={};parents=[]
+-for directory,ids,origin in [(R/'native-train64-cache',newids,'bioformer_train64_public_protocol')]:
++for directory,ids,origin in [(R/'native-train64-cache',newids,'biobert_train64_public_protocol')]:
+  manifest=json.loads((directory/'manifest.json').read_text());assert manifest['fixed_policy']==plan['policy'];assert manifest['model_weight_sha256']==plan['model_weight_sha256']
+  if origin=='reused_frozen16':assert sha(directory/'manifest.json')=='2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a'
+  for name in ['canonical-entities.jsonl','raw-neural-candidates.jsonl','raw-dictionary-candidates.jsonl','native-hybrid-stages.jsonl']:assert sha(directory/name)==manifest['outputs'][name]['sha256']
+@@ -55,5 +55,5 @@
+ (R/'native-train64-final-cache/per-document-reuse.json').write_text(json.dumps(perdoc_reuse,indent=2)+'\n')
+ counts={'documents':64,'reused_documents':0,'new_documents':64,'canonical_kept':sum(len(v) for v in alllines.values()),'provenance_distinct_keys':len(allflags),'raw_neural_candidates':sum(x['counts']['raw_neural_candidates'] for x in parents),'raw_dictionary_candidates':sum(x['counts']['raw_dictionary_candidates'] for x in parents)}
+ files={p.name:{'sha256':sha(p),'bytes':p.stat().st_size} for p in OUT.iterdir() if p.is_file()}
+-manifest={'status':'complete_Bioformer_train64_public_input_cache_no_quality_evaluation','input_sha256':sha(input64),'input_only_origin_sha256':plan['input64_sha256'],'input_ids':[d['pmc_id'] for d in docs],'source_sha256':sha(__file__),'plan_sha256':sha(R/'train64-cache/plan.json'),'model_weight_sha256':plan['model_weight_sha256'],'public_model_training_on_task':False,'fixed_policy':plan['policy'],'canonical_schema':'unchanged native canonical row bytes; order follows Bioformer train64 input; global offset+length and currentHPO','source_flags_schema':{'key':['pmc_id','offset','length','hpo_id'],'raw_neural_match':'exact original rawHPO/span accepted by original5dp>.95 decoder','raw_dictionary_match':'exact original rawHPO/span exists in original dictionary raw results','abbrev_inferred':'exact original rawHPO/span exists after and not before abbreviation','aggregation':'OR only across actual rows of same canonical key; raw IDs and matched neural columns retained; no probability-derived guessing'},'counts':counts,'per_document_counts':{k:len(v) for k,v in alllines.items()},'parents':parents,'outputs':files,'seconds':time.monotonic()-start}
++manifest={'status':'complete_BioBERT_train64_public_input_cache_no_quality_evaluation','input_sha256':sha(input64),'input_only_origin_sha256':plan['input64_sha256'],'input_ids':[d['pmc_id'] for d in docs],'source_sha256':sha(__file__),'plan_sha256':sha(R/'train64-cache/plan.json'),'model_weight_sha256':plan['model_weight_sha256'],'public_model_training_on_task':False,'model_type':'biobert','fixed_policy':plan['policy'],'canonical_schema':'unchanged native canonical row bytes; order follows BioBERT train64 input; global offset+length and currentHPO','source_flags_schema':{'key':['pmc_id','offset','length','hpo_id'],'raw_neural_match':'exact original rawHPO/span accepted by original5dp>.95 decoder','raw_dictionary_match':'exact original rawHPO/span exists in original dictionary raw results','abbrev_inferred':'exact original rawHPO/span exists after and not before abbreviation','aggregation':'OR only across actual rows of same canonical key; raw IDs and matched neural columns retained; no probability-derived guessing'},'counts':counts,'per_document_counts':{k:len(v) for k,v in alllines.items()},'parents':parents,'outputs':files,'seconds':time.monotonic()-start}
+ (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps({'counts':counts,'manifest_sha256':sha(OUT/'manifest.json'),'outputs':files,'seconds':manifest['seconds']}),flush=True)
