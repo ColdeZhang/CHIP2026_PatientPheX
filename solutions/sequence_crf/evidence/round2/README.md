@@ -25,3 +25,6 @@
 
 - `new-ontology-relation-pool.json` / `new-ontology-relation-results.json`：同折校准新候选、10提示固定adapter、仅追加关系的小幅开发收益与较低边际精度；不推广。
 - `patient-anchor-audit.json`：仅train48锚点密度、gold同概念跨度的乐观距离代理和实际204提示marker覆盖，全文聚合外存；不是模型分数。
+
+- `coreference-plan.json` / `coreference-pilot-failure.json` / `coreference-context-pilot.json`：输入侧预选3篇、原型定位/身份失败与唯一context协议复验，不是gold共指准确率。
+- `coreference-fold0.json`：正式72窗、原文定位、冻结规则三控制和SFT58排队入口；当前三rules预测byteexact，阶段二结果待回收。
