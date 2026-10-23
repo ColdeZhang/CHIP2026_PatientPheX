@@ -31,3 +31,7 @@
 - [PhenoTagger训练材料](phenotagger-preparation.json)与[100步成本测量](phenotagger-measure100.json)：真实encoder梯度/更新、耗时/显存，尚无效果分数。
 
 - [PhenoTagger batch256×30吞吐测量](phenotagger-measure256x30.json)：分组正类/None训练loss，非验证分数。
+
+- [PhenoTagger固定30ep计划](phenotagger-formal-plan.json)：预先固定训练预算与恢复策略，不按fold0选epoch。
+
+- [PhenoTagger真实中断恢复核验](phenotagger-resume-check.json)：direct4 vs split2+2逐张量/全RNG一致。

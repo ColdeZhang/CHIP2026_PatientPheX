@@ -1,0 +1,31 @@
+{
+  "frozen_at": "2026-10-23T14:58:49.810697+00:00",
+  "stage": "fixed-budget full encoder HPO classifier",
+  "source_sha256": {
+    "phenotagger_train.py": "d291dc10264e4380350d381f08ac9e3e3c15e52b8bbc6a996e79b92116864665",
+    "phenotagger_measure.py": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+    "phenotagger_data.py": "ee3c293ac16732ccabca5a51da616dcc830ba5acd4b6bcfe00c78cebd923d255"
+  },
+  "data_manifest_sha256": "b3afa763169bc4fe29612b14e04f67327cabf13e0db13125de0c70b4d66311f5",
+  "training": {
+    "epochs": 30,
+    "batch_size": 256,
+    "optimizer": "torch.optim.Adam",
+    "lr": 2e-05,
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "scheduler": null,
+    "max_length": 32,
+    "seed": 20261023,
+    "precision": "BF16 autocast / FP32 trainable parameters and Adam",
+    "fresh_initialization": true,
+    "checkpoint_every_seconds": 240,
+    "retention": "atomic latest full-state + final model"
+  },
+  "initialization": "General BiomedBERT; never resume either throughput pilot",
+  "lr_scaling_interpretation": "4x batch and 4x LR is an optimization hypothesis, not mathematically equivalent to upstream batch64 recipe",
+  "evaluation": "No heldout use until fixed 30epoch endpoint; no fold0 checkpoint or epoch choice; preserve class-specific online training curves",
+  "authorization": "Parent fixed budget authorized after 100step batch64 and 30step batch256 cost measurements",
+  "external_output": "ontology-round2/phenotagger-fold0/formal30ep",
+  "original_dev_used": false
+}
