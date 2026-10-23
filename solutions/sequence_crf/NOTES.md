@@ -36,3 +36,5 @@
 优先研究 [GLiNER medium-v2](https://huggingface.co/urchade/gliner_medium-v2/tree/f7da09ddffab92deb4f2a815662d88b7e0d909d5)：官方卡明确NuNER数据，模型/代码Apache2.0，数据MIT；[NuNER论文](https://arxiv.org/abs/2402.15343)明确C4原文→GPT3.5自动注释，通用语义类别与span匹配不同于现有任务BIO。v2.1的pile-mistral卡仅license，不能因同GLiNER家族就继承v2谱系；v1含非商用许可，不作为首选。独立来源审查确认公开谱系，但全checkpoint训练/选择清单未公开，保留限制。没有使用含本赛train80的成品模型。
 
 [冻结最小提案](experiments/P-20261023-GLINER.md)只先在train48按输入患者数/字符中位选择三篇，固定phenotype/.50、完整词与实际token预算、原passage坐标；只资源/定位pilot。后续若获分配才做同折Sap过滤与不重叠增量，固定阈值/规则比较，避免把多个改动同时包装为增益。可选2epoch自训只列计划，未启动。
+
+训练FN独立分层补充：908无重叠FN主要是短而未在相应train32见过的词面（中位2词，836≤5词，仅39词面已见）；仅6项>GLiNER的12词宽，411overlap中仅4项>12。大章节漏率无明显全章节硬截，CRF chunk跨界仅1项。因此GLiNER假设是通用类别条件span预训练的互补覆盖，不是更长跨度上限。该模型195.176M、3篇101窗3.058秒/0.830GiB已证明成本可控；未评分，不宣称候选优质。详见冻结提案和 `validation/nested-loss-review/miss-strata.json`。

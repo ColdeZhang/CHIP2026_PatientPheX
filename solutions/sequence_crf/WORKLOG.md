@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **当前后续**：缓存/CPU装配独立复核已通过。outer train48损失诊断与独审已完成，候选缺失为主要召回瓶颈。现按[冻结提案](experiments/P-20261023-GLINER.md)准备GLiNER medium-v2：exact780MB下载进程/恢复见外存gliner-medium-v2-pilot/download/job.json；私有依赖与三篇tokenizer检查已通过，权重未齐前不启动GPU。主线程只授权检查点推送后的三篇训练输入资源/定位pilot，不运行heldout或微调。完整外存coreference-fold0/stage2-reuse/保存命令、raw/合成响应、逐行来源、预测冻结与指标。
+3. **当前后续**：outer train48损失诊断与独审完成，主要漏项是短且训练未见表达，非长跨度或章节硬截。按[冻结提案](experiments/P-20261023-GLINER.md)完成GLiNER medium-v2三篇input-only pilot：官方权重SHA通过、实际195,175,936参数、98passages/101窗/8247词，145候选全部完整词边界与原文坐标通过；推理3.058秒、峰值0.830GiB。没有读取gold、HPO链接或打分，不能宣称收益。GPU0已退出复查释放交本体续训，当前无本路线运行任务；下一步等待主线程安排候选质量对照，不自行启动heldout或微调。来源/实际命令/输出SHA见[完整短索引](evidence/round2/gliner-preparation.json)。
 
 ## 已完成的近期结论
 

@@ -49,5 +49,62 @@
   "gliner_wheel_sha256": "9d12298db26d53b95c49d684ec5d768fbd20833501612bb9865c95e6ec4359c1",
   "tokenizer_revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3",
   "source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
-  "current_status": "download active; imports and tokenizer-only101windows CPU pass; model strict CPU preflight pending full SHA"
+  "current_status": "completed training-input-only pilot; no new validation/fine-tuning authorized",
+  "source_commit": "e5d4c58d118375f11576040420d41ac28917b9b5",
+  "actual_model_parameters": 195175936,
+  "download_source_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/download/source-manifest.json",
+  "download_source_manifest_sha256": "53cbed8c1ad9480325b5766a7d0f04a5556be249543cff0aad01ce97259842ed",
+  "pilot": {
+    "documents": 3,
+    "source_words": 8247,
+    "passages": 98,
+    "windows": 101,
+    "unique_candidates": 145,
+    "max_returned_span_words": 5,
+    "inference_seconds": 3.057823529932648,
+    "total_seconds": 11.498324315994978,
+    "gpu": "NVIDIA A30",
+    "peak_allocated_bytes": 890955264,
+    "peak_allocated_gib": 0.8297667503356934,
+    "strict_state_dict": true,
+    "no_truncation_actual_masks_verified": true,
+    "all_original_coordinate_checks_pass": true,
+    "gold_read": false,
+    "hpo_linking": false,
+    "scoring": false
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-pilot/manifest.json",
+      "size": 2526,
+      "sha256": "05c8d91dac5df7bee370896da0aef98302085720e3710eed81f3d57ec4681511"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-pilot/windows.json",
+      "size": 20171,
+      "sha256": "d2c7d3759be742b5d41ab077ee6351666829310ac246ec67070f7abb4a71339a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-pilot/raw-spans.jsonl",
+      "size": 25867,
+      "sha256": "187941eef14fc61b9883c4e4415c35c2d52c081df630d43974326578145cf52d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-pilot/candidates.jsonl",
+      "size": 26127,
+      "sha256": "d01a6a1b7190b76941833fe6dee26214b3ebf277684a91d00ea06aaff573ad5b"
+    }
+  ],
+  "cpu_preflight_job": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/cpu-preflight-job.json",
+  "gpu_job": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-pilot-job.json",
+  "gpu_process_id": "proc_ac31774d-0063-4a92-9dee-fc779925a8a0",
+  "gpu_released_to": "ontology 100epoch continuation after explicit compute-process check",
+  "gpu_release_evidence": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/gpu-postflight-processes.json",
+  "coordinate_check": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/input-only-coordinate-check.json",
+  "limits": [
+    "Resource/coordinate pilot only: candidate precision, recall and score unmeasured.",
+    "Default whitespace regex preserves hyphenated words; span max_width12 counts these words, not subwords.",
+    "flat_ner=False decoder permits nesting, greedily rejects crossing; threshold is > .5.",
+    "SentencePiece fast conversion warns byte fallback unsupported; this coordinate pilot does not guarantee identical slow-tokenizer semantic encoding."
+  ]
 }
