@@ -1,0 +1,91 @@
+{
+  "scope": "original dev16 input-only public PhenoTagger cache; no gold, labels, task fit or quality evaluation",
+  "input16_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "input_ids": [
+    "12147048",
+    "6151044",
+    "5562981",
+    "6332535",
+    "6096008",
+    "12733031",
+    "12126309",
+    "6220403",
+    "5693559",
+    "6049015",
+    "12640707",
+    "4899602",
+    "11986149",
+    "11221135",
+    "12017973",
+    "6036836"
+  ],
+  "input_manifest_sha256": "dba9a3b35c618523982bb1778e750f5e44c94cf387d08abfba941117e67ab05b",
+  "model_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+  "model_repo": "lingbionlp/PhenoTagger_v1.2",
+  "revision": "02ce3f529820dccca46bae168c1933ba25253125",
+  "policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "remote_source_sha256": {
+    "native-pipeline/run_native_entities.py": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
+    "native-pipeline/fixed_candidate_function.py": "1569e545fc83e5adf66406678e8b15dd315fa4437fc541a78a6cc0e9f3f966e7",
+    "native-pipeline/dictionary-current-HPO.json": "61ffd241f0d2cc24d55ff1a317b3e781c59133dd3de9bebe803ad9abf1b9a10a",
+    "original-column-to-current-HPO.json": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+    "nn_represent.py": "06414652d00640cf192d0f730face946040f110129de1073a485267a524ef0ba",
+    "lable.vocab": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+    "pubmedbert-base/config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "pubmedbert-base/vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "pubmedbert-base/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+    "gpu-native-smoke.json": "8d0ed6465ec09c8894de2bba54b7d7791f78b847d9942ddb18ddea5ae2a6f185",
+    "gpu-overlay-state.json": "16f36df80eec70756166ff98a63f169612711bee37461d86fe0358ab84863879",
+    "native-pipeline/src/ssplit_tokenzier.py": "5925dbe25cbaaaa26ef2ca10291958969eeb95822e69cc2badab8c4177d1b2f7",
+    "native-pipeline/src/ml_ner.py": "9ee418916784f6fd26d1446faa0682ace9c9a07a959a07e9998977840409ef0d",
+    "native-pipeline/src/dic_ner.py": "2c7aa997d8bf4a72568be191169e6c1649242481b95284e5af32071625242ab1",
+    "native-pipeline/src/restore_index.py": "aa53414992c37473c465566b094086c365cd521fb215edca40da9cec9f2c82d8",
+    "native-pipeline/src/combine_result.py": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95",
+    "native-pipeline/src/abbre_resolution.py": "0afe29fa6f9ea7c4e70c4c2042843ae208fabc0e588809a8c7b9b2c63fef97ff",
+    "native-pipeline/dict/noabb_lemma.dic": "a4ffda2506be93053aa6fc2b94ce0ed09087183cb0fb614aa4925f777c36b610",
+    "native-pipeline/dict/word_id_map.json": "3e7649145d09f2778c194ce29033e3da8cf72d1b30e4ff5544734e7d104a866e",
+    "native-pipeline/dict/id_word_map.json": "5d48a49318e5e833e5b1b685db2e0525fead631cea3bd5285b13a42ce6b73e77",
+    "dev16-cache/run_dev16.py": "606211aa389eb1c7d63239976f7cb91209fa088e775f0dfa63fe21c9dc2d46b7",
+    "dev16-cache/make_provenance.py": "267ed0e77ef79120553e39df566147dcff65b8ce3bbd22c0b078d3d8ac0ffa51"
+  },
+  "forward_cache_parents": [
+    {
+      "path": "native-nested16/unique-raw-predictions.jsonl",
+      "sha256": "d3d813f40c17f637440c77f89803d7f9ae4f82175da070a9a26ba99e9dc7067f",
+      "unique_keys": 65406
+    },
+    {
+      "path": "native-train48-cache/unique-raw-predictions.jsonl",
+      "sha256": "270c1bd405c52ad24cfdeeca668962e96158dcfa0b50be4cd23dd86b80905e6f",
+      "unique_keys": 183710
+    }
+  ],
+  "shared_forward_allowed_reason": "Public model no task fit; only exact lowercase-token-tuple memoization; original dev documents receive independent decoder/abbr. Matching duplicate keys require actual native_line/top3 equality.",
+  "resource": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "fresh_empty_gate": true,
+    "memory_growth": true,
+    "GPU_cap_seconds": 300,
+    "TERM_grace_seconds": 30,
+    "CPU_preparation_cap_seconds": 180,
+    "CPU_provenance_cap_seconds": 120
+  },
+  "source_equivalence_sha256": "81ce7a4c5381420d53467312b0c4f162138f9307fb8c279cd757478b10e570c5"
+}

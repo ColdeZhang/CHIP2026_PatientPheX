@@ -8,4 +8,6 @@
 
 sequence当前prepare_public_selector明确绑定.95 plan0243，HGB使用public_present/score/neural/dictionary/abbreviation等属性，未额外筛public_score。可复用其严格三fold旧train32资源和固定HGB160/.4框架，但新候选池需要新的缓存计划/真实来源flag、重建各fold池并重新拟合；不能直接换池沿用已训.95树或冒充0243。本项只报告接口和成本，下一质量控制待root决定，与正在做的.95三fold稳健性分开。
 
-当前源/计划已冻结，准备在既有原生环境CPU执行；完整预测/全raw留外部，Git不收大文件。
+实际首个CPU启动在资源绑定阶段0.165秒退出：远端只部署NLTK解压成员，未保留下载ZIP，计划错误地引用ZIP路径。未进入tokenize/候选处理、无模型调用；原source/plan/state/stderr保留于外部attempt1-resource-path。将21个远端成员逐一与原固定ZIP内字节比较通过，仅修资源路径/输出目录，source与数学政策不变，继续原180秒CPU预算。
+
+当前修正计划已冻结，准备在既有原生环境CPU执行；完整预测/全raw留外部，Git不收大文件。
