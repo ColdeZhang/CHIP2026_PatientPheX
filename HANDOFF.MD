@@ -193,6 +193,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：监督训练前核对实际版本的调用签名，以可手算正负样本验证loss、梯度方向及padding mask。已绕过：方案 `45e107c` 改用自有入口显式计算logits上的BCE和有效跨度mask，不改共享库；实际A800 CPU独审已通过正负梯度、极端padding、masked标签翻转不变及按总有效span归一，修复报告SHA `0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2`。本次在GPU单步及正式训练前发现，既有零样本推理不经过loss，因此不受影响。结论只适用于该已核对源码，不泛化到所有GLiNER版本；数值证据在外部 `validation/gliner-supervised-review/actual-runtime-probe.json`（SHA `de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1`），方案入口见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
 
+## H31：BERT风格标记名不保证存在于实际tokenizer词表
+
+准备新的关系MIL时发现，当前BiomedBERT词表没有 `[unused1]`、`[unused2]`、`[unused5]`、`[unused6]`，直接查token ID均得到UNK。不能从模型属于BERT系列，就假设这些标记有独立embedding；仅在字符串中插入标记，也不能证明编码后保留了预期身份。
+
+**避免方法**：先检查实际词表与完整tokenization；需独立标记时显式注册special tokens、固定随机种子扩展embedding，并在最终编码中核对跨度、标记及截断。保存tokenizer并回读完整词表/special map，不能只保存扩展后的模型权重。当前MIL入口 `b47cd62` 已添加4个标记（ID30522–30525，词表长度30526）、使用 `mean_resizing=False`，3949个出现跨度及原窗内患者标记均保留；保存/回读、loss梯度和纯删除装配独审通过。证据：外部 `validation/relation-mil-review/preparation-review.json`，SHA `7e1a6acc5402a23a51c263c3b2098ed896c9534b9353817b0caffe64fdfc49d6`，源码与CPU记录见[本体方案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-run-plan.json)。这是训练前接口修复，尚非质量结果；旧患者CE中的标记字符串可被拆成普通WordPiece，因此不能据此宣称旧实验无效。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。

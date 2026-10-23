@@ -27,6 +27,12 @@
 
 [Qwen3.5-9B](https://huggingface.co/Qwen/Qwen3.5-9B/tree/c202236235762e1c871ad0ccb60c8ee5ba337b9a)（Apache-2.0）作为可能的新基座做了独立可行性核查：全部775个权重键的形状推导与API总量一致，完整参数9,653,104,368，文本部分8,953,803,264；四个权重文件共19,306,310,880字节，LoRA参数仍须另计。稳定Transformers 5.20.2原生支持；普通非packed短推理有纯PyTorch回退，packed训练则需要对应FLA/conv支持。混合线性注意力要求重新选择LoRA层，不能直接复用旧8B训练器。先在自有隔离环境测短输入/单步成本，长上下文显存、吞吐和质量均未知；A800项目盘实际可用约9.45GiB，当前不能放下新权重。.100/.3有空间。源码、版本与磁盘证据见外部 `research/qwen35-feasibility/independent-review/`；这项审查没有运行模型。
 
+## 本项目代码复查后的两项新控制
+
+GLiNER虽输出嵌套跨度，旧装配会拒绝所有重叠。训练内nested32→16在既定Sap `.65/.92` 和否定筛选之后，被拒854项中773为精确重复，57为不同HPO的严格包含；其余为同ID边界变化、同边界异ID和交叉跨度。唯一固定实体对照保留全部旧实体/关系，只允许不同HPO的严格嵌套，新增26TP/31FP、文概念15TP/4FP，Score .653745→.657806。尚只证明该训练内控制小幅有益；交序列路线验证outerfold0，不改正在运行的全64原终点政策。源码/冻结计划/预测在外部 `research/strategy-review/nested-overlap-control/`，summary SHA `be75a6e20c973eab9b54b429120f0ee4ddfd54e5cb25d7d2a58e2fa3ce6d0373`。
+
+旧患者关系聚合树没有LLM特征，固定投票/门控也不同于学习其互补信息。已确认严格OOF的204条提示只在独立answer字段含监督标签，尚无通用9B的这些响应。下一控制先用固定通用基座推理，再比较同候选、同超参数下有/无LLM选择、空分配和解析状态特征的两棵树；不能使用在全部train48上SFT后的模型回推这些训练文献，冒充OOF特征。现只批准CPU准备及25分钟推理预算，尚未运行或计分。两项结构复查的短报告位于外部 `research/strategy-review/README.md`，SHA `a77887ffcd930c4d62846496db7006e02e8f6f2a37dc2c57ee4180feb74c48a2`；不把外部方法名称当实际收益。
+
 ## 其他同赛开源记录
 
 `irryxeek/patientphex-chip2026` 的多来源跨度、SapBERT不同概念margin、上下文关系融合及正负报告值得研究；`yuanpinz/chip2026-PatientPheX` 给出逐occurrence、逐患者与联合患者判断、结构范围筛选；`AnXin-HITSZ/...` 与 `xi-ix/HPO` 有词典未覆盖片段的语义候选做法。其自报分数未独立复现，训练划分和评测不同，不能直接排名或沿用阈值。许可未明确的实现只参考思想；没有引入他们的标注或预测。

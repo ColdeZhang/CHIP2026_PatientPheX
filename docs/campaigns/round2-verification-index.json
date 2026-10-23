@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T17:54:32.369745+00:00",
+  "generated_utc": "2026-10-23T18:22:33.380112+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -2468,29 +2468,1127 @@
           "bytes": 14816
         }
       ]
+    },
+    {
+      "id": "current-originaldev-direction-oracle-diagnosis",
+      "report": {
+        "path": "validation/current-direction-diagnosis/report.json",
+        "sha256": "de88f6c9b37cc34d31e4f0532b6ac1aca33a52733f14a6f18f5fb63a32c9e1af",
+        "bytes": 14610
+      },
+      "scope": "当前CRF+GLiNER及共享entity-only的四分项错误量、固定实体关系oracle和FP/FN聚合方向；纯gold-aware规划，绝不产生oracle预测。",
+      "conclusion": "两者关系331TP203FP122FN；203FP中164不属于文中任何指定患者、39属于别的患者。FN缺候选98/96、已有候选24/26。固定实体关系oracle .820487/.822685；仅清除FP理论 .803205/.804466，故关系精度是主要可行动余量，但上限非可提交分。",
+      "limitations": [
+        "gold-aware aggregate planning only, not a model score, usable prediction, or per-case patch list.",
+        "Conditional relation oracle restricts associations to final entity concepts for diagnosis; official format does not require that restriction.",
+        "164 false positives mean absent from all supplied-patient gold associations, not necessarily incorrect biological phenotype or entity.",
+        "Both development sets have repeated method selection; ceilings are not evidence that a practical method can reach0.8."
+      ],
+      "support": [
+        {
+          "path": "validation/current-direction-diagnosis/diagnose.py",
+          "sha256": "9ef2b79c47a1c63da6d938662552643fe8197d1ba67cf81ec44713c18b9a1b1f",
+          "bytes": 10287
+        },
+        {
+          "path": "validation/current-direction-diagnosis/independent-check.json",
+          "sha256": "c9fb1a52803dc90460597558e6482004c5934093746a7aa3136f7fcfa2861cde",
+          "bytes": 5247
+        },
+        {
+          "path": "validation/current-direction-diagnosis/independent_check.py",
+          "sha256": "1341a66dc8e9920bf2978fe574651539f331b1738314f49cb03ac4d56df6f54f",
+          "bytes": 7644
+        },
+        {
+          "path": "validation/current-direction-diagnosis/report.md",
+          "sha256": "62bb213cc64f69cc15bb912a9990ca52d3d67a64c56eed1f1cc2bcc332509859",
+          "bytes": 3756
+        },
+        {
+          "path": "validation/current-direction-diagnosis/run-summary.json",
+          "sha256": "ad346cfafcde98968eab2ec8265a12d7c45f740800d0be2a913393b4fcd43255",
+          "bytes": 5851
+        }
+      ]
+    },
+    {
+      "id": "gliner-rejected-link176-preparation",
+      "report": {
+        "path": "validation/gliner-rejected-link-review/preparation-review.json",
+        "sha256": "384c7eb152665c251199b1f42204d4d7e5fb5adb96a52a8ef48d642b7cbe9289",
+        "bytes": 11027
+      },
+      "scope": "176候选从固定GLiNER/Sap拒绝池按输入选择，重建train48 bank/Top5映射、提示以及严格有限选择/装配政策。",
+      "conclusion": "176请求、880候选映射及全部提示独立重建；32/48/dev隔离来源绑定，C1..C5/ABSTAIN无自由ID或NIL，严格基线保留。准备不代表语义正确或质量。",
+      "limitations": [
+        "Top5 source, bank mapping and actual successful CPU ranking evidence are bound; remote numerical dot products were not independently rerun.",
+        "Definitions are absent for89 of880 candidate occurrences and truncated at480 characters for34. These are declared prompt limits, not lineage failures.",
+        "One control changes detection source, retrieval policy, prompt/schema and base model relative to earlier8B linker; no isolated model-size causal claim.",
+        "Actual runner/model/runtime binding, timeout command execution and freeze-before-gold must be checked on the eventual completed run. Preparation and synthetic fixtures establish no entity or patient accuracy."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-rejected-link-review/audit_preparation.py",
+          "sha256": "431d7396867212728918d9c1affc72c8ede150702e1af1d19a8f40add7cbeb2a",
+          "bytes": 13819
+        },
+        {
+          "path": "validation/gliner-rejected-link-review/input-data-review.json",
+          "sha256": "b29bcb8198dd9ecc2cb2ef2605f3959873ce7173ae46a78a0935cbbe7193b87e",
+          "bytes": 6940
+        },
+        {
+          "path": "validation/gliner-rejected-link-review/source/merge_rejected_links.py",
+          "sha256": "fdd251986cb1487e553ec506eff4d4f156ae702c56f49aaa3d66acdbe9d76156",
+          "bytes": 8460
+        },
+        {
+          "path": "validation/gliner-rejected-link-review/source/prepare_rejected_links.py",
+          "sha256": "aaa839cb26d5a91f1b334f11976774b5955504ebf19ffb3e272f4fbf67f6b0a5",
+          "bytes": 12854
+        }
+      ]
+    },
+    {
+      "id": "gliner-rejected-link176-terminal-negative",
+      "report": {
+        "path": "validation/gliner-rejected-link-terminal-review/review.json",
+        "sha256": "5e6d8279de2aaaa68d2f8e0396ad6506b64854dc7d970f89b84b0295790106a1",
+        "bytes": 6270
+      },
+      "scope": "实际固定9B BASE176有限选择终点、同模型/runtime输入绑定、900秒预算及CPU装配/格式/v2独立复评。",
+      "conclusion": ".721504431→.711139780，四分项全降；125选择/51弃权/1新重叠拒，124实体36TP88FP、59关系14TP45FP。原基线全保留，预测bfc28bf3逐字节复现，0错警；负结果结案。",
+      "limitations": [
+        "Frozen fold0 development comparison, not a blind external assessment or official score.",
+        "Complete finite-choice JSON and literal spans do not establish HPO equivalence or patient ownership.",
+        "Weights/runtime are bound to actual runner fingerprints and existing audit, not independently reloaded on GPU.",
+        "Prediction frozen at18:11:44Z before current gold evaluation; gold used only for aggregate scoring, not item selection."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/audit.py",
+          "sha256": "34bf8a72f7588d58d1cf6a33dfbff39ba889b05a0994893c0fa23c2c8969056d",
+          "bytes": 9110
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/base.metrics.json",
+          "sha256": "de4af38ea00a3294a66d19e032be200c12507fec3fd1e020eb410ceb5b98e3e7",
+          "bytes": 13034
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/commands.json",
+          "sha256": "7a5dde832ab753fc72891b1698341fed48ac459364fcd4b4b874a7768c1332b1",
+          "bytes": 8039
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/linked.metrics.json",
+          "sha256": "dde73a171db0731909f535036ddbf711114ff87d42e337b963f3667898ddc5c5",
+          "bytes": 13159
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/pred.decisions.json",
+          "sha256": "115d65d451f9188d6294b1286d96213755e03c550efc4212f9830acc6f5604d2",
+          "bytes": 12930
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/pred.manifest.json",
+          "sha256": "67f8f986e8d259db6c7b65dc6811b7771f18713b69692988239af95773fb5868",
+          "bytes": 3000
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/merge_rejected_links.py",
+          "sha256": "fdd251986cb1487e553ec506eff4d4f156ae702c56f49aaa3d66acdbe9d76156",
+          "bytes": 8460
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/solutions/sequence_crf/combine.py",
+          "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+          "bytes": 3871
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/solutions/sequence_crf/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/gliner-rejected-link-terminal-review/validation.json",
+          "sha256": "50be0020794e4224018a79d68f746f87e6cb7841b7d7ca65314ac70dd760076b",
+          "bytes": 686
+        }
+      ]
+    },
+    {
+      "id": "qwen35-relation52step-training-terminal",
+      "report": {
+        "path": "validation/qwen35-interface-review/formal-training-terminal-review.json",
+        "sha256": "a8883f703723eda68c66450bb406d080901e4988e864ba9191edb411b2120a41",
+        "bytes": 7731
+      },
+      "scope": "实际204train48行的fresh9B LoRA2轮52updates终点，配置/数据mask与模型加载/梯度、两轮checkpoint实际SHA绑定。",
+      "conclusion": "1855.103秒完整2轮；epoch2 adapter8e32daee，state d2dcc780，零missing/mismatch。实际37.48GB allocated与78.50GB reserved分列；仅训练证据，不把loss当Score。",
+      "limitations": [],
+      "support": [
+        {
+          "path": "validation/qwen35-interface-review/audit_formal_training_terminal.py",
+          "sha256": "78d3057c42cba55dfa3bc8b06bf86b579c8ca5c1267e2d617d39e6ef94bbc212",
+          "bytes": 8423
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-terminal-source/checkpoint-actual-hashes.json",
+          "sha256": "489c5c5af0aae8dbf978c87a7185d5f5fa37096bbc21366b088e7d7cd7d6ebd3",
+          "bytes": 901
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-terminal-source/formal-monitor.json",
+          "sha256": "a67b1270e2564de7f57fb74669276b282e1a5af2745717d9edb8aa6c21a4b10c",
+          "bytes": 136
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-terminal-source/formal-plan.json",
+          "sha256": "f4cc03c9a54a04aa6afc04a7db58cdeee3b053d2d3175a6c69d0f59f45390732",
+          "bytes": 2911
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-terminal-source/formal-preflight.json",
+          "sha256": "c99f92d260ac3afa9203b5e8205392690e20013d102fb063ccebb3f3893cd621",
+          "bytes": 648
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-terminal-source/run_formal_a800.py",
+          "sha256": "4d22c56271fa4eb58fa17bf0c3832bb7c12b511a1142eece631c6d856378108b",
+          "bytes": 4095
+        }
+      ]
+    },
+    {
+      "id": "qwen35-relation58-paired-primary-schema-terminal",
+      "report": {
+        "path": "validation/qwen35-paired-terminal-review/review.json",
+        "sha256": "e77b06c7d0b2c91fec86fab71674edc8f9845a9972f96b9d4505c896439b0508",
+        "bytes": 11775
+      },
+      "scope": "实际同A800/同58提示/同decoder的BASE与固定epoch2，及预设结构投影双臂；全部CPU重放和近似v2重评。",
+      "conclusion": "primary .633859674→.695443948，关系208TP102FP→226TP50FP，SFT415/415合法零回退，但低于同实体rules .711354。schema使base降至.628354，adapter零变化；四预测及两normalized raw精确复现。",
+      "limitations": [
+        "All results are repeated-development innerfold0, not originaldev or official Score; they do not qualify for0.8.",
+        "Base was evaluated before fixed2epoch training; adapter evaluated at the unique declared endpoint. Each output was materialized with SHA-bearing merge manifest before metrics; not a simultaneous first-time blind paired evaluation.",
+        "Prespecified schema policy was frozen before its application and applied symmetrically after both primary responses existed. Driver assembles/evaluates base then adapter sequentially, without a separate simultaneous two-schema-prediction freeze marker. Source/policy fixed and raw unchanged; no data-dependent rule edit observed.",
+        "Schema evidence fields are not semantically validated. Improved output format does not imply relation correctness, and unresolved primary decisions retain fixedLR fallback.",
+        "Reviewer did not rerun GPU generation or remotely reload adapter. Actual inference manifest rehashes both adapter files and all15 base files, bound to independently reviewed52-step training terminal.",
+        "Public evaluator all/text retained; no label-derived candidates or changed prompts. Aggregate diagnostic no-target-gold concepts do not prove phenotypes biologically absent."
+      ],
+      "support": [
+        {
+          "path": "validation/qwen35-paired-terminal-review/audit.py",
+          "sha256": "768626950b45edea55cfe1e3d978f118d7666746e61506c28e653bdd0d7c8ee2",
+          "bytes": 12097
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/commands.json",
+          "sha256": "31c4242859984e54b655833a15e2f246ac134caa87542b943228e4a584c4eb87",
+          "bytes": 21192
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/adapter58.metrics.json",
+          "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218",
+          "bytes": 13036
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/adapter58.pred.manifest.json",
+          "sha256": "20ed880df5f179585ae18b0a776932177d82c9daaa6166fd2f4200f001f63fe4",
+          "bytes": 1237
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/adapter58.validation.json",
+          "sha256": "63a0fd0e7924de938bd82924c2a3842d9ffc698930bcfe52b60d9645d08b8d0c",
+          "bytes": 685
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/base58.metrics.json",
+          "sha256": "b5fc5ca4f5079123c89432f8398b147f03893a46e345268c24d3960d4aa80f72",
+          "bytes": 13065
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/base58.pred.manifest.json",
+          "sha256": "e64e052a68e63b4f44ccc317be0d13d20faca341d678ca6336d9fc9da69f3e62",
+          "bytes": 1273
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/primary/base58.validation.json",
+          "sha256": "ba7f125d0a0e0071a351329ab3eb4ad63a264572f3e0e87a68e0888f64fb6def",
+          "bytes": 685
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/adapter58.metrics.json",
+          "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218",
+          "bytes": 13036
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/adapter58.pred.manifest.json",
+          "sha256": "a500ad7a368f26af38e9ca6712ee5d6cb47e407319a847a0cecfe01f0be57ea8",
+          "bytes": 1228
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/adapter58.responses.schema-audit.json",
+          "sha256": "12340ac0a959adfaff6cc31f3ecec298b6977b64f0bbf62aecabf504c07b61f0",
+          "bytes": 25030
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/adapter58.responses.schema-manifest.json",
+          "sha256": "81e66772aabcec1422a3caff6dc6d0b0b1cad5708a0c13b1a36ebdcd0329cfcb",
+          "bytes": 2501
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/adapter58.validation.json",
+          "sha256": "63a0fd0e7924de938bd82924c2a3842d9ffc698930bcfe52b60d9645d08b8d0c",
+          "bytes": 685
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/base58.metrics.json",
+          "sha256": "8acb7e1e57d5f1014f2e4fae5e306c54fd4adb0ff7aeaf747d7b66239c03152f",
+          "bytes": 13062
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/base58.pred.manifest.json",
+          "sha256": "c697950be5f0a01475262dae673c312ff768abac1836a2aed550ff9b55e7efc0",
+          "bytes": 1263
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/base58.responses.schema-audit.json",
+          "sha256": "60c4231d16faba976c04ba3ec326743ac2c387093c10d2b3b0bce21cf3848b72",
+          "bytes": 40299
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/base58.responses.schema-manifest.json",
+          "sha256": "3d478f0795fa68c3013005fd3c61674008cb2ed4402410789996780e1d70c072",
+          "bytes": 2494
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/schema/base58.validation.json",
+          "sha256": "8f4baee251c3dae0f218365527e9a97e70c91c30e2d497b81e855209997158ee",
+          "bytes": 685
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/merge_pair_rag.py",
+          "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+          "bytes": 3684
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/normalize_pair_schema.reviewed.snapshot.py",
+          "sha256": "e9867a0a3066df409ecb6c4b291016c5147f70c5cafd80152e0088ed70da1bd6",
+          "bytes": 8336
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/run_adapter_after_training.py",
+          "sha256": "db1d491193fac24c7bcfee8f8780f382f8783de896241ab73bd56fc8cced9e69",
+          "bytes": 5955
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/run_schema_control.py",
+          "sha256": "e60cf868a8bfa076b0584fb0d36feeb1f5bffa700ec16301165bca824b51ebbe",
+          "bytes": 2751
+        },
+        {
+          "path": "validation/qwen35-paired-terminal-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        }
+      ]
+    },
+    {
+      "id": "qwen8b-fullcontext58-doublebase-terminal-negative",
+      "report": {
+        "path": "validation/full-context8b-terminal-review/review.json",
+        "sha256": "a855fa6af4155ab315306a6099450be6ab52ca52c6d681a912c2e41acaac6d53",
+        "bytes": 10173
+      },
+      "scope": "同A30的8B BASE原58/全文58双对照实际终点，两预测统一冻结、独立CPU装配和聚合错类核验。",
+      "conclusion": ".618120269→.610344254；TP255→258、FP346→393；两臂947实体不变，58行均完整无截断，LR回退2→7。全文增加的少量TP不足抵消FP，负结果保留。",
+      "limitations": [
+        "Fold0 is development; original dev not read. This8B control cannot establish9B or fine-tuned model behavior.",
+        "Runner base manifest itself hashes config only; exact13 files are bound through the separate actual preflight immediately preceding same-directory jobs. Auditor did not rehash GPU model files or repeat generation.",
+        "Fixed primary parser retains originalLR fallback2→7 unresolved decisions; no schema normalization/format retries. Thus comparison includes both prompt-caused generation and fixed fallback effects.",
+        "2700 seconds is shared execution budget, excludes initial model checks/RPC or final collection and permits30-second termination grace. Actual805.38 seconds completed inside it.",
+        "Gold-aware FP categories are aggregate post-freeze diagnostics; no-gold-patient concept does not mean the phenotype is biologically absent. No per-case repair or oracle output."
+      ],
+      "support": [
+        {
+          "path": "validation/full-context8b-terminal-review/audit.py",
+          "sha256": "acbb24f8fd124009420dc7d128ba0fd3c3d79e1c4a36f689814011dc33ce5dd3",
+          "bytes": 10462
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/commands.json",
+          "sha256": "78dc89e5fe55b0cdfe8a1f4745adb7f10ec6b38f80226c38029cfecdf29745f1",
+          "bytes": 9397
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/full58.metrics.json",
+          "sha256": "24b5066c609d3811e38a3b66434c2395eacd4b38a462dd8b131385da5513b8d4",
+          "bytes": 13083
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/full58.pred.manifest.json",
+          "sha256": "50e92246599487aef4f2b9643e80149430a44a37dd0601f1870610f282ae2c2e",
+          "bytes": 1297
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/full58.validation.json",
+          "sha256": "ce6638592acd3f767de0ac1c23785f20fdab914b0a89265a7865aaacb3ee84c2",
+          "bytes": 685
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/original58.metrics.json",
+          "sha256": "cc9f795aaafd337e75f80b5d4be4b0c95c0cfc2ea751e66e328406806a3188a8",
+          "bytes": 13140
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/original58.pred.manifest.json",
+          "sha256": "96ebc99a2b7c6a3f564696a0837b6a9a6a1c636296662d39cf91b6e1099bb67e",
+          "bytes": 1277
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/original58.validation.json",
+          "sha256": "96dc8816811ed361f73b071a82f9fce5cb49e715c6c4dd51f728097d4e68ba31",
+          "bytes": 685
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/merge_pair_rag.py",
+          "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+          "bytes": 3684
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/paired-evaluate.py",
+          "sha256": "c4c0bef1e8a91ae46a9c2c02b0ed162b5d5517f6ca0e611b1427f5a45dc09ce6",
+          "bytes": 8453
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/paired-run.py",
+          "sha256": "2e0daba3dd7d0dce045f30d5d2b23cc258759111753f3a91c2319aa6a4962070",
+          "bytes": 8171
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/full-context8b-terminal-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        }
+      ]
+    },
+    {
+      "id": "relation-maxmil-oof-preparation",
+      "report": {
+        "path": "validation/relation-mil-review/preparation-review.json",
+        "sha256": "7e1a6acc5402a23a51c263c3b2098ed896c9534b9353817b0caffe64fdfc49d6",
+        "bytes": 8404
+      },
+      "scope": "三nested32→16真实OOF候选的docHPO bags和any-patient标签、训练隔离、max+BCE梯度/装配契约与真实tokenizer保存回读。",
+      "conclusion": "1474训练袋783正691负/3004出现，414输入袋945出现；全部数据独立重建。allaccept字节精确旧b44c、allreject只删允许HPO关联。四marker显式30522..25且tokenizer roundtrip exact；准备PASS，尚不计GPU质量。",
+      "limitations": [
+        "Preparation only: actual GPU model initialization, three-epoch completion and heldout quality are not established. No threshold sweep or originaldev evaluation.",
+        "Actual CPU tokenizer report is hash/source bound; auditor independently compared source/IDs/statistics and analytic gradients but did not reload remote tokenizer/encoder files or repeat the full token pass.",
+        "Train48 labels use any specified-patient HPO association for whole doc/HPO bag, not direct gold occurrence labels. The model cannot reassign patients or add missing relations, only delete existing HPO relations.",
+        "All current frozen candidate entities have no NO note. Reusing builder with future NO predictions would need an explicit guard; not a problem for this fixed run.",
+        "Variable-size batches use per-batch mean over bags; maximum aggregation passes gradient only through maximizing occurrence. No explicit class weights/positive scaling.",
+        "Supplied patient mentions have one shared marker class, no patient identity prediction. Current allaccept baseline and allreject preservation fixtures passed; actual scored deletion output remains to verify.",
+        "Latest saves full model/optimizer/RNG but there is no implemented resume CLI. Do not claim interruption recovery was tested.",
+        "Original [.unused]→UNK issue was fixed before this new MIL training. It does not establish validity or invalidity of an older relation CE implementation."
+      ],
+      "support": [
+        {
+          "path": "validation/relation-mil-review/allaccept.pred.manifest.json",
+          "sha256": "162feea578e0e284e92c26d29e06ad2fe2c68a3f6c227fe44f2874263a5f84eb",
+          "bytes": 755
+        },
+        {
+          "path": "validation/relation-mil-review/allreject.pred.manifest.json",
+          "sha256": "a5a37807768901cf9538641cacfa2ca849a768033e72d48dc9493eacccb354f3",
+          "bytes": 759
+        },
+        {
+          "path": "validation/relation-mil-review/audit_data.py",
+          "sha256": "5afb05c09523d1ea7215b009306f08cf869b9cf71f342c8c6c3b08af244ee252",
+          "bytes": 11597
+        },
+        {
+          "path": "validation/relation-mil-review/audit_final_binding.py",
+          "sha256": "479ecc73f0e3b2bd1efa6b799b58a65501148a9c22fa0e093530abae72a1b2dd",
+          "bytes": 6702
+        },
+        {
+          "path": "validation/relation-mil-review/data-loss-assembly-review.json",
+          "sha256": "4be7ec15c90296696a761af29c9fa900fa464ebb8fb7ca1660e19da12ad5cfee",
+          "bytes": 7370
+        },
+        {
+          "path": "validation/relation-mil-review/final-binding/cpucheck-job.json",
+          "sha256": "3e0a933a0033e723fdaddf9d70a11fbf498066b681d56be275cd076a19325f2e",
+          "bytes": 1289
+        },
+        {
+          "path": "validation/relation-mil-review/final-binding/cpucheck.json",
+          "sha256": "4111769e9419f20075e0441b8c31fc77b5e470a7016ccb93835cbda7adbee6f6",
+          "bytes": 2994
+        },
+        {
+          "path": "validation/relation-mil-review/final-binding/run-plan.json",
+          "sha256": "db0946427aa19fbf81c1537ada69a17ee49ba5b62e93743867a0982a02f6be0f",
+          "bytes": 5892
+        },
+        {
+          "path": "validation/relation-mil-review/final-binding/train_relation_mil.py",
+          "sha256": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94",
+          "bytes": 15430
+        },
+        {
+          "path": "validation/relation-mil-review/fixture-commands.json",
+          "sha256": "f225d7c1330b5b651d24ce0964a08f97a6df6dbc84fe07f1a4d6ea00b7d2eed7",
+          "bytes": 2935
+        },
+        {
+          "path": "validation/relation-mil-review/source/diagnose_relation_bags.py",
+          "sha256": "2d7848796c7a1a8b77190a000c42f7d69fc1da185517d0799ed3ec652ba6bd73",
+          "bytes": 7948
+        },
+        {
+          "path": "validation/relation-mil-review/source/filter_relation_bags.py",
+          "sha256": "229ecec1cede8376352de0c9e077e91612c75a8de2ed6142b981798edefe529a",
+          "bytes": 2991
+        },
+        {
+          "path": "validation/relation-mil-review/source/prepare_relation_mil.py",
+          "sha256": "07a5fe472c13a39d7c800300c7718b971f33d90f3991385a0b786226a1bb90c3",
+          "bytes": 6180
+        },
+        {
+          "path": "validation/relation-mil-review/source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        }
+      ]
+    },
+    {
+      "id": "gliner-fixed-nested-entity-control",
+      "report": {
+        "path": "validation/gliner-nested-review/review.json",
+        "sha256": "aa56e0f19321814d70afd43fac91b184c673363aa2be9ae25cfaccc9d12ee285",
+        "bytes": 10798
+      },
+      "scope": "训练侧57嵌套复现及固定proper-containment/原子ID不相交政策的outer31和dev35独立组装、基线保全与v2重评。",
+      "conclusion": "训练侧2d24bb99精确复现；outer0+.001935至.723439817（12TP19FP），dev48+.000822至.712146627（10TP25FP）。原关系不变，dev mention下降；固定小幅开发收益不代表稳健提升。",
+      "limitations": [
+        "Small entity-only gains with many incremental false positives; this is a fixed development control, not proof of general robustness or meeting0.8.",
+        "Full64 training or pending nested secondary arm is outside this review; dev48 explicitly reuses the already frozen48 span model with64 Sap resources.",
+        "Independent selection reconstruction reuses the already frozen ontology negation predicate and HPO parser; it does not relabel clinical negation.",
+        "HPO identifiers are checked against allowed canonical branch IDs, with no new alt-ID or semantic remapping."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-nested-review/audit_nested.py",
+          "sha256": "2cb0ea7bb198fc67a26d0477c836354e55c168eaabc877d3609a75e0b162489d",
+          "bytes": 13209
+        },
+        {
+          "path": "validation/gliner-nested-review/commands.json",
+          "sha256": "e737d4a979da0e3f79941efc3b014e106a86f22d47d7fc012263e217a99c9b60",
+          "bytes": 9117
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/baseline-evaluate-command.json",
+          "sha256": "b4579d8adc754fb7107ffe28fe79aa507364295ecef0a5bcf5665d0edf991a23",
+          "bytes": 958
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/baseline.metrics.json",
+          "sha256": "d5116a57287c26d7a65d6336c3a7914e1a6141cc26869f8264ae202ce4dde10d",
+          "bytes": 13166
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/evaluate-command.json",
+          "sha256": "d2c99b5b93786c37501955595356873227ff64db746239c986490fd4bce21d42",
+          "bytes": 941
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/manifest.json",
+          "sha256": "1090fec314398aca620e35055fe62d421b87371d08ec01c1df5e3a43604c4fa0",
+          "bytes": 2381
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/metrics.json",
+          "sha256": "ba1ed0164b3855ccf51251cc94d6a5de47f0b9841e69675870a10ecbc9f6f58d",
+          "bytes": 13166
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/replay-command.json",
+          "sha256": "88c5be696012369aef0c568000c8e9641bc74de46816db5b9e1de7eb5931ed45",
+          "bytes": 1277
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/validate-command.json",
+          "sha256": "ecb5fa443b86b029d92b957f022957037257be642818ea5879c8ed15fe926f59",
+          "bytes": 1386
+        },
+        {
+          "path": "validation/gliner-nested-review/dev48/validation.json",
+          "sha256": "301aa19fa2be13903b6703c12d465909993e72b35fdbc3911893b281d72d225b",
+          "bytes": 685
+        },
+        {
+          "path": "validation/gliner-nested-review/nested-replay/manifest.json",
+          "sha256": "44d1ec214b938783acdec56742c1e7ea40f3de067953fe9f3d0e377f45f00cd4",
+          "bytes": 2405
+        },
+        {
+          "path": "validation/gliner-nested-review/nested-replay/replay-command.json",
+          "sha256": "6b0a0f5347b42950212a71ebe77dc02407ce8a4019f1b597f69cd1692973632f",
+          "bytes": 1301
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/baseline-evaluate-command.json",
+          "sha256": "c67792cce2a95adcbf108ce9ffbafb11e3508c1e16f34f07719f73522585551b",
+          "bytes": 983
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/baseline.metrics.json",
+          "sha256": "de4af38ea00a3294a66d19e032be200c12507fec3fd1e020eb410ceb5b98e3e7",
+          "bytes": 13034
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/evaluate-command.json",
+          "sha256": "a35abdbb1a45b05c8a4c2462f419f0fa865a00c45984cf98950e8d5d57b9959d",
+          "bytes": 966
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/manifest.json",
+          "sha256": "19f31be40c8094c1ec211dba11b720aef1cbe2b2e1c8f00bab559b126e24a4d2",
+          "bytes": 2398
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/metrics.json",
+          "sha256": "e314037bde893fe9a158f9115b01f8dca1da294a42e2d95e11aa159ef680b181",
+          "bytes": 13077
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/replay-command.json",
+          "sha256": "a4fce56198d1470e18e8ee2672bff61a5637ed1528b5be52a7ee0660e165f135",
+          "bytes": 1294
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/validate-command.json",
+          "sha256": "5109c1a6cb2ad6fde5e00b507953872d89649daef236025e9155c1a69db0cd46",
+          "bytes": 1412
+        },
+        {
+          "path": "validation/gliner-nested-review/outer0/validation.json",
+          "sha256": "92e4a410cf8a5e12b1d81684a48a928b22793facb08c7050d4e99e59b01d4106",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-nested-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/gliner-nested-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/gliner-nested-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/gliner-nested-review/source/solutions/sequence_crf/append_nested_spans.py",
+          "sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+          "bytes": 5901
+        },
+        {
+          "path": "validation/gliner-nested-review/source/solutions/sequence_crf/combine.py",
+          "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+          "bytes": 3871
+        },
+        {
+          "path": "validation/gliner-nested-review/source/solutions/sequence_crf/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        }
+      ]
+    },
+    {
+      "id": "qwen35-originaldev-transfer-preparation",
+      "report": {
+        "path": "validation/qwen35-dev-transfer-review/preparation-review.json",
+        "sha256": "5068a3108013f58c11883ec57fa5702b745f632b183acb6d79810b3ae74778e4",
+        "bytes": 2791
+      },
+      "scope": "原dev stripped输入、精确c1c2实体基底及固定64条关系提示的输入独审；未运行模型或读gold。",
+      "conclusion": "移除全部候选association后重建提示仍e09bcc逐字节相同；955实体466概念36患者64行完整、无assistant，CPU最大5194 tokens，adapter train48与dev隔离。后续两臂终点仍待核。",
+      "limitations": [
+        "Preparation only: actual base/adapter loading, shared35minbudget and two-prediction freeze must be checked from terminal evidence.",
+        "Originaldev has repeated historical development use; no claim of blind test.",
+        "CPU token IDs are hash-bound route execution evidence, not re-tokenized locally.",
+        "Preparation manifest GPU status is a creation-time snapshot; later root authorization is separate."
+      ],
+      "support": [
+        {
+          "path": "validation/qwen35-dev-transfer-review/audit_preparation.py",
+          "sha256": "36e66493231aefd50fc42680e0d338b342d64a3bfc09ef6edcec6c1308e96e00",
+          "bytes": 5167
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/command.json",
+          "sha256": "674f10cb04e190ca2b19ac6157fef29c03c17216633a12c81d588d64bdf18468",
+          "bytes": 697
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/replayed-prompts.manifest.json",
+          "sha256": "2eb5db26ee8a93e75adb939282e9db0d74c37f8224da506406d46f8f659c611c",
+          "bytes": 947
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/source/preparation-manifest.json",
+          "sha256": "2d4d6bed6f239857290114478930bd0759d5d8c6067d33077d540f4ee3bc933f",
+          "bytes": 2114
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/source/prepare_pair_rag.py",
+          "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+          "bytes": 6846
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/source/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/qwen35-dev-transfer-review/source/tokenizer-audit.json",
+          "sha256": "4efbb04d4aae353ccca69e581b9397d9b78e22ef4fabec11464562dd495bf748",
+          "bytes": 33717
+        }
+      ]
+    },
+    {
+      "id": "gliner-fulltrain64-fixed10-terminal",
+      "report": {
+        "path": "validation/gliner-full64-terminal-review/review.json",
+        "sha256": "4a03399eb691b462ffce249b85c96d127d53505102dadde1e688abec77b8c386",
+        "bytes": 11757
+      },
+      "scope": "实际fresh64固定10轮5930步及终点指纹、同环境48候选字节等价复用、固定Sap64/LR64与嵌套次臂CPU独立重放。",
+      "conclusion": "64主fullLR .705869445、entity-only .705271539、nested .706234066，均低于48主.711324992；主相对48实体净+2TP3FP、关系-1TP+9FP。三个新预测统一冻结后评，全部独立字节复现/0错警，不升级best。",
+      "limitations": [
+        "Originaldev is repeatedly used development data, not blind validation; fixed protocol and unique epoch10 do not make it blind.",
+        "Main nonoverlap and nested secondary policy are separate predeclared arms; any best selection uses originaldev outcomes.",
+        "No GPU recomputation: training/finalweight hashes use actual collected metadata and remote storage sidecar, not local download/deserialization of model/state.",
+        "Training probe precision/recall and loss are not taskScore; no claim of reaching0.8 unless actual task score does.",
+        "No PhenoTagger/shared-route combination mixed into either new64 arm.",
+        "New control48 and64 share torch2.7.0cu128/TF4.50; original48 used torch2.7.1cu126/TF4.51.3. Reusing original48 Sap is justified by actually byteidentical candidates, not a claim of unchanged historical runtime."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-full64-terminal-review/audit.py",
+          "sha256": "b6f62ed4428a491cf95298d78c6c7af0fc9420f5131629a1197e3414060a118a",
+          "bytes": 15217
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/baseline.metrics.json",
+          "sha256": "e09fa64dc42b853ac022c9d1d1ee504ca0e0c36b400566bcf32c68d59cc72ff5",
+          "bytes": 13177
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/baseline.validation.json",
+          "sha256": "b96eee067af5040460dcecfe6c2fc8e21a9fc0224962ac26e074fd7134298b7c",
+          "bytes": 685
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/commands.json",
+          "sha256": "37cd227df787066c070471e92b6f56a0ab9f0119940fc235bf21ff010b01bf79",
+          "bytes": 32292
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/entity-only.metrics.json",
+          "sha256": "e5d25ac65e927b974f220a2bc2d80c27c31712d435d9bb220374334dfe9b009d",
+          "bytes": 13178
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/entity-only.validation.json",
+          "sha256": "66af1962abd9738fc953712c368b7da489e1851591318b0695be28e62edff490",
+          "bytes": 685
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/all-predictions-freeze.json",
+          "sha256": "1f0c5343eab5703ecf2d659f80904afd11a40cd7b51e5858ccf0c1da2ab3b944",
+          "bytes": 828
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/artifacts-transfer.json",
+          "sha256": "4ea7c24c689d19ed44f73887bf1061bd3957ca6dcb368b9fd5aa6ade4be8251e",
+          "bytes": 2717
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/assembled64/manifest.json",
+          "sha256": "72ddc42e4fc4132494db4b9e1afc82f52c0a06eb9a6452a5350d0aee0da14bc7",
+          "bytes": 2885
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/control48-dev/manifest.json",
+          "sha256": "ac2ce533a9435d85eb773192efba9d214a17080a5dba2bdf8d5eb07d7c4b82f7",
+          "bytes": 2069
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/control48-dev/prediction-freeze.json",
+          "sha256": "dc432a39e5f488f0c3a2c53b75fb2e2660783aebf7f1eb03be3de06e64067f1d",
+          "bytes": 517
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/control48-reuse.json",
+          "sha256": "50f76f84aee78029b15c2c25a4313a7c7d8bb5683cd52c64b2c7097cd750f582",
+          "bytes": 3807
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/cpu-commands.json",
+          "sha256": "82ab44dc574d959381eb943a6aa743536d9e23ed1f4172a0147a12ecdcd5ceae",
+          "bytes": 5937
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/finetuned64-dev/manifest.json",
+          "sha256": "b0dd3c3665cf3701b7f9f7d70910b8eeb553d48024c3a5cfe2940cbba58563e9",
+          "bytes": 2120
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/finetuned64-dev/prediction-freeze.json",
+          "sha256": "63b1308c9a7186a6d240436efa5233e31f43566b33933b056152707e644242b0",
+          "bytes": 517
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/formal-fixed10ep/run_manifest.json",
+          "sha256": "51a4d6fe4dcf610ae67ac402be211913025224c30d9b873ba6805f2aea30e53a",
+          "bytes": 48066
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/gpu-release.json",
+          "sha256": "b26bce4c7bbc0cecc0161cdc0f31ff80bd7e3c5874a5f6289a5625638da2fd19",
+          "bytes": 359
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/link-artifacts-transfer.json",
+          "sha256": "ee58c3d7486e1438fd08d99267425f063758c5092831f2f0e40698cf8e6334cd",
+          "bytes": 688
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/link-single.state.json",
+          "sha256": "6c3899d4737afd84264678261dbc2dd1d4364dd020de461cff1b3a015721706d",
+          "bytes": 1043
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/linked-finetuned64/manifest.json",
+          "sha256": "86ac317a9c9f2c4fcf74a7abf8be2a1d877ebda2e532137b2a79d69a4e5d4768",
+          "bytes": 7788
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/nested64/manifest.json",
+          "sha256": "d28742103d67297e88c7d3b4d1b3409b0542529747d863e12cfad16f138adf6d",
+          "bytes": 2392
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/paired-fixed.state.json",
+          "sha256": "e8b6d84579aa54da94724decee8a9afe84cc1c67b8ddf5c6f581d28a39eb5726",
+          "bytes": 3419
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/plan.json",
+          "sha256": "5d3fb96d9d5f5c9715714b8dd7362010f1420b4f15152133ef4642155619f560",
+          "bytes": 6296
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/prepared/manifest.json",
+          "sha256": "c3be9f4a3eccdc4d90edce17876beb7f6bbb911a692a16783a6db11ad81fa3b6",
+          "bytes": 29916
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/results-summary.json",
+          "sha256": "a1db3ccb50ed407a77f1f732e8e850719096b4e9c3c957fc56706eed0775910b",
+          "bytes": 4665
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/evidence/storage-verification.json",
+          "sha256": "68a667433ced20b21b2444c0c3b02879b148aac014cd3704dfafcb6ff0672d75",
+          "bytes": 484
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/full-lr.metrics.json",
+          "sha256": "9acf0d09558e431336b5b38fdce1aea9b11d08fac19dc995d01af30a7ac8c213",
+          "bytes": 13138
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/full-lr.validation.json",
+          "sha256": "52968d62bdd16a108688b392ecc9449c040c56c36298010ecdaf72a6f88dcfb8",
+          "bytes": 685
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/nested.metrics.json",
+          "sha256": "8cdfc3583eee0eb76b049c69303b613e8e9e58ee086e12466a6f0fd88e30cd16",
+          "bytes": 13187
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/nested.validation.json",
+          "sha256": "91ba5df4706770c508f2388e1515c64585d47ebe563038f534d089485c7d0458",
+          "bytes": 685
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/nested/manifest.json",
+          "sha256": "39cefba234bd4583aab6811209f644037a180b6b44214b65323f55d94a29f7e8",
+          "bytes": 2422
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/replay/manifest.json",
+          "sha256": "9c982c3bc1b3675beec7d5f7f1bd40b7b6baa8488ff58be4693b0ce79dd11c49",
+          "bytes": 2894
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/append_nested_spans.py",
+          "sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+          "bytes": 5901
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/assemble_gliner_linked.py",
+          "sha256": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+          "bytes": 5191
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/assemble_gliner_transfer.py",
+          "sha256": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d",
+          "bytes": 6434
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/combine.py",
+          "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+          "bytes": 3871
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/link_gliner_candidates.py",
+          "sha256": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+          "bytes": 8159
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/run_gliner_pilot.py",
+          "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+          "bytes": 8965
+        },
+        {
+          "path": "validation/gliner-full64-terminal-review/source/solutions/sequence_crf/train_gliner_supervised.py",
+          "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+          "bytes": 14816
+        },
+        {
+          "path": "validation/gliner-train64-review/check_control48_reuse.py",
+          "sha256": "2ce185bd4b62ee5905425012e884620fbf498f03f7ddf637bccbabe86f583f77",
+          "bytes": 7110
+        },
+        {
+          "path": "validation/gliner-train64-review/control48-reuse-review.json",
+          "sha256": "0ff32496936a761134b90385fbc4898b60547659e023b9eec254303645d74541",
+          "bytes": 6855
+        }
+      ]
+    },
+    {
+      "id": "relation-maxmil-fixed3ep-terminal-negative",
+      "report": {
+        "path": "validation/relation-mil-terminal-review/review.json",
+        "sha256": "4b61d064906cca832861b9dbda80e8bbe2b49401a25f51fb3c6c7a0e4fe2dd62",
+        "bytes": 5500
+      },
+      "scope": "冻结3轮docHPO max-MIL实际训练/完整414分数与删除约束、CPU装配/格式/v2终点评估，不重复准备数据审计。",
+      "conclusion": ".711353522→.702752693；947实体/47患者不变，仅删除72关联，其中27TP45FP。3ep559updates实际marker/模型指纹匹配，过滤pred7f443精确重现，0错警；不改阈值、不迁移原dev。",
+      "limitations": [
+        "Only frozen fold0 development test; not originaldev, official score, or blind assessment.",
+        "Final/state hashes come from actual trainer completion metadata; no independent local checkpoint deserialization or numerical resume equivalence test.",
+        "Training positive/negative accuracy and loss are training diagnostics, not taskScore.",
+        "Negative fixed3ep/.5 result does not establish all bag learning methods fail."
+      ],
+      "support": [
+        {
+          "path": "validation/relation-mil-terminal-review/audit.py",
+          "sha256": "4ee93b0b8210941e712847ce9c4abf1a012de8aef2b2a58e2eb2abaf2053891e",
+          "bytes": 8712
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/base.metrics.json",
+          "sha256": "a22261c246552c6c55f4395433fe7cb3855a345ceaa76ad3c7adf92a29780272",
+          "bytes": 13071
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/commands.json",
+          "sha256": "df00a08eef4d846697b170950f2a2c1d2bc0b879d824084a89adb731920fc5a5",
+          "bytes": 4963
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/assembled/pred.manifest.json",
+          "sha256": "359939be3cbd923fcb8a1cf7278ae204751cde4736895a46254e68cba0a8a0db",
+          "bytes": 758
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/collected/formal3ep/complete.json",
+          "sha256": "3f73510b6a8f3620eaef9434a7387dc967c60c80aa3ead62aa9f865678dda4b8",
+          "bytes": 3324
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/collected/formal3ep/cpucheck.json",
+          "sha256": "271e523e485c97547f919660eb271c78473b8d954e0a9aa278e7c411b692867b",
+          "bytes": 2994
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/collected/formal3ep/first-update.json",
+          "sha256": "986d63b14d6446b6dd799cf40d73ee2b492425e625fdec0e14ebd9f64228fa8d",
+          "bytes": 183
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/collected/formal3ep/progress.json",
+          "sha256": "7872e10cc940ae33c4f2411cdcd40abbab731aa96453749c6efdf06f87e24f8b",
+          "bytes": 2684
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/collection.json",
+          "sha256": "1ddbe508e9e2ae15a3ce3fced8cb295bc0f33060b28020d25c815ddc68583785",
+          "bytes": 2643
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/evaluation/commands.json",
+          "sha256": "dfb55a57cc5b3f034c4c7356b316cc8882ec41cf62aacf5d32288c76e8b01ce8",
+          "bytes": 2628
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/gpu-release.json",
+          "sha256": "33395889ff94c951fcbbefb4cb6a77255971d0177b24892d9f9fe00898978aff",
+          "bytes": 915
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/results.json",
+          "sha256": "a1f15719af6be735a49d352d12d31b5ec33561467264c4a9646122881ea6c3b0",
+          "bytes": 6235
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/evidence/training-job.json",
+          "sha256": "a6bc18d0df2d3251828cf60f2d2bb8440c7b0a87746c793153ea1dd8ca0b2ea5",
+          "bytes": 1895
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/mil.metrics.json",
+          "sha256": "c7f094f3ad050f2a695739656888f19deee722a9f153b6103e8fcc567db6bf0b",
+          "bytes": 13026
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/pred.manifest.json",
+          "sha256": "50b894d571d3a33dd5f440643d6a4eeff4788408770d13705b6f0e9309046891",
+          "bytes": 758
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/source/filter_relation_bags.py",
+          "sha256": "229ecec1cede8376352de0c9e077e91612c75a8de2ed6142b981798edefe529a",
+          "bytes": 2991
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/source/train_relation_mil.py",
+          "sha256": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94",
+          "bytes": 15430
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/relation-mil-terminal-review/validation.json",
+          "sha256": "907fb687c6247662efceed35311ac2b3f4ea1b4dfc86b92e3f3d2943ad9b1215",
+          "bytes": 685
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "gliner-fulltrain64-fixed10-terminal",
-      "status": "准备通过；实际唯一epoch10与same64控制尚待冻结回收独审，原比较仍48GLiNER .711325，不能同时混入Pheno。"
+      "id": "qwen35-full-context58-terminal",
+      "status": "9B BASE原58已独审；全文58与cap等价复用准备已冻结，实际全文终点尚待本批之后独审。"
     },
     {
-      "id": "qwen35-formal58-paired-quality",
-      "status": "实际新9B 204×2ep训练/epoch2 58响应与primary/schema配对质量待终点；已审接口/成本/准备不替代质量。"
+      "id": "qwen35-originaldev-transfer-two-arms-terminal",
+      "status": "64提示输入准备通过；两模型实际probe/统一冻结终点尚待，不把输入准备当成绩。"
     },
     {
-      "id": "qwen8b-full-context58-paired-quality",
-      "status": "原58/全文58均8B BASE，同decoder共享运行预算；编排静态通过，真实两响应/两预测冻结及指标待回收。"
-    },
-    {
-      "id": "gliner-rejected-link-fixed9b-control",
-      "status": "root授权176跨度的固定候选链接准备，排队在当前9B训练及adapter推断后；来源/严格解析小审进行，不计已完成项。"
+      "id": "llm-factual-feature-tree-control",
+      "status": "新204输入base推断与4127行配对树控制，CPU接口/矩阵审正在独立进行；本批不纳入未完成结果。"
     }
   ],
-  "previous_live_index_sha256": "52284da8fa9fc51052ce79c7fb07bc5de50892de3deb15fb284da772b1baa918",
+  "previous_live_index_sha256": "2c5b52f14fbce673b0da1db50901fd79330dff57028a35e93b051612ebcb87f5",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批34→41：outer48固定GLiNER全链、Pheno原dev、GLiNER原dev、共享组合双臂、全文/结构控制准备、GLiNER64准备。8B全文双BASE静态编排作为支持。所有旧报告保持原SHA；无官方提交、全部未.8。",
+  "live_index_note": "本批41→52：聚合方向oracle、176链接准备/负终点、9B正式训练与原58/schema、8B全文负终点、MIL准备/负终点、固定nested实体两级控制、GLiNER64负终点及9B原dev输入准备。所有旧383引用保持原SHA；无官方提交、无.8方案合并。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
@@ -2507,9 +3605,11 @@
       "note": "仅+.000115679，mention及关系下降，不声称稳健提升。"
     },
     "sequence_crf": {
-      "Score": 0.7113249915024389,
-      "entry_id": "gliner48-originaldev-transfer-two-controls",
-      "note": "span训练48、Sap/LR训练64；预声明两臂后选fullLR。"
+      "nominal_best_Score": 0.7121466271032486,
+      "stable_non_nested_main_Score": 0.7113249915024389,
+      "entry_id": "gliner-fixed-nested-entity-control",
+      "main_entry_id": "gliner48-originaldev-transfer-two-controls",
+      "note": "span48、Sap/LR64；固定nested实体控制仅+.000821636且mention下降，关系不变。fresh64主/嵌套均未超越旧48；名义分与稳定主配置分列，原dev参与比较。"
     },
     "cross_route_combination": {
       "entity_only_Score": 0.7125861607935766,
@@ -2518,5 +3618,6 @@
       "note": "不归为单路线best；两臂均保留，原dev参与选择；mention下降。"
     }
   },
-  "archived_first34_sha256": "52284da8fa9fc51052ce79c7fb07bc5de50892de3deb15fb284da772b1baa918"
+  "archived_first34_sha256": "52284da8fa9fc51052ce79c7fb07bc5de50892de3deb15fb284da772b1baa918",
+  "archived_first41_sha256": "2c5b52f14fbce673b0da1db50901fd79330dff57028a35e93b051612ebcb87f5"
 }
