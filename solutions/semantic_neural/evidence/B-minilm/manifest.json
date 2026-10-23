@@ -1,0 +1,71 @@
+{
+  "experiment": "E-20261023-006",
+  "elapsed_seconds": 247.55645487400034,
+  "parameters": {
+    "train": "/workspace/patientphex-data/day1/train80.jsonl",
+    "input": "/workspace/patientphex-data/day1/B.input.jsonl",
+    "hpo": "/workspace/patientphex-data/hp.obo",
+    "output": "/workspace/patientphex-runs/day1-20261023/semantic-neural/B-minilm/predictions.jsonl",
+    "work_dir": "/workspace/patientphex-runs/day1-20261023/semantic-neural/B-minilm",
+    "model_dir": "/workspace/patientphex-runs/day1-20261023/semantic-neural/model",
+    "encoder": "minilm-onnx",
+    "device": "cpu",
+    "threads": 1,
+    "batch_size": 128,
+    "seed": 20261023,
+    "max_candidates": 1600,
+    "negatives_per_doc": 300,
+    "exact_threshold": 0.48,
+    "neural_threshold": 0.72,
+    "min_similarity": 0.87,
+    "patient_threshold": 0.6
+  },
+  "training": {
+    "positive_spans": 5828,
+    "negative_spans": 23932,
+    "training_docs": 80,
+    "semantic_bank": 42849,
+    "detector_iterations": 21
+  },
+  "counts": {
+    "documents": 100,
+    "entities": 5394,
+    "links": 1820
+  },
+  "source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+  "model_source": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "files": [
+      {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/onnx/model_quint8_avx2.onnx",
+        "path": "model.onnx",
+        "bytes": 23046789,
+        "sha256": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21"
+      },
+      {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+        "path": "tokenizer.json",
+        "bytes": 466247,
+        "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037"
+      },
+      {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+        "path": "config.json",
+        "bytes": 612,
+        "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41"
+      }
+    ]
+  },
+  "inputs": {
+    "/workspace/patientphex-data/day1/train80.jsonl": "3880983ee40428399f579478029342aa46678b36e4021d20494f25d8873dcdbd",
+    "/workspace/patientphex-data/day1/B.input.jsonl": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+    "/workspace/patientphex-data/hp.obo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "output": {
+    "path": "/workspace/patientphex-runs/day1-20261023/semantic-neural/B-minilm/predictions.jsonl",
+    "sha256": "810b45a984bc6e4ffec611c62f64c9a111e268bb1af1cec579107a5c1738f3c8",
+    "bytes": 703874
+  },
+  "evaluation": "Not performed in prediction; use shared evaluator on independent gold."
+}
