@@ -1,0 +1,205 @@
+{
+  "date_utc": "2026-10-23",
+  "result_type": "local_public_rule_approximation_not_official",
+  "evaluator_version": "patientphex-public-approx-v2",
+  "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+  "gold_sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050",
+  "split_manifest": "docs/data/day1-split.json",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "selected": [
+    {
+      "route": "ontology-rules",
+      "label": "本体规则",
+      "branch": "day1/ontology-rules",
+      "submission_code_commit": "9af8ca47b49b0c482484b825ee94297a5f8a02f0",
+      "dev_prediction_sha256": "5a994261965f7887f2bfef384401380d49581940435bbe46d19604f6e4868e4b",
+      "metrics": {
+        "menF1": 0.7258145363408521,
+        "docF1": 0.7371663244353183,
+        "micF1": 0.5303030303030303,
+        "macF1": 0.4571046539297161,
+        "Score": 0.6125971362522292
+      },
+      "metrics_path": "/workspace/patientphex-runs/day1-20261023/ontology-rules/dev-v1/metrics.eval-v2.json",
+      "B_prediction_path": "/workspace/patientphex-runs/day1-20261023/ontology-rules/B-v1/predictions.jsonl",
+      "B_sha256": "2c4f1e7ebd58da648cf8565687345af8f95f5f514a09cf3fe5d9f0813c24e7c7",
+      "B_counts": {
+        "documents": 100,
+        "entities": 5812,
+        "relations": 2287,
+        "patients": 244
+      },
+      "B_validation_errors": 0,
+      "B_validation_warnings": 0,
+      "submission_filename": "day1_20261023_ontology_rules_v1_2c4f1e7e.jsonl",
+      "submission_status": "accepted"
+    },
+    {
+      "route": "fuzzy-ranker",
+      "label": "监督候选排序",
+      "branch": "day1/fuzzy-ranker",
+      "submission_code_commit": "45db963be0a6825840cb7e3e40f09713707b5571",
+      "dev_prediction_sha256": "c51329d4e5d8dcc682f56375120396fa71ec821b1a5ff599f1ec041021bec643",
+      "metrics": {
+        "menF1": 0.6651810584958218,
+        "docF1": 0.7019867549668874,
+        "micF1": 0.5871345029239766,
+        "macF1": 0.5694919126589092,
+        "Score": 0.6309485572613988
+      },
+      "metrics_path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v1/metrics.eval-v2.json",
+      "B_prediction_path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/B.predictions.jsonl",
+      "B_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+      "B_counts": {
+        "documents": 100,
+        "entities": 4411,
+        "relations": 2391,
+        "patients": 244
+      },
+      "B_validation_errors": 0,
+      "B_validation_warnings": 0,
+      "submission_filename": "day1_20261023_fuzzy_ranker_v1_a9907309.jsonl",
+      "submission_status": "accepted"
+    },
+    {
+      "route": "sequence-crf",
+      "label": "CRF 序列标注",
+      "branch": "day1/sequence-crf",
+      "submission_code_commit": "e71436cc0b62f46c61b8d5a8d8dac1cf0835279a",
+      "dev_prediction_sha256": "b7bcdeabc23f8d5915f2d1b5f9b6631b7565c66d78a60460fc405aee3286942b",
+      "metrics": {
+        "menF1": 0.7325400931195034,
+        "docF1": 0.7453027139874739,
+        "micF1": 0.648471615720524,
+        "macF1": 0.6126201280049394,
+        "Score": 0.6847336377081101
+      },
+      "metrics_path": "/workspace/patientphex-runs/day1-20261023/sequence-crf/crf-dev-v1/metrics.eval-v2.json",
+      "B_prediction_path": "/workspace/patientphex-runs/day1-20261023/sequence-crf/crf-B-v1/pred.jsonl",
+      "B_sha256": "8014f006eb8b90103172838ed7d8b1a3c85b681ef68b63c98200096e8112ae8f",
+      "B_counts": {
+        "documents": 100,
+        "entities": 5229,
+        "relations": 2868,
+        "patients": 244
+      },
+      "B_validation_errors": 0,
+      "B_validation_warnings": 0,
+      "submission_filename": "day1_20261023_sequence_crf_v1_8014f006.jsonl",
+      "submission_status": "accepted"
+    },
+    {
+      "route": "case-retrieval",
+      "label": "病例检索",
+      "branch": "day1/case-retrieval",
+      "submission_code_commit": "177b4ef8fb65fa5711de0fa324b445543904ed2e",
+      "dev_prediction_sha256": "7835dcc35003c52939becb3b76f5aaedef3e7d34c38493eac9149236f950a91f",
+      "metrics": {
+        "menF1": 0.7316572601334017,
+        "docF1": 0.7492195629552549,
+        "micF1": 0.5424200278164116,
+        "macF1": 0.4307735388347408,
+        "Score": 0.6135175974349523
+      },
+      "metrics_path": "/workspace/patientphex-runs/day1-20261023/case-retrieval/dev-cpu/metrics.eval-v2.json",
+      "B_prediction_path": "/workspace/patientphex-runs/day1-20261023/case-retrieval/B-cpu/predictions.jsonl",
+      "B_sha256": "f558c6d6843a50d59ab120ec5ed74b36a1a6426ffccf89f5b5267e6a418f6b8d",
+      "B_counts": {
+        "documents": 100,
+        "entities": 5466,
+        "relations": 1745,
+        "patients": 244
+      },
+      "B_validation_errors": 0,
+      "B_validation_warnings": 0,
+      "submission_filename": "day1_20261023_case_retrieval_cpu_f558c6d6.jsonl",
+      "submission_status": "accepted"
+    },
+    {
+      "route": "semantic-neural",
+      "label": "SapBERT 语义检索",
+      "branch": "day1/semantic-neural",
+      "submission_code_commit": "77597ae638191f8bfe0436695463a0ec70fecc25",
+      "dev_prediction_sha256": "c5eb86a5bcf894e7ab5d2812ca8d62d386733951e762faf83e8577a049a0de1f",
+      "metrics": {
+        "menF1": 0.7016205910390848,
+        "docF1": 0.7389162561576355,
+        "micF1": 0.42990654205607476,
+        "macF1": 0.3106585033084132,
+        "Score": 0.545275473140302
+      },
+      "metrics_path": "/workspace/patientphex-runs/day1-20261023/semantic-neural/dev-sapbert/main-metrics-v2.json",
+      "B_prediction_path": "/workspace/patientphex-runs/day1-20261023/semantic-neural/B-sapbert/predictions.jsonl",
+      "B_sha256": "f12d2ffb5a65edf16889d8f349a34f70c7fd3132cd145d6d385a123132d412d2",
+      "B_counts": {
+        "documents": 100,
+        "entities": 6143,
+        "relations": 2024,
+        "patients": 244
+      },
+      "B_validation_errors": 0,
+      "B_validation_warnings": 0,
+      "submission_filename": "day1_20261023_semantic_sapbert_v1_f12d2ffb.jsonl",
+      "submission_status": "accepted"
+    }
+  ],
+  "rejected_variants": [
+    {
+      "route": "fuzzy-ranker",
+      "run": "dev-v2",
+      "metrics": {
+        "menF1": 0.647191011235955,
+        "docF1": 0.6815642458100558,
+        "micF1": 0.5536992840095465,
+        "macF1": 0.5422614981850096,
+        "Score": 0.6061790098101417
+      },
+      "decision": "LODO候选修正总体低于v1，保留负结果，不继续调阈值"
+    },
+    {
+      "route": "sequence-crf",
+      "run": "biomedbert-dev-v1",
+      "metrics": {
+        "menF1": 0.6221238938053097,
+        "docF1": 0.672787979966611,
+        "micF1": 0.5858407079646017,
+        "macF1": 0.572500829007027,
+        "Score": 0.6133133526858874
+      },
+      "decision": "固定4 epoch GPU序列标注低于CRF，不生成B"
+    },
+    {
+      "route": "semantic-neural",
+      "run": "dev-minilm",
+      "metrics": {
+        "menF1": 0.6900763358778625,
+        "docF1": 0.7036649214659686,
+        "micF1": 0.3804195804195804,
+        "macF1": 0.297209833005596,
+        "Score": 0.5178426676922518
+      },
+      "decision": "四项均低于SapBERT，使用SapBERT提交"
+    }
+  ],
+  "not_run": [
+    {
+      "route": "case-retrieval",
+      "variant": "Qwen3-8B RAG",
+      "reason": "HF/hf-mirror不可达、依赖下载慢；ModelScope吞吐已测，首日停止进一步下载，未做模型推理。"
+    }
+  ],
+  "screening": {
+    "reference_score": 0.6125971362522292,
+    "minimum_ratio": 0.7,
+    "component_improvement_exception": 0.03,
+    "all_selected_pass": true
+  },
+  "official_scores_collected": false,
+  "final_branch_commits": {
+    "day1/ontology-rules": "f0475a6094fbd9559e23fd63cf72aeefed8aedad",
+    "day1/fuzzy-ranker": "9139cf35a310946971bb10b835359b219a0f4288",
+    "day1/sequence-crf": "8e30b53abde2bf0bdbaa43b15d509260bdcfd498",
+    "day1/case-retrieval": "177b4ef8fb65fa5711de0fa324b445543904ed2e",
+    "day1/semantic-neural": "c9a7423b21101d5abfd5c2e877420e669dc50267"
+  }
+}

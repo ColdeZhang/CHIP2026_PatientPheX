@@ -12,7 +12,7 @@
 - Git bundle：`day1/coordinator-backup/git/`，包含 main 和五个 day1 分支及完整可达历史；不包含未提交文件。
 - 连接参数只从环境变量 `MCP_URL/MCP_TOKEN` 读取，不打印值。
 
-实际备份清单会随最后两份提交补齐到本目录；当前外部 manifest 位于 `/workspace/patientphex-runs/day1-20261023/`。备份工具以 SHA 核验：同名同内容跳过，同名不同内容拒绝覆盖。512 KiB 分片传输、合并后再次检查完整哈希。
+五份最终预测及五份接收回执已全部备份并核对远端 SHA，实际清单见 [预测备份 manifest](day1-20261023-backup-manifest.json)。外部原始 manifest 位于 `/workspace/patientphex-runs/day1-20261023/`。备份工具以 SHA 核验：同名同内容跳过，同名不同内容拒绝覆盖。512 KiB 分片传输、合并后再次检查完整哈希。
 
 ## 备份与恢复命令
 
