@@ -17,6 +17,7 @@
 - **后继只读结论**：旧48完整Adam/RNG仍在但52步日程已lr0，追加必须新协议；两目标候选与已试负控制分开。12份9B实际manifest均thinking=false，模型卡支持接口但adapter能力未证；若后续测试须先验think闭合再strict final。无新训练；[短判断](research/qwen35-successor-readonly-review.md)。
 - **thinking诊断已关闭**：同fixed12/epoch002/greedy/1600只开thinking，首条72.048秒/1600真截断/未闭think、无合法final；root授权据此早停，仅1/12，无fit/不解析targets（launcher仅SHA检查）、不重试。独审67b49e51通过，20:51:01Z A800 GPU2空已释放、watcher30920结束；[结果](evidence/round2/qwen35-thinking12-result.json)。
 - **SFT融合库存只读**：原四事实用base非SFT，不能外推否定SFT+LR。旧48/64均非inner OOF；6语义方向可复用、2已装配、0合格32SFT。完整3模型粗估约62min训练，最小一meta-fold约21min+推断，但均非实测/授权；[边界与来源](evidence/round2/qwen35-sft-fusion-reuse-review.json)。
+- **当前单meta-fold控制**：新鲜SFT32仅F2+F3/16→16折外候选，124行402594token/594正/max5523；真实CPU入口通过，2ep32updates，token线性估1131秒（非实测），训练1800+30/推理900+30硬限。F1仅80提示1557候选/365 raw-HPO正作meta训练；两HGB共同加折排除LR概率/选择，仅±SFT四事实。outer0复用旧SFT48，不重新原dev；双完整pred先freeze再一次评分。启动前计划已冻结，正式job尚未创建；[运行计划](evidence/round2/sft-meta1-run-plan.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
