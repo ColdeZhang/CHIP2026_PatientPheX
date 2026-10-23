@@ -99,3 +99,9 @@ python scripts/evaluate.py --gold /workspace/patientphex-data/day1/dev16.gold.js
 ```
 
 后续恢复 RAG：先检查分配 GPU 无其他计算进程，完成独立环境和固定版本模型；运行 `prepare_rag.py --train TRAIN --input INPUT --candidates CPU_PRED --output PROMPTS`；远端设置独占 GPU 的 `CUDA_VISIBLE_DEVICES` 后运行 `generate_rag.py --model MODEL_DIR --prompts PROMPTS --output RESPONSES`；最后 `merge_rag.py --candidates CPU_PRED --prompts PROMPTS --responses RESPONSES --output PRED`。先完成 dev 校验与同口径比较，再决定是否跑 B。续跑必须使用相同配置指纹，不能用旧响应拼接新提示。
+
+## 后续官方成绩回收（主线程增补）
+
+已按用户指令回收：Score **0.599432522**；menF1 0.666359、docF1 0.726394、micF1 0.534073、macF1 0.470905。score ID `3052942`、file ID `2795232`、seasonId `1862`；已与本报告冻结 B 文件 SHA、平台文件名/时间/大小核对一致。
+
+这是原报告后的官方补充，未改模型或重跑。完整精度与提交标识见[官方证据](../submissions/day1-20261023-official.json)，横向结论与下一轮建议见[官方分析](../campaigns/day1-20261023-official-analysis.md)。

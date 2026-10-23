@@ -111,3 +111,9 @@ BiomedBERT 16 篇/36 患者输出 1,153 实体、677 关联，格式 0 错误/0 
 CPU dev/B 的实际源码快照已外存 `source-snapshots/0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05.py`，其与当前 `run.py` 唯一区别是后续增加的运行库版本元数据。为避免外部快照丢失，仓库保留小型 `results/crf-v1-source-reproduction.patch`；将 `git show 1e4893c:solutions/sequence_crf/run.py` 导出为临时 `run.py` 后，在临时目录对该文件应用此 patch，即可重建 SHA-256 `022277...` 的实际运行源，不需要改动当前工作树。实际配置/数据/输出哈希与命令见 CPU manifest 和上述记录。
 
 最后备份恢复：主线程已间隔重试成功将 `e71436c` 推送；本结案提交随后再次 push 并核验，最终提交号由主线程台账统一记录。
+
+## 后续官方成绩回收（主线程增补）
+
+已按用户指令回收：Score **0.590650428**；menF1 0.668599、docF1 0.727859、micF1 0.525312、macF1 0.440831。score ID `3052946`、file ID `2795236`、seasonId `1862`；已与本报告冻结 B 文件 SHA、平台文件名/时间/大小核对一致。
+
+这是原报告后的官方补充，未改模型或重跑。完整精度与提交标识见[官方证据](../submissions/day1-20261023-official.json)，横向结论与下一轮建议见[官方分析](../campaigns/day1-20261023-official-analysis.md)。

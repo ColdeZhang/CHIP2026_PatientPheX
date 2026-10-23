@@ -42,3 +42,11 @@
 [提交工具](../../scripts/tianchi_submit.py) 只连接已有登录浏览器，逐份核验并提交冻结 JSONL；入口 JSON 保存文件、SHA、字节数、赛季、分支/代码版本。必须指定独立 receipt 路径，已有凭据会阻止再次上传。选择文件前先落盘尝试记录，选择一次后等历史记录及额度减少，超时标记待人工检查，不能自动重试。
 
 当前页面历史表仅有“文件名称 / 提交时间 / 状态”；工具先核验列结构，只记录这三项，不读取分数页。首日平台接收清单在 [day1-20261023.json](../submissions/day1-20261023.json)。下一会话按用户通知回收分数时，用清单中的平台文件名和提交时间匹配，避免把旧提交的成绩混入新路线。
+
+## 回收官方成绩
+
+用户要求回收成绩时，访问 `/competition/entrance/532512/score`。已观察到页面只读请求 `GET /v3/proxy/competition/api/race/score/my?raceId=532512&pageNum=1&pageSize=10`；核对 `currentSeason.seasonId`，按 `raceScoreVO` 分页读取。只保留 `id`、`fileId`、比赛/赛季、提交时间及 `jsonValObject` 中13项 P/R/F1/Score；不能记录账号信息或认证字段。UI四位小数不可代替API完整精度。
+
+在提交页加载时观察 `/v3/proxy/competition/api/race/upload` 的响应，`raceFile` 提供文件 id、名称、时间和大小。该页面初始化使用 POST 读取元数据；通过加载页面观察即可，不手工重放上传操作。用 `score.fileId == raceFile.id` 连接，再与保存的完整平台文件名、时间、字节数和本地 SHA 核对。首日五份的[匹配证据](../submissions/day1-20261023-official.json)已保存。
+
+CDP连接恢复后的视口可能变回窄屏，从而没有桌面“我的成绩”菜单；需要在同一次连接中设置视口再操作，或直接导航已确认的score路由。只读刷新不消耗提交额度。

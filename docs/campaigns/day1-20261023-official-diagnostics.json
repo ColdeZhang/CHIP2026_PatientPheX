@@ -1,0 +1,623 @@
+{
+  "purpose": "post-hoc descriptive diagnosis, no retraining or B labels; not a replacement validation split",
+  "datasets": {
+    "train64": {
+      "documents": 64,
+      "totals": {
+        "characters": 1131581,
+        "passages": 2301,
+        "patients": 173,
+        "heuristic_excluded_characters": 97653
+      },
+      "by_document": {
+        "characters": {
+          "n": 64,
+          "mean": 17680.953125,
+          "min": 4815,
+          "p10": 11163.6,
+          "median": 16483.0,
+          "p90": 27722.600000000002,
+          "max": 38364
+        },
+        "passages": {
+          "n": 64,
+          "mean": 35.953125,
+          "min": 12,
+          "p10": 18.0,
+          "median": 36.5,
+          "p90": 49.7,
+          "max": 82
+        },
+        "patients": {
+          "n": 64,
+          "mean": 2.703125,
+          "min": 1,
+          "p10": 1.0,
+          "median": 2.0,
+          "p90": 6.0,
+          "max": 14
+        }
+      },
+      "patient_count_documents": {
+        "1": 29,
+        "4+": 17,
+        "2-3": 18
+      },
+      "heuristic_excluded_character_fraction": 0.08629784345972581
+    },
+    "dev16": {
+      "documents": 16,
+      "totals": {
+        "characters": 247254,
+        "passages": 514,
+        "patients": 36,
+        "heuristic_excluded_characters": 23010
+      },
+      "by_document": {
+        "characters": {
+          "n": 16,
+          "mean": 15453.375,
+          "min": 5062,
+          "p10": 7071.5,
+          "median": 15146.5,
+          "p90": 25662.0,
+          "max": 31671
+        },
+        "passages": {
+          "n": 16,
+          "mean": 32.125,
+          "min": 15,
+          "p10": 16.5,
+          "median": 34.5,
+          "p90": 48.5,
+          "max": 59
+        },
+        "patients": {
+          "n": 16,
+          "mean": 2.25,
+          "min": 1,
+          "p10": 1.0,
+          "median": 2.0,
+          "p90": 3.5,
+          "max": 8
+        }
+      },
+      "patient_count_documents": {
+        "2-3": 7,
+        "1": 7,
+        "4+": 2
+      },
+      "heuristic_excluded_character_fraction": 0.09306219515154457
+    },
+    "train80": {
+      "documents": 80,
+      "totals": {
+        "characters": 1378835,
+        "passages": 2815,
+        "patients": 209,
+        "heuristic_excluded_characters": 120663
+      },
+      "by_document": {
+        "characters": {
+          "n": 80,
+          "mean": 17235.4375,
+          "min": 4815,
+          "p10": 9757.5,
+          "median": 16048.5,
+          "p90": 27573.800000000003,
+          "max": 38364
+        },
+        "passages": {
+          "n": 80,
+          "mean": 35.1875,
+          "min": 12,
+          "p10": 16.9,
+          "median": 35.0,
+          "p90": 50.0,
+          "max": 82
+        },
+        "patients": {
+          "n": 80,
+          "mean": 2.6125,
+          "min": 1,
+          "p10": 1.0,
+          "median": 2.0,
+          "p90": 6.0,
+          "max": 14
+        }
+      },
+      "patient_count_documents": {
+        "1": 36,
+        "2-3": 25,
+        "4+": 19
+      },
+      "heuristic_excluded_character_fraction": 0.0875108334209677
+    },
+    "B100": {
+      "documents": 100,
+      "totals": {
+        "characters": 1708003,
+        "passages": 3802,
+        "patients": 244,
+        "heuristic_excluded_characters": 155202
+      },
+      "by_document": {
+        "characters": {
+          "n": 100,
+          "mean": 17080.03,
+          "min": 3236,
+          "p10": 8881.0,
+          "median": 14816.0,
+          "p90": 24019.100000000002,
+          "max": 77998
+        },
+        "passages": {
+          "n": 100,
+          "mean": 38.02,
+          "min": 6,
+          "p10": 21.0,
+          "median": 34.5,
+          "p90": 56.0,
+          "max": 142
+        },
+        "patients": {
+          "n": 100,
+          "mean": 2.44,
+          "min": 1,
+          "p10": 1.0,
+          "median": 2.0,
+          "p90": 4.1000000000000085,
+          "max": 12
+        }
+      },
+      "patient_count_documents": {
+        "1": 42,
+        "2-3": 38,
+        "4+": 20
+      },
+      "heuristic_excluded_character_fraction": 0.09086752189545334
+    }
+  },
+  "routes": {
+    "ontology-rules": {
+      "baseline_metrics": {
+        "menF1": 0.7258145363408521,
+        "docF1": 0.7371663244353183,
+        "micF1": 0.5303030303030303,
+        "macF1": 0.4571046539297161,
+        "Score": 0.6125971362522292
+      },
+      "local_metrics_by_patient_count": {
+        "1": {
+          "menF1": 0.7140974967061924,
+          "docF1": 0.7263427109974424,
+          "micF1": 0.5847457627118644,
+          "macF1": 0.591429403929404,
+          "Score": 0.6541538435862257
+        },
+        "2-3": {
+          "menF1": 0.7325581395348837,
+          "docF1": 0.7439024390243902,
+          "micF1": 0.5793103448275863,
+          "macF1": 0.5050354696356013,
+          "Score": 0.6402015982556154
+        },
+        "4+": {
+          "menF1": 0.7352941176470589,
+          "docF1": 0.7472527472527473,
+          "micF1": 0.24793388429752067,
+          "macF1": 0.31084656084656087,
+          "Score": 0.510331827510972
+        }
+      },
+      "dev": {
+        "totals": {
+          "entities": 889,
+          "positive_entities": 889,
+          "negated_entities": 0,
+          "positive_units": 889,
+          "document_concepts": 414,
+          "links": 339,
+          "empty_patients": 6
+        },
+        "entities_per_1000_characters_pooled": 3.595492893947115,
+        "links_per_patient_pooled": 9.416666666666666,
+        "empty_patient_rate": 0.16666666666666666
+      },
+      "B": {
+        "totals": {
+          "entities": 5812,
+          "positive_entities": 5812,
+          "negated_entities": 0,
+          "positive_units": 5817,
+          "document_concepts": 2726,
+          "links": 2287,
+          "empty_patients": 33
+        },
+        "entities_per_1000_characters_pooled": 3.4028043276270594,
+        "links_per_patient_pooled": 9.37295081967213,
+        "empty_patient_rate": 0.13524590163934427
+      }
+    },
+    "fuzzy-ranker": {
+      "baseline_metrics": {
+        "menF1": 0.6651810584958218,
+        "docF1": 0.7019867549668874,
+        "micF1": 0.5871345029239766,
+        "macF1": 0.5694919126589092,
+        "Score": 0.6309485572613988
+      },
+      "local_metrics_by_patient_count": {
+        "1": {
+          "menF1": 0.6488095238095238,
+          "docF1": 0.6758241758241759,
+          "micF1": 0.5909090909090909,
+          "macF1": 0.5850743756191337,
+          "Score": 0.6251542915404811
+        },
+        "2-3": {
+          "menF1": 0.6787620064034151,
+          "docF1": 0.7245119305856833,
+          "micF1": 0.5330396475770925,
+          "macF1": 0.4734958047331273,
+          "Score": 0.6024523473248296
+        },
+        "4+": {
+          "menF1": 0.6559139784946236,
+          "docF1": 0.691358024691358,
+          "micF1": 0.7182320441988951,
+          "macF1": 0.6963966288269693,
+          "Score": 0.6904751690529615
+        }
+      },
+      "dev": {
+        "totals": {
+          "entities": 689,
+          "positive_entities": 689,
+          "negated_entities": 0,
+          "positive_units": 689,
+          "document_concepts": 346,
+          "links": 402,
+          "empty_patients": 0
+        },
+        "entities_per_1000_characters_pooled": 2.786608103407832,
+        "links_per_patient_pooled": 11.166666666666666,
+        "empty_patient_rate": 0.0
+      },
+      "B": {
+        "totals": {
+          "entities": 4411,
+          "positive_entities": 4411,
+          "negated_entities": 0,
+          "positive_units": 4411,
+          "document_concepts": 2273,
+          "links": 2391,
+          "empty_patients": 7
+        },
+        "entities_per_1000_characters_pooled": 2.58254815711682,
+        "links_per_patient_pooled": 9.799180327868852,
+        "empty_patient_rate": 0.028688524590163935
+      }
+    },
+    "sequence-crf": {
+      "baseline_metrics": {
+        "menF1": 0.7325400931195034,
+        "docF1": 0.7453027139874739,
+        "micF1": 0.648471615720524,
+        "macF1": 0.6126201280049394,
+        "Score": 0.6847336377081101
+      },
+      "local_metrics_by_patient_count": {
+        "1": {
+          "menF1": 0.7227586206896551,
+          "docF1": 0.7183462532299741,
+          "micF1": 0.5795918367346938,
+          "macF1": 0.5715653703341801,
+          "Score": 0.6480655202471258
+        },
+        "2-3": {
+          "menF1": 0.7428571428571429,
+          "docF1": 0.7613168724279835,
+          "micF1": 0.629399585921325,
+          "macF1": 0.5668766340189227,
+          "Score": 0.6751125588063436
+        },
+        "4+": {
+          "menF1": 0.7150259067357513,
+          "docF1": 0.7764705882352941,
+          "micF1": 0.7872340425531915,
+          "macF1": 0.7013720197930725,
+          "Score": 0.7450256393293273
+        }
+      },
+      "dev": {
+        "totals": {
+          "entities": 827,
+          "positive_entities": 827,
+          "negated_entities": 0,
+          "positive_units": 827,
+          "document_concepts": 398,
+          "links": 463,
+          "empty_patients": 0
+        },
+        "entities_per_1000_characters_pooled": 3.344738608879937,
+        "links_per_patient_pooled": 12.86111111111111,
+        "empty_patient_rate": 0.0
+      },
+      "B": {
+        "totals": {
+          "entities": 5229,
+          "positive_entities": 5229,
+          "negated_entities": 0,
+          "positive_units": 5233,
+          "document_concepts": 2575,
+          "links": 2868,
+          "empty_patients": 9
+        },
+        "entities_per_1000_characters_pooled": 3.061470032546781,
+        "links_per_patient_pooled": 11.754098360655737,
+        "empty_patient_rate": 0.036885245901639344
+      }
+    },
+    "case-retrieval": {
+      "baseline_metrics": {
+        "menF1": 0.7316572601334017,
+        "docF1": 0.7492195629552549,
+        "micF1": 0.5424200278164116,
+        "macF1": 0.4307735388347408,
+        "Score": 0.6135175974349523
+      },
+      "local_metrics_by_patient_count": {
+        "1": {
+          "menF1": 0.7189189189189189,
+          "docF1": 0.7216494845360825,
+          "micF1": 0.6428571428571429,
+          "macF1": 0.6311194653299916,
+          "Score": 0.678636252910534
+        },
+        "2-3": {
+          "menF1": 0.7440944881889764,
+          "docF1": 0.7654320987654321,
+          "micF1": 0.5798525798525799,
+          "macF1": 0.5186000951136002,
+          "Score": 0.6519948154801471
+        },
+        "4+": {
+          "menF1": 0.7150259067357513,
+          "docF1": 0.7816091954022989,
+          "micF1": 0.2413793103448276,
+          "macF1": 0.18948412698412698,
+          "Score": 0.4818746348667512
+        }
+      },
+      "dev": {
+        "totals": {
+          "entities": 843,
+          "positive_entities": 843,
+          "negated_entities": 0,
+          "positive_units": 843,
+          "document_concepts": 401,
+          "links": 266,
+          "empty_patients": 6
+        },
+        "entities_per_1000_characters_pooled": 3.4094493921230797,
+        "links_per_patient_pooled": 7.388888888888889,
+        "empty_patient_rate": 0.16666666666666666
+      },
+      "B": {
+        "totals": {
+          "entities": 5466,
+          "positive_entities": 5466,
+          "negated_entities": 0,
+          "positive_units": 5471,
+          "document_concepts": 2599,
+          "links": 1745,
+          "empty_patients": 23
+        },
+        "entities_per_1000_characters_pooled": 3.2002285710271,
+        "links_per_patient_pooled": 7.151639344262295,
+        "empty_patient_rate": 0.0942622950819672
+      }
+    },
+    "semantic-neural": {
+      "baseline_metrics": {
+        "menF1": 0.7016205910390848,
+        "docF1": 0.7389162561576355,
+        "micF1": 0.42990654205607476,
+        "macF1": 0.3106585033084132,
+        "Score": 0.545275473140302
+      },
+      "local_metrics_by_patient_count": {
+        "1": {
+          "menF1": 0.6946847960444994,
+          "docF1": 0.7446300715990454,
+          "micF1": 0.5603112840466926,
+          "macF1": 0.5462328324778568,
+          "Score": 0.6364647460420235
+        },
+        "2-3": {
+          "menF1": 0.7228915662650602,
+          "docF1": 0.7430830039525692,
+          "micF1": 0.4398976982097187,
+          "macF1": 0.3926095297672701,
+          "Score": 0.5746204495486545
+        },
+        "4+": {
+          "menF1": 0.6190476190476191,
+          "docF1": 0.6888888888888889,
+          "micF1": 0.0594059405940594,
+          "macF1": 0.05714285714285714,
+          "Score": 0.35612132641835614
+        }
+      },
+      "dev": {
+        "totals": {
+          "entities": 992,
+          "positive_entities": 992,
+          "negated_entities": 0,
+          "positive_units": 992,
+          "document_concepts": 455,
+          "links": 296,
+          "empty_patients": 12
+        },
+        "entities_per_1000_characters_pooled": 4.012068561074846,
+        "links_per_patient_pooled": 8.222222222222221,
+        "empty_patient_rate": 0.3333333333333333
+      },
+      "B": {
+        "totals": {
+          "entities": 6143,
+          "positive_entities": 6143,
+          "negated_entities": 0,
+          "positive_units": 6144,
+          "document_concepts": 2917,
+          "links": 2024,
+          "empty_patients": 54
+        },
+        "entities_per_1000_characters_pooled": 3.5965978982472513,
+        "links_per_patient_pooled": 8.295081967213115,
+        "empty_patient_rate": 0.22131147540983606
+      }
+    }
+  },
+  "bootstrap": {
+    "method": "4000 paired bootstrap resamples of 16 documents, recomputing pooled TP/FP/FN and patient macro; seed 20261023",
+    "limitations": "Conditional on already fitted/selected models and this one holdout. No refitting, no new validation data, no correction for model selection. This is not an official-score confidence interval.",
+    "source_sha256": "8509e3fe12a54a383918426c4617affa3ecc0b828d4e5eeb300aea0f0e7afcd8",
+    "score_percentile_95": {
+      "ontology-rules": [
+        0.5445803198629692,
+        0.6786494952398354
+      ],
+      "fuzzy-ranker": [
+        0.5790848573514954,
+        0.6695391472051353
+      ],
+      "sequence-crf": [
+        0.6230135968090046,
+        0.7338671335463652
+      ],
+      "case-retrieval": [
+        0.558903023527874,
+        0.6693758807385473
+      ],
+      "semantic-neural": [
+        0.48137636164786024,
+        0.6119629799978613
+      ]
+    },
+    "paired_difference_percentile_95": {
+      "sequence-crf minus fuzzy-ranker": {
+        "observed": 0.053785080446711375,
+        "interval": [
+          0.024636647471078438,
+          0.07441410660001947
+        ]
+      },
+      "fuzzy-ranker minus case-retrieval": {
+        "observed": 0.01743095982644649,
+        "interval": [
+          -0.06141331758564719,
+          0.09271138255460033
+        ]
+      },
+      "case-retrieval minus ontology-rules": {
+        "observed": 0.0009204611827230424,
+        "interval": [
+          -0.042938992982281494,
+          0.03900956625377292
+        ]
+      },
+      "ontology-rules minus semantic-neural": {
+        "observed": 0.06732166311192722,
+        "interval": [
+          0.015958841438317124,
+          0.12556454170551248
+        ]
+      }
+    }
+  },
+  "subgroup_diagnostic": {
+    "description": "Post-hoc diagnostic removing the two 4+ patient documents, not a replacement validation set or model selection rule.",
+    "excluded_pmc_ids": [
+      "6096008",
+      "12126309"
+    ],
+    "excluded_patients": 12,
+    "remaining_documents": 14,
+    "routes": {
+      "ontology-rules": {
+        "menF1": 0.7247347850362926,
+        "docF1": 0.7361268403171007,
+        "micF1": 0.5812220566318927,
+        "macF1": 0.5302337004712937,
+        "Score": 0.6430793456141449
+      },
+      "fuzzy-ranker": {
+        "menF1": 0.6662523306401492,
+        "docF1": 0.703030303030303,
+        "micF1": 0.5519287833827893,
+        "macF1": 0.5060395545748791,
+        "Score": 0.6068127429070301
+      },
+      "sequence-crf": {
+        "menF1": 0.7344827586206897,
+        "docF1": 0.7422680412371134,
+        "micF1": 0.6126373626373627,
+        "macF1": 0.5682441821108729,
+        "Score": 0.6644080861515097
+      },
+      "case-retrieval": {
+        "menF1": 0.7334851936218679,
+        "docF1": 0.7459954233409611,
+        "micF1": 0.6003316749585407,
+        "macF1": 0.5514182447600476,
+        "Score": 0.6578076341703544
+      },
+      "semantic-neural": {
+        "menF1": 0.7108050847457628,
+        "docF1": 0.7437837837837837,
+        "micF1": 0.4876543209876543,
+        "macF1": 0.4374163263911912,
+        "Score": 0.594914878977098
+      }
+    }
+  },
+  "external_evidence": [
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/local_distribution_review.py",
+      "bytes": 7005,
+      "sha256": "22d8ca28ea20234e1b9142541771eb106bc2fa5cfb3c76c461c753d7ccf99f4d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/local_bootstrap_review.py",
+      "bytes": 2575,
+      "sha256": "8509e3fe12a54a383918426c4617affa3ecc0b828d4e5eeb300aea0f0e7afcd8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/local-distribution-review.json",
+      "bytes": 354094,
+      "sha256": "241a577fb83475675a0196279c22a2cbba2d5b73059a1e5de84c9468da6e1033"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/local-bootstrap-review.json",
+      "bytes": 1615,
+      "sha256": "4ed29192816e28cee79923377f29650049ebefc8db2a4c0c8139bbd21121c2a6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/local-subgroup-diagnostic.json",
+      "bytes": 1293,
+      "sha256": "3fa705ba7f5a2b79fec90b5d3a956002bee40faff55168bcf4d96de148807267"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/exact_official_review.py",
+      "bytes": 3028,
+      "sha256": "cb4ace9d46727c29daeb2838a71675a4697571f4b292dfa42c786a2c2e6be041"
+    },
+    {
+      "path": "/workspace/patientphex-runs/day1-20261023/official-analysis/exact-official-comparison.json",
+      "bytes": 11194,
+      "sha256": "7f44e51edafd42a28a312d8790af9f145b656fe0a4a934930b530a74b6e00f7d"
+    }
+  ]
+}

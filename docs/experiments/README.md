@@ -4,15 +4,15 @@
 
 ## 新项目实验
 
-首日五路线从 `ac8a752` 创建独立分支/worktree，统一评测见[修正记录](day1-evaluator-review.md)，最新状态见[首日计划](../campaigns/day1-20261023.md)。以下分数是固定 dev16 的近似评测 v2，不是官方分数。
+首日五路线从 `ac8a752` 创建独立分支/worktree，统一评测见[修正记录](day1-evaluator-review.md)，最新状态见[首日计划](../campaigns/day1-20261023.md)。下表同时列出固定 dev16 近似评测 v2 与已回收的官方 B 成绩，两者数据和评测器不同；详见[官方分析](../campaigns/day1-20261023-official-analysis.md)。
 
 | 实验 | 方法 / 分支 | 当前结论 |
 |---|---|---|
-| [E-20261023-002](E-20261023-002-ontology-rules.md) | 本体规则 / `day1/ontology-rules` | .612597，平台已接收 |
-| [E-20261023-003](E-20261023-003-fuzzy-ranker.md) | 候选监督排序 / `day1/fuzzy-ranker` | v1 .630949；v2 .606179，保留负结果，选 v1 已接收 |
-| [E-20261023-004](E-20261023-004-sequence-crf.md) | 序列标注 / `day1/sequence-crf` | CRF .684734 已接收；BiomedBERT .613313 未选用 |
-| [E-20261023-005](E-20261023-005-case-retrieval.md) | 病例检索 / `day1/case-retrieval` | CPU .613518 已接收；Qwen 下载受限，未运行 |
-| [E-20261023-006](E-20261023-006-semantic-neural.md) | 语义编码 / `day1/semantic-neural` | SapBERT .545275 已接收；MiniLM .517843 未选用 |
+| [E-20261023-002](E-20261023-002-ontology-rules.md) | 本体规则 / `day1/ontology-rules` | .612597；官方 .603338（五路线最高） |
+| [E-20261023-003](E-20261023-003-fuzzy-ranker.md) | 候选监督排序 / `day1/fuzzy-ranker` | v1 .630949；v2 .606179，保留负结果，选 v1，官方 .545653 |
+| [E-20261023-004](E-20261023-004-sequence-crf.md) | 序列标注 / `day1/sequence-crf` | CRF .684734，官方 .590650；BiomedBERT .613313 未选用 |
+| [E-20261023-005](E-20261023-005-case-retrieval.md) | 病例检索 / `day1/case-retrieval` | CPU .613518，官方 .599433；Qwen 下载受限，未运行 |
+| [E-20261023-006](E-20261023-006-semantic-neural.md) | 语义编码 / `day1/semantic-neural` | SapBERT .545275，官方 .578946；MiniLM .517843 未选用 |
 
 下一实验 ID 为 `E-20261023-007`（跨日使用实际日期）；不复用历史编号。
 
