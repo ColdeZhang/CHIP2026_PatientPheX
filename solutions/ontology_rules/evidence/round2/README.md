@@ -25,3 +25,5 @@
 - [OOF聚合归属准备](aggregate-relation-preparation.json)与[fold0固定控制](aggregate-relation-fold0.json)：高召回池诊断、单模型/并集负结果及新增错误类型。
 
 - [聚合归属第二折固定复验](aggregate-relation-fold1.json)：替换及union仍负，不推广原dev。
+
+- [真实PhenoTagger结构与设计](phenotagger-design.json)：与旧二元冻结encoder区分，当前仅成本测量准备。

@@ -1,0 +1,54 @@
+{
+  "scope": "public specified HPO + outer0 train48 only; raw lower/space normalize, no lemma expansion yet",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "classes_excluding_root": 19119,
+  "classifier_classes_with_reject": 19120,
+  "head_parameters_768": 14703280,
+  "unique_surfaces": 43552,
+  "surface_label_pairs": 43552,
+  "ambiguous_surfaces": 0,
+  "term_scope_counts": {
+    "name": 19119,
+    "EXACT": 23095,
+    "RELATED": 1462,
+    "BROAD": 560,
+    "excluded_short_uppercase": 117,
+    "NARROW": 540
+  },
+  "train_raw_entity_labels": {
+    "single_id": 3512,
+    "NO_positive_lexical_not_reject": 122,
+    "unlinked_positive_not_reject": 61,
+    "compound_id": 30,
+    "not_allowed": 9
+  },
+  "unknown_labels_policy": "NO lexical HPO remains positive; -1 is entity without link, never HP:None reject; compounds require explicit adaptation, not arbitrary first label",
+  "unmeasured_gpu_estimate": "1xA30 max32 batch64 expected fit; measure 100-step throughput/peak before long fixed-epoch budget",
+  "upstream_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/ncbi-nlp/PhenoTagger/10f8ee3e1ea4c26fb44c47df28a555082748ebf2/src/nn_model.py",
+      "sha256": "7543d6712fb497ff658b73b26c393832135c9152a23d15f547b839270dbcfeb7",
+      "bytes": 5878
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ncbi-nlp/PhenoTagger/10f8ee3e1ea4c26fb44c47df28a555082748ebf2/src/Build_distant_corpus.py",
+      "sha256": "4d71fe70b57ef51d7846c1171a68de42d32bceb9c94ced9f40eb51d318d0e877",
+      "bytes": 7470
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ncbi-nlp/PhenoTagger/10f8ee3e1ea4c26fb44c47df28a555082748ebf2/src/Build_dict.py",
+      "sha256": "49a10e554b80e6e05557e44cd5e63108765604932fd039f065305a4505f1089d",
+      "bytes": 13169
+    }
+  ],
+  "upstream_training": {
+    "revision": "10f8ee3e1ea4c26fb44c47df28a555082748ebf2",
+    "max_length": 32,
+    "batch_size": 64,
+    "optimizer": "Adam 5e-6",
+    "default_epochs": 100,
+    "dev_evaluation_starts_after_epoch": 30
+  },
+  "external_head_not_adopted_reason": "Published checkpoint selection lineage not established; README demonstrates GSC dev selection, but this does not prove every released checkpoint used it. We independently initialize a new 2026 label head on a general biomedical encoder.",
+  "phase": "CPU preparation and 100-step measurement code ready; no GPU training result yet"
+}
