@@ -35,3 +35,5 @@
 - [PhenoTagger固定30ep计划](phenotagger-formal-plan.json)：预先固定训练预算与恢复策略，不按fold0选epoch。
 
 - [PhenoTagger真实中断恢复核验](phenotagger-resume-check.json)：direct4 vs split2+2逐张量/全RNG一致。
+
+- [PhenoTagger正式作业](phenotagger-formal-job.json)：15:00:33Z启动；持续状态看方案WORKLOG，不将启动回执当完成。
