@@ -76,6 +76,7 @@ def main():
     ap.add_argument('--train',required=True);ap.add_argument('--hpo',required=True);ap.add_argument('--input',required=True)
     ap.add_argument('--prompts',required=True);ap.add_argument('--responses',required=True);ap.add_argument('--output-dir',required=True)
     ap.add_argument('--candidate-count',type=int,default=8);ap.add_argument('--items-per-prompt',type=int,default=18)
+    ap.add_argument('--dense-candidates',help='Optional frozen SapBERT candidate JSON for these exact quote item codes')
     args=ap.parse_args();train=read_jsonl(args.train);inputs=read_jsonl(args.input)
     assert not({str(d['pmc_id']) for d in train}&{str(d['pmc_id']) for d in inputs})
     assert not any(d.get('entities') or d.get('association') for d in inputs)
@@ -91,6 +92,16 @@ def main():
                 items.append({'code':code,'quote':quote,'context':occurrence['context'],'candidates':candidates,'exact':exact,'identifier':candidates[0]['identifier'] if candidates else '-1'})
                 exact_count+=int(exact)
             occurrence['item_code']=lookup[key]
+    if args.dense_candidates:
+        dense={x['code']:x for x in json.loads(Path(args.dense_candidates).read_text())}
+        for item in items:
+            if item['exact'] or item['code'] not in dense:continue
+            extra=dense[item['code']];assert extra['quote']==item['quote'],'Dense candidate quote/code mismatch'
+            seen={x['identifier'] for x in item['candidates']}
+            for c in extra['candidates']:
+                if c['identifier'] in seen:continue
+                if any(i not in norm.terms for i in c['identifier'].split(';')):continue
+                c=dict(c);c['name']='; '.join(norm.terms[i]['name'] for i in c['identifier'].split(';'));item['candidates'].append(c);seen.add(c['identifier'])
     pending=[x for x in items if not x['exact']];link_prompts=[]
     for start in range(0,len(pending),args.items_per_prompt):
         batch=pending[start:start+args.items_per_prompt];lines=[]
@@ -99,8 +110,10 @@ def main():
         link_prompts.append({'row_id':f'link:{start}','pmc_id':'normalization','item_codes':[x['code'] for x in batch],'messages':[{'role':'system','content':LINK_SYSTEM},{'role':'user','content':'\n\n'.join(lines)}]})
     out=Path(args.output_dir);out.mkdir(parents=True,exist_ok=True)
     (out/'normalization-items.json').write_text(json.dumps({'occurrences':found,'items':items},ensure_ascii=False))
+    (out/'semantic-queries.json').write_text(json.dumps([{'code':x['code'],'quote':x['quote']} for x in pending],ensure_ascii=False))
+    (out/'alias-records.json').write_text(json.dumps([{'text':text,'identifiers':sorted(norm.lexical.aliases[key])} for key,text in zip(norm.keys,norm.surfaces)],ensure_ascii=False))
     (out/'link-prompts.jsonl').write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n' for x in link_prompts))
-    manifest={'configuration':vars(args),'parse':stats,'occurrences':sum(map(len,found.values())),'distinct_items':len(items),'exact_items':exact_count,'link_prompts':len(link_prompts),'files':{k:sha256(getattr(args,k)) for k in ['train','hpo','input','prompts','responses']},'code_sha256':sha256(__file__)}
+    manifest={'configuration':vars(args),'parse':stats,'occurrences':sum(map(len,found.values())),'distinct_items':len(items),'exact_items':exact_count,'link_prompts':len(link_prompts),'files':{k:sha256(getattr(args,k)) for k in ['train','hpo','input','prompts','responses']+(['dense_candidates'] if args.dense_candidates else [])},'code_sha256':sha256(__file__)}
     (out/'normalization-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest))
 
 if __name__=='__main__':main()

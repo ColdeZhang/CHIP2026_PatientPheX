@@ -11,6 +11,7 @@ from prepare_rag import mark_patients
 SYSTEM='''Determine which supplied patients actually have each candidate clinical phenotype in a biomedical report.
 Return one JSON object mapping EVERY candidate code to a list of supplied patient IDs. Return [] when no supplied patient is supported. Use only listed candidate codes and patient IDs.
 Each candidate includes its HPO meaning and verbatim local evidence. Inline [PATIENT P1: text] markers identify supplied patient mentions. Use the global patient anchors to resolve case numbers, family members and unambiguous pronouns across paragraphs. A phenotype may belong to multiple patients only when the text explicitly describes those patients or an explicit group including them.
+A supplied patient can be a relative; report that relative's own findings for their patient ID.
 Assign observed, present findings only. Reject negated/normal findings, hypothetical possibilities, general syndrome descriptions and other cited cases. Do not infer symptoms from a diagnosis. When several patients occur, compare their evidence and do not copy one patient's findings to everyone. Clinical abnormality diagnoses such as glaucoma and diabetes can be phenotypes when supported. If the specific HPO meaning differs from the quoted evidence, reject that candidate. No explanation or markdown.'''
 
 

@@ -17,8 +17,10 @@ Return exactly one JSON object mapping EVERY supplied patient ID to a list of ca
 Use only the listed candidate codes. A code means that its phenotype is present in that patient.
 Use the patient's aliases and the full clinical evidence, including later paragraphs and coreference.
 Inline [PATIENT P1: ...] markers identify the supplied patient mention spans exactly.
-Do not assign a phenotype from general disease descriptions, references, other patients, relatives,
-or an explicitly negative finding. Do not infer unmentioned symptoms from a disease name.
+Do not assign a phenotype from general disease descriptions, references, an unrelated person,
+or an explicitly negative finding. Never transfer one person's finding to another person.
+If a relative is explicitly one of the supplied patients, report that relative's own findings for their patient ID. Explicit shared-family or group evidence may support multiple supplied patients.
+Do not infer unmentioned symptoms from a disease name.
 If a patient has no supported phenotype, return an empty list. No explanation or markdown."""
 
 
