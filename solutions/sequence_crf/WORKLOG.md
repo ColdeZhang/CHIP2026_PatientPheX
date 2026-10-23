@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**公开 PhenoBERT pair 控制已完成，未升级。** 固定top3/non-Sap全部旧候选/字段，三类原子均值新增，严格四fold HGB160共163.19秒；固定.3主臂pooled **.725155643**，比匹配top3+.001688347，但低保留Bioformer.3的.725655389。九点训练校准3.19秒仍选.3，实体目标.779193104低保留.780192596；3折升/1折降。固定原边界仅ID臂10对象变更，Score **.725763139**（+.000107750），doc略降、fold0负/两折零/仅fold3正；不自动迁原dev。全部预测先共同freeze、关系/非实体保留、0错警；质量独审296db624通过，三列/唯一fold0拟合整合独审待收。公开cache189.65秒、GPU已释放，当前无活动进程。恢复见[完整结果](evidence/round2/phenobert-pair-results.json)、[方法与记录](experiments/phenobert-pair-control.md)；原准备/启动指针保留历史，禁止重复已完成fit。
+**公开 PhenoBERT pair 控制已完成，未升级。** 固定top3/non-Sap全部旧候选/字段，三类原子均值新增，严格四fold HGB160共163.19秒；固定.3主臂pooled **.725155643**，比匹配top3+.001688347，但低保留Bioformer.3的.725655389。九点训练校准3.19秒仍选.3，实体目标.779193104低保留.780192596；3折升/1折降。固定原边界仅ID臂10对象变更，Score **.725763139**（+.000107750），doc略降、fold0负/两折零/仅fold3正；不自动迁原dev。全部预测先共同freeze、关系/非实体保留、0错警；整体独审85050d25通过：188349 held旧字段及三列全核，唯一fold0独立fit概率/预测byteexact；其余三fold同引擎复用。公开cache189.65秒、GPU已释放，当前无活动进程。恢复见[完整结果](evidence/round2/phenobert-pair-results.json)、[方法与记录](experiments/phenobert-pair-control.md)；原准备/启动指针保留历史，禁止重复已完成fit。
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
