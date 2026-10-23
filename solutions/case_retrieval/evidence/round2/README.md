@@ -65,3 +65,8 @@
 
 - `full-context9b-paired-result.json`：同A800原58/追加完整给定全文负结果、原base cap等价复用及全预测SHA；停止此配置。
 - `llm-feature-tree-inference-start.json`：冻结原204官方base纯消息推理作业、25分钟预算和CPU接口独审；双树尚未拟合，不是质量结果。
+
+- `qwen35-dev-transfer-result.json`：原dev64同A30基座/SFT配对与同955实体fullLR；共享组合.711210和原独立检索.625074分开列出。
+- `llm-feature-tree-result.json`：204严格OOF官方base完整响应、两固定HGB共同freeze后负结果；未校准阈值/未读原dev。
+
+- `rules-union-qwen35-sft-result.json`：唯一无条件规则∪9B SFT关系并集控制，新增1TP/14FP、内部Score下降，停止不移dev。

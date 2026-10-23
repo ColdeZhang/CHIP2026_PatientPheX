@@ -5,11 +5,12 @@
 ## 当前状态
 
 - **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
-- **固定dev最佳**：CPU四折选出的 k21/.35 为 **.625073738**（首日 .613517597）；独立重训/逐字节预测复现通过。后续GPU已完成train64内部fold0/fold1；本轮原dev同A30 base/SFT固定迁移已启动，尚未完成评分。
+- **原dev两种口径**：原独立检索 CPU k21/.35 **.625073738**（首日 .613517597）；共享CRF+GLiNER955实体 + Qwen3.5关系SFT48 **.711210414**，低于同池fullLR **.711324992**。后者是共享组件组合进展，不冒称纯检索分；两者均未达.8。
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
-- **最新结论**：整患者开放集合SFT完整47×2配对严重负：base grounded .375189、epoch002 grounded .396343，同实体规则 .711354；adapter 44合法中26空数组，3触顶，停止这套配置。原文quote存在不代表自由HPO ID正确。
+- **最新结论**：9B微调能降低关系FP，但直接替换仍损召回；原dev微调271TP/64FP/182FN vs fullLR331/203/122。204严格OOF base决策作为4事实的固定HGB对照也负：无LLM .653192→有LLM .649124，低于内fold0 rules .711354。均冻结，不依据heldout调阈值。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
-- **当前任务**：9B原58 base .633859674→SFT .695443948，仍低同实体rules .711353522；加入完整给定正文的base对照 .624732353为负，冻结不调prompt。A800运行原204官方base零样本生成，随后固定无LLM/有四事实特征两树；A30并行原dev64 base/epoch002两臂，双预测先冻结再评分。
+- **当前任务**：两GPU完整终点均已回收并fresh释放，只做CPU可行性：①fresh full64关系SFT的合法四fold候选/token预算；②无LLM关系树严格二层校准单折的来源/成本。不得使用原dev或outer16选阈值，尚未授权新GPU。
+- **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -24,8 +25,8 @@
 
 1. **9B原58完整配对已结束**。原adapter作业 `proc_301c8be3-bba6-4c69-9634-bf4a0dbf752b` 与本地watcher93066均正常结束；58/58严格JSON、0触顶、415/415候选合法、0格式错，生成203.10秒。原base .633859674→adapter .695443948，仍低rules；小证据见[配对结果](evidence/round2/qwen35-relation-paired-result.json)，完整raw/预测/SHA在外存 `qwen35-preparation/relation-quality-plan/`。不重启，不挑epoch。
 2. **训练已结束**。fresh204行×2ep/52updates，原作业 `proc_c35c5440-2f32-4842-b4aa-8e444173673b` 与monitor89754已结束。实际1855.10秒，allocated37.48GB/reserved78.50GB分开记录，无OOM；epoch002 adapter SHA8e32daee…，两epoch及Adam/scheduler/RNG全实际SHA在外存 `relation-training-preparation/checkpoint-actual-hashes.json`。完整配置、命令与终点见[完成证据](evidence/round2/qwen35-relation-training-complete.json)，不挑epoch1质量，不宣称新的数值resume等价。
-3. **A800原204官方base正在运行**。18:25:14Z fresh核GPU2空闲启动 `proc_0adf6588-bcd4-4b60-a490-a22e0152c958`，本地session44821；25分钟timeout+30秒TERM，恢复入口外存 `llm-tree-base204/base204-plan.json` / job / monitor。只原204纯system/user消息，绝无本轮SFT adapter；完整响应/模型/runtime/token核验后才拟合冻结的两树。源码609374及4127×299/4facts接口独审通过，[启动证据](evidence/round2/llm-feature-tree-inference-start.json)。前序9B full58已正常结束：原 .633860→全文 .624732、TP+3/FP+83，58完整/0触顶、407合法CID/8回退；[固定全文结果](evidence/round2/full-context9b-paired-result.json)，不重跑/调prompt。
-4. **A30原dev同卡配对运行中，由research子代理唯一管理**。base于18:24:22Z启动 `proc_f80b8998-0b1e-4fe8-9010-dd1345377945`；服务器共享deadline18:59:20.784Z，下一adapter同deadline自动顺序，35分钟+最多30秒TERM。两最长probe均完成：base5.708秒/19.46GB，adapter13.051秒/19.63GB，均8/8CID合法；资源通过不等于质量。外存 `dev-relation-transfer-preparation/paired-run.py` / paired-budget.json / paired-*记录实际作业；冻结955entities/466concepts/36patients/64prompt，不复用probe、不用schema投影，双预测完整冻结后统一评分。root批准原dev一次迁移，混合训练规模见[准备证据](evidence/round2/qwen35-dev-transfer-preparation.json)。
+3. **A800204与固定两树已完成**。原作业 `proc_0adf6588-bcd4-4b60-a490-a22e0152c958` 正常退出；204strictJSON/0hit，648409实际prefix精确、生成735.192秒。原1477训练CID全合法，验证397合法/18旧格式失败。609374固定两HGB先双freeze再评：无LLM .653192044→4facts .649124234，分别201TP/66FP与188TP/60FP，均弱于rules .711354；[终点证据](evidence/round2/llm-feature-tree-result.json)，外存 `llm-tree-fold0-results/summary.json`。原GPU2于18:38:45.877Z fresh核空已交root，无自动GPU后继。
+4. **A30原dev配对已完成并释放**。两臂64完整/466CID全合法/0触顶回退，same955实体。base .646040894→epoch002 .711210414，仍低fullLR .711324992；无schema/阈值修改。实际339.672+337.989秒，全编排748.516秒；双pred freeze `ad68570c…`先于读gold。正确终态入口外存 `dev-relation-transfer-preparation/paired-completion.json` / paired-summary.json；早期paired-plan是被freeze绑定的历史回收快照，不覆盖其SHA。A30于18:36:44.771Z fresh核GPU1空后交root；[终点证据](evidence/round2/qwen35-dev-transfer-result.json)。原独立检索.625074与本组合.711210分开保留。
 5. **8B全文控制已结束且释放A30**。同A30两臂58/58、0触顶/删demo，原58 .618120269→全文 .610344254；947实体与所有候选不变。配对墙钟805.38秒；FP的‘不属任何指定患者gold概念’293→323，‘属其他指定患者’53→70，前者不能直接认定真实背景。双raw与双pred先冻结再评测，原解析回退2→7，未应用schema控制。外存 `full-context8b-a30/paired-summary.json` 及[结果](evidence/round2/full-context8b-paired-result.json)，独立终点审查已通过，报告外存validation/full-context8b-terminal-review。
 6. **模型/adapter复制均已结束并关源**。A80015文件→A30共19,329,392,091B，2116.35秒；原monitor96986已退出，独立重读15文件全部size/SHA同源，原source进程停止、端口41236拒绝连接。另本轮epoch002两adapter文件173.18MB以独立allowlist复制18.62秒，全SHA与训练检查点一致，自有41237源也已停止/核关闭。没有残留复制/GPU自动等待任务；[持久副本证据](evidence/round2/qwen35-a30-persistent-copy.json)。A30模型实际目录 `case-retrieval/qwen35-preparation/models/Qwen3.5-9B`，新版runtime保持与旧8B隔离。
 7. **环境与来源**。A800只读Python `ontology-round2/qwen-venv/bin/python`，私有 `case-retrieval/qwen35-preparation/a800-migration/runtime` 提供TF5.20.2/PEFT0.21.2；模型 `/dev/shm/patientphex-qwen35-1045-c20223623576` 为已全SHA核验15文件的易失缓存，持久源在A100 `476f81cf-09e7-445b-a7f0-d0e12b12e50f:case-retrieval/qwen35-preparation/models/Qwen3.5-9B`。HF c202236…/MS aa2aaf…，LICENSE差异单独处理；A100 GPU等待计划已停止。
@@ -34,4 +35,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `9cf9d68`（OOF树/原dev迁移协议；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `fcc51db`（全文负/两配对启动；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
