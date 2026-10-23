@@ -1,0 +1,76 @@
+{
+  "frozen_at_utc": "2026-10-23T18:09:55.750607+00:00",
+  "source_commit": "3f0008145480dbbe0ad1b684cf156e5b15e933a1",
+  "source_sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+  "basis": "Root authorization after nested32 and outer48 fixed CPU entity-only positive controls; originaldev is development, no new threshold/order choice",
+  "existing_outer_result": {
+    "baseline": {
+      "menF1": 0.7302325581395349,
+      "docF1": 0.7379032258064516,
+      "micF1": 0.7129251700680272,
+      "macF1": 0.7049567711418887,
+      "Score": 0.7215044312889756
+    },
+    "current": {
+      "menF1": 0.7308574048601559,
+      "docF1": 0.7450199203187251,
+      "micF1": 0.7129251700680272,
+      "macF1": 0.7049567711418887,
+      "Score": 0.7234398165971992
+    },
+    "delta": {
+      "menF1": 0.0006248467206210195,
+      "docF1": 0.00711669451227348,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.0019353853082236805
+    },
+    "count_delta": {
+      "mention": {
+        "tp": 12,
+        "fp": 19,
+        "fn": -12
+      },
+      "document": {
+        "tp": 8,
+        "fp": 4,
+        "fn": -8
+      },
+      "relation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  },
+  "dev48": {
+    "command": [
+      "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+      "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/append_nested_spans.py",
+      "--input",
+      "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "--hpo",
+      "/workspace/patientphex-data/hp.obo",
+      "--baseline",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+      "--baseline-manifest",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/manifest.json",
+      "--candidates",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/scored-candidates.jsonl",
+      "--candidate-manifest",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/link-manifest.json",
+      "--output-dir",
+      "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-nested-control/dev48"
+    ],
+    "base_sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+    "scored_sha256": "434e62ab3a45732f32d1416cfb6b9ce0d3a1d66120479ad24871f686c07c7616",
+    "relation_policy": "keep every old48 relation unchanged",
+    "no_gpu_or_fit": true
+  },
+  "full64_endpoint": {
+    "primary": "unchanged original policy, compare48 model .711324991",
+    "secondary": "same fixed nested entity-only adapter applied to full64 original fullLR prediction; preserve its relations",
+    "freeze_all_before_any_new64_evaluation": true,
+    "no_Ph eno_combination": true
+  }
+}
