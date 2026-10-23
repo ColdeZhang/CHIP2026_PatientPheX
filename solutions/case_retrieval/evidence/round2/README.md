@@ -62,3 +62,6 @@
 - `llm-feature-tree-preparation.json` / `llm-feature-tree-contract.json`：204严格OOF官方base决策作为四个事实特征，配对HGB固定协议与实际CPU/8合成控制；尚未推理204或拟合树。
 - `qwen35-a30-persistent-copy.json`：15文件实际SHA独立复核与源进程/端口关闭，保留持久副本。
 - `qwen35-dev-transfer-preparation.json`：原dev64纯输入提示/固定955实体、实际token预算、epoch002复制和probe准备；尚无原dev新分。
+
+- `full-context9b-paired-result.json`：同A800原58/追加完整给定全文负结果、原base cap等价复用及全预测SHA；停止此配置。
+- `llm-feature-tree-inference-start.json`：冻结原204官方base纯消息推理作业、25分钟预算和CPU接口独审；双树尚未拟合，不是质量结果。

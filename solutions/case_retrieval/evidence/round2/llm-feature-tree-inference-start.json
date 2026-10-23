@@ -1,0 +1,84 @@
+{
+  "status": "running_not_quality_result",
+  "plan": {
+    "cwd": "case-retrieval/qwen35-preparation",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "source_sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "decoder": {
+      "batch_size": 1,
+      "max_input_tokens": 14000,
+      "max_new_tokens": 1600,
+      "do_sample": false,
+      "enable_thinking": false,
+      "eos_token_ids": [
+        248044,
+        248046
+      ]
+    },
+    "status": "started",
+    "argv": [
+      "/usr/bin/timeout",
+      "--signal=TERM",
+      "--kill-after=30s",
+      "1500",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+      "-u",
+      "qwen35_runner.v2.py",
+      "--model",
+      "/dev/shm/patientphex-qwen35-1045-c20223623576",
+      "--source-manifest",
+      "model-source-manifest.json",
+      "--prompts",
+      "llm-tree-base204/train204.prompts.jsonl",
+      "--output",
+      "llm-tree-base204/base204.responses.jsonl",
+      "--max-input-tokens",
+      "14000",
+      "--max-new-tokens",
+      "1600"
+    ],
+    "command": "/usr/bin/timeout --signal=TERM --kill-after=30s 1500 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.v2.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest model-source-manifest.json --prompts llm-tree-base204/train204.prompts.jsonl --output llm-tree-base204/base204.responses.jsonl --max-input-tokens 14000 --max-new-tokens 1600",
+    "source_prompts": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/llm-tree-cpu-preparation/train204.prompts.jsonl",
+    "source_prompts_sha256": "23807d0ce5fff74d923898f2ae4a0790eaaa1137354e4ed5fc7fc27b4fb5513a",
+    "driver_sha256": "d675cc9e675affece7d23368d131911355540e6b9835a9302b48fb2c1f655c29",
+    "timeout_seconds": 1500,
+    "kill_grace_seconds": 30,
+    "scope": "Official base zero-shot on exact original 204 nested-OOF training prompts. All answers removed. No fold48 SFT adapter backprediction. Two fixed trees follow complete response; no gold accessed by this runner.",
+    "git_commit": "9cf9d680a39762947216d979ee73b0798ff46132",
+    "baseline_manifest_sha256": "c099806c7a1259911b38ceb47a3f70f425148b6b0dce7e0f5c2574073462094f",
+    "actual_job": "proc_0adf6588-bcd4-4b60-a490-a22e0152c958"
+  },
+  "job": {
+    "command": "/usr/bin/timeout --signal=TERM --kill-after=30s 1500 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.v2.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest model-source-manifest.json --prompts llm-tree-base204/train204.prompts.jsonl --output llm-tree-base204/base204.responses.jsonl --max-input-tokens 14000 --max-new-tokens 1600",
+    "id": "proc_0adf6588-bcd4-4b60-a490-a22e0152c958",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 12540,
+    "port": 46623,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T18:25:14.10931545Z"
+  },
+  "preflight": {
+    "exit_code": 0,
+    "stdout": "{\"gpu_free\": true, \"compute_apps\": \"GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706, 594 MiB\\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609, 9092 MiB\\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435, 76134 MiB\\n\"}\n"
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/llm-tree-base204",
+  "local_monitor_session": 44821,
+  "interface_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/llm-tree-preparation-review/interface-review.json",
+    "sha256": "d04fb800687745f54cb28298716a8ee5f9c89bf2881c247302af4e9d5d6eb597"
+  },
+  "label_boundary": "Prompts have only original system/user messages, no answer. Official base has no fold48 adapter; nested OOF candidates reused. No training or validation evaluation yet."
+}
