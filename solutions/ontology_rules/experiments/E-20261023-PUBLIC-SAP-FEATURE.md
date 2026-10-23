@@ -29,4 +29,4 @@ CPU阶段首次启动早于异步文件部署完成，在读取脚本前因文�
 
 相对原best均值−.002002217，四fold差值依次−.004658694、+.005809171、−.008541409、−.002697283。mention多11TP也多74FP，doc多19TP/25FP。与已负top3固定 .3相比，两分项均改善（均值+.002373970，mention+16TP/+5FP、doc+16TP/+7FP）；但改善不足恢复原最佳水平，不能选弱对照宣称成功。
 
-按事前规则关闭这套配置，不迁原dev、不加cut/特征/新fit。结果是train64侧校准，所有标签参与cut选择；不是独立泛化、完整Score或.8达标。非entities逐对象保持旧cut.3模板（association原源自.4），本次只计算两Task1指标。全部实际源、预算、21数值样本、4fit概率和36预测留外部，[关键结果/恢复](../evidence/round2/public-sap-feature-results.json)。独立终点审查进行中，向量与全池两列增量已通过e3f47aa1；不将准备PASS当质量验证完成。
+按事前规则关闭这套配置，不迁原dev、不加cut/特征/新fit。结果是train64侧校准，所有标签参与cut选择；不是独立泛化、完整Score或.8达标。非entities逐对象保持旧cut.3模板（association原源自.4），本次只计算两Task1指标。全部实际源、预算、21数值样本、4fit概率和36预测留外部，[关键结果/恢复](../evidence/round2/public-sap-feature-results.json)。完整终审PASS（c5775cf4…）：747178全池字段/21实际向量样本、四新fit全部概率与预测byteexact、36cut完整计数与选择exact、格式0错警；217.670秒<原240，未使用加时。关闭质量结论不变。
