@@ -177,3 +177,6 @@ HPO alt_id需要单列解释：上述45个raw-ID漏原子中4个gold为alt_id，
 同HPO整实体增强已尝试，不应再次列为未检验方法：原1150窗保留并加353个无损变体，fresh medium固定10ep/3760步，相同Sap/关系只让nested16 Score增.0001915（1TP/−1FP，关系完全不变）。该微增不能支持继续扩展，也不能解释为同义词增强的独立因果收益，因为训练步数同增30.56%。保留原基线，关闭当前配方；未达到.8。
 
 迁移检查点不能只比raw span键：旧32 A800→A30的1378跨度键完全一样，但浮点分数有约1.72e-5漂移。只有同目标Sap环境、固定阈值与装配跑完后，完整pred字节精确恢复历史f203，才能报告全链复现。旧32模型仅用于对照推理，新模型必须从已核公共medium fresh训练，不能把train48或old32继续训练冒充控制。
+
+
+FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcessor 会枚举上下文的未标注负跨度，并允许其参加解码；仅高层输出后过滤不能消除此前 greedy 重叠抑制。最小接口应让 transformer 看到上下文，而 words_mask／text_lengths／RNN 和跨度头只保留原目标窗，原 masked BCE 分母与 NO 语义不变。跨 passage 的虚拟 encoder 序列不对应连续原文，输出必须走原 word_offsets。1150训练窗97.48%可加上下文只是可行性，39.04%跨 section，不能当预计增益；当前统计和源审通过，实际专用接口 CPU 检查54.061秒完整通过；新增接口独审待完成，见[上下文提案](experiments/P-20261023-NER-CONTEXT.md)。

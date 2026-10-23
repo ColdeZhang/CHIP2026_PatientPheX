@@ -1,5 +1,5 @@
 {
-  "status": "CPU feasibility complete; actual adapter CPU pending",
+  "status": "CPU feasibility and actual BioMed adapter checks complete; independent adapter review pending; no model/GPU stage",
   "external_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-context-feasibility",
   "counts": {
     "rows": 1150,
@@ -62,6 +62,46 @@
     "adapter/plan.json": {
       "sha256": "2aceb6bd3fb6f8a3acf4e9383cdc4d28561ad1042683a91ac00e24630f05e8c8",
       "bytes": 2431
+    },
+    "adapter/ner_context.py": {
+      "sha256": "a97927e7a398d66dec8b3068bf69c4a30f7f9b1566d8af129324829f19320ce7",
+      "bytes": 8786
+    },
+    "adapter/check_ner_context.py": {
+      "sha256": "b5ff5f4afd6fb56bec8085f0ef66d14293b3f39f3e994096f211a630f84e7314",
+      "bytes": 10765
+    },
+    "adapter/train_gliner_supervised.py": {
+      "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+      "bytes": 14816
+    },
+    "adapter/run_gliner_pilot.py": {
+      "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+      "bytes": 8965
+    },
+    "adapter/cpu-command.json": {
+      "sha256": "21864ff6db2eda6b32a28eee119dba26481c49af9d0a64e3f06702d766de811d",
+      "bytes": 1485
+    },
+    "adapter/run_cpu.py": {
+      "sha256": "0fcaf2c1ef279d424c298edd966d13ec3694beba610705ba572e05e636d4f7c5",
+      "bytes": 1165
+    },
+    "adapter/cpu-job.json": {
+      "sha256": "ee57b9a8cf3e02356efd2fe1e7d8686a7bf84d774aef4ee4ef653d74ca5a55fd",
+      "bytes": 1501
+    },
+    "adapter/cpu-state.json": {
+      "sha256": "445e5b889c2e1f6cae62a9ed44c1a851c9cd16e941d679441a48de758e31bd9f",
+      "bytes": 646
+    },
+    "adapter/cpu-result.json": {
+      "sha256": "56549568d70228fa2922f849028f7cb14bcebb2df97f93e5869418dd219b3565",
+      "bytes": 3824
+    },
+    "adapter/collection.json": {
+      "sha256": "70677b67a352ec18cd40f6627eddadf3886d84766e00b80d59f08fbdc7b4b336",
+      "bytes": 549
     }
   },
   "independent_feasibility_review": {
@@ -73,5 +113,51 @@
     "39.04% of all rows cross section type; actual utility unknown.",
     "Compute proxies are not GPU throughput or memory measurements.",
     "No actual pretrained full-model forward/training/evaluation in CPU task."
-  ]
+  ],
+  "actual_adapter": {
+    "counts": {
+      "rows_with_context": 1121,
+      "encoded_tokens": 213323,
+      "target_tokens": 122290,
+      "NO_instances": 87,
+      "rows": 1150,
+      "positive_instances": 2236,
+      "valid_target_spans": 1125538
+    },
+    "checks": {
+      "all1150_disabled_tensors_equal_old_collator": true,
+      "all1150_enabled_target_geometry_labels_NO_and_input_row_bytes_unchanged": true,
+      "all1150_inference_context_and_tensors_equal_without_labels": true,
+      "all_context_attention_one_words_mask_zero": true,
+      "all_actual_input_lengths_at_most384_no_truncation": true,
+      "real_extract_word_embeddings_and_span_rep_target_shapes_unchanged": true,
+      "real_decoder_random_target_logits_equal_original": true,
+      "invalid_high_logits_removed_before_greedy": true,
+      "global_offsets_match_original_passage_slices": true,
+      "masked_BCE_value_invariant_and_invalid_gradient_zero": true
+    },
+    "shape_probe_logits": [
+      4,
+      295,
+      12,
+      1
+    ],
+    "shape_probe_scope": "Real library word extractor and span head, deterministic synthetic encoder embeddings; no RNN or pretrained transformer/full-model forward.",
+    "versions": {
+      "torch": "2.7.0+cu128",
+      "transformers": "4.50.0",
+      "gliner": "0.2.22",
+      "tokenizers": "0.21.4"
+    },
+    "cuda_initialized": false,
+    "checkpoint_opened": false,
+    "heldout_gold_read": false,
+    "seconds": 54.06103730807081,
+    "wrapper_seconds": 55.15401128632948,
+    "start_utc": "2026-10-23T19:53:48.013575+00:00",
+    "end_utc": "2026-10-23T19:54:43.167711+00:00",
+    "returncode": 0
+  },
+  "model_boundary": "Actual CPU uses BioMed native config/tokenizer. No medium compatibility, pretrained forward, model quality or GPU cost established. Future model base/control awaits parent decision and current sequence result.",
+  "tokenizer_warning": "Reference processor requested truncation without a predefined tokenizer max_length and used no truncation. All actual original/context inputs are explicitly counted <=384; custom adapter always truncation=False. No target was dropped."
 }

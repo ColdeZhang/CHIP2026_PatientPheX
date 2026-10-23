@@ -82,3 +82,5 @@
 - [NER增强固定后链](ner-augmentation-postlink-plan.json)：旧32/new32均走同A30 Sap环境、原阈值/装配；谱系轻审ce6847d4通过，1378旧跨度键一致，浮点分数最大差1.72e-5；完整分数待终点。
 
 - [NER增强唯一终点](ner-augmentation-results.json)：旧完整链字节复现、.653745→.653937极微正增益（仅1TP/−1FP）；无实质改善，关闭当前配方，不追加GPU/原dev；完整真实产物与恢复路径仓库外保留；终点独立重装/评分/谱系审查PASS（1ece6446…）。
+
+- [相邻上下文 NER CPU闸门](ner-context-feasibility.json)：原1150窗/2236正/87NO/有效跨度保持，97.48%可加输入；统计独审PASS，专用目标窗接口实际CPU已通过、新增接口独审待完成；不代表模型收益或GPU授权。
