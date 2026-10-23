@@ -1,0 +1,77 @@
+{
+  "status": "CPU feasibility complete; actual adapter CPU pending",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-context-feasibility",
+  "counts": {
+    "rows": 1150,
+    "positive_instances": 2236,
+    "NO_instances": 87,
+    "valid_target_spans": 1125538,
+    "edge_positive_instances": 354,
+    "rows_with_context": 1121,
+    "positive_rows_with_context": 398,
+    "rows_without_context": 29,
+    "rows_no_spare_at384": 24,
+    "rows_context_available_but_no_complete_word_fits": 29,
+    "rows_no_context_available": 0,
+    "positive_instances_with_context": 2086,
+    "edge_positive_instances_with_context": 350,
+    "ambiguous_surface_rows": 123,
+    "ambiguous_surface_rows_with_context": 113,
+    "context_sides_adjacent_passage": 2152,
+    "rows_cross_section": 449,
+    "rows_cross_passage_type": 850,
+    "rows_context_contains_known_positive": 495,
+    "context_positive_full_instances": 1702,
+    "context_positive_partial_instances": 37,
+    "context_NO_overlap_instances": 55,
+    "context_sides_same_passage": 26
+  },
+  "added_tokens_when_nonzero": {
+    "n": 1121,
+    "sum": 91033,
+    "min": 2,
+    "median": 77,
+    "p95": 128,
+    "max": 128,
+    "mean": 81.20695807314897
+  },
+  "compute_proxy": {
+    "batches": 2880,
+    "old_padded_tokens": 2529286,
+    "new_padded_tokens": 3328080,
+    "old_attention_proxy": 662580638,
+    "new_attention_proxy": 1028396584,
+    "padded_linear_ratio": 1.3158179818336084,
+    "padded_attention_quadratic_ratio": 1.5521078115174263,
+    "not_GPU_time_or_memory_measurement": true,
+    "target_span_head_work_unchanged": true
+  },
+  "artifacts": {
+    "summary.json": {
+      "sha256": "bdeb1703340e8edf4c1b9663de2e624eea51cafb6ccff46f44d71b0b76b8511c",
+      "bytes": 6104
+    },
+    "window-statistics.jsonl": {
+      "sha256": "cfa0dd9f3256a865be6e92902ab4cc976cacc40be2840ca530a8ec9ab80bdec0",
+      "bytes": 518613
+    },
+    "source-interface-review.json": {
+      "sha256": "0b143f5ba07b785d9f15afff84389f798437c320a3c35e7827714d403db9a3b5",
+      "bytes": 14393
+    },
+    "adapter/plan.json": {
+      "sha256": "2aceb6bd3fb6f8a3acf4e9383cdc4d28561ad1042683a91ac00e24630f05e8c8",
+      "bytes": 2431
+    }
+  },
+  "independent_feasibility_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-context-feasibility-review.json",
+    "sha256": "be078e93428ea7ca5e64c9bca2af2e639a08bc7f4f9f3f74a521e2b9f89f6b8b"
+  },
+  "limitations": [
+    "Context availability is not evidence of correcting FN.",
+    "39.04% of all rows cross section type; actual utility unknown.",
+    "Compute proxies are not GPU throughput or memory measurements.",
+    "No actual pretrained full-model forward/training/evaluation in CPU task."
+  ]
+}
