@@ -1,0 +1,180 @@
+{
+  "recorded_at": "2026-10-23T17:09:29.600736+00:00",
+  "code_commit": "85bcc7348ce98de479e72cbaa5808207e64d8627",
+  "baseline_metrics": {
+    "menF1": 0.7328316086547507,
+    "docF1": 0.7308085977482088,
+    "micF1": 0.6937669376693767,
+    "macF1": 0.6840290971369651,
+    "Score": 0.7103590603023253
+  },
+  "parent100_metrics": {
+    "menF1": 0.7242123435476909,
+    "docF1": 0.7458866544789763,
+    "micF1": 0.6885644768856448,
+    "macF1": 0.6915313508989465,
+    "Score": 0.7125487064528147
+  },
+  "filtered_metrics": {
+    "menF1": 0.7409805735430157,
+    "docF1": 0.749498997995992,
+    "micF1": 0.7108753315649867,
+    "macF1": 0.7008027824745764,
+    "Score": 0.7255394213946427
+  },
+  "delta_vs_base": 0.015180361092317352,
+  "delta_vs_parent100": 0.012990714941828019,
+  "incremental_counts": {
+    "mention": {
+      "tp": 22,
+      "fp": 14,
+      "fn": -22
+    },
+    "document": {
+      "tp": 17,
+      "fp": 4,
+      "fn": -17
+    },
+    "relation": {
+      "tp": 12,
+      "fp": 4,
+      "fn": -12
+    }
+  },
+  "removed_by_filter_counts": {
+    "mention": {
+      "tp": 38,
+      "fp": 117,
+      "fn": -38
+    },
+    "document": {
+      "tp": 34,
+      "fp": 62,
+      "fn": -34
+    },
+    "relation": {
+      "tp": 15,
+      "fp": 53,
+      "fn": -15
+    }
+  },
+  "assembly": {
+    "source_sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "association_source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "request_manifest_sha256": "955176723f75a7dbf760065085e42188a2b3e43b9eb8bdf6657017c08ed47a33",
+    "score_manifest_sha256": "f5288e4caf5a3c5976b440c5c5dc3d3ad1a980dcf310590215d0edc6fdd82a9a",
+    "counts": {
+      "original_additions": 191,
+      "reject_probability": 92,
+      "retained_additions": 36,
+      "reject_similarity": 60,
+      "added_relations": 16,
+      "reject_id_disagreement": 3
+    },
+    "output_sha256": "f15075b8d9cb7f2565ce83a7e5c4d943817ef3bf4e341d1bb8ecbe72bc04b056",
+    "gold_used": false
+  },
+  "scoring": {
+    "source_sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+    "request_manifest_sha256": "955176723f75a7dbf760065085e42188a2b3e43b9eb8bdf6657017c08ed47a33",
+    "request_sha256": "6a45332681f957c8567f7801e63cf0a67edeea4dae3e10b8010201b3dc090cd0",
+    "bank_labels_sha256": "a6344a7317535a347f06ffb812f2eaff4b789f69ed5d95a75c5aa71e9e076560",
+    "bank_sha256": "d8bb8709a238a562b45913c19878c78e45584eaf755678fdbe3429fdb76220b8",
+    "reconstruction_manifest_sha256": "8f4cffb1af3f513ac1a332a3dfe0acbcd9041a4db00a5d58b1c7c458adb2925e",
+    "detector_sha256": "1146433a8157b787f12125f34f2e54daf939a136e2528a21f820dd502ef7708e",
+    "model_files_sha256": {
+      "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+      "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+      "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+    },
+    "output_sha256": "1809a2dcdf864f79a7ad07d38bd730d943f318419014f65bc0091f7bd56bc030",
+    "counts": {
+      "occurrences": 191,
+      "passing_fixed_filter": 36,
+      "documents": 16
+    },
+    "gold_used": false,
+    "classifier_fit": false,
+    "configuration": {
+      "precision": "FP16 backbone / FP32 CLS and bank dot product",
+      "batch_size": 256,
+      "max_length": 32,
+      "threads": 1,
+      "unique_policy": "sorted norm(surface) per document",
+      "id_policy": "pure nearest bank label, no exact-surface override"
+    },
+    "elapsed_seconds": 5.866225615143776
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 985,
+      "relations": 375,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "f15075b8d9cb7f2565ce83a7e5c4d943817ef3bf4e341d1bb8ecbe72bc04b056",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "interpretation": "One fixed fold0 development ablation; no gold in filter/pool/label map, no retraining, threshold scan or original-dev run. Base predictions preserved.",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/plan.json",
+      "sha256": "39f1e94b4744c1ed9062868357016495ba4dcbc2817f77b5aac9d0d2956409ee"
+    },
+    "request/request.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/request/request.manifest.json",
+      "sha256": "955176723f75a7dbf760065085e42188a2b3e43b9eb8bdf6657017c08ed47a33"
+    },
+    "scored/scores.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/scored/scores.manifest.json",
+      "sha256": "f5288e4caf5a3c5976b440c5c5dc3d3ad1a980dcf310590215d0edc6fdd82a9a"
+    },
+    "scored/scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/scored/scores.jsonl",
+      "sha256": "1809a2dcdf864f79a7ad07d38bd730d943f318419014f65bc0091f7bd56bc030"
+    },
+    "assembled/pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/assembled/pred.jsonl",
+      "sha256": "f15075b8d9cb7f2565ce83a7e5c4d943817ef3bf4e341d1bb8ecbe72bc04b056"
+    },
+    "assembled/pred.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/assembled/pred.manifest.json",
+      "sha256": "05107ac7e90035c54a8039f08ad8d3e92a1eac178b8687d3f67347a33d7b654d"
+    },
+    "assembled/metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/assembled/metrics.json",
+      "sha256": "cb832c7f3c96e520d1c25f8e5ac67d0763c7997b9c82d65090e7a8198bfd993f"
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/assembled/validation.json",
+      "sha256": "1077c65b587a3ae2069b31a22aa64492c88ce9fa606a7c11357c618df3b8f7cf"
+    },
+    "assembled/prediction-before-evaluation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/assembled/prediction-before-evaluation.json",
+      "sha256": "bd44f19e505ad9f00c5293688382b5b7fce6f232f8cb3bdb710a764776178235"
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/job.json",
+      "sha256": "bca03e244c702a2d9940d464a0ee135319476459536fb511e588868f35dfdd60"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/sap-consensus100/gpu-release.json",
+      "sha256": "71c470fa25b96e8cbb71c66e26cf8d7fefb482a61b81836307fbba7e6c9afd8c"
+    }
+  }
+}
