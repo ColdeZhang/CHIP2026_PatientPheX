@@ -1,0 +1,192 @@
+{
+  "experiment": "E-20261023-009",
+  "scope": "nested32->inner16 full-chain DEVELOPMENT, no outerfold0/originaldev",
+  "source_commit": "aa72b6a",
+  "scorer_sha256": "906bf3dfe38099e04de6c502fe7ad7c78e3293dcb87bbb1e77c607b003fc63cb",
+  "assembler_sha256": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+  "policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "overlap_order": "GLiNER score descending,length descending,offset ascending",
+    "existing_entities": "unchanged",
+    "relation": "same fixed rules",
+    "unmapped_new_spans": "discard; preserve original NIL"
+  },
+  "process_id": "proc_3a1fc448-6057-4414-9d25-2c1a46ac18c0",
+  "gpu_seconds": 11.87711965618655,
+  "source": {
+    "train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "candidates": "b92ab0a5588e384a4d03e0fc8470e80b7865e8041df26be52d1be83c39f95532",
+    "candidate_freeze": "89625d291d9c8ff3b74b66defca88f9fa77b022ac5969dc5909d6914f1eb0879",
+    "span_training_manifest": "5ffc5df71c34d162bf61bc10d92b8f8383b2f75447b3aab5dc9a725b9ad617a2",
+    "span_data_manifest": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03"
+  },
+  "actual_model_file_shas": {
+    "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+    "manifest.json": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8",
+    "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+  },
+  "training": {
+    "positive_spans": 2266,
+    "negative_spans": 15416,
+    "training_docs": 32,
+    "semantic_bank": 41800,
+    "detector_iterations": 17
+  },
+  "stages": {
+    "all_candidates": 1378,
+    "semantic_filter": 432,
+    "overlap_original": 854,
+    "negated": 23,
+    "accepted": 69
+  },
+  "baseline_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6161515453639083,
+    "macF1": 0.5479558936740699,
+    "Score": 0.6447615937066596
+  },
+  "augmented_metrics": {
+    "menF1": 0.6817311374952125,
+    "docF1": 0.7573529411764706,
+    "micF1": 0.6206225680933852,
+    "macF1": 0.5552734616418699,
+    "Score": 0.6537450271017345
+  },
+  "metric_delta": {
+    "menF1": 0.014539949454299816,
+    "docF1": 0.009605193428722791,
+    "micF1": 0.00447102272947697,
+    "macF1": 0.007317567967799921,
+    "Score": 0.008983433395074902
+  },
+  "count_delta": {
+    "mention": {
+      "tp": 42,
+      "fp": 27,
+      "fn": -42
+    },
+    "document": {
+      "tp": 17,
+      "fp": 11,
+      "fn": -17
+    },
+    "relation": {
+      "tp": 10,
+      "fp": 15,
+      "fn": -10
+    }
+  },
+  "baseline_byteexact": true,
+  "freeze": {
+    "utc": "2026-10-23T17:05:00.557057+00:00",
+    "outputs": {
+      "baseline.jsonl": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "augmented.jsonl": "f203078db95139d59d7842ff80a0d0bed490cfdebc4dea86f25ecae8cafbd810"
+    },
+    "gold_read": false
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1258,
+      "relations": 508,
+      "patients": 39
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "prediction_sha256": "f203078db95139d59d7842ff80a0d0bed490cfdebc4dea86f25ecae8cafbd810",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/plan.json",
+      "sha256": "94d19a72faadf786f299fd8c443d279049e94264a3af9be098d0b40a1240ce71",
+      "bytes": 2257
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/job.json",
+      "sha256": "6a667c74e0642492df48609654f32285061f10ab047509c3d7405337bcb68405",
+      "bytes": 1890
+    },
+    "preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/preflight.json",
+      "sha256": "693f07f68500c5d620dd67344d3d9d25acb080ce19d6a7a4615ceaacdf79a12a",
+      "bytes": 920
+    },
+    "manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/manifest.json",
+      "sha256": "a72c8d614b5988d1977e75907ebe0f4a7a6598afc78b4898cd385f095856f9fd",
+      "bytes": 5609
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/gpu-release.json",
+      "sha256": "e553a5cfa0d50e692c84cff4b7a46b07db5a4115789c7dba97c03844ef507020",
+      "bytes": 214
+    },
+    "scored-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/scored-candidates.jsonl",
+      "sha256": "abbd5f84c719b61274472957f7cfaa4f9d083a8810c25c2e0b10b490d1637031",
+      "bytes": 418225
+    },
+    "cpu-commands.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/cpu-commands.json",
+      "sha256": "ac5ce47605f60ec40b3b97f91a854fa3fab7cb74b1d0e4f2a2c8b4eacf8d6bda",
+      "bytes": 2085
+    },
+    "assembled/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/manifest.json",
+      "sha256": "9bd744ec8891b54145de167094d0a857e8ea404c90586206be0e1e5526a2783b",
+      "bytes": 2549
+    },
+    "assembled/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.jsonl",
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "bytes": 155574
+    },
+    "assembled/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/augmented.jsonl",
+      "sha256": "f203078db95139d59d7842ff80a0d0bed490cfdebc4dea86f25ecae8cafbd810",
+      "bytes": 164527
+    },
+    "assembled/baseline.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.metrics.json",
+      "sha256": "cf70f6d920840754253edf3e1191285a2e0e636dd347b8bac3c67f65fe8b7c35",
+      "bytes": 13170
+    },
+    "assembled/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/augmented.metrics.json",
+      "sha256": "df32ea44aafbfc44b8d39ce625ef1fefd0cbbe87a513a6b62ed2104e1c40be8c",
+      "bytes": 13180
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/validation.json",
+      "sha256": "15c9b1ef6efb8f1b5cc005228d091f6d41e041c773818e424f88e6ff5464bf70",
+      "bytes": 686
+    }
+  },
+  "limitations": [
+    "Same inner16 used for route/budget development; not blind generalization.",
+    "Only epoch10 normalized, fixedp.65/cos.92; no threshold/class/alias sweep.",
+    "Added69 includes42HPO mentionTP/27FP, relation10TP/15FP; still modest and low relation precision.",
+    "Current best originaldev remains.700635947; these scores use nested train32, not that dev.",
+    "Independent scorer/assembly/end-to-end review is in progress; not yet reported as passed.",
+    "GPU0 released after job, no further GPU usage here."
+  ]
+}

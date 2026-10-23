@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **GLiNER两轮/十轮控制均结案、独审通过**：同nested32→16、A800/输入/decoder，fresh2ep/10ep分别100.28/519.03秒。纯span F1 .659992/.684851；原CRF＋Sap .690967，预定非重叠组合 .700614/.702135。十轮新增131TP/202FP，边际精度仍低；只作开发信号，没有HPO/比赛Score提升声明。原dev不动。GPU2已16:52:41Z复查释放给检索；10ep仅保留final模型+latest、原2epfinal/latest也保留，真实余4.467GB。完整来源/恢复见[2ep结果](evidence/round2/gliner-supervised-results.json)、[10ep结果](evidence/round2/gliner-long10ep-results.json)。正在按主线程授权准备epoch10预定Sap检测p≥.65/cos≥.92链接过滤与不重叠追加（gliner-link-plan.json）；先确认实际HPO和关系收益，不再追加epoch或扫阈值。
+3. **GLiNER两轮/十轮控制均结案、独审通过**：同nested32→16、A800/输入/decoder，fresh2ep/10ep分别100.28/519.03秒。纯span F1 .659992/.684851；原CRF＋Sap .690967，预定非重叠组合 .700614/.702135。十轮新增131TP/202FP，边际精度仍低；只作开发信号，没有HPO/比赛Score提升声明。原dev不动。GPU2已16:52:41Z复查释放给检索；10ep仅保留final模型+latest、原2epfinal/latest也保留，真实余4.467GB。完整来源/恢复见[2ep结果](evidence/round2/gliner-supervised-results.json)、[10ep结果](evidence/round2/gliner-long10ep-results.json)。epoch10固定Sap过滤已完成：69新实体=42TP/27FP，真实本地Score .644762→.653745、四项均升；见gliner-link-results.json。独审正在进行。根已授权同政策fresh outertrain48固定10ep→fold0，使用.100 A30 GPU1；接下来准备1744窗/来源/预算/恢复，原947实体基线固定、不动原dev。
 
 ## 已完成的近期结论
 

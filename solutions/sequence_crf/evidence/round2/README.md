@@ -45,3 +45,5 @@
 - `gliner-supervised-results.json`：固定nested32→16零样本/2epoch纯跨度配对、非重叠增量与误差、冻结UTC/预测SHA和训练状态恢复入口；不是比赛Score。
 
 - `gliner-long10ep-plan.json` / `gliner-long10ep-results.json`：同A800 fresh10固定预算开发对照、逐轮训练诊断/最终纯跨度增量、独审与GPU释放/保留检查点。
+
+- `gliner-link-plan.json` / `gliner-link-results.json`：固定epoch10＋同nested32 Sap过滤全链控制，69新增/四项得分/冻结SHA，独审进行中。
