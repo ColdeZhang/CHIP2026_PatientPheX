@@ -1,0 +1,99 @@
+{
+  "status": "complete_single_step_released_no_formal_training",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation",
+  "actual_probe": {
+    "status": "complete_one_fresh_probe_no_model_saved",
+    "loss": 0.6489543914794922,
+    "learning_rate_used": 0.0,
+    "learning_rate_next": 1.941747572815534e-07,
+    "target_logit_gradient_negative": true,
+    "other_logit_gradient_positive": true,
+    "finite_encoder_and_classifier_gradient": true,
+    "gradient_norm_before_clip": 6.796187877655029,
+    "logits_gradient_scale": 65536.0,
+    "actual_updates": 1,
+    "optimizer_states": 201,
+    "classifier_unchanged_expected_at_warmup0": true,
+    "explicit_positions512": true,
+    "actual_step_seconds": 0.5689287008717656,
+    "max_allocated_bytes": 4096223744,
+    "max_reserved_bytes": 4682940416,
+    "elapsed_seconds": 4.941532789729536,
+    "source_sha256": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+    "plan_sha256": "ec41c5b56a7fcbfd8e27d98a76f4e48f81f65bcf392337124d193da1c759808a",
+    "no_checkpoint_or_optimizer_saved": true,
+    "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539"
+  },
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "cuda": "12.6",
+    "transformers": "4.51.3",
+    "device": "NVIDIA A30",
+    "attention_implementation": "sdpa"
+  },
+  "fresh_public_model6_files_verified": true,
+  "probe_weights_saved": false,
+  "optimizer_state_saved": false,
+  "active_lengths_range": [
+    495,
+    507
+  ],
+  "padded_tensor_shape": [
+    16,
+    512
+  ],
+  "natural_class_counts": [
+    8,
+    8
+  ],
+  "selected_using_labels": false,
+  "gpu_release_utc": "2026-10-23T20:01:56.423040+00:00",
+  "assigned_GPU_empty": true,
+  "entry_independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-identity-bridge-entry-review.json",
+    "sha256": "d5d5f5a4e47499651ec2d71f9625850fd04a2583c0e5b1188f2ee58187ab965d"
+  },
+  "terminal_independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-identity-bridge-probe-review.json",
+    "sha256": "2e815b806c1950fef1596f58512cd2fcdee6a2f9dca24541bf992f74aea66c89",
+    "status": "pass"
+  },
+  "cost_estimate": {
+    "measured_first_step_seconds": 0.5689287008717656,
+    "updates_per_formal_arm": 1032,
+    "per_arm_step_scaled_seconds": 587.1344192996621,
+    "paired_step_scaled_seconds": 1174.2688385993242,
+    "not_a_runtime_guarantee": true,
+    "caveat": "First update is cold and includes extra diagnostic gradient synchronization, while fixed512 DataLoader, loading and saving also cost time. No later GPU benchmark was run.",
+    "proposed_paired_shared_cap_seconds": 1500,
+    "formal_authorization": true
+  },
+  "official_submission": false,
+  "evidence_sha256": {
+    "probe-job.json": "25dc5fcca21ae830fa0a8263919b43fa36d65c9e56551a1d39a82b9fd041bab4",
+    "probe-launch-plan.json": "84a0d0316195f551a6a41d7d43803664ab755a64582eb367564a1b34e605cf20",
+    "actual-probe-complete.json": "08adbd5c9a07bebff82002dbf903d5dc18240d920d09a04901977e2cf928b340",
+    "actual-run-manifest.json": "e73a34c0a8ed72d173ff9f1a51bcaa92b150520c3f7dae01a015207c54e8afcf",
+    "probe-gpu-preflight.json": "bc199d2c3cea46c4c241eb69f7bccfb45bdea5ecdd15d1d33ba0850a78e37639",
+    "probe-gpu-release.json": "e374378efed6a83826aad13f1279623e3cd411e40bf9205af9a261c281f46838",
+    "probe-source-preflight.json": "e515d568a342fc4aed7b8931026133e5de3af239f3b58318aa82edd945569e8a",
+    "probe-recovery-complete.json": "6736bb867af423e2c59bcdbc40794fb27ef71b88880fae551f29ca0518ea48cf"
+  },
+  "next_authorized_stage": {
+    "same_A30_gpu1": true,
+    "two_fresh_arms": [
+      "baseline",
+      "bridge"
+    ],
+    "epochs_each": 4,
+    "updates_each": 1032,
+    "shared_training_cap_seconds": 1500,
+    "per_arm_training_cap_seconds": 900,
+    "per_arm_inference_cap_seconds": 300,
+    "TERM_grace_seconds": 30,
+    "status": "CPU_source_input_wrapper_preparation_only",
+    "threshold": 0.5,
+    "final_epoch": 4,
+    "freeze_both_predictions_before_outer_gold": true
+  }
+}

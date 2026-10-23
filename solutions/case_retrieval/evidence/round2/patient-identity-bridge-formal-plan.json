@@ -1,0 +1,112 @@
+{
+  "schema": "patient-identity-formal-paired-v1",
+  "frozen_at_utc": "2026-10-23T20:08:57.642045+00:00",
+  "source_sha256": "294d2622bde09bc4205aa66b53bca639a0d5dff93be2f10fc79efab62c4e7a7e",
+  "trainer_sha256": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+  "inference_sha256": "c936ceb4f5936ad2c68d8c318ba0c903064f10f2fcfb3991e8dda0ea433caa3e",
+  "budget_exec_sha256": "4d3c28232d88740a41b655a2676ac85596347f2b118ab68749563a19ffefde62",
+  "arm_order": [
+    "baseline",
+    "bridge"
+  ],
+  "shared_training_cap_seconds": 1500,
+  "per_arm_training_cap_seconds": 900,
+  "per_arm_inference_cap_seconds": 300,
+  "kill_grace_seconds": 30,
+  "unique_checkpoint_epoch": 4,
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "cwd": "case-retrieval/patient-identity-bridge",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "runtime_versions": {
+    "torch": "2.7.1+cu126",
+    "cuda": "12.6",
+    "transformers": "4.51.3"
+  },
+  "remote_sources": {
+    "train_encoded_ce.py": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c",
+    "infer_encoded_ce.py": "c936ceb4f5936ad2c68d8c318ba0c903064f10f2fcfb3991e8dda0ea433caa3e",
+    "budget_exec.py": "4d3c28232d88740a41b655a2676ac85596347f2b118ab68749563a19ffefde62",
+    "formal-baseline-plan.json": "83b2c4f8ee082bec36a6cff76fdd9be4aa34dac7ad575b2850d96baa80bfb378",
+    "formal-bridge-plan.json": "0d96c739f1936998121411c45740a85cb7bc2b5c55c3e951bd2a6497721b91a9",
+    "encoded-train48.json.gz": "25720000ce8dd6da980279ae7dbe1c487f12fecfbe8c7ef835934cb5e3ade0c7",
+    "encoded-holdout16.json.gz": "d1c2adbe221a6b573025cee3328754aa03f4915020a065218993ffd39cf0dd27"
+  },
+  "local_references": {
+    "train_encoded_ce.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/train_encoded_ce.py",
+      "bytes": 17152,
+      "sha256": "0d3623ea8e975a9c759a8b84fa9621756f5dd325e5a0ae28aa1d44b6031eb97c"
+    },
+    "infer_encoded_ce.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/infer_encoded_ce.py",
+      "bytes": 7451,
+      "sha256": "c936ceb4f5936ad2c68d8c318ba0c903064f10f2fcfb3991e8dda0ea433caa3e"
+    },
+    "budget_exec.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/budget_exec.py",
+      "bytes": 962,
+      "sha256": "4d3c28232d88740a41b655a2676ac85596347f2b118ab68749563a19ffefde62"
+    },
+    "evaluate_formal_pair.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/evaluate_formal_pair.py",
+      "bytes": 11223,
+      "sha256": "d4cc867b2c27e41c7a228ade591f166514891ffb610651f0cf64b0574b9d3a99"
+    },
+    "formal-baseline-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/formal-baseline-plan.json",
+      "bytes": 3448,
+      "sha256": "83b2c4f8ee082bec36a6cff76fdd9be4aa34dac7ad575b2850d96baa80bfb378"
+    },
+    "formal-bridge-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/formal-paired-preparation/formal-bridge-plan.json",
+      "bytes": 3446,
+      "sha256": "0d96c739f1936998121411c45740a85cb7bc2b5c55c3e951bd2a6497721b91a9"
+    },
+    "train_encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/encoded-train48.json.gz",
+      "bytes": 536552,
+      "sha256": "25720000ce8dd6da980279ae7dbe1c487f12fecfbe8c7ef835934cb5e3ade0c7"
+    },
+    "holdout_encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/holdout-preparation/encoded-holdout16.json.gz",
+      "bytes": 154650,
+      "sha256": "d1c2adbe221a6b573025cee3328754aa03f4915020a065218993ffd39cf0dd27"
+    },
+    "holdout_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/holdout-preparation/holdout-manifest.json",
+      "bytes": 8827,
+      "sha256": "009ce35c294741f3cb6495245c18600ae443037ac74fcbdc9a376430ca8eaa02"
+    },
+    "actual_cpu_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/actual-trainer-cpu-contract.json",
+      "bytes": 1509,
+      "sha256": "156a87fa29e1b36c2c87ddeb911d2d830032a2d5f9f2593b95032a1f02cf3813"
+    },
+    "actual_probe": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/actual-probe-complete.json",
+      "bytes": 950,
+      "sha256": "08adbd5c9a07bebff82002dbf903d5dc18240d920d09a04901977e2cf928b340"
+    },
+    "model_copy": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/model-copy/copy-evidence.json",
+      "bytes": 2343,
+      "sha256": "36b8e3f91a34e6da3e88af191acb4b26acc7378468f39d779e44bc53c88f730f"
+    }
+  },
+  "heldout_encoded_file": "encoded-holdout16.json.gz",
+  "heldout_encoded_sha256": "d1c2adbe221a6b573025cee3328754aa03f4915020a065218993ffd39cf0dd27",
+  "postcondition": "Two complete unique final predictions jointly freeze before reading outerfold0 gold; fixed threshold.5, no originaldev/official activity."
+}

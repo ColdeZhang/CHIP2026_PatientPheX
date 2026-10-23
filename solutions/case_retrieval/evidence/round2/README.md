@@ -90,3 +90,7 @@
 - [full64 原dev唯一新臂完整结果](qwen35-full64-dev-result.json)：共享955实体 Score .715759605，较SFT48 +.004549、fullLR +.004435，64/466全合法；预测先freeze、仅新臂评分、GPU已释放，独立终审81493ebe通过。
 
 - [患者身份桥接CPU准备](patient-identity-bridge-cpu-preparation.json)：同4127候选/969正、原384前缀不变；378/579新增目标身份仅结构代理，双512/空bridge独审通过。仅授权下一次成本probe，正式两臂尚未批准。
+
+- [身份桥接唯一A30单步成本](patient-identity-bridge-probe-result.json)：实际.569s/4.096GB allocated，warmup首lr0正确方向梯度且不保存状态，GPU释放；双臂约19.57min仅粗估，未正式训练。
+
+- [身份桥接双fresh正式准备](patient-identity-bridge-formal-preparation.json)：同4127/969训练、无标签1166外层输入；共享训练1500s/每臂900s、各唯一终点推理300s。固定[运行计划](patient-identity-bridge-formal-plan.json)和[双预测freeze后评测计划](patient-identity-bridge-evaluation-plan.json)，尚未启动。
