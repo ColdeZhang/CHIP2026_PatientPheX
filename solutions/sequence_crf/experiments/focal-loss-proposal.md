@@ -41,3 +41,9 @@ focal假设是减少已容易判负跨度的梯度贡献、相对关注难span�
 实际同`.100` CPU原1150窗/2236正/1125538valid及strict195175936参数全部通过。最长focal单步0.9634s、4.459GB、有限非零grad.121550，完整子进程9.94s，状态丢弃。正式managed `proc_483790e9-1628-4c71-904e-ec14cad664df` 于20:30:10Z启动，训练共享截止`2026-10-23T21:00:12.063790+00:00`；先BCE后focal，全部参数/原数据固定，唯一终点pending。精确来源/恢复见[启动证据](../evidence/round2/focal-pair-launch.json)。
 
 入口与实际同环境CPU/单步独审PASS `cc5e8486`：BCE/collate/count AST未变，正式两argv只有loss/output差，固定FP32 medium/预算契约核过；这不是模型质量验收。CPU终点两臂装配→统一freeze→唯一旧nested16评分的入口也已提前冻结，见启动证据的endpoint索引。
+
+### 评分前追加的唯一解析控制
+
+两臂训练和固定链接已完成，但尚未装配或读取本次nested16标签时，root于20:55左右授权一个数据无关CPU臂：对focal已缓存GLiNER score使用唯一解析cut **0.6011759516702939**。此值来自alpha=.75/gamma=2条件风险在理想posterior eta=.5处的最优q；实际loss自动梯度与解析导数零点一致（约5.55e-17），左右导数异号、gamma0加权BCE边界也通过，CUDA=false。它不是从heldout分数拟合的门槛，也不承诺实际模型已校准。
+
+保留原BCE/focal两臂原样，第三臂只过滤已缓存candidate score，其余字段、排序、Sap判别概率>=.65/相似度>=.92、否定/非重叠和关系装配均不变。原GLiNER `.5`只是前置候选cut，并非最终全部决策；focal可能改变跨度进入池及排序，但未改旧Sap判别器。三份完整预测统一freeze后仅一次评分；旧两臂plan/finalizer原样保留、未执行，新增三臂入口另存。[解析控制计划](../evidence/round2/focal-analytic-endpoint-plan.json)。
