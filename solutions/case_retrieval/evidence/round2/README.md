@@ -102,3 +102,5 @@
 - [BF16数值修复诊断](patient-identity-bridge-bf16-diagnostic-result.json)：重现FP16可恢复溢出、fresh BF16四批有限实更新，状态丢弃；[新正式计划](patient-identity-bridge-bf16-formal-plan.json)保持双fresh4ep与固定预算。
 
 - [BF16双fresh正式启动](patient-identity-bridge-bf16-formal-start.json)：20:18:42Z、shareddeadline20:43:42Z，源码/actual绑定plan先push，无质量结果。
+
+- [身份桥接完整固定配对结果](patient-identity-bridge-paired-result.json)：same947实体，fresh BF16 CE .652285→bridge .641438，低rules .711354；双freeze后唯一评测，无原dev迁移，GPU已释放。

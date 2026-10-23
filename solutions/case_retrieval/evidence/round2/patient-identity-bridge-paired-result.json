@@ -1,0 +1,232 @@
+{
+  "status": "complete_negative_fixed_control_no_originaldev_transfer",
+  "scope": "train48/outerfold0 publicv2 all/text, fixed947 entities/47patients, already used for research not blind",
+  "source_commit_pushed": "aa901491d478dac7009d2b49a2c633ec0af4eaa9",
+  "metrics": {
+    "baseline": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.5953360768175583,
+      "macF1": 0.561125185635549,
+      "Score": 0.6522845381045332
+    },
+    "bridge": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.6189821182943603,
+      "macF1": 0.4940910148822344,
+      "Score": 0.641437505785405
+    }
+  },
+  "relation_counts": {
+    "baseline": {
+      "tp": 217,
+      "fp": 133,
+      "fn": 162,
+      "precision": 0.62,
+      "recall": 0.5725593667546174,
+      "f1": 0.5953360768175583
+    },
+    "bridge": {
+      "tp": 225,
+      "fp": 123,
+      "fn": 154,
+      "precision": 0.646551724137931,
+      "recall": 0.5936675461741425,
+      "f1": 0.6189821182943603
+    }
+  },
+  "controls": {
+    "rules": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.7044198895027625,
+      "macF1": 0.6883173080126084,
+      "Score": 0.711353521870099
+    },
+    "lr": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.6152046783625731,
+      "macF1": 0.5002539793232106,
+      "Score": 0.6420338869127022
+    }
+  },
+  "delta_bridge_to_baseline": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": 0.02364604147680205,
+    "macF1": -0.06703417075331464,
+    "Score": -0.010847032319128203
+  },
+  "delta_bridge_to_controls": {
+    "rules": -0.069916016084694,
+    "lr": -0.0005963811272972075
+  },
+  "threshold": 0.5,
+  "precision": "bf16_autocast_fp32_parameters_adam_no_scaler",
+  "same_candidates": 1166,
+  "same_entities": 947,
+  "train_rows": 4127,
+  "train_positive_labels": 969,
+  "training": {
+    "baseline": {
+      "status": "complete_four_epochs",
+      "updates": 1032,
+      "epochs": [
+        {
+          "epoch": 1,
+          "updates": 258,
+          "mean_batch_loss": 0.5468944580864536,
+          "seconds": 32.1212501344271
+        },
+        {
+          "epoch": 2,
+          "updates": 516,
+          "mean_batch_loss": 0.3785006553800993,
+          "seconds": 31.862305014859885
+        },
+        {
+          "epoch": 3,
+          "updates": 774,
+          "mean_batch_loss": 0.3104302524264122,
+          "seconds": 31.831912784837186
+        },
+        {
+          "epoch": 4,
+          "updates": 1032,
+          "mean_batch_loss": 0.25485327286111525,
+          "seconds": 32.01999484375119
+        }
+      ],
+      "elapsed_seconds": 133.25207375222817,
+      "max_allocated_bytes": 4991000064,
+      "max_reserved_bytes": 5268045824,
+      "source_sha256": "02b5c3ae6f075d80649290bbc6f2ac86ed619f3afa149179a1fad567c102cf64",
+      "plan_sha256": "dc19e71b8df8fbf5c617bf7ffc982c01a740f7a41fc479f18b982dcfb6fbc7d5",
+      "no_heldout_labels_used": true,
+      "inference_or_evaluation_performed": false,
+      "precision": "bf16_autocast_fp32_parameters_adam_no_scaler",
+      "successful_optimizer_steps": 1032,
+      "processed_batches": 1032,
+      "skipped_steps": 0
+    },
+    "bridge": {
+      "status": "complete_four_epochs",
+      "updates": 1032,
+      "epochs": [
+        {
+          "epoch": 1,
+          "updates": 258,
+          "mean_batch_loss": 0.4969344883002052,
+          "seconds": 32.280424857046455
+        },
+        {
+          "epoch": 2,
+          "updates": 516,
+          "mean_batch_loss": 0.32873606938839883,
+          "seconds": 31.926756997127086
+        },
+        {
+          "epoch": 3,
+          "updates": 774,
+          "mean_batch_loss": 0.24999687896478315,
+          "seconds": 32.05189311411232
+        },
+        {
+          "epoch": 4,
+          "updates": 1032,
+          "mean_batch_loss": 0.2086393552175326,
+          "seconds": 32.126574520953
+        }
+      ],
+      "elapsed_seconds": 133.43206174485385,
+      "max_allocated_bytes": 4991000064,
+      "max_reserved_bytes": 5268045824,
+      "source_sha256": "02b5c3ae6f075d80649290bbc6f2ac86ed619f3afa149179a1fad567c102cf64",
+      "plan_sha256": "7652817dfa556ce3e0476d94ef9981dd3a4b0ea9fad4a474c4b827f3b8e109ee",
+      "no_heldout_labels_used": true,
+      "inference_or_evaluation_performed": false,
+      "precision": "bf16_autocast_fp32_parameters_adam_no_scaler",
+      "successful_optimizer_steps": 1032,
+      "processed_batches": 1032,
+      "skipped_steps": 0
+    }
+  },
+  "inference_seconds": {
+    "baseline": 5.803705478087068,
+    "bridge": 5.356765902135521
+  },
+  "gpu_released_utc": "2026-10-23T20:24:45.881692+00:00",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "gpu_empty": true,
+  "local_watcher_exit_code": 0,
+  "remote_exit_code_not_exposed_by_mcp": true,
+  "decision": "Close this fixed configuration: bridge lowers Score and does not exceed strong same-pool rules. No threshold/epoch tuning or originaldev transfer.",
+  "limitations": [
+    "Both fresh models use strict OOF candidate training; historical gold-candidate CE is not this matched baseline.",
+    "Raw quoted identity context can include clinical facts, so not pure identity-token intervention.",
+    "Outerfold0 was used in prior research and is not a blind test.",
+    "Improved aggregate TP/microF1 does not offset worse patient macroF1; no claim all identity-context designs fail."
+  ],
+  "evidence": {
+    "formal_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-complete.json",
+      "bytes": 17428,
+      "sha256": "7b37153179f07149b10687b89b6683b37febf7859be0df89067654d594032e7e"
+    },
+    "summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/paired-summary.json",
+      "bytes": 5296,
+      "sha256": "666ae872baada5abf1e70357dd982d691e76815d11f1e0880ae3cf4242d53779"
+    },
+    "joint_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/paired-predictions-freeze.json",
+      "bytes": 7402,
+      "sha256": "05d10d3c14d3426c2ba18d42d7fa5bb95dfed3564dd38d022f79056c52c81dd4"
+    },
+    "evaluation_started": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/evaluation-started.json",
+      "bytes": 427,
+      "sha256": "05515a3eefffac025ee2abdea0c42ea0ef09ec4aa8111f10a08f46e105b3d0ae"
+    },
+    "baseline_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/baseline.pred.jsonl",
+      "bytes": 124979,
+      "sha256": "df57d68a529e5413044a505665959519b3abb1082874a0420a49c169f68b2c2a"
+    },
+    "bridge_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/bridge.pred.jsonl",
+      "bytes": 124943,
+      "sha256": "4f045214aec9ac6c1e028ff178038a7122e7aa23d1f7985e8fcb6ad7314a82d3"
+    },
+    "baseline_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/baseline.pair-scores.jsonl",
+      "bytes": 86129,
+      "sha256": "468fa23a9117d9ddcb23e8c071cc4fd5a1e173e875765a371bc2c0339e3cafad"
+    },
+    "bridge_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/bridge.pair-scores.jsonl",
+      "bytes": 86337,
+      "sha256": "78044d6378fd9bc23bac5dfccb8c745fa2e7dde1f0601eb1658ca8a3150e0359"
+    },
+    "release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/infer-bridge-release.json",
+      "bytes": 420,
+      "sha256": "a06528e1158ed0de89622fbea535c50230dcf4c7675d812f0537b1d86ed8d323"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-paired-plan.json",
+      "bytes": 7319,
+      "sha256": "0c3355039e74fb03d3a36cd3d56b33eb23ae387fabf63897539aff71c127d5fd"
+    }
+  },
+  "terminal_independent_review": "CPU full prediction/v2/format PASS; actual lineage/budget review pending",
+  "official_submission": false,
+  "originaldev_read": false,
+  "independent_quality_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-identity-bf16-terminal-review/replay-review.json",
+    "sha256": "e05bbac230615e7d2af4a7fca84179002b9989fe21319475437cd563a79fad4b",
+    "bytes": 9558
+  }
+}
