@@ -1,0 +1,53 @@
+{
+  "source_files": {
+    "prepare_sft.py": "976e5ba76d07ec962bbf4f7f6210513cde8eb946ee01906a45709a068bbef873",
+    "prepare_extraction.py": "738abb682c91de3b0d5f9b67caeba99d4bc7764bb8f37122288418631bedeb0d",
+    "run.py": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+    "train_lora.py": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423"
+  },
+  "state": "CPU preparation only; no training started",
+  "source_commit": "470a47c",
+  "data_sha256": "cb547200b6330dd14f000ccd3a8c41a0aa111750dcf12e97856411f6b764d28d",
+  "token_audit": {
+    "examples": 305,
+    "documents": 48,
+    "min_total_tokens": 270,
+    "median_total_tokens": 972,
+    "max_total_tokens": 1623,
+    "sum_total_tokens": 285009,
+    "min_answer_tokens": 3,
+    "max_answer_tokens": 407,
+    "all_prefix_mask_checked": true,
+    "truncation": false,
+    "max_seq_length": 2048,
+    "files": {
+      "trainer": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+      "data": "cb547200b6330dd14f000ccd3a8c41a0aa111750dcf12e97856411f6b764d28d",
+      "excluded": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "encoded_sha256": "0d1cc08e6a3eb69a5e183e1500e04e36d4651e0e940445142fbaf2a52ab97d56",
+    "code_sha256": "fd39061afa0aadded1f34951d873ebfae064442f39ed926c6a0a224f99b0b168"
+  },
+  "inference_prompts": {
+    "stage": "exact phenotype extraction",
+    "configuration": {
+      "train": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold1/prompts.jsonl",
+      "chunk_chars": 4000,
+      "overlap": 250,
+      "fewshot": 0,
+      "limit_documents": 0
+    },
+    "documents": 16,
+    "chunks": 88,
+    "training_examples": 441,
+    "code_sha256": "738abb682c91de3b0d5f9b67caeba99d4bc7764bb8f37122288418631bedeb0d",
+    "files": {
+      "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+      "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "output": "9d971368ac2ac4eec788e42f78b666397072e58682b773d7c4c4568cb5796be3"
+    }
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-preparation-fold1"
+}

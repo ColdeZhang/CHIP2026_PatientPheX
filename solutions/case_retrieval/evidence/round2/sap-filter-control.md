@@ -23,3 +23,5 @@
 ## 核验
 
 6 项合成数据测试和 compile 通过：阈值端点、接触但不交叠的跨度、原实体/HPO/association 保留、错误训练折、未通过重建、缺失分数与未绑定分数拒绝。见[测试证据](sap-filter-control-tests.json)。上述测试不是比赛评分。后续真实内部评测保留18新增跨度，含HPO为12TP/6FP，固定原规则关联Score .711354→.714061；同k21/.35完整管线 .657639→.662397。完整结果与SHA见[sft-linked-filtered-control-summary.json](sft-linked-filtered-control-summary.json)，待独立复核和另一固定内折，不宣称已达标或可泛化。
+
+独立审查补充：旧14,480池使用原embedding重建LR时p逐项相同；新1068池重新按其逐文献unique列表做FP16批编码，与旧池共享829个相同`(pmc, offset, length, text)`项的p最大差0.0012167349、cos最大差0.00036394596，但两个单阈值及联合阈值决定全相同。这两种核验不可混称bitwise复现；新批次形状可产生数值微差，实际分数文件保持冻结。

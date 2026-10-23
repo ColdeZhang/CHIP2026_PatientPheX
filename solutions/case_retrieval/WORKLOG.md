@@ -1,35 +1,32 @@
 # 病例检索工作台账
 
-实验 `E-20261023-008`；本轮从合并后的 main 建立独立分支。
+实验 `E-20261023-008`，独立分支 `round2/case-retrieval`，本轮基点 `00f7da8`。
 
-- **目标**：固定 train64/dev16 与公共近似评测 v2 下，Score ≥ 0.8；保持训练/验证文献隔离。
-- **状态**：进行中；固定基点 `00f7da8`，CPU四折选型已独立复现，Qwen3-8B全部源SHA通过；16篇内部fold0全文Qwen关系负结果已回收；同实体下.615159→.569358，过度归属，未采用。首日本地 0.613517597，官方 0.599432522，两者不可混比。
-- **记录入口**：[实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[小型证据](evidence/round2/README.md)。
-- **运行位置**：外部 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`，完整日志、预测、模型不得入 Git。
-- **当前结果**：内部fold0原版 .613151 → compound修复 .615159；实体不变、关联微升，5项行为测试通过。固定 dev16 已得到 .625073738（原 .613517597），仍未达标；独立复评、重新拟合逐字节复现、36组内部输出复评全部通过。
-- **下一步**：SFT与同构HPO完整控制已完成，直接并集负结果冻结；固定Sap .65/.92仅保留18新跨度，内部fold0固定规则关系Score .714060535（原.711353522），本路线同k21/.35完整链 .662396726（原.657638543）。待独立CPU复核；先完成整患者集合生成SFT可行性预算，再仅做一个固定fold1自身train48/原base初始化的同2epoch复验，不扫阈值、不提前评dev。
-- **边界**：只修改本方案目录；共享变更与主线程协调；本轮不得上传官方。关键检查点及时 commit/push，回报版本与证据。
+## 当前状态
 
-## 运行与恢复
+- **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
+- **固定dev最佳**：CPU四折选出的 k21/.35 为 **.625073738**（首日 .613517597）；独立重训/逐字节预测复现通过。后续GPU研究均在train64内部fold0，尚未重评dev。
+- **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
+- **当前任务**：优先整患者开放集合SFT的带原文证据版本。研究代理准备新schema/合法训练目标/strict merge及实际token审计；审核后A800最长样本smoke，再从原base正式2epoch，不从smoke或旧adapter续训。尚未启动此项GPU训练。
+- **后续**：抽取fold1仅CPU准备（305训练窗、88验证输入窗），等待新任务运行与root资源安排；只允许相同2epoch/既有阈值做一个固定内折复验，不扫参数、不提前评dev。
+- **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
-- Qwen来源：10.5.2.100，mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，`case-retrieval/round2/`；恢复进程已完成，13文件全部源SHA一致，证据 `evidence/round2/qwen-download-complete.json`。
-- 本路线仅用GPU1 `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`；GPU0现有他人进程，禁止使用；A800公共权重与运行时已由其它路线验证，当前分配其GPU2给本路线后续HPO标准化，启动前仍需核空。
-- 解释器只读 `/home/zhangyuheng/projects/ScratchVL/.venv/bin/python`，基础模型的`PYTHONPATH` 指向本项目 `case-retrieval/round2/runtime`；adapter/训练需`case-retrieval/round2/training-runtime:case-retrieval/round2/runtime`两个完整绝对路径（见外部inference-plan.json的env），`PYTHONDONTWRITEBYTECODE=1`。
-- 已完成对照：`llm-relations-v2-fold0/` 和 `llm-extract-v2-fold0/`（16篇90窗口，原始结果冻结；一次格式重试另存retry）。全文关系及新跨度负结果见实验报告。
-- SapBERT FP16只读归一化模型从首日产物复制到同机自有 `models/SapBERT/`，全部文件已校验；内部fold0的43,437条HPO/训练别名CLS索引已预计算（6.85秒），已有1218个可定位抽取，391精确别名，827需语义候选/链接。
+## 已完成与失败结果
 
-- 90窗口抽取及一次格式重试均完成，GPU训练开始前重新确认GPU1空闲；正式训练/续训进程和检查点将记录在下方。
-- .3 LoRA smoke与重载已结束并将GPU0交回本体，产物`case-retrieval/round2-lora/smoke-bf16/`；小证据`lora-bf16-smoke-*`，不得当成正式模型或验证成绩。
+- 全文Qwen关系负：同实体 .615159→.569358，过度归属；原响应和格式回退保留，未采用。
+- 原90窗抽取严格配对：base→2epoch SFT 的 span-F1 .398276→.539197；这不是Score。6失败窗唯一17子窗恢复后101响应全合法，原90永久冻结。
+- 完整HPO链接和未筛选并集负：SFT补CRF实体、固定原规则关系 .679806；同k21/.35 .600940。无效配置冻结，不扫epoch。HPO43/43 JSON合法无触顶，6越候选项明确未解决。
+- 固定Sap筛选小幅正：旧LR未保存，使用原train48/源码/18缓存重建，14,480旧候选p完全相同；新池与旧池共享829项因FP16批次有数值微差但阈值决定全同。固定`.65/.92`只保留18新增；见[完整控制](evidence/round2/sft-linked-filtered-control-summary.json)及[筛选来源](evidence/round2/sap-filter-control.md)。
+- 真实optimizer续训状态已独立核验：Adam step/moments、scheduler、RNG恢复完整；独立fresh训练数值轨迹等价未证明，不宣称bitwise训练复现。
 
-- 13:31 UTC：真实epoch恢复小测试在 .100 `resume-test-bf16/`；2个训练原样本、epochs2/accum1/warmup0，pause1已原子保存step2，resume作业`proc_8362033d-6f57-49fa-a6d9-15d64f2cad71`。源码7c693a2、train_lora SHA2a25b83d...；真实resume状态审查通过，后续正式训练使用同入口；连续数值轨迹等价性未证明。
+## 当前任务与恢复
 
-- 2026-10-23T13:38:11.752256666Z：正式305窗2epoch BF16启动 .100 GPU1，作业`proc_6e1059ff-40f5-47db-bfbd-c5363d13a35c`；远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，每epoch保留adapter+optimizer/scheduler/RNG；大产物外存同名目录。启动前无他人GPU1进程。
-- HPO基础模型链接69批已在 .3 GPU0独立运行，作业`proc_6f907c9a-4fe7-468d-8a28-15a5e4e321ce`，远端`case-retrieval/round2-normalization/full/`；先最短5729/最长8593tokens smoke全部合法无截断，保持同一固定prompt。
+1. 整患者新任务：A800 `10.5.4.7` mount `69b991ee-183f-4add-af1a-579af92479c9`，GPU2 `GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc`。自有cwd `case-retrieval/round2-patient-set/` 已上传冻结trainer/runner，未有此任务GPU进程；卡暂可由sequence共指配对短批使用，启动smoke前与其/root交接并重新核空。
+2. A800解释器只读 `/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python`；base只读同目录`pretrained-qwen3-8b`；PEFT只读`PYTHONPATH=/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/peft-runtime`。CPU核验torch2.7.1cu126/transformers4.51.3/PEFT.15.2通过；不修改共享环境。
+3. 已完成抽取SFT：.100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，保留epoch001/002及optimizer状态；原推断`inference/`与唯一恢复`inference/retry/`均已结束。实际作业/配置/全SHA在外存同名目录。当前.100 GPU1由sequence共指使用，本路线没有运行作业。
+4. 完整HPO作业`proc_855aacdd-70a5-45bb-b204-80b6d205a02f`已完成并释放A800 GPU2，外存`hpo-inference-plan.json`明确completed；响应/manifest/检查点全部回收。CPU重装命令在`sft-extract-fold0-bf16-v1/linked-original/commands.json`与`sap-filter-control/repaired101/merge-evaluation-commands.json`。
+5. .3 GPU0现在由本体真实PhenoTagger训练使用，不能启动原预想的fold1抽取。全部GPU都须重新确认资源归属和空闲进程；任何旧启动凭据中的running字段只是当时快照。
 
-- 13:47:55 UTC：正式SFT epoch002固定90窗推断启动，.100 GPU1作业`proc_9329ac93-4399-46d1-8616-1534c5e855d3`，远端`sft-extract-fold0-bf16-v1/inference/`，原prompt SHA55bf2795...；仅推断epoch002，epoch001保留而未选择。
+## 备份与边界
 
-- 14:01:49 UTC（现已完成）：.100 GPU1唯一17窗格式恢复`proc_b672ed53-ccb7-4ed7-a2ad-9ef6e5694d6a`，远端`sft-extract-fold0-bf16-v1/inference/retry/`。原90响应已完成且永久冻结；外部inference-plan.json标注完成状态，inference-job.json保存实际原作业。
-
-- 14:14 UTC：SFT后HPO的43请求已冻结（SHA61df3dab…，4155–7832tokens），A800 GPU2已从sequence正式接回；先最短/最长2条smoke，再batch1/maxnew1600同构正式链接。完整命令/env/基座与来源差异见外部`sft-extract-fold0-bf16-v1/hpo-inference-plan.json`；实际作业在同目录`hpo-smoke-job.json` / `hpo-inference-job.json`；14:16:27 UTC正式作业`proc_855aacdd-70a5-45bb-b204-80b6d205a02f`，2/2 smoke合法无触顶。
-
-- HPO43批现已结束并回收完整SHA，A800 GPU2复查无我进程后交回root；.100 GPU1已交sequence共指试验。本方案当前无GPU作业。完整最终结果入口为r2-10与`sft-linked-filtered-control-summary.json`，恢复可直接按外部`linked-original/commands.json`和`sap-filter-control/repaired101/merge-evaluation-commands.json`重装。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `dfbf92b`（含`470a47c`完整控制与新方法研究），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
