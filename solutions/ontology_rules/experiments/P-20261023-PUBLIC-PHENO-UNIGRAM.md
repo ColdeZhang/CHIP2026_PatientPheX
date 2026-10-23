@@ -31,7 +31,11 @@
 
 实际A100原TF2.12/cu11.8/cuDNN8.6环境在CUDA隐藏下CPU import通过，2.611秒。其GPU2正用于序列训练，本项不占用。`.3`和`.100`的Python3.10 ABI与glibc满足私有packages条件性迁移，但没有在目标验证TF推断；原venv绝对解释器链接不能直接搬用。保守两模型全依赖迁移约6.89GB，未迁移；不能因目标存在CUDA12/13就认定CUDA11运行不兼容。
 
-根线程决定不迁移，追加一次Bioformer单模型CPU吞吐probe：冻结13,145数组前256、两批128、原51,380,594参数/137变量native loader与H5，GPU实际设备必须空、TF inter/intra各2，90秒+TERM5硬限。只核真实输入、CPU前向、finite与耗时；不改变接受/旧pool。保守全量估计≤480秒才准备完整缓存计划，是否运行仍由根线程决定。probe结果另补本记录，不把它当质量实验。
+根线程决定不迁移，追加一次Bioformer单模型CPU吞吐probe：冻结13,145数组前256、两批128、原51,380,594参数/137变量native loader与H5，GPU实际设备必须空、TF inter/intra各2，90秒+TERM5硬限。只核真实输入、CPU前向、finite与耗时；不改变接受/旧pool。保守全量估计≤480秒才准备完整缓存计划，是否运行仍由根线程决定。实际probe已完成：17.754秒外层，导入2.967、加载6.299、trace1.220秒；两批3.0662/2.3729秒，全部finite、sum1、17266列，权重及输出均CPU、GPU设备空。保守估计11.4566+103×3.0662=327.273秒<480。准备独审d912、CPUprobe增量独审88ba均通过；未重复旧权重审计或NN。
+
+根线程据此授权一次全量Bioformer CPU cache：480+TERM5秒、两线程，复用该256准确raw，只续12889词。固定原top1非None、native5dp严格>.95、既定current映射，输出新unigram sidecar，旧2–8/dict/原预测不动。失败保留已flush原始分数和progress，不完整不得进质量。
+
+正式质量唯一基底另已明确为后继已审`selector-nested-control`四fold（+195实体/fullScore.727975656，f5482b85），不是原cut3 .725655389。保留该基底全部旧实体含nested及所有非entities对象；新项只用原否定+非交叠追加，与任何旧实体重叠/包含都拒绝，排序沿原score降序/length降序/offset升序/HPO字典序。全部4预测先共同freeze后一次v2、CPU≤60秒；预定保留为pooled两实体F1均值严格升且至少3/4fold该和不降。未通过即关闭，不换基底/阈值/词表。当前全量及质量尚未执行。
 
 ## 恢复与证据
 

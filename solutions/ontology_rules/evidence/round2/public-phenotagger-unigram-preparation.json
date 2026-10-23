@@ -1,5 +1,5 @@
 {
-  "status": "CPU_census_complete_runtime_inventory_complete_new_CPU256_probe_pending",
+  "status": "census_and_CPU256_complete_full_Bioformer_CPU_cache_authorized_frozen",
   "at_utc": "2026-10-23T23:26:18.202856+00:00",
   "scope": "Unigram input-only supply and cost preparation; no new quality, no originaldev",
   "source_commit": "6791aa0b2b5888211179d9c1624691619dcde816",
@@ -141,7 +141,7 @@
     "driver_note": "A30 driver580.178.04 is newer than source535.247.01; CUDA12/13 toolkit presence is not an incompatibility finding. Required CUDA11/cuDNN8 private libraries are not yet supplied on targets.",
     "target_tf_import_verified": false
   },
-  "next": "One root-authorized Bioformer CPU256 probe only,90+5s; no environment migration or GPU.",
+  "next": "One Bioformer all13145 CPU cache480+5s; exact prior256 reused. Unique later quality baseline=audited selector-nested-control fourfold, not old cut3; fixed negation/nonoverlap append.",
   "references": [
     {
       "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/plan.json",
@@ -212,6 +212,94 @@
       "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/cpu-probe/plan.json",
       "sha256": "739172cda5778eb0565c6ea8d7052ddb964343ff6ed85e08dccf95ed0ea9bd13",
       "bytes": 4685
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/cpu-probe/terminal/run-state.json",
+      "sha256": "30ec51d96fca6f4e9280d317fc2d905207cfbc7273f272afbf5f6af5f8c958c6",
+      "bytes": 737
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/cpu-probe/terminal/output/summary.json",
+      "sha256": "22a9ac1c73a21df1021568949f10e7eb0abb844345317abd6fdcb789430bc29a",
+      "bytes": 9424
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/cpu-probe/terminal/output/sample-raw-predictions.jsonl",
+      "sha256": "b7abf363966a8ac3ee33e778491c7f694c393410f54ed6f3f07e24d971e13950",
+      "bytes": 123160
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-unigram-preparation/full-cache/plan.json",
+      "sha256": "fe59e8549eeafa471d9017299879a0d513814160f814c0ecceb027d44c2c4a8b",
+      "bytes": 8064
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-unigram-preparation-review/review.json",
+      "sha256": "d912148982cca60a93e21ecacfa3aee392e6fc5ff80124c8878323dade7d4a9f",
+      "bytes": 8791
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-unigram-preparation-review/CPU-probe-review.json",
+      "sha256": "88ba241bb137486034fc8983d95e5d66b2e952d58f7cb5b896a3714869890c0d",
+      "bytes": 7458
     }
-  ]
+  ],
+  "preparation_review": "d912148982cca60a93e21ecacfa3aee392e6fc5ff80124c8878323dade7d4a9f",
+  "CPU_probe_review": "88ba241bb137486034fc8983d95e5d66b2e952d58f7cb5b896a3714869890c0d",
+  "CPU_probe": {
+    "status": "complete_CPU256_Bioformer_probe_no_quality",
+    "at_utc": "2026-10-23T23:26:46.345144+00:00",
+    "source_sha256": "5b576ed654b2934b324cfeebedad0a13d782cd49f32e46963c616e6422933108",
+    "plan_sha256": "739172cda5778eb0565c6ea8d7052ddb964343ff6ed85e08dccf95ed0ea9bd13",
+    "inputs_sha256": "5d5e5418382419f6118c37683620aec70491d3b54a5644736285774cb6c49839",
+    "selection": "first256 of frozen lexicographically ordered13145 native lowercase tuples; two128 batches, no label-based selection",
+    "selected_keys_sha256": "e7fc3234cc719b6669bb36d5af40287a30a90a1f78f1f7b8a2de389c4c4cdc89",
+    "model": "public_Bioformer_PhenoTagger51M",
+    "parameters": 51380594,
+    "variables": 137,
+    "weight_sha256": "867819ac932e11250c42ca13c49eba3711a7f24b170e24bfb31b65589d0024a1",
+    "loader_sha256": "9792dccdab9bce7a609df546862dcfe0a0844263ca89d6b75b21255d879082b5",
+    "physical_GPU_devices": [],
+    "logical_GPU_devices": [],
+    "tf_version": "2.12.0",
+    "threads": {
+      "intra": 2,
+      "inter": 2
+    },
+    "file_hashing_seconds": 0.6318819671869278,
+    "imports_seconds": 2.966813899576664,
+    "construct_and_native_load_seconds": 6.298965789377689,
+    "graph_trace_seconds": 1.2195179462432861,
+    "batches": [
+      {
+        "offset": 0,
+        "rows": 128,
+        "seconds": 3.0661754980683327,
+        "device": "/job:localhost/replica:0/task:0/device:CPU:0",
+        "all_finite": true,
+        "sums_close1": true
+      },
+      {
+        "offset": 128,
+        "rows": 128,
+        "seconds": 2.37292455509305,
+        "device": "/job:localhost/replica:0/task:0/device:CPU:0",
+        "all_finite": true,
+        "sums_close1": true
+      }
+    ],
+    "fixed_overhead_seconds": 11.456576708704233,
+    "all13145_conservative_CPU_seconds": 327.2726530097425,
+    "estimate_formula": "fixed_overhead+ceil(13145/128)*max(actual_two_batch_seconds)",
+    "allows_prepare_full_plan": true,
+    "raw_probability_array_sha256": "18e32f3c9b6a53af72702ab4fdf6fd4bab5bf23a62297cbf37016e2a206d9489",
+    "elapsed_seconds": 16.903783194720745,
+    "no_gold": true,
+    "no_new_acceptance_or_quality": true,
+    "output": {
+      "path": "output/sample-raw-predictions.jsonl",
+      "sha256": "b7abf363966a8ac3ee33e778491c7f694c393410f54ed6f3f07e24d971e13950",
+      "bytes": 123160
+    }
+  }
 }
