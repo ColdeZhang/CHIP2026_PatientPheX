@@ -89,7 +89,7 @@
 
 远端 Hugging Face 与镜像连接失败，本机可下载；MCP `write_file` 较大请求返回 HTTP 413。直接把模型或数据一次写入不可行。
 
-**避免方法**：按用户最新偏好，先复用已核验副本，新下载优先 ModelScope（魔搭）；固定对应revision并核对权重、配置与tokenizer的SHA，不能只凭模型同名认定等价。当前Qwen3.5-9B正在从魔搭下载，已核对源端四个权重分片的大小/LFS SHA与指定HF版本一致，下载完成还须逐文件实际校验；许可证文件差异单独记录。魔搭缺少所需版本或无法核对时再尝试原始HF来源。2026-10-23另一条已验证路径：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验；优先续传，不重复下载。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及方案模型manifest。
+**避免方法**：按用户最新偏好，先复用已核验副本，新下载优先 ModelScope（魔搭）；固定对应revision并核对权重、配置与tokenizer的SHA，不能只凭模型同名认定等价。当前Qwen3.5-9B已从魔搭下载完成，15文件共19,329,392,091字节逐文件实际SHA通过，源端四个权重分片的大小/LFS SHA与指定HF版本一致；许可证文件差异单独记录。魔搭缺少所需版本或无法核对时再尝试原始HF来源。2026-10-23另一条已验证路径：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验；优先续传，不重复下载。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及方案模型manifest。
 
 ## H14：官方附件元数据中的相对路径不等于可下载 URL
 
