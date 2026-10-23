@@ -6,12 +6,14 @@ import argparse
 from collections import Counter, defaultdict
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 from validate_predictions import file_sha256, index_documents, load_jsonl, passage_for_span, validate_predictions
 
-VERSION = "patientphex-public-approx-v1"
+VERSION = "patientphex-public-approx-v2"
 EXCLUDED_SECTIONS = {"TITLE", "ABSTRACT", "REF", "REFERENCES", "AUTH_CONT", "COMP_INT", "ACK_FUND", "SUPPL"}
+COMPOUND_HPO = re.compile(r"HP:[0-9]{7}(?:;HP:[0-9]{7})+")
 
 
 def prf(tp: int, fp: int, fn: int, empty_value: float = 1.0) -> dict[str, float | int]:
@@ -82,7 +84,16 @@ def document_concepts(document: dict[str, Any], source: dict[str, Any], scope: s
 
 
 def associations(document: dict[str, Any]) -> dict[str, set[str]]:
-    return {item["patient_id"]: set(item["phenotype"]) for item in document["association"]}
+    result = {}
+    for item in document["association"]:
+        concepts = set()
+        for value in item["phenotype"]:
+            # Official training annotations also contain compound relation IDs.
+            # Preserve unlinked surface text (which may contain semicolons),
+            # non-HPO identifiers and malformed/mixed strings verbatim.
+            concepts.update(value.split(";") if COMPOUND_HPO.fullmatch(value) else [value])
+        result[item["patient_id"]] = concepts
+    return result
 
 
 def evaluate(gold_rows: list[dict[str, Any]], predicted_rows: list[dict[str, Any]],
@@ -137,6 +148,7 @@ def evaluate_report(gold_rows: list[dict[str, Any]], predicted_rows: list[dict[s
         "configuration": {"body_scope": body_scope, "unlinked_document_mode": no_id_doc,
                           "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
                           "duplicate_entities": "deduplicated by span and split HPO ID",
+                          "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
                           "empty_patient_f1": 1.0},
         "caveats": [
             "Official evaluator source is unavailable; these numbers are not official scores.",
@@ -144,6 +156,7 @@ def evaluate_report(gold_rows: list[dict[str, Any]], predicted_rows: list[dict[s
             "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
             "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
             "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+            "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
             "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
         ]})
     alternatives = {}
