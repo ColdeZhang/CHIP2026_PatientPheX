@@ -1,0 +1,207 @@
+{
+  "status": "complete_F1_positive_small_gain_review_pending",
+  "summary": {
+    "status": "complete_fixed_public_new_relations_F1_control",
+    "scope": "StrictSFT32->F1, same1189entities and old383associations; F1 alreadyused for training-side diagnostics, not blind/originaldev/outer0",
+    "arms": {
+      "baseline": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6866002214839424,
+          "macF1": 0.5422288533401712,
+          "Score": 0.6609420026531936
+        },
+        "counts": {
+          "mention": {
+            "tp": 848,
+            "fp": 341,
+            "fn": 505,
+            "precision": 0.7132043734230445,
+            "recall": 0.6267553584626755,
+            "f1": 0.6671911880409127
+          },
+          "document": {
+            "tp": 498,
+            "fp": 89,
+            "fn": 247,
+            "precision": 0.848381601362862,
+            "recall": 0.6684563758389261,
+            "f1": 0.7477477477477478
+          },
+          "relation": {
+            "tp": 310,
+            "fp": 73,
+            "fn": 210,
+            "precision": 0.8093994778067886,
+            "recall": 0.5961538461538461,
+            "f1": 0.6866002214839424
+          }
+        },
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+          "bytes": 154176,
+          "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+        },
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+          "bytes": 13115,
+          "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+        },
+        "format": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.final.validation.json",
+          "bytes": 686,
+          "sha256": "fa90573f2767c24cf290a9d8d421e1ec658b24f2f130a43c5e3a32f1802f810a"
+        }
+      },
+      "augmented": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6970802919708029,
+          "macF1": 0.5669857987655137,
+          "Score": 0.6697512566312442
+        },
+        "counts": {
+          "mention": {
+            "tp": 848,
+            "fp": 341,
+            "fn": 505,
+            "precision": 0.7132043734230445,
+            "recall": 0.6267553584626755,
+            "f1": 0.6671911880409127
+          },
+          "document": {
+            "tp": 498,
+            "fp": 89,
+            "fn": 247,
+            "precision": 0.848381601362862,
+            "recall": 0.6684563758389261,
+            "f1": 0.7477477477477478
+          },
+          "relation": {
+            "tp": 382,
+            "fp": 194,
+            "fn": 138,
+            "precision": 0.6631944444444444,
+            "recall": 0.7346153846153847,
+            "f1": 0.6970802919708029
+          }
+        },
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/augmented.pred.jsonl",
+          "bytes": 156872,
+          "sha256": "87690b7be869ead618906cc911048d7ae26446ea7063103acccfaf52a2297ebb"
+        },
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/augmented.metrics.json",
+          "bytes": 13158,
+          "sha256": "a90f300ddd03c6dc63ca5bf1551c5bed7d514120e64f2f43cfca1e750cfc1b18"
+        },
+        "format": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/augmented.final.validation.json",
+          "bytes": 686,
+          "sha256": "182a2656cba454be48ea9a92450c9ed43b64018c28ef62b4a6cc5a8959aa0227"
+        }
+      }
+    },
+    "delta": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": 0.010480070486860504,
+      "macF1": 0.024756945425342458,
+      "Score": 0.008809253978050657
+    },
+    "new_relations": {
+      "total": 193,
+      "tp": 72,
+      "fp": 121,
+      "fn_reduced": 72,
+      "fp_concept_in_other_supplied_patient": 10,
+      "fp_concept_in_no_supplied_patient": 111
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/paired-predictions-freeze.json",
+      "bytes": 1741,
+      "sha256": "95a04977bd5ef298ba3959fa986c386707b8e92061e2e967828f9360d1cad879"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/run-plan.json",
+      "bytes": 12879,
+      "sha256": "f0088357a8c0ced3f2d2774a77b93275f76e0b493b9f53b4f17648d0fa488351"
+    },
+    "entities_fixed": true,
+    "old_relationships_and_text_preserved": true,
+    "no_training": true,
+    "no_originaldev_or_outer0": true,
+    "official_submission": false
+  },
+  "runner_seconds": 203.803,
+  "generation_seconds": 180.452,
+  "rows": 62,
+  "strict_rows": 62,
+  "hit_limits": 0,
+  "gpu_release": {
+    "at_utc": "2026-10-23T21:43:55.422355+00:00",
+    "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "empty": true,
+    "device": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 81156 MiB"
+  },
+  "watcher_exitcode": 0,
+  "remote_job_exitcode_not_available": true,
+  "references": {
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/run-plan.json",
+      "bytes": 12879,
+      "sha256": "f0088357a8c0ced3f2d2774a77b93275f76e0b493b9f53b4f17648d0fa488351"
+    },
+    "baseline-prepared.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline-prepared.json",
+      "bytes": 1269,
+      "sha256": "161055d1e8a1b4d20e304bc92108e666306dc16d5d6048a9cd224f3417648d12"
+    },
+    "token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/token-audit.json",
+      "bytes": 20634,
+      "sha256": "df401f657e32538bf6df369cefb007e6e3879e90c9e2d1f9467f43dd37758abb"
+    },
+    "responses.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/responses.jsonl",
+      "bytes": 19255,
+      "sha256": "12f3236e4a3c9c2cdf7d543e70ac5f5fca19510df8d52fa03c943ed5eeb8d269"
+    },
+    "responses.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/responses.manifest.json",
+      "bytes": 4174,
+      "sha256": "1472a9562766c3a685e78cbd32ac58dd6ecb8f086c6d9016da7250e7c7b51394"
+    },
+    "responses-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/responses-freeze.json",
+      "bytes": 498,
+      "sha256": "ea0776e59196e78e8058e8e0291b8083d07a03bc85715b13b4300ded17a16791"
+    },
+    "paired-predictions-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/paired-predictions-freeze.json",
+      "bytes": 1741,
+      "sha256": "95a04977bd5ef298ba3959fa986c386707b8e92061e2e967828f9360d1cad879"
+    },
+    "evaluation-started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/evaluation-started.json",
+      "bytes": 429,
+      "sha256": "d8b65f9793b0375bd16eaa0dea76c2717218c40c1ee820c7825bd9ebccbe7dd7"
+    },
+    "paired-summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/paired-summary.json",
+      "bytes": 4878,
+      "sha256": "12ede9e0d895ebeabca157c65ae3c8cd0f5a9bd8c689686089862d2fb1f3b81b"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/gpu-release.json",
+      "bytes": 442,
+      "sha256": "2871578bd1a3f9b0a70037e5daeb3516bc0be50d3d42aeb00c97220c1f1164c5"
+    }
+  },
+  "canonical_diagnostic_difference": "F1 canonical diagnostic311TP72FP209FN vs literal publicv2 baseline310TP73FP210FN: one alternative HPO ID, original gold/metrics unchanged.",
+  "assessment": "Positive F1 training-side development control; new193relations72TP121FP. No originaldev transfer. Fixed outer0 replication is next subject to its independent plan/budget.",
+  "independent_review": "pending"
+}
