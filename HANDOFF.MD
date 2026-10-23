@@ -1,6 +1,6 @@
 # 接手必读：已确认的坑与避免方法
 
-最后核对：2026-10-23。**每次执行新任务先读本文，再看 [WORKLOG.md](WORKLOG.md)。** 本文保存长期经验；当前任务进度只在台账维护。下面的旧实现问题均已确认，尚未修复；本次已完成的是审计与规则建设。
+最后核对：2026-10-23。**每次执行新任务先读本文，再看 [WORKLOG.md](WORKLOG.md)。** 本文保存长期经验；当前任务进度只在台账维护。H01–H08 的旧实现问题均已确认，尚未修复；H09 的当前环境配置已修复。本次完成了审计、规则建设与远端备份。
 
 ## 快速定位
 
@@ -56,6 +56,14 @@
 旧机器绝对路径、`rel2/rel` 不一致、权重和词典构建链缺失；历史“0.86→0.32”“0.394”“达标”等缺提交凭据。CPU 输出只保证患者表型集合一致，列表顺序可能不同。
 
 **避免方法**：记录实际代码/配置/数据版本、命令、环境和产物位置；集合型结果按语义比较。重要证据不能只放 `/tmp`；本地文件、commit 和已核验远端备份是三种不同状态。按 [AGENTS 第 8 节](AGENTS.md#8-及时提交与远端备份)及时提交、推送并核验，最近检查点见台账；被忽略的大产物另行保存。证据：[复现记录](docs/review/2026-10-23/output_audit.json)、[审计 manifest](docs/review/2026-10-23/manifest.json)。状态：旧训练链未修复；审计关键统计与脚本已归档。
+
+## H09：推送成功后，单分支 fetch 配置仍可能阻止 upstream 解析
+
+本环境最初只配置了 `+refs/heads/main:refs/remotes/origin/main`。`git push -u origin work` 已成功创建远端分支并写入跟踪配置，但本地没有可解析的 `origin/work`，查询 `@{upstream}` 仍失败；这不代表远端提交丢失。
+
+**避免方法**：检查 `git config --get-all remote.origin.fetch`，必要时用 `git remote set-branches --add origin work` 增加当前分支，再 `git fetch origin work`；其他分支按实际名称替换，保留原跟踪范围。验证 upstream 能解析、ahead/behind 符合预期，并用 `git ls-remote --heads origin refs/heads/work` 核对远端提交。不能仅凭 `push -u` 成功就认定跟踪配置完整。
+
+**证据/状态**：2026-10-23 当前环境已修复；`@{upstream}` 为 `origin/work`，ahead/behind 为 `0/0`，本地与远端均为 `cb682f8`。该修复属于本地 Git 配置，不随文档提交传播；新环境需重新检查。
 
 ## 更新方式
 
