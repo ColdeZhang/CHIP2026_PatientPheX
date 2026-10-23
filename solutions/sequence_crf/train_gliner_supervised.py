@@ -31,10 +31,22 @@ def masked_span_bce(logits, labels, span_mask):
 
 def training_counts(logits, labels, span_mask):
     valid = span_mask.reshape(logits.shape[0], -1).bool()
-    predicted = (logits.detach().reshape(logits.shape[0], -1) > 0) & valid
+    scores = logits.detach().reshape(logits.shape[0], -1)
+    probability = scores.sigmoid()
+    predicted = (scores > 0) & valid
     positive = (labels.reshape(logits.shape[0], -1) > 0) & valid
     return {'gold_positive': int(positive.sum()), 'predicted_positive': int(predicted.sum()),
-            'tp': int((positive & predicted).sum()), 'fp': int((~positive & predicted).sum())}
+            'gold_negative': int((valid & ~positive).sum()),
+            'tp': int((positive & predicted).sum()), 'fp': int((~positive & predicted).sum()),
+            'positive_probability_sum': float(probability[positive].sum()),
+            'negative_probability_sum': float(probability[valid & ~positive].sum())}
+
+
+def count_metrics(counts):
+    return {'precision': counts['tp']/max(1, counts['predicted_positive']),
+            'recall': counts['tp']/max(1, counts['gold_positive']),
+            'positive_mean_probability': counts['positive_probability_sum']/max(1, counts['gold_positive']),
+            'negative_mean_probability': counts['negative_probability_sum']/max(1, counts['gold_negative'])}
 
 
 def collate(processor, rows):
@@ -171,6 +183,7 @@ def main():
             report.update(smoke_completed=True, smoke_rows=[rows[i]['row_id'] for i in order],
                           smoke_loss=losses[0], smoke_gradient_norm=float(norm),
                           smoke_counts=dict(running_counts),
+                          smoke_metrics=count_metrics(running_counts),
                           elapsed_seconds=time.monotonic()-started,
                           max_gpu_allocated_bytes=torch.cuda.max_memory_allocated())
             record_path.write_text(json.dumps(report, indent=2)+'\n')
@@ -208,6 +221,7 @@ def main():
                   'seconds': time.monotonic()-epoch_start, 'model_file': model_file,
                   'training_online_counts': dict(running_counts),
                   'training_probe_rows': [r['row_id'] for r in probe], 'training_probe_counts': dict(probe_counts),
+                  'training_probe_metrics': count_metrics(probe_counts),
                   'model_sha256': sha(out/model_file), 'state_sha256': sha(out/'latest-state.pt')}
         report['epoch_results'].append(result)
         report.update(completed_epochs=epoch+1, elapsed_seconds=time.monotonic()-started,

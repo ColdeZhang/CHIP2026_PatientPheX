@@ -1,9 +1,9 @@
 {
-  "status": "CPU data and batch/loss audit passed; GPU smoke and fixed two-epoch run authorized but not started at this checkpoint",
+  "status": "CPU independent review and longest-batch GPU smoke passed; fixed paired run ready",
   "sources": {
     "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
     "prepare_gliner_supervised.py": "2ff751735a6028625a12a2e37fa94759eb1f62d7dda1966ccf77935c385460d5",
-    "train_gliner_supervised.py": "cf60830e5cfbd42b5321f3fe5e1ec0e80dac43bf8b8b0d35d9c046782050a94b",
+    "train_gliner_supervised.py": "d5898b736fd6a076500575530c32fbaabb2b98360f4821d39faa2807ae6c9b03",
     "audit_gliner_loss.py": "a9d0ec8e7df10573994a31a9185220ddcaaf0de73d23fbd270360407a4eb2eec"
   },
   "data_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/manifest.json",
@@ -177,5 +177,31 @@
   "cpu_actual_batch_audit": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/cpu-batch-audit-job.json",
   "cpu_loss_audit": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/loss-audit-job.json",
   "upstream_loss_bug_independent_probe": "/workspace/patientphex-runs/round2-20261023/validation/gliner-supervised-review/actual-runtime-probe.json",
-  "upstream_loss_bug_probe_sha256": "de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1"
+  "upstream_loss_bug_probe_sha256": "de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1",
+  "smoke": {
+    "smoke_completed": true,
+    "smoke_loss": 0.008585192263126373,
+    "smoke_gradient_norm": 0.12766431272029877,
+    "smoke_counts": {
+      "gold_positive": 33,
+      "predicted_positive": 2,
+      "tp": 0,
+      "fp": 2
+    },
+    "elapsed_seconds": 0.7307350500486791,
+    "max_gpu_allocated_bytes": 4469959168,
+    "source_sha256": "cf60830e5cfbd42b5321f3fe5e1ec0e80dac43bf8b8b0d35d9c046782050a94b",
+    "process_id": "proc_2fd61107-0b7a-4794-9014-1cdb2431f49c",
+    "report": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/smoke-run-manifest.json",
+    "weights_reused": false
+  },
+  "post_smoke_change": "Only detached train-only probability/precision/recall summaries added. BCE, forward, data, optimizer and decoder unchanged; old smoke remains bound to cf60830e.",
+  "independent_prepared_data_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-supervised-review/prepared-data-review.json",
+    "sha256": "a72362b90cc7d5eadea61f73f15e79e32006cb8c1418599be7b2f0ef732b2f3c"
+  },
+  "independent_explicit_bce_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-supervised-review/fixed-runtime-probe.json",
+    "sha256": "0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2"
+  }
 }
