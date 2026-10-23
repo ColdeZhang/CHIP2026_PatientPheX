@@ -41,3 +41,5 @@
 - `qwen35-loading-info-fix.json`：实际TF5 loading-info set序列化故障的最小修复/源码指纹；v1未到forward，新v2同设置重试，不能当质量负。
 
 - `qwen35-gpu-interface-and-cost.json`：实际短smoke/最长6040推断/5787完整r16单步全部通过，区分资源、格式与质量；正式58新作业与90分钟固定训练预算。
+
+- `qwen35-relation-training-preparation.json`：9B新架构固定204×2epoch入口的真实CPU mask/因果loss/混合层覆盖和7项恢复控制检查；52更新/3warmup，无新GPU resume等价声明。

@@ -1,0 +1,55 @@
+{
+  "source_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+  "source": "solutions/case_retrieval/train_qwen35_lora.py",
+  "stage": "Actual CPU passed; formal training not yet started",
+  "artifacts": {
+    "cpu-execution-v2.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/cpu-execution-v2.json",
+      "sha256": "80bd99bcc9e8c271ddbb3d9e8ab37c1aed27b6d12fdf2f60a8f65f5d510529ab",
+      "actual": {
+        "exit_code": 0,
+        "stdout": "{\"stage\": \"source_and_data\", \"mode\": \"cpu\"}\n{\"stage\": \"base_file_fingerprints\", \"mode\": \"cpu\"}\n{\"stage\": \"token_mask_audit\", \"mode\": \"cpu\"}\n{\"stage\": \"meta_full_hybrid_coverage\", \"mode\": \"cpu\"}\n{\"complete\": \"cpu\", \"cuda_initialized\": false, \"source_sha256\": \"9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b\"}\n"
+      }
+    },
+    "cpu-control-tests.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/cpu-control-tests.json",
+      "sha256": "8dc49fe674b787dad4c8ed45fccc3ca86c80ef38cc083dd7628d4da2f63f1e56",
+      "actual": {
+        "source_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+        "tests": 7,
+        "passed": true,
+        "output": "test_all15_files_verified_including_nonweight_source (__main__.Controls.test_all15_files_verified_including_nonweight_source) ... ok\ntest_complete_epoch_integrity (__main__.Controls.test_complete_epoch_integrity) ... ok\ntest_exact_204_epoch_grouping (__main__.Controls.test_exact_204_epoch_grouping) ... ok\ntest_pause_is_not_a_semantic_change (__main__.Controls.test_pause_is_not_a_semantic_change) ... ok\ntest_resume_fingerprint_rejects_config_change (__main__.Controls.test_resume_fingerprint_rejects_config_change) ... ok\ntest_smoke_checkpoint_and_incomplete_stage_rejected (__main__.Controls.test_smoke_checkpoint_and_incomplete_stage_rejected) ... ok\ntest_stop_states (__main__.Controls.test_stop_states) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.004s\n\nOK\n",
+        "scope": "Pure CPU data/checkpoint control tests; no GPU numerical resume claim"
+      }
+    }
+  },
+  "cpu_summary": {
+    "rows": 204,
+    "training_documents": 48,
+    "excluded_documents": 16,
+    "full_tokens": 660330,
+    "max_tokens": 5787,
+    "supervised_tokens": 11921,
+    "truncated_rows": 0,
+    "cuda_initialized": false,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600
+  },
+  "fixed_training": {
+    "epochs": 2,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "optimizer_steps": 52,
+    "warmup_steps": 3,
+    "learning_rate": 0.0001,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "gradient_checkpointing": "non-reentrant",
+    "max_seq_length": 6144,
+    "budget_seconds": 5400,
+    "starting_point": "fresh base; no smoke/cost adapter"
+  },
+  "resume_scope": "Complete epoch only; saves/restores Adam/scheduler/all RNG. New architecture numerical GPU resume equivalence has not been tested. JSON fingerprint normalized before serialize/compare."
+}
