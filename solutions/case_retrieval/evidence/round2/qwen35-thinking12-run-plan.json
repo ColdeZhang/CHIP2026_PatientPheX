@@ -1,0 +1,228 @@
+{
+  "status": "frozen_only_thinking_changed_same_training12_no_new_training",
+  "driver_sha256": "5dea374912850ebe887d7b6ab63b958a619ca08b5343a3f20bff29b9ad6d4535",
+  "evaluator_sha256": "1fd0f122bf2969aeae98e918fd0ba01b26519ef9399e6b1a388a29147cc72f8e",
+  "runner_sha256": "8706a426373c309cd01abdde04a2f8dd5b18ec2d10f4e9eb763bbf549250e4a8",
+  "prompts_sha256": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3",
+  "model_source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+  "hard_cap_seconds": 300,
+  "kill_grace_seconds": 30,
+  "argv": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "300",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "full64-training-thinking12/qwen35_thinking_runner.py",
+    "--model",
+    "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "--source-manifest",
+    "model-source-manifest.json",
+    "--prompts",
+    "full64-training-fit12/prompts.jsonl",
+    "--output",
+    "full64-training-thinking12/epoch2.responses.jsonl",
+    "--adapter",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter",
+    "--max-input-tokens",
+    "14000",
+    "--max-new-tokens",
+    "1600"
+  ],
+  "runner_configuration": {
+    "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "source_manifest": "model-source-manifest.json",
+    "prompts": "full64-training-fit12/prompts.jsonl",
+    "output": "full64-training-thinking12/epoch2.responses.jsonl",
+    "adapter": "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter",
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600
+  },
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "cwd": "case-retrieval/qwen35-preparation",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "adapter_files": {
+    "adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+    "adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+  },
+  "local_references": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/prompts.jsonl",
+      "bytes": 174266,
+      "sha256": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3"
+    },
+    "targets": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12.targets.jsonl",
+      "bytes": 2414,
+      "sha256": "569927da3c45939b6fe5872c870d9ded8efe4ebb7163a3cf1b8fdcb7563c835c"
+    },
+    "selection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-proposal.json",
+      "bytes": 2117,
+      "sha256": "c88d780967659311133d3e865792c27a4387554ebd67695f870c843d67aaea0e"
+    },
+    "CPU_objective": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/summary.json",
+      "bytes": 10706,
+      "sha256": "a614f60874ab3462627f629bb8ccd52a5a9d7836d4a1133a3f058ab15a94ef4c"
+    },
+    "original_parser": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/merge_pair_rag.py",
+      "bytes": 3684,
+      "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1"
+    },
+    "runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/qwen35_thinking_runner.py",
+      "bytes": 11010,
+      "sha256": "8706a426373c309cd01abdde04a2f8dd5b18ec2d10f4e9eb763bbf549250e4a8"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/evaluate_fit.py",
+      "bytes": 4285,
+      "sha256": "1fd0f122bf2969aeae98e918fd0ba01b26519ef9399e6b1a388a29147cc72f8e"
+    },
+    "training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "16b674d6a4d960086f8f208995c79f0c5c940eda880752a8e2dfa94d21ef7bf2"
+    },
+    "epoch002_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10774,
+      "sha256": "f217bdc5bd191fe4319c38c99b46ef7b8d1f505d5f89d8c4d2e21a9425511e87"
+    },
+    "model_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "driver": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/run_fixed.py",
+      "bytes": 6642,
+      "sha256": "5dea374912850ebe887d7b6ab63b958a619ca08b5343a3f20bff29b9ad6d4535"
+    },
+    "parser_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/cpu-parser-checks.json",
+      "bytes": 1010,
+      "sha256": "575d78f88b4c8807a77e15960902b777431e7063f987bb2f1406feb3a5ec2d24"
+    },
+    "old_false_fit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/fit-result.json",
+      "bytes": 3609,
+      "sha256": "5abf0b943e184ec7af21b6e30073d165c85c7d8a0a3a2b2fe88603f43c86f854"
+    },
+    "old_false_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/epoch2.responses.jsonl",
+      "bytes": 3897,
+      "sha256": "7276ca68dbf1741321d5e3157fc6731bc172fe793e75965f9f7138ff34bf3276"
+    },
+    "old_false_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/predictions-freeze.json",
+      "bytes": 616,
+      "sha256": "bbf04f89bff556eac68e2a49c084ef8e9a67c7fd052f75794f224804e461518a"
+    },
+    "old_false_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/epoch2.responses.manifest.json",
+      "bytes": 4163,
+      "sha256": "1df1a14df382ceff707d1e7c8312f0d792779faf287c382cf4aac44ea59c57d1"
+    },
+    "old_false_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/run-plan.json",
+      "bytes": 8600,
+      "sha256": "dab33988ed1ea13143c41bff71f404025b643212033efbe3aede0e625ab9f2bc"
+    },
+    "actual_prefix_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/actual_prefix_cpu.py",
+      "bytes": 807,
+      "sha256": "a80bf27d0dabf33b84fe5ed58b67c15198f021162f21308a99a2abf57e5d0a69"
+    },
+    "actual-prefix-cpu.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/actual-prefix-cpu.json",
+      "bytes": 2795,
+      "sha256": "ca7d8f1d4ef3ea808b60dc31397821e2dcedfedd4431c6e5cc706f3eb2546fba"
+    }
+  },
+  "remote_sha256": {
+    "full64-training-fit12/prompts.jsonl": "a55d775a9fd0e187c7658441fac62b6fe8360754e88bb8a4a78efb82694640f3",
+    "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter/adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+    "full64-relation-cpu-preparation/formal2ep/epoch-002/adapter/adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b",
+    "full64-training-thinking12/qwen35_thinking_runner.py": "8706a426373c309cd01abdde04a2f8dd5b18ec2d10f4e9eb763bbf549250e4a8"
+  },
+  "row_documents": {
+    "12455887:relations:24": "12455887",
+    "12846941:relations:8": "12846941",
+    "12405443:relations:16": "12405443",
+    "5415817:relations:0": "5415817",
+    "6057141:relations:8": "6057141",
+    "5538066:relations:0": "5538066",
+    "5425407:relations:0": "5425407",
+    "10313222:relations:8": "10313222",
+    "12652105:relations:0": "12652105",
+    "12078887:relations:24": "12078887",
+    "5789735:relations:0": "5789735",
+    "11235872:relations:8": "11235872"
+  },
+  "prefix_tokens": {
+    "12455887:relations:24": 3303,
+    "12846941:relations:8": 3420,
+    "12405443:relations:16": 3591,
+    "5415817:relations:0": 3059,
+    "6057141:relations:8": 3455,
+    "5538066:relations:0": 3627,
+    "5425407:relations:0": 3871,
+    "10313222:relations:8": 2607,
+    "12652105:relations:0": 3543,
+    "12078887:relations:24": 1653,
+    "5789735:relations:0": 3723,
+    "11235872:relations:8": 4921
+  },
+  "rendered_prefix_sha256": {
+    "12455887:relations:24": "8ca9d369663848b33ee2d3d933aeab68b387454303d37dc733ee8c785993f8b8",
+    "12846941:relations:8": "03e71b7a0bbad35daf647e1e93817da58d8531004c85b53502c70d9f91a3e05c",
+    "12405443:relations:16": "8911278d2b75c7b758e9b814d0885543be83c9011c1b7eae1a71f478e3e5c4fc",
+    "5415817:relations:0": "60dc04a823f6f3b8b7ec7b6dd99e931d12fe298a15cdc4d04a5ca204df69db9a",
+    "6057141:relations:8": "7a18a3c1d94499f919731386544cc471aae7f22a25f8dfadf0a3cefffe1c17f6",
+    "5538066:relations:0": "c529a2654fe5ff181f343b423c0f3475644799d4e92ac604f3fa840499bb3724",
+    "5425407:relations:0": "f2d15bfd77718b777fe430c860249fdc692c74e85a168a48f2123a9c1856530d",
+    "10313222:relations:8": "12d840ff6d7888cc6fe58931591f4c3b5352bfce0d576077f2fd327e2cd722e5",
+    "12652105:relations:0": "ca8389282ea4a08ad733008f05fc7f93a51a61c3645b6448b8d13d83ff2dfb91",
+    "12078887:relations:24": "3b376c4041636ffedcece40ef4a821713395929a752763896b66d5aeebaefc04",
+    "5789735:relations:0": "d39250ebb35cf5ad2704090b3b55473249f431939043ee55ffcca4d5996274a3",
+    "11235872:relations:8": "b6ce932e56400968fbf78538f7fc4d94f4579c87955fe1de3ef1793cafde98a7"
+  },
+  "selection_independent_of_targets": true,
+  "targets_not_uploaded": true,
+  "original_decoder_and_parser_preserved": false,
+  "scope": "Same12 originaltrain64 prompts; once<=300+30; no retry/training/originaldev/outergold. Complete12 freeze before training targets; incomplete means cost/format stop only, no fit and no restart.",
+  "quality_contract": "Training fit P/R/F1/semantic exact, closed/strictfinal/cap counts and costs; no publicScore/generalization. Reuse frozen oldfalse result.",
+  "prefix_input_ids_sha256": {
+    "12455887:relations:24": "133fd61a7cee92a1ce6c8517736c86b61f9d70c74a4bc4cbfbc147c485b32d6c",
+    "12846941:relations:8": "83f4f0c95c2b4027faf89c27abbc9102cfa21c8f24dd86a71dc4de19482ffccf",
+    "12405443:relations:16": "ff5f597c18a027a1614404cda0526a3c643ed8b7a975998a4c8f1cfad70e9ea5",
+    "5415817:relations:0": "ccef1687ab1a1b8b18dc1b187b0f8c21e6b3cb13031ddf68049abf42eeccf450",
+    "6057141:relations:8": "8ba4fc91cca44340dc0f8b4432db42d869e1aa85dfbcada04301e6b6f6a13b10",
+    "5538066:relations:0": "9ebf07be7d82cc8a3307a74d3bd485a3ea3933fb20fb75e3e7d1c2e8e7def4a3",
+    "5425407:relations:0": "bbfb6114dfcec038078fb4c1984f410e5103536d0fe510ca61a778af54e5bbf7",
+    "10313222:relations:8": "f4cab6fe617d68e48f73506ec96f565d0db4bce748244561705d20fdd5303000",
+    "12652105:relations:0": "dd52cd2900064ced465a50fda7aa7505c86403afdcb51758c4bdcea72dabec7f",
+    "12078887:relations:24": "9a4edbddec74b24aa99ac54e08cdc6248a1bff09271f037abc7ca84809c6eaf4",
+    "5789735:relations:0": "1b8e51bce365538fadbacaaa53a871df5b5bae377f53497c1d21300add68c849",
+    "11235872:relations:8": "73fafea0399d076d46521406db164ec6474d1946a5e83c88c55e60ba033863db"
+  },
+  "only_model_generation_variable": "enable_thinking=True; same epoch002, greedy,1600cap,prompt messages; source fingerprint thinking follows flag",
+  "strict_final_contract": "Require actual closing </think>, then whole JSON without recovery/fences/trailing text, exactCID keys, known unique stringpatients and no token cap. Invalid rows count as empty; no fallback."
+}

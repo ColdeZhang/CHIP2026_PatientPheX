@@ -108,3 +108,5 @@
 - [Full64训练目标CPU诊断](qwen35-full64-objective-diagnostic.json)：真实265行mask/token exact，数量与loss贡献分开；[唯一12篇训练拟合计划](qwen35-full64-training-fit12-plan.json)，[实际12篇结果](qwen35-full64-training-fit12-result.json)：训练关系F1 .883721、strict12/exact7，独审通过且GPU释放；不是泛化Score。
 
 - [SFT后继只读判断](qwen35-successor-readonly-review.json)：旧48状态/lr0实际核验、两个目标编码成本及thinking解析边界；无新GPU/训练。
+
+- [固定12唯一thinking计划](qwen35-thinking12-run-plan.json)：只开启thinking，strict final CPU反例/actual12prefix通过；300+30，一次不重试，不是Score。

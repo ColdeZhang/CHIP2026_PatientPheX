@@ -14,7 +14,8 @@
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
 - **当前新诊断**：full64目标CPU审计完成，265行真实token/mask exact；CID49.53%/标点28.04%但含1908空/非空决策分支，19/265全空，不能据数量直接改loss。在线loss .114268→.060500不等于最终自由生成拟合。唯一12篇训练prompt的epoch2生成67.126s完成：strict12/12、57TP/6FP/9FN、F1 .883721、exact7/12；只说明训练侧已学习，不是Score/泛化、不据15错误追加epoch。独审a9c0ccb1通过，20:40:37Z A800 GPU2已释放，watcher7739结束；[诊断](research/full64-objective-diagnostic.md)。
-- **后继只读结论**：旧48完整Adam/RNG仍在但52步日程已lr0，追加必须新协议；两目标候选与已试负控制分开。12份9B实际manifest均thinking=false，模型卡支持接口但adapter能力未证；若后续测试须先验think闭合再strict final。无新GPU/训练；[短判断](research/qwen35-successor-readonly-review.md)。
+- **后继只读结论**：旧48完整Adam/RNG仍在但52步日程已lr0，追加必须新协议；两目标候选与已试负控制分开。12份9B实际manifest均thinking=false，模型卡支持接口但adapter能力未证；若后续测试须先验think闭合再strict final。无新训练；[短判断](research/qwen35-successor-readonly-review.md)。
+- **唯一thinking诊断准备**：root授权同fixed12/full64 epoch002/greedy/1600，仅thinking=true，整次300秒+TERM30一次无重试。14个strict-final反例通过，实际TF5 CPU渲染12条prefix40,773tokens逐SHA一致；未闭think/非完整JSON/未知患者/截断全部无效，targets不上传。源/计划已冻结，待push后fresh核空启动；[计划](evidence/round2/qwen35-thinking12-run-plan.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
