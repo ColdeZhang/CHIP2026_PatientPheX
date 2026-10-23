@@ -1,0 +1,82 @@
+{
+  "frozen_at_utc": "2026-10-23T17:48:11.699907+00:00",
+  "run_id": "phenotagger100-on-crf-gliner-original-dev16",
+  "objective": "One fixed candidate combination on stronger common CRF+GLiNER full-LR baseline; no new Pheno/neural training, no threshold/order sweep.",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+    "sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+    "source_commit": "d4e302f",
+    "assembler_sha256": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d",
+    "manifest_path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/manifest.json",
+    "manifest_sha256": "40b063dc8c5ecd2268249c8b7a32e5b75b7d1a5d269a19513b32d84ede442fec",
+    "reported_score": 0.711324991
+  },
+  "original_pheno_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/plan.json",
+    "sha256": "ca277655bd89d83e06e01f2a4cd9762aafdb0b4cfb300178084884657168fa11"
+  },
+  "reused_scores": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/collected/prediction/scored.jsonl.gz",
+    "sha256": "c8f60247ce4cb9b91a332c91c621a70dcfa65946db8fe5b111fb3c667aa546d3",
+    "remote": "phenotagger-dev16/prediction/scored.jsonl.gz",
+    "candidate_rows": 77329,
+    "normalized_texts": 53034,
+    "parent100_sha256": "d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9",
+    "pheno_training_documents": 48
+  },
+  "sap": {
+    "documents": 64,
+    "reconstruction_manifest_sha256": "469e5299cdc9593a53efae907741b4df9bd3ee7e6b15ed2eebfd48062a775a5f",
+    "detector_sha256": "adb8ff8c8f395d74e2d76dc02995b5c51bf6e0fde818de7a7f4e8667e8b6b626",
+    "bank_cache": {
+      "label": "ontology-and-training-labels",
+      "path": "dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+      "sha256": "4fc0e062ea7940365222aad637058aadfb37dc57681e444eb2091577b591ae03",
+      "rows": 42575,
+      "unique": 42575,
+      "ordered_texts_sha256": "ab10fc0bd1bc919643ec434a3b499ce772538993b614eb82071df591b71839c9"
+    },
+    "reference_manifest_sha256": "394fd304f12b45ccd99d0775fb5170c1104080d9c076e60f845d0aeb3c0647bb",
+    "reference_candidate_sha256": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197",
+    "reference_pool": "ontology-round2/dev16-sapbert/scored-candidates.jsonl.gz",
+    "reconstruction": "Exact original recipe/cache replay, not originally saved coefficients; no new embeddings. Probability0diff/threshold and original-ID0diff on12811 old predicted candidates."
+  },
+  "split_lineage": {
+    "phenotagger_docs": 48,
+    "sap_and_hgb_docs": 64,
+    "dev_docs": 16,
+    "Pheno48_document_objects_equal_subset_of_train64": true,
+    "training_ids_disjoint_dev": true,
+    "dev_input_has_no_labels": true,
+    "input_files": {
+      "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "/workspace/patientphex-data/day1/train64.jsonl": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "/workspace/patientphex-data/day1/dev16.input.jsonl": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+    },
+    "gold_read": false
+  },
+  "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "train64_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "candidate_policy": "Reapply original p>=.95 / descending p,length,offset,ID / negation / nonoverlap to entire77329 frozen Pheno rows against newbase; then old Sap64 p>=.65 cos>=.92 pure nearest ID equality. Do not union old HGB28 additions.",
+  "arms": {
+    "entity_only": "Retain all frozen full-LR baseline entities and associations; only add newly accepted Pheno+Sap entities.",
+    "full_lr": "Same combined entities; sequence route uses same train64 LR(.55) and frozen feature implementation. Baseline exact replay first, no hyperparameter change."
+  },
+  "evaluation": "Both final predictions and SHAs freeze before this-run gold evaluation; evaluate only these two arms, not unfiltered intermediate. Same v2 all/text; no official submission.",
+  "sources": {
+    "phenotagger_augment.py": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+    "phenotagger_sap_consensus.py": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "reconstruct_sap_detector.py": "5397539dfea34d86f4ce74c18864b045a2e71055c1bd41afcccdae6f8f19391f",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "preserve_base_relations.py": "7e11e6b6518fa03e8fe4fb0ebc99c027218d48e9242c2490faafc8413cc3cbe7"
+  },
+  "noop": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/noop/pred.manifest.json",
+    "sha256": "edf6ed0d262093ec5189db254370efc4c2e716b028f9c096afa32ad6c9c2856b",
+    "output_byteexact_baseline": true
+  },
+  "gold_read_for_this_run": false
+}
