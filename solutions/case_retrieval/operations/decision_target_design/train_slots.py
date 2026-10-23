@@ -31,12 +31,42 @@ def main():
     params=list(named.values());optimizer=torch.optim.AdamW(params,lr=1e-4,weight_decay=.01)
     scheduler=get_linear_schedule_with_warmup(optimizer,2,32)
     model.train();step=0;checked=False;torch.cuda.reset_peak_memory_stats()
+    def checkpoint(complete,next_epoch,next_group):
+        name='epoch-002' if complete else f'partial-step-{step:03d}'
+        staging=b/('.'+name+'.incomplete');destination=b/name
+        assert not staging.exists() and not destination.exists();staging.mkdir()
+        model.save_pretrained(staging/'adapter',safe_serialization=True)
+        state=dict(completed_epochs=2 if complete else next_epoch,global_step=step,
+            next_epoch_index=next_epoch,next_group_index=next_group,
+            optimizer=optimizer.state_dict(),scheduler=scheduler.state_dict(),
+            python_rng=random.getstate(),numpy_rng=np.random.get_state(),torch_rng=torch.get_rng_state(),
+            cuda_rng=torch.cuda.get_rng_state_all())
+        torch.save(state,staging/'training_state.pt')
+        files={str(p.relative_to(staging)):dict(sha256=common.sha(p),bytes=p.stat().st_size)
+               for p in sorted(staging.rglob('*')) if p.is_file()}
+        common.save(staging/'checkpoint.json',dict(completed_epochs=2 if complete else next_epoch,
+            global_step=step,next_epoch_index=next_epoch,next_group_index=next_group,files=files,
+            manifest_sha256=common.sha(b/'run_manifest.json'),plan_sha256=common.sha(b/'remote-plan.json'),
+            final_fixed_epoch_only=complete,partial_not_for_inference=not complete,
+            optimizer_schedule_exhausted=complete,no_quality_selection=True))
+        staging.replace(destination)
+        return destination
     with (b/'updates.jsonl').open('x') as trace:
         for epoch in range(2):
             groups=previous.batch_plan(124,1,8,20261023,epoch)
             assert len(groups)==16 and sum(len(g) for g in groups)==124
             epoch_started=time.monotonic();sum_loss=0.
-            for group in groups:
+            for group_index,group in enumerate(groups):
+                elapsed=time.monotonic()-started
+                estimated_next=sum(len(data[ix[0]]['input_ids']) for ix in group)*plan['probe_step_seconds']/6777+20
+                if elapsed>=1740 or elapsed+estimated_next+60>=1800:
+                    destination=checkpoint(False,epoch,group_index)
+                    common.save(b/'training_terminal.json',dict(status='partial_budget_stop_not_epoch2_not_for_inference',
+                        global_step=step,next_epoch_index=epoch,next_group_index=group_index,
+                        checkpoint=str(destination),checkpoint_sha256=common.sha(destination/'checkpoint.json'),
+                        elapsed_seconds=time.monotonic()-started,stop_reason='save margin before fixed1800 hardcap',
+                        no_quality=True,no_automatic_resume=True))
+                    print('PARTIAL_SAVED_NO_INFERENCE',flush=True);return
                 optimizer.zero_grad(set_to_none=True);lr=optimizer.param_groups[0]['lr'];probes={};group_loss=0.
                 if not checked and lr>0:
                     for name,p in named.items():
@@ -63,20 +93,7 @@ def main():
             common.save(b/f'epoch-{epoch+1:03d}-summary.json',dict(completed_epochs=epoch+1,global_step=step,
                 mean_group_loss=sum_loss/16,epoch_seconds=time.monotonic()-epoch_started,no_quality=True))
     assert checked and step==32 and scheduler.last_epoch==32 and optimizer.param_groups[0]['lr']==0
-    staging=b/'.epoch-002.incomplete';destination=b/'epoch-002'
-    assert not staging.exists() and not destination.exists();staging.mkdir()
-    model.save_pretrained(staging/'adapter',safe_serialization=True)
-    state=dict(completed_epochs=2,global_step=32,optimizer=optimizer.state_dict(),scheduler=scheduler.state_dict(),
-        python_rng=random.getstate(),numpy_rng=np.random.get_state(),torch_rng=torch.get_rng_state(),
-        cuda_rng=torch.cuda.get_rng_state_all())
-    torch.save(state,staging/'training_state.pt')
-    files={str(p.relative_to(staging)):dict(sha256=common.sha(p),bytes=p.stat().st_size)
-           for p in sorted(staging.rglob('*')) if p.is_file()}
-    assert {'adapter/adapter_config.json','adapter/adapter_model.safetensors','training_state.pt'} <= set(files)
-    common.save(staging/'checkpoint.json',dict(completed_epochs=2,global_step=32,files=files,
-        manifest_sha256=common.sha(b/'run_manifest.json'),plan_sha256=common.sha(b/'remote-plan.json'),
-        final_fixed_epoch_only=True,optimizer_schedule_exhausted=True,no_quality_selection=True))
-    staging.replace(destination)
+    destination=checkpoint(True,2,0)
     elapsed=time.monotonic()-started;assert elapsed<1800
     common.save(b/'training_complete.json',dict(status='fresh_fixed_slot_training_complete',epochs=2,global_step=32,
         successful_optimizer_calls=32,no_overflow_skips=True,manifest_sha256=common.sha(b/'run_manifest.json'),
@@ -84,6 +101,8 @@ def main():
         first_update_sha256=common.sha(b/'first-nonzero-update.json'),elapsed_seconds=elapsed,
         completed_epoch=time.time(),peak_allocated_bytes=torch.cuda.max_memory_allocated(),
         peak_reserved_bytes=torch.cuda.max_memory_reserved(),no_F1_labels=True,no_quality=True))
+    common.save(b/'training_terminal.json',dict(status='complete_epoch002_32',
+        complete_sha256=common.sha(b/'training_complete.json'),checkpoint_sha256=common.sha(destination/'checkpoint.json')))
     print('TRAINING_COMPLETE_FRESH_EPOCH002_32',flush=True)
 
 if __name__=='__main__':main()
