@@ -20,3 +20,5 @@
 - `relation-sft-independent-review.json`：3套CRF重训/增强装配和204提示反事实重放、全部监督目标、实际远端训练绑定；明确开发验证和未重跑Sap的范围。
 
 - `relation-sft-training.json`：完整2epoch/52step训练统计、固定epoch2所有产物SHA、独立数据审核来源和磁盘预算；尚不表示评测收益。
+
+- `relation-sft-fold0-results.json`：配对58提示完整结果、所有固定集合负结果、作业恢复与响应/预测SHA；原dev最佳不变，无官方提交。
