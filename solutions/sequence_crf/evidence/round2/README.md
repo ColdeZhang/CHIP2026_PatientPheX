@@ -38,3 +38,6 @@
 - `training-loss-diagnosis.json`：仅outertrain48三nested OOF实体/关系损失分解，用于下一路线选择，不是新dev分。
 
 - `training-loss-independent-review.json`：三nested全部计数/分层/marker丢失独立复算。GLiNER候选结构设计见P-20261023-GLINER.md，当前无新评测分数。
+
+- `gliner-span-diagnostic.json`：冻结三篇训练候选的纯跨度负结果，无HPO/官方分数。
+- `gliner-supervised-preparation.json`：官方标签对齐、上游loss问题/显式BCE检查、A800来源与固定2epoch计划。

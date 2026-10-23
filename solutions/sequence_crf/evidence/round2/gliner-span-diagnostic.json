@@ -1,0 +1,48 @@
+{
+  "scope": "three preselected training documents, span-only diagnostic; no HPO or association score",
+  "metrics": {
+    "gliner": {
+      "f1": 0.314410480349345,
+      "fn": 241,
+      "fp": 73,
+      "precision": 0.496551724137931,
+      "recall": 0.23003194888178913,
+      "tp": 72
+    },
+    "nonoverlap_union": {
+      "f1": 0.6726998491704375,
+      "fn": 90,
+      "fp": 127,
+      "precision": 0.6371428571428571,
+      "recall": 0.7124600638977636,
+      "tp": 223
+    },
+    "oof_crf_sap": {
+      "f1": 0.7080536912751678,
+      "fn": 102,
+      "fp": 72,
+      "precision": 0.7455830388692579,
+      "recall": 0.6741214057507987,
+      "tp": 211
+    }
+  },
+  "marginal": {
+    "accepted_fp": 55,
+    "accepted_tp": 12,
+    "eligible_fp": 57,
+    "eligible_tp": 12,
+    "new_overlap_rejected": 2,
+    "overlaps_original": 76
+  },
+  "limitations": [
+    "Span-only collapses atomic HPO IDs and includes positive NIL; no linking claim.",
+    "Three input-selected training documents are a small planning diagnostic, not a heldout score.",
+    "GLiNER weights were not fine-tuned on competition labels; OOF base uses the appropriate train32.",
+    "No gold rule, candidate, label threshold, or patient relation was changed."
+  ],
+  "report": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/span-diagnostic.json",
+  "report_sha256": "72fb93fa0d71ef98000f3599efad6ad46bd9efd8607bd370463193eb954610e3",
+  "source_sha256": "575c4ea7ccf32a19621d4162bda0f43e2597d54c60659877b27af90ea8612f56",
+  "candidates_frozen_before_gold_commit": "5ce55f253d94c186d8696b877acda3bf09b4d67c",
+  "candidate_sha256": "d01a6a1b7190b76941833fe6dee26214b3ebf277684a91d00ea06aaff573ad5b"
+}

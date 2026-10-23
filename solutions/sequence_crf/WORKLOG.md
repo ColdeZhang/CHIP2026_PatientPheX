@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **当前后续**：outer train48损失诊断与独审完成，主要漏项是短且训练未见表达，非长跨度或章节硬截。按[冻结提案](experiments/P-20261023-GLINER.md)完成GLiNER medium-v2三篇input-only pilot：官方权重SHA通过、实际195,175,936参数、98passages/101窗/8247词，145候选全部完整词边界与原文坐标通过；推理3.058秒、峰值0.830GiB。没有读取gold、HPO链接或打分，不能宣称收益。GPU0已退出复查释放交本体续训，当前无本路线运行任务；下一步等待主线程安排候选质量对照，不自行启动heldout或微调。来源/实际命令/输出SHA见[完整短索引](evidence/round2/gliner-preparation.json)。
+3. **GLiNER监督结构对照准备就绪**：三篇input-only机制pilot通过，但已冻结候选训练侧72TP/73FP，非重叠新增12TP/55FP导致纯span F1下降，未推广zero-shot。train48全部1744窗标签/掩码CPU审核完，固定nested32的1150窗、2ep/576steps计划获主线程授权；先A800最长batch单步，随后同基座/同inner16输入配对。上游GLiNER loss参数错位已在训练前发现并改用自有显式BCE，人工梯度检查通过；当前尚未启动GPU训练。模型已完整SHA转移A800，自有runtime/约9.36GB余量，.3 GPU0仍归本体。实际源码SHA、命令准备/数据/负结果见[监督索引](evidence/round2/gliner-supervised-preparation.json)、[固定提案](experiments/P-20261023-GLINER.md)。
 
 ## 已完成的近期结论
 
