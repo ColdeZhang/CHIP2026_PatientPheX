@@ -7,3 +7,5 @@
 复用已独审的四套外train48/held16，每外train48用三组真实train32→held16 OOF底层候选；公共原生模型无taskfit，纯input64缓存可共享。对每折重新拟合相同HGB160/.4/seed20261023/全部池greedy，旧.95已训树不复用。4个新fit/infer共120秒CPU硬限，旧全部控制不重训；4完整预测共同freeze再一次pooled/各fold评价。
 
 [冻结计划](../evidence/round2/public-phenotagger-union-plan.json)绑定原3378/c258源码快照、全部旧reference/数据/指标、新canonical/provenance及CPU证明。当前尚未新fit或质量评估；数据准备和增量独审可并行，不额外增加逐步审批。
+
+第一次CPU准备在0.165秒因调用本体模块不存在的parse_hpo退出；本体真实接口名是load_hpo（parse_hpo属于sequence），只修函数名，原HPO/allowed政策不变。失败源/计划/执行/stderr保留于外部attempt1-HPO-loader；尚未候选处理、拟合或质量评估。

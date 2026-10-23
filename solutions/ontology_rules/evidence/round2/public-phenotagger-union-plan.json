@@ -17,7 +17,7 @@
   "model_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
   "sources": {
     "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/evaluate_control.py": "21dd283b6b841d843c95cfb1fd8a057e1604d0868adf906f25e610678a1fff6d",
-    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/prepare_union.py": "b8971e015cc23551079b7709aadbc0a53ad3621512fc88785a623b681638801c",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/prepare_union.py": "983887473cd3f203ed323f3f4c96a8939f628730813bff67bbe1b58a84c006d8",
     "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/run_control.py": "12367a183c2abbdb717a10f025916b778bc07295e71807cf4dfbdfda9fcf72ee",
     "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/select_public_candidates.py": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
     "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_union_control/select_public_candidates_folds.py": "c258115c054e3c32493de45291acb47a0680517c3ef138357b473454684daa54",
@@ -275,5 +275,10 @@
   "train64_gold": "/workspace/patientphex-data/day1/train64.jsonl",
   "train64_gold_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
   "success_criterion": "Pooled defaultv2all/text Score>.7226510219708908; report all4fold and changes, no selective fold reporting. Full predictions freeze together before any new endpoint evaluation.",
-  "quality_status_at_freeze": "no new fit or quality evaluated"
+  "quality_status_at_freeze": "no new fit or quality evaluated",
+  "implementation_revision": {
+    "reason": "Own ontology HPO reader is load_hpo; parse_hpo belongs to sequence module. Initial CPU preparation stopped at attribute access before candidate processing or fit. Only function name corrected, current official HPO/allowed policy unchanged.",
+    "first_preparation_execution_sha256": "361db14d606fc6a50f7d70fec7786a709cfe06c3a3112e0cf4a944610be8bffb",
+    "previous_plan_sha256": "377076315f08c6aa72e0555b21ac77684bfef24dffb18f689355c6da744616d1"
+  }
 }

@@ -55,7 +55,7 @@ def main():
     assert old_manifest['input_sha256'] == census['input_sha256'] == plan['input64']['sha256']
     sys.path.insert(0, plan['ontology_source'])
     import run as base
-    _, allowed, _, _ = base.parse_hpo(check(plan['hpo']))
+    _, allowed, _, _ = base.load_hpo(check(plan['hpo']))
     allowed.discard('HP:0000118')
     pool = {}
     arm_keys = []
