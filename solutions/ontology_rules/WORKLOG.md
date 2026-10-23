@@ -14,3 +14,5 @@
 溯源：冻结SapBERT候选生成代码为 `016bb77/0084d33` 的 `gpu_candidates.py`（SHA dc5cc0…），后续 `0673f85` 为装配证据检查点；两者不混称。独立验证代理复评和逐字节重建4折/dev均通过，报告在外部 validation/ontology-sapbert-review.json。
 
 最近已核验备份：`21620fd` 已推送本方案分支；此后的固定160与嵌套验证准备作为下一检查点。
+
+上下文CE已准备：外层train48内3折OOF候选抽样11,180行（2,795正）、无标签fold0候选14,511行；先固定1epoch/160tokens/batch32/lr2e-5，阈值只在训练内fold0预设.3/.5/.7选择。data和源文件上传至.3 ontology-round2/context-fold0，待retrieval LoRA smoke短批释放后复查GPU0开跑。
