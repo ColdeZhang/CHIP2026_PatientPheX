@@ -25,10 +25,14 @@
 
 按检索最长6777 token 单步13.123秒线性外推，原全池2epoch约 **14,036秒/3.90小时**；这是估计，不是实体训练实测。检索中途第一轮实际吞吐折算约2.95小时，仍远超最小控制预算。因此不建议启动全池训练。最长训练行 `11765409:47:0:0` 有32槽、全负，按输入长度选择，不能换成金标挑出的“好样本”。若后续单步诊断获准，还需另用合成正负 logit 验证双方向梯度；丢弃全部 probe 状态，不推断质量。
 
-## 唯一门控缩小普查（事前冻结，待执行）
+## 唯一门控缩小普查（完成）
 
 根线程追加授权：仅 train32 标签和严格下层资源，以旧语义+本体 `calibrate.features`、HGB160/15叶/最小叶35/L2=5/lr=.06/seed20261023/no early stop 新 fit 一次；固定宽松 **p≥.1**，不扫 cut。新模型只用来缩小候选，不把 gate 分数喂给9B。训练32上的筛选是 **resubstitution selection**，不是 OOF；F1 仅无标签过滤。
 
 新 fit+推断+成本普查上限60秒，保存真实模型并回载核概率；统计全部训练正例保留比例只作训练诊断。不重用见过F1的四折概率，不冒充当前97列公开HGB。计划 `gate-p01/plan.json` 已在运行前冻结。若成本仍过高或资源链不完整，则停下缩小方案，不据金标调整阈值。
 
 完整产物：`/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/`；小索引见 [证据](../evidence/round2/entity-slot-feasibility.json)。`census.py` 是实际运行源码，`gate_census.py` 是新增成本普查入口；引用旧源码小快照只读保留。既有当前best参数9,475,880,164，若共享同一9B底座再加独立43,278,336 LoRA，合计9,519,158,500；此仅资源预算，不解释官方ensemble口径。
+
+固定门控 CPU 新fit **2.048秒**，fit+推断+分词+回载总 **17.159秒**。77自然列，模型回载两集合全部概率exact。训练候选缩至 **2,430（1,645正/785负）**，训练正例保留95.584%；637提示/460,069tokens/最长2,418。F1仅input缩至1,589候选/398提示/295,155tokens/最长2,810，所有文献仍有候选。未知F1保留正例覆盖，不能用训练95.6%代替它。
+
+根已条件授权A100 GPU2一次**总120秒probe**，正式训练未获准：最短259token/1正槽、最长train2418token/20槽15正，各一步非零lr更新；最长F1 2810token/23槽只forward检查shape/finite，不保存分数。行按输入长度选，非标签筛选。固定源完整复制至自有目录，复用未改的load/slot/loss数学；实际远端AutoTokenizer再核3条输入，native全logit/指定slot对照、LoRA各family真实更新、LMhead不变。115秒主cap+5秒TERM/KILL，全部状态丢弃。未来若训练须fresh2epoch/r16/alpha32/.05、batch1/accum8、lr1e-4等事前配方，依据实测重新定总预算，不能从probe自动续训。[probe计划](../evidence/round2/entity-slot-gate-probe-plan.json)。
