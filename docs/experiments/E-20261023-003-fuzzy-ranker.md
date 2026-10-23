@@ -85,12 +85,35 @@ v2 在每篇训练文献生成候选时，排除只由该文献提供的别名�
 
 **结论**：候选排除修正让 fuzzy 真正产生了 2 个正确输出，但总体下降 0.025083，失去的 exact 召回及关联收益更多。首日选 v1 原产物提交，不因一次修正无收益否定整条技术路线；v2 保留为失败证据。当前得分应归因于训练折别名、监督实体筛选和患者归属模型，而非未经证实的 fuzzy 增益。候选召回仍是主要上限，后续可在新的训练内部验证上研究扩大召回、分层正负采样或语义编码；本轮不继续扫 dev 参数。
 
+进一步区分 fuzzy 子类型：v2 有 6 个字符近似输出、其中 1 个正确（`intellectual development disorder` → `intellectual developmental disorder`）；另有 1 个词形归一输出且正确（`dysmorphic face` → `dysmorphic faces`）。因此字符近似的独立正确贡献目前只有 1 个。错误近似如 `recessive developmental disorder` → `pervasive developmental disorder` 提醒我们不能把高字符串相似度直接当语义等价。
+
 ### 交付与复现
 
 选定 B 文件：`/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1/B.predictions.jsonl`，594,642 bytes；SHA-256 `a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a`。100 篇、244 患者、4,411 实体、2,391 关联；训练+推理 26.61 秒、最大 RSS 724,552 KiB。该文件保持不可覆盖，主线程登记提交凭据。
 
 `dev-v1`、`dev-v2`、`full-v1` 全量预测、模型和日志在外部目录保留；Git 仅保存源码、小型摘要、哈希及复现命令。每次改动使用新运行目录，不能覆盖交付文件。首次 v1 命令来自 `3eff30a`，源码 SHA-256 `5f3614f3859a74d98dc989a963ed32f34c131f31ae30e40073006bb2b69d3c5f`；v2 实际运行源码 SHA-256 `7cfa3cb838f003eb5c679fa5947b9947c812aa95f005e396ee7a41a7531906fa`。主线程维护台账和 HANDOFF；已上报“训练特征排除自身支持，仍不能解决候选自包含”的新坑。
 
+v2 源码快照在 `f1472b8`。当前统一 CLI 用 `--training-candidate-policy full-index`（默认）复现 v1，用 `leave-one-document-out` 复现 v2，策略纳入缓存指纹。当前源码 SHA-256 `72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c`；`full-v1-repro` 重新拟合得到的 B 与原交付逐字节一致，耗时 31.27 秒、最大 RSS 726,504 KiB；`dev-v2-repro` 也与原 dev-v2 逐字节一致。两种显式模式的重建验证均通过，没有改变原产物。共享基础 `90d52d0` 已 cherry-pick，11 个评测边界测试通过。
+
+例如，在新目录重建选定 B（先安装 requirements 中的固定版本）：
+
+```bash
+python solutions/fuzzy_ranker/run.py \
+  --train /workspace/patientphex-data/day1/train80.jsonl \
+  --input /workspace/patientphex-data/day1/B.input.jsonl \
+  --hpo /workspace/patientphex-data/hp.obo \
+  --training-candidate-policy full-index \
+  --output NEW_RUN_DIR/B.predictions.jsonl --work-dir NEW_RUN_DIR
+python scripts/validate_predictions.py \
+  --input /workspace/patientphex-data/day1/B.input.jsonl \
+  --pred NEW_RUN_DIR/B.predictions.jsonl --hpo /workspace/patientphex-data/hp.obo \
+  --output NEW_RUN_DIR/validation.json
+```
+
+独立验证将 train 改为 `train64.jsonl`、input 改为 `dev16.input.jsonl`；评分使用 `python scripts/evaluate.py --gold /workspace/patientphex-data/day1/dev16.gold.jsonl --pred PRED --output METRICS.json`。诊断脚本仅运行后分析，不能反向向训练资源添加 dev 表达。
+
 ## 已知局限与后续判定
 
 模糊召回使用词头阻塞，完全不同的同义表达会漏检；首版没有神经语义编码器。训练集小，候选特征与同文档训练误差可能导致概率过于乐观。否定和重叠处理为简化规则；跨段患者共指仍依赖有限 mention 特征。需要用独立验证逐项检查，失败时区分候选召回不足、链接错误和归属误报。
+
+主线程后续审计发现，关系训练 `gold_associations` 未拆分 `HP:...;HP:...` 合法复合关联串；train64 有 26 项，因此一部分原子概念正例被当作负例。该限制同时影响 v1、v2，应在下一轮修正并单独验证。本轮按统一安排停止训练，保持已交付 B 不变，不把未做的修复说成已完成。共享 evaluator 的同类复合串问题由主线程修复；原指标文件保留，修正版会另存并标注版本，不能拿两个口径直接比较。

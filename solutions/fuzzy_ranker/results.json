@@ -536,6 +536,25 @@
           }
         ],
         "note": "Counts use strict split-HPO span matching; -1 matching and duplicate assumptions may differ slightly from the shared evaluator."
+      },
+      "retrieval_subtypes": {
+        "false_negative_below_mention_threshold": 179,
+        "false_negative_missing_retrieval_candidate": 310,
+        "false_negative_overlap_or_id_selection": 20,
+        "false_negative_negation_filter": 23,
+        "false_positive_overlapping_wrong_boundary": 74,
+        "selected_exact": 667,
+        "true_positive_exact": 576,
+        "relation_fn_concept_present": 45,
+        "relation_fn_concept_absent": 170,
+        "false_positive_wrong_id_same_span": 9,
+        "false_positive_no_gold_overlap": 13,
+        "selected_fuzzy": 7,
+        "selected_approximate": 6,
+        "true_positive_fuzzy": 2,
+        "true_positive_approximate": 1,
+        "selected_morphology": 1,
+        "true_positive_morphology": 1
       }
     },
     "full-v1": {
@@ -639,5 +658,228 @@
         }
       ]
     }
-  }
+  },
+  "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+  "training_limitations": [
+    "Gold relation composite HPO strings are not atomized: 26 train64 entries affected; retained in both v1 and v2, to fix in a later experiment."
+  ],
+  "reproduction_checks": {
+    "full-v1-repro": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:18:23.815518+00:00",
+        "training": {
+          "mention_candidates": 12162,
+          "mention_positives": 5785,
+          "training_documents": 80,
+          "hpo_terms": 19120,
+          "aliases": 42553,
+          "relation_candidates": 15769,
+          "relation_positives": 5425
+        },
+        "prediction": {
+          "candidates": 10542,
+          "entities": 4411,
+          "associations": 2391
+        },
+        "input_documents": 100,
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "output_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "output_bytes": 594642,
+        "fingerprint": {
+          "train_sha256": "3880983ee40428399f579478029342aa46678b36e4021d20494f25d8873dcdbd",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+          "training_candidate_policy": "full-index"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train80.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/B.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--training-candidate-policy",
+          "full-index",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/B.predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 31.270874089000245,
+        "max_rss_kib": 726504,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 100,
+          "entities": 4411,
+          "relations": 2391,
+          "patients": 244
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+        "prediction_sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/B.predictions.jsonl",
+          "bytes": 594642,
+          "sha256": "a990730984eeb0f5d1f28f7282659141bcbbec548af031606dfe020fb95ac10a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/model.joblib",
+          "bytes": 5221810,
+          "sha256": "3358b15482cf1617adecf9ef3973ad0b77f6c08b7d077d8b4dfb9882ffece1c9",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/run.json",
+          "bytes": 1871,
+          "sha256": "55fa8e3a22f97a28836915db7feb38ec43892ffd2e5e0dbd340a6b031586b74a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/run.log",
+          "bytes": 913,
+          "sha256": "2e7e8dc7b892f3205bf915275923735836bf502ae36a88ba31b54f23f9870235",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/full-v1-repro/validation.json",
+          "bytes": 689,
+          "sha256": "dacdf9f6e5b53c73af45f73c9eb16c6e1010da2a9520ff342433259da69ae2cc",
+          "retention": "retain externally; reproducible using recorded command and code"
+        }
+      ],
+      "prediction_byte_identical_to": "full-v1"
+    },
+    "dev-v2-repro": {
+      "metadata": {
+        "method": "HPO fuzzy candidate retrieval + sparse mention classifier + supervised patient attribution",
+        "recorded_at_utc": "2026-10-23T11:19:17.539219+00:00",
+        "training": {
+          "mention_candidates": 7211,
+          "mention_positives": 3235,
+          "training_documents": 64,
+          "hpo_terms": 19120,
+          "aliases": 42283,
+          "relation_candidates": 9656,
+          "relation_positives": 3384
+        },
+        "prediction": {
+          "candidates": 1738,
+          "entities": 674,
+          "associations": 385
+        },
+        "input_documents": 16,
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "output_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "output_bytes": 90984,
+        "fingerprint": {
+          "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+          "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+          "implementation_sha256": "72a5a992c830a9da52d34398bba70ac0fa45ba4eead1da6f85fb232873efad6c",
+          "training_candidate_policy": "leave-one-document-out"
+        },
+        "command": [
+          "solutions/fuzzy_ranker/run.py",
+          "--train",
+          "/workspace/patientphex-data/day1/train64.jsonl",
+          "--input",
+          "/workspace/patientphex-data/day1/dev16.input.jsonl",
+          "--hpo",
+          "/workspace/patientphex-data/hp.obo",
+          "--training-candidate-policy",
+          "leave-one-document-out",
+          "--output",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/predictions.jsonl",
+          "--work-dir",
+          "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro"
+        ],
+        "mention_threshold": 0.6,
+        "relation_threshold": 0.55,
+        "elapsed_seconds": 16.67647196100006,
+        "max_rss_kib": 700508,
+        "evaluation_note": "Input labels are never used. Train and validation interpretation is determined by supplied files. Model cache requires exact data, HPO and implementation hashes."
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 674,
+          "relations": 385,
+          "patients": 36
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "prediction_sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "artifacts": [
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/metrics.eval-v2.json",
+          "bytes": 12998,
+          "sha256": "778cfa4eaa3a0fb20ddf3be17ac0273366024bbab7dcab33329c03c9374b193a",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/model.joblib",
+          "bytes": 5068912,
+          "sha256": "1fcaa7ca7a23b444a8292bc967525768cc2bc7e91d6ceebcacb2e524fbef75d7",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/predictions.jsonl",
+          "bytes": 90984,
+          "sha256": "d3b0464bbdb8b94739ed5583755d13dc4a81f6eecedd54b0ae7d8c0a6ea56a66",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/run.json",
+          "bytes": 1887,
+          "sha256": "30519735ad7647069cc843b87348b6938b87e4c381e169ea91f04b7a29505e93",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/run.log",
+          "bytes": 438,
+          "sha256": "fd364364cfb9708f050ad12f00ff3d3065af4c9a2e3626c11686ece1af6a8c47",
+          "retention": "retain externally; reproducible using recorded command and code"
+        },
+        {
+          "path": "/workspace/patientphex-runs/day1-20261023/fuzzy-ranker/dev-v2-repro/validation.json",
+          "bytes": 685,
+          "sha256": "4e4e144ceef7e19ef0e7016e73d43a4012ab61f6745e93ab2831f7ac4d93c257",
+          "retention": "retain externally; reproducible using recorded command and code"
+        }
+      ],
+      "prediction_byte_identical_to": "dev-v2"
+    }
+  },
+  "reported_fit_inference_seconds": 111.39637848000075
 }

@@ -339,12 +339,15 @@ def main():
     for name in ('train','input','hpo','output','work-dir'):parser.add_argument('--'+name,required=True)
     parser.add_argument('--mention-threshold',type=float,default=.60)
     parser.add_argument('--relation-threshold',type=float,default=.55)
+    parser.add_argument('--training-candidate-policy',choices=('full-index','leave-one-document-out'),default='full-index',
+      help='full-index reproduces selected v1; leave-one-document-out reproduces v2. Neither uses validation labels.')
     parser.add_argument('--reuse-model',action='store_true')
     args=parser.parse_args();start=time.monotonic();work=Path(args.work_dir);work.mkdir(parents=True,exist_ok=True)
     train=load_jsonl(args.train);inputs=load_jsonl(args.input)
     assert len({str(d['pmc_id']) for d in train})==len(train),'Duplicate training document'
     train_hash=digest(args.train);hpo_hash=digest(args.hpo)
-    cache=work/'model.joblib';fingerprint={'train_sha256':train_hash,'hpo_sha256':hpo_hash,'implementation_sha256':digest(__file__)}
+    cache=work/'model.joblib';fingerprint={'train_sha256':train_hash,'hpo_sha256':hpo_hash,'implementation_sha256':digest(__file__),
+      'training_candidate_policy':args.training_candidate_policy}
     if args.reuse_model and cache.exists():
         saved=joblib.load(cache)
         if saved['fingerprint']!=fingerprint:raise ValueError('Model cache does not match train, ontology, or implementation')
@@ -354,7 +357,8 @@ def main():
         print(json.dumps({'stage':'retrieval_ready','hpo_terms':len(hpo),'aliases':len(retriever.aliases)}),flush=True)
         rows=[];labels=[];doc_candidates=[]
         for doc in train:
-            cs=retriever.candidates(doc,exclude_doc=str(doc['pmc_id']));gold=gold_mentions(doc,alt);doc_candidates.append(cs)
+            excluded=str(doc['pmc_id']) if args.training_candidate_policy=='leave-one-document-out' else None
+            cs=retriever.candidates(doc,exclude_doc=excluded);gold=gold_mentions(doc,alt);doc_candidates.append(cs)
             for c in cs:
                 rows.append(mention_features(doc,c,retriever,training=True));labels.append(int((c.start,c.end,c.hid) in gold))
         mention_model=fit_classifier(rows,labels)

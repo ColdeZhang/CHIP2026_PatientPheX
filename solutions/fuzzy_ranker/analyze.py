@@ -46,8 +46,14 @@ def main():
             counts['false_positive_'+reason]+=1
         for key in selected:
             if key in bykey:
-                counts['selected_exact' if bykey[key].exact else 'selected_fuzzy']+=1
-                if key in goldkeys:counts['true_positive_exact' if bykey[key].exact else 'true_positive_fuzzy']+=1
+                c=bykey[key]
+                counts['selected_exact' if c.exact else 'selected_fuzzy']+=1
+                if key in goldkeys:counts['true_positive_exact' if c.exact else 'true_positive_fuzzy']+=1
+                if not c.exact:
+                    same_stem=' '.join(map(run.stem,c.normalized.split()))==' '.join(map(run.stem,c.matched.split()))
+                    subtype='morphology' if same_stem else 'approximate'
+                    counts['selected_'+subtype]+=1
+                    if key in goldkeys:counts['true_positive_'+subtype]+=1
         present={h if h!='-1' else e['text'] for e in pd['entities'] for h in run.ids(e)}
         gs=run.gold_associations(gd,retriever.alt);ps={str(x['patient_id']):set(x['phenotype']) for x in pd['association']}
         for key,values in gs.items():
