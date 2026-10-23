@@ -155,3 +155,8 @@ Qwen实际base+adapter为8,997,081,600；下载bundle另含未运行视觉456,01
 ### 公开pair三类分数与既有HPO分数不同
 
 PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出Not Match/Related/Match；Related在公开训练构造中有query→祖先方向，不能当对称距离或患者归属后验。它既不是Sap独立向量cosine，也不是PhenoTagger全HPO head posterior；不同于此前用赛事标签训练的二元span/context CE。固定compound三个均值只是原子分数摘要，NIL三零是缺编码哨兵，不能当真实Not Match=0。当前准备保留全部旧top3候选/特征，仅加三列；实际27项CPU合约与全池join已过，未证明质量。原生分词/tuple去重及成本详见[唯一控制](experiments/phenobert-pair-control.md)，不再重走完整模型审查。
+
+
+### PhenoBERT固定pool结果边界
+
+同pool三类均值使top3 pooled .723467→.725156，但预定九cut最佳实体目标.779193仍低原Bioformer.3 .780193，不因“比弱对照提高”升级。固定原边界的10次ID重排仅+.000108 Score，doc项下降、只有一折正；保留微弱机制信号，当前不原dev迁移。注意对象变化数10不同于原子匹配计数（加9/去10），compound/NIL评估不能直接推对象编辑数。全部控制与质量独审见[记录](experiments/phenobert-pair-control.md)。

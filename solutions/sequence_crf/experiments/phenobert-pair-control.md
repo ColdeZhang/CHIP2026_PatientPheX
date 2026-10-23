@@ -1,6 +1,6 @@
 # 指定 HPO 名称的公开三类 pair 特征
 
-当前阶段：CPU/source 准备完成，135000公共缓存已完成并独审0eef457c通过；正式plan8963ca27冻结，尚无HGB拟合或质量结果，原dev不运行。目标是检验现有相同边界多个 HPO ID 之间，真实公开 pair 语义分数能否帮助选择器排序，而不是再扩大跨度或重复调整门槛。
+当前阶段：全部固定CPU控制完成，质量独审通过，整体不升级；当前原dev最佳仍.737585917，不新增原dev运行。公开135000缓存沿独审0eef457c复用，实际唯一四fit和预定九cut结果如下。
 
 ## 固定方法与边界
 
@@ -14,7 +14,7 @@
 
 ## 已完成的 CPU 证据
 
-- 旧 top3 源码/计划 16 个快照保存在外部 `sequence_crf/phenobert-pair-control/snapshots/`，实际标签、decoder、池检查、旧模块装载等 13 个函数 AST 完全不变；新 main 仅加缓存绑定、三列以及匹配 top3 对照检查。新入口尚未执行 fit。
+- 旧 top3 源码/计划 16 个快照保存在外部 `sequence_crf/phenobert-pair-control/snapshots/`，实际标签、decoder、池检查、旧模块装载等 13 个函数 AST 完全不变；新 main 仅加缓存绑定、三列以及匹配 top3 对照检查。该准备阶段未执行 fit；后续唯一正式fit见下文。
 - 27 项纯函数合同通过：原子类顺序、去重均值、顺序不变、零哨兵、真实 softmax 约束、缺失/重复响应、非当前名称、字段覆盖拒绝、显式 native representation 复用及 ontology 分支。
 - 全 747,178 次出现与 biomed 的 137,784 个 `(原文,atomic ID)` 请求逐项 join 通过，12.63 秒；369 compound、6,500 NIL，无缺失 pair、无混合非法 compound。完整 forward tuple 去重后 135,000；原生长度 median14/p95=22/max48，不截断。只读取输入/候选，不访问 prepared base 的标签/关联。
 - `preparation-plan.json` 保留 `execution_authorized=false`，cache/scores 尚为空；不能把准备计划当作已执行命令。实际原生推断及准备的小源码逐字保存在 `phenobert_pair_control/native_source/`，其余官方源码按固定 commit/blob 重取。
@@ -32,3 +32,23 @@ biomed 的 512 实际无标签输入 pilot：8×64 native FP32，forward3.18秒�
 root预注册一个30秒CPU解码控制：完整保留原Bioformer cut.3的实体边界、数量、顺序和其他字段，只在每个原边界的完整top3候选中按本次新HGB概率argmax选identifier。原ID必须exact存在，真并列先原ID、再identifier稳定序；不加cut、不加/删/挪跨度、不重分关联。8项区别性合同通过，方案v2 bf1469ad/正式plan8963ca27已在任何任务fit或新评分前冻结。四个主臂、四个固定边界臂以及匹配旧top3/原Bioformer完整对照共同freeze后各新臂只评一次；该臂不参与九cut选择。
 
 公共缓存实测189.654秒（forward176.622）<600，135000键完整、归一/finite、6500NIL不请求模型，GPU已释放。批量缓存及2110batch来源独审0eef457c沿用，不重复NN。完整指针见[正式准备](../evidence/round2/phenobert-pair-launch.json)。
+
+
+## 唯一终点（源码4424d5fd，已推送）
+
+四fold实际fit/infer分别41.27/39.48/41.20/41.24秒，共163.194秒<300；固定边界ID解码1.556秒<30。主臂、固定边界臂、两组旧对照共同freeze `e8bb76ad` 后才读取新质量标签，四fold/pooled全部0错警；关联及其他非实体对象完全不变。没有再训公开模型，也没有原dev操作。
+
+| 控制 | pooled Score | 对照与解释 |
+|---|---:|---|
+| 旧top3 / .3 | .723467295 | 匹配同候选池对照，复用旧完整报告 |
+| 同池+三pair均值 / .3 | .725155643 | +.001688347；四foldΔ +.003355/+.002249/−.001536/+.002571；仍低未扩top3的Bioformer基底 |
+| 原Bioformer / .3 | .725655389 | 当前保留的训练侧非嵌套基底，复用旧报告 |
+| 固定其边界，仅新HGB换ID | .725763139 | +.000107750；men微升/doc微降，fold0负/1、2零/3正 |
+
+主臂相对旧top3增加44TP/68FP、去除34TP/93FP，净10TP/−25FP。固定边界臂保持4315实体对象，只有10个identifier改变（各fold2/2/0/6）；按评分原子单元为加4TP/5FP、去2TP/8FP，不能把这两个分母混为“9次修改”。这显示公共pair特征有一定ID/旧池排序信号，但没有稳定超出现有强基底；仅+0.000108不足以据此重复原dev比较。
+
+预先固定九cut在所有36预测freeze `a8428dcd` 后一次计算，3.191秒；统一选.3，pooled实体目标 **.779193104**，较匹配top3已校准最佳.777516517 +.001676587，但较保留Bioformer.3 .780192596 **−.000999492**。该目标由全train64标签选择，是校准拟合值，不是独立泛化或比赛Score。旧calibrator字节沿用，继承的`original_fixed03_negative_unchanged`字段不用于判断相对哪个基底的正负；以上实际数值明确区分同池改善与未超过现有强基底。
+
+全部8新预测/4315固定边界决策、81合同、36cut/计数/选择经独立CPU复放通过（质量审`296db624`）；其范围不含重新训练全部四个选择器。父审只对三列/引擎增量及fold0唯一独立fit做复核，当前等待合并报告。公共cache/模型沿既有独审，不重复NN。
+
+若未来采用pair模型，已核必要神经参数9,475,880,164加108,312,579=**9,584,192,743**，仅是候选资源预算；本次并未将pair加入当前best，Qwen未使用bundle模块的计数边界仍按库存说明保留。完整预测/概率留外部，Git仅小结果索引和本次必要源码：[结果/源码/计划/预算/恢复](../evidence/round2/phenobert-pair-results.json)。
