@@ -1,0 +1,39 @@
+--- a/run.py
++++ b/run.py
+@@ -9,13 +9,11 @@
+ import argparse
+ from collections import Counter, defaultdict
+ import hashlib
+-import importlib.metadata
+ import json
+ import math
+ import os
+ from pathlib import Path
+ import pickle
+-import platform
+ import re
+ import time
+ 
+@@ -39,12 +37,6 @@
+ 
+ def sha(path):
+     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+-
+-
+-def runtime_versions():
+-    return {"python": platform.python_version(),
+-            **{package: importlib.metadata.version(package) for package in
+-               ["numpy", "scipy", "scikit-learn", "sklearn-crfsuite", "python-crfsuite"]}}
+ 
+ 
+ def read_jsonl(path):
+@@ -410,8 +402,7 @@
+                 "fit_seconds": fitted - start, "predict_seconds": end - fitted, "total_seconds": end - start,
+                 "iterations": args.iterations, "ner_confidence": 0.55, "relation_threshold": 0.55,
+                 "linker_threshold": 0.60, "training_stats": stats,
+-                "source_sha256": sha(__file__), "runtime_versions": runtime_versions(),
+-                "input_annotations_used": False}
++                "source_sha256": sha(__file__), "input_annotations_used": False}
+     (work / (out.stem + "-manifest.json")).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+     print(json.dumps(manifest, ensure_ascii=False), flush=True)
+ 
