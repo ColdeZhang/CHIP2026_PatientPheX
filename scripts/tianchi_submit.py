@@ -29,6 +29,7 @@ def main():
     entry = json.loads(args.entry.read_text())
     artifact = Path(entry['file'])
     assert artifact.name == entry['filename']
+    assert artifact.suffix == '.jsonl' and 0 < entry['bytes'] < 100 * 1024 * 1024
     assert artifact.stat().st_size == entry['bytes']
     assert hashlib.sha256(artifact.read_bytes()).hexdigest() == entry['sha256']
     assert entry['season_id'] == 1862
@@ -44,12 +45,13 @@ def main():
         page = next(p for p in browser.contexts[0].pages
                     if '/competition/entrance/532512/submission' in p.url)
         auth = page.evaluate('''async () => {
-            const s = await (await fetch('/home/user/getSession')).json();
-            const r = await (await fetch('/v3/proxy/competition/api/race/getDetail?raceId=532512')).json();
+            const s = await (await fetch('/home/user/getSession', {signal:AbortSignal.timeout(15000)})).json();
+            const r = await (await fetch('/v3/proxy/competition/api/race/getDetail?raceId=532512', {signal:AbortSignal.timeout(15000)})).json();
             return {login:s.data?.login, signed:r.data?.signed,
                     showSubmit:r.data?.showSubmit, seasonId:r.data?.currentSeasonId};
         }''')
         assert auth == dict(login=True, signed=True, showSubmit=True, seasonId=1862)
+        assert set(page.locator('th:visible').all_inner_texts()) == {'文件名称', '提交时间', '状态'}
         before = int(re.search(r'剩余提交次数\s*(\d+)\s*次', page.inner_text('body')).group(1))
         assert before > 0
         row = page.locator('tr').filter(has_text=entry['filename'])
@@ -63,6 +65,7 @@ def main():
             match = re.search(r'剩余提交次数\s*(\d+)\s*次', page.inner_text('body'))
             after = int(match.group(1)) if match else before
             if row.count() and after == before - 1:
+                assert row.locator('td').count() == 3
                 cells = row.locator('td').all_inner_texts()
                 # Current table has filename/time/status only; never read a score table.
                 receipt.update(status='accepted', quota_after=after, observed_at_utc=now(),
