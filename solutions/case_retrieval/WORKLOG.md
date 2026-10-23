@@ -20,3 +20,8 @@
 
 - 90窗口抽取及一次格式重试均完成，GPU训练开始前重新确认GPU1空闲；正式训练/续训进程和检查点将记录在下方。
 - .3 LoRA smoke与重载已结束并将GPU0交回本体，产物`case-retrieval/round2-lora/smoke-bf16/`；小证据`lora-bf16-smoke-*`，不得当成正式模型或验证成绩。
+
+- 13:31 UTC：真实epoch恢复小测试在 .100 `resume-test-bf16/`；2个训练原样本、epochs2/accum1/warmup0，pause1已原子保存step2，resume作业`proc_8362033d-6f57-49fa-a6d9-15d64f2cad71`。源码7c693a2、train_lora SHA2a25b83d...；真实resume状态审查通过，后续正式训练使用同入口；连续数值轨迹等价性未证明。
+
+- 2026-10-23T13:38:11.752256666Z：正式305窗2epoch BF16启动 .100 GPU1，作业`proc_6e1059ff-40f5-47db-bfbd-c5363d13a35c`；远端`case-retrieval/round2/sft-extract-fold0-bf16-v1/`，每epoch保留adapter+optimizer/scheduler/RNG；大产物外存同名目录。启动前无他人GPU1进程。
+- HPO基础模型链接69批已在 .3 GPU0独立运行，作业`proc_6f907c9a-4fe7-468d-8a28-15a5e4e321ce`，远端`case-retrieval/round2-normalization/full/`；先最短5729/最长8593tokens smoke全部合法无截断，保持同一固定prompt。
