@@ -50,3 +50,5 @@
 - [Sap固定一致性结果](phenotagger-sap-consensus-results.json)：训练内fold0 .725539，仅一个固定点，原dev不变。
 
 - [真实肯定词面3ep适配冻结](phenotagger-adaptation-plan.json)：仅train48、原回放保留、实际CPU token/init检查，尚不代表训练结果。
+
+- [真实词面3ep raw负结果](phenotagger-adaptation-results.json)及[唯一配对Sap过滤计划](phenotagger-adaptation-sap-plan.json)：固定预算与负结果保留。

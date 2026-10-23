@@ -1,0 +1,354 @@
+{
+  "recorded_at": "2026-10-23T17:24:52.753087+00:00",
+  "code_commit": "905cc41e8b722737a9505ce74319dd12d76d8c71",
+  "baseline_metrics": {
+    "menF1": 0.7328316086547507,
+    "docF1": 0.7308085977482088,
+    "micF1": 0.6937669376693767,
+    "macF1": 0.6840290971369651,
+    "Score": 0.7103590603023253
+  },
+  "parent100_same_policy_metrics": {
+    "menF1": 0.7242123435476909,
+    "docF1": 0.7458866544789763,
+    "micF1": 0.6885644768856448,
+    "macF1": 0.6915313508989465,
+    "Score": 0.7125487064528147
+  },
+  "adapted_metrics": {
+    "menF1": 0.7063621533442088,
+    "docF1": 0.7318777292576419,
+    "micF1": 0.6620530565167243,
+    "macF1": 0.6793364720289525,
+    "Score": 0.6949073527868819
+  },
+  "delta_vs_base": -0.015451707515443447,
+  "delta_vs_parent_same_policy": -0.01764135366593278,
+  "incremental_counts": {
+    "mention": {
+      "tp": 87,
+      "fp": 239,
+      "fn": -87
+    },
+    "document": {
+      "tp": 62,
+      "fp": 106,
+      "fn": -62
+    },
+    "relation": {
+      "tp": 31,
+      "fp": 98,
+      "fn": -31
+    }
+  },
+  "difference_vs_parent_counts": {
+    "mention": {
+      "tp": 27,
+      "fp": 108,
+      "fn": -27
+    },
+    "document": {
+      "tp": 11,
+      "fp": 40,
+      "fn": -11
+    },
+    "relation": {
+      "tp": 4,
+      "fp": 41,
+      "fn": -4
+    }
+  },
+  "assembly": {
+    "source_sha256": {
+      "assembler": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+      "baseline": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "association": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+    },
+    "inputs": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "base": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65",
+      "scored": "9a15d25b2eb658cb231557fffdae5da4c3cdc6181ddd45efc0f616df9648981b",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "counts": {
+      "candidates": 87134,
+      "reject_none_or_disallowed": 81077,
+      "reject_negated": 76,
+      "reject_overlap": 1885,
+      "reject_probability": 3770,
+      "added_relations": 129,
+      "added_entities": 326
+    },
+    "policy": "Fixed p>=.95 top1 valid HPO; reject >32 tokens/negated; descending p,length,offset,ID nonoverlap; preserve base entities and all base associations; only new evidence adds associations.",
+    "output_sha256": "45cbc0edbdfcbc3c52b25922c55a0e54ceae8efdc3e9308cf4422ed49f3800df",
+    "input_annotations_used": false
+  },
+  "terminal": {
+    "final_sha256": "a4d2526545f7fcfe3d3dfef47215ca89170125ec3fd6c7251999ea0679925f8d",
+    "latest_sha256": "ba8112b93bc5fd405d6109a46b7c847e7d71894c041b93c51961d50d95ead4dc",
+    "model_tensor_digest": "3bdc36798e1ee03c01a8d04c7e1e75f236c964d85410e124afdccbf981aadf44",
+    "global_step": 1701,
+    "epochs": 3,
+    "heldout_used": false,
+    "checkpoint_retention": "latest full training state + final inference model only"
+  },
+  "training": {
+    "status": "complete",
+    "epoch": 3,
+    "offset": 0,
+    "global_step": 1701,
+    "completed_epochs": [
+      {
+        "epoch": 1,
+        "online_training": {
+          "hpo_positive": {
+            "count": 86543,
+            "loss_sum": 14499.273370623589,
+            "correct": 84194,
+            "predicted_none": 709,
+            "mean_loss": 0.16753837249255962,
+            "accuracy": 0.9728574234773465
+          },
+          "reject_none": {
+            "count": 58559,
+            "loss_sum": 836.8026964571764,
+            "correct": 58432,
+            "predicted_none": 58432,
+            "mean_loss": 0.014289907554042526,
+            "accuracy": 0.997831247118291
+          },
+          "real_positive": {
+            "count": 27984,
+            "loss_sum": 14269.394850850105,
+            "correct": 25668,
+            "predicted_none": 709,
+            "mean_loss": 0.5099126233151124,
+            "accuracy": 0.9172384219554031
+          },
+          "hpo_replay": {
+            "count": 58559,
+            "loss_sum": 229.87856636196375,
+            "correct": 58526,
+            "predicted_none": 0,
+            "mean_loss": 0.003925589001894905,
+            "accuracy": 0.9994364657866426
+          }
+        }
+      },
+      {
+        "epoch": 2,
+        "online_training": {
+          "hpo_positive": {
+            "count": 86543,
+            "loss_sum": 2310.380568921566,
+            "correct": 86228,
+            "predicted_none": 139,
+            "mean_loss": 0.02669633094440412,
+            "accuracy": 0.9963601908877667
+          },
+          "reject_none": {
+            "count": 58559,
+            "loss_sum": 221.14844712475315,
+            "correct": 58519,
+            "predicted_none": 58519,
+            "mean_loss": 0.003776506551081015,
+            "accuracy": 0.9993169282262334
+          },
+          "real_positive": {
+            "count": 27984,
+            "loss_sum": 2096.7535484433174,
+            "correct": 27705,
+            "predicted_none": 139,
+            "mean_loss": 0.07492687065620775,
+            "accuracy": 0.9900300171526587
+          },
+          "hpo_replay": {
+            "count": 58559,
+            "loss_sum": 213.62702831625938,
+            "correct": 58523,
+            "predicted_none": 0,
+            "mean_loss": 0.003648064828912027,
+            "accuracy": 0.99938523540361
+          }
+        }
+      },
+      {
+        "epoch": 3,
+        "online_training": {
+          "hpo_positive": {
+            "count": 86543,
+            "loss_sum": 794.7177830338478,
+            "correct": 86462,
+            "predicted_none": 16,
+            "mean_loss": 0.00918292389949329,
+            "accuracy": 0.9990640490854258
+          },
+          "reject_none": {
+            "count": 58559,
+            "loss_sum": 96.02344707690645,
+            "correct": 58546,
+            "predicted_none": 58546,
+            "mean_loss": 0.0016397726579502117,
+            "accuracy": 0.9997780016735258
+          },
+          "real_positive": {
+            "count": 27984,
+            "loss_sum": 615.1568664759398,
+            "correct": 27935,
+            "predicted_none": 16,
+            "mean_loss": 0.021982449488133923,
+            "accuracy": 0.9982489994282447
+          },
+          "hpo_replay": {
+            "count": 58559,
+            "loss_sum": 179.5609129294753,
+            "correct": 58527,
+            "predicted_none": 0,
+            "mean_loss": 0.003066324782347296,
+            "accuracy": 0.9994535425809867
+          }
+        }
+      }
+    ],
+    "current_epoch_online_training": {
+      "hpo_positive": {
+        "count": 0,
+        "loss_sum": 0.0,
+        "correct": 0,
+        "predicted_none": 0,
+        "mean_loss": 0.0,
+        "accuracy": 0.0
+      },
+      "reject_none": {
+        "count": 0,
+        "loss_sum": 0.0,
+        "correct": 0,
+        "predicted_none": 0,
+        "mean_loss": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "training_seconds_excluding_checkpoint_io": 190.41553814336658,
+    "additional_training_seconds_excluding_checkpoint_io": 190.41553814336658,
+    "peak_allocated_bytes": 5173672960,
+    "model_tensor_digest": "3bdc36798e1ee03c01a8d04c7e1e75f236c964d85410e124afdccbf981aadf44",
+    "checkpoint_sha256": "ba8112b93bc5fd405d6109a46b7c847e7d71894c041b93c51961d50d95ead4dc",
+    "heldout_used": false
+  },
+  "inference": {
+    "source_sha256": "ea7f14e22b1f5bd774ea80376582c75570918b0d29caea40c3ea2db2ea1b2911",
+    "classifier_source_sha256": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+    "terminal": {
+      "final_sha256": "a4d2526545f7fcfe3d3dfef47215ca89170125ec3fd6c7251999ea0679925f8d",
+      "latest_sha256": "ba8112b93bc5fd405d6109a46b7c847e7d71894c041b93c51961d50d95ead4dc",
+      "model_tensor_digest": "3bdc36798e1ee03c01a8d04c7e1e75f236c964d85410e124afdccbf981aadf44",
+      "global_step": 1701,
+      "epochs": 3,
+      "heldout_used": false,
+      "checkpoint_retention": "latest full training state + final inference model only"
+    },
+    "candidate_manifest_sha256": "3950296486bba5987b95b3b07f9f7d39952dbc56adbe80dc2d6d72a651ee0537",
+    "rows": 87134,
+    "unique_texts": 59541,
+    "overlength_unique": 0,
+    "overlength_policy": "Scored for transparent diagnostics; assembler rejects model additions beyond max32.",
+    "prediction_seconds": 10.859368734061718,
+    "peak_allocated_bytes": 922715136,
+    "input_annotations_used": false,
+    "output_sha256": "9a15d25b2eb658cb231557fffdae5da4c3cdc6181ddd45efc0f616df9648981b",
+    "config": {
+      "candidate_dir": "phenotagger-fold0/inference",
+      "training_dir": "phenotagger-fold0/adaptation3ep/trained",
+      "model_dir": "../sequence-crf/pretrained-biomedbert",
+      "output_dir": "phenotagger-fold0/adaptation3ep/prediction",
+      "batch_size": 256,
+      "expected_epochs": 3
+    }
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1275,
+      "relations": 488,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "45cbc0edbdfcbc3c52b25922c55a0e54ceae8efdc3e9308cf4422ed49f3800df",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "interpretation": "Fixed3epoch adaptation from model100 with fresh Adam/seed; replay plus real train48 positives, no intermediate scores or threshold scan. Same rawp>=.95/base/candidate pool, original-dev not run. Parent Sap-filtered .725539 is a separate pipeline, not the same-policy comparator.",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/plan.json",
+      "sha256": "1c6af26e243a4533d3757b6170a67b69be0628caffaadd407e41a4ec593f0bd7"
+    },
+    "data/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/data/manifest.json",
+      "sha256": "a39ebfdf91096daa85dce08bdf2c30aa91e423c59013a1cc215dce73f99ebdb7"
+    },
+    "cpucheck.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/cpucheck.json",
+      "sha256": "739d6cd72fd0d11ca88dfb8fc9886b5bed8b3483c6f98c66545bbcb1276805a5"
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/job.json",
+      "sha256": "483cf2ff641d33db20c5500497d813702436187e814279c6e343aa05fe54ec02"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/gpu-release.json",
+      "sha256": "b758558be36486941a1127046a8c8f2481a7c91e24e4bb5fd60492cf1b972e81"
+    },
+    "collected/trained/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/trained/complete.json",
+      "sha256": "d82439cf1e2fe2a11b2f7bcf8d8da1b97c2daa9b365224d44862e3d485f671c6"
+    },
+    "collected/trained/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/trained/manifest.json",
+      "sha256": "e29c46d003b39e93e1070e6c425f82827a6b4a20f68c14602c5436c87db11887"
+    },
+    "collected/trained/progress.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/trained/progress.json",
+      "sha256": "b362ba649b9d6aeed22c6e0d4fae140b8c39c444bfbb1627ff519c9d2644790a"
+    },
+    "collected/prediction/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/prediction/manifest.json",
+      "sha256": "8e5140eb610e3ce746822972c3b0cf54e2e763779e88d4d7ee865e62530490e8"
+    },
+    "collected/prediction/scored.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/prediction/scored.jsonl.gz",
+      "sha256": "9a15d25b2eb658cb231557fffdae5da4c3cdc6181ddd45efc0f616df9648981b"
+    },
+    "assembled/pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/assembled/pred.jsonl",
+      "sha256": "45cbc0edbdfcbc3c52b25922c55a0e54ceae8efdc3e9308cf4422ed49f3800df"
+    },
+    "assembled/pred.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/assembled/pred.manifest.json",
+      "sha256": "0188fb30fed0fb1c9e02eecb83f102a71da4784a1aa9831da6d5f526b1501719"
+    },
+    "assembled/metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/assembled/metrics.json",
+      "sha256": "cf081b0508f932fa302231d8e6d19e19678ba6aa14eddc70131fbd4b08ac0a7f"
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/assembled/validation.json",
+      "sha256": "91abcafcbd03fce9a270b7a7594625cf2e18a4457404b88353f7807a430a7057"
+    },
+    "assembled/prediction-before-evaluation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/assembled/prediction-before-evaluation.json",
+      "sha256": "efc46e1c85002b96840ddc6819286900fc64b2767e4fd9f63f06071326fe2da0"
+    }
+  }
+}
