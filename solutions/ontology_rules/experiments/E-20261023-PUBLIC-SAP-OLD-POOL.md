@@ -27,4 +27,4 @@
 
 best相对旧best **−.001081164**，四fold目标差值依次−.002198810、−.004857821、+.004763415、−.000980539。best .4减少72mentionTP/93FP、37docTP/55FP；固定.3则mention−6TP/+28FP、doc0TP/+2FP，均未改善两指标均值。候选集完全不变后仍无收益，关闭本配置及此前top3+Sap配置，不迁原dev、不扩大消融或阈值，不据此否定所有语义模型。
 
-nonentities逐对象保持原cut.3模板，association原来自.4。本次是训练侧两实体F1校准，不是完整Score、独立泛化或.8达标。没有序列化HGB/vectorizer；实际源/计划/全概率/全预测留外部，可明确标记重建。完整[结果/恢复](../evidence/round2/public-sap-old-pool-results.json)。新增终点独审进行中，向量链完整复用前一审查，不重NN。
+nonentities逐对象保持原cut.3模板，association原来自.4。本次是训练侧两实体F1校准，不是完整Score、独立泛化或.8达标。没有序列化HGB/vectorizer；实际源/计划/全概率/全预测留外部，可明确标记重建。完整[结果/恢复](../evidence/round2/public-sap-old-pool-results.json)。新增终点独审PASS（079c7382…）：244794全对象/两列、固定fold0独立fit概率与预测byteexact；其余fold检查同引擎actual manifest/列/输出，未重复四fit；36decode/计数/选点exact，格式0错警。向量链复用前一c577终审，不重NN。
