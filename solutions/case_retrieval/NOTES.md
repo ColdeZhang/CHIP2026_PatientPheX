@@ -40,3 +40,5 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 ### 二层校准须隔离候选生成器
 
 普通OOF行不能再次随意拆分作为meta训练/验证：生成其他训练行候选的模型可能已经见过meta验证文献。严格校准须在meta训练文献内重新生成OOF候选，vectorizer也只fit meta训练，不能为凑齐旧特征列数引入heldout词表。本次train32/meta16选定阈值.30，再固定作用原full48树，外层Score由.653192升至.669003，仍低同实体规则.711354；按停止条件关闭、不移原dev。单折校准有方差，外层此前参与过研究，不能把此结果写成盲测或把改善弱基线写成超过强基线。见[E-008的r2-18记录](experiments/E-20261023-008.md)及[小证据](evidence/round2/strict-meta-calibration-result.json)。
+
+- 重复fresh运行环境检查应写新的launch-preflight文件，逐项比较解析后的模型/环境/SHA语义；不要覆写已有freeze所绑定的初次preflight，也不要把可能含耗时元数据的整份新响应SHA当作环境是否等价的判断。

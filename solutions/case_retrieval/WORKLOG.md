@@ -10,6 +10,7 @@
 - **最新结论**：9B微调能降低关系FP，但直接替换仍损召回；原dev微调271TP/64FP/182FN vs fullLR331/203/122。204严格OOF base决策作为4事实的固定HGB对照也负：无LLM .653192→有LLM .649124，低于内fold0 rules .711354。均冻结，不依据heldout调阈值。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
 - **当前任务**：fresh full64关系SFT实际运行中；A800 GPU2 `proc_ccb3fa32-ddf7-424e-b15f-a3c9a7003ef8` 于18:55:25 UTC启动，19:55:25 UTC训练硬截止（TERM后30秒KILL）。独立CPU/data/guard审查与6153最长fresh probe均已通过；265行×2ep、68updates/4warmup、cap6400只拒超限，唯一epoch002，不续旧48或probe。正式已进入训练；尚无完成或质量结论。恢复入口外存`full64-relation-cpu-preparation/formal-job.json`与`formal-monitor.json`，本地watcher8857，勿重复启动。
+- **已授权后继，尚未启动**：full64完整终点后仅一个原dev新adapter臂；同A30旧64提示/955实体/466CID/原decoder与parser，900秒+30秒grace，旧base/SFT48/fullLR按SHA复用。新权重SHA待真实完成；先等本体NER明确释放.100 GPU1再fresh核空。单臂操作源码/10合成检查/静态审查已冻，先freeze预测再一次评新臂，见[准备证据](evidence/round2/qwen35-full64-dev-single-arm-preparation.json)。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。

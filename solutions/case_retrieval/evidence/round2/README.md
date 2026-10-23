@@ -78,3 +78,5 @@
 - `qwen35-full64-cpu-plan.json`：合法四折265行/6153最长/68更新的新独立协议；cap6400、不继承48adapter，成本probe与60分钟正式预算授权，尚未GPU。
 
 - [fresh full64 正式启动](qwen35-full64-training-start.json)：265×2/68updates，18:55:25 UTC启动、60分钟训练硬cap；仅运行状态，无质量结果。
+
+- [full64 原dev唯一新adapter臂准备](qwen35-full64-dev-single-arm-preparation.json)：同A30单臂900+30，旧三对照按SHA复用；实际权重待训练终点，当前仅CPU准备/10合成检查。源码快照位于`../../operations/full64_dev/`。

@@ -1,0 +1,37 @@
+{
+  "status": "cpu_sources_frozen_pending_training_and_gpu_handoff",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation",
+  "proposal_sha256": "edf29025dc054b64842d5112e7e23f9fec0d3c2e771b6439dbe160034336e571",
+  "protocol_sha256": "652ed38e61127907813479ef8e920186a659f07d30a9a239b66acd419271e804",
+  "sources": {
+    "prepare_and_transfer.py": "c3f9db95cc3b78261369875629aab22de5f095d33efb5c654eead419cb6455b8",
+    "run_fixed_arm.py": "3662b5cdc7ac2bd2a747d895e93b3753be482fa682b14622bebb5b8fcc25ed09",
+    "evaluate_fixed_arm.py": "affbab18549825aa3c0fe051befff6201b68209471f5cfd14352070af12fd016",
+    "test_evaluate_fixed_arm.py": "fd120d5f6ef622af3df276af017437f51c4ae696ba1393330fb854c941e8317f"
+  },
+  "static_review_sha256": "252074e990f61b59f96116cb888711a3516e37aa1e57865ad7cb2c8aebd710de",
+  "synthetic_tests": 10,
+  "new_arm_only": true,
+  "old_controls_reused": [
+    "sameA30_base",
+    "sameA30_SFT48",
+    "fullLR_same955entities"
+  ],
+  "fixed_rows": 64,
+  "fixed_entities": 955,
+  "fixed_concepts": 466,
+  "fixed_patients": 36,
+  "input_token_total": 202743,
+  "input_token_max": 5194,
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "execution_cap_seconds": 900,
+  "kill_grace_seconds": 30,
+  "training_endpoint_required": "fresh full64 epoch002,265 rows,64 documents,68 updates,actual checkpoint/source/destination SHA",
+  "new_adapter_sha256": null,
+  "new_adapter_sha256_note": "Training still running; null is planning state only and is rejected by executable guards.",
+  "evaluation_order": "complete raw -> one new pred -> freeze new and old references -> one new v2 evaluation; old three not rescored",
+  "raw_generation_cost_reference_seconds": 310.648,
+  "runner_total_cost_reference_seconds": 337.989,
+  "scope_caveat": "SFT docs48→64 and OOF candidate generators32→48 both change; schedules52→68/3→4 and reject-only cap6144→6400 follow. Original955 entities still include GLiNER48. Originaldev has been used for research, not blind.",
+  "official_submission": false
+}
