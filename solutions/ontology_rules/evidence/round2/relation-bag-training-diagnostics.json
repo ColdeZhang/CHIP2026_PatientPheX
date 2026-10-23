@@ -1,0 +1,192 @@
+{
+  "scope": "train48 only; three train32->heldout16 OOF CRF+fixed Sap predictions; no outerfold0 or originaldev labels read",
+  "purpose": "Feasibility counts for patient-independent document-HPO background filter; not model quality or attainable Score",
+  "policy": "Allowed atomic HPO only; positive iff linked to at least one specified patient; NO/NIL/non-HPO omitted from this diagnostic; no candidate supplementation",
+  "local_patient_definition": "At least one provided patient mention start is inside the occurrence +/-220-character passage-clipped window; no coreference expansion or tokenizer claim",
+  "source_sha256": "2d7848796c7a1a8b77190a000c42f7d69fc1da185517d0799ed3ec652ba6bd73",
+  "train_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "ontology_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+  "sources": [
+    {
+      "prediction": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "prediction_sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+      "manifest_sha256": "7117879119183856b680cb6134a225600d5395db03263f2392066c1ebac4656c",
+      "inputs": {
+        "train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+        "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+        "base": "a4421d1996c4d2e85346489593db8d6a6367b3856ebc4896cab817147645f440",
+        "candidates": "5b5f9d758a6400cb1b91e2e8d36c6bbde06d976a28b77ad0bbd5fd84fe784d96",
+        "candidate_manifest": "c68e7f63a89c33e10c8295db710aff8ca76ac5e6b5e86ebb9a2184fb9b501d5b"
+      }
+    },
+    {
+      "prediction": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner2/candidates.jsonl",
+      "prediction_sha256": "bfd51f42281680bc7778a354dd8b811b9549c13f5e8eaf7d63e034d65b6ae6e6",
+      "manifest_sha256": "dcd3775affc30f459bcf4c0284964cfb55f948b9f524f37f9badfd645a681d24",
+      "inputs": {
+        "train": "2b7f9fb33dd6f9e8d1d4783745a657a5221409afd9bd3b5b5f4803796c524d9f",
+        "input": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+        "base": "300908981d5b58d803d4bb7c1c3c29ab5d9e381acfabec79f442d66ce87e7446",
+        "candidates": "e09d4d5d16e8d8fd20037c9f5fcf25c4cb86d7d59993ee352f21a3198b7868c1",
+        "candidate_manifest": "27f9cf3bc32a09b32db5437e4dc3a563d4043cb437ff2e4abd86ba2477cfe630"
+      }
+    },
+    {
+      "prediction": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner3/candidates.jsonl",
+      "prediction_sha256": "4214382eb8d715dacc3a8413dd3de2c7e2d32af52605fa1076e04e2b3f10f8e7",
+      "manifest_sha256": "bc9d4752c9830105514154687a01bd01238dcf5de90ff0ede1c950f9f629efb6",
+      "inputs": {
+        "train": "bb14bff13c89eaf8a90e95c25bb563388612d3db36f4993a7ccd86611127a92e",
+        "input": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+        "base": "5e79c9dc3baed2116d1647d98401aff908755389d1155b36ca43d21b54835ed4",
+        "candidates": "ded1d6202e70f4e72e13997cae06ffa35a729f4771c3499901bd422c61c8eaff",
+        "candidate_manifest": "db0d7906392f2a17acf66d9e95228dd1b068c84af3523518297f604358419a31"
+      }
+    }
+  ],
+  "counts": {
+    "excluded_non_allowed_HPO_occurrences": 3,
+    "OOF_negative_bags": 691,
+    "OOF_negative_bags_without_any_given_patient_in_220char_windows": 594,
+    "OOF_negative_bags_without_exact_gold_positive_occurrence": 237,
+    "OOF_negative_occurrences": 1130,
+    "OOF_negative_exact_gold_positive_occurrences": 689,
+    "OOF_negative_rule_assigned_bags": 292,
+    "OOF_positive_bags": 783,
+    "OOF_positive_bags_without_any_given_patient_in_220char_windows": 417,
+    "OOF_positive_bags_without_exact_gold_positive_occurrence": 47,
+    "OOF_positive_occurrences": 1874,
+    "OOF_positive_exact_gold_positive_occurrences": 1595,
+    "OOF_positive_rule_assigned_bags": 751,
+    "gold_entity_negative_bags": 738,
+    "gold_entity_positive_bags": 1075,
+    "documents": 48,
+    "gold_patient_HPO_relations": 1307,
+    "gold_any_patient_HPO_bags": 1079,
+    "gold_any_patient_HPO_bags_absent_from_OOF": 296,
+    "rules_TP": 837,
+    "rules_FN": 470,
+    "rules_FP_wrong_patient_but_positive_doc_concept": 75,
+    "rules_FP_negative_doc_concept": 319,
+    "rules_FP_negative_doc_concept_with_gold_positive_entity": 177
+  },
+  "bag_sizes": {
+    "OOF_negative": {
+      "bags": 691,
+      "occurrences": 1130,
+      "min": 1,
+      "median": 1,
+      "p95": 4,
+      "max": 18,
+      "more_than_1": 194,
+      "more_than_4": 29,
+      "histogram": {
+        "1": 497,
+        "2": 101,
+        "3": 43,
+        "4": 21,
+        "5": 9,
+        "6": 7,
+        "7": 4,
+        "8": 1,
+        "9": 3,
+        "10": 2,
+        "13": 1,
+        "17": 1,
+        "18": 1
+      }
+    },
+    "OOF_positive": {
+      "bags": 783,
+      "occurrences": 1874,
+      "min": 1,
+      "median": 1,
+      "p95": 7,
+      "max": 24,
+      "more_than_1": 375,
+      "more_than_4": 94,
+      "histogram": {
+        "1": 408,
+        "2": 148,
+        "3": 85,
+        "4": 48,
+        "5": 28,
+        "6": 19,
+        "7": 16,
+        "8": 8,
+        "9": 5,
+        "10": 4,
+        "11": 3,
+        "12": 2,
+        "13": 2,
+        "14": 1,
+        "15": 1,
+        "16": 2,
+        "19": 1,
+        "21": 1,
+        "24": 1
+      }
+    },
+    "gold_entity_negative": {
+      "bags": 738,
+      "occurrences": 1163,
+      "min": 1,
+      "median": 1.0,
+      "p95": 4,
+      "max": 19,
+      "more_than_1": 199,
+      "more_than_4": 24,
+      "histogram": {
+        "1": 539,
+        "2": 106,
+        "3": 36,
+        "4": 33,
+        "5": 11,
+        "6": 4,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "11": 1,
+        "15": 1,
+        "19": 1
+      }
+    },
+    "gold_entity_positive": {
+      "bags": 1075,
+      "occurrences": 2408,
+      "min": 1,
+      "median": 1,
+      "p95": 6,
+      "max": 35,
+      "more_than_1": 477,
+      "more_than_4": 102,
+      "histogram": {
+        "1": 598,
+        "2": 199,
+        "3": 118,
+        "4": 58,
+        "5": 21,
+        "6": 28,
+        "7": 14,
+        "8": 12,
+        "9": 7,
+        "10": 2,
+        "11": 4,
+        "12": 1,
+        "13": 3,
+        "14": 3,
+        "15": 1,
+        "16": 2,
+        "18": 1,
+        "19": 1,
+        "20": 1,
+        "35": 1
+      }
+    }
+  },
+  "model_training_performed": false
+}

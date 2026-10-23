@@ -151,3 +151,7 @@ root复核冠军卡与旧context_calibrate.py的结构差异：旧CE是±180字�
 有限候选不足与NIL不同：top5没有等价概念，只说明本次召回不足或语义不确定，不能证明整个HPO无对应概念。首个9B有限选择控制统一ABSTAIN、不输出新-1，明确损失未映射实体召回。原始NO、非表型拒绝与真实NIL是三个不同语义，不能把一个通用拒绝码当作它们共同的gold标签。
 
 患者关系CE已经实际训练过，勿重复当新机制：序列分支9453c0f的run_neural_relation.py（SHA09ae97d291add225b295fe5d053f84bb35a788efaca66d9c1ef5240d97b2ae5d），train48的5114个患者-概念pair/1327阳性，BiomedBERT4ep共130.046秒；同旧CRF实体fold0 .617746，弱于rules .656999。已有target/other/phenotype三组[unused]标记、header患者ID/别名/HPO名、最多3段±220字符启发式排序拼接，max384 only_second截断。训练用gold正实体而非OOF预测候选；目标marker仅给定mention实际落窗才有，未单独审计截断后保留，多证据并非学习式MIL。证据在sequence_crf/fold0-neural-relation/及其evidence/round2/fold0-neural-relation-manifest.json，源码与实际manifest一致。若日后只改OOF候选分布或MIL，须说明该最小变量及训练端证据；当前不实现或再训练，先完成176链接控制。
+
+后续root按训练证据批准一次不同目标的max-MIL过滤：1474个OOF doc-HPO袋中783正/691负，原规则394FP中319是整篇概念无患者关系，其中177仍有gold正实体。过滤器只判“是否关联任一给定患者”，不重分患者；75个正确概念错患者FP不在它的能力范围。417/783正袋所有±220窗都无给定patient mention，因此不能将无marker当负标签。旧患者CE与旧aggregate树负结果均保留；新控制同时改变候选分布/目标/聚合机制，若有益也不能归因为单一因素。[训练诊断](evidence/round2/relation-bag-training-diagnostics.json)与[唯一固定运行](evidence/round2/relation-mil-run-plan.json)。
+
+BiomedBERT词表不等于BERT原始词表：本地实际30522词中无[unused1/2/5/6]，直接convert四者均为UNK=1，初始CPU guard因此失败。新MIL显式注册四special tokens为30522..30525、固定seed扩embedding，并逐出现核完整表型和成对patient标记，3949个实际输入均通过且无截断。旧患者CE传的是字符串，可能拆成普通WordPiece；不能把本次直接ID错误外推为旧模型必然无效。失败事实/修复在外存relation-mil-fold0/initial-marker-failure.json；检查在[CPU证据](evidence/round2/relation-mil-cpucheck.json)。

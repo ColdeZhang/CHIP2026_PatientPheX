@@ -1,0 +1,101 @@
+{
+  "frozen_at_utc": "2026-10-23T18:07:59.636493+00:00",
+  "approved": "Root fixed3epochs/max-MIL/unweightedBCE/.5 deletion-only background control; first finish176 Qwen; GPU .3 only after sequence full64+Sap explicit handoff.",
+  "hypothesis": "OOF predicted occurrences and doc-HPO bags separate general background relevance from existing patient assignment. No claim of first relation CE or first feature aggregation.",
+  "source_sha256": {
+    "diagnose_relation_bags.py": "2d7848796c7a1a8b77190a000c42f7d69fc1da185517d0799ed3ec652ba6bd73",
+    "prepare_relation_mil.py": "07a5fe472c13a39d7c800300c7718b971f33d90f3991385a0b786226a1bb90c3",
+    "train_relation_mil.py": "0059bb86cf0444c6562fe03a549dcb3e154eec978eeba56e8917f48cb162192e",
+    "filter_relation_bags.py": "229ecec1cede8376352de0c9e077e91612c75a8de2ed6142b981798edefe529a",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+  },
+  "data_manifest_sha256": "684e089a5d531f02e2d9116582ac512e534079c13ff30069440b0c6db3733e79",
+  "cpucheck_sha256": "96b146e95c35febe1fb9129eda1c9723ea79113d6301478b7839774e0d9dfc03",
+  "assembly_fixture_sha256": "61cce1d5cb322072916be8b5c132d4c6d86bc6a91e095ecabfaedf7dd17f25e4",
+  "data_counts": {
+    "train_bags": 1474,
+    "positive": 783,
+    "train_occurrences": 3004,
+    "input_bags": 414,
+    "input_occurrences": 945
+  },
+  "train_input_sources": {
+    "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "base": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+    "base_manifest": "be74700a232e04ea827c424c9ab5ef87a548d842c50f8e3167df6b4f145d7e4f",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "model_fingerprint": {
+    "source_sha256": "0059bb86cf0444c6562fe03a549dcb3e154eec978eeba56e8917f48cb162192e",
+    "data_manifest_sha256": "684e089a5d531f02e2d9116582ac512e534079c13ff30069440b0c6db3733e79",
+    "base": {
+      "LICENSE.md": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66",
+      "README.md": "33ee2e0c3178e144af68c8e8c741a227373304151a6b53660c8542306fffb0d4",
+      "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+      "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+      "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    },
+    "tokenizer_markers": {
+      "original_vocabulary": 30522,
+      "vocabulary": 30526,
+      "ids": {
+        "[unused1]": 30522,
+        "[unused2]": 30523,
+        "[unused5]": 30524,
+        "[unused6]": 30525
+      }
+    },
+    "config": {
+      "epochs": 3,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.01,
+      "dropout": 0.1,
+      "seed": 20261023,
+      "max_tokens": 256,
+      "max_bags": 8,
+      "occurrence_batch_budget": 32,
+      "all_occurrences": true,
+      "BCE_weight": null,
+      "pooling": "max_logit",
+      "threshold": 0.5
+    }
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+    "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+    "score": 0.711353521870099,
+    "entities": 947,
+    "policy": "Same CRF+Sap rules; do not swap to GLiNER or Pheno baseline."
+  },
+  "architecture": "BiomedBERT all-layer finetune + dropout .1 + scalar CLS head, each occurrence encoded separately; all logits grouped by doc-HPO, max logit; no in-bag padding logits; no patient-specific head.",
+  "marker_policy": "Four added special tokens with unique IDs30522..30525; new embedding initialization mean_resizing=False under seed20261023. Span words and markers verified after tokenizer; real maximum162 train/152 input, no context truncation. Do not require any patient marker.",
+  "optimization": {
+    "epochs": 3,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "dropout": 0.1,
+    "seed": 20261023,
+    "max_tokens": 256,
+    "max_bags": 8,
+    "occurrence_batch_budget": 32,
+    "all_occurrences": true,
+    "BCE_weight": null,
+    "pooling": "max_logit",
+    "threshold": 0.5
+  },
+  "GPU": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "hard_seconds": 600,
+    "estimated_seconds": "120-240 including loading/evaluation, not measured",
+    "remote": "ontology-round2/relation-mil-fold0",
+    "interpreter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/bin/python",
+    "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert"
+  },
+  "outputs": "Atomic latest model/Adam/RNG at each epoch, final model and bag scores only epoch3; no heldout scoring of epoch1/2. No implemented resume CLI; keep failed latest for recovery analysis if interrupted.",
+  "evaluation": "Freeze one deletion-only prediction then score fold0 public v2/format; entities and NIL unchanged, no new relations; no threshold scan or originaldev.",
+  "gold_read_for_input": false,
+  "GPU_started": false
+}

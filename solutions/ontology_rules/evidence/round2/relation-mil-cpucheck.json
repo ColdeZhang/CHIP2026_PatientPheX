@@ -1,0 +1,83 @@
+{
+  "fingerprint": {
+    "source_sha256": "0059bb86cf0444c6562fe03a549dcb3e154eec978eeba56e8917f48cb162192e",
+    "data_manifest_sha256": "684e089a5d531f02e2d9116582ac512e534079c13ff30069440b0c6db3733e79",
+    "base": {
+      "LICENSE.md": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66",
+      "README.md": "33ee2e0c3178e144af68c8e8c741a227373304151a6b53660c8542306fffb0d4",
+      "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+      "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+      "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    },
+    "tokenizer_markers": {
+      "original_vocabulary": 30522,
+      "vocabulary": 30526,
+      "ids": {
+        "[unused1]": 30522,
+        "[unused2]": 30523,
+        "[unused5]": 30524,
+        "[unused6]": 30525
+      }
+    },
+    "config": {
+      "epochs": 3,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.01,
+      "dropout": 0.1,
+      "seed": 20261023,
+      "max_tokens": 256,
+      "max_bags": 8,
+      "occurrence_batch_budget": 32,
+      "all_occurrences": true,
+      "BCE_weight": null,
+      "pooling": "max_logit",
+      "threshold": 0.5
+    }
+  },
+  "training": {
+    "occurrences": 3004,
+    "tokens": 279766,
+    "context_cropped": 0,
+    "phenotype_tokens": 8146,
+    "phenotype_fully_retained": 3004,
+    "provided_patient_markers_before_crop": 861,
+    "provided_patient_markers_retained": 861,
+    "patient_marker_occurrences": 626,
+    "max_tokens": 162,
+    "max_phenotype_tokens": 12
+  },
+  "input": {
+    "occurrences": 945,
+    "tokens": 87896,
+    "context_cropped": 0,
+    "phenotype_tokens": 2565,
+    "phenotype_fully_retained": 945,
+    "provided_patient_markers_before_crop": 317,
+    "provided_patient_markers_retained": 317,
+    "patient_marker_occurrences": 197,
+    "max_tokens": 152,
+    "max_phenotype_tokens": 10
+  },
+  "loss_check": {
+    "loss": 0.22009488940238953,
+    "gradient": [
+      -0.13447070121765137,
+      0.0,
+      0.05960145965218544
+    ],
+    "max_logits": [
+      1.0,
+      -2.0
+    ],
+    "unweighted_BCE": true,
+    "padding_attention_checked": true,
+    "extra_occurrence_padding_rejected": true,
+    "fixture_bag_sizes": [
+      1,
+      24
+    ]
+  },
+  "torch": "2.7.0+cu128",
+  "phase": "check"
+}

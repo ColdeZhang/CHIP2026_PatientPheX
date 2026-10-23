@@ -1,0 +1,34 @@
+{
+  "stage": "CPU proposal only; no model implementation or GPU request issued",
+  "hypothesis": "Patient-independent bag learning on OOF predicted occurrences can remove document-background HPO associations while retaining original patient attribution.",
+  "data": {
+    "diagnostic": "/workspace/patientphex-runs/round2-20261023/ontology_rules/relation-bag-proposal/training-diagnostics.json",
+    "sha256": "16416818e9eb4b74abf94c3a80c91a06d58c6f9fe3331f8d4eb7874c03605e4b",
+    "train_documents": 48,
+    "nested_generators": "three train32 -> disjoint16; exact manifest and full-document membership checks",
+    "positive_bags": 783,
+    "negative_bags": 691,
+    "occurrences": 3004,
+    "scope": "Allowed atomic HPO only; preserve NIL/non-HPO associations unchanged in proposed filter."
+  },
+  "prior_negative_baselines": {
+    "marked_patient_CE": "sequence run_neural_relation.py 09ae97d2: 4ep, 5114 gold-entity patient-concept pairs, Score .617746 vs same-pool rules .656999; up to3 concatenated contexts, max384, class-weighted CE. Not an untried method.",
+    "aggregate_tree": "ontology aggregate_relation.py: OOF patient-concept reduced hand features, 45189 rows/1181 positives; fold0 replacement .669171/.672308 and union .704175 below .710359 base; fold1 same controls all lower. Not a new claim of feature aggregation."
+  },
+  "minimal_future_control": {
+    "model": "Existing general BiomedBERT; each occurrence encoded separately with HPO name, highlighted exact phenotype and one shared marker type for any provided patient mention. No required local patient marker.",
+    "bag": "Document+atomic HPO; one occurrence logit per span; max across all occurrence logits; binary bag loss, no relabeling each occurrence as positive. No new candidate supplementation.",
+    "optimization_proposal": "One fixed3epoch endpoint; unweighted BCE because bag counts are near balanced. Exact LR/batching/token retention require a frozen implementation plan before any run.",
+    "inference_proposal": "p>=.5 retains existing concept relations; predicted negative bag removes that concept from all original patients. Entities and assignments for retained concepts and NIL remain unchanged. No relation additions.",
+    "comparison": "Same frozen CRF+Sap rules pool/base on outerfold0, no originaldev. Later GLiNER augmentation is a separate variable.",
+    "cost_estimate": "3004 occurrence contexts x3epochs; approximately2-4 GPU minutes including load/validation, not measured. No new base download."
+  },
+  "limitations": [
+    "Patient-independent labels cannot repair75 wrong-patient FP when the concept belongs to some other specified patient.",
+    "319/394 current OOF rule FP are negative doc-HPO, but this is error characterization, not an achievable model Score.",
+    "417/783 positive bags lack any provided patient mention start in all +/-220 windows; absence cannot be a rejection rule.",
+    "47 positive bags contain no exact gold positive occurrence; document-level labels remain weak.",
+    "Proposed control changes candidate distribution, target granularity and multi-instance pooling relative to old CE; if useful, later matched ablations would be needed for causal attribution.",
+    "176 bounded Qwen linking remains current execution priority; this document does not authorize GPU training."
+  ]
+}
