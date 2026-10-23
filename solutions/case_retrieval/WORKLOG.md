@@ -53,3 +53,4 @@
 只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `c86c2e3`（全CID准备与实际作业恢复检查点），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
 
 - **固定槽后继 CPU 政策已预写**：主 .5 双臂完成后一次患者期望 F1 集合解码，1557 literal 单元一一对应/0 compound与重复；固定 tie/保留准则，30秒、无搜索。当前只保存源码/计划，未产生该臂质量；[计划](evidence/round2/fixed-slot-expected-f1-plan.json)。
+- **资源恢复只读准备**：23:00:05Z 重新全字节 SHA 核 .100 旧48/64 epoch002 两 adapter 共346,364,718B，均与原A800一致。逐文件backup locator及反向恢复命令已保存，未上传/运行恢复、未删除；6份旧optimizer仍只在A800。当前训练活跃目录不动，是否释放重复副本由后继实际收益与root决定。[资源记录](evidence/round2/fixed-slot-resource-locators.json)。
