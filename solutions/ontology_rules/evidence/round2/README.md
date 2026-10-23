@@ -78,3 +78,5 @@
 - [NER增强CPU准备](ner-augmentation-preparation.json)与[唯一固定计划](ner-augmentation-plan.json)：1150原窗+353新增、真实collator全量核验，fresh medium10/3760步；独审PASS，未将准备当效果分数。
 
 - [NER增强真实启动](ner-augmentation-job.json)：已推送源d9ab108，fresh medium1503×10，训练deadline19:37:55Z；包含旧32兼容推理冻结，不是新效果结果。
+
+- [NER增强固定后链](ner-augmentation-postlink-plan.json)：旧32/new32均走同A30 Sap环境、原阈值/装配；谱系轻审ce6847d4通过，1378旧跨度键一致，浮点分数最大差1.72e-5；完整分数待终点。

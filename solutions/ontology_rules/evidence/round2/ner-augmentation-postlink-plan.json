@@ -1,0 +1,142 @@
+{
+  "scope": "unchanged Sap/CRF downstream for same-A30 old32 and fresh-augmented32; input-only until both complete predictions frozen",
+  "commands": [
+    {
+      "stage": "baseline-runtime",
+      "cwd": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control",
+      "command": [
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "resources/link_gliner_candidates.py",
+        "--train",
+        "nested.train32.jsonl",
+        "--input",
+        "inner1.input.jsonl",
+        "--hpo",
+        "hp.obo",
+        "--candidates",
+        "baseline-runtime/candidates.jsonl",
+        "--candidate-freeze",
+        "baseline-runtime/prediction-freeze.json",
+        "--span-training-manifest",
+        "resources/nested32-baseline/training-manifest.json",
+        "--span-data-manifest",
+        "original-prepared-manifest.json",
+        "--semantic-source",
+        "resources/semantic_source.py",
+        "--model-dir",
+        "resources/sap-model",
+        "--output-dir",
+        "baseline-runtime-sap"
+      ],
+      "executed": false,
+      "scope": "GPU execution remains parent responsibility; this child only prepared files/imports"
+    },
+    {
+      "stage": "augmented-runtime",
+      "cwd": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control",
+      "command": [
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "resources/link_gliner_candidates.py",
+        "--train",
+        "nested.train32.jsonl",
+        "--input",
+        "inner1.input.jsonl",
+        "--hpo",
+        "hp.obo",
+        "--candidates",
+        "augmented-runtime/candidates.jsonl",
+        "--candidate-freeze",
+        "augmented-runtime/prediction-freeze.json",
+        "--span-training-manifest",
+        "formal-fixed10ep/run_manifest.json",
+        "--span-data-manifest",
+        "prepared/manifest.json",
+        "--semantic-source",
+        "resources/semantic_source.py",
+        "--model-dir",
+        "resources/sap-model",
+        "--output-dir",
+        "augmented-runtime-sap"
+      ],
+      "executed": false,
+      "scope": "GPU execution remains parent responsibility; this child only prepared files/imports"
+    }
+  ],
+  "environment": {
+    "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "cwd": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/resources/sap-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false"
+    },
+    "gpu_note": "Set CUDA_VISIBLE_DEVICES only by parent when its assigned GPU is authorized and free; preparation kept it empty."
+  },
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "per_linker_hard_timeout_seconds": 300,
+  "source_resource_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/resources-preparation/summary.json",
+    "sha256": "75a3fc1e4c7d2c9a150ddac068e8f11e6edd4a035ce2c7c5915cf6f0880d9ac5"
+  },
+  "old_checkpoint_compatibility": {
+    "scope": "input-only same checkpoint A800->A30 inference comparison; no gold or Score",
+    "old_candidate_sha256": "b92ab0a5588e384a4d03e0fc8470e80b7865e8041df26be52d1be83c39f95532",
+    "new_candidate_sha256": "abb3c32bbdd104d6212dec7b1933d8ca91ea51102a28fd83ede0a7110ac9d035",
+    "old_count": 1378,
+    "new_count": 1378,
+    "exact_span_text_keys_equal": true,
+    "old_only_count": 0,
+    "new_only_count": 0,
+    "scores_exact_count": 493,
+    "max_abs_shared_score_difference": 1.722574234008789e-05
+  },
+  "assembly_source": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/assembly-source/solutions/sequence_crf/assemble_gliner_linked.py",
+      "sha256": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+      "bytes": 5191
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/assembly-source/solutions/sequence_crf/combine.py",
+      "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+      "bytes": 3871
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/assembly-source/solutions/sequence_crf/run.py",
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "bytes": 21153
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/ner-augmentation-control/assembly-source/solutions/ontology_rules/run.py",
+      "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "bytes": 16709
+    }
+  ],
+  "local_python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "fixed_policy": {
+    "probability": 0.65,
+    "similarity": 0.92,
+    "relation": "original combine.assign",
+    "base_prediction": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+    "base_prediction_sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+  },
+  "prediction_freeze_policy": "Assemble both same-runtime controls before loading heldout gold; verify baseline/source geometry and v2 format; no scan or new candidate policies",
+  "runtime_limit": "Sap torch2.7.1+cu126/TF4.51.3 differ from old torch2.7.0+cu128/TF4.50.0; same destination runtime applies to both arms; original numpy/scikit versions copied unchanged",
+  "start_gate": "NER runner completed all stages with rc0; final predictions frozen; actual assignedGPU empty; no automatic retries",
+  "original_dev": false,
+  "official_submission": false,
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-augmentation-preparation-review/postlink-review.json",
+    "sha256": "ce6847d4db4d189b4cf742bceebd97d922ba582c9206f333b2a74e9954b23eac",
+    "result": "PASS",
+    "scope": "two old/new argv and lineage; six Sap files; four assembly sources and base; actual old checkpoint freeze and1378span compatibility",
+    "limits": "actual CUDA UUID override and300s cap must be recorded at execution; no full-chain metric equivalence claimed before terminal evaluation"
+  }
+}
