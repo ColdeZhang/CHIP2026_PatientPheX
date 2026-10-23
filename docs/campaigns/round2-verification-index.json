@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T15:57:35.141469+00:00",
+  "generated_utc": "2026-10-23T16:58:41.058846+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不将oracle/训练表示诊断当模型成绩。各best仅指已独审原dev候选，后续fold0新试验单列。",
@@ -751,16 +751,378 @@
           "bytes": 7735
         }
       ]
+    },
+    {
+      "id": "retrieval-extraction-fold1-seven-controls",
+      "report": {
+        "path": "validation/retrieval-fold1-control-review/review.json",
+        "sha256": "92fde4a6568436192f656d00bcec6bae0eb7c949ad16a4970f94452cdefd0aad",
+        "bytes": 12162
+      },
+      "scope": "Read-only final seven-arm CPU merge/filter/retriever replay and evaluator/format check, with HPO response binding and current-fold candidate-manifest lineage. No GPU, new original dev, or predictor tuning.",
+      "conclusion": "七臂独立CPU重放全预测byteexact、v2指标/格式一致；固定规则实体消融 .644796→.643815 略负，k21完整 .619760→.622463 微正，不支持实体跨折稳定收益。",
+      "limitations": [
+        "This review verifies frozen model/cache manifests and CPU downstream replay. It does not independently rerun fold1 LoRA training, frozen Sap head reconstruction, or neural encoding; prior fold0 implementation audits are not mislabeled as fold1 full data/tensor audit.",
+        "All7 output SHAs were saved before evaluation per actual control source/order; reviewer can bind file/source content, not cryptographically prove wallclock creation ordering.",
+        "Rules arms copy original associations; they are entity ablations, not reassignment with newly added entities. New-only similarly retains original relations and is only a Task1 diagnostic.",
+        "No base extraction inference in fold1, so this does not estimate fold1 SFT-vs-base causal effect.",
+        "One remaining failed extraction window and19 out-of-candidate HPO outputs remain explicit failures, not repaired by this review.",
+        "Inner fold1 uses remainingtrain64 data and is separate from originaldev; repeated development elsewhere still limits generalization claims."
+      ],
+      "support": [
+        {
+          "path": "validation/retrieval-fold1-control-review/review.md",
+          "sha256": "d28ee1ef2b14588fb221f624a24ebd2e6e354986eeb36d718f54eebca3a56961",
+          "bytes": 1711
+        },
+        {
+          "path": "validation/retrieval-fold1-control-review/audit_controls.py",
+          "sha256": "b6da7e11961ceee246d02badc700aea0b646010dfdd3f69adaa4f4fe429b76f9",
+          "bytes": 8513
+        },
+        {
+          "path": "validation/retrieval-fold1-control-review/commands.json",
+          "sha256": "5a570233383692754f68facf8e4b7c059ea8b3660204a59187718dd6196f4158",
+          "bytes": 12236
+        }
+      ]
+    },
+    {
+      "id": "gliner-supervised-loss-and-data-preparation",
+      "report": {
+        "path": "validation/gliner-supervised-review/review.json",
+        "sha256": "7da1745e541cb40bf75afd8f639144f32b1c6237eb5e22ff1d52f328bc95e8e4",
+        "bytes": 8413
+      },
+      "source_commit": "45e107c00ab230a7fff725c94000333d249014bc",
+      "scope": "Independent actual-library CPU loss reproduction and fixed-function gradient checks; complete exported train48 word-target reconstruction; frozen nested32 paired protocol/source review. Route one-step GPU metadata is checked, not independently rerun. No original-dev or official use.",
+      "conclusion": "GPU训练前发现实际gliner0.2.22参数错位将标签平滑成.5；实际CPU独审证实并验证显式valid-span BCE修复/正负梯度/遮蔽不变。准备数据全部坐标/标签重建通过，train32共1150窗2236正。",
+      "limitations": [
+        "Pinned-source bug is not generalized to all GLiNER releases or zero-shot inference.",
+        "Independent data reconstruction covers original word offsets/all-only labels/NO/valid span counts; route checked actual full tokenizer/collator tensors. No redundant1750-window re-tokenization was done here.",
+        "The valid-label mask is constant true for the sole explicit phenotype class; trainer enforces one logit class. A future multi-label variant requires a separate per-label mask.",
+        "Smoke is a single optimizer-step interface/cost result, not generalization, convergence, or task Score. The trainer supports epoch-boundary state restore, but no actual resume claim is certified by this preparation review.",
+        "Full paired inference output SHA/quality and final checkpoint remain future endpoint review; originaldev best remains unchanged."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-supervised-review/review.md",
+          "sha256": "18cb085515d00e608fcccaab7b6c215db6926c9d541b34241470f9a30070127e",
+          "bytes": 1683
+        },
+        {
+          "path": "validation/gliner-supervised-review/finalize_preparation.py",
+          "sha256": "51796e4d33a80188c9e0a147ac35afae1745e81e048195aebd9b17ab30019979",
+          "bytes": 5878
+        },
+        {
+          "path": "validation/gliner-supervised-review/audit_prepared_data.py",
+          "sha256": "c92d19cd2cb802ac3237d87e4061e87ea58fab3b5194013c8221910e203fd3fb",
+          "bytes": 7038
+        },
+        {
+          "path": "validation/gliner-supervised-review/prepared-data-review.json",
+          "sha256": "a72362b90cc7d5eadea61f73f15e79e32006cb8c1418599be7b2f0ef732b2f3c",
+          "bytes": 4550
+        },
+        {
+          "path": "validation/gliner-supervised-review/loss_argument_probe.py",
+          "sha256": "0d84db2c5b14661f9fb452bff79455aeed2d07f4e89476d3c5dae868f7abc72e",
+          "bytes": 3897
+        },
+        {
+          "path": "validation/gliner-supervised-review/loss-argument-probe.json",
+          "sha256": "195b759d14e779944ec2f4e1c2325608a7a8ee08f75e9dbe904ebac04240e036",
+          "bytes": 3028
+        },
+        {
+          "path": "validation/gliner-supervised-review/probe_actual_runtime.py",
+          "sha256": "81f0cad81244e677278ea65569b7bb68868617b9cc90c71cd187356cc7a4049c",
+          "bytes": 3382
+        },
+        {
+          "path": "validation/gliner-supervised-review/actual-runtime-probe.json",
+          "sha256": "de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1",
+          "bytes": 1064
+        },
+        {
+          "path": "validation/gliner-supervised-review/actual-runtime-probe-tool.json",
+          "sha256": "d1ebe17734eb5e0dc8993e77307894c5d76a27e3457f322d1c9e50eb159de815",
+          "bytes": 5499
+        },
+        {
+          "path": "validation/gliner-supervised-review/probe_fixed_runtime.py",
+          "sha256": "c480a645345dff0618a4c66f74b1d2c682e879800eb50311a1d15f05d2bed6c3",
+          "bytes": 3631
+        },
+        {
+          "path": "validation/gliner-supervised-review/fixed-runtime-probe.json",
+          "sha256": "0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2",
+          "bytes": 867
+        },
+        {
+          "path": "validation/gliner-supervised-review/fixed-runtime-probe-tool.json",
+          "sha256": "15278702c1457fd6335d64aee0d17f1e8ac6970ba36c4764c358c006460d24c5",
+          "bytes": 4954
+        },
+        {
+          "path": "validation/gliner-supervised-review/train_gliner_supervised.audited45e107c.py",
+          "sha256": "cf60830e5cfbd42b5321f3fe5e1ec0e80dac43bf8b8b0d35d9c046782050a94b",
+          "bytes": 12687
+        }
+      ]
+    },
+    {
+      "id": "gliner-fixed2epoch-span-terminal",
+      "report": {
+        "path": "validation/gliner-supervised-review/twoepoch-endpoint-review.json",
+        "sha256": "a886620bb848392cef7550b1f39ae7cecbd71af4ad30aad41de23491085274fb",
+        "bytes": 8493
+      },
+      "source_commit": "e09a65d9028c94a0b4ca0b04097ee55b70462fca",
+      "scope": "32train→16nested development paired pure-span evaluation; independent all-document set counts, greedy nonoverlap additions, coordinates and frozen provenance. No GPU/retraining/new originaldev.",
+      "conclusion": "固定fresh2轮纯span F1 0.659991990；原CRF+Sap .690966719，追加98TP/147FP→union 0.700613940。逐doc计数独立一致、同基座/输入/tokenizer/runtime/decoder、先冻结再评；不是比赛Score。",
+      "limitations": [
+        "No independent GPU inference or remote large-checkpoint load was performed; actual frozen candidate/modelSHA and completed manifests bind source/data/selection.",
+        "Only pure exact spans including positive NIL, collapsing HPO atomic IDs, are counted. HPO linking and patient associations remain untested by this result.",
+        "Training probe is32 fixed training-positive windows and not heldout performance; meanloss is not taskScore.",
+        "The no-overlap additions are chosen by frozen score/length/offset rule using predictions only; gold appears only in the post-freeze diagnostic.",
+        "Same model family/public pretraining as earlier source audit; current nested16 has informed a new budget and cannot be called blind."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-supervised-review/twoepoch-endpoint-review.md",
+          "sha256": "f6c5152c91efcf63abf229ac36ecfba1b63caa4241b8e6dad779fcabe23dfe56",
+          "bytes": 1756
+        },
+        {
+          "path": "validation/gliner-supervised-review/audit_twoepoch_endpoint.py",
+          "sha256": "fe91270ad539137d9f77b93b5b123253e9f7340a7f4a978c87a00b115f153f88",
+          "bytes": 12571
+        },
+        {
+          "path": "validation/gliner-supervised-review/train_gliner_supervised.executed_e09a65d.py",
+          "sha256": "d5898b736fd6a076500575530c32fbaabb2b98360f4821d39faa2807ae6c9b03",
+          "bytes": 13499
+        }
+      ]
+    },
+    {
+      "id": "gliner-fixed10epoch-span-terminal",
+      "report": {
+        "path": "validation/gliner-supervised-review/tenepoch-endpoint-review.json",
+        "sha256": "1f85aae02335954756778e5c32f4fa79cc0c2638753ea4d1aade2f84a3837c6c",
+        "bytes": 8106
+      },
+      "source_commit": "d566e33b25df4d0f382c4faa0e38f7b20d835476",
+      "scope": "32train→16nested development paired pure-span evaluation; independent all-document set counts, greedy nonoverlap additions, coordinates and frozen provenance. No GPU/retraining/new originaldev.",
+      "conclusion": "固定fresh10轮纯span F1 0.684850719；原CRF+Sap .690966719，追加131TP/202FP→union 0.702135107。逐doc计数独立一致、同基座/输入/tokenizer/runtime/decoder、先冻结再评；不是比赛Score。",
+      "limitations": [
+        "free_bytes_after in training manifest is recorded before previous model pruning; it is not the actual post-prune remaining disk. Source checks real free space before each checkpoint and deletes only known SHA-matching model files after atomic new model/state.",
+        "No independent GPU inference or remote large-checkpoint load was performed; actual frozen candidate/modelSHA and completed manifests bind source/data/selection.",
+        "Only pure exact spans including positive NIL, collapsing HPO atomic IDs, are counted. HPO linking and patient associations remain untested by this result.",
+        "Training probe is32 fixed training-positive windows and not heldout performance; meanloss is not taskScore.",
+        "The no-overlap additions are chosen by frozen score/length/offset rule using predictions only; gold appears only in the post-freeze diagnostic.",
+        "Same model family/public pretraining as earlier source audit; current nested16 has informed a new budget and cannot be called blind."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-supervised-review/tenepoch-endpoint-review.md",
+          "sha256": "20cab5a107c0e9e5a2cedd58cefe013524923a5bd8d62633026fc3925d12ee20",
+          "bytes": 1657
+        },
+        {
+          "path": "validation/gliner-supervised-review/audit_tenepoch_endpoint.py",
+          "sha256": "ee9714a154a82169a6165f9f9c2511bdc7e146636b16a2ba1aeab57cd5f75a86",
+          "bytes": 12987
+        },
+        {
+          "path": "validation/gliner-supervised-review/train_gliner_supervised.executed_d566e33.py",
+          "sha256": "5cb162b78584b53659540698de40b68f00e07c8173345498a03f8726b2fa0e49",
+          "bytes": 14401
+        }
+      ]
+    },
+    {
+      "id": "qwen35-text-interface-cpu-preparation",
+      "report": {
+        "path": "validation/qwen35-interface-review/preparation-review.json",
+        "sha256": "f6bcb12809f0dcf9797ce5514971044b5da051a39aac67bd17a2fe1d1af90eb9",
+        "bytes": 5036
+      },
+      "scope": "Static frozen smoke/runner review plus actual CPU-v3 manifest/audit/selection binding. No local re-tokenization, model weight load or GPU.",
+      "conclusion": "TF5.20.2/PEFT.21.2实际CPU305样本mask/prefix/chatEOS证据和最短真实样本独立绑定通过；静态加载/完整SHA/文本参数/LoRA保存重载/双EOS及强制EOS检查未见阻断。尚无GPU执行结果。",
+      "limitations": [
+        "Actual GPU loading, measured parameter count, optimizer step, adapter disk reload and stopping are not certified until actual smoke artifacts.",
+        "Reload check is adapter reload using the retained base, not whole-model reload or optimizer resume.",
+        "CPU all305 token/mask verification was executed by route; this reviewer binds its actualsource/data/output and inspects selectedmask independently, not repeats complete tokenizer execution.",
+        "No heldoutgold/quality score or official platform operations. Longest6040token costprobe remains separate and cannot be reused as formal output under current plan."
+      ],
+      "support": [
+        {
+          "path": "validation/qwen35-interface-review/audit_cpu_preparation.py",
+          "sha256": "5a8a040840d0a6ebb549e74e277df7163b92ab1d96f1033fabe8aac5fefe3c5c",
+          "bytes": 6045
+        },
+        {
+          "path": "validation/qwen35-interface-review/source/qwen35_smoke.py",
+          "sha256": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+          "bytes": 25764
+        },
+        {
+          "path": "validation/qwen35-interface-review/source/qwen35_runner.py",
+          "sha256": "af6251bebeaa453ea709fac8676e19452e4e6111a81f959e40eee2ff93fb6696",
+          "bytes": 10692
+        }
+      ]
+    },
+    {
+      "id": "qwen35-longest-relation-cost-cpu-preparation",
+      "report": {
+        "path": "validation/qwen35-interface-review/relation-cost-preparation-review.json",
+        "sha256": "547d1fd6b06a8ef65adc19b211a8ad953302f3a093e75f492f4c91a2b652366f",
+        "bytes": 4850
+      },
+      "scope": "只读完整成本入口源码与实际CPU产物绑定；最长5787token训练例、204条assistant mask、meta全投影和实际shiftCE梯度。",
+      "conclusion": "CPU和静态审查通过：8953803264 text base +43278336 adapter，248 Linear投影；完整训练答案掩码含im_end+newline。GPU单步/实际显存与时间尚未执行，不称成本已测。",
+      "limitations": [
+        "Not GPU execution, loading, memory, cost, save/reload or quality certification. The earlier independent short-interface smoke includes reload; this cost entry only saves a probe adapter.",
+        "Future A800 runtime differs from this A100 CPU runtime; actual GPU run must record its own runtime/source/data and pass preflight. No extra formal training is authorized by this audit.",
+        "LoRA seed set before base load, not independently reset before initialization; sufficient for a one-run cost probe, not a bitwise multi-run equivalence claim."
+      ],
+      "support": [
+        {
+          "path": "validation/qwen35-interface-review/audit_relation_cost_preparation.py",
+          "sha256": "3d227bcb5c987de6a8558261ec934f0958aead5b45236d0a2a6dcdf254cc3f27",
+          "bytes": 4903
+        },
+        {
+          "path": "validation/qwen35-interface-review/source/qwen35_relation_cost.py",
+          "sha256": "ff52a0859f9e1a05b48c33a8ed9d2dd78c00f8ce2f1f723d643962475e7a7181",
+          "bytes": 22367
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-fixed100epoch-terminal",
+      "report": {
+        "path": "validation/phenotagger100-endpoint-review/review.json",
+        "sha256": "868a506e277e64d9b8e54e1d30d059e4535014139b73ea1995ab466d2ee1478e",
+        "bytes": 9606
+      },
+      "source_commit": "cd4adac94378a0090fd46f32b1373b12cb575197",
+      "scope": "CPU fixed100ep terminal cache/provenance/assembly/evaluator audit; earlier independent30ep/continuation audit reused. No GPU inference/training or originaldev labels.",
+      "conclusion": "实际总45800步/父13740步谱系和旧30轮曲线保留；固定同候选、rawp>=.95 CPU组装byteexact、v2/格式通过。内fold0 .7103590603→.7125487065；191新实体60TP131FP、84新关系27TP57FP；训练probe1.0不是Score。",
+      "limitations": [
+        "Actual100ep final/latest weight identity is bound by collected complete.json and model-loader SHA assertions; reviewer did not redundantly load/rehash remote checkpoint or rerun GPU logits.",
+        "This is a fixed candidate addition to frozen HGB baseline, not a standalone PhenoTagger replacement; no new originaldev best or0.8 completion.",
+        "Raw>=.95 is the already-frozen project adaptation; upstream rounds five decimals then >.95. No post-result boundary tuning.",
+        "Dataset/HPO candidate preparation relies on earlier independent audits; this review rechecks actual cache/input/terminal/data SHA.",
+        "This endpoint extends the already audited30ep saved state. No repeated full restore audit or GPU evaluation; only current terminal binding, unchanged inference policy and CPU replay are checked."
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger100-endpoint-review/review.md",
+          "sha256": "756b99f12fb9b44294cf0561e32a82f2add4138c15bb3d91307763946eb34961",
+          "bytes": 1684
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/audit_endpoint100.py",
+          "sha256": "a1043070a13d939bf0a6c599db4bd70e7dc59906b08c9b7ffbfad97719d4636f",
+          "bytes": 15734
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/commands.json",
+          "sha256": "7f36591b4769441a5fc780d48827cf85d957deca18179f043a22b827a2aea032",
+          "bytes": 5669
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/baseline.metrics.json",
+          "sha256": "3593de59197be1ed4a1134928a7f5fe8037b3ec3295c88c98ef39ca582701de7",
+          "bytes": 13033
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/augmented.metrics.json",
+          "sha256": "a5ba180cf45be6cf31ed396080fbeabcdc511b255a3e32367d215076944c0658",
+          "bytes": 13144
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/validation.json",
+          "sha256": "c5510ae03b3d5c78ea026db149588ea232f2708b61a9f8a5c570d550dabaa21b",
+          "bytes": 686
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_augment.py",
+          "sha256": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+          "bytes": 3852
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_data.py",
+          "sha256": "ee3c293ac16732ccabca5a51da616dcc830ba5acd4b6bcfe00c78cebd923d255",
+          "bytes": 8371
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_measure.py",
+          "sha256": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+          "bytes": 8962
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_predict.py",
+          "sha256": "a2e7d1df496c1603eb1cc1e0fd14f7ab5927612fb114b11683308bb4b5b19748",
+          "bytes": 4876
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_prepare_inference.py",
+          "sha256": "1ffea38c471fc103bd44eb5deba2d422000e5d9bfd8b78554049626a05306aa6",
+          "bytes": 3546
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_train.py",
+          "sha256": "c7e62fcf19f029b687e20fa5ec146f666460c88184bd77a50ad90d65d95f6d5c",
+          "bytes": 13345
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/phenotagger_training_probe.py",
+          "sha256": "9d261d373f64956c06bc59b2ffe94210e0ac4a26cc4fcff775b94ef466c78593",
+          "bytes": 4819
+        },
+        {
+          "path": "validation/phenotagger100-endpoint-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "open-patient-set-sft-training-data",
-      "status": "新任务已收，等待路线冻结实际数据/schema后审核；不纳入已通过结论。"
+      "id": "qwen35-gpu-interface-and-cost",
+      "status": "实际CPU与静态审查通过；迁移A800和GPU接口/最长成本尚待执行，不认证GPU加载/自然EOS/质量。"
     }
   ],
-  "previous_live_index_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
+  "previous_live_index_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "早期12项已由主线程14:36不可变归档并恢复核验；本文件为当前聚合索引。新条目不改变旧报告内容。",
-  "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4"
+  "live_index_note": "本批新增fold1七臂、GLiNER loss修复与2/10轮终点、Qwen3.5 CPU准备、Pheno100终点；原22项报告原SHA保留。原dev三best不变、均未0.8，不上传官方。",
+  "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
+  "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a"
 }
