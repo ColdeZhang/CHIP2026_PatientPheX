@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T15:14:39.328639+00:00",
+  "generated_utc": "2026-10-23T15:57:35.141469+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不将oracle/训练表示诊断当模型成绩。各best仅指已独审原dev候选，后续fold0新试验单列。",
@@ -571,6 +571,186 @@
           "bytes": 11846
         }
       ]
+    },
+    {
+      "id": "train48-nested-loss-decomposition",
+      "report": {
+        "path": "validation/nested-loss-review/review.json",
+        "sha256": "fe4274ea937f79df753a0a60035cb7c5d64d1695cf88a8afd3461ee6031beb57",
+        "bytes": 13257
+      },
+      "source_commit": "80cc2ea660ffd8ebe5cb80d403d0ed54cc4f26ca",
+      "scope": "Independent actual training48+three train32 OOF files; no outerfold0/originaldev labels or GPU. No corrected prediction exported.",
+      "conclusion": "实际聚合/逐折/单双患者分层计数独立一致；1364实体FN=908无重叠+411非精确重叠+45同跨度缺ID，501关系FN=371缺候选+130在池；无gold补候选。",
+      "limitations": [
+        "411 boundary_or_nested_overlap denotes overlap without exact span, not 411 proven correct-concept/boundary-only fixes.",
+        "45 exact-span wrong identifier includes missing atomic ID at a partially correct multi-ID span; not necessarily45 wholly wrong spans.",
+        "Seen-alias/same-document propagation counts are aggregate opportunity proxies, not new predictions or achievable recall.",
+        "604/607 marker availability and3 cap losses are location proxies; no human relation evidence-span labels exist, so this does not prove MIL useless.",
+        "Nested models trained32 vs final48 and historical fold0-selected thresholds; not blind validation or a change to original0.8 acceptance.",
+        "报告JSON对象完全复现；Counter键顺序可导致字节不同，不代表数值不一致。"
+      ],
+      "support": [
+        {
+          "path": "validation/nested-loss-review/summary.json",
+          "sha256": "2101e7b4d2aa68af91b267355b18622fa2a0a259c3d0be13594873600f704f7e",
+          "bytes": 2003
+        },
+        {
+          "path": "validation/nested-loss-review/review.md",
+          "sha256": "1e6fd5383c60e232b8c12fb9ae6c00915f31d658424203afbb9cc5f98311a904",
+          "bytes": 1091
+        },
+        {
+          "path": "validation/nested-loss-review/audit_actual.py",
+          "sha256": "b996c461ba855712eceb7569ae93dd583fe8469829aacd10f7109e988f2e2ae4",
+          "bytes": 11679
+        },
+        {
+          "path": "validation/nested-loss-review/miss-strata.json",
+          "sha256": "59551d1d6560f3916b14886a373b03e6d8e1e5e38cc7f968c046e949213d65c5",
+          "bytes": 13705
+        },
+        {
+          "path": "validation/nested-loss-review/miss-strata.md",
+          "sha256": "d65fd636053ea3eb9e59fcd03b58ef615578d5b4b0a944422c2508a3390dbb3d",
+          "bytes": 1457
+        },
+        {
+          "path": "validation/nested-loss-review/stratify_misses.py",
+          "sha256": "4b07f1bb6daf534123a0583581ba8e28f1a06bda30c15d0b74e2b5e5b1442ec5",
+          "bytes": 9557
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-frozen-inference-interface",
+      "report": {
+        "path": "validation/phenotagger-encoder-review/inference-interface-review.json",
+        "sha256": "1e12cd2bfd3628a0e2620e984a31fd3d549c462bf3cb1e574edad056c79cf4b5",
+        "bytes": 7666
+      },
+      "source_commit": "5f4c8d8e7c4e12a1ea9e7be6177792987424e17d",
+      "scope": "Local source and actual small artifacts only. No GPU, inference, checkpoint read, training, heldout gold, or original dev read.",
+      "conclusion": "冻结87134候选/原文切片与训练隔离通过，16重叠fixture保留基线全对象/字节exact；真实终点见后续条目。",
+      "limitations": [
+        "This is the fixed HGB baseline plus a full-encoder multiclass addition experiment, not a standalone PhenoTagger replacement or literal upstream GENIA candidate-generator reproduction.",
+        "The .95 numeric default matches the declared upstream setting, but the exact boundary differs: official v1.2 rounds p to five decimals then accepts strictly >.95; this frozen project accepts raw p>=.95. This is a fixed adaptation, not a reason to change the frozen protocol.",
+        "The sixteen high-confidence existing-span fixture cases establish actual no-change retention for that fixture. None, length, negation, and relation branches were source-reviewed here, not newly exhaustively executed.",
+        "No formal endpoint checkpoint or real model scoring output is certified by this interface review, and no quality conclusion follows from it.",
+        "Original candidate pool provenance and training data reconstruction rely on the earlier frozen reviews; this check independently binds the prepared candidate bytes, manifest, exact stripped text slices, and current source."
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-encoder-review/audit_inference_interface.py",
+          "sha256": "9994c5f80c76a35a51ba9127a4e28dd914e7b191944b297beb2942741538b1cb",
+          "bytes": 9392
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-fixed30epoch-terminal",
+      "report": {
+        "path": "validation/phenotagger-endpoint-review/review.json",
+        "sha256": "568952da66e38cf6efb8cdfb9333adae4c4be6bfd47a74b0fe0ddb315ac3edb0",
+        "bytes": 8551
+      },
+      "source_commit": "1141afedee1a437189240d0cfde253c7b55fde4c",
+      "scope": "CPU fixed30ep terminal cache/provenance/assembly/evaluator audit. No GPU inference/training or originaldev labels.",
+      "conclusion": "固定p>=.95 CPU组装byteexact；基线全保留，11新实体4TP7FP/6新关系2TP4FP；内fold0 .7103590603→.7104530458，0错警，仍未到0.8。",
+      "limitations": [
+        "Actual30ep final/latest weight identity is bound by collected complete.json and model-loader SHA assertions; reviewer did not redundantly load/rehash remote checkpoint or rerun GPU logits.",
+        "This is a fixed candidate addition to frozen HGB baseline, not a standalone PhenoTagger replacement; no new originaldev best or0.8 completion.",
+        "Raw>=.95 is the already-frozen project adaptation; upstream rounds five decimals then >.95. No post-result boundary tuning.",
+        "Dataset/HPO candidate preparation relies on earlier independent audits; this review rechecks actual cache/input/terminal/data SHA.",
+        "Any extension to total100epochs is separately authorized after30ep training diagnostics; not part of this terminal result and not certified complete here."
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-endpoint-review/summary.json",
+          "sha256": "6b486b61ba7aed58ecf800788457648251410a9a1849cee2a089c05890f5925f",
+          "bytes": 2736
+        },
+        {
+          "path": "validation/phenotagger-endpoint-review/review.md",
+          "sha256": "51ef73f24f371761349b543648391175e0c1deb67d8f89503ae92d8fb4d7ff1b",
+          "bytes": 1184
+        },
+        {
+          "path": "validation/phenotagger-endpoint-review/audit_endpoint.py",
+          "sha256": "cbf067b8b38d0921a73e1085e2a0f558e958119f5aba07b445031e5b9380c59d",
+          "bytes": 13657
+        },
+        {
+          "path": "validation/phenotagger-endpoint-review/commands.json",
+          "sha256": "2bb9d9fd64b6421df18328fee9b8fed1a512c5bfc7d4fa6bd7e0b9596a053e49",
+          "bytes": 5635
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-total100epoch-extension-readiness",
+      "report": {
+        "path": "validation/phenotagger-extension-review/review.json",
+        "sha256": "55e29445822e3591becab6ebdc1c40f527dc6e17e7f8f0ca3a46e03d6567c07a",
+        "bytes": 11897
+      },
+      "source_commit": "cd4adac94378a0090fd46f32b1373b12cb575197",
+      "scope": "Independent local source/AST/manifest/SHA review. Actual large-parent CPU load was performed by ontology route and its frozen checker/tool exit/report were inspected; reviewer did not repeat it, touch remote files, invoke GPU, or read heldout gold.",
+      "conclusion": "30→100固定预算扩展准备通过；训练loop/Adam/tokenization AST不变，父13740步、epoch30完整状态绑定，CPU恢复证据通过。未认证GPU启动、首update或100epoch终点。",
+      "limitations": [
+        "审查绑定方案实际CPU checker结果，未独立再次读取远端大checkpoint；CUDA RNG仅CPU保存字节，正式GPU需set/get断言。",
+        "这是30epoch终点后新授权预算扩展，不声称最初已冻结100epoch；无中间heldout评测。"
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-extension-review/review.md",
+          "sha256": "7e65bba5d53cf8a2c270b8bfe90870fd3f222c1d591b0edbc8539eb8e36d0809",
+          "bytes": 1701
+        },
+        {
+          "path": "validation/phenotagger-extension-review/audit_readiness.py",
+          "sha256": "d9180ddd67a55ffa9274a1a7094f577b5e4dd4414656562d048b8df21e4fc4f1",
+          "bytes": 16866
+        }
+      ]
+    },
+    {
+      "id": "whole-patient-open-set-sft-terminal",
+      "report": {
+        "path": "validation/open-patient-terminal-review/review.json",
+        "sha256": "436b37356f94f7aae11f484453464f75ba8682cb2a1230d6155caa6143b02246",
+        "bytes": 15875
+      },
+      "source_commit": "5d48d2fbafddd85d4c5f86a3f190a1ab41c5aa16",
+      "scope": "Actual training/paired inference metadata, input/source/SHA lineage, independent original-quote parser, frozen CPU assembly and v2 all/text scoring. No GPU or original dev evaluation.",
+      "conclusion": "四预测/解析审计CPU byteexact、独立quote parser和v2指标完全相同；epoch2 raw/grounded仅.397872/.396343、4/3关系TP，强负结果，不采用；实体947/患者47全保留。",
+      "limitations": [
+        "Data/mask/preparation coverage relies on earlier independent open-patient-sft-review, exact current data/source hash rebound here; not repeated full tokenizer audit.",
+        "Actual large checkpoint bytes were hashed by route; this reviewer compared collected actual-hash report to checkpoints and inference fingerprint but did not independently load/hash remote large tensors.",
+        "Base response fingerprint records config only, not5 weight shard SHA. Same readonly model directory and prior transfer/training plus subsequent adapter hash give provenance corroboration, not per-base-run full-weight certification.",
+        "Inference manifest omits PEFT runtime version; actual training environment records0.15.2 and shared runtime command supports continuity, not independent fresh runtime verification.",
+        "Literal whole-word quote support is neither patient attribution truth nor HPO semantic equivalence. Raw legal-HPO policy can retain ungrounded IDs by its predeclared diagnostic design.",
+        "This is one repeatedly used inner development fold, not blinded validation; no original dev gold or official submission was used.",
+        "Training loss/32 optimizer steps certify execution only, not task quality. Existing input-only batch3 resource selection does not use heldout labels."
+      ],
+      "support": [
+        {
+          "path": "validation/open-patient-terminal-review/review.md",
+          "sha256": "536730b5c1f9e6d322b27f6552c82d42a75d368328247db5a59249dabbe2501f",
+          "bytes": 1830
+        },
+        {
+          "path": "validation/open-patient-terminal-review/audit_terminal.py",
+          "sha256": "0d26373537572150ed251cc73945980a8c87a4247efea96b5adfdacdf5b0f5f0",
+          "bytes": 13047
+        },
+        {
+          "path": "validation/open-patient-terminal-review/commands.json",
+          "sha256": "6e28c39b6cd6b01a54858d00a90c0a629539c16c03b73f5bde10919b36106f72",
+          "bytes": 7735
+        }
+      ]
     }
   ],
   "pending_review": [
@@ -579,7 +759,8 @@
       "status": "新任务已收，等待路线冻结实际数据/schema后审核；不纳入已通过结论。"
     }
   ],
-  "previous_live_index_sha256": "48890016faae90ada8ef1429d30d60b401bd04e1204abffb756ada1f34573430",
+  "previous_live_index_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "早期12项已由主线程14:36不可变归档并恢复核验；本文件为当前聚合索引。新条目不改变旧报告内容。"
+  "live_index_note": "早期12项已由主线程14:36不可变归档并恢复核验；本文件为当前聚合索引。新条目不改变旧报告内容。",
+  "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4"
 }
