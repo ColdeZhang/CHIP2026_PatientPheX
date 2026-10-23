@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T20:37:07.886563+00:00",
+  "generated_utc": "2026-10-23T20:58:35.984952+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -8364,21 +8364,977 @@
         }
       ],
       "completed_review_scope": "fixed_focal_loss_actual_CPU_smoke_and_fresh_pair_entry"
+    },
+    {
+      "id": "full64-fixed12-training-fit-and-objective-diagnostic",
+      "report": {
+        "path": "validation/full64-fixed12-training-fit-review.json",
+        "sha256": "a9c0ccb12dd4c0ff45680815f7942fd642f96cc5f88340aa4d1e0f62c35460bc",
+        "bytes": 8724
+      },
+      "scope": "与答案无关固定选择12条已训练提示，用既有full64 epoch002执行一次原协议生成；独审核选样、模板绑定、CPU token分类统计与训练拟合结果。",
+      "conclusion": "12/12严格格式、7/12逐行完全匹配，关系57TP/6FP/9FN，训练拟合F1 .8837209302；单次67.126秒、0生成上限、GPU释放。265行目标token分组统计已复核，但词法比例不等于NLL/梯度贡献。此为已训练提示诊断，不是publicv2 Score、泛化或原dev提升，不能单据此追加训练；未执行可选teacher-forced类别NLL。",
+      "limitations": [
+        "Fit on12 already-trained rows does not measure generalization or originaldev quality and cannot by itself justify extra epochs.",
+        "Runtime output records prefix token counts but no per-row rendered text/input-ID digest; exact prefix string hashes are reconstructed from unchanged frozen messages/template and prior training audit.",
+        "Original parser-compatible candidate P/R counts only declared CIDs/valid patient IDs; separate strict-format count detects extra/duplicate/missing keys and token-limit failures.",
+        "No model reloaded or base weights rehashed by reviewer; old validated runner/checkpoint plus actual runtime manifests/source-hash receipts are reused.",
+        "Managed process API gives stopped status, not remote exit code; do not reinterpret GPU release envelope rc0 as inference-process rc0."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-proposal.json",
+          "sha256": "c88d780967659311133d3e865792c27a4387554ebd67695f870c843d67aaea0e",
+          "bytes": 2117
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/epoch2.responses.manifest.json",
+          "sha256": "1df1a14df382ceff707d1e7c8312f0d792779faf287c382cf4aac44ea59c57d1",
+          "bytes": 4163
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/evaluate_fit.py",
+          "sha256": "b4d6fb982950ab98d8494186ddb4f8d3930b58077ec62ab2d3275fba9beeb557",
+          "bytes": 4040
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/fit-result.json",
+          "sha256": "5abf0b943e184ec7af21b6e30073d165c85c7d8a0a3a2b2fe88603f43c86f854",
+          "bytes": 3609
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/gpu-preflight.json",
+          "sha256": "36d65520274ffb294aa061548a977ae6db5a2d84717521dd7bb58fe76c2dd761",
+          "bytes": 457
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/gpu-release.json",
+          "sha256": "a9d74da67cfc3057a1feb3a525d1532eb1014b5d9e90654736b05306b5f54f7e",
+          "bytes": 457
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/job.json",
+          "sha256": "98b7f64886fe807c8f7cdd14d86d125f9b3ddb501874acdfb338af811fae352e",
+          "bytes": 947
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/monitor.json",
+          "sha256": "475f5a0f61027f998292d3c34802e78e80feadcf5f0c53238152ffebca024345",
+          "bytes": 183
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/predictions-freeze.json",
+          "sha256": "bbf04f89bff556eac68e2a49c084ef8e9a67c7fd052f75794f224804e461518a",
+          "bytes": 616
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/run-plan.json",
+          "sha256": "dab33988ed1ea13143c41bff71f404025b643212033efbe3aede0e625ab9f2bc",
+          "bytes": 8600
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/run_fixed.py",
+          "sha256": "e3e08972a465fe0d048a922203c630830c3017d2c48f41bbcfd05e84ae89e387",
+          "bytes": 5465
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/runtime-cpu-preflight.json",
+          "sha256": "7c594c48c1e3e7dd52cd2e3e29f4737ec5bb5ab412528dc98ca8d292fe6c4082",
+          "bytes": 227
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/fixed12-run/source-preflight.json",
+          "sha256": "603c4b815820dee87323862ba9f5ed5ad15e19e5ebc46e4da9d9e0f7355713ed",
+          "bytes": 736
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/source-snapshots/audit_full64_objective.py",
+          "sha256": "af1243f477d8911a951180a7f41f58c2e721ba9ad4f4e23bd7efe6c155a86d4d",
+          "bytes": 12678
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/summary.json",
+          "sha256": "a614f60874ab3462627f629bb8ccd52a5a9d7836d4a1133a3f058ab15a94ef4c",
+          "bytes": 10706
+        },
+        {
+          "path": "validation/index-next-20261023-2055/declared-dependency-verification.json",
+          "sha256": "c3e6b4ea7733b2303ff777cb3e18ad526235dda576317a259e6c1f9977443686",
+          "bytes": 83908
+        },
+        {
+          "path": "validation/index-next-20261023-2055/pinned-source-snapshots.json",
+          "sha256": "830da12e74127d84d8879c8d48664ab4f890bec944ec596d689ada7c9a7835c5",
+          "bytes": 3053
+        }
+      ],
+      "completed_review_scope": "completed_single_training_prompt_fit_diagnostic_and_CPU_review"
+    },
+    {
+      "id": "public-phenotagger-native-H5-CPU-readiness",
+      "report": {
+        "path": "research/public-phenotagger-reuse/readiness.json",
+        "sha256": "1b0c02cd28855ba12c5d962896762ce0eb15f670c69c79980365707571384986",
+        "bytes": 1137
+      },
+      "scope": "公开PhenoTagger v1.2原生CPU严格恢复和列映射，加已完成label-free候选/offset与first256吞吐检查、仅train64类覆盖；未完成GPU/正式质量排除。",
+      "conclusion": "固定公开H5 SHA d58af55a…，122759794参数/201变量先置NaN后严格恢复并逐元素匹配；17266原列保持，分类后合并17090有效概念。合成探针仅接口。nested16仅输入：修复跨句ngram边界后70971→75790，原集包含、52185 token offset全通过；CPU first256 26.972秒，约9.491项/秒，全量估算约8000秒不是实跑。train64 4626/4665 linked mentions有规范后head类覆盖，不代表抽取正确率或Score。官方overview/公开卡支持合理受控试验，旧GSC选模示例不证明该权重禁用，亦非官方具体SHA认证；未用GPU或外部人工标注集，无NER质量终点。",
+      "limitations": [
+        "历史人工评估或选模的具体谱系仍未知；公开工具/模型合理可试的解释不等于主办方对该文件SHA的最终合规认定。",
+        "只复用已完成原生CPU运行证据；本索引未重新加载或下载491312288B模型，权重全SHA依赖原实际下载与native运行receipt。",
+        "四合成短语只验证接口；真实候选吞吐仅固定前256，约8000秒为线性估算，非全量实际推理。GPU/runtime及质量尚未完成。",
+        "train64类覆盖忽略抽取、置信、否定和标准化精度，不是可达Score；评测器不统一所有alt ID；None类不等于正确NIL文本输出。",
+        "2030个当前分支概念缺于旧head；不能删除head列后重算softmax，也不为预测扩充父概念。",
+        "实际nn_represent.py的LF字节由固定CRLF快照仅规范换行恢复，SHA精确匹配native运行记录；原快照和恢复过程分别保留。",
+        "2.60MB完整列映射、2.82MB词典映射和226150B词表等仅为外部引用，未复制入Git；native-pipeline仅纳入已完成CPU产物，未纳入进行中GPU环境/质量。"
+      ],
+      "support": [
+        {
+          "path": "research/public-phenotagger-reuse/ModelScope_exact_model.json",
+          "sha256": "ccd0679e6979f0d38d0ddf468b82461d7c543df5aa726ad778b0c8be5d4b45c9",
+          "bytes": 152
+        },
+        {
+          "path": "research/public-phenotagger-reuse/ModelScope_exact_revision_tree.json",
+          "sha256": "0fdf6e7da6e2b497d1cf37129155057bd632998817002c5b2bddcb22d792d93d",
+          "bytes": 155
+        },
+        {
+          "path": "research/public-phenotagger-reuse/ModelScope_positive_control.json",
+          "sha256": "0aaf94a9b61f39b512f5438ff30b10b917448f1626d5d9f1b213a5701e06136a",
+          "bytes": 28809
+        },
+        {
+          "path": "research/public-phenotagger-reuse/attempt1-tf-discovery/cause.json",
+          "sha256": "4c72023a13ea57a72cd3ff2b38b977c962af2ea9eb8f9ec9d6418e794f4768a0",
+          "bytes": 433
+        },
+        {
+          "path": "research/public-phenotagger-reuse/attempt1-tf-discovery/check_native_h5.py",
+          "sha256": "031015640150004fe004a825f357da06c96d456b5bcde79d1a58e78e4a32e9a3",
+          "bytes": 5362
+        },
+        {
+          "path": "research/public-phenotagger-reuse/attempt1-tf-discovery/native-current-status.json",
+          "sha256": "b541c988afba0b0dee514703d5e3437825569ffef98dab71f5cc740cdf2ea77c",
+          "bytes": 1280
+        },
+        {
+          "path": "research/public-phenotagger-reuse/attempt1-tf-discovery/native-h5-job.json",
+          "sha256": "e37f3d93078174214845db35bd1c0b05b16757656705b8eb108c4d95f8fbce02",
+          "bytes": 1536
+        },
+        {
+          "path": "research/public-phenotagger-reuse/availability.json",
+          "sha256": "3db6f4a0403962009f20c5aac6160518db4396f9ca9413d5dbc553c77183cbe8",
+          "bytes": 1023
+        },
+        {
+          "path": "research/public-phenotagger-reuse/build_label_map.py",
+          "sha256": "1b4a60a8a965a4704a3a78e52fa56e628fc855cf0781ec7b9c32b5cb3cd57e03",
+          "bytes": 2740
+        },
+        {
+          "path": "research/public-phenotagger-reuse/check_native_h5.py",
+          "sha256": "031015640150004fe004a825f357da06c96d456b5bcde79d1a58e78e4a32e9a3",
+          "bytes": 5362
+        },
+        {
+          "path": "research/public-phenotagger-reuse/completed-processes.json",
+          "sha256": "ed1ed01cb0ce2892001d055aee3a13eba908751e3770f4bfc63e0885c3d465ce",
+          "bytes": 1170
+        },
+        {
+          "path": "research/public-phenotagger-reuse/cpu-runtime-inventory.json",
+          "sha256": "3505a8cd36f677fd6080509de0d469cba0ae844456b240fb1568f922706b96b6",
+          "bytes": 1159
+        },
+        {
+          "path": "research/public-phenotagger-reuse/cuda11-library-inventory.json",
+          "sha256": "4bc45fc299c3705ccb245013d6d54d91fe258026c115b18271ddb8351e956a6f",
+          "bytes": 8441
+        },
+        {
+          "path": "research/public-phenotagger-reuse/download_public_h5.py",
+          "sha256": "cd144890510a0544820573dd88e2aa03272cf28be918fe7cbe6565446400d3f2",
+          "bytes": 5876
+        },
+        {
+          "path": "research/public-phenotagger-reuse/installed-package-manifest.json",
+          "sha256": "ca03072da02761ad16b961b8454af62beeca97c57ea2b05ae20ddba5390c5aed",
+          "bytes": 17773
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-h5-result.json",
+          "sha256": "d6ed2d31bf8a4dd3fd483f7658ea42ddc5be72a830124442a603bbe38b62e900",
+          "bytes": 2370
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/benchmark_candidates.py",
+          "sha256": "29da869dc71df35a396f35eb1122c4343a12a9ff9c8f5f0a1cb55372097246f1",
+          "bytes": 3344
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/candidate-census-passages.json",
+          "sha256": "255b7f3e226d2c8f18f9fdb7c32b378ed76aea716f09f767b1ff40ac3cec0794",
+          "bytes": 104846
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/candidate-census.json",
+          "sha256": "aac89791d14b7984361ee692940927772f67d8e1f4a8ce86a1d1e4255c203f0e",
+          "bytes": 919
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/candidate-measure-failure.json",
+          "sha256": "a855fb0bd19a444ed74ba5923ebdd022300d5d71ca6560a2aa4c6d25f7b1c00d",
+          "bytes": 289
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/candidate-throughput.json",
+          "sha256": "e0955cb7628011d2e5b9d7fc01235346bbe6196da672c7be355146a4f7319952",
+          "bytes": 1189
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/dictionary-current-HPO.json",
+          "sha256": "61ffd241f0d2cc24d55ff1a317b3e781c59133dd3de9bebe803ad9abf1b9a10a",
+          "bytes": 2816807
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/fixed_candidate_function.py",
+          "sha256": "1569e545fc83e5adf66406678e8b15dd315fa4437fc541a78a6cc0e9f3f966e7",
+          "bytes": 5574
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/measure_candidates.py",
+          "sha256": "4700af238ffdf6e9328c0c80a9589b22758a4d74e1f2529b5504b6dde567ca2a",
+          "bytes": 7610
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/nltk-data-local-manifest.json",
+          "sha256": "24a4b21fe3de39d36a52e381226c7821c1bf670cd33df0e3395c9533494e0102",
+          "bytes": 915
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/nltk-data-source-plan.json",
+          "sha256": "58c21823f5730c44812c296d9490dcb880ac867b1af04df71d8371f95edebbb8",
+          "bytes": 315
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/source-manifest.json",
+          "sha256": "4bb4f298f831a12e9aa65bc225c24e3ed9870acf1dfd6631ee7646f0060fd26d",
+          "bytes": 3381
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/abbre_resolution.py",
+          "sha256": "0afe29fa6f9ea7c4e70c4c2042843ae208fabc0e588809a8c7b9b2c63fef97ff",
+          "bytes": 15842
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/combine_result.py",
+          "sha256": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95",
+          "bytes": 3811
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/dic_ner.py",
+          "sha256": "2c7aa997d8bf4a72568be191169e6c1649242481b95284e5af32071625242ab1",
+          "bytes": 6616
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/post_processing.py",
+          "sha256": "2bb75664dae1d51414ef805c5c5a4ca83965d793817f1cc64fbed7d5500416ab",
+          "bytes": 1769
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/restore_index.py",
+          "sha256": "aa53414992c37473c465566b094086c365cd521fb215edca40da9cec9f2c82d8",
+          "bytes": 4500
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/ssplit_tokenzier.py",
+          "sha256": "5925dbe25cbaaaa26ef2ca10291958969eeb95822e69cc2badab8c4177d1b2f7",
+          "bytes": 1724
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/src/tagging_text.py",
+          "sha256": "fe4ec013d1efddedb11f7654a28add9ff8bc92779d2236ebe468a6161e57329f",
+          "bytes": 3125
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/transfer-manifest.json",
+          "sha256": "98a0cbd5fb40be88d62ad127b3e17f4b8fde85356a3208cbe4448f43b4b63493",
+          "bytes": 1100
+        },
+        {
+          "path": "research/public-phenotagger-reuse/native-pipeline/transfer-result.json",
+          "sha256": "9557e3262576746d6d576510fd7bd5a44738e42e2ce717a95e80388a63d57d9c",
+          "bytes": 431
+        },
+        {
+          "path": "research/public-phenotagger-reuse/original-column-to-current-HPO.json",
+          "sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+          "bytes": 2595787
+        },
+        {
+          "path": "research/public-phenotagger-reuse/pubmedbert-config-tokenizer/config.json",
+          "sha256": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+          "bytes": 385
+        },
+        {
+          "path": "research/public-phenotagger-reuse/pubmedbert-config-tokenizer/tokenizer_config.json",
+          "sha256": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+          "bytes": 28
+        },
+        {
+          "path": "research/public-phenotagger-reuse/pubmedbert-config-tokenizer/vocab.txt",
+          "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+          "bytes": 226150
+        },
+        {
+          "path": "research/public-phenotagger-reuse/review.md",
+          "sha256": "67e28096d2a8af6aedc8e28939580f3901ca8ca8791b8b60118371e5a33ec2fa",
+          "bytes": 3914
+        },
+        {
+          "path": "research/public-phenotagger-reuse/setup-state.json",
+          "sha256": "d731c65b887a898e188fda0596d21a5755adc44885e8ab85961861bd059bc31b",
+          "bytes": 1066
+        },
+        {
+          "path": "research/public-phenotagger-reuse/setup_native_cpu.py",
+          "sha256": "3b2b6fe46f8b558f2c6bf9bd228043a41b062dcb27112de63f80330f55917425",
+          "bytes": 2416
+        },
+        {
+          "path": "research/public-phenotagger-reuse/small-model-files.json",
+          "sha256": "3374a3aece3ca16449bedb1e0b732cc0c9d3481c6244db219b720c27745a41a4",
+          "bytes": 853
+        },
+        {
+          "path": "research/public-phenotagger-reuse/source-snapshots.json",
+          "sha256": "e8f2b8d9fccd6baeece934d74d90a1943c85633ec7e0fbe9862392870fe9f91c",
+          "bytes": 5477
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/00-nn_model.py",
+          "sha256": "7543d6712fb497ff658b73b26c393832135c9152a23d15f547b839270dbcfeb7",
+          "bytes": 5878
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/01-nn_represent.py",
+          "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf",
+          "bytes": 11161
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/02-ml_ner.py",
+          "sha256": "87499e4da50375cd6040a311e22a358599007e207d6d5039bed87a83fe66b2e4",
+          "bytes": 22572
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/03-lable.vocab",
+          "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+          "bytes": 189923
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/04-README-pinned.md",
+          "sha256": "4b8feeadd5414b0343d2fdfdfde55739f525ed94ea64a82f593362c858cac22c",
+          "bytes": 8802
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/05-LICENSE",
+          "sha256": "681616a1f867e5967a8891c63b8bd72d22838ea6943d332cd1bf5631bdcf4cf8",
+          "bytes": 1104
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/06-hf-model-card.md",
+          "sha256": "293dc74936641f1f748e8fe2e8d14e87c7d071f38b18d324bddd36067a5ed904",
+          "bytes": 67
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/07-hf-model-metadata.json",
+          "sha256": "ba3bee8246020df498b0cbad03b05e5fa7776abaff00e5222d962602d46fc47e",
+          "bytes": 1800
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/08-review.md",
+          "sha256": "420c941d827fe77cd7fac5e625bcab3cdf79f2847991727334159fcc21f21e8c",
+          "bytes": 6057
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/09-review.json",
+          "sha256": "56df6e4b7ca5782cec7981e231a4db22fe345043dc76fe7cfa34a3d5a0db4e04",
+          "bytes": 13673
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/10-ontology-label-compatibility.json",
+          "sha256": "5505871c76b9e93e72be833beeffaab26619ad01b1be43ea557195e7e00c1122",
+          "bytes": 756
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/11-pubmedbert-config.json",
+          "sha256": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+          "bytes": 385
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/12-pubmedbert-model-metadata.json",
+          "sha256": "fc8722173ca0b47339bd54fed8e30ae72ba5032af0961162f4b7987e0b029908",
+          "bytes": 4735
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/13-overview.txt",
+          "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861",
+          "bytes": 45381
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/14-agriv-model-card.md",
+          "sha256": "f7159c603f2203a0f18f4cbb7db8f8cb4713a1556785657b423bb8c20a1d1250",
+          "bytes": 2178
+        },
+        {
+          "path": "research/public-phenotagger-reuse/sources/15-README.md",
+          "sha256": "644398fd9de7473af11bd502e3ffa9192dd00c9b92a796be86665a38aadb5e51",
+          "bytes": 20703
+        },
+        {
+          "path": "research/public-phenotagger-reuse/tf-backend-diagnostic.json",
+          "sha256": "ddda5d8e6d69610cc1dcb6e5457f9835e25dd148046d8901b5fd32382f38c7fd",
+          "bytes": 9294
+        },
+        {
+          "path": "research/public-phenotagger-reuse/variable-coverage.json",
+          "sha256": "212590cc9d3b4e6429131eb2413a117ab1f747c33ffe1e9e60b47b1accbbc8f9",
+          "bytes": 69033
+        },
+        {
+          "path": "research/public-phenotagger-reuse/weight-source-manifest.json",
+          "sha256": "0d22fb21a26acc915607e1ac92b7dd3ca693d0dd29de73b828edd4a916e599a1",
+          "bytes": 698
+        },
+        {
+          "path": "research/public-phenotagger-train-coverage/check_coverage.py",
+          "sha256": "fc354910103684fb20be31f1c015ca1e8e2fd19caaee6b4295b7c561b77d1ded",
+          "bytes": 2864
+        },
+        {
+          "path": "research/public-phenotagger-train-coverage/report.json",
+          "sha256": "54fc5b7df1edd8e6a24828de99ea1a0c36e209cfd32dffb41284d5525544594a",
+          "bytes": 2443
+        },
+        {
+          "path": "validation/index-next-20261023-2055/declared-dependency-verification.json",
+          "sha256": "c3e6b4ea7733b2303ff777cb3e18ad526235dda576317a259e6c1f9977443686",
+          "bytes": 83908
+        },
+        {
+          "path": "validation/index-next-20261023-2055/pinned-source-snapshots.json",
+          "sha256": "830da12e74127d84d8879c8d48664ab4f890bec944ec596d689ada7c9a7835c5",
+          "bytes": 3053
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source-reconstruction.json",
+          "sha256": "d48aa401f2b811ba12a0a3599c1eb8308c6c5a7e532eb4dc452a4ff58552ef79",
+          "bytes": 704
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/phenotagger-cpu-preparation-index.json",
+          "sha256": "6e97e3637c5ffc574f0ef8c78aab349a52680fd30743cbae5daae9fd50eb941f",
+          "bytes": 2589
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/phenotagger-native-runtime/nn_represent.py",
+          "sha256": "06414652d00640cf192d0f730face946040f110129de1073a485267a524ef0ba",
+          "bytes": 10872
+        }
+      ],
+      "completed_review_scope": "public_weight_native_CPU_loader_column_mapping_candidate_preparation_and_class_coverage_only"
+    },
+    {
+      "id": "full64-thinking12-capped-partial-usability-terminal",
+      "report": {
+        "path": "validation/full64-thinking12-review.json",
+        "sha256": "67b49e5184482c28a9415daea0ad10c20ab9b4353a87762c68d3e93c36b2da39",
+        "bytes": 8667
+      },
+      "scope": "固定12条已训练提示仅打开thinking；实际新模板CPU前缀和严格final parser独审，首条配置不可用后主动停止。",
+      "conclusion": "唯一实际首条生成72.048秒、1600token触顶且未闭合</think>，0/1严格final；20:50:53仅停自有job、保留partial并释放GPU，无重试、无12条fit或Score。launcher仅读取targets字节做SHA/大小校验，未上传或解析用于fit；early usability检查与独审未打开targets。两处False→True外模型/消息/adapter/greedy1600不变；CPU12条前缀40773token及parser14例通过，不能由此推断完整推断质量。",
+      "limitations": [
+        "Training prompts were already used for SFT; these counts are fit diagnostics, not publicv2 Score or generalization.",
+        "Reasoning content is not graded, quoted or treated as a final answer; only whole strict JSON after closing </think> counts.",
+        "Actual CPU prefix IDs/text are recorded; GPU runner records only row token counts, not repeated per-row ID hashes.",
+        "If partial, no12-row fit is estimated and no targets are read by this audit.",
+        "Old base/model/selection audit reused; no model weights reloaded or old inference rerun. Managed stopped status is not an exposed remote job exit code."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/actual-prefix-cpu.json",
+          "sha256": "ca7d8f1d4ef3ea808b60dc31397821e2dcedfedd4431c6e5cc706f3eb2546fba",
+          "bytes": 2795
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/actual_prefix_cpu.py",
+          "sha256": "a80bf27d0dabf33b84fe5ed58b67c15198f021162f21308a99a2abf57e5d0a69",
+          "bytes": 807
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/cpu-parser-checks.json",
+          "sha256": "575d78f88b4c8807a77e15960902b777431e7063f987bb2f1406feb3a5ec2d24",
+          "bytes": 1010
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/early-stop.json",
+          "sha256": "f75fab53da27f5383d251f73f11a3934cb5fafb6f972cfb422545952289629f9",
+          "bytes": 377
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/early-usability-check.json",
+          "sha256": "e35d81ea064d31a271951d4be363393b976bc2c91271bd80282cad3af8d6283b",
+          "bytes": 602
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/evaluate_fit.py",
+          "sha256": "1fd0f122bf2969aeae98e918fd0ba01b26519ef9399e6b1a388a29147cc72f8e",
+          "bytes": 4285
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/gpu-preflight.json",
+          "sha256": "b2b4c50b930a451248157985bc770856251dbae7be8da187315987d3047afa15",
+          "bytes": 457
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/gpu-release.json",
+          "sha256": "98df76880f33254b2e7f3d0bf18c0b7cd8f1eb1a7f46a775f6311712978a3381",
+          "bytes": 456
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/job.json",
+          "sha256": "c49a1ce313fdd5945c5f379f0100237f2b069a7343a1b3c9de2de4173ec930fa",
+          "bytes": 966
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/monitor.json",
+          "sha256": "2939072e3ab2858f76aaafdff66786f048d5ca3b65da3bdf17d0c33f9230c983",
+          "bytes": 182
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/predictions-freeze.json",
+          "sha256": "54311145fbf09013a45fad3a4662c497a60b0d5e2d3600201d528d253a1bdfad",
+          "bytes": 507
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/qwen35_thinking_runner.py",
+          "sha256": "8706a426373c309cd01abdde04a2f8dd5b18ec2d10f4e9eb763bbf549250e4a8",
+          "bytes": 11010
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/run-plan.json",
+          "sha256": "93864ba5ff6dc7b97613f54ae6eaaca678353633d193532beb7864daee14b07f",
+          "bytes": 12824
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/run_fixed.py",
+          "sha256": "5dea374912850ebe887d7b6ab63b958a619ca08b5343a3f20bff29b9ad6d4535",
+          "bytes": 6642
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/source-preflight.json",
+          "sha256": "92d9791fb616fd184e275e3c2f451b02100bd3582ed80c4e345047617e9d6fc7",
+          "bytes": 750
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/full64-objective-diagnostic/thinking12-run/test_strict_final.py",
+          "sha256": "21d210c82dfa37fde936204acebf192226bd6c706a8bd7a13673dfb24e8fbf63",
+          "bytes": 1569
+        },
+        {
+          "path": "validation/full64-fixed12-training-fit-review.json",
+          "sha256": "a9c0ccb12dd4c0ff45680815f7942fd642f96cc5f88340aa4d1e0f62c35460bc",
+          "bytes": 8724
+        },
+        {
+          "path": "validation/full64-thinking12-boundary-clarification.json",
+          "sha256": "b49d9c3acf58d5a4d4aab7d67cc7beb1bf1cfb9f6a5ced1a2d4f59852302992d",
+          "bytes": 675
+        },
+        {
+          "path": "validation/index-next-20261023-2055/declared-dependency-verification.json",
+          "sha256": "c3e6b4ea7733b2303ff777cb3e18ad526235dda576317a259e6c1f9977443686",
+          "bytes": 83908
+        },
+        {
+          "path": "validation/index-next-20261023-2055/pinned-source-snapshots.json",
+          "sha256": "830da12e74127d84d8879c8d48664ab4f890bec944ec596d689ada7c9a7835c5",
+          "bytes": 3053
+        }
+      ],
+      "completed_review_scope": "parser_and_actual_partial_run_usability_terminal_without_fit_or_quality"
+    },
+    {
+      "id": "flert-context-fixed10ep-formal-terminal-negative",
+      "report": {
+        "path": "validation/gliner-context-terminal-review/review.json",
+        "sha256": "0ad60147c1529813990911337122ed887aa48f689a72295877283400d84d8a0d",
+        "bytes": 3205
+      },
+      "scope": "同BioMed32基座/runtime/data/optimizer的唯一fresh context-on固定10ep/2880终点；新预测及旧CRF基线独立CPU装配，与已核context-off比较。",
+      "conclusion": "477981696参数、10ep/2880，训练1972.671秒、最大allocated14825824768B并释放GPU；模型→推断→Sap→四完整预测freeze谱系通过，独立字节及全部v2字段相等、0错警。Score .6543144340低于off .6544243018（−.0001098678）；mention−1TP/+4FP，关系+1TP/+2FP。固定变体负关闭，不迁原dev、不扫参数。",
+      "limitations": [
+        "One repeated nested development split, not blind validation or official scoring; Score .8 target not met.",
+        "Context adds tokens/compute while target windows, supervision, optimizer and2880 updates match.",
+        "Remote full model/state hashes are actual wrapper/retention evidence, not independently downloaded multi-GB weights."
+      ],
+      "support": [
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/assembled/manifest.json",
+          "sha256": "b2f5c0e021b3e7f9bb81df76eca49424e37e4940a44bb7afdfdd4ef2d3c55e9f",
+          "bytes": 2635
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/complete-prediction-freeze.json",
+          "sha256": "b1426e4390754376fa6baae4f6931012f4d2f9abba05cbd7040710f8722f3747",
+          "bytes": 1666
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/finetuned-inner1/manifest.json",
+          "sha256": "b73d78e36e0c742442012ff215d4c72daabbc0c7768b34df3b200d337c504906",
+          "bytes": 7186
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/finetuned-inner1/prediction-freeze.json",
+          "sha256": "96a4d5daeb6869855df56a297cc4457b1235e6bac425ee822ebcd4fdc5851a16",
+          "bytes": 607
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/formal-fixed10ep/run_manifest.json",
+          "sha256": "9d699bc1dd34574fc3c22fc10ca79084229f6417fbcf1830018de581c081e5f0",
+          "bytes": 62913
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/linked-final/manifest.json",
+          "sha256": "10f560ac5b400eb337d0b0a73c84fcede019b2cefebcd75858d28fee7af8411c",
+          "bytes": 7530
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/plan.json",
+          "sha256": "7af8e537ad19ee0e45efc48757443ad925564f1dd565739ce67b487fd3a5206e",
+          "bytes": 11787
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/remote-retention.json",
+          "sha256": "c16469692451d4e6147e46e637436bbb1f519980966d93fcb270ea6be26d6087",
+          "bytes": 1305
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/run/infer.state.json",
+          "sha256": "5839865537dfe1fa53688a43103b9842c1cc5a9b1faa3d36b6451ea67f183ca1",
+          "bytes": 1823
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/run/link.state.json",
+          "sha256": "10920ce7f0b123c728b9fffba390603901c1f21030805333a69021821cbf5f31",
+          "bytes": 2578
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/run/train.state.json",
+          "sha256": "76b023e9202d4ea42c9b94bec36a96d18348c8f6c32909a47bb3a79f94d501e9",
+          "bytes": 2534
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/commands.json",
+          "sha256": "bda96a43d38a1acff1abb9e353949594af0797ffac71aa9b4de8047e8bba7669",
+          "bytes": 4315
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/independent-before-gold-freeze.json",
+          "sha256": "b90b215b188c53202b7684aa0f4b21243da61aa776815c96bc09fa8b818f690b",
+          "bytes": 612
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/lineage-review.json",
+          "sha256": "a6009d6d41dbdd5a54602839a21f53bf4a6b3f01e52a7294f553f1f56d24389b",
+          "bytes": 4358
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/replay-context_on/manifest.json",
+          "sha256": "09d99f8fa52b125b461232bb5fd93dee60010901c50e09a641c7e5996ab6c4e9",
+          "bytes": 2641
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/replay-context_on/metrics.json",
+          "sha256": "45b9c3bd37a1f129778f72575b3c614c0aab273a960dcc52d3f01085ac0e3c14",
+          "bytes": 13088
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/replay-context_on/validation.json",
+          "sha256": "7ed613c988ebdb636350d44b4fbc4d74f06552a9f3d06f191994c9e96a550ce1",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-context-terminal-review/replay-review.json",
+          "sha256": "82dc66882dfd0ec8eda354c2450984219afff40f83ed107af3d0651d3a720793",
+          "bytes": 4013
+        },
+        {
+          "path": "validation/index-next-20261023-2055/declared-dependency-verification.json",
+          "sha256": "c3e6b4ea7733b2303ff777cb3e18ad526235dda576317a259e6c1f9977443686",
+          "bytes": 83908
+        },
+        {
+          "path": "validation/index-next-20261023-2055/pinned-source-snapshots.json",
+          "sha256": "830da12e74127d84d8879c8d48664ab4f890bec944ec596d689ada7c9a7835c5",
+          "bytes": 3053
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/258ce092976d/gliner-context-terminal-lineage.py",
+          "sha256": "258ce092976d33b67289763f7ef9d96cce0d56efa6bfed03f4f86407d83516f6",
+          "bytes": 8628
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/9ff65b77720c/gliner-new-endpoint-replay.py",
+          "sha256": "9ff65b77720c8617302fb8f969996185c6ec72e035cc2831d20025908bcbc4e2",
+          "bytes": 6393
+        }
+      ],
+      "completed_review_scope": "fresh_context_on_fixed_epoch10_terminal_and_independent_CPU_replay"
+    },
+    {
+      "id": "gliner-medium-focal-pair-and-analytic-cut-terminal-negative",
+      "report": {
+        "path": "validation/gliner-focal-pair-terminal-review/review.json",
+        "sha256": "cdbd1f23aa9a7c3c3fb47334438f1191ad615342aee0e6db872246b353433642",
+        "bytes": 5619
+      },
+      "scope": "两fresh medium32同A30固定10ep/2880配对训练，保留BCE/focal.5并追加与输入/gold无关的唯一解析cut .6011759516702939；三完整预测共同冻结后的唯一质量终点。",
+      "conclusion": "两训练685.099/693.253秒，共享1400.509<1800且各<1200，完整谱系/释放通过。解析cut为理想条件风险边界，实际loss autograd5例与1987→1480过滤字节独审通过；追加前owner未装配/读gold，三fullpred先共同freeze再评。BCE Score .6553156109；focal .6538812602（−.0014343507），analytic .6552563891（−.0000592219），三预测和全部v2独立CPU复核一致、0错警。两focal方案均未超fresh同平台BCE，负关闭、不迁原dev。",
+      "limitations": [
+        "Repeated nested development16, not originaldev acceptance, blind test or official score; original .8 target unmet.",
+        "Fixed focal is alpha.75/gamma2 with valid-span mean; it jointly changes class weighting/hardness/calibration, not upstream sum reproduction.",
+        "Analytic q threshold solves ideal conditional risk; finite-model scores are not proven calibrated.",
+        "Historical A800 medium result is not a same-platform causal control. The main comparison is the two fresh A30 arms.",
+        "Remote full checkpoint/state hashes are actual tool evidence; no reviewer GPU/model load or threshold search."
+      ],
+      "support": [
+        {
+          "path": "sequence_crf/focal-loss-control/a30/bce-inference/manifest.json",
+          "sha256": "9f70c08af2e18e98325000d6bf7ccdad6b11488e18aa441d5f2ee3b067732f3d",
+          "bytes": 2388
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/bce-inference/prediction-freeze.json",
+          "sha256": "af976e8d046b5989ae495693c56a7276caa586542fa1feda621b677fd7e00608",
+          "bytes": 536
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/bce-linked/manifest.json",
+          "sha256": "fa6dae1831635374159d424d6d0c02fed45d1d1d4eb510b143f679914996fcb0",
+          "bytes": 7096
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/bce/run_manifest.json",
+          "sha256": "deca7e9f9002f5cfab21e48485ce5da481fac90db91abe8294394bbb1e41addd",
+          "bytes": 40869
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/focal-analytic-linked/manifest.json",
+          "sha256": "07996880a96edae432a3ec564ad24fc8e35585b3230903a5427e40a9be8f02f6",
+          "bytes": 7924
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/focal-inference/manifest.json",
+          "sha256": "3ec812ced9fbde3daf87bcc8b99232924b86cd51c41aa4be5c6630c155a55d1c",
+          "bytes": 2395
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/focal-inference/prediction-freeze.json",
+          "sha256": "7c660f161e9ffcd90fdcfd30bbc9636c70b568ad2c1cbdc1a77ca10a7435a996",
+          "bytes": 536
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/focal-linked/manifest.json",
+          "sha256": "01e1b859f008440f39458820657d9684e2e4bef91d713ab97d42ed98ae61f315",
+          "bytes": 7107
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/focal/run_manifest.json",
+          "sha256": "8e99d30a8cdb875b366906c9f4164463c938b67282712c142db8189a70786c73",
+          "bytes": 40901
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/formal.state.json",
+          "sha256": "959000c295dfb0cdb73aba2e9fc68bc47f2a0c5a4e98ca3cf5481390e78c0a4f",
+          "bytes": 8222
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/actual-checkpoints-and-release.json",
+          "sha256": "43b614ac683d1cdca8caff7aafdbe9a368d8f919bbba13fcac536027220e1f4c",
+          "bytes": 1382
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/analytic-cpu.json",
+          "sha256": "80128e490a8983f91b81404b77a8efcf2a0d2b6a4df27c3d69ecd297d5d1ba8d",
+          "bytes": 1653
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/analytic-endpoint-freeze.json",
+          "sha256": "c8f07833fb2fce7dc261906cb09be4b8df4cab2715557a731fe678b673ffc74c",
+          "bytes": 587
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/assembled-bce/manifest.json",
+          "sha256": "9a5b49460f1a59c693202721b52bbe6728e4035fcf0c355930e1fcf34be38df9",
+          "bytes": 2583
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/assembled-focal-analytic/manifest.json",
+          "sha256": "5ecc9d2150497e33199c23ecb9af39313cdd6b4d7af9f57c68e33a1a80c20056",
+          "bytes": 2640
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/assembled-focal/manifest.json",
+          "sha256": "53d3b8574e10dc0bdbf96609d691652f88bc3f03fdd7757a1592a6b3a58f0089",
+          "bytes": 2614
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/complete-predictions-freeze.json",
+          "sha256": "3308ea8b8c70e30c4891073ffb95bc41400141f077a4d78e933939a1814945be",
+          "bytes": 1619
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/cpu-endpoint-execution.json",
+          "sha256": "4f06e6f2b7e4862afef9ff1457069c0a7c9d87114fec968ca09e7ac09979cd63",
+          "bytes": 6518
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/cpu-endpoint-three-plan.json",
+          "sha256": "b6dd1578138653179c2d39f6bc616ec97a41f16f0fc7197f14f1e48246591b40",
+          "bytes": 6985
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/pair-plan.json",
+          "sha256": "098d6854fdbc84c6295d8efc265bdb8e40451879446aa915db0731df1dd0a388",
+          "bytes": 20531
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/terminal-summary.json",
+          "sha256": "b4cd5373aef31c9080bee694ed3603819cd1f2bf4363c4c8d15847d80f98077b",
+          "bytes": 6090
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/analytic-review.json",
+          "sha256": "4f64315fdf5a00afe493b313ca6a49c847f3e8fb5aacbca759e6ab6a23c53e76",
+          "bytes": 3148
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/commands.json",
+          "sha256": "d57bb51fa5b187a59815c6258421f51ffbdf795b7519441aa1d52e1e838e6fc4",
+          "bytes": 12911
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/independent-before-gold-freeze.json",
+          "sha256": "c7c8f131a1b19845e8f82e9c59510b7f8d3c448ea88b082bd8da601bede2f933",
+          "bytes": 1134
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/lineage-review.json",
+          "sha256": "bcb200847744d75143c21a0188bd8ad7c9fd1dc3331fefb147fe48b2ce1b75dc",
+          "bytes": 6081
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-bce/manifest.json",
+          "sha256": "3f54ecc564f57dabddbe52dbd62638081419fd1261cae2aebed0571c586eefb0",
+          "bytes": 2593
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-bce/metrics.json",
+          "sha256": "4a2fe8f17349624d47a0982ccaa953b04de888c495033ce720c95953a691af52",
+          "bytes": 13173
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-bce/validation.json",
+          "sha256": "209e7c48897c59123bede1de846d5ac3d6a45549843889ff9bebce309428e17f",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal-analytic/manifest.json",
+          "sha256": "73c914b220772a2c1645d40cb3f5838648039fae1be166a1f1fafba9e12a2d73",
+          "bytes": 2650
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal-analytic/metrics.json",
+          "sha256": "9c4c48174107c7ac8c83aeb6fd09e9266b5435266d193d625f60c52cc696ad4b",
+          "bytes": 13190
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal-analytic/validation.json",
+          "sha256": "f1a008bd0069c782b630dcc56954ebb503e9478c7f2efe3578de822bc9d30770",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal/manifest.json",
+          "sha256": "7218d9ce78a4055e5c2dbfaa8d4f4e703d1ee66089c559f6c04e4adcccd0fd98",
+          "bytes": 2624
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal/metrics.json",
+          "sha256": "0d6362a7d1e28c758c457cd19d0f7da68e8520f7a7cda46654b468771fcdef57",
+          "bytes": 13150
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-focal/validation.json",
+          "sha256": "b08c0d3cc4ac8f7cbb127f0294a44dfacfc6fb1f51da95faa780a02c6bf5d63c",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-focal-pair-terminal-review/replay-review.json",
+          "sha256": "8bfa0d39290028993d54d274574bfa177cfb88d6cca56e86cd6333210d7562be",
+          "bytes": 6331
+        },
+        {
+          "path": "validation/index-next-20261023-2055/declared-dependency-verification.json",
+          "sha256": "c3e6b4ea7733b2303ff777cb3e18ad526235dda576317a259e6c1f9977443686",
+          "bytes": 83908
+        },
+        {
+          "path": "validation/index-next-20261023-2055/pinned-source-snapshots.json",
+          "sha256": "830da12e74127d84d8879c8d48664ab4f890bec944ec596d689ada7c9a7835c5",
+          "bytes": 3053
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/01bee807a710/gliner-focal-three-endpoint-replay.py",
+          "sha256": "01bee807a7100e830d6938a88a2262b9d57977ce4e20740c15fe171831617772",
+          "bytes": 6450
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/621f476e876c/gliner-focal-analytic-terminal-audit.py",
+          "sha256": "621f476e876cefbc1c76fca0b436ce7ad7bc0e64b9b9d20ffa5e112dd339e07e",
+          "bytes": 5962
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/7097e6d3df6f/focal_analytic_control.py",
+          "sha256": "7097e6d3df6f49834a4c431c8eef172c6a5733cccad3d6ba791f1bc8afcfb864",
+          "bytes": 5003
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/ccd56921533d/finalize_endpoint_three.py",
+          "sha256": "ccd56921533da4ec67a570104850fa3d4d2d769ff7c3c1bd96edaa446b101929",
+          "bytes": 5214
+        },
+        {
+          "path": "validation/index-next-20261023-2055/source/pinned-dependencies/d33c45697666/gliner-focal-terminal-lineage.py",
+          "sha256": "d33c4569766660fca77ebd86083af5bc775822d58edce89d9b5130b1a8e77af3",
+          "bytes": 8663
+        }
+      ],
+      "completed_review_scope": "same_A30_fresh_BCE_focal_fixed10ep_and_single_analytic_CPU_cut_terminal"
     }
   ],
   "pending_review": [
     {
-      "id": "flert-target-only-context-formal-terminal",
-      "status": "实际strict CPU、配置guard修复和含上下文最长批GPU单步已独审；fresh固定10ep正式训练进行中，最终模型/预测freeze/质量终点仍待独立核验。"
-    },
-    {
-      "id": "gliner-medium-focal-paired-formal-terminal",
-      "status": "固定focal数学、实际CPU/单步及同A30 fresh BCE/focal入口已独审；两训练及后续双预测共同freeze/单次质量终点尚未完成，不将启动或单步当终点。"
+      "id": "public-phenotagger-native-pipeline-formal-quality",
+      "status": "公开原生CPU严格加载、列映射、候选/offset修复及固定first256 CPU吞吐已完成；GPU/runtime与正式预测质量仍未完成，本批不纳入进行中GPU环境或质量产物。"
     }
   ],
-  "previous_live_index_sha256": "f2445e43a1a3049875d93f9a784daf062da6dcb99aa0c8856e3780c6d34089ca",
+  "previous_live_index_sha256": "58979d65abe1e4a96f0fa5c4ed253437865b23f6dfee20aa4d538e4765b8ae01",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批86→91：身份BF16数值修复及fresh配对负终点、exact-gate三折CPU负终点、BioMed上下文strict CPU/实际smoke预备、medium BCE/focal配对入口。旧86对象/1224引用及全部current状态保持，原dev最高仍.715759605。两条GLiNER正式训练质量尚未完成；旧两项不可恢复背景文档声明原样保留，无官方提交。",
+  "live_index_note": "本批91→96：full64 fixed12已训练提示拟合诊断、公开PhenoTagger原生CPU就绪及新增独立终点报告，完成范围逐条标注。旧91对象/1364引用及全部current原dev状态保持，原dev最高仍.715759605；训练拟合F1与Pheno合成探针不作泛化质量。旧两项不可恢复背景声明原样保留，无官方提交。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
