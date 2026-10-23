@@ -39,3 +39,5 @@
 - [PhenoTagger正式作业](phenotagger-formal-job.json)：15:00:33Z启动；持续状态看方案WORKLOG，不将启动回执当完成。
 
 - [PhenoTagger终点推理冻结计划](phenotagger-inference-plan.json)：固定p.95与既有宽池，仅增量保留基线。
+
+- [PhenoTagger终点训练自检预设](phenotagger-training-probe-plan.json)：固定512+512训练样本，非验证指标。
