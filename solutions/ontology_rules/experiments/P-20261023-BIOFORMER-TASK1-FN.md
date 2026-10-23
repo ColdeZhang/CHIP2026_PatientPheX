@@ -35,4 +35,4 @@
 
 结论：mention 漏检略过半来自候选供给，补充**正确原始 ID 和完整边界**有明确空间；近半 mention 和约六成 doc 漏检仍由选择阶段产生，不能把后续工作只归于候选扩充。现有预测仍有 825 个 mention FP，FN 数量本身不证明放低阈值会改善质量。109 个 greedy 冲突只是较小部分，不能据此立即换解码器。298 个同跨度原始 ID 不符尚未细分 alt ID，不冒称全是实际语义链接错误；本任务不做基于 gold 的 ID 补丁。
 
-这是既有开发数据/已选 cut 的事后机制分析，无新独立分数或完整 Score。实际报告、逐文小聚合和恢复命令见[结果索引](../evidence/round2/bioformer-task1-fn-results.json)，大候选/标签/原预测仍留原位。独立新增聚合审查待回收。
+这是既有开发数据/已选 cut 的事后机制分析，无新独立分数或完整 Score。实际报告、逐文小聚合和恢复命令见[结果索引](../evidence/round2/bioformer-task1-fn-results.json)，大候选/标签/原预测仍留原位。新增独审通过（`validation/bioformer-task1-fn-review/review.json`，SHA `6a48c8440c6c9942b696c86ac96e51d897561823f8484daeb180b33cdfc0d189`），独立复放统计/旧曲线精确一致，未重 fit/NN/dev。
