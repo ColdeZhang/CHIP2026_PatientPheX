@@ -1,0 +1,132 @@
+{
+  "completed_at_utc": "2026-10-23T23:51:53.111421+00:00",
+  "status": "complete_negative_closed_pending_independent_review",
+  "source_commit": "b0863cbcc170278f7a0f7c3022fb7e06a632d740",
+  "references": {
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/plan.json",
+      "bytes": 2992,
+      "sha256": "fde7580d5c76970ff046b172364febfce35124f2eb77fa37364e83afb4ee5e53"
+    },
+    "contracts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/contracts.json",
+      "bytes": 585,
+      "sha256": "10da0b6d79ccd1ef8d1c22e62da39a91d672eda212b6f598aa778405a8dd7dda"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/freeze.json",
+      "bytes": 1557,
+      "sha256": "3c4559846d5dd10601f52f5903b021061858f8d87d899398aedaed523bb524c9"
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/pred.jsonl",
+      "bytes": 152445,
+      "sha256": "f45f28bc65f35d6e95ce80392efef5d9d4bd72ccbe9cddfaf684dcf0970a7cb6"
+    },
+    "removed": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/removed.json",
+      "bytes": 19183,
+      "sha256": "f9b4e607b195a552af07f123173159936901caabd108f62afabea6043cdf5884"
+    },
+    "before_gold": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/evaluation/before-gold.json",
+      "bytes": 1001,
+      "sha256": "f4c6bddef2174edbda2c8a9442dfbe324e2b67c785500143fadfcc623e6fe22d"
+    },
+    "metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/evaluation/metrics.json",
+      "bytes": 13166,
+      "sha256": "c61bc5320ee75f882b30b80be12f8bbd44b7b13e333ec8f0c9c2e5679b351f87"
+    },
+    "validation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/evaluation/validation.json",
+      "bytes": 425,
+      "sha256": "0ad61fc6ae4b7a58b8a8d83345b59a2abe6d4bdffbae5736cf1779bac933f0d6"
+    },
+    "results": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-veto/evaluation/results.json",
+      "bytes": 1088,
+      "sha256": "d93184b7dc4aeb0682b5cb4188ada9a1e5b27e26d7a21a94a4b0b03dc82a8011"
+    },
+    "coverage": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-coverage.json",
+      "bytes": 19128,
+      "sha256": "a358e409004126c51f2fa3b2f769993acaca103293fac64322f7a625ac49cb75"
+    }
+  },
+  "results": {
+    "completed_at_utc": "2026-10-23T23:51:27.310046+00:00",
+    "baseline_metrics": {
+      "menF1": 0.7726586102719033,
+      "docF1": 0.8211267605633803,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.7281447872996406
+    },
+    "new_metrics": {
+      "menF1": 0.7628205128205128,
+      "docF1": 0.8008817046289493,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.7206239989531853
+    },
+    "delta": {
+      "menF1": -0.009838097451390526,
+      "docF1": -0.020245055934431044,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": -0.007520788346455309
+    },
+    "count_delta": {
+      "mention": {
+        "tp": -71,
+        "fp": -81,
+        "fn": 71
+      },
+      "document": {
+        "tp": -38,
+        "fp": -21,
+        "fn": 38
+      },
+      "relation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "entity_objective_sum_delta": -0.03008315338582157,
+    "keep": false,
+    "baseline_reused_not_reevaluated": true,
+    "relations_unchanged": true,
+    "development_control": true,
+    "same_training_resources": false,
+    "seconds": 0.17412089499703143
+  },
+  "decode_seconds": 0.016580995004915167,
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1143,
+      "relations": 511,
+      "patients": 39
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ]
+  },
+  "policy": "Only one predetermined veto: exact scored selected entity with binary p<.5 is removed; no greedy/ID/boundary redecoding. All uncovered entities and nonentities remain.",
+  "decision": "Closed: men+doc strictly decreased. No threshold scan or originaldev migration.",
+  "limitations": [
+    "Current public HGB F1 has95 natural features/train48; binary learned from32 disjoint fromF1, not same-resource.",
+    "F1 is development after prior endpoints, pooled64 .3 selection and input-only coverage.",
+    "Negative fixed veto does not establish universal failure of context scoring or probability calibration."
+  ]
+}

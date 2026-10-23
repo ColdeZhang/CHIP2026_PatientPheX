@@ -118,3 +118,15 @@ mention TP/FP/FN：508/158/845→867/251/486；document：347/57/398→508/80/23
 input-only分布证据：gate保留train8.40%/F1 10.04%；保留项gate p中位.8065/.8011、IQR .4347–.8813/.4543–.8760；词面长度中位17/16，提示tokens中位601/641、p95 1458/1462。训练正比5.95%→67.70%是已知resub筛选富集，F1类别比例未读；这些不支持把失配、欠拟合或失准说成已证原因。若未来改变训练，优先单独检验严格train32内cross-fit gate筛选、避免resub选择；低层隔离资源及成本需另查，未运行。
 
 root已授权**唯一固定veto**：以保留nested F1为base，只删有分数且p<.5的152实体；未覆盖168、≥.5的975及全部非entity对象原样。不新fit/候选/overlap decode，不扫描cut；新完整预测先freeze，再一次v2。以men+doc严格提高为keep，失败关闭；完整计划`fde7580d`、每stage30秒CPU，见[计划](../evidence/round2/entity-slot-selected-veto-plan.json)。这不是原dev实验；其设计已看过F1旧终点，为开发控制。早期`resource-comparison.json`中未执行的equalmean建议已被此唯一授权替代。
+
+
+### 单次已选实体veto终点（负，关闭）
+
+按预先提交`b0863cb`/plan`fde7580d`，23:51:22.424Z完整新预测`f45f28bc`先freeze，23:51:27.310Z只新臂一次v2；原nested指标复用，不重评。仅删除152，保留1143实体、原39患者association对象和511关联项及全部非entity字段。decode .0166秒、evaluation .1741秒，0错警。
+
+| 方案 | men F1 | doc F1 | Score |
+|---|---:|---:|---:|
+| 已保留nested F1 | .772658610 | .821126761 | .728144787 |
+| 固定binary p<.5 veto | .762820513 | .800881705 | .720623999 |
+
+152删除中71TP/81FP；文档净−38TP/−21FP。men+doc合计 **−.030083153**，关系两项不变，触发事前失败条件，关闭本veto、不扫描cut、不迁原dev。这里binary32不同于train48的95自然列HGB，不能说同训练量；已看过F1旧结果且cut.3由pooled64选择，为开发诊断。训练侧门控分布无明显input-only失配证据，不凭本负结果断言resub偏差、欠拟合或普遍校准失败。[完整产物与来源](../evidence/round2/entity-slot-selected-veto-results.json)，独立增量审已发起。
