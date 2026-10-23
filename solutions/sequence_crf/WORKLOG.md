@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**新有界控制准备完成：原Bioformer pool+同三pair均值。** 244794候选逐键/字段/顺序exact，无top3新ID/6rank、无Sap新cos；复用公共缓存，无NN。已审旧池4fit55.56秒，固定新4fit120秒+九cut30秒，计划667828ad；准备13.27秒通过、尚未fit/新质量。[计划](evidence/round2/phenobert-old-pool-plan.json)、[方法](experiments/phenobert-old-pool-control.md)。
+**公开pair路线最后旧池控制已负结案。** 原Bioformer旧pool244794行、旧字段/顺序不变，只加同3均值；4fit64.88秒、九cut1.11秒，统一选.3，实体目标 **.780192596→.777836002**（−.002356594），三fold负；mention净−21TP/+16FP、doc净−4TP/−3FP。关系/非实体对象保留，无新NN/原dev，关闭本配方不扫。完整终点独审待回收，当前无活动进程。[完整结果/恢复](evidence/round2/phenobert-old-pool-results.json)、[方法](experiments/phenobert-old-pool-control.md)。
 
 **公开 PhenoBERT pair 控制已完成，未升级。** 固定top3/non-Sap全部旧候选/字段，三类原子均值新增，严格四fold HGB160共163.19秒；固定.3主臂pooled **.725155643**，比匹配top3+.001688347，但低保留Bioformer.3的.725655389。九点训练校准3.19秒仍选.3，实体目标.779193104低保留.780192596；3折升/1折降。固定原边界仅ID臂10对象变更，Score **.725763139**（+.000107750），doc略降、fold0负/两折零/仅fold3正；不自动迁原dev。全部预测先共同freeze、关系/非实体保留、0错警；整体独审85050d25通过：188349 held旧字段及三列全核，唯一fold0独立fit概率/预测byteexact；其余三fold同引擎复用。公开cache189.65秒、GPU已释放，当前无活动进程。恢复见[完整结果](evidence/round2/phenobert-pair-results.json)、[方法与记录](experiments/phenobert-pair-control.md)；原准备/启动指针保留历史，禁止重复已完成fit。
 

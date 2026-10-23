@@ -160,3 +160,8 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 ### PhenoBERT固定pool结果边界
 
 同pool三类均值使top3 pooled .723467→.725156，但预定九cut最佳实体目标.779193仍低原Bioformer.3 .780193，不因“比弱对照提高”升级。固定原边界的10次ID重排仅+.000108 Score，doc项下降、只有一折正；保留微弱机制信号，当前不原dev迁移。注意对象变化数10不同于原子匹配计数（加9/去10），compound/NIL评估不能直接推对象编辑数。全部控制与质量独审见[记录](experiments/phenobert-pair-control.md)。
+
+
+### 原池隔离后pair三均值仍负
+
+去掉top3新增ID/六rank、只在旧Bioformer池加三类公开均值，四fold三负、九cut最好.3目标.777836低旧.780193，mention净−21TP/+16FP。不能把此前未超过旧best完全归因扩池；关闭这套特征配方，不再追加参数/原dev筛选。来源和负结果见[旧池控制](experiments/phenobert-old-pool-control.md)。
