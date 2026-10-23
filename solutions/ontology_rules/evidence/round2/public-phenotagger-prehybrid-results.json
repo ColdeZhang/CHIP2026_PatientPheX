@@ -1,0 +1,868 @@
+{
+  "status": "Independent incremental terminal review PASS; fixed and calibrated training-side negative, closed",
+  "decision": "Close current C recipe; no originaldev, A/B trials, NN, further feature/cut changes",
+  "completed_at": "2026-10-23T22:59:50.224129+00:00",
+  "comparison": {
+    "old_selected_cut": 0.3,
+    "old_selected_pooled": {
+      "menF1": 0.7638311830308332,
+      "docF1": 0.7965540092776673,
+      "objective": 0.7801925961542502,
+      "counts": {
+        "mention": {
+          "tp": 3493,
+          "fp": 825,
+          "fn": 1335,
+          "precision": 0.8089393237610004,
+          "recall": 0.7234879867439934,
+          "f1": 0.7638311830308332
+        },
+        "document": {
+          "tp": 1803,
+          "fp": 273,
+          "fn": 648,
+          "precision": 0.8684971098265896,
+          "recall": 0.7356181150550796,
+          "f1": 0.7965540092776673
+        }
+      },
+      "entity_records": 4315
+    },
+    "new_selected_cut": 0.3,
+    "new_selected_pooled": {
+      "menF1": 0.7621337997376476,
+      "docF1": 0.7957512724053994,
+      "objective": 0.7789425360715235,
+      "counts": {
+        "mention": {
+          "tp": 3486,
+          "fp": 834,
+          "fn": 1342,
+          "precision": 0.8069444444444445,
+          "recall": 0.7220381110190555,
+          "f1": 0.7621337997376476
+        },
+        "document": {
+          "tp": 1798,
+          "fp": 270,
+          "fn": 653,
+          "precision": 0.8694390715667312,
+          "recall": 0.733578131374949,
+          "f1": 0.7957512724053994
+        }
+      },
+      "entity_records": 4317
+    },
+    "deltas": {
+      "menF1": -0.0016973832931855837,
+      "docF1": -0.0008027368722678396,
+      "objective": -0.0012500600827266561,
+      "counts": {
+        "mention": {
+          "tp": -7,
+          "fp": 9,
+          "fn": 7,
+          "precision": -0.001994879316555953,
+          "recall": -0.0014498757249379324,
+          "f1": -0.0016973832931855837
+        },
+        "document": {
+          "tp": -5,
+          "fp": -3,
+          "fn": 5,
+          "precision": 0.0009419617401416058,
+          "recall": -0.002039983680130586,
+          "f1": -0.0008027368722678396
+        }
+      },
+      "entity_records": 2
+    },
+    "objective_delta": -0.0012500600827266561,
+    "fold_deltas": [
+      {
+        "fold": 0,
+        "menF1": -0.001670141047678264,
+        "docF1": -0.0020916848882409633,
+        "objective": -0.0018809129679596692,
+        "counts": {
+          "mention": {
+            "tp": -3,
+            "fp": 0,
+            "fn": 3,
+            "precision": -0.0005337783022346665,
+            "recall": -0.002548853016142716,
+            "f1": -0.001670141047678264
+          },
+          "document": {
+            "tp": -3,
+            "fp": -2,
+            "fn": 3,
+            "precision": 0.002784351288408038,
+            "recall": -0.005309734513274322,
+            "f1": -0.0020916848882409633
+          }
+        },
+        "entity_records": -3
+      },
+      {
+        "fold": 1,
+        "menF1": 0.0008920891486589033,
+        "docF1": 4.0633380634758076e-05,
+        "objective": 0.0004663612646467197,
+        "counts": {
+          "mention": {
+            "tp": 0,
+            "fp": -3,
+            "fn": 0,
+            "precision": 0.001978021978021993,
+            "recall": 0.0,
+            "f1": 0.0008920891486589033
+          },
+          "document": {
+            "tp": -2,
+            "fp": -3,
+            "fn": 2,
+            "precision": 0.0037271410950823203,
+            "recall": -0.0026845637583892135,
+            "f1": 4.0633380634758076e-05
+          }
+        },
+        "entity_records": -3
+      },
+      {
+        "fold": 2,
+        "menF1": -0.002832936626613658,
+        "docF1": 0.003112506756122957,
+        "objective": 0.00013978506475464947,
+        "counts": {
+          "mention": {
+            "tp": 1,
+            "fp": 10,
+            "fn": -1,
+            "precision": -0.007257585840962588,
+            "recall": 0.0008658008658007921,
+            "f1": -0.002832936626613658
+          },
+          "document": {
+            "tp": 4,
+            "fp": 2,
+            "fn": -4,
+            "precision": -0.0022592227098073847,
+            "recall": 0.007017543859649145,
+            "f1": 0.003112506756122957
+          }
+        },
+        "entity_records": 11
+      },
+      {
+        "fold": 3,
+        "menF1": -0.003589740461633961,
+        "docF1": -0.004509359174967642,
+        "objective": -0.004049549818300857,
+        "counts": {
+          "mention": {
+            "tp": -5,
+            "fp": 2,
+            "fn": 5,
+            "precision": -0.002526531584647773,
+            "recall": -0.004374453193350836,
+            "f1": -0.003589740461633961
+          },
+          "document": {
+            "tp": -4,
+            "fp": 0,
+            "fn": 4,
+            "precision": -0.0009297520661157854,
+            "recall": -0.007005253940455369,
+            "f1": -0.004509359174967642
+          }
+        },
+        "entity_records": -3
+      }
+    ]
+  },
+  "fixed03_comparison": {
+    "cut": 0.3,
+    "folds": [
+      {
+        "fold": 0,
+        "original_bioformer": {
+          "menF1": 0.7657657657657657,
+          "docF1": 0.771622934888241,
+          "objective": 0.7686943503270034,
+          "counts": {
+            "mention": {
+              "tp": 850,
+              "fp": 193,
+              "fn": 327,
+              "precision": 0.8149568552253116,
+              "recall": 0.7221750212404418,
+              "f1": 0.7657657657657657
+            },
+            "document": {
+              "tp": 397,
+              "fp": 67,
+              "fn": 168,
+              "precision": 0.8556034482758621,
+              "recall": 0.7026548672566372,
+              "f1": 0.771622934888241
+            }
+          },
+          "entity_records": 1043
+        },
+        "prehybrid": {
+          "menF1": 0.7640956247180875,
+          "docF1": 0.76953125,
+          "objective": 0.7668134373590437,
+          "counts": {
+            "mention": {
+              "tp": 847,
+              "fp": 193,
+              "fn": 330,
+              "precision": 0.8144230769230769,
+              "recall": 0.719626168224299,
+              "f1": 0.7640956247180875
+            },
+            "document": {
+              "tp": 394,
+              "fp": 65,
+              "fn": 171,
+              "precision": 0.8583877995642701,
+              "recall": 0.6973451327433628,
+              "f1": 0.76953125
+            }
+          },
+          "entity_records": 1040
+        },
+        "deltas": {
+          "menF1": -0.001670141047678264,
+          "docF1": -0.0020916848882409633,
+          "objective": -0.0018809129679596692,
+          "counts": {
+            "mention": {
+              "tp": -3,
+              "fp": 0,
+              "fn": 3,
+              "precision": -0.0005337783022346665,
+              "recall": -0.002548853016142716,
+              "f1": -0.001670141047678264
+            },
+            "document": {
+              "tp": -3,
+              "fp": -2,
+              "fn": 3,
+              "precision": 0.002784351288408038,
+              "recall": -0.005309734513274322,
+              "f1": -0.0020916848882409633
+            }
+          },
+          "entity_records": -3
+        },
+        "changes": {
+          "mention_added_tp": 0,
+          "mention_added_fp": 8,
+          "mention_removed_tp": 3,
+          "mention_removed_fp": 8,
+          "document_added_tp": 0,
+          "document_added_fp": 4,
+          "document_removed_tp": 3,
+          "document_removed_fp": 6
+        }
+      },
+      {
+        "fold": 1,
+        "original_bioformer": {
+          "menF1": 0.7657098525989139,
+          "docF1": 0.8112391930835735,
+          "objective": 0.7884745228412438,
+          "counts": {
+            "mention": {
+              "tp": 987,
+              "fp": 238,
+              "fn": 366,
+              "precision": 0.8057142857142857,
+              "recall": 0.729490022172949,
+              "f1": 0.7657098525989139
+            },
+            "document": {
+              "tp": 563,
+              "fp": 80,
+              "fn": 182,
+              "precision": 0.8755832037325039,
+              "recall": 0.7557046979865771,
+              "f1": 0.8112391930835735
+            }
+          },
+          "entity_records": 1225
+        },
+        "prehybrid": {
+          "menF1": 0.7666019417475728,
+          "docF1": 0.8112798264642083,
+          "objective": 0.7889408841058905,
+          "counts": {
+            "mention": {
+              "tp": 987,
+              "fp": 235,
+              "fn": 366,
+              "precision": 0.8076923076923077,
+              "recall": 0.729490022172949,
+              "f1": 0.7666019417475728
+            },
+            "document": {
+              "tp": 561,
+              "fp": 77,
+              "fn": 184,
+              "precision": 0.8793103448275862,
+              "recall": 0.7530201342281879,
+              "f1": 0.8112798264642083
+            }
+          },
+          "entity_records": 1222
+        },
+        "deltas": {
+          "menF1": 0.0008920891486589033,
+          "docF1": 4.0633380634758076e-05,
+          "objective": 0.0004663612646467197,
+          "counts": {
+            "mention": {
+              "tp": 0,
+              "fp": -3,
+              "fn": 0,
+              "precision": 0.001978021978021993,
+              "recall": 0.0,
+              "f1": 0.0008920891486589033
+            },
+            "document": {
+              "tp": -2,
+              "fp": -3,
+              "fn": 2,
+              "precision": 0.0037271410950823203,
+              "recall": -0.0026845637583892135,
+              "f1": 4.0633380634758076e-05
+            }
+          },
+          "entity_records": -3
+        },
+        "changes": {
+          "mention_added_tp": 3,
+          "mention_added_fp": 6,
+          "mention_removed_tp": 3,
+          "mention_removed_fp": 9,
+          "document_added_tp": 1,
+          "document_added_fp": 4,
+          "document_removed_tp": 3,
+          "document_removed_fp": 7
+        }
+      },
+      {
+        "fold": 2,
+        "original_bioformer": {
+          "menF1": 0.7522686025408348,
+          "docF1": 0.7829383886255924,
+          "objective": 0.7676034955832136,
+          "counts": {
+            "mention": {
+              "tp": 829,
+              "fp": 220,
+              "fn": 326,
+              "precision": 0.7902764537654909,
+              "recall": 0.7177489177489178,
+              "f1": 0.7522686025408348
+            },
+            "document": {
+              "tp": 413,
+              "fp": 72,
+              "fn": 157,
+              "precision": 0.8515463917525773,
+              "recall": 0.724561403508772,
+              "f1": 0.7829383886255924
+            }
+          },
+          "entity_records": 1047
+        },
+        "prehybrid": {
+          "menF1": 0.7494356659142212,
+          "docF1": 0.7860508953817154,
+          "objective": 0.7677432806479683,
+          "counts": {
+            "mention": {
+              "tp": 830,
+              "fp": 230,
+              "fn": 325,
+              "precision": 0.7830188679245284,
+              "recall": 0.7186147186147186,
+              "f1": 0.7494356659142212
+            },
+            "document": {
+              "tp": 417,
+              "fp": 74,
+              "fn": 153,
+              "precision": 0.8492871690427699,
+              "recall": 0.7315789473684211,
+              "f1": 0.7860508953817154
+            }
+          },
+          "entity_records": 1058
+        },
+        "deltas": {
+          "menF1": -0.002832936626613658,
+          "docF1": 0.003112506756122957,
+          "objective": 0.00013978506475464947,
+          "counts": {
+            "mention": {
+              "tp": 1,
+              "fp": 10,
+              "fn": -1,
+              "precision": -0.007257585840962588,
+              "recall": 0.0008658008658007921,
+              "f1": -0.002832936626613658
+            },
+            "document": {
+              "tp": 4,
+              "fp": 2,
+              "fn": -4,
+              "precision": -0.0022592227098073847,
+              "recall": 0.007017543859649145,
+              "f1": 0.003112506756122957
+            }
+          },
+          "entity_records": 11
+        },
+        "changes": {
+          "mention_added_tp": 6,
+          "mention_added_fp": 22,
+          "mention_removed_tp": 5,
+          "mention_removed_fp": 12,
+          "document_added_tp": 5,
+          "document_added_fp": 9,
+          "document_removed_tp": 1,
+          "document_removed_fp": 7
+        }
+      },
+      {
+        "fold": 3,
+        "original_bioformer": {
+          "menF1": 0.7714552238805971,
+          "docF1": 0.8151658767772512,
+          "objective": 0.7933105503289242,
+          "counts": {
+            "mention": {
+              "tp": 827,
+              "fp": 174,
+              "fn": 316,
+              "precision": 0.8261738261738262,
+              "recall": 0.7235345581802275,
+              "f1": 0.7714552238805971
+            },
+            "document": {
+              "tp": 430,
+              "fp": 54,
+              "fn": 141,
+              "precision": 0.8884297520661157,
+              "recall": 0.7530647985989493,
+              "f1": 0.8151658767772512
+            }
+          },
+          "entity_records": 1000
+        },
+        "prehybrid": {
+          "menF1": 0.7678654834189631,
+          "docF1": 0.8106565176022835,
+          "objective": 0.7892610005106233,
+          "counts": {
+            "mention": {
+              "tp": 822,
+              "fp": 176,
+              "fn": 321,
+              "precision": 0.8236472945891784,
+              "recall": 0.7191601049868767,
+              "f1": 0.7678654834189631
+            },
+            "document": {
+              "tp": 426,
+              "fp": 54,
+              "fn": 145,
+              "precision": 0.8875,
+              "recall": 0.7460595446584939,
+              "f1": 0.8106565176022835
+            }
+          },
+          "entity_records": 997
+        },
+        "deltas": {
+          "menF1": -0.003589740461633961,
+          "docF1": -0.004509359174967642,
+          "objective": -0.004049549818300857,
+          "counts": {
+            "mention": {
+              "tp": -5,
+              "fp": 2,
+              "fn": 5,
+              "precision": -0.002526531584647773,
+              "recall": -0.004374453193350836,
+              "f1": -0.003589740461633961
+            },
+            "document": {
+              "tp": -4,
+              "fp": 0,
+              "fn": 4,
+              "precision": -0.0009297520661157854,
+              "recall": -0.007005253940455369,
+              "f1": -0.004509359174967642
+            }
+          },
+          "entity_records": -3
+        },
+        "changes": {
+          "mention_added_tp": 2,
+          "mention_added_fp": 9,
+          "mention_removed_tp": 7,
+          "mention_removed_fp": 7,
+          "document_added_tp": 1,
+          "document_added_fp": 2,
+          "document_removed_tp": 5,
+          "document_removed_fp": 2
+        }
+      }
+    ],
+    "pooled": {
+      "original_bioformer": {
+        "menF1": 0.7638311830308332,
+        "docF1": 0.7965540092776673,
+        "objective": 0.7801925961542502,
+        "counts": {
+          "mention": {
+            "tp": 3493,
+            "fp": 825,
+            "fn": 1335,
+            "precision": 0.8089393237610004,
+            "recall": 0.7234879867439934,
+            "f1": 0.7638311830308332
+          },
+          "document": {
+            "tp": 1803,
+            "fp": 273,
+            "fn": 648,
+            "precision": 0.8684971098265896,
+            "recall": 0.7356181150550796,
+            "f1": 0.7965540092776673
+          }
+        },
+        "entity_records": 4315
+      },
+      "prehybrid": {
+        "menF1": 0.7621337997376476,
+        "docF1": 0.7957512724053994,
+        "objective": 0.7789425360715235,
+        "counts": {
+          "mention": {
+            "tp": 3486,
+            "fp": 834,
+            "fn": 1342,
+            "precision": 0.8069444444444445,
+            "recall": 0.7220381110190555,
+            "f1": 0.7621337997376476
+          },
+          "document": {
+            "tp": 1798,
+            "fp": 270,
+            "fn": 653,
+            "precision": 0.8694390715667312,
+            "recall": 0.733578131374949,
+            "f1": 0.7957512724053994
+          }
+        },
+        "entity_records": 4317
+      },
+      "deltas": {
+        "menF1": -0.0016973832931855837,
+        "docF1": -0.0008027368722678396,
+        "objective": -0.0012500600827266561,
+        "counts": {
+          "mention": {
+            "tp": -7,
+            "fp": 9,
+            "fn": 7,
+            "precision": -0.001994879316555953,
+            "recall": -0.0014498757249379324,
+            "f1": -0.0016973832931855837
+          },
+          "document": {
+            "tp": -5,
+            "fp": -3,
+            "fn": 5,
+            "precision": 0.0009419617401416058,
+            "recall": -0.002039983680130586,
+            "f1": -0.0008027368722678396
+          }
+        },
+        "entity_records": 2
+      },
+      "changes": {
+        "mention_added_tp": 11,
+        "mention_added_fp": 45,
+        "mention_removed_tp": 18,
+        "mention_removed_fp": 36,
+        "document_added_tp": 7,
+        "document_added_fp": 19,
+        "document_removed_tp": 12,
+        "document_removed_fp": 22
+      }
+    },
+    "versus_old_selected": {
+      "old_selected_cut": 0.3,
+      "old_selected_pooled": {
+        "menF1": 0.7638311830308332,
+        "docF1": 0.7965540092776673,
+        "objective": 0.7801925961542502,
+        "counts": {
+          "mention": {
+            "tp": 3493,
+            "fp": 825,
+            "fn": 1335,
+            "precision": 0.8089393237610004,
+            "recall": 0.7234879867439934,
+            "f1": 0.7638311830308332
+          },
+          "document": {
+            "tp": 1803,
+            "fp": 273,
+            "fn": 648,
+            "precision": 0.8684971098265896,
+            "recall": 0.7356181150550796,
+            "f1": 0.7965540092776673
+          }
+        },
+        "entity_records": 4315
+      },
+      "prehybrid": {
+        "menF1": 0.7621337997376476,
+        "docF1": 0.7957512724053994,
+        "objective": 0.7789425360715235,
+        "counts": {
+          "mention": {
+            "tp": 3486,
+            "fp": 834,
+            "fn": 1342,
+            "precision": 0.8069444444444445,
+            "recall": 0.7220381110190555,
+            "f1": 0.7621337997376476
+          },
+          "document": {
+            "tp": 1798,
+            "fp": 270,
+            "fn": 653,
+            "precision": 0.8694390715667312,
+            "recall": 0.733578131374949,
+            "f1": 0.7957512724053994
+          }
+        },
+        "entity_records": 4317
+      },
+      "deltas": {
+        "menF1": -0.0016973832931855837,
+        "docF1": -0.0008027368722678396,
+        "objective": -0.0012500600827266561,
+        "counts": {
+          "mention": {
+            "tp": -7,
+            "fp": 9,
+            "fn": 7,
+            "precision": -0.001994879316555953,
+            "recall": -0.0014498757249379324,
+            "f1": -0.0016973832931855837
+          },
+          "document": {
+            "tp": -5,
+            "fp": -3,
+            "fn": 5,
+            "precision": 0.0009419617401416058,
+            "recall": -0.002039983680130586,
+            "f1": -0.0008027368722678396
+          }
+        },
+        "entity_records": 2
+      }
+    }
+  },
+  "actual_cost_seconds": {
+    "extraction": 8.676942490041256,
+    "pool_preparation": 9.85740472,
+    "fit_infer": 56.99876686999778,
+    "calibration": 1.0452671320017544
+  },
+  "counts": {
+    "raw_keys": 7397,
+    "raw_spans": 7355,
+    "global_new_keys": 1778,
+    "global_new_spans": 1572,
+    "old_pool_rows": 244794,
+    "new_pool_rows": 252014,
+    "appended_rows": 7220
+  },
+  "artifacts": {
+    "formal-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-plan.json",
+      "sha256": "27c4b6ce7dd4ca71613c1a6bbb0e49504681f3314bb05bd8830a25280eb9b07b",
+      "bytes": 10130
+    },
+    "cut-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/cut-plan.json",
+      "sha256": "4e7e1d1e5f3fc951f40dd8af861cf17cd3e0aaea4b6bdb81fb67dfb3083fa8e3",
+      "bytes": 7320
+    },
+    "prepared/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/prepared/manifest.json",
+      "sha256": "f3284a95ddde6cbdfb29a16f6c99c090208966e1f87b372881db596cf17ef881",
+      "bytes": 16037
+    },
+    "extraction/plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/extraction/plan.json",
+      "sha256": "1688d6fcd6e0ed61022a4a60fdc9a4c2e394258f1e986163b4e4e2ea788eaefc",
+      "bytes": 2998
+    },
+    "extraction/terminal/output/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/extraction/terminal/output/manifest.json",
+      "sha256": "6b9883d695b2eda4134b12789bbdd687609ab249aa2e0dc277d45d70be0e0f72",
+      "bytes": 762
+    },
+    "extraction/terminal/output/raw-selected.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/extraction/terminal/output/raw-selected.jsonl.gz",
+      "sha256": "4b4a6e1835eb93a9904af6d7b2070adf78b31a6862e19f395885abb5b4583fcb",
+      "bytes": 366879
+    },
+    "formal-control/run-state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/run-state.json",
+      "sha256": "69e3ca454fc318c7fffd84de548c6c533133e23c9a60e54c33626a9eec719375",
+      "bytes": 3607
+    },
+    "formal-control/complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/complete-freeze.json",
+      "sha256": "b992e7c734e3d8b5cd4a3ca6555a430a495e13f3b02a8e78f76019a26736fe6b",
+      "bytes": 6114
+    },
+    "calibration-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/calibration-job.json",
+      "sha256": "a17b3b23194b3c0c5c8c5524800cd22a19b6ddcedb12481d2aede48de8987115",
+      "bytes": 892
+    },
+    "calibration/decoded-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/calibration/decoded-freeze.json",
+      "sha256": "b7b6ead7ba56ec84d0b8a72e399e3055f4c95dabdaed5053e42be0c66d234d15",
+      "bytes": 12339
+    },
+    "calibration/calibration-start.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/calibration/calibration-start.json",
+      "sha256": "12a21432b1545db8f02322554fada7e9fef2abf54922fc9aa8201f7084389f19",
+      "bytes": 463
+    },
+    "calibration/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/calibration/results.json",
+      "sha256": "8846bcf8d68ac176abdd7a4fc2196057a23b3610715ca0e2307b92410974f39a",
+      "bytes": 54287
+    },
+    "fold0/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold0/fitted/manifest.json",
+      "sha256": "249e7c480f3c4ebb43f1153150cc45c3c424acf47ec23916f8512495987dd0f5",
+      "bytes": 12502
+    },
+    "fold0/model-vectorizer.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold0/fitted/model-vectorizer.pkl",
+      "sha256": "20401e8d328cac3af54803eef3d79bbcb9190bf66a3fa850440c4af8135a60ee",
+      "bytes": 299842
+    },
+    "fold0/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold0/fitted/selector-scores.jsonl",
+      "sha256": "e3e3f68c02d126e95942895f87d0818afc1c91bd97655f740cd47ecd0ac3f5e3",
+      "bytes": 10745357
+    },
+    "fold0/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold0/fitted/augmented.jsonl",
+      "sha256": "d924c8eb28e92e6a5c7c6751bb5b7d8394112f8c3b6cdf3381d08597249960de",
+      "bytes": 137207
+    },
+    "fold1/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold1/fitted/manifest.json",
+      "sha256": "888175359dd03a654fd161568c2040de3c06892875ae5ec81d9b2076b4971564",
+      "bytes": 12468
+    },
+    "fold1/model-vectorizer.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold1/fitted/model-vectorizer.pkl",
+      "sha256": "c433bf0613210eb6c4027dd284f4a3a791c7ed289669aaf3f0fc050827f78b32",
+      "bytes": 299802
+    },
+    "fold1/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold1/fitted/selector-scores.jsonl",
+      "sha256": "1c104e1a455d9cc2a287c0cddd4cf8d2a87a1fffcfa927b0f17b9da003b8470f",
+      "bytes": 11948133
+    },
+    "fold1/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold1/fitted/augmented.jsonl",
+      "sha256": "a2aaa818007216168b674135beed10afb29184e7a9f691fae1e3c2807c560413",
+      "bytes": 161834
+    },
+    "fold2/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold2/fitted/manifest.json",
+      "sha256": "7f1b35d55328dedb2d17a8035fe816acbb0142e0fa3e6327f5cf6ef69f98024c",
+      "bytes": 12515
+    },
+    "fold2/model-vectorizer.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold2/fitted/model-vectorizer.pkl",
+      "sha256": "a83cd7caa159b9a42710f6ecd75e48c221e124f08385ed1cba910d015b0d2c31",
+      "bytes": 299921
+    },
+    "fold2/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold2/fitted/selector-scores.jsonl",
+      "sha256": "51a641589eb1b7195c005e74b23bf37e31d8af0e1023546ff94a31a02dea1d69",
+      "bytes": 10852689
+    },
+    "fold2/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold2/fitted/augmented.jsonl",
+      "sha256": "a9dcbfac3b1d8d9f451d6eddc37dd4d901a79536563a3e29d285879ca1687d01",
+      "bytes": 138814
+    },
+    "fold3/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold3/fitted/manifest.json",
+      "sha256": "cf5cd8a7f8da8139e413bf21fe48f4fded6b544d2bf17a29a8c055116b57eb7a",
+      "bytes": 12515
+    },
+    "fold3/model-vectorizer.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold3/fitted/model-vectorizer.pkl",
+      "sha256": "e0ec64b53a8da292299d355e7f7ebea0e6a3db7d4e03aefe6728b927b6db84c4",
+      "bytes": 299961
+    },
+    "fold3/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold3/fitted/selector-scores.jsonl",
+      "sha256": "31ff3f44bd7a008c8bcd2e0112ede1c4490e9fcabc420ec888c6c71d5b965992",
+      "bytes": 10982124
+    },
+    "fold3/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-prehybrid-control/formal-control/fold3/fitted/augmented.jsonl",
+      "sha256": "623217d7cfc23256af5a84b9354c664fd5e5aa205daf8b53451a60aa8b106643",
+      "bytes": 133189
+    }
+  },
+  "independent_reviews": {
+    "review.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-native-prehybrid-control-review/review.json",
+      "sha256": "5b611e351df173b66657ccada2d3fd06a66f14bc73555dbe773ade15e01f8946",
+      "bytes": 11101
+    },
+    "model-replay.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-native-prehybrid-control-review/model-replay.json",
+      "sha256": "3e291cb48a981e308641d381f7c693779f00331106fe34366031c7a17d34b9b2",
+      "bytes": 3365
+    },
+    "terminal-review.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-native-prehybrid-control-review/terminal-review.json",
+      "sha256": "07b1d0a9b313f02691b7fd5ee342ec2169d62ca28f070a586a5354904f1d5fd1",
+      "bytes": 11591
+    }
+  },
+  "retention": "Source and small plans in Git. Serialized HGB/vectorizer, full pools, scores, all predictions and logs retained under artifact root; load these same-source trusted pickles with frozen Python/runtime for probability replay. Do not overwrite or silently retrain. Full raw NN/model caches remain remote with extraction-manifest SHA bindings.",
+  "limitations": [
+    "All train64 labels participate in calibration; selected maximum is not independent generalization or competition Score.",
+    "The same original Bioformer pools, prespecified nine cuts and tie rule are used; the only fit increment is new original-gate prehybrid raw candidates and four real source features on additions only.",
+    "Nonentities retain oldcut.3 fields and .4-origin associations; only Task1 entity metrics enter the objective."
+  ]
+}
