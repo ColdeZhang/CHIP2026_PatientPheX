@@ -213,6 +213,12 @@ GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_di
 
 **避免方法**：按运行命令所用解释器核对版本，对新增辅助函数先做相同环境的CPU检查；跨3.10/3.11的文件哈希使用分块 `hashlib.sha256().update()`。已修复兼容调用，wrapper SHA `2688f27b…`；实际3.10.12哈希检查通过，重启作业也通过文件绑定并进入推断。专门CPU自检发生在重启后，不能记成启动前已执行。首次失败、原源码和修复记录保存在外部 `sequence_crf/gliner-biomed-nested/attempt1-pythonhash/`、`attempt1-failure.json`、`actual-wrapper-hash-probe.json`；模型/解码协议未改变，不能将启动器失败记成模型质量负结果。后续质量结论见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
 
+## H34：文件哈希不能恢复当时未提交的可变文档
+
+生成式NER研究读取方案台账和实验记录时，这两份文件含尚未提交的变更。报告保存了当时SHA，但文件随后继续编辑，记录的Git HEAD也不含这些字节；本次检查现有提交与快照后无法精确恢复。主体研究脚本、报告及已有实验结果仍可核验，不应把两份背景版本缺失夸大为全部结果失效，也不能宣称完整来源字节可复原。
+
+**避免方法**：需被长期引用的实际源码/记录，在读取时保存小型不可变快照或先提交；运行manifest同时记实际SHA与可恢复位置。跨代理审查遇正在修改的文件，应复制所读版本，不只记录分支HEAD和哈希。现有报告/manifest原样保留，两项例外列于外部 `validation/index-next-20261023-2010/declared-dependency-verification.json`，86项索引中明确标注；不能用后来版本冒充原件。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
