@@ -76,3 +76,11 @@ BiomedBERT 权重来源已固定到 revision `e1354b7a3a09615f6aba48dfad4b7a613e
 主线程查出共享评测器和本路线关系训练的复合 HPO 关联处理问题：首版 `fit_relation` 把原始 `phenotype` 列表直接取集合，而实体侧拆分分号，因此部分复合关联没有被计为正样本（共享训练标注有 26 项此类值）。主线程修复评测器后统一重算；本日先保留相同关系头完成 CRF/BiomedBERT 对照，记录这一可修复限制，不把它解释为监督关系路线的上限。
 
 共享评测已升级 `patientphex-public-approx-v2`，拆分金标复合关联后，同一 CRF 预测重算为 menF1=0.732540、docF1=0.745303、micF1=0.648472、macF1=0.612620、Score=0.684734。此后版本选择使用 v2；v1 指标保留作历史，不混用口径。远端 BiomedBERT tokenizer smoke 已实际通过：BertTokenizerFast 对末尾表型词的 wordpiece 标签、特殊 token 屏蔽、非零 passage offset 及输入 annotations 隔离均符合预期。
+
+GPU 首轮运行预定命令（远端 mount 根目录下 `sequence-crf/`）：
+
+```bash
+CUDA_VISIBLE_DEVICES=GPU-07726469-bf7a-b832-9dee-019dc276dc1d OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -u run_biomedbert.py --train data/train64.jsonl --input data/dev16.input.jsonl --hpo data/hp.obo --output runs/biomedbert-dev-v1/pred.jsonl --work-dir runs/biomedbert-dev-v1 --model pretrained-biomedbert --epochs 4 --batch-size 16 --max-length 384 --learning-rate 3e-5 --device cuda
+```
+
+正式启动前再次检查指定卡空闲，并与共享该卡的语义路线交接；不并占。固定比较成功标准：同一 64/16 划分、相同链接/关系头、v2 评测的总分是否超过 CRF 0.684734。若不提升则选择 CRF；若提升则按同配置完整训练 80 篇生成 B。未进行验证集阈值搜索。
