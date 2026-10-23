@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T16:58:41.058846+00:00",
+  "generated_utc": "2026-10-23T17:32:52.702117+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不将oracle/训练表示诊断当模型成绩。各best仅指已独审原dev候选，后续fold0新试验单列。",
@@ -974,7 +974,8 @@
           "sha256": "af6251bebeaa453ea709fac8676e19452e4e6111a81f959e40eee2ff93fb6696",
           "bytes": 10692
         }
-      ]
+      ],
+      "stage_note": "历史准备阶段结论原件不变；实际GPU后续见qwen35-actual-gpu-interface-and-cost。"
     },
     {
       "id": "qwen35-longest-relation-cost-cpu-preparation",
@@ -1001,7 +1002,8 @@
           "sha256": "ff52a0859f9e1a05b48c33a8ed9d2dd78c00f8ce2f1f723d643962475e7a7181",
           "bytes": 22367
         }
-      ]
+      ],
+      "stage_note": "历史准备阶段结论原件不变；实际GPU后续见qwen35-actual-gpu-interface-and-cost。"
     },
     {
       "id": "phenotagger-fixed100epoch-terminal",
@@ -1112,17 +1114,751 @@
           "bytes": 16709
         }
       ]
+    },
+    {
+      "id": "gliner10-sap-inner32-linked-control",
+      "report": {
+        "path": "validation/gliner-linked-review/review.json",
+        "sha256": "13824c08e4943393a0f40d06f5f98a6ae33e08e91ba054f79ed2ed25c74a8124",
+        "bytes": 6310
+      },
+      "scope": "已冻nested train32 GLiNER10与同折Sap来源，固定.65/.92候选链接、完整CPU组装和v2评分。",
+      "conclusion": "同inner16：Score .644761594→.653745027；69新实体42TP27FP、新关系10TP15FP，四分项升；基线和新增预测逐字节复现，格式零错警。",
+      "limitations": [
+        "No GPU or neural encoding/head fit was repeated; scores/source/data/model hashes are bound to route artifacts and prior upstream audits.",
+        "This inner16 was used for2epoch/10epoch development and the fixed link control; not blind validation or originaldev best. Originalfold0/dev absent from this execution.",
+        "Thresholds inherited previously selected .65/.92 and not searched here; success of this one control does not establish crossfold robustness.",
+        "Scorer uses exact train/public alias best_id when present, otherwise Sap nearest; named similarity may refer to nearest bank item even when exact alias selects another ID. This is existing System policy, not a calibrated correctness probability."
+      ],
+      "support": [
+        {
+          "path": "validation/gliner-linked-review/audit_linked.py",
+          "sha256": "5b473eff44cd59eb489d06ddf3014a7dfdedeb78c586b903ecd6d1629ca7027f",
+          "bytes": 10582
+        },
+        {
+          "path": "validation/gliner-linked-review/audit_scorer_lineage.py",
+          "sha256": "6da03b1a68f887d7b4398e95989670a5bd7d0664601d5a742852510c48cfbcca",
+          "bytes": 13111
+        },
+        {
+          "path": "validation/gliner-linked-review/commands.json",
+          "sha256": "03555bd1683102131cf45da77f3ba65399f9d55e1b7286bdc4efac08c5dcf85c",
+          "bytes": 6325
+        },
+        {
+          "path": "validation/gliner-linked-review/replay/augmented.metrics.json",
+          "sha256": "df32ea44aafbfc44b8d39ce625ef1fefd0cbbe87a513a6b62ed2104e1c40be8c",
+          "bytes": 13180
+        },
+        {
+          "path": "validation/gliner-linked-review/replay/augmented.validation.json",
+          "sha256": "15c9b1ef6efb8f1b5cc005228d091f6d41e041c773818e424f88e6ff5464bf70",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-linked-review/replay/baseline.metrics.json",
+          "sha256": "cf70f6d920840754253edf3e1191285a2e0e636dd347b8bac3c67f65fe8b7c35",
+          "bytes": 13170
+        },
+        {
+          "path": "validation/gliner-linked-review/replay/baseline.validation.json",
+          "sha256": "d07c3ebf34f92a40fd66f231e8ffd749a141f91b5fbf63265843fde06b1802cd",
+          "bytes": 686
+        },
+        {
+          "path": "validation/gliner-linked-review/replay/manifest.json",
+          "sha256": "cf6ae2babc3b6dd6f1b9792b14947d0ed4a0f8c79922295ffd7246adbac11491",
+          "bytes": 2546
+        },
+        {
+          "path": "validation/gliner-linked-review/review.md",
+          "sha256": "bc5c26d917ac8e96ff07875d3614daa39f454431e61deaaaac8004139d0ceb9c",
+          "bytes": 1783
+        },
+        {
+          "path": "validation/gliner-linked-review/scorer-review.json",
+          "sha256": "c47b1a241b43c1c4be2409da141d03101c1b42696c93a6bf1114f898b6d6a0c2",
+          "bytes": 9190
+        },
+        {
+          "path": "validation/gliner-linked-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/gliner-linked-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/gliner-linked-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/gliner-linked-review/source/solutions/sequence_crf/assemble_gliner_linked.py",
+          "sha256": "6d1546313efe06ac8e2c39f329996461c4fe7994ec475b547a10200526d4b9e0",
+          "bytes": 5191
+        },
+        {
+          "path": "validation/gliner-linked-review/source/solutions/sequence_crf/combine.py",
+          "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+          "bytes": 3871
+        },
+        {
+          "path": "validation/gliner-linked-review/source/solutions/sequence_crf/link_gliner_candidates.py",
+          "sha256": "906bf3dfe38099e04de6c502fe7ad7c78e3293dcb87bbb1e77c607b003fc63cb",
+          "bytes": 6587
+        },
+        {
+          "path": "validation/gliner-linked-review/source/solutions/sequence_crf/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        }
+      ]
+    },
+    {
+      "id": "phenotagger100-fixed-sap-consensus",
+      "report": {
+        "path": "validation/phenotagger-sap-consensus-review/review.json",
+        "sha256": "1d9e2746b70f1c5ff7ee14952c1ca1b39ba69b975bda8b8eb968a5f7080c3b36",
+        "bytes": 5957
+      },
+      "scope": "父100轮原191增量，复用train48旧LR/bank，固定Sap .65/.92且纯最近ID同原ID；独立重建labelmap/request/组装/评分。",
+      "conclusion": "191→36实体，22TP14FP；16新关系12TP4FP。内fold0 Score .710359060基线→.725539421；原100未滤 .712548706。所有基线保留、字节复现、格式零错警。",
+      "limitations": [
+        "fold0 has informed previous methods and this fixed control; development validation, not blind generalization or originaldev best. Thresholds .65/.92 inherited earlier selection and not searched here.",
+        "No repeat of prior LR reconstruction fit, GPU embeddings, nearest dot-product, Pheno training or remote large-file hashes; source/cache/model provenance and nearest-index mapping checked from actual artifacts.",
+        "Pure nearest-ID agreement is stronger than GLiNER exact-alias override policy, but numeric thresholds are not calibrated correctness guarantees.",
+        "Entity/relationship retention and metric gain apply to this base/addition pool only; originaldev target0.8 remains unmet."
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-sap-consensus-review/audit_consensus.py",
+          "sha256": "fede6a1a32ef1964e2d31f128f84c222165d51bc48c8bf239ed757e5dbd4b777",
+          "bytes": 10218
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/baseline.metrics.json",
+          "sha256": "3593de59197be1ed4a1134928a7f5fe8037b3ec3295c88c98ef39ca582701de7",
+          "bytes": 13033
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/commands.json",
+          "sha256": "c9e3e622883be2205dff5d54409b44e98a7cf60c1db26cd86ec768bd70771613",
+          "bytes": 7769
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/filtered.metrics.json",
+          "sha256": "cb832c7f3c96e520d1c25f8e5ac67d0763c7997b9c82d65090e7a8198bfd993f",
+          "bytes": 13062
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/parent100.metrics.json",
+          "sha256": "a5ba180cf45be6cf31ed396080fbeabcdc511b255a3e32367d215076944c0658",
+          "bytes": 13144
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/pred.manifest.json",
+          "sha256": "05107ac7e90035c54a8039f08ad8d3e92a1eac178b8687d3f67347a33d7b654d",
+          "bytes": 688
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/review.md",
+          "sha256": "2a4f261cbb95da4809008954b961cf68ce05f20fb72a69acdf96207867fa4a8a",
+          "bytes": 1399
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/solutions/ontology_rules/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/solutions/ontology_rules/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/solutions/ontology_rules/phenotagger_sap_consensus.py",
+          "sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+          "bytes": 13756
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/source/solutions/semantic_neural/run.py",
+          "sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+          "bytes": 21782
+        },
+        {
+          "path": "validation/phenotagger-sap-consensus-review/validation.json",
+          "sha256": "1077c65b587a3ae2069b31a22aa64492c88ce9fa606a7c11357c618df3b8f7cf",
+          "bytes": 685
+        }
+      ]
+    },
+    {
+      "id": "phenotagger-real-positive-adaptation3ep-negative",
+      "report": {
+        "path": "validation/phenotagger-adaptation-endpoint-review/review.json",
+        "sha256": "ddb8e3ec89ec833c03d7faaf079ceec31560190bdbcd97a07e22724120c3878d",
+        "bytes": 3206
+      },
+      "scope": "train48真实1749无歧义pair×16+原117118回放，数据/NO-NIL/max32/parent100模型only初始化，固定3ep1701步实际终点及raw/Sap配对CPU复现。",
+      "conclusion": "负结果保留：同raw父 .712548706→.694907353；同Sap父 .725539421→.721696137。raw326增实体87TP239FP，过滤66增实体27TP39FP；训练词面准确率.99825不代表Score，关闭此配比。",
+      "limitations": [
+        "Single reused development fold; no originaldev score or threshold sweep.",
+        "Reviewer independently replayed CPU assembly/label map/evaluation; GPU training/inference and large checkpoint loads were not repeated.",
+        "Real supervision, fresh Adam and extra updates form one intervention; training accuracy is not task Score."
+      ],
+      "support": [
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/audit_filter.py",
+          "sha256": "4f403760cc1bd4a6bd52b6deb8cae80f91d46423cb7edb77df2b4fb47eefd337",
+          "bytes": 10345
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/audit_raw.py",
+          "sha256": "f565fe817046297aec7ca8e0aa3598d45d49f87a79980963a8f513045923f3d5",
+          "bytes": 10078
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/baseline.metrics.json",
+          "sha256": "3593de59197be1ed4a1134928a7f5fe8037b3ec3295c88c98ef39ca582701de7",
+          "bytes": 13033
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/baseline.metrics.json",
+          "sha256": "3593de59197be1ed4a1134928a7f5fe8037b3ec3295c88c98ef39ca582701de7",
+          "bytes": 13033
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/commands.json",
+          "sha256": "01a0c39eb973398ee0b11b6e617495265214c1399c0fd17490627e10bae1cd0a",
+          "bytes": 9118
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/filtered.metrics.json",
+          "sha256": "9394ff8b62ef7d5fefc689042149c2ffc7cc1eb963018e7365e52f99ad112ded",
+          "bytes": 13103
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/parent100_filtered.metrics.json",
+          "sha256": "cb832c7f3c96e520d1c25f8e5ac67d0763c7997b9c82d65090e7a8198bfd993f",
+          "bytes": 13062
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/pred.manifest.json",
+          "sha256": "870c0b9ced925dcfe1b99aeb3fe186a355ffc7d0e1456069da5bb9fda4acd9d5",
+          "bytes": 689
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/raw.metrics.json",
+          "sha256": "cf081b0508f932fa302231d8e6d19e19678ba6aa14eddc70131fbd4b08ac0a7f",
+          "bytes": 13128
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/review.json",
+          "sha256": "33d1b1102d415ae2ecf5315973d7d6fa096eb480c2c01d22209db4f1d957c280",
+          "bytes": 5642
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/solutions/ontology_rules/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/solutions/ontology_rules/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/solutions/ontology_rules/phenotagger_sap_consensus.py",
+          "sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+          "bytes": 13756
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/source/solutions/semantic_neural/run.py",
+          "sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+          "bytes": 21782
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/filtered/validation.json",
+          "sha256": "47a90bc81e4f0d5964259815b923286ce95422067f772f23133c860a809e9942",
+          "bytes": 686
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/parent100.metrics.json",
+          "sha256": "a5ba180cf45be6cf31ed396080fbeabcdc511b255a3e32367d215076944c0658",
+          "bytes": 13144
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/raw-review.json",
+          "sha256": "daf15fbcc21cc0acba90f3fc19ea34137cbb5c356fd024fc3fa78a77669d6e38",
+          "bytes": 6596
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/raw.commands.json",
+          "sha256": "1550a101ac5837275f1a8aaf5fc485f2a35e083701c617d16da9dfc5dc09fabe",
+          "bytes": 6834
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/raw.metrics.json",
+          "sha256": "cf081b0508f932fa302231d8e6d19e19678ba6aa14eddc70131fbd4b08ac0a7f",
+          "bytes": 13128
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/raw.pred.manifest.json",
+          "sha256": "0188fb30fed0fb1c9e02eecb83f102a71da4784a1aa9831da6d5f526b1501719",
+          "bytes": 1253
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/raw.validation.json",
+          "sha256": "91abcafcbd03fce9a270b7a7594625cf2e18a4457404b88353f7807a430a7057",
+          "bytes": 686
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/review.md",
+          "sha256": "0b151f32ac6da23d831fae451f7ab813406ba6a0ff9766f78f8b7b0f90788fa1",
+          "bytes": 727
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/phenotagger_adaptation.py",
+          "sha256": "6b5830851442a3b98932144e725696d6b2191b07878f7a32bc54c832c54f6fe7",
+          "bytes": 1900
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/phenotagger_augment.py",
+          "sha256": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+          "bytes": 3852
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/phenotagger_measure.py",
+          "sha256": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+          "bytes": 8962
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/phenotagger_predict.py",
+          "sha256": "ea7f14e22b1f5bd774ea80376582c75570918b0d29caea40c3ea2db2ea1b2911",
+          "bytes": 5151
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/phenotagger_train.py",
+          "sha256": "0e1a940c41e029fbbd1ffc738ecfaf8fc435ded302a225c845efd0dc2a2d0175",
+          "bytes": 15387
+        },
+        {
+          "path": "validation/phenotagger-adaptation-endpoint-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/audit_data_independent.py",
+          "sha256": "a384a4632cd72b69aebb8020763639874901e6f716678c8cf6e0db20ba29dba8",
+          "bytes": 14126
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/audit_initialization.py",
+          "sha256": "0b6a6e3faa8f92d1cd34fe334bf398d9399fe4e5706c45cef41157e9af4c24a0",
+          "bytes": 6897
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/data-review.json",
+          "sha256": "333dbfc0c6628d2b93eb0b953a4dcec0be7fe2e0072a3df057453a653237a084",
+          "bytes": 5954
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-review.json",
+          "sha256": "a816db1ae573c258a2d28729ea184baa48484f3559c284d871a541d6e9159f92",
+          "bytes": 7602
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/enhance.py",
+          "sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "bytes": 20950
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/merge_semantic.py",
+          "sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+          "bytes": 4578
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_adapt_check.py",
+          "sha256": "9ec112870b81f0b113bbbe90e1d825f6a9e4dae76debef63f21c80186ae017b1",
+          "bytes": 5483
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_adapt_data.py",
+          "sha256": "819b723ade9e48f0db31747a2b4514fe3e0c95e6687104daf2078ed0e376f9af",
+          "bytes": 13210
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_adaptation.py",
+          "sha256": "6b5830851442a3b98932144e725696d6b2191b07878f7a32bc54c832c54f6fe7",
+          "bytes": 1900
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_augment.py",
+          "sha256": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+          "bytes": 3852
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_continuation.py",
+          "sha256": "2e8cb3e588fd52b5749ddc555a1229b77ad59927cc76cce09580b6c1b383f0eb",
+          "bytes": 2993
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_data.py",
+          "sha256": "ee3c293ac16732ccabca5a51da616dcc830ba5acd4b6bcfe00c78cebd923d255",
+          "bytes": 8371
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_measure.py",
+          "sha256": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+          "bytes": 8962
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_predict.py",
+          "sha256": "ea7f14e22b1f5bd774ea80376582c75570918b0d29caea40c3ea2db2ea1b2911",
+          "bytes": 5151
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/phenotagger_train.py",
+          "sha256": "0e1a940c41e029fbbd1ffc738ecfaf8fc435ded302a225c845efd0dc2a2d0175",
+          "bytes": 15387
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/initialization-source/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/phenotagger_adapt_data.reviewed.snapshot.py",
+          "sha256": "819b723ade9e48f0db31747a2b4514fe3e0c95e6687104daf2078ed0e376f9af",
+          "bytes": 13210
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/phenotagger_predict.py.diff",
+          "sha256": "88aa58093454ef67df1a4234e419fe377f90d0d83e0f95c524bef7658285cf1b",
+          "bytes": 1766
+        },
+        {
+          "path": "validation/phenotagger-adaptation-review/phenotagger_train.py.diff",
+          "sha256": "236df55e096df999f532a5c12e16dc8b5fc7c67d0e934e4d0cb59aa0322b2cc5",
+          "bytes": 6505
+        }
+      ]
+    },
+    {
+      "id": "qwen35-actual-gpu-interface-and-cost",
+      "report": {
+        "path": "validation/qwen35-interface-review/actual-smoke-cost-review.json",
+        "sha256": "61a3c930ac80dfe1cfba6da4165242569e4a929afc9fd7e69f9a5dd1695bede2",
+        "bytes": 10063
+      },
+      "scope": "实际A800短r8单步/卸载重载，最长6040输入自然推断，以及最长5787完整训练样本r16全12投影成本；只读数据字节/掩码/参数指纹/实际清单。",
+      "conclusion": "GPU工程检查通过：8.9538B文本基座，完整43.278M adapter三族248 B更新；峰allocated36.95GB/reserved42.17GB。token线性40.68min/最长包络73.51min仅估算。自然长推断212tokens、8/8CID合法，仅格式。",
+      "limitations": [
+        "Actual short/cost helpers hash 11 required files including all four weight shards and index; longest inference hashes all 15. Do not attribute 15-file hashing to short helpers.",
+        "Named tensor fingerprints prove recorded r8 adapter unload/reload; reviewer did not download/reload adapter weights. Full r16 cost checkpoint only saved, no reload or optimizer resume tested.",
+        "Cold longest-step timing and token-linear 40.68min / longest envelope 73.51min are planning estimates, excluding setup/checkpoints/evaluation and variability.",
+        "Short natural generation hit its 16-token cap. Separate forced chat EOS verifies engine stopping only; longest natural response ended below cap but raw final EOS token is not recorded.",
+        "No test Score is produced; 8/8 valid candidate IDs in longest response are format evidence only.",
+        "Original GPU v1 failed serializing TF5 loading-info sets before forward. v2 only deterministic set serialization/helper pin changed; failed artifacts retained."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/adapter-reload.json",
+          "sha256": "a8023ced673576c6bf3a88464ea167557ecf90b7cdd0f8147037c793e89dec83",
+          "bytes": 20741
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/base-loading-info.json",
+          "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85",
+          "bytes": 95
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/complete.json",
+          "sha256": "60f05fd4892ca697c3318a84240b245aba51174be11fc5ee388b795da9ce1c43",
+          "bytes": 739
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/generation-stop-check.json",
+          "sha256": "5e74dfcb2cd9fd78e7ab457eda85adfcc4edc455b3bf462cabfa4ae4545856f9",
+          "bytes": 514
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/generation.json",
+          "sha256": "e15726059664d764f72120d24e5a01718f14b553a34c7ca91291947f0cb176a1",
+          "bytes": 568
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/gpu-preflight.json",
+          "sha256": "03b9f61e77d16ab9e8e010e90ae7c9af23013306aad870fc4025128114f0544d",
+          "bytes": 253
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/model-parameters.json",
+          "sha256": "e82bdc50f68f7dbffed270813a8cf7a597247fa063bca261b74965be070f1012",
+          "bytes": 31161
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/run-manifest.json",
+          "sha256": "b64878b4956315d3e43c227fd67fe74ad105d05cce23f050a573fdb3adc99554",
+          "bytes": 6411
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/selection.json",
+          "sha256": "2e7eb103996732d8e084455ddf6dc01cf81f538fe82e6e9dcfc4ad4c04bf47a0",
+          "bytes": 12363
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/a800-migration/v2/smoke-preparation/gpu-smoke-v2/single-step.json",
+          "sha256": "d9441c193841f48292649feda8d0a0c098370845632f2e6702eaa296895cd241",
+          "bytes": 11109
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/model-source-manifest.json",
+          "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+          "bytes": 3911
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/adapter-checkpoint.json",
+          "sha256": "c8aff03853e90aaab08604b42aaf632f96144dc9f05dd54e806382faf70a7cd7",
+          "bytes": 657
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/base-loading-info.json",
+          "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85",
+          "bytes": 95
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/complete.json",
+          "sha256": "0db1764f1bee3b5cf4e9561e72fa6c2cd974fff37a57c5f79cb27a15804d1d59",
+          "bytes": 764
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/gpu-preflight.json",
+          "sha256": "4fec9bbf0983ddb99df4dcd9395305cacb873212c3e02dac9431c5469e9079d0",
+          "bytes": 253
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/model-coverage.json",
+          "sha256": "5018749d97cce059993a4907f33d815bb66775f1bf6e66240613dc85499b0b4d",
+          "bytes": 50512
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/run-manifest.json",
+          "sha256": "b8e57668bf27c9e6126ab52e0ab2d7dab38494c23f93aa03a68bd3ad024c0d57",
+          "bytes": 8112
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/selection.json",
+          "sha256": "ba8a0f33e33cd765483aed0258ad420017b4c96b5735cc47846e48eefacbd0d7",
+          "bytes": 160400
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/single-step.json",
+          "sha256": "64d3afdbf33e1525b54b48226eaf84f678bf9e74954a9f9142b70bc218a14c67",
+          "bytes": 64397
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/timings.json",
+          "sha256": "5f005b2dfc60f67620ded9db638ee5bb1ca133d3683a0c2c9194b2d0175a9046",
+          "bytes": 1762
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-cost-preparation/gpu-cost-v1/training-time-estimates.json",
+          "sha256": "c951d809d4af3f974319c96943aaac9077cc8458bf37b5bddd08a04fe5b301e2",
+          "bytes": 931
+        },
+        {
+          "path": "validation/qwen35-interface-review/actual-inference-review.json",
+          "sha256": "da2049bd3adde5d0105e0af10959c37bab173a7eebaaf233cf758025f8d09f55",
+          "bytes": 10029
+        },
+        {
+          "path": "validation/qwen35-interface-review/actual-source/qwen35_relation_cost.py",
+          "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c",
+          "bytes": 22367
+        },
+        {
+          "path": "validation/qwen35-interface-review/actual-source/qwen35_smoke.py",
+          "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+          "bytes": 26050
+        },
+        {
+          "path": "validation/qwen35-interface-review/audit_actual_inference.py",
+          "sha256": "7b717ee3696f7c6541a69042e35e5876e389a567cf4c375f72cf0216198ed12b",
+          "bytes": 12380
+        },
+        {
+          "path": "validation/qwen35-interface-review/audit_actual_smoke_cost.py",
+          "sha256": "a75440c3899325955ab98cbccb73072dc19cdde693d23970bf88e25c18d32367",
+          "bytes": 9837
+        },
+        {
+          "path": "validation/qwen35-interface-review/qwen35_runner.b52337c.snapshot.py",
+          "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+          "bytes": 11012
+        }
+      ]
+    },
+    {
+      "id": "qwen35-formal-trainer-preparation",
+      "report": {
+        "path": "validation/qwen35-interface-review/formal-trainer-review.json",
+        "sha256": "489f655b9b71ba39a7d7de1bc272a85e3be64ff4613c77789c0a8deb3a25575c",
+        "bytes": 14595
+      },
+      "scope": "最终9d2e0eeb/46bdcc4新接口与旧循环AST对照；实际CPU-v2源/data/meta/mask证据绑定；epoch checkpoint/完整状态恢复与smoke隔离只读审。",
+      "conclusion": "准备审查无阻断：204/48篇、660330tokens、max5787，固定2ep/52steps/3warmup，GC开启且nonreentrant；248模块496 adapter张量、全15实际模型文件在GPU分支核验。",
+      "limitations": [
+        "尚无新正式训练器GPU训练完成、完整r16 adapter重载或暂停续训数值等价证据；旧8B恢复测试不能替代。",
+        "实际CPU-v2由方案执行，独审绑定产物并查源码/selected mask，不重复全204分词。CPU只核6核心文件，正式GPU分支核15。",
+        "assistant完整答案含chat EOS/newline；不是质量评估、原dev或官方成绩。"
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-collection-v2.json",
+          "sha256": "f8c8561daa19842768b2f61658b6f8cd9d2456f571bbb742aaad9e4e36eaef95",
+          "bytes": 727
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-control-tests.json",
+          "sha256": "8dc49fe674b787dad4c8ed45fccc3ca86c80ef38cc083dd7628d4da2f63f1e56",
+          "bytes": 1049
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-execution-v2.json",
+          "sha256": "80bd99bcc9e8c271ddbb3d9e8ab37c1aed27b6d12fdf2f60a8f65f5d510529ab",
+          "bytes": 410
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-plan-v2.json",
+          "sha256": "82416ecf0cf5ed50e62618951ab21248c904732a46c0dd78e1fdcf16880af2cf",
+          "bytes": 733
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-v2/causal-loss-cpu-check.json",
+          "sha256": "ce688b381e4ec90140e585a2222864bc143757726b6344048feefff837d41c2e",
+          "bytes": 403
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-v2/cpu_complete.json",
+          "sha256": "379f0b00e4cf1635fe49181386e4c3fd3e71844038a0b8358eb9d49d540321b5",
+          "bytes": 452
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-v2/meta-coverage.json",
+          "sha256": "fe36ce32a505bedaf2221feff333cc9d4794694c1a3acae2e7a374274eed1644",
+          "bytes": 50275
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-v2/run_manifest.json",
+          "sha256": "caf480d9b230ebe85948bb8ce12f139af6ee8f1aa7bc01143851fa2968726d03",
+          "bytes": 8291
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/relation-training-preparation/cpu-v2/token-mask-audit.json",
+          "sha256": "1ec3b47877832a60a3f0bc86371a4fbc940e6948d7d43b51ec7b91f670a3c99d",
+          "bytes": 28618
+        },
+        {
+          "path": "validation/qwen35-interface-review/audit_formal_trainer_source.py",
+          "sha256": "d91f7db661bbf9e01cba23ae2d3456615e92ad1bdb95386c5af6ce152f90a1cf",
+          "bytes": 15209
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-trainer-source/qwen35_relation_cost.py",
+          "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c",
+          "bytes": 22367
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-trainer-source/qwen35_smoke.py",
+          "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+          "bytes": 26050
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-trainer-source/train_lora.py",
+          "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+          "bytes": 24477
+        },
+        {
+          "path": "validation/qwen35-interface-review/formal-trainer-source/train_qwen35_lora.py",
+          "sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+          "bytes": 25992
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "qwen35-gpu-interface-and-cost",
-      "status": "实际CPU与静态审查通过；迁移A800和GPU接口/最长成本尚待执行，不认证GPU加载/自然EOS/质量。"
+      "id": "gliner-outer48-fixed10ep",
+      "status": "同源fresh train48十轮及固定Sap outerfold0终点尚待回收独审；不评中间heldout。"
+    },
+    {
+      "id": "phenotagger100-originaldev-raw-and-fixed-sap",
+      "status": "root已授权一次原dev预先冻结raw+filter，父分类器train48、其他资源train64且都排除dev；结果尚未回收。"
+    },
+    {
+      "id": "qwen35-formal58-paired-quality",
+      "status": "新9B正式base58与204×2ep/58按固定计划运行；本索引只有接口/成本/准备通过，不宣称正式质量结果。"
     }
   ],
-  "previous_live_index_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
+  "previous_live_index_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批新增fold1七臂、GLiNER loss修复与2/10轮终点、Qwen3.5 CPU准备、Pheno100终点；原22项报告原SHA保留。原dev三best不变、均未0.8，不上传官方。",
+  "live_index_note": "本批29→34新增两项固定Sap全链、真实词面3ep完整负结果、Qwen3.5实际GPU接口/成本及正式trainer准备；所有原报告SHA保留。原dev三best不变、均未0.8；无官方提交。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
-  "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a"
+  "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
+  "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9"
 }
