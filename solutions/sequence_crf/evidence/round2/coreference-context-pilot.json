@@ -1,0 +1,100 @@
+{
+  "configuration": {
+    "input": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot-context/input.jsonl",
+    "prompts": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot-context/prompts.jsonl",
+    "responses": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot-context/responses.jsonl",
+    "output": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot-context/expanded.input.jsonl",
+    "grounding": "context"
+  },
+  "stats": {
+    "valid_responses": 15,
+    "grounded_items_including_duplicates": 9,
+    "unmatched_or_cross_passage_quote": 35,
+    "added_mentions": 4
+  },
+  "source_sha256": "3e47422f0165566ac517ec23601268443149484fa9ff07b34fb9ac47f54671e9",
+  "parser_sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+  "files": {
+    "input": "26c68fd742f7e22c35f243939604b2a6dab7bde012110ad3a17e3c38b2d74e3b",
+    "prompts": "3439b3ae629c90e64cdc1d4253ec996c7380b16cfb24794e916003f2040401a4",
+    "responses": "67b563b6b0edd7310c61b0e0ffbc4ba0d01388869a79a1f33a0bf700edc4b415",
+    "output": "e5f74f3c2dfbd3e57e3d4cd1a1aac24b0e1aabde4455cda72fa774fa61659a32"
+  },
+  "policy": "only grounded same-passage spans; preserve all original mentions in original order, append sorted novel spans; no generated patient IDs; invalid/truncated replies rejected; context mode requires unique 20-300-character context and a single complete-word reference",
+  "manual_input_only_review": {
+    "status": "accepted grounded subset passed; low yield, not a coreference quality estimate",
+    "generated_items": 44,
+    "added_mentions": 4,
+    "reviewed_additions": 4,
+    "identity_errors_observed_in_accepted_additions": 0,
+    "review": [
+      "2 new the proband references to P1",
+      "2 new the proband mother references to P2"
+    ],
+    "labels_used": false
+  },
+  "selection": {
+    "selection": "input-only, patient-count strata 1 / 2-3 / >=4; lowest provided mentions per patient, ties lexicographic pmc_id; all windows; no labels or scores consulted",
+    "source_sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "selected": [
+      {
+        "pmc_id": "5793168",
+        "patients": 1,
+        "mentions": 1,
+        "text_chars": 32108,
+        "windows": 8
+      },
+      {
+        "pmc_id": "12811285",
+        "patients": 2,
+        "mentions": 3,
+        "text_chars": 14141,
+        "windows": 4
+      },
+      {
+        "pmc_id": "5789735",
+        "patients": 5,
+        "mentions": 5,
+        "text_chars": 11207,
+        "windows": 3
+      }
+    ],
+    "input_sha256": "26c68fd742f7e22c35f243939604b2a6dab7bde012110ad3a17e3c38b2d74e3b"
+  },
+  "inference": {
+    "configuration": {
+      "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+      "prompts": "prompts.jsonl",
+      "output": "responses.jsonl",
+      "adapter": null,
+      "max_input_tokens": 14000,
+      "max_new_tokens": 3072,
+      "batch_size": 1,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+        "prompts": "prompts.jsonl",
+        "output": "responses.jsonl",
+        "adapter": null,
+        "max_input_tokens": 14000,
+        "max_new_tokens": 3072,
+        "batch_size": 1,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "3439b3ae629c90e64cdc1d4253ec996c7380b16cfb24794e916003f2040401a4",
+      "code_sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 16876387328,
+    "elapsed_seconds": 128.312,
+    "output_sha256": "67b563b6b0edd7310c61b0e0ffbc4ba0d01388869a79a1f33a0bf700edc4b415"
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-pilot-context",
+  "freeze_policy": "no further prompt tuning; apply current strict context-grounded protocol to fold0 input; compare same947entities/rules/SFT, with old-alias and coordinate-only controls"
+}
