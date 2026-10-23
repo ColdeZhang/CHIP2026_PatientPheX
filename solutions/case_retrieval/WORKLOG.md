@@ -9,7 +9,7 @@
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
 - **最新结论**：9B微调能降低关系FP，但直接替换仍损召回；原dev微调271TP/64FP/182FN vs fullLR331/203/122。204严格OOF base决策作为4事实的固定HGB对照也负：无LLM .653192→有LLM .649124，低于内fold0 rules .711354。均冻结，不依据heldout调阈值。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
-- **当前任务**：fresh full64关系SFT实际运行中；A800 GPU2 `proc_ccb3fa32-ddf7-424e-b15f-a3c9a7003ef8` 于18:55:25 UTC启动，19:55:25 UTC训练硬截止（TERM后30秒KILL）。独立CPU/data/guard审查与6153最长fresh probe均已通过；265行×2ep、68updates/4warmup、cap6400只拒超限，唯一epoch002，不续旧48或probe。正式已进入训练；尚无完成或质量结论。恢复入口外存`full64-relation-cpu-preparation/formal-job.json`与`formal-monitor.json`，本地watcher8857，勿重复启动。
+- **当前任务**：fresh full64关系SFT实际运行中；A800 GPU2 `proc_ccb3fa32-ddf7-424e-b15f-a3c9a7003ef8` 于18:55:25 UTC启动，19:55:25 UTC训练硬截止（TERM后30秒KILL）。独立CPU/data/guard审查与6153最长fresh probe均已通过；265行×2ep、68updates/4warmup、cap6400只拒超限，唯一epoch002，不续旧48或probe。19:16 UTC首epoch完整34updates/265样本并保存，实际epoch1207.633秒（20.13min），已进入epoch2；若第二轮近似，约19:36–38完成，仅ETA。尚无2ep完成或质量结论。恢复入口外存`full64-relation-cpu-preparation/formal-job.json`与`formal-monitor.json`，本地watcher8857，勿重复启动。
 - **已授权后继，尚未启动**：full64完整终点后仅一个原dev新adapter臂；同A30旧64提示/955实体/466CID/原decoder与parser，900秒+30秒grace，旧base/SFT48/fullLR按SHA复用。新权重SHA待真实完成；先等本体NER明确释放.100 GPU1再fresh核空。单臂操作源码/10合成检查/静态审查已冻，先freeze预测再一次评新臂，见[准备证据](evidence/round2/qwen35-full64-dev-single-arm-preparation.json)。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
@@ -37,4 +37,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `d0513c2`（严格CPU校准终点/full64实际成本；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近成功push检查点 `55fb844`（连续置信度机制判断）；其后`a01284f`及本次首epoch台账因间歇401暂未推送，root已知且下次外存bundle会包含，按间隔重试，不改凭据。此前144325e正常merge main@512cf8d共享规则，本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
