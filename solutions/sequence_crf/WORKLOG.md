@@ -20,7 +20,7 @@
 7. **全train64固定10已完成、未改善**：fresh64/2372窗/5930steps耗1300.262秒，峰6.021GB，最终model e7985761、真实Adam/RNG state8026c3a8再哈希通过，仅保epoch10+latest。原48同runtime候选byteexact。64主fullLR **.705869445**（较48下降.005456），entity-only.705271539；预先固定nested次臂.706234066，仍较差。所有输出18:18:59Z统一freeze后评，0错警；模型跨度净+2TP/+3FP但关系-1TP/+9FP，不能因全量训练就替换旧模型。GPU于18:18:39Z fresh核空交本体，实余217.22GB，暂无本路线GPU任务。下一步来源调研已完成，准确large-v2同NuNER声明，已获授权仅下载+训练侧单步smoke，不开正式10ep。新终点独审PASS、三预测/全部指标独立复现；[完整结果与恢复入口](evidence/round2/gliner-full64-results.json)。
 8. **固定嵌套实体控制完成**：nested57字节复现2d24bb99；同proper containment/HPO不交政策，outer48追加31（12TP/19FP），.721504→.723440；原dev48追加35（10TP/25FP），.711325→.712147，mention分下降而doc分升，所有旧关系不变、0错警，三路独立重放PASS。只保留温和收益，不扫规则；64主终点原政策及预声明nested次臂已统一freeze/评，均未超过48。[结果](evidence/round2/gliner-nested-control-results.json)。
 
-9. **较大通用span基座准备**：选large-v2而非v2.1，固定9d0533ed/459.495M参数元数据；同NuNER谱系，tokenizer实际SHA一致，但上游负例比例/warmup/head不同，不能称纯容量因果。ModelScope两准确路径未找到可核版本，按规则HF固定源回退。当前只获准下载+最长train48批次成本/梯度smoke，正式10ep未启动；[来源](evidence/round2/gliner-large-feasibility.json)、[固定计划](evidence/round2/gliner-large-smoke-plan.json)，外存gliner-large-v2/。
+9. **较大通用span基座准备**：选large-v2而非v2.1，固定9d0533ed/459.495M参数元数据；同NuNER谱系，tokenizer实际SHA一致，但上游负例比例/warmup/head不同，不能称纯容量因果。ModelScope两准确路径未找到可核版本，按规则HF固定源回退。当前只获准下载+最长train48批次成本/梯度smoke，正式10ep未启动；.3下载proc_1f169d21、CPU检查proc_9978a136（18:28Z，无GPU），恢复入口为外存download/job.json和cpu-job.json；[来源](evidence/round2/gliner-large-feasibility.json)、[固定计划](evidence/round2/gliner-large-smoke-plan.json)，外存gliner-large-v2/。
 
 ## 已完成的近期结论
 
