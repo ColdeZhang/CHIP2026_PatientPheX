@@ -61,9 +61,13 @@
 
 ## 证据与下一步
 
-- 新增[当前最佳端到端资源清单](experiments/best-pipeline-resource-inventory.md)：只读确认实际HGB/CRF/Sap及关系模块恢复入口，不跑test、不新增训练。F0/F1 cut.3 OOF实体支持集已交检索，明确全train64选cut的开发使用；通用新输入runner与跨目录模型路径适配尚未实施。
+- 新增[当前最佳端到端资源清单](experiments/best-pipeline-resource-inventory.md)：只读确认实际HGB/CRF/Sap及关系模块恢复入口，不跑test、不新增训练。F0/F1 cut.3 OOF实体支持集已交检索，明确全train64选cut的开发使用；现已补候选池→已存HGB的薄入口并完成无评分字节回放，原文候选生成与跨目录CRF模型路径适配仍未整合。
 
 - [实验过程](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整产物根目录：`/workspace/patientphex-runs/round2-20261023/sequence_crf/`；权重/预测/原始响应/完整日志不入 Git。
 - [SFT 固定结果与恢复索引](evidence/round2/relation-sft-fold0-results.json)、[新关系池结果](evidence/round2/new-ontology-relation-results.json)、[训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 现有 base 和本路线 epoch2 adapter 可只读复用；旧 180 概念/29 提示弱池未运行。
 - 共指完成后保留全部控制，包括负结果；如无可靠收益，停止当前原型，不以格式通过替代身份或分数验证。后续再协调检索新跨度与本体候选组合，避免混淆本次单变量对照。
 - 历史基线口径：旧 baseline-fold0 未拆复合关系标签 `.613929`，修复后 `.603398`，实体不变；fold1–3 已使用修复版。不要将四折旧关系基线写成同一未修补模型。
+
+### 已存HGB推断入口（无新增实验质量分）
+
+`predict_existing_selector.py` 只load模型+vectorizer，接受任意输入/合并候选/base/source路径与cut，可选原关联原样装配；无fit/gold读取。原16篇13144概率和完整cut.3预测分别复现c032ca68/6401a24e，实际约1.99秒；16项合同含概率毒化后实际重算、任意ID/空池、fit及annotation-IO陷阱通过。独立增量审PASS（7c3b8401），全16实际重算及16合同独立重放一致。[使用与边界](experiments/load-existing-selector.md)、[实际命令/所有证据](evidence/round2/selector-load-only.json)。未跑test100/官方；不把新HGB实体自动改作Task2候选。

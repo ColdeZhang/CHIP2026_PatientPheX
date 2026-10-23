@@ -22,3 +22,5 @@ CRF pickle 里的估计器引用模型路径，迁目录必须同时保留/显�
 ## 已交接的关系支持集
 
 F0/F1 cut .3 完整OOF预测分别为 `public-bioformer-cut-calibration/cut-3/fold0.jsonl`（`298cc874…`）和 `fold1.jsonl`（`8ea3a1da…`），精确路径/完整SHA/48训练与16输入的隔离核对在资源索引 `support_handoff`。两个HGB均排除自身目标16，三套下层train32 OOF来源已审；但全局cut .3使用全train64实体标签选择，含F0/F1，因此新增关系支持过滤应标作开发诊断。只提取文档×原子HPO实体集合，不能采用文件中的旧规则关联覆盖SFT输出。
+
+后续有界整合：候选池→既有HGB部分已有[薄推断入口](load-existing-selector.md)，无需重fit且不绑定dev文献；全16概率/预测字节回放通过。上游原文候选生成、CRF跨目录模型路径和完整Task2新输入执行仍保留原限制。

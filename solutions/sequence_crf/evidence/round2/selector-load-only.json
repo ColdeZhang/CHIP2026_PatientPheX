@@ -1,0 +1,152 @@
+{
+  "status": "implemented; independent incremental review PASS; no new quality evaluation",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only",
+  "entrypoint": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/predict_existing_selector.py",
+    "sha256": "5eb21c02111ce6890704d1debd9349ec4bcbc4bc717fa923010f956df2767608",
+    "bytes": 12135
+  },
+  "checker": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/check_existing_selector.py",
+    "sha256": "20158b336bb352be819d69c8e7b2f828c3adc2e7fa15659397adfdca15110ebe",
+    "bytes": 6453
+  },
+  "command": [
+    "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/predict_existing_selector.py",
+    "--input",
+    "/workspace/patientphex-data/day1/dev16.input.jsonl",
+    "--candidates",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector-scores.jsonl",
+    "--base",
+    "/workspace/patientphex-runs/day1-20261023/ontology-rules/dev-v1/predictions.jsonl",
+    "--ontology-source",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules",
+    "--model",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector.pkl",
+    "--model-manifest",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/manifest.json",
+    "--associations",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/current-best.jsonl",
+    "--cut",
+    ".3",
+    "--output-dir",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/replayed"
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "sklearn": "1.8.0"
+  },
+  "documents": 16,
+  "candidates": 13144,
+  "cut": 0.3,
+  "inference_seconds": 1.9920408870020765,
+  "fit_performed": false,
+  "evaluation_performed": false,
+  "full_prediction_byteexact": {
+    "byteexact": true,
+    "sha256": "6401a24e06ea48d8e8711313b7dfe726f6fa7a9dae4ec93e21e97e1707835fbd",
+    "reference": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/calibrated-point3.jsonl"
+  },
+  "all_candidate_probabilities_byteexact": {
+    "byteexact": true,
+    "sha256": "c032ca689c0f11735cb6590276c51185d2cfa4229f25c7c8ecbbaeb19759fd0e",
+    "reference": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector-scores.jsonl"
+  },
+  "boundary_contracts": {
+    "passed": true,
+    "checks": [
+      "input_annotations_rejected",
+      "missing_candidate_document_rejected",
+      "duplicate_candidate_key_rejected",
+      "cross_passage_coordinate_rejected",
+      "wrong_text_rejected",
+      "nonfinite_score_rejected",
+      "missing_source_flag_rejected",
+      "wrong_patient_keys_rejected",
+      "wrong_identifier_rejected",
+      "duplicate_document_rejected",
+      "decoder_AST_identical_to_frozen_function",
+      "arbitrary_document_ids_accepted",
+      "empty_candidate_document_supported",
+      "stored_probabilities_ignored_actual_predict_called",
+      "Task1_only_omits_associations",
+      "fit_and_annotation_IO_traps_not_triggered"
+    ],
+    "source_sha256": "5eb21c02111ce6890704d1debd9349ec4bcbc4bc717fa923010f956df2767608",
+    "checker_sha256": "20158b336bb352be819d69c8e7b2f828c3adc2e7fa15659397adfdca15110ebe",
+    "job_sha256": "00164a7f875b69f6e4cada21848ad7f200b75eaf5c45ac56b5ce1a710b5c840e",
+    "prediction_calls": [
+      1304
+    ],
+    "new_model_fit": false,
+    "quality_evaluation": false,
+    "synthetic_input_from_cached_text": true,
+    "actual_original_probabilities_recovered": true
+  },
+  "artifacts": {
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/job.json",
+      "sha256": "00164a7f875b69f6e4cada21848ad7f200b75eaf5c45ac56b5ce1a710b5c840e",
+      "bytes": 1540
+    },
+    "replay-check.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/replay-check.json",
+      "sha256": "8a434c8fb925f55287e208bf57703287ada918fbb4fab53bd831b4942fe3165e",
+      "bytes": 631
+    },
+    "replayed/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/replayed/manifest.json",
+      "sha256": "6462f71f84f907eb5119fd08fb12a6b25e416c922fd0bdac4a1c1c69a856a455",
+      "bytes": 5781
+    },
+    "replayed/predictions.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/replayed/predictions.jsonl",
+      "sha256": "6401a24e06ea48d8e8711313b7dfe726f6fa7a9dae4ec93e21e97e1707835fbd",
+      "bytes": 131911
+    },
+    "replayed/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/replayed/selector-scores.jsonl",
+      "sha256": "c032ca689c0f11735cb6590276c51185d2cfa4229f25c7c8ecbbaeb19759fd0e",
+      "bytes": 9187584
+    },
+    "contracts/checks.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/contracts/checks.json",
+      "sha256": "eaca6dfc99722d2c9ee8e57884e47318978e9cbbec134e21ec1980ea4e9a2821",
+      "bytes": 1117
+    },
+    "contracts/task1-only/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/contracts/task1-only/manifest.json",
+      "sha256": "58c6133038a24748b01ff262eb0eb9d7a4053448aeeecd326b9fbaef4db30b9c",
+      "bytes": 5502
+    },
+    "attempt1-strict-cosine/job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/attempt1-strict-cosine/job.json",
+      "sha256": "40cf9942666e82d64d6a9b6cf8b0bb34a487076f5dbd413e4800225eeb561e06",
+      "bytes": 1541
+    },
+    "attempt1-strict-cosine/predict_existing_selector.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/attempt1-strict-cosine/predict_existing_selector.py",
+      "sha256": "7d4c941dc4b02eb1089affafac18c84cf3136f9eb4e05c7eb199f2abf7bad952",
+      "bytes": 11922
+    },
+    "attempt1-strict-cosine/stderr.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-load-only/attempt1-strict-cosine/stderr.txt",
+      "sha256": "66ede283886caab9c6b2c6d122cde8e651cf248333297681d7d184f1a688b450",
+      "bytes": 834
+    }
+  },
+  "limitations": [
+    "Upstream candidates and base predictions must follow the fitted source/normalization policy; supplied provenance is not inferred from spans.",
+    "Identifier syntax is checked; current-HPO membership and upstream training isolation remain candidate-generator responsibilities.",
+    "No Task2 candidate generation or reassignment. Model pickle must be from a trusted source."
+  ],
+  "initial_validation_failure": "Strict cosine<=1 rejected existing floating point dots (232>1, max1.0000011920928955). Added validation tolerance1e-5 without changing any feature; original source/trace retained.",
+  "scope": "Only load existing trusted model and score an already merged pool; no new data quality evaluation, raw-text candidate generation, Task2 inference, test100 or official action.",
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/selector-load-only-review/review.json",
+    "sha256": "7c3b8401fbe769218606ca0fd6ba67c10f893e07415e40e1727f1091cd4ff149",
+    "bytes": 5446,
+    "scope": "Independent actual full16 predict_proba and output byte replay plus 16 contracts; no model fit or quality evaluation."
+  }
+}

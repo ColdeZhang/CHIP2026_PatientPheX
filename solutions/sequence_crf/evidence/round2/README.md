@@ -101,3 +101,5 @@
 - [双公开模型原dev固定两cut](public-bioformer-dev-results.json)：.4 .731446/.3 .732258，同SFT全部关联；14.755秒fit、真实model295637B已存，独立增量审PASS（fc98e9ca）、16篇全部13144概率重载exact，未.8。
 
 - [当前最佳资源清单及F0/F1支持交接](best-pipeline-resource-inventory.json)：只读29项本地资源实际SHA、两fold隔离和远端历史位置；无新fit/推断，通用新输入入口仍待整合。
+
+- [加载既有HGB的推断入口](selector-load-only.json)：16篇全概率/预测byteexact，16项输入与不fit合同通过；无gold评分/GPU，独审PASS（7c3b8401）。
