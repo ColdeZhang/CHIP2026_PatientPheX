@@ -4,5 +4,29 @@
   "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
   "adaptation": "byte-identical snapshot, renamed entrypoint; PEFT 0.15.2 BF16",
   "resume_review": "504 parameter names/optimizer IDs, Adam steps/moments/scheduler/RNG restored; fresh GPU runs not bitwise equal; uninterrupted formal training planned",
-  "no_claim_of_bitwise_gpu_resume_equivalence": true
+  "no_claim_of_bitwise_gpu_resume_equivalence": true,
+  "inference_source": {
+    "original": "solutions/case_retrieval/llm_runner.py",
+    "sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
+    "snapshot": "infer_relation_lora.py",
+    "base_and_adapter_weight_sha_fingerprints": true
+  },
+  "smoke": {
+    "smoke_only": true,
+    "epochs": 1,
+    "global_step": 1,
+    "base_parameters": 8190735360,
+    "trainable_adapter_parameters": 43646976,
+    "elapsed_seconds": 23.603847980499268,
+    "max_gpu_allocated_bytes": 28951362560,
+    "device": "NVIDIA A800 80GB PCIe",
+    "result_type": "training_only_no_evaluation_score"
+  },
+  "smoke_manifest_sha256": "0217f92191b09fdaec4743b90bb299a4ed30985c4039c4936810bc579051c962",
+  "formal_process": {
+    "id": "proc_671c7a38-ee7e-4570-bfc1-d6c3cae0328c",
+    "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "relative_output": "sequence-round2/relation-sft-fold0/formal2ep",
+    "start_utc": "2026-10-23T13:40:41Z"
+  }
 }
