@@ -1,0 +1,181 @@
+{
+  "reviewed_at_utc": "2026-10-23T18:47:35.295438+00:00",
+  "scope": "Static formula/defaults and existing training-only counters; no newGPU/evaluation/gold read; currentlarge training unchanged",
+  "sources": {
+    "paper_text": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-source-review/gliner_paper.txt",
+      "sha256": "d5f3825851845a49a672e6699bf98efbffe92336ed1edc1fa87d18951c555d80"
+    },
+    "span_model": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/modeling/base.py",
+      "sha256": "b3ef985596410c07a447f18f5e199339b97ca4f603441a9ff36f9242d949e5bd"
+    },
+    "focal_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/modeling/loss_functions.py",
+      "sha256": "8c6716151a2c19295563308c122b6c1bb3583ff21cd9102b233b6bf4b970506e"
+    },
+    "trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/source-library/gliner/training/trainer.py",
+      "sha256": "130d22fc2c81ad2f97414964999c78aedeb3a55ab71b8bd5befdc53a674821c6"
+    },
+    "our_bce": {
+      "path": "solutions/sequence_crf/train_gliner_supervised.py",
+      "sha256": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9"
+    },
+    "training_health": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-loss-research/training-health.json",
+      "sha256": "c7cfedf4a3335c59023ffdaa54bc5922a4dce595cb1c2c8d4076c1a46aa48acc"
+    }
+  },
+  "facts": {
+    "paper": "GLiNER section2.2 equation3 explicitly summed binary cross entropy over positive/negative span-type pairs; no focal modulation shown.",
+    "upper_call_defaults": {
+      "alpha": -1,
+      "gamma": 0,
+      "prob_margin": 0,
+      "label_smoothing": 0,
+      "negatives": 1,
+      "reduction": "sum"
+    },
+    "lower_helper_defaults_if_called_directly": {
+      "alpha": 0.25,
+      "gamma": 2,
+      "warning": "These defaults are overridden by upper call; helper name is not effective training recipe."
+    },
+    "intended_correct_default_formula": "sum_valid[-y log(sigmoid(z)) -(1-y) log(1-sigmoid(z))]",
+    "our_formula": "sum_valid BCEWithLogits(z,y) / N_valid",
+    "our_changes": [
+      "Bypass confirmed positional-argument label_smoothing bug (H30)",
+      "Use numerically stable PyTorch BCEWithLogits rather than sigmoid/log clamped at epsilon",
+      "Normalize by actual valid-span count; upper default is sum; upper reduction=mean also divides padded/masked slots",
+      "Onephenotype class and all valid negatives; no class weighting, smoothing, negative subsampling or focal term"
+    ],
+    "optional_focal_formula_not_experiment": "alpha_t*(1-p_t)^gamma*BCE; gamma2/alpha=-1 would be a new objective, not restoration of defaultrecipe. alpha=.25 weights positives.25 and negatives.75 and is not automatically a rare-positive remedy."
+  },
+  "training_count": {
+    "windows": 1744,
+    "positive_span_instances": 3558,
+    "valid_span_instances": 1708711,
+    "negative_span_instances": 1705153,
+    "negative_over_positive_count": 479.24480044969084,
+    "positive_fraction": 0.002082271372982324
+  },
+  "training_evidence": [
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/formal-fixed2ep/run_manifest.json",
+      "source_sha256": "f0d288c1fbecc9b74b58f9fa27546d8768fb04127658d4c7c904d21763dfdc1c",
+      "documents": 32,
+      "completed_epochs": 2,
+      "final": {
+        "epoch": 2,
+        "online_precision": 0.7344205008736168,
+        "online_recall": 0.563953488372093,
+        "positive_count": 2236,
+        "negative_count": 1123302,
+        "positive_probability_mean": 0.5266333519570048,
+        "negative_probability_mean": 0.0009639766281420322,
+        "raw_BCE_abs_logit_gradient_mass_positive": 1058.4478250241373,
+        "raw_BCE_abs_logit_gradient_mass_negative": 1082.836874345201,
+        "negative_over_positive_raw_logit_mass": 1.0230422782724389,
+        "positive_window_probe": {
+          "precision": 0.7678571428571429,
+          "recall": 0.7049180327868853,
+          "positive_mean_probability": 0.6388355102695402,
+          "negative_mean_probability": 0.0015595754654222553
+        },
+        "probe_gold_positive": 122,
+        "probe_gold_negative": 36959,
+        "probe_rows": 32
+      }
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-long10ep-a800/formal-fixed10ep/run_manifest.json",
+      "source_sha256": "5ffc5df71c34d162bf61bc10d92b8f8383b2f75447b3aab5dc9a725b9ad617a2",
+      "documents": 32,
+      "completed_epochs": 10,
+      "final": {
+        "epoch": 10,
+        "online_precision": 0.8989995235826584,
+        "online_recall": 0.84391771019678,
+        "positive_count": 2236,
+        "negative_count": 1123302,
+        "positive_probability_mean": 0.8100498032911092,
+        "negative_probability_mean": 0.0003857767078251669,
+        "raw_BCE_abs_logit_gradient_mass_positive": 424.7286398410797,
+        "raw_BCE_abs_logit_gradient_mass_negative": 433.34374745342564,
+        "negative_over_positive_raw_logit_mass": 1.020283792530613,
+        "positive_window_probe": {
+          "precision": 0.8560606060606061,
+          "recall": 0.9262295081967213,
+          "positive_mean_probability": 0.9132157544620702,
+          "negative_mean_probability": 0.0006145290858450318
+        },
+        "probe_gold_positive": 122,
+        "probe_gold_negative": 36959,
+        "probe_rows": 32
+      }
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/formal-fixed10ep/run_manifest.json",
+      "source_sha256": "c867f25b67b96a0752ba4e8d9f060bc267f86559406105b89b484acd1011c699",
+      "documents": 48,
+      "completed_epochs": 10,
+      "final": {
+        "epoch": 10,
+        "online_precision": 0.9118623603984304,
+        "online_recall": 0.8490725126475548,
+        "positive_count": 3558,
+        "negative_count": 1705153,
+        "positive_probability_mean": 0.8227860845872497,
+        "negative_probability_mean": 0.00036760072039779626,
+        "raw_BCE_abs_logit_gradient_mass_positive": 630.5271110385656,
+        "raw_BCE_abs_logit_gradient_mass_negative": 626.8154711884634,
+        "negative_over_positive_raw_logit_mass": 0.9941134333716617,
+        "positive_window_probe": {
+          "precision": 0.9064327485380117,
+          "recall": 0.9748427672955975,
+          "positive_mean_probability": 0.9623977793087749,
+          "negative_mean_probability": 0.0005063753343973653
+        },
+        "probe_gold_positive": 159,
+        "probe_gold_negative": 44053,
+        "probe_rows": 48
+      }
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64/formal-fixed10ep/run_manifest.json",
+      "source_sha256": "51a4d6fe4dcf610ae67ac402be211913025224c30d9b873ba6805f2aea30e53a",
+      "documents": 64,
+      "completed_epochs": 10,
+      "final": {
+        "epoch": 10,
+        "online_precision": 0.9139027714675148,
+        "online_recall": 0.8603507271171942,
+        "positive_count": 4676,
+        "negative_count": 2312350,
+        "positive_probability_mean": 0.8301853136979267,
+        "negative_probability_mean": 0.0003414801183681507,
+        "raw_BCE_abs_logit_gradient_mass_positive": 794.053473148495,
+        "raw_BCE_abs_logit_gradient_mass_negative": 789.6215517085933,
+        "negative_over_positive_raw_logit_mass": 0.9944186108495582,
+        "positive_window_probe": {
+          "precision": 0.902127659574468,
+          "recall": 0.954954954954955,
+          "positive_mean_probability": 0.9364845774195216,
+          "negative_mean_probability": 0.0005104297004552158
+        },
+        "probe_gold_positive": 222,
+        "probe_gold_negative": 59134,
+        "probe_rows": 64
+      }
+    }
+  ],
+  "interpretation": [
+    "Class count imbalance alone does not prove negative gradient domination or positive collapse.",
+    "Medium48 final probe159positive across48firstpositive windows: P.9064/R.9748; onlineepoch10 all3558positive R.8491 from changingtrain-mode model, not finaleval.",
+    "For medium48 epoch10 summed rawabs BCE logit gradients: positive630.527,negative626.815,ratio.9941 despite479.245x negativecount. These are pre-batch-normalization scalarlogit masses, not parametergradient vectors.",
+    "Earlier2epoch probeR.7049 is underfit observation; no causal evidence assigns it to BCE or proves focal wouldimprove.",
+    "This route has not run any GLiNER focal/pos_weight loss variant. Existing BERTclassweightedCE belongs to different model and does not constitute thiscontrol."
+  ],
+  "decision": "Root explicitly closed additional focal test for this round. Keep currentlarge fixedBCE and evaluate only frozen terminal. No newgamma/alpha/threshold scan."
+}

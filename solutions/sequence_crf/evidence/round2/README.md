@@ -67,3 +67,5 @@
 - `gliner-large-smoke-results.json`：459.495M实际严格加载、1744窗对齐和最长4×384单步1.308秒/10.603GB、显式释放；正式10ep未运行，没有新分数。
 
 - `gliner-large-formal-plan.json`：授权fresh train48×10/4360步，75min训练硬cap，先等本体交卡；同原947实体池/Sap/rules，唯一终点，不碰原dev。
+
+- `gliner-loss-research.json`：论文/实际上层默认BCE与底层focal默认区分，旧训练侧计数不支持positive塌缩；本轮不启动focal，不修改large固定训练。

@@ -64,3 +64,9 @@ large-v2（9d0533ed）与medium-v2均明确NuNER/C4自动标注来源，许可Ap
 
 同NuNER不等于只改容量：上游config还记max_neg_type_ratio1→2、warmup5000→.1；完整checkpoint训练/选择清单未公开。后续即使固定赛事train48/10ep/loss/lr/decoder，也只能研究较大公开checkpoint替换，不做纯容量因果结论。ModelScope两准确ID实际404、Qwen正控制200，平台全局搜索不完整，只能说未找到可核镜像；不拿同名v2.1代替。FP32参数/梯度/两Adam矩理论7.352GB，加activation未知，encoder算量比例约3.56×；先实测最长4×384，不能拿medium17分钟承诺large同成本。
 - large实际单步只1.308秒却峰值10.603GB，不能从一次首步与medium1.270秒接近就断言整轮同成本：首步冷启动、不同runtime、训练中平均文本长和checkpoint IO都混入时间。记录实测及假设分开的预算范围，不把算量比当真实耗时。CPU严格加载与训练窗对齐已通过，只证明兼容，不证明较大公开checkpoint能加分。
+
+### GLiNER函数名focal不代表实际默认训练用了focal
+
+原论文§2.2式3明确sum BCE。gliner0.2.22 `TrainingArguments` 和 `SpanModel.loss` 上层默认alpha=-1、gamma=0、negative=1、sum，覆盖底层 `focal_loss_with_logits` 自身的.25/2；不要据函数名或独立helper默认断言本路线遗漏原版focal。正确意图为Σvalid[-y logσ(z)-(1-y)log(1-σ(z))]。我们显式BCE除以Nvalid，且用稳定BCEWithLogits绕过H30错位；上游sum和其包含masked/padding分母的mean尺度都不同。缩放会影响梯度裁剪/Adam数值与不同batch权重，不能说整套原版训练等价复现。
+
+train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe仅159正/48个首正窗R.97484，online全训练3558正R.84907（过程模型而非冻结终点）。按已有probabilitysum算原始BCE标量logit梯度绝对量Σpos(1-p)=630.527、Σneg p=626.815，近1:1；此非参数梯度或按batchmean加权梯度，仍足以说明不能从数量比例直接推出负梯度压倒。没有支持“正例塌缩”的现成证据，也没有跑过GLiNER focal对照。root明确本轮不启动focal，gamma2只是可选新假设，不进入当前计划；所有来源/训练统计见gliner-loss-research.json。
