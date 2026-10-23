@@ -39,7 +39,7 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 本体后续研究 [Dai/Adel COLING 2020 的 NER 数据增强](https://aclanthology.org/2020.coling-main.343/)：i2b2少量50句时完整mention替换F1 35.1→40.1，但500句仅70.2→70.8、完整数据87.8不变，不能将小样本收益外推。本项目只借鉴方法，将官方训练折中完整实体替换为同canonical HPO的name/EXACT词面；没有引入论文的人工临床标签。CPU已保留1150原窗并追加353窗，全部真实分词/跨度/NO标签校验通过；数据和更新数同时增加，属于配方初筛。独审通过后一次固定10轮短训练，实际唯一终点 .653745027→.653936525，只有mention净修正1项，doc和关系不变；极微正增益无实质改善，关闭配置，不迁移原dev。相邻段落上下文（FLERT）仅作备选研究，尚未实施。来源、边界与初始方案见[本体短提案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/P-20261023-NER-AUGMENTATION.md)，执行计划以最新台账为准。
 
-另发现 [GLiNER-BioMed large](https://huggingface.co/Ihor/gliner-biomed-large-v1.0/tree/f79771210ab2111a2081ef31620fdb7342f602e9) 可作为后续领域基座候选。[论文v2](https://arxiv.org/abs/2504.00676v2)声明105k自动医学标注预训练与19k通用后训练，后者含1878条WNUT/OntoNotes/MultiNERD人工通用NER；teacher有4个医学示范，其人工/生成来源未声明。发布资料支持这是预训练基座，未发现八个人工医学benchmark的微调权重混入证据，但不声称全链路无人为医学示范。公开zero-shot microF1 59.77相对large-v2 37.38只说明值得试验，不是本赛Score；充分监督下的提升也未显著。源码/论文/发布元数据只读独审通过（`32fcebae…`），实际权重SHA `7e3591fd…`、477,981,696参数及严格加载也已核验。唯一nested16零样本完整Score .652014251，低于监督medium32的 .653745027；纯跨度F1 .453801高于旧medium零样本 .277295，但不能当完整Score。现只继续一次监督32×10适配控制，保留原显式BCE/优化器/1150窗，CPU及最长单步检查通过后从公开基座fresh训练；预估25–30分钟不代表实测。ModelScope准确模型/文件API均404、阳性对照200后可回退固定HF源；只说明已查准确路径。新配置内嵌encoder_config且词表128003，与旧loader有两处接口差异，应使用独立入口，不能更改正在运行的large训练。完整来源见[清单](round2-research-sources.json)。
+另发现 [GLiNER-BioMed large](https://huggingface.co/Ihor/gliner-biomed-large-v1.0/tree/f79771210ab2111a2081ef31620fdb7342f602e9) 可作为后续领域基座候选。[论文v2](https://arxiv.org/abs/2504.00676v2)声明105k自动医学标注预训练与19k通用后训练，后者含1878条WNUT/OntoNotes/MultiNERD人工通用NER；teacher有4个医学示范，其人工/生成来源未声明。发布资料支持这是预训练基座，未发现八个人工医学benchmark的微调权重混入证据，但不声称全链路无人为医学示范。公开zero-shot microF1 59.77相对large-v2 37.38只说明值得试验，不是本赛Score；充分监督下的提升也未显著。源码/论文/发布元数据只读独审通过（`32fcebae…`），实际权重SHA `7e3591fd…`、477,981,696参数及严格加载也已核验。唯一nested16零样本完整Score .652014251，低于监督medium32的 .653745027；纯跨度F1 .453801高于旧medium零样本 .277295，但不能当完整Score。固定监督32×10适配已完成，保留原显式BCE/优化器/1150窗，从公开基座fresh训练1660.16秒；完整内部Score .654424302，比medium32仅+.000679275，独审通过。下一项只改变邻近上下文，不据微增扩大模型规模。ModelScope准确模型/文件API均404、阳性对照200后可回退固定HF源；只说明已查准确路径。新配置内嵌encoder_config且词表128003，与旧loader有两处接口差异，应使用独立入口，不能更改正在运行的large训练。完整来源见[清单](round2-research-sources.json)。
 
 ## 其他同赛开源记录
 
@@ -60,8 +60,15 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 ## 后续只验证输入中缺失的上下文（19:50 UTC）
 
-患者关系旧CE的训练侧CPU复现表明：同4127个OOF候选中，top3选窗/384截断没有使任何样本丢光已有目标患者marker；969个canonical正例中579本来就在全部局部窗无目标marker。因此“只放宽截断”缺乏支持。固定12篇正负配对阅读发现病例叙述延续、群体指代、缩写和时间极性，但小样本不代表整体比例，也不生成特例规则。下一控制只给旧实际输入追加可定位的近邻患者身份句，最近身份可为目标或其他患者，保留竞争身份/否定/背景、原active tokens与末尾SEP；同OOF候选、同CE两臂都重训，不复用gold候选旧模型冒充对照。先CPU核候选/标签/输入隔离及实际覆盖，尚无新训练或得分。
+患者关系旧CE的训练侧CPU复现表明：同4127个OOF候选中，top3选窗/384截断没有使任何样本丢光已有目标患者marker；969个canonical正例中579本来就在全部局部窗无目标marker。因此“只放宽截断”缺乏支持。固定12篇正负配对阅读发现病例叙述延续、群体指代、缩写和时间极性，但小样本不代表整体比例，也不生成特例规则。下一控制只给旧实际输入追加可定位的近邻患者身份句，最近身份可为目标或其他患者，保留竞争身份/否定/背景、原active tokens与末尾SEP；同OOF候选、同CE两臂都重训，不复用gold候选旧模型冒充对照。CPU候选/标签/输入隔离、覆盖及实际单步已通过；双fresh正式对照已授权，实际job/结果以总台账为准。
 
 [ATLOP](https://arxiv.org/abs/2010.11304)与[EIDER](https://aclanthology.org/2022.findings-acl.23/)只提供可定位证据连接的机制参考，未使用其代码/模型/DocRED标签。ATLOP的threshold-class在单二元关系下等价于logit差的BCE，不单独包装成新校准。严格OOF CE单列融合实际判断span+HPO正确性，已经失败；旧患者CE确有header/marker/多窗，故新变量只称身份上下文。969与旧SFT967正例仅差两个HPO alt-ID规范化，4127候选键完全一致；两新臂采用同一canonical政策，历史SFT不重写。详细设计、固定训练例和源码/论文SHA在来源清单，研究报告使用启动时的旧最高分，当前最高以总台账 .715760 为准。
 
-本体路线另作FLERT式相邻上下文CPU检查：1150目标窗中1121能加context，新增token均81.21；449跨section、850跨passage type，不能把可加上下文当作有效证据。原2236正/87NO标签、1125538有效跨度和offset不变；仅context参与encoder attention，word映射与解码限于原target。固定batch padding代理1.3158、attention平方代理1.5521不是GPU成本实测。当前仅实现并验证专用collator/低层target解码，训练未启动。
+本体路线另作FLERT式相邻上下文CPU检查：1150目标窗中1121能加context，新增token均81.21；449跨section、850跨passage type，不能把可加上下文当作有效证据。原2236正/87NO标签、1125538有效跨度和offset不变；仅context参与encoder attention，word映射与解码限于原target。固定batch padding代理1.3158、attention平方代理1.5521不是GPU成本实测。专用collator/低层target解码与独立训练/推理CPU入口已通过；选择同BioMed基座、原.3环境准备固定10轮控制，仍须实际全CPU/单步成本检查。
+
+
+## 生成式实体抽取：暂不重做9B训练
+
+只读复核确认8B Task1 SFT与换折复验已实际完成；原305窗覆盖train48全文，不是只抽305句。生成quote后广播所有出现有表示缺陷，严格quote+出现序号可逆，但train32当前窗口约束外仅39/2274跨度（1.72%），单靠该变化缺乏大幅增分依据。旧8B固定Sap后fold0有小幅收益，fold1未复现；当前关闭9B重训提议，保留详细报告中的复开条件。
+
+[UniversalNER](https://arxiv.org/abs/2308.03279)的JSON实体问答、保留空目标可借鉴；其官方评测会规范化词面并去重，不符合本赛逐出现原始坐标契约。只研究论文/源码，没有导入其训练集、权重或外部人工表型标签。完整报告与来源manifest在 `research/generative-ner-feasibility/`，SHA见[来源清单](round2-research-sources.json)；该研究未训练、未读原dev或外层gold。
