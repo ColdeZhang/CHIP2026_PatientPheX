@@ -199,6 +199,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：先检查实际词表与完整tokenization；需独立标记时显式注册special tokens、固定随机种子扩展embedding，并在最终编码中核对跨度、标记及截断。保存tokenizer并回读完整词表/special map，不能只保存扩展后的模型权重。当前MIL入口 `b47cd62` 已添加4个标记（ID30522–30525，词表长度30526）、使用 `mean_resizing=False`，3949个出现跨度及原窗内患者标记均保留；保存/回读、loss梯度和纯删除装配独审通过。证据：外部 `validation/relation-mil-review/preparation-review.json`，SHA `7e1a6acc5402a23a51c263c3b2098ed896c9534b9353817b0caffe64fdfc49d6`，源码与CPU记录见[本体方案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-run-plan.json)。这是训练前接口修复，尚非质量结果；旧患者CE中的标记字符串可被拆成普通WordPiece，因此不能据此宣称旧实验无效。
 
+## H32：工作区重连和代理中断，不等于远端训练已经停止
+
+2026-10-23 18:49工作区短暂重启后，文件与提交仍在，但协作注册表只剩一个被中断的代理；A30上的GLiNER正式训练进程仍连续运行，恢复读取时已完成两轮。仅看本地代理状态而重新启动，会重复占用显卡并可能覆盖产物。
+
+**避免方法**：恢复后先核本地Git状态、方案台账与已保存job/manifest，再读取原managed进程、实际checkpoint和目标GPU的UUID/进程。确认已有作业状态后才恢复监控或重建代理；不要以代理消失推断训练失败，也不要重新跑已完成实验。若确需重启，使用独立输出目录并记录旧进程终态。当前原作业 `proc_b554a946-3034-416e-94b7-bc12084e6b44` 已确认持续运行，未重启；恢复入口见[序列方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)（检查点 `31361f9`）和[总记录](docs/campaigns/round2-20261023.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
