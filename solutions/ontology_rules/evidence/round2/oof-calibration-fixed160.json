@@ -1,0 +1,127 @@
+{
+  "metrics": {
+    "menF1": 0.7530682376043201,
+    "docF1": 0.771513353115727,
+    "micF1": 0.5605875152998776,
+    "macF1": 0.45893403090872514,
+    "Score": 0.6360257842321625
+  },
+  "counts": {
+    "mention": {
+      "tp": 767,
+      "fp": 164,
+      "fn": 339,
+      "precision": 0.8238453276047261,
+      "recall": 0.6934900542495479,
+      "f1": 0.7530682376043201
+    },
+    "document": {
+      "tp": 390,
+      "fp": 61,
+      "fn": 170,
+      "precision": 0.8647450110864745,
+      "recall": 0.6964285714285714,
+      "f1": 0.771513353115727
+    },
+    "relation": {
+      "tp": 229,
+      "fp": 135,
+      "fn": 224,
+      "precision": 0.6291208791208791,
+      "recall": 0.5055187637969095,
+      "f1": 0.5605875152998776
+    }
+  },
+  "manifest": {
+    "config": {
+      "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/oof-calibration-manifest.json",
+      "train": "/workspace/patientphex-data/day1/train64.jsonl",
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "base": "/workspace/patientphex-runs/day1-20261023/ontology-rules/dev-v1/predictions.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/scored-candidates.jsonl.gz",
+      "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-oof-calibration-fixed160/pred.jsonl",
+      "threshold": 0.4
+    },
+    "source_sha256": "0210905fe9631cdcb6fa79824e40452b56eab893341166c6db111f012fe5fbb1",
+    "dependency_sha256": {
+      "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "merge_semantic": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+    },
+    "runtime": {
+      "python": "3.12.14",
+      "sklearn": "1.8.0",
+      "numpy": "2.3.5"
+    },
+    "input_hashes": {
+      "training_manifest": "de577e76058937e7896dd889fb5e3c877cbc7d5db45cf67d4eac71dc2580430a",
+      "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "base": "5a994261965f7887f2bfef384401380d49581940435bbe46d19604f6e4868e4b",
+      "candidates": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197"
+    },
+    "training_examples": 60031,
+    "training_positive": 3720,
+    "training_documents": 64,
+    "candidate_origins": "4 fold OOF, each document excluded from its generating model",
+    "feature_count": 80,
+    "estimator": {
+      "categorical_features": "from_dtype",
+      "class_weight": null,
+      "early_stopping": false,
+      "interaction_cst": null,
+      "l2_regularization": 5.0,
+      "learning_rate": 0.06,
+      "loss": "log_loss",
+      "max_bins": 255,
+      "max_depth": null,
+      "max_features": 1.0,
+      "max_iter": 160,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 35,
+      "monotonic_cst": null,
+      "n_iter_no_change": 10,
+      "random_state": 20261023,
+      "scoring": "loss",
+      "tol": 1e-07,
+      "validation_fraction": 0.1,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "actual_iterations": 160,
+    "early_stopping_performed": false,
+    "threshold_selection": "fixed a priori .4; no dev threshold search",
+    "output_sha256": "cdca5bd49c3bbf93ab5d32234f0eb0379dc7333c823c2df3b31cd735a2e42635",
+    "seconds": 18.108005284999308
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 931,
+      "relations": 364,
+      "patients": 36
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "prediction_sha256": "cdca5bd49c3bbf93ab5d32234f0eb0379dc7333c823c2df3b31cd735a2e42635",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "v1_audit": {
+    "actual_iterations": 160,
+    "early_stopping_performed": true,
+    "output_sha256": "1ac4bd1c4444db1a56d252e6030910ebfed99a881db3f0b8343e0486762c8645",
+    "source_instrumentation": "same v1 code with metadata n_iter_ and do_early_stopping_ added; unchanged estimator and prediction",
+    "prediction_matches_original": true
+  },
+  "interpretation": "auto originally fit 90 percent rows with a random candidate holdout and ran all160 iterations; fixed160 disabled auto to fit100percent. Neither used dev labels. No claim of paper-group stopping or independent second-stage OOF."
+}

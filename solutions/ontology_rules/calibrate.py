@@ -7,7 +7,8 @@ paper. The original dev is never included in calibration fitting.
 """
 import os
 for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ.setdefault(k,'1')
-import argparse,json,gzip,math,time
+import argparse,json,gzip,math,time,platform
+import sklearn
 from collections import Counter
 from pathlib import Path
 import numpy as np
@@ -47,21 +48,23 @@ def main():
     ap=argparse.ArgumentParser()
     for k in ['training-manifest','train','input','base','candidates','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--threshold',type=float,default=.4)
-    a=ap.parse_args();started=time.monotonic();training=baseline.read_jsonl(a.train);inputs=baseline.read_jsonl(a.input);trainids={d['pmc_id'] for d in training};inputids={d['pmc_id'] for d in inputs};assert not trainids&inputids;assert all('entities' not in d and 'association' not in d for d in inputs)
-    specs=json.loads(Path(a.training_manifest).read_text());seen=set();x=[];y=[]
+    a=ap.parse_args();started=time.monotonic();source_sha=baseline.sha256(__file__);training=baseline.read_jsonl(a.train);inputs=baseline.read_jsonl(a.input);trainids={d['pmc_id'] for d in training};inputids={d['pmc_id'] for d in inputs};assert not trainids&inputids;assert all('entities' not in d and 'association' not in d for d in inputs)
+    specs=json.loads(Path(a.training_manifest).read_text());seen=set();x=[];y=[];training_by_id={d['pmc_id']:d for d in training}
     for spec in specs:
         docs=baseline.read_jsonl(spec['gold']);base={d['pmc_id']:d for d in baseline.read_jsonl(spec['base'])};raw=read_candidates(spec['candidates']);generator_manifest=json.loads(Path(spec['candidate_manifest']).read_text())
         assert generator_manifest['inputs']['input']==baseline.sha256(spec['input'])
+        assert generator_manifest['inputs']['train']==baseline.sha256(spec['generator_train'])
         generated_train_ids={d['pmc_id'] for d in baseline.read_jsonl(spec['generator_train'])}
         dids={d['pmc_id'] for d in docs};assert not dids&generated_train_ids;assert not seen&dids;seen|=dids
         for d in docs:
+            assert d==training_by_id[d['pmc_id']], 'OOF labels differ from original train64'
             truth={(e['offset'],e['length']):set(e['identifier'].split(';')) for e in d['entities'] if str(e.get('note','')).upper()!='NO'}
             for c in pool(d,base[d['pmc_id']],raw[d['pmc_id']]):
                 ids=truth.get((c['offset'],c['length']),set());target=bool(ids and (set(c['identifier'].split(';'))<=ids or '-1' in ids))
                 x.append(features(d,c,base[d['pmc_id']]));y.append(target)
     assert seen==trainids
     vec=DictVectorizer(sparse=False);matrix=vec.fit_transform(x)
-    model=HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023).fit(matrix,y)
+    model=HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023,early_stopping=False).fit(matrix,y)
     raw=read_candidates(a.candidates);base={d['pmc_id']:d for d in baseline.read_jsonl(a.base)};pred=[]
     for d in inputs:
         cs=pool(d,base[d['pmc_id']],raw[d['pmc_id']]);probs=model.predict_proba(vec.transform([features(d,c,base[d['pmc_id']]) for c in cs]))[:,1]
@@ -73,6 +76,6 @@ def main():
             selected.append({k:c[k] for k in ['identifier','offset','length','text']}|{'type':'Phenotype','note':None})
         selected.sort(key=lambda e:e['offset']);pred.append({'pmc_id':d['pmc_id'],'pmid':d.get('pmid'),'entities':selected,'association':merge_semantic.assign(d,selected)})
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(''.join(json.dumps(d,ensure_ascii=False)+'\n' for d in pred))
-    meta={'config':vars(a),'source_sha256':baseline.sha256(__file__),'input_hashes':{k:baseline.sha256(getattr(a,k)) for k in ['training_manifest','train','input','base','candidates']},'training_examples':len(y),'training_positive':sum(y),'training_documents':len(trainids),'candidate_origins':'4 fold OOF, each document excluded from its generating model','feature_count':matrix.shape[1],'estimator':model.get_params(),'threshold_selection':'fixed a priori .4; no dev threshold search','output_sha256':baseline.sha256(output),'seconds':time.monotonic()-started}
+    meta={'config':vars(a),'source_sha256':source_sha,'dependency_sha256':{m.__name__:baseline.sha256(m.__file__) for m in [baseline,enhance,merge_semantic]},'runtime':{'python':platform.python_version(),'sklearn':sklearn.__version__,'numpy':np.__version__},'input_hashes':{k:baseline.sha256(getattr(a,k)) for k in ['training_manifest','train','input','base','candidates']},'training_examples':len(y),'training_positive':sum(y),'training_documents':len(trainids),'candidate_origins':'4 fold OOF, each document excluded from its generating model','feature_count':matrix.shape[1],'estimator':model.get_params(),'actual_iterations':model.n_iter_,'early_stopping_performed':model.do_early_stopping_,'threshold_selection':'fixed a priori .4; no dev threshold search','output_sha256':baseline.sha256(output),'seconds':time.monotonic()-started}
     output.with_suffix('.manifest.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(meta))
 if __name__=='__main__':main()
