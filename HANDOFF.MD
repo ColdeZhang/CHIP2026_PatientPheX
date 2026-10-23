@@ -193,6 +193,38 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：监督训练前核对实际版本的调用签名，以可手算正负样本验证loss、梯度方向及padding mask。已绕过：方案 `45e107c` 改用自有入口显式计算logits上的BCE和有效跨度mask，不改共享库；实际A800 CPU独审已通过正负梯度、极端padding、masked标签翻转不变及按总有效span归一，修复报告SHA `0f5032956fde4e7f1fb75e30062951db2bfea247386dbd8141a1a6209a6daac2`。本次在GPU单步及正式训练前发现，既有零样本推理不经过loss，因此不受影响。结论只适用于该已核对源码，不泛化到所有GLiNER版本；数值证据在外部 `validation/gliner-supervised-review/actual-runtime-probe.json`（SHA `de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1`），方案入口见[CRF实验记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md)。
 
+## H31：BERT风格标记名不保证存在于实际tokenizer词表
+
+准备新的关系MIL时发现，当前BiomedBERT词表没有 `[unused1]`、`[unused2]`、`[unused5]`、`[unused6]`，直接查token ID均得到UNK。不能从模型属于BERT系列，就假设这些标记有独立embedding；仅在字符串中插入标记，也不能证明编码后保留了预期身份。
+
+**避免方法**：先检查实际词表与完整tokenization；需独立标记时显式注册special tokens、固定随机种子扩展embedding，并在最终编码中核对跨度、标记及截断。保存tokenizer并回读完整词表/special map，不能只保存扩展后的模型权重。当前MIL入口 `b47cd62` 已添加4个标记（ID30522–30525，词表长度30526）、使用 `mean_resizing=False`，3949个出现跨度及原窗内患者标记均保留；保存/回读、loss梯度和纯删除装配独审通过。证据：外部 `validation/relation-mil-review/preparation-review.json`，SHA `7e1a6acc5402a23a51c263c3b2098ed896c9534b9353817b0caffe64fdfc49d6`，源码与CPU记录见[本体方案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-run-plan.json)。这是训练前接口修复，尚非质量结果；旧患者CE中的标记字符串可被拆成普通WordPiece，因此不能据此宣称旧实验无效。
+
+同类实例：A100的GLiNER CPU检查曾写死 `[ENT]`/`[SEP]`，但模型配置实际使用 `<<ENT>>`/`<<SEP>>`，在断言阶段失败。检查脚本改为读取真实配置后通过，未改模型或依赖、未使用权重/GPU。首个失败与修复保存在外部 `research/a100-resource-readiness/attempt1-marker-assertion/`；最终CPU报告 `3faa8885…`。不能把测试脚本的错误假设当模型不兼容。
+
+## H32：工作区重连和代理中断，不等于远端训练已经停止
+
+2026-10-23 18:49工作区短暂重启后，文件与提交仍在，但协作注册表只剩一个被中断的代理；A30上的GLiNER正式训练进程仍连续运行，恢复读取时已完成两轮。仅看本地代理状态而重新启动，会重复占用显卡并可能覆盖产物。19:52:39再次短暂出现environment unavailable，恢复后主分支d9f5d5b与工作树仍在；BioMed原进程继续到第6轮，三个方案都核实没有重复启动。
+
+**避免方法**：恢复后先核本地Git状态、方案台账与已保存job/manifest，再读取原managed进程、实际checkpoint和目标GPU的UUID/进程。确认已有作业状态后才恢复监控或重建代理；不要以代理消失推断训练失败，也不要重新跑已完成实验。若确需重启，使用独立输出目录并记录旧进程终态。当前原作业 `proc_b554a946-3034-416e-94b7-bc12084e6b44` 已确认持续运行，未重启；恢复入口见[序列方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)（检查点 `31361f9`）和[总记录](docs/campaigns/round2-20261023.md)。
+
+## H33：标准库辅助函数也依赖实际 Python 版本
+
+GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_digest`，而实际系统解释器为 3.10.12，首次在校验文件时退出，尚未加载模型或使用GPU。模型库能导入不代表外围启动器的标准库调用兼容。
+
+**避免方法**：按运行命令所用解释器核对版本，对新增辅助函数先做相同环境的CPU检查；跨3.10/3.11的文件哈希使用分块 `hashlib.sha256().update()`。已修复兼容调用，wrapper SHA `2688f27b…`；实际3.10.12哈希检查通过，重启作业也通过文件绑定并进入推断。专门CPU自检发生在重启后，不能记成启动前已执行。首次失败、原源码和修复记录保存在外部 `sequence_crf/gliner-biomed-nested/attempt1-pythonhash/`、`attempt1-failure.json`、`actual-wrapper-hash-probe.json`；模型/解码协议未改变，不能将启动器失败记成模型质量负结果。后续质量结论见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
+
+## H34：文件哈希不能恢复当时未提交的可变文档
+
+生成式NER研究读取方案台账和实验记录时，这两份文件含尚未提交的变更。报告保存了当时SHA，但文件随后继续编辑，记录的Git HEAD也不含这些字节；本次检查现有提交与快照后无法精确恢复。主体研究脚本、报告及已有实验结果仍可核验，不应把两份背景版本缺失夸大为全部结果失效，也不能宣称完整来源字节可复原。
+
+**避免方法**：需被长期引用的实际源码/记录，在读取时保存小型不可变快照或先提交；运行manifest同时记实际SHA与可恢复位置。跨代理审查遇正在修改的文件，应复制所读版本，不只记录分支HEAD和哈希。现有报告/manifest原样保留，两项例外列于外部 `validation/index-next-20261023-2010/declared-dependency-verification.json`，86项索引中明确标注；不能用后来版本冒充原件。
+
+## H35：FP16梯度暂时溢出需要与真正的数值故障区分
+
+患者身份CE首次正式运行在第一轮触发新增的“梯度必须有限”断言，原失败日志没有记录batch序号。实际同顺序复验在第10个batch重现：loss为有限的0.825509，2个梯度tensor溢出；原生GradScaler会跳过该次更新、将scale从65536降至32768，Adam步数和权重保持不变。新增断言在scaler处理前终止，改变了旧实现的恢复语义。最长batch单步通过也不能覆盖后续batch的数值路径。
+
+**避免方法**：保留AMP的skip/backoff语义并正确协调scheduler，或统一采用硬件支持的BF16策略；同时检查有效loss、真实参数更新和数值状态，不能只检查退出码。此次两对照臂统一改为BF16、参数和Adam仍FP32；实际正式顺序前三batch及最长batch均有限，非零学习率下参数更新，诊断状态丢弃后重新fresh训练。旧FP16失败/来源独立保留，不记作质量负结果。证据：外部 `case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-diagnostic-complete.json`，SHA `171e5f82356d3f84e75797fd7666df7b1d9dac987cc4261444ce47cf861e35c7`；正式新终点以方案台账为准。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
