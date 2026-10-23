@@ -182,3 +182,5 @@ HPO alt_id需要单列解释：上述45个raw-ID漏原子中4个gold为alt_id，
 FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcessor 会枚举上下文的未标注负跨度，并允许其参加解码；仅高层输出后过滤不能消除此前 greedy 重叠抑制。最小接口应让 transformer 看到上下文，而 words_mask／text_lengths／RNN 和跨度头只保留原目标窗，原 masked BCE 分母与 NO 语义不变。跨 passage 的虚拟 encoder 序列不对应连续原文，输出必须走原 word_offsets。1150训练窗97.48%可加上下文只是可行性，39.04%跨 section，不能当预计增益；当前统计和源审通过，实际专用接口 CPU 检查54.061秒完整通过；新增接口独审PASS（42fb9b45…），见[上下文提案](experiments/P-20261023-NER-CONTEXT.md)。
 
 - 2026-10-23 context strict-load：Transformers 在构造 encoder 后会把嵌套 `_attn_implementation_autoset` 设为 true。无权重 processor 的配置与实际构造模型不能未经检查就按整个字典相等。先实查唯一差异，只允许这个 false→true 构造标记、要求 eager 和其余字段完全一致；不要泛化忽略所有私有字段。CPU 失败证据在 `ontology_rules/ner-context-control/run/cpu.state.json`，修复独立 `attempt2`。
+
+- 2026-10-23 同源BioMed上下文控制固定10轮结案：同监督/有效跨度/2880步、同GPU/依赖，完整Score .654424302→.654314434，训练耗时+18.82%，无实质改善。保留off，不迁原dev/扩此配置。CPU接口正确与训练有限不代表泛化改善；独立终审0ad60147…，完整证据见 `evidence/round2/ner-context-control-results.json`。公开原生PhenoTagger后续控制必须与此前从头HPO弱监督模型明确区分。

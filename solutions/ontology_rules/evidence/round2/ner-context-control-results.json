@@ -1,0 +1,267 @@
+{
+  "status": "closed_fixed_context_control_no_material_benefit",
+  "scope": "One reused train32/held16 development comparison, same BioMed/publicbase/runtime/GPU, fixed10ep/2880steps; no originaldev or official actions",
+  "result": {
+    "completed_at_utc": "2026-10-23T20:55:46.016270+00:00",
+    "complete_prediction_freeze_sha256": "b1426e4390754376fa6baae4f6931012f4d2f9abba05cbd7040710f8722f3747",
+    "prediction_sha256": "e4737123540ed2669e60650578c1c64a9cb1869fb1c5e9494fc14471c24ab69f",
+    "baseline_prediction_sha256": "ddd685dbb88d88e9ce0992e815fb9f8e237b40da5db96b386648384c50cf7b83",
+    "metric_delta": {
+      "menF1": -0.0015573746269097466,
+      "docF1": -0.0005594923205869407,
+      "micF1": 0.00013390670910873315,
+      "macF1": 0.0015434891905479198,
+      "Score": -0.00010986776195998083
+    },
+    "count_delta": {
+      "mention": {
+        "tp": -1,
+        "fp": 4,
+        "fn": 1
+      },
+      "document": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "relation": {
+        "tp": 1,
+        "fp": 2,
+        "fn": -1
+      }
+    },
+    "arms": {
+      "context_off_biomed": {
+        "metrics": {
+          "menF1": 0.6846153846153846,
+          "docF1": 0.7586715867158672,
+          "micF1": 0.6209598432908913,
+          "macF1": 0.5534503925806373,
+          "Score": 0.6544243018006951
+        },
+        "counts": {
+          "mention": {
+            "tp": 890,
+            "fp": 357,
+            "fn": 463,
+            "precision": 0.7137129109863672,
+            "recall": 0.6577974870657798,
+            "f1": 0.6846153846153846
+          },
+          "document": {
+            "tp": 514,
+            "fp": 96,
+            "fn": 231,
+            "precision": 0.8426229508196721,
+            "recall": 0.6899328859060403,
+            "f1": 0.7586715867158672
+          },
+          "relation": {
+            "tp": 317,
+            "fp": 184,
+            "fn": 203,
+            "precision": 0.6327345309381237,
+            "recall": 0.6096153846153847,
+            "f1": 0.6209598432908913
+          }
+        },
+        "prediction_sha256": "ddd685dbb88d88e9ce0992e815fb9f8e237b40da5db96b386648384c50cf7b83"
+      },
+      "context_on": {
+        "metrics": {
+          "menF1": 0.6830580099884749,
+          "docF1": 0.7581120943952803,
+          "micF1": 0.62109375,
+          "macF1": 0.5549938817711852,
+          "Score": 0.6543144340387351
+        },
+        "counts": {
+          "mention": {
+            "tp": 889,
+            "fp": 361,
+            "fn": 464,
+            "precision": 0.7112,
+            "recall": 0.6570583887657059,
+            "f1": 0.6830580099884749
+          },
+          "document": {
+            "tp": 514,
+            "fp": 97,
+            "fn": 231,
+            "precision": 0.8412438625204582,
+            "recall": 0.6899328859060403,
+            "f1": 0.7581120943952803
+          },
+          "relation": {
+            "tp": 318,
+            "fp": 186,
+            "fn": 202,
+            "precision": 0.6309523809523809,
+            "recall": 0.6115384615384616,
+            "f1": 0.62109375
+          }
+        },
+        "prediction_sha256": "e4737123540ed2669e60650578c1c64a9cb1869fb1c5e9494fc14471c24ab69f"
+      }
+    },
+    "assembly_counts": {
+      "context_off_biomed": {
+        "all_candidates": 1390,
+        "semantic_filter": 433,
+        "overlap_original": 879,
+        "negated": 19,
+        "accepted": 58,
+        "overlap_added": 1
+      },
+      "context_on": {
+        "all_candidates": 1371,
+        "overlap_original": 862,
+        "semantic_filter": 427,
+        "negated": 20,
+        "accepted": 61,
+        "overlap_added": 1
+      }
+    },
+    "validation": {
+      "valid": true,
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "metric_artifacts": {
+      "context_on": "45b9c3bd37a1f129778f72575b3c614c0aab273a960dcc52d3f01085ac0e3c14",
+      "context_off_biomed": "d784253ddbf79d8465280d858e7ee47b9ee087799b5843d0bb2ee748e418b41f"
+    },
+    "limitations": [
+      "One reused nested32/held16 development split; not originaldev acceptance or official score.",
+      "Same BioMed base, target labels and 2880 updates; context adds encoder tokens and compute.",
+      "Historical no-context complete prediction reused; only new context-on endpoint evaluated here."
+    ]
+  },
+  "references": {
+    "plan.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/plan.json",
+      "sha256": "7af8e537ad19ee0e45efc48757443ad925564f1dd565739ce67b487fd3a5206e",
+      "bytes": 11787
+    },
+    "run/train.state.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/run/train.state.json",
+      "sha256": "76b023e9202d4ea42c9b94bec36a96d18348c8f6c32909a47bb3a79f94d501e9",
+      "bytes": 2534
+    },
+    "formal-fixed10ep/run_manifest.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/formal-fixed10ep/run_manifest.json",
+      "sha256": "9d699bc1dd34574fc3c22fc10ca79084229f6417fbcf1830018de581c081e5f0",
+      "bytes": 62913
+    },
+    "run/infer.state.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/run/infer.state.json",
+      "sha256": "5839865537dfe1fa53688a43103b9842c1cc5a9b1faa3d36b6451ea67f183ca1",
+      "bytes": 1823
+    },
+    "finetuned-inner1/manifest.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/finetuned-inner1/manifest.json",
+      "sha256": "b73d78e36e0c742442012ff215d4c72daabbc0c7768b34df3b200d337c504906",
+      "bytes": 7186
+    },
+    "finetuned-inner1/prediction-freeze.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/finetuned-inner1/prediction-freeze.json",
+      "sha256": "96a4d5daeb6869855df56a297cc4457b1235e6bac425ee822ebcd4fdc5851a16",
+      "bytes": 607
+    },
+    "run/link.state.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/run/link.state.json",
+      "sha256": "10920ce7f0b123c728b9fffba390603901c1f21030805333a69021821cbf5f31",
+      "bytes": 2578
+    },
+    "linked-final/manifest.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/linked-final/manifest.json",
+      "sha256": "10f560ac5b400eb337d0b0a73c84fcede019b2cefebcd75858d28fee7af8411c",
+      "bytes": 7530
+    },
+    "assembled/manifest.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/assembled/manifest.json",
+      "sha256": "b2f5c0e021b3e7f9bb81df76eca49424e37e4940a44bb7afdfdd4ef2d3c55e9f",
+      "bytes": 2635
+    },
+    "assembled/augmented.metrics.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/assembled/augmented.metrics.json",
+      "sha256": "45b9c3bd37a1f129778f72575b3c614c0aab273a960dcc52d3f01085ac0e3c14",
+      "bytes": 13088
+    },
+    "assembled/validation.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/assembled/validation.json",
+      "sha256": "7ed613c988ebdb636350d44b4fbc4d74f06552a9f3d06f191994c9e96a550ce1",
+      "bytes": 686
+    },
+    "complete-prediction-freeze.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/complete-prediction-freeze.json",
+      "sha256": "b1426e4390754376fa6baae4f6931012f4d2f9abba05cbd7040710f8722f3747",
+      "bytes": 1666
+    },
+    "cpu-terminal/chronology.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/cpu-terminal/chronology.json",
+      "sha256": "5b5bd01e09f306a8a649dc597e98496858f14fccc87f4b5b400ac2382530ffc7",
+      "bytes": 11719
+    },
+    "cpu-terminal/summary.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/cpu-terminal/summary.json",
+      "sha256": "99be978b0a1c4b8db13b36d441e8e98631ff610be7acba1cf1fdaa5c7ab0059a",
+      "bytes": 3817
+    },
+    "remote-retention.json": {
+      "path": "ontology_rules/ner-context-control/attempt2/remote-retention.json",
+      "sha256": "c16469692451d4e6147e46e637436bbb1f519980966d93fcb270ea6be26d6087",
+      "bytes": 1305
+    },
+    "independent_terminal_review": {
+      "path": "validation/gliner-context-terminal-review/review.json",
+      "sha256": "0ad60147c1529813990911337122ed887aa48f689a72295877283400d84d8a0d",
+      "bytes": 3205
+    },
+    "terminal_entry": {
+      "path": "ontology_rules/ner-context-control/evaluate_context_control.py",
+      "sha256": "033266e917bf9da6b86f9322637d95480a74f641b6075bea3536ad5fd7bee804",
+      "bytes": 15482
+    },
+    "terminal_plan": {
+      "path": "ontology_rules/ner-context-control/context-cpu-terminal-plan.json",
+      "sha256": "4369ee91302e899e1087f66012411b080738964392741f1be75d8ed5280f3ed0",
+      "bytes": 3795
+    },
+    "downstream_reference": {
+      "path": "ontology_rules/ner-context-control/postlink-reference-v2.json",
+      "sha256": "3e049a1538618b1c496c9a9ac07c4f50704abd353c61bf3870d4724d94c90dc1",
+      "bytes": 26528
+    }
+  },
+  "actual_training": {
+    "seconds": 1972.6710070390254,
+    "baseline_seconds": 1660.1564781526104,
+    "relative_seconds_increase": 0.18824401976503746,
+    "max_gpu_allocated_bytes": 14825824768,
+    "completed_epochs": 10,
+    "updates": 2880,
+    "windows": 1150,
+    "final_checkpoint": {
+      "formal-fixed10ep/epoch-010/pytorch_model.bin": {
+        "bytes": 1912076651,
+        "sha256": "489db49e154286d64d34f613eab0bd012db58e26b8459de877d03fc8bdb1682a",
+        "preserved": true
+      },
+      "formal-fixed10ep/latest-state.pt": {
+        "bytes": 3824218315,
+        "sha256": "cd020f7293a9e6088ad42d70076901b57d5d15f22f262576b18f88d373328e3e",
+        "preserved": true
+      }
+    }
+  },
+  "four_frozen_predictions": "One new context-on; old same-BioMed context-off; corresponding CRF/Sap control files identical8acd. No medium arm, new threshold or selection.",
+  "conclusion": "Score decreased slightly by0.000109867762; no material benefit. Close this fixed recipe, preserve the no-context baseline, no additional epoch/threshold/base sweep or originaldev migration. This does not disprove every contextual NER design.",
+  "gpu_release": {
+    "at_utc": "2026-10-23T20:55:27.314357+00:00",
+    "uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "free_view": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d, NVIDIA A30, 24160\n",
+    "no_assigned_process": true
+  },
+  "next_scope": "Separate public native PhenoTagger entity-only control will reuse its frozen public checkpoint/native pipeline, not the earlier task-specific HPO weak-supervision model."
+}
