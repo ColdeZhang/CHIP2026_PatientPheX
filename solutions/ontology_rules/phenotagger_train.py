@@ -20,6 +20,8 @@ import transformers
 from transformers import AutoTokenizer
 from phenotagger_measure import OntologyClassifier, sha
 import phenotagger_measure
+from phenotagger_continuation import read_parent
+import phenotagger_continuation
 
 
 def atomic_save(value, path):
@@ -68,8 +70,15 @@ def main():
     parser.add_argument('--save-every-seconds', type=float, default=240.)
     parser.add_argument('--stop-after-step', type=int)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--continue-from')
+    parser.add_argument('--parent-checkpoint-sha')
+    parser.add_argument('--parent-trainer-sha')
     args = parser.parse_args()
     out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
+    assert not (args.resume and args.continue_from)
+    if args.continue_from:
+        assert out.resolve() != Path(args.continue_from).resolve()
+        assert args.parent_checkpoint_sha and args.parent_trainer_sha
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
     torch.use_deterministic_algorithms(True)
     assert torch.cuda.is_available() and torch.cuda.device_count() == 1
@@ -95,6 +104,7 @@ def main():
                      ['epochs', 'batch_size', 'lr', 'max_length', 'seed']}
     fingerprint = {'config': configuration, 'data_manifest_sha256': sha(data / 'manifest.json'),
                    'data_outputs': manifest['outputs'], 'trainer_sha256': sha(__file__),
+                   'continuation_loader_sha256': sha(phenotagger_continuation.__file__),
                    'classifier_source_sha256': sha(phenotagger_measure.__file__),
                    'base_source_files': {p.name: sha(p) for p in Path(args.model_dir).iterdir() if p.is_file()}}
     runtime = {'python': platform.python_version(), 'torch': torch.__version__,
@@ -109,21 +119,50 @@ def main():
     epoch = offset = global_step = 0
     epoch_stats = new_stats(); completed_epochs = []; training_seconds = 0.
     checkpoint = out / 'latest.pt'
-    if args.resume:
+    parent = None; saved = None
+    if args.continue_from:
+        assert not checkpoint.exists() and not (out / 'final.pt').exists()
+        saved, parent = read_parent(args.continue_from, args.parent_checkpoint_sha,
+                                    args.parent_trainer_sha, fingerprint, runtime, len(rows))
+        fingerprint['continuation_parent'] = parent
+    elif args.resume:
         saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
+        if 'continuation_parent' in saved['fingerprint']:
+            parent = saved['fingerprint']['continuation_parent']
+            fingerprint['continuation_parent'] = parent
         assert saved['fingerprint'] == fingerprint
         assert saved['runtime'] == runtime
+    else:
+        assert not checkpoint.exists() and not (out / 'final.pt').exists()
+    if saved is not None:
         model.load_state_dict(saved['model']); optimizer.load_state_dict(saved['optimizer'])
         epoch, offset, global_step = saved['epoch'], saved['offset'], saved['global_step']
         epoch_stats, completed_epochs = saved['epoch_stats'], saved['completed_epochs']
         training_seconds = saved['training_seconds']
         random.setstate(saved['rng_python']); np.random.set_state(saved['rng_numpy'])
         torch.set_rng_state(saved['rng_torch']); torch.cuda.set_rng_state_all(saved['rng_cuda'])
+        if args.continue_from:
+            # This happens before any new forward/dropout/update and records a
+            # real transfer, not just successful checkpoint deserialization.
+            assert tensor_digest(model.state_dict()) == parent['parent_terminal']['model_tensor_digest']
+            loaded_optimizer = optimizer.state_dict()
+            assert loaded_optimizer['param_groups'] == saved['optimizer']['param_groups']
+            for key, old_state in saved['optimizer']['state'].items():
+                for name, old_value in old_state.items():
+                    actual = loaded_optimizer['state'][key][name]
+                    assert torch.equal(actual.cpu(), old_value) if isinstance(old_value, torch.Tensor) else actual == old_value
+            assert torch.equal(torch.get_rng_state(), saved['rng_torch'])
+            assert all(torch.equal(actual, expected) for actual, expected in
+                       zip(torch.cuda.get_rng_state_all(), saved['rng_cuda']))
+            print(json.dumps({'event': 'completed_parent_exactly_restored', 'epoch': epoch,
+                              'offset': offset, 'global_step': global_step,
+                              'model_tensor_digest': parent['parent_terminal']['model_tensor_digest'],
+                              'optimizer_and_rng_exact': True}), flush=True)
         del saved
-    else:
-        assert not checkpoint.exists() and not (out / 'final.pt').exists()
+    parent_seconds = parent['initial_training_seconds'] if parent else 0.
     atomic_json({'fingerprint': fingerprint, 'runtime': runtime, 'command_config': vars(args),
-                 'initialization': 'fresh general BiomedBERT + randomly initialized HPO head; pilots never resumed',
+                 'initialization': ('Exact completed 30epoch model/Adam/RNG continued to fixed total100; parent preserved'
+                                    if parent else 'fresh general BiomedBERT + randomly initialized HPO head; pilots never resumed'),
                  'heldout_used': False, 'optimizer': 'Adam eps1e-8 no weight decay; no scheduler; BF16 autocast'},
                 out / 'manifest.json')
     model.train(); torch.cuda.reset_peak_memory_stats()
@@ -143,6 +182,7 @@ def main():
         atomic_json({'status': status, 'epoch': epoch, 'offset': offset, 'global_step': global_step,
                      'completed_epochs': completed_epochs, 'current_epoch_online_training': summarize(epoch_stats),
                      'training_seconds_excluding_checkpoint_io': training_seconds,
+                     'additional_training_seconds_excluding_checkpoint_io': training_seconds - parent_seconds,
                      'peak_allocated_bytes': torch.cuda.max_memory_allocated(),
                      'model_tensor_digest': tensor_digest(model.state_dict()),
                      'checkpoint_sha256': sha(checkpoint), 'heldout_used': False}, out / 'progress.json')

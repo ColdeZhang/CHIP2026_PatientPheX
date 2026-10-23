@@ -17,12 +17,13 @@ def main():
     for key in ['candidate-dir', 'training-dir', 'model-dir', 'output-dir']:
         parser.add_argument('--' + key, required=True)
     parser.add_argument('--batch-size', type=int, default=256)
+    parser.add_argument('--expected-epochs', type=int, choices=[30, 100], default=30)
     args = parser.parse_args(); out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'manifest.json').exists()
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
     assert torch.cuda.device_count() == 1
     trained = Path(args.training_dir); terminal = json.loads((trained / 'complete.json').read_text())
-    assert terminal['epochs'] == 30 and terminal['final_sha256'] == sha(trained / 'final.pt')
+    assert terminal['epochs'] == args.expected_epochs and terminal['final_sha256'] == sha(trained / 'final.pt')
     saved = torch.load(trained / 'final.pt', map_location='cpu', weights_only=False)
     assert saved['global_step'] == terminal['global_step']
     assert saved['fingerprint']['classifier_source_sha256'] == sha(phenotagger_measure.__file__)

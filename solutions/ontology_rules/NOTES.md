@@ -127,3 +127,6 @@
 原型初始化的成熟来源：[Qi等，Low-Shot Learning With Imprinted Weights，CVPR2018](https://openaccess.thecvf.com/content_cvpr_2018/html/Qi_Low-Shot_Learning_With_CVPR_2018_paper.html)将同一网络embedding按适当缩放直接设为新类权重，并可继续SGD；论文的视觉任务结果不等于本赛医学文本收益。已保存公开abstract/来源SHA，不下载外部标注数据。该文支持可检验的初始化思路，不决定本任务温度、负类原型或预算。
 
 冻结阈值边界的差异：本项目采用原始softmax p≥.95；上游v1.2先round(p,5)再严格>.95。两者数值默认相同但边界不逐位等价，本轮保持已经冻结的项目适配，不因为审查发现该差异回扫阈值。
+
+
+- 成熟AutoPCR结构参考（不改变当前100ep控制）：root缓存MIT代码c2b46a9c088c696533a43c5cb8e50c7500f055fe与btag304论文于外部research/autopcr。其BioNER/句法协调短语拆解、Sap置信路由、定义/同义词链接与本体hard正负自监督可作为后续假设；现成30B/80B超过模型限制、Stanza i2b2人工临床源/GSC选择不能照搬。本项目8B链接对照不应称完整AutoPCR复现。当前仅记录，不取其语料/结果/权重。

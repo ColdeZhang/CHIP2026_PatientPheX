@@ -14,13 +14,14 @@ def main():
     parser = argparse.ArgumentParser()
     for key in ['data-dir', 'training-dir', 'model-dir', 'output-dir']:
         parser.add_argument('--' + key, required=True)
+    parser.add_argument('--expected-epochs', type=int, choices=[30, 100], default=30)
     args = parser.parse_args(); out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'report.json').exists()
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
     assert torch.cuda.device_count() == 1
     trained = Path(args.training_dir); data = Path(args.data_dir)
     complete = json.loads((trained / 'complete.json').read_text())
-    assert complete['epochs'] == 30 and sha(trained / 'final.pt') == complete['final_sha256']
+    assert complete['epochs'] == args.expected_epochs and sha(trained / 'final.pt') == complete['final_sha256']
     saved = torch.load(trained / 'final.pt', map_location='cpu', weights_only=False)
     assert sha(data / 'manifest.json') == saved['fingerprint']['data_manifest_sha256']
     assert sha(data / 'rows.jsonl.gz') == saved['fingerprint']['data_outputs']['rows.jsonl.gz']
