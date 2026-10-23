@@ -14,6 +14,8 @@
 
 ## 正在执行与恢复入口
 
+**当前新增：公开 PhenoBERT pair 三类特征。** 原 top3/non-Sap 池/四fold严格OOF不变，仅加原文→当前HPO名称的三类均值；27项CPU合同及全部747178候选/137784原子请求join通过，无缺pair，原生tuple135000。公开模型独审5a8a7185复用；512输入短pilot3.18秒forward、峰716MB。root已授权biomed600s公共缓存、随后4个HGB共300s和预定九cut30s；当前缓存依赖未收到，未fit/未评分/无原dev。已保留旧源码快照和自有native运行源码，正式新计划须绑定实际完整缓存再开执行开关；[方法与恢复](experiments/phenobert-pair-control.md)、[准备证据](evidence/round2/phenobert-pair-preparation.json)。
+
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
 3. **GLiNER训练内控制结案**：nested32→16固定fresh2ep/10ep的纯span非重叠组合为.700614/.702135；固定10ep+Sap全链.644762→.653745，69新增=42TP/27FP，四项均升，独审PASS。见[2ep](evidence/round2/gliner-supervised-results.json)、[10ep](evidence/round2/gliner-long10ep-results.json)、[固定链接](evidence/round2/gliner-link-results.json)。

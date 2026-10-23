@@ -150,3 +150,8 @@ WIS同池全字节不变，不代表禁止全部重叠合理。机械复用旧�
 Qwen实际base+adapter为8,997,081,600；下载bundle另含未运行视觉456,010,480与MTP243,290,624。若将整Qwen bundle、同adapter和其他模型都计入，边界为**10,175,181,268**，不能用实际运行总数掩盖它，也不猜官方按单模型、ensemble或未使用文件怎样统计。原源码/HF形状推导与真实运行计数区分记录；不是新模型加载测量。
 
 同一Sap/公开模型/Qwen/CRF跨任务或批次只计一次，不累加历史fold checkpoints；不同训练权重的PubMed PhenoTagger和Sap不能因为同架构就去重，GLiNER encoder已包含在195M内。Sap实际FP16文件头199浮点tensor，另512个position_ids整数是buffer。非神经资源另列：CRF9238权重、Sap类型LR769系数/截距、HGB160树4640节点2400叶值加bias（97特征）；词表/TFIDF/稀疏别名bank与树结构不暗中等同神经参数。没有训练/forward/评分或新资源占用。[完整实际SHA、复现脚本及边界](evidence/round2/current-pipeline-parameter-inventory.json)。
+
+
+### 公开pair三类分数与既有HPO分数不同
+
+PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出Not Match/Related/Match；Related在公开训练构造中有query→祖先方向，不能当对称距离或患者归属后验。它既不是Sap独立向量cosine，也不是PhenoTagger全HPO head posterior；不同于此前用赛事标签训练的二元span/context CE。固定compound三个均值只是原子分数摘要，NIL三零是缺编码哨兵，不能当真实Not Match=0。当前准备保留全部旧top3候选/特征，仅加三列；实际27项CPU合约与全池join已过，未证明质量。原生分词/tuple去重及成本详见[唯一控制](experiments/phenobert-pair-control.md)，不再重走完整模型审查。

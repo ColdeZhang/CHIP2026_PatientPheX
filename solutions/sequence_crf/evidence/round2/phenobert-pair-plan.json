@@ -1,0 +1,348 @@
+{
+  "experiment": "Strict nested top3 pools + fixed public PhenoBERT three-class phrase-HPO features",
+  "frozen_at": "2026-10-23T22:29:25.645281+00:00",
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/formal-control",
+  "prepared_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/prepared/manifest.json",
+    "sha256": "9ea7d68350527569b04a6a1323167b584658d448fd5cfb07d8abba46b254ab66",
+    "bytes": 18164
+  },
+  "budget_revision": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/budget-revision-v2.json",
+    "sha256": "4beb31f5d612a87d607c577242222f7f41a9d2267259abb826dac0b4ec1e46ca",
+    "bytes": 1184
+  },
+  "maximum_training_row_ratio": 3.1,
+  "fit_infer_CPU_cap_seconds": 300,
+  "TERM_grace_seconds": 5,
+  "ontology_source": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots",
+  "sources": {
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/prepare_old_pools.py": "c56a0962c096feb68c64f3234339212514a7030c8854a0498b779617b90da2b9",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/fit_control.py": "accd1a106171bb161729963c4b30658f0e086211b7f48df36a9bc659bba34257",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/evaluate_control.py": "8251cd732bf56ec5025ec52cee8d96de7708f74ac194f726b820005f3f01f8ab",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/prepare_new_pools.py": "e667f65a0f453fbd20311a22eec1db642782e9281b4c8df086700c5f0eff1f46",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/run_control.py": "0aef4c8b7a0168a3c4f9a9cea5b6acee16e0b1df856019be8b6e3477ea69b274",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/legacy/select_public_bioformer.py": "7cf106a6503cb515dd389b0664cee2bbf2591a61bbbe686d53ab1dccae73cb25",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/legacy/select_public_candidates.py": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/calibrate_multi.py": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/evaluation/evaluate.py": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/evaluation/validate_predictions.py": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/phenobert_pair_control/check_features.py": "607028677f83979d522492b640ce8d29b298bc5c1360df435b66dd1f68e5b8ed",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/phenobert_pair_control/features.py": "422a3a1e2a5f689fa3735944e8e84ac0db0c8785ba009e896f67bf1d080afebb",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/phenobert_pair_control/fit_control.py": "e0922a9c6f49bc156bdb325bf8a4fc952e664c6372490d0017115cc32fb5c037",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/phenobert_pair_control/preflight.py": "fc0a8a82498cfdcc24d07f64017f642b4c528fd9f32c6dbb32743c0547037dc4",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/calibrate_cut.py": "0373f52888ce700cecdaea8997f441bf9a854c625f6a8e20f6bb192ee23769e7"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/manifest.json",
+        "sha256": "ea56fa2016a721031cdaeef035c4b69415b471bbbec889f9a890155e8c0d8738"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/source-control-reproduction/pred.manifest.json",
+        "sha256": "59bf4fa3960f6d2432eb5a7f839bebeccbcc2daa209e4388441403123498a2a8"
+      },
+      "baseline_prediction": {
+        "fold": 0,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold0.jsonl",
+        "sha256": "298cc8747c1c1e72fd1ddf5a0c88228d446c1ac2f731bd06d3dd60137ec70f8b",
+        "entities": 1043
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+        "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+      }
+    },
+    {
+      "fold": 1,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/manifest.json",
+        "sha256": "c3b930a87764dd496167bc8ac938d74322d3aeed7043824a1befc8c7bc4d1311"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.manifest.json",
+        "sha256": "4e6262a05852691cc5ee7dd90f7e74810035c6365024f861b5829576272cb0fc"
+      },
+      "baseline_prediction": {
+        "fold": 1,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold1.jsonl",
+        "sha256": "8ea3a1da772d8aeacb9fa376d1908601a8121d519094b66277fca075f303a426",
+        "entities": 1225
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+        "sha256": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44"
+      }
+    },
+    {
+      "fold": 2,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/manifest.json",
+        "sha256": "aa2c76b8b8be39f168b3bc736b2bbb33a93cae98ab7e634cfaf4f0f23b812c8e"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer2/source/pred.manifest.json",
+        "sha256": "41f1b68750f1f43dff42441607511533ff24b169d43b43d1da54342fc39be156"
+      },
+      "baseline_prediction": {
+        "fold": 2,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold2.jsonl",
+        "sha256": "1981720362f9cab36eedca9f52a9bc4a0fa42d3d4b0231e93810d72fbf26423c",
+        "entities": 1047
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-2/train48.jsonl",
+        "sha256": "d61d5fddf15b4c26aa1c0fd1cc09b79ce81a3a7bbb284d67ff448c0043714612"
+      }
+    },
+    {
+      "fold": 3,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/manifest.json",
+        "sha256": "0f2faddaf0f99c962cb70bc6f319cb53349170dccefb6b1f683f6a9eb11ba3b4"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer3/source/pred.manifest.json",
+        "sha256": "90668e279c184abb2181f3d9a138959d8e650d6f948c93985099c2c8d0483cf3"
+      },
+      "baseline_prediction": {
+        "fold": 3,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold3.jsonl",
+        "sha256": "3d4606ae970e6d97fe2be9837454bb8add3f8c342042b87fe9fabf9cbcaef66b",
+        "entities": 1000
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-3/train48.jsonl",
+        "sha256": "f4d167043573310ae0eb146adea26528a3147cbc26c8c512cd21b81ef5ea7716"
+      }
+    }
+  ],
+  "hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "bytes": 11222341
+  },
+  "evaluation_source": "/workspace/CHIP2026_PatientPheX/scripts",
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "train64_gold": {
+    "path": "/workspace/patientphex-data/day1/train64.jsonl",
+    "sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+    "bytes": 2003594
+  },
+  "scope": "Prepare only; no new forward, fitting, heldout scoring, originaldev access, or official action in this plan. Future execution requires a separate completed cache/budget-bound authorized plan.",
+  "features": "All old top3 features unmodified, plus exactly three public pair columns; widths 105/104/106/106.",
+  "baseline": "Actual frozen top3 fixed .3 fourfold predictions/score pools; retain original oldcut.3 nonentity fields (.4-origin associations). Compare existing top3 nine-cut curve, with original Bioformer selected .3 as retained-best reference.",
+  "policy": "Same HGB160 settings, labels, strictly nested pools, seed and greedy decoder. Public pair scores use no task labels; can share forward across folds. Only feature extraction adds 3 means. No new spans/IDs/feature mutation/Sap additions/clinical-context model.",
+  "success": "Future controlled quality: report fixed .3 pooled/all-fold full v2, then predeclared nine-cut entity objective versus matched top3 and retained Bioformer baseline; no universal upgrade or blind-estimate claim.",
+  "evaluation": "Future outputs must be jointly frozen before the corresponding once-only evaluation. No quality evaluation is run during this preparation.",
+  "execution_authorized": false,
+  "status": "AUTHORIZED_PROTOCOL_CACHE_DEPENDENCY_PENDING_NOT_LAUNCHED",
+  "comparison_top3": [
+    {
+      "fold": 0,
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/manifest.json",
+        "sha256": "0a2c24112eefbb841c784a4e8a4e260eee99a1619fd26285c7678450a9d6d3a5",
+        "bytes": 12447
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/augmented.jsonl",
+        "sha256": "8cc9b3a46ff725a5b67d29cc2e933c6660fd4a4ae857640b97abdae61e9fc38b",
+        "bytes": 138225
+      },
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold0/fitted/selector-scores.jsonl",
+        "sha256": "73c6daee7ee87a362c015ba0dc0e88ea742b517f4b92381c56fe5cce3203b032",
+        "bytes": 36965631
+      }
+    },
+    {
+      "fold": 1,
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/manifest.json",
+        "sha256": "a299c6d27f48c6ac879a37dac3a00ba8b156b2b033bb0a97fce23ee008c6a0d7",
+        "bytes": 12413
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/augmented.jsonl",
+        "sha256": "5197ccaeed8f85cacd1acedff79e697804c74cd6386ff7679f312fdb0bcb307d",
+        "bytes": 164751
+      },
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold1/fitted/selector-scores.jsonl",
+        "sha256": "e4ae57d5a2b0c36fcc43bb31e1224ad541235a13bfb96efd01894bc17c7b6e4c",
+        "bytes": 41214289
+      }
+    },
+    {
+      "fold": 2,
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/manifest.json",
+        "sha256": "a15d5e9fb4ac142bd51fa5008f02631feffa0c31fe51aa998cc920092bc069db",
+        "bytes": 12460
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/augmented.jsonl",
+        "sha256": "56b1e9ba335ba63b8c61186dbf19f71fda79c9a6c9df4b87b1a578dfc37fdcd5",
+        "bytes": 142003
+      },
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold2/fitted/selector-scores.jsonl",
+        "sha256": "431bd2b0bb9bc8cac21b0a20d03b35ac3c9f3f4bdee4679942da0ea8bdd2e7a2",
+        "bytes": 38108845
+      }
+    },
+    {
+      "fold": 3,
+      "manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/manifest.json",
+        "sha256": "c908c29820282a9fb762fba2685a019d2735bb1f040a2b03faa5212ed2eaa08d",
+        "bytes": 12460
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/augmented.jsonl",
+        "sha256": "c9fc7527d2253c7e0c330bc41d52068d18447a4dfa09b483366b3f1a5acb209b",
+        "bytes": 134008
+      },
+      "scores": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/formal-control/fold3/fitted/selector-scores.jsonl",
+        "sha256": "e6748328ff9289c916156c82f309211b2d0672083916c0dbdaff6e031681e914",
+        "bytes": 37951256
+      }
+    }
+  ],
+  "pair_cache": {
+    "class_order": [
+      "Not Match",
+      "Related",
+      "Match"
+    ],
+    "weight_sha256": "353fc58889b2e59ddb9bf845c037283247268812ff3959cead118f35db90bea8",
+    "direction": "original_span_text -> current_preferred_name",
+    "compound": "arithmetic_mean_over_unique_atomic_ids",
+    "unencoded": "three_zeros_no_model_request",
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "atomic_request": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/phenobert-pair-candidate-plan/atomic-request.jsonl.gz",
+      "sha256": "891613d1cfc74a04a817287dc602ab3823d724c6de1870a230ea7898c4f4f516",
+      "bytes": 7502327
+    },
+    "scores": null,
+    "cache_manifest": null
+  },
+  "new_features": [
+    "phenobert_not_match",
+    "phenobert_related",
+    "phenobert_match"
+  ],
+  "calibration": {
+    "cuts": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "objective": "pooled (menF1 + docF1) / 2",
+    "tie": "nearest cut to .4, then higher cut",
+    "CPU_cap_seconds": 30,
+    "decoder": "unchanged stable descending probability, descending length, ascending offset; greedy nonoverlap",
+    "source_snapshot": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshots/public_phenotagger_top3_control/calibrate_cut.py",
+      "sha256": "0373f52888ce700cecdaea8997f441bf9a854c625f6a8e20f6bb192ee23769e7",
+      "bytes": 7893
+    },
+    "old_top3_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/top3-cut-plan.json",
+      "sha256": "c25964aad91c418ffb844dfbb78edcb1e5067a768bab6aadeefb3b2bd197024c",
+      "bytes": 8660
+    },
+    "old_top3_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-cut-calibration/results.json",
+      "sha256": "178edda6942a49390abd091d12a38a545389e85ed47011b7b3b8ac52f94fdccf",
+      "bytes": 36897
+    },
+    "selected_cut_is_train64_calibration_not_unbiased_estimate": true
+  },
+  "evidence": {
+    "source_snapshots": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/snapshot-manifest.json",
+      "sha256": "eab5611e64b7cc014edbec8db9646676c01ab538e582e783070edf02d3fb2e60",
+      "bytes": 6103
+    },
+    "feature_contracts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/feature-contracts.json",
+      "sha256": "6431cae6dc509ebebf214995a5d647b9edd091a3809d2d512f369906d0ffb410",
+      "bytes": 1471
+    },
+    "input_join": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/preflight.json",
+      "sha256": "e30081167501195f7c5034604a78eecb7ea2fc718937aab8a4c7250fb9bcabda",
+      "bytes": 5040
+    },
+    "source_diff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/phenobert-pair-control/source-diff-review.json",
+      "sha256": "5f6c56ba2ab8a5beec9f089f43d3525254e24fc7a60944e978f675df82f58556",
+      "bytes": 1115
+    },
+    "native_model_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/phenobert-pair-native-review/review.json",
+      "sha256": "5a8a718520a61d44c0764e5f84c9bf87d8a103474acf6ce8d157c61625cd068a",
+      "bytes": 17949
+    },
+    "pair_census": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/phenobert-pair-candidate-plan/summary.json",
+      "sha256": "4d6c98252cefb3cdec93666724906aef9746755901f14b9ea8634b2bda7e718e",
+      "bytes": 5175
+    },
+    "native_source_capsule": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/phenobert_pair_control/native_source/manifest.json",
+      "sha256": "09ce1ea7816429da7cffe5064e111e349a6c841e8f1c6c335fd8837a1410673e",
+      "bytes": 2871
+    }
+  },
+  "cost": {
+    "old_four_fit_infer_seconds": [
+      37.50795305900101,
+      35.05532630299422,
+      34.99895023499994,
+      35.93379170400294
+    ],
+    "old_total": 143.4960213009981,
+    "proposed_new_four_fit_infer_cap_seconds": 300,
+    "proposed_calibration_cap_seconds": 30,
+    "public_model_forward_unique_inputs": 135000,
+    "GPU_budget": "public native cache authorized separately through biomed:600s+TERM15, estimated559.75s, no task model training.",
+    "forward_cache_to_be_frozen_before_any_task_fit": true,
+    "budget_basis_addendum": "root uses concurrent same-pool Sap control first3=171.41s to leave file checks/cache overhead; sum cap300s.",
+    "public_pilot": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/phenobert-pair-candidate-plan/pilot/terminal/result.json",
+      "sha256": "b2f27245983d92701d35f0f58048e2e39c40a1679f8d3bd04ac8874dbc24de3f",
+      "bytes": 3992
+    }
+  },
+  "root_authorized": true,
+  "authorization_boundary": "Root authorized fixed control. This template remains execution_authorized=false until actual complete cache references are bound into a new immutable executable plan; no further stepwise permission is required."
+}
