@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-10-23T18:08:31.836275+00:00",
+  "hypothesis": "Strict containment of disjoint HPO concepts is a valid nested entity representation; blanket old overlap rejection discards some train-supported spans",
+  "scope": "One fixed input-only outer48->fold0 entity-only control; same existing26 additions and all relations; no originaldev; existing full64 GPU endpoint policy unchanged",
+  "source_sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+  "test_sha256": "345c02db360783ae5ee4ae85b22c46eb926c8fbb58f68441289c536143f2195f",
+  "test_status": "3 discriminating policy cases PASS (both containment directions/shared edge, crossing/same-boundary/sharedID/nonoverlap, all collisions)",
+  "training_basis": {
+    "root_report": "/workspace/patientphex-runs/round2-20261023/research/strategy-review/nested-overlap-control/persisted-reproduction/summary.json",
+    "sha256": "be75a6e20c973eab9b54b429120f0ee4ddfd54e5cb25d7d2a58e2fa3ce6d0373",
+    "root_source_sha256": "230dd304e35c1c7c039710e668a8040b4c0beb88c4638a8d7ef1f9d9f0c37117",
+    "expected_replay_pred": "2d24bb9947865c8a61b531ab1c86f9ad06556b4a8797392ceab5b92c6a9025cc"
+  },
+  "policy": {
+    "sap_probability": 0.65,
+    "sap_similarity": 0.92,
+    "negation": "unchanged",
+    "ordering": "GLiNER score desc,length desc,offset asc",
+    "new": "must overlap at least one selected; proper nonidentical containment AND disjoint atomic HPO IDs against every overlapping selected entity",
+    "retain": "all previous entities and associations",
+    "no_threshold_or_order_search": true
+  },
+  "commands": [
+    {
+      "name": "nested-replay",
+      "command": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/append_nested_spans.py",
+        "--input",
+        "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+        "--hpo",
+        "/workspace/patientphex-data/hp.obo",
+        "--baseline",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/augmented.jsonl",
+        "--baseline-manifest",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/manifest.json",
+        "--candidates",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/scored-candidates.jsonl",
+        "--candidate-manifest",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/manifest.json",
+        "--output-dir",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-nested-control/nested-replay"
+      ]
+    },
+    {
+      "name": "outer0",
+      "command": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/append_nested_spans.py",
+        "--input",
+        "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+        "--hpo",
+        "/workspace/patientphex-data/hp.obo",
+        "--baseline",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/augmented.jsonl",
+        "--baseline-manifest",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/manifest.json",
+        "--candidates",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/scored-candidates.jsonl",
+        "--candidate-manifest",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/manifest.json",
+        "--output-dir",
+        "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-nested-control/outer0"
+      ]
+    }
+  ],
+  "success": "positive total Score and preserved prior relations; freeze output before one evaluation; decide originaldev transfer separately"
+}

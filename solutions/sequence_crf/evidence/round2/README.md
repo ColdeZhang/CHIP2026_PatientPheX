@@ -55,3 +55,5 @@
 
 - `gliner-pheno-joint-dev.json`：固定跨路线追加两臂、全部增量与独审PASS；实体-only .712586，关系重算较差，停止扫描。
 - `gliner-full64-plan.json`：2372窗/5930步固定规模控制、准备独审/实际smoke、同runtime48对照与45分钟训练硬cap；终点前不表示新分数。
+
+- `gliner-nested-control-plan.json`：只允许不同HPO的proper containment，原nested预测字节复现；单次outer48实体-only控制，既有GPU64政策不变。
