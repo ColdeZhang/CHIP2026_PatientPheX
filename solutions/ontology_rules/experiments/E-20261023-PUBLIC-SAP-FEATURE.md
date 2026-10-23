@@ -6,6 +6,10 @@
 
 四fold沿同严格nested来源/HGB160/seed20261023，fit+infer总≤240秒；九点.1–.9从事前列入，36完整预测共同freeze后一次选择pooled两实体F1均值（tie近.4再高），与旧best.780192596比较；另保留固定.3与原top3负终点分项。所有nonentities旧cut.3原样；解码校准≤30秒。校准是训练侧拟合，非泛化/完整Score/达标，不自动原dev。无收益关闭。
 
-[阶段计划/资源/sourceSHA](../evidence/round2/public-sap-feature-plan.json)。当前仅准备，尚未GPU/fit/质量。
+[阶段计划/资源/sourceSHA](../evidence/round2/public-sap-feature-plan.json)。实际向量及两特征准备已完成；正式fit/质量尚未开始。
 
 CPU阶段首次启动早于异步文件部署完成，在读取脚本前因文件不存在退出；未读模型/数据/GPU。失败及job完整保留，transport增加部署source/plan收据与前阶段完成门。数学/请求/实际vector源未变。之后CPU已完成：256个查询缓存实际二进制SHA/shape/有限归一值/有序文本digest通过，公开bank SHA与旧报告一致，模型所有实际文件含FP16权重SHA全部匹配。34,094词面/136,409已有phrase-ID，缺799；[CPU证据](../evidence/round2/public-sap-feature-cpu-preparation.json)。
+
+同源799词面一次编码含加载5.340秒（2026-10-23 22:22:12–18 UTC），向量799×768／SHA eae4acb2…；22:24:28 fresh目标GPU4MiB且无计算PID，已释放。候选cosine CPU4.164秒，136,409唯一phrase-ID中135,250 observed、1,159明确missing，共548,942次alias点积，无全库检索。747,178重复池行仅追加两列，旧键/字段/顺序/类型完整保留；21个固定SHA抽样与compound/NIL边界的实际query和全部alias向量留外部供独审。准备耗时与网络传输另记，不冒称GPU占用。
+
+[实际准备证据/恢复](../evidence/round2/public-sap-feature-preparation.json)，[正式四fit与九点冻结计划](../evidence/round2/public-sap-feature-formal-plan.json)。按旧实际145.395秒及两列/额外开销估163.25秒；硬限仍四fit合计240秒。所有新预测冻结后才读质量标签。

@@ -1,0 +1,153 @@
+{
+  "experiment": "Same-pool public Sap candidate-specific feature control",
+  "frozen_at": "2026-10-23T22:26:14.051942+00:00",
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-sap-feature-control/formal-control",
+  "prepared_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-sap-feature-control/prepared-pools/manifest.json",
+    "sha256": "e51a453d93afa5feba6ae2df40ce9cc4cc045a0b087bede427ff8394c0af2e74",
+    "bytes": 18899
+  },
+  "top3_prepared_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/prepared/manifest.json",
+    "sha256": "9ea7d68350527569b04a6a1323167b584658d448fd5cfb07d8abba46b254ab66",
+    "bytes": 18164
+  },
+  "vector_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-sap-feature-control/plan.json",
+    "sha256": "ccb256c0c6038d659735b6318e9f50387f67cda7354cb0af334a7c4cddf8d835",
+    "bytes": 2950
+  },
+  "features": [
+    "public_sap_cosine",
+    "public_sap_observed"
+  ],
+  "cuts": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "selection": "Freeze all36 complete predictions before one train64-only pooled(menF1+docF1)/2; tie nearest.4 then higher. Compare old calibratedbest.7801925961542502; also fixed.3 versus prior top3 negative. No dev, no further cuts/features; if not positive close.",
+  "fit_infer_CPU_cap_seconds": 240,
+  "TERM_grace_seconds": 5,
+  "ontology_source": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules",
+  "sources": {
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/legacy/select_public_bioformer.py": "7cf106a6503cb515dd389b0664cee2bbf2591a61bbbe686d53ab1dccae73cb25",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_top3_control/legacy/select_public_candidates.py": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate_multi.py": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+    "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/transport.py": "96d67a8fe77cd18b220f45a541e05a32ceb0127c3b0c5eb6ea828d52d77d15ad",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/calibrate_cut.py": "fd79d32d6fc75cf9ff905d065594e4e1f5c770c4ed65ac1ab0be8bf3b2cd1670",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/fit_control.py": "7c3609e00d6fc58431024426688f7edc4f83a61f851a9286ae453123a8551e10",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/prepare_request.py": "8e78faf4dc197d2bb20b91fea4da65b5d16e63a0a77ccb61bfbf56e8a25713ba",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/prepare_pools.py": "423419cf014edac3e8ad4b89ef0503d21cc37d49e707024114528722363c48db",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/numeric_audit_sample.py": "5a7bdae863105911804ffcda9d6692cfa4dbd045232395aa4c1a829ca43ca603",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/run_control.py": "99393669d754a708493c5d31ac7eaeaacc8168662749fffe18ae17b934995c89",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_sap_feature_control/vector_pipeline.py": "5f6a6b384704559c22bdccf950409a7d82eea92c763e0f44960d2181ba529105"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/manifest.json",
+        "sha256": "ea56fa2016a721031cdaeef035c4b69415b471bbbec889f9a890155e8c0d8738"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/source-control-reproduction/pred.manifest.json",
+        "sha256": "59bf4fa3960f6d2432eb5a7f839bebeccbcc2daa209e4388441403123498a2a8"
+      },
+      "baseline_prediction": {
+        "fold": 0,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold0.jsonl",
+        "sha256": "298cc8747c1c1e72fd1ddf5a0c88228d446c1ac2f731bd06d3dd60137ec70f8b",
+        "entities": 1043
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+        "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+      }
+    },
+    {
+      "fold": 1,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/manifest.json",
+        "sha256": "c3b930a87764dd496167bc8ac938d74322d3aeed7043824a1befc8c7bc4d1311"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.manifest.json",
+        "sha256": "4e6262a05852691cc5ee7dd90f7e74810035c6365024f861b5829576272cb0fc"
+      },
+      "baseline_prediction": {
+        "fold": 1,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold1.jsonl",
+        "sha256": "8ea3a1da772d8aeacb9fa376d1908601a8121d519094b66277fca075f303a426",
+        "entities": 1225
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+        "sha256": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44"
+      }
+    },
+    {
+      "fold": 2,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/manifest.json",
+        "sha256": "aa2c76b8b8be39f168b3bc736b2bbb33a93cae98ab7e634cfaf4f0f23b812c8e"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer2/source/pred.manifest.json",
+        "sha256": "41f1b68750f1f43dff42441607511533ff24b169d43b43d1da54342fc39be156"
+      },
+      "baseline_prediction": {
+        "fold": 2,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold2.jsonl",
+        "sha256": "1981720362f9cab36eedca9f52a9bc4a0fa42d3d4b0231e93810d72fbf26423c",
+        "entities": 1047
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-2/train48.jsonl",
+        "sha256": "d61d5fddf15b4c26aa1c0fd1cc09b79ce81a3a7bbb284d67ff448c0043714612"
+      }
+    },
+    {
+      "fold": 3,
+      "old_fit_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/manifest.json",
+        "sha256": "0f2faddaf0f99c962cb70bc6f319cb53349170dccefb6b1f683f6a9eb11ba3b4"
+      },
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer3/source/pred.manifest.json",
+        "sha256": "90668e279c184abb2181f3d9a138959d8e650d6f948c93985099c2c8d0483cf3"
+      },
+      "baseline_prediction": {
+        "fold": 3,
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-cut-calibration/cut-3/fold3.jsonl",
+        "sha256": "3d4606ae970e6d97fe2be9837454bb8add3f8c342042b87fe9fabf9cbcaef66b",
+        "entities": 1000
+      },
+      "train_gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-3/train48.jsonl",
+        "sha256": "f4d167043573310ae0eb146adea26528a3147cbc26c8c512cd21b81ef5ea7716"
+      }
+    }
+  ],
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  }
+}
