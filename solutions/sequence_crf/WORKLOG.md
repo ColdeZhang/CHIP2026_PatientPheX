@@ -12,7 +12,9 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **GLiNER两轮/十轮控制均结案、独审通过**：同nested32→16、A800/输入/decoder，fresh2ep/10ep分别100.28/519.03秒。纯span F1 .659992/.684851；原CRF＋Sap .690967，预定非重叠组合 .700614/.702135。十轮新增131TP/202FP，边际精度仍低；只作开发信号，没有HPO/比赛Score提升声明。原dev不动。GPU2已16:52:41Z复查释放给检索；10ep仅保留final模型+latest、原2epfinal/latest也保留，真实余4.467GB。完整来源/恢复见[2ep结果](evidence/round2/gliner-supervised-results.json)、[10ep结果](evidence/round2/gliner-long10ep-results.json)。epoch10固定Sap过滤已完成：69新实体=42TP/27FP，真实本地Score .644762→.653745、四项均升；见gliner-link-results.json。独审已PASS（完整输出逐字节、指标增量一致）。根已授权同政策fresh outertrain48固定10ep→fold0，使用.100 A30 GPU1；1744窗/48doc、模型/tokenizer全SHA及.100CPU strictload已通过；A30最长单步1.270秒/4.484GB通过，正式17:17:44Z启动proc_3a9c263d-176a-454f-bfe8-ef2761e162f9（40min预算），同卡base→fresh10/4360steps→唯一epoch10。恢复gliner-outer0-a30/job.json及gliner-outer0-plan.json，原947实体基线固定、不动原dev。
+3. **GLiNER训练内控制结案**：nested32→16固定fresh2ep/10ep的纯span非重叠组合为.700614/.702135；固定10ep+Sap全链.644762→.653745，69新增=42TP/27FP，四项均升，独审PASS。见[2ep](evidence/round2/gliner-supervised-results.json)、[10ep](evidence/round2/gliner-long10ep-results.json)、[固定链接](evidence/round2/gliner-link-results.json)。
+4. **outer48→fold0同政策已完成**：A30 fresh10/4360steps耗996.64秒、峰值6.028GB；零样本/终点预测先冻结。固定原947实体+Sap筛选新增26项（16TP/10FP），关联7TP/4FP，Score **.711353522→.721504431**、四项均升。纯span及真实来源已独审PASS，全链独审进行中。GPU1于17:35:57Z、Sap GPU0于17:37:29Z复查释放；只保留final模型+latest，实际余477.22GB。详见[终点结果/完整恢复](evidence/round2/gliner-outer0-results.json)，外存gliner-outer0-a30/、gliner-link-outer0/，无活动GPU作业。
+5. **下一步原dev迁移控制**：根已预先授权外层正收益后复用同train48模型，以既有train64 CRF+Sap/LR .700635947为基准，固定两臂：只加实体保留旧关系、同LR重算完整关系。不先训练64、不扫阈值；当前尚未运行，原dev最佳仍不变。
 
 ## 已完成的近期结论
 

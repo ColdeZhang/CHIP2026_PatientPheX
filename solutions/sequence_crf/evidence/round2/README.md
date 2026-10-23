@@ -49,3 +49,4 @@
 - `gliner-link-plan.json` / `gliner-link-results.json`：固定epoch10＋同nested32 Sap过滤全链控制，69新增/四项得分/冻结SHA，独审已通过。
 
 - `gliner-outer0-plan.json`：outer48固定10ep正式A30作业、源/模型/1744窗/预算/真实smoke和恢复入口；运行中不代表新分数。
+- `gliner-outer0-results.json`：同A30训练/零样本/唯一终点来源、实际保留检查点、纯跨度与固定Sap完整增量；fold0 .711354→.721504，原dev未在本控制评测。
