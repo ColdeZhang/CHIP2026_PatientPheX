@@ -1,13 +1,30 @@
 # CRF 序列标注工作台账
 
-实验 `E-20261023-009`，分支 `round2/sequence-crf`，基点 `00f7da8`。
+实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `d13ab17`，合并检查点 `338256e` 已推送；方案代码不因同步而变化。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
 
-- **目标/边界**：原 train64/dev16、HPO 2026-06-23、evaluator v2 all/text，Score ≥ .8。训练内四折用于选择，禁止输入金标进入推理；本轮不上传官方，未达标不申请合并。
-- **当前结果**：最高 dev **.700635947**（CRF + 同折 SapBERT 新跨度 + 复合标签修复 LR），冻结源 `654e93d`；独立验证已重训基础CRF、重装增强输出，字节SHA完全复现。内四折规则优于LR，dev相反；明确记录dev参与候选选择。
-- **后续进展**：上下文患者LR四折较原LR全提升，选择加入NO负例变体，平均 .659744，一次dev复验 .687185，低于当前最好，未按dev回扫。五标签 NER .580778、HPO5000预适应 .572053，均为 fold0，对比CRF无优势，保留负结果。
-- **当前待办**：BioLinkBERT-large 通用底座8epoch fold0 .557760，整体负结果；HPO重排对CRF池 .637749负、对弱NER池 .562669仅微增；三NER新跨度≥2票补充仍负，Qwen58条已完成 .618120负结果，GPU已释放；关系集合控制无增益。29条扩展不盲跑，12条thinking配对已完成，仅37/85候选可答、6提示触顶，时间增12倍；共同可答子集FP减4/TP减1，不推广。官方O编号锚点四折两升两降，不升级默认，不跑dev；表格Task2补充fold0两关系版本均下降，不推广。严格嵌套OOF关系LoRA204提示已通过CPU/mask与5799token smoke；A800 GPU2正式2epoch已完成599.86秒/52steps，最终SHA全过，同GPU58提示配对完成：base .623068→adapter .674333，仍低于rules .711354；本体新24概念/26跨度的10条Task2补充已完成：保留原947实体/345规则关系，新增4TP/10FP，fold0 .712942微增，未推广、GPU已释放。train48诊断967个SFT正关系中363处局部证据无目标marker；完整LLM共指尚未做，下一步先小批验证，最高dev仍未改变。新诊断显示已有正确跨度768/778规范化正确，重点是跨度漏检/误检。未使用赛事80篇训练的公开成品权重。
-- **基线注意**：baseline-fold0 是未拆复合关系标签的旧版 .613929，fold1–3已修复；已补跑修复版fold0 .603398，实体不变、关系变化，比较时需注明。
-- **复现/证据**：[实验过程](experiments/E-20261023-009.md)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整预测、模型、过程日志位于 `/workspace/patientphex-runs/round2-20261023/sequence_crf/`，不入Git。
-- **接手顺序**：先读根 HANDOFF.MD/AGENTS.md，再读本页和E-009当前结论；最高候选为 `crf-semantic-dev/lr.pred.jsonl`，独立审计在根外存 `validation/crf-semantic-review.json`。GPU作业/源码/缓存manifest按各实验目录查看，不可复用无指纹的旧模型。
+## 目标与可信最佳结果
 
-- **最新恢复入口**：关系SFT已完成，无需继续旧作业；先读 [固定内折结果与产物索引](evidence/round2/relation-sft-fold0-results.json)。该索引给出 `paired-inference-job.json`、完整两份响应/预测SHA及CPU装配命令位置。A800共享base与本路线epoch2 adapter可只读复用。新增10条已完成，见 [新池结果](evidence/round2/new-ontology-relation-results.json)；下一步共指依据见 [训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 GPU2交回检索；第一共指pilot已失败（错误子串定位/混患者），未扩大fold0；第二次共指pilot仅4个新增且原文身份审查通过，低召回；现冻结协议，.100 GPU1正式fold0输入72窗运行中（proc_c31bce6c-97fe-4868-a51f-5bf3d5311cb3），作业入口coreference-fold0/job.json / evidence/round2/coreference-fold0.json；旧29条弱池不扩展。
+- 原 train64/dev16、指定 HPO 2026-06-23、公共 evaluator v2 all/text，**Score ≥ .8** 才申请主线程验收合并。本轮不上传官方。
+- 最高 dev **.700635947**：CRF＋同折 SapBERT 新跨度＋复合关系标签修复 LR，源码冻结 `654e93d`，预测 `crf-semantic-dev/lr.pred.jsonl`。独立审查已从训练数据重训基础 CRF、重装增强输出，字节 SHA 完全复现。
+- 内四折规则关系优于 LR，原 dev 相反；LR/rules 都评过原 dev，该选择使用过 dev，不能声称盲验证。尚未达到 .8。
+
+## 正在执行与恢复入口
+
+1. **共指控制**：.100 GPU1 正在处理 fold0 输入的 72 个文本窗口，进程 `proc_c31bce6c-97fe-4868-a51f-5bf3d5311cb3`。恢复入口：外存 `coreference-fold0/job.json` 和 [小型运行索引](evidence/round2/coreference-fold0.json)。输入、提示和源码已冻结；完成后整份回收核 SHA。
+2. **CPU 控制**：只改患者 mentions，固定原 947 实体。比较原规则、生成 mentions 继续触发旧全文 alias 扩充、生成 mentions 仅真实坐标三路径；原给定 alias 处理保持不变。无新增 mentions 时三路已逐字节复现原规则预测。实际预测先冻结再评分。
+3. **SFT 控制**：共指完成后复用现有 epoch2 adapter、原 58 候选提示协议，仅改变 mentions，不重训。A800 GPU2 优先检索路线集合 SFT，需明确交接和再次查进程才启动；不迁设备制造新的配对差异。
+
+## 已完成的近期结论
+
+- 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。
+- 本体校准池的 24 个新概念/26 支持跨度经现有 adapter 判断，保留原实体及规则关系，仅增 14 项关系（4TP/10FP），fold0 `.712942`。边际精度较低，尚不推广。
+- 训练锚点诊断独立复算通过：967 个 SFT 候选内正关系中，363 项实际局部证据无目标患者 marker；全局 anchors 仍可见，不能称不可回答率。完整全文 LLM 共指此前没有实际运行。
+- 共指首轮训练输入 pilot 因子串定位与身份混淆失败；同 3 篇仅修订一次为唯一原文 context＋完整词边界，严格保留 4 项新增且逐条身份检查通过，召回保守。现按此协议一次复验 fold0，不继续按结果调提示。
+- 神经 NER、HPO 重排、零样本关系、thinking 小样本、O 编号锚点、外部表格等正负结果与限制均保留在实验报告。O 编号四折不稳定、表格新增关系均为本地 FP，未升级默认。未使用包含本地 dev 的赛事公开成品权重。
+
+## 证据与下一步
+
+- [实验过程](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整产物根目录：`/workspace/patientphex-runs/round2-20261023/sequence_crf/`；权重/预测/原始响应/完整日志不入 Git。
+- [SFT 固定结果与恢复索引](evidence/round2/relation-sft-fold0-results.json)、[新关系池结果](evidence/round2/new-ontology-relation-results.json)、[训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 现有 base 和本路线 epoch2 adapter 可只读复用；旧 180 概念/29 提示弱池未运行。
+- 共指完成后保留全部控制，包括负结果；如无可靠收益，停止当前原型，不以格式通过替代身份或分数验证。后续再协调检索新跨度与本体候选组合，避免混淆本次单变量对照。
+- 历史基线口径：旧 baseline-fold0 未拆复合关系标签 `.613929`，修复后 `.603398`，实体不变；fold1–3 已使用修复版。不要将四折旧关系基线写成同一未修补模型。
