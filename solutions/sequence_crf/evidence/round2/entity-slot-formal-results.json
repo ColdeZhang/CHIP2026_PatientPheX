@@ -1,0 +1,338 @@
+{
+  "status": "complete fixed endpoint; independent review PASS; no originaldev migration or current-best replacement",
+  "data": {
+    "rows": 637,
+    "documents": 32,
+    "candidates": 2430,
+    "positive": 1645,
+    "tokens": 460069,
+    "gate": "train32 resubstitution HGB77 >=.1"
+  },
+  "runtime": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "cuda": "12.4",
+    "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "gpu": "NVIDIA A100-SXM4-40GB"
+  },
+  "neural_parameters": {
+    "base_parameters": 8953803264,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600
+  },
+  "training": {
+    "epochs": 2,
+    "optimizer_calls": 160,
+    "nonzero_learning_rate_calls": 159,
+    "microbatches": 291,
+    "seconds": 1460.8034758791327,
+    "peak_allocated_bytes": 27035467264,
+    "peak_reserved_bytes": 31989956608,
+    "budget_seconds": 2200,
+    "partial": false
+  },
+  "inference": {
+    "status": "both_entity_arms_frozen_before_quality",
+    "arms": {
+      "base": {
+        "rows": 398,
+        "candidates": 1589,
+        "seconds": 67.1969293653965,
+        "probability_sha256": "097292939f3b66e402965092f32ddda5acaa937df844214339ec3bc8319d9d5a",
+        "adapter_disabled": true
+      },
+      "final": {
+        "rows": 398,
+        "candidates": 1589,
+        "seconds": 86.72711545974016,
+        "probability_sha256": "2d09226f68f35b82f0f9eabf8a5519b8aa0e3b09d01927c0ef12fba2880ffc1c",
+        "adapter_disabled": false
+      }
+    },
+    "seconds": 230.76541406661272,
+    "manifest_sha256": "8fd7c0cb40e7e0c07be657ea0895d74b71847c1c0bdad60176561ea2994ec957",
+    "peak_allocated_bytes": 20315754496,
+    "no_labels": true,
+    "no_quality": true,
+    "no_generation": true,
+    "cutoff": 0.5
+  },
+  "metrics": {
+    "base": {
+      "menF1": 0.5032194155522536,
+      "docF1": 0.6040034812880766,
+      "micF1": 0.593521421107628,
+      "macF1": 0.5437933730339055,
+      "Score": 0.5611344227454659
+    },
+    "final": {
+      "menF1": 0.7017401861594497,
+      "docF1": 0.7621905476369092,
+      "micF1": 0.593521421107628,
+      "macF1": 0.5437933730339055,
+      "Score": 0.650311381984473
+    }
+  },
+  "counts": {
+    "base": {
+      "mention": {
+        "tp": 508,
+        "fp": 158,
+        "fn": 845,
+        "precision": 0.7627627627627628,
+        "recall": 0.3754619364375462,
+        "f1": 0.5032194155522536
+      },
+      "document": {
+        "tp": 347,
+        "fp": 57,
+        "fn": 398,
+        "precision": 0.8589108910891089,
+        "recall": 0.4657718120805369,
+        "f1": 0.6040034812880766
+      },
+      "relation": {
+        "tp": 284,
+        "fp": 153,
+        "fn": 236,
+        "precision": 0.6498855835240275,
+        "recall": 0.5461538461538461,
+        "f1": 0.593521421107628
+      }
+    },
+    "final": {
+      "mention": {
+        "tp": 867,
+        "fp": 251,
+        "fn": 486,
+        "precision": 0.7754919499105546,
+        "recall": 0.6407982261640798,
+        "f1": 0.7017401861594497
+      },
+      "document": {
+        "tp": 508,
+        "fp": 80,
+        "fn": 237,
+        "precision": 0.8639455782312925,
+        "recall": 0.6818791946308724,
+        "f1": 0.7621905476369092
+      },
+      "relation": {
+        "tp": 284,
+        "fp": 153,
+        "fn": 236,
+        "precision": 0.6498855835240275,
+        "recall": 0.5461538461538461,
+        "f1": 0.593521421107628
+      }
+    }
+  },
+  "format": {
+    "base": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 666,
+        "relations": 437,
+        "patients": 39
+      },
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "final": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 1118,
+        "relations": 437,
+        "patients": 39
+      },
+      "error_count": 0,
+      "warning_count": 0
+    }
+  },
+  "delta_final_minus_base": {
+    "menF1": 0.19852077060719608,
+    "docF1": 0.15818706634883262,
+    "micF1": 0.0,
+    "macF1": 0.0,
+    "Score": 0.08917695923900715
+  },
+  "Task1_mean_F1": {
+    "base": 0.5536114484201651,
+    "final": 0.7319653668981794
+  },
+  "limitations": [
+    "One fixed F1 development control; train32 gate is resubstitution selection.",
+    "Both arms share legacy77 gate candidate family, not current97-feature best pipeline.",
+    "All nonentity/relations preserved from old baseline; quality comparison is Task1 only.",
+    "Only final epoch2 and cutoff.5; no additional selection or originaldev.",
+    "Managed read_process_output reports running=false, not an exit_code field. Complete markers, full output, and no traceback establish completion.",
+    "Checkpoint Adam/scheduler/RNG are saved; no resume trajectory equivalence test or resume CLI is claimed."
+  ],
+  "restoration": {
+    "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "remote_directory": "sequence-round2/entity-slot-formal32-v1",
+    "public_model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false"
+    },
+    "epoch1_recovery_only": "epoch-001",
+    "final": "epoch-002",
+    "files": {
+      "adapter/README.md": {
+        "bytes": 5352,
+        "sha256": "bd7363c9041c455304d35f564fd75126a6bf31a4b8661ea33006050aba917e93"
+      },
+      "adapter/adapter_config.json": {
+        "bytes": 1341,
+        "sha256": "9548030fedbb723f60e022cf5cc5ccf0a4f2940c99d750a6cb56f4ba14748def"
+      },
+      "adapter/adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "0f238b049009f9f4ccb5f6f69d9b431a012c213bf1cc5b9ece2848f056a3e230"
+      },
+      "training_state.pt": {
+        "bytes": 346666706,
+        "sha256": "c126030809025af4fb4a083652e4caa93cbaafae5669ec63957ce0d5b411d757"
+      }
+    },
+    "local_large_weights": false,
+    "large_files_retained_remotely": true
+  },
+  "references": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/plan.json",
+      "sha256": "d7123855cbaffda91ec622210b47d618bcac20f279aa28511e56082c3fe6435b",
+      "bytes": 8335
+    },
+    "train-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/train-job.json",
+      "sha256": "2bf193afde3852fbd8b88521b216251ba94c9178f7aa489f7d2d7e20ec98592e",
+      "bytes": 1532
+    },
+    "train-collection.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/train-collection.json",
+      "sha256": "c1e0ba5fa582be7b99e2cf40f0db7618cd33ef751f10391c96a3c091f00ceab4",
+      "bytes": 2001
+    },
+    "terminal-train/run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-train/run_manifest.json",
+      "sha256": "094c91ce9fbd71e8351f1c5983cd5c64fb0dca80c228b8952e7e26ed992baf2e",
+      "bytes": 56353
+    },
+    "terminal-train/training_complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-train/training_complete.json",
+      "sha256": "5d0767052101ec1f5296d4bccd188113b760abfb3ce09789e45531a5333997f5",
+      "bytes": 691
+    },
+    "terminal-train/epoch-002/checkpoint.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-train/epoch-002/checkpoint.json",
+      "sha256": "2733028795d26c61103a8baaac684499dd08c39b58998ca8fa031db811fb1e07",
+      "bytes": 977
+    },
+    "infer-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/infer-job.json",
+      "sha256": "08ed51c343940a0ae939f95cdf61dd6241bed6d316adf0ea82c5f6223b9e5467",
+      "bytes": 1529
+    },
+    "infer-dependency-preflight.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/infer-dependency-preflight.json",
+      "sha256": "237772b6eb2fc70dbb4a6ebf75c62469561c35d6be22907e7db70c772fe713f6",
+      "bytes": 102
+    },
+    "infer-collection.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/infer-collection.json",
+      "sha256": "96d0ceeb5cc860e5ded3522c6798fce9d593b95051c78cf8a68d5554cd0dad0d",
+      "bytes": 2815
+    },
+    "terminal-infer/inference/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/manifest.json",
+      "sha256": "8fd7c0cb40e7e0c07be657ea0895d74b71847c1c0bdad60176561ea2994ec957",
+      "bytes": 3571
+    },
+    "terminal-infer/inference/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/complete.json",
+      "sha256": "6863123db48ed173542ceaa2159c42f7c97c9f5dc9002453a220109cf8c53436",
+      "bytes": 778
+    },
+    "terminal-infer/inference/base.probabilities.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/base.probabilities.jsonl",
+      "sha256": "097292939f3b66e402965092f32ddda5acaa937df844214339ec3bc8319d9d5a",
+      "bytes": 145061
+    },
+    "terminal-infer/inference/final.probabilities.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/final.probabilities.jsonl",
+      "sha256": "2d09226f68f35b82f0f9eabf8a5519b8aa0e3b09d01927c0ef12fba2880ffc1c",
+      "bytes": 144311
+    },
+    "terminal-infer/infer-gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/infer-gpu-release.json",
+      "sha256": "33bb1e9d1c63e947d5dde70dfef9587090dac2af28e9f3aa1c08b559ce0f0372",
+      "bytes": 125
+    },
+    "assembled/freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/assembled/freeze.json",
+      "sha256": "bc73e94225c179796426224232645fb4c244286b6a6aa4e1eb7e90e1fa3ba46c",
+      "bytes": 1181
+    },
+    "assembled/base.pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/assembled/base.pred.jsonl",
+      "sha256": "8c8090e91d3bf909acde68f55dcbfeb7d30717c55946a41453c5581a0287d37f",
+      "bytes": 91694
+    },
+    "assembled/final.pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/assembled/final.pred.jsonl",
+      "sha256": "021da21bb17c4762ad76016cf44e46b71b114421e1614fa41405d5e3e5712747",
+      "bytes": 147468
+    },
+    "evaluation/before-gold.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/evaluation/before-gold.json",
+      "sha256": "5c4aa9f8a36ecde9be5909dd3cbd29287fcbc4c092a4b8c5313d4946e61f03f6",
+      "bytes": 606
+    },
+    "evaluation/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/evaluation/results.json",
+      "sha256": "c81fdb5912831ce098e945ba63a2db70accb91a22c52932e461dd51df886c05b",
+      "bytes": 1149
+    }
+  },
+  "reviews": {
+    "data": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-probe-review/data-review.json",
+      "sha256": "3009d56c37bcd1c6d34ea1a3b59be4c1ae47811c975d8147b8802a5aeab534af",
+      "bytes": 15371
+    },
+    "microbatch": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-microbatch-review/review.json",
+      "sha256": "0b0c7cb2f40fcd57418fc33a64ef5e99bda51bb7e06a75f4ce86ccd33423590c",
+      "bytes": 12861
+    },
+    "entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-formal-entry-review/source-review.json",
+      "sha256": "eca2f72e02046f0b9ab9306cfb5b08c519e63ceb218061507f9b237adf9208cf",
+      "bytes": 12444
+    },
+    "actual_training": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-formal-terminal-review/training-review.json",
+      "sha256": "41bb79fb33a2c46b9a213978f7b95375ffd62f24f2727c9b3b45e8bb723fbe62",
+      "bytes": 19052
+    },
+    "terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-formal-terminal-review/review.json",
+      "sha256": "f8f503579106b5c3d668614b593926644c8454df055f6013893ec72533933a00",
+      "bytes": 6264
+    }
+  }
+}

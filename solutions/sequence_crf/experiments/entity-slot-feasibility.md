@@ -88,3 +88,19 @@ root在微批实测后授权原门控train32的637提示/2430候选，fresh公�
 装配沿旧calibrate的`(-p,-length,offset)`稳定排序（完全并列沿冻结gated-prompt候选顺序），greedy拒任何重叠；相接允许，原candidate ID/compound/`-1`不改，统一type=Phenotype/note=None，无额外否定/NIL门。仅替换entities，原`7ef8b73d…`F1语义+本体baseline全部非entity对象逐项不变，不重新分配患者。5个输入边界CPU检查已过。当前**77列gate候选家族不含当前best97列公开多源完整池**；public-base对final的提升不等于超过现有best。候选F3→F2/F2→F3及train32→F1隔离、train32 resub gate偏差保持披露。完整计划与source恢复见[formal计划](../evidence/round2/entity-slot-formal-plan.json)。
 
 正式入口增量独审 `eca2f72e` PASS：五个decoder合同与合成398行/1589键双装配、非entity对象保全、缺final/错key拒绝，以及实际推断前计划→training manifest→epoch002闭环通过。此仅源码/CPU合同；正式训练及真实预测质量尚未完成。
+
+
+### 正式终点及独立复现（完成）
+
+实际训练 `proc_3fc5df9d` 完整160次optimizer调用（warmup首调用lr0，159次非零lr）、291微批、fresh2epoch耗 **1460.803秒**；首/次epoch含各自保存690.160/695.909秒。没有overflow skip/partial，峰allocated27.035GB、reserved31.990GB。真实epoch2 adapter173,181,072B，SHA `0f238b049009f9f4ccb5f6f69d9b431a012c213bf1cc5b9ece2848f056a3e230`；Adam/scheduler/RNG状态346,666,706B，SHA `c126030809025af4fb4a083652e4caa93cbaafae5669ec63957ce0d5b411d757`。两轮均留A100持久自有目录，local只回收小manifest；没有宣称resume数值轨迹已测。
+
+原生配对 `proc_21ce1665` 在同398提示/1589键完成，公开base前向67.197秒、final86.727秒，总230.765秒含校验加载；两次实际adapter文件SHA闭环通过。23:43:03.639Z GPU2已空。MCP API只报告running=false，没有exit_code字段；本地CPU装配和评估实际exit0。23:43:18.635Z两fullpred统一freeze（`bc73e942`）后，23:43:21Z完成唯一F1评价。
+
+| 固定同池方案 | 实体数 | men F1 | doc F1 | Score |
+|---|---:|---:|---:|---:|
+| 公开base | 666 | .503219416 | .604003481 | .561134423 |
+| 固定epoch2 | 1118 | .701740186 | .762190548 | .650311382 |
+
+mention TP/FP/FN：508/158/845→867/251/486；document：347/57/398→508/80/237。关系437项原样，micro .593521421/macro .543793373完全不变；两臂format/HPO0错0警。两实体F1均值.553611448→.731965367，说明有限候选上下文监督优于公开base，但没有同本次候选/隔离链的现成HGB质量对照时，**不能据此说胜过77列HGB或当前97列公开多源best**。本次只改Task1，不原dev，不扫阈值或epoch。
+
+独立终审 `f8f50357` PASS：真实训练160calls/两checkpoint预算链、两398×1589 logits→manual softmax、全完整预测byteexact、两v2/format全字段及全部非entity关系对象一致。复用已审data3009/microbatch0b0/entryeca2，不重GPU。完整实际源、概率、模型及状态恢复指针见[终点摘要](../evidence/round2/entity-slot-formal-results.json)。下一仅做严格同F1 HGB资源/可比性核查，待root决定，不自动扩大训练或迁移dev。
