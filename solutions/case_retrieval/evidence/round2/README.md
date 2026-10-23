@@ -52,3 +52,7 @@
 - `pair-schema-control-preparation.json`：预设确定性对象包装投影；7合成tests，原raw/原解析不改，待9B base+adapter齐后同规则配对，未提前重评。
 
 - `full-context8b-resource-check.json`：A30最长16142输入实际显存/格式/成本及固定两臂共享45分钟硬预算，未把probe合法性当得分。
+
+- `qwen35-relation-training-complete.json`：正式fresh204×2完整52更新/30.92分钟、allocated/reserved及两epoch实际SHA；原58 adapter已启动，质量待定。
+- `full-context8b-paired-result.json`：同A30原58/full58完整负结果、冻结SHA/分项/格式；不是跨硬件比较。
+- `full-context9b-cap-equivalence.json`：实际CPU两cap最终encoded输入/decoder全同，支持复用原同A800 base58；全文尚未推断。

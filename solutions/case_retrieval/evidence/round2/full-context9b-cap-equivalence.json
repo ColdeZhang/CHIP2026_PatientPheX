@@ -1,0 +1,32 @@
+{
+  "status": "passed_cpu_no_gpu",
+  "rows": 58,
+  "maximum_input_tokens": 6040,
+  "all_final_encoded_inputs_and_generate_kwargs_exact": true,
+  "caps": [
+    14000,
+    16384
+  ],
+  "cpu_cuda_initialized": false,
+  "runner_max_input_references": [
+    {
+      "lineno": 104,
+      "source": "args.max_input_tokens"
+    },
+    {
+      "lineno": 152,
+      "source": "args.max_input_tokens"
+    }
+  ],
+  "meaning": "max_input_tokens only rejects over-cap input; no padding/truncation/removal uses the cap. Reusing existing A800 base58 at cap14000 for cap16384 full-context comparison does not change the original model input or generation parameters.",
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full-context9b-a800/cap-equivalence.json",
+    "sha256": "bf2a2ac356eb36d405e980fe1625bca872d472785c0ab8ba0a5c40c84a122332"
+  },
+  "script": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full-context9b-a800/verify_cap_cpu.py",
+    "sha256": "1886bf101210e75717aab93b8032f81ef3944ca18a4d0c9ca441484410b45e4c"
+  },
+  "original_base58_response_sha256": "42223211a18eadaaf967ea03adf684c2cd38f9e87a6987a5d6ab08532b01cd2b",
+  "next": "After original58 adapter and ontology176 release GPU, one longest16245 resource probe then only fresh full58 if cost fits; reuse original same-A800 base58 due exact cap equivalence."
+}

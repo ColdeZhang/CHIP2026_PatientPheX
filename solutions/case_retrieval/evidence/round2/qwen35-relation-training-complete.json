@@ -1,0 +1,83 @@
+{
+  "status": "completed_two_epochs_pending_paired_quality",
+  "actual_training": {
+    "smoke_only": false,
+    "epochs": 2,
+    "global_step": 52,
+    "base_parameters": 8953803264,
+    "trainable_adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "elapsed_seconds": 1855.1030592918396,
+    "max_gpu_allocated_bytes": 37475560448,
+    "max_gpu_reserved_bytes": 78498496512,
+    "device": "NVIDIA A800 80GB PCIe",
+    "source_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+    "result_type": "training_only_no_evaluation_score",
+    "new_resume_numerical_equivalence_tested": false
+  },
+  "checkpoints_actual_hashes": {
+    "epoch-001": {
+      "files": {
+        "adapter/README.md": "9054672de2e89b26ae5d91135c9b20743333493d3a24ff945b6c2d8c288bfbab",
+        "adapter/adapter_config.json": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+        "adapter/adapter_model.safetensors": "3c720f9b7935ff6762ee5097f709a87832a1e19c17eeb4e551f13f53ea196389",
+        "training_state.pt": "cf246da6b9463e9cf74e481b0fbdb574b7d7cacfcf3ff85fa265789b30f20016"
+      },
+      "completed_epochs": 1,
+      "global_step": 26
+    },
+    "epoch-002": {
+      "files": {
+        "adapter/README.md": "9054672de2e89b26ae5d91135c9b20743333493d3a24ff945b6c2d8c288bfbab",
+        "adapter/adapter_config.json": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+        "adapter/adapter_model.safetensors": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513",
+        "training_state.pt": "d2dcc78070f53d36984fea99198ea721edad6e8918479a7600318e9fbf51344e"
+      },
+      "completed_epochs": 2,
+      "global_step": 52
+    }
+  },
+  "source": {
+    "formal-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal-plan.json",
+      "sha256": "f4cc03c9a54a04aa6afc04a7db58cdeee3b053d2d3175a6c69d0f59f45390732"
+    },
+    "formal-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal-job.json",
+      "sha256": "65c1c91b7eb36464a8bb04f29335aed3fc30d13934231b0d189d75c6db547347"
+    },
+    "run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal2ep/run_manifest.json",
+      "sha256": "02762b30b993a8741efb9ba826769f68ea3e82ea760f45bbd3ea682d24d7ce30"
+    },
+    "training_complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal2ep/training_complete.json",
+      "sha256": "ffd31058ab7091683e9c85710ef55ba482ab446bb7c3ab41d0c109695ec10380"
+    },
+    "checkpoint-actual-hashes.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/checkpoint-actual-hashes.json",
+      "sha256": "489c5c5af0aae8dbf978c87a7185d5f5fa37096bbc21366b088e7d7cd7d6ebd3"
+    }
+  },
+  "paired_inference_job": {
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u qwen35_runner.v2.py --model /dev/shm/patientphex-qwen35-1045-c20223623576 --source-manifest model-source-manifest.json --prompts relation-quality/base58.prompts.jsonl --output relation-quality/adapter58.responses.jsonl --max-input-tokens 14000 --max-new-tokens 1600 --adapter relation-training/formal2ep/epoch-002/adapter",
+    "id": "proc_301c8be3-bba6-4c69-9634-bf4a0dbf752b",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 46076,
+    "port": 37873,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T18:04:47.515717945Z"
+  },
+  "limits": [
+    "Training success is not a quality score; original58 fixed epoch002 endpoint remains pending.",
+    "allocated 37.48GB and reserved 78.50GB are distinct; no OOM occurred.",
+    "Continuous2epoch run; new GPU numerical resume equivalence not claimed.",
+    "Only fixed train48 nested OOF204 rows; original dev untouched."
+  ],
+  "cost_estimates_minutes": {
+    "token_scaled_before_start": 40.681,
+    "cold_longstep_envelope_before_start": 73.507,
+    "actual_training": 30.91838432153066
+  }
+}
