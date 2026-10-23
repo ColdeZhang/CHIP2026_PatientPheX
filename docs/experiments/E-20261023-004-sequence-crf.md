@@ -32,3 +32,27 @@
 首个最小自造病例 smoke 已通过：原始非零 passage offset、末尾实体边界、无效 HPO 排除、指定患者覆盖，以及输入中恶意注入 entities/association 不影响预测。CRF 训练 3 轮，1 文档 10 token，端到端约 2.71 秒；这只是工程检查，不是验证分数。指定本体解析得到 19,120 个概念、42,567 个名称/同义词（含该自造训练别名）。
 
 正式划分尚待主线程就绪；实际命令、指标、耗时、输出 SHA-256 与结论将在完成后补充。
+
+## 首个独立验证结果：CRF v1
+
+训练 64 篇、验证 16 篇/36 位患者；由主线程统一提供划分。仅训练折建立 44,005 条链接名称；序列训练含 211,596 token、10,871 个片段；对齐 4,713 个金标，32 个重叠金标按最长优先舍弃（线性 BIO 无法同时表示重叠实体）。
+
+| menF1 | docF1 | micF1 | macF1 | Score |
+|---:|---:|---:|---:|---:|
+| 0.732540 | 0.745303 | 0.650549 | 0.614222 | 0.685654 |
+
+全部为 `patientphex-public-approx-v1` 的本地独立验证近似分数，不是官方成绩。实体 P/R=0.8561/0.6401，关联 P/R=0.6393/0.6622。主要瓶颈是实体召回与患者归属误报；不能靠同义词全量匹配推断序列模型已充分覆盖。格式校验零错误/零警告，16 篇输出 827 个实体、463 条关联。
+
+命令：
+
+```bash
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python solutions/sequence_crf/run.py --train /workspace/patientphex-data/day1/train64.jsonl --input /workspace/patientphex-data/day1/dev16.input.jsonl --hpo /workspace/patientphex-data/hp.obo --output /workspace/patientphex-runs/day1-20261023/sequence-crf/crf-dev-v1/pred.jsonl --work-dir /workspace/patientphex-runs/day1-20261023/sequence-crf/crf-dev-v1 --iterations 80
+```
+
+拟合 21.80 秒，推理 1.06 秒。预测 SHA-256：`b7bcdeabc23f8d5915f2d1b5f9b6631b7565c66d78a60460fc405aee3286942b`。关键指标、格式校验和输入/产物校验值已保存到 `solutions/sequence_crf/results/`；全量预测/模型留在外部产物目录。
+
+工程修复：首次用 CLI 保存自定义 Linker 对象后，从另一个 Python module 读取触发 `__main__` 类引用问题；已改成保存纯属性状态，跨模块恢复、坐标和输入标注隔离检查实际通过。该问题未改变预测算法。
+
+## GPU 升级准备
+
+主线程提供 A30 24GB 轮转时段。独立远端目录 `sequence-crf/`，新建自己的 venv，以 `--system-site-packages` 只读复用现有 torch 2.7.0+cu128 / transformers 4.50.0；只向新 venv 安装依赖，未修改原 conda。已实现 BiomedBERT 监督 BIO 首版：384 token、stride 64、4 epochs、batch 16、lr 3e-5、fp16；链接/关系头与 CRF 相同，用于隔离编码器贡献。当前等待权重下载及主线程释放指定 GPU，尚无该模型验证结果。
