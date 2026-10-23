@@ -124,3 +124,7 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 双公开full64原dev唯一终点：fit14.7545秒/61781例4147正/97自然列，真实model+vectorizer已序列化295637B（db2fc288）且重载末篇probexact。两新/旧baseline与model/scored先完整freeze，.4 **.7314458355**/.3 **.7322577652**，较旧.7287945949分别+.00265124/+.00346317，0错警。.3相对.4 mention下降.002287而doc上升.005535；aa107关系逐对象不变，micro/macro及273TP60FP180FN完全相同。预选.3同时增加召回和FP（相对旧实体净14TP/10FP），不能描述所有精度指标都变好。当前未.8，保留两臂不扫cut；唯一新fit/模型持久化/原生devcache/两预测/v2增量独审已PASS（fc98e9ca）：所有概率、预测及pickle字节一致；实际模型重载16篇全部13144概率exact。完整外存public-bioformer-dev-transfer/及evidence索引，旧16cd的独立服务器恢复包继续保留。
 
 双公开原dev独审精确入口：`validation/public-bioformer-dev-transfer-review/review.json` SHA `fc98e9cab02606d50837530c9721b03de79a95bb9dbe1d7c568650eca2b4f834`。仅一次新full64 fit（14.547秒）、不重训旧对照或神经模型；缓存1353键/4655同模型词串复用/50548新前向及共同freeze时序通过。大raw复用依据实际代码绑定checker和SHA，未由审查方重复下载；这项范围限制与历史dev开发使用均保留。根将为新实际模型和最佳预测另做服务器恢复包，旧16cd包不覆盖。
+
+### WIS固定控制：当前池并非被贪心重叠选择限制
+
+旧Bioformer OOF四fold/cut.3，正效用p-.3及严格非重叠WIS的64篇输出全同原greedy。合成最优解相反/80组穷举已检验实现；因此可以否定**当前固定效用和候选池**存在实际greedy损失，不能推广为所有分数/候选池都无冲突问题。无新阈值或关系重分配；详细SHA和零结果见weighted-interval-results.json。

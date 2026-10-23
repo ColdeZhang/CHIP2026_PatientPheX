@@ -72,6 +72,6 @@
 
 `predict_existing_selector.py` 只load模型+vectorizer，接受任意输入/合并候选/base/source路径与cut，可选原关联原样装配；无fit/gold读取。原16篇13144概率和完整cut.3预测分别复现c032ca68/6401a24e，实际约1.99秒；16项合同含概率毒化后实际重算、任意ID/空池、fit及annotation-IO陷阱通过。独立增量审PASS（7c3b8401），全16实际重算及16合同独立重放一致。[使用与边界](experiments/load-existing-selector.md)、[实际命令/所有证据](evidence/round2/selector-load-only.json)。未跑test100/官方；不把新HGB实体自动改作Task2候选。
 
-### 进行中：固定WIS解码控制
+### 固定WIS解码控制已完成：零变化
 
-只改旧Bioformer四fold/cut.3的非重叠选择，精确p-.3效用/固定并列政策，合成合同已过；8fullpred共同冻结后一次新臂v2，旧cut.3首次指标按本体同SHA复用。无新fit/GPU/原dev；[计划与恢复](experiments/weighted-interval-control.md)。
+只改旧Bioformer四fold/cut.3非重叠选择，精确p-.3效用与固定tie；80组独立穷举/边界合同通过。实际3.31秒，8fullpred先freeze，新旧64篇全部byteexact、实体/关系TPFP全Δ0，pooled仍.725655389；exact .3候选0。当前池此效用下greedy已同最优，关闭该固定控制，不扫效用、不迁移原dev；无fit/GPU。旧baseline首测指标按同SHA复用，独立新增审待回收。[结果/恢复](evidence/round2/weighted-interval-results.json)、[实验](experiments/weighted-interval-control.md)。
