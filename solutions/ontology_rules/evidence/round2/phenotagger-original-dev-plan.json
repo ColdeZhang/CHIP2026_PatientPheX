@@ -1,0 +1,97 @@
+{
+  "frozen_at": "2026-10-23T17:36:59.052708+00:00",
+  "run_id": "phenotagger100-train48-plus-hgb64-original-dev16",
+  "objective": "One fixed original-dev target verification of the promising inner-fold parent100+Sap policy; no new neural training or threshold selection.",
+  "training_scales": {
+    "Pheno_classifier": {
+      "documents": 48,
+      "epochs": 100,
+      "final_sha256": "d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9",
+      "remote_directory": "ontology-round2/phenotagger-fold0/formal100ep-from30",
+      "terminal_metadata_sha256": "c4fe67dd7c99594218308b4806cd0dff944dc7e16723319cc7b382af93ecdf22",
+      "training_manifest_sha256": "b3afa763169bc4fe29612b14e04f67327cabf13e0db13125de0c70b4d66311f5",
+      "parent_source_commit": "cd4adac94378a0090fd46f32b1373b12cb575197",
+      "note": "The original100 parent, NOT the negative3epoch adaptation. Uses train48 subset of train64."
+    },
+    "HGB_baseline": {
+      "documents": 64,
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-oof-calibration/pred.jsonl",
+      "sha256": "1ac4bd1c4444db1a56d252e6030910ebfed99a881db3f0b8343e0486762c8645",
+      "frozen_prior_original_dev_score": 0.6462443332694785,
+      "manifest_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-oof-calibration/pred.manifest.json"
+    },
+    "Sap": {
+      "documents": 64,
+      "reconstruction_manifest_sha256": "469e5299cdc9593a53efae907741b4df9bd3ee7e6b15ed2eebfd48062a775a5f",
+      "detector_sha256": "adb8ff8c8f395d74e2d76dc02995b5c51bf6e0fde818de7a7f4e8667e8b6b626",
+      "bank_cache": {
+        "label": "ontology-and-training-labels",
+        "path": "dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+        "sha256": "4fc0e062ea7940365222aad637058aadfb37dc57681e444eb2091577b591ae03",
+        "rows": 42575,
+        "unique": 42575,
+        "ordered_texts_sha256": "ab10fc0bd1bc919643ec434a3b499ce772538993b614eb82071df591b71839c9"
+      },
+      "reference_manifest_sha256": "394fd304f12b45ccd99d0775fb5170c1104080d9c076e60f845d0aeb3c0647bb",
+      "reference_candidate_sha256": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197",
+      "reference_pool": "ontology-round2/dev16-sapbert/scored-candidates.jsonl.gz",
+      "reconstruction": "Exact original recipe/cache replay, not originally saved coefficients; no new embeddings. Probability0diff/threshold and original-ID0diff on12811 old predicted candidates."
+    }
+  },
+  "split_lineage": {
+    "phenotagger_docs": 48,
+    "sap_and_hgb_docs": 64,
+    "dev_docs": 16,
+    "Pheno48_document_objects_equal_subset_of_train64": true,
+    "training_ids_disjoint_dev": true,
+    "dev_input_has_no_labels": true,
+    "input_files": {
+      "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+      "/workspace/patientphex-data/day1/train64.jsonl": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "/workspace/patientphex-data/day1/dev16.input.jsonl": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+    },
+    "gold_read": false
+  },
+  "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "candidates": {
+    "rows": 77329,
+    "unique_model_texts": 53034,
+    "manifest_sha256": "6b0df172c109832d9bd833e26788434f91924f5b13d298e6b85314b306a7c620",
+    "output_sha256": "59c88a1c4b06bac89c8d96fc33fee7ad194d8047baeadff6d480bef69b554894",
+    "policy": "unrestricted 1-8gram after function-word/punctuation filter, plus base long spans; no learned head/rarity/preemptive negation gate",
+    "generator_sha256": "1aad39cf820ea28b7c4b42eedef13337f63a3b2ceec1d4f1788ec8b60eb5a58a",
+    "normalizer_sha256": "1ffea38c471fc103bd44eb5deba2d422000e5d9bfd8b78554049626a05306aa6"
+  },
+  "arms": {
+    "raw": {
+      "secondary_control": true,
+      "policy": "Original Pheno100 p>=.95 valid non-None/ROOT, max32, existing negation, sorted probability/length/offset/ID nonoverlap additions; preserve all HGBv1 entities/associations; only additions get original assign."
+    },
+    "filtered": {
+      "primary_control": true,
+      "policy": "Filter only raw added entities with original train64 Sap p>=.65/cos>=.92 and pure nearest bank label exactly equals Pheno ID. Preserve HGBv1 entirely and derive additional associations only from retained additions. No exact-surface ID override, no re-linking."
+    }
+  },
+  "evaluation_protocol": [
+    "Both raw and filtered prediction bytes/SHA frozen before this-run original-dev gold evaluation",
+    "Same unchanged v2 all/text evaluator and validator",
+    "No intermediate evaluation, threshold search, new training or official submission",
+    "Report mixed48/64 scale; not a full64 Pheno retraining claim",
+    "Keep both controls including negative result; no result-conditioned repair or parameter change"
+  ],
+  "sources": {
+    "phenotagger_augment.py": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+    "phenotagger_sap_consensus.py": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "reconstruct_sap_detector.py": "5397539dfea34d86f4ce74c18864b045a2e71055c1bd41afcccdae6f8f19391f",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+  },
+  "immutable_inference_sources": {
+    "phenotagger_predict.py": "a2e7d1df496c1603eb1cc1e0fd14f7ab5927612fb114b11683308bb4b5b19748",
+    "phenotagger_measure.py": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746"
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16",
+  "status_at_freeze": "Input-only candidates and train64 reconstruction complete; no new dev predictions generated or gold read."
+}

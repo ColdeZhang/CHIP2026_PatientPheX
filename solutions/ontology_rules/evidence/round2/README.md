@@ -54,3 +54,5 @@
 - [真实词面3ep raw负结果](phenotagger-adaptation-results.json)及[唯一配对Sap过滤计划](phenotagger-adaptation-sap-plan.json)：固定预算与负结果保留。
 
 - [真实词面适配同Sap负结果](phenotagger-adaptation-sap-results.json)：.721696低于父过滤.725539，关闭当前配比，无原dev/官方上传。
+
+- [原dev固定两臂预设](phenotagger-original-dev-plan.json)：Pheno48+HGB/Sap64混合规模，raw/filter预测均先冻结再评，非新增训练。
