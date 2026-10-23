@@ -1,0 +1,126 @@
+{
+  "status": "probe_PASS_fresh_formal_prepared_not_started",
+  "probe_complete": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-probe-v1/complete.json",
+    "bytes": 499,
+    "sha256": "7880c0fe890dc8fd7a50872da27971b5f1f725ff5e6c2fc9f262435e0a8231b9"
+  },
+  "probe_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-probe-v1/run_manifest.json",
+    "bytes": 54867,
+    "sha256": "a773c16ab3f1ae71c92bcf206585f00b56144877a20eef8e173c654e7dd715df"
+  },
+  "actual_native_equivalence": {
+    "row_id": "5866036:relations:16",
+    "input_tokens": 880,
+    "slot_positions": [
+      858,
+      869,
+      879
+    ],
+    "reference": [
+      [
+        16.125,
+        20.625
+      ],
+      [
+        18.875,
+        17.625
+      ],
+      [
+        20.875,
+        20.375
+      ]
+    ],
+    "selected": [
+      [
+        16.125,
+        20.625
+      ],
+      [
+        18.875,
+        17.625
+      ],
+      [
+        20.875,
+        20.375
+      ]
+    ],
+    "max_abs_difference": 0.0,
+    "exact_equal": true,
+    "rtol": 0.01,
+    "atol": 0.01,
+    "wrong_causal_shift_is_distinct": true,
+    "wrong_shift_max_abs_difference": 9.625
+  },
+  "actual_longest": {
+    "row_id": "11235872:relations:8",
+    "input_tokens": 6777,
+    "slots": 112,
+    "positive": 12,
+    "loss": 0.3660863935947418,
+    "gradient_norm_before_clip": 4.667297840118408,
+    "family_gradient_squared_norms": {
+      "DeltaNet": 14.488703246448495,
+      "MLP": 2.89077487483155,
+      "full_attention": 4.4041891969391145
+    },
+    "changed_B_probes": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "learning_rate": 0.0001,
+    "first_probe_step_nonzero_lr_not_formal_warmup": true,
+    "head_frozen_and_rows_unchanged": true,
+    "step_seconds": 13.12313214596361,
+    "peak_allocated_bytes": 25142181888,
+    "peak_reserved_bytes": 25667043328,
+    "free_bytes": 58878328832,
+    "projection_token_linear_twoepochs_seconds": 1642.422824962452,
+    "projection_includes_per_row_optimizer_overhead_not_actual_training_time": true,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ]
+  },
+  "gpu_release": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-probe-v1/gpu-release.json",
+    "bytes": 438,
+    "sha256": "576680aada4aacb357eb3640a5904f85062cdbcdc792a312c2f61aef85d78e43"
+  },
+  "formal_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v1/run-plan.json",
+    "bytes": 11514,
+    "sha256": "af5163552fd46c93899ccdbed25f2e4db1e67d87417494c8f01935a6be1a74ed"
+  },
+  "formal_trainer": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/decision_target_design/train_slots.py",
+    "bytes": 6791,
+    "sha256": "58636d026c99febbbf6e5c9c4aaf3d1472e0554a2e673f5506b10e74ed71e0e6"
+  },
+  "formal_infer": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/decision_target_design/infer_slots.py",
+    "bytes": 5703,
+    "sha256": "d54808e49b41ef87b49f327ed491cadca38e51fe56af9b1acbb7bed7ffeeef19"
+  },
+  "cost": {
+    "actual_longest_step_seconds": 13.12313214596361,
+    "actual_peak_allocated": 25142181888,
+    "token_linear_training_seconds": 1642.422824962452,
+    "conservative_fixed_allowance_seconds": 90,
+    "combined_projection_seconds": 1732.422824962452,
+    "not_actual_training": true,
+    "twoarm_forward_estimate": 111.73676538248854,
+    "inference_budget": 300
+  },
+  "disk": {
+    "last_actual_free_bytes": 890003456,
+    "LoRA_parameters": 43278336,
+    "adapter_FP32_bytes": 173113344,
+    "Adam_two_FP32_moments_bytes": 346226688,
+    "estimated_final_checkpoint_bytes": 520000000,
+    "preflight_minimum_free_bytes": 680000000,
+    "save": "Only finalepoch002; staging renamed atomically, no duplicate copy, no epoch1 checkpoint, all historical outputs retained"
+  },
+  "no_quality_yet": true
+}
