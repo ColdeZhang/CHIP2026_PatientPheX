@@ -72,3 +72,10 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 只读复核确认8B Task1 SFT与换折复验已实际完成；原305窗覆盖train48全文，不是只抽305句。生成quote后广播所有出现有表示缺陷，严格quote+出现序号可逆，但train32当前窗口约束外仅39/2274跨度（1.72%），单靠该变化缺乏大幅增分依据。旧8B固定Sap后fold0有小幅收益，fold1未复现；当前关闭9B重训提议，保留详细报告中的复开条件。
 
 [UniversalNER](https://arxiv.org/abs/2308.03279)的JSON实体问答、保留空目标可借鉴；其官方评测会规范化词面并去重，不符合本赛逐出现原始坐标契约。只研究论文/源码，没有导入其训练集、权重或外部人工表型标签。完整报告与来源manifest在 `research/generative-ner-feasibility/`，SHA见[来源清单](round2-research-sources.json)；该研究未训练、未读原dev或外层gold。
+
+
+## 显式focal配方：固定单变量配对准备
+
+已查历史8个GLiNER实际运行manifest均为显式BCE；BioMed固定发布配置另有alpha=.75、gamma=2、reduction=sum，而库Trainer的默认-1/0会覆盖这些值，不能据配置字段推断历史训练已经使用focal。下一控制借用该alpha/gamma，仍沿用本项目valid-span mean，并固定原1150窗/10轮/2880步，因此不宣称完整复现上游sum训练。训练监督极不平衡，但既有medium/BioMed训练探针召回较高；这是类别与难例重加权假设，不能称为修复模型塌缩。
+
+纯函数CPU的解析梯度、显式上游helper对照、极值、padding、gamma0退化、全负batch与gradcheck通过。A800空卡但磁盘不足，选择.100 A30同runtime fresh BCE/focal配对，避免把环境差异归因于loss。实际运行与终点见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)；准备证据为该分支 `979dd4e` 的 `evidence/round2/focal-loss-proposal.json`，此处尚不声称质量增益。

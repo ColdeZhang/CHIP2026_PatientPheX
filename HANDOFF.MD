@@ -221,7 +221,7 @@ GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_di
 
 ## H35：FP16梯度暂时溢出需要与真正的数值故障区分
 
-患者身份CE首次正式运行在第10个batch触发新增的“梯度必须有限”断言。实际同顺序复验：loss为有限的0.825509，2个梯度tensor溢出；原生GradScaler会跳过该次更新、将scale从65536降至32768，Adam步数和权重保持不变。新增断言在scaler处理前终止，改变了旧实现的恢复语义。最长batch单步通过也不能覆盖后续batch的数值路径。
+患者身份CE首次正式运行在第一轮触发新增的“梯度必须有限”断言，原失败日志没有记录batch序号。实际同顺序复验在第10个batch重现：loss为有限的0.825509，2个梯度tensor溢出；原生GradScaler会跳过该次更新、将scale从65536降至32768，Adam步数和权重保持不变。新增断言在scaler处理前终止，改变了旧实现的恢复语义。最长batch单步通过也不能覆盖后续batch的数值路径。
 
 **避免方法**：保留AMP的skip/backoff语义并正确协调scheduler，或统一采用硬件支持的BF16策略；同时检查有效loss、真实参数更新和数值状态，不能只检查退出码。此次两对照臂统一改为BF16、参数和Adam仍FP32；实际正式顺序前三batch及最长batch均有限，非零学习率下参数更新，诊断状态丢弃后重新fresh训练。旧FP16失败/来源独立保留，不记作质量负结果。证据：外部 `case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-diagnostic-complete.json`，SHA `171e5f82356d3f84e75797fd7666df7b1d9dac987cc4261444ce47cf861e35c7`；正式新终点以方案台账为准。
 
