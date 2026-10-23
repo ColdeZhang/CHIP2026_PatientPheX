@@ -77,10 +77,13 @@ def main():
             candidates[key] = row
     stages = Counter(); all_units = Counter(); wildcard = Counter()
     strata = defaultdict(Counter); errors = Counter(); raw = Counter()
+    base_counts = Counter(); final_counts = Counter()
     for did, doc in docs.items():
         truth = evaluate.positive_units(golds[did], doc, 'all')
         base = evaluate.positive_units(bases[did], doc, 'all')
         final = evaluate.positive_units(predictions[did], doc, 'all')
+        base_counts.update(dict(zip(['tp', 'fp', 'fn'], evaluate.mention_counts(truth, base))))
+        final_counts.update(dict(zip(['tp', 'fp', 'fn'], evaluate.mention_counts(truth, final))))
         for span, ids in base.items(): assert ids <= final.get(span, set())
         base_entities = [(e['offset'], e['length']) for e in bases[did]['entities']]
         new_spans = [span for span, ids in final.items() if ids - base.get(span, set())]
@@ -151,8 +154,13 @@ def main():
                 errors[key] += 1
     assert sum(stages.values()) == all_units['gold_linked_atomic_units']
     assert errors['unexplained_assembly_discrepancy'] == 0
+    assert all(final_counts[k] == metrics['counts']['mention'][k] for k in ['tp', 'fp', 'fn'])
+    assert errors['added_tp'] == final_counts['tp'] - base_counts['tp']
+    assert errors['added_fp'] == final_counts['fp'] - base_counts['fp']
     result = {'policy': 'Fixed terminal100 aggregate diagnosis only; no alternate predictions/thresholds/epochs/scores',
               'source_sha256': baseline.sha256(__file__),
+              'dependency_sha256': {name: baseline.sha256(path) for name, path in
+                  [('baseline', baseline.__file__), ('span_location', enhance.__file__), ('evaluator', evaluate.__file__)]},
               'input_sha256': {k: baseline.sha256(getattr(args, k)) for k in
                   ['input', 'gold', 'base', 'pred', 'scored', 'training_complete', 'prediction_manifest', 'metrics', 'hpo']},
               'training_rows_sha256': train_manifest['outputs']['rows.jsonl.gz'],
