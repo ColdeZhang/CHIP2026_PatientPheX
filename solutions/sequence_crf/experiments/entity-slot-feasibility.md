@@ -47,3 +47,14 @@
 - 按长步纯token外推2epoch约 **27.58分钟**；考虑两点截距的估计约 **62分钟**。短步含首次Adam分配、正式accum8又会减少optimizer调用，两个端点不能确定稳态吞吐，因此不沿用早先22–30分钟承诺，也不据此自动开训。
 
 新数据独审 `3009d56c` PASS：原pool与H40三链、固定门控、1035条提示/全部token位置、翻转标签/污染metadata不进入输入逐项复核；未fit/GPU/读F1金标。实际probe增量审由验证代理收尾。完整恢复与成本边界见 [probe结果](../evidence/round2/entity-slot-probe-results.json)。当前best、原dev和官方提交均未改变。
+
+
+## 动态微批工程探针（唯一150秒预算，尚未正式训练）
+
+根线程授权新增独立探针，避免以两个冷/暖逐行端点外推整轮吞吐。保持seed+epoch的原shuffle顺序与8行optimizer组，组内按连续行贪心拆成`max_length × batch_rows ≤8192`微批；不跨组、不排序，末组真实5行。每行先对自身槽CE取均值，再除本optimizer组真实行数累积，不能按总槽数或微批数量平均。右padding/attention mask和原位置不变。
+
+直接调用已注入LoRA的native text backbone，取每行实际槽hidden后以原冻结`lm_head.weight[[15,16]]`做F.linear；保留完整head及来源，不建新Parameter。CPU合同核数学/hidden梯度/非slot与padding零梯度、1/5/8行组和多种拆分的损失及梯度等价；实际GPU再核native full-vocabulary指定位置两列、独立非padding输入、padding token扰动，以及同短行实际LoRA_B各家族梯度。BF16事前容差logits atol.125/rtol.02、梯度relativeL2≤.05/cos≥.995，不把浮点或dropout draw顺序差异冒称训练轨迹bitwise等价。
+
+仅29训练行按原epoch0组输入长度预选，不用标签选择：最短完整组warmup后再测一次、median padded成本组、最大padded成本组、真实尾5行；共5次真正optimizer更新。实际训练dropout仍.05，数学对照eval关闭dropout。全程含15文件SHA与加载145秒+TERM/KILL5秒，所有临时状态丢弃，无F1输入/标签/质量。新目录`entity-slot-feasibility/microbatch-probe-v1`，旧probe不改。详见[evidence](../evidence/round2/entity-slot-microbatch-probe-plan.json)。正式训练仍待root根据实测决定。
+
+首轮probe统一独审已完成：`validation/entity-slot-probe-review/review.json` SHA `c0a286eb227d3314c0949ca633dc88d0a886c27215c7c04b399d87035da4f139`，复用数据审3009d56c，不重复旧模型或数据检查。
