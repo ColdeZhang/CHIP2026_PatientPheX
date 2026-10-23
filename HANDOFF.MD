@@ -237,6 +237,12 @@ PhenoTagger v1.2 的 `build_ngram_testset_filted` 把参数 `Ngram=8` 在遇短�
 
 **避免方法**：分别核对raw接受数、最终集合的交集/新增/丢失；若实验目标要求保留旧候选，明确冻结旧新集合的并集并保存真实来源，而非默认为保留。此次在质量评测前固定旧.95∪新.5的8221键，同键flags按真实OR、分数按观测max，保留旧独有3键。后续重新训练选择器仍可能删除或替换实体，不能将该实验解释成只做实体加法，也不能仅凭分数变化归因某一步。无标签计数与来源核验见外部 `ontology_rules/public-phenotagger-lower-gate/incremental-review.json`，摘要SHA `e3c570fc62c5d6e5ce08ab6841bb7e73beaebdb55cd9474189f837821417f51b`；质量结论另见方案台账。
 
+## H38：分别分词再拼接，会改变条件似然的真实边界
+
+在固定Qwen3.5 tokenizer的12条提示、98个合法患者子集续写上，分别 `encode(prefix)` 与 `encode(value)` 再拼接，有95个分支不等于完整字符串分词。JSON引号、括号及分隔符可以和前一段字符合成token；文本看似相同，不代表模型条件前缀和被评分token相同。此问题在CPU准备阶段发现，未将错误分词用于模型质量结论。
+
+**避免方法**：先对每条完整合法续写分词，再取得候选间真正共同的token前缀，按causal next-token位置计算后缀概率，并固定分支结束分隔符。检查所有分支的完整token复原与分歧位置，不从字符边界推断token边界；也不能把只枚举固定JSON顺序的子集归一值称为无条件患者概率。实际98分支的共同前缀/后缀契约已通过，源码 `9b2a33b3…`，证据为外部 `case_retrieval/qwen35-preparation/sft-meta1-fusion/conditional-subset-likelihood-cpu/token-contract.json`（SHA `e1d170ab…`）；实际GPU数值、耗时和质量另按后续终点记录，本条不宣称其已通过。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。

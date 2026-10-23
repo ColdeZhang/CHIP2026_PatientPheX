@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T21:37:27.750651+00:00",
+  "generated_utc": "2026-10-23T22:02:38.098362+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -11509,17 +11509,329 @@
           "bytes": 424
         }
       ]
+    },
+    {
+      "id": "public-bioformer-cut-calibration-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-cut-calibration-review/review.json",
+        "sha256": "234064fed4118130eb70d9341d3a38811d064353afaab1425ca271258b560257",
+        "bytes": 6143
+      },
+      "source_report_path": "validation/public-bioformer-cut-calibration-review/review.json",
+      "completed_review_scope": "PASS_fixed_nine_cut_training_calibration",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Nine-point train64 entity calibration selects .3; objective .777993967714 to .780192596154, calibration fit only.",
+      "limitations": [
+        "Same64 calibration fit, not unbiased CV, originaldev Score, or evidence of generalization gain.",
+        "Fold2 entity objective decreases at selected .3.",
+        "Existing train64 data participated in earlier source/method development.",
+        "Only one global cut changes; candidate-generation exclusions remain."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-cut-calibration-audit.py",
+          "sha256": "25eda91c88bed00f560105bdd48bc237b7c98eb109e71ce14cb5d1fabfb8b232",
+          "bytes": 10053
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-cut-calibration-review/independent-table.json",
+          "sha256": "7cc963f0af3910057861566bca537f4a46836896cbd4548496ff8ff702ec61c6",
+          "bytes": 32572
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/batch-index.json",
+          "sha256": "fc25c8d2ac09b4d5f0dcf9ea094073079b35fc7b780ff0430ca85b8a4e497a18",
+          "bytes": 32475
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/integrity-review.json",
+          "sha256": "433505a43e6e9bc315075e261f62aec198893e9142dcb15f3106fe15d0384a79",
+          "bytes": 4048
+        }
+      ]
+    },
+    {
+      "id": "public-bioformer-dev-transfer-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-dev-transfer-review/review.json",
+        "sha256": "fc98e9cab02606d50837530c9721b03de79a95bb9dbe1d7c568650eca2b4f834",
+        "bytes": 6236
+      },
+      "source_report_path": "validation/public-bioformer-dev-transfer-review/review.json",
+      "completed_review_scope": "PASS_complete_new_Bioformer_originaldev_transfer",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Fixed originaldev entity transfer: .4 Score .731445835469, preselected .3 Score .732257765247; SFT relationships unchanged.",
+      "limitations": [
+        "Originaldev has been used historically; this fixed transfer is not blind testing.",
+        "Preselected .3 improves Score but mentionF1 decreases versus .4; all results retained.",
+        "Best .732257765 remains below .8; no acceptance merge or official submission.",
+        "Public cache lineage reviewed separately; no H5/model neural reload or NN repeated.",
+        "Model pickle backed by current source/version/hash and actual full16 reload, unlike previous unsaved selector."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-dev-transfer-review/replay-review.json",
+          "sha256": "8380a697bb9ccb16267b7e2c7f016cb84bbc0d9eb28605afdcb9fbfe4812f7c5",
+          "bytes": 8896
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-dev-transfer-review/cache-lineage-review.json",
+          "sha256": "cd5b675ed883256f6e76da953cede2b8fd4f94f7083c8b9402ae57e52a42a166",
+          "bytes": 8025
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-dev-transfer-audit.py",
+          "sha256": "33ce569d7aacae4aefc01066f479121cf7753332400e1e38489f69a20a3b459b",
+          "bytes": 11067
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-bioformer-dev-transfer-review/audit_cache_lineage.py",
+          "sha256": "6afc4637d815d3b44368d09a2e9973ca04a651faa907a9f535fd18aef9ea7f18",
+          "bytes": 13766
+        }
+      ]
+    },
+    {
+      "id": "public-relation-F1-append-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-relation-F1-append-review/review.json",
+        "sha256": "37c03a29533ba07c4d7d968a847f12ea565757b4e61b24ccacbe82162cd002ea",
+        "bytes": 10002
+      },
+      "source_report_path": "validation/public-relation-F1-append-review/review.json",
+      "completed_review_scope": "PASS_fixed_F1_public_new_relation_append",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "F1 public new-concept append: .660942002653 to .669751256631;193 added relations,72TP/121FP.",
+      "limitations": [
+        "F1 training-side development already examined, not blind validation or originaldev.",
+        "Coverage oracle 103/154 is separate from realized72TP; no gold-based item selection was used.",
+        "Positive Score but appended relation precision only37.3%; not evidence to migrate directly to originaldev.",
+        "Old SFT/model/H5/public64 provenance reused from prior independent audits, not rerun.",
+        "New later support-filter arm is not part of this frozen review."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-F1-append-audit.py",
+          "sha256": "6ae501cf000da3fb78a828453b86507605910c1db0525a939935a47fa7f82431",
+          "bytes": 15647
+        }
+      ]
+    },
+    {
+      "id": "public-relation-support-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/review.json",
+        "sha256": "df6df5e8de1ca692c7fecbee9ac49bb50d46f2b20e472daffabb80d86a6aa659",
+        "bytes": 5005
+      },
+      "source_report_path": "validation/public-relation-support-review/review.json",
+      "completed_review_scope": "PASS_F1_support_and_outer0_fixed_raw_supported_terminal",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Document-support control: F1 .682128804398; outer0 raw .694365855130, supported .705717147684 versus baseline .695443947581.",
+      "limitations": [
+        "Fixed outer0 development replication; SFT48 and selector fit exclude outer0, but global cut.3 was chosen using pooledtrain64 including this fold.",
+        "Support policy was proposed after F1 raw result; F1support is a retrospective development arm.",
+        "Document entity support is not evidence of patient-specific ownership.",
+        "Actual support sources contain no NO labels; shared helper is not a general arbitrary-entity negation filter.",
+        "Old baseline/model/cache provenance reused; no old quality, fit, model loading or GPU inference repeated.",
+        "Remote terminal exposes running=false rather than process exit code; release command rc0 is not model process rc0."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/outer0-review.json",
+          "sha256": "12609a341dc80d579f85da4d88b4c223ffa9d8439fe290a1507c772d1ae3a97d",
+          "bytes": 10047
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/f1-review.json",
+          "sha256": "b67fd48f1366e6f2cf9ce90b025eb783688ad8b103e406474b364c2783c0c796",
+          "bytes": 5881
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-outer0-support-audit.py",
+          "sha256": "3a1327430166e96bdd6c5b33218f6d5ff313371e62ef61596a431a97dfd56a30",
+          "bytes": 12948
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/f1-audit.py",
+          "sha256": "c70f47aa1e49480102b244003818d7e16641fc363339801d22d7a458759cb287",
+          "bytes": 11752
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/shared-control.py",
+          "sha256": "684bf9b6b24dd4d72f072815360e29f308cca2ae825b2262eca344d7ad0b1b21",
+          "bytes": 11090
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-support-review/f1-source.py",
+          "sha256": "10019839fad0442106525ed3977819d3cdfd4a3742f4f3d51328f3af44c7d719",
+          "bytes": 4136
+        }
+      ]
+    },
+    {
+      "id": "bioformer-task1-fn-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/bioformer-task1-fn-review/review.json",
+        "sha256": "6a48c8440c6c9942b696c86ac96e51d897561823f8484daeb180b33cdfc0d189",
+        "bytes": 4334
+      },
+      "source_report_path": "validation/bioformer-task1-fn-review/review.json",
+      "completed_review_scope": "PASS_fixed_point3_train64_Task1_FN_diagnostic",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Fixed .3 train64 Task1 diagnostic:1335 mention FN=682 missing/544 below-cut/109 greedy;648 doc FN=263/319/66.",
+      "limitations": [
+        "Train64 post-hoc development diagnostic, not a new independent quality estimate.",
+        "298 same-span wrong-ID misses mean literal evaluated identifier is absent at that span; no current-HPO canonical linking-error claim.",
+        "88 unlinked document misses use exact unlinked surface text, while mention-level NIL may match a remaining same-span ID.",
+        "Candidate absence is relative to frozen final candidate pool, not proof that upstream generators never proposed it.",
+        "Candidate support is not an attainable oracle; overlap competition and source mechanisms remain coupled."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/bioformer-task1-fn-review/audit.py",
+          "sha256": "903a103d7a79712fd6624efb7f6859eec33dacf491abc83168cadcf1f02ee5a1",
+          "bytes": 11089
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/bioformer-task1-fn-review/diagnostic-source.py",
+          "sha256": "daa8420cdee227cbf1224262e6c789c28c9dd8dd8b2f434a0ba57b0f0f2a3244",
+          "bytes": 11733
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/bioformer-task1-fn-review/recomputed-counts.json",
+          "sha256": "632ecb083d5510715cb38022515ac2b0a11c2dafca4bdb728fe2f888dd8ee3f7",
+          "bytes": 11389
+        }
+      ]
+    },
+    {
+      "id": "public-phenotagger-top3-diagnostic-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/review.json",
+        "sha256": "95f38f35a1869724e3b9ac870fbd06957a9c87121f6bd974e7c8f00f327d728e",
+        "bytes": 6934
+      },
+      "source_report_path": "validation/public-phenotagger-top3-diagnostic-review/review.json",
+      "completed_review_scope": "PASS_incremental_query_and_cached_top3_diagnostic_evidence",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "298 literal-ID diagnostic atoms/287 spans: top3 union155 vs top1 union71, net84; raw supply only,22 raw-absent atoms separate.",
+      "limitations": [
+        "Error-conditioned train64 diagnostic, not expected future recall or attainable score gain.",
+        "155/298 top3 union and84 net expansion are raw supply; no precision, overlap, hybrid or selector acceptance is implied.",
+        "22 absent raw query atoms are excluded from classification-miss interpretation;19unigram/2filtered/1unaligned.",
+        "Current mapping is applied only to cached predictions. Literal gold IDs can remain unreachable, so this is not a canonicalized linking-error count.",
+        "Dictionary first-ID behavior was actually replayed on211 passages and checked against pinned raw by the frozen owner source; this review independently recomputed small-artifact aggregates but did not rerun dictionary tokenization or read368MB raw.",
+        "Summary fields named same_span_multiple_gold_ids and dictionary.native_span_present count query atoms:29atoms/18spans and26atoms/21spans respectively."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/audit.py",
+          "sha256": "9c1c7961fc8852aa881b18231145cfb9767b23cf1991081dfa4d509b67fa0672",
+          "bytes": 15122
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/analyze_cached_top3.py",
+          "sha256": "8a3f79772288934f045888ddafafbff97f32206326efe02c70a910e0ab060ab8",
+          "bytes": 11841
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/prepare_queries.py",
+          "sha256": "2e6f514e31c531587241dc314449937515efa678d7e10c2247e7c63ed3976802",
+          "bytes": 2973
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/run_cpu.py",
+          "sha256": "68f2ece6fed5cb6d8cd82df87fdaffa9273c75d7b383ff6d57968bde7be60463",
+          "bytes": 1582
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-phenotagger-top3-diagnostic-review/aggregate-replay.json",
+          "sha256": "bc4700c058022f713669d145ac148d64f8c38c166d2f6d223ddcea56e672a82f",
+          "bytes": 1321
+        }
+      ]
+    },
+    {
+      "id": "selector-load-only-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/selector-load-only-review/review.json",
+        "sha256": "7c3b8401fbe769218606ca0fd6ba67c10f893e07415e40e1727f1091cd4ff149",
+        "bytes": 5446
+      },
+      "source_report_path": "validation/selector-load-only-review/review.json",
+      "completed_review_scope": "PASS_load_existing_selector_incremental_inference_entry",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Load-only selector reproduces full16 predictions and13144 probabilities; no fit or new quality evaluation.",
+      "limitations": [
+        "This is a load-only selector over already prepared pools/base predictions, not end-to-end candidate generation or Task2 inference.",
+        "Upstream HPO membership and provenance/training isolation must be supplied; entry checks identifier syntax and coordinates, not ontology membership.",
+        "Input model pickle is trusted local project output, SHA-bound to its manifest; runtime must exactly match Python/sklearn version.",
+        "Unknown categorical features are ignored by the fitted DictVectorizer and reported; observed ptype=table.",
+        "Association values must be strings; optional Task2 input is preserved only after document/patient-key/schema validation.",
+        "No fixed document IDs or stored probability shortcut; generalization quality was not evaluated by this review."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/selector-load-only-audit.py",
+          "sha256": "bc64c1d0cf123cd839c67690a8805607c87f541f508f4d6f017815571dc53e5b",
+          "bytes": 7092
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/selector-load-only-review/source/predict_existing_selector.py",
+          "sha256": "5eb21c02111ce6890704d1debd9349ec4bcbc4bc717fa923010f956df2767608",
+          "bytes": 12135
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/selector-load-only-review/source/check_existing_selector.py",
+          "sha256": "20158b336bb352be819d69c8e7b2f828c3adc2e7fa15659397adfdca15110ebe",
+          "bytes": 6453
+        },
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/selector-load-only-review/contracts/checks.json",
+          "sha256": "eaca6dfc99722d2c9ee8e57884e47318978e9cbbec134e21ec1980ea4e9a2821",
+          "bytes": 1117
+        }
+      ]
+    },
+    {
+      "id": "public-relation-dev-support-review",
+      "report": {
+        "path": "validation/review-batch-20261023-2200/snapshots/public-relation-dev-support-review/review.json",
+        "sha256": "245c1f0049ca6d7e53ed4644100a379e3e258444abc466949dfe0df4e922a489",
+        "bytes": 8816
+      },
+      "source_report_path": "validation/public-relation-dev-support-review/review.json",
+      "completed_review_scope": "PASS_single_supported_public_relation_originaldev_transfer",
+      "scope": "本批已完成增量独审；复用既有模型/数据/折隔离证据，只纳入明确选定的小审查产物。",
+      "conclusion": "Fixed originaldev supported relation append: .732257765247 to .736526555034;35 added relations=18TP/17FP, all1004entities/333oldrelations retained.",
+      "limitations": [
+        "Originaldev has been used historically; this is a fixed development transfer, not blind testing.",
+        "Document-HPO support does not certify patient ownership; 17 of35 appended relations are FP.",
+        "All existing entity and association values retained, including old literal text values; no canonical-gold rewrite.",
+        "Raw145 keys retained only as unscored inference output; no raw fullprediction/quality selection.",
+        "Score .736526555 remains below .8; no acceptance merge or official submission.",
+        "Prior HGB cutoff/model/dev cache and Qwen full64 training sources reused from existing audits.",
+        "Remote terminal exposes running=false, not process exit code; release-command rc0 is not model process rc0."
+      ],
+      "support": [
+        {
+          "path": "validation/review-batch-20261023-2200/snapshots/public-relation-dev-support-audit.py",
+          "sha256": "ac51433682f3f99e0b22de5a6cbf824aac61d3489af1168f851a6dcf5aaa6dab",
+          "bytes": 13064
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "post-public-source-calibration-or-additional-dev-cache-unreviewed",
-      "status": "后继训练侧校准或额外dev缓存若继续开展，须以单独冻结终审为准；本批未纳入未终审产物或质量，不预先宣称完成。"
+      "id": "post113-new-controls-await-complete-review",
+      "status": "本批八项已完成；后继top3候选控制或其他新实验不属于这些冻结终审，只有实际完成后另行追加。"
     }
   ],
-  "previous_live_index_sha256": "c5ce02eff5b86292a4bc951001ea01b8e828bf5d8c6aa3c275eb357d9b08a8ee",
+  "previous_live_index_sha256": "4199e8e69416080c1cc053fb1855973e04e0834e44fc9edc949270f663be13d5",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批101→105：公开选择器原dev双臂终点、SFT32单meta融合终点、Bioformer独立缓存/四fold控制、lowergate CPU及并集四fold负终点。旧101对象/1711引用完全保持；全部新增源/记录仅引用不可变小快照。current明确增加跨路线原dev .7287945948814191，完整旧current快照与旧 .7157596049984146等历史值保留；四fold分数仍仅开发结果。未纳入未终审校准或后继dev缓存，无官方上传。",
+  "live_index_note": "本批105→113：九点训练内校准、Bioformer原dev两cut终点、F1公开新增关系、F1及outer0支持控制、Task1 FN/缓存top3诊断、纯加载选择器入口、原dev唯一支持关联终点。旧105对象/1915引用零漂移；新增34个不可变小审查/源码/汇总文件，不递归历史来源或复制全量预测/数据/模型。完整保存旧.7287945948814191 current对象，追加.7322577652468377中间受审状态及.7365265550338013当前最高；0.8门槛/评测器不变，未验收合并或官方上传。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
@@ -11574,11 +11886,63 @@
           "Score": 0.7287945948814191
         },
         "note": "公开Pheno+train64四fold OOF HGB新实体，所有旧full64 SFT association对象原样保留；原dev历史参与开发，非盲测/官方，仍未达.8。旧各路线/跨路线数值保持。"
+      },
+      "public_Bioformer_selector_preserved_full64_SFT": {
+        "Score": 0.7322577652468377,
+        "entry_id": "public-bioformer-dev-transfer-review",
+        "review_sha256": "fc98e9cab02606d50837530c9721b03de79a95bb9dbe1d7c568650eca2b4f834",
+        "previous_combination_Score": 0.7287945948814191,
+        "delta_vs_previous_combination": 0.003463170365418655,
+        "fixed_point4_comparator_Score": 0.7314458354692156,
+        "metrics": {
+          "menF1": 0.7867298578199052,
+          "docF1": 0.8168744007670182,
+          "micF1": 0.6946564885496184,
+          "macF1": 0.6307703138508092,
+          "Score": 0.7322577652468377
+        },
+        "prediction_sha256": "6401a24e06ea48d8e8711313b7dfe726f6fa7a9dae4ec93e21e97e1707835fbd",
+        "note": "完整保留中间已审状态：train64四fold OOF来源选择器，统一.3只在训练侧九点校准；原dev1004实体、333旧SFT关系不变。相比.4 mention下降/doc上升；原dev历史参与开发，非盲测或官方，未达.8。"
+      },
+      "public_Bioformer_selector_supported_new_full64_SFT_relations": {
+        "Score": 0.7365265550338013,
+        "entry_id": "public-relation-dev-support-review",
+        "review_sha256": "245c1f0049ca6d7e53ed4644100a379e3e258444abc466949dfe0df4e922a489",
+        "previous_combination_Score": 0.7322577652468377,
+        "delta_vs_previous_combination": 0.004268789786963545,
+        "metrics": {
+          "menF1": 0.7867298578199052,
+          "docF1": 0.8168744007670182,
+          "micF1": 0.7088915956151035,
+          "macF1": 0.633610365933178,
+          "Score": 0.7365265550338013
+        },
+        "prediction_sha256": "e9b30447cbb9264354ae0a3f5acadb165b5135112379479dc533db86e6d02fcf",
+        "relation_counts": {
+          "tp": 291,
+          "fp": 77,
+          "fn": 162,
+          "precision": 0.7907608695652174,
+          "recall": 0.6423841059602649,
+          "f1": 0.7088915956151035
+        },
+        "added_relations": {
+          "total": 35,
+          "tp": 18,
+          "fp": 17,
+          "fn_reduced": 18,
+          "fp_concept_in_other_supplied_patient": 2,
+          "fp_concept_in_no_supplied_patient": 15
+        },
+        "raw_unscored": true,
+        "new_training": false,
+        "note": "原生公开候选并集减去所有466旧候选概念，42提示/276新CID全部生成后用既定.3实体按文献支持；保留1004实体及333旧关系，35新增为18TP/17FP。只评支持过滤后唯一新臂，原始145关联未在原dev评分。文献支持不证明患者归属；仍低于.8，未验收合并或官方提交。"
       }
     },
     "highest_verified": {
-      "Score": 0.7287945948814191,
-      "entry_id": "public-selector-full64-originaldev-preserved-SFT-terminal",
+      "Score": 0.7365265550338013,
+      "entry_id": "public-relation-dev-support-review",
+      "review_sha256": "245c1f0049ca6d7e53ed4644100a379e3e258444abc466949dfe0df4e922a489",
       "scope": "cross_route_combination_originaldev16_development",
       "acceptance_threshold": 0.8,
       "acceptance_threshold_met": false
@@ -11589,6 +11953,14 @@
         "path": "validation/index-next-20261023-2140/prior-current-verified-original-dev.json",
         "sha256": "b0b28684109f4655fb7e84488c088bdea7a865751096c02a9588d43f1588d314",
         "bytes": 2078
+      }
+    },
+    "prior_105_state_snapshot": {
+      "base_index_sha256": "4199e8e69416080c1cc053fb1855973e04e0834e44fc9edc949270f663be13d5",
+      "snapshot": {
+        "path": "validation/index-next-20261023-2205/prior-current-verified-original-dev.json",
+        "sha256": "19e69f693b0a7879bb29b80961d0606e81fd04401b13925c7eecc1a3d43aaf0e",
+        "bytes": 3466
       }
     }
   },

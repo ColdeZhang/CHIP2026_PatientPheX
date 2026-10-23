@@ -95,3 +95,10 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 公开Pheno的其他head只读可行性（21:10 UTC）：Bioformer-8L是原cased-v1.0的官方改名，配置推算含同17,266类head约51,380,594参数，公开h5为205,710,168字节；BioBERT约121,587,826参数、486,624,416字节。均尚未下载权重/载入/测质量，不把文件小等同吞吐或互补收益。BioBERT配置和vocab已从魔搭固定revision下载，与原HF版本逐字节相同；Bioformer准确魔搭路径404，固定HF配置/卡可用。上游即使设置cased tokenizer，load_data仍逐word.lower()，应保持真实预训练表示；候选词串可重用，跨模型forward不可重用。先结案当前PubMedBERT跨折与选择器控制，再决定是否做较轻Bioformer的互补来源实验；完整静态报告及快照在外部 `research/public-phenotagger-other-heads/`，report SHA `d0d09fbe…`。
 
 Bioformer原生CPU随后已实测通过：固定公开h5全SHA，137变量逐一NaN覆盖后原生严格恢复并与H5数组完全相同，实际51,380,594参数/17,266原列序；四合成词接口无任务质量含义。原生阶段9.323秒不含导入，合成forward0.380秒。root增量源码/实际证据复核 `c481da2a…`，沿用既有TF环境和HPO映射；计划在原dev的PubMedBERT缓存完成后，再做独立train64无标签Bioformer候选缓存，不把静态可用性当互补收益。
+
+
+## 公开模型库存与重复控制检查（22:05 UTC）
+
+已核实际源码：此前上下文CE确实使用 `span text | HPO name` 与±180字符上下文，BiomedBERT全量微调；严格OOF CE入树也已经实测 .714808→.701372。它与患者身份CE不同，不再将相同机制列为未尝试方案。新增HPO定义/同跨度候选竞争尚未检验，当前优先完成已有top3低成本控制；NIL标签语义仅为待核边界，未认定bug或解释负结果。实际源码、recipe和旧成本复核见外部 `research/span-context-ce-recheck/review.md`（SHA `47da4575…`）。
+
+准确ModelScope路径无可核模型后，限时核查了官方源：[PhenoBERT](https://github.com/EclipseCN/PhenoBERT/tree/195d5df2ad9c6265e1de523f139694c7646eee29)（MIT）提供层级CNN、BioBERT短语对三类匹配等权重入口，机制不同于PhenoTagger平面HPO头；只核了下载查看页，完整bundle和loader仍在准备，不据HTTP200宣称可运行。公开权重训练/选模谱系未闭环，不读取其外部人工语料。[PhenoBCBERT](https://github.com/WGLab/PhenoGPT/blob/b87935751ac51c9e7a15e21f16cd764b0dc68d8a/README.md#regarding-phenobcbert)作者明确不能发布基于CHOP数据微调的成品；普通Bio+ClinicalBERT不能冒充该模型。[PhenoLinker](https://github.com/Mellandd/PhenoLinker/tree/7c523426290c4f284939ff20406f9c878ad20f79)是gene–phenotype图链接，任务不匹配。库存报告 `research/public-phenotype-model-inventory/review.md`（SHA `b4345f94…`）；只对PhenoBERT继续必要文件/兼容性预检，暂无新weights/GPU/质量结果。
