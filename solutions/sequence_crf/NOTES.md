@@ -70,3 +70,7 @@ large-v2（9d0533ed）与medium-v2均明确NuNER/C4自动标注来源，许可Ap
 原论文§2.2式3明确sum BCE。gliner0.2.22 `TrainingArguments` 和 `SpanModel.loss` 上层默认alpha=-1、gamma=0、negative=1、sum，覆盖底层 `focal_loss_with_logits` 自身的.25/2；不要据函数名或独立helper默认断言本路线遗漏原版focal。正确意图为Σvalid[-y logσ(z)-(1-y)log(1-σ(z))]。我们显式BCE除以Nvalid，且用稳定BCEWithLogits绕过H30错位；上游sum和其包含masked/padding分母的mean尺度都不同。缩放会影响梯度裁剪/Adam数值与不同batch权重，不能说整套原版训练等价复现。
 
 train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe仅159正/48个首正窗R.97484，online全训练3558正R.84907（过程模型而非冻结终点）。按已有probabilitysum算原始BCE标量logit梯度绝对量Σpos(1-p)=630.527、Σneg p=626.815，近1:1；此非参数梯度或按batchmean加权梯度，仍足以说明不能从数量比例直接推出负梯度压倒。没有支持“正例塌缩”的现成证据，也没有跑过GLiNER focal对照。root明确本轮不启动focal，gamma2只是可选新假设，不进入当前计划；所有来源/训练统计见gliner-loss-research.json。
+
+## GLiNER-BioMed 接口候选（2026-10-23，仅下载/CPU预检授权）
+
+固定 `Ihor/gliner-biomed-large-v1.0@f7977121` 公开权重1.912GB，来源独审未发现其为benchmark few-shot成品，仍保留teacher四示范来源未披露边界。它是1024维head/24层DeBERTa，已有完整 `encoder_config` 和保存的128003词表（ENT128001/SEP128002），不能原样使用旧legacy loader：重复传encoder_config会报错，无条件添加FLERT会改变词表和类token索引。独立CPU入口保留新格式配置，strictload且weights_only；原large训练入口不动。SPM官方SHA与现有模型一致，可核验复用；新增tokenizer JSON/映射按准确revision保存。max_len2048不意味着本次扩大输入，仍只验既有384预算窗口；训练数据、当前BCE和在跑参数都不变。来源/限制/预算见[预检计划](evidence/round2/gliner-biomed-interface-plan.json)，尚无新GPU或泛化分数。

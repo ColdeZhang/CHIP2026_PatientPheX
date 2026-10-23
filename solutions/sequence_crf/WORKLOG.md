@@ -22,6 +22,8 @@
 
 9. **large-v2来源/资源预检完成**：公开NuNER声明、固定9d0533ed，实际459,495,168参数，bin1.838GB完整SHA36bb0313通过；ModelScope无可核镜像后HF固定回退。上游head/负例比例/warmup也变，明确checkpoint替换而非纯容量因果。实际CPU strictload+1744窗全部collate29.07秒通过；最长同4×384单步1.307673秒/峰10.603GB，loss.013087/grad7.69454，原clip1，无保存权重/状态。GPU0于18:31:30Z核空交本体，随后重新获配。根已授权一次fresh train48固定10ep/4360步、75分钟训练cap，ontology完成8阶段后已交卡，18:43:45Z fresh核空正式启动proc_b554a946-3034-416e-94b7-bc12084e6b44；首步比值非可靠吞吐，不改参数/阈值、不碰原dev，唯一终点固定Sap/rules比较medium48。完整命令/source/下载/CPU/smoke/释放恢复入口见[结果](evidence/round2/gliner-large-smoke-results.json)，外存gliner-large-v2/；独立来源/strictload/最长四行/显存成本轻审PASS 7a455d0b。[正式计划](evidence/round2/gliner-large-formal-plan.json)，2026-10-23 18:52:20Z恢复只读确认原作业仍运行：epoch2/10、872/4360步，累计449.73秒，固定训练探针P=.8311/R=.7736，峰13.33GiB；环境中断没有重启远端任务。预计19:22左右终点，训练硬cap为19:59:30.701Z；暂无新验证分数。恢复外存gliner-large-v2/formal-job.json、check_formal_progress.py及远端formal.state.json；训练75mincap另于train实际开始计算，两推断各300s。
 
+10. **GLiNER-BioMed 仅CPU准备**：root授权固定f7977121权重/匹配tokenizer下载（≤4GB、20分钟cap）及strictload+1744窗collator预检；新格式loader与旧legacy分离，当前large任务优先，不启动新GPU/训练。见[计划](evidence/round2/gliner-biomed-interface-plan.json)，外存gliner-biomed/。
+
 ## 已完成的近期结论
 
 - 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。
