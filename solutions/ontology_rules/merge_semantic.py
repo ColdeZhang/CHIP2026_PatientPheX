@@ -21,7 +21,7 @@ def assign(doc,entities):
     return [{'patient_id':p['patient_id'],'phenotype':sorted(associations[p['patient_id']])} for p in doc.get('patient',[])]
 
 
-def merge(doc,base,candidates,prob=.8,similarity=.87,policy='augment'):
+def merge(doc,base,candidates,prob=.8,similarity=.87,policy='augment',relation_candidates='entities',relation_prob=.8,relation_similarity=.95):
     accepted=[]
     for c in candidates:
         if c['exact'] and policy=='augment':continue
@@ -36,19 +36,31 @@ def merge(doc,base,candidates,prob=.8,similarity=.87,policy='augment'):
         if any(a<e['offset']+e['length'] and e['offset']<b for e in result):continue
         result.append({k:c[k] for k in ['identifier','offset','length','text']}|{'type':'Phenotype','note':None})
     result.sort(key=lambda e:(e['offset'],e['length'],e['identifier']))
-    return {'pmc_id':doc['pmc_id'],'pmid':doc.get('pmid'),'entities':result,'association':assign(doc,result)}
+    relation_entities=list(result)
+    if relation_candidates=='all':
+        known={(e['offset'],e['length'],e['identifier']) for e in relation_entities}
+        for c in candidates:
+            if c['probability']<relation_prob or c['similarity']<relation_similarity:continue
+            k=(c['offset'],c['length'],c['identifier'])
+            if k in known:continue
+            _,p,a,b=enhance.location(doc,c['offset'],c['offset']+c['length'])
+            if baseline.is_negated(p['text'],a,b):continue
+            relation_entities.append({k:c[k] for k in ['identifier','offset','length','text']}|{'type':'Phenotype','note':None})
+            known.add(k)
+    return {'pmc_id':doc['pmc_id'],'pmid':doc.get('pmid'),'entities':result,'association':assign(doc,relation_entities)}
 
 
 def main():
     ap=argparse.ArgumentParser()
     for k in ['input','base','candidates','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--probability',type=float,default=.8);ap.add_argument('--similarity',type=float,default=.87);ap.add_argument('--policy',choices=['augment','replace'],default='augment')
+    ap.add_argument('--relation-candidates',choices=['entities','all'],default='entities');ap.add_argument('--relation-probability',type=float,default=.8);ap.add_argument('--relation-similarity',type=float,default=.95)
     args=ap.parse_args();inputs=baseline.read_jsonl(args.input);bases={d['pmc_id']:d for d in baseline.read_jsonl(args.base)}
     assert all('entities' not in x and 'association' not in x for x in inputs)
     with gzip.open(args.candidates,'rt') as f:cs={d['pmc_id']:d['candidates'] for d in map(json.loads,f)}
     assert {d['pmc_id'] for d in inputs}==set(bases)==set(cs)
     output=Path(args.output);output.parent.mkdir(parents=True,exist_ok=True)
-    preds=[merge(d,bases[d['pmc_id']],cs[d['pmc_id']],args.probability,args.similarity,args.policy) for d in inputs]
+    preds=[merge(d,bases[d['pmc_id']],cs[d['pmc_id']],args.probability,args.similarity,args.policy,args.relation_candidates,args.relation_probability,args.relation_similarity) for d in inputs]
     output.write_text(''.join(json.dumps(d,ensure_ascii=False)+'\n' for d in preds))
     manifest={'config':vars(args),'source_sha256':baseline.sha256(__file__),'enhance_source_sha256':baseline.sha256(enhance.__file__),'baseline_source_sha256':baseline.sha256(baseline.__file__),'inputs':{k:baseline.sha256(getattr(args,k)) for k in ['input','base','candidates']},'output':{'path':str(output),'bytes':output.stat().st_size,'sha256':baseline.sha256(output)}}
     output.with_suffix('.manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
