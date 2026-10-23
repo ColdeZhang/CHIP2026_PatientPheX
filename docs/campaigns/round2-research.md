@@ -102,3 +102,10 @@ Bioformer原生CPU随后已实测通过：固定公开h5全SHA，137变量逐一
 已核实际源码：此前上下文CE确实使用 `span text | HPO name` 与±180字符上下文，BiomedBERT全量微调；严格OOF CE入树也已经实测 .714808→.701372。它与患者身份CE不同，不再将相同机制列为未尝试方案。新增HPO定义/同跨度候选竞争尚未检验，当前优先完成已有top3低成本控制；NIL标签语义仅为待核边界，未认定bug或解释负结果。实际源码、recipe和旧成本复核见外部 `research/span-context-ce-recheck/review.md`（SHA `47da4575…`）。
 
 准确ModelScope路径无可核模型后，限时核查了官方源：[PhenoBERT](https://github.com/EclipseCN/PhenoBERT/tree/195d5df2ad9c6265e1de523f139694c7646eee29)（MIT）提供层级CNN、BioBERT短语对三类匹配等权重入口，机制不同于PhenoTagger平面HPO头；只核了下载查看页，完整bundle和loader仍在准备，不据HTTP200宣称可运行。公开权重训练/选模谱系未闭环，不读取其外部人工语料。[PhenoBCBERT](https://github.com/WGLab/PhenoGPT/blob/b87935751ac51c9e7a15e21f16cd764b0dc68d8a/README.md#regarding-phenobcbert)作者明确不能发布基于CHOP数据微调的成品；普通Bio+ClinicalBERT不能冒充该模型。[PhenoLinker](https://github.com/Mellandd/PhenoLinker/tree/7c523426290c4f284939ff20406f9c878ad20f79)是gene–phenotype图链接，任务不匹配。库存报告 `research/public-phenotype-model-inventory/review.md`（SHA `b4345f94…`）；只对PhenoBERT继续必要文件/兼容性预检，暂无新weights/GPU/质量结果。
+
+
+## PhenoBERT公开pair组件原生可用性（22:26 UTC）
+
+完整系统需约2.424GB并依赖Stanza；本次只取官方434,159,420字节pair checkpoint，不取CNN/fastText/Stanza或第二份BioBERT基座。固定官方源码87文件、完整本地/服务器权重SHA `353fc588…`一致，原生fastNLP未改；实际201张量/108,312,579参数由独立同config模块NaN填充后strict完整恢复，12.377秒CPU，无CUDA初始化。5个合成词对及2×12短pair输出有限，独审 `5a8a7185…` 通过；原Torch版本的5条SourceChangeWarning和成品选模谱系不确定性保留，不能称旧环境逐bit复现或比赛质量提升。
+
+三列原序为Not Match/Related/Match，Related的上游构造是query→祖先方向，不能当对称相似度。下一控制只对当前冻结top3候选的原文短语与指定HPO preferred name编码，保留旧键/特征，与Sap余弦及赛事微调CE分别比较；先核真实pair规模和GPU短吞吐，不根据合成结果扩成质量结论。来源与完成索引见[清单](round2-research-sources.json)。
