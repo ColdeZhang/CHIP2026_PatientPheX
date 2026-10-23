@@ -1,0 +1,122 @@
+{
+  "experiment_id": "P-20261023-PUBLIC-PHENO-LOWER-GATE",
+  "status": "completed_CPU_candidate_feasibility_only_no_quality",
+  "source_sha256": "6d6b1397c63f8a88a31eaccbd507a80ccc82529e74f2f9343a5a1abe4aaa38e5",
+  "plan_sha256": "1b8ab8ffe47112ec35562954e477dbb96ca4723f98060292c8ede8a1af1511b9",
+  "source_checkpoint": "709e750dff825c8d6960a2146fd170690a12f7ae",
+  "data_scope": "Fixed train64 label-free input ee252384; no originaldev inputs or gold, no model forward/weights/TF/torch. Separate dev cache archive has no role in this census.",
+  "native_score_semantics": "Original top1 of native top3; float32 probability string rounded to five decimals then strict > threshold. This is neural class mass, not calibrated extraction precision.",
+  "actual": {
+    "documents": 64,
+    "passages": 2301,
+    "raw_candidates": 296984,
+    "dictionary_candidates": 4130,
+    "thresholds": [
+      0.95,
+      0.5
+    ],
+    "old095": {
+      "raw_neural_accepted": 6124,
+      "raw_neural_accepted_current_valid": 6124,
+      "hybrid_before_abbreviation": 5973,
+      "hybrid_after_abbreviation": 6065,
+      "canonical_rows": 6064,
+      "invalid_current_branch_dropped": 1,
+      "canonical_unique_keys": 6064
+    },
+    "new05": {
+      "raw_neural_accepted": 10047,
+      "raw_neural_accepted_current_valid": 10047,
+      "hybrid_before_abbreviation": 8076,
+      "hybrid_after_abbreviation": 8219,
+      "canonical_rows": 8218,
+      "invalid_current_branch_dropped": 1,
+      "canonical_unique_keys": 8218
+    },
+    "canonical_set_change": {
+      "retained": 6061,
+      "added": 2157,
+      "dropped": 3
+    },
+    "canonical_count_ratio": 1.3552110817941954,
+    "preparation_seconds": 27.135677378624678,
+    "old_decode_seconds": 1.060026541352272,
+    "new_decode_seconds": 1.174063790589571,
+    "program_seconds": 29.537998508661985,
+    "wrapper_seconds": 34.58944582939148,
+    "peak_RSS_KiB": 744380,
+    "returncode": 0,
+    "started_at": "2026-10-23T21:25:39.693589+00:00",
+    "finished_at": "2026-10-23T21:26:14.283326+00:00"
+  },
+  "verified_contracts": [
+    "Every cached raw candidate word-index/char/global offset agrees with original tokenizer/restore on all 296984 candidates",
+    "All 4130 original dictionary results equal",
+    "Complete64 .95 canonical is byteexact before .5 is decoded; all original provenance objects equal (file order differs)",
+    "Only predefined top1 threshold changes; original combine/dict/abbr/current-HPO policies unchanged",
+    "No NN/GPU/weight/framework import; CPU hardcap180+TERM10; actual stderr empty"
+  ],
+  "interpretation": "Existing complete raw is sufficient for exact replay and one predefined wider candidate pool. Actual hybrid is nonmonotone:6061 retained,2157 added,3 dropped; do not silently union. Candidate count/CPU cost supports a bounded selector experiment, not a claim of accuracy gain.",
+  "next_boundary": "CPU feasibility completed before any new quality. Root subsequently authorized a separate explicit old.95 union new.5 candidate/source control, fixed four strict OOF fits and common prediction freeze before one evaluation; recorded in its own next experiment.",
+  "external_evidence": {
+    "summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/terminal/output/summary.json",
+      "sha256": "e3c570fc62c5d6e5ce08ab6841bb7e73beaebdb55cd9474189f837821417f51b",
+      "bytes": 17506
+    },
+    "run_state": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/terminal/run-state.json",
+      "sha256": "1d966325551e6b9448824041d50c6c98283198e4e5faba57f2bebb0d1c8ae546",
+      "bytes": 1165
+    },
+    "original095_replay": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/terminal/output/original-095-replay.json",
+      "sha256": "1a12bcf74a5b031ede05db7575490b6dbf7fa745efe7c85cd03842813bb6173f",
+      "bytes": 4461
+    },
+    "remote_files": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/terminal/remote-files.json",
+      "sha256": "199dbe1afeb4515347abe578cc1590c56740799e047f4d9b71a06084740602b2",
+      "bytes": 1906
+    },
+    "job": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/job.json",
+      "sha256": "c355954a32710deb3e3ad864258b55565c71bf6804adcc5b7ebbec5d63cb6206",
+      "bytes": 1169
+    },
+    "selector_interface": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/selector-interface-review.json",
+      "sha256": "d9b5307386b48db0113cdbef2a049ab36053b02d558d278a88c626d8589e9b33",
+      "bytes": 4104
+    },
+    "nltk_extracted_byteproof": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/nltk-extracted-byteproof.json",
+      "sha256": "75af1d78967531956bba6ac892d05a4710ae1997547034319f998b95e0473fbb",
+      "bytes": 9230
+    },
+    "first_failure": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/attempt1-resource-path/run-state.json",
+      "sha256": "68986ec2d6fbea28dbe9f72576fa43a0d76d7cc07228ff3d04000b9080943a59",
+      "bytes": 1100
+    },
+    "first_stderr": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/attempt1-resource-path/stderr.txt",
+      "sha256": "f7ce0809f8e1c6d34c5ff5484aa294796de660f085f4c08bf19a213d3a171a9c",
+      "bytes": 898
+    }
+  },
+  "large_artifacts": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-lower-gate-attempt2",
+    "policy": "All candidate/provenance files remain external; terminal/remote-files.json records actual hashes and bytes. Reconstruct with frozen CPU entry/plan/resources; no neural replay required.",
+    "new_canonical_sha256": "bbaf30807e4aeb982bf1d40bae899395bbc72f7f1bc812314be6522ed84a66a5",
+    "new_provenance_sha256": "36e4eca71e453e393a9ce82cc4d3b7eb979b0eb90ad008163025e8492342e1ec"
+  },
+  "implementation_failure": "First attempt failed at resource path precheck after0.165s: remote had extracted NLTK files, not ZIPs. Exact21 extracted members were verified against pinned local ZIP bytes; only resource binding/output dir changed, source/method unchanged. Failure retained, no candidate processing/quality before repair.",
+  "incremental_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-lower-gate/incremental-review.json",
+    "sha256": "14099d49cf54d056bb9a5dbfbfd5ed318e13130da5437eff1e3108cb7eead5f5",
+    "bytes": 5804,
+    "status": "PASS; static and small actual-evidence increment, no duplicate decoding/gold"
+  }
+}
