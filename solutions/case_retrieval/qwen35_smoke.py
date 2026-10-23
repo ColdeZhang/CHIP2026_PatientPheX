@@ -44,10 +44,17 @@ def json_sha(value):
                                     separators=(',', ':')).encode()).hexdigest()
 
 
+def json_default(value):
+    # Transformers 5 loading-info uses sets for parameter-name collections.
+    if isinstance(value, (set, frozenset)):
+        return sorted(value, key=repr)
+    raise TypeError('Unsupported evidence value type: '+type(value).__name__)
+
+
 def write(path, value):
     path = Path(path)
     temporary = path.with_name(path.name+'.tmp')
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n')
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, default=json_default)+'\n')
     temporary.replace(path)
 
 

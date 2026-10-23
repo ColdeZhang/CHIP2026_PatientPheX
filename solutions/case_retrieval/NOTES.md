@@ -31,3 +31,8 @@ ModelScope对小文件完整Range可能返回200而非206；仅当请求严格�
 Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于固定HF commit，但LICENSE内容不同；保存HF原版并明确传输来源，不能声称两个仓库完全一致。模型合计9.653B仍须另计LoRA参数；新DeltaNet投影不能盲用旧Qwen3七target列表。
 
 新A100服务器系统glibc2.17；同机某Python里torch2.5.1cu121导入会通过libcurand触发缺GLIBC2.27，而另一个torch2.6.0cu124 CPU导入成功。因此必须验证实际解释器/动态依赖链，不能按“版本更旧”推断兼容。只读复用成功环境、私有target更新必要包，不修改系统glibc或共享环境。CPU import通过仍不等于GPU/长上下文通过。
+
+
+### Transformers 5 的加载报告类型
+
+实际Qwen3.5加载报告中的missing/unexpected键集合使用set，直接json.dumps会在已加载权重后报错，尚未进入模型forward。证据编码器只将set/frozenset按repr排序成数组，保留成员与错误断言，不用str()吞未知类型；记录原失败，新输出目录重试。不能因保存报告失败就把模型接口判负，也不能因此跳过missing/mismatch/参数计数核验。来源见E-008及qwen35-loading-info-fix.json。

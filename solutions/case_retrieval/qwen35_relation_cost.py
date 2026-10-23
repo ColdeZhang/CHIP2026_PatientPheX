@@ -25,7 +25,7 @@ import time
 import qwen35_smoke as helpers
 from qwen35_smoke import sha, json_sha, write, training_rows, encode, model_fingerprint, tensor_fingerprints
 
-HELPER_SHA = '615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa'
+HELPER_SHA = '9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3'
 TRAIN_SHA = 'eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77'
 EXCLUDED_SHA = 'ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37'
 TARGETS = ['q_proj','k_proj','v_proj','o_proj','in_proj_qkv','in_proj_z','in_proj_b','in_proj_a',

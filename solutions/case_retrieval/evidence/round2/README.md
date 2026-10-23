@@ -37,3 +37,5 @@
 - `qwen35-full-context-feasibility.json`：全文固定CID/目标患者的纯CPU预算和来源；明确2训练样本超过12288、表示变化/命名空间，未新训或提分。
 
 - `qwen35-smoke-start.json`：A800完整迁移/关闭临时服务后，fresh空闲卡上启动冻结短接口测试的实际job与env；非完成或提分证据。
+
+- `qwen35-loading-info-fix.json`：实际TF5 loading-info set序列化故障的最小修复/源码指纹；v1未到forward，新v2同设置重试，不能当质量负。

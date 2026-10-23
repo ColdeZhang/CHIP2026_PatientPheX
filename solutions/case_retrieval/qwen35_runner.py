@@ -25,10 +25,17 @@ def digest(path):
     return h.hexdigest()
 
 
+def json_default(value):
+    # Preserve actual TF5 loading-info keys while serializing sets deterministically.
+    if isinstance(value, (set, frozenset)):
+        return sorted(value, key=repr)
+    raise TypeError("Unsupported evidence value type: " + type(value).__name__)
+
+
 def atomic_json(path, value):
     path = Path(path)
     tmp = path.with_name(path.name + ".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2, default=json_default) + "\n")
     tmp.replace(path)
 
 
@@ -153,7 +160,7 @@ def main():
         local_files_only=True, output_loading_info=True)
     atomic_json(output.with_suffix(".loading.json"), loading)
     if loading.get("missing_keys") or loading.get("mismatched_keys") or loading.get("error_msgs"):
-        raise RuntimeError("Incomplete text-weight loading: " + json.dumps(loading))
+        raise RuntimeError("Incomplete text-weight loading: " + json.dumps(loading, default=json_default))
     if any(not key.startswith(("mtp.", "model.mtp.", "model.visual.", "visual."))
            for key in loading.get("unexpected_keys", [])):
         raise RuntimeError("Unexpected non-vision/non-MTP checkpoint weights")

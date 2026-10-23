@@ -5,6 +5,7 @@ import tempfile
 import unittest
 
 import qwen35_runner as runner
+import qwen35_smoke as smoke
 
 
 class RecoveryChecks(unittest.TestCase):
@@ -17,6 +18,20 @@ class RecoveryChecks(unittest.TestCase):
         self.checkpoint.write_text(json.dumps(self.fingerprint))
         self.rows = [{"row_id": "paper:window:1", "pmc_id": "paper"}]
         self.record = {**self.rows[0], "response": "{}"}
+
+    def test_transformers_loading_sets_are_preserved_without_string_fallback(self):
+        loading = {"missing_keys": set(), "unexpected_keys": {"visual.z", "mtp.a"},
+                   "mismatched_keys": {("layer.x", (2, 3), (3, 2))}, "error_msgs": []}
+        for writer in (runner.atomic_json, smoke.write):
+            writer(self.checkpoint, loading)
+            actual = json.loads(self.checkpoint.read_text())
+            self.assertEqual(actual["missing_keys"], [])
+            self.assertEqual(actual["unexpected_keys"], ["mtp.a", "visual.z"])
+            self.assertEqual(actual["mismatched_keys"], [["layer.x", [2, 3], [3, 2]]])
+            preserved = self.checkpoint.read_bytes()
+            with self.assertRaises(TypeError):
+                writer(self.checkpoint, {"unsupported": object()})
+            self.assertEqual(self.checkpoint.read_bytes(), preserved)
 
     def test_partial_completion_resumes_known_row(self):
         self.output.write_text(json.dumps(self.record) + "\n")
