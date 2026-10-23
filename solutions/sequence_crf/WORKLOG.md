@@ -11,7 +11,7 @@
 ## 正在执行与恢复入口
 
 1. **共指 CPU 已完成**：fold0 72窗全部回收，严格定位后新增18mentions；原规则/旧alias/offset-only三路预测与原baseline逐字节相同，Score仍.711353522。GPU1已复查释放，无待恢复的旧共指作业。见 [运行与结果索引](evidence/round2/coreference-fold0.json)。
-2. **正在等待 SFT 配对**：58提示已冻结并上传A800，29条messages变化，候选/患者映射不变；仅改mentions、不重训、不改实体。恢复外存 `coreference-fold0/sft-queued-job.json`（状态尚未启动），实际作业开始后另存 `sft-job.json`。
+2. **正在等待 SFT 配对**：58提示已冻结，其中完整row相同29条复用原raw响应，changed29已上传A800；候选/患者映射不变，仅改mentions、不重训、不改实体。复用前核验实际模型/adapter/源码/decoder/runtime；逐行来源见外存stage2-reuse/。恢复外存 `coreference-fold0/sft-queued-job.json`（状态尚未启动），实际作业开始后另存 `sft-job.json`。
 3. **资源/后续**：A800 GPU2优先检索集合SFT，等待其明确释放再查进程后运行；完成即交回其配对推理。独立共指控制审查正在进行。当前不启动新共指协议、不按gold修新增mentions。
 
 ## 已完成的近期结论

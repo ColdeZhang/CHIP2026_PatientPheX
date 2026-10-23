@@ -21,7 +21,7 @@
     "started_at": "2026-10-23T14:32:36.080496221Z",
     "full_manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-fold0/job.json"
   },
-  "status": "stage1 and CPU rules complete; same adapter SFT58 queued, not started",
+  "status": "stage1 and CPU rules complete; changed29 SFT queued, identical29 raw responses cached, not started",
   "grounding": {
     "configuration": {
       "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
@@ -147,5 +147,13 @@
   },
   "stage2_queued_job": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-fold0/sft-queued-job.json",
   "gpu1_released": true,
-  "independent_review": "pending, input-only grounding and CPU controls assigned to validation"
+  "independent_review": "input-only mechanical checks PASS; semantic LLM review 17 supported/1 unresolved input-identity conflict; no filtering; CPU replay report pending",
+  "stage2_cache": {
+    "changed": 29,
+    "cached_identical": 29,
+    "manifest": "/workspace/patientphex-runs/round2-20261023/sequence_crf/coreference-fold0/stage2-reuse/reuse.manifest.json",
+    "source_sha256": "c85af223458e3b76db3fee3abbbd8f77be3a20f056f0469a5b5c88b4f36b78c2",
+    "changed_prompt_sha256": "1917c0bb6dbca1aa80b813a4e0dfa8061114787b7505209e80777bf09b6516d2",
+    "runtime_check": "actual base and adapter files, source, precision, decoder, torch/transformers/GPU; per-row provenance on merge"
+  }
 }

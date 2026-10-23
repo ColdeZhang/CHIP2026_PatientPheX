@@ -15,6 +15,7 @@ import table_relations
 import prepare_relation_sft
 import merge_coreference
 import apply_coreference_relations
+import reuse_relation_responses
 import copy
 import xml.etree.ElementTree as ET
 import json
@@ -23,6 +24,19 @@ import io
 from unittest.mock import patch
 
 class Round2Tests(unittest.TestCase):
+    def test_cached_responses_require_same_weights_and_decoder(self):
+        config={'model':'/m','adapter':'epoch/adapter','max_input_tokens':14000,
+                'max_new_tokens':1600,'batch_size':1,'model_revision':'rev'}
+        fp={'configuration':config,'code_sha256':'code','model_config_sha256':'config',
+            'adapter_files':{'weight':'old'},'base_weight_files':{'weight':'base'},'inference_precision':'bf16'}
+        old={'fingerprint':fp,'torch':'t','transformers':'v','gpu':'A800'}
+        new=copy.deepcopy(old);new['fingerprint']['configuration']['adapter']='/work/epoch/adapter'
+        reuse_relation_responses.check_runtime(old,new,'/work')
+        new['fingerprint']['configuration']['max_new_tokens']=1800
+        with self.assertRaises(AssertionError):reuse_relation_responses.check_runtime(old,new,'/work')
+        new['fingerprint']['configuration']['max_new_tokens']=1600
+        new['fingerprint']['adapter_files']['weight']='different'
+        with self.assertRaises(AssertionError):reuse_relation_responses.check_runtime(old,new,'/work')
     def test_coreference_grounding_rejects_internal_word_and_ambiguous_context(self):
         text='The mother met him yesterday, but he left quietly.'
         prompt={'text':text,'segments':[{'text':text,'offset':100}]}
