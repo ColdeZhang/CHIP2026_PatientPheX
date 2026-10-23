@@ -22,3 +22,9 @@
 - `patient-set-paired-control-summary.json`：完整47×2同卡对照与四种raw/grounded负结果；所有失败/空数组保留，实体不变、0错警，未达标。
 - `extraction-fold1-fixed-replication.json`：一次固定跨折复验的7组对照、训练/推断/格式恢复/标准化/Sap来源与全预测SHA；实体增益不稳定，不继续阈值扫描。
 - `qwen35-source-manifest.json`：固定9B基座15文件来源/size/SHA；仅来源已核、下载/环境准备中，不能当模型可用或得分证据。
+
+- `patient-set-exact-id-diagnosis.json`：无验证gold的原文支持quote/唯一exact别名ID一致性诊断；不修复、不重评，未知不判错。
+- `qwen35-runtime.json` / `qwen35-relation-tokenizer-audit.json` / `qwen35-minimal-comparison.md`：CPU可用性、204/58实际新模板预算和有限候选任务提案；尚无新GPU得分。
+
+- `qwen35-interface-preparation.json`：新架构短smoke实现、实际305行CPU mask/选择与9项不变量；GPU步骤明确待验证。
+- `qwen35-runtime-wheel-provenance.json`：私有5个包镜像wheel与官方PyPI SHA一致，不修改共享环境。

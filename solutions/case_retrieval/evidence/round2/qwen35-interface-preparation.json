@@ -1,0 +1,70 @@
+{
+  "created_utc": "2026-10-23T16:11:51.560102+00:00",
+  "scope": "Implementation and CPU audit only; no GPU launched; no git/docs edits",
+  "source_sha256": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+  "final_cpu_audit": {
+    "selected_row_id": "6134758:sft-extract:6",
+    "full_tokens": 366,
+    "prefix_tokens": 350,
+    "supervised_tokens": 16,
+    "mode": "cpu",
+    "elapsed_seconds": 7.027108192443848,
+    "smoke_only": true,
+    "cuda_initialized": false,
+    "source_sha256": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+    "run_manifest_sha256": "c74d2427675a3f1c852bb6ef96313d7d5daf0cc4fbff66406214ecc01ee4648c",
+    "result_type": "cpu_tokenizer_audit"
+  },
+  "cpu_invariant_tests_passed": 9,
+  "eligible_nonempty_le512": 6,
+  "actual_training_rows": 305,
+  "runtime_modeling_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+  "actual_tokenizer_class": "Qwen3_5Tokenizer",
+  "selection_sha256": "2e7eb103996732d8e084455ddf6dc01cf81f538fe82e6e9dcfc4ad4c04bf47a0",
+  "source_paths_sha256": {
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/qwen35_smoke.py": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-audit-v3/complete.json": "f100b923b6f8a18b5d2c1fbca12024040edb906117e0e29f2babfde919fc3a55",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-audit-v3/run-manifest.json": "c74d2427675a3f1c852bb6ef96313d7d5daf0cc4fbff66406214ecc01ee4648c",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-audit-v3/selection.json": "2e7eb103996732d8e084455ddf6dc01cf81f538fe82e6e9dcfc4ad4c04bf47a0",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-audit-v3/token-mask-audit.json": "33344e9a5e7181aba842ec85a8ed4bab091df1b0a555147dae380f635c4aa1b8",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/local-cpu-invariants.json": "9ca8b4e7a67817e8d0a72f3b7218f457430ad9f4c03d5c0da97f73a72c4ffd83",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/check_cpu_invariants.py": "f2e0f3a06bf59edc0af6209c16cd7d3a4cbb3c15159488616b46f88790887cdb",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-plan-v3.json": "45b81c843633ac5f57e28fee94470a9ddfa904682408e1da4800c08bc71e1244",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/smoke-preparation/cpu-execution-v3.json": "e99581fbab13798e2d639ae7edffc554fedc0b68ca14dc3b9b51468583acc2f1"
+  },
+  "gpu_pending_checks": [
+    "Actual complete checkpoint SHA and text-only load, no missing/mismatched text parameters, exact base parameters8953803264",
+    "Actual one BF16 SDPA optimizer step finite loss/gradient, changed LoRA B, no base gradients",
+    "Actual safe adapter save, unload without merge, reload adapter and exact tensor SHA",
+    "Normal max16token greedy generation plus separately forced im_end one-token engine-stop probe"
+  ],
+  "limitations": [
+    "Not formal training or score; cannot infer generalization or long-context costs.",
+    "Adapter reload is tested by parameters; this is not optimizer resume or reloading the complete base.",
+    "Without fla/causal-conv1d optional kernels, actual GPU reference-path speed/memory remains unverified.",
+    "Earlier CPU-v1/v2 remain as historical source snapshots; final accepted CPU-v3 matches current source615fd0c6."
+  ],
+  "gpu_command_not_executed": {
+    "cwd": "case-retrieval/qwen35-preparation",
+    "argv": [
+      "/dataset/miniforge3/envs/vlm-det/bin/python",
+      "-u",
+      "smoke-preparation/qwen35_smoke.snapshot.py",
+      "--mode",
+      "gpu",
+      "--train",
+      "smoke-preparation/train.jsonl",
+      "--excluded-input",
+      "smoke-preparation/excluded.input.jsonl",
+      "--model",
+      "models/Qwen3.5-9B",
+      "--model-source-manifest",
+      "model-source-manifest.json",
+      "--output-dir",
+      "smoke-preparation/gpu-smoke-v1",
+      "--gpu-uuid",
+      "<parent allocated UUID>"
+    ],
+    "environment": "Parent fresh GPU check then CUDA_VISIBLE_DEVICES same UUID, private PYTHONPATH runtime, CPU threads1"
+  }
+}

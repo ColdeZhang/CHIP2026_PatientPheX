@@ -1,0 +1,109 @@
+{
+  "purpose": "Read-only diagnosis of whole-patient free HPO generation; no repair or rescoring",
+  "source_sha256": "6e7273f7d0882cf91165c675b949da9d3489d36d647a8b88bb9508eb6001abfc",
+  "sources": {
+    "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "/workspace/patientphex-data/hp.obo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0/inference/prompts.jsonl": "ab50b859aefb00cf095372794baae3988e114978c64493f6010eab5a327594f8",
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/patient_set.py": "6218d5ce57c68046f1d155032446a7ed28a88acd05344755e9d4f5ebd5f9a543",
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/run.py": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1/diagnostics/diagnose_exact_quote_ids.py": "6e7273f7d0882cf91165c675b949da9d3489d36d647a8b88bb9508eb6001abfc",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1/inference-base/responses.jsonl": "0ba56bc46367ffd8fc5d695267e54ad474293a87bdada4d0388571f48d03ff84",
+    "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1/inference-epoch002/responses.jsonl": "f3ad9c781c55b6f5d260ed17d3c882250626bbdae12e5678e570ad1dc1549345"
+  },
+  "rules": {
+    "quote_support": "Frozen patient_set.literal_positions: exact case-sensitive original segment, whole word boundary. No inference from marker-inserted text.",
+    "dictionary_normalization": "Casefold and collapse consecutive whitespace to one space, strip edges; no stemming, punctuation deletion, fuzzy match, substring alias, or model.",
+    "hpo_dictionary": "Every nonobsolete HPO term name and all synonym scopes (EXACT, RELATED, BROAD, NARROW), including terms outside phenotype branch. Actual generated IDs must pass frozen valid phenotype-branch parser.",
+    "training_dictionary": "Only fold0 train48 non-NO entities with valid canonical HPO/fully legal compound IDs. Compounds contribute every component, making multi-concept aliases ambiguous. NIL/invalid training entities excluded.",
+    "primary_unit": "Every valid, literal-supported item in a valid schema, non-token-limit row; separately deduplicate by row_id/generated ID/normalized quote.",
+    "unique_conflict": "The normalized quote has exactly one dictionary ID different from the generated ID. This is lexical inconsistency, not a gold-labeled proof of semantic or patient-association error.",
+    "strict_secondary": "Recompute uniqueness using only HPO NAME/EXACT and TRAIN entries, since RELATED/BROAD/NARROW are not equivalence assertions.",
+    "limitations": "An exact alias match never verifies patient attribution or negation. Unknown strings may be valid paraphrases/long evidence sentences; no correctness conclusion. No heldout gold read, prediction change, or scoring."
+  },
+  "hpo_version": "hp/releases/2026-06-23",
+  "dictionary": {
+    "keys": 45856,
+    "single_id_keys": 45819,
+    "source_counts": {
+      "hpo_NAME": 19836,
+      "hpo_EXACT": 23634,
+      "hpo_RELATED": 1489,
+      "hpo_BROAD": 561,
+      "hpo_NARROW": 545,
+      "train_alias_entries": 3581,
+      "train_excluded_NO": 122,
+      "train_excluded_NIL_or_invalid": 71
+    }
+  },
+  "groups": {
+    "base": {
+      "counts": {
+        "responses": 47,
+        "valid_schema": 31,
+        "nonempty_valid_response": 31,
+        "parsed_items": 307,
+        "literal_supported_valid_items": 197,
+        "effective_grounded_items": 197,
+        "grounded_HPO": 197,
+        "unsupported_quote": 52,
+        "token_limit": 15,
+        "invalid_json": 16,
+        "invalid_hpo": 58
+      },
+      "all_synonyms_categories": {
+        "unknown": 137,
+        "unique_conflicts_output": 60
+      },
+      "name_exact_train_categories": {
+        "unknown": 137,
+        "unique_conflicts_output": 60
+      },
+      "unique_row_id_quote_items": 193,
+      "unique_all_synonyms_categories": {
+        "unknown": 136,
+        "unique_conflicts_output": 57
+      },
+      "unique_name_exact_train_categories": {
+        "unknown": 136,
+        "unique_conflicts_output": 57
+      },
+      "grounded_item_count_matches_original_merge_audit": true
+    },
+    "epoch002": {
+      "counts": {
+        "responses": 47,
+        "valid_schema": 44,
+        "empty_valid_response": 26,
+        "nonempty_valid_response": 18,
+        "parsed_items": 57,
+        "literal_supported_valid_items": 42,
+        "effective_grounded_items": 42,
+        "grounded_HPO": 42,
+        "invalid_hpo": 13,
+        "unsupported_quote": 2,
+        "token_limit": 3,
+        "invalid_json": 3
+      },
+      "all_synonyms_categories": {
+        "unique_conflicts_output": 14,
+        "unknown": 28
+      },
+      "name_exact_train_categories": {
+        "unique_conflicts_output": 14,
+        "unknown": 28
+      },
+      "unique_row_id_quote_items": 35,
+      "unique_all_synonyms_categories": {
+        "unique_conflicts_output": 14,
+        "unknown": 21
+      },
+      "unique_name_exact_train_categories": {
+        "unique_conflicts_output": 14,
+        "unknown": 21
+      },
+      "grounded_item_count_matches_original_merge_audit": true
+    }
+  }
+}
