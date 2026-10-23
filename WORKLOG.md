@@ -10,7 +10,7 @@
 - **基线**：本体规则本地 .612597 / 官方 .603338；病例检索 .613518 / .599433；CRF .684734 / .590650。其他两条及完整分项见[首日官方分析](docs/campaigns/day1-20261023-official-analysis.md)。
 - **验收**：保留原 train64/dev16、HPO 2026-06-23 和公共 evaluator v2；训练派生资源与 dev 隔离，输出覆盖/坐标/HPO 校验通过。额外 train64 内文献分组验证辅助研究；0.8 是目标，不预先宣称能达到。
 - **资源/恢复**：数据 `/workspace/patientphex-data/`，新产物 `/workspace/patientphex-runs/round2-20261023/`，首日产物原位保留。GPU 通过 `scripts/mcp_client.py` 访问，先核验空闲卡，只使用自有目录/进程。
-- **Git**：已核验 `origin/main@00f7da8`，含五次保留历史的合并及分层记录规则；新分支基点相同。Git401按 H18 有限间隔重试。
+- **Git**：已核验 `origin/main@0bb46be`，含五次保留历史合并、分层记录和共享验证；三新分支从 `00f7da8` 建立且已推送。额外服务器 bundle 包含 `f6ef062` 主分支及三新分支基点，远端 SHA 已验证，见[清单](docs/campaigns/round2-git-backup.json)。Git401按 H18 有限间隔重试。
 - **平台**：五份官方成绩已回收；本轮不操作上传，保留已有用户名账号会话。
 
 ## 任务记录

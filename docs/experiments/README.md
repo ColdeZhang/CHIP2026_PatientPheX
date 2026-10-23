@@ -18,9 +18,9 @@
 
 | 实验 | 方案记录 | 状态 |
 |---|---|---|
-| E-20261023-007 | [本体规则](../../solutions/ontology_rules/experiments/E-20261023-007.md) | 待启动，本地目标 ≥ 0.8 |
-| E-20261023-008 | [病例检索](../../solutions/case_retrieval/experiments/E-20261023-008.md) | 待启动，本地目标 ≥ 0.8 |
-| E-20261023-009 | [CRF](../../solutions/sequence_crf/experiments/E-20261023-009.md) | 待启动，本地目标 ≥ 0.8 |
+| E-20261023-007 | [本体规则](../../solutions/ontology_rules/experiments/E-20261023-007.md) | 进行中，本地目标 ≥ 0.8 |
+| E-20261023-008 | [病例检索](../../solutions/case_retrieval/experiments/E-20261023-008.md) | 进行中，本地目标 ≥ 0.8 |
+| E-20261023-009 | [CRF](../../solutions/sequence_crf/experiments/E-20261023-009.md) | 进行中，本地目标 ≥ 0.8 |
 
 总指挥只维护[协调记录](../campaigns/round2-20261023.md)和根台账；每方案的台账、实验、笔记、证据在其目录维护，避免重复。下一新实验 ID 为 `E-20261023-010`（跨日使用实际日期）。
 
