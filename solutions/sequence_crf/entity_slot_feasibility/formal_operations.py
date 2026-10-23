@@ -35,8 +35,26 @@ def main():
         save('deployment.json',dict(receipts=receipts,actual_cpu=result));print('DEPLOYED')
     elif a.mode.startswith('start-'):
         stage=a.mode.split('-')[1];assert a.checkpoint and len(a.checkpoint)==40 and (b/'deployment.json').exists()
+        # Refuse re-entry before any remote mutation (the final save is too late).
+        assert not (b/(stage+'-job.json')).exists(), 'Existing managed job; inspect it, never launch a duplicate'
         if stage=='infer':
             terminal=json.loads((b/'terminal-train/training_complete.json').read_text());assert terminal['global_step']==160 and terminal['epochs']==2
+            code="""from pathlib import Path
+import json,hashlib
+sha=lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest()
+expected=EXPECTED_SHA
+assert sha('plan.json')==expected
+complete=json.loads(Path('training_complete.json').read_text())
+checkpoint=json.loads(Path('epoch-002/checkpoint.json').read_text())
+manifest=json.loads(Path('run_manifest.json').read_text())
+assert complete['plan_sha256']==checkpoint['plan_sha256']==manifest['plan_sha256']==expected
+assert complete['manifest_sha256']==checkpoint['training_manifest_sha256']==sha('run_manifest.json')
+assert complete['checkpoint_sha256']==sha('epoch-002/checkpoint.json')
+assert not Path('inference').exists()
+print('frozen plan/training/checkpoint closed; inference output absent')
+""".replace('EXPECTED_SHA',repr(hashlib.sha256((b/'plan.json').read_bytes()).hexdigest()))
+            result=call('run_command',dict(command='python3 -c '+shlex.quote(code),cwd=remote,timeout_seconds=15));assert result['exit_code']==0
+            save('infer-dependency-preflight.json',result)
         code="""import json,subprocess,shutil,datetime
 target=GPU_UUID
 g=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,memory.total','--format=csv,noheader,nounits'],text=True)

@@ -90,3 +90,5 @@
 - 2026-10-23 动态微批探针已115.957秒PASS/卡释放：五组真实更新、native双列exact/梯度通过，峰26.786GB；预计更新阶段23.5–23.8分钟但尚无正式训练。入口 evidence/round2/entity-slot-microbatch-probe-results.json，actual独审待回。
 
 - 2026-10-23 根已授权唯一fresh实体槽train32×2：637提示/160calls，2200+30训练cap，base/final同398F1输入固定.5，600+30推断cap；计划 evidence/round2/entity-slot-formal-plan.json，尚未启动时不称完训。
+
+- 实际23:13:53.928Z已fresh启动 `proc_3fc5df9d-531b-4280-9257-4d2f809d196c`，A100GPU2；主cap至23:50:33.928Z+30秒grace。恢复入口外部 `entity-slot-formal32-v1/train-job.json`。本地controller后补重入/未来infer计划闭环，live训练/source/plan不变。
