@@ -1,0 +1,17 @@
+# 公开 BioBERT 第三个来源固定控制
+
+目标是检验独立公开BioBERT表型head是否补充现有PubMed/Bioformer候选与来源信号。先完成全train64无标签缓存，再沿已保留四fold体系做唯一固定控制；名称不同或加载成功都不是收益证据。本次不读原dev，不改变已关闭的unigram/低门槛/top3/Sap/pair配置。
+
+## 缓存：完整完成，无质量
+
+固定原2–8gram生成器、原native五位舍入后top1严格>.95、字典/重叠/缩写和currentHPO映射。244938不同lower词串全部由独立BioBERT H5前向，不借另外两模型logits。原文CPU准备41.094秒：64篇/2301段/205656token坐标、296984候选和4130词典项全部核验。代码与plan在运行前提交10b6187。
+
+A100 GPU2 fresh核空后23:48:23.549Z开跑，首个真实128批的词表28996/CLS101/SEP102/PAD0、32长度及128×17266输出finite/sum1通过；同一次全量继续，无弃置probe。纯NN157.241秒（1557.7词串/秒），native含准备/加载232.331秒<480，来源CPU4.123秒<120；stderr为空，managed已退出，23:52:15.981Z GPU2无PID/0MiB释放。
+
+得到5903canonical键；原文坐标/旧→current合法映射/真实来源flags/64逐文行SHA全部自核。来源为neural3871、dict3949、abbr88，可重叠计数。首批与native完整manifest绑定；没有任务标签或质量评测。一次提前回收在未完成状态门退出，未创建archive、未改活跃源或重启任务，随后原作业完整收尾。完整模型/候选raw保留远端，必要小产物已回收，[源与恢复](../public_phenotagger_biobert_train64_cache/README.md)。CPU权重加载和一次TF环境修复另见[来源准备](P-20261023-PUBLIC-PHENO-BIOBERT.md)。
+
+## 事前固定的唯一质量控制（准备中）
+
+原PubMed/Bioformer候选对象全部旧字段/类型/顺序保留，与本BioBERT native canonical键并集；只增加独立六个来源字段。每fold实际vectorizer维数不同，不强行添加不存在的列。新key按冻结原来源缺失约定，没有伪造Sap或raw后验；旧native hybrid分数明确不是类别概率。沿原四outer train48→16以及各三train32内层来源，不能挪作新实体槽的train32/F1隔离对照。
+
+固定HGB160、cut .3和当前proper-nested解码，比较已保留selector-nested-control pooled Score .727975655663。所有非entities逐对象不变；重新fit可删除/替换旧预测实体，候选保持不等于预测保持。无标签preflight先核≤1.5倍行数与4fit/infer≤120秒预计成本；源/实际计划推送后执行。四个新完整预测共同freeze再唯一v2，主标准为pooled两实体F1均值严格增且至少3/4fold不降。没有cut扫描或额外基底臂，[授权政策](../public_phenotagger_biobert_selector/authorized-proposal.json)。

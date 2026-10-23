@@ -3,7 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
-- **第三head train64缓存（已授权、准备中）**：仅原2–8全64无标签244938新forward，不复用其他模型logits/unigram；固定native处理不变。CPU120／GPU480+TERM30／来源CPU120，A100GPU2须fresh核空，首真实128批检查后继续唯一任务；无质量。[计划与源](public_phenotagger_biobert_train64_cache/README.md)。
+- **第三head缓存完成／固定控制准备**：BioBERT原2–8全64独立244938 forward完成，native232.331秒/来源CPU4.123秒；5903canonical键原文/映射/来源自核PASS，23:52:15.981Z GPU2释放。root已授权旧公开来源家族+6真实BioBERT字段、HGB160/.3+当前nested唯一四fold对照，先核≤1.5×/120秒；尚未新质量，不造每fold固定列数。[完整过程及事前标准](experiments/E-20261023-PUBLIC-PHENO-BIOBERT.md)。
 - **第三公开BioBERT准备（CPU独审PASS，未质量）**：固定486624416B H5/SHA1c4d799c实查、native201变量/121587826参数全部H5数组exact；28996 cased词表仍沿原先小写、17266列/映射保持。下载59.266秒，CPU20.054秒（含漏TF标记首失败总25.430秒<180），4合成接口finite，增量独审f954be78通过，准备阶段未GPU/任务缓存/质量。预计原2–8全64需244938独立前向，类比同架构GPU约272秒含余量，非实测或收益。[来源与恢复](experiments/P-20261023-PUBLIC-PHENO-BIOBERT.md)。
 - **单词直接追加（四fold负结案，质量独审PASS）**：Bioformer完整13145词CPU239.276秒；固定原top1 native5dp>.95/current映射2516坐标经原否定/非交叠追加391实体，仅17TP/374FP，doc+23TP/142FP。保留nested基底4510旧实体及全部非entities，Score **.727975656→.716642231（−.011333424）**，四fold实体目标全负、关系不变、0错警；唯一端点0.868秒，质量379f2c4b及完整缓存751a5262独审通过。按预定关闭，不换cut/基底/加HGB/原dev，完整缓存仅供复现。[完整结案](experiments/E-20261023-PUBLIC-PHENO-UNIGRAM.md)。
 - **关系两特征校准（微正结案，完整独审PASS）**：F1-only固定LR两特征，F0唯一expected-F1 **.695443948→.696545689（+.001101741）**；micro与226TP50FP153FN全同、macro+.004406964，预定保留true但仍低rules .711353522。独审0b44186b复现模型/1166p/全部k/预测/v2；保留可组合候选，关闭当前试验不自动full64/dev。诊断与固定结果见[完整记录](experiments/E-20261023-BINARY-SFT-CALIBRATION.md)。
@@ -38,6 +38,6 @@
 - **审计**：3542ec3 的 fold0 多来源/置信度三控制独立重放全部字节一致；3个train32真实模型导分、outer0导分、3455候选独立BIO/TFIDF复算通过。见外部 validation/calibrate-multi-review.json，SHA77da3227…。
 - **资源/恢复**：context全部GPU结束，20:55:27Z fresh核.3GPU0（UUID07726469…）无PID/free24160MiB并释放；最终模型/恢复状态实际保留，作业/恢复见[evidence](evidence/round2/ner-context-control-job.json)；NER全阶段结束，19:29:12Z fresh核.100GPU1空/free24164MiB并明确交retrieval。CE proc_215c275d已退出，.3GPU0 fresh核空后明确交sequence（其large48已接卡）。ce-oof-control/已回收51份源池/训练/分数SHA，三模型权重只保留远端同目录；progress/complete/collection与双freeze可恢复。MIL/A800之前已归还，父模型和全部负结果保持原位。
 - **恢复入口**：NER增强真实终点与恢复见 `ontology_rules/ner-augmentation-control/results.json` 和本路线结果证据；旧树外部 `/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer{1,2,3}/evaluate_controls.py` 与各 controls-results.json；全量预测/模型/日志不入Git。小证据见[evidence索引](evidence/round2/README.md)，研究与踩坑见[NOTES](NOTES.md)。
-- **最近已核验远端**：ee008b3（全量unigram缓存绑定及唯一四fold质量计划，23:34Z核验）。当前CPU作业全部结束；检索F0 GPU23:15:25Z已释放，无原dev或官方操作。
+- **最近已核验远端**：10b6187（BioBERT唯一全缓存原source/plan及启动器，23:48Z前核验）。本路线GPU任务全部结束；当前新selector仅CPU准备，无原dev或官方操作。
 
 来源澄清：冻结首轮Sap候选生成器为016bb77/0084d33的 gpu_candidates.py（SHA dc5cc0…）；0673f85是后续装配证据检查点。原LR没有序列化；检索路线已按同数据/顺序/源码做明确标记的CPU精确重建；原14,480池p完全相同、阈值与原ID策略0差异。本路线只读系数，不重复重建；旧原ID含词典优先，不能冒充纯nearest ID。

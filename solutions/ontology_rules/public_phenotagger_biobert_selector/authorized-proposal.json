@@ -1,0 +1,74 @@
+{
+  "status": "root_authorized_fixed_control_pending_complete_native_cache_and_input_only_pool_gate",
+  "hypothesis": "A separately pretrained third public BioBERT phenotype head may add candidate/source evidence complementary to the current PubMed+Bioformer97-column selector. Name or CPU readiness is not evidence of benefit.",
+  "candidates": "Exact union of all existing97-source keys and new BioBERT fixed-native canonical keys (same original2to8,5dp>.95,dict/hybrid/abbr/currentmap). Keep every old key, field value/type and order; append truly new keys in frozen native order. Merge repeated exact (pmc_id,offset,length,HPO) keys only.",
+  "columns": {
+    "added": [
+      "biobert_present",
+      "biobert_score",
+      "biobert_neural",
+      "biobert_dictionary",
+      "biobert_abbreviation",
+      "biobert_origin_unknown"
+    ],
+    "semantics": "Per-model separate six fields. Score=max actual native hybrid scores on that exact key; flags=OR actual provenance. Absent source=false/score0 and presentfalse. Score is NOT raw classifier posterior; rawIDs/headcolumns audit metadata only.",
+    "new_key_old_features": "Same frozen public-source convention: probability.5/similarity0 explicit missing, exact/base/CRF/semantic_source false, crf_span from actual old spans. No recomputed or invented Sap/CE/pair/top3 signals.",
+    "old_family_description": "Prior public PubMed+Bioformer feature family; actual vectorizer size varies by fold (e.g.95). Do not add fabricated columns."
+  },
+  "sources": "Four outer train48->held16 and each original3x nestedtrain32->16; old-pools manifest87264 binds full resource chain. This is not new F2+F3 train32->F1 entity-slot control.",
+  "model": "Same HGB160 maxleaf15 minleaf35 l2=5 lr=.06 seed20261023 early_stoppingfalse; same literal/NIL label semantics; persist actual model+vectorizer.",
+  "decode": "Recommend one fixed cut.3 followed by unchanged proper-nesting decoder from current retained97 system. New HGB may delete/replace old predictions; only candidate preservation is guaranteed. Reuse old nested four fullpreds/metrics; all nonentities from that same baseline exact.",
+  "comparison": "Current selector-nested-control pooledScore .7279756556629124, men .7662991114441708, doc .8033671487157349. Do not switch to weaker plain-greedy baseline.",
+  "suggested_success": "pooled(menF1+docF1)/2 strictly improves and>=3/4fold objective nondecrease; report allfold/fullv2.",
+  "suggested_budget_seconds": {
+    "four_fit_infer": 120,
+    "decode_assembly_evaluation": 30
+  },
+  "preflight": "After complete new cache, input-only exact key/field/source check and actual per-fold row growth; if >1.5x rows or estimated120s not met report before running. No quality used to choose pruning.",
+  "freeze": "Four new completepreds plus all oldpredrefs freeze before any new assessment; unique endpoint, no new threshold grid in this proposal.",
+  "scope_limits": [
+    "No new fit/infer initiated by this proposal",
+    "No originaldev/official or retraining public head",
+    "No adoption of closed unigram/lowergate/top3/Sap/pair controls"
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/old-pools/manifest.json",
+      "sha256": "87264eb85a1801e249ac6f052faeec5ddeb03fa3044ecb014ca3b9c8d6d220bf",
+      "bytes": 29326
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/plan.json",
+      "sha256": "5bf685f96be02d195acc76a9724625b77a4526decc8e2e77d79ba2976608fb12",
+      "bytes": 10851
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/plan.json",
+      "sha256": "f356ff5b9a326b32076b6bb587b3dd0cf3b37073f2771fd27f2b2fa0973fe085",
+      "bytes": 13093
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/complete-freeze.json",
+      "sha256": "5dad37ae58c0e2ec1758dbf707802191bd5b9c33a24b946f0e446fec371a2f61",
+      "bytes": 2860
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/nested.pooled.metrics.json",
+      "sha256": "bf9caf9f74fce79502fd39bd41b1b4440cd2f7bdef9607cbc0e9d7961f9eec44",
+      "bytes": 42629
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/select_public_bioformer.py",
+      "sha256": "7cf106a6503cb515dd389b0664cee2bbf2591a61bbbe686d53ab1dccae73cb25",
+      "bytes": 11583
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/decode_nested_selector.py",
+      "sha256": "7f4484fc1db132746f674c8c268832705cbeba7d05bbe65268c1ef0e275a7c7f",
+      "bytes": 2650
+    }
+  ],
+  "comparison_boundary": "Keep every old candidate field/type/order; new fit may reselect entity predictions. Preserve all nonentity objects exactly.",
+  "authorization": "Root explicitly approved fixed .3/proper-nested, no grid, 1.5x rows/fit120s and unique quality endpoint before any new fit or quality.",
+  "previous_proposal_sha256": "6117456ba1507199b498a5d71f713ba7e9f2998d6868a70e39f88976b7493a8d"
+}
