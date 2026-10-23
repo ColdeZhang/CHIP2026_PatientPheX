@@ -32,7 +32,7 @@ def main():
         pieces=[]
         for start in range(have,item['size'],block):
             end=min(start+block,item['size'])-1;part=chunks/(name+f'.{start}.{end}')
-            task={'name':name,'start':start,'end':end,'path':str(part)};tasks.append(task);pieces.append(task)
+            task={'name':name,'start':start,'end':end,'total':item['size'],'path':str(part)};tasks.append(task);pieces.append(task)
         plans.append((item,partial,final,pieces))
     def download(task):
         path=Path(task['path']);wanted=task['end']-task['start']+1
@@ -43,7 +43,9 @@ def main():
                 request=urllib.request.Request(url,headers={'Range':f"bytes={task['start']}-{task['end']}"})
                 with urllib.request.urlopen(request,timeout=90) as response:
                     expected=f"bytes {task['start']}-{task['end']}/"
-                    if response.status!=206 or not response.headers.get('Content-Range','').startswith(expected):raise RuntimeError('HTTP byte range mismatch')
+                    range_ok=response.status==206 and response.headers.get('Content-Range','').startswith(expected)
+                    whole_ok=response.status==200 and task['start']==0 and task['end']+1==task['total']
+                    if not (range_ok or whole_ok):raise RuntimeError('HTTP byte range mismatch')
                     with path.open('wb') as handle:
                         copied=0
                         while chunk:=response.read(4*1024*1024):
@@ -74,7 +76,12 @@ def main():
         for task in pieces:Path(task['path']).unlink()
         results.append({'name':item['name'],'size':item['size'],'sha256':value})
         print(json.dumps(results[-1]),flush=True)
-    (out/'download-complete.json').write_text(json.dumps({'source':source,'checked':results,'elapsed_seconds':time.time()-began},indent=2)+'\n')
+    checked=[]
+    for item in source['files']:
+        final=out/item['name'];value=digest(final)
+        assert final.stat().st_size==item['size'] and value==item['sha256'],'Completion integrity mismatch'
+        checked.append({'name':item['name'],'size':item['size'],'sha256':value})
+    (out/'download-complete.json').write_text(json.dumps({'source':source,'checked':checked,'elapsed_seconds':time.time()-began},indent=2)+'\n')
     print('DOWNLOAD_COMPLETE',flush=True)
 
 if __name__=='__main__':main()

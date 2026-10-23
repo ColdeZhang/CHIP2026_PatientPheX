@@ -16,7 +16,7 @@ def main():
     ap.add_argument('--model',required=True);ap.add_argument('--prompts',required=True);ap.add_argument('--output',required=True)
     ap.add_argument('--max-input-tokens',type=int,default=10000);ap.add_argument('--max-new-tokens',type=int,default=1600)
     ap.add_argument('--batch-size',type=int,default=3);ap.add_argument('--model-revision',default='b968826d9c46dd6066d109eabc6255188de91218')
-    args=ap.parse_args();start=time.time();torch.set_num_threads(2)
+    args=ap.parse_args();start=time.time();torch.set_num_threads(1)
     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
     fingerprint={'configuration':vars(args),'prompts_sha256':digest(args.prompts),'code_sha256':digest(__file__),'model_config_sha256':digest(Path(args.model)/'config.json')}
     checkpoint=out.with_suffix('.checkpoint.json')

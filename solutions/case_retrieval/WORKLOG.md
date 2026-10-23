@@ -12,8 +12,8 @@
 
 ## 运行与恢复
 
-- Qwen下载：10.5.2.100，mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，`case-retrieval/round2/`；进程 `proc_e6acd215-04c3-4006-9bcf-a80abf9365fc`，完成以 `models/Qwen3-8B/download-complete.json` 及全部源SHA为准。
-- 本路线仅用GPU1 `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`；GPU0由主线程分给本体路线，共用只读Qwen文件，各自输出目录。
+- Qwen下载：10.5.2.100，mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，`case-retrieval/round2/`；恢复进程 `proc_2b11af34-e66c-49ce-8eed-ab5c220d5d55`，完成以 `models/Qwen3-8B/download-complete.json` 及全部源SHA为准。
+- 本路线仅用GPU1 `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`；GPU0现有他人进程，禁止使用；主线程正为本体安排另一台A800并复制共享公共权重。
 - 解释器只读 `/home/zhangyuheng/projects/ScratchVL/.venv/bin/python`，`PYTHONPATH` 指向本项目 `case-retrieval/round2/runtime`，`PYTHONDONTWRITEBYTECODE=1`。
 - 首个待运行对照：`llm-relations-v2-fold0/prompts.jsonl`（16篇、zero-shot全文关系），随后`llm-extract-v2-smoke`（2篇11打包窗口）与每8概念证据批次；没有声称已产生LLM成绩。
-- SapBERT FP16只读归一化模型从首日产物复制到同机自有 `models/SapBERT/`，传输进程的本地入口/源码位于外部setup目录；最终核验hash后才使用。
+- SapBERT FP16只读归一化模型从首日产物复制到同机自有 `models/SapBERT/`，全部文件已校验；内部fold0的43,437条HPO/训练别名CLS索引已预计算（6.85秒），尚无待归一化LLM抽取。
