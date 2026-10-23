@@ -108,3 +108,13 @@ mention TP/FP/FN：508/158/845→867/251/486；document：347/57/398→508/80/23
 ### 后置唯一同资源HGB基线（运行前冻结）
 
 当前双公开source-HGB的F1模型用train48，未发现相同F2+F3/严格16→16训练链的97族train32模型，本体负责人也确认未保存。现有77列gate是同train32真实fit/F1隔离，所有15,827概率已保存，但此前只做成本门控，没有已评选择质量。root因此授权新增一次**历史固定p≥.4**基线：原stable greedy、437非实体关系原样；先逐键/分数/顺序核全池与gate≥.1后1589候选在.4下等价，再freeze完整预测后唯一v2。只新解码/评分，不fit/GPU/其他cut/组合。该基线在看过实体终点后才追加，必须标为后置诊断。源码旧decode AST仅概率字段名与.5→.4，四个区别性边界通过；计划外部`entity-slot-formal32-v1/legacy-hgb-baseline/plan.json`（067b3efb）。
+
+该基线现已完成并独审PASS（`3c7c12e5`）：全池15,827与gate后1,589的≥.4项共1,238键，分数/顺序/解码1,170实体完全一致。23:47:02先freeze，23:47:05唯一v2：men **.690447880**、doc **.764484575**、Score **.648061812**；final只高 **.002249570**，men +.011292307而doc −.002294027。mention净−4TP/−48FP，document同TP/+4FP，437关系原样。故监督主要给局部精度小增，不能将对弱公开base的+.089误称超过HGB幅度。恢复见[独审及结果](../evidence/round2/entity-slot-legacy-baseline-results.json)。
+
+### 当前公开多源F1覆盖及唯一veto准备
+
+只读`selected-coverage.json`（`a358e409`）核得：保留nested的F1共1,295实体，1,127（87.03%）有binary32概率，其中152项<.5、975项≥.5；168未覆盖中45为旧77键gate<.1、29为同span异ID、94为旧77池无span。166未覆盖项带公开来源flag，100仅有公开来源记录；不能把全部缺失键都说成public独有。原未nested cut.3为1,225实体/1,078覆盖，已评Score.723935706；保留nested已评.728144787。这里current家族通常称97列，但该F1模型实际95自然列、train48；附加binary仅train32，均排F1，**不是相同训练量对照**。
+
+input-only分布证据：gate保留train8.40%/F1 10.04%；保留项gate p中位.8065/.8011、IQR .4347–.8813/.4543–.8760；词面长度中位17/16，提示tokens中位601/641、p95 1458/1462。训练正比5.95%→67.70%是已知resub筛选富集，F1类别比例未读；这些不支持把失配、欠拟合或失准说成已证原因。若未来改变训练，优先单独检验严格train32内cross-fit gate筛选、避免resub选择；低层隔离资源及成本需另查，未运行。
+
+root已授权**唯一固定veto**：以保留nested F1为base，只删有分数且p<.5的152实体；未覆盖168、≥.5的975及全部非entity对象原样。不新fit/候选/overlap decode，不扫描cut；新完整预测先freeze，再一次v2。以men+doc严格提高为keep，失败关闭；完整计划`fde7580d`、每stage30秒CPU，见[计划](../evidence/round2/entity-slot-selected-veto-plan.json)。这不是原dev实验；其设计已看过F1旧终点，为开发控制。早期`resource-comparison.json`中未执行的equalmean建议已被此唯一授权替代。

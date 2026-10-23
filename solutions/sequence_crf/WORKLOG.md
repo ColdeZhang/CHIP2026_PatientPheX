@@ -14,6 +14,8 @@
 
 ## 正在执行与恢复入口
 
+**当前CPU控制：同F1覆盖后的固定veto。** 同资源77 HGB新增.4基线已独审3c7c12e5，Score.648061812；binary final.650311382仅+.002249570（men升/doc降），不升级当前体系。保留nested F1 .728144787的1295实体中1127可评分，root授权唯一p<.5删除152、其余与全部关系保留；计划fde7580d已冻，完整预测freeze后才一次v2，不新fit/GPU/原dev。当前95自然列/train48与binary32训练量不同如实披露。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[新计划](evidence/round2/entity-slot-selected-veto-plan.json)。
+
 **实体二元固定终点完成、独审PASS。** 严格train32候选链/HGB77 gate≥.1，637提示/2430候选；fresh9B独立LoRA、固定2ep160calls，A100训练1460.803秒、峰27.035GB。公共base/唯一epoch2同F1的398提示/1589候选，推断230.765秒，双完整预测先freeze后唯一评：men **.503219→.701740**、doc **.604003→.762191**、Score **.561134423→.650311382**；全部437旧关系及非entity字段保持，0错警。显著优于公开base，但**不是当前97列best或旧77 HGB选择器的直接比较**，不升级原dev。训练resub gate偏差与候选覆盖限制保留。新增终点独审f8f50357通过，GPU2 23:43:03.639Z已释放，无本路线活动GPU；下一仅按root要求核同F1严格可比HGB资源，不重GPU/扫阈值。[结果/全部恢复](evidence/round2/entity-slot-formal-results.json)、[过程与边界](experiments/entity-slot-feasibility.md)。
 
 **公开pair路线最后旧池控制已负结案。** 原Bioformer旧pool244794行、旧字段/顺序不变，只加同3均值；4fit64.88秒、九cut1.11秒，统一选.3，实体目标 **.780192596→.777836002**（−.002356594），三fold负；mention净−21TP/+16FP、doc净−4TP/−3FP。关系/非实体对象保留，无新NN/原dev，关闭本配方不扫。独立终审35d9e67e通过：244794旧字段/3均值全核、fold0唯一重fit/预测exact、36decode曲线exact、format0。当前无活动进程。[完整结果/恢复](evidence/round2/phenobert-old-pool-results.json)、[方法](experiments/phenobert-old-pool-control.md)。

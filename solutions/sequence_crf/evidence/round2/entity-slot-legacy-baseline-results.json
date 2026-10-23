@@ -1,0 +1,81 @@
+{
+  "status": "complete_independently_reviewed",
+  "references": {
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/legacy-hgb-baseline/plan.json",
+      "bytes": 3157,
+      "sha256": "067b3efbde354b19ebb46b4bac4672b291b92ebc34cc2f963a4fd922fdd4ff2d"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/legacy-hgb-baseline/freeze.json",
+      "bytes": 831,
+      "sha256": "5f018f379215416d747fe65ee40eb34e4db5eb6814dae69c2c945f788894a1dd"
+    },
+    "metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/legacy-hgb-baseline/evaluation/metrics.json",
+      "bytes": 13131,
+      "sha256": "58e3024c79f3809a2b7acbddcf593a8256b0eb26c208135f22c143dd571ae5fd"
+    },
+    "comparison": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/legacy-hgb-baseline/evaluation/comparison.json",
+      "bytes": 1273,
+      "sha256": "80f03fa82b23473ed4a6253498cf1aaace4fe39cb9e4ea10921744705fb38e96"
+    },
+    "review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-legacy77-comparator-review/review.json",
+      "bytes": 5060,
+      "sha256": "3c7c12e5fee13d6d61d41ba51e7aaebe987e27a02e11f9b2b5cec794df1820a1"
+    },
+    "resource_comparison": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/resource-comparison.json",
+      "bytes": 7530,
+      "sha256": "a331af44d464f2fef3948eb8815c1630437865ef6a21a09e38f48debbaae5e6c"
+    },
+    "selected_coverage": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-coverage.json",
+      "bytes": 19128,
+      "sha256": "a358e409004126c51f2fa3b2f769993acaca103293fac64322f7a625ac49cb75"
+    }
+  },
+  "comparison": {
+    "completed_at_utc": "2026-10-23T23:47:05.505841+00:00",
+    "seconds": 0.20323655499669258,
+    "baseline": {
+      "menF1": 0.6904478795085216,
+      "docF1": 0.764484574868322,
+      "micF1": 0.593521421107628,
+      "macF1": 0.5437933730339055,
+      "Score": 0.6480618121295942
+    },
+    "existing_entity_control": {
+      "base": {
+        "menF1": 0.5032194155522536,
+        "docF1": 0.6040034812880766,
+        "micF1": 0.593521421107628,
+        "macF1": 0.5437933730339055,
+        "Score": 0.5611344227454659
+      },
+      "final": {
+        "menF1": 0.7017401861594497,
+        "docF1": 0.7621905476369092,
+        "micF1": 0.593521421107628,
+        "macF1": 0.5437933730339055,
+        "Score": 0.650311381984473
+      }
+    },
+    "delta_final_minus_HGB": {
+      "menF1": 0.011292306650928063,
+      "docF1": -0.0022940272314128096,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.0022495698548787857
+    },
+    "old_entity_scores_reused_not_reevaluated": true,
+    "limitations": [
+      "This baseline is newly evaluated after the entity result, not a pre-existing result.",
+      "Single historical HGB .4 cut, no search. Identical train32 and eligible candidate resources; different learned scoring objectives.",
+      "Training gate is resubstitution; no claim of current97-feature system superiority."
+    ]
+  },
+  "scope": "One new posthoc fixed .4 comparator; no fit/GPU/cut scan. The unexecuted equalmean suggestion in resource-comparison is superseded by the sole authorized selected-entity veto."
+}

@@ -1,0 +1,70 @@
+{
+  "frozen_at_utc": "2026-10-23T23:50:55.546681+00:00",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/entity_slot_feasibility/veto_selected.py",
+    "bytes": 7975,
+    "sha256": "1d9b011d3832a8726fa231262924857fbaa8c247f198fc28f58fac166bae3595"
+  },
+  "source_sha256": "1d9b011d3832a8726fa231262924857fbaa8c247f198fc28f58fac166bae3595",
+  "cut": 0.5,
+  "policy": "Preserve current retained nested F1; veto only exact candidate keys with final binary p<.5. No rescore/overlap rerank/new candidate. Uncovered and all nonentities remain.",
+  "references": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold1/nested.jsonl",
+      "bytes": 171338,
+      "sha256": "7f0fd580f00be90a0bb2c07f018672390842d5fcdb33e3ca2f08418780a9e5b4"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold1/nested.metrics.json",
+      "bytes": 12968,
+      "sha256": "cbdf8e2b69a8c9afa368b548949f7e56d357d60cb1dece162976f93b401d19f8"
+    },
+    "binary_scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/final.probabilities.jsonl",
+      "bytes": 144311,
+      "sha256": "2d09226f68f35b82f0f9eabf8a5519b8aa0e3b09d01927c0ef12fba2880ffc1c"
+    },
+    "coverage": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/selected-coverage.json",
+      "bytes": 19128,
+      "sha256": "a358e409004126c51f2fa3b2f769993acaca103293fac64322f7a625ac49cb75"
+    },
+    "binary_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-formal32-v1/terminal-infer/inference/complete.json",
+      "bytes": 778,
+      "sha256": "6863123db48ed173542ceaa2159c42f7c97c9f5dc9002453a220109cf8c53436"
+    },
+    "baseline_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/selector-nested-control-review/review.json",
+      "bytes": 19332,
+      "sha256": "f5482b858d4f6d1cc416eefc1787f0cbd5d7736c3d6797c91089e523d62629f1"
+    }
+  },
+  "expected": {
+    "original_entities": 1295,
+    "covered": 1127,
+    "removed": 152,
+    "uncovered": 168,
+    "positive": 975,
+    "output": 1143
+  },
+  "training_scope": {
+    "public_HGB": 48,
+    "public_actual_features": 95,
+    "binary": 32,
+    "both_exclude_F1": true,
+    "same_training_resources": false
+  },
+  "keep_rule": "Strict increase of menF1+docF1; report all negative components. Failure closes this fixed veto.",
+  "CPU_cap_per_stage": 30,
+  "originaldev": false,
+  "fit": false,
+  "GPU": false,
+  "posthoc_development": true,
+  "old_base_quality_reused": true
+}
