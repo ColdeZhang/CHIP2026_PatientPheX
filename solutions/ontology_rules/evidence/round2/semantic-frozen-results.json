@@ -1,0 +1,842 @@
+[
+  {
+    "run_id": "frozen-fold0-sapbert",
+    "metrics": {
+      "menF1": 0.7185354691075515,
+      "docF1": 0.7258064516129032,
+      "micF1": 0.696,
+      "macF1": 0.6729898083025445,
+      "Score": 0.7033329322557498
+    },
+    "counts": {
+      "mention": {
+        "tp": 785,
+        "fp": 223,
+        "fn": 392,
+        "precision": 0.7787698412698413,
+        "recall": 0.6669498725573492,
+        "f1": 0.7185354691075515
+      },
+      "document": {
+        "tp": 360,
+        "fp": 67,
+        "fn": 205,
+        "precision": 0.8430913348946136,
+        "recall": 0.6371681415929203,
+        "f1": 0.7258064516129032
+      },
+      "relation": {
+        "tp": 261,
+        "fp": 110,
+        "fn": 118,
+        "precision": 0.7035040431266847,
+        "recall": 0.6886543535620053,
+        "f1": 0.696
+      }
+    },
+    "validation": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 1008,
+        "relations": 371,
+        "patients": 47
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "prediction_sha256": "5e6fee1ab46cb8c944bb96fbfb49321317f7bdc87f90db0758ee4b91ab2d42de",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "generation": {
+      "source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+      "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+      "config": {
+        "train": "data/fold-0/train.jsonl",
+        "input": "data/fold-0/input.jsonl",
+        "hpo": "../semantic-neural/data/hp.obo",
+        "model_dir": "../semantic-neural/model",
+        "semantic_source": "../semantic-neural/run.py",
+        "work_dir": "frozen-fold0-sapbert",
+        "max_candidates": 6000
+      },
+      "inputs": {
+        "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+        "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "training": {
+        "positive_spans": 3600,
+        "negative_spans": 23353,
+        "training_docs": 48,
+        "semantic_bank": 42236,
+        "detector_iterations": 20
+      },
+      "input_annotations_used": false,
+      "model_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "counts": {
+        "10553122": 1176,
+        "10789033": 703,
+        "11196099": 777,
+        "11826603": 551,
+        "11919040": 829,
+        "12444410": 1067,
+        "12652105": 927,
+        "12779223": 536,
+        "3563609": 1306,
+        "4678370": 723,
+        "5452357": 1960,
+        "5537416": 1188,
+        "5575846": 946,
+        "5959423": 553,
+        "6338757": 686,
+        "6491447": 552
+      },
+      "output": {
+        "path": "frozen-fold0-sapbert/scored-candidates.jsonl.gz",
+        "bytes": 520408,
+        "sha256": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac"
+      },
+      "elapsed_seconds": 14.079459173604846
+    },
+    "merge": {
+      "config": {
+        "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+        "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/scored-candidates.jsonl.gz",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/augmented.jsonl",
+        "probability": 0.65,
+        "similarity": 0.92,
+        "policy": "augment"
+      },
+      "source_sha256": "7de19243c4a17e5c1de81fd6f19c4e368ae7e1f02a9f44d9a5af0028be4ffbc8",
+      "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "inputs": {
+        "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "base": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333",
+        "candidates": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/augmented.jsonl",
+        "bytes": 132198,
+        "sha256": "5e6fee1ab46cb8c944bb96fbfb49321317f7bdc87f90db0758ee4b91ab2d42de"
+      }
+    }
+  },
+  {
+    "run_id": "frozen-fold1-sapbert",
+    "metrics": {
+      "menF1": 0.6659056316590564,
+      "docF1": 0.7474302496328928,
+      "micF1": 0.6097794822627037,
+      "macF1": 0.5467811296854731,
+      "Score": 0.6424741233100315
+    },
+    "counts": {
+      "mention": {
+        "tp": 875,
+        "fp": 400,
+        "fn": 478,
+        "precision": 0.6862745098039216,
+        "recall": 0.6467110125646711,
+        "f1": 0.6659056316590564
+      },
+      "document": {
+        "tp": 509,
+        "fp": 108,
+        "fn": 236,
+        "precision": 0.8249594813614263,
+        "recall": 0.6832214765100671,
+        "f1": 0.7474302496328928
+      },
+      "relation": {
+        "tp": 318,
+        "fp": 205,
+        "fn": 202,
+        "precision": 0.6080305927342257,
+        "recall": 0.6115384615384616,
+        "f1": 0.6097794822627037
+      }
+    },
+    "validation": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 1275,
+        "relations": 523,
+        "patients": 39
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "prediction_sha256": "5b633c9da2b56f8540f7f929de646b75cbecad01e9757a2b318a24c8d10d99bc",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "generation": {
+      "source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+      "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+      "config": {
+        "train": "data/fold-1/train.jsonl",
+        "input": "data/fold-1/input.jsonl",
+        "hpo": "../semantic-neural/data/hp.obo",
+        "model_dir": "../semantic-neural/model",
+        "semantic_source": "../semantic-neural/run.py",
+        "work_dir": "frozen-fold1-sapbert",
+        "max_candidates": 6000
+      },
+      "inputs": {
+        "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+        "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "training": {
+        "positive_spans": 3410,
+        "negative_spans": 23402,
+        "training_docs": 48,
+        "semantic_bank": 42145,
+        "detector_iterations": 21
+      },
+      "input_annotations_used": false,
+      "model_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "counts": {
+        "10313222": 647,
+        "11871647": 1040,
+        "11906559": 989,
+        "12386172": 1436,
+        "12455887": 2228,
+        "12891056": 1439,
+        "2964533": 496,
+        "4607013": 752,
+        "5415817": 741,
+        "5425407": 614,
+        "5473715": 1587,
+        "5538066": 911,
+        "5789735": 877,
+        "6048891": 653,
+        "6063015": 1013,
+        "9327653": 482
+      },
+      "output": {
+        "path": "frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+        "bytes": 578064,
+        "sha256": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0"
+      },
+      "elapsed_seconds": 14.067207586951554
+    },
+    "merge": {
+      "config": {
+        "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+        "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold1-baseline/pred.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/augmented.jsonl",
+        "probability": 0.65,
+        "similarity": 0.92,
+        "policy": "augment"
+      },
+      "source_sha256": "7de19243c4a17e5c1de81fd6f19c4e368ae7e1f02a9f44d9a5af0028be4ffbc8",
+      "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "inputs": {
+        "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "base": "7e4e311f246aa8a9c1ab641d5a02bf46fb6756c889d3097864543a8edb3db46c",
+        "candidates": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/augmented.jsonl",
+        "bytes": 166090,
+        "sha256": "5b633c9da2b56f8540f7f929de646b75cbecad01e9757a2b318a24c8d10d99bc"
+      }
+    }
+  },
+  {
+    "run_id": "frozen-fold2-sapbert",
+    "metrics": {
+      "menF1": 0.6626617375231053,
+      "docF1": 0.742409402546523,
+      "micF1": 0.6796116504854369,
+      "macF1": 0.6568361230709506,
+      "Score": 0.685379728406504
+    },
+    "counts": {
+      "mention": {
+        "tp": 717,
+        "fp": 292,
+        "fn": 438,
+        "precision": 0.7106045589692765,
+        "recall": 0.6207792207792208,
+        "f1": 0.6626617375231053
+      },
+      "document": {
+        "tp": 379,
+        "fp": 72,
+        "fn": 191,
+        "precision": 0.8403547671840355,
+        "recall": 0.6649122807017543,
+        "f1": 0.742409402546523
+      },
+      "relation": {
+        "tp": 245,
+        "fp": 118,
+        "fn": 113,
+        "precision": 0.6749311294765841,
+        "recall": 0.6843575418994413,
+        "f1": 0.6796116504854369
+      }
+    },
+    "validation": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 1007,
+        "relations": 363,
+        "patients": 41
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+      "prediction_sha256": "d009d59702ed87e2e994665023e773a547211c38d6b6ee88abdfe74afd6dc4f5",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "generation": {
+      "source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+      "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+      "config": {
+        "train": "data/fold-2/train.jsonl",
+        "input": "data/fold-2/input.jsonl",
+        "hpo": "../semantic-neural/data/hp.obo",
+        "model_dir": "../semantic-neural/model",
+        "semantic_source": "../semantic-neural/run.py",
+        "work_dir": "frozen-fold2-sapbert",
+        "max_candidates": 6000
+      },
+      "inputs": {
+        "train": "d61d5fddf15b4c26aa1c0fd1cc09b79ce81a3a7bbb284d67ff448c0043714612",
+        "input": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "training": {
+        "positive_spans": 3600,
+        "negative_spans": 23477,
+        "training_docs": 48,
+        "semantic_bank": 42227,
+        "detector_iterations": 19
+      },
+      "input_annotations_used": false,
+      "model_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "counts": {
+        "11203018": 424,
+        "12078887": 818,
+        "12110769": 1105,
+        "12118522": 691,
+        "12250201": 1264,
+        "12405443": 881,
+        "12811285": 784,
+        "12846941": 727,
+        "4644339": 565,
+        "5368377": 805,
+        "5574094": 882,
+        "5866036": 1446,
+        "5970456": 779,
+        "6134758": 1506,
+        "6219255": 938,
+        "6390251": 1013
+      },
+      "output": {
+        "path": "frozen-fold2-sapbert/scored-candidates.jsonl.gz",
+        "bytes": 531321,
+        "sha256": "01c373b06589e728ef3320e17cf92df321c0d7e42af413f473c51c39e38d5eb5"
+      },
+      "elapsed_seconds": 13.993246574420482
+    },
+    "merge": {
+      "config": {
+        "input": "/workspace/patientphex-data/round2-inner4/fold-2/validation16.input.jsonl",
+        "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold2-baseline/pred.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold2-sapbert/scored-candidates.jsonl.gz",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold2-sapbert/augmented.jsonl",
+        "probability": 0.65,
+        "similarity": 0.92,
+        "policy": "augment"
+      },
+      "source_sha256": "7de19243c4a17e5c1de81fd6f19c4e368ae7e1f02a9f44d9a5af0028be4ffbc8",
+      "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "inputs": {
+        "input": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+        "base": "2bff3bc6c5cf3082db39a67595592a01b5ddd6968f2c16dc8a978baeb3ca6f17",
+        "candidates": "01c373b06589e728ef3320e17cf92df321c0d7e42af413f473c51c39e38d5eb5"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold2-sapbert/augmented.jsonl",
+        "bytes": 130617,
+        "sha256": "d009d59702ed87e2e994665023e773a547211c38d6b6ee88abdfe74afd6dc4f5"
+      }
+    }
+  },
+  {
+    "run_id": "frozen-fold3-sapbert",
+    "metrics": {
+      "menF1": 0.7257224064424443,
+      "docF1": 0.7696793002915452,
+      "micF1": 0.654945054945055,
+      "macF1": 0.5139896952297258,
+      "Score": 0.6660841142271926
+    },
+    "counts": {
+      "mention": {
+        "tp": 766,
+        "fp": 202,
+        "fn": 377,
+        "precision": 0.7913223140495868,
+        "recall": 0.6701662292213474,
+        "f1": 0.7257224064424443
+      },
+      "document": {
+        "tp": 396,
+        "fp": 62,
+        "fn": 175,
+        "precision": 0.8646288209606987,
+        "recall": 0.6935201401050788,
+        "f1": 0.7696793002915452
+      },
+      "relation": {
+        "tp": 298,
+        "fp": 152,
+        "fn": 162,
+        "precision": 0.6622222222222223,
+        "recall": 0.6478260869565218,
+        "f1": 0.654945054945055
+      }
+    },
+    "validation": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 967,
+        "relations": 450,
+        "patients": 46
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+      "prediction_sha256": "1ba4f1b9d4f1f1426d79cad6d8c14003093733ca01984bd4cf56c33c3195da3a",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "generation": {
+      "source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+      "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+      "config": {
+        "train": "data/fold-3/train.jsonl",
+        "input": "data/fold-3/input.jsonl",
+        "hpo": "../semantic-neural/data/hp.obo",
+        "model_dir": "../semantic-neural/model",
+        "semantic_source": "../semantic-neural/run.py",
+        "work_dir": "frozen-fold3-sapbert",
+        "max_candidates": 6000
+      },
+      "inputs": {
+        "train": "f4d167043573310ae0eb146adea26528a3147cbc26c8c512cd21b81ef5ea7716",
+        "input": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "training": {
+        "positive_spans": 3622,
+        "negative_spans": 23786,
+        "training_docs": 48,
+        "semantic_bank": 42281,
+        "detector_iterations": 21
+      },
+      "input_annotations_used": false,
+      "model_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "counts": {
+        "11235872": 900,
+        "11765409": 1248,
+        "12059664": 1415,
+        "12110755": 914,
+        "12334843": 772,
+        "12628480": 1995,
+        "12646972": 230,
+        "12798528": 1355,
+        "2866573": 784,
+        "5023785": 501,
+        "5422868": 912,
+        "5763540": 902,
+        "5773845": 395,
+        "5793168": 1072,
+        "6057141": 711,
+        "6059678": 762
+      },
+      "output": {
+        "path": "frozen-fold3-sapbert/scored-candidates.jsonl.gz",
+        "bytes": 542476,
+        "sha256": "404e7f14c919803769340d2f60fe765e032e1e614d5163e7131895868d798862"
+      },
+      "elapsed_seconds": 14.01691096322611
+    },
+    "merge": {
+      "config": {
+        "input": "/workspace/patientphex-data/round2-inner4/fold-3/validation16.input.jsonl",
+        "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold3-baseline/pred.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold3-sapbert/scored-candidates.jsonl.gz",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold3-sapbert/augmented.jsonl",
+        "probability": 0.65,
+        "similarity": 0.92,
+        "policy": "augment"
+      },
+      "source_sha256": "7de19243c4a17e5c1de81fd6f19c4e368ae7e1f02a9f44d9a5af0028be4ffbc8",
+      "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "inputs": {
+        "input": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+        "base": "866eae7a896c136e5831a309472def809df72ed8fddfcccc5ff2061ebc1bc6d2",
+        "candidates": "404e7f14c919803769340d2f60fe765e032e1e614d5163e7131895868d798862"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold3-sapbert/augmented.jsonl",
+        "bytes": 128924,
+        "sha256": "1ba4f1b9d4f1f1426d79cad6d8c14003093733ca01984bd4cf56c33c3195da3a"
+      }
+    }
+  },
+  {
+    "run_id": "dev16-sapbert",
+    "metrics": {
+      "menF1": 0.7358763882182521,
+      "docF1": 0.7571288102261554,
+      "micF1": 0.5492102065613609,
+      "macF1": 0.47172008243672664,
+      "Score": 0.6284838718606237
+    },
+    "counts": {
+      "mention": {
+        "tp": 762,
+        "fp": 203,
+        "fn": 344,
+        "precision": 0.7896373056994819,
+        "recall": 0.6889692585895117,
+        "f1": 0.7358763882182521
+      },
+      "document": {
+        "tp": 385,
+        "fp": 72,
+        "fn": 175,
+        "precision": 0.8424507658643327,
+        "recall": 0.6875,
+        "f1": 0.7571288102261554
+      },
+      "relation": {
+        "tp": 226,
+        "fp": 144,
+        "fn": 227,
+        "precision": 0.6108108108108108,
+        "recall": 0.4988962472406181,
+        "f1": 0.5492102065613609
+      }
+    },
+    "validation": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 965,
+        "relations": 370,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "3ce85addc2b910131b6256bc8520d3697a40fb43f12909cc932357f49f984ddb",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "generation": {
+      "source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+      "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+      "config": {
+        "train": "../semantic-neural/data/train64.jsonl",
+        "input": "../semantic-neural/data/dev16.input.jsonl",
+        "hpo": "../semantic-neural/data/hp.obo",
+        "model_dir": "../semantic-neural/model",
+        "semantic_source": "../semantic-neural/run.py",
+        "work_dir": "dev16-sapbert",
+        "max_candidates": 6000
+      },
+      "inputs": {
+        "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+        "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "training": {
+        "positive_spans": 4744,
+        "negative_spans": 31371,
+        "training_docs": 64,
+        "semantic_bank": 42575,
+        "detector_iterations": 20
+      },
+      "input_annotations_used": false,
+      "model_manifest": {
+        "model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+        "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+        "files": {
+          "config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/config.json",
+            "bytes": 462,
+            "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+          },
+          "tokenizer_config.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/tokenizer_config.json",
+            "bytes": 198,
+            "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+          },
+          "special_tokens_map.json": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/special_tokens_map.json",
+            "bytes": 112,
+            "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+          },
+          "vocab.txt": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/vocab.txt",
+            "bytes": 226150,
+            "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+          },
+          "model.safetensors": {
+            "source": "https://huggingface.co/cambridgeltl/SapBERT-from-PubMedBERT-fulltext/resolve/090663c3ae57bf35ffe4d0d468a2a88d03051a4d/model.safetensors",
+            "bytes": 437955508,
+            "sha256": "a4696930afef9aab296196d3d2142216c44cba24f21b4f285ceca7af21025614"
+          }
+        },
+        "conversion": "Floating tensors cast to IEEE float16 using numpy; no training or other tensor changes.",
+        "derived_weights": {
+          "bytes": 218990904,
+          "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+        }
+      },
+      "counts": {
+        "12147048": 1265,
+        "6151044": 509,
+        "5562981": 1356,
+        "6332535": 827,
+        "6096008": 683,
+        "12733031": 908,
+        "12126309": 605,
+        "6220403": 510,
+        "5693559": 637,
+        "6049015": 557,
+        "12640707": 1506,
+        "4899602": 461,
+        "11986149": 1031,
+        "11221135": 357,
+        "12017973": 1186,
+        "6036836": 413
+      },
+      "output": {
+        "path": "dev16-sapbert/scored-candidates.jsonl.gz",
+        "bytes": 460259,
+        "sha256": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197"
+      },
+      "elapsed_seconds": 14.844522851053625
+    },
+    "merge": {
+      "config": {
+        "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+        "base": "/workspace/patientphex-runs/day1-20261023/ontology-rules/dev-v1/predictions.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/scored-candidates.jsonl.gz",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/augmented.jsonl",
+        "probability": 0.65,
+        "similarity": 0.92,
+        "policy": "augment"
+      },
+      "source_sha256": "7de19243c4a17e5c1de81fd6f19c4e368ae7e1f02a9f44d9a5af0028be4ffbc8",
+      "enhance_source_sha256": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+      "baseline_source_sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "inputs": {
+        "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+        "base": "5a994261965f7887f2bfef384401380d49581940435bbe46d19604f6e4868e4b",
+        "candidates": "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/augmented.jsonl",
+        "bytes": 126760,
+        "sha256": "3ce85addc2b910131b6256bc8520d3697a40fb43f12909cc932357f49f984ddb"
+      }
+    }
+  }
+]
