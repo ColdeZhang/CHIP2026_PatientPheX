@@ -11,3 +11,8 @@
 - `biolink-large-source.json` / `biolinklarge-fold0.json`：通用底座来源、完整权重SHA、NER负结果与basename哈希覆盖补充证据。
 
 - `id-anchors-inner4.json`：官方编号来源、四折锚点计数、原始/内部派生输入SHA、源码和输出SHA，以及两种关系规则混合正负结果；不升级默认。
+
+- `thinking-paired-pilot.json`：同GPU/runtime配对12提示，条件诊断/有效率/预算，不是比赛Score。
+- `table-policy-train.json` / `tables-fold0.json`：训练输入侧预冻结政策与负结果，源表/解析器/原始输入SHA；Task1不变。
+
+- `relation-sft-data.json`：嵌套OOF候选与训练标签覆盖统计、来源SHA；完整样本/嵌套重放命令外存。

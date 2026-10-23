@@ -12,6 +12,7 @@ import apply_linker_scores
 import merge_pair_rag
 import patient_id_anchors
 import table_relations
+import prepare_relation_sft
 import xml.etree.ElementTree as ET
 import json
 import contextlib
@@ -62,6 +63,13 @@ class Round2Tests(unittest.TestCase):
         identify=table_relations.structure.identifier
         self.assertEqual(identify('Individual III‐3'),identify('III-3'))
         self.assertNotEqual(identify('III-3'),identify('III:3'))
+    def test_sft_gold_targets_do_not_add_candidates_or_change_prompts(self):
+        row={'code_map':{'C000':'HP:1','C001':'HP:2'},'patient_ids':['P1','P2'],
+             'messages':[{'role':'user','content':'Immutable candidate context'}]}
+        before=json.dumps(row,sort_keys=True)
+        answer=prepare_relation_sft.target(row,{'P1':{'HP:1','HP:9'},'P2':{'HP:1'}})
+        self.assertEqual(answer,{'C000':['P1','P2'],'C001':[]})
+        self.assertEqual(json.dumps(row,sort_keys=True),before)
     def test_relation_candidate_pool_does_not_replace_final_entities(self):
         with tempfile.TemporaryDirectory() as d:
             d=Path(d)
