@@ -1,0 +1,49 @@
+{
+  "scope": "Independent third public BioBERT native H5 CPU readiness only; no task corpus/gold/GPU/quality/control",
+  "model_repo": "lingbionlp/PhenoTagger_v1.2",
+  "revision": "02ce3f529820dccca46bae168c1933ba25253125",
+  "weight_file": "biobert_PT_v1.2.h5",
+  "weight_bytes": 486624416,
+  "weight_sha256": "1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573",
+  "base_config_tokenizer_source": "ModelScope dmis-lab/biobert-base-cased-v1.2@cebb3c8f3a2fc40af5bebbcfefbe62b76d661303; prior HF byteexact check",
+  "base_weights_downloaded": false,
+  "ModelScope": "Exact lingbionlp/PhenoTagger_v1.2 ModelScope API returned404 record not found at2026-10-23T23:38:25Z; fallback pinned original HF H5. Verified existing ModelScope config/vocab retained.",
+  "source_sha256": {
+    "lable.vocab": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+    "download_public_h5.py": "160db716d7a60aad514ecee642b45524d6811aaf26fa4d77a79d239e0b84c53c",
+    "check_native_h5.py": "67ee85cacf828a5a10ccf73770197799dfa925cb3f4ef7378cf84c62e141b19f",
+    "nn_represent.py": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf",
+    "biobert-base/config.json": "a51b82d83d616bffaea11e629c4c82cca1e71b71460f133d55ebb4444ee9582e",
+    "biobert-base/vocab.txt": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+    "run_cpu.py": "891a79d59ef455f3d471bd29cee9a8a701f11ebb5757769ee35bdf3a45889a72",
+    "manage.py": "3600db67cab8aa5a7ac5ef086fbd6a10714b9c6d4a47eaefbe58f9d307301ab8"
+  },
+  "model_expectations": {
+    "native_parameters": 121587826,
+    "native_variables": 201,
+    "old_head_columns": 17266,
+    "HP_None_index": 17265,
+    "cased_tokenizer_do_lower_case": false,
+    "upstream_load_data_always_lowercases_words": true
+  },
+  "verification": "Poison every constructed variable with NaN, strict topological H5 load, compare every native variable exactly to corresponding H5 dataset; finite sum-to-one four synthetic phrase outputs; full classorder mapping unchanged. Not quality.",
+  "runtime": "Read-only ../public-phenotagger-reuse/.venv/bin/python TF2.12 CPU; PYTHONPATH empty; CUDA_VISIBLE_DEVICES empty; no installation; one thread",
+  "download_cap_seconds": 300,
+  "CPU_cap_seconds": 174,
+  "TERM_grace_seconds": 5,
+  "parent_source_report_sha256": "d0d09fbe291f1b82b645677bb4aeb7c85cc25309a2443b41b4a673715d688206",
+  "current_mapping_sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+  "previous_checker_sha256": "df0f96f86ed8b1c92d023697b0c164368a4f39acdc4cdec07ebba4b915b163a1",
+  "checker_delta": "Only model/file identity, base directory, expected vocab/parameter/variable counts, and absence of unnecessary Bioformer tokenizer_config file. Same full-restore algorithm.",
+  "source_review_sha256": "0cc6a07dc6b7abda664fd72e7c2980b3eef41610086dda02289854ed834664c0",
+  "modelscope_exact_request_sha256": "7a798f2eead450fccb8c30fb759064cd3660d24aa087dcaefeb2c5a00460a4ae",
+  "attempt": 2,
+  "recovery": {
+    "cause": "Missing FORCE_TF_AVAILABLE=1 from existing verified native CPU runtime; TF imported but Transformers detection rejected before encoder construction/H5 load/forward",
+    "original_failure_seconds": 5.375175852328539,
+    "original_plan_sha256": "035abf77654666bc0d55f3c0573287655f02306ea8e94be195d663690d1663d5",
+    "remaining_budget_policy": "174s +original5.375s <180s nominal aggregateCPU; grace5 unchanged",
+    "model_source_math_unchanged": true,
+    "no_redownload": true
+  }
+}
