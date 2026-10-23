@@ -1,0 +1,223 @@
+{
+  "recorded_at_utc": "2026-10-23T17:51:21.405521+00:00",
+  "plan_commit": "2a0182d0c60fb6affe5e88b04076dda6d885a625",
+  "plan_sha256": "bd19adafbf6c4724e0e722b3a249c193c8012a5cf2229be275cfcc9ad30c6209",
+  "metrics": {
+    "baseline": {
+      "menF1": 0.7578845220766618,
+      "docF1": 0.7797270955165692,
+      "micF1": 0.6707193515704154,
+      "macF1": 0.6369689968461091,
+      "Score": 0.7113249915024389
+    },
+    "entity_only": {
+      "menF1": 0.7573564881813797,
+      "docF1": 0.7852998065764023,
+      "micF1": 0.6707193515704154,
+      "macF1": 0.6369689968461091,
+      "Score": 0.7125861607935766
+    },
+    "full_lr": {
+      "menF1": 0.7573564881813797,
+      "docF1": 0.7852998065764023,
+      "micF1": 0.670020120724346,
+      "macF1": 0.6356064893665351,
+      "Score": 0.7120707262121657
+    }
+  },
+  "incremental_counts": {
+    "entity_only": {
+      "mention": {
+        "tp": 4,
+        "fp": 8,
+        "fn": -4
+      },
+      "document": {
+        "tp": 6,
+        "fp": 2,
+        "fn": -6
+      },
+      "relation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "full_lr": {
+      "mention": {
+        "tp": 4,
+        "fp": 8,
+        "fn": -4
+      },
+      "document": {
+        "tp": 6,
+        "fp": 2,
+        "fn": -6
+      },
+      "relation": {
+        "tp": 2,
+        "fp": 5,
+        "fn": -2
+      }
+    }
+  },
+  "deltas": {
+    "entity_only": 0.0012611692911377315,
+    "full_lr": 0.0007457347097268308
+  },
+  "assembly": {
+    "source_sha256": "7e11e6b6518fa03e8fe4fb0ebc99c027218d48e9242c2490faafc8413cc3cbe7",
+    "inputs": {
+      "base": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-crf-gliner-dev16/base.jsonl",
+        "sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2"
+      },
+      "candidate": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-crf-gliner-dev16/filtered/pred.jsonl",
+        "sha256": "f714752378832903bc60aea5b8c74f2ed997ba190e98b2f45671723799297aee"
+      }
+    },
+    "documents": 16,
+    "added_entities": 12,
+    "all_base_entities_preserved": true,
+    "all_base_associations_exact": true,
+    "gold_used": false,
+    "output_sha256": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e"
+  },
+  "filter": {
+    "source_sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "association_source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "request_manifest_sha256": "65936df68e62b12523d12b05c6bc0823bde8aa9c668b6777bc3db24bdd8d5c68",
+    "score_manifest_sha256": "eb5f6a091cc91ecae02bd0d32052e3a7ccd7032fb875264278d9c116fad632ec",
+    "counts": {
+      "original_additions": 146,
+      "reject_similarity": 59,
+      "retained_additions": 12,
+      "reject_probability": 73,
+      "added_relations": 6,
+      "reject_id_disagreement": 2
+    },
+    "output_sha256": "f714752378832903bc60aea5b8c74f2ed997ba190e98b2f45671723799297aee",
+    "gold_used": false
+  },
+  "arm2_manifest": {
+    "configuration": {
+      "train": "/workspace/patientphex-data/day1/train64.jsonl",
+      "input": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "hpo": "/workspace/patientphex-data/hp.obo",
+      "baseline": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.jsonl",
+      "candidate_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.manifest.json",
+      "handoff": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/handoff.json",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned"
+    },
+    "inputs": {
+      "train": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+      "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "baseline": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "candidates": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+      "candidate_manifest": "2d58b31ca7532b8613b176f61c9a14f47b1af90cea9d0c394b34584897b16bbe",
+      "handoff": "7b825a05ac2394b39075a26922bf24c81b1ca420a31d28e906eb9f4c74672ffc"
+    },
+    "source_sha256": "76839a287bc3f3e9076ab6f8c984891690eba7f349bd1b191c02327479508932",
+    "dependencies": {
+      "sequence_base": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "transfer_relation": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d"
+    },
+    "policy": "unchanged train-fold LR>=.55; exact baseline replay; preserve frozen entity pool and old relations",
+    "relation_training": {
+      "relation_examples": 13740,
+      "relation_positive": 4606
+    },
+    "added_entities": 12,
+    "frozen_at_utc": "2026-10-23T17:50:19.063676+00:00",
+    "outputs": {
+      "baseline.jsonl": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "full-lr.jsonl": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb"
+    },
+    "gold_read": false
+  },
+  "validation": {
+    "baseline": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 955,
+        "relations": 534,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "entity_only": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 967,
+        "relations": 534,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "full_lr": {
+      "valid": true,
+      "counts": {
+        "documents": 16,
+        "entities": 967,
+        "relations": 541,
+        "patients": 36
+      },
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0,
+      "hpo_version": "hp/releases/2026-06-23",
+      "hpo_root": "HP:0000118",
+      "notes": [
+        "Format/input consistency checks are not the platform evaluator.",
+        "Only the first 50 examples of each issue type are included."
+      ],
+      "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+      "prediction_sha256": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb",
+      "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "artifacts": {
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/plan.json": "bd19adafbf6c4724e0e722b3a249c193c8012a5cf2229be275cfcc9ad30c6209",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/job.json": "1784ce8c8bc25c0642a21f8c1d70d0ab215b6cd5854b8d770c4e7f140e715341",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/gpu-release.json": "0961f64069515f47dc15c3936f1b751a9d710171f932a8b53f012acab0d63b7c",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collection.json": "3537cef4949ac73615432be0baf2dc02e828aeca572fe47c8f00a20053aafe91",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/arm1-before-evaluation.json": "6974c2447396733ba338424be24234a45341b12e465b8ec649cf81548b076479",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/sap/scored/scores.jsonl": "e976b01fd0a186de2256aef5684e9147298b198b84b09d1c7bf2b4b3d2cadd9f",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned/manifest.json": "fdbc542d182d7175ec870142aa6c7e0a809064600bd8bd76907e4683ea42704f",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/handoff.json": "7b825a05ac2394b39075a26922bf24c81b1ca420a31d28e906eb9f4c74672ffc",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-crf-gliner-dev16/collected/entity-only/pred.jsonl": "a4857164eb133abc04181bd319b0243f5a2d4e750a743f5ca871d17df238bd3e",
+    "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-pheno-joint-dev/reassigned/full-lr.jsonl": "26516936fcc4b92bf15ae15767cc4ed927471260d75ec06ea7c038ff272107eb"
+  },
+  "interpretation": "One fixed stronger-base combination. Raw intermediate unscored. Pheno48, Sap/LR64, baseline neural scale per sequence provenance. Small total gain with low marginal entity precision; no threshold/order change."
+}
