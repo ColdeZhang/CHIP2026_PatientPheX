@@ -47,3 +47,7 @@ focal假设是减少已容易判负跨度的梯度贡献、相对关注难span�
 两臂训练和固定链接已完成，但尚未装配或读取本次nested16标签时，root于20:55左右授权一个数据无关CPU臂：对focal已缓存GLiNER score使用唯一解析cut **0.6011759516702939**。此值来自alpha=.75/gamma=2条件风险在理想posterior eta=.5处的最优q；实际loss自动梯度与解析导数零点一致（约5.55e-17），左右导数异号、gamma0加权BCE边界也通过，CUDA=false。它不是从heldout分数拟合的门槛，也不承诺实际模型已校准。
 
 保留原BCE/focal两臂原样，第三臂只过滤已缓存candidate score，其余字段、排序、Sap判别概率>=.65/相似度>=.92、否定/非重叠和关系装配均不变。原GLiNER `.5`只是前置候选cut，并非最终全部决策；focal可能改变跨度进入池及排序，但未改旧Sap判别器。三份完整预测统一freeze后仅一次评分；旧两臂plan/finalizer原样保留、未执行，新增三臂入口另存。[解析控制计划](../evidence/round2/focal-analytic-endpoint-plan.json)。
+
+### 固定终点结果（20:57 UTC，独立复核通过）
+
+同环境fresh BCE **.655315611**；focal **.653881260**（-.001434351，四项均降）；唯一解析cut **.655256389**（-.000059222，实体两项升/关系两项降）。三臂完整预测先统一freeze，0错警，独立CPU重装/所有指标与实际来源预算通过cdbd1f23。两训练685.10/693.25秒、GPU已释放。按预定标准保BCE，关闭本固定配方及解析控制，不扫阈值/原dev；这是具体配置的负结果，不是focal机制普遍无效。详见[完整结果及恢复](../evidence/round2/focal-pair-results.json)。

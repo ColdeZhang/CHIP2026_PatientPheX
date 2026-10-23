@@ -1,0 +1,598 @@
+{
+  "status": "completed; independent three-arm terminal review PASS; both focal controls below matched BCE",
+  "scope": "existing development nested16, same original1150 nested32/fresh sameA30/runtime/seed/budget; new focalrecipe .75/2 validmean",
+  "decision": "Keep BCE. Close this fixed focal recipe and its unique analytic-cut arm; no threshold search or originaldev expansion. Do not generalize to all focal objectives.",
+  "source_commit": "12d4ef6ffe8b13f83a18813bec49a3f3b7e03405",
+  "comparison": {
+    "status": "fixed_pair_complete",
+    "at_utc": "2026-10-23T20:57:06.246239+00:00",
+    "source_sha256": "ccd56921533da4ec67a570104850fa3d4d2d769ff7c3c1bd96edaa446b101929",
+    "complete_freeze_sha256": "3308ea8b8c70e30c4891073ffb95bc41400141f077a4d78e933939a1814945be",
+    "training_plan_sha256": "098d6854fdbc84c6295d8efc265bdb8e40451879446aa915db0731df1dd0a388",
+    "formal_state_sha256": "959000c295dfb0cdb73aba2e9fc68bc47f2a0c5a4e98ca3cf5481390e78c0a4f",
+    "arms": {
+      "bce": {
+        "metrics": {
+          "menF1": 0.683505549177191,
+          "docF1": 0.7588235294117647,
+          "micF1": 0.6219630709426628,
+          "macF1": 0.5569702942210554,
+          "Score": 0.6553156109381685
+        },
+        "counts": {
+          "mention": {
+            "tp": 893,
+            "fp": 367,
+            "fn": 460,
+            "precision": 0.7087301587301588,
+            "recall": 0.6600147819660015,
+            "f1": 0.683505549177191
+          },
+          "document": {
+            "tp": 516,
+            "fp": 99,
+            "fn": 229,
+            "precision": 0.8390243902439024,
+            "recall": 0.6926174496644295,
+            "f1": 0.7588235294117647
+          },
+          "relation": {
+            "tp": 320,
+            "fp": 189,
+            "fn": 200,
+            "precision": 0.6286836935166994,
+            "recall": 0.6153846153846154,
+            "f1": 0.6219630709426628
+          }
+        },
+        "changes_from_CRF_Sap": {
+          "entity_added_tp": 45,
+          "entity_added_fp": 26,
+          "entity_removed_tp": 0,
+          "entity_removed_fp": 0,
+          "relation_added_tp": 11,
+          "relation_added_fp": 15,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "prediction_sha256": "ff3905c379d15b406e37b1106cfd30e76b1e1ce19bb741485b6febbb66ba6f2c",
+        "errors": 0,
+        "warnings": 0
+      },
+      "focal": {
+        "metrics": {
+          "menF1": 0.6813688212927757,
+          "docF1": 0.7584187408491947,
+          "micF1": 0.6201550387596899,
+          "macF1": 0.5555824400898236,
+          "Score": 0.653881260247871
+        },
+        "counts": {
+          "mention": {
+            "tp": 896,
+            "fp": 381,
+            "fn": 457,
+            "precision": 0.701644479248238,
+            "recall": 0.6622320768662232,
+            "f1": 0.6813688212927757
+          },
+          "document": {
+            "tp": 518,
+            "fp": 103,
+            "fn": 227,
+            "precision": 0.8341384863123994,
+            "recall": 0.6953020134228188,
+            "f1": 0.7584187408491947
+          },
+          "relation": {
+            "tp": 320,
+            "fp": 192,
+            "fn": 200,
+            "precision": 0.625,
+            "recall": 0.6153846153846154,
+            "f1": 0.6201550387596899
+          }
+        },
+        "changes_from_CRF_Sap": {
+          "entity_added_tp": 48,
+          "entity_added_fp": 40,
+          "entity_removed_tp": 0,
+          "entity_removed_fp": 0,
+          "relation_added_tp": 11,
+          "relation_added_fp": 18,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "prediction_sha256": "aefd6e656e3cbaeea917e783230041e78d596a2ca2b432eb2af27b5b125099da",
+        "errors": 0,
+        "warnings": 0
+      },
+      "focal-analytic": {
+        "metrics": {
+          "menF1": 0.6837280366692131,
+          "docF1": 0.7597354886113152,
+          "micF1": 0.6213592233009708,
+          "macF1": 0.5562028077392832,
+          "Score": 0.6552563890801956
+        },
+        "counts": {
+          "mention": {
+            "tp": 895,
+            "fp": 370,
+            "fn": 458,
+            "precision": 0.7075098814229249,
+            "recall": 0.6614929785661493,
+            "f1": 0.6837280366692131
+          },
+          "document": {
+            "tp": 517,
+            "fp": 99,
+            "fn": 228,
+            "precision": 0.8392857142857143,
+            "recall": 0.6939597315436241,
+            "f1": 0.7597354886113152
+          },
+          "relation": {
+            "tp": 320,
+            "fp": 190,
+            "fn": 200,
+            "precision": 0.6274509803921569,
+            "recall": 0.6153846153846154,
+            "f1": 0.6213592233009708
+          }
+        },
+        "changes_from_CRF_Sap": {
+          "entity_added_tp": 47,
+          "entity_added_fp": 29,
+          "entity_removed_tp": 0,
+          "entity_removed_fp": 0,
+          "relation_added_tp": 11,
+          "relation_added_fp": 16,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "prediction_sha256": "2edab82d81b40718d3fc8637622490dca6ade0de3906be5ef0931cfa4c6da8f2",
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "focal_minus_bce": {
+      "menF1": -0.0021367278844153237,
+      "docF1": -0.00040478856256997986,
+      "micF1": -0.001808032182972874,
+      "macF1": -0.0013878541312317694,
+      "Score": -0.0014343506902975145
+    },
+    "analytic_minus_bce": {
+      "menF1": 0.0002224874920221387,
+      "docF1": 0.0009119591995505605,
+      "micF1": -0.000603847641691968,
+      "macF1": -0.0007674864817721616,
+      "Score": -5.922185797291313e-05
+    },
+    "analytic_changes_from_new_BCE": {
+      "entity_added_tp": 3,
+      "entity_added_fp": 5,
+      "entity_removed_tp": 1,
+      "entity_removed_fp": 2,
+      "relation_added_tp": 1,
+      "relation_added_fp": 1,
+      "relation_removed_tp": 1,
+      "relation_removed_fp": 0
+    },
+    "focal_changes_from_new_BCE": {
+      "entity_added_tp": 4,
+      "entity_added_fp": 16,
+      "entity_removed_tp": 1,
+      "entity_removed_fp": 2,
+      "relation_added_tp": 1,
+      "relation_added_fp": 3,
+      "relation_removed_tp": 1,
+      "relation_removed_fp": 0
+    },
+    "historical_medium_A800_Score_not_control": 0.6537450271017345,
+    "scope": "existing development nested16, same original1150 nested32/fresh sameA30/runtime/seed/budget; new focalrecipe .75/2 validmean",
+    "limitations": [
+      "One fixed focal recipe jointly changes class/hardness weighting and calibration, not isolated alpha or gamma causality.",
+      "Only finalepoch10, no threshold or epoch search; originaldev untouched.",
+      "The unique analytic cut was fixed before assembly/evaluation using loss only; it is not a fitted calibration estimate.",
+      "GLiNER .5 is initial candidate cut; final pipeline additionally requires unchanged Sap .65/.92 and rules."
+    ]
+  },
+  "training": {
+    "bce": {
+      "fingerprint": {
+        "configuration": {
+          "epochs": 10,
+          "batch_size": 4,
+          "encoder_lr": 1e-05,
+          "other_lr": 5e-05,
+          "weight_decay": 0.01,
+          "warmup_fraction": 0.05,
+          "seed": 20261023,
+          "precision": "float32",
+          "gradient_clip": 1.0,
+          "loss": "binary CE sum over valid spans / valid span count",
+          "loss_choice": "bce",
+          "label": "phenotype",
+          "all_valid_negative_spans": true,
+          "checkpoint_choice": "epoch10 only; no validation selection",
+          "training_part": "nested_train32"
+        },
+        "source_sha256": "f5764b6cf303e9146e9e5e359c0ad1747ae93373b8245fc79da71f0fa9c0642c",
+        "loader_source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+        "loss_source_sha256": "dcc2489d7bc5aecf5c9f0e55250f1a8f045a3c44e6fc89f99023409bbc47a55a",
+        "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+        "train_sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+        "excluded_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "base_weight_sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91"
+      },
+      "fingerprint_id": "33e47628550f3e9679bd66b6cf76ac8a0f39167ea15791217e547e9a62ab3b1b",
+      "parameters": 195175936,
+      "rows": 1150,
+      "documents": 32,
+      "total_steps": 2880,
+      "completed_epochs": 10,
+      "elapsed_seconds": 685.0992744774558,
+      "max_gpu_allocated_bytes": 6029584896,
+      "versions": {
+        "torch": "2.7.1+cu126",
+        "transformers": "4.51.3",
+        "gliner": "0.2.22"
+      },
+      "gpu": "NVIDIA A30",
+      "final_training_probe": {
+        "epoch": 10,
+        "step": 2880,
+        "mean_loss": 0.0013267447232239498,
+        "training_probe_metrics": {
+          "precision": 0.8625954198473282,
+          "recall": 0.9262295081967213,
+          "positive_mean_probability": 0.905233015779589,
+          "negative_mean_probability": 0.0005994913166966375
+        },
+        "model_sha256": "14d48a50dd1e311de7dc747a0145cbbed28450a772fa9743a3e7b13339e0b3ea",
+        "state_sha256": "dcdbb2058321006523266e30bd26427d95b00305578dc5133ccd5b6f0e6c2f52"
+      },
+      "inference": {
+        "unique_spans": 1387,
+        "total_seconds": 24.961416991893202,
+        "inference_seconds": 13.321266163140535,
+        "max_gpu_allocated_bytes": 900585472
+      }
+    },
+    "focal": {
+      "fingerprint": {
+        "configuration": {
+          "epochs": 10,
+          "batch_size": 4,
+          "encoder_lr": 1e-05,
+          "other_lr": 5e-05,
+          "weight_decay": 0.01,
+          "warmup_fraction": 0.05,
+          "seed": 20261023,
+          "precision": "float32",
+          "gradient_clip": 1.0,
+          "loss": "alpha=.75 gamma=2 focal sum over valid spans / valid span count",
+          "loss_choice": "focal",
+          "label": "phenotype",
+          "all_valid_negative_spans": true,
+          "checkpoint_choice": "epoch10 only; no validation selection",
+          "training_part": "nested_train32"
+        },
+        "source_sha256": "f5764b6cf303e9146e9e5e359c0ad1747ae93373b8245fc79da71f0fa9c0642c",
+        "loader_source_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+        "loss_source_sha256": "dcc2489d7bc5aecf5c9f0e55250f1a8f045a3c44e6fc89f99023409bbc47a55a",
+        "data_manifest_sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+        "train_sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+        "excluded_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "base_weight_sha256": "47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91"
+      },
+      "fingerprint_id": "f2764e48f517ff6b24737d2246b72a8158187e96bfbba00a5a49e75411be13de",
+      "parameters": 195175936,
+      "rows": 1150,
+      "documents": 32,
+      "total_steps": 2880,
+      "completed_epochs": 10,
+      "elapsed_seconds": 693.252605354879,
+      "max_gpu_allocated_bytes": 6029584896,
+      "versions": {
+        "torch": "2.7.1+cu126",
+        "transformers": "4.51.3",
+        "gliner": "0.2.22"
+      },
+      "gpu": "NVIDIA A30",
+      "final_training_probe": {
+        "epoch": 10,
+        "step": 2880,
+        "mean_loss": 0.0002586438241829005,
+        "training_probe_metrics": {
+          "precision": 0.6413043478260869,
+          "recall": 0.9672131147540983,
+          "positive_mean_probability": 0.7660542550634165,
+          "negative_mean_probability": 0.0038431418490695625
+        },
+        "model_sha256": "d5dd4f393adb5f3e6f5f806ae98e47121be2c63e5458780639e4c1f4d3fb10b7",
+        "state_sha256": "a9315fbd824aef3e0cf67c6d536824711ddb85a016b5b1c4d5149658bf0290db"
+      },
+      "inference": {
+        "unique_spans": 1987,
+        "total_seconds": 22.47396181896329,
+        "inference_seconds": 12.538233225699514,
+        "max_gpu_allocated_bytes": 900585472
+      }
+    }
+  },
+  "pipeline": [
+    {
+      "name": "train-bce",
+      "seconds": 695.8033471442759,
+      "started_at_utc": "2026-10-23T20:30:12.063839+00:00",
+      "finished_at_utc": "2026-10-23T20:41:47.867547+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 1200
+    },
+    {
+      "name": "train-focal",
+      "seconds": 704.7032079990022,
+      "started_at_utc": "2026-10-23T20:41:47.869298+00:00",
+      "finished_at_utc": "2026-10-23T20:53:32.572769+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 1104.194473283831
+    },
+    {
+      "name": "inference-bce",
+      "seconds": 27.391382216941565,
+      "started_at_utc": "2026-10-23T20:53:32.575300+00:00",
+      "finished_at_utc": "2026-10-23T20:53:59.966953+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 300
+    },
+    {
+      "name": "inference-focal",
+      "seconds": 24.78546305699274,
+      "started_at_utc": "2026-10-23T20:53:59.971733+00:00",
+      "finished_at_utc": "2026-10-23T20:54:24.757680+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 300
+    },
+    {
+      "name": "link-bce",
+      "seconds": 14.90808232827112,
+      "started_at_utc": "2026-10-23T20:54:24.763625+00:00",
+      "finished_at_utc": "2026-10-23T20:54:39.672403+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 300
+    },
+    {
+      "name": "link-focal",
+      "seconds": 14.557933898176998,
+      "started_at_utc": "2026-10-23T20:54:39.674058+00:00",
+      "finished_at_utc": "2026-10-23T20:54:54.232591+00:00",
+      "exit_code": 0,
+      "effective_timeout_seconds": 300
+    }
+  ],
+  "budget": {
+    "shared_training_seconds": 1800,
+    "per_arm_seconds": 1200,
+    "term_grace_seconds": 30,
+    "actual_train_subprocess_sum_seconds": 1400.506555143278,
+    "training_deadline_utc": "2026-10-23T21:00:12.063790+00:00",
+    "inference_link_each_seconds": 300
+  },
+  "GPU_and_actual_checkpoints": {
+    "at_utc": "2026-10-23T20:55:29.337898+00:00",
+    "checkpoints": {
+      "bce": {
+        "model": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/focal-loss-control/bce/epoch-010/pytorch_model.bin",
+          "bytes": 780784379,
+          "sha256": "14d48a50dd1e311de7dc747a0145cbbed28450a772fa9743a3e7b13339e0b3ea"
+        },
+        "state": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/focal-loss-control/bce/latest-state.pt",
+          "bytes": 1561609531,
+          "sha256": "dcdbb2058321006523266e30bd26427d95b00305578dc5133ccd5b6f0e6c2f52"
+        }
+      },
+      "focal": {
+        "model": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/focal-loss-control/focal/epoch-010/pytorch_model.bin",
+          "bytes": 780784379,
+          "sha256": "d5dd4f393adb5f3e6f5f806ae98e47121be2c63e5458780639e4c1f4d3fb10b7"
+        },
+        "state": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/focal-loss-control/focal/latest-state.pt",
+          "bytes": 1561609531,
+          "sha256": "a9315fbd824aef3e0cf67c6d536824711ddb85a016b5b1c4d5149658bf0290db"
+        }
+      }
+    },
+    "gpu_checked_at_utc": "2026-10-23T20:55:34.846664+00:00",
+    "gpu_empty": true,
+    "compute_apps": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2473902, 3814 MiB\n",
+    "free_bytes": 446929190912
+  },
+  "analytic_control": {
+    "source_sha256": "7097e6d3df6f49834a4c431c8eef172c6a5733cccad3d6ba791f1bc8afcfb864",
+    "parent_manifest_sha256": "01e1b859f008440f39458820657d9684e2e4bef91d713ab97d42ed98ae61f315",
+    "parent_scored_sha256": "2b4700fc8b79bd233b12a1b30cf7aeaa8ccdd8d738e087ff8b74e9d56f1278b3",
+    "alpha": 0.75,
+    "gamma": 2.0,
+    "fixed_span_score_cut": 0.6011759516702939,
+    "input_candidates": 1987,
+    "kept_candidates": 1480,
+    "gold_read": false,
+    "frozen_at_utc": "2026-10-23T20:57:03.222741+00:00",
+    "policy": "Only retain cached GLiNER score >= analytic cut; all other fields/order unchanged.",
+    "limitation": "Ideal risk boundary is not an estimate of actual calibrated posterior."
+  },
+  "same_policies": {
+    "GLiNER_initial_candidate_threshold": 0.5,
+    "analytic_arm_GLiNER_cached_score_cut": 0.6011759516702939,
+    "Sap_probability_min": 0.65,
+    "Sap_similarity_min": 0.92,
+    "assembly": "Same ontology validity, negation, old-entity preservation, nonoverlap/score order and patient rules."
+  },
+  "artifacts": {
+    "pair-plan.json": {
+      "sha256": "098d6854fdbc84c6295d8efc265bdb8e40451879446aa915db0731df1dd0a388",
+      "bytes": 20531
+    },
+    "pair-formal-job.json": {
+      "sha256": "e7a0521a49b67b39a01594ec7d40466bd553447b497f326a3c98feeece83aa06",
+      "bytes": 711
+    },
+    "cpu-endpoint-plan.json": {
+      "sha256": "8432fd8aef2c1a78b8f30efcbf3c8aa88d0e4b6698f92414eecac7850d4a2f2d",
+      "bytes": 4378
+    },
+    "finalize_endpoint.py": {
+      "sha256": "7b70fe751275c52c0f3771734051fe2889bc26f122b4b9ad0290afbac96c6ca7",
+      "bytes": 4637
+    },
+    "cpu-endpoint-three-plan.json": {
+      "sha256": "b6dd1578138653179c2d39f6bc616ec97a41f16f0fc7197f14f1e48246591b40",
+      "bytes": 6985
+    },
+    "finalize_endpoint_three.py": {
+      "sha256": "ccd56921533da4ec67a570104850fa3d4d2d769ff7c3c1bd96edaa446b101929",
+      "bytes": 5214
+    },
+    "analytic-endpoint-freeze.json": {
+      "sha256": "c8f07833fb2fce7dc261906cb09be4b8df4cab2715557a731fe678b673ffc74c",
+      "bytes": 587
+    },
+    "analytic-cpu.json": {
+      "sha256": "80128e490a8983f91b81404b77a8efcf2a0d2b6a4df27c3d69ecd297d5d1ba8d",
+      "bytes": 1653
+    },
+    "analytic-cpu-execution.json": {
+      "sha256": "37cc6a27fbca9ef19cc983ee9da15994f3541341076e7468ba3bd34aa6cf3565",
+      "bytes": 1784
+    },
+    "a30/formal.state.json": {
+      "sha256": "959000c295dfb0cdb73aba2e9fc68bc47f2a0c5a4e98ca3cf5481390e78c0a4f",
+      "bytes": 8222
+    },
+    "actual-checkpoints-and-release.json": {
+      "sha256": "43b614ac683d1cdca8caff7aafdbe9a368d8f919bbba13fcac536027220e1f4c",
+      "bytes": 1382
+    },
+    "terminal-transfer.json": {
+      "sha256": "4a1bd4206715a815399da0c32e4e42f6cc10f78a08a6ddb5a0b473d31ac62bea",
+      "bytes": 3991
+    },
+    "complete-predictions-freeze.json": {
+      "sha256": "3308ea8b8c70e30c4891073ffb95bc41400141f077a4d78e933939a1814945be",
+      "bytes": 1619
+    },
+    "cpu-endpoint-execution.json": {
+      "sha256": "4f06e6f2b7e4862afef9ff1457069c0a7c9d87114fec968ca09e7ac09979cd63",
+      "bytes": 6518
+    },
+    "terminal-summary.json": {
+      "sha256": "b4cd5373aef31c9080bee694ed3603819cd1f2bf4363c4c8d15847d80f98077b",
+      "bytes": 6090
+    },
+    "a30/bce/run_manifest.json": {
+      "sha256": "deca7e9f9002f5cfab21e48485ce5da481fac90db91abe8294394bbb1e41addd",
+      "bytes": 40869
+    },
+    "a30/bce-inference/manifest.json": {
+      "sha256": "9f70c08af2e18e98325000d6bf7ccdad6b11488e18aa441d5f2ee3b067732f3d",
+      "bytes": 2388
+    },
+    "a30/bce-inference/prediction-freeze.json": {
+      "sha256": "af976e8d046b5989ae495693c56a7276caa586542fa1feda621b677fd7e00608",
+      "bytes": 536
+    },
+    "a30/bce-linked/manifest.json": {
+      "sha256": "fa6dae1831635374159d424d6d0c02fed45d1d1d4eb510b143f679914996fcb0",
+      "bytes": 7096
+    },
+    "a30/focal/run_manifest.json": {
+      "sha256": "8e99d30a8cdb875b366906c9f4164463c938b67282712c142db8189a70786c73",
+      "bytes": 40901
+    },
+    "a30/focal-inference/manifest.json": {
+      "sha256": "3ec812ced9fbde3daf87bcc8b99232924b86cd51c41aa4be5c6630c155a55d1c",
+      "bytes": 2395
+    },
+    "a30/focal-inference/prediction-freeze.json": {
+      "sha256": "7c660f161e9ffcd90fdcfd30bbc9636c70b568ad2c1cbdc1a77ca10a7435a996",
+      "bytes": 536
+    },
+    "a30/focal-linked/manifest.json": {
+      "sha256": "01e1b859f008440f39458820657d9684e2e4bef91d713ab97d42ed98ae61f315",
+      "bytes": 7107
+    },
+    "assembled-bce/manifest.json": {
+      "sha256": "9a5b49460f1a59c693202721b52bbe6728e4035fcf0c355930e1fcf34be38df9",
+      "bytes": 2583
+    },
+    "assembled-bce/metrics.json": {
+      "sha256": "d36fe4825a42bc5ba28cbad3253b3006f7edc4355cf285608a36d156baa7c06e",
+      "bytes": 13088
+    },
+    "assembled-bce/validation.json": {
+      "sha256": "65103e0e313ade26219c5185c4a19bae77b63178df5ed8028fd0c091195c6774",
+      "bytes": 425
+    },
+    "assembled-focal/manifest.json": {
+      "sha256": "53d3b8574e10dc0bdbf96609d691652f88bc3f03fdd7757a1592a6b3a58f0089",
+      "bytes": 2614
+    },
+    "assembled-focal/metrics.json": {
+      "sha256": "d7e5ebcb73983f5aadeb0f7249d03c72ec57e9480a855c0d17b6ab5d5e620576",
+      "bytes": 13065
+    },
+    "assembled-focal/validation.json": {
+      "sha256": "a1aa726065e219052dce861c1a881b5e555899eee9ef45410706195cb567bf67",
+      "bytes": 425
+    },
+    "assembled-focal-analytic/manifest.json": {
+      "sha256": "5ecc9d2150497e33199c23ecb9af39313cdd6b4d7af9f57c68e33a1a80c20056",
+      "bytes": 2640
+    },
+    "assembled-focal-analytic/metrics.json": {
+      "sha256": "099bf3a1c3db44dcfb57a415edff85d9b72276b06e6cd9bf8672bc470f7deaab",
+      "bytes": 13105
+    },
+    "assembled-focal-analytic/validation.json": {
+      "sha256": "f053955ef0cd6f473164e9c45b965412de03842c167ca438ea2cf09c2d56c5a3",
+      "bytes": 425
+    }
+  },
+  "recovery": {
+    "managed_process": "proc_483790e9-1628-4c71-904e-ec14cad664df",
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "remote_directory": "sequence-round2/focal-loss-control",
+    "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "GPU_UUID": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "state": "Complete and GPU empty; do not restart. Final models + real Adam/RNG states retained at paths above.",
+    "exact_commands": "pair-plan.json and cpu-endpoint-three-plan.json (file hashes below)",
+    "output_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/focal-loss-control"
+  },
+  "independent_entry_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-focal-pair-entry-review.json",
+    "sha256": "cc5e8486abf0d6122ffd8d87acb53a8a3f40230ec4681e1391edb30784561a34",
+    "status": "PASS"
+  },
+  "limitations": [
+    "One fixed focal recipe jointly changes class/hardness weighting and calibration, not isolated alpha or gamma causality.",
+    "Only finalepoch10, no threshold or epoch search; originaldev untouched.",
+    "The unique analytic cut was fixed before assembly/evaluation using loss only; it is not a fitted calibration estimate.",
+    "GLiNER .5 is initial candidate cut; final pipeline additionally requires unchanged Sap .65/.92 and rules.",
+    "Historical A800 medium32 .653745027 is descriptive, not the matched training control.",
+    "Same seed/runtime does not establish GPU bitwise training reproducibility or statistical significance.",
+    "The theoretical analytic cut does not establish actual posterior calibration."
+  ],
+  "independent_terminal_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner-focal-pair-terminal-review/review.json",
+    "sha256": "cdbd1f23aa9a7c3c3fb47334438f1191ad615342aee0e6db872246b353433642",
+    "status": "PASS",
+    "scope": "Three independent CPU assemblies byteexact, all v2 fields and format, actual weights/state/fixed budget lineage, input-only analytic root/autograd/filter and pre-gold freeze."
+  }
+}

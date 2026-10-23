@@ -81,3 +81,5 @@
 - [固定focal提案](focal-loss-proposal.json)与[纯CPU合同](focal-loss-cpu.json)：BioMed配置.75/2来源、实际BCE训练清单、10组数学/梯度/mask通过与同环境成本；无新GPU或质量结论。
 
 - [focal同环境配对计划](focal-pair-plan.json)：A800存储不足后选择.100 fresh BCE/focal；原1150窗/10ep，shared1800s与TERM30，CPU/单步条件及同固定Sap装配。
+
+- [focal三臂固定终点](focal-pair-results.json)：同A30 fresh BCE .655316、focal .653881、评分前唯一解析cut .655256；两focal均不升级。三fullpred、真实model/state、1400.51秒共享训练预算、GPU释放与独审cdbd1f23完整索引。原.5仅候选cut，Sap .65/.92保持；无原dev/阈值扫描。

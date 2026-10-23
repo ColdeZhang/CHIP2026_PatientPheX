@@ -1,6 +1,6 @@
 # CRF 序列标注工作台账
 
-实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `a0e9d0d`，干净检查点正常合并 `8a11b87` 已推送；只更新共享文档/备份脚本，方案和评测源码不变。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
+实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。当前已同步共享主分支 `bc5f61f`，干净检查点正常合并 `4c6b45a` 已推送；只更新共享文档/备份脚本，方案和评测源码不变。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
 
 ## 目标与可信最佳结果
 
@@ -28,7 +28,8 @@
 
 12. **本体覆盖诊断及CPU exact控制已结案、负结果**：原train48三套OOF的908无重叠FN仅54被HPO name/EXACT正确覆盖，高置信Sap40、并集60，不优先全HPO短语预适配。只解除`c.exact`跳过，旧三对照byteexact、三新预测统一freeze后评：pooled **.667647648→.666761145**，等权平均.669729202→.668894975，一升两降；新增实体40TP58FP、移除1TP3FP，新增关系6TP22FP、移除1TP。保留旧政策，不扫阈值/不触原dev/不占GPU；独立复核PASS（6e49d0c8），六预测byteexact/全部新指标一致。[短机制结论](experiments/ontology-miss-mechanism.md)、[完整结果与复现入口](evidence/round2/exact-gate-control-results.json)。
 
-13. **固定focal配对训练进行中**：BioMed官方配置明确.75/2/sum；本路线此前8份实际训练均BCE，未重复旧实验。新纯函数保原valid-span mean，10组数值/梯度/mask合同通过（CUDA=false）。不是正例塌缩修复；采用.100同runtime fresh medium32 BCE/focal配对，估共23–30min，因原1150 BCE训练来自A800，旧同卡推理不能替代训练对照。root已条件授权；A800仅2.0GB余盘拒绝，采用.100两fresh臂共享1800s/每臂1200s+TERM30，实际CPU/最长单步已通过，20:30:10Z启动proc_483790e9，实际训练共享截止2026-10-23T21:00:12.063790+00:00。入口/actualCPU与单步独审PASS（cc5e8486），原BCE入口不改，新holdout未读。[启动/恢复](evidence/round2/focal-pair-launch.json)。[固定配对计划](evidence/round2/focal-pair-plan.json)、[短提案](experiments/focal-loss-proposal.md)、[CPU证据](evidence/round2/focal-loss-cpu.json)。
+13. **同A30固定focal三臂完成、均不升级**：原1150窗、两fresh medium32固定10ep/2880steps；BCE训练685.10秒、focal693.25秒，各峰6.030GB。完整训练子进程共1400.51秒<1800硬cap，六GPU阶段均exit0。评分前另冻唯一解析score cut .6011759516702939（实际loss梯度/解析零点CPU通过），其余Sap .65/.92与原装配不变；原两臂保留，三预测20:57:04Z统一freeze后唯一nested16评分。BCE **.655315611**，focal **.653881260**（-.001434351），解析cut **.655256389**（-.000059222）；后者实体两项小升/关系两项降。三臂均0错警、独立重装/指标/来源预算和解析过滤PASS（cdbd1f23）。只关闭这套固定配方，不泛化所有focal；未触原dev/不扫阈值。20:55:34Z fresh核GPU1空，实余446.93GB，managed proc_483790e9已完整退出，无本路线活动GPU。[完整结果/模型状态与复现入口](evidence/round2/focal-pair-results.json)，外存focal-loss-control/；原[启动](evidence/round2/focal-pair-launch.json)、[配对计划](evidence/round2/focal-pair-plan.json)与[解析CPU臂](evidence/round2/focal-analytic-endpoint-plan.json)均保留。
+
 
 ## 已完成的近期结论
 
