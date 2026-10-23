@@ -157,6 +157,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：用可逆P001等局部编号或明确结构化身份字段，严格验证患者/候选集合与截断状态。本体22窗口中3个失败窗口仅按格式、未看gold选择一次修复，最终22/22通过；旧raw、回退版本、重跑来源及SHA分别保留，修复后分数仍下降。证据见[本体分支实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)。
 
+## H25：外部原论文的临床事实未必属于比赛标注范围
+
+原论文表格通常比给定输入的caption包含更多临床信息，但直接补患者关系并不必然加分。按训练侧预先冻结的严格患者匹配/表型词典政策，在固定内fold0给rules新增31条、给LR新增29条关系，全部为该评测口径下的FP，Score分别 .711354→.698422、.642034→.631899；没有改Task1实体。
+
+**避免方法**：先确认标注范围，再评估外部证据的收益，不把“原论文确实记载”当作gold包含的保证。训练诊断中99.185%的gold关系可在给定正实体中找到，当前优先改进原文跨度和患者归属。保留表格来源及负结果，不把单一政策/单折负结果泛化为所有表格无用。证据见[CRF表格对照](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/evidence/round2/tables-fold0.json)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。

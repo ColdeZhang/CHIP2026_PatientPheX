@@ -23,10 +23,12 @@
 
 `wangzgui/CHIP2026` 虽为MIT且README描述完整架构，但固定commit `dfec694b2cb85e946148de90612467b8e78ee0c7` 只有README/LICENSE/gitignore，不是现成可跑实现。方法名称、公开下载和环境安装都不替代本项目实际消融结果。
 
-## 原论文表格：仅完成可取得性研究
+## 原论文表格：可取得，但首个冻结政策没有增益
 
 复读官方README §参赛规则3：允许公开外部资源，禁止外部人工标注表型数据集。据此，本轮可研究原PMC论文的未标注表格作为Task2外部证据，保留出处并在技术报告披露。Task1仍只输出给定全文内可核对的坐标，不把外部表格位置拼入输入。
 
 按冻结train48中出现TABLE的文献顺序选前两篇，未依照gold漏例选取：[PMC11203018](https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11203018/fullTextXML)、[PMC11235872](https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11235872/fullTextXML)。均HTTP200、CC-BY，XML完整SHA见来源清单；前者第二表区分历史病例与“This Case”列，后者含13个家系成员列及认知/精神症状等行，而给定TABLE输入仅有caption。只确认存在额外原始证据，**尚未跑分或证明收益**。后续应按明确患者称谓对应列，处理No/Normal/unknown、脚注和历史病例，不把整表分给所有患者。
 
 随后独立审查固定fold0的全部7篇含TABLE输入，7篇原文全部取得，15张表共552,366字节XML；保存8处rowspan、17处colspan和7组脚注，9项解析/ID边界检查通过。完整临床编号规范化能对应7个临床表患者和9个酶/基因型表的Subject，后者不能直接视为表型证据；全程未读gold、未生成预测。来源、许可、SHA及结构化缓存位于仓库外 `research/pmc-tables-fold0/`，结果manifest SHA `afeacad97fb8cc8d95a35a08469514008a14c377bc8caf5db43f0a83d80f5e75`。先在train48定义并冻结映射规则，再作fold0对照。
+
+后续CRF路线按train48前两篇定义并冻结严格患者身份、临床表标题、精确HPO/训练别名与明确肯定单元格规则；固定fold0对照中新增31/29条关系全部FP，未获收益。外部临床事实不等于本赛标注范围，见[H25](../../HANDOFF.MD#h25外部原论文的临床事实未必属于比赛标注范围)；后续优先给定文本，不继续围绕本折扫描表格阈值。
