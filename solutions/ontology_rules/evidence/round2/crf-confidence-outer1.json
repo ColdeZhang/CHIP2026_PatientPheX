@@ -1,0 +1,454 @@
+{
+  "experiment": "E-20261023-007",
+  "split": "inner fold1",
+  "code_checkpoint": "3542ec39ce2c548ae9fc1b806f125941b2f73d11",
+  "results": [
+    {
+      "mode": "without-crf",
+      "metrics": {
+        "menF1": 0.6985146527498997,
+        "docF1": 0.7613293051359517,
+        "micF1": 0.6276067527308838,
+        "macF1": 0.5502918015726145,
+        "Score": 0.6594356280473375
+      },
+      "counts": {
+        "mention": {
+          "tp": 870,
+          "fp": 268,
+          "fn": 483,
+          "precision": 0.7644991212653779,
+          "recall": 0.6430155210643016,
+          "f1": 0.6985146527498997
+        },
+        "document": {
+          "tp": 504,
+          "fp": 75,
+          "fn": 241,
+          "precision": 0.8704663212435233,
+          "recall": 0.676510067114094,
+          "f1": 0.7613293051359517
+        },
+        "relation": {
+          "tp": 316,
+          "fp": 171,
+          "fn": 204,
+          "precision": 0.648870636550308,
+          "recall": 0.6076923076923076,
+          "f1": 0.6276067527308838
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1138,
+          "relations": 487,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "0112e59e683050d4da4c4a71873361b848d049015bf8b17ee8cc4e05e653aa5e",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "manifest": {
+        "config": {
+          "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/calibration-manifest.json",
+          "train": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold1-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+          "crf": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf.jsonl",
+          "crf_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf-work/crf-manifest.json",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/without-crf/pred.jsonl",
+          "threshold": 0.4,
+          "without_crf": true,
+          "crf_confidence": null
+        },
+        "source_sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+        "dependencies": {
+          "calibrate": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+          "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "merge_semantic": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+        },
+        "inputs": {
+          "training_manifest": "275ac83fb2a0cede36329815f0d736937565082f93315cbe0ced74c0efd0eae1",
+          "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+          "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+          "base": "7e4e311f246aa8a9c1ab641d5a02bf46fb6756c889d3097864543a8edb3db46c",
+          "candidates": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+          "crf": "bb6ac94e32e5ba6f3bcb386103bcf0f92bca1706b41a37c85e7b82583c040767",
+          "crf_manifest": "4cb582fba49b4ff08cdc1bbe44e1ccb9e9bdd893e80ef7ee4c8415272e3b5b06"
+        },
+        "training_sources": [
+          {
+            "gold": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+            "base": "9617ef58bd47632526cd641d2415592bede786f7dfdee73f2d6bde6dfd9c24a0",
+            "candidates": "b803687162f0edd271ddcfae983075049e8d3aee1fdda85d305d7d8a115329b1",
+            "crf": "252a7c1ad0c7aba7612a9852474e67acfe4267af0d5175afc4302c1225a030dd",
+            "crf_manifest": "0fe5b02e6a11c25f07a30f002f559a24cc0e0f18db91c2a93f32c62a7dfda710",
+            "generator_train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+          },
+          {
+            "gold": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+            "base": "aa1b231c1743101d35464a1fe21a2385083bda73f19265abdc84835157787ce4",
+            "candidates": "78a3034ccf73b915403ec934a0bd5f50ca3b72f640c95040bcafcb39ab7d3f7e",
+            "crf": "7ada8f215098eb845b03af37b02c913b891299dcdc19f6cbf425639d86001b69",
+            "crf_manifest": "41a2ec866ff697f5eaf196c7c3fbe48a3a256d75cf1a946337bec7fab30b1535",
+            "generator_train": "29284becefe050127a86514c6dcf137114bf35cdb73435591c0c7b51b2f7ca30"
+          },
+          {
+            "gold": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+            "base": "66a4278c7bb2719aa8fbf06f2b103f464263b13f43aa3b493612b095e0e103b1",
+            "candidates": "32e0ea1024c1d1a83cb7b24cb44d7e59e72342445e13fd386522b1cbcec4dad6",
+            "crf": "fa8f582026f1a2439a3d3e5c7f84455b9dee3bfd67040f056b210ccb4949b605",
+            "crf_manifest": "78dccd376beba690cb2466a7456f2a57894bd33f9d57e2d3e0a9a15f287264b8",
+            "generator_train": "3b679e848970836141b45b0d6bbdeaff754d824f6498f0547eef7853713aa5ac"
+          }
+        ],
+        "training_examples": 43778,
+        "training_positive": 2633,
+        "training_documents": 48,
+        "input_candidates": 15945,
+        "features": 83,
+        "estimator": {
+          "categorical_features": "from_dtype",
+          "class_weight": null,
+          "early_stopping": false,
+          "interaction_cst": null,
+          "l2_regularization": 5.0,
+          "learning_rate": 0.06,
+          "loss": "log_loss",
+          "max_bins": 255,
+          "max_depth": null,
+          "max_features": 1.0,
+          "max_iter": 160,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 35,
+          "monotonic_cst": null,
+          "n_iter_no_change": 10,
+          "random_state": 20261023,
+          "scoring": "loss",
+          "tol": 1e-07,
+          "validation_fraction": 0.1,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "selection": "fixed threshold .4; no original dev used",
+        "output_sha256": "0112e59e683050d4da4c4a71873361b848d049015bf8b17ee8cc4e05e653aa5e",
+        "seconds": 11.092822244001582
+      }
+    },
+    {
+      "mode": "source",
+      "metrics": {
+        "menF1": 0.6951316839584996,
+        "docF1": 0.7600302800908403,
+        "micF1": 0.6201395812562313,
+        "macF1": 0.5775795681092892,
+        "Score": 0.6632202783537151
+      },
+      "counts": {
+        "mention": {
+          "tp": 871,
+          "fp": 282,
+          "fn": 482,
+          "precision": 0.7554206418039896,
+          "recall": 0.6437546193643755,
+          "f1": 0.6951316839584996
+        },
+        "document": {
+          "tp": 502,
+          "fp": 74,
+          "fn": 243,
+          "precision": 0.8715277777777778,
+          "recall": 0.6738255033557047,
+          "f1": 0.7600302800908403
+        },
+        "relation": {
+          "tp": 311,
+          "fp": 172,
+          "fn": 209,
+          "precision": 0.6438923395445134,
+          "recall": 0.5980769230769231,
+          "f1": 0.6201395812562313
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1153,
+          "relations": 483,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "b47804f1ee0048fd5f6e4b02975e04c0d07c6df366cb653368a9e1e3a7f876c1",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "manifest": {
+        "config": {
+          "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/calibration-manifest.json",
+          "train": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold1-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+          "crf": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf.jsonl",
+          "crf_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf-work/crf-manifest.json",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.jsonl",
+          "threshold": 0.4,
+          "without_crf": false,
+          "crf_confidence": null
+        },
+        "source_sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+        "dependencies": {
+          "calibrate": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+          "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "merge_semantic": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+        },
+        "inputs": {
+          "training_manifest": "275ac83fb2a0cede36329815f0d736937565082f93315cbe0ced74c0efd0eae1",
+          "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+          "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+          "base": "7e4e311f246aa8a9c1ab641d5a02bf46fb6756c889d3097864543a8edb3db46c",
+          "candidates": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+          "crf": "bb6ac94e32e5ba6f3bcb386103bcf0f92bca1706b41a37c85e7b82583c040767",
+          "crf_manifest": "4cb582fba49b4ff08cdc1bbe44e1ccb9e9bdd893e80ef7ee4c8415272e3b5b06"
+        },
+        "training_sources": [
+          {
+            "gold": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+            "base": "9617ef58bd47632526cd641d2415592bede786f7dfdee73f2d6bde6dfd9c24a0",
+            "candidates": "b803687162f0edd271ddcfae983075049e8d3aee1fdda85d305d7d8a115329b1",
+            "crf": "252a7c1ad0c7aba7612a9852474e67acfe4267af0d5175afc4302c1225a030dd",
+            "crf_manifest": "0fe5b02e6a11c25f07a30f002f559a24cc0e0f18db91c2a93f32c62a7dfda710",
+            "generator_train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+          },
+          {
+            "gold": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+            "base": "aa1b231c1743101d35464a1fe21a2385083bda73f19265abdc84835157787ce4",
+            "candidates": "78a3034ccf73b915403ec934a0bd5f50ca3b72f640c95040bcafcb39ab7d3f7e",
+            "crf": "7ada8f215098eb845b03af37b02c913b891299dcdc19f6cbf425639d86001b69",
+            "crf_manifest": "41a2ec866ff697f5eaf196c7c3fbe48a3a256d75cf1a946337bec7fab30b1535",
+            "generator_train": "29284becefe050127a86514c6dcf137114bf35cdb73435591c0c7b51b2f7ca30"
+          },
+          {
+            "gold": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+            "base": "66a4278c7bb2719aa8fbf06f2b103f464263b13f43aa3b493612b095e0e103b1",
+            "candidates": "32e0ea1024c1d1a83cb7b24cb44d7e59e72342445e13fd386522b1cbcec4dad6",
+            "crf": "fa8f582026f1a2439a3d3e5c7f84455b9dee3bfd67040f056b210ccb4949b605",
+            "crf_manifest": "78dccd376beba690cb2466a7456f2a57894bd33f9d57e2d3e0a9a15f287264b8",
+            "generator_train": "3b679e848970836141b45b0d6bbdeaff754d824f6498f0547eef7853713aa5ac"
+          }
+        ],
+        "training_examples": 43897,
+        "training_positive": 2693,
+        "training_documents": 48,
+        "input_candidates": 15980,
+        "features": 83,
+        "estimator": {
+          "categorical_features": "from_dtype",
+          "class_weight": null,
+          "early_stopping": false,
+          "interaction_cst": null,
+          "l2_regularization": 5.0,
+          "learning_rate": 0.06,
+          "loss": "log_loss",
+          "max_bins": 255,
+          "max_depth": null,
+          "max_features": 1.0,
+          "max_iter": 160,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 35,
+          "monotonic_cst": null,
+          "n_iter_no_change": 10,
+          "random_state": 20261023,
+          "scoring": "loss",
+          "tol": 1e-07,
+          "validation_fraction": 0.1,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "selection": "fixed threshold .4; no original dev used",
+        "output_sha256": "b47804f1ee0048fd5f6e4b02975e04c0d07c6df366cb653368a9e1e3a7f876c1",
+        "seconds": 10.590367221000633
+      }
+    },
+    {
+      "mode": "confidence",
+      "metrics": {
+        "menF1": 0.6940894568690096,
+        "docF1": 0.7577358490566037,
+        "micF1": 0.6236345580933466,
+        "macF1": 0.5822161443986739,
+        "Score": 0.6644190021044084
+      },
+      "counts": {
+        "mention": {
+          "tp": 869,
+          "fp": 282,
+          "fn": 484,
+          "precision": 0.7549956559513467,
+          "recall": 0.6422764227642277,
+          "f1": 0.6940894568690096
+        },
+        "document": {
+          "tp": 502,
+          "fp": 78,
+          "fn": 243,
+          "precision": 0.8655172413793103,
+          "recall": 0.6738255033557047,
+          "f1": 0.7577358490566037
+        },
+        "relation": {
+          "tp": 314,
+          "fp": 173,
+          "fn": 206,
+          "precision": 0.6447638603696099,
+          "recall": 0.6038461538461538,
+          "f1": 0.6236345580933466
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1151,
+          "relations": 487,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "8e4d03f2d10a7d1b78377d5b2989979418f1cc33b127566a1639df48479037e3",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "manifest": {
+        "config": {
+          "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/confidence-calibration-manifest.json",
+          "train": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+          "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold1-baseline/pred.jsonl",
+          "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+          "crf": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf.jsonl",
+          "crf_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf-work/crf-manifest.json",
+          "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/confidence/pred.jsonl",
+          "threshold": 0.4,
+          "without_crf": false,
+          "crf_confidence": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/confidence.jsonl"
+        },
+        "source_sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+        "dependencies": {
+          "calibrate": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+          "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+          "merge_semantic": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+        },
+        "inputs": {
+          "training_manifest": "179ddf4a6174c46f58dc693542ee4257d3f2fdb67ac0f20d318241f5c4d039a4",
+          "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+          "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+          "base": "7e4e311f246aa8a9c1ab641d5a02bf46fb6756c889d3097864543a8edb3db46c",
+          "candidates": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+          "crf": "bb6ac94e32e5ba6f3bcb386103bcf0f92bca1706b41a37c85e7b82583c040767",
+          "crf_manifest": "4cb582fba49b4ff08cdc1bbe44e1ccb9e9bdd893e80ef7ee4c8415272e3b5b06",
+          "crf_confidence": "610a2aa10095fe3a65c525a9d38b3bd0348de15cba88e0104ebb5020c86a29ba"
+        },
+        "training_sources": [
+          {
+            "gold": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+            "base": "9617ef58bd47632526cd641d2415592bede786f7dfdee73f2d6bde6dfd9c24a0",
+            "candidates": "b803687162f0edd271ddcfae983075049e8d3aee1fdda85d305d7d8a115329b1",
+            "crf": "252a7c1ad0c7aba7612a9852474e67acfe4267af0d5175afc4302c1225a030dd",
+            "crf_manifest": "0fe5b02e6a11c25f07a30f002f559a24cc0e0f18db91c2a93f32c62a7dfda710",
+            "generator_train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+            "crf_confidence": "1dc83517c5af43554423d0921597710d3466d698604f143de1efbf37357c8950"
+          },
+          {
+            "gold": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+            "base": "aa1b231c1743101d35464a1fe21a2385083bda73f19265abdc84835157787ce4",
+            "candidates": "78a3034ccf73b915403ec934a0bd5f50ca3b72f640c95040bcafcb39ab7d3f7e",
+            "crf": "7ada8f215098eb845b03af37b02c913b891299dcdc19f6cbf425639d86001b69",
+            "crf_manifest": "41a2ec866ff697f5eaf196c7c3fbe48a3a256d75cf1a946337bec7fab30b1535",
+            "generator_train": "29284becefe050127a86514c6dcf137114bf35cdb73435591c0c7b51b2f7ca30",
+            "crf_confidence": "03c67cb548a794f9f2614d17cbc90fdf016a8766c4f907c93066a0be76c669c3"
+          },
+          {
+            "gold": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+            "base": "66a4278c7bb2719aa8fbf06f2b103f464263b13f43aa3b493612b095e0e103b1",
+            "candidates": "32e0ea1024c1d1a83cb7b24cb44d7e59e72342445e13fd386522b1cbcec4dad6",
+            "crf": "fa8f582026f1a2439a3d3e5c7f84455b9dee3bfd67040f056b210ccb4949b605",
+            "crf_manifest": "78dccd376beba690cb2466a7456f2a57894bd33f9d57e2d3e0a9a15f287264b8",
+            "generator_train": "3b679e848970836141b45b0d6bbdeaff754d824f6498f0547eef7853713aa5ac",
+            "crf_confidence": "576353b06c2ec608c523e4972ac26e144f97540792c006029ed69b074e0a0b81"
+          }
+        ],
+        "training_examples": 43897,
+        "training_positive": 2693,
+        "training_documents": 48,
+        "input_candidates": 15980,
+        "features": 83,
+        "estimator": {
+          "categorical_features": "from_dtype",
+          "class_weight": null,
+          "early_stopping": false,
+          "interaction_cst": null,
+          "l2_regularization": 5.0,
+          "learning_rate": 0.06,
+          "loss": "log_loss",
+          "max_bins": 255,
+          "max_depth": null,
+          "max_features": 1.0,
+          "max_iter": 160,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 35,
+          "monotonic_cst": null,
+          "n_iter_no_change": 10,
+          "random_state": 20261023,
+          "scoring": "loss",
+          "tol": 1e-07,
+          "validation_fraction": 0.1,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "selection": "fixed threshold .4; no original dev used",
+        "output_sha256": "8e4d03f2d10a7d1b78377d5b2989979418f1cc33b127566a1639df48479037e3",
+        "seconds": 10.138921124998888
+      }
+    }
+  ],
+  "full_evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/controls-results.json",
+    "sha256": "939eee03e40693dc32bf7738de1b3837ba92be19b34c0f56b7e748041d73346c",
+    "bytes": 63593
+  }
+}

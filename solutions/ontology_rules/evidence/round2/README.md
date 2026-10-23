@@ -14,3 +14,6 @@
 - [首个GPU作业](gpu-job.json)：启动命令、固定GPU与managed进程；后续作业详见实验与外部manifest。
 
 本目录只存小型证据。模型、全量预测、候选与完整日志保存在方案台账所列外部目录；当前未达0.8，不上传官方。
+
+- [outer1固定三控制](crf-confidence-outer1.json)：跨折方向一致，原dev待冻结选型。
+- [远监督双头五控制](distant-detector-results.json)：同宽池仅微小增益，保留负结果，不升级。
