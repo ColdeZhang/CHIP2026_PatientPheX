@@ -10,6 +10,7 @@ import run_relation_features
 import source_fingerprint
 import apply_linker_scores
 import merge_pair_rag
+import patient_id_anchors
 import json
 import contextlib
 import io
@@ -33,6 +34,18 @@ class Round2Tests(unittest.TestCase):
         self.assertNotIn('entities',out);self.assertNotIn('association',out)
         self.assertEqual([m['offset'] for m in out['patient'][0]['mention']],[0,8,21])
         self.assertEqual(len(out['patient'][1]['mention']),1)
+    def test_clinical_ids_use_complete_generation_and_require_numeric_context(self):
+        doc={'pmc_id':'x','patient':[{'patient_id':'OIII-3','mention':[]},{'patient_id':'O1','mention':[]},{'patient_id':'P2','mention':[]}],'full_text':[{'offset':100,'text':'III‐3 and VIII-3, III-30. At age 1, Patient 1 and patient 2.'}],'entities':[{'identifier':'SECRET'}]}
+        expanded,added=patient_id_anchors.expand(doc)
+        self.assertEqual([(x['patient_id'],x['text']) for x in added],[('OIII-3','III‐3'),('O1','Patient 1')])
+        self.assertNotIn('entities',expanded)
+        self.assertEqual(doc['patient'][0]['mention'],[])
+    def test_ambiguous_clinical_id_spellings_are_not_expanded(self):
+        doc={'pmc_id':'x','patient':[{'patient_id':'OIII-3','mention':[]},{'patient_id':'OIII:3','mention':[]}],'full_text':[{'offset':0,'text':'III-3'}]}
+        self.assertEqual(patient_id_anchors.expand(doc)[1],[])
+    def test_unfinished_thinking_cannot_be_parsed_as_a_decision(self):
+        self.assertIsNone(merge_pair_rag.parse_json('<think>Maybe use {"C000":["P1"]}'))
+        self.assertEqual(merge_pair_rag.parse_json('<think>draft {"C000":["P1"]}</think>{"C000":[]}'),{'C000':[]})
     def test_relation_candidate_pool_does_not_replace_final_entities(self):
         with tempfile.TemporaryDirectory() as d:
             d=Path(d)

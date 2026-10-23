@@ -10,7 +10,9 @@ import re
 
 def parse_json(text):
     text=text.strip()
-    if text.startswith('<think>') and '</think>' in text:text=text.split('</think>',1)[1].strip()
+    if text.startswith('<think>'):
+        if '</think>' not in text:return None
+        text=text.split('</think>',1)[1].strip()
     text=re.sub(r'^```(?:json)?\s*','',text);text=re.sub(r'\s*```$','',text)
     try:return json.loads(text)
     except json.JSONDecodeError:
@@ -34,7 +36,7 @@ def main():
     assert set(final)==set(pred)
     relations=defaultdict(lambda:defaultdict(set));stats=Counter()
     for prompt in prompts:
-        response=by_id.get(prompt['row_id']);parsed=parse_json(response['response']) if response else None
+        response=by_id.get(prompt['row_id']);parsed=parse_json(response['response']) if response and not response.get('hit_token_limit',False) else None
         pmc=str(prompt['pmc_id']);patients=set(prompt['patient_ids']);base=pred[pmc]
         for code,concept in prompt['code_map'].items():
             value=parsed.get(code) if isinstance(parsed,dict) else None

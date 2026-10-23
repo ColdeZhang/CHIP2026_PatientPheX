@@ -9,3 +9,5 @@
 
 - `independent-review-summary.json`：独立CPU重训/缓存装配范围、完整报告SHA与位置、源码/预测SHA及选择限制。
 - `biolink-large-source.json` / `biolinklarge-fold0.json`：通用底座来源、完整权重SHA、NER负结果与basename哈希覆盖补充证据。
+
+- `id-anchors-inner4.json`：官方编号来源、四折锚点计数、原始/内部派生输入SHA、源码和输出SHA，以及两种关系规则混合正负结果；不升级默认。
