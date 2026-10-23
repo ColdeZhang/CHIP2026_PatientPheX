@@ -1,0 +1,547 @@
+{
+  "status": "complete; modest pooled gain with one negative fold; independent review pending",
+  "source_commit": "69d86677b87c0213de1277de2106dafe5eb6624c",
+  "references": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/plan.json",
+      "sha256": "f356ff5b9a326b32076b6bb587b3dd0cf3b37073f2771fd27f2b2fa0973fe085",
+      "bytes": 13093
+    },
+    "contracts.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/contracts.json",
+      "sha256": "292b2044dbee20d557a706b1a5795e60399d02e7a39c91485429cf3cb88e9201",
+      "bytes": 690
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/job.json",
+      "sha256": "82e5e435f63a17c388faa1aa53e453a241e5fe7b0489b68e26d091078b6e5fae",
+      "bytes": 742
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/complete-freeze.json",
+      "sha256": "5dad37ae58c0e2ec1758dbf707802191bd5b9c33a24b946f0e446fec371a2f61",
+      "bytes": 2860
+    },
+    "input-only-diagnostics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/input-only-diagnostics.json",
+      "sha256": "f4c9ea6fa70d2fc1e1acbe0e6bad6bddc36fe853dca7661e49986961d499d03b",
+      "bytes": 125827
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/results.json",
+      "sha256": "c283e45927a22cbe6f845dece72ef19bccc784e2d8ec188d60ff0199c9901534",
+      "bytes": 113253
+    }
+  },
+  "decoder": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/decode_nested_selector.py",
+    "sha256": "7f4484fc1db132746f674c8c268832705cbeba7d05bbe65268c1ef0e275a7c7f",
+    "bytes": 2650
+  },
+  "inherited_policy": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/append_nested_spans.py",
+    "sha256": "f6d9535504176d91b826da76407f10913bec267143e6a837968422b2acfb44d9",
+    "bytes": 5901
+  },
+  "pooled": {
+    "baseline": {
+      "menF1": 0.7638311830308332,
+      "docF1": 0.7965540092776673,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7256553887000612
+    },
+    "nested": {
+      "menF1": 0.7662991114441708,
+      "docF1": 0.8033671487157349,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7279756556629124
+    }
+  },
+  "pooled_deltas": {
+    "menF1": 0.00246792841333765,
+    "docF1": 0.006813139438067606,
+    "micF1": 0.0,
+    "macF1": 0.0,
+    "Score": 0.0023202669628512584
+  },
+  "pooled_changes": {
+    "entity_added_tp": 86,
+    "entity_added_fp": 109,
+    "entity_removed_tp": 0,
+    "entity_removed_fp": 0,
+    "relation_added_tp": 0,
+    "relation_added_fp": 0,
+    "relation_removed_tp": 0,
+    "relation_removed_fp": 0
+  },
+  "counts": {
+    "all_candidates": 61781,
+    "already_selected": 4315,
+    "below_cut": 57198,
+    "original_overlap_rejection": 268,
+    "invalid_hpo_or_nil": 0,
+    "negated": 12,
+    "not_distinct_proper_nesting": 61,
+    "added": 195
+  },
+  "document_count_changes": {
+    "changed_documents": 57,
+    "added_rows": 195,
+    "original_overlap_rejections": 268,
+    "nil_or_invalid": 0,
+    "negated": 12
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.7657657657657657,
+            "docF1": 0.771622934888241,
+            "micF1": 0.712401055408971,
+            "macF1": 0.6844387608518604,
+            "Score": 0.7335571292287095
+          },
+          "counts": {
+            "mention": {
+              "tp": 850,
+              "fp": 193,
+              "fn": 327,
+              "precision": 0.8149568552253116,
+              "recall": 0.7221750212404418,
+              "f1": 0.7657657657657657
+            },
+            "document": {
+              "tp": 397,
+              "fp": 67,
+              "fn": 168,
+              "precision": 0.8556034482758621,
+              "recall": 0.7026548672566372,
+              "f1": 0.771622934888241
+            },
+            "relation": {
+              "tp": 270,
+              "fp": 109,
+              "fn": 109,
+              "precision": 0.712401055408971,
+              "recall": 0.712401055408971,
+              "f1": 0.712401055408971
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        },
+        "nested": {
+          "metrics": {
+            "menF1": 0.7680709534368071,
+            "docF1": 0.7786259541984732,
+            "micF1": 0.712401055408971,
+            "macF1": 0.6844387608518604,
+            "Score": 0.735884180974028
+          },
+          "counts": {
+            "mention": {
+              "tp": 866,
+              "fp": 212,
+              "fn": 311,
+              "precision": 0.8033395176252319,
+              "recall": 0.735768903993203,
+              "f1": 0.7680709534368071
+            },
+            "document": {
+              "tp": 408,
+              "fp": 75,
+              "fn": 157,
+              "precision": 0.84472049689441,
+              "recall": 0.7221238938053097,
+              "f1": 0.7786259541984732
+            },
+            "relation": {
+              "tp": 270,
+              "fp": 109,
+              "fn": 109,
+              "precision": 0.712401055408971,
+              "recall": 0.712401055408971,
+              "f1": 0.712401055408971
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 16,
+        "entity_added_fp": 19,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 0,
+        "relation_added_tp": 0,
+        "relation_added_fp": 0,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "deltas": {
+        "menF1": 0.0023051876710413755,
+        "docF1": 0.0070030193102322835,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": 0.0023270517453184425
+      }
+    },
+    {
+      "fold": 1,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.7657098525989139,
+            "docF1": 0.8112391930835735,
+            "micF1": 0.6595538312318138,
+            "macF1": 0.6592399471314652,
+            "Score": 0.7239357060114415
+          },
+          "counts": {
+            "mention": {
+              "tp": 987,
+              "fp": 238,
+              "fn": 366,
+              "precision": 0.8057142857142857,
+              "recall": 0.729490022172949,
+              "f1": 0.7657098525989139
+            },
+            "document": {
+              "tp": 563,
+              "fp": 80,
+              "fn": 182,
+              "precision": 0.8755832037325039,
+              "recall": 0.7557046979865771,
+              "f1": 0.8112391930835735
+            },
+            "relation": {
+              "tp": 340,
+              "fp": 171,
+              "fn": 180,
+              "precision": 0.6653620352250489,
+              "recall": 0.6538461538461539,
+              "f1": 0.6595538312318138
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        },
+        "nested": {
+          "metrics": {
+            "menF1": 0.7726586102719033,
+            "docF1": 0.8211267605633803,
+            "micF1": 0.6595538312318138,
+            "macF1": 0.6592399471314652,
+            "Score": 0.7281447872996406
+          },
+          "counts": {
+            "mention": {
+              "tp": 1023,
+              "fp": 272,
+              "fn": 330,
+              "precision": 0.78996138996139,
+              "recall": 0.7560975609756098,
+              "f1": 0.7726586102719033
+            },
+            "document": {
+              "tp": 583,
+              "fp": 92,
+              "fn": 162,
+              "precision": 0.8637037037037038,
+              "recall": 0.7825503355704698,
+              "f1": 0.8211267605633803
+            },
+            "relation": {
+              "tp": 340,
+              "fp": 171,
+              "fn": 180,
+              "precision": 0.6653620352250489,
+              "recall": 0.6538461538461539,
+              "f1": 0.6595538312318138
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 36,
+        "entity_added_fp": 34,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 0,
+        "relation_added_tp": 0,
+        "relation_added_fp": 0,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "deltas": {
+        "menF1": 0.006948757672989414,
+        "docF1": 0.009887567479806791,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": 0.004209081288199079
+      }
+    },
+    {
+      "fold": 2,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.7522686025408348,
+            "docF1": 0.7829383886255924,
+            "micF1": 0.7046070460704607,
+            "macF1": 0.7349417473850429,
+            "Score": 0.7436889461554828
+          },
+          "counts": {
+            "mention": {
+              "tp": 829,
+              "fp": 220,
+              "fn": 326,
+              "precision": 0.7902764537654909,
+              "recall": 0.7177489177489178,
+              "f1": 0.7522686025408348
+            },
+            "document": {
+              "tp": 413,
+              "fp": 72,
+              "fn": 157,
+              "precision": 0.8515463917525773,
+              "recall": 0.724561403508772,
+              "f1": 0.7829383886255924
+            },
+            "relation": {
+              "tp": 260,
+              "fp": 120,
+              "fn": 98,
+              "precision": 0.6842105263157895,
+              "recall": 0.7262569832402235,
+              "f1": 0.7046070460704607
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        },
+        "nested": {
+          "metrics": {
+            "menF1": 0.7545494895694629,
+            "docF1": 0.7944700460829494,
+            "micF1": 0.7046070460704607,
+            "macF1": 0.7349417473850429,
+            "Score": 0.747142082276979
+          },
+          "counts": {
+            "mention": {
+              "tp": 850,
+              "fp": 248,
+              "fn": 305,
+              "precision": 0.7741347905282332,
+              "recall": 0.7359307359307359,
+              "f1": 0.7545494895694629
+            },
+            "document": {
+              "tp": 431,
+              "fp": 84,
+              "fn": 139,
+              "precision": 0.8368932038834952,
+              "recall": 0.756140350877193,
+              "f1": 0.7944700460829494
+            },
+            "relation": {
+              "tp": 260,
+              "fp": 120,
+              "fn": 98,
+              "precision": 0.6842105263157895,
+              "recall": 0.7262569832402235,
+              "f1": 0.7046070460704607
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 21,
+        "entity_added_fp": 28,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 0,
+        "relation_added_tp": 0,
+        "relation_added_fp": 0,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "deltas": {
+        "menF1": 0.0022808870286280536,
+        "docF1": 0.011531657457356959,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": 0.0034531361214962253
+      }
+    },
+    {
+      "fold": 3,
+      "arms": {
+        "baseline": {
+          "metrics": {
+            "menF1": 0.7714552238805971,
+            "docF1": 0.8151658767772512,
+            "micF1": 0.6858407079646017,
+            "macF1": 0.547780924175251,
+            "Score": 0.7050606831994253
+          },
+          "counts": {
+            "mention": {
+              "tp": 827,
+              "fp": 174,
+              "fn": 316,
+              "precision": 0.8261738261738262,
+              "recall": 0.7235345581802275,
+              "f1": 0.7714552238805971
+            },
+            "document": {
+              "tp": 430,
+              "fp": 54,
+              "fn": 141,
+              "precision": 0.8884297520661157,
+              "recall": 0.7530647985989493,
+              "f1": 0.8151658767772512
+            },
+            "relation": {
+              "tp": 310,
+              "fp": 134,
+              "fn": 150,
+              "precision": 0.6981981981981982,
+              "recall": 0.6739130434782609,
+              "f1": 0.6858407079646017
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        },
+        "nested": {
+          "metrics": {
+            "menF1": 0.7688787185354691,
+            "docF1": 0.812962962962963,
+            "micF1": 0.6858407079646017,
+            "macF1": 0.547780924175251,
+            "Score": 0.7038658284095712
+          },
+          "counts": {
+            "mention": {
+              "tp": 840,
+              "fp": 202,
+              "fn": 303,
+              "precision": 0.8061420345489443,
+              "recall": 0.7349081364829396,
+              "f1": 0.7688787185354691
+            },
+            "document": {
+              "tp": 439,
+              "fp": 70,
+              "fn": 132,
+              "precision": 0.862475442043222,
+              "recall": 0.7688266199649737,
+              "f1": 0.812962962962963
+            },
+            "relation": {
+              "tp": 310,
+              "fp": 134,
+              "fn": 150,
+              "precision": 0.6981981981981982,
+              "recall": 0.6739130434782609,
+              "f1": 0.6858407079646017
+            }
+          },
+          "errors": 0,
+          "warnings": 0
+        }
+      },
+      "changes": {
+        "entity_added_tp": 13,
+        "entity_added_fp": 28,
+        "entity_removed_tp": 0,
+        "entity_removed_fp": 0,
+        "relation_added_tp": 0,
+        "relation_added_fp": 0,
+        "relation_removed_tp": 0,
+        "relation_removed_fp": 0
+      },
+      "deltas": {
+        "menF1": -0.0025765053451279885,
+        "docF1": -0.0022029138142881655,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.0011948547898540385
+      }
+    }
+  ],
+  "all_old_entities_preserved": true,
+  "all_nonentity_objects_preserved": true,
+  "predictions": [
+    {
+      "fold": 0,
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold0/baseline.jsonl",
+        "sha256": "298cc8747c1c1e72fd1ddf5a0c88228d446c1ac2f731bd06d3dd60137ec70f8b",
+        "bytes": 137672
+      },
+      "nested": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold0/nested.jsonl",
+        "sha256": "6f367fbc1f6b8cbed30cafc16457e65d9c9a61ffcd6ac16f4f4ce2846469566f",
+        "bytes": 142203
+      }
+    },
+    {
+      "fold": 1,
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold1/baseline.jsonl",
+        "sha256": "8ea3a1da772d8aeacb9fa376d1908601a8121d519094b66277fca075f303a426",
+        "bytes": 162162
+      },
+      "nested": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold1/nested.jsonl",
+        "sha256": "7f0fd580f00be90a0bb2c07f018672390842d5fcdb33e3ca2f08418780a9e5b4",
+        "bytes": 171338
+      }
+    },
+    {
+      "fold": 2,
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold2/baseline.jsonl",
+        "sha256": "1981720362f9cab36eedca9f52a9bc4a0fa42d3d4b0231e93810d72fbf26423c",
+        "bytes": 137489
+      },
+      "nested": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold2/nested.jsonl",
+        "sha256": "780f118a123f59ca927eb966f4a8281c0cea3cb6b1bdd3d1255edb3f720132ac",
+        "bytes": 143910
+      }
+    },
+    {
+      "fold": 3,
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold3/baseline.jsonl",
+        "sha256": "3d4606ae970e6d97fe2be9837454bb8add3f8c342042b87fe9fabf9cbcaef66b",
+        "bytes": 133632
+      },
+      "nested": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/fold3/nested.jsonl",
+        "sha256": "a8f624aa85c17199dd7bf62a561d9791289588872e45122a0cb3bc66e28efc26",
+        "bytes": 138847
+      }
+    }
+  ],
+  "independent_review": "pending",
+  "seconds": 1.347899029002292,
+  "limitations": [
+    "Structural policy transfer, not full GLiNER pipeline reproduction.",
+    "Same OOF score pools and .3 chosen on all train64; development comparison, not blind estimate.",
+    "Originaldev untouched, no new candidate features/models/probabilities/fit/GPU.",
+    "Reference HGB greedily selected entities are protected; additional negation/HPO filtering applies only to new entities.",
+    "Prior old baseline reports are reused without a repeat quality evaluation."
+  ]
+}

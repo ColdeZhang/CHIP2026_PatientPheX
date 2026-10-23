@@ -8,4 +8,12 @@
 
 运行总CPU≤30秒；四旧四新完整预测共同freeze后一次新臂v2/格式，旧baseline按相同SHA复用同期首次完整指标。全train64曾选择.3且参与研发，当前是开发控制，无原dev/GPU/新fit；负或零即关闭，不扫阈值。
 
-恢复：`/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/plan.json`；入口 `run_nested_selector_control.py --directory <该目录>`。[小计划证据](../evidence/round2/selector-nested-plan.json)。当前尚未正式运行。
+恢复：`/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-control/plan.json`；入口 `run_nested_selector_control.py --directory <该目录>`。[小计划证据](../evidence/round2/selector-nested-plan.json)。实际已完成，见下。
+
+## 唯一四fold终点
+
+实际进程2.631秒（程序主体1.348秒），exit0，8fullpred在新标签评价前共同冻结。268原门槛以上overlap拒项中，12被同原否定规则挡住、61不满足所有碰撞的严格包含/异ID、195追加成功；无新NIL/非法HPO，全部实际碰撞逐项记录。
+
+pooled Score **.725655389→.727975656**（+.002320267）；men .763831→.766299、doc .796554→.803367，关系两项完全不变。新增实体86TP109FP、doc58TP48FP；无删除、关联增删0，0错警。四fold Score Δ `[+.002327052,+.004209081,+.003453136,-.001194855]`，最后一折men/doc都下降（13TP28FP新增），不得只写均值正。
+
+该结果支持一次固定结构迁移的小收益，仍是开发结果，不是.8或原dev结论。root条件授权仅在本次独审通过后做唯一原dev同政策实体追加、现368条关系不变；当前尚未运行。完整摘要/源码/每次碰撞证据见[结果](../evidence/round2/selector-nested-results.json)。
