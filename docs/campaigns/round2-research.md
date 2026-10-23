@@ -86,3 +86,5 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 旧审查确认上游示例以外部GSC人工开发集选checkpoint，但公开单个权重没有完整选模谱系；这项不确定性不能自动升级成比赛规则禁止。官方综述§4.2记载头部方案使用PhenoTagger，Agriv固定模型卡明确列出公开 `lingbionlp/PhenoTagger_v1.2`；结合规则允许公开预训练模型/工具，本轮决定先测试该公开模型，而非只接受从本体重训。此为基于现有资料的实施判断，不冒称主办方已单独确认本次用法。仍不导入外部GSC人工标签，也不使用含本地dev的Agriv自训权重。
 
 固定revision `02ce3f529820dccca46bae168c1933ba25253125` 的单个 `pubmedbert_PT_v1.2.h5` 为491,312,288字节；准确ModelScope接口404、阳性对照200后回退固定HF。只在A100自有TF2.12/Transformers4.30.1环境做CPU原生加载，保留17266列顺序、按当前HPO canonical/alt规范映射，不用新词表替换旧head。旧head仍缺部分2026类；实际SHA、逐变量恢复与合成词检查记录在外部 `research/public-phenotagger-reuse/`，尚无质量结论。采用from_config后完整h5严格恢复可避免重复下载基座，必须实际验证全部权重覆盖，不能仅以加载函数未报错为准。
+
+实际CPU原生加载已通过：201变量、122,759,794参数先置NaN，再由Keras H5按拓扑严格恢复，每个变量与原文件逐元素相等，完整检查16.459秒；未转换PyTorch、未下载第二份基座。原17266列映射后覆盖当前17090个概念（178旧alt列规范化、3列无效丢弃），仍缺2030当前类；只在原argmax后映射，不提前删列重算概率。首次因Transformers4.30.1未发现tensorflow-cpu失败，使用上游FORCE_TF_AVAILABLE/USE_TF开关后通过，未修改共享库。四条合成词只说明接口与标签列正确，实体控制和实际吞吐仍在准备。冻结短报告及来源见[清单](round2-research-sources.json)。
