@@ -132,3 +132,21 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 ### 全局无重叠不变，但允许不同概念严格嵌套可补少量遗漏
 
 WIS同池全字节不变，不代表禁止全部重叠合理。机械复用旧包含/异ID/合法HPO/否定政策到原HGB .3池，268重叠拒项中195可追加，四fold总体+.002320，3正1负、86TP109FP。新增不是高精度集合，但doc与mention召回抵消了一部分FP；结果只支持此固定结构政策，不能据此删掉新否定或扫cut。原greedy实体/关联完整保留。
+
+### 更大MoE方案按官方10B上限关闭；当前实际参数库存
+
+官方缓存英文原文为“model contains no more than10B parameters”，中文同样约束总模型参数，没有MoE激活数例外。ModelScope精确Qwen/Qwen3.5-35B-A3B返回200；固定HF59d61f3c的官方metadata总35,951,822,704，卡明确35B总量/3B激活，14分片逻辑权重71,903,655,008B。因总量超限直接关闭，不下载权重、不测试MoE部署/显存、不探GPU/磁盘，也不泛搜更大模型；27B提议同样关闭且未另抓取。Apache许可不改变比赛参数上限。[来源证据](evidence/round2/larger-relation-model-feasibility.json)。
+
+| 当前最佳流程必要独立神经权重 | 实际参数数 |
+|---|---:|
+| Qwen3.5-9B实际文本CausalLM | 8,953,803,264 |
+| full64 epoch2未合并LoRA | 43,278,336 |
+| 公开PubMedBERT PhenoTagger | 122,759,794 |
+| 公开Bioformer PhenoTagger | 51,380,594 |
+| SapBERT（两任务共享一次） | 109,482,240 |
+| Task2 GLiNER medium48 | 195,175,936 |
+| **实际独立神经参数合计** | **9,475,880,164** |
+
+Qwen实际base+adapter为8,997,081,600；下载bundle另含未运行视觉456,010,480与MTP243,290,624。若将整Qwen bundle、同adapter和其他模型都计入，边界为**10,175,181,268**，不能用实际运行总数掩盖它，也不猜官方按单模型、ensemble或未使用文件怎样统计。原源码/HF形状推导与真实运行计数区分记录；不是新模型加载测量。
+
+同一Sap/公开模型/Qwen/CRF跨任务或批次只计一次，不累加历史fold checkpoints；不同训练权重的PubMed PhenoTagger和Sap不能因为同架构就去重，GLiNER encoder已包含在195M内。Sap实际FP16文件头199浮点tensor，另512个position_ids整数是buffer。非神经资源另列：CRF9238权重、Sap类型LR769系数/截距、HGB160树4640节点2400叶值加bias（97特征）；词表/TFIDF/稀疏别名bank与树结构不暗中等同神经参数。没有训练/forward/评分或新资源占用。[完整实际SHA、复现脚本及边界](evidence/round2/current-pipeline-parameter-inventory.json)。

@@ -1,0 +1,144 @@
+{
+  "scope": "Current end-to-end d531 candidate uses same weights as e9/6401; only decoder adds entities. No new model/forward/quality/GPU or remote disk probing.",
+  "actual_distinct_neural_parameters": 9475880164,
+  "whole_qwen_bundle_boundary": 10175181268,
+  "components": [
+    {
+      "name": "Qwen3.5-9B actual text CausalLM",
+      "parameters": 8953803264,
+      "role": "Task2 old and new-concept relation generation; one shared model",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.manifest.json",
+        "sha256": "97b322255ac2872d2b8a375b0cee4baf6e0fc0afa7dc049674c625d7ff7663a0",
+        "bytes": 4212
+      }
+    },
+    {
+      "name": "Full64 epoch2 LoRA",
+      "parameters": 43278336,
+      "role": "Same unmerged adapter shared across both Task2 batches",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.manifest.json",
+        "sha256": "97b322255ac2872d2b8a375b0cee4baf6e0fc0afa7dc049674c625d7ff7663a0",
+        "bytes": 4212
+      }
+    },
+    {
+      "name": "Public PhenoTagger PubMedBERT",
+      "parameters": 122759794,
+      "role": "Task1 and new Task2 public concept source; shared once",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/terminal/manifest.json",
+        "sha256": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a",
+        "bytes": 3171
+      }
+    },
+    {
+      "name": "Public PhenoTagger Bioformer",
+      "parameters": 51380594,
+      "role": "Independent public source, shared across Task1/new Task2",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-train64-cache/terminal/native-train64-cache/manifest.json",
+        "sha256": "142e3297aed7f6f866c6ce16e82c2f2401332efac85b230c3a14d200e1411ca0",
+        "bytes": 3700
+      }
+    },
+    {
+      "name": "SapBERT",
+      "parameters": 109482240,
+      "role": "Shared Task1/Task2 candidate normalization; distinct weights from PubMed PhenoTagger",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/day1-20261023/semantic-neural/sapbert-fp16/model.safetensors",
+        "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+        "bytes": 218990904
+      },
+      "count_method": "Actual FP16 safetensors header:199 floating tensors;512 integer position_ids buffer excluded"
+    },
+    {
+      "name": "Task2 GLiNER medium train48 epoch10",
+      "parameters": 195175936,
+      "role": "Original Task2 CRF+Sap+GLiNER48 candidate pool only; not HGB Task1",
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/finetuned-fold0/manifest.json",
+        "sha256": "29c0a2259c5ab0ad6463975db6f1f57be1ff2da676274ec5f27a89712523ec4f",
+        "bytes": 2340
+      }
+    }
+  ],
+  "unused_Qwen": {
+    "vision": 456010480,
+    "mtp": 243290624,
+    "all_bundle_parameters": 9653104368,
+    "count_method": "Every one of 775 index keys assigned a shape by fixed checkpoint config plus stable HF module definitions; MTP fc inferred 2H->H from concatenated embedding/hidden projection. Shape inference, not tensor-header payload read. Sum exactly reconciles public HF tensor count. No weights downloaded.",
+    "evidence": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-feasibility/independent-review/parameter-accounting.json",
+      "sha256": "902bb9430372254184bc1edefed3e13324a228e5ff461a1f91a05031780088a3",
+      "bytes": 201232
+    }
+  },
+  "non_neural": {
+    "CRF": {
+      "state_weight_count": 9229,
+      "transition_weight_count": 9,
+      "total_weights": 9238,
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-multi/crf-work/crf.model",
+        "sha256": "ee0f34ba65ae1fbaf181c01a1600c8afb2768410413582bcae71ed77e7c846e7",
+        "bytes": 453232
+      }
+    },
+    "Sap_type_LR": {
+      "coefficients": 768,
+      "intercept": 1,
+      "learned_scalars": 769,
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/reconstruction/reconstructed-detector.npz",
+        "sha256": "adb8ff8c8f395d74e2d76dc02995b5c51bf6e0fde818de7a7f4e8667e8b6b626",
+        "bytes": 6926
+      }
+    },
+    "HGB": {
+      "features": 97,
+      "trees": 160,
+      "nodes": 4640,
+      "leaf_output_values": 2400,
+      "bias_values": 1,
+      "evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector.pkl",
+        "sha256": "db2fc28850596bf633b1baf33a90d3747341d3d621f87dc29d87ad374a5bbd51",
+        "bytes": 295637
+      },
+      "note": "Tree split structure/thresholds/values are reported as actual structure, not silently equated to a neural parameter count."
+    },
+    "knowledge_resources": "HPO aliases, TFIDF vocabulary/IDF and sparse lookup bank, CRF gazetteer, normalizers and fixed rules are data/feature resources; excluded from neural-weight total, not asserted to be irrelevant to official counting."
+  },
+  "sharing": [
+    "Each trained tensor set counted once across documents, passes, candidates and both tasks.",
+    "No fold32/fold48/fold64 historical alternatives summed; only current deployed checkpoints.",
+    "LoRA A/B tensors add43278336 in current unmerged runtime; the base tensors are not counted again.",
+    "Qwen config uses untied input embedding and lm_head; actual named-parameter count already accounts for sharing.",
+    "PubMed PhenoTagger and SapBERT have related architecture/pretraining but distinct trained tensors; not shared.",
+    "GLiNER encoder is included in actual195175936; no extra generic DeBERTa checkpoint added."
+  ],
+  "rule": {
+    "evidence": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/docs/competition/sources/2026-10-23/official-github/README_EN.md",
+      "sha256": "063a4cadd28d2acd61deddb840285ca90775bac4899933248aa28b27d28e0440",
+      "bytes": 24881
+    },
+    "quote": "provided that the model contains no more than **10B parameters**",
+    "interpretation": "No public exception for activated MoE parameters; no inference about whether officials sum ensemble components or unused downloaded bundle. Actual and conservative whole-bundle boundaries both disclosed."
+  },
+  "full_inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/parameter-inventory/inventory.json",
+    "sha256": "a91a86576b3e759c50c4a17919a080f77aed9bb6b8f99488b10de8fac0d2b150",
+    "bytes": 7018
+  },
+  "reproducer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/parameter-inventory/audit.py",
+    "sha256": "5df2f2cfd350f95d572a66f66e23e1325e9a432e0a1870af899571e07bd31f14",
+    "bytes": 6173
+  },
+  "quality_or_gpu_run": false,
+  "independent_review": "not requested; read-only source and actual local model/header inspection"
+}

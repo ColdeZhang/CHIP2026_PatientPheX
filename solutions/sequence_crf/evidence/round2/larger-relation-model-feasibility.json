@@ -1,0 +1,66 @@
+{
+  "status": "closed before deployment probes; exceeds the documented10B total-parameter limit",
+  "checked_candidate": "Qwen/Qwen3.5-35B-A3B",
+  "fixed_hf_revision": "59d61f3ce65a6d9863b86d2e96597125219dc754",
+  "official_total_parameters": 35951822704,
+  "official_card_quote": "Number of Parameters:35B in total and3B activated",
+  "activated_parameters_card": 3000000000,
+  "config": {
+    "model_type": "qwen3_5_moe",
+    "layers": 40,
+    "experts": 256,
+    "experts_per_token": 8
+  },
+  "weight_payload_bytes": 71903655008,
+  "weight_shards": 14,
+  "modelscope": {
+    "exact_owner": "Qwen",
+    "exact_name": "Qwen3.5-35B-A3B",
+    "status": 200,
+    "success": true,
+    "revision_in_info": "master",
+    "fixed_file_equivalence_checked": false
+  },
+  "license": "apache-2.0",
+  "rule": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/docs/competition/sources/2026-10-23/official-github/README_EN.md",
+    "sha256": "063a4cadd28d2acd61deddb840285ca90775bac4899933248aa28b27d28e0440",
+    "bytes": 24881
+  },
+  "official_rule_quote": "provided that the model contains no more than **10B parameters**",
+  "sources": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-moe-feasibility/sources.json",
+    "sha256": "244bb71f8ab06aef58538eaebbc67a2dec5df031844725b1f8359d1af1502143",
+    "bytes": 1973
+  },
+  "parameter_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-moe-feasibility/hf-model-api.json",
+    "sha256": "f3dfe23d4cf8152e2e34444fee9a47dde152cd464c74c56dfb33dbcdbd27ea7c",
+    "bytes": 21319
+  },
+  "config_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-moe-feasibility/config.json",
+    "sha256": "5e4d7f74fec2f360eb9cfbfcd6ec0c4c76e684d3a11caaed259d9fd9bfbc7944",
+    "bytes": 3544
+  },
+  "card_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-moe-feasibility/README.md",
+    "sha256": "71c3bbc2eadadd5980bbdbb15df958c27d42ede24821015602a021109aacf492",
+    "bytes": 93160
+  },
+  "index_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-moe-feasibility/model.safetensors.index.json",
+    "sha256": "d8d0b7ca4e61ae107e3e87a3ff21136b3ac7c789e64bb24267227ca804e04205",
+    "bytes": 187463
+  },
+  "not_performed": [
+    "weight download",
+    "GPU or disk deployment probing",
+    "MoE software/LoRA compatibility test",
+    "BF16/QLoRA capacity measurement",
+    "training/inference/quality evaluation",
+    "second model search"
+  ],
+  "decision": "Keep existing9B relation model. Active3B is not total model size; no official active-parameter exception found.27B proposal also closed, not independently fetched or benchmarked.",
+  "created_at_utc": "2026-10-23T22:18:10.356032+00:00"
+}
