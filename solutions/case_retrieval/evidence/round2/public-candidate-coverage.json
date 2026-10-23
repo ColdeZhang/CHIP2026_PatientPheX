@@ -1,0 +1,107 @@
+{
+  "status": "fixed_public_F1_candidate_coverage_oracle_only_no_quality",
+  "input_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-candidate-coverage/input-only-freeze.json",
+    "bytes": 6902,
+    "sha256": "1f10ab09604b8abd6c1e3537a4641c05b64c58abeb6eacc288c96ce486dd86a2"
+  },
+  "diagnostic": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/training-error-diagnostic-v2/diagnostic.json",
+    "bytes": 7707,
+    "sha256": "c8fe02a171a69c9b6c973d464fe650c56ef6f9f27fdbb51cfeec1ee6e0cedb6d"
+  },
+  "missing_keys": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/training-error-diagnostic-v2/missing-candidate-keys.json",
+    "bytes": 30206,
+    "sha256": "e458852d0b14915e24184f2ee88e59c6c4142e317abc33903704b6dd60929582"
+  },
+  "statistics": {
+    "pubmed": {
+      "public_F1_entities": 1769,
+      "public_F1_concepts": 904,
+      "overlap_old_concepts": 545,
+      "new_concepts": 359,
+      "new_entity_occurrences": 531,
+      "new_documents": 16,
+      "new_patient_concept_pairs": 1003,
+      "prompts": 52,
+      "prompt_characters": 570938
+    },
+    "bioformer": {
+      "public_F1_entities": 1677,
+      "public_F1_concepts": 857,
+      "overlap_old_concepts": 537,
+      "new_concepts": 320,
+      "new_entity_occurrences": 460,
+      "new_documents": 16,
+      "new_patient_concept_pairs": 895,
+      "prompts": 46,
+      "prompt_characters": 493361
+    },
+    "union": {
+      "public_F1_entities": 1988,
+      "public_F1_concepts": 1000,
+      "overlap_old_concepts": 551,
+      "new_concepts": 449,
+      "new_entity_occurrences": 680,
+      "new_documents": 16,
+      "new_patient_concept_pairs": 1251,
+      "prompts": 62,
+      "prompt_characters": 704400
+    }
+  },
+  "coverage_oracle": {
+    "pubmed": {
+      "oracle_missing_relations_covered": 88,
+      "oracle_fraction_of_154": 0.5714285714285714,
+      "oracle_canonical_recall_ceiling": 0.8730769230769231,
+      "oracle_missing_document_concepts_covered": 69,
+      "coverage_keys_sha256": "5d19b2287f93a6a3fca6f71b407b3c7ec1fce4be2e8e5000d36d0d374a767e3a"
+    },
+    "bioformer": {
+      "oracle_missing_relations_covered": 87,
+      "oracle_fraction_of_154": 0.564935064935065,
+      "oracle_canonical_recall_ceiling": 0.8711538461538462,
+      "oracle_missing_document_concepts_covered": 65,
+      "coverage_keys_sha256": "9fd90d137d8e6bb4b70ca0820b54dbc338c7b8f1c1ce20a87822ba6dd271f0cf"
+    },
+    "union": {
+      "oracle_missing_relations_covered": 103,
+      "oracle_fraction_of_154": 0.6688311688311688,
+      "oracle_canonical_recall_ceiling": 0.9019230769230769,
+      "oracle_missing_document_concepts_covered": 80,
+      "coverage_keys_sha256": "2b4afb8a687ceabee1bf27f5f3b910d6b330ad25f6260a479bbb784324eefb5b"
+    }
+  },
+  "cost_proxy": {
+    "pubmed": {
+      "row_linear_seconds": 183.62630000000001,
+      "prompt_character_linear_seconds": 154.44533730017,
+      "exact_tokens_not_yet_measured": true,
+      "not_measured_runtime_or_guarantee": true
+    },
+    "bioformer": {
+      "row_linear_seconds": 162.43865,
+      "prompt_character_linear_seconds": 133.45986088813348,
+      "exact_tokens_not_yet_measured": true,
+      "not_measured_runtime_or_guarantee": true
+    },
+    "union": {
+      "row_linear_seconds": 218.93905,
+      "prompt_character_linear_seconds": 190.54835305101383,
+      "exact_tokens_not_yet_measured": true,
+      "not_measured_runtime_or_guarantee": true
+    }
+  },
+  "structural_feasibility": "Keep all old associations and all old entities untouched; originalSFT32 epoch002/originalgreedy only infer new publicHPO concepts with original8CID/4evidence/500/globalanchors prompt. Decode only newconcept pairs and append; never regenerate old relation decisions. Entity assembly/overlap policy still needs a fixed controlled plan before quality.",
+  "text_contract": "Old -1 maps to raw entity text including literal None if present; typed hpo/text keys preserve that distinction. Actual oldF1 has3 unlinked text concepts. Public caches contain only valid current HPO; new prompts add no fabricated text/None concepts.",
+  "limitations": [
+    "Coverage is oracle upper bound on fixed published candidate pools, not predicted quality or a gold-based per-candidate selection.",
+    "Allthree sources were fixed from input before reading missinggold keys; do not select individual new candidates using these hits.",
+    "Candidate scores are native model/dictionary policy; do not apply a second score>.95 filter to dictionary outputs.",
+    "Overlapping new spans may affect entity precision/score; no scored prediction or v2 evaluation was produced.",
+    "F1 is the same designated train-side meta16; no originaldev/outer0 gold read."
+  ],
+  "no_new_GPU": true,
+  "no_forward": true
+}

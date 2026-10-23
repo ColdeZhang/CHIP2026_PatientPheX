@@ -119,3 +119,5 @@
 - [SFT32 单meta-fold融合结果](sft-meta1-result.json)：同LR+上下文 .673525→加SFT .683810，有增量但低规则/直接SFT48；未迁移原dev，完整预测冻结后唯一评分，独审0adcce70通过。
 
 - [训练侧SFT误差诊断](sft-training-error-diagnostic.json)：F1 OOF候选缺失与离散拒绝/患者漏选结构统计，canonical与原raw监督分开，未读取outer/原dev标签。[短判断](../../research/sft-training-error-diagnostic.md)。
+
+- [公开固定候选覆盖上界](public-candidate-coverage.json)与[新增关系控制计划](public-new-relations-plan.json)：固定union449新增concept，保持旧实体/关系，只SFT32追加；600+30、实际token通过，无新训练。

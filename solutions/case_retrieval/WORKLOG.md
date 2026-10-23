@@ -19,6 +19,7 @@
 - **SFT融合库存只读**：原四事实用base非SFT，不能外推否定SFT+LR。旧48/64均非inner OOF；6语义方向可复用、2已装配、0合格32SFT。完整3模型粗估约62min训练，最小一meta-fold约21min+推断，但均非实测/授权；[边界与来源](evidence/round2/qwen35-sft-fusion-reuse-review.json)。
 - **单meta-fold SFT+LR控制已完成**：新F1-only HGB同LR+上下文 .673525489→加SFT4事实 .683809711（+.010284）；micro+.051593/macro−.010456，仍低rules .711354/单SFT48 .695444。freshSFT32仅F2+F3，2ep32updates/1149.460s；80F1响应282.502s/587CID全有效，双pred先freeze后唯一评分。不迁移原dev、不自动补两折；独立终审0adcce70通过（actual谱系35a792d5/概率与指标重放通过）。[结果](evidence/round2/sft-meta1-result.json)。A800 GPU2 21:28:40.539Z空已释放，watchers89789/6422已结束，无GPU后继。
 - **最新训练侧误差诊断**：严格SFT32→F1 16篇，520canonical真关联仅366在候选；209FN=154缺候选+31CID空+24非空漏患者。55候选内FN仅3在top4丢光目标marker，31所有±500窗均无但全有global；这些是结构代理，不证明因果。关系改进不能修154上游缺口；下一建议优先候选召回，或有界teacher-forced决策排序可辨别检查，当前只读无GPU。[诊断](research/sft-training-error-diagnostic.md)。
+- **当前公开新概念关系控制**：固定PubMed95∪Bioformer95新增449概念/680证据跨度/1251pairs，先input-only冻结后oracle覆盖103/154（仅上界）。保持旧1189实体和383关联，只追加新HPO关系；62提示实际168861tokens/max4988，原SFT32epoch2+decoder，推断600+30。计划f0088357、baseline原解析/格式CPU通过，启动前提交；[计划](evidence/round2/public-new-relations-plan.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
