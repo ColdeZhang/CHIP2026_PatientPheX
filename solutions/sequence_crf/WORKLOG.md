@@ -37,6 +37,8 @@
 
 16. **固定public selector四fold已完成、独审PASS**：source-HGB同法outer1/2/3仅改reference白名单，9套旧train32资源SHA/隔离齐；三次CPU共47.06秒<120cap，无新NN。三新fullpred21:18:45Z共同freeze后一次评分，f1 .663220→.720292、f2 .721467→.738304、f3 .680343→.703019；f2关系两项降仍保留。加复用f0四折Score全升，pooled **.692527322→.722651022**、mean .693847251→.723628971；pooled四项升、实体净+281TP/-51FP、关系+61TP/+23FP。无原dev。outer0独审8107cc27已PASS；三新fit/全概率及预测/全部指标/谱系独审PASS（c9428a9e）。[完整结果](evidence/round2/public-selector-followup-results.json)、[计划](evidence/round2/public-selector-followup-plan.json)，外存 `public-selector-followup/`。
 
+17. **固定原dev迁移准备**：root授权全train64 HGB沿相同方法，4组旧train48 OOF及旧source full64基线51c5/3aec已核齐（Score .639287362）；自然85旧列+6字段=91列，不人为删列凑outer0的90。A新实体+旧患者规则；B同新实体+原best aa107790（.715759605）association逐对象保持，两新臂/两旧对照共同freeze后一次v2。CPU拟合/推断≤120秒，等待helper同.95公开dev无标签缓存，不启动新NN、不扫原dev。GLiNER资源盘点暂让位本迁移。[固定计划/准确源与对照](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
+
 
 ## 已完成的近期结论
 
