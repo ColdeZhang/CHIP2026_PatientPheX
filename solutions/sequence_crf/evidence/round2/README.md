@@ -41,3 +41,5 @@
 
 - `gliner-span-diagnostic.json`：冻结三篇训练候选的纯跨度负结果，无HPO/官方分数。
 - `gliner-supervised-preparation.json`：官方标签对齐、上游loss问题/显式BCE检查、A800来源与固定2epoch计划。
+
+- `gliner-supervised-results.json`：固定nested32→16零样本/2epoch纯跨度配对、非重叠增量与误差、冻结UTC/预测SHA和训练状态恢复入口；不是比赛Score。

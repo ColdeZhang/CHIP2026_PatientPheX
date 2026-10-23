@@ -35,8 +35,11 @@
 
 优先研究 [GLiNER medium-v2](https://huggingface.co/urchade/gliner_medium-v2/tree/f7da09ddffab92deb4f2a815662d88b7e0d909d5)：官方卡明确NuNER数据，模型/代码Apache2.0，数据MIT；[NuNER论文](https://arxiv.org/abs/2402.15343)明确C4原文→GPT3.5自动注释，通用语义类别与span匹配不同于现有任务BIO。v2.1的pile-mistral卡仅license，不能因同GLiNER家族就继承v2谱系；v1含非商用许可，不作为首选。独立来源审查确认公开谱系，但全checkpoint训练/选择清单未公开，保留限制。没有使用含本赛train80的成品模型。
 
-[冻结最小提案](experiments/P-20261023-GLINER.md)只先在train48按输入患者数/字符中位选择三篇，固定phenotype/.50、完整词与实际token预算、原passage坐标；只资源/定位pilot。后续若获分配才做同折Sap过滤与不重叠增量，固定阈值/规则比较，避免把多个改动同时包装为增益。可选2epoch自训只列计划，未启动。
+[冻结最小提案](experiments/P-20261023-GLINER.md)只先在train48按输入患者数/字符中位选择三篇，固定phenotype/.50、完整词与实际token预算、原passage坐标；只资源/定位pilot。后续若获分配才做同折Sap过滤与不重叠增量，固定阈值/规则比较，避免把多个改动同时包装为增益。可选2epoch自训已按后续冻结方案完成，结果见下文。
 
 训练FN独立分层补充：908无重叠FN主要是短而未在相应train32见过的词面（中位2词，836≤5词，仅39词面已见）；仅6项>GLiNER的12词宽，411overlap中仅4项>12。大章节漏率无明显全章节硬截，CRF chunk跨界仅1项。因此GLiNER假设是通用类别条件span预训练的互补覆盖，不是更长跨度上限。该模型195.176M、3篇101窗3.058秒/0.830GiB已证明成本可控；未评分，不宣称候选优质。详见冻结提案和 `validation/nested-loss-review/miss-strata.json`。
 
 GLiNER训练接口坑（训练前已拦住）：gliner0.2.22的SpanModel.loss位置调用与BaseModel._loss新增prob_margin参数错位，negatives=1被绑定为label_smoothing=1，原0/1目标全变.5；正logit2的正例梯度因此反向。实际A800库base.py SHA b3ef985596410c07a447f18f5e199339b97ca4f603441a9ff36f9242d949e5bd、独立数值probe SHA de238b865de637eea05dccaafb6458d0be0df1bdb9bed5cb15a3934a7fc9e1d1。不要把库版本/成功退出当loss语义正确；自有trainer显式从logits算BCEWithLogits+validmask，正负/全负/尾batch/无效span梯度检查通过，不改第三方环境。此前所有GLiNER推断未走loss，结果仍有效。
+
+
+GLiNER两epoch监督控制表明通用span预训练可学本题边界：nested16纯span F1 .2773→.6600，预定融合后相对CRF .6910→.7006。但边际98TP/147FP仅40%精度，不能把单模型提升当最终得分提升，后续先冻结链接过滤及更长训练对照，不能在同inner16扫阈值。epoch2训练probe recall仅.705，有继续固定预算的依据；该inner16已用于路线开发，未来不得称新盲测。原2ep scheduler已走完，真实optimizer/RNG存在也不使追加8ep等同从头总10ep；若改总预算应明确fresh或重启schedule政策。

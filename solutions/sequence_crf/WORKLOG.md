@@ -12,7 +12,7 @@
 
 1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
 2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **GLiNER监督结构对照准备就绪**：三篇input-only机制pilot通过，但已冻结候选训练侧72TP/73FP，非重叠新增12TP/55FP导致纯span F1下降，未推广zero-shot。train48全部1744窗标签/掩码CPU审核完，固定nested32的1150窗、2ep/576steps计划获主线程授权；先A800最长batch单步，随后同基座/同inner16输入配对。上游GLiNER loss参数错位已在训练前发现并改用自有显式BCE，人工梯度检查通过；最长4×384单步已完成（.731秒/4.163GiB，loss.008585、梯度norm.127664），正式从fresh base开始；已获授权按唯一epoch2继续，待记录真实作业ID。模型已完整SHA转移A800，自有runtime/约9.36GB余量，.3 GPU0仍归本体。实际源码SHA、命令准备/数据/负结果见[监督索引](evidence/round2/gliner-supervised-preparation.json)、[固定提案](experiments/P-20261023-GLINER.md)。
+3. **GLiNER固定2epoch配对已完成**：nested32→16、同A800/输入/decoder，训练100.28秒、峰值5.62GiB；纯span F1零样本.277295→监督.659992，仍低于原CRF＋Sap的.690967。按预定非重叠追加98TP/147FP后union .700614（+.009647），新增精度仅40%，没有HPO/比赛Score提升声明。两候选先冻结后评分，epoch2唯一终点，原dev不动；GPU2已复查释放，模型和真实latest optimizer/RNG保持原目录。见[配对结果与恢复入口](evidence/round2/gliner-supervised-results.json)、[固定提案](experiments/P-20261023-GLINER.md)。主线程拟单独安排同nested32总10epoch开发对照，当前只准备，不把2ep线性衰减结束的状态冒充等价10ep续训。
 
 ## 已完成的近期结论
 
