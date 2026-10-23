@@ -23,4 +23,4 @@ CPU准备13.271秒：244794候选出现完整保留，238294编码、6500纯NIL�
 
 四fold目标差值依次 **+.005387/−.001627/−.004979/−.008126**，三折负；mention增加34TP/96FP、去除55TP/80FP，净−21TP/+16FP；document净−4TP/−3FP。实体对象4315→4311，原nonentities/关联对象不变。该结果排除了“只因top3扩池干扰才没超过强基底”的简单解释；不扫其他cut、类别权重或复合方式，不迁原dev。
 
-完整准备、源快照、四fold全部概率/预测、九cut36输出及时间均保留，未保存HGB对象，需按冻结资源重fit恢复。独立增量审正在执行，复用旧池/公开模型审查，最多对fold0一次新fit，其余同引擎与完整字段/曲线检查。实际校准job后置补录，明确未另采launcher起始UTC；源码自写freeze/start/finished和工具rc0真实保留，不把后置记录冒充预先日志。[完整结果与恢复](../evidence/round2/phenobert-old-pool-results.json)。
+完整准备、源快照、四fold全部概率/预测、九cut36输出及时间均保留，未保存HGB对象，需按冻结资源重fit恢复。独立增量审35d9e67e已PASS：244794旧字段/类型/顺序及三均值全部核对，fold0一次重fit13.39秒、99列及所有概率/pred byteexact，其余同引擎实际证据及36decode/table exact、format0；未重4fit/NN。实际校准job后置补录，明确未另采launcher起始UTC；源码自写freeze/start/finished和工具rc0真实保留，不把后置记录冒充预先日志。[完整结果与恢复](../evidence/round2/phenobert-old-pool-results.json)。
