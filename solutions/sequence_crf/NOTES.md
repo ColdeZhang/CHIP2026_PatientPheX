@@ -165,3 +165,7 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 ### 原池隔离后pair三均值仍负
 
 去掉top3新增ID/六rank、只在旧Bioformer池加三类公开均值，四fold三负、九cut最好.3目标.777836低旧.780193，mention净−21TP/+16FP。不能把此前未超过旧best完全归因扩池；关闭这套特征配方，不再追加参数/原dev筛选。来源和负结果见[旧池控制](experiments/phenobert-old-pool-control.md)。
+
+### 新外层F1的候选筛选必须排除F1，逐文OOF不够
+
+准备9B实体问题槽时发现，当前四fold OOF pool只保证目标文献未参与自身生成，若再取F2+F3训练一个F1评估模型，其候选生成器仍可能曾见F1。准备阶段改用已核F3→F2、F2→F3两条train16→16链，F1用train32→F1；未实际用错资源，不据此称旧四fold结果失效。也不能复用旧CE按金标平衡后的train子样本作为输入驱动筛选。全池成本太大后，只另冻一次train32 HGB p≥.1门控普查；训练概率是resubstitution，不冒称OOF，不进入9B文本。[完整设计](experiments/entity-slot-feasibility.md)。
