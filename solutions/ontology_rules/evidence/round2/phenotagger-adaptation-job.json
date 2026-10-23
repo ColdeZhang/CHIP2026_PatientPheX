@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-10-23T17:19:38.164915+00:00",
+  "code_commit": "905cc41e8b722737a9505ce74319dd12d76d8c71",
+  "plan_sha256": "1c6af26e243a4533d3757b6170a67b69be0628caffaadd407e41a4ec593f0bd7",
+  "cpucheck_sha256": "739d6cd72fd0d11ca88dfb8fc9886b5bed8b3483c6f98c66545bbcb1276805a5",
+  "arguments": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "cwd": "ontology-round2",
+    "command": "../semantic-neural/venv/bin/python -u phenotagger-fold0/adaptation3ep/source/phenotagger_train.py --data-dir phenotagger-fold0/adaptation3ep/data --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/adaptation3ep/trained --epochs 3 --batch-size 256 --lr 5e-6 --max-length 32 --seed 20261023 --save-every-seconds 120 --initialize-from phenotagger-fold0/formal100ep-from30 --initial-final-sha d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9 > phenotagger-fold0/adaptation3ep/train.log 2>&1 && ../semantic-neural/venv/bin/python -u phenotagger-fold0/adaptation3ep/source/phenotagger_predict.py --candidate-dir phenotagger-fold0/inference --training-dir phenotagger-fold0/adaptation3ep/trained --expected-epochs 3 --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/adaptation3ep/prediction > phenotagger-fold0/adaptation3ep/predict.log 2>&1",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+    }
+  },
+  "response": {
+    "command": "../semantic-neural/venv/bin/python -u phenotagger-fold0/adaptation3ep/source/phenotagger_train.py --data-dir phenotagger-fold0/adaptation3ep/data --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/adaptation3ep/trained --epochs 3 --batch-size 256 --lr 5e-6 --max-length 32 --seed 20261023 --save-every-seconds 120 --initialize-from phenotagger-fold0/formal100ep-from30 --initial-final-sha d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9 > phenotagger-fold0/adaptation3ep/train.log 2>&1 && ../semantic-neural/venv/bin/python -u phenotagger-fold0/adaptation3ep/source/phenotagger_predict.py --candidate-dir phenotagger-fold0/inference --training-dir phenotagger-fold0/adaptation3ep/trained --expected-epochs 3 --model-dir ../sequence-crf/pretrained-biomedbert --output-dir phenotagger-fold0/adaptation3ep/prediction > phenotagger-fold0/adaptation3ep/predict.log 2>&1",
+    "id": "proc_42257843-82c3-431f-afec-7c1756b0cca0",
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "pid": 1133377,
+    "port": 42193,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T17:19:37.997279818Z"
+  },
+  "actual_initialization_before_first_update": [
+    {
+      "event": "adaptation_initialized",
+      "parent_final_sha256": "d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9",
+      "model_tensor_digest": "2be37cd20c85212d21cfec1e4ff2e7f4175f7c108ab798289a5886f41fa5b9af",
+      "model_exact": true,
+      "optimizer_state_empty": true,
+      "new_epoch": 0,
+      "new_global_step": 0
+    }
+  ],
+  "recovery": "Remote ontology-round2/phenotagger-fold0/adaptation3ep/trained/latest.pt; same frozen source/data/config, use --resume instead of --initialize-from; only own managed process. Full stdout external train.log."
+}
