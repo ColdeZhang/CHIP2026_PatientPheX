@@ -1,0 +1,247 @@
+{
+  "status": "complete diagnostic only, no new candidates or predictions",
+  "completed_at_utc": "2026-10-23T21:50:58.295049+00:00",
+  "plan_sha256": "6041f95ac50494d9010cbe196d5047b678d1f8e127e67b0689d0c715e0f07c59",
+  "source_sha256": "8a3f79772288934f045888ddafafbff97f32206326efe02c70a910e0ab060ab8",
+  "queries_sha256": "774e4f4caba53714f224e6b40eb79b2dc146246776a5bb82c7b00fb5ef4571eb",
+  "denominator": 298,
+  "unique_spans": 287,
+  "unique_gold_ids": 214,
+  "head": {
+    "literal_present": 282,
+    "mapped_current_reachable": 273,
+    "literal_absent": 16,
+    "mapped_unreachable": 25,
+    "literal_present_but_mapped_away": 9
+  },
+  "same_span_multiple_gold_ids": 29,
+  "raw_span_present_both_models": 276,
+  "raw_span_absent_reasons": {
+    "native_unigram": 19,
+    "aligned_2_to_8_filtered": 2,
+    "unaligned_or_cross_sentence": 1
+  },
+  "top_k_literal_support": {
+    "pubmed": {
+      "1": 37,
+      "2": 88,
+      "3": 119
+    },
+    "bioformer": {
+      "1": 52,
+      "2": 95,
+      "3": 116
+    }
+  },
+  "top_k_union_literal_support": {
+    "1": 71,
+    "2": 127,
+    "3": 155
+  },
+  "top2_or_3_increment_over_either_model_top1": 84,
+  "top3_per_model_new_at_ranks_2_or_3": {
+    "pubmed": 82,
+    "bioformer": 64
+  },
+  "dictionary": {
+    "native_span_present": 26,
+    "multi_id_span": 0,
+    "first_id_correct": 0,
+    "any_id_correct": 0,
+    "correct_only_after_first": 0,
+    "after_first_and_no_neural_raw": 0,
+    "after_first_native_unigram": 0,
+    "later_ids_add_beyond_neural_top3": 0,
+    "neural_top3_union_dictionary_all": 155
+  },
+  "raw_reading": {
+    "pubmed": {
+      "rows": 296984,
+      "seconds": 4.067179080098867
+    },
+    "bioformer": {
+      "rows": 296984,
+      "seconds": 4.018829122185707
+    }
+  },
+  "dictionary_passages": 211,
+  "dictionary_seconds": 4.03699991479516,
+  "seconds": 15.396679017692804,
+  "no_new_NN": true,
+  "no_weights_loaded": true,
+  "originaldev_read": false,
+  "new_fit": false,
+  "limitations": [
+    "This error-conditioned diagnostic is not a training policy or an achievable metric upper bound; no formal candidates are selected using gold.",
+    "No probability gate applied to top3: posterior rank2/3 coverage alone does not imply adequate precision or selector acceptance.",
+    "Current-HPO mapping is applied to model/dictionary labels only; gold IDs remain literal v2, so an alt gold ID may be unreachable despite semantic equivalence.",
+    "Native abbreviation/hybrid/negation/greedy stages are not re-decoded with new alternatives; this only measures potential raw supply.",
+    "Same-span compound gold atoms count separately; their joint feasibility is not assumed.",
+    "No originaldev, fit, GPU, new inference or threshold optimization."
+  ],
+  "audit": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-top3-diagnostic/output/per-query-audit.json",
+    "sha256": "08bd1be95ed2720c88d9413eafe7b68634a8d53d243f7e500ef12675ae5991b4",
+    "bytes": 119978
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/plan.json",
+      "sha256": "6041f95ac50494d9010cbe196d5047b678d1f8e127e67b0689d0c715e0f07c59",
+      "bytes": 10262
+    },
+    "diagnostic-queries.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/diagnostic-queries.json",
+      "sha256": "774e4f4caba53714f224e6b40eb79b2dc146246776a5bb82c7b00fb5ef4571eb",
+      "bytes": 102775
+    },
+    "resource-probe.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/resource-probe.json",
+      "sha256": "ab2d91f676c48a3971232647cb1ba498d6c465423a9ee119d9cfb3773869c182",
+      "bytes": 3234
+    },
+    "deployment.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/deployment.json",
+      "sha256": "6a9624369461688ed044da9f98d23a8c5f722dd2f3f15f862da39feb28e2fd55",
+      "bytes": 855
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/job.json",
+      "sha256": "5a9e82764dd5aab203f8967516fe2fd5440a4e1f185d245676ead7b783a72fff",
+      "bytes": 1386
+    },
+    "terminal/run-state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/terminal/run-state.json",
+      "sha256": "d7a6c7cb6053933a29cfbe31152fa473dcda5e92d0947b5a9c3e6f64da96fb17",
+      "bytes": 837
+    },
+    "terminal/output/summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/terminal/output/summary.json",
+      "sha256": "f40d5c32f6f93ac5cf47f394d25abc3b1297afc5ddd04fd1b5582319605f91c5",
+      "bytes": 2999
+    },
+    "terminal/output/per-query-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/terminal/output/per-query-audit.json",
+      "sha256": "08bd1be95ed2720c88d9413eafe7b68634a8d53d243f7e500ef12675ae5991b4",
+      "bytes": 119978
+    },
+    "terminal/stderr.log": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/terminal/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "transfer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/transfer.json",
+      "sha256": "64e44a7e0ad021371d3fd62d623a959bb700c603e83749211b8003050232d361",
+      "bytes": 1431
+    },
+    "aggregate-supplement.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/aggregate-supplement.json",
+      "sha256": "2248b9d6990b2eb6735c08c2b7827b7466e24d6ae540083813c99cd479689f47",
+      "bytes": 897
+    },
+    "feature-interface-note.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/feature-interface-note.json",
+      "sha256": "fe6de640cd9a0a635d24f68154788e875754710b17af2a36e57fde6d063ca084",
+      "bytes": 4228
+    },
+    "managed-process-final.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/managed-process-final.json",
+      "sha256": "abfe12514c3cedde42ead1ea2581a1a535e3263780181c1e9e66c7bb43f8e942",
+      "bytes": 387
+    }
+  },
+  "fold_support": {
+    "summary_sha256": "f40d5c32f6f93ac5cf47f394d25abc3b1297afc5ddd04fd1b5582319605f91c5",
+    "queries_sha256": "774e4f4caba53714f224e6b40eb79b2dc146246776a5bb82c7b00fb5ef4571eb",
+    "audit_sha256": "08bd1be95ed2720c88d9413eafe7b68634a8d53d243f7e500ef12675ae5991b4",
+    "source_sha256": "24bfbeff6b36547bad44457cb300233ed36706617fcb92533ff874b8e51d205f",
+    "folds": {
+      "0": {
+        "FN_atoms": 88,
+        "top1_union": 15,
+        "top3_union": 40,
+        "new_rank2_or3": 25
+      },
+      "1": {
+        "FN_atoms": 66,
+        "top1_union": 20,
+        "top3_union": 45,
+        "new_rank2_or3": 25
+      },
+      "2": {
+        "FN_atoms": 75,
+        "top1_union": 18,
+        "top3_union": 37,
+        "new_rank2_or3": 19
+      },
+      "3": {
+        "FN_atoms": 69,
+        "top1_union": 18,
+        "top3_union": 33,
+        "new_rank2_or3": 15
+      }
+    },
+    "multiple_gold_id_spans": 18,
+    "no_new_predictions_or_scores": true
+  },
+  "feature_interface": {
+    "scope": "Static feature inventory of the already frozen HGB, no import/fit or new quality.",
+    "sources": {
+      "calibrate.py": {
+        "original_path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate.py",
+        "snapshot_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/feature-source-snapshot/calibrate.py",
+        "sha256": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+        "bytes": 8131
+      },
+      "calibrate_multi.py": {
+        "original_path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/calibrate_multi.py",
+        "snapshot_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/feature-source-snapshot/calibrate_multi.py",
+        "sha256": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+        "bytes": 7928
+      },
+      "select_public_candidates.py": {
+        "original_path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/select_public_candidates.py",
+        "snapshot_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/feature-source-snapshot/select_public_candidates.py",
+        "sha256": "3378df59be8c13c45d07f9c17575523d58906837bba9c6b3f3cc814d3a2f7bd6",
+        "bytes": 11510
+      },
+      "select_public_bioformer.py": {
+        "original_path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/select_public_bioformer.py",
+        "snapshot_path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-diagnostic/feature-source-snapshot/select_public_bioformer.py",
+        "sha256": "7cf106a6503cb515dd389b0664cee2bbf2591a61bbbe686d53ab1dccae73cb25",
+        "bytes": 11583
+      }
+    },
+    "existing_same_span_ID_signals": [
+      "candidate probability/type discriminator",
+      "Sap similarity when present",
+      "exact/base/same_base_id",
+      "log_doc_frequency of the ID in current document base, not training HPO prior",
+      "unlinked flag",
+      "model-specific source present and native hybrid score/flags"
+    ],
+    "crf_confidence_boundary": "Four reference configs assert crf_confidence is None; crf_ner/crf_link default0 is not an actually exported CRF posterior.",
+    "absent_signals": [
+      "raw HPO ID/class feature",
+      "global training HPO prior",
+      "HPO name/synonym lexical similarity",
+      "class-specific raw NN posterior",
+      "raw NN rank",
+      "top1-top2 or top1-candidate probability margin",
+      "Sap candidate margin"
+    ],
+    "metadata_only": [
+      "public_raw_hpo_ids",
+      "public_matched_neural_head_columns",
+      "bioformer_raw_hpo_ids",
+      "bioformer_matched_neural_head_columns"
+    ],
+    "blind_spot": "New same-span different-ID keys with identical source flags/native score and no ontology/Sap/base support may have identical entire feature vectors. The tree cannot infer an unrepresented HPO distinction; tied greedy priority then depends on original pool order.",
+    "minimum_proposal": "First CPU-count a uniform old-pool-span-only union of cached current-valid top1..3 IDs for all fold documents, retain all old keys, no gold-conditioned inclusion and no new spans. Audit real per-ID observed column-probability/rank/missing indicators and fixed source merge semantics. Only if cost and discrimination are acceptable, seek one separately frozen strict nested-OOF HGB control; no such preparation/fit is authorized by this diagnostic.",
+    "observed_probability_boundary": "When old head labels collapse to one current ID, keep actual observed max-column probability and minimum observed rank, labelled as such; do not pretend absent top3 values or partial sums are full canonical-class posteriors.",
+    "comparison_boundary": "Adding raw top3 at existing spans also bypasses upstream native .95/hybrid gates for some top1 IDs. Report candidate and feature changes together, not a pure rank-only intervention.",
+    "prior_negative": "The prior lower-gate trial accepted zero of1697 genuinely new whole-pool keys and worsened pooled Score. Its larger-span/source changes do not prove this fixed-span ID experiment will fail or succeed."
+  },
+  "review_status": "pending bounded incremental review"
+}

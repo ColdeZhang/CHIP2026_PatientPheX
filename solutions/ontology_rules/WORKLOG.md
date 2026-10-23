@@ -3,7 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
-- **当前 CPU 研究**：针对已确认的298个同跨度错原始ID漏检，检查已缓存PubMed/Bioformer top3与原字典多ID的固定current映射覆盖；先实查远端raw可读和成本，严格≤120秒CPU，不生成正式候选/预测、不fit/NN/原dev。[计划](experiments/P-20261023-PUBLIC-PHENO-TOP3.md)，未运行正式诊断。
+- **当前 CPU 研究（完成，待独审）**：298个同跨度错ID漏检中，两公开模型raw top1/top3并集供给71/155，rank2/3净补84（四折25/25/19/15）；22无raw（19unigram），旧head固定映射后25个literal目标不可达；现成字典多ID增量0。程序15.397秒/外层19.059秒，无NN/权重/原dev/新预测。建议另项先核全部旧跨度的统一top3 ID池与真实per-ID概率/rank特征，当前HGB仅来源/混合score不足；尚未生成该新池或fit，[结果与边界](experiments/P-20261023-PUBLIC-PHENO-TOP3.md)。
 - **Task1 FN诊断（完成，已独审）**：Bioformer 四折既有 `.3` 的 1,335 个 mention FN 分为池缺682（同跨度错原始ID298/仅重叠269/无重叠115）、全低分544、greedy冲突109；648个doc FN为概念缺263/全低分319/greedy66。程序0.546秒，v2 all/text逐折计数与原冻结曲线完全相等，独立复放PASS6a48c844；不新fit/阈值/预测/原dev/GPU。候选供给与选择均需改善，不据FN降cut或做gold补丁，[结果与边界](experiments/P-20261023-BIOFORMER-TASK1-FN.md)。
 - **当前原 dev**：名义最高 **.646360012**（Pheno48 + HGB/Sap64固定过滤），比稳定基线OOF HGB v1 **.646244333**仅+.000115679，不视为实质提升；默认仍保留稳定base。首日 .612597。v1独立重训字节复现；auto的10%随机候选验证不是文献隔离，但无dev泄漏。
 - **最新内fold0候选**：真实HPO100ep + 固定Sap .65/.92/纯top1一致，**.725539421**（原base .710359060），新增36实体22TP14FP/16关系12TP4FP；labelmap/模型谱系/CPU装配与v2独审PASS。只是一折开发控制，未原dev验收、不合并。
@@ -27,6 +27,6 @@
 - **审计**：3542ec3 的 fold0 多来源/置信度三控制独立重放全部字节一致；3个train32真实模型导分、outer0导分、3455候选独立BIO/TFIDF复算通过。见外部 validation/calibrate-multi-review.json，SHA77da3227…。
 - **资源/恢复**：context全部GPU结束，20:55:27Z fresh核.3GPU0（UUID07726469…）无PID/free24160MiB并释放；最终模型/恢复状态实际保留，作业/恢复见[evidence](evidence/round2/ner-context-control-job.json)；NER全阶段结束，19:29:12Z fresh核.100GPU1空/free24164MiB并明确交retrieval。CE proc_215c275d已退出，.3GPU0 fresh核空后明确交sequence（其large48已接卡）。ce-oof-control/已回收51份源池/训练/分数SHA，三模型权重只保留远端同目录；progress/complete/collection与双freeze可恢复。MIL/A800之前已归还，父模型和全部负结果保持原位。
 - **恢复入口**：NER增强真实终点与恢复见 `ontology_rules/ner-augmentation-control/results.json` 和本路线结果证据；旧树外部 `/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer{1,2,3}/evaluate_controls.py` 与各 controls-results.json；全量预测/模型/日志不入Git。小证据见[evidence索引](evidence/round2/README.md)，研究与踩坑见[NOTES](NOTES.md)。
-- **最近已核验远端**：788c81a（union独审/聚合f1fcb83与Bioformer dev16冻结源均已核push）；当前补Bioformer dev16实际终点/释放/恢复索引，所有本任务GPU已完成，未本体原dev质量。
+- **最近已核验远端**：ac94523（含FN诊断22b395e/独审6a48指针及top3冻结计划）；当前补top3实际结果与未执行的接口建议，所有本任务CPU/GPU已结束，未本体原dev质量。
 
 来源澄清：冻结首轮Sap候选生成器为016bb77/0084d33的 gpu_candidates.py（SHA dc5cc0…）；0673f85是后续装配证据检查点。原LR没有序列化；检索路线已按同数据/顺序/源码做明确标记的CPU精确重建；原14,480池p完全相同、阈值与原ID策略0差异。本路线只读系数，不重复重建；旧原ID含词典优先，不能冒充纯nearest ID。
