@@ -52,3 +52,5 @@
 预算：CPU 240 秒、单步 300 秒；实际成本投影 ≤3600 秒才启动 fresh 正式训练，硬限 3600 秒后 TERM、最多 30 秒后 KILL 自己的进程组。唯一 epoch10 推理及 Sap 后链各 300 秒。模型和真实状态保留外存，旧 epoch 权重仅核 SHA 后清理。完整预测先冻结，再按原 Sap .65/.92 和固定装配作唯一 nested 留出评分；不搜阈值／轮次，不读 originaldev gold。此前 CPU 准备并非质量实验；本次实际 GPU 状态与结果另记，不将计划冒充完成。
 
 CPU strict-load 首轮（20:15:04Z，14.656 秒）在 config 全字典相等处阻断，尚无 GPU/前向/评分。单独 CPU 差异定位确认唯一变化为 Transformers 在模型构造后将 `encoder_config._attn_implementation_autoset` 从 false 设为 true，其他字段完全相同。入口改为显式验证这一个已观测标记迁移，并要求两侧 attention 均为 eager、其余配置严格相等；不更改模型或 tokenizer。首轮计划／源／失败 state 与 stderr 保留外存根目录，新执行使用 `revision2`／本地 `attempt2`，不覆盖失败证据。
+
+修复后的实际 CPU 全量检查 65.480 秒通过，477,981,696 参数 strict-load、1150 原监督窗与 594 无标签留出窗均通过。实际唯一 GPU 单步 20:18:23–44Z 完成：同步 step 1.241 秒（loop 1.412 秒）、峰 10.978 GB、loss .008232／gradient norm .104462 有限。4 窗真实 34 正／14,966 有效负／5 NO，含 124 新上下文 token。单步仅保存 manifest，未保存权重或优化器；按事前冻结同机基线成本方法（含 15% 余量）投影 2963.253 秒，低于 3600 秒硬限；本次不是验证质量分数。见门槛证据，正式 fresh 状态后续单列。
