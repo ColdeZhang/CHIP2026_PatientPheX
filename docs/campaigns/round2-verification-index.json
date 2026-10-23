@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T22:49:14.133705+00:00",
+  "generated_utc": "2026-10-23T23:11:22.690306+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -12402,17 +12402,264 @@
           "bytes": 17117
         }
       ]
+    },
+    {
+      "id": "public-native-prehybrid-control-review",
+      "report": {
+        "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/terminal-review.json",
+        "sha256": "07b1d0a9b313f02691b7fd5ee342ec2169d62ca28f070a586a5354904f1d5fd1",
+        "bytes": 11591
+      },
+      "source_report_path": "validation/public-native-prehybrid-control-review/terminal-review.json",
+      "completed_review_scope": "PASS_incremental_C_prehybrid_actual_models_and_calibration_negative",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "固定原生top1五位>.95及current-valid、绕过hybrid并入旧池：244794旧行不变，新增7220共252014行；实际4fit56.999秒、四保存模型完整held概率重放无新fit。九点best .3实体目标 .778942536<旧 .780192596；事后归因新增held1806键全部未选、旧池+56(11TP45FP)/−54(18TP36FP)，净−7TP/+9FP。负关闭，不迁原dev。",
+      "limitations": [
+        "Nine-cut objective is train64 entity calibration fit, not overall Score, blind generalization or originaldev quality. Best remains.3 and is below original .780192596.",
+        "Candidate expansion and four appended-source fields form one combined control. Absence of raw fields on preserved old rows means not appended, not a claim of zero public model support. Generic .5/0 and false canonical provenance are explicit neutral defaults on new raw keys.",
+        "Original native raw model/HPO/caches and strict nested candidate generators are reused; all old objects and new selected-key evidence are checked without another full raw scan or neural pass.",
+        "All four actual saved models/vectorizers were loaded and their held probabilities/decodes independently reproduced. Training input/labels/source were checked; no fresh independent fit was done.",
+        "C was uniformly defined over input before census, but chosen following size and prior-error diagnostics. Error-conditioned27hybrid losses are not newtruepositive quality evidence.",
+        "All original nonentities including .4-origin associations are exact. Relation metrics were not re-evaluated or used for cut selection. No official actions, source/main edits or index publication."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/review.json",
+          "sha256": "5b611e351df173b66657ccada2d3fd06a66f14bc73555dbe773ade15e01f8946",
+          "bytes": 11101
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/census-review.json",
+          "sha256": "7d76a80633faa54dba8245f2a56c9818dbf0a9d8829ee55c0123f8a1d3cb05c5",
+          "bytes": 9958
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/pool-lineage-review.json",
+          "sha256": "fba1e35d80b054e506b9f3f39ab1e4b12300e749c2077f656ed873074149bc44",
+          "bytes": 12545
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/model-replay.json",
+          "sha256": "3e291cb48a981e308641d381f7c693779f00331106fe34366031c7a17d34b9b2",
+          "bytes": 3365
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/calibration-replay.json",
+          "sha256": "020b9bf714254b8044a340032fadc55647ea8ff20c39a450f8d6d14cb489d5e7",
+          "bytes": 2864
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/attribution-review.json",
+          "sha256": "36f5ceec24ec959f265f4a68d3efe0f273cc3ec8e8d68fd167b4b3a3f0bc831b",
+          "bytes": 3096
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/audit_census.py",
+          "sha256": "a5886c4c9eea2b7dbcb35c0376535aed80a8528d1ea313e77730db8c747aea61",
+          "bytes": 10993
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/audit_pool.py",
+          "sha256": "c4d1258cf14f16dc612324899c7891302282380172d0b07fb8d2c5c36d01a404",
+          "bytes": 14678
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/replay_saved_models.py",
+          "sha256": "6b804b5bf644cf1489aa41c2a323abb95a813df7bb7a38f97ae898c182d504d8",
+          "bytes": 7247
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/audit_calibration.py",
+          "sha256": "0ef8890e2eef88e21500df7f7cd9b4a1530f16568c734e80cd85b6035a7a112f",
+          "bytes": 8871
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/audit_attribution.py",
+          "sha256": "a402d39308d0ceb1eb92d409ed3983748e42cd2a8e9ef87487074dcd2b5f1b6d",
+          "bytes": 5277
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/public-native-prehybrid-control-review/finish_terminal_review.py",
+          "sha256": "f217bb9634397235ebbfa4622ac3ce152f07ab9515e14582db60ca4758835ce7",
+          "bytes": 6861
+        },
+        {
+          "path": "validation/index-next-20261023-2310/batch-manifest.json",
+          "sha256": "65c45b395b11860282b52fc3d932cff5fa64fae2b27e6c4a433db307b5c29076",
+          "bytes": 16302
+        }
+      ]
+    },
+    {
+      "id": "fixed-slot-binary-terminal-review",
+      "report": {
+        "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/review.json",
+        "sha256": "0d22930bd6721f8eeaf498f621e18b253a7d35328448bb9dc9eef0530b0ad51b",
+        "bytes": 8078
+      },
+      "source_report_path": "validation/fixed-slot-binary-terminal-review/review.json",
+      "completed_review_scope": "PASS_incremental_completed_binary_training_two_fixed_point5_arms_and_one_expected_F1_arm",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "固定槽关系fresh2ep/32调用(首lr0)实际1222.669秒，base/adapter双80共122.715秒；固定.5本地F1 Score .498008→.630248。预定39患者期望F1 top-k再升 .648033（两关系项都升），仍低旧JSON SFT32 .660942。三新预测/完整v2/1557pair及独立joint-count决策重放精确；只保留机制记录，不迁原dev。",
+      "limitations": [
+        "F1 is reused training-side development, not unbiased validation; no original-dev or outer gold was read by this review.",
+        "Expected-F1 candidate Bernoulli independence/calibration assumptions are unproven. It is not the public micro+macro objective and omits missing candidates.",
+        "Literal public-v2 and raw-HPO candidate labels remain distinct and unchanged; no canonical normalization or denominator repair.",
+        "Cached JSON SFT32 baseline is reused by exact reference, not re-evaluated.",
+        "No score reaches .8; no official action or acceptance merge. Managed process API exposes running:false, not a direct remote exit code."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/training-review.json",
+          "sha256": "b516227679d1b43df830a618b9e9566b13d68de75830c2a631fa53602cd82e78",
+          "bytes": 9087
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/quality-review.json",
+          "sha256": "0ee95b7cc6e779c804ef34da23434bfdf65dedacecf20eed1a37eb97bc531db1",
+          "bytes": 45078
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/audit_training.py",
+          "sha256": "344d4fa17fa7c66e2bb263bc0a3446444762c8ccfab783a2f5e3e70525997472",
+          "bytes": 5917
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/audit_quality.py",
+          "sha256": "175fdb3a157cfa5e0f248b9f2dd6f1601b55a7e2db3f9dff1a46f10f3d10bb9b",
+          "bytes": 8154
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-binary-terminal-review/finalize_review.py",
+          "sha256": "e91bb92f4776c3a7444d0cf1c55ae5b958c8da303f3bdd720ad42e82185af0ef",
+          "bytes": 4472
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-expected-f1-review/review.json",
+          "sha256": "0c8796715e1f8385b92cb83f58b414f57b353f56852b8ab03f633c3346eece0a",
+          "bytes": 25018
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-expected-f1-review/static-notes.json",
+          "sha256": "c11dc136e02e607452a9b1e10b3ac86fe20540cc88e693999fa26a4f655d6cc3",
+          "bytes": 2446
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-expected-f1-review/audit_terminal.py",
+          "sha256": "b7e8834bea5ed492ba82cc9323b6e8caa94548fce180070374b0cd108e2cd91a",
+          "bytes": 6971
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-expected-f1-review/source/expected_f1_control.py",
+          "sha256": "7edf01f4a97acf8714b3f3ab252db39585c00f89afb2252ec38dfb73ed42a57b",
+          "bytes": 8838
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/fixed-slot-expected-f1-review/source/expected_f1_math.py",
+          "sha256": "6537fadb7bd8c7eb5adb09c2edf30c4538f25b3b0a79959112245a20f3bd2085",
+          "bytes": 3105
+        }
+      ]
+    },
+    {
+      "id": "entity-slot-probe-review",
+      "report": {
+        "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/review.json",
+        "sha256": "c0a286eb227d3314c0949ca633dc88d0a886c27215c7c04b399d87035da4f139",
+        "bytes": 9195
+      },
+      "source_report_path": "validation/entity-slot-probe-review/review.json",
+      "completed_review_scope": "PASS_incremental_data_and_numerical_resource_probe_only",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "新实体固定槽来源隔离及1035条输入token/位置全部通过，train32 gate明确resubstitution且不含F1来源。A100首次数值probe84.067秒，short259及long2418真实梯度/更新，峰20.972GB；F1长2810仅finite前向无分数。15基座文件同旧且runtime差异披露，仅可用性，无实体质量或正式训练终点。",
+      "limitations": [
+        "Numerical/resource readiness only; no F1 quality score or formal training authorization.",
+        "Training HGB gate resubstitution is not an out-of-fold performance estimate; preparation excludes F1 sources as independently audited.",
+        "A100 Torch2.6.0/cu124 differs from prior A800 Torch2.7.1/cu126; same model files do not establish cross-runtime bitwise equivalence.",
+        "The longest training step occurs after the shortest update. Two cold/warm timing observations do not justify a precise full-training budget.",
+        "Public method preselection/development history remains; no new unbiased generalization claim.",
+        "Managed terminal exposes running:false, not a remote exit code. PASS is supported by actual completed checks and hashes, not invented exit status.",
+        "Source writes only small reports and states no saved adapter; no independent exhaustive remote directory census was performed."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/data-review.json",
+          "sha256": "3009d56c37bcd1c6d34ea1a3b59be4c1ae47811c975d8147b8802a5aeab534af",
+          "bytes": 15371
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/audit_data.py",
+          "sha256": "d31b9464b3993bce6999ca724ec25b842e823b579255836ab4a1b60e35682cdb",
+          "bytes": 17734
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/audit_actual_probe.py",
+          "sha256": "47556064ee7d6f5f6d7da300d2f8e6fbcf537f19da5d41a60bdbda16e5e2515a",
+          "bytes": 6423
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/source/probe_entities.py",
+          "sha256": "16b3d94beb6ebb55cadf8bb0ac4d6cb4220bab1a9777165d6d626885a3b276a1",
+          "bytes": 8158
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-probe-review/source/probe_operations.py",
+          "sha256": "338391c04a181b59ccb0175d0a4ab9b814af60caa6ba93a5a8e4ee7ebb08054a",
+          "bytes": 6109
+        }
+      ]
+    },
+    {
+      "id": "entity-slot-microbatch-review",
+      "report": {
+        "path": "validation/index-next-20261023-2310/snapshots/entity-slot-microbatch-review/review.json",
+        "sha256": "0b0c7cb2f40fcd57418fc33a64ef5e99bda51bb7e06a75f4ce86ccd33423590c",
+        "bytes": 12861
+      },
+      "source_report_path": "validation/entity-slot-microbatch-review/review.json",
+      "completed_review_scope": "PASS_new_microbatch_engineering_source_CPU_and_actual_GPU_probe",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "新工程变体保原8/末5行组内顺序、每micro padded≤8192及逐行mean/真实组分母，冻结原head0/1两列无新增参数。actual115.957秒，native双列和padding毒化差0；batch/unpadded最大.25在事前相对容差内、梯度relL2 .00876–.01175，非bitwise。五临时组更新/峰26.786GB，仅吞吐数值就绪，无实体质量。",
+      "limitations": [
+        "PASS applies to the prespecified numerical tolerances. Batched versus unpadded native logits differ by max0.25, which passed actual elementwise atol0.125+rtol0.02; they are not bitwise equivalent. No per-element arrays retained for independent recomputation of that allclose; source and completed actual assertions establish it.",
+        "Native versus compact head logits and padding-poison test are exact on the sampled two rows. Real single-row backbone gradients differ by relativeL2 up to1.1753%; cosine all>.99993, within predeclared<=.05/>=.995.",
+        "Group loss mathematical normalization is preserved; batching changes floating-point reductions and LoRA-dropout random draws. This is an engineering variant, not bitwise replay of the sequential row training.",
+        "Five updates share one temporary fresh probe model, including repeat shortest warmup. Selected shortest/median/maxpadded/last5 timings are not a full160-group training execution or quality evidence.",
+        "No F1 input/gold or quality score, no formal-training authorization, no new HGB fit.",
+        "Model/optimizer absence is established by audited write paths plus completion statement, not a new remote exhaustive-directory scan."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-microbatch-review/source-review.json",
+          "sha256": "25d814321723c11e7ee086597761f004d1a063d1badf8ee866eded299016f714",
+          "bytes": 9291
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-microbatch-review/audit_source.py",
+          "sha256": "9ea04543ee1627045cdaeee6b8fa0b693c855541d9f8b01f5649f27f21168e6b",
+          "bytes": 13283
+        },
+        {
+          "path": "validation/index-next-20261023-2310/snapshots/entity-slot-microbatch-review/audit_actual.py",
+          "sha256": "586f71403f16430b91cbfed2903f8b2c1acf5ea79d0233e7d05198b37b2e8779",
+          "bytes": 6643
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "fixed-slot-binary-formal-terminal",
-      "status": "actual fresh2ep/32正式训练22:42:44启动，1800+30；尚无完整训练/双80F1评测终点。若只保存partial不得评测，完整终点另审。"
+      "id": "entity-slot-formal-terminal",
+      "status": "root已授权fresh实体train32两epoch160调用，2200+30；owner正在冻结正式plan。随后base/final同1589pairs/398输入固定.5，两臂完整freeze后一次F1评，600+30。尚无正式完整或质量终点，不记完成；不原dev。"
+    },
+    {
+      "id": "binary-complementarity-and-F0-cost-preparation",
+      "status": "仅CPU核新binary概率与旧SFT hard互补性及F0输入成本；未fit/GPU/新质量终点，不记完成。"
     }
   ],
-  "previous_live_index_sha256": "c34dfa5ea3b1d01a2a393d3eceb2974a178069d207508a0ebed3679dafda96f0",
+  "previous_live_index_sha256": "dc51174fde8629d50b164aceb7401511e2a13bc1676fb4da13e507a20d82b378",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批121→128：top3+Sap与原池+Sap均负；PhenoBERT公共pair缓存已核，top3三特征主臂及原池三特征不超旧best，固定边界换ID微增不升级；固定槽二元新目标仅CPU/实际GPUprobe及正式入口/评测静态完成，训练仍进行；384边界供给只读诊断完成。旧121对象/1981refs与当前最高d531/.737585917全部不变，新增不可变小证据，不深抓模型/pool/全预测。未达.8，无官方上传。",
+  "live_index_note": "本批128→132：原门槛raw绕过hybrid并入旧池及九点校准负关闭，事后新增键未选中；关系固定槽完整训练/base-adapter固定.5及预定期望F1终点已审，最高F1开发 .648033仍低旧JSON .660942；实体槽来源隔离、单行probe和microbatch工程probe完成，尚无实体正式训练质量。旧128对象/2018refs及当前最高d531/.737585917整对象不变。未达.8，无官方上传。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
