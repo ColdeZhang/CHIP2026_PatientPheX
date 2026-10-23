@@ -48,3 +48,5 @@
 - `qwen35-relation-training-start.json`：fresh204×2固定训练作业、90分钟预算、4.277GB盘前检和独审；历史启动快照，不代表完成。
 
 - `full-context58-preparation.json`：原58只追加给定全文/marker、609段/158mentions实际CPU预算与A30准备/迁移；尚无该控制GPU得分。
+
+- `pair-schema-control-preparation.json`：预设确定性对象包装投影；7合成tests，原raw/原解析不改，待9B base+adapter齐后同规则配对，未提前重评。

@@ -1,0 +1,41 @@
+{
+  "stage": "frozen_cpu_preparation_only",
+  "scope": "Apply once to BOTH original Qwen3.5-9B base58 and same-prompt epoch2 adapter58 only after both raw outputs freeze; keep both original primary predictions unchanged.",
+  "source_sha256": "e9867a0a3066df409ecb6c4b291016c5147f70c5cafd80152e0088ed70da1bd6",
+  "test_source_sha256": "8fe30d7e7fa9cb9d47650034627c4f3311320f3c6bacd3023c2e22dc92a68478",
+  "policy": {
+    "name": "exact-patient-evidence-wrapper-v1",
+    "required_object_keys": [
+      "evidence",
+      "patient_id"
+    ],
+    "patient_id": "Exact supplied string ID; unique within this candidate list.",
+    "evidence": "String, retained verbatim in raw and audit; not checked for clinical correctness.",
+    "eligible_value": "Nonempty list entirely of exact two-field objects; no mixed values.",
+    "scope": "Only expected CID keys already present in a strict JSON object.",
+    "reject_row": "Token limit, non-strict JSON, duplicate JSON keys, non-object top level.",
+    "unmodified": "Missing/unknown CID or HPA keys, unknown/duplicate IDs, additional fields, non-string fields, mixed/scalar values, and all originally valid lists.",
+    "application": "Independent paired base/adapter control; never replace original primary parsing."
+  },
+  "policy_sha256": "040200de73f1d80158ed88dd582c3199d5abf3da0870891e854672eba6327ef0",
+  "prompts_sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+  "unchanged_primary_merger_sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+  "test_count": 7,
+  "synthetic_only": true,
+  "test_log_sha256": "7d46a2cba3c5ee3f2096cf0764ee777e6d62120adc537b16d2d8baa9e68caf5f",
+  "actual_response_normalization_started": false,
+  "prediction_or_evaluation_run": false,
+  "gold_read": false,
+  "gpu_used": false,
+  "output_identity_validation": "Unique row_id, exact row_id-to-pmc_id map; output order need not equal prompt order.",
+  "output_provenance": "Input responses SHA and originating runner manifest prompt/output SHA both required. Modified response file is separate; sidecar stores exact original text and projected values; restore equality checked for every row. Generation token/time metadata remains original metadata.",
+  "command_template": "python solutions/case_retrieval/normalize_pair_schema.py --prompts ORIGINAL58_PROMPTS --responses FROZEN_RAW_RESPONSES --runner-manifest FROZEN_RUNNER_MANIFEST --output NEW_CONTROL_RESPONSES.jsonl; then use the same frozen original merge script, entities, fallback and evaluator under a new control output path.",
+  "format_diagnostic": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/diagnostics/format-audit.json",
+    "sha256": "94df8d22b260260766946eece09f0edb37650baabad2ee287cf4bf88eb036ae8",
+    "unresolved": 18,
+    "missing_candidate_codes": 7,
+    "object_wrapper_candidate_values": 11,
+    "unknown_patient_ids": 0
+  }
+}
