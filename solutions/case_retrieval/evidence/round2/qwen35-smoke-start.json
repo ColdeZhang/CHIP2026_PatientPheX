@@ -1,0 +1,65 @@
+{
+  "job": {
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u smoke-preparation/qwen35_smoke.snapshot.py --mode gpu --train smoke-preparation/train.jsonl --excluded-input smoke-preparation/excluded.input.jsonl --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --output-dir smoke-preparation/gpu-smoke-v1 --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "id": "proc_d81cb8a8-82fe-461c-a570-854e6e06e763",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 34170,
+    "port": 42563,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T17:10:28.547409059Z"
+  },
+  "actual_plan": {
+    "cwd": "case-retrieval/qwen35-preparation",
+    "argv": [
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+      "-u",
+      "smoke-preparation/qwen35_smoke.snapshot.py",
+      "--mode",
+      "gpu",
+      "--train",
+      "smoke-preparation/train.jsonl",
+      "--excluded-input",
+      "smoke-preparation/excluded.input.jsonl",
+      "--model",
+      "/dev/shm/patientphex-qwen35-1045-c20223623576",
+      "--model-source-manifest",
+      "model-source-manifest.json",
+      "--output-dir",
+      "smoke-preparation/gpu-smoke-v1",
+      "--gpu-uuid",
+      "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc"
+    ],
+    "environment": "Parent fresh GPU check then CUDA_VISIBLE_DEVICES same UUID, private PYTHONPATH runtime, CPU threads1",
+    "status": "process_finished_pending_collection",
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u smoke-preparation/qwen35_smoke.snapshot.py --mode gpu --train smoke-preparation/train.jsonl --excluded-input smoke-preparation/excluded.input.jsonl --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --output-dir smoke-preparation/gpu-smoke-v1 --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "source_sha256": "615fd0c62a103531fd243de883f1352d1ae198cbf62d2433ef4a6baa3b46f9aa",
+    "required_before_start": [
+      "Complete download manifest with every source SHA",
+      "Fresh no-process query for allocated GPU3",
+      "Source checkpoint pushed"
+    ],
+    "resource_reason": "A100 allocated GPU became occupied; root assigned A800GPU2 and own ephemeral SHM cache; persistent source remains A100",
+    "actual_job": "proc_d81cb8a8-82fe-461c-a570-854e6e06e763"
+  },
+  "preflight": {
+    "exit_code": 0,
+    "stdout": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706, 594 MiB\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609, 9092 MiB\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435, 76134 MiB\n"
+  },
+  "status": "started_not_quality_evaluated",
+  "external_recovery": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/a800-migration",
+  "next": "Only successful short interface smoke permits original longest6040 input probe; full204 training not started"
+}

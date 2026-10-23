@@ -33,3 +33,7 @@
 
 - `qwen35-a800-migration.json`：A100卡被占后的只读内网迁移、SHM易失边界/目录权限、隔离runtime真实CPU导入与恢复入口；启动快照，实时状态看台账。
 - `qwen35-relation-cost-preparation.json`：完整204行最长5787token、assistant mask/因果loss/12类LoRA meta计数；GPU成本尚未实测。
+
+- `qwen35-full-context-feasibility.json`：全文固定CID/目标患者的纯CPU预算和来源；明确2训练样本超过12288、表示变化/命名空间，未新训或提分。
+
+- `qwen35-smoke-start.json`：A800完整迁移/关闭临时服务后，fresh空闲卡上启动冻结短接口测试的实际job与env；非完成或提分证据。

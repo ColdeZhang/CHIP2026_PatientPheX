@@ -1,0 +1,119 @@
+{
+  "scope": "CPU feasibility only; current204/58 control untouched; no GPU/quality experiment/trainer/new formal training dataset",
+  "actual_tokenizer_summary_sha256": "9c93a8c9fc92f9da97ca4f5d09b55d522342eeafead460f25dce1f0ae4a96229",
+  "cpu_source_sha256": "e44774f62e7d844f07a8ec5f382507881c36f386ccbc57b6f17e9038a85f6f30",
+  "input_bundle_sha256": "3cfd1b65f27375fd8a69880d5ca564161b228b20eecf020509b254ab5fbf5806",
+  "template_sha256": "e5c6c8a1ba62aef3954b42124ad71a9df9dba548e7d95601ffa57b841fd01eed",
+  "method_sources_sha256": "506e14b148352e28f61d5d50339345be46c3b374a45c603541df996608b88e1a",
+  "fixed_sources": {
+    "train_documents": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+      "sha256": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d"
+    },
+    "validation_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "train_rows": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/train.jsonl",
+      "sha256": "eb133c3107c1aada2e156892ba430e5b5860315c058d6c7dd5387fe45b065f77"
+    },
+    "validation_rows": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    }
+  },
+  "baseline_token_accounting_exact_reproduced": true,
+  "preferred_future_design_for_decision": "target_all_groups_compact: one target patient, full unchanged supplied document, all other patient identities, fixed original candidate groups scoped by original row_id; output only original CIDs per original group",
+  "single_variable_context_probe_for_decision": "same_batch_append_full retains original204/58 rows, original system/output/code maps and local evidence, appends full supplied report; this has higher budget and does not itself change target factorization",
+  "ratios": {
+    "target_train_full_vs_original": 1.222264625263126,
+    "target_validation_input_vs_original": 1.7394794092805406,
+    "append_validation_input_vs_original": 2.585498195592639,
+    "target_batch_validation_input_vs_original": 8.235038775562437
+  },
+  "target_train_cap12288_exceptions": [
+    {
+      "row_id": "12455887:full-target:OP1",
+      "input_tokens": 12142,
+      "training_full_tokens": 12361,
+      "supervised_tokens": 219
+    },
+    {
+      "row_id": "12455887:full-target:OP2",
+      "input_tokens": 12142,
+      "training_full_tokens": 12375,
+      "supervised_tokens": 233
+    }
+  ],
+  "target_train_max_full_tokens": 12375,
+  "target_inference_max_input_tokens": 11278,
+  "target_all_positive_answer_budget_max_train": 644,
+  "target_all_positive_answer_budget_max_inference": 319,
+  "no_truncation": true,
+  "no_new_hpo_or_candidate": true,
+  "candidate_and_marker_coverage": {
+    "train48": {
+      "documents": 48,
+      "patients": 126,
+      "candidate_concepts": 1477,
+      "candidate_patient_pairs": 4127,
+      "pairs_without_local_target_marker": 3118,
+      "training_positive_pairs": 967,
+      "training_positive_without_local_target_marker": 363,
+      "patients_without_full_marker": 0,
+      "invalid_given_mentions": 0,
+      "candidate_quotes_absent": 0
+    },
+    "validation_input": {
+      "documents": 16,
+      "patients": 47,
+      "candidate_concepts": 415,
+      "candidate_patient_pairs": 1166,
+      "pairs_without_local_target_marker": 841,
+      "training_positive_pairs": null,
+      "training_positive_without_local_target_marker": null,
+      "patients_without_full_marker": 0,
+      "invalid_given_mentions": 0,
+      "candidate_quotes_absent": 0
+    }
+  },
+  "decision_limits": [
+    "No quality score or prediction was produced",
+    "The existing 5787-token longest training cost probe cannot certify12375-token training memory or time",
+    "Token ratios are input/training budget ratios, not measured runtime ratios",
+    "Compacted target design changes context, candidate batching, output schema, number/weighting of samples and supervised-token distribution; it is not a single-variable context effect",
+    "Whole context makes given anchors available but does not validate coreference, candidate normalization, presence/negation, patient attribution or missing candidate recall",
+    "A512 output cap covers observed train targets but is smaller than644-token all-positive legal training schema envelope; a future1024 proposal is budget-only and is not set on current58 control"
+  ],
+  "artifacts": {
+    "cpu-v1/manifest.json": {
+      "sha256": "7b62e29967d6e757cc4ef8d73255802de99c72025910e8f82bd06b71a038680e",
+      "bytes": 6777
+    },
+    "cpu-v1/summary.json": {
+      "sha256": "9c93a8c9fc92f9da97ca4f5d09b55d522342eeafead460f25dce1f0ae4a96229",
+      "bytes": 13131
+    },
+    "cpu-v1/budget-rows.json": {
+      "sha256": "3f0e2a87bd2c7acaeef66daec06ca4ff876e299e751581b31f96fb48376beb53",
+      "bytes": 808361
+    },
+    "cpu-v1/document-audits.json": {
+      "sha256": "0d07ce50ca9f9b2e198b7b67cef1a64af044b6ddc55c8ba6dbe703dc1359864b",
+      "bytes": 60244
+    },
+    "document-budgets.csv": {
+      "sha256": "3341422783b7efd8a663f7ca898299af7a2f3f64e55c8d6146dcf3e10c1436cc",
+      "bytes": 4495
+    },
+    "patient-target-budgets.csv": {
+      "sha256": "e3347a1c5918d9d098c74a1ee4791eb37190cfd4e1682ef989a05874aa7f807c",
+      "bytes": 30993
+    },
+    "method-sources.md": {
+      "sha256": "506e14b148352e28f61d5d50339345be46c3b374a45c603541df996608b88e1a",
+      "bytes": 12606
+    }
+  }
+}
