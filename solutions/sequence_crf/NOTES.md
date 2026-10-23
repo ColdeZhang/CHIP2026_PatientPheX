@@ -120,3 +120,5 @@ train48有3558正/1705153负，数量约1:479.25，但medium10终点训练probe�
 九点OOF cut校准唯一结果：2.125秒CPU，固定选择.3；pooled两实体F1均值 .777993968→.780192596，men .763831/doc .796554。四fold目标3升1降（第2折-.004463），增加70mentionTP同时91FP，保留精确率回撤。36完整decode先freeze，.4四fullpred及原两实体指标exact；不计算关系选型/不原dev。该曲线直接用train64标签选全局cut，因此最优数值是校准拟合而非无偏CV，后继只能按已冻.4/.3一次迁移检验。双模型原.4方法独审0efe738e已PASS；校准来源/曲线待一次CPU独审，不追加网格。
 
 双公开full64原dev迁移事前冻结：沿已审同HGB/来源与四组train48 OOF，只生成固定.4/训练OOF选.3两entity臂，aa107全部关联对象相同且不要求最终实体子集。两新fullpred/旧16cd/model/scored缓存统一freeze后一次v2；无额外rules关系臂、不读dev调cut。实际fit模型将保存selector.pkl并重载末篇概率exact，便于备份；计划见public-bioformer-dev-plan.json。校准234064fe/双来源0efe738e独审均PASS，Bioformerdev纯输入cache1353keys来源/坐标已核，无新GPU。
+
+双公开full64原dev唯一终点：fit14.7545秒/61781例4147正/97自然列，真实model+vectorizer已序列化295637B（db2fc288）且重载末篇probexact。两新/旧baseline与model/scored先完整freeze，.4 **.7314458355**/.3 **.7322577652**，较旧.7287945949分别+.00265124/+.00346317，0错警。.3相对.4 mention下降.002287而doc上升.005535；aa107关系逐对象不变，micro/macro及273TP60FP180FN完全相同。预选.3同时增加召回和FP（相对旧实体净14TP/10FP），不能描述所有精度指标都变好。当前未.8，保留两臂不扫cut；唯一新fit/模型持久化/原生devcache/两预测/v2增量独审待收。完整外存public-bioformer-dev-transfer/及evidence索引，旧16cd的独立服务器恢复包继续保留。

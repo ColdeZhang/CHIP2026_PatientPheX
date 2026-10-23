@@ -1,0 +1,303 @@
+{
+  "status": "completed; independent review pending",
+  "external_directory": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer",
+  "source_commit": "b89ebed",
+  "summary": {
+    "status": "completed; independent review pending",
+    "source_commit": "b89ebed",
+    "plan_sha256": "0990c11ec33e11eac450a70fec321a4f4549547c05a4088d5b57173b3e322022",
+    "frozen_at_utc": "2026-10-23T21:40:00.512452+00:00",
+    "previous_best": {
+      "menF1": 0.7823585810162992,
+      "docF1": 0.8073929961089494,
+      "micF1": 0.6946564885496184,
+      "macF1": 0.6307703138508092,
+      "Score": 0.7287945948814191
+    },
+    "arms": {
+      "fixed_point4": {
+        "metrics": {
+          "menF1": 0.7890173410404624,
+          "docF1": 0.8113391984359726,
+          "micF1": 0.6946564885496184,
+          "macF1": 0.6307703138508092,
+          "Score": 0.7314458354692156
+        },
+        "deltas_from_previous_best": {
+          "menF1": 0.006658760024163213,
+          "docF1": 0.0039462023270231406,
+          "micF1": 0.0,
+          "macF1": 0.0,
+          "Score": 0.002651240587796533
+        },
+        "changes": {
+          "entity_added_tp": 9,
+          "entity_added_fp": 8,
+          "entity_removed_tp": 6,
+          "entity_removed_fp": 21,
+          "relation_added_tp": 0,
+          "relation_added_fp": 0,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "errors": 0,
+        "warnings": 0
+      },
+      "calibrated_point3": {
+        "metrics": {
+          "menF1": 0.7867298578199052,
+          "docF1": 0.8168744007670182,
+          "micF1": 0.6946564885496184,
+          "macF1": 0.6307703138508092,
+          "Score": 0.7322577652468377
+        },
+        "deltas_from_previous_best": {
+          "menF1": 0.00437127680360605,
+          "docF1": 0.009481404658068793,
+          "micF1": 0.0,
+          "macF1": 0.0,
+          "Score": 0.003463170365418655
+        },
+        "changes": {
+          "entity_added_tp": 17,
+          "entity_added_fp": 22,
+          "entity_removed_tp": 3,
+          "entity_removed_fp": 12,
+          "relation_added_tp": 0,
+          "relation_added_fp": 0,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "calibrated_minus_fixed": {
+      "menF1": -0.0022874832205571627,
+      "docF1": 0.005535202331045652,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.0008119297776221224
+    },
+    "training": {
+      "training_documents": 64,
+      "training_examples": 61781,
+      "training_positive": 4147,
+      "added_bioformer_training_examples": 457,
+      "old_input_candidates": 12850,
+      "added_public_input_candidates": 213,
+      "added_bioformer_input_candidates": 81
+    },
+    "features": 97,
+    "stages": [
+      {
+        "name": "prepare",
+        "command": [
+          "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+          "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/prepare_public_bioformer_dev.py",
+          "--plan",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/plan.json",
+          "--cache-dir",
+          "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-dev16-cache/terminal/native-dev16-final-cache",
+          "--output-dir",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared"
+        ],
+        "cap_seconds": 30,
+        "started_at_utc": "2026-10-23T21:39:42.918207+00:00",
+        "ended_at_utc": "2026-10-23T21:39:44.285209+00:00",
+        "seconds": 1.3670119369999156,
+        "returncode": 0
+      },
+      {
+        "name": "fit",
+        "command": [
+          "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+          "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/select_public_bioformer_dev.py",
+          "--ontology-source",
+          "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules",
+          "--reference",
+          "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-multi/source/pred.manifest.json",
+          "--public",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/prepared/candidates.jsonl",
+          "--public-manifest",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/prepared/manifest.json",
+          "--public-reference",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/fitted/manifest.json",
+          "--bioformer",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared/candidates.jsonl",
+          "--bioformer-manifest",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared/manifest.json",
+          "--baseline-prediction",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/preserved-sft.jsonl",
+          "--association-prediction",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-selector-dev-transfer/current-best.jsonl",
+          "--output-dir",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted"
+        ],
+        "cap_seconds": 120,
+        "started_at_utc": "2026-10-23T21:39:44.285568+00:00",
+        "ended_at_utc": "2026-10-23T21:39:59.040145+00:00",
+        "seconds": 14.754504770004132,
+        "returncode": 0
+      },
+      {
+        "name": "assemble",
+        "command": [
+          "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+          "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/assemble_public_bioformer_cuts.py",
+          "--directory",
+          "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer"
+        ],
+        "cap_seconds": 30,
+        "started_at_utc": "2026-10-23T21:39:59.041139+00:00",
+        "ended_at_utc": "2026-10-23T21:40:00.511786+00:00",
+        "seconds": 1.4706291030015564,
+        "returncode": 0
+      }
+    ],
+    "all_exit_zero": true,
+    "model": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector.pkl",
+      "sha256": "db2fc28850596bf633b1baf33a90d3747341d3d621f87dc29d87ad374a5bbd51",
+      "bytes": 295637
+    },
+    "runtime": {
+      "python": "3.12.14",
+      "sklearn": "1.8.0"
+    },
+    "model_reload_last_document_exact": true,
+    "original_assoc_kept": true,
+    "thresholds_preselected_without_new_dev": true,
+    "native_dev_manifest_matches_plan": true,
+    "limitations": [
+      "Originaldev has already been used for comparisons; this is one fixed development transfer, not a new blind test.",
+      "Same full64 HGB weights/features, only cut .4 versus .3 selected from fixed training-side OOF grid before this dev evaluation.",
+      "Both arms preserve every aa107 SFT association object regardless of final entity set; relation metrics cannot improve here.",
+      "No rule-relation arm, new threshold grid, extra model/source-order selection, or official submission."
+    ],
+    "disposition": "Nominal new development best .732257765 remains below .8; unique independent endpoint review pending, no more cuts/official submission.",
+    "backup": "Old16cd independently uploaded/restored by root as main docs/campaigns/round2-best-dev-backup.json. New actual model/prediction artifacts ready for separate root archive after independent PASS."
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/plan.json",
+      "sha256": "0990c11ec33e11eac450a70fec321a4f4549547c05a4088d5b57173b3e322022",
+      "bytes": 9452
+    },
+    "execute.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/execute.py",
+      "sha256": "d260ad4fcf51a302b72696058c1262e0e3dd0564d42d34ead43866ea539d2eed",
+      "bytes": 4034
+    },
+    "source-diff.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/source-diff.json",
+      "sha256": "ab222c8cca0d9b8c0392cf2da0895d55e47fab233a0a292279ca271e745b6d22",
+      "bytes": 10227
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/job.json",
+      "sha256": "6ba222636e69af01bd3c0b960bbaeba50d73ccdd212d480a94008b6b360260c5",
+      "bytes": 3653
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/complete-freeze.json",
+      "sha256": "6b27cf8bbe0e718068676aa584c1aada0191c9a0faa7fa6a702a4691085f9c35",
+      "bytes": 2606
+    },
+    "assembly.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/assembly.json",
+      "sha256": "2b387fac2be818c5db65948293af26dc261dfb579165d35cdf643280e7eb9803",
+      "bytes": 1020
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/results.json",
+      "sha256": "af878aac85d3a1587f507f54cc384de896d4ded4384e86804a9e246ebb9040ff",
+      "bytes": 2948
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/summary.json",
+      "sha256": "1d9ce43eecad5003bc0fc602fea90cab116f8ed1eafd7a02426a3664b1d41e3d",
+      "bytes": 7227
+    },
+    "evaluation-execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/evaluation-execution.json",
+      "sha256": "590fb3e5ab5073e2a62c70f09661c2bf3b06b20f6bad8eae399e663c53ff4a4c",
+      "bytes": 579
+    },
+    "fixed-point4.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fixed-point4.jsonl",
+      "sha256": "3b15c7bda15cd19b8d4961a818ae51dacfb4d8f6df90241c394a2f2cdac47582",
+      "bytes": 127564
+    },
+    "calibrated-point3.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/calibrated-point3.jsonl",
+      "sha256": "6401a24e06ea48d8e8711313b7dfe726f6fa7a9dae4ec93e21e97e1707835fbd",
+      "bytes": 131911
+    },
+    "fixed_point4.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fixed_point4.metrics.json",
+      "sha256": "f4f78c063df2b1c496a8e11ea492d2b8ec106b77a89f166e652d2fb25d965631",
+      "bytes": 13012
+    },
+    "fixed_point4.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fixed_point4.validation.json",
+      "sha256": "dea8dba96dc33d547ca6594d0c0a2b898caf30cfabccab2fcef51e35352b3910",
+      "bytes": 424
+    },
+    "calibrated_point3.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/calibrated_point3.metrics.json",
+      "sha256": "e5815f192f87b8b20486acc660f35999f0587af30cacdfab2a58f46ca5857ae3",
+      "bytes": 12975
+    },
+    "calibrated_point3.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/calibrated_point3.validation.json",
+      "sha256": "d65238a7812bb404a8ce1f3447f9e10f5adfb754256a8327722db56060aca096",
+      "bytes": 425
+    },
+    "fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/manifest.json",
+      "sha256": "9c52eac7d20fb62f9fdf3c14f6b469a8df6830076d22d0abc5d0cc5333d3380d",
+      "bytes": 9240
+    },
+    "fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/baseline.jsonl",
+      "sha256": "16cd8352a6e22d88350cf4d51eb0b7b255e7cbacdd32e440977550ddcf1fa89a",
+      "bytes": 128847
+    },
+    "fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/augmented.jsonl",
+      "sha256": "3b15c7bda15cd19b8d4961a818ae51dacfb4d8f6df90241c394a2f2cdac47582",
+      "bytes": 127564
+    },
+    "fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector-scores.jsonl",
+      "sha256": "c032ca689c0f11735cb6590276c51185d2cfa4229f25c7c8ecbbaeb19759fd0e",
+      "bytes": 9187584
+    },
+    "fitted/selector.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/fitted/selector.pkl",
+      "sha256": "db2fc28850596bf633b1baf33a90d3747341d3d621f87dc29d87ad374a5bbd51",
+      "bytes": 295637
+    },
+    "prepared/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared/manifest.json",
+      "sha256": "08a18ba88a1fd8125af1c069cc2666ccc92a311c2fc04e960838ecadaa739e53",
+      "bytes": 1205
+    },
+    "prepared/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared/candidates.jsonl",
+      "sha256": "b8b377bed4f1e8c0443b017b9392fc405482ef7d58c94c80f51e175e7ae23f48",
+      "bytes": 2562822
+    },
+    "prepared/input80.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/prepared/input80.jsonl",
+      "sha256": "77f5b286b61b49c87ae1e28014359792d1811b939d4181587311f56e95b20ccb",
+      "bytes": 1645950
+    }
+  },
+  "immutable_sources": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/source-snapshot",
+  "independent_review": {
+    "status": "requested",
+    "agent": "/root/round2_validation_resume"
+  }
+}

@@ -96,4 +96,6 @@
 
 - [独立Bioformer四fold控制](public-bioformer-selector-results.json)：固定双模型六字段，pooled .724556（+.001905），一折负；51.494秒CPU，独立复核PASS 0efe738e，无原dev/GPU。
 
-- [统一九点OOF cut校准](public-bioformer-cut-results.json)：事先网格选.3、两实体目标.780193（校准拟合值）；.4 byteexact，3折升1折降，2.125秒CPU，无原dev，待独审。
+- [统一九点OOF cut校准](public-bioformer-cut-results.json)：事先网格选.3、两实体目标.780193（校准拟合值）；.4 byteexact，3折升1折降，2.125秒CPU，无原dev，独审PASS234064fe。
+
+- [双公开模型原dev固定两cut](public-bioformer-dev-results.json)：.4 .731446/.3 .732258，同SFT全部关联；14.755秒fit、真实model295637B已存，待独立增量审，未.8。
