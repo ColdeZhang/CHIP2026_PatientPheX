@@ -52,3 +52,5 @@
 - [真实肯定词面3ep适配冻结](phenotagger-adaptation-plan.json)：仅train48、原回放保留、实际CPU token/init检查，尚不代表训练结果。
 
 - [真实词面3ep raw负结果](phenotagger-adaptation-results.json)及[唯一配对Sap过滤计划](phenotagger-adaptation-sap-plan.json)：固定预算与负结果保留。
+
+- [真实词面适配同Sap负结果](phenotagger-adaptation-sap-results.json)：.721696低于父过滤.725539，关闭当前配比，无原dev/官方上传。

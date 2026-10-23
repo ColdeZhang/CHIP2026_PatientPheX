@@ -1,0 +1,188 @@
+{
+  "recorded_at": "2026-10-23T17:29:03.751000+00:00",
+  "filter_source_commit": "85bcc7348ce98de479e72cbaa5808207e64d8627",
+  "plan_commit": "c8268390798301f326f194cc558a192afb91f3dd",
+  "baseline_metrics": {
+    "menF1": 0.7328316086547507,
+    "docF1": 0.7308085977482088,
+    "micF1": 0.6937669376693767,
+    "macF1": 0.6840290971369651,
+    "Score": 0.7103590603023253
+  },
+  "parent100_filtered_metrics": {
+    "menF1": 0.7409805735430157,
+    "docF1": 0.749498997995992,
+    "micF1": 0.7108753315649867,
+    "macF1": 0.7008027824745764,
+    "Score": 0.7255394213946427
+  },
+  "adapted_raw_metrics": {
+    "menF1": 0.7063621533442088,
+    "docF1": 0.7318777292576419,
+    "micF1": 0.6620530565167243,
+    "macF1": 0.6793364720289525,
+    "Score": 0.6949073527868819
+  },
+  "adapted_filtered_metrics": {
+    "menF1": 0.7354014598540146,
+    "docF1": 0.7455268389662028,
+    "micF1": 0.7061923583662714,
+    "macF1": 0.6996638913999789,
+    "Score": 0.7216961371466168
+  },
+  "delta_vs_base": 0.011337076844291527,
+  "delta_vs_parent_filtered": -0.0038432842480258245,
+  "incremental_counts": {
+    "mention": {
+      "tp": 27,
+      "fp": 39,
+      "fn": -27
+    },
+    "document": {
+      "tp": 18,
+      "fp": 11,
+      "fn": -18
+    },
+    "relation": {
+      "tp": 12,
+      "fp": 9,
+      "fn": -12
+    }
+  },
+  "difference_vs_parent_filtered_counts": {
+    "mention": {
+      "tp": 5,
+      "fp": 25,
+      "fn": -5
+    },
+    "document": {
+      "tp": 1,
+      "fp": 7,
+      "fn": -1
+    },
+    "relation": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 0
+    }
+  },
+  "assembly": {
+    "source_sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "association_source_sha256": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "request_manifest_sha256": "b947f292aa089a21b9c65e7c960bc684d71f6d6ec4704149d488b22366dc8840",
+    "score_manifest_sha256": "45cffc6dd2bba66101543984607e64aad346a33561e1d7250a866d5f48ea62b9",
+    "counts": {
+      "original_additions": 326,
+      "reject_probability": 183,
+      "retained_additions": 66,
+      "reject_similarity": 75,
+      "added_relations": 21,
+      "reject_id_disagreement": 2
+    },
+    "output_sha256": "066973d1886f7755e60178491f91cb03ca635b63017c28c63d0b3018019aece3",
+    "gold_used": false
+  },
+  "scoring": {
+    "source_sha256": "aa07421234c0c66983698126135a11bb8f05adac6709aaef2500150f25652262",
+    "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+    "request_manifest_sha256": "b947f292aa089a21b9c65e7c960bc684d71f6d6ec4704149d488b22366dc8840",
+    "request_sha256": "7f81552cc4023045b863b7188411faaac1fec82b1078f5575e87a3c593bb511d",
+    "bank_labels_sha256": "a6344a7317535a347f06ffb812f2eaff4b789f69ed5d95a75c5aa71e9e076560",
+    "bank_sha256": "d8bb8709a238a562b45913c19878c78e45584eaf755678fdbe3429fdb76220b8",
+    "reconstruction_manifest_sha256": "8f4cffb1af3f513ac1a332a3dfe0acbcd9041a4db00a5d58b1c7c458adb2925e",
+    "detector_sha256": "1146433a8157b787f12125f34f2e54daf939a136e2528a21f820dd502ef7708e",
+    "model_files_sha256": {
+      "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+      "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+      "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+    },
+    "output_sha256": "1b918b41d68c84b4b8b61c099f2be89b920593b50f4173fca098a4ecbb749147",
+    "counts": {
+      "occurrences": 326,
+      "passing_fixed_filter": 66,
+      "documents": 16
+    },
+    "gold_used": false,
+    "classifier_fit": false,
+    "configuration": {
+      "precision": "FP16 backbone / FP32 CLS and bank dot product",
+      "batch_size": 256,
+      "max_length": 32,
+      "threads": 1,
+      "unique_policy": "sorted norm(surface) per document",
+      "id_policy": "pure nearest bank label, no exact-surface override"
+    },
+    "elapsed_seconds": 5.837962188292295
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1015,
+      "relations": 380,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "066973d1886f7755e60178491f91cb03ca635b63017c28c63d0b3018019aece3",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "interpretation": "Only same frozen Sap filter on326 adapted additions; original base entirely retained. One followup development control after raw negative, not blind fold; no threshold scan/new training/original-dev run.",
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/plan.json",
+      "sha256": "910afdd1df0f744aa61a80d8fae10d754f2faa77d56fe3ad43967762745f01b0"
+    },
+    "request/request.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/request/request.manifest.json",
+      "sha256": "b947f292aa089a21b9c65e7c960bc684d71f6d6ec4704149d488b22366dc8840"
+    },
+    "scored/scores.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/scored/scores.manifest.json",
+      "sha256": "45cffc6dd2bba66101543984607e64aad346a33561e1d7250a866d5f48ea62b9"
+    },
+    "scored/scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/scored/scores.jsonl",
+      "sha256": "1b918b41d68c84b4b8b61c099f2be89b920593b50f4173fca098a4ecbb749147"
+    },
+    "assembled/pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/assembled/pred.jsonl",
+      "sha256": "066973d1886f7755e60178491f91cb03ca635b63017c28c63d0b3018019aece3"
+    },
+    "assembled/pred.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/assembled/pred.manifest.json",
+      "sha256": "870c0b9ced925dcfe1b99aeb3fe186a355ffc7d0e1456069da5bb9fda4acd9d5"
+    },
+    "assembled/metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/assembled/metrics.json",
+      "sha256": "9394ff8b62ef7d5fefc689042149c2ffc7cc1eb963018e7365e52f99ad112ded"
+    },
+    "assembled/validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/assembled/validation.json",
+      "sha256": "47a90bc81e4f0d5964259815b923286ce95422067f772f23133c860a809e9942"
+    },
+    "assembled/prediction-before-evaluation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/assembled/prediction-before-evaluation.json",
+      "sha256": "f91df05634401898dbf91ae183dd5dfe9698ca3ebd0332b06dfe4b02d902a0e0"
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/job.json",
+      "sha256": "ed05c276bf883f36251dc0f66844b2010112646e78ce95cb811cab1a71af0989"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/gpu-release.json",
+      "sha256": "af4a551e2af411b831f8f98fe31569282c081c61ffa15c98e4389a61692b15c8"
+    }
+  }
+}
