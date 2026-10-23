@@ -26,3 +26,13 @@ A800上epoch002的 `training_state.pt` 仍在，346,667,053B、SHA `d2dcc780…`
 原max_new_tokens1600包含思考和答案，开启thinking可能耗尽预算；模型卡推荐sampling不等于已批准本任务的greedy控制。最小候选应只改thinking、沿用预先固定输入/adapter/greedy/1600与硬时限，记录闭合、final格式、触顶和实际耗时；仅训练样本改善仍不能当泛化收益。**当前未冻结新的GPU计划、未运行。**
 
 [实际CPU状态、统计和来源](../evidence/round2/qwen35-successor-readonly-review.json)。
+
+## 后继实际决定与严格融合库存
+
+上述thinking唯一短控制已获root授权并执行，随后按实际格式失败提前停止：第一条72.048秒、1600token、真实hit_token_limit=true且未闭think，无严格final；只完成1/12，未解析训练targets或运行fit，launcher仅核targets既有SHA。20:50:53Z停自有作业，20:51:01Z fresh释放A800。独立增量审67b49e51通过；不延长预算、不重试、不据partial报训练或泛化分数。[终点](../evidence/round2/qwen35-thinking12-result.json)。
+
+另按root要求核实：之前204条四事实树使用**公开base、adapter=None**，不是折外SFT。因此其负结果不能直接否定SFT+LR学习型融合。当前9B只有训练48与64的epoch002；旧48见过全部inner1/2/3，full64还见过outer0，都不能回推自身训练行冒充OOF。将full64数据切成48，候选生成器仍可能见过outer0；将旧48 SFT数据切成32，候选生成器仍见过将被留出的inner16，这两种捷径均不满足隔离。
+
+严格outer0内，三个已有train32→held16候选/无答案prompt可复用（80/62/62，共204条、4127pair）。六个16→其他16的语义池已存在并核train/input IDs与来源SHA，CRF+Sap仅2→3和3→2已有完整装配；其余四方向需补CRF预测/装配，已有generator2/3 CRF可供只读复用，generator1需CPU fit。**没有现成的合格train32 SFT checkpoint，完整三折OOF需要3个fresh模型。**
+
+旧48两轮实际1855秒；简单按文献数估每个32模型约1237秒、三份约61.8分钟，仅为未构建新数据前的代理，不是实测或授权预算；204条旧base推断759秒也不是新SFT32推断实测。最小可行单meta-fold可只训一个32（F2+F3），其两方向候选已齐，预测F1的80提示/1557pair，仅在F1固定拟合一个低复杂度融合，然后复用SFT48→outer0预测。此法只有16篇meta训练，不能称全48 OOF或独立meta验证；任何LR概率也要由排除相应innerfold及outer0的模型生成，不能仅凭缓存features叫它OOF。元模型/阈值须在outergold前固定，外层仅用于检验。当前**只读库存，不构建新训练、不启动GPU**。[库存/来源](../evidence/round2/qwen35-sft-fusion-reuse-review.json)。

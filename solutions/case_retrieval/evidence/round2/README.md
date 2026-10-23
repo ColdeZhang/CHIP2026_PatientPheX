@@ -110,3 +110,6 @@
 - [SFT后继只读判断](qwen35-successor-readonly-review.json)：旧48状态/lr0实际核验、两个目标编码成本及thinking解析边界；无新GPU/训练。
 
 - [固定12唯一thinking计划](qwen35-thinking12-run-plan.json)：只开启thinking，strict final CPU反例/actual12prefix通过；300+30，一次不重试，不是Score。
+
+- [thinking实际早停终点](qwen35-thinking12-result.json)：首条真截断/未闭think，无12条fit；独审通过/GPU释放，不重试。
+- [SFT学习型融合只读库存](qwen35-sft-fusion-reuse-review.json)：base四事实负不等同SFT融合负；严格split及缺失32模型/候选方向/粗略成本，无新训练。
