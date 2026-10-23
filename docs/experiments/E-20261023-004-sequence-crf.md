@@ -63,8 +63,16 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /workspace/patientphe
 
 产物：`/workspace/patientphex-runs/day1-20261023/sequence-crf/crf-B-v1/pred.jsonl`；SHA-256：`8014f006eb8b90103172838ed7d8b1a3c85b681ef68b63c98200096e8112ae8f`。此文件为可靠候选，主线程将在 BiomedBERT 对比后选本路线一个版本提交，避免消耗两次名额。
 
-两次 CPU 正式运行使用 Python 3.11、sklearn-crfsuite 0.5.0、python-crfsuite 0.9.12、scikit-learn 1.8.0、numpy 2.3.5、scipy 1.17.0。保存于 manifest 的实际算法源 SHA-256 为 `0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05`；后续提交加入运行库版本记录，不改变模型算法。
+两次 CPU 正式运行使用 Python 3.12.14、sklearn-crfsuite 0.5.0、python-crfsuite 0.9.12、scikit-learn 1.8.0、numpy 2.3.5、scipy 1.17.0。保存于 manifest 的实际算法源 SHA-256 为 `0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05`；后续提交加入运行库版本记录，不改变模型算法。
 
 远端获取 BiomedBERT 初次尝试失败：`huggingface.co` 报 `Network is unreachable`，尚未启动 GPU 训练。正在检查镜像/可验证缓存；该失败属于资源获取问题，不据此淘汰技术路线。
 
 BiomedBERT 权重来源已固定到 revision `e1354b7a3a09615f6aba48dfad4b7a613eef7062`。原始 `pytorch_model.bin` 为 440,474,434 字节，官方 LFS SHA-256 `ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193`，本机下载校验一致。远端模型站点均不可连接，改本机中转；MCP `write_file` 请求大于约 1 MB 会返回 413，改为 512,000 字节原始数据分块，经 base64 上传后在自有目录合并校验。所有数据在远端解压后与共享源 SHA-256 一致，未传验证金标。远端裸 `python` 命令不存在，应始终使用项目 `.venv/bin/python`。
+
+## 局限与具体误差
+
+抽查 CRF 首版错误：`abnormal signals on an ERG`、`poor central and side vision` 等描述性提法未识别；`recessive rod-cone dystrophy` 仅识别后半段，说明边界与长表达仍受词形模式限制。相同跨度的链接错误包括 `muscle stiffness`（金标 HP:0008967，预测 HP:0003552）、`joint laxity`（HP:0001388→HP:0001382）；纯词面链接无法消解同义或上下文特异概念。少量例子见 `results/crf-dev-v1-error-examples.json`，只作诊断，本日不据此手工补词或反复调阈值。
+
+主线程查出共享评测器和本路线关系训练的复合 HPO 关联处理问题：首版 `fit_relation` 把原始 `phenotype` 列表直接取集合，而实体侧拆分分号，因此部分复合关联没有被计为正样本（共享训练标注有 26 项此类值）。主线程修复评测器后统一重算；本日先保留相同关系头完成 CRF/BiomedBERT 对照，记录这一可修复限制，不把它解释为监督关系路线的上限。
+
+共享评测已升级 `patientphex-public-approx-v2`，拆分金标复合关联后，同一 CRF 预测重算为 menF1=0.732540、docF1=0.745303、micF1=0.648472、macF1=0.612620、Score=0.684734。此后版本选择使用 v2；v1 指标保留作历史，不混用口径。远端 BiomedBERT tokenizer smoke 已实际通过：BertTokenizerFast 对末尾表型词的 wordpiece 标签、特殊 token 屏蔽、非零 passage offset 及输入 annotations 隔离均符合预期。
