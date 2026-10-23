@@ -16,3 +16,4 @@
 - `patient-set-sft-method.md` / `patient-set-sft-preparation.json`：整患者开放集合方法、合法训练目标、无gold输入、真实token/mask与严格后处理，区别可行性初稿与实际带quote数据。
 - `patient-set-training-start.json`：独立数据审查、最长11709token smoke与A800从原base正式2epoch作业/完整配置；运行证据，不是验证收益。
 - `extraction-fold1-cpu-preparation.json`：一次固定跨折复验的自身train48/88输入/token预算；实际训练作业更新于台账及外存plan/job。
+- `patient-set-training-complete.json`：整患者正式32step完整训练、两个实际checkpoint SHA核验与环境/数据来源；start文件是历史启动快照，当前状态以台账与外存plan为准。

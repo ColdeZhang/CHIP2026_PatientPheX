@@ -1,0 +1,282 @@
+{
+  "training_complete": {
+    "smoke_only": false,
+    "epochs": 2,
+    "global_step": 32,
+    "base_parameters": 8190735360,
+    "trainable_adapter_parameters": 43646976,
+    "elapsed_seconds": 654.4117422103882,
+    "max_gpu_allocated_bytes": 42096488448,
+    "device": "NVIDIA A800 80GB PCIe",
+    "result_type": "training_only_no_evaluation_score"
+  },
+  "formal_manifest": {
+    "fingerprint": {
+      "schema": "patientphex-lora-v1",
+      "configuration": {
+        "train": "data/train.jsonl",
+        "excluded_input": "data/fold0.input.jsonl",
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/pretrained-qwen3-8b",
+        "output_dir": "formal2ep",
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+        "max_seq_length": 12288,
+        "batch_size": 1,
+        "gradient_accumulation": 8,
+        "epochs": 2,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.01,
+        "warmup_ratio": 0.05,
+        "max_grad_norm": 1.0,
+        "rank": 16,
+        "alpha": 32,
+        "dropout": 0.05,
+        "seed": 20261023,
+        "load_in_4bit": false,
+        "smoke": false
+      },
+      "source_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+      "train_sha256": "416500b650acac91ed7d24debd71b3b91ff1621c63c7410d77d5ad23637cfc2d",
+      "excluded_input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "training_document_ids": [
+        "10313222",
+        "11203018",
+        "11235872",
+        "11765409",
+        "11871647",
+        "11906559",
+        "12059664",
+        "12078887",
+        "12110755",
+        "12110769",
+        "12118522",
+        "12250201",
+        "12334843",
+        "12386172",
+        "12405443",
+        "12455887",
+        "12628480",
+        "12646972",
+        "12798528",
+        "12811285",
+        "12846941",
+        "12891056",
+        "2866573",
+        "2964533",
+        "4607013",
+        "4644339",
+        "5023785",
+        "5368377",
+        "5415817",
+        "5422868",
+        "5425407",
+        "5473715",
+        "5538066",
+        "5574094",
+        "5763540",
+        "5773845",
+        "5789735",
+        "5793168",
+        "5866036",
+        "5970456",
+        "6048891",
+        "6057141",
+        "6059678",
+        "6063015",
+        "6134758",
+        "6219255",
+        "6390251",
+        "9327653"
+      ],
+      "model_files": {
+        "config.json": {
+          "bytes": 728,
+          "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+        },
+        "generation_config.json": {
+          "bytes": 239,
+          "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+        },
+        "merges.txt": {
+          "bytes": 1671853,
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+        },
+        "model-00001-of-00005.safetensors": {
+          "bytes": 3996250744,
+          "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+        },
+        "model-00002-of-00005.safetensors": {
+          "bytes": 3993160032,
+          "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+        },
+        "model-00003-of-00005.safetensors": {
+          "bytes": 3959604768,
+          "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+        },
+        "model-00004-of-00005.safetensors": {
+          "bytes": 3187841392,
+          "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+        },
+        "model-00005-of-00005.safetensors": {
+          "bytes": 1244659840,
+          "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+        },
+        "model.safetensors.index.json": {
+          "bytes": 32878,
+          "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+        },
+        "tokenizer.json": {
+          "bytes": 11422654,
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+        },
+        "tokenizer_config.json": {
+          "bytes": 9732,
+          "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+        },
+        "vocab.json": {
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        }
+      },
+      "environment": {
+        "torch": "2.7.1+cu126",
+        "transformers": "4.51.3",
+        "peft": "0.15.2",
+        "numpy": "2.4.6",
+        "bitsandbytes": null,
+        "torch_cuda": "12.6",
+        "gpu_name": "NVIDIA A800 80GB PCIe"
+      },
+      "encoded_sha256": "ce0a330fe464e054e7d51bf25eefe5b9727383cb33614fb6870ea47bbd62846c"
+    },
+    "smoke_only": false,
+    "examples": 126,
+    "max_tokens": 11709,
+    "supervised_tokens": 37472,
+    "resume_unit": "complete epoch; mid-epoch work is replayed from the last checkpoint"
+  },
+  "actual_checkpoint_hashes": {
+    "1": {
+      "global_step": 16,
+      "files": {
+        "adapter/README.md": {
+          "sha256": "dcd5a34379bdb5dcb6771e95107acf02c82ffce5d87ed4c60912a64dfb393e92",
+          "bytes": 5157
+        },
+        "adapter/adapter_config.json": {
+          "sha256": "0831cead0e6656fd7e3d2e4fb5d13a47a8933db5896bda551421e584edecdf6b",
+          "bytes": 916
+        },
+        "adapter/adapter_model.safetensors": {
+          "sha256": "85684e62871e02bccea6e7404a1e2a96eb5d25e9766fd0a40ba105d8bb92dac2",
+          "bytes": 174655536
+        },
+        "training_state.pt": {
+          "sha256": "acbf40bbbaa83b9866e8727b6bb40861692805c1a30f22d91dcd63f3cab674da",
+          "bytes": 349623165
+        }
+      }
+    },
+    "2": {
+      "global_step": 32,
+      "files": {
+        "adapter/README.md": {
+          "sha256": "dcd5a34379bdb5dcb6771e95107acf02c82ffce5d87ed4c60912a64dfb393e92",
+          "bytes": 5157
+        },
+        "adapter/adapter_config.json": {
+          "sha256": "0831cead0e6656fd7e3d2e4fb5d13a47a8933db5896bda551421e584edecdf6b",
+          "bytes": 916
+        },
+        "adapter/adapter_model.safetensors": {
+          "sha256": "e6136281543d33709709f51c73d3a1db87c4f6185599ca0de3df62717af79187",
+          "bytes": 174655536
+        },
+        "training_state.pt": {
+          "sha256": "bb85fbd2f43f2c58b76420d2c1f8e2fe200d869247fb509fa2fc9f62bd19143a",
+          "bytes": 349623165
+        }
+      }
+    }
+  },
+  "monitor_verification": {
+    "observed_utc": "2026-10-23T15:04:29.793032+00:00",
+    "process_id": "proc_db5057e8-780c-49dc-a33f-0492811b0045",
+    "stdout_running": false,
+    "stderr_running": false,
+    "new_stdout": [],
+    "new_stderr_characters": 0,
+    "checks": {
+      "saved_source_sha": true,
+      "manifest_source_sha": true,
+      "training_data_sha": true,
+      "training_document_count_48": true,
+      "examples_126": true,
+      "epochs_2": true,
+      "effective_batch_8": true,
+      "smoke_false": true,
+      "not_4bit": true,
+      "epoch1_checkpoint": true,
+      "epoch2_checkpoint": true,
+      "final_step_32": true
+    },
+    "errors": [],
+    "completed_checkpoints": [
+      {
+        "epoch": 1,
+        "global_step": 16,
+        "files_declared": 4
+      },
+      {
+        "epoch": 2,
+        "global_step": 32,
+        "files_declared": 4
+      }
+    ],
+    "progress": {
+      "completed_epochs": 2,
+      "global_step": 32,
+      "mean_microbatch_loss": 0.46354772595805116,
+      "epoch_seconds": 317.87158155441284,
+      "checkpoint": "formal2ep/epoch-002",
+      "smoke_only": false
+    },
+    "training_complete": {
+      "smoke_only": false,
+      "epochs": 2,
+      "global_step": 32,
+      "base_parameters": 8190735360,
+      "trainable_adapter_parameters": 43646976,
+      "elapsed_seconds": 654.4117422103882,
+      "max_gpu_allocated_bytes": 42096488448,
+      "device": "NVIDIA A800 80GB PCIe",
+      "result_type": "training_only_no_evaluation_score"
+    },
+    "artifact_sha256": {
+      "run_manifest.json": {
+        "sha256": "582bd03aab57a0361fc2ce3e2e334d205d2d5a81ec760e0b7a127ff0a1336cac",
+        "bytes": 4285
+      },
+      "progress.json": {
+        "sha256": "81eb9d6fa369f9203dc126291f62f54d5044eb8b0b11ede3c7f16c0e84a2c0c1",
+        "bytes": 197
+      },
+      "epoch-001/checkpoint.json": {
+        "sha256": "ea52b46a04caec213190be4010a2245bdd2c16045566fdfa55b874a88cbff3e5",
+        "bytes": 4586
+      },
+      "epoch-002/checkpoint.json": {
+        "sha256": "4efb5b8721ef3b5912cea649ec36c172ccfd52a31eb6762717e4b5947623e120",
+        "bytes": 4586
+      },
+      "training_complete.json": {
+        "sha256": "22210b4f65e6a3095088301bbf43d447539c11e6072a94e4a42b3d15d9661350",
+        "bytes": 312
+      }
+    },
+    "saved_source_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+    "scope": "Read-only metadata; adapter/state tensors were not downloaded or independently hashed; training loss is not an evaluation Score."
+  },
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/patient-set-fold0-bf16-v1",
+  "inference_status": "Not started at completion checkpoint; A800 temporarily handed to sequence changed29 before paired inference",
+  "independent_data_review": "/workspace/patientphex-runs/round2-20261023/validation/open-patient-sft-review.json"
+}
