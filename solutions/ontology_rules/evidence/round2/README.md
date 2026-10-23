@@ -56,3 +56,4 @@
 - [真实词面适配同Sap负结果](phenotagger-adaptation-sap-results.json)：.721696低于父过滤.725539，关闭当前配比，无原dev/官方上传。
 
 - [原dev固定两臂预设](phenotagger-original-dev-plan.json)：Pheno48+HGB/Sap64混合规模，raw/filter预测均先冻结再评，非新增训练。
+- [原dev两臂结案](phenotagger-original-dev-results.json)：raw .636028负、filtered .646360仅微增，独立CPU复现通过；默认稳定base .646244保留，不追加Pheno-only预算或调阈值。
