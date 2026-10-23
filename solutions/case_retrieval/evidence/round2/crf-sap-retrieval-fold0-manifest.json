@@ -1,0 +1,31 @@
+{
+  "purpose": "same entity pool with training-only case retrieval associations",
+  "configuration": {
+    "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+    "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "candidates": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+    "hpo": "/workspace/patientphex-data/hp.obo",
+    "output": "/workspace/patientphex-runs/round2-20261023/case_retrieval/crf-sap-retrieval-fold0/predictions.jsonl",
+    "neighbors": 21,
+    "threshold": 0.35
+  },
+  "source_sha256": "db1acc79ec4329cd99f32a4ef023eceac95d5bcb3826d31d8be19c066215618e",
+  "retriever_source_sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea",
+  "files": {
+    "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+    "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "candidates": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "output": "496921646e628076a2ec75c68d4d0427dee3b2f8353b3a9496e4dd8d1f0e15fc"
+  },
+  "elapsed_seconds": 1.34857177734375,
+  "retriever": {
+    "training_cases": 5113,
+    "positive_cases": 1324,
+    "text_features": 26000,
+    "structural_features": 24,
+    "neighbors": 21,
+    "association_threshold": 0.35
+  },
+  "documents": 16
+}

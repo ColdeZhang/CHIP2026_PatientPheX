@@ -9,7 +9,11 @@ import torch
 import transformers
 from transformers import AutoTokenizer,AutoModelForCausalLM
 
-def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def digest(p):
+    value=hashlib.sha256()
+    with Path(p).open('rb') as handle:
+        for block in iter(lambda:handle.read(4*1024*1024),b''):value.update(block)
+    return value.hexdigest()
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
@@ -24,6 +28,10 @@ def main():
         adapter=Path(args.adapter);required=['adapter_config.json','adapter_model.safetensors']
         assert all((adapter/name).is_file() for name in required),'Incomplete adapter checkpoint'
         fingerprint['adapter_files']={name:digest(adapter/name) for name in required}
+        weights=sorted(Path(args.model).glob('*.safetensors'))
+        assert weights,'Adapter inference requires complete local base weights'
+        fingerprint['base_weight_files']={p.name:{'bytes':p.stat().st_size,'sha256':digest(p)} for p in weights}
+        fingerprint['inference_precision']='unquantized_bfloat16_base_with_peft_adapter'
     checkpoint=out.with_suffix('.checkpoint.json')
     if out.exists() and out.stat().st_size:
         assert checkpoint.exists() and json.loads(checkpoint.read_text())==fingerprint,'Resume fingerprint mismatch'
