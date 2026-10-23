@@ -1,0 +1,129 @@
+{
+  "metrics": {
+    "metrics": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.6037735849056604,
+      "macF1": 0.47898822146870923,
+      "Score": 0.6338596740848488
+    },
+    "counts": {
+      "mention": {
+        "tp": 769,
+        "fp": 178,
+        "fn": 408,
+        "precision": 0.8120380147835269,
+        "recall": 0.653355989804588,
+        "f1": 0.724105461393597
+      },
+      "document": {
+        "tp": 357,
+        "fp": 58,
+        "fn": 208,
+        "precision": 0.8602409638554217,
+        "recall": 0.631858407079646,
+        "f1": 0.7285714285714285
+      },
+      "relation": {
+        "tp": 208,
+        "fp": 102,
+        "fn": 171,
+        "precision": 0.6709677419354839,
+        "recall": 0.5488126649076517,
+        "f1": 0.6037735849056604
+      }
+    },
+    "documents": 16,
+    "patients": 47,
+    "evaluator_version": "patientphex-public-approx-v2",
+    "configuration": {
+      "body_scope": "all",
+      "unlinked_document_mode": "text",
+      "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+      "duplicate_entities": "deduplicated by span and split HPO ID",
+      "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+      "empty_patient_f1": 1.0
+    },
+    "gold_sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+    "prediction_sha256": "9165275c7bc8d82968d23e9f5de840891c30999ed2ce9fd1862ca544e57acd6f"
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 947,
+      "relations": 310,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "9165275c7bc8d82968d23e9f5de840891c30999ed2ce9fd1862ca544e57acd6f",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "parse_manifest": {
+    "configuration": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "entities": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+      "prompts": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "responses": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/base58.responses.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/base58.pred.jsonl",
+      "final_entities": null,
+      "fallback": "baseline"
+    },
+    "stats": {
+      "valid_candidate_decisions": 397,
+      "unresolved_candidate_decisions": 18
+    },
+    "code_sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+    "files": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "entities": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a",
+      "prompts": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0",
+      "responses": "42223211a18eadaaf967ea03adf684c2cd38f9e87a6987a5d6ab08532b01cd2b",
+      "output": "9165275c7bc8d82968d23e9f5de840891c30999ed2ce9fd1862ca544e57acd6f"
+    }
+  },
+  "response_format": {
+    "rows": 58,
+    "hit_token_limit": 0,
+    "strict_json_dict": 58,
+    "strict_json_failed": 0,
+    "sum_generation_seconds": 253.02100000000002
+  },
+  "paths_sha256": {
+    "base58.responses.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/base58.responses.jsonl",
+      "sha256": "42223211a18eadaaf967ea03adf684c2cd38f9e87a6987a5d6ab08532b01cd2b"
+    },
+    "base58.pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/base58.pred.jsonl",
+      "sha256": "9165275c7bc8d82968d23e9f5de840891c30999ed2ce9fd1862ca544e57acd6f"
+    },
+    "base58.responses.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/base58.responses.manifest.json",
+      "sha256": "c099806c7a1259911b38ceb47a3f70f425148b6b0dce7e0f5c2574073462094f"
+    }
+  },
+  "scope": "Inner fold0 only; base endpoint frozen before fixed204x2 training; no original dev",
+  "comparators": {
+    "same_entities_8B_base": 0.623068497,
+    "same_entities_8B_adapter": 0.674333431,
+    "same_entities_rules": 0.711353521870099
+  },
+  "source_commit": "46bdcc4",
+  "runner_sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+  "recovery": {
+    "state": "Remote58 complete. Local collector asserted original input row order, but frozen runner sorts by input token length. Corrected identity-map validation; no response edited or regenerated.",
+    "row_count": 58,
+    "response_sha256": "42223211a18eadaaf967ea03adf684c2cd38f9e87a6987a5d6ab08532b01cd2b"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "stage": "Started, not yet training complete or quality evidence",
+  "source_commit": "46bdcc4",
+  "plan": {
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "cwd": "case-retrieval/qwen35-preparation",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "status": "started",
+    "argv": [
+      "/usr/bin/timeout",
+      "--signal=TERM",
+      "--kill-after=60s",
+      "5400",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+      "-u",
+      "relation-training/train_qwen35_lora.py",
+      "--mode",
+      "train",
+      "--train",
+      "relation-cost-preparation/train.jsonl",
+      "--excluded-input",
+      "relation-cost-preparation/excluded.input.jsonl",
+      "--model",
+      "/dev/shm/patientphex-qwen35-1045-c20223623576",
+      "--model-source-manifest",
+      "model-source-manifest.json",
+      "--output-dir",
+      "relation-training/formal2ep",
+      "--gpu-uuid",
+      "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc"
+    ],
+    "command": "/usr/bin/timeout --signal=TERM --kill-after=60s 5400 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u relation-training/train_qwen35_lora.py --mode train --train relation-cost-preparation/train.jsonl --excluded-input relation-cost-preparation/excluded.input.jsonl --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --output-dir relation-training/formal2ep --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "remote_sources_sha256": {
+      "relation-training/train_qwen35_lora.py": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+      "relation-training/qwen35_smoke.py": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+      "relation-training/qwen35_relation_cost.py": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "source_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+    "hard_budget_seconds": 5400,
+    "termination_grace_seconds": 60,
+    "epochs": 2,
+    "rows": 204,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "optimizer_steps": 52,
+    "learning_rate": 0.0001,
+    "warmup_steps": 3,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "starting_point": "fresh pinned text base; no smoke/cost/prior adapter",
+    "formal_endpoint": "epoch-002 only; same58 prompts/decoder",
+    "checkpoint_space_estimate_bytes": 1040000000,
+    "expected_cpu_audit_source_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+    "actual_job": "proc_c35c5440-2f32-4842-b4aa-8e444173673b"
+  },
+  "job": {
+    "command": "/usr/bin/timeout --signal=TERM --kill-after=60s 5400 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u relation-training/train_qwen35_lora.py --mode train --train relation-cost-preparation/train.jsonl --excluded-input relation-cost-preparation/excluded.input.jsonl --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --output-dir relation-training/formal2ep --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "id": "proc_c35c5440-2f32-4842-b4aa-8e444173673b",
+    "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+    "pid": 2182,
+    "port": 38129,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-23T17:33:24.414008705Z"
+  },
+  "preflight": {
+    "exit_code": 0,
+    "stdout": "{\"free_project_bytes\": 4277125120, \"gpu_processes\": \"GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706, 594 MiB\\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609, 9092 MiB\\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435, 76134 MiB\\n\", \"actual_source_sha256\": {\"relation-training/train_qwen35_lora.py\": \"9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b\", \"relation-training/qwen35_smoke.py\": \"9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3\", \"relation-training/qwen35_relation_cost.py\": \"a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c\"}}\n"
+  },
+  "independent_trainer_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-interface-review/formal-trainer-review.json",
+    "sha256": "489f655b9b71ba39a7d7de1bc272a85e3be64ff4613c77789c0a8deb3a25575c"
+  },
+  "local_monitor_session": 89754,
+  "recovery_plan": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal-plan.json",
+  "training_and_inference_not_resumed_from_smoke": true
+}

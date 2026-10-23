@@ -43,3 +43,6 @@
 - `qwen35-gpu-interface-and-cost.json`：实际短smoke/最长6040推断/5787完整r16单步全部通过，区分资源、格式与质量；正式58新作业与90分钟固定训练预算。
 
 - `qwen35-relation-training-preparation.json`：9B新架构固定204×2epoch入口的真实CPU mask/因果loss/混合层覆盖和7项恢复控制检查；52更新/3warmup，无新GPU resume等价声明。
+
+- `qwen35-base58-control.json`：9B完整58 base原协议Score .633860、18候选回退、0截断，按身份完整回收。
+- `qwen35-relation-training-start.json`：fresh204×2固定训练作业、90分钟预算、4.277GB盘前检和独审；历史启动快照，不代表完成。
