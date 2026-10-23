@@ -56,7 +56,11 @@ def windows(parts,budget,overlap=1):
     return result
 
 
-def build(doc,pred,terms,max_chars):
+def build(doc,pred,terms,max_chars,patient_codes=False):
+    id_map={f'P{i:03d}':str(p['patient_id']) for i,p in enumerate(doc.get('patient',[]),1)} if patient_codes else None
+    if id_map:
+        inverse={v:k for k,v in id_map.items()}
+        doc=dict(doc,patient=[dict(p,patient_id=inverse[str(p['patient_id'])]) for p in doc['patient']])
     groups=defaultdict(list)
     for e in pred['entities']:
         for hid in ([e['text']] if e['identifier']=='-1' else e['identifier'].split(';')):groups[hid].append(e)
@@ -78,6 +82,7 @@ def build(doc,pred,terms,max_chars):
         evidence='\n\n'.join(f"Passage {p['passage']} [{p['section']}], original offset {p['offset']}:\n"+mark(p['text'],p['offset'],doc) for p in parts)
         content='Supplied patient identities:\n'+patients_text+'\n\nCandidate ontology concepts in this window:\n'+'\n'.join(sorted(lines))+'\n\nFull evidence in document order:\n'+evidence
         result.append({'row_id':str(doc['pmc_id'])+':'+str(wi),'pmc_id':doc['pmc_id'],'messages':[{'role':'system','content':SYSTEM},{'role':'user','content':content}],'patient_ids':patients,'code_map':cmap,'evidence_ranges':[[p['offset'],p['end']] for p in parts],'candidate_evidence':{codes[hid]:[{'offset':e['offset'],'length':e['length'],'text':e['text']} for e in es] for hid,es in visible.items()},'training_demonstrations':[]})
+        if id_map:result[-1]['patient_id_map']=id_map
     return result
 
 
@@ -85,11 +90,12 @@ def main():
     ap=argparse.ArgumentParser()
     for k in ['input','pred','hpo','output']:ap.add_argument('--'+k,required=True)
     ap.add_argument('--max-context-chars',type=int,default=22000)
+    ap.add_argument('--patient-codes',action='store_true',help='Use reversible P001 identity keys to avoid delimiter ambiguity in patient IDs')
     a=ap.parse_args();inputs=baseline.read_jsonl(a.input);preds={d['pmc_id']:d for d in baseline.read_jsonl(a.pred)}
     assert all('entities' not in d and 'association' not in d for d in inputs)
     assert {d['pmc_id'] for d in inputs}==set(preds)
     terms,allowed,alt,version=baseline.load_hpo(a.hpo)
-    rows=[r for d in inputs for r in build(d,preds[d['pmc_id']],terms,a.max_context_chars)]
+    rows=[r for d in inputs for r in build(d,preds[d['pmc_id']],terms,a.max_context_chars,a.patient_codes)]
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows))
     meta={'method':'zero-shot-ontology-evidence-patient-coreference','config':vars(a),'source_sha256':baseline.sha256(__file__),'inputs':{k:baseline.sha256(getattr(a,k)) for k in ['input','pred','hpo']},'prompt_sha256':baseline.sha256(output),'documents':len(inputs),'rows':len(rows),'max_prompt_chars':max([sum(len(m['content']) for m in r['messages']) for r in rows] or [0]),'training_demonstrations':False,'input_annotations_used':False}
     output.with_suffix('.manifest.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(meta))

@@ -1,0 +1,282 @@
+{
+  "baseline_score": 0.7047902821565056,
+  "method": "zero-shot full-window ontology evidence patient assignment; initial3 format failures then one deterministic P001 retry pass",
+  "results": {
+    "fallback": {
+      "metrics": {
+        "menF1": 0.7225034514496088,
+        "docF1": 0.7265388496468214,
+        "micF1": 0.49539170506912444,
+        "macF1": 0.5028267961365367,
+        "Score": 0.6118152005755229
+      },
+      "counts": {
+        "mention": {
+          "tp": 785,
+          "fp": 211,
+          "fn": 392,
+          "precision": 0.7881526104417671,
+          "recall": 0.6669498725573492,
+          "f1": 0.7225034514496088
+        },
+        "document": {
+          "tp": 360,
+          "fp": 66,
+          "fn": 205,
+          "precision": 0.8450704225352113,
+          "recall": 0.6371681415929203,
+          "f1": 0.7265388496468214
+        },
+        "relation": {
+          "tp": 215,
+          "fp": 274,
+          "fn": 164,
+          "precision": 0.4396728016359918,
+          "recall": 0.5672823218997362,
+          "f1": 0.49539170506912444
+        }
+      }
+    },
+    "repaired": {
+      "metrics": {
+        "menF1": 0.7225034514496088,
+        "docF1": 0.7265388496468214,
+        "micF1": 0.47005649717514125,
+        "macF1": 0.40561780768520594,
+        "Score": 0.5811791514891943
+      },
+      "counts": {
+        "mention": {
+          "tp": 785,
+          "fp": 211,
+          "fn": 392,
+          "precision": 0.7881526104417671,
+          "recall": 0.6669498725573492,
+          "f1": 0.7225034514496088
+        },
+        "document": {
+          "tp": 360,
+          "fp": 66,
+          "fn": 205,
+          "precision": 0.8450704225352113,
+          "recall": 0.6371681415929203,
+          "f1": 0.7265388496468214
+        },
+        "relation": {
+          "tp": 208,
+          "fp": 298,
+          "fn": 171,
+          "precision": 0.41106719367588934,
+          "recall": 0.5488126649076517,
+          "f1": 0.47005649717514125
+        }
+      }
+    },
+    "intersection": {
+      "metrics": {
+        "menF1": 0.7225034514496088,
+        "docF1": 0.7265388496468214,
+        "micF1": 0.6269113149847095,
+        "macF1": 0.5657773349255205,
+        "Score": 0.660432737751665
+      },
+      "counts": {
+        "mention": {
+          "tp": 785,
+          "fp": 211,
+          "fn": 392,
+          "precision": 0.7881526104417671,
+          "recall": 0.6669498725573492,
+          "f1": 0.7225034514496088
+        },
+        "document": {
+          "tp": 360,
+          "fp": 66,
+          "fn": 205,
+          "precision": 0.8450704225352113,
+          "recall": 0.6371681415929203,
+          "f1": 0.7265388496468214
+        },
+        "relation": {
+          "tp": 205,
+          "fp": 70,
+          "fn": 174,
+          "precision": 0.7454545454545455,
+          "recall": 0.5408970976253298,
+          "f1": 0.6269113149847095
+        }
+      }
+    }
+  },
+  "repair": {
+    "config": {
+      "prompts": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/prompts.jsonl",
+      "responses": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/responses.jsonl",
+      "encoded_prompts": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/prompts-patient-codes.jsonl",
+      "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/repair",
+      "retry_responses": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/repair/retry-responses.jsonl"
+    },
+    "source_sha256": "9a3278082c4034efca0b65a9c7c557cc7a18c00b53b1102e059bf1b59db26a8d",
+    "parser_sha256": "e02b59ad8c23876f0cef9c8ceba3fc9f05f61854a36d3f6e6de49bbba814cf76",
+    "inputs": {
+      "prompts": "3a6b17fab6e982fb0d9d792fe508595b4ed9c25cdb4416d7047a91250c33e9af",
+      "responses": "b3a2068d95dc0e70b368e5b5fc038e361d0ba4cf45e3a2f5a9573a60e0243a2b",
+      "encoded_prompts": "bdccab47b06346ae99e7722bbf35ba58e9d7ffc41cefb644a202a52decfbaf69",
+      "retry_responses": "0e28f7d14e6e2e4fad9472c51546abf05a7759948048ab93ff484f9697d69137"
+    },
+    "retry_selection": "strict format/patient/code coverage only, no gold, maximum one retry",
+    "failed_rows": {
+      "12444410:0": {
+        "error": "AssertionError",
+        "reason": "patient coverage"
+      },
+      "12444410:1": {
+        "error": "AssertionError",
+        "reason": "patient coverage"
+      },
+      "4678370:0": {
+        "error": "AssertionError",
+        "reason": "patient coverage"
+      }
+    },
+    "input_windows": 22,
+    "retry_windows": 3,
+    "output_hashes": {
+      "retry-prompts.jsonl": "108459f9905afafa2d836e23e3bd7ad3bd487fdef4d8d1a33088e65299125bf8",
+      "combined-prompts.jsonl": "fc909fdc9aba370cbd10d8331fcf93f6c73548cd0d2ecdb01c7879921ba47ea7",
+      "combined-responses.jsonl": "95e00c4cb09c26ad4ee54d603a8acf9374c625e6687da30e6ccab885380e876b"
+    },
+    "response_origins": {
+      "10553122:0": "original",
+      "10553122:1": "original",
+      "10789033:0": "original",
+      "11196099:0": "original",
+      "11826603:0": "original",
+      "11919040:0": "original",
+      "12444410:0": "retry",
+      "12444410:1": "retry",
+      "12652105:0": "original",
+      "12652105:1": "original",
+      "12779223:0": "original",
+      "3563609:0": "original",
+      "3563609:1": "original",
+      "4678370:0": "retry",
+      "5452357:0": "original",
+      "5452357:1": "original",
+      "5537416:0": "original",
+      "5575846:0": "original",
+      "5575846:1": "original",
+      "5959423:0": "original",
+      "6338757:0": "original",
+      "6491447:0": "original"
+    }
+  },
+  "model_run": {
+    "configuration": {
+      "model": "../case-retrieval/round2/models/Qwen3-8B",
+      "prompts": "llm-fold0/prompts.jsonl",
+      "output": "llm-fold0/responses.jsonl",
+      "max_input_tokens": 10000,
+      "max_new_tokens": 1600,
+      "batch_size": 2,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "../case-retrieval/round2/models/Qwen3-8B",
+        "prompts": "llm-fold0/prompts.jsonl",
+        "output": "llm-fold0/responses.jsonl",
+        "max_input_tokens": 10000,
+        "max_new_tokens": 1600,
+        "batch_size": 2,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "3a6b17fab6e982fb0d9d792fe508595b4ed9c25cdb4416d7047a91250c33e9af",
+      "code_sha256": "cd720e547ae454fdba996a530d1f2f728d23df4d1af51833a8d862805073b7d7",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 20122086912,
+    "elapsed_seconds": 259.592,
+    "output_sha256": "b3a2068d95dc0e70b368e5b5fc038e361d0ba4cf45e3a2f5a9573a60e0243a2b"
+  },
+  "retry_run": {
+    "configuration": {
+      "model": "../case-retrieval/round2/models/Qwen3-8B",
+      "prompts": "llm-fold0/repair/retry-prompts.jsonl",
+      "output": "llm-fold0/repair/retry-responses.jsonl",
+      "max_input_tokens": 10000,
+      "max_new_tokens": 1600,
+      "batch_size": 2,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "../case-retrieval/round2/models/Qwen3-8B",
+        "prompts": "llm-fold0/repair/retry-prompts.jsonl",
+        "output": "llm-fold0/repair/retry-responses.jsonl",
+        "max_input_tokens": 10000,
+        "max_new_tokens": 1600,
+        "batch_size": 2,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "108459f9905afafa2d836e23e3bd7ad3bd487fdef4d8d1a33088e65299125bf8",
+      "code_sha256": "cd720e547ae454fdba996a530d1f2f728d23df4d1af51833a8d862805073b7d7",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 19224330240,
+    "elapsed_seconds": 35.829,
+    "output_sha256": "0e28f7d14e6e2e4fad9472c51546abf05a7759948048ab93ff484f9697d69137"
+  },
+  "final_merge": {
+    "config": {
+      "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/abbreviations.jsonl",
+      "prompts": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/repair/combined-prompts.jsonl",
+      "responses": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/repair/combined-responses.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/llm-abbr-fold0/repaired-pred.jsonl",
+      "fallback_rules": false
+    },
+    "source_sha256": "e02b59ad8c23876f0cef9c8ceba3fc9f05f61854a36d3f6e6de49bbba814cf76",
+    "inputs": {
+      "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "base": "a1515d0d416ca48b92e11aa60b9de516d650b3c50ab3d44191e74590b839a971",
+      "prompts": "fc909fdc9aba370cbd10d8331fcf93f6c73548cd0d2ecdb01c7879921ba47ea7",
+      "responses": "95e00c4cb09c26ad4ee54d603a8acf9374c625e6687da30e6ccab885380e876b"
+    },
+    "accepted_windows": 22,
+    "invalid_windows": [],
+    "fallback_used": false,
+    "documents_without_candidate_windows": 0,
+    "output_sha256": "ae6b4b4b623cfc8b036818e856a2e81bb511ab97c4f790078860b46274f87d2e"
+  },
+  "validation": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 996,
+      "relations": 506,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "ae6b4b4b623cfc8b036818e856a2e81bb511ab97c4f790078860b46274f87d2e",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  }
+}

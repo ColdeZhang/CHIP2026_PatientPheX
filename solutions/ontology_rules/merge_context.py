@@ -10,6 +10,18 @@ def parse(text):
     return json.loads(text)
 
 
+def validate_response(row,response,expected_patients=None):
+    patient_map=row.get('patient_id_map',{p:p for p in row['patient_ids']})
+    assert set(patient_map)==set(row['patient_ids']),'patient map keys'
+    if expected_patients is not None:assert set(patient_map.values())==set(expected_patients),'patient map coverage'
+    assert not response.get('hit_token_limit',False),'truncated'
+    obj=parse(response['response'])
+    assert isinstance(obj,dict) and set(obj)==set(row['patient_ids']),'patient coverage'
+    for codes in obj.values():
+        assert isinstance(codes,list) and all(isinstance(c,str) and c in row['code_map'] for c in codes),'candidate validity'
+    return obj,patient_map
+
+
 def main():
     ap=argparse.ArgumentParser()
     for k in ['input','base','prompts','responses','output']:ap.add_argument('--'+k,required=True)
@@ -21,11 +33,8 @@ def main():
     for row in prompts:
         pmc=row['pmc_id'];cmap=row['code_map'];rid=row['row_id'];covered.add(pmc)
         try:
-            response=responses[rid];assert not response.get('hit_token_limit',False),'truncated'
-            obj=parse(response['response']);assert isinstance(obj,dict) and set(obj)==set(row['patient_ids']),'patient coverage'
-            for pid,codes in obj.items():
-                assert isinstance(codes,list) and all(isinstance(c,str) and c in cmap for c in codes),'candidate validity'
-            for pid,codes in obj.items():result[pmc][pid].update(cmap[c] for c in codes)
+            obj,patient_map=validate_response(row,responses[rid],result[pmc])
+            for pid,codes in obj.items():result[pmc][patient_map[pid]].update(cmap[c] for c in codes)
             accepted.append(rid)
         except (KeyError,ValueError,AssertionError,TypeError) as error:
             invalid.append({'row_id':rid,'reason':type(error).__name__})
