@@ -1,6 +1,6 @@
 # E-20261023-004：监督序列标注首版
 
-状态：进行中；分支 `day1/sequence-crf`，基础版本 `ac8a752`。主线程统一筛选与提交，本路线不操作比赛网站。
+状态：已完成；分支 `day1/sequence-crf`，基础版本 `ac8a752`。主线程统一筛选与提交，本路线不操作比赛网站。
 
 ## 目标与假设
 
@@ -88,3 +88,24 @@ CUDA_VISIBLE_DEVICES=GPU-07726469-bf7a-b832-9dee-019dc276dc1d OMP_NUM_THREADS=1 
 实际启动：2026-10-23 11:28:15.956 UTC，远端进程 `proc_99d9c1fc-da71-4dbb-a17a-ced54a26e2a8`（PID 1109842），mount `1593f159-19bc-41ca-8b4c-2e7455f5db99`。启动前 GPU0 使用 4 MiB、利用率 0%，已与语义路线完成交接。实际模型参数 108,893,955；train64 共 2,364 窗口、241,952 编码 token（含重叠/特殊符号），592 优化步骤。可通过 MCP `read_process_output` 检查进程；运行位置 `sequence-crf/runs/biomedbert-dev-v1/`。
 
 备份状态：此前 `150bce8` 已 push 并读取远端 SHA 核验一致；`d569bb7` 之后 GitHub token 认证失效，暂为本地已提交，主线程统一恢复认证并保存额外 Git bundle，不反复重试或暴露令牌。
+
+## GPU 固定首版结果与最终选择
+
+BiomedBERT 4 epoch 训练成功，未调参；拟合 59.33 秒（4 轮优化累计 52.29 秒）、预测 6.88 秒，峰值 CUDA allocated 4,108,261,376 字节。真实参数 108,893,955；远端 Python 3.10.20、torch 2.7.0+cu128、transformers 4.50.0、numpy 1.26.4、scikit-learn 1.6.1，其他版本见 manifest。CPU 与 GPU 的 sklearn/数值库版本不同，虽同一链接/关系实现，不能把差异严格解释为只有编码器变化。
+
+| 版本（相同 v2 评测） | menF1 | docF1 | micF1 | macF1 | Score |
+|---|---:|---:|---:|---:|---:|
+| CRF v1 | 0.732540 | 0.745303 | 0.648472 | 0.612620 | **0.684734** |
+| BiomedBERT v1 | 0.622124 | 0.672788 | 0.585841 | 0.572501 | 0.613313 |
+
+BiomedBERT 16 篇/36 患者输出 1,153 实体、677 关联，格式 0 错误/0 警告，预测 SHA-256 `a8f70774be7c506ffc4673ce5ad33e6ce23db4990d6714ec51c336724835955a`。本地预测在 `/workspace/patientphex-runs/day1-20261023/sequence-crf/biomedbert-dev-v1/pred.jsonl`；远端模型保留于 mount 下 `sequence-crf/runs/biomedbert-dev-v1/ner/`。实际 GPU 源码 SHA-256 `fb445a94f62f59801f096ca24c47b282bccafb4553a5d340448ee3e5689a6edb`、共享头源码 `2219fbfd79ab77d4ccce5565993727b09048eb3dbf6e0260eb91fc0f580b758a`，均已在 `1e4893c` 及后续分支历史中。
+
+失败原因依据：BiomedBERT 提出更多候选，但严格实体匹配 TP 从 708 降到 703，FP 从 119 增到 451，召回从 0.6401 微降至 0.6356。仅看跨度，漏检从 371 减到 296；但相同跨度链接错误从 9 增到 90，说明新增描述性表型超出了词面链接器的能力。例如正确识别 `absence of the foveal structures` 却链接 `-1`；`poor central and side vision` 识别出来却链接到错误 HPO。还新增 `retina` 等非特异或不匹配跨度。实体误报传递给关系头，关系 FP 从 166 增至 346。**这证明本次端到端组合无收益，不证明预训练监督 NER 路线不可用。** 未来可研究更强的上下文概念链接与更准确的边界/关系头；今日不增加调参。
+
+决定：按预先固定标准选 CRF v1 的完整训练 B 预测供主线程提交，不训练 BiomedBERT B、不提交该负结果。GPU 进程结束后明确交给语义路线，未占用他人运行。平台提交由主线程记录，本实验不宣称官方成绩。
+
+## 精确 CPU 源码与恢复
+
+CPU dev/B 的实际源码快照已外存 `source-snapshots/0222778730036395a424fa7f8d83cd80649d25cd723a2ffc803109e433327d05.py`，其与当前 `run.py` 唯一区别是后续增加的运行库版本元数据。为避免外部快照丢失，仓库保留小型 `results/crf-v1-source-reproduction.patch`；将 `git show 1e4893c:solutions/sequence_crf/run.py` 导出为临时 `run.py` 后，在临时目录对该文件应用此 patch，即可重建 SHA-256 `022277...` 的实际运行源，不需要改动当前工作树。实际配置/数据/输出哈希与命令见 CPU manifest 和上述记录。
+
+最后备份恢复：主线程已间隔重试成功将 `e71436c` 推送；本结案提交随后再次 push 并核验，最终提交号由主线程台账统一记录。

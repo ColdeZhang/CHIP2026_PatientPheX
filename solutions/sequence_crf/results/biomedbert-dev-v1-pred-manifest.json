@@ -1,0 +1,71 @@
+{
+  "method": "BiomedBERT-BIO+HPO-char-tfidf-linking+logistic-patient-relation",
+  "seed": 20261023,
+  "pretrained_model": "pretrained-biomedbert",
+  "train": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/data/train64.jsonl",
+  "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+  "input": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/data/dev16.input.jsonl",
+  "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "hpo_version": "hp/releases/2026-06-23",
+  "model_parameters": 108893955,
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/runs/biomedbert-dev-v1/pred.jsonl",
+  "output_sha256": "a8f70774be7c506ffc4673ce5ad33e6ce23db4990d6714ec51c336724835955a",
+  "output_bytes": 155527,
+  "documents": 16,
+  "entities": 1153,
+  "patient_phenotypes": 677,
+  "fit_seconds": 59.329378296621144,
+  "predict_seconds": 6.883324197959155,
+  "training_stats": {
+    "training_chunks": 2364,
+    "optimizer_steps": 592,
+    "epochs": [
+      {
+        "epoch": 1,
+        "loss": 0.23577505152521505,
+        "seconds": 13.861558199860156
+      },
+      {
+        "epoch": 2,
+        "loss": 0.06732780565004293,
+        "seconds": 12.850278660655022
+      },
+      {
+        "epoch": 3,
+        "loss": 0.045082129656047736,
+        "seconds": 12.725503758061677
+      },
+      {
+        "epoch": 4,
+        "loss": 0.03432570017773558,
+        "seconds": 12.85339870909229
+      }
+    ],
+    "relation_examples": 13740,
+    "relation_positive": 4547
+  },
+  "config": {
+    "epochs": 4,
+    "batch_size": 16,
+    "max_length": 384,
+    "learning_rate": 3e-05,
+    "ner_threshold": 0.55,
+    "relation_threshold": 0.55,
+    "device": "cuda"
+  },
+  "source_sha256": "fb445a94f62f59801f096ca24c47b282bccafb4553a5d340448ee3e5689a6edb",
+  "common_source_sha256": "2219fbfd79ab77d4ccce5565993727b09048eb3dbf6e0260eb91fc0f580b758a",
+  "runtime_versions": {
+    "python": "3.10.20",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "sklearn-crfsuite": "0.5.0",
+    "python-crfsuite": "0.9.12",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.50.0"
+  },
+  "peak_cuda_allocated_bytes": 4108261376,
+  "input_annotations_used": false
+}
