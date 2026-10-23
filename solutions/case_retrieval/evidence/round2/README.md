@@ -129,3 +129,5 @@
 - [同12提示全80CID冻结计划](conditional-all80cid-plan.json)与[终点](conditional-all80cid-result.json)：530分支/158pair，旧98exact复用；找回2FN却丢12TP/新增18FP，固定.5负结案，独审ddd3e009通过，GPU已释放，不扩调参。
 
 - [固定槽二元目标 CPU/计划](fixed-slot-binary-plan.json)：无答案输入2506标签、原LM head两列/直接位置、7168 cap；fresh唯一2ep方案，GPU probe实际结果待收。
+
+- [固定槽实际probe](fixed-slot-binary-probe.json)、[正式计划](fixed-slot-binary-formal-plan.json)与[实际启动](fixed-slot-binary-start.json)：39.436s probe通过，fresh2ep32在A800运行；final或budget-partial唯一保存，不重启；双F1 arm未评分。
