@@ -5,7 +5,7 @@
 ## 当前状态
 
 - **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
-- **原dev两种口径**：原独立检索 CPU k21/.35 **.625073738**（首日 .613517597）；共享CRF+GLiNER955实体 + fresh Qwen3.5关系SFT64 **.715759605**，高于同池SFT48 **.711210414** 与fullLR **.711324992**。后者是共享组件组合进展，不冒称纯检索分；两者均未达.8。
+- **原dev两种口径**：原独立检索 CPU k21/.35 **.625073738**（首日 .613517597）；共享公开Pheno/CRF/GLiNER实体+Qwen full64关系、固定新候选支持追加 **.736526555**（新终点待独审），高于此前6401组合 **.732257765**。新结果是共享组件组合进展，不冒称纯检索分；未达.8。
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
 - **最新结论**：fresh full64唯一epoch002小幅改善原dev关系：273TP/60FP/180FN vs SFT48 271/64/182，Score +.004549；仍较fullLR331TP损召回、未达.8。64条strictJSON、466CID全合法、0触顶回退，固定输入/decoder/955实体。204严格OOF四事实树仍负，既有结果不重跑。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
@@ -22,7 +22,7 @@
 - **公开新概念关系F1控制已完成**：固定449新concept、旧1189实体/383关联不动，新增193=72TP121FP；v2 .660942003→.669751257（+.008809）。literal baseline310TP/73FP/210FN与canonical诊断311/72/209相差1alt-ID，评测gold未改。62输出/449CID全合法，203.803s，21:43:55.422Z A800 GPU2空释放、watcher9359结束。独审37c03a29通过，先固定outer0复验，不迁移原dev；[结果](evidence/round2/public-new-relations-result.json)。
 - **outer0公开候选复验完成**：旧SFT48 .695443948→raw **.694365855**（新增35TP77FP）→固定cut.3 support **.705717148**（新增19TP11FP/+ .010273），仍低rules .711354。46strict/303CID/0触顶回退、146.695s；旧947实体/276关联全保留，双新pred先freeze244dcb4c再唯一v2。2026-10-23T21:51:38.896207+00:00 A800 GPU2 fresh空释放、watcher44595结束，勿重启；独审df6df5e8通过，raw配置关闭、support进入一次原dev固定迁移。support阈值含pooled64校准边界持续披露。[结果](evidence/round2/public-new-relations-outer0-result.json)。
 - **F1固定支持过滤**：只保留新增HPO落在固定cut.3文档实体者，原旧输出不变，Score .660942→raw .669751→support **.682128804**；新增65=41TP24FP，比raw少31TP97FP。这是见F1后提出的开发控制，非盲测；不改已冻outer计划，等共同终点。[结果](evidence/round2/public-new-relations-F1-support-result.json)。
-- **原dev唯一支持追加准备**：以当前6401(.3)完整输出为baseline，1004实体/333旧关系逐值保留；机械PubMed95∪Bioformer95排除旧全部466概念后276新concept/412span/649pairs/42提示，不提前按support删提示。actual CPU107064token/最长4136。复用full64 epoch2，native600+30；只评固定support新arm，raw不评分、不扫阈值。8fba34c源码/计划已推；实际proc_3dc1b4ff于21:55:22Z启动，watcher9688/最迟22:05:52Z，先核原job勿重启。新完整输出freeze后唯一v2。[计划](evidence/round2/public-new-relations-dev-plan.json)。
+- **原dev唯一支持追加完成**：原6401 .732257765→**.736526555**（+.004268790）；新增35=18TP17FP，旧1004entities/333assoc全保留，关系291TP77FP162FN，micro+.014235/macro+.002840。42strict/276CID/0触顶回退，139.727s；fullfreeze36fd0124先于唯一新arm评分，pred e9b30447，raw未评分。2026-10-23T21:57:55.235482+00:00 A800 GPU2 fresh空释放、watcher9688结束，勿重启；独审待回收，无GPU后继/不上传。[结果](evidence/round2/public-new-relations-dev-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果

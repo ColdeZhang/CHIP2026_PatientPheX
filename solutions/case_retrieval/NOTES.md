@@ -55,3 +55,5 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 ### SFT概率/事实融合的证据边界
 
 单meta-fold中，用fresh SFT32生成F1、cachedSFT48生成outer0，共同LR+上下文两HGB只±SFT四事实，Score .673525→.683810：相同控制下有正增量，与旧公开基座四事实负结果不同。仍低规则 .711354/直接SFT48 .695444，因此当前配置不迁移原dev。不能把这次16篇meta训练等同完整3折OOF，也不能把新共同LR特征加成归于SFT。原始结果与固定来源见[结果](evidence/round2/sft-meta1-result.json)。
+
+固定候选补充关系的经验（2026-10-23）：旧候选缺失占F1 canonical关系FN154/209，单靠重训关系无法补齐。公开PubMed95∪Bioformer95全部新文档概念的机械追加在F1稍正、outer0稍负；只保留固定HGB cut.3文档实体支持的新关系后两训练折均正，再唯一原dev .732258→.736527（18TP17FP）。旧实体/关系不变，support在生成后过滤而非预删prompt。cut.3由pooled64实体OOF校准，不把F0/F1当阈值盲测；原dev已多次开发使用，仍需官方后继验证。见public-new-relations各结果证据，不用这些诊断逐条挑gold。
