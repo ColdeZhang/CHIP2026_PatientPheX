@@ -44,8 +44,10 @@
 18. **独立Bioformer四fold控制完成、独审PASS**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，四新fit/全概率/预测/分数/实际cache谱系独审PASS（0efe738e）；root关闭负的lowgate，不做联合，转预设OOF cut校准。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
 
 
-19. **统一OOF cut校准完成、待独审**：固定九点.1… .9/原greedy，36完整decode21:35:13Z先freeze后读取train64实体标签，.4四fullpred逐字节复现。总2.125秒CPU，按pooled(menF1+docF1)/2唯一选 **.3**：.777993968@.4→.780192596@.3，实体men .763831/doc .796554、4315条（+161）；mention+70TP91FP/doc+41TP48FP，fold目标Δ[+.003036,+.007263,-.004463,+.001727]。这是全train64选择后的**校准拟合指标**，不是新盲验证Score；无关系选型、无原dev。等待一次独立CPU复核，然后仅固定.4/.3同SFT关系共同迁移；不扩网格。[结果](evidence/round2/public-bioformer-cut-results.json)、[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/。
+19. **统一OOF cut校准完成、独审PASS**：固定九点.1… .9/原greedy，36完整decode21:35:13Z先freeze后读取train64实体标签，.4四fullpred逐字节复现。总2.125秒CPU，按pooled(menF1+docF1)/2唯一选 **.3**：.777993968@.4→.780192596@.3，实体men .763831/doc .796554、4315条（+161）；mention+70TP91FP/doc+41TP48FP，fold目标Δ[+.003036,+.007263,-.004463,+.001727]。这是全train64选择后的**校准拟合指标**，不是新盲验证Score；无关系选型、无原dev。独立36预测/全曲线/OOF来源/选点复核PASS（234064fe）；后继仅固定.4/.3同SFT关系共同迁移，不扩网格。[结果](evidence/round2/public-bioformer-cut-results.json)、[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/。
 
+
+20. **双公开模型原dev两cut迁移准备**：Bioformerdev1353纯输入缓存就绪，独审双来源和OOF cut均PASS。一次全train64/4×48 OOF fit≤120秒，原字段+独立6列，不改HGB；仅fixed.4/训练选定.3两entity集合，aa107关联逐项保留。两新+旧16cd预测与真实selector.pkl共同freeze后一次dev评，无规则关系臂/阈值扫描。[计划](evidence/round2/public-bioformer-dev-plan.json)，外存public-bioformer-dev-transfer/；当前未fit。旧best16cd已由root实际服务器恢复验证，main docs/campaigns/round2-best-dev-backup.json保留059d680a包/31成员记录。
 
 ## 已完成的近期结论
 
