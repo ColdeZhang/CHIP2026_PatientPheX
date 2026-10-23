@@ -72,3 +72,6 @@
 - `rules-union-qwen35-sft-result.json`：唯一无条件规则∪9B SFT关系并集控制，新增1TP/14FP、内部Score下降，停止不移dev。
 
 - `strict-meta-calibration-cpu-proposal.json`：严格train32/meta16单折校准的来源矩阵、两个缺失CPU CRF16与可复用语义池；仅CPU可行性，未fit/选阈值。
+
+- `strict-meta-calibration-run-plan.json`：root授权固定17点F1-only阈值选择、原.5保留、实际6池来源已回收；CPU即将运行。
+- `qwen35-full64-cpu-plan.json`：合法四折265行/6153最长/68更新的新独立协议；cap6400、不继承48adapter，成本probe与60分钟正式预算授权，尚未GPU。
