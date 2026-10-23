@@ -48,3 +48,5 @@
 - [100ep终点结果与诊断](phenotagger-endpoint100-results.json)：独立复评通过，误报仍多；[Sap一致性控制预设](phenotagger-sap-consensus-plan.json)仅处理191新增、保持base。
 
 - [Sap固定一致性结果](phenotagger-sap-consensus-results.json)：训练内fold0 .725539，仅一个固定点，原dev不变。
+
+- [真实肯定词面3ep适配冻结](phenotagger-adaptation-plan.json)：仅train48、原回放保留、实际CPU token/init检查，尚不代表训练结果。

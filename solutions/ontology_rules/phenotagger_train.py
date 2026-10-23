@@ -22,6 +22,8 @@ from phenotagger_measure import OntologyClassifier, sha
 import phenotagger_measure
 from phenotagger_continuation import read_parent
 import phenotagger_continuation
+from phenotagger_adaptation import read_initialization
+import phenotagger_adaptation
 
 
 def atomic_save(value, path):
@@ -73,9 +75,14 @@ def main():
     parser.add_argument('--continue-from')
     parser.add_argument('--parent-checkpoint-sha')
     parser.add_argument('--parent-trainer-sha')
+    parser.add_argument('--initialize-from')
+    parser.add_argument('--initial-final-sha')
     args = parser.parse_args()
     out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
     assert not (args.resume and args.continue_from)
+    assert sum(bool(v) for v in [args.resume, args.continue_from, args.initialize_from]) <= 1
+    if args.initialize_from:
+        assert out.resolve() != Path(args.initialize_from).resolve() and args.initial_final_sha
     if args.continue_from:
         assert out.resolve() != Path(args.continue_from).resolve()
         assert args.parent_checkpoint_sha and args.parent_trainer_sha
@@ -100,11 +107,13 @@ def main():
     tensors = [encoded['input_ids'], encoded['attention_mask'],
                encoded.get('token_type_ids', torch.zeros_like(encoded['input_ids'])),
                torch.tensor([index[row['label']] for row in rows], dtype=torch.long)]
+    real_rows = torch.tensor([row['source'] == 'train_real_positive' for row in rows], dtype=torch.bool)
     configuration = {key: getattr(args, key) for key in
                      ['epochs', 'batch_size', 'lr', 'max_length', 'seed']}
     fingerprint = {'config': configuration, 'data_manifest_sha256': sha(data / 'manifest.json'),
                    'data_outputs': manifest['outputs'], 'trainer_sha256': sha(__file__),
                    'continuation_loader_sha256': sha(phenotagger_continuation.__file__),
+                   'adaptation_loader_sha256': sha(phenotagger_adaptation.__file__),
                    'classifier_source_sha256': sha(phenotagger_measure.__file__),
                    'base_source_files': {p.name: sha(p) for p in Path(args.model_dir).iterdir() if p.is_file()}}
     runtime = {'python': platform.python_version(), 'torch': torch.__version__,
@@ -119,7 +128,7 @@ def main():
     epoch = offset = global_step = 0
     epoch_stats = new_stats(); completed_epochs = []; training_seconds = 0.
     checkpoint = out / 'latest.pt'
-    parent = None; saved = None
+    parent = None; adaptation = None; saved = None
     if args.continue_from:
         assert not checkpoint.exists() and not (out / 'final.pt').exists()
         saved, parent = read_parent(args.continue_from, args.parent_checkpoint_sha,
@@ -130,10 +139,26 @@ def main():
         if 'continuation_parent' in saved['fingerprint']:
             parent = saved['fingerprint']['continuation_parent']
             fingerprint['continuation_parent'] = parent
+        if 'adaptation_parent' in saved['fingerprint']:
+            adaptation = saved['fingerprint']['adaptation_parent']
+            fingerprint['adaptation_parent'] = adaptation
         assert saved['fingerprint'] == fingerprint
         assert saved['runtime'] == runtime
     else:
         assert not checkpoint.exists() and not (out / 'final.pt').exists()
+    if args.initialize_from:
+        weights, adaptation = read_initialization(args.initialize_from, args.initial_final_sha,
+                                                  manifest, labels, fingerprint)
+        model.load_state_dict(weights)
+        fingerprint['adaptation_parent'] = adaptation
+        assert not optimizer.state_dict()['state']
+        assert tensor_digest(model.state_dict()) == adaptation['parent_terminal']['model_tensor_digest']
+        assert epoch == offset == global_step == 0
+        print(json.dumps({'event': 'adaptation_initialized', 'parent_final_sha256': args.initial_final_sha,
+                          'model_tensor_digest': adaptation['parent_terminal']['model_tensor_digest'],
+                          'model_exact': True, 'optimizer_state_empty': True,
+                          'new_epoch': epoch, 'new_global_step': global_step}), flush=True)
+        del weights
     if saved is not None:
         model.load_state_dict(saved['model']); optimizer.load_state_dict(saved['optimizer'])
         epoch, offset, global_step = saved['epoch'], saved['offset'], saved['global_step']
@@ -161,7 +186,8 @@ def main():
         del saved
     parent_seconds = parent['initial_training_seconds'] if parent else 0.
     atomic_json({'fingerprint': fingerprint, 'runtime': runtime, 'command_config': vars(args),
-                 'initialization': ('Exact completed 30epoch model/Adam/RNG continued to fixed total100; parent preserved'
+                 'initialization': (adaptation['policy'] if adaptation else
+                                    'Exact completed 30epoch model/Adam/RNG continued to fixed total100; parent preserved'
                                     if parent else 'fresh general BiomedBERT + randomly initialized HPO head; pilots never resumed'),
                  'heldout_used': False, 'optimizer': 'Adam eps1e-8 no weight decay; no scheduler; BF16 autocast'},
                 out / 'manifest.json')
@@ -202,8 +228,12 @@ def main():
             assert bool(torch.isfinite(loss))
             loss.backward(); optimizer.step()
             predicted = logits.detach().argmax(-1)
-            for name, selected in [('hpo_positive', target != 0), ('reject_none', target == 0)]:
-                stats = epoch_stats[name]
+            groups = [('hpo_positive', target != 0), ('reject_none', target == 0)]
+            if adaptation:
+                real = real_rows[take].cuda()
+                groups.extend([('real_positive', real), ('hpo_replay', (target != 0) & ~real)])
+            for name, selected in groups:
+                stats = epoch_stats.setdefault(name, {'count': 0, 'loss_sum': 0., 'correct': 0, 'predicted_none': 0})
                 stats['count'] += int(selected.sum().item())
                 stats['loss_sum'] += float(per_row.detach()[selected].sum().item())
                 stats['correct'] += int(((predicted == target) & selected).sum().item())

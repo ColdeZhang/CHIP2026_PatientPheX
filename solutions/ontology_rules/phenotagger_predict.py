@@ -17,7 +17,7 @@ def main():
     for key in ['candidate-dir', 'training-dir', 'model-dir', 'output-dir']:
         parser.add_argument('--' + key, required=True)
     parser.add_argument('--batch-size', type=int, default=256)
-    parser.add_argument('--expected-epochs', type=int, choices=[30, 100], default=30)
+    parser.add_argument('--expected-epochs', type=int, choices=[3, 30, 100], default=30)
     args = parser.parse_args(); out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'manifest.json').exists()
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
@@ -33,7 +33,11 @@ def main():
     candidate_dir = Path(args.candidate_dir)
     preparation = json.loads((candidate_dir / 'manifest.json').read_text())
     assert sha(candidate_dir / 'candidates.jsonl.gz') == preparation['output_sha256']
-    assert preparation['inputs']['training_manifest'] == saved['fingerprint']['data_manifest_sha256']
+    expected_manifest = saved['fingerprint']['data_manifest_sha256']
+    if 'adaptation_parent' in saved['fingerprint']:
+        assert args.expected_epochs == 3 and terminal['global_step'] == 1701
+        expected_manifest = saved['fingerprint']['adaptation_parent']['parent_data_manifest_sha256']
+    assert preparation['inputs']['training_manifest'] == expected_manifest
     with gzip.open(candidate_dir / 'candidates.jsonl.gz', 'rt') as handle:
         rows = [json.loads(line) for line in handle]
     assert len(rows) == preparation['rows']

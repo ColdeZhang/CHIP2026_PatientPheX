@@ -1,0 +1,145 @@
+{
+  "frozen_at": "2026-10-23T17:18:14.300436+00:00",
+  "hypothesis": "Adapt the fully fitted HPO lexical classifier to real train48 positive surface forms while preserving the ontology and weak-negative replay.",
+  "run_id": "phenotagger-fold0-real-positive-adapt3ep-from100",
+  "scope": "Single fixed fold0 development control. No original-dev or intermediate heldout inference.",
+  "initialization": {
+    "parent": {
+      "path": "phenotagger-fold0/formal100ep-from30",
+      "final_sha256": "d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9",
+      "complete_sha256": "c4fe67dd7c99594218308b4806cd0dff944dc7e16723319cc7b382af93ecdf22",
+      "parent_terminal": {
+        "final_sha256": "d3aaf7188cec955daf889add2a1ea0cff283b1bc9f82e614d5ba27173fc924d9",
+        "latest_sha256": "aaa634f011a7e6ec68fa1dc1db7efcf8a730e4fae16ce28a1b73b5e739edeeeb",
+        "model_tensor_digest": "2be37cd20c85212d21cfec1e4ff2e7f4175f7c108ab798289a5886f41fa5b9af",
+        "global_step": 45800,
+        "epochs": 100,
+        "heldout_used": false,
+        "checkpoint_retention": "latest full training state + final inference model only"
+      },
+      "parent_data_manifest_sha256": "b3afa763169bc4fe29612b14e04f67327cabf13e0db13125de0c70b4d66311f5",
+      "parent_config": {
+        "epochs": 100,
+        "batch_size": 256,
+        "lr": 2e-05,
+        "max_length": 32,
+        "seed": 20261023
+      },
+      "parent_trainer_sha256": "c7e62fcf19f029b687e20fa5ec146f666460c88184bd77a50ad90d65d95f6d5c",
+      "policy": "All model parameters from final100; fresh Adam and seed, 3 new epochs. No parent optimizer or RNG loaded."
+    },
+    "actual_model_tensor_digest": "2be37cd20c85212d21cfec1e4ff2e7f4175f7c108ab798289a5886f41fa5b9af",
+    "all_parameters_loaded_exact": true,
+    "all_parameters_trainable": true,
+    "new_optimizer_state_entries": 0,
+    "new_global_step": 0,
+    "parent_optimizer_and_rng_restored": false
+  },
+  "data_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/data/manifest.json",
+    "sha256": "a39ebfdf91096daa85dce08bdf2c30aa91e423c59013a1cc215dce73f99ebdb7"
+  },
+  "data_summary": {
+    "rows": 145102,
+    "hpo_replay": 58559,
+    "none_replay": 58559,
+    "real_unique_pairs": 1749,
+    "real_repeats": 16,
+    "real_rows": 27984,
+    "real_pairs_already_hpo": 735,
+    "real_pairs_new": 1014,
+    "union_ambiguous_pairs_not_added": 75,
+    "NO_and_NIL_as_none": false,
+    "labels_sha256": "e60cace5008cd988122ee3ecbadbe91db535f423c8acab9eba4316abfa90884d",
+    "rows_sha256": "5da7e65c3c7f66dbd191b39cc1aaa36d53d52fe4efef3430d1306cc62f10d996"
+  },
+  "token_audit": {
+    "hpo_name_synonym_lemma": {
+      "rows": 58559,
+      "overlength_rows": 0,
+      "max_tokens": 27,
+      "unique_texts": 58542,
+      "overlength_unique": 0
+    },
+    "train_text_weak_negative": {
+      "rows": 58559,
+      "overlength_rows": 1,
+      "max_tokens": 33,
+      "unique_texts": 51574,
+      "overlength_unique": 1
+    },
+    "train_real_positive": {
+      "rows": 27984,
+      "overlength_rows": 0,
+      "max_tokens": 22,
+      "unique_texts": 1749,
+      "overlength_unique": 0
+    }
+  },
+  "token_sequence_label_conflicts": {
+    "multi_label_token_sequences": 17,
+    "with_none": 0,
+    "with_real_positive": 0,
+    "cross_source": 0,
+    "distinct_texts_mapped_together": 0,
+    "pair:hpo_name_synonym_lemma|hpo_name_synonym_lemma": 17
+  },
+  "max32_policy": "All 145102 rows retained; same max32 truncation as parent; no rewritten text or label-based selection.",
+  "training": {
+    "epochs": 3,
+    "batch_size": 256,
+    "steps_per_epoch": 567,
+    "total_steps": 1701,
+    "optimizer": "new Adam, lr5e-6, eps1e-8, no weight decay or scheduler",
+    "seed": 20261023,
+    "precision": "BF16 autocast, FP32 weights/Adam",
+    "cpu_threads": 1,
+    "all_encoder_and_head_parameters_trainable": true,
+    "save_every_seconds": 120,
+    "estimated_training_seconds_excluding_IO": 190.54,
+    "checkpoint_retention": "latest recoverable state and final; original 100epoch directory untouched"
+  },
+  "endpoint": {
+    "expected_epochs": 3,
+    "expected_steps": 1701,
+    "candidate_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/inference/manifest.json",
+      "sha256": "3950296486bba5987b95b3b07f9f7d39952dbc56adbe80dc2d6d72a651ee0537"
+    },
+    "base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/source-control-reproduction/pred.jsonl",
+      "sha256": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65"
+    },
+    "policy": "Original rawp>=.95, same87134 candidate spans/59541 texts, original none/length/negation/nonoverlap handling and base-preserving assembly. No intermediate evaluation or threshold search. No extra Sap filter in this first adaptation comparison.",
+    "reference_scores": {
+      "base": 0.7103590603023253,
+      "parent100_same_raw_policy": 0.7125487064528147,
+      "parent100_plus_separate_Sap_filter": 0.7255394213946427
+    }
+  },
+  "source_sha256": {
+    "phenotagger_adapt_data.py": "819b723ade9e48f0db31747a2b4514fe3e0c95e6687104daf2078ed0e376f9af",
+    "phenotagger_adaptation.py": "6b5830851442a3b98932144e725696d6b2191b07878f7a32bc54c832c54f6fe7",
+    "phenotagger_adapt_check.py": "9ec112870b81f0b113bbbe90e1d825f6a9e4dae76debef63f21c80186ae017b1",
+    "phenotagger_train.py": "0e1a940c41e029fbbd1ffc738ecfaf8fc435ded302a225c845efd0dc2a2d0175",
+    "phenotagger_predict.py": "ea7f14e22b1f5bd774ea80376582c75570918b0d29caea40c3ea2db2ea1b2911",
+    "phenotagger_measure.py": "58148032849f2c93f577fa3d414c9c571ba34909c25345b2cb17c716ecb48746",
+    "phenotagger_continuation.py": "2e8cb3e588fd52b5749ddc555a1229b77ad59927cc76cce09580b6c1b383f0eb",
+    "phenotagger_data.py": "ee3c293ac16732ccabca5a51da616dcc830ba5acd4b6bcfe00c78cebd923d255",
+    "phenotagger_augment.py": "0cab39861ee7518cd3df151d4ede9b92c1005eff2ce60338743ed1700f241ed7",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+    "enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+  },
+  "checks": {
+    "cpucheck": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/cpucheck.json",
+      "sha256": "739d6cd72fd0d11ca88dfb8fc9886b5bed8b3483c6f98c66545bbcb1276805a5"
+    },
+    "data_builder": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/research/real-positive-adaptation/builder-checks.json",
+      "sha256": "5ddb3bd6abbb9c0ac06460235b1db061f54cbd2e29c9e598885d7711905b98ce"
+    }
+  },
+  "causal_limit": "New real supervision, new Adam and additional updates form one intervention; no isolated causal attribution without matched replay-only control."
+}
