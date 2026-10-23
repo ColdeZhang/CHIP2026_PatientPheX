@@ -1,0 +1,331 @@
+{
+  "experiment": "E-20261023-007",
+  "preparation": {
+    "config": {
+      "phase": "prepare",
+      "work_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold1",
+      "entity_prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.jsonl",
+      "train": "/workspace/patientphex-data/round2-inner4/fold-1/train48.jsonl",
+      "input": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/calibration-manifest.json",
+      "sequence_source": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/crf-run.snapshot.py",
+      "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold1-baseline/pred.jsonl",
+      "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/scored-candidates.jsonl.gz",
+      "crf": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf.jsonl",
+      "crf_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/outer1/crf-work/crf-manifest.json"
+    },
+    "source_sha256": "400a293558756a792640fc91c2f101a4d8427e1e13aff00fadb332fd336d2f3e",
+    "dependencies": {
+      "calibrate_multi": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+      "calibrate": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+      "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+      "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3"
+    },
+    "sequence_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+    "training_origins": [
+      {
+        "gold": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+        "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "generator_train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+        "base": "9617ef58bd47632526cd641d2415592bede786f7dfdee73f2d6bde6dfd9c24a0",
+        "candidates": "b803687162f0edd271ddcfae983075049e8d3aee1fdda85d305d7d8a115329b1",
+        "candidate_manifest": "1cc59ce35a555f3f3bcead932d456f8aa8694218354f99d76b93604571a80b2e",
+        "crf": "252a7c1ad0c7aba7612a9852474e67acfe4267af0d5175afc4302c1225a030dd",
+        "crf_manifest": "0fe5b02e6a11c25f07a30f002f559a24cc0e0f18db91c2a93f32c62a7dfda710"
+      },
+      {
+        "gold": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+        "input": "f95167cdbf442fb0f25ad98460b0f2029df411b1a06144d179d961beb80f144f",
+        "generator_train": "29284becefe050127a86514c6dcf137114bf35cdb73435591c0c7b51b2f7ca30",
+        "base": "aa1b231c1743101d35464a1fe21a2385083bda73f19265abdc84835157787ce4",
+        "candidates": "78a3034ccf73b915403ec934a0bd5f50ca3b72f640c95040bcafcb39ab7d3f7e",
+        "candidate_manifest": "c364e76d7762b2c4b1b2eaa225c8a2ae6ad58387f9d2edd290a53c7ad1d89757",
+        "crf": "7ada8f215098eb845b03af37b02c913b891299dcdc19f6cbf425639d86001b69",
+        "crf_manifest": "41a2ec866ff697f5eaf196c7c3fbe48a3a256d75cf1a946337bec7fab30b1535"
+      },
+      {
+        "gold": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+        "input": "ca6a6d0a87e898170be19f45d455b5773e52f732bd9aa9e70ca681fa2c59bccf",
+        "generator_train": "3b679e848970836141b45b0d6bbdeaff754d824f6498f0547eef7853713aa5ac",
+        "base": "66a4278c7bb2719aa8fbf06f2b103f464263b13f43aa3b493612b095e0e103b1",
+        "candidates": "32e0ea1024c1d1a83cb7b24cb44d7e59e72342445e13fd386522b1cbcec4dad6",
+        "candidate_manifest": "a3c4939d89d82912e2f5b9b2d67afc2f165092fe494252cb08de22965d8772a9",
+        "crf": "fa8f582026f1a2439a3d3e5c7f84455b9dee3bfd67040f056b210ccb4949b605",
+        "crf_manifest": "78dccd376beba690cb2466a7456f2a57894bd33f9d57e2d3e0a9a15f287264b8"
+      }
+    ],
+    "input_sha256": {
+      "train": "b1e0d953db49e7ecdb28de8588fe39dd996883610158c0a43cd93193d6c1be44",
+      "input": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "base": "7e4e311f246aa8a9c1ab641d5a02bf46fb6756c889d3097864543a8edb3db46c",
+      "candidates": "8f6de7d168f1a5c522467a42831faa3575ce1e573d73ea31903053e5efd0c7e0",
+      "crf": "bb6ac94e32e5ba6f3bcb386103bcf0f92bca1706b41a37c85e7b82583c040767",
+      "crf_manifest": "4cb582fba49b4ff08cdc1bbe44e1ccb9e9bdd893e80ef7ee4c8415272e3b5b06",
+      "entity_prediction": "b47804f1ee0048fd5f6e4b02975e04c0d07c6df366cb653368a9e1e3a7f876c1",
+      "training_manifest": "275ac83fb2a0cede36329815f0d736937565082f93315cbe0ced74c0efd0eae1"
+    },
+    "output_sha256": {
+      "training-rows.jsonl.gz": "51a15f66a8c7b14c0b54b316f88b5b7e38d3524dbd1a33b303ef1b9f24bfffd5",
+      "input-rows.jsonl.gz": "d2e5e70fe2d44764d58554bb0bc96ac0f06583adacc1717099325f110a1bd235"
+    },
+    "training_diagnostics": {
+      "documents": 48,
+      "gold_relations": 1197,
+      "rule_tp": 975,
+      "rule_fp": 11773,
+      "rule_fn": 222,
+      "gold_no_candidate_concept": 149,
+      "gold_candidate_concept_available": 1048,
+      "gold_exact_positive_span_available": 963,
+      "gold_target_no_document_anchor": 0,
+      "gold_target_no_local_clause_anchor": 735,
+      "gold_all_occurrences_negated": 5,
+      "gold_available_but_rule_missed": 73,
+      "gold_rule_missed_assigned_other": 55,
+      "training_examples": 46883,
+      "training_positive": 1048
+    },
+    "input_pairs": 15417,
+    "input_annotations_used": false,
+    "seconds": 38.336578612001176
+  },
+  "fit": {
+    "source_sha256": "400a293558756a792640fc91c2f101a4d8427e1e13aff00fadb332fd336d2f3e",
+    "preparation_sha256": "8edf7616fe24d18ba60d6a45ab638c13abbf52850778b1c28d8b2cf75832f45d",
+    "estimator": {
+      "categorical_features": "from_dtype",
+      "class_weight": null,
+      "early_stopping": false,
+      "interaction_cst": null,
+      "l2_regularization": 5.0,
+      "learning_rate": 0.06,
+      "loss": "log_loss",
+      "max_bins": 255,
+      "max_depth": null,
+      "max_features": 1.0,
+      "max_iter": 160,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 20,
+      "monotonic_cst": null,
+      "n_iter_no_change": 10,
+      "random_state": 20261023,
+      "scoring": "loss",
+      "tol": 1e-07,
+      "validation_fraction": 0.1,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "features": 301,
+    "threshold": 0.5,
+    "entity_outputs_unchanged": true,
+    "input_annotations_used": false,
+    "results": {
+      "entities": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold1/entities/pred.jsonl",
+        "sha256": "3b6b94d940bc23c8cb17d4bc85962bdcdbda0a8543f446ac5f0ade3831a0d2fb"
+      },
+      "pool": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold1/pool/pred.jsonl",
+        "sha256": "bf8db74b2423c6a4165c39c7d5707c9d776f93b109387e4b0aedbc439596f51d"
+      }
+    },
+    "training_seconds": 11.999921829003142
+  },
+  "results": [
+    {
+      "mode": "entities",
+      "metrics": {
+        "menF1": 0.6951316839584996,
+        "docF1": 0.7600302800908403,
+        "micF1": 0.579185520361991,
+        "macF1": 0.4772457646316806,
+        "Score": 0.6278983122607529
+      },
+      "counts": {
+        "mention": {
+          "tp": 871,
+          "fp": 282,
+          "fn": 482,
+          "precision": 0.7554206418039896,
+          "recall": 0.6437546193643755,
+          "f1": 0.6951316839584996
+        },
+        "document": {
+          "tp": 502,
+          "fp": 74,
+          "fn": 243,
+          "precision": 0.8715277777777778,
+          "recall": 0.6738255033557047,
+          "f1": 0.7600302800908403
+        },
+        "relation": {
+          "tp": 256,
+          "fp": 108,
+          "fn": 264,
+          "precision": 0.7032967032967034,
+          "recall": 0.49230769230769234,
+          "f1": 0.579185520361991
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1153,
+          "relations": 364,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "3b6b94d940bc23c8cb17d4bc85962bdcdbda0a8543f446ac5f0ade3831a0d2fb",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    },
+    {
+      "mode": "pool",
+      "metrics": {
+        "menF1": 0.6951316839584996,
+        "docF1": 0.7600302800908403,
+        "micF1": 0.5881057268722467,
+        "macF1": 0.4888870962816917,
+        "Score": 0.6330386968008196
+      },
+      "counts": {
+        "mention": {
+          "tp": 871,
+          "fp": 282,
+          "fn": 482,
+          "precision": 0.7554206418039896,
+          "recall": 0.6437546193643755,
+          "f1": 0.6951316839584996
+        },
+        "document": {
+          "tp": 502,
+          "fp": 74,
+          "fn": 243,
+          "precision": 0.8715277777777778,
+          "recall": 0.6738255033557047,
+          "f1": 0.7600302800908403
+        },
+        "relation": {
+          "tp": 267,
+          "fp": 121,
+          "fn": 253,
+          "precision": 0.6881443298969072,
+          "recall": 0.5134615384615384,
+          "f1": 0.5881057268722467
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1153,
+          "relations": 388,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "bf8db74b2423c6a4165c39c7d5707c9d776f93b109387e4b0aedbc439596f51d",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    },
+    {
+      "mode": "union",
+      "metrics": {
+        "menF1": 0.6951316839584996,
+        "docF1": 0.7600302800908403,
+        "micF1": 0.6181474480151229,
+        "macF1": 0.554672417486836,
+        "Score": 0.6569954573878247
+      },
+      "counts": {
+        "mention": {
+          "tp": 871,
+          "fp": 282,
+          "fn": 482,
+          "precision": 0.7554206418039896,
+          "recall": 0.6437546193643755,
+          "f1": 0.6951316839584996
+        },
+        "document": {
+          "tp": 502,
+          "fp": 74,
+          "fn": 243,
+          "precision": 0.8715277777777778,
+          "recall": 0.6738255033557047,
+          "f1": 0.7600302800908403
+        },
+        "relation": {
+          "tp": 327,
+          "fp": 211,
+          "fn": 193,
+          "precision": 0.6078066914498141,
+          "recall": 0.6288461538461538,
+          "f1": 0.6181474480151229
+        }
+      },
+      "validation": {
+        "valid": true,
+        "counts": {
+          "documents": 16,
+          "entities": 1153,
+          "relations": 538,
+          "patients": 39
+        },
+        "errors": [],
+        "warnings": [],
+        "error_count": 0,
+        "warning_count": 0,
+        "hpo_version": "hp/releases/2026-06-23",
+        "hpo_root": "HP:0000118",
+        "notes": [
+          "Format/input consistency checks are not the platform evaluator.",
+          "Only the first 50 examples of each issue type are included."
+        ],
+        "input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+        "prediction_sha256": "86f2e95eb8743e4057c4843271171c668c61c9271ddd42d6fec565c7578e0262",
+        "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    }
+  ],
+  "union_manifest": {
+    "config": {
+      "primary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.jsonl",
+      "secondary": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold1/pool/pred.jsonl",
+      "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/aggregate-relation-fold1/union/pred.jsonl"
+    },
+    "source_sha256": "f188c9cbd172fc9fa2314bdbb8a40c7f2400fd2807733d9543aa0bfc63d5b650",
+    "primary_sha256": "b47804f1ee0048fd5f6e4b02975e04c0d07c6df366cb653368a9e1e3a7f876c1",
+    "secondary_sha256": "bf8db74b2423c6a4165c39c7d5707c9d776f93b109387e4b0aedbc439596f51d",
+    "entity_outputs_unchanged": true,
+    "added_relations": 55,
+    "output_sha256": "86f2e95eb8743e4057c4843271171c668c61c9271ddd42d6fec565c7578e0262"
+  },
+  "union_increment_error_types": {
+    "added": 55,
+    "fp_positive_entity_but_no_patient_relation": 12,
+    "tp": 16,
+    "fp_wrong_patient": 13,
+    "fp_no_positive_entity_concept": 14
+  },
+  "decision": "Same fixed controls all worse on second fold; stop direct replacement/union, no dev. A probability-calibration hypothesis remains untested."
+}
