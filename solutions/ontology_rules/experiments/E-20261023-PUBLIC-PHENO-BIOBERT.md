@@ -15,3 +15,5 @@ A100 GPU2 fresh核空后23:48:23.549Z开跑，首个真实128批的词表28996/C
 原PubMed/Bioformer候选对象全部旧字段/类型/顺序保留，与本BioBERT native canonical键并集；只增加独立六个来源字段。每fold实际vectorizer维数不同，不强行添加不存在的列。新key按冻结原来源缺失约定，没有伪造Sap或raw后验；旧native hybrid分数明确不是类别概率。沿原四outer train48→16以及各三train32内层来源，不能挪作新实体槽的train32/F1隔离对照。
 
 固定HGB160、cut .3和当前proper-nested解码，比较已保留selector-nested-control pooled Score .727975655663。所有非entities逐对象不变；重新fit可删除/替换旧预测实体，候选保持不等于预测保持。无标签preflight先核≤1.5倍行数与4fit/infer≤120秒预计成本；源/实际计划推送后执行。四个新完整预测共同freeze再唯一v2，主标准为pooled两实体F1均值严格增且至少3/4fold不降。没有cut扫描或额外基底臂，[授权政策](../public_phenotagger_biobert_selector/authorized-proposal.json)。
+
+实际CPU准备10.870秒，所有244794旧对象projection的字段/类型/次序精确保留，仅加六个真实BioBERT字段；8池合计246804行（+2010）。每折真实train与held计数及成本依据见[preflight](../public_phenotagger_biobert_selector/preflight.json)。按历史实测最大56.999秒×最大行数倍率×1.25+10秒估算，低于120秒；这是预算估计，正式四fit仍有硬限。缓存增量独审1597f28f通过，未重复权重/NN。
