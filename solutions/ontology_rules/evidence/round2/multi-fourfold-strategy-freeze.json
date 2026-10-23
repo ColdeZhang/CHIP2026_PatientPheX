@@ -1,0 +1,224 @@
+{
+  "experiment": "E-20261023-007",
+  "frozen_at_utc": "2026-10-23T14:14:44.471234+00:00",
+  "code_commit": "77085ef9b64153423b15066319307df42f17a396",
+  "selection_rule": "highest pooled4fold Score; within .001 of maximum choose simplest in order without-crf/source/confidence; no original dev selection",
+  "selected": "source",
+  "threshold": 0.4,
+  "hgb_iterations": 160,
+  "early_stopping": false,
+  "source_sha256": {
+    "calibrate_multi.py": "7301e9a7d3547e479dbdfb0dfe4475c7a26019e5d85e99f10d3ed0845858655d",
+    "calibrate.py": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+    "crf_confidence.py": "d6e9209673343e695b487e2d48fc47bd787a85088309586183cb9134be38ceb9",
+    "merge_semantic.py": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797",
+    "enhance.py": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+    "run.py": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+  },
+  "candidate_generator_source_sha256": "dc5cc0b85922f7dc45b0f4f9fd7d8a5828a0cc234020923b31ea67a2059c143f",
+  "crf_source_sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+  "candidate_order": "semantic baseline/Sap exact triple insertion order then new CRF exact triples; greedy sorted(-probability,-length,offset), stable tie order, accept nonoverlap if p>=.4; output offset sort",
+  "validation_note": "fold0 historically developed; folds1-3 fixed follow-up; nested train32 generates OOF training examples for each outer train48",
+  "train64_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+  "results": [
+    {
+      "mode": "without-crf",
+      "folds": [
+        {
+          "fold": 0,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/without-crf-reproduction/pred.jsonl",
+          "prediction_sha256": "713596e16b04273bbcb02ae24cd46d5bd632de7c6d1d5fdac34a91e9b039c0e2",
+          "model_manifest_sha256": "97dae28d6f36820076276a0641d50af88e9ce4c553fd69ff76f1ad235835cf31",
+          "metrics": {
+            "menF1": 0.7281323877068558,
+            "docF1": 0.7319587628865979,
+            "micF1": 0.6991869918699187,
+            "macF1": 0.6608131112797507,
+            "Score": 0.7050228134357808
+          }
+        },
+        {
+          "fold": 1,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/without-crf/pred.jsonl",
+          "prediction_sha256": "0112e59e683050d4da4c4a71873361b848d049015bf8b17ee8cc4e05e653aa5e",
+          "model_manifest_sha256": "2d68bec149e804be6c81baedc946fbbd8d872d0d1292d607fba44b79241cdc31",
+          "metrics": {
+            "menF1": 0.6985146527498997,
+            "docF1": 0.7613293051359517,
+            "micF1": 0.6276067527308838,
+            "macF1": 0.5502918015726145,
+            "Score": 0.6594356280473375
+          }
+        },
+        {
+          "fold": 2,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer2/without-crf/pred.jsonl",
+          "prediction_sha256": "24e9876d453c21a2a15f992b99c39364abac810ccbb9a537c5da67102ec15181",
+          "model_manifest_sha256": "a6404aae14b7830572499868df7a1fa69c485dff63120fc070caba23ef9eed3f",
+          "metrics": {
+            "menF1": 0.6912125675012273,
+            "docF1": 0.7589641434262948,
+            "micF1": 0.6987270155586988,
+            "macF1": 0.6808916235010484,
+            "Score": 0.7074488374968173
+          }
+        },
+        {
+          "fold": 3,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer3/without-crf/pred.jsonl",
+          "prediction_sha256": "b3161841f093b59b6df25c9d10f8a2908067034ea3c3dad3d0ec31fc93e77807",
+          "model_manifest_sha256": "27f2bd3247fe1324c8205c0555a1a22ba7400651d8ba4388c4efc6ebd4ed160c",
+          "metrics": {
+            "menF1": 0.7301587301587301,
+            "docF1": 0.7778874629812438,
+            "micF1": 0.6629213483146067,
+            "macF1": 0.5300733514131156,
+            "Score": 0.675260223216924
+          }
+        }
+      ],
+      "pooled_metrics": {
+        "menF1": 0.7115340518229764,
+        "docF1": 0.7580607747622361,
+        "micF1": 0.6678635547576302,
+        "macF1": 0.605893220925009,
+        "Score": 0.6858379005669629
+      },
+      "pooled_prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/multi-fourfold/without-crf.jsonl",
+      "pooled_sha256": "e6a1c21af796a9a4597a7cf159b4fe31c76e6262d03878ee0a921ada960671cd"
+    },
+    {
+      "mode": "source",
+      "folds": [
+        {
+          "fold": 0,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/source-control-reproduction/pred.jsonl",
+          "prediction_sha256": "8ec02c6cb65af90284c6361efab641dd967f187438f7ecd36d83b2cf2fa8ff65",
+          "model_manifest_sha256": "59bf4fa3960f6d2432eb5a7f839bebeccbcc2daa209e4388441403123498a2a8",
+          "metrics": {
+            "menF1": 0.7328316086547507,
+            "docF1": 0.7308085977482088,
+            "micF1": 0.6937669376693767,
+            "macF1": 0.6840290971369651,
+            "Score": 0.7103590603023253
+          }
+        },
+        {
+          "fold": 1,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/source/pred.jsonl",
+          "prediction_sha256": "b47804f1ee0048fd5f6e4b02975e04c0d07c6df366cb653368a9e1e3a7f876c1",
+          "model_manifest_sha256": "4e6262a05852691cc5ee7dd90f7e74810035c6365024f861b5829576272cb0fc",
+          "metrics": {
+            "menF1": 0.6951316839584996,
+            "docF1": 0.7600302800908403,
+            "micF1": 0.6201395812562313,
+            "macF1": 0.5775795681092892,
+            "Score": 0.6632202783537151
+          }
+        },
+        {
+          "fold": 2,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer2/source/pred.jsonl",
+          "prediction_sha256": "c90eed817d1c452bd3a6eaa21baa2623852adcd2263acab017987a18d89b118b",
+          "model_manifest_sha256": "41f1b68750f1f43dff42441607511533ff24b169d43b43d1da54342fc39be156",
+          "metrics": {
+            "menF1": 0.6923456790123457,
+            "docF1": 0.7638888888888888,
+            "micF1": 0.7053824362606232,
+            "macF1": 0.7242492920333575,
+            "Score": 0.7214665740488038
+          }
+        },
+        {
+          "fold": 3,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer3/source/pred.jsonl",
+          "prediction_sha256": "a6b84cb1bf2c9856381f8173e186d99a7357b6beea7509ef838034769592b915",
+          "model_manifest_sha256": "90668e279c184abb2181f3d9a138959d8e650d6f948c93985099c2c8d0483cf3",
+          "metrics": {
+            "menF1": 0.7384026781444285,
+            "docF1": 0.783203125,
+            "micF1": 0.668903803131991,
+            "macF1": 0.5308627513092641,
+            "Score": 0.6803430893964209
+          }
+        }
+      ],
+      "pooled_metrics": {
+        "menF1": 0.7139917695473251,
+        "docF1": 0.7598152424942263,
+        "micF1": 0.6674648308889554,
+        "macF1": 0.6288374465623898,
+        "Score": 0.6925273223732241
+      },
+      "pooled_prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/multi-fourfold/source.jsonl",
+      "pooled_sha256": "ac278987f9b7f2450873eea76145257548ce4b44745036bffbba2b8a11f91243"
+    },
+    {
+      "mode": "confidence",
+      "folds": [
+        {
+          "fold": 0,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/confidence-calibrated/pred.jsonl",
+          "prediction_sha256": "98ffd7c5fd2305b66201c2e06c2dbd73cf9427b253da848f018fda26b62c6af6",
+          "model_manifest_sha256": "f9a21e35c486b47f134fbba6e446ae08a9b4216c71ff85d4754fad213bafa867",
+          "metrics": {
+            "menF1": 0.7364960075152653,
+            "docF1": 0.7359836901121305,
+            "micF1": 0.6982408660351827,
+            "macF1": 0.6885101084254033,
+            "Score": 0.7148076680219955
+          }
+        },
+        {
+          "fold": 1,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer1/confidence/pred.jsonl",
+          "prediction_sha256": "8e4d03f2d10a7d1b78377d5b2989979418f1cc33b127566a1639df48479037e3",
+          "model_manifest_sha256": "2d51fda2cff7708b90804737bf60ed0623edba807c6bc8a2738538dfd3804835",
+          "metrics": {
+            "menF1": 0.6940894568690096,
+            "docF1": 0.7577358490566037,
+            "micF1": 0.6236345580933466,
+            "macF1": 0.5822161443986739,
+            "Score": 0.6644190021044084
+          }
+        },
+        {
+          "fold": 2,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer2/confidence/pred.jsonl",
+          "prediction_sha256": "64f98788ad92be01e234852db15de5cca3c01e50c1f58e334405a43f05f2e19b",
+          "model_manifest_sha256": "b7d1e9f3f24ffcb7e04341b65b2088403e0c1f0729c81c40080faff60cb5fa15",
+          "metrics": {
+            "menF1": 0.6921194322075379,
+            "docF1": 0.7603960396039604,
+            "micF1": 0.6968838526912181,
+            "macF1": 0.7178878889884328,
+            "Score": 0.7168218033727873
+          }
+        },
+        {
+          "fold": 3,
+          "prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer3/confidence/pred.jsonl",
+          "prediction_sha256": "ade7a1b4d12855118d5df39ddb138801b9209dcb3cdc9f687e5c40edcc351055",
+          "model_manifest_sha256": "0a2d81bbd4a8c93c329551543be091a3aa598a81cd990b29c7bc4e28e53cfdf2",
+          "metrics": {
+            "menF1": 0.7398568019093079,
+            "docF1": 0.7848101265822784,
+            "micF1": 0.6681564245810055,
+            "macF1": 0.5313995746223079,
+            "Score": 0.6810557319237249
+          }
+        }
+      ],
+      "pooled_metrics": {
+        "menF1": 0.7148557747121195,
+        "docF1": 0.7598434262030854,
+        "micF1": 0.667463400059755,
+        "macF1": 0.6297351942699083,
+        "Score": 0.6929744488112171
+      },
+      "pooled_prediction": "/workspace/patientphex-runs/round2-20261023/ontology_rules/multi-fourfold/confidence.jsonl",
+      "pooled_sha256": "94d974aa328ff66f5b0a00954174a5beb45136fbd916a2e6a3b1df869d252e9e"
+    }
+  ],
+  "original_dev_not_yet_evaluated_for_this_strategy": true
+}

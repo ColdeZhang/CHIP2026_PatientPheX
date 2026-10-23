@@ -17,3 +17,5 @@
 
 - [outer1固定三控制](crf-confidence-outer1.json)：跨折方向一致，原dev待冻结选型。
 - [远监督双头五控制](distant-detector-results.json)：同宽池仅微小增益，保留负结果，不升级。
+
+- [原dev前冻结的四折选型](multi-fourfold-strategy-freeze.json)：预设最简选择规则，source入选，含全部12预测SHA。
