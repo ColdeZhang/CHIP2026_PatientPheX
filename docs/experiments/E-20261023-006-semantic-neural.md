@@ -1,6 +1,6 @@
 # E-20261023-006：神经语义概念识别与患者图传播
 
-状态：MiniLM CPU独立验证运行中；SapBERT权重已下载并转换，中转服务器后等待GPU时段。分支 `day1/semantic-neural`，起点 `ac8a752`。目标是提供区别于精确词典、模糊排序、监督 BIO、病例检索迁移的首日方案。
+状态：MiniLM CPU独立验证完成，B备用预测运行中；SapBERT权重已下载并转换，中转服务器后等待GPU时段。分支 `day1/semantic-neural`，起点 `ac8a752`。目标是提供区别于精确词典、模糊排序、监督 BIO、病例检索迁移的首日方案。
 
 ## 假设与首版设计
 
@@ -36,4 +36,29 @@ SapBERT原始权重437,955,508字节，使用 `prepare_model.py` 的numpy/safete
 
 外部目录根为 `/workspace/patientphex-runs/day1-20261023/semantic-neural/`：`dev-minilm/` 为CPU对照，`sapbert-model/`为原始权重，`sapbert-fp16/`为转换权重；远端位于10.5.2.3项目挂载的 `semantic-neural/` 子目录。权重、缓存和完整日志均不进入Git。
 
-待运行完成补充实际命令、输入/模型/代码校验、四项指标、格式检查、误差分析、运行成本、预测 manifest 及提交建议。
+### MiniLM CPU独立验证
+
+| run | menF1 | docF1 | micF1 | macF1 | Score | 说明 |
+|---|---:|---:|---:|---:|---:|---|
+| dev-minilm / evaluator v1 | 0.690076 | 0.703665 | 0.380818 | 0.291784 | 0.516586 | 16文献36患者；公共规则近似分，非官方 |
+
+完整运行127.927秒，单CPU线程，观察RSS约585MB（未做峰值采样）。训练判别器使用4,744个正跨度、19,132个负跨度，64篇训练文献，42,575个概念表面形式。预测859个实体、262个患者概念项，格式检查零错误/警告、覆盖全部患者。提及precision/recall为0.789290/0.613020，概念为0.850633/0.600000，关系为0.515267/0.302013。公共评测器的合法HPO复合关系拆分正由主线程统一修复；保留此原始v1结果，修复后另存v2，预测文件不变。
+
+预测SHA-256 `4b9e6b45866612d1dc3982d37a42bbaf47cd073292d35e9904d964dbee3fc0c2`，111,915字节。小型原始指标、验证、manifest、误差诊断与源码溯源更正保存在 [evidence/dev-minilm](../../solutions/semantic_neural/evidence/dev-minilm)。实际加载代码为 `ed34d40` 的run.py，SHA-256 `0a004a9c81bc1f12a582b39dd99b50ab3714a4d73d6396d47cf4e9dea34046ba`。过程中只扩展模型缓存签名，原程序结束时才计算源码hash，导致原manifest记录的是修改后磁盘文件；已保留原manifest并单独写溯源更正，后续代码改为入口即快照源码hash，长作业另留代码副本。该改动未改变预测逻辑或阈值。
+
+误差诊断按纯HPO复合项展开后：36名患者中12名没有预测概念；317个关系漏报中159项在文献中已识别但未分配，158项来自实体概念缺失；126个误报中84项为金标文献概念分错患者，42项为额外概念。多患者家系表格文献12126309尤其差，多名患者的11个金标项中8个概念已识别但没有对应分配。**当前关系图不能可靠解决表格/共享家系与远距指代**；一次结果不否定语义编码器，后续主要应改关系归属。今天不据此再调验证集阈值。
+
+复现命令（根目录按环境替换）：
+
+```bash
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python solutions/semantic_neural/run.py \
+  --train /workspace/patientphex-data/day1/train64.jsonl \
+  --input /workspace/patientphex-data/day1/dev16.input.jsonl \
+  --hpo /workspace/patientphex-data/hp.obo \
+  --model-dir /workspace/patientphex-runs/day1-20261023/semantic-neural/model \
+  --encoder minilm-onnx --device cpu --threads 1 \
+  --output /workspace/patientphex-runs/day1-20261023/semantic-neural/dev-minilm/predictions.jsonl \
+  --work-dir /workspace/patientphex-runs/day1-20261023/semantic-neural/dev-minilm
+```
+
+验后未改阈值，使用train80生成B备用。待SapBERT验证完成，再根据相同口径比较并推荐本路线最多一个候选；本代理不操作网站。

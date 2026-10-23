@@ -324,6 +324,7 @@ class System:
 
 
 def main():
+    source_sha256 = sha(__file__)
     parser=argparse.ArgumentParser()
     for name in ['train','input','hpo','output','work-dir','model-dir']:parser.add_argument('--'+name,required=True,type=Path)
     parser.add_argument('--encoder',choices=['sapbert','minilm-onnx'],default='sapbert')
@@ -348,7 +349,7 @@ def main():
             output.write(json.dumps(prediction,ensure_ascii=False)+'\n');output.flush()
             counters['documents']+=1;counters['entities']+=len(prediction['entities']);counters['links']+=sum(len(x['phenotype']) for x in prediction['association'])
             print(json.dumps({'event':'predicted','index':i+1,'pmc_id':doc['pmc_id'],'entities':len(prediction['entities'])}),flush=True)
-    manifest={'experiment':'E-20261023-006','elapsed_seconds':time.monotonic()-started,'parameters':{k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},'training':system.training_stats,'counts':dict(counters),'source_sha256':sha(__file__),'model_source':json.loads((args.model_dir/'manifest.json').read_text()) if (args.model_dir/'manifest.json').exists() else {'unrecorded':True},'inputs':{str(p):sha(p) for p in [args.train,args.input,args.hpo]},'output':{'path':str(args.output),'sha256':sha(args.output),'bytes':args.output.stat().st_size},'evaluation':'Not performed in prediction; use shared evaluator on independent gold.'}
+    manifest={'experiment':'E-20261023-006','elapsed_seconds':time.monotonic()-started,'parameters':{k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},'training':system.training_stats,'counts':dict(counters),'source_sha256':source_sha256,'model_source':json.loads((args.model_dir/'manifest.json').read_text()) if (args.model_dir/'manifest.json').exists() else {'unrecorded':True},'inputs':{str(p):sha(p) for p in [args.train,args.input,args.hpo]},'output':{'path':str(args.output),'sha256':sha(args.output),'bytes':args.output.stat().st_size},'evaluation':'Not performed in prediction; use shared evaluator on independent gold.'}
     (args.work_dir/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'event':'finished','elapsed_seconds':manifest['elapsed_seconds'],**dict(counters)}),flush=True)
 
