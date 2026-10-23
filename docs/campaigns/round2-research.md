@@ -37,7 +37,7 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 
 补查原GLiNER论文§2.2 Eq3及实际0.2.22上层调用：默认是未加权BCE（alpha=-1/gamma=0）；底层函数名含focal不代表实际启用focal。旧medium48训练末正/负logit梯度绝对量约630.53/626.82，未支持数量失衡导致正例塌缩，不能据此追加focal训练。训练48严格OOF漏项1364中908无重叠、411边界/嵌套、45同跨度ID错；其中4是gold alt ID与已预测canonical的口径差异。纯链接错误不是本池主要瓶颈，不追加大规模Sap微调；详细训练侧来源在两路线记录。
 
-本体后续研究 [Dai/Adel COLING 2020 的 NER 数据增强](https://aclanthology.org/2020.coling-main.343/)：i2b2少量50句时完整mention替换F1 35.1→40.1，但500句仅70.2→70.8、完整数据87.8不变，不能将小样本收益外推。本项目只借鉴方法，将官方训练折中完整实体替换为同canonical HPO的name/EXACT词面；没有引入论文的人工临床标签。CPU已保留1150原窗并追加353窗，全部真实分词/跨度/NO标签校验通过；数据和更新数同时增加，属于配方初筛。独审通过后一次固定10轮短训练，实际唯一终点 .653745027→.653936525，只有mention净修正1项，doc和关系不变；极微正增益无实质改善，关闭配置，不迁移原dev。相邻段落上下文（FLERT）仅作备选研究，尚未实施。来源、边界与初始方案见[本体短提案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/P-20261023-NER-AUGMENTATION.md)，执行计划以最新台账为准。
+本体后续研究 [Dai/Adel COLING 2020 的 NER 数据增强](https://aclanthology.org/2020.coling-main.343/)：i2b2少量50句时完整mention替换F1 35.1→40.1，但500句仅70.2→70.8、完整数据87.8不变，不能将小样本收益外推。本项目只借鉴方法，将官方训练折中完整实体替换为同canonical HPO的name/EXACT词面；没有引入论文的人工临床标签。CPU已保留1150原窗并追加353窗，全部真实分词/跨度/NO标签校验通过；数据和更新数同时增加，属于配方初筛。独审通过后一次固定10轮短训练，实际唯一终点 .653745027→.653936525，只有mention净修正1项，doc和关系不变；极微正增益无实质改善，关闭配置，不迁移原dev。相邻段落上下文（FLERT）后续已进入固定配对控制，状态见下文和总台账。来源、边界与初始方案见[本体短提案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/P-20261023-NER-AUGMENTATION.md)，执行计划以最新台账为准。
 
 另发现 [GLiNER-BioMed large](https://huggingface.co/Ihor/gliner-biomed-large-v1.0/tree/f79771210ab2111a2081ef31620fdb7342f602e9) 可作为后续领域基座候选。[论文v2](https://arxiv.org/abs/2504.00676v2)声明105k自动医学标注预训练与19k通用后训练，后者含1878条WNUT/OntoNotes/MultiNERD人工通用NER；teacher有4个医学示范，其人工/生成来源未声明。发布资料支持这是预训练基座，未发现八个人工医学benchmark的微调权重混入证据，但不声称全链路无人为医学示范。公开zero-shot microF1 59.77相对large-v2 37.38只说明值得试验，不是本赛Score；充分监督下的提升也未显著。源码/论文/发布元数据只读独审通过（`32fcebae…`），实际权重SHA `7e3591fd…`、477,981,696参数及严格加载也已核验。唯一nested16零样本完整Score .652014251，低于监督medium32的 .653745027；纯跨度F1 .453801高于旧medium零样本 .277295，但不能当完整Score。固定监督32×10适配已完成，保留原显式BCE/优化器/1150窗，从公开基座fresh训练1660.16秒；完整内部Score .654424302，比medium32仅+.000679275，独审通过。下一项只改变邻近上下文，不据微增扩大模型规模。ModelScope准确模型/文件API均404、阳性对照200后可回退固定HF源；只说明已查准确路径。新配置内嵌encoder_config且词表128003，与旧loader有两处接口差异，应使用独立入口，不能更改正在运行的large训练。完整来源见[清单](round2-research-sources.json)。
 
@@ -79,3 +79,10 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 已查历史8个GLiNER实际运行manifest均为显式BCE；BioMed固定发布配置另有alpha=.75、gamma=2、reduction=sum，而库Trainer的默认-1/0会覆盖这些值，不能据配置字段推断历史训练已经使用focal。下一控制借用该alpha/gamma，仍沿用本项目valid-span mean，并固定原1150窗/10轮/2880步，因此不宣称完整复现上游sum训练。训练监督极不平衡，但既有medium/BioMed训练探针召回较高；这是类别与难例重加权假设，不能称为修复模型塌缩。
 
 纯函数CPU的解析梯度、显式上游helper对照、极值、padding、gamma0退化、全负batch与gradcheck通过。A800空卡但磁盘不足，选择.100 A30同runtime fresh BCE/focal配对，避免把环境差异归因于loss。实际运行与终点见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)；准备证据为该分支 `979dd4e` 的 `evidence/round2/focal-loss-proposal.json`，此处尚不声称质量增益。
+
+
+## 公开PhenoTagger直接复用的判断更新（20:40 UTC）
+
+旧审查确认上游示例以外部GSC人工开发集选checkpoint，但公开单个权重没有完整选模谱系；这项不确定性不能自动升级成比赛规则禁止。官方综述§4.2记载头部方案使用PhenoTagger，Agriv固定模型卡明确列出公开 `lingbionlp/PhenoTagger_v1.2`；结合规则允许公开预训练模型/工具，本轮决定先测试该公开模型，而非只接受从本体重训。此为基于现有资料的实施判断，不冒称主办方已单独确认本次用法。仍不导入外部GSC人工标签，也不使用含本地dev的Agriv自训权重。
+
+固定revision `02ce3f529820dccca46bae168c1933ba25253125` 的单个 `pubmedbert_PT_v1.2.h5` 为491,312,288字节；准确ModelScope接口404、阳性对照200后回退固定HF。只在A100自有TF2.12/Transformers4.30.1环境做CPU原生加载，保留17266列顺序、按当前HPO canonical/alt规范映射，不用新词表替换旧head。旧head仍缺部分2026类；实际SHA、逐变量恢复与合成词检查记录在外部 `research/public-phenotagger-reuse/`，尚无质量结论。采用from_config后完整h5严格恢复可避免重复下载基座，必须实际验证全部权重覆盖，不能仅以加载函数未报错为准。

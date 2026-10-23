@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T20:14:10.888804+00:00",
+  "generated_utc": "2026-10-23T20:37:07.886563+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -7536,21 +7536,849 @@
         }
       ],
       "completed_review_scope": "historical_evidence_and_train32_representation_feasibility"
+    },
+    {
+      "id": "patient-identity-bf16-numeric-repair-and-pair-preparation",
+      "report": {
+        "path": "validation/patient-identity-bf16-repair-review.json",
+        "sha256": "6a696cabb6c7f01e89e550bdb73e8c82cc10f1481a649ca22b1cdb610cb537a8",
+        "bytes": 10968
+      },
+      "scope": "首次FP16正式失败后的独立数值机制复验、统一BF16的有限样本检查及fresh配对入口增量审查；不把修复准备当质量。",
+      "conclusion": "同种子同顺序复验第10批出现有限loss .825509、2个scaled梯度溢出，GradScaler跳步并65536→32768回退；原失败日志无批号，不冒作原现场批次。fresh BF16前三shuffle及最长bridge共4步有限，非零LR三步真实更新，诊断8.096秒、allocated4990482944B且释放。仅precision/backward及对应guard变更；两fresh4ep/1032各、512输入、固定.5、双freeze与1500秒总预算保持，不复用失败或诊断状态。",
+      "limitations": [
+        "Numeric preparation is not model quality evidence.",
+        "Three shuffled BF16 batches and one longest bridge batch cannot guarantee every formal batch will remain finite; strict guards stay active.",
+        "Diagnostic CPU toy has unseeded random initialization but checks invariants; each real-model phase resets all seeds before loading and shuffle."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-cpu-contract.json",
+          "sha256": "545a06598c034aaac1dcf09b8f2b527b2180bbe5f6b209467f83ff8ae2819427",
+          "bytes": 2104
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-diagnostic-complete.json",
+          "sha256": "171e5f82356d3f84e75797fd7666df7b1d9dac987cc4261444ce47cf861e35c7",
+          "bytes": 8163
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/actual-fp16-diagnosis.json",
+          "sha256": "fc13b9aede5daf7fdbd734ec2a05679bee8d3aa6e499ef1795371419a0874116",
+          "bytes": 7292
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/attempt1-failure.json",
+          "sha256": "b77a43f915fb351595221c501b129e52179fdf073f1124dbb4b63d615b95d547",
+          "bytes": 2604
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/budget_exec.py",
+          "sha256": "4d3c28232d88740a41b655a2676ac85596347f2b118ab68749563a19ffefde62",
+          "bytes": 962
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/diagnose_precision.py",
+          "sha256": "b3d7e6ce719d4bcbf938e7f5e71491121ef983cddce8a72a4c9833d2b269b2c4",
+          "bytes": 8783
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/diagnostic-plan.json",
+          "sha256": "a7634d147bdcb262fe0114a9e330233a5f830edd8a2a7d6bfa426b0dda0e7e10",
+          "bytes": 680
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/diagnostic-train-plan.json",
+          "sha256": "c2fa8f945ee8afc295170a570b658341975a17daaeb64e05a2c9ac1dd30b67c4",
+          "bytes": 3517
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/evaluation-plan.json",
+          "sha256": "eb8f9ab0cb2bee80b32d208ef2cff5aedafb6ecddd712ad2e1f43329230671f1",
+          "bytes": 3667
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-baseline-plan.json",
+          "sha256": "dc19e71b8df8fbf5c617bf7ffc982c01a740f7a41fc479f18b982dcfb6fbc7d5",
+          "bytes": 3643
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-bridge-plan.json",
+          "sha256": "7652817dfa556ce3e0476d94ef9981dd3a4b0ea9fad4a474c4b827f3b8e109ee",
+          "bytes": 3641
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-paired-plan.json",
+          "sha256": "0c3355039e74fb03d3a36cd3d56b33eb23ae387fabf63897539aff71c127d5fd",
+          "bytes": 7319
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/infer_encoded_ce.py",
+          "sha256": "12f9607df5baa61133d835506454ed6247d79940de71810bd62215b20f9e0a52",
+          "bytes": 7883
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-gpu-preflight.json",
+          "sha256": "f5d09da367a922c4bc58b9e737a32581d3a495d1ee7e0c2b8c646dbd15ec30ca",
+          "bytes": 419
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-gpu-release.json",
+          "sha256": "c4999a607a57fd86e9f0e40d19594ad386a2b56a8df9190743934a5c66c1eb84",
+          "bytes": 420
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-job.json",
+          "sha256": "ec685660e9737b089437dfd702a0918ee281c172cdb1a6a6473b0da3fb36f02d",
+          "bytes": 650
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-launch-plan.json",
+          "sha256": "02658b8cda842d4f1f5de96cdee58ebd589efb404827bc532f2a894d0a8616eb",
+          "bytes": 1862
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-recovery-complete.json",
+          "sha256": "6d0b2c215974b27599222feedce0826f7160eeabd59316ea6f2d25ef4340d774",
+          "bytes": 394
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/probe-source-preflight.json",
+          "sha256": "73223880c4d94a287da51e6fe82f21e6b18ac8dc4a111c8c8ba27ffd0cb0a71b",
+          "bytes": 476
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/run_formal_pair.py",
+          "sha256": "6923dbb791ac62eaec4393134918f44787a6a2d1d01b795102ec57a1c9d41dd7",
+          "bytes": 11349
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/run_precision_probe.py",
+          "sha256": "d4f0143d446d0e1bc16be99b705b8e4ed69e0c9937440a915ed247f5e1ab3157",
+          "bytes": 6437
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/train_encoded_ce.py",
+          "sha256": "02b5c3ae6f075d80649290bbc6f2ac86ed619f3afa149179a1fad567c102cf64",
+          "bytes": 17527
+        },
+        {
+          "path": "validation/index-next-20261023-2040/declared-dependency-verification.json",
+          "sha256": "605fb5919e0d208d9fa7bdba09238f4bda3ecc945d4880f265e44154ba9f001a",
+          "bytes": 66630
+        },
+        {
+          "path": "validation/patient-identity-bridge-cpu-review.json",
+          "sha256": "4d44e051d803c45ee9254c42c839b1b7054e7822a8274665c39a07b31c67569a",
+          "bytes": 4530
+        },
+        {
+          "path": "validation/patient-identity-paired-entry-review.json",
+          "sha256": "695adde7667e65991105323d130c8de4125e6a4943d0989c86c0726f45121d73",
+          "bytes": 6386
+        },
+        {
+          "path": "validation/patient-identity-shared-budget-checks.json",
+          "sha256": "e10ee22d7630589cd8a9f6fb9dd24e5c399931e7e4df902a7cc88fb081ae9f2b",
+          "bytes": 1303
+        }
+      ],
+      "completed_review_scope": "actual_disposable_numeric_diagnosis_and_fresh_BF16_pair_contract"
+    },
+    {
+      "id": "patient-identity-bf16-paired-formal-terminal-negative",
+      "report": {
+        "path": "validation/patient-identity-bf16-terminal-review/review.json",
+        "sha256": "b1dc09f57e5a1b4627f486830d8bce3b362d51f208a6d3c82df7c9ba2d5d6d68",
+        "bytes": 4378
+      },
+      "scope": "两条新fresh BF16固定epoch4 train48→既有outerfold0开发对照；完整训练谱系/预算、1166键与947实体47患者保持及独立CPU双预测/v2复核。",
+      "conclusion": "baseline/bridge均4ep1032成功步、零skip，实训133.252/133.432秒，第二训练完成距共享开始306.268秒<1500。Score .652284538→.641437506（−.010847032）；关系217TP133FP→225TP123FP，micro+.023646但macro−.067034。两完整预测先冻后评、独立逐字节与全部v2结果一致、0错警；关闭当前bridge，不扫阈值/轮数或迁移原dev。",
+      "limitations": [
+        "Fold0 has been reused in research; this is development evidence rather than blind/originaldev validation.",
+        "Remote managed-job API exposes running=false without a job exit code. Complete artifacts, runtime/full-file-hash receipts, source checks and bounded stop/release observations are verified; a remote train/infer rc0 is not independently claimed.",
+        "No terminal model tensors were reloaded by reviewers; previously audited numerical source and recorded successful steps/model hashes are reused."
+      ],
+      "support": [
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/baseline.metrics.json",
+          "sha256": "2ccc4398188fd3218cb6ba00d94bd5b774462a5d13a8d5d109a6d3898e254efa",
+          "bytes": 12986
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/baseline.validation.json",
+          "sha256": "f7e8912dd5ec3f6f601a8c9ba592b39cdd89b07a1af2c72e1d68f370abbe4412",
+          "bytes": 685
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/bridge.metrics.json",
+          "sha256": "6655085808cb109fd7a98fb952427264f26830ebc2153bbfbdcea5cf5c611fdd",
+          "bytes": 12983
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/bridge.validation.json",
+          "sha256": "245f44ac9100bd243940ddbb99f82bcc164c2d8802450abbd8dd8925c45bf996",
+          "bytes": 685
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/evaluation-plan.json",
+          "sha256": "eb8f9ab0cb2bee80b32d208ef2cff5aedafb6ecddd712ad2e1f43329230671f1",
+          "bytes": 3667
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/evaluation-started.json",
+          "sha256": "05515a3eefffac025ee2abdea0c42ea0ef09ec4aa8111f10a08f46e105b3d0ae",
+          "bytes": 427
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/formal-complete.json",
+          "sha256": "7b37153179f07149b10687b89b6683b37febf7859be0df89067654d594032e7e",
+          "bytes": 17428
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/paired-predictions-freeze.json",
+          "sha256": "05d10d3c14d3426c2ba18d42d7fa5bb95dfed3564dd38d022f79056c52c81dd4",
+          "bytes": 7402
+        },
+        {
+          "path": "case_retrieval/qwen35-preparation/patient-identity-bridge-cpu-preparation/bf16-repair/formal-paired-preparation/paired-summary.json",
+          "sha256": "666ae872baada5abf1e70357dd982d691e76815d11f1e0880ae3cf4242d53779",
+          "bytes": 5296
+        },
+        {
+          "path": "validation/index-next-20261023-2040/declared-dependency-verification.json",
+          "sha256": "605fb5919e0d208d9fa7bdba09238f4bda3ecc945d4880f265e44154ba9f001a",
+          "bytes": 66630
+        },
+        {
+          "path": "validation/patient-identity-bf16-repair-review.json",
+          "sha256": "6a696cabb6c7f01e89e550bdb73e8c82cc10f1481a649ca22b1cdb610cb537a8",
+          "bytes": 10968
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/audit_lineage.py",
+          "sha256": "999ab67156356e0e70efcb915c0179cb2f079cd3fde45d0f1834bed0393bb2da",
+          "bytes": 15012
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/before-gold-evaluation.json",
+          "sha256": "dad28011d8c2fbfd8130bb70f531cfdc6a8d644368cd2fa59b89be062c18d854",
+          "bytes": 360
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/baseline.inference-complete.json",
+          "sha256": "02d92331dbea0e4bc73abb88e9f8365d9aa4ca10087b57f7f7d917283bb0e9c6",
+          "bytes": 1275
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/baseline.model-actual-hashes.json",
+          "sha256": "1b52d79571df03e342e008a7288e44da1d2896a42dc481e79c041fb3f0ad4a62",
+          "bytes": 353
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/baseline.training-complete.json",
+          "sha256": "c61ad0de3a8c41fcaf4ef6e1b8863935906e2efe307e28693332750ebba9afda",
+          "bytes": 1129
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/baseline.training-manifest.json",
+          "sha256": "bf9f0a7959fbc135d5e45226aeda5aa93239796398e530d6c5c1efba8358b842",
+          "bytes": 4134
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/bridge.inference-complete.json",
+          "sha256": "becc2623cff3aa1b8f644627e39eed9f51ad5b150743060cdf6446a67b1d5551",
+          "bytes": 1273
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/bridge.model-actual-hashes.json",
+          "sha256": "9626ba4818d8390c0205121f0c08523de3f6c36cb7919899bfcb3ac3c963b308",
+          "bytes": 352
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/bridge.training-complete.json",
+          "sha256": "0684a4785f3f1963a0455b6bd917db1333c908fd0ee4dd08c62ef696cbb96fd1",
+          "bytes": 1129
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/bridge.training-manifest.json",
+          "sha256": "2a2062d30cece246621826b60b0cbc7f3c60d683824d07bdde561bce1936d21a",
+          "bytes": 4132
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/formal-baseline-plan.json",
+          "sha256": "dc19e71b8df8fbf5c617bf7ffc982c01a740f7a41fc479f18b982dcfb6fbc7d5",
+          "bytes": 3643
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/formal-bridge-plan.json",
+          "sha256": "7652817dfa556ce3e0476d94ef9981dd3a4b0ea9fad4a474c4b827f3b8e109ee",
+          "bytes": 3641
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/formal-complete.json",
+          "sha256": "7b37153179f07149b10687b89b6683b37febf7859be0df89067654d594032e7e",
+          "bytes": 17428
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/formal-paired-plan.json",
+          "sha256": "0c3355039e74fb03d3a36cd3d56b33eb23ae387fabf63897539aff71c127d5fd",
+          "bytes": 7319
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-baseline-job.json",
+          "sha256": "46e186f28be5d0caf63d61721244a1d3936b85c0cd35589bf72a59e60c4458ca",
+          "bytes": 945
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-baseline-monitor.json",
+          "sha256": "3dd44d61b6f66c0298fa5cde5401f6abcb442e26d604d5a52eea7c80f41bf3fc",
+          "bytes": 181
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-baseline-preflight.json",
+          "sha256": "1c8d12b5c33b05387e7c1261f7c723c5264e659da81e9f7af45f735da85fe321",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-baseline-release.json",
+          "sha256": "afb48b3fb5c328de616ad73696cf27311b496a77f2f13cc4fdbdd3979833e77e",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-bridge-job.json",
+          "sha256": "c716ce8668264a5897263cb668fe28ec41ae0ee25db775d307ae02edd1fde515",
+          "bytes": 937
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-bridge-monitor.json",
+          "sha256": "27b9f1eec0e1b460458f9f9277cd595c893dc9da3cff64ffcd48f5a01217e0a0",
+          "bytes": 181
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-bridge-preflight.json",
+          "sha256": "6b3466b336038fc55763c9d06a101dce7104ae0f7fe71505ad4a80b243e96981",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/infer-bridge-release.json",
+          "sha256": "a06528e1158ed0de89622fbea535c50230dcf4c7675d812f0537b1d86ed8d323",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/inference-baseline-plan.json",
+          "sha256": "333f55aa49f57ca75318984dfd5aaecb79be2eb530abaa43756f780959afb3d8",
+          "bytes": 1372
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/inference-bridge-plan.json",
+          "sha256": "381d67db54e41fb0ce08e815e6c893b3515b812f85a6bac264511c40f9abe491",
+          "bytes": 1364
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/paired-predictions-freeze.json",
+          "sha256": "05d10d3c14d3426c2ba18d42d7fa5bb95dfed3564dd38d022f79056c52c81dd4",
+          "bytes": 7402
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/source-preflight.json",
+          "sha256": "67f484c4a9d78e7a21146212d9403b08b7d667c41c60a70e8b96d25e0773cd34",
+          "bytes": 777
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-baseline-job.json",
+          "sha256": "7cddbb73f0ad6e7b9bb05c69882153ddb50516c0bed24e4abf91ed6632660686",
+          "bytes": 1138
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-baseline-monitor.json",
+          "sha256": "aac75218875f0defa9d410d780f9a84cd3f990402dc7b170cbeb7c8965b897ce",
+          "bytes": 182
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-baseline-release.json",
+          "sha256": "84921d08e55400a748c9371ee5fa8a7322144f2163b5422702f6dde78a26e926",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-bridge-job.json",
+          "sha256": "a000ddb92fdc0a340618d5683721201d551dbe2e62ab9fe55648d35af8bf59db",
+          "bytes": 1130
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-bridge-monitor.json",
+          "sha256": "0ca14d068818b8dfb48b14e3b0774562d06291f833d38e1f58a7606b6ed8002b",
+          "bytes": 182
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-bridge-preflight.json",
+          "sha256": "282245194674a2f17e1e953bde0d5c83baf232883fe7ac7337454de7bc5277cc",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/train-bridge-release.json",
+          "sha256": "7b2e185bb76946377792aa1abf48963424a658ecde06bbd177abfa579dc94dc3",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/training-budget-start.json",
+          "sha256": "1b7aece797f28d2bb5d524090d793fd210a47226fc83e8f0e6e6e30d44e48486",
+          "bytes": 176
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-evidence/training-initial-gpu.json",
+          "sha256": "12bdcc72d101534cc7c1bd16c3efdd2d27f879119aeeadf66945caf176f8e021",
+          "bytes": 420
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/lineage-review.json",
+          "sha256": "93905390a3ea5258880566ac86c5fed24cb5baa6c36541af58cde60eb86d85d6",
+          "bytes": 22894
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay-commands.json",
+          "sha256": "dc3b3311e678cff44bfdd8997ac08bae24a2a3ed72d57f8b48f1d0b5e48358e5",
+          "bytes": 5479
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay-predictions-freeze.json",
+          "sha256": "5cdef25fbff3f0589fdadf81ea55964e7b26ba07a67f4bc9a1ea0d45b73c7b26",
+          "bytes": 1104
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay-review.json",
+          "sha256": "e05bbac230615e7d2af4a7fca84179002b9989fe21319475437cd563a79fad4b",
+          "bytes": 9558
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay/baseline.metrics.json",
+          "sha256": "2ccc4398188fd3218cb6ba00d94bd5b774462a5d13a8d5d109a6d3898e254efa",
+          "bytes": 12986
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay/baseline.validation.json",
+          "sha256": "f7e8912dd5ec3f6f601a8c9ba592b39cdd89b07a1af2c72e1d68f370abbe4412",
+          "bytes": 685
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay/bridge.metrics.json",
+          "sha256": "6655085808cb109fd7a98fb952427264f26830ebc2153bbfbdcea5cf5c611fdd",
+          "bytes": 12983
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/replay/bridge.validation.json",
+          "sha256": "245f44ac9100bd243940ddbb99f82bcc164c2d8802450abbd8dd8925c45bf996",
+          "bytes": 685
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/source/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/patient-identity-bf16-terminal-review/source/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        }
+      ],
+      "completed_review_scope": "paired_fixed_epoch4_BF16_terminal_and_independent_CPU_replay"
+    },
+    {
+      "id": "exact-gate-threefold-fixed-policy-terminal-negative",
+      "report": {
+        "path": "validation/exact-gate-terminal-review/replay-review.json",
+        "sha256": "6e49d0c896084be2619fe864fdfb9885e841fb936e48aac89091f624b6431155",
+        "bytes": 13794
+      },
+      "scope": "train48内三nested32→16开发池的唯一去掉exact提前跳过控制；政策/排序/否定/重叠及Sap .65/.92保持，六预测独立CPU重装，只复评三新fold与pooled48。",
+      "conclusion": "唯一源码删除c[exact]门控，旧/新六预测字节完全复现。三fold Score差分别+.001050694/−.001438064/−.002115311；pooled .667647648→.666761145（−.000886504）。实体新增40TP58FP并移除1TP3FP，关系新增6TP22FP且移除1TP；0错警。开发选择曾看train48聚合gold，非盲测；负且跨折不一致，关闭、不扩原dev/GPU。",
+      "limitations": [
+        "The mechanism was chosen after gold-aware aggregate train48 diagnosis, so this is disclosed development reuse, not blind validation.",
+        "Removing the gate introduces exact candidates into existing unified ranking; it can remove previous semantic additions as well as add entities. Both additions and removals were independently counted using the unchanged v2 NIL matching convention.",
+        "Original evaluation has no separately recorded start event; all six original predictions are hash-bound to freeze, evaluator source opens gold only after checking them, and final evaluation timestamp follows freeze. This is not an OS-wide access audit.",
+        "Independent replay records its own six-prediction freeze before reading train48 labels; no originaldev, GPU, model fitting or official submission.",
+        "Old metrics reused against byte-exact old predictions; only new three folds and pooled48 were reevaluated."
+      ],
+      "support": [
+        {
+          "path": "sequence_crf/ontology-miss-mechanism/exact-gate/fold1/baseline.metrics.json",
+          "sha256": "3b00f069e3bb9fca2ad6a31f944ecd43e23fe01db033ca055cc387f84f9c2173",
+          "bytes": 13188
+        },
+        {
+          "path": "sequence_crf/ontology-miss-mechanism/exact-gate/fold2/baseline.metrics.json",
+          "sha256": "f15254c8e95d67148738fe1b09669efa37b14b075a96579464ebe429ebb63e06",
+          "bytes": 13057
+        },
+        {
+          "path": "sequence_crf/ontology-miss-mechanism/exact-gate/fold3/baseline.metrics.json",
+          "sha256": "3b8d6751c099139360f13aaee7ec6574227e0b732a88647d3c5870cc96ff9151",
+          "bytes": 13050
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/audit_replay.py",
+          "sha256": "4f004d239577aa85feaf42fe29a56efd6dca7bfaff59a532e5fab0638fe996ca",
+          "bytes": 15758
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/evaluation-event.json",
+          "sha256": "4d4742592afcab3615f8178075582fafce505642ef9e42fc399f7dcaa546dc2c",
+          "bytes": 404
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/evidence/complete-freeze.json",
+          "sha256": "f16e65cb6e1543a3b89225ad4cbfab586fe4a0e0ed9b962abd938dfd7e105bf2",
+          "bytes": 2638
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/evidence/plan.json",
+          "sha256": "c03c37c6c5c8dd948e66175c18904ab4b67bca8afa71bf21c6ea7cee3da28e0f",
+          "bytes": 13260
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/evidence/prediction-execution.json",
+          "sha256": "68c910e1bda7bb7bc253f88b23b3d8786f176eb133cd48de7c2eefafb1ae3266",
+          "bytes": 7668
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/evidence/results.json",
+          "sha256": "812873e189861842ed7429d38d351b8dba204e0d0f6aa2ab68555cf3079e80dc",
+          "bytes": 12819
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay-complete-freeze.json",
+          "sha256": "17899621cddefea656929b4378fa080da553d7e0b482cdd578207ac7141d17a3",
+          "bytes": 1692
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay-execution.json",
+          "sha256": "9fa134149a5ee69b1715180b487879fb53f71fb1b54d234e40be12b722206dd1",
+          "bytes": 9008
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold1/baseline.manifest.json",
+          "sha256": "16bd9891515f64b7b46b1b824188cdb2e6d6af82522710d6c2711fa15cc9097b",
+          "bytes": 1807
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold1/include-exact.manifest.json",
+          "sha256": "f4523b681eb78715426ac729a328894a7a275bc438398ebf1b2cd5d8419ba320",
+          "bytes": 1812
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold1/include-exact.metrics.json",
+          "sha256": "d35f5755cb37de32a5146c6171eff1af004fe2aacc9265d8a6ba3fb353eeb64f",
+          "bytes": 13079
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold1/include-exact.validation.json",
+          "sha256": "cb7b59daf32bfb96473585d96d9af7c3b27388e22b17168f237f2a23de525c0e",
+          "bytes": 425
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold2/baseline.manifest.json",
+          "sha256": "caab6c2e51fcdf7be76f1140e4f94bae40df95ad4aebf402991788334b736b61",
+          "bytes": 1807
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold2/include-exact.manifest.json",
+          "sha256": "474a9f7ba553c5804c1d657c11b9188e67476da837784f824a0e853b7224a231",
+          "bytes": 1812
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold2/include-exact.metrics.json",
+          "sha256": "be6dfff0c63ac4b8a35cae549bc755b18fc172172252b59b758f10981fa3bfa8",
+          "bytes": 12865
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold2/include-exact.validation.json",
+          "sha256": "24ae2094999e880ed4e872e9fddf80987d158b7afd03178d3f8f8c8311bec369",
+          "bytes": 424
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold3/baseline.manifest.json",
+          "sha256": "7db3a37bd81ba21a14f4fa3f157d77e64538ba7bdd8b3443931268b33921b46f",
+          "bytes": 1806
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold3/include-exact.manifest.json",
+          "sha256": "503d1752f58198af524a1510b1cea87be63da3147fe60780fe9f88f8d58ea25a",
+          "bytes": 1812
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold3/include-exact.metrics.json",
+          "sha256": "c3dc9ec84104c29861e823d8cd7cf8b083a238c069a720b2616cb4a252cc2e13",
+          "bytes": 12832
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/fold3/include-exact.validation.json",
+          "sha256": "db7a1abff1165dff059b1d3d5f9db3728349e13992a3fbd3b03b187c647ee590",
+          "bytes": 424
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/replay/include-exact.pooled.metrics.json",
+          "sha256": "b7212aa516a3821ab9e6b30a8ff66dedfafe8b241c0836c8a9b519f6e3e992ed",
+          "bytes": 32686
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/scripts/evaluate.py",
+          "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+          "bytes": 10539
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/scripts/validate_predictions.py",
+          "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+          "bytes": 12208
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/ontology_rules/run.py",
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+          "bytes": 16709
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/sequence_crf/augment_semantic.py",
+          "sha256": "9614dbac29b527f5abdcd3cd2a94eb574f58916163bef8e8bdb75fadfba8b34d",
+          "bytes": 4078
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/sequence_crf/augment_semantic_include_exact.py",
+          "sha256": "56081e9c8ca679307fe4ee654897a851aac9842d46ebc69be7e53aea368b6094",
+          "bytes": 4064
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/sequence_crf/combine.py",
+          "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+          "bytes": 3871
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/sequence_crf/evaluate_exact_gate_control.py",
+          "sha256": "c1997a0bc45e449eaa2fbd18bfe4722ff72281435f024fe22b84e4683feb70fd",
+          "bytes": 7149
+        },
+        {
+          "path": "validation/exact-gate-terminal-review/source/solutions/sequence_crf/run.py",
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+          "bytes": 21153
+        },
+        {
+          "path": "validation/index-next-20261023-2040/declared-dependency-verification.json",
+          "sha256": "605fb5919e0d208d9fa7bdba09238f4bda3ecc945d4880f265e44154ba9f001a",
+          "bytes": 66630
+        }
+      ],
+      "completed_review_scope": "CPU_threefold_exact_gate_control_reproduction_terminal"
+    },
+    {
+      "id": "flert-context-strict-load-and-actual-smoke-preflight",
+      "report": {
+        "path": "validation/gliner-context-control-preflight-review.json",
+        "sha256": "0a86a6f1347195082d565f25b833332832c5656c4a2153022168409ef52c88ab",
+        "bytes": 9011
+      },
+      "scope": "新严格配置guard、按输入选择含上下文最长批、实际CPU/单步及同BioMed32控制预算；正式训练质量尚未完成。",
+      "conclusion": "首次CPU因构造时_autoset标志false→true失败，保留失败且只放行该已观测元数据差异，两侧attention eager、其余配置精确。实际strictload477981696参数，全部1150训练窗/594 label-free留出窗collate通过；GPU最长384批含124上下文token，loss .00823210/grad .10446239有限，allocated10978004992B，未存checkpoint。formal fresh固定10ep/2880steps、3600+30秒硬限；2963秒仅估算，不作终点。",
+      "limitations": [
+        "CUDA-only step timing excludes CPU collate and host-to-device copy; separate loop/wrapper times are retained.",
+        "Smoke is numerical/resource validation, not generalization evidence. Parameter mutation was not separately snapshotted; forward/backward/optimizer execution and finite nonzero gradient are observed.",
+        "Formal result and actual source/model/freeze lineage remain pending and require endpoint review."
+      ],
+      "support": [
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/cost-method.json",
+          "sha256": "e5569fbf5a57aa8d5c5f5ab6a8eac8e43a2f68d7272d2d9d94026368d0f5ad00",
+          "bytes": 1003
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/cost-projection.json",
+          "sha256": "9dcc9102ebbd1f6e5a66fe474a2efd7b66e2c47faaf6088b51487b0b17400df5",
+          "bytes": 2089
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/cpu-result.json",
+          "sha256": "ec8c44daa0d191670f56d73923583acad39fa611cee775be2f209728e4c42c2e",
+          "bytes": 7277
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/plan.json",
+          "sha256": "7af8e537ad19ee0e45efc48757443ad925564f1dd565739ce67b487fd3a5206e",
+          "bytes": 11787
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/run/cpu.state.json",
+          "sha256": "2f6b6b7399418a54a0d86ebcd13cd7fcf9103650259e71a11ec43465d17088e8",
+          "bytes": 1816
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/run/smoke.state.json",
+          "sha256": "e00235c6e0048911c5bbb5d656f92e8593502af5c03062a6961fc48bf153c6b9",
+          "bytes": 2141
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/smoke/run_manifest.json",
+          "sha256": "0b5b71fb19180dbad9b8f6fe56c490e4d70cdec550ccf9d08519e9fa2a56aa4d",
+          "bytes": 44276
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/source/check_ner_context_model.py",
+          "sha256": "550f3e4bd7617df6c0613b335b4f1503a0ed0afd62842415059004a5d01b5e3f",
+          "bytes": 6473
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/source/infer_ner_context.py",
+          "sha256": "a6f1f887671807ced049f56258ead3006ec85239440d4141c0ce499dd094f114",
+          "bytes": 7979
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/source/ner_context_runtime.py",
+          "sha256": "26120ec379fe874065660aef7fca3ae98de78b52d09f548b79a1b5853fe3934d",
+          "bytes": 7164
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/source/run_ner_context_stage.py",
+          "sha256": "b44643081671088134b56756c45cd638c8c0918cf9d892066de9f5cf33ed5eae",
+          "bytes": 5963
+        },
+        {
+          "path": "ontology_rules/ner-context-control/attempt2/source/train_ner_context.py",
+          "sha256": "8a9d72795fe1a0a5f7846fd5eb014326e03d172ce6c6b94dbb3e5e24d5a1156d",
+          "bytes": 16538
+        },
+        {
+          "path": "ontology_rules/ner-context-control/config-difference.tool.json",
+          "sha256": "81d9f6720e65a7376091c8df2107ee73f848ffa1b62f5ab68ff66a4a590c411f",
+          "bytes": 10095
+        },
+        {
+          "path": "ontology_rules/ner-context-control/run/cpu.state.json",
+          "sha256": "c6ce3817d5729c24e2ee2995439c949b2f0757c3467e16efbad7733b528967d8",
+          "bytes": 1692
+        },
+        {
+          "path": "validation/gliner-biomed-supervised-terminal-review/review.json",
+          "sha256": "cd5afba8d3e9056a2f5d03e66cb94d19a41a361f7eb4c12e8c4fdc16a800c81d",
+          "bytes": 7850
+        },
+        {
+          "path": "validation/gliner-context-adapter-cpu-review.json",
+          "sha256": "42fb9b45a348b299d00bbdab0775752d071c966c218af9e0be0967421a53b79c",
+          "bytes": 6867
+        },
+        {
+          "path": "validation/gliner-context-entry-cpu-review.json",
+          "sha256": "513b66cbb14cf82243eed7fde44398400224daeb9bdef4b060b60714840dcb6a",
+          "bytes": 7112
+        },
+        {
+          "path": "validation/index-next-20261023-2040/declared-dependency-verification.json",
+          "sha256": "605fb5919e0d208d9fa7bdba09238f4bda3ecc945d4880f265e44154ba9f001a",
+          "bytes": 66630
+        }
+      ],
+      "completed_review_scope": "actual_strict_CPU_config_guard_and_context_GPU_smoke_preparation"
+    },
+    {
+      "id": "gliner-medium-focal-paired-entry-preparation",
+      "report": {
+        "path": "validation/gliner-focal-pair-entry-review.json",
+        "sha256": "cc5e8486abf0d6122ffd8d87acb53a8a3f40230ec4681e1391edb30784561a34",
+        "bytes": 7369
+      },
+      "scope": "GLiNER medium-v2固定focal数学、真实criterion接线/同runtime CPU及最长单步、fresh BCE/focal配对执行入口；与BioMed上下文控制分开。",
+      "conclusion": "195175936参数；focal按有效span均值、alpha+=.75/alpha−=.25/gamma2，先mask再非线性、调制项参与梯度。10项实际CPU检查/解析梯度最大误差1.39e−17；实际1150窗/2236正例/1125538有效span、GPU单步loss .00467991/grad .12155031，allocated4459473408B。两fresh10ep/2880同卡同输入，训练共享1800秒/每臂1200秒，两训练均完才推理且两预测冻结后评；formal仍进行中，无质量声明。",
+      "limitations": [
+        "This changes class weighting and difficulty weighting with the original valid-span normalization, not gamma alone. Absolute loss scale/clipping/calibration may change.",
+        "Same-stage longest smoke establishes actual model execution and finite nonzero gradients, not generalization or a directly snapshotted weight delta.",
+        "Resource projection is not measured paired training time; actual hard limits remain binding.",
+        "Original A800 historical Score is context only; quality control is the fresh same-A30 BCE arm. Unique final pair prediction/freeze/evaluation remain pending."
+      ],
+      "support": [
+        {
+          "path": "sequence_crf/focal-loss-control/a30/cpu-loss.json",
+          "sha256": "26fb80374f300a292d7cb558f6593c9a2b7a9ca7ac553da927c390ac3ce06d20",
+          "bytes": 2235
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/cpu-preflight.json",
+          "sha256": "b5fbc5657cbe69da16a9b2a817433d0f61cae768d2b0dc1107edf603115bed6c",
+          "bytes": 1299
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/cpu.state.json",
+          "sha256": "8879743695b0010e334951ff7e869ee11c04b84b0deee77ed354db245d02e744",
+          "bytes": 2110
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/smoke.state.json",
+          "sha256": "611247a42678a48c6e30e1461fa8a831397384b088df2cf72c6c1072c62554a1",
+          "bytes": 1895
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/a30/smoke/run_manifest.json",
+          "sha256": "fbed424ffd047cc0b8b0aa07e3b4c37c21a6731c7b2eedc333c1f2670b5392a8",
+          "bytes": 21502
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/pair-plan.json",
+          "sha256": "098d6854fdbc84c6295d8efc265bdb8e40451879446aa915db0731df1dd0a388",
+          "bytes": 20531
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/proposal.json",
+          "sha256": "dc4b6e597eeff24af3e3c419c4a34ded2043bdfabe44ce43bc57afd2a204fc94",
+          "bytes": 11847
+        },
+        {
+          "path": "sequence_crf/focal-loss-control/source-evidence/augmentation_training.json",
+          "sha256": "e03fa0efa86b70810eeec6fbbc29216f1f5b6af32935583daf4d6c7bb441b05d",
+          "bytes": 40572
+        },
+        {
+          "path": "validation/gliner-focal-pair-entry-source/check_focal_loss_cpu.py",
+          "sha256": "297f79dacec2dbcdccfcd2a8c26035e191d90fa1bd350c7e369ffd026fb48b7a",
+          "bytes": 8107
+        },
+        {
+          "path": "validation/gliner-focal-pair-entry-source/check_gliner_loss_training.py",
+          "sha256": "ed0b441d060be1c503a30b7e1a4400fab1c8946206857cb203b92e48bc478e6e",
+          "bytes": 3495
+        },
+        {
+          "path": "validation/gliner-focal-pair-entry-source/focal_loss.py",
+          "sha256": "dcc2489d7bc5aecf5c9f0e55250f1a8f045a3c44e6fc89f99023409bbc47a55a",
+          "bytes": 2048
+        },
+        {
+          "path": "validation/gliner-focal-pair-entry-source/run_gliner_loss_pair.py",
+          "sha256": "5a1971d68c612c62b79d3698437042ec71f0a04ce5c78c21b17be342fed30221",
+          "bytes": 6748
+        },
+        {
+          "path": "validation/gliner-focal-pair-entry-source/train_gliner_loss_control.py",
+          "sha256": "f5764b6cf303e9146e9e5e359c0ad1747ae93373b8245fc79da71f0fa9c0642c",
+          "bytes": 15306
+        },
+        {
+          "path": "validation/index-next-20261023-2040/declared-dependency-verification.json",
+          "sha256": "605fb5919e0d208d9fa7bdba09238f4bda3ecc945d4880f265e44154ba9f001a",
+          "bytes": 66630
+        }
+      ],
+      "completed_review_scope": "fixed_focal_loss_actual_CPU_smoke_and_fresh_pair_entry"
     }
   ],
   "pending_review": [
     {
-      "id": "patient-identity-bridge-fresh-paired-formal-terminal",
-      "status": "已索引冻结输入、CPU入口、唯一实际单步及fresh配对入口；主线程报告首formal臂第一epoch非有限梯度退出、无checkpoint/质量、第二臂未起。该未冻结失败通知不代替独立终审；修复及双4ep质量仍待后续证据。"
+      "id": "flert-target-only-context-formal-terminal",
+      "status": "实际strict CPU、配置guard修复和含上下文最长批GPU单步已独审；fresh固定10ep正式训练进行中，最终模型/预测freeze/质量终点仍待独立核验。"
     },
     {
-      "id": "flert-target-only-context-formal-terminal",
-      "status": "可行性、全1150 adapter CPU及条件train/infer入口已完成审查；实际GPU/正式训练与固定质量控制仍需后续终点证据。"
+      "id": "gliner-medium-focal-paired-formal-terminal",
+      "status": "固定focal数学、实际CPU/单步及同A30 fresh BCE/focal入口已独审；两训练及后续双预测共同freeze/单次质量终点尚未完成，不将启动或单步当终点。"
     }
   ],
-  "previous_live_index_sha256": "069f37666273fabc4fadb81ff332e2db7651ff49275583c60e73db10e4c97fa5",
+  "previous_live_index_sha256": "f2445e43a1a3049875d93f9a784daf062da6dcb99aa0c8856e3780c6d34089ca",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批70→86候选：Qwen full64训练/原dev终点，BioMed监督static/CPU/单步/微增终点，FLERT可行性与两层CPU入口，identity输入/入口/单步/paired准备，A100只读/私有CPU准备，生成NER可行性否证。旧70对象/1023引用原样保留，current状态仅新增full64_SFT且保留旧train48；身份双正式臂和FLERT正式质量未完成，不列终点。候选未发布、未上传；无官方提交。",
+  "live_index_note": "本批86→91：身份BF16数值修复及fresh配对负终点、exact-gate三折CPU负终点、BioMed上下文strict CPU/实际smoke预备、medium BCE/focal配对入口。旧86对象/1224引用及全部current状态保持，原dev最高仍.715759605。两条GLiNER正式训练质量尚未完成；旧两项不可恢复背景文档声明原样保留，无官方提交。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
