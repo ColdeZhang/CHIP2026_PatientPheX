@@ -20,3 +20,7 @@
 新增quote归一化的候选可并用字符TF-IDF与冻结SapBERT CLS检索；训练别名仍只相应训练折，SapBERT来源沿首日已核验公开预训练权重，不新加人工表型数据。候选模型不会直接决定最终标签，未知/歧义项由Qwen在列出的候选中选取并显式记录无法解析项。
 
 ModelScope对小文件完整Range可能返回200而非206；仅当请求严格覆盖全文件时可以接受200，必须另验长度和全SHA。部分范围仍必须206及准确Content-Range。分片任务失败应保留已下载文件并从缓存恢复，不重下16GB模型。
+
+训练48抽取风格审计（未用于更改当前冻结zero-shot prompt）：3,612正实体中41含syndrome，INTRO+DISCUSS占48.75%，提示不能把“病例归属”边界套进实体识别。至少134正跨度不含紧邻严重程度/方位修饰，compound正跨度仅30；宽泛“complete specific phrase”可能损失精确边界，需要训练示例或SFT单独验证。305窗口有12个同词同时正/NO，去重quote→所有出现回定位不能完整表达逐出现断言差异。证据外存research-train48-style-notes与research-sft-style-diagnostics。
+
+私有训练依赖在独立`training-runtime`安装peft0.15.2/bitsandbytes0.45.5，不修改已验证推理runtime；CPU隐藏GPU的import通过，不代表CUDA量化kernel已验证，仍须获GPU时做single-step。

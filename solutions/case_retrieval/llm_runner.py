@@ -14,11 +14,16 @@ def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--model',required=True);ap.add_argument('--prompts',required=True);ap.add_argument('--output',required=True)
+    ap.add_argument('--adapter',help='Optional independently trained PEFT adapter; never a public competition-trained adapter')
     ap.add_argument('--max-input-tokens',type=int,default=10000);ap.add_argument('--max-new-tokens',type=int,default=1600)
     ap.add_argument('--batch-size',type=int,default=3);ap.add_argument('--model-revision',default='b968826d9c46dd6066d109eabc6255188de91218')
     args=ap.parse_args();start=time.time();torch.set_num_threads(1)
     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
     fingerprint={'configuration':vars(args),'prompts_sha256':digest(args.prompts),'code_sha256':digest(__file__),'model_config_sha256':digest(Path(args.model)/'config.json')}
+    if args.adapter:
+        adapter=Path(args.adapter);required=['adapter_config.json','adapter_model.safetensors']
+        assert all((adapter/name).is_file() for name in required),'Incomplete adapter checkpoint'
+        fingerprint['adapter_files']={name:digest(adapter/name) for name in required}
     checkpoint=out.with_suffix('.checkpoint.json')
     if out.exists() and out.stat().st_size:
         assert checkpoint.exists() and json.loads(checkpoint.read_text())==fingerprint,'Resume fingerprint mismatch'
@@ -27,6 +32,9 @@ def main():
     tok=AutoTokenizer.from_pretrained(args.model,local_files_only=True,padding_side='left')
     if tok.pad_token_id is None:tok.pad_token=tok.eos_token
     model=AutoModelForCausalLM.from_pretrained(args.model,torch_dtype=torch.bfloat16,device_map='cuda:0',attn_implementation='sdpa',local_files_only=True).eval()
+    if args.adapter:
+        from peft import PeftModel
+        model=PeftModel.from_pretrained(model,args.adapter,is_trainable=False).eval()
     count=sum(p.numel() for p in model.parameters());assert count<=10_000_000_000
     rows=[json.loads(x) for x in Path(args.prompts).read_text().splitlines() if x.strip()]
     done={json.loads(x)['row_id'] for x in out.read_text().splitlines() if x.strip()} if out.exists() else set()
