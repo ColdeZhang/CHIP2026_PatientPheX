@@ -1,0 +1,81 @@
+{
+  "status": "read_only_future_candidate_no_gpu_or_new_quality_evaluation",
+  "existing_qwen_logprobs_available": false,
+  "qwen_raw_fields": [
+    "batch_seconds",
+    "hit_token_limit",
+    "input_tokens",
+    "output_tokens",
+    "pmc_id",
+    "removed_demonstrations",
+    "response",
+    "row_id"
+  ],
+  "llm_tree_columns": [
+    "llm_selected",
+    "llm_empty",
+    "llm_parse_failed",
+    "llm_selected_count"
+  ],
+  "sources": {
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/llm_feature_tree.py": "6093741856c42fe56dc0f13d365b3eaf4c962e2f67befa5fa3ce865362989bef",
+    "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_neural_relation.py": "09ae97d291add225b295fe5d053f84bb35a788efaca66d9c1ef5240d97b2ae5d",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/train_relation_mil.py": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/ce-oof-results.json": "01c03689ea3ac325773aaac3f2848b59be9dfdde9d870ce97125261174227020"
+  },
+  "token_budget": {
+    "scope": "CPU tokenizer-only planning; originaltrain48 204 label-free messages only, no originaldev messages/gold, no weights or GPU",
+    "source_sha256": "23807d0ce5fff74d923898f2ae4a0790eaaa1137354e4ed5fc7fc27b4fb5513a",
+    "old_raw_sha256": "ed992e215c0c87c0c4e2e424168a48addc7a5cdf10d6b30c1c06f37d22b601e6",
+    "estimator_source_sha256": "4893e58d7b9b35828746618e454f5fd605962f78133c12cf85aa86bc9df311aa",
+    "transformers": null,
+    "template_implementation": "Exact frozen simple-text system+user branch; no tools/vision;204 actual prefix lengths independently match",
+    "tokenizers": "0.22.1",
+    "old204_prefix_tokens_reproduced_exactly": 648409,
+    "pairs": 4127,
+    "single_concept_all_global_anchors_tokens": 4144716,
+    "single_concept_max_tokens": 2375,
+    "single_concept_min_tokens": 329,
+    "naive_fullbatch_prefix_repeated_per_pair_tokens_before_new_question": 14849294,
+    "single_concept_input_ratio_to_old204": 6.392132126481896,
+    "yes_no_standalone_token_ids": {
+      "yes": [
+        9405
+      ],
+      "no": [
+        2083
+      ],
+      " yes": [
+        9542
+      ],
+      " no": [
+        874
+      ],
+      "true": [
+        1802
+      ],
+      "false": [
+        3721
+      ]
+    },
+    "new_formula_note": "softmax([logit_no,logit_yes])[yes] is a real conditional two-verbalizer probability, not guaranteed calibrated relation probability. No logits were computed here.",
+    "input_change_caveat": "Single-concept variant removes other candidates local contexts, retaining all global anchors and this candidate complete evidence. This changes context as well as output protocol and needs separate quality evaluation.",
+    "torch_installed": false,
+    "cuda_initialized": false,
+    "tokenization_seconds_after_old_exact_check": 7.103067636489868
+  },
+  "token_budget_sha256": "1399eb0a261962f65ca44f244801424d215e087d303f1597f77fc85cdcf90fd3",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/confidence-research",
+  "method_sources": {
+    "commit": "ad09ec048888aaf441034d9f52525c3419f47fd2",
+    "pinned_source_url": "https://raw.githubusercontent.com/castorini/pygaggle/ad09ec048888aaf441034d9f52525c3419f47fd2/pygaggle/rerank/transformer.py",
+    "sha256": "9d3a70dad3078927d9e1b74b806f4d763bc5f8a147f347fa382c6f9e0d415a11",
+    "paper": "https://arxiv.org/abs/2003.06713",
+    "calibration_paper": "https://arxiv.org/abs/2102.09690",
+    "retrieved_utc": "2026-10-23"
+  },
+  "interpretation": "Discrete four-fact tree negative does not establish all continuous LLM features are useless. No existing confidence threshold can be claimed without actual new logits.",
+  "authorization_boundary": "Root requested read-only mechanism assessment; no yes/no/head execution authorized or started.",
+  "official_submission": false
+}

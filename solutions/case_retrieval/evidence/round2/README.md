@@ -80,3 +80,5 @@
 - [fresh full64 正式启动](qwen35-full64-training-start.json)：265×2/68updates，18:55:25 UTC启动、60分钟训练硬cap；仅运行状态，无质量结果。
 
 - [full64 原dev唯一新adapter臂准备](qwen35-full64-dev-single-arm-preparation.json)：同A30单臂900+30，旧三对照按SHA复用；实际权重待训练终点，当前仅CPU准备/10合成检查。源码快照位于`../../operations/full64_dev/`。
+
+- [关系连续置信度只读判断](continuous-relation-confidence.json)：无现成LLM logprobs，训练内4127pair真实CPU预算4.145M tokens；仅后续候选，无新GPU/质量结果。
