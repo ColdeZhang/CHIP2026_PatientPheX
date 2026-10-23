@@ -104,3 +104,7 @@ root在微批实测后授权原门控train32的637提示/2430候选，fresh公�
 mention TP/FP/FN：508/158/845→867/251/486；document：347/57/398→508/80/237。关系437项原样，micro .593521421/macro .543793373完全不变；两臂format/HPO0错0警。两实体F1均值.553611448→.731965367，说明有限候选上下文监督优于公开base，但没有同本次候选/隔离链的现成HGB质量对照时，**不能据此说胜过77列HGB或当前97列公开多源best**。本次只改Task1，不原dev，不扫阈值或epoch。
 
 独立终审 `f8f50357` PASS：真实训练160calls/两checkpoint预算链、两398×1589 logits→manual softmax、全完整预测byteexact、两v2/format全字段及全部非entity关系对象一致。复用已审data3009/microbatch0b0/entryeca2，不重GPU。完整实际源、概率、模型及状态恢复指针见[终点摘要](../evidence/round2/entity-slot-formal-results.json)。下一仅做严格同F1 HGB资源/可比性核查，待root决定，不自动扩大训练或迁移dev。
+
+### 后置唯一同资源HGB基线（运行前冻结）
+
+当前双公开source-HGB的F1模型用train48，未发现相同F2+F3/严格16→16训练链的97族train32模型，本体负责人也确认未保存。现有77列gate是同train32真实fit/F1隔离，所有15,827概率已保存，但此前只做成本门控，没有已评选择质量。root因此授权新增一次**历史固定p≥.4**基线：原stable greedy、437非实体关系原样；先逐键/分数/顺序核全池与gate≥.1后1589候选在.4下等价，再freeze完整预测后唯一v2。只新解码/评分，不fit/GPU/其他cut/组合。该基线在看过实体终点后才追加，必须标为后置诊断。源码旧decode AST仅概率字段名与.5→.4，四个区别性边界通过；计划外部`entity-slot-formal32-v1/legacy-hgb-baseline/plan.json`（067b3efb）。
