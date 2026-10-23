@@ -39,3 +39,5 @@ focal假设是减少已容易判负跨度的梯度贡献、相对关注难span�
 根已授权最省可比路径。实际A800 GPU2虽空，磁盘只有2,007,732,224B，不足检查点峰值；不删除旧唯一产物，选择`.100 A30 GPU1`两fresh臂，实际初查451.97GB余盘。固定训练共享1800秒、单臂最多1200秒，超时TERM后30秒KILL；唯一final推断/链接每阶段300秒。独立trainer只加loss-choice/fingerprint，BCE及collate函数不变。已冻结[执行计划](../evidence/round2/focal-pair-plan.json)；先实际同解释器纯函数/1150窗CPU和最长focal单步，状态丢弃，成功后无需重复许可。当前CPU作业准备中，尚无新质量结果。
 
 实际同`.100` CPU原1150窗/2236正/1125538valid及strict195175936参数全部通过。最长focal单步0.9634s、4.459GB、有限非零grad.121550，完整子进程9.94s，状态丢弃。正式managed `proc_483790e9-1628-4c71-904e-ec14cad664df` 于20:30:10Z启动，训练共享截止`2026-10-23T21:00:12.063790+00:00`；先BCE后focal，全部参数/原数据固定，唯一终点pending。精确来源/恢复见[启动证据](../evidence/round2/focal-pair-launch.json)。
+
+入口与实际同环境CPU/单步独审PASS `cc5e8486`：BCE/collate/count AST未变，正式两argv只有loss/output差，固定FP32 medium/预算契约核过；这不是模型质量验收。CPU终点两臂装配→统一freeze→唯一旧nested16评分的入口也已提前冻结，见启动证据的endpoint索引。
