@@ -17,7 +17,7 @@
 
 冠军公开[权重卡](https://huggingface.co/rigidk/CHIP2026-PatientPheX-Agriv) revision `7a98ca95683eb920b09cc9141cdf512dc5f1fa41` 声明所有自训标签来自官方80篇。可研究结构（BioLinkBERT-large、Qwen3-8B LoRA r16、单/多患者LGBM），但这些已训练权重包括本仓库dev16，不能直接用于本轮本地验证；五折成员未公开核验，也不能推定兼容。本轮只读取模型卡/元数据，没有下载该自训权重。
 
-17:29 UTC重查本项目已失败的上下文CE与上述模型卡：旧实现只对固定span-ID做二分类（局部前后180字符、max160），随后直接阈值或固定权重与树混分，未获得收益；冠军卡描述的是折外CE分数作为二阶段树的训练特征，且有不同的候选来源。因此旧负结果只关闭已试配置，不证明所有上下文融合无效。若实施新控制，须补相应训练范围内的折外特征及候选来源，不能用训练内CE分数冒充折外，也不能为复现借用含原dev的成品权重；当前尚未启动这一新训练，先验证新候选池的实际增益。旧实验入口为[本体E-007](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)第七阶段。
+17:29 UTC重查本项目已失败的上下文CE与上述模型卡：旧实现只对固定span-ID做二分类（局部前后180字符、max160），随后直接阈值或固定权重与树混分，未获得收益；冠军卡描述的是折外CE分数作为二阶段树的训练特征，且有不同的候选来源。因此旧负结果只关闭已试配置，不证明所有上下文融合无效。若实施新控制，须补相应训练范围内的折外特征及候选来源，不能用训练内CE分数冒充折外，也不能为复现借用含原dev的成品权重；18:31 UTC已批准一次严格OOF控制的CPU准备，需三组train16生成六个池以保持二级候选来源隔离，再训练三组train32 CE；GPU预算12分钟。原84列/.4树与加一列CE控制不改其他参数，尚未启动训练。旧实验入口为[本体E-007](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/experiments/E-20261023-007.md)第七阶段。
 
 [PhenoTagger](https://github.com/ncbi-nlp/PhenoTagger)提供从本体构造远程监督样本的流程，无需额外人工表型标注。现成v1.2的HPO2023词表与比赛指定2026版本不同，且示例外部GSC开发集不能照搬；若采用，使用指定HPO与当前训练折重新构建，保留原文跨度。
 
@@ -31,7 +31,7 @@
 
 GLiNER虽输出嵌套跨度，旧装配会拒绝所有重叠。训练内nested32→16在既定Sap `.65/.92` 和否定筛选之后，被拒854项中773为精确重复，57为不同HPO的严格包含；其余为同ID边界变化、同边界异ID和交叉跨度。唯一固定实体对照保留全部旧实体/关系，只允许不同HPO的严格嵌套，新增26TP/31FP、文概念15TP/4FP，Score .653745→.657806。尚只证明该训练内控制小幅有益；交序列路线验证outerfold0，不改正在运行的全64原终点政策。源码/冻结计划/预测在外部 `research/strategy-review/nested-overlap-control/`，summary SHA `be75a6e20c973eab9b54b429120f0ee4ddfd54e5cb25d7d2a58e2fa3ce6d0373`。
 
-旧患者关系聚合树没有LLM特征，固定投票/门控也不同于学习其互补信息。已确认严格OOF的204条提示只在独立answer字段含监督标签，尚无通用9B的这些响应。下一控制先用固定通用基座推理，再比较同候选、同超参数下有/无LLM选择、空分配和解析状态特征的两棵树；不能使用在全部train48上SFT后的模型回推这些训练文献，冒充OOF特征。现只批准CPU准备及25分钟推理预算，尚未运行或计分。两项结构复查的短报告位于外部 `research/strategy-review/README.md`，SHA `a77887ffcd930c4d62846496db7006e02e8f6f2a37dc2c57ee4180feb74c48a2`；不把外部方法名称当实际收益。
+旧患者关系聚合树没有LLM特征，固定投票/门控也不同于学习其互补信息。已确认严格OOF的204条提示只在独立answer字段含监督标签，尚无通用9B的这些响应。下一控制先用固定通用基座推理，再比较同候选、同超参数下有/无LLM选择、空分配和解析状态特征的两棵树；不能使用在全部train48上SFT后的模型回推这些训练文献，冒充OOF特征。已批准CPU准备及25分钟推理预算，18:25:14开始204条通用9B推理，尚未完成或计分。两项结构复查的短报告位于外部 `research/strategy-review/README.md`，SHA `a77887ffcd930c4d62846496db7006e02e8f6f2a37dc2c57ee4180feb74c48a2`；不把外部方法名称当实际收益。
 
 ## 其他同赛开源记录
 
