@@ -1,0 +1,146 @@
+{
+  "scope": "Full input-only mechanical raw candidate census, followed by separate existing217FN-stage diagnosis. No fitting or quality selection.",
+  "frozen_at_utc": "2026-10-23T22:50:56.372410+00:00",
+  "source_sha256": "367a29bb5ea6d261b53cbb5aae2964e413b4b82e3fe9cdc8e66ee172be4364c9",
+  "runner_sha256": "728d8b07c36b43e777aa9ad44b0daf7f21b2ec7e9087fddd873ab08705d28604",
+  "remote_io_sha256": "0d1792cdad17d0da2bc5ef511ef37e3aef10bc9cb454b5b0bcb31f5af53e5c4f",
+  "public_resource_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse",
+  "runtime": {
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "cwd": "ontology-public-phenotagger-raw-census",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "USE_TORCH": "0",
+      "USE_TF": "0",
+      "USE_FLAX": "0"
+    },
+    "CPU_hardcap_seconds": 120,
+    "TERM_grace_seconds": 5
+  },
+  "resources": {
+    "train64-cache/train64.input.jsonl": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/train64-cache/train64.input.jsonl",
+      "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+    },
+    "lable.vocab": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/lable.vocab",
+      "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b"
+    },
+    "original-column-to-current-HPO.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/original-column-to-current-HPO.json",
+      "sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf"
+    },
+    "native-pipeline/src/ml_ner.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-pipeline/src/ml_ner.py",
+      "sha256": "9ee418916784f6fd26d1446faa0682ace9c9a07a959a07e9998977840409ef0d"
+    },
+    "combine_source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-pipeline/src/combine_result.py",
+      "sha256": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95"
+    },
+    "projection_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-raw-census/projection-manifest.json",
+      "sha256": "1e366c1caea44f890035e02b00a13b194a939b18cb29bd6b46ff3a0a2d7a64cd"
+    }
+  },
+  "neural_raw": {
+    "pubmed": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16/raw-neural-candidates.jsonl",
+        "sha256": "9c35bd67e207cfac010776f614303ffdf4fe7e5c7afa00e71dd24e278f998813",
+        "bytes": 46975318,
+        "rows": 75790
+      },
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-train48-cache/raw-neural-candidates.jsonl",
+        "sha256": "6794b36aaab93c157c326936ffc35aa57d6623069b62f5c9018577b5ab56ad02",
+        "bytes": 137091466,
+        "rows": 221194
+      }
+    ],
+    "bioformer": [
+      {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-bioformer/native-train64-cache/raw-neural-candidates.jsonl",
+        "sha256": "b33b4c0e5ab283f7606e055cad9c2c32f2d7d54a2b6e18e9f07ae1b1e5ae12d0",
+        "bytes": 184055310,
+        "rows": 296984
+      }
+    ]
+  },
+  "projection_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-raw-census/projection/manifest.json",
+    "sha256": "1e366c1caea44f890035e02b00a13b194a939b18cb29bd6b46ff3a0a2d7a64cd",
+    "bytes": 13817
+  },
+  "policies": [
+    "A: union both models raw top1 nonNone current-valid; no confidence threshold or hybrid/abbr",
+    "B: union both models raw original top1..3 current-valid; no confidence threshold or hybrid/abbr",
+    "C: union both models raw top1 current-valid and original 5dp>.95; bypass hybrid/abbr. This sole confidence filter is unchanged native policy, chosen before census."
+  ],
+  "old_preservation": "Each policy is unioned with every old row key separately in each strict train48-of-three-train32-generated-pools and held16; only a size census, no features/fitting/new candidate file.",
+  "stage_diagnostic": {
+    "queries": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-boundary-diagnostic/diagnostic-queries.json",
+      "sha256": "ba222b4c8792010a5a3cb3748b2be800b6b825f0c3459c31708828055203ef92",
+      "bytes": 177523
+    },
+    "audit": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-public-phenotagger-boundary-diagnostic/output/per-query-audit.json",
+      "sha256": "e9def0737cae62eccc13a195041ab1b7c02afff7985188737224d621078ae897"
+    },
+    "stage_files": {
+      "pubmed": [
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-nested16/native-hybrid-stages.jsonl",
+          "sha256": "6eb3b69fe4dd7e8649701077bb6bc35a4b2f5b47f27a0ab329d7e352746d8eb1",
+          "bytes": 191166
+        },
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/native-train48-cache/native-hybrid-stages.jsonl",
+          "sha256": "f0011bb528697769d0cb9d1684339265a38c3ee72253c76083c083110355453f",
+          "bytes": 493916
+        }
+      ],
+      "bioformer": [
+        {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-bioformer/native-train64-cache/native-hybrid-stages.jsonl",
+          "sha256": "c2e2a55520201394d5838ff08b6ba703861e8bbd4722ad5d3011f9a4f52574fe",
+          "bytes": 670206
+        }
+      ]
+    }
+  },
+  "references": {
+    "boundary_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-boundary-diagnostic/terminal/output/summary.json",
+      "sha256": "60ca3b099a1a1ecf55ef5eb44e86820b9a2deb7a7f04011f1df488f99f767e06",
+      "bytes": 9625
+    },
+    "boundary_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-boundary-diagnostic-review/review.json",
+      "sha256": "3b38804e66ab7e98b61739e3b5d5003b92807141f6c9b88419a6fae906e55df4",
+      "bytes": 10195
+    },
+    "old_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/old-pools/manifest.json",
+      "sha256": "87264eb85a1801e249ac6f052faeec5ddeb03fa3044ecb014ca3b9c8d6d220bf",
+      "bytes": 29326
+    }
+  },
+  "limitations": [
+    "Size census is input-only; the separate217FN stage audit never selects policies/keys and runs after census is saved.",
+    "No raw probability or feature is fabricated, and no new candidate or prediction is saved.",
+    "Runtime estimate scales original fourfold50.2126s by rows; not an actual fit benchmark or authorization to fit.",
+    "Native stage classification uses actual cached before/after abbreviation. Hybrid overlap-group cause is identified at stage granularity; exact winning blocker is not reconstructed.",
+    "No new boundary generator, score threshold sweep, NN, GPU, originaldev, gold-specific rule or quality score."
+  ]
+}

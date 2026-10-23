@@ -8,7 +8,7 @@
 
 预定分类是准确坐标已生成但 native 最终筛掉、只有相同 lower-token 缓存但无准确坐标、两者都缺。第一类报告两模型 top1/top3 条件供给与词长/32-token 截断；词串缓存命中必须区分原段落精确 token 对齐与独立片段 tokenization。不会生成 gold 选出的正式候选或 oracle 预测。
 
-实际完成：程序24.692秒、外层25.220秒，rc0；241段/43,395 native token/60,989候选位置与两模型raw坐标逐项相等，六个大缓存全部流式SHA通过。终点summary `60ca3b09`，详细审计外存，增量独审待回。入口和恢复见[源码说明](../public_phenotagger_boundary_diagnostic/README.md)，[终点证据](../evidence/round2/public-phenotagger-boundary-diagnostic.json)。
+实际完成：程序24.692秒、外层25.220秒，rc0；241段/43,395 native token/60,989候选位置与两模型raw坐标逐项相等，六个大缓存全部流式SHA通过。终点summary `60ca3b09`，详细审计外存，增量独审3b38804e已PASS：小audit/全部聚合与literal/NIL/tokenizer独立核验；复用六大raw/241段实际执行链，不重复扫描。入口和恢复见[源码说明](../public_phenotagger_boundary_diagnostic/README.md)，[终点证据](../evidence/round2/public-phenotagger-boundary-diagnostic.json)。
 
 |供给状态|FN原子|独立跨度|
 |---|---:|---:|
