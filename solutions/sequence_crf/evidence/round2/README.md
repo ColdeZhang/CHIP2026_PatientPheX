@@ -74,4 +74,4 @@
 - `gliner-biomed-interface-results.json` / `gliner-biomed-nested-plan.json` / `gliner-biomed-nested-results.json`：公开生医基座来源/实际CPU与唯一nested零样本固定全链.652014，失败启动器证据与GPU释放，不能虚构medium-zero完整Score。
 - `gliner-biomed-supervised-plan.json`：独立native-loader训练32×10固定适配，CPU1150窗/单步资源条件、2400秒训练硬cap；计划不代表训练结果。
 
-- [BioMed监督32固定10终点](gliner-biomed-supervised-results.json)：.654424，较medium32+.000679，58实体42TP16FP；实际模型/状态/命令/成本完整，新终点独审待回收。
+- [BioMed监督32固定10终点](gliner-biomed-supervised-results.json)：.654424，较medium32+.000679，58实体42TP16FP；实际模型/状态/命令/成本完整，新终点独审PASS（cd5afba8）。
