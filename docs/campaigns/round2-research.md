@@ -56,3 +56,12 @@ GLiNER large-v2采用固定公开版本 `urchade/gliner_large-v2@9d0533ed97ade53
 随后独立审查固定fold0的全部7篇含TABLE输入，7篇原文全部取得，15张表共552,366字节XML；保存8处rowspan、17处colspan和7组脚注，9项解析/ID边界检查通过。完整临床编号规范化能对应7个临床表患者和9个酶/基因型表的Subject，后者不能直接视为表型证据；全程未读gold、未生成预测。来源、许可、SHA及结构化缓存位于仓库外 `research/pmc-tables-fold0/`，结果manifest SHA `afeacad97fb8cc8d95a35a08469514008a14c377bc8caf5db43f0a83d80f5e75`。先在train48定义并冻结映射规则，再作fold0对照。
 
 后续CRF路线按train48前两篇定义并冻结严格患者身份、临床表标题、精确HPO/训练别名与明确肯定单元格规则；固定fold0对照中新增31/29条关系全部FP，未获收益。外部临床事实不等于本赛标注范围，见[H25](../../HANDOFF.MD#h25外部原论文的临床事实未必属于比赛标注范围)；后续优先给定文本，不继续围绕本折扫描表格阈值。
+
+
+## 后续只验证输入中缺失的上下文（19:50 UTC）
+
+患者关系旧CE的训练侧CPU复现表明：同4127个OOF候选中，top3选窗/384截断没有使任何样本丢光已有目标患者marker；969个canonical正例中579本来就在全部局部窗无目标marker。因此“只放宽截断”缺乏支持。固定12篇正负配对阅读发现病例叙述延续、群体指代、缩写和时间极性，但小样本不代表整体比例，也不生成特例规则。下一控制只给旧实际输入追加可定位的近邻患者身份句，最近身份可为目标或其他患者，保留竞争身份/否定/背景、原active tokens与末尾SEP；同OOF候选、同CE两臂都重训，不复用gold候选旧模型冒充对照。先CPU核候选/标签/输入隔离及实际覆盖，尚无新训练或得分。
+
+[ATLOP](https://arxiv.org/abs/2010.11304)与[EIDER](https://aclanthology.org/2022.findings-acl.23/)只提供可定位证据连接的机制参考，未使用其代码/模型/DocRED标签。ATLOP的threshold-class在单二元关系下等价于logit差的BCE，不单独包装成新校准。严格OOF CE单列融合实际判断span+HPO正确性，已经失败；旧患者CE确有header/marker/多窗，故新变量只称身份上下文。969与旧SFT967正例仅差两个HPO alt-ID规范化，4127候选键完全一致；两新臂采用同一canonical政策，历史SFT不重写。详细设计、固定训练例和源码/论文SHA在来源清单，研究报告使用启动时的旧最高分，当前最高以总台账 .715760 为准。
+
+本体路线另作FLERT式相邻上下文CPU检查：1150目标窗中1121能加context，新增token均81.21；449跨section、850跨passage type，不能把可加上下文当作有效证据。原2236正/87NO标签、1125538有效跨度和offset不变；仅context参与encoder attention，word映射与解码限于原target。固定batch padding代理1.3158、attention平方代理1.5521不是GPU成本实测。当前仅实现并验证专用collator/低层target解码，训练未启动。
