@@ -89,7 +89,7 @@
 
 远端 Hugging Face 与镜像连接失败，本机可下载；MCP `write_file` 较大请求返回 HTTP 413。直接把模型或数据一次写入不可行。
 
-**避免方法**：先尝试固定revision的官方直连。2026-10-23验证：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端可直接有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag也不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及CRF分支模型manifest。
+**避免方法**：按用户最新偏好，先复用已核验副本，新下载优先 ModelScope（魔搭）；固定对应revision并核对权重、配置与tokenizer的SHA，不能只凭模型同名认定等价。当前Qwen3.5-9B正在从魔搭下载，已核对源端四个权重分片的大小/LFS SHA与指定HF版本一致，下载完成还须逐文件实际校验；许可证文件差异单独记录。魔搭缺少所需版本或无法核对时再尝试原始HF来源。2026-10-23另一条已验证路径：本机对官方HF resolve作HEAD取得临时官方CDN地址，远端有限并发Range下载；BioLinkBERT-large 1,334,073,393字节在256秒完成，全SHA与官方一致。临时签名URL不能写入Git或长期manifest，CDN ETag不能代替模型SHA。直连不可用时，再本机下载校验，按不超过512 KiB原始字节MCP分片传输、合并核验；优先续传，不重复下载。模型和全量日志不入Git。远端默认Python/依赖不一定存在，使用已验证解释器和自有环境，不修改他人环境。具体来源/版本见[研究索引](docs/campaigns/round2-research.md)及方案模型manifest。
 
 ## H14：官方附件元数据中的相对路径不等于可下载 URL
 
@@ -180,6 +180,12 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 三条实验分支从同一基点创建后，主线程持续更新共享规则与踩坑记录，但分支里的根文档仍停在早期版本。直接在该worktree读 `HANDOFF.MD` 会漏掉主分支已确认的新坑，方案自己的实验记录却可能是最新的。
 
 **避免方法**：新任务同时检查当前main的共享文档，可用 `git show main:HANDOFF.MD`；方案源码/实验记录仍读自己的工作分支。阶段检查点干净后正常合并main的共享更新，检查是否意外改变方案源码或评测器并推送。三路线已安排同步，不要求每个总台账提交都触发merge，也不把未提交实验混入同步。规则见[AGENTS第1节](AGENTS.md#1-开始任务与恢复上下文)。
+
+## H29：合法HPO编号和原文quote，仍可能互相不对应
+
+整患者自由生成实验同时输出HPO ID与原文quote，格式/分支/坐标检查均可通过，但仍出现 `short stature` 配成 `HP:0001250`（Seizure）、`cardiac abnormalities` 配成 `HP:0000252`（Microcephaly）。不读验证gold，仅按指定HPO及train48唯一词面核对：微调模型42个原文支持项中14项编码冲突、28项词典未知；后者不能据此判错。另44条合法响应中26条为空，说明格式改善也不等于召回改善。
+
+**避免方法**：分别核验原文定位、HPO语义与患者归属，不能把任一项通过代替其他项。优先让模型选择带名称/定义的有限候选或可逆编号；自由生成编码若要保留，应单独验证其标准化质量。词典匹配仍不证明患者归属，歧义词面和未匹配长quote不能强行修正。本次仅保存诊断与负结果，未依据gold打补丁或追加重链接评分；证据见[检索实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/case-retrieval/solutions/case_retrieval/experiments/E-20261023-008.md)及外部 `patient-set-fold0-bf16-v1/diagnostics/exact-quote-id-summary.json`。
 
 ## 更新方式
 

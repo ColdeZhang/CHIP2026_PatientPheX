@@ -50,7 +50,7 @@ def main():
                     "remote_directory": GIT_REMOTE, "remote_manifest": GIT_REMOTE + "/" + filename,
                     "chunk_bytes": CHUNK, "files": [dict(row, local_path=str(bundle), kind="git_bundle")],
                     "refs": heads, "self_contained": True, "bundle_verify": "passed",
-                    "restore_command": "python /workspace/patientphex-tools/backup_submissions.py restore --manifest "
+                    "restore_command": "python scripts/backup_submissions.py restore --manifest "
                         + shlex.quote(str(manifest_path)) + " --destination /workspace/patientphex-restored/git",
                     "clone_command": "git clone -b main /workspace/patientphex-restored/git/" + bundle.name
                         + " /workspace/CHIP2026_PatientPheX-restored",
