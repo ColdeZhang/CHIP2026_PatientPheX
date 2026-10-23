@@ -1,0 +1,362 @@
+{
+  "status": "completed; independent review requested",
+  "external_directory": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control",
+  "plan_commit": "7715478",
+  "summary": {
+    "status": "completed; independent review requested",
+    "source_commit": "7715478",
+    "frozen_at_utc": "2026-10-23T21:31:35.866214+00:00",
+    "scope": "Four fixed OOF PubMed public-source HGB controls plus independently sourced Bioformer candidates and six model-specific fields.",
+    "pooled": {
+      "baseline": {
+        "menF1": 0.7582980619291602,
+        "docF1": 0.7931345980126467,
+        "micF1": 0.6867153284671533,
+        "macF1": 0.6524560994746033,
+        "Score": 0.7226510219708908
+      },
+      "augmented": {
+        "menF1": 0.7619365609348915,
+        "docF1": 0.7940513744930149,
+        "micF1": 0.6878461090061206,
+        "macF1": 0.6543902534856236,
+        "Score": 0.7245560744799127
+      },
+      "deltas": {
+        "menF1": 0.0036384990057313216,
+        "docF1": 0.0009167764803681422,
+        "micF1": 0.0011307805389673131,
+        "macF1": 0.0019341540110203725,
+        "Score": 0.0019050525090218429
+      },
+      "changes": {
+        "entity_added_tp": 56,
+        "entity_added_fp": 51,
+        "entity_removed_tp": 37,
+        "entity_removed_fp": 63,
+        "relation_added_tp": 19,
+        "relation_added_fp": 32,
+        "relation_removed_tp": 15,
+        "relation_removed_fp": 30
+      }
+    },
+    "mean": {
+      "baseline": {
+        "menF1": 0.7584103519547941,
+        "docF1": 0.7921266454858271,
+        "micF1": 0.6896203552628252,
+        "macF1": 0.6543585303356445,
+        "Score": 0.7236289707597727
+      },
+      "augmented": {
+        "menF1": 0.762054519716162,
+        "docF1": 0.7932052015523934,
+        "micF1": 0.6906006601689618,
+        "macF1": 0.6566003448859049,
+        "Score": 0.7256151815808556
+      }
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "Score": 0.732039033633497,
+        "delta": -0.0008621951324524479,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "fold": 1,
+        "Score": 0.7203042004119473,
+        "delta": 1.2351626657358672e-05,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "fold": 2,
+        "Score": 0.7459204010976892,
+        "delta": 0.007616755902504213,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "fold": 3,
+        "Score": 0.7041970911802886,
+        "delta": 0.0011779308876220806,
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "actual_fit_infer_seconds": 51.49426072499773,
+    "shared_budget_seconds": 120,
+    "all_four_exit_zero": true,
+    "counts": [
+      {
+        "training_documents": 48,
+        "training_examples": 46349,
+        "training_positive": 3146,
+        "added_bioformer_training_examples": 349,
+        "added_bioformer_input_candidates": 110,
+        "fold": 0,
+        "features": 96,
+        "selected_bioformer_only_keys": 0,
+        "selected_both_public_models": 945
+      },
+      {
+        "training_documents": 48,
+        "training_examples": 45039,
+        "training_positive": 2947,
+        "added_bioformer_training_examples": 326,
+        "added_bioformer_input_candidates": 135,
+        "fold": 1,
+        "features": 95,
+        "selected_bioformer_only_keys": 0,
+        "selected_both_public_models": 1095
+      },
+      {
+        "training_documents": 48,
+        "training_examples": 45561,
+        "training_positive": 3139,
+        "added_bioformer_training_examples": 343,
+        "added_bioformer_input_candidates": 112,
+        "fold": 2,
+        "features": 97,
+        "selected_bioformer_only_keys": 0,
+        "selected_both_public_models": 940
+      },
+      {
+        "training_documents": 48,
+        "training_examples": 46064,
+        "training_positive": 3165,
+        "added_bioformer_training_examples": 360,
+        "added_bioformer_input_candidates": 100,
+        "fold": 3,
+        "features": 97,
+        "selected_bioformer_only_keys": 0,
+        "selected_both_public_models": 892
+      }
+    ],
+    "interpretation": "Small pooled gain with one negative fold. Added output atomic units all come from existing old/PubMed keys; Bioformer-only keys were not selected. This key-origin observation does not isolate the causal value of extra candidate training examples versus independent features.",
+    "disposition": "Keep frozen result for independent review; root defers originaldev migration until separate low-threshold PubMed control finishes. No new GPU/training or threshold selection.",
+    "limitations": [
+      "Development folds previously used; no new originaldev labels.",
+      "Independent Bioformer source plus six features: method increment, not pure one-column effect.",
+      "Public model forwards fold-independent; all task-fit generators remain per-fold and secondary selector train48 only.",
+      "No threshold/epoch/source-order sweep. Existing PubMed source fields retain their meaning.",
+      "New-candidate source attribution uses key presence, not causal attribution; NIL unit grouping follows existing diagnostic."
+    ],
+    "originaldev_read": false,
+    "new_gpu_run": false
+  },
+  "artifacts": {
+    "plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/plan.json",
+      "sha256": "5bf685f96be02d195acc76a9724625b77a4526decc8e2e77d79ba2976608fb12",
+      "bytes": 10851
+    },
+    "boundary-check.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/boundary-check.json",
+      "sha256": "028d495640f48289eb18c7edbc0c6ee3af268e6c5c8b812d859996efc44e3bf2",
+      "bytes": 833
+    },
+    "source-key-overlap.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/source-key-overlap.json",
+      "sha256": "4c99fdb33e4bbdc6945491af9f89269b29ee149145f8565b6e0b9c0fa3db5814",
+      "bytes": 288
+    },
+    "execute.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/execute.py",
+      "sha256": "cb969b1d8013bf0b99526f9804dcf009b9d0c512b1ae6ec9861ac8a7c880a189",
+      "bytes": 3843
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/job.json",
+      "sha256": "072b6d822939d51083149c994026814e878a6c5371227cb1a639b589cf187f3a",
+      "bytes": 6789
+    },
+    "complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/complete-freeze.json",
+      "sha256": "18573bb12c5854a4a9c9ed931d0c7a633393491027c79dc519c89021e9ae28eb",
+      "bytes": 4701
+    },
+    "evaluation-execution.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/evaluation-execution.json",
+      "sha256": "0c53ee2eceb1239c7d1812567c3e0bafbdd39b686f90bdae80998eb95a14975c",
+      "bytes": 666
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/results.json",
+      "sha256": "de5b074a6a21c1405c459a97f79397db940ddda690b8ff72c0ff250ef8e4b738",
+      "bytes": 8764
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/summary.json",
+      "sha256": "0ddee4b299b86d632837e3c1cb8b45b1e5b41f74d2db040bb93c10c914ad1615",
+      "bytes": 4717
+    },
+    "augmented.pooled.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/augmented.pooled.metrics.json",
+      "sha256": "24b34e9383a546a587d05b2865f1ad9958192cccf2bb5755bd27c34e7f080ea9",
+      "bytes": 42545
+    },
+    "augmented.pooled.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/augmented.pooled.jsonl",
+      "sha256": "3dfb4c40109b4bf136f7a55daa74971228b87ac12afb23415ad0c9e2c1eb5ecd",
+      "bytes": 550514
+    },
+    "prepared/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/prepared/manifest.json",
+      "sha256": "458c86d8de156a675f04bda81ff40ab6e52d740740cd6e0b1cac61ab49b19963",
+      "bytes": 1540
+    },
+    "prepared/candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/prepared/candidates.jsonl",
+      "sha256": "f7f58699c24a18ce0e6f8cc0597b74ef386cf662338bcfa6ee64b43a816252e5",
+      "bytes": 2082731
+    },
+    "fold0/fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/manifest.json",
+      "sha256": "ea56fa2016a721031cdaeef035c4b69415b471bbbec889f9a890155e8c0d8738",
+      "bytes": 7784
+    },
+    "fold0/fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/baseline.jsonl",
+      "sha256": "bfd4c0f6e1d0fc85471fef6ee7632e26d0958d712d3f1681ef0a9d19d6692bdb",
+      "bytes": 131809
+    },
+    "fold0/fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/augmented.jsonl",
+      "sha256": "17e45a89bf776b281c277e7341f4e1402ab118228de268392d444dc637486f55",
+      "bytes": 132606
+    },
+    "fold0/fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/fitted/selector-scores.jsonl",
+      "sha256": "ad7a53330c150c737efef1c5e5a12dad7c83f4cf4a423c6a56b6590e5169f1ab",
+      "bytes": 10422693
+    },
+    "fold0/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/augmented.metrics.json",
+      "sha256": "6ac65070114352a364df7e625cb97b4ac4f8a3813d8a59804ce0e30e7544edaa",
+      "bytes": 12906
+    },
+    "fold0/augmented.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/augmented.validation.json",
+      "sha256": "672a7077a0af3166e51be545b846916bf1846e60940774052e266d6c35b9539a",
+      "bytes": 425
+    },
+    "fold0/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold0/results.json",
+      "sha256": "9e2f3d16edc414bef993777af6ebc8a8a197275d3324f96614d483b8cc99b2a4",
+      "bytes": 1344
+    },
+    "fold1/fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/manifest.json",
+      "sha256": "c3b930a87764dd496167bc8ac938d74322d3aeed7043824a1befc8c7bc4d1311",
+      "bytes": 7757
+    },
+    "fold1/fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/baseline.jsonl",
+      "sha256": "607aea03aaecc081ceddf4a7b031a2bd1806b759d3bc76238936753abfadd3dd",
+      "bytes": 156565
+    },
+    "fold1/fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/augmented.jsonl",
+      "sha256": "70051bd0836f17f81039b39775e6c4c8b78b6c99e899dfd34dd1efffbbf02f20",
+      "bytes": 156589
+    },
+    "fold1/fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/fitted/selector-scores.jsonl",
+      "sha256": "660c21dbacb9183c2aab9be2838f4f42e251e9d6defd047555c5755fe17793ae",
+      "bytes": 11505289
+    },
+    "fold1/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/augmented.metrics.json",
+      "sha256": "181c20ddbd535305d89d91f90c2a7898e9698dcac2c51339305f0c686ff21e42",
+      "bytes": 13010
+    },
+    "fold1/augmented.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/augmented.validation.json",
+      "sha256": "9270fc3f7e46b8578a00cdbef6a2c990b85ef03da19bf4c6f8dad57857fa9dc3",
+      "bytes": 425
+    },
+    "fold1/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold1/results.json",
+      "sha256": "6086af70e3e2a31392c9ac0f16aa533de63fff7ba834fe0fb4f6174f9d194a35",
+      "bytes": 1343
+    },
+    "fold2/fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/manifest.json",
+      "sha256": "aa2c76b8b8be39f168b3bc736b2bbb33a93cae98ab7e634cfaf4f0f23b812c8e",
+      "bytes": 7804
+    },
+    "fold2/fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/baseline.jsonl",
+      "sha256": "142cce164bc79825126ad1b005eb4f06c923dd7197c1231c3a107c55c3b54fd4",
+      "bytes": 131289
+    },
+    "fold2/fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/augmented.jsonl",
+      "sha256": "61449c32eabd14db0499d44834ca3c50f2beb6cf799bfd8c3a1fd69535244b8e",
+      "bytes": 131309
+    },
+    "fold2/fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/fitted/selector-scores.jsonl",
+      "sha256": "f881ec1c6cda7383348a1e7ab3b6c3067d4bb7092dbc695fbf846d01378b39b2",
+      "bytes": 10587087
+    },
+    "fold2/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/augmented.metrics.json",
+      "sha256": "794a80a40c738926887ea7ea7bc252d89629d24aefc7f6fbb2c53386b44dd5c0",
+      "bytes": 12889
+    },
+    "fold2/augmented.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/augmented.validation.json",
+      "sha256": "997eb627ef50b56edca4b3a789814b2eb17050e88e8b3602349522c7f9919d84",
+      "bytes": 424
+    },
+    "fold2/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold2/results.json",
+      "sha256": "e173a928e5d91d63f845914690392f4b7541056a0ccb0676d64bff3a3034658b",
+      "bytes": 1337
+    },
+    "fold3/fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/manifest.json",
+      "sha256": "0f2faddaf0f99c962cb70bc6f319cb53349170dccefb6b1f683f6a9eb11ba3b4",
+      "bytes": 7804
+    },
+    "fold3/fitted/baseline.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/baseline.jsonl",
+      "sha256": "174a2b085c012fdb8e291e06bd15fe093f7efc85906f7ec88e1b3550c4491e39",
+      "bytes": 129986
+    },
+    "fold3/fitted/augmented.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/augmented.jsonl",
+      "sha256": "523181c3c3b09094fc122b791452363f589209e0f9b7b4b6babe46fefdad37c5",
+      "bytes": 130010
+    },
+    "fold3/fitted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/fitted/selector-scores.jsonl",
+      "sha256": "d5e87a2b5ae9810a85735eaa44722482e4493252ebe586f12dad09676f5aa9e5",
+      "bytes": 10664286
+    },
+    "fold3/augmented.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/augmented.metrics.json",
+      "sha256": "1eb15e69de459826e6aef6ad9043d8d40de270847e1abd54d41f7b5048c1c661",
+      "bytes": 12866
+    },
+    "fold3/augmented.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/augmented.validation.json",
+      "sha256": "92480c16ab1a321ae61f19ddbc3839591172950a7f8b42bf4a6a4ac89ec39e9e",
+      "bytes": 424
+    },
+    "fold3/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/fold3/results.json",
+      "sha256": "c54eb9565c1fc05bdb103633dd4ee3faa471b679456fd038c561705e1141c6d5",
+      "bytes": 1343
+    }
+  },
+  "immutable_source_snapshot": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-selector-control/source-snapshot",
+  "independent_review": {
+    "status": "requested",
+    "agent": "/root/round2_validation_resume"
+  }
+}

@@ -41,7 +41,8 @@
 17. **固定原dev迁移已完成、独审PASS**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。独立新fit/全概率/两预测/全部指标与关联保留复核PASS（1112ced2）。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
 
 
-18. **独立Bioformer来源四fold固定控制已准备**：保持旧PubMed .95六字段与HGB160/.4，新增独立Bioformer .95候选/六字段，两个模型分数不混；公开64缓存5869项原文/source通过，合并边界CPU通过。四新fit/infer共120秒cap、全预测共同freeze后唯一pooled/各fold评；旧.722651 pooled复用、不原dev。计划见[evidence](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/；当前未fit。
+18. **独立Bioformer四fold控制完成、待独审**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，root暂不迁移、等待另一固定池控制；独审已请求。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
+
 
 ## 已完成的近期结论
 

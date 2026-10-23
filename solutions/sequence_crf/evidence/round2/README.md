@@ -93,3 +93,5 @@
 
 
 原dev public-selector 两臂独审已完成：`validation/public-selector-dev-transfer-review/review.json` SHA `1112ced231cc43f7769482ff189fde4e980dd895fb91d5807d9244d256b157c4`。独立一次新全64 fit与全部概率/A/B预测逐字节一致，v2/格式全同；B .7287945949、原aa107关联完整保留。旧对照未重训/重评，不改变原dev已用于比较的限制。
+
+- [独立Bioformer四fold控制](public-bioformer-selector-results.json)：固定双模型六字段，pooled .724556（+.001905），一折负；51.494秒CPU，待唯一独立复核，无原dev/GPU。
