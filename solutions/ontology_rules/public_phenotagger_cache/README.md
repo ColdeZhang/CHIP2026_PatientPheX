@@ -15,3 +15,5 @@
 ## CPU检查器修复（revision2）
 
 首版ecffe52的额外逐token断言在余48篇遇成对单引号时退出，尚未GPU。上游restore_index按等长规则将两个引号替换为quote+space；原检查器先切原文再缩短引号，边界不等价。revision2只将检查器改为先按上游等长规则归一化全文再slice；候选/offset、权重、decoder、输入及旧16输出全部保持。首版源码/plan/失败fixture保留外部attempt1-quote-validation和Git ecffe52。实际新source/plan SHA见source-index；正式结果以最终runtime终点为准。
+
+统一缓存已实际完成：6064 canonical行/6064来源key，旧16各文原行字节不变；GPU阶段183.45秒、CPUunion4.07秒，GPU2核空释放。source-index追加实际运行小证据；原数据/预测仍外部。source-equivalence-v2重新逐字节核当前7044与旧e6三核心块，首版delta报告的旧source字段不冒充新版本。下游outer0与selector结果另记。

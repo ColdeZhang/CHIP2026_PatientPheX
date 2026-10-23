@@ -1,0 +1,21 @@
+{
+  "status": "PASS_minimal_revision2_source_delta",
+  "old_native_source_sha256": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
+  "current_driver_sha256": "7044ece577300008b6f75f35eb1224f21881a4f169821b3d2dc74560156ec7e7",
+  "plan_sha256": "0243e1707c2ca59a7d79211de5ccc771a241b27c5197584785de418d10280d49",
+  "checks": {
+    "native_model_tokenizer": {
+      "equal": true,
+      "block_sha256": "4f8eb7ae3c3ab73c971ffa43ba13d96e5b6b158e023d1fbe593a5598c9c9cd20"
+    },
+    "native_decoder_dictionary_abbreviation_mapping": {
+      "equal": true,
+      "block_sha256": "6b459278c13549e9d899e644919c177414ed3a69dcf25a0468ea717ee39c7c21"
+    },
+    "original_probability_selection_and_native_rounding": {
+      "equal": true,
+      "block_sha256": "c5047f7fbc6fc1f612947ac69270dbcdcddf590b272ba5e9b347677176038ce4"
+    }
+  },
+  "correction": "The first verification sliced the unnormalized source before quote normalization; revision2 uses original restore_index length-preserving full-source quote normalization. Coordinates/candidates/NN/decoder are unchanged. Final canonical entity slices still checked against unmodified original input text."
+}

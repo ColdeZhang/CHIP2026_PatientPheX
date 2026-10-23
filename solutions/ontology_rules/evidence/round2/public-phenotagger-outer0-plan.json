@@ -1,0 +1,324 @@
+{
+  "experiment_id": "E-20261023-PUBLIC-PHENOTAGGER-OUTER0",
+  "scope": "one unchanged-policy fixed entity supplement on distinct train-internal outer0; no originaldev/NN/threshold change",
+  "inputs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "bytes": 350409
+    },
+    "previous_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+      "bytes": 342703
+    },
+    "cache_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/train64.input.jsonl",
+      "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246",
+      "bytes": 1351066
+    },
+    "base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+      "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+      "bytes": 124903
+    },
+    "base_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.manifest.json",
+      "sha256": "be74700a232e04ea827c424c9ab5ef87a548d842c50f8e3167df6b4f145d7e4f",
+      "bytes": 1754
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/baseline.metrics.json",
+      "sha256": "a22261c246552c6c55f4395433fe7cb3855a345ceaa76ad3c7adf92a29780272",
+      "bytes": 13071
+    },
+    "previous_assembly_plan": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/public-phenotagger-assembly-plan.json",
+      "sha256": "69c20c69e3b7d9ff2a59a0c90a0f2bb093ce2f86ca64be45729c1700e353d2ec",
+      "bytes": 7863
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+      "bytes": 11222341
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/scripts/validate_predictions.py",
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+      "bytes": 12208
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/scripts/evaluate.py",
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+      "bytes": 10539
+    },
+    "cache_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/canonical-entities.jsonl",
+      "sha256": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7",
+      "bytes": 1580994
+    },
+    "cache_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/manifest.json",
+      "sha256": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87",
+      "bytes": 8929
+    },
+    "cache_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/plan.json",
+      "sha256": "0243e1707c2ca59a7d79211de5ccc771a241b27c5197584785de418d10280d49",
+      "bytes": 7916
+    },
+    "cache_union_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/unify_cache64.py",
+      "sha256": "b4cb2b1d7ade17c58f6af113af4fcee04522f6b05c0a2a9c8ac3c2a43bf42dd5",
+      "bytes": 7104
+    }
+  },
+  "sources": {
+    "entry": "5c410d943945a1f96e5c36948cdd8a9cf68e7ae21c966e247e6d731a8009dabb",
+    "assembly": "d9481ea8301a59601e47a81d1f81f4d2bf1b740e1b53deed618a0158d9cdb2a7",
+    "baseline": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+  },
+  "policy": {
+    "native_decoder": "unchanged original rounded5dp top1 > .95; dictionary + original abbreviations; no new downstream probability gate",
+    "sort": "score descending, length descending, offset ascending, canonical HPO ID ascending",
+    "negation": "original run.is_negated",
+    "overlap": "reject any overlap with original entities then previously accepted additions",
+    "base_entities": "all original objects retained",
+    "relations": "all original association values preserved exactly; do not assign new relations",
+    "ancestor_expansion": false
+  },
+  "cache_contract": [
+    {
+      "keys": [
+        "status"
+      ],
+      "expected": "complete_train64_public_input_cache_no_quality_evaluation"
+    },
+    {
+      "keys": [
+        "input_sha256"
+      ],
+      "expected": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+    },
+    {
+      "keys": [
+        "plan_sha256"
+      ],
+      "expected": "0243e1707c2ca59a7d79211de5ccc771a241b27c5197584785de418d10280d49"
+    },
+    {
+      "keys": [
+        "source_sha256"
+      ],
+      "expected": "b4cb2b1d7ade17c58f6af113af4fcee04522f6b05c0a2a9c8ac3c2a43bf42dd5"
+    },
+    {
+      "keys": [
+        "model_weight_sha256"
+      ],
+      "expected": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3"
+    },
+    {
+      "keys": [
+        "public_model_training_on_task"
+      ],
+      "expected": false
+    },
+    {
+      "keys": [
+        "fixed_policy"
+      ],
+      "expected": {
+        "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+        "threshold_strictly_greater_than": 0.95,
+        "ngram_per_sentence_min": 2,
+        "ngram_per_sentence_max": 8,
+        "onlyLongest": false,
+        "abbrRecog": true,
+        "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+        "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+        "ancestor_expansion": false,
+        "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+        "negbio": false,
+        "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+        "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+        "batch_size": 128,
+        "maxlen": 32
+      }
+    },
+    {
+      "keys": [
+        "counts",
+        "documents"
+      ],
+      "expected": 64
+    },
+    {
+      "keys": [
+        "counts",
+        "reused_documents"
+      ],
+      "expected": 16
+    },
+    {
+      "keys": [
+        "counts",
+        "new_documents"
+      ],
+      "expected": 48
+    },
+    {
+      "keys": [
+        "outputs",
+        "canonical-entities.jsonl",
+        "sha256"
+      ],
+      "expected": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7"
+    },
+    {
+      "keys": [
+        "outputs",
+        "canonical-entities.jsonl",
+        "bytes"
+      ],
+      "expected": 1580994
+    },
+    {
+      "keys": [
+        "parents",
+        0,
+        "manifest_sha256"
+      ],
+      "expected": "2fc804616205ad4b84a65d2d2ca17d2aee84f36a537309e9c8e27f4bb65b503a"
+    },
+    {
+      "keys": [
+        "parents",
+        0,
+        "source_sha256"
+      ],
+      "expected": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf"
+    },
+    {
+      "keys": [
+        "parents",
+        0,
+        "input_sha256"
+      ],
+      "expected": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    {
+      "keys": [
+        "parents",
+        1,
+        "input_sha256"
+      ],
+      "expected": "b2256263e83810d4ed806d996cb3af1d5ff60c40c79e28bb6962472758e9e043"
+    },
+    {
+      "keys": [
+        "parents",
+        1,
+        "source_sha256"
+      ],
+      "expected": "7044ece577300008b6f75f35eb1224f21881a4f169821b3d2dc74560156ec7e7"
+    },
+    {
+      "keys": [
+        "train64_raw_sha256"
+      ],
+      "expected": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2"
+    },
+    {
+      "keys": [
+        "input_ids"
+      ],
+      "expected": [
+        "5425407",
+        "11235872",
+        "11765409",
+        "4607013",
+        "11203018",
+        "12628480",
+        "10313222",
+        "11919040",
+        "5789735",
+        "6338757",
+        "12811285",
+        "11826603",
+        "4644339",
+        "12846941",
+        "11906559",
+        "12078887",
+        "9327653",
+        "5970456",
+        "5473715",
+        "4678370",
+        "12110769",
+        "5866036",
+        "6048891",
+        "5773845",
+        "12250201",
+        "12386172",
+        "12110755",
+        "6057141",
+        "5763540",
+        "12059664",
+        "5452357",
+        "11196099",
+        "5422868",
+        "12118522",
+        "5574094",
+        "12405443",
+        "2964533",
+        "12646972",
+        "6063015",
+        "10553122",
+        "6390251",
+        "5959423",
+        "6134758",
+        "12334843",
+        "5575846",
+        "5793168",
+        "12891056",
+        "6491447",
+        "2866573",
+        "5023785",
+        "3563609",
+        "12455887",
+        "5537416",
+        "11871647",
+        "5538066",
+        "10789033",
+        "5415817",
+        "6219255",
+        "12652105",
+        "5368377",
+        "6059678",
+        "12444410",
+        "12798528",
+        "12779223"
+      ]
+    },
+    {
+      "keys": [
+        "counts",
+        "canonical_kept"
+      ],
+      "expected": 6064
+    }
+  ],
+  "baseline_score": 0.711353521870099,
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-outer0/endpoint",
+  "quality": "same evaluator v2 all/text; old original entity multiset and all nonentities preserved; complete freeze before unique gold evaluation",
+  "data_boundary": "cache has no task fit; exactly four input fields; outer16 object-equal subset of64 and disjoint priornested16; projection manifest retains parent64 and target16 distinct input SHAs",
+  "root_authorization": "fixed-policy migration authorized after nested positive endpoint; no new GPU or parameter selection",
+  "entry_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/run_public_phenotagger_migration.py",
+    "--plan",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-outer0/plan.json",
+    "--gold",
+    "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl"
+  ]
+}
