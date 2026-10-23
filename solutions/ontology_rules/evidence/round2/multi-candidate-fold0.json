@@ -881,5 +881,633 @@
     "same_pool_HGB": 0.7050228134357808,
     "sequence_CRF_Sap_rules": 0.711354
   },
-  "artifact_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf"
+  "artifact_root": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf",
+  "matched_without_crf_control": {
+    "manifest": {
+      "config": {
+        "training_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/calibration-manifest.json",
+        "train": "/workspace/patientphex-data/round2-inner4/fold-0/train48.jsonl",
+        "input": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+        "base": "/workspace/patientphex-runs/round2-20261023/ontology_rules/fold0-baseline/pred.jsonl",
+        "candidates": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/scored-candidates.jsonl.gz",
+        "crf": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/outer0/pred.jsonl",
+        "crf_manifest": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/outer0/work/pred-manifest.json",
+        "output": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-crf/without-crf/pred.jsonl",
+        "threshold": 0.4,
+        "without_crf": true
+      },
+      "source_sha256": "7cd9c98d2d68d4abb25f80e3b6b1812cd66de8b7afb978adc847e65ce2befc4c",
+      "dependencies": {
+        "calibrate": "b7e18879673c889eec297c86a840349b23f8be5e6b3053c12ba58754091288d6",
+        "run": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a",
+        "enhance": "f8e219f0c6af44b712639bc0433dd6faa1de4ec949d04d55e3580d28d643b7b3",
+        "merge_semantic": "7b9803ce87c404e021457b348b0be1d3710902a5851733610b36d2db84c7a797"
+      },
+      "inputs": {
+        "training_manifest": "8684c685274e767852d8effe8e21be94c00d36b280e6627533761d8f6e93ffdc",
+        "train": "d87bf189d2f861f9da759bfafd51e1384a246e087a695780a4a0cc4a335fab7d",
+        "input": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+        "base": "49126007da64a373419b4c092c770f5d7f1c4162a5e3249daa74479da83bd333",
+        "candidates": "681090cb5e3eea3b0c44b6955f38e6b025cf57c34adda555cd62febd800fccac",
+        "crf": "b161311796a76933e4b015ddfaa181b4ceea543931221a7cc5e78b35c1293531",
+        "crf_manifest": "1f35d865ede46491f091035b74e443e5573d83d0f8d4375443a08b195137f998"
+      },
+      "training_sources": [
+        {
+          "gold": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+          "base": "7ef8b73d4c91f82f3e7624ebb4c5ffe3f6d83780d5a068e48bbc724815726433",
+          "candidates": "5b5f9d758a6400cb1b91e2e8d36c6bbde06d976a28b77ad0bbd5fd84fe784d96",
+          "crf": "a4421d1996c4d2e85346489593db8d6a6367b3856ebc4896cab817147645f440",
+          "crf_manifest": "7911f670a5e65e79a3e803ba9413f51b5e991d42c37b551c85816aa11fda91d1",
+          "generator_train": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+        },
+        {
+          "gold": "d1319c1e17fb7d204532cf8f7ba0bed6d7f012e1f08eab104565a4474ef5d5bb",
+          "base": "d68bed60bf810edaf029a6ab99e311c0f4bdf49801a4c654e4ad3e2bb28bc146",
+          "candidates": "e09d4d5d16e8d8fd20037c9f5fcf25c4cb86d7d59993ee352f21a3198b7868c1",
+          "crf": "300908981d5b58d803d4bb7c1c3c29ab5d9e381acfabec79f442d66ce87e7446",
+          "crf_manifest": "ca21c712c5076e0bdc0230390442d38dbe874b6d273454d871cb3838f0ea92fc",
+          "generator_train": "2b7f9fb33dd6f9e8d1d4783745a657a5221409afd9bd3b5b5f4803796c524d9f"
+        },
+        {
+          "gold": "5206b160e4e108725201c703917030a26459def07ce3604986c3ec4cb93f8e59",
+          "base": "b44b9f058243866d12c926ab78fef55136728b745aef83f7293c3d8be3f0279d",
+          "candidates": "ded1d6202e70f4e72e13997cae06ffa35a729f4771c3499901bd422c61c8eaff",
+          "crf": "5e79c9dc3baed2116d1647d98401aff908755389d1155b36ca43d21b54835ed4",
+          "crf_manifest": "4164fdd1ad0e56199623c8f5b761a3adafcb7acd16bb8d5cc482e5c27913b8c4",
+          "generator_train": "bb14bff13c89eaf8a90e95c25bb563388612d3db36f4993a7ccd86611127a92e"
+        }
+      ],
+      "training_examples": 44986,
+      "training_positive": 2795,
+      "training_documents": 48,
+      "input_candidates": 14511,
+      "features": 82,
+      "estimator": {
+        "categorical_features": "from_dtype",
+        "class_weight": null,
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 5.0,
+        "learning_rate": 0.06,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_iter": 160,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 35,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 20261023,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "selection": "fixed threshold .4; no original dev used",
+      "output_sha256": "713596e16b04273bbcb02ae24cd46d5bd632de7c6d1d5fdac34a91e9b039c0e2",
+      "seconds": 10.594117189000826
+    },
+    "metrics": {
+      "metrics": {
+        "menF1": 0.7281323877068558,
+        "docF1": 0.7319587628865979,
+        "micF1": 0.6991869918699187,
+        "macF1": 0.6608131112797507,
+        "Score": 0.7050228134357808
+      },
+      "counts": {
+        "mention": {
+          "tp": 770,
+          "fp": 168,
+          "fn": 407,
+          "precision": 0.8208955223880597,
+          "recall": 0.6542056074766355,
+          "f1": 0.7281323877068558
+        },
+        "document": {
+          "tp": 355,
+          "fp": 50,
+          "fn": 210,
+          "precision": 0.8765432098765432,
+          "recall": 0.6283185840707964,
+          "f1": 0.7319587628865979
+        },
+        "relation": {
+          "tp": 258,
+          "fp": 101,
+          "fn": 121,
+          "precision": 0.7186629526462396,
+          "recall": 0.6807387862796834,
+          "f1": 0.6991869918699187
+        }
+      },
+      "documents": 16,
+      "patients": 47,
+      "per_document": [
+        {
+          "pmc_id": "10553122",
+          "mention": {
+            "tp": 57,
+            "fp": 9,
+            "fn": 41,
+            "precision": 0.8636363636363636,
+            "recall": 0.5816326530612245,
+            "f1": 0.6951219512195121
+          },
+          "document": {
+            "tp": 36,
+            "fp": 6,
+            "fn": 26,
+            "precision": 0.8571428571428571,
+            "recall": 0.5806451612903226,
+            "f1": 0.6923076923076923
+          },
+          "relation": {
+            "tp": 17,
+            "fp": 8,
+            "fn": 15,
+            "precision": 0.68,
+            "recall": 0.53125,
+            "f1": 0.5964912280701754
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "10789033",
+          "mention": {
+            "tp": 86,
+            "fp": 7,
+            "fn": 12,
+            "precision": 0.9247311827956989,
+            "recall": 0.8775510204081632,
+            "f1": 0.900523560209424
+          },
+          "document": {
+            "tp": 29,
+            "fp": 2,
+            "fn": 8,
+            "precision": 0.9354838709677419,
+            "recall": 0.7837837837837838,
+            "f1": 0.8529411764705882
+          },
+          "relation": {
+            "tp": 17,
+            "fp": 7,
+            "fn": 3,
+            "precision": 0.7083333333333334,
+            "recall": 0.85,
+            "f1": 0.7727272727272727
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "11196099",
+          "mention": {
+            "tp": 55,
+            "fp": 4,
+            "fn": 39,
+            "precision": 0.9322033898305084,
+            "recall": 0.5851063829787234,
+            "f1": 0.7189542483660131
+          },
+          "document": {
+            "tp": 33,
+            "fp": 1,
+            "fn": 12,
+            "precision": 0.9705882352941176,
+            "recall": 0.7333333333333333,
+            "f1": 0.8354430379746836
+          },
+          "relation": {
+            "tp": 11,
+            "fp": 1,
+            "fn": 5,
+            "precision": 0.9166666666666666,
+            "recall": 0.6875,
+            "f1": 0.7857142857142857
+          },
+          "patients": 2
+        },
+        {
+          "pmc_id": "11826603",
+          "mention": {
+            "tp": 10,
+            "fp": 2,
+            "fn": 9,
+            "precision": 0.8333333333333334,
+            "recall": 0.5263157894736842,
+            "f1": 0.6451612903225806
+          },
+          "document": {
+            "tp": 4,
+            "fp": 1,
+            "fn": 8,
+            "precision": 0.8,
+            "recall": 0.3333333333333333,
+            "f1": 0.47058823529411764
+          },
+          "relation": {
+            "tp": 0,
+            "fp": 5,
+            "fn": 4,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "11919040",
+          "mention": {
+            "tp": 45,
+            "fp": 6,
+            "fn": 16,
+            "precision": 0.8823529411764706,
+            "recall": 0.7377049180327869,
+            "f1": 0.8035714285714286
+          },
+          "document": {
+            "tp": 24,
+            "fp": 2,
+            "fn": 9,
+            "precision": 0.9230769230769231,
+            "recall": 0.7272727272727273,
+            "f1": 0.8135593220338984
+          },
+          "relation": {
+            "tp": 20,
+            "fp": 8,
+            "fn": 6,
+            "precision": 0.7142857142857143,
+            "recall": 0.7692307692307693,
+            "f1": 0.7407407407407407
+          },
+          "patients": 3
+        },
+        {
+          "pmc_id": "12444410",
+          "mention": {
+            "tp": 49,
+            "fp": 30,
+            "fn": 48,
+            "precision": 0.620253164556962,
+            "recall": 0.5051546391752577,
+            "f1": 0.5568181818181818
+          },
+          "document": {
+            "tp": 18,
+            "fp": 7,
+            "fn": 15,
+            "precision": 0.72,
+            "recall": 0.5454545454545454,
+            "f1": 0.6206896551724138
+          },
+          "relation": {
+            "tp": 6,
+            "fp": 12,
+            "fn": 10,
+            "precision": 0.3333333333333333,
+            "recall": 0.375,
+            "f1": 0.35294117647058826
+          },
+          "patients": 5
+        },
+        {
+          "pmc_id": "12652105",
+          "mention": {
+            "tp": 43,
+            "fp": 6,
+            "fn": 15,
+            "precision": 0.8775510204081632,
+            "recall": 0.7413793103448276,
+            "f1": 0.8037383177570093
+          },
+          "document": {
+            "tp": 19,
+            "fp": 2,
+            "fn": 9,
+            "precision": 0.9047619047619048,
+            "recall": 0.6785714285714286,
+            "f1": 0.7755102040816326
+          },
+          "relation": {
+            "tp": 13,
+            "fp": 1,
+            "fn": 4,
+            "precision": 0.9285714285714286,
+            "recall": 0.7647058823529411,
+            "f1": 0.8387096774193549
+          },
+          "patients": 2
+        },
+        {
+          "pmc_id": "12779223",
+          "mention": {
+            "tp": 27,
+            "fp": 6,
+            "fn": 8,
+            "precision": 0.8181818181818182,
+            "recall": 0.7714285714285715,
+            "f1": 0.7941176470588235
+          },
+          "document": {
+            "tp": 16,
+            "fp": 3,
+            "fn": 3,
+            "precision": 0.8421052631578947,
+            "recall": 0.8421052631578947,
+            "f1": 0.8421052631578947
+          },
+          "relation": {
+            "tp": 14,
+            "fp": 5,
+            "fn": 3,
+            "precision": 0.7368421052631579,
+            "recall": 0.8235294117647058,
+            "f1": 0.7777777777777778
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "3563609",
+          "mention": {
+            "tp": 44,
+            "fp": 7,
+            "fn": 26,
+            "precision": 0.8627450980392157,
+            "recall": 0.6285714285714286,
+            "f1": 0.7272727272727273
+          },
+          "document": {
+            "tp": 20,
+            "fp": 3,
+            "fn": 13,
+            "precision": 0.8695652173913043,
+            "recall": 0.6060606060606061,
+            "f1": 0.7142857142857143
+          },
+          "relation": {
+            "tp": 21,
+            "fp": 1,
+            "fn": 7,
+            "precision": 0.9545454545454546,
+            "recall": 0.75,
+            "f1": 0.84
+          },
+          "patients": 9
+        },
+        {
+          "pmc_id": "4678370",
+          "mention": {
+            "tp": 57,
+            "fp": 2,
+            "fn": 19,
+            "precision": 0.9661016949152542,
+            "recall": 0.75,
+            "f1": 0.8444444444444444
+          },
+          "document": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.7142857142857143,
+            "f1": 0.8333333333333334
+          },
+          "relation": {
+            "tp": 24,
+            "fp": 1,
+            "fn": 6,
+            "precision": 0.96,
+            "recall": 0.8,
+            "f1": 0.8727272727272727
+          },
+          "patients": 7
+        },
+        {
+          "pmc_id": "5452357",
+          "mention": {
+            "tp": 46,
+            "fp": 13,
+            "fn": 31,
+            "precision": 0.7796610169491526,
+            "recall": 0.5974025974025974,
+            "f1": 0.6764705882352942
+          },
+          "document": {
+            "tp": 14,
+            "fp": 3,
+            "fn": 21,
+            "precision": 0.8235294117647058,
+            "recall": 0.4,
+            "f1": 0.5384615384615384
+          },
+          "relation": {
+            "tp": 5,
+            "fp": 11,
+            "fn": 9,
+            "precision": 0.3125,
+            "recall": 0.35714285714285715,
+            "f1": 0.3333333333333333
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "5537416",
+          "mention": {
+            "tp": 74,
+            "fp": 30,
+            "fn": 48,
+            "precision": 0.7115384615384616,
+            "recall": 0.6065573770491803,
+            "f1": 0.6548672566371682
+          },
+          "document": {
+            "tp": 40,
+            "fp": 10,
+            "fn": 25,
+            "precision": 0.8,
+            "recall": 0.6153846153846154,
+            "f1": 0.6956521739130435
+          },
+          "relation": {
+            "tp": 37,
+            "fp": 14,
+            "fn": 14,
+            "precision": 0.7254901960784313,
+            "recall": 0.7254901960784313,
+            "f1": 0.7254901960784313
+          },
+          "patients": 2
+        },
+        {
+          "pmc_id": "5575846",
+          "mention": {
+            "tp": 80,
+            "fp": 11,
+            "fn": 40,
+            "precision": 0.8791208791208791,
+            "recall": 0.6666666666666666,
+            "f1": 0.7582938388625592
+          },
+          "document": {
+            "tp": 36,
+            "fp": 2,
+            "fn": 24,
+            "precision": 0.9473684210526315,
+            "recall": 0.6,
+            "f1": 0.7346938775510204
+          },
+          "relation": {
+            "tp": 23,
+            "fp": 8,
+            "fn": 16,
+            "precision": 0.7419354838709677,
+            "recall": 0.5897435897435898,
+            "f1": 0.6571428571428571
+          },
+          "patients": 4
+        },
+        {
+          "pmc_id": "5959423",
+          "mention": {
+            "tp": 40,
+            "fp": 25,
+            "fn": 20,
+            "precision": 0.6153846153846154,
+            "recall": 0.6666666666666666,
+            "f1": 0.64
+          },
+          "document": {
+            "tp": 14,
+            "fp": 3,
+            "fn": 15,
+            "precision": 0.8235294117647058,
+            "recall": 0.4827586206896552,
+            "f1": 0.6086956521739131
+          },
+          "relation": {
+            "tp": 16,
+            "fp": 13,
+            "fn": 11,
+            "precision": 0.5517241379310345,
+            "recall": 0.5925925925925926,
+            "f1": 0.5714285714285714
+          },
+          "patients": 6
+        },
+        {
+          "pmc_id": "6338757",
+          "mention": {
+            "tp": 38,
+            "fp": 7,
+            "fn": 12,
+            "precision": 0.8444444444444444,
+            "recall": 0.76,
+            "f1": 0.8
+          },
+          "document": {
+            "tp": 26,
+            "fp": 4,
+            "fn": 5,
+            "precision": 0.8666666666666667,
+            "recall": 0.8387096774193549,
+            "f1": 0.8524590163934426
+          },
+          "relation": {
+            "tp": 24,
+            "fp": 6,
+            "fn": 2,
+            "precision": 0.8,
+            "recall": 0.9230769230769231,
+            "f1": 0.8571428571428571
+          },
+          "patients": 1
+        },
+        {
+          "pmc_id": "6491447",
+          "mention": {
+            "tp": 19,
+            "fp": 3,
+            "fn": 23,
+            "precision": 0.8636363636363636,
+            "recall": 0.4523809523809524,
+            "f1": 0.59375
+          },
+          "document": {
+            "tp": 11,
+            "fp": 1,
+            "fn": 11,
+            "precision": 0.9166666666666666,
+            "recall": 0.5,
+            "f1": 0.6470588235294118
+          },
+          "relation": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.625,
+            "f1": 0.7692307692307693
+          },
+          "patients": 1
+        }
+      ],
+      "evaluator_version": "patientphex-public-approx-v2",
+      "result_type": "local_public_rule_approximation_not_official",
+      "configuration": {
+        "body_scope": "all",
+        "unlinked_document_mode": "text",
+        "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+        "duplicate_entities": "deduplicated by span and split HPO ID",
+        "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+        "empty_patient_f1": 1.0
+      },
+      "caveats": [
+        "Official evaluator source is unavailable; these numbers are not official scores.",
+        "Default all includes every input passage for a consistent local comparison; exact official body filtering is unknown.",
+        "body mode is a declared heuristic excluding title/abstract/references and selected metadata, not confirmed official behavior.",
+        "Official document-level representation of -1 is unspecified; text/shared_id/ignore sensitivity is reported.",
+        "NO entities are excluded; unlinked gold mention matching is span-only and one-to-one, while linked gold still requires its HPO ID.",
+        "v2 splits syntactically valid HPO compound relation IDs; MESH/mixed/text values stay verbatim. HPO alt IDs are not canonicalized.",
+        "Global empty-set precision/recall/F1 are defined as 1; official public text only specifies this convention for individual patients."
+      ],
+      "sensitivity": {
+        "unlinked_doc_ignore": {
+          "menF1": 0.7281323877068558,
+          "docF1": 0.7545164718384697,
+          "micF1": 0.6991869918699187,
+          "macF1": 0.6608131112797507,
+          "Score": 0.7106622406737487
+        },
+        "unlinked_doc_shared_id": {
+          "menF1": 0.7281323877068558,
+          "docF1": 0.7473684210526316,
+          "micF1": 0.6991869918699187,
+          "macF1": 0.6608131112797507,
+          "Score": 0.7088752279772892
+        },
+        "scope_body": {
+          "menF1": 0.7247956403269755,
+          "docF1": 0.744136460554371,
+          "micF1": 0.6991869918699187,
+          "macF1": 0.6608131112797507,
+          "Score": 0.707233051007754
+        },
+        "strict_unlinked_identifier": {
+          "menF1": 0.7271867612293145,
+          "docF1": 0.7319587628865979,
+          "micF1": 0.6991869918699187,
+          "macF1": 0.6608131112797507,
+          "Score": 0.7047864068163955
+        }
+      },
+      "gold_sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+      "prediction_sha256": "713596e16b04273bbcb02ae24cd46d5bd632de7c6d1d5fdac34a91e9b039c0e2"
+    },
+    "byte_identical_to_old_single": true
+  }
 }

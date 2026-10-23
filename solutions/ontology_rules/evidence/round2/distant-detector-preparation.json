@@ -838,5 +838,54 @@
     ],
     "same_pool_legacy_comparator": "old Sap LR probability .65 similarity .92 augment; old entity-only abbr and multi-CRF tree also reported",
     "budget": "one innerfold0 GPU run estimated2-3min, no dev evaluation without multi-fold support"
+  },
+  "positive_count_reconciliation": {
+    "raw_positive_entities": 3612,
+    "unique_positive_spans": 3609,
+    "duplicates": [
+      {
+        "pmc_id": "12811285",
+        "offset": 438,
+        "length": 20,
+        "first_identifier": "HP:0012759",
+        "duplicate_identifier": "HP:0001263",
+        "same_text": true,
+        "same_note": true
+      },
+      {
+        "pmc_id": "5415817",
+        "offset": 13928,
+        "length": 25,
+        "first_identifier": "HP:0001928",
+        "duplicate_identifier": "HP:0001928",
+        "same_text": true,
+        "same_note": true
+      },
+      {
+        "pmc_id": "5789735",
+        "offset": 8131,
+        "length": 39,
+        "first_identifier": "HP:0005033",
+        "duplicate_identifier": "HP:0005033",
+        "same_text": true,
+        "same_note": true
+      }
+    ]
+  },
+  "cpu_runtime_preflight": {
+    "token_lengths": {
+      "train-rows.jsonl.gz": {
+        "rows": 64036,
+        "max_span_tokens": 31
+      },
+      "input-rows.jsonl.gz": {
+        "rows": 87134,
+        "max_span_tokens": 23
+      }
+    },
+    "masked_HPO_occurrence_gradient_zero": true,
+    "NO_gradient_negative_prediction": true,
+    "positive_gradient_positive_prediction": true,
+    "cuda_devices_visible": 0
   }
 }

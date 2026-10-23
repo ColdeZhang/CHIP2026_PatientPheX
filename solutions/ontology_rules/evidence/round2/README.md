@@ -10,6 +10,7 @@
 - [CE3epoch负结果](context-ce-epoch3.json)、[CRF多来源候选树](multi-candidate-fold0.json)：完整对照与来源隔离，未达标。
 - [A800运行时实测](a800-runtime-verification.json)：CUDA矩阵、Qwen全模型加载与最小生成通过。
 - [远监督双头检测准备](distant-detector-preparation.json)：CPU构造和隔离审核，训练尚未运行，不能当性能证据。
+- [CRF token/link置信度](crf-confidence-fold0.json)：来源与匹配控制字节复现，fold0 .714808，尚待另一外折复验。
 - [首个GPU作业](gpu-job.json)：启动命令、固定GPU与managed进程；后续作业详见实验与外部manifest。
 
 本目录只存小型证据。模型、全量预测、候选与完整日志保存在方案台账所列外部目录；当前未达0.8，不上传官方。

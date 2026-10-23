@@ -28,6 +28,22 @@ def checked_crf(prediction, manifest, generator_train, input_path, allowed_train
     return pred
 
 
+def with_confidence(predictions, path, prediction_path):
+    if not path:
+        return predictions
+    m = json.loads(Path(path).with_suffix('.manifest.json').read_text())
+    assert m['inputs']['prediction'] == single.baseline.sha256(prediction_path)
+    assert m['output_sha256'] == single.baseline.sha256(path)
+    key = lambda e: (e['offset'], e['length'], e['identifier'])
+    scores = {r['pmc_id']: {key(c): c for c in r['candidates']} for r in single.baseline.read_jsonl(path)}
+    assert set(scores) == set(predictions)
+    for did, pred in predictions.items():
+        assert set(scores[did]) == {key(e) for e in pred['entities']}
+        pred['entities'] = [dict(e, crf_ner=scores[did][key(e)]['ner_probability'],
+                                crf_link=scores[did][key(e)]['link_similarity']) for e in pred['entities']]
+    return predictions
+
+
 def pool(doc, base, raw, crf):
     key = lambda c: (c['offset'], c['length'], c['identifier'])
     cs = {key(c): dict(c, crf=False, semantic_source=True)
@@ -36,6 +52,7 @@ def pool(doc, base, raw, crf):
     for e in crf['entities']:
         if key(e) in cs:
             cs[key(e)]['crf'] = True
+            cs[key(e)].update({k: e[k] for k in ['crf_ner', 'crf_link'] if k in e})
         else:
             cs[key(e)] = dict(e, probability=.5, similarity=0., exact=False,
                              is_base=False, crf=True, semantic_source=False)
@@ -46,7 +63,8 @@ def pool(doc, base, raw, crf):
 
 def features(doc, c, base):
     return single.features(doc, c, base) | {k: c[k] for k in
-                                          ['crf', 'crf_span', 'semantic_source']}
+                                          ['crf', 'crf_span', 'semantic_source']} | {
+                                              k: c.get(k, 0.) for k in ['crf_ner', 'crf_link']}
 
 
 def main():
@@ -55,6 +73,8 @@ def main():
                  'crf', 'crf-manifest', 'output']:
         ap.add_argument('--' + name, required=True)
     ap.add_argument('--threshold', type=float, default=.4)
+    ap.add_argument('--without-crf', action='store_true', help='Matched label-union control without the additional source')
+    ap.add_argument('--crf-confidence')
     a = ap.parse_args()
     started = time.monotonic()
     sha = single.baseline.sha256
@@ -75,17 +95,20 @@ def main():
         seen |= set(docs)
         crfs = checked_crf(spec['crf'], spec['crf_manifest'],
                            spec['generator_train'], spec['input'], set(train))
+        crfs = with_confidence(crfs, spec.get('crf_confidence'), spec['crf'])
         for did, doc in docs.items():
             assert doc == train[did]
             truth = {}
             for e in doc['entities']:
                 if str(e.get('note', '')).upper() != 'NO':
                     truth.setdefault((e['offset'], e['length']), set()).update(e['identifier'].split(';'))
-            for c in pool(doc, bases[did], raw[did], crfs[did]):
+            for c in pool(doc, bases[did], raw[did], {'entities': []} if a.without_crf else crfs[did]):
                 ids = truth.get((c['offset'], c['length']), set())
                 ys.append(bool(ids and ('-1' in ids or set(c['identifier'].split(';')) <= ids)))
                 xs.append(features(doc, c, bases[did]))
         sources.append({k: sha(spec[k]) for k in ['gold', 'base', 'candidates', 'crf', 'crf_manifest', 'generator_train']})
+        if spec.get('crf_confidence'):
+            sources[-1]['crf_confidence'] = sha(spec['crf_confidence'])
     assert seen == set(train)
     vec = single.DictVectorizer(sparse=False)
     matrix = vec.fit_transform(xs)
@@ -94,9 +117,10 @@ def main():
         random_state=20261023, early_stopping=False).fit(matrix, ys)
     bases, raw = keyed(a.base), single.read_candidates(a.candidates)
     crfs = checked_crf(a.crf, a.crf_manifest, a.train, a.input, set(train))
+    crfs = with_confidence(crfs, a.crf_confidence, a.crf)
     prediction, candidate_count = [], 0
     for did, doc in inputs.items():
-        cs = pool(doc, bases[did], raw[did], crfs[did]); candidate_count += len(cs)
+        cs = pool(doc, bases[did], raw[did], {'entities': []} if a.without_crf else crfs[did]); candidate_count += len(cs)
         probabilities = model.predict_proba(vec.transform([features(doc, c, bases[did]) for c in cs]))[:, 1]
         selected = []
         for c, p in sorted(zip(cs, probabilities), key=lambda cp: (-cp[1], -cp[0]['length'], cp[0]['offset'])):
@@ -116,6 +140,8 @@ def main():
         'features': len(vec.feature_names_), 'estimator': model.get_params(),
         'selection': 'fixed threshold .4; no original dev used',
         'output_sha256': sha(out), 'seconds': time.monotonic() - started}
+    if a.crf_confidence:
+        manifest['inputs']['crf_confidence'] = sha(a.crf_confidence)
     out.with_suffix('.manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     print(json.dumps(manifest))
 
