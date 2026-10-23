@@ -17,19 +17,24 @@ def read(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for name in ['train', 'excluded-input', 'nested-train', 'model-dir', 'tokenizer-dir', 'output-dir']:
+    for name in ['train', 'excluded-input', 'model-dir', 'tokenizer-dir', 'output-dir']:
         parser.add_argument('--'+name, required=True)
+    parser.add_argument('--nested-train')
+    parser.add_argument('--training-part', choices=['train48', 'train64'], default='train48')
     args = parser.parse_args()
     import torch
     torch.set_num_threads(1)
     random.seed(20261023)
     torch.manual_seed(20261023)
     start = time.monotonic()
-    docs, excluded, nested = read(args.train), read(args.excluded_input), read(args.nested_train)
+    docs, excluded = read(args.train), read(args.excluded_input)
+    assert bool(args.nested_train) == (args.training_part == 'train48')
+    nested = read(args.nested_train) if args.nested_train else []
     ids = {str(d['pmc_id']) for d in docs}
     excluded_ids = {str(d['pmc_id']) for d in excluded}
     nested_ids = {str(d['pmc_id']) for d in nested}
-    assert len(ids) == len(docs) == 48 and len(nested_ids) == len(nested) == 32
+    assert len(ids) == len(docs) == {'train48': 48, 'train64': 64}[args.training_part]
+    assert len(nested_ids) == len(nested) == (32 if args.training_part == 'train48' else 0)
     assert nested_ids < ids and not ids & excluded_ids
     assert all('entities' not in d and 'association' not in d for d in excluded)
     full_by_id = {str(d['pmc_id']): d for d in docs}
@@ -115,18 +120,20 @@ def main():
         per_doc.append({'pmc_id': str(doc['pmc_id']), 'counts': dict(count)})
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
-    datasets = {'train48': rows, 'nested_train32': [r for r in rows if r['pmc_id'] in nested_ids],
-                'nested_validation16': [r for r in rows if r['pmc_id'] not in nested_ids]}
+    datasets = {args.training_part: rows}
+    if nested_ids:
+        datasets.update(nested_train32=[r for r in rows if r['pmc_id'] in nested_ids],
+                        nested_validation16=[r for r in rows if r['pmc_id'] not in nested_ids])
     artifacts = {}
     for name, values in datasets.items():
         path = out/(name+'.jsonl')
         path.write_text(''.join(json.dumps(r, ensure_ascii=False)+'\n' for r in values))
         artifacts[name] = {'path': str(path), 'rows': len(values), 'sha256': sha(path),
                            'bytes': path.stat().st_size, 'pmc_ids': sorted({r['pmc_id'] for r in values})}
-    report = {'scope': 'official outer train48 span alignment, no outer-fold0/dev gold',
+    report = {'scope': f'official {args.training_part} span alignment, no excluded-input gold',
               'configuration': vars(args), 'source_sha256': sha(__file__),
               'pilot_dependency_sha256': sha(run_gliner_pilot.__file__),
-              'files': {k: sha(getattr(args, k)) for k in ['train', 'excluded_input', 'nested_train']},
+              'files': {k: sha(getattr(args, k)) for k in ['train', 'excluded_input', 'nested_train'] if getattr(args, k)},
               'model_weights_sha256': sha(Path(args.model_dir)/'pytorch_model.bin'),
               'model_parameters': sum(p.numel() for p in model.parameters()),
               'totals': dict(totals), 'per_document': per_doc, 'artifacts': artifacts,

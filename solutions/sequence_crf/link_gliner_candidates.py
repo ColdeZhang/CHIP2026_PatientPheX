@@ -37,7 +37,7 @@ def main():
     training = json.loads(Path(args.span_training_manifest).read_text())
     prepared = json.loads(Path(args.span_data_manifest).read_text())
     training_part = training['fingerprint']['configuration'].get('training_part', 'nested_train32')
-    assert training_part in {'nested_train32', 'train48'}
+    assert training_part in {'nested_train32', 'train48', 'train64'}
     assert training['fingerprint']['data_manifest_sha256'] == sha(args.span_data_manifest)
     assert training['fingerprint']['train_sha256'] == prepared['artifacts'][training_part]['sha256']
     assert training['epoch_results'][-1]['model_sha256'] == freeze['model_sha256']

@@ -1,0 +1,50 @@
+{
+  "frozen_at_utc": "2026-10-23T17:49:55.490700+00:00",
+  "scope": "full originaltrain64 fresh10ep, only finaldev; development control, notblind",
+  "authorization": "root after nested32/outer48/originaldevtransfer positive evidence; max45min GPU training cap",
+  "train_sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2",
+  "excluded_dev_input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "source": {
+    "prepare_gliner_supervised.py": "f71f90a37025a849a6c46b440dbb8ce4941b46a33821e4c132f353a87e31a9a4",
+    "train_gliner_supervised.py": "70c5a2ea93b00b3d8dfbe6bfb9183f57ef122406e1fc33b46ac4a7b4371eb5a9",
+    "run_gliner_pilot.py": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+    "link_gliner_candidates.py": "6af88b2d47585ff701e4421074a491b623e4c10935817ec4f1585ca7eeb6b80a",
+    "assemble_gliner_transfer.py": "ee5073bc2453bf7d65b6828cd2d316a25d3edb6bdb4bb220499b2665f61b9e0d"
+  },
+  "training": {
+    "part": "train64",
+    "documents": 64,
+    "windows": "measure exact before GPU",
+    "epochs": 10,
+    "batch_size": 4,
+    "encoder_lr": 1e-05,
+    "other_lr": 5e-05,
+    "warmup_fraction": 0.05,
+    "weight_decay": 0.01,
+    "seed": 20261023,
+    "precision": "float32",
+    "clip": 1,
+    "loss": "unchanged explicit validspan BCE mean",
+    "initialization": "fresh public47e5299ff9c1da4d1b810b2f031a4003cbd760cf9a7913ce595405e795a31a91; never48trainedweight",
+    "checkpoint": "uniqueepoch10 only; atomiclatest+final; pruneSHAchecked previousweights"
+  },
+  "data_policy": "unchanged actualtoken384/regexwordspanwidth12/12wordoverlap; count/skipunrepresentable positives, never snap; NOtargetsnegative; allactualtensor checks; explicitlyexclude16dev",
+  "controls": {
+    "previous48_fullLR_score": 0.7113249915024389,
+    "same_runtime48_inference": "copyour25bb0b35final from.100to.3, verifyallSHA+closetemporaryserver; sameinput/decoder",
+    "base_prediction": "original CRF+SapLR55f4305e unchanged for both48/64 comparisons",
+    "postprocessing": "fixed Sap64p.65/cos.92+originalnegation/nonoverlap andLR64.55; no extra threshold/epoch/alias choice",
+    "zeroshot": "not repeated"
+  },
+  "resource": {
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "python": "/home/zhangyuheng/miniconda3/envs/gptsovits/bin/python",
+    "pythonpath": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime",
+    "hard_training_timeout_seconds": 2700,
+    "estimated_minutes": "22-30; measuredafterdata/smoke",
+    "handoff": "ontology combinedSap finished; freshcheckbeforeownGPU"
+  },
+  "status": "CPUpreparation only; actualalignment/runtime/budgetcounts pending",
+  "external_root": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-full64"
+}

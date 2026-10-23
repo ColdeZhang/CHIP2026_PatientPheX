@@ -72,7 +72,7 @@ def main():
     parser.add_argument('--smoke-only', action='store_true')
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--epochs', type=int, choices=[2, 10], default=2)
-    parser.add_argument('--training-part', choices=['nested_train32', 'train48'], default='nested_train32')
+    parser.add_argument('--training-part', choices=['nested_train32', 'train48', 'train64'], default='nested_train32')
     parser.add_argument('--prune-old-epochs', action='store_true',
                         help='Keep only latest model/state after atomic checkpoint save; record old hashes.')
     args = parser.parse_args()
@@ -89,7 +89,7 @@ def main():
     ids = {r['pmc_id'] for r in rows}
     excluded = [json.loads(x) for x in Path(args.excluded_input).read_text().splitlines()]
     assert all('entities' not in d and 'association' not in d for d in excluded)
-    assert ids == set(expected['pmc_ids']) and len(ids) == (32 if args.training_part == 'nested_train32' else 48)
+    assert ids == set(expected['pmc_ids']) and len(ids) == {'nested_train32': 32, 'train48': 48, 'train64': 64}[args.training_part]
     assert not ids & {str(d['pmc_id']) for d in excluded}
     if args.training_part == 'nested_train32':
         assert {str(d['pmc_id']) for d in excluded} == set(data['artifacts']['nested_validation16']['pmc_ids'])
