@@ -46,4 +46,6 @@
 
 - `gliner-long10ep-plan.json` / `gliner-long10ep-results.json`：同A800 fresh10固定预算开发对照、逐轮训练诊断/最终纯跨度增量、独审与GPU释放/保留检查点。
 
-- `gliner-link-plan.json` / `gliner-link-results.json`：固定epoch10＋同nested32 Sap过滤全链控制，69新增/四项得分/冻结SHA，独审进行中。
+- `gliner-link-plan.json` / `gliner-link-results.json`：固定epoch10＋同nested32 Sap过滤全链控制，69新增/四项得分/冻结SHA，独审已通过。
+
+- `gliner-outer0-plan.json`：outer48固定10ep正式A30作业、源/模型/1744窗/预算/真实smoke和恢复入口；运行中不代表新分数。
