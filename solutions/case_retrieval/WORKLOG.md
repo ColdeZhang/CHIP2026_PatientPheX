@@ -9,7 +9,7 @@
 - **最新可信内部结果**：抽取LoRA+冻结Sap筛选给CRF+Sap新增18跨度（含HPO12TP/6FP）。原规则关系不变的实体消融 .711354→**.714060535**；同本路线k21/.35完整关联 .657639→**.662396726**。12产物独立逐字节重装、评测/覆盖/格式全部通过，不能把两种关系配置混为同一对照。
 - **最新结论**：9B微调能降低关系FP，但直接替换仍损召回；原dev微调271TP/64FP/182FN vs fullLR331/203/122。204严格OOF base决策作为4事实的固定HGB对照也负：无LLM .653192→有LLM .649124，低于内fold0 rules .711354。均冻结，不依据heldout调阈值。
 - **跨折复验**：固定抽取+Sap筛选fold1的规则关系不变实体消融 .644796→.643815；同k21/.35完整链 .619760→.622463。未重现稳定实体收益，不扫阈值/epoch；7臂0错警，具体见证据。
-- **当前任务**：root已批准严格二层CPU单折校准：F1选固定.10:.05:.90阈值，再作用原withoutLLM full48/outer0，原.5保留。full64关系SFT265行/864937tokens/68更新已备，独立trainer cap6400；root批准新最长6153成本通过后fresh2ep、训练60min硬cap。18:52恢复核验A800新目录为空/目标卡空，无遗留probe。新trainer CPU和数据/guard独审通过；6153最长实际单步11.663秒、allocated38.14GB/reserved43.66GB，无OOM，probe已释放。下一步fresh2ep60min；不从probe或旧48adapter继续。
+- **当前任务**：fresh full64关系SFT实际运行中；A800 GPU2 `proc_ccb3fa32-ddf7-424e-b15f-a3c9a7003ef8` 于18:55:25 UTC启动，19:55:25 UTC训练硬截止（TERM后30秒KILL）。独立CPU/data/guard审查与6153最长fresh probe均已通过；265行×2ep、68updates/4warmup、cap6400只拒超限，唯一epoch002，不续旧48或probe。正式已进入训练；尚无完成或质量结论。恢复入口外存`full64-relation-cpu-preparation/formal-job.json`与`formal-monitor.json`，本地watcher8857，勿重复启动。
 - **补充固定并集也负**：内fold0 rules∪9B SFT .711354→.704652，15新增只有1TP/14FP；实体不变，无门控/阈值策略，关闭且不评原dev。
 - **严格CPU校准已结案**：F1 meta-val固定grid选.30，outer旧.5 .653192→.3 .669003，但低rules .711354，关闭且不迁移原dev。实际2506训练行/594正/297列，完整CPU约44秒，无GPU；原模型/基线字节未变，见[结果](evidence/round2/strict-meta-calibration-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
@@ -36,4 +36,4 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `f1a2c35`（两终点/固定关系并集负；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近已核验远端检查点 `d0513c2`（严格CPU校准终点/full64实际成本；此前144325e正常merge main@512cf8d共享规则），本台账允许滞后自身提交；实际新增变更需按关键阶段继续commit/push。大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。

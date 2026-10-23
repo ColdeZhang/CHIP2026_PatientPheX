@@ -36,3 +36,7 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 ### Transformers 5 的加载报告类型
 
 实际Qwen3.5加载报告中的missing/unexpected键集合使用set，直接json.dumps会在已加载权重后报错，尚未进入模型forward。证据编码器只将set/frozenset按repr排序成数组，保留成员与错误断言，不用str()吞未知类型；记录原失败，新输出目录重试。不能因保存报告失败就把模型接口判负，也不能因此跳过missing/mismatch/参数计数核验。来源见E-008及qwen35-loading-info-fix.json。
+
+### 二层校准须隔离候选生成器
+
+普通OOF行不能再次随意拆分作为meta训练/验证：生成其他训练行候选的模型可能已经见过meta验证文献。严格校准须在meta训练文献内重新生成OOF候选，vectorizer也只fit meta训练，不能为凑齐旧特征列数引入heldout词表。本次train32/meta16选定阈值.30，再固定作用原full48树，外层Score由.653192升至.669003，仍低同实体规则.711354；按停止条件关闭、不移原dev。单折校准有方差，外层此前参与过研究，不能把此结果写成盲测或把改善弱基线写成超过强基线。见[E-008的r2-18记录](experiments/E-20261023-008.md)及[小证据](evidence/round2/strict-meta-calibration-result.json)。

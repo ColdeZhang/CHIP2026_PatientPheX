@@ -1,0 +1,38 @@
+{
+  "status": "running_not_quality_result",
+  "source_root": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation",
+  "job": {
+    "at_utc": "2026-10-23T18:55:25.615213+00:00",
+    "deadline_utc": "2026-10-23T19:55:25.615213+00:00",
+    "job": {
+      "command": "/usr/bin/timeout --signal=TERM --kill-after=30s 3600 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u full64-relation-cpu-preparation/entry/train_qwen35_full64.py --mode train --train full64-relation-cpu-preparation/train.jsonl --excluded-input full64-relation-cpu-preparation/excluded.input.jsonl --data-manifest full64-relation-cpu-preparation/preparation-manifest.json --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc --output-dir full64-relation-cpu-preparation/formal2ep",
+      "id": "proc_ccb3fa32-ddf7-424e-b15f-a3c9a7003ef8",
+      "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+      "pid": 54020,
+      "port": 45573,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-23T18:55:25.466636769Z"
+    },
+    "plan_sha256": "5f36de31452a4666b31454c38c0c903f15a29a5203d4e55cd8785a1fd5e1cd25",
+    "guard_review_sha256": "8e33f406e3685e05233afdf56ddb2763352287a6154d5d7983e1b67614641d5f",
+    "probe_complete_sha256": "073446054cdff389dbca653bac7a89cdd19bfe27c617d6b5fb20fa33f5c7d8a1"
+  },
+  "formal_job_sha256": "8b0952ea4cd29241630a5df846556c824fafc7c9ada824040911e246b6da9281",
+  "fresh_public_base": true,
+  "reuse_old48_or_probe_adapter": false,
+  "epochs": 2,
+  "training_rows": 265,
+  "training_docs": 64,
+  "microbatches": 530,
+  "optimizer_updates": 68,
+  "warmup_updates": 4,
+  "max_length_reject_only": 6400,
+  "actual_max_tokens": 6153,
+  "hard_timeout_seconds": 3600,
+  "term_kill_grace_seconds": 30,
+  "checkpoint_selection": "unique epoch-002; no quality-based checkpoint selection",
+  "scope_caveat": "Both SFT documents 48→64 and OOF candidate generators 32→48 change; not a sample-count-only causal comparison.",
+  "progress_file_external": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal-monitor.json",
+  "no_official_submission": true
+}

@@ -73,5 +73,8 @@
 
 - `strict-meta-calibration-cpu-proposal.json`：严格train32/meta16单折校准的来源矩阵、两个缺失CPU CRF16与可复用语义池；仅CPU可行性，未fit/选阈值。
 
-- `strict-meta-calibration-run-plan.json`：root授权固定17点F1-only阈值选择、原.5保留、实际6池来源已回收；CPU即将运行。
+- `strict-meta-calibration-run-plan.json`：运行前冻结的17点F1-only阈值选择、原.5保留与6池来源；实际终点见下项。
+- [strict-meta-calibration-result.json](strict-meta-calibration-result.json)：严格train32/meta16选择.30，原full48树外层Score .653192→.669003，仍低同实体规则.711354；CPU44.24秒、冻结顺序与产物SHA，关闭、不移原dev。
 - `qwen35-full64-cpu-plan.json`：合法四折265行/6153最长/68更新的新独立协议；cap6400、不继承48adapter，成本probe与60分钟正式预算授权，尚未GPU。
+
+- [fresh full64 正式启动](qwen35-full64-training-start.json)：265×2/68updates，18:55:25 UTC启动、60分钟训练硬cap；仅运行状态，无质量结果。
