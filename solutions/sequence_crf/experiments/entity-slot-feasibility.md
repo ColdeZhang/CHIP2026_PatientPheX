@@ -36,3 +36,14 @@
 固定门控 CPU 新fit **2.048秒**，fit+推断+分词+回载总 **17.159秒**。77自然列，模型回载两集合全部概率exact。训练候选缩至 **2,430（1,645正/785负）**，训练正例保留95.584%；637提示/460,069tokens/最长2,418。F1仅input缩至1,589候选/398提示/295,155tokens/最长2,810，所有文献仍有候选。未知F1保留正例覆盖，不能用训练95.6%代替它。
 
 根已条件授权A100 GPU2一次**总120秒probe**，正式训练未获准：最短259token/1正槽、最长train2418token/20槽15正，各一步非零lr更新；最长F1 2810token/23槽只forward检查shape/finite，不保存分数。行按输入长度选，非标签筛选。固定源完整复制至自有目录，复用未改的load/slot/loss数学；实际远端AutoTokenizer再核3条输入，native全logit/指定slot对照、LoRA各family真实更新、LMhead不变。115秒主cap+5秒TERM/KILL，全部状态丢弃。未来若训练须fresh2epoch/r16/alpha32/.05、batch1/accum8、lr1e-4等事前配方，依据实测重新定总预算，不能从probe自动续训。[probe计划](../evidence/round2/entity-slot-gate-probe-plan.json)。
+
+## 实际短检查完成，正式训练待预算决定
+
+同一公开9B fresh加载、actual15模型文件完整SHA通过，A100 Torch2.6/TF5.20.2/PEFT.21.2；唯一进程 `proc_76a0782e-90c8-44e5-87bb-84750644eea9` 在 **84.067秒** 内完成（含校验和加载），没有保存adapter/optimizer。23:02:01.597Z fresh检查GPU2无进程。
+
+- 最短训练行259tokens：一步 **2.545秒**；最长2418tokens：一步 **4.348秒**，峰分配 **20.972GB**。两步各LoRA三模块家族有有限非零梯度和真实更新，冻结head无梯度/字节不变。长步使用短步更新后的probe状态，不称fresh训练质量。
+- 最短行native完整logit与指定slot完全一致，错用causal `s-1` 差2.375；3条实际TF tokenizer输入/位置与本地编码exact，合成正负梯度方向通过。
+- 最长F1无标签输入2810tokens只前向 **.619秒**，形状和finite通过；没有保存概率，不评价质量。
+- 按长步纯token外推2epoch约 **27.58分钟**；考虑两点截距的估计约 **62分钟**。短步含首次Adam分配、正式accum8又会减少optimizer调用，两个端点不能确定稳态吞吐，因此不沿用早先22–30分钟承诺，也不据此自动开训。
+
+新数据独审 `3009d56c` PASS：原pool与H40三链、固定门控、1035条提示/全部token位置、翻转标签/污染metadata不进入输入逐项复核；未fit/GPU/读F1金标。实际probe增量审由验证代理收尾。完整恢复与成本边界见 [probe结果](../evidence/round2/entity-slot-probe-results.json)。当前best、原dev和官方提交均未改变。

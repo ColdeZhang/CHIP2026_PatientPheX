@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**新实体问题槽仅CPU可行性准备**：严格F3→F2/F2→F3训练候选，全池28,933/1,747提示/3.624M tokens；F1仅input15,827/934/1.955M。43.94秒普查与124旧实际token编码一致，无新质量/GPU；全训成本约3–4小时，不建议直接开跑。唯一train32 HGB p≥.1门控17.159秒完成，筛至2,430候选/460,069tokens，训练正例保留95.584%（resubstitution，非F1召回）。下一仅A100一次≤120秒数值/成本probe，计划已冻，正式训练未获准。[短设计与隔离说明](experiments/entity-slot-feasibility.md)、[证据](evidence/round2/entity-slot-feasibility.json)。
+**新实体问题槽仅CPU可行性准备**：严格F3→F2/F2→F3训练候选，全池28,933/1,747提示/3.624M tokens；F1仅input15,827/934/1.955M。43.94秒普查与124旧实际token编码一致，无新质量/GPU；全训成本约3–4小时，不建议直接开跑。唯一train32 HGB p≥.1门控17.159秒完成，筛至2,430候选/460,069tokens，训练正例保留95.584%（resubstitution，非F1召回）。A100唯一probe84.067秒PASS/已释放：short2.545秒、long4.348秒/峰20.972GB；相同token少时固定开销明显，两epoch粗估27.6–62min，正式训练未获准。数据独审3009d56c通过，actual增量审收尾。[短设计与隔离说明](experiments/entity-slot-feasibility.md)、[证据](evidence/round2/entity-slot-feasibility.json)。
 
 **公开pair路线最后旧池控制已负结案。** 原Bioformer旧pool244794行、旧字段/顺序不变，只加同3均值；4fit64.88秒、九cut1.11秒，统一选.3，实体目标 **.780192596→.777836002**（−.002356594），三fold负；mention净−21TP/+16FP、doc净−4TP/−3FP。关系/非实体对象保留，无新NN/原dev，关闭本配方不扫。独立终审35d9e67e通过：244794旧字段/3均值全核、fold0唯一重fit/预测exact、36decode曲线exact、format0。当前无活动进程。[完整结果/恢复](evidence/round2/phenobert-old-pool-results.json)、[方法](experiments/phenobert-old-pool-control.md)。
 

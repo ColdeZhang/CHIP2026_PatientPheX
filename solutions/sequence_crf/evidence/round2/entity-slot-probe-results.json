@@ -1,0 +1,73 @@
+{
+  "status": "PASS numerical/resource probe; no formal training or new quality",
+  "actual_complete": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/terminal/complete.json",
+    "bytes": 841,
+    "sha256": "81255ea12ffe9f95290ee23c294607ccc6447d6d86121c7031551b9ca8543cc4"
+  },
+  "model_and_runtime": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/terminal/run_manifest.json",
+    "bytes": 54851,
+    "sha256": "54e40225defa9b43ae7a18f6eeae430c5c6991e6631b24f34a5b860378c0a916"
+  },
+  "equivalence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/terminal/equivalence.json",
+    "bytes": 156,
+    "sha256": "5f72012c177d9d7fc0a11a35e3980aff60f2fd8c00c61c56aaf5e2667cd6ec67"
+  },
+  "gpu_release": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/terminal/gpu-release.json",
+    "bytes": 125,
+    "sha256": "a525c70988d0cf8a34b64c56657fe52567d2ece93cf5ef6dbbddd47ee3085d97"
+  },
+  "job": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/job.json",
+    "bytes": 1489,
+    "sha256": "b528dc51fbd5f106c22ae323e197985c1f5c5bafc8d1c2569901c75b295ae83a"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/plan.json",
+    "bytes": 5899,
+    "sha256": "7649bb07b4f209ca98fdc5f4fd8469a8125769966eaf80807d8abe64a0494344"
+  },
+  "gate_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/gate-p01/census.json",
+    "bytes": 6500,
+    "sha256": "5bf53486cdd885cc6ed0d4bdfb53d86957265780897d8091835ee490e3530964"
+  },
+  "input_census": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/census.json",
+    "bytes": 6979,
+    "sha256": "09f0ff0884a01ce8c63979353174081db5025a2350a7bd4b4d8e7c32c4593f32"
+  },
+  "isolation_check": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/isolation-check.json",
+    "bytes": 12776,
+    "sha256": "f794767a48ce41e547736dc387401f816ed8588883626e7c9cc98b2e284eb59b"
+  },
+  "data_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/entity-slot-probe-review/data-review.json",
+    "bytes": 15371,
+    "sha256": "3009d56c37bcd1c6d34ea1a3b59be4c1ae47811c975d8147b8802a5aeab534af"
+  },
+  "estimates": {
+    "twoepoch_tokens_only_seconds": 1654.6006002502686,
+    "two_endpoint_slope_seconds_per_token": 0.0008350364232350411,
+    "two_endpoint_intercept_seconds_per_row": 2.3289517305442833,
+    "twoepoch_affine_seconds": 3735.4332491160612,
+    "not_actual_training": true,
+    "limitations": [
+      "Shortest step is cold including first Adam-state allocation; longest after shortest update. Two endpoints are not a steady-state throughput estimate.",
+      "Probe optimizer steps each row; prospective accumulation8 would step only each group and may save some overhead.",
+      "A100 torch2.6 differs from prior A8002.7.1. No numerical or performance equivalence claimed.",
+      "Estimated totals exclude future checkpoint writes/extra evaluation."
+    ]
+  },
+  "decision": "Root decides whether fixed2epoch deserves budget; do not restart/continue probe or train automatically.",
+  "full_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/entity-slot-feasibility/probe-v1/post-probe-summary.json",
+    "bytes": 5893,
+    "sha256": "685e7f1f83cffef852ad4d3eed5082dd1bfeaa5fcdfd1a57d9c19fac570e1105"
+  },
+  "source_commit": "9f59845"
+}

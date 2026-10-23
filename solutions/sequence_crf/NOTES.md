@@ -169,3 +169,5 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 ### 新外层F1的候选筛选必须排除F1，逐文OOF不够
 
 准备9B实体问题槽时发现，当前四fold OOF pool只保证目标文献未参与自身生成，若再取F2+F3训练一个F1评估模型，其候选生成器仍可能曾见F1。准备阶段改用已核F3→F2、F2→F3两条train16→16链，F1用train32→F1；未实际用错资源，不据此称旧四fold结果失效。也不能复用旧CE按金标平衡后的train子样本作为输入驱动筛选。全池成本太大后，只另冻一次train32 HGB p≥.1门控普查；训练概率是resubstitution，不冒称OOF，不进入9B文本。[完整设计](experiments/entity-slot-feasibility.md)。
+
+实体槽成本不能只按最长行token线性缩放：固定门控后637行平均722tokens，实际短259tokens一步2.545s、长2418tokens4.348s，提示/反传的固定开销不可忽略。短步另含首次Adam分配，正式accum8会少做optimizer；只能把27.6–62min作为两种代理估计，不能称训练实际用时。唯一probe84.067s完成并丢弃，F1只finite形状检查，无新质量。
