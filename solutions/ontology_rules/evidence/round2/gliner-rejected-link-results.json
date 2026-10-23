@@ -1,0 +1,145 @@
+{
+  "experiment": "E-20261023-007",
+  "scope": "innerfold0 development; fixed176 GLiNER weak-link top5 Qwen3.5-9B control, no originaldev/official upload",
+  "plan_sha256": "ec56acd96c1b0d6fbf6b6e7eab736bbcbb19a1f5d2331d8cad41b11d1c57fc2a",
+  "assembly": {
+    "frozen_at_utc": "2026-10-23T18:11:44.300788+00:00",
+    "source_sha256": "fdd251986cb1487e553ec506eff4d4f156ae702c56f49aaa3d66acdbe9d76156",
+    "relation_dependencies": {
+      "sequence_base": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "combine": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d",
+      "ontology": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+    },
+    "inputs": {
+      "input": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+        "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+      },
+      "hpo": {
+        "path": "/workspace/patientphex-data/hp.obo",
+        "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      },
+      "base": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/augmented.jsonl",
+        "sha256": "431bbc6e8ce8ae673499d2bbb78c8f0db0569c8c68f84e26fe73dc5a4907d0b5"
+      },
+      "base_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/manifest.json",
+        "sha256": "0bf97d23b4302b323d6357ab4275c90128bfb287a2ade73755c272089dc26457"
+      },
+      "prompts": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompts.jsonl",
+        "sha256": "f1fb8a099642eedb0e13976cc819e8402bfebc469727a719ae345b34747cf16d"
+      },
+      "prompt_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/prompts/prompt-manifest.json",
+        "sha256": "89fa6dd5cbb351babc54edc2b6ee96815a30e0b23b6430a26de393eb072192d9"
+      },
+      "responses": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/collected/base/responses.jsonl",
+        "sha256": "d53d3a9184d0f8dfe83c4345090376daa34762a24d759dbbd5a16ed678ae7f31"
+      },
+      "response_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/collected/base/responses.manifest.json",
+        "sha256": "a39959c0a55f51f2847743c52fed05cfeb920f81f27c368f771627dc9f53cbbf"
+      },
+      "relation_source": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/combine.py",
+        "sha256": "b4bbfa093c561cb93551e157855676dc45c8b034a9f18c820e608529c9a1043d"
+      }
+    },
+    "counts": {
+      "responses": 176,
+      "selected_valid_choice": 125,
+      "abstain": 51,
+      "added_relations": 59,
+      "added_entities": 124,
+      "overlap_new_rejected": 1
+    },
+    "output_sha256": "bfc28bf3a3eca937f649ebcfb3ef86bd39330fb345062edafef8081a759bd54a",
+    "gold_read": false,
+    "base_fully_preserved": true,
+    "NIL_added": false,
+    "policy": "Strict finite choice or explicit format failure; fixed GLiNER overlap order; preserve base and union only same frozen rules on new additions."
+  },
+  "actual_run": {
+    "managed_id": "proc_93a9cd78-6198-4662-b490-1c24c1d416d2",
+    "runtime_seconds": 74.032,
+    "model_parameters": 8953803264,
+    "max_gpu_allocated_bytes": 18247170048,
+    "input_tokens": 110031,
+    "output_tokens": 1283,
+    "choices": {
+      "C4": 6,
+      "C2": 22,
+      "ABSTAIN": 51,
+      "C1": 80,
+      "C3": 12,
+      "C5": 5
+    },
+    "hit_token_limit": 0,
+    "response_manifest_sha256": "a39959c0a55f51f2847743c52fed05cfeb920f81f27c368f771627dc9f53cbbf",
+    "explicit_release": "/workspace/patientphex-runs/round2-20261023/ontology_rules/gliner-rejected-link-fold0/gpu-release.json"
+  },
+  "baseline": {
+    "menF1": 0.7302325581395349,
+    "docF1": 0.7379032258064516,
+    "micF1": 0.7129251700680272,
+    "macF1": 0.7049567711418887,
+    "Score": 0.7215044312889756
+  },
+  "linked": {
+    "menF1": 0.7220756376429199,
+    "docF1": 0.731203007518797,
+    "micF1": 0.6952141057934509,
+    "macF1": 0.696066369642091,
+    "Score": 0.7111397801493147
+  },
+  "delta": {
+    "menF1": -0.008156920496614983,
+    "docF1": -0.006700218287654658,
+    "micF1": -0.01771106427457636,
+    "macF1": -0.008890401499797695,
+    "Score": -0.010364651139660896
+  },
+  "increments": {
+    "mention": {
+      "tp": 36,
+      "fp": 88,
+      "fn": -36
+    },
+    "document": {
+      "tp": 23,
+      "fp": 49,
+      "fn": -23
+    },
+    "relation": {
+      "tp": 14,
+      "fp": 45,
+      "fn": -14
+    }
+  },
+  "format": {
+    "valid": true,
+    "counts": {
+      "documents": 16,
+      "entities": 1097,
+      "relations": 415,
+      "patients": 47
+    },
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "hpo_version": "hp/releases/2026-06-23",
+    "hpo_root": "HP:0000118",
+    "notes": [
+      "Format/input consistency checks are not the platform evaluator.",
+      "Only the first 50 examples of each issue type are included."
+    ],
+    "input_sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+    "prediction_sha256": "bfc28bf3a3eca937f649ebcfb3ef86bd39330fb345062edafef8081a759bd54a",
+    "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "decision": "Negative result; preserve raw choices and predictions, stop this fixed linking control without prompt retry/threshold search/dev transfer. Format completeness does not imply semantic correctness. Next approved task is separate OOF relation max-MIL."
+}

@@ -60,3 +60,5 @@
 - [强base共享组合计划](phenotagger-crf-gliner-dev-plan.json)与[两臂结果](phenotagger-crf-gliner-dev-results.json)：CRF+GLiNER上实体-only .712586、fullLR .712071；两pred冻结后统一评，不冒称本体独立分。
 - [GLiNER弱链接有限选择CPU提案](gliner-rejected-link-proposal.json)：176输入限定跨度、原Sap缓存top5、9B真实token预算与ABSTAIN/NIL边界；尚无LLM效果结果。
 - [有限链接冻结运行计划](gliner-rejected-link-run-plan.json)与[解析/无操作检查](gliner-rejected-link-parser-checks.json)：900秒cap、严格候选码、完整base保留，合成检查不代表模型效果。
+- [有限链接真实终点](gliner-rejected-link-results.json)：完整176响应且格式正确，Score下降.010365；负结果保留，不继续修提示或原dev迁移。
+- [OOF doc-HPO袋训练诊断](relation-bag-training-diagnostics.json)、[固定MIL预算](relation-mil-run-plan.json)、[真实CPU检查](relation-mil-cpucheck.json)和[独审入口](relation-mil-audit-index.json)：纯关系背景过滤，准备通过尚不代表模型效果。
