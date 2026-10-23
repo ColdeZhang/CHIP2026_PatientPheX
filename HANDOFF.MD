@@ -199,6 +199,8 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：先检查实际词表与完整tokenization；需独立标记时显式注册special tokens、固定随机种子扩展embedding，并在最终编码中核对跨度、标记及截断。保存tokenizer并回读完整词表/special map，不能只保存扩展后的模型权重。当前MIL入口 `b47cd62` 已添加4个标记（ID30522–30525，词表长度30526）、使用 `mean_resizing=False`，3949个出现跨度及原窗内患者标记均保留；保存/回读、loss梯度和纯删除装配独审通过。证据：外部 `validation/relation-mil-review/preparation-review.json`，SHA `7e1a6acc5402a23a51c263c3b2098ed896c9534b9353817b0caffe64fdfc49d6`，源码与CPU记录见[本体方案](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-run-plan.json)。这是训练前接口修复，尚非质量结果；旧患者CE中的标记字符串可被拆成普通WordPiece，因此不能据此宣称旧实验无效。
 
+同类实例：A100的GLiNER CPU检查曾写死 `[ENT]`/`[SEP]`，但模型配置实际使用 `<<ENT>>`/`<<SEP>>`，在断言阶段失败。检查脚本改为读取真实配置后通过，未改模型或依赖、未使用权重/GPU。首个失败与修复保存在外部 `research/a100-resource-readiness/attempt1-marker-assertion/`；最终CPU报告 `3faa8885…`。不能把测试脚本的错误假设当模型不兼容。
+
 ## H32：工作区重连和代理中断，不等于远端训练已经停止
 
 2026-10-23 18:49工作区短暂重启后，文件与提交仍在，但协作注册表只剩一个被中断的代理；A30上的GLiNER正式训练进程仍连续运行，恢复读取时已完成两轮。仅看本地代理状态而重新启动，会重复占用显卡并可能覆盖产物。19:52:39再次短暂出现environment unavailable，恢复后主分支d9f5d5b与工作树仍在；BioMed原进程继续到第6轮，三个方案都核实没有重复启动。
