@@ -1,0 +1,50 @@
+{
+  "frozen_at_utc": "2026-10-23T18:51:59.815660+00:00",
+  "status": "prepared_no_gpu",
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "cwd": "case-retrieval/qwen35-preparation",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "source_sha256": {
+    "train_qwen35_full64.py": "f83236587d8f307bb6e51ca44c9c69177efce27661b0f889bd00745808030f03",
+    "qwen35_full64_cost.py": "28fd9161956b684f3dd34aa55b2f85fea59da0f5739a738140357da604341e80",
+    "qwen35_smoke.py": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+    "qwen35_relation_cost.py": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+  },
+  "data_sha256": {
+    "train.jsonl": "27ecf4769e2917bfc06c7c47f679d2dea19ac9013626288093b4e4cb6dffab3c",
+    "preparation-manifest.json": "389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44",
+    "tokenizer-audit.json": "6eb3d68bc05fca266a1891049d6a10c711c2811cbc9ca491fbc8f6795247b462"
+  },
+  "excluded_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+  "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+  "probe_command": "/usr/bin/timeout --signal=TERM --kill-after=30s 600 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u full64-relation-cpu-preparation/entry/qwen35_full64_cost.py --mode gpu --train full64-relation-cpu-preparation/train.jsonl --excluded-input full64-relation-cpu-preparation/excluded.input.jsonl --data-manifest full64-relation-cpu-preparation/preparation-manifest.json --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc --output-dir full64-relation-cpu-preparation/cost-gpu-v1",
+  "formal_command": "/usr/bin/timeout --signal=TERM --kill-after=30s 3600 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u full64-relation-cpu-preparation/entry/train_qwen35_full64.py --mode train --train full64-relation-cpu-preparation/train.jsonl --excluded-input full64-relation-cpu-preparation/excluded.input.jsonl --data-manifest full64-relation-cpu-preparation/preparation-manifest.json --model /dev/shm/patientphex-qwen35-1045-c20223623576 --model-source-manifest model-source-manifest.json --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc --output-dir full64-relation-cpu-preparation/formal2ep",
+  "formal": {
+    "rows": 265,
+    "documents": 64,
+    "epochs": 2,
+    "updates": 68,
+    "warmup_updates": 4,
+    "cap_tokens": 6400,
+    "actual_max_tokens": 6153,
+    "actual_total_tokens": 864937,
+    "supervised_tokens": 15410,
+    "training_cap_seconds": 3600,
+    "kill_grace_seconds": 30,
+    "fresh_base": true,
+    "continue_probe_or_48_adapter": false,
+    "checkpoint_selection": "epoch002 only"
+  },
+  "scope": "Training64 versus48 also changes OOF candidate generators32 to48; not pure sample count causal control. No dev gold or official activity."
+}
