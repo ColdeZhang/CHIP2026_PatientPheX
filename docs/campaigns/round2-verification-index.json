@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T22:26:11.149435+00:00",
+  "generated_utc": "2026-10-23T22:49:14.133705+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -12095,17 +12095,324 @@
           "bytes": 18450
         }
       ]
+    },
+    {
+      "id": "public-sap-feature-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/public-sap-feature-review/review.json",
+        "sha256": "c5775cf4035bc23f7c4965324185225aa3a3e5269449ed66cd7d598dc5994a90",
+        "bytes": 12574
+      },
+      "source_report_path": "validation/public-sap-feature-review/review.json",
+      "completed_review_scope": "PASS_incremental_public_Sap_two_feature_control_negative_vs_original_best",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "top3全量池+两Sap字段：实际4fit217.670秒低于原240秒；best .3实体校准目标 .778190379<旧 .780192596，三折负。公共alias/maxcos/compoundmin及21真实向量样本独立核验；不升级。",
+      "limitations": [
+        "Fourfold labels are reused in global nine-cut calibration. Selected entity objective is a calibration fit value, not blind generalization, public competition Score or .8 success.",
+        "Two public Sap fields improve the negative top3 .3 arm but remain below original best; this closes current top3+Sap recipe, not every possible Sap-only design.",
+        "Legacy data/fold/model provenance reused. Actual remote256 cache binaries were hash/shape checked by execution; reviewer verified their evidence/text mapping and21 actual numeric samples, not allbinary reload or allpair dot recomputation.",
+        "Per-group data order/fresh newfit reproduction is exact. No new training of public encoders, no old HGB refit, no originaldev/official action.",
+        "GPU managed terminal supplies runningfalse; no direct model-process exit_code is inferred from a release command.",
+        "Initial deployment race was an engineering failure before model or preparation, preserved separately. Fixed .3 old relation objects retain their .4-origin provenance."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-feature-review/audit_vectors.py",
+          "sha256": "e3307580403243533e51a786be5264e3f55f7dc038842a5f25860d592d00f971",
+          "bytes": 10835
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-feature-review/audit_calibration.py",
+          "sha256": "405fec5f7a69aa43f8485a190f98e2e9651493005197d61a1cdb59fb6eb1c585",
+          "bytes": 8978
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-feature-review/vector-pool-replay.json",
+          "sha256": "e3f47aa145c9bf6b5df7b482969a44b58ef0466f45902512933e199ef77a0cab",
+          "bytes": 5837
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-feature-review/calibration-replay.json",
+          "sha256": "02aa3b962d07da9bf74505bba88bf893ced7720ba1a9fcb99503eed222f2272b",
+          "bytes": 2771
+        },
+        {
+          "path": "validation/index-next-20261023-2250/batch-manifest.json",
+          "sha256": "e9591a3d64308fd4a585ec8331980e6b48ce16a0b3ddd606e9d7be970e992f10",
+          "bytes": 17565
+        }
+      ]
+    },
+    {
+      "id": "public-sap-old-pool-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/public-sap-old-pool-review/review.json",
+        "sha256": "079c7382fec8deed5247e6e569e8cd1b19754736e093e33f1a5475105edb1e55",
+        "bytes": 8410
+      },
+      "source_report_path": "validation/public-sap-old-pool-review/review.json",
+      "completed_review_scope": "PASS_original_pool_plus_two_Sap_features_negative_after_calibration",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "原Bioformer244794候选仅追加同两Sap列：实际4fit55.563秒；best .4实体目标 .779111432仍低旧best .780192596，三折负。独立固定fold0重fit，其余同源实际证据及36预测/计数复核，不重复旧NN。",
+      "limitations": [
+        "The nine-cut objective is global train64 entity calibration fit, not blind generalization, overall competition Score or original-dev improvement.",
+        "Compared to original best .780192596 both fixed .3 and calibrated .4 are negative; close this exact old-pool+Sap recipe.",
+        "One predetermined fold0 numerical reproduction plus exact engine/column evidence for the other folds is reported accurately; not claimed four independent refits.",
+        "No serialized HGB/vectorizer was saved by owner; frozen source/data/full probabilities remain reconstructable.",
+        "Earlier publicSap vector/model/cache review reused intact; no NN or 256-cache reload.",
+        "Oldcut.3 nonentities retain .4-origin relationship provenance unchanged."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-old-pool-review/audit_pool.py",
+          "sha256": "c152ecb935d6fe44f1421a9f554ca82aaf2b84d240f162f11453925371047271",
+          "bytes": 6329
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-old-pool-review/audit_calibration.py",
+          "sha256": "336af38054100a4b0e3b1e92b55a7d0e36d32c094b97363d4a816bd24d1d38c3",
+          "bytes": 8883
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-old-pool-review/pool-replay.json",
+          "sha256": "509acc9c8ce0537ebdd0bfca6d902f285edbea9c5f6728d3da60cccc69c9e3b5",
+          "bytes": 4773
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-sap-old-pool-review/calibration-replay.json",
+          "sha256": "2a00fad1d52454b9b283e88dae292a348579ea932a92444fbb3664155a87bcd8",
+          "bytes": 2789
+        }
+      ]
+    },
+    {
+      "id": "phenobert-pair-cache-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-cache-review/review.json",
+        "sha256": "0eef457c9102d6cbecc63c7a7540ab15d95301931c8c2a68d0b06b0859b143f5",
+        "bytes": 11480
+      },
+      "source_report_path": "validation/phenobert-pair-cache-review/review.json",
+      "completed_review_scope": "PASS_incremental_native_public_pair_input_pilot_full_cache",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "公开PhenoBERT原生pair缓存可用：747178候选→137784原子请求→135000原生tuple，全量实际189.654秒低于600；512pilot及CPU/GPU小误差核验。仅公共语义三类分数，无比赛质量或对称Related语义宣称。",
+      "limitations": [
+        "Existing native201-tensor strict restoration and original pool/OOF construction are reused, not independently rerun here.",
+        "Reviewer opened no checkpoint and ran no neural/GPU forward. GPU numeric claims are bound to actual returned output/driver/manifest; saved probabilities, complete key coverage, batch lengths and normalization were independently checked.",
+        "CPU/GPU logit parity compares only the first2 actual pairs per job. Full512 overlap additionally compares saved probabilities across different batch shapes, without asserting bitwise identity.",
+        "Public source class semantics and current-HPO names differ from a task-trained clinical entity matcher. These numerical/cache checks establish usable inputs and outputs, not quality or .8 success.",
+        "Managed terminal reports runningfalse; no direct remote model exit_code is inferred from collector command success.",
+        "Old task gold/dev files, task training, threshold choice and quality evaluation are outside this review."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-cache-review/audit_input.py",
+          "sha256": "a8f29034946c05a2fea7c471e82e39f43f7d2366903f63f1ff40e9ade5fb8532",
+          "bytes": 6991
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-cache-review/audit_terminal.py",
+          "sha256": "2eb2c33609387b24ba148668b0462703512a5383f7c4d056ff918e02785467b4",
+          "bytes": 11355
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-cache-review/input-replay.json",
+          "sha256": "2aed903993a1dfb60b44bc1970d762055ad106b9df64d677d9e4c93d48b3694c",
+          "bytes": 2487
+        }
+      ]
+    },
+    {
+      "id": "phenobert-pair-feature-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-feature-review/review.json",
+        "sha256": "85050d25fc28f306f06e4dc9cdc912b794eba1d688aa27161aec15cc5f3ef3b2",
+        "bytes": 10025
+      },
+      "source_report_path": "validation/phenobert-pair-feature-review/review.json",
+      "completed_review_scope": "PASS_incremental_public_pair_features_quality_not_material_original_baseline_upgrade",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "top3池+三pair均值主方案Score .725155643低于原 .725655389；固定边界仅换ID .725763139仅增 .000107750且doc下降。主臂九点实体目标 .779193104仍低旧 .780192596，无原dev迁移。",
+      "limitations": [
+        "Main fixedcut and global ninecut entity objective remain below original Bioformer. ID-only boundary control has tiny heterogeneous gain, not evidence of .8 or originaldev success.",
+        "All64 development labels have historical use. Ninecut maximum is calibration fit, not an independent generalization estimate.",
+        "Three softmax means describe native asymmetric phrase-to-preferred-name classes, not truth probability of the complete compound annotation, all-HPO posterior or patient attribution.",
+        "One fixedfold0 newfit independently reproduces numeric probabilities; other folds verify same audited engine and actual inputs/columns/manifests/outputs, not claimed four fresh reviewer fits.",
+        "No stored HGB/vectorizer model supplied; source/data/cache/full score outputs remain reconstructable.",
+        "All prior native201/cache/fold/model evidence reused; no new neural/GPU/originaldev/official action by reviewer.",
+        "Fixed-span arm uses no threshold and cannot add/delete/move entities; it is excluded from ninecut selection. Unchanged relationship objects retain .4-origin provenance."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-feature-review/audit_features.py",
+          "sha256": "3ebf9a19fe42de03b9cc37a5e0873f3b9098d9ba106cfd0f69218bc773801865",
+          "bytes": 6400
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-feature-review/quality-replay.py",
+          "sha256": "158660eef7676bd889450fd44a8f000cbed9518d8adb95bbb9984df299773ebb",
+          "bytes": 15415
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-feature-review/feature-replay.json",
+          "sha256": "4c0fb5613ff25ec0e3238d9f3e23dec593bf5a4a5700f4b4f915c3337689eacc",
+          "bytes": 4010
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-pair-feature-review/quality-review.json",
+          "sha256": "296db6245de49e145cc79659b6e1be03874d6e7eecc657f22148f1a09e68bbf7",
+          "bytes": 17351
+        }
+      ]
+    },
+    {
+      "id": "phenobert-old-pool-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/review.json",
+        "sha256": "35d9e67eea7306efa923cea17e39fc44e2d02f6678795c83e246da2a19e91f46",
+        "bytes": 9497
+      },
+      "source_report_path": "validation/phenobert-old-pool-review/review.json",
+      "completed_review_scope": "PASS_original_pool_plus_three_PhenoBERT_features_negative_after_calibration",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "原Bioformer244794候选仅加三pair均值：实际4fit64.882秒，best .3实体目标 .777836002<原 .780192596，三折负。全旧字段/新均值、固定fold0概率、36预测与校准计数精确；无新NN/原dev。",
+      "limitations": [
+        "The nine-cut objective is global train64 entity calibration fit, not blind generalization, overall competition Score or original-dev improvement.",
+        "Compared to original best .780192596 both fixed .3 and calibrated .3 are negative; close this exact old-pool+PhenoBERT recipe.",
+        "One predetermined fold0 numerical reproduction plus exact engine/column evidence for the other folds is reported accurately; not claimed four independent refits.",
+        "No serialized HGB/vectorizer was saved by owner; frozen source/data/full probabilities remain reconstructable.",
+        "Earlier PhenoBERT native201 tensors/full135000 cache audit reused; no NN or model reload. Related remains asymmetric phrase-to-preferred-HPOname semantics, compound probabilities are arithmetic means, not whole-compound posteriors.",
+        "Oldcut.3 nonentities retain .4-origin relationship provenance unchanged.",
+        "Calibration sidecar was recorded after completion and explicitly has no independently captured launcher-start UTC; source-owned decoded-freeze/calibration-start/result chronology and actual shell rc0 are separately available."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/audit_pool.py",
+          "sha256": "09c02d6aaf2cbecf9abcc69d9e69749d1ca426c55cb4b807a02b19c74c992550",
+          "bytes": 6633
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/audit_calibration.py",
+          "sha256": "b51e0aaa183b0e0f4c54b48b87552400ba3fb72541504d13fca41f50657b046f",
+          "bytes": 8971
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/replay_sample_fit.py",
+          "sha256": "e41d58ddbdfc9996bff2b7215c78c504a7ae076fbd22b3d72aee641322a69955",
+          "bytes": 6794
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/pool-replay.json",
+          "sha256": "6c215b2b3503217cc26cd144bb9938efbd64ca0d25c1fa6cee1122012fbdd940",
+          "bytes": 4780
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/calibration-replay.json",
+          "sha256": "c3cced031a8fc9ec1f2b226f038e54117ea06d0550bce9637e7368a5a29c75ba",
+          "bytes": 2776
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/phenobert-old-pool-review/fold0/replay.json",
+          "sha256": "69df1087ca941542f154047ba34985c7ba1be2254b1a94471e567e3e93b71b02",
+          "bytes": 1027
+        }
+      ]
+    },
+    {
+      "id": "fixed-slot-binary-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/review.json",
+        "sha256": "bc4df2c233ff93b7c6e2830e669fb4636148a1f69281ced7cec88b475b1ff7a1",
+        "bytes": 9865
+      },
+      "source_report_path": "validation/fixed-slot-binary-review/review.json",
+      "completed_review_scope": "PASS_incremental_fixed_slot_binary_input_loss_and_actual_probe",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "新固定CID/PID问题槽二元目标：204条实际token/位置与标签隔离通过；原生selected/full短序列logit exact，最长6777单步13.123秒/25.142GB，三family有梯度及实际更新。fresh2ep/32正式训练入口与base/adapter双臂先freeze后评静态通过；正式训练仍运行，尚无该新目标质量结果。",
+      "limitations": [
+        "Native tensor/full-logit parity checked on actual880-token3-slot row, not every row; longest6777 actual backward/update proves finite trainability, not learned quality.",
+        "All LoRA gradients finite and three family norms nonzero; one B probe per family changed. Frozen head optimizer exclusion and its two used rows unchanged are verified, not an extra full head tensor hash.",
+        "Longstep token-linear estimate includes optimizer overhead and is not a guarantee of completing the entire run before1800s.",
+        "This replaces JSON teacher-forced SFT with label-free fixed-slot classification. Same evidence and raw-HPO pair targets, per-prompt weighting retained.",
+        "Public base/runtime/optimizer/LoRA provenance reused; no neural/GPU action by reviewer or F1/originaldev gold read.",
+        "Managed terminal runningfalse and complete receipts are bound; collector/release exit0 is not relabeled as direct remote model exit_code.",
+        "Same-template base-versus-trained control and formal evaluation require subsequent frozen outputs; this report carries no Score."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/audit_token_contract.py",
+          "sha256": "c153a7634dbbc640d65150fab0455922cbdc44f4a47867d893314ed55dd3726d",
+          "bytes": 6209
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/audit_probe.py",
+          "sha256": "f231b972b6fdf0e0a5b6103f98741f9bb82c8b8d5042881582d45e95461501fa",
+          "bytes": 9434
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/token-replay.json",
+          "sha256": "f8e7c8ce91418fce33c7d7ed6582025047ccb774ff74e06c346ba941cbcbe1cd",
+          "bytes": 3609
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/formal-entry-review.json",
+          "sha256": "fa9614293784ec2e753a201dc3712934622e88205872b6082f629b9802b62e58",
+          "bytes": 4098
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/evaluation-entry-review.json",
+          "sha256": "351f6c2df4a0bc1c2d3269817211594a81fcc1170a5905794651aa6aceee984a",
+          "bytes": 3026
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/evaluation-source/prepare_inference.py",
+          "sha256": "c03e222c89ac3ef4b559eee3b810d7833ac55913d2a10ebda9af1eb4e82ab6a6",
+          "bytes": 4945
+        },
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/fixed-slot-binary-review/evaluation-source/evaluate_slots.py",
+          "sha256": "69368a9919955516170eac4385fa620c0682e7e6b5025788175da1ec03cdb3a7",
+          "bytes": 8392
+        }
+      ]
+    },
+    {
+      "id": "public-boundary-diagnostic-review",
+      "report": {
+        "path": "validation/index-next-20261023-2250/snapshots/public-boundary-diagnostic-review/review.json",
+        "sha256": "3b38804e66ab7e98b61739e3b5d5003b92807141f6c9b88419a6fae906e55df4",
+        "bytes": 10195
+      },
+      "source_report_path": "validation/public-boundary-diagnostic-review/review.json",
+      "completed_review_scope": "PASS_incremental_error_conditioned_boundary_diagnostic",
+      "scope": "已完成增量审查；仅小报告/独立脚本/必要汇总，不递归复制历史模型或数据。",
+      "conclusion": "训练侧384边界FN只读诊断：337linked/47NIL、333不同span。217原子在原native坐标中已产生但最终消失，167原子无供给；精确坐标组无32token截断。只核查询、小audit聚合及固定生成器/排名口径，复用旧raw/NN来源，不把top3条件供给当实际新增正确预测。",
+      "limitations": [
+        "This is an error-conditioned train64 diagnostic of384 literal missed atoms, not a new candidate policy, achievable score bound, blind estimate or quality evaluation.",
+        "Reviewer independently checked the384 queries, retained per-query audit, literal/NIL supply, all aggregates and tokenization. The actual241-passage generation and six624MB raw/unique scans are bound to frozen source, plan, rc0 and transferred evidence, not replayed again.",
+        "The217 atoms at199 generated spans disappeared by final native canonical output; this does not isolate a single filter, threshold or overlap operation as the cause.",
+        "All top1/top3 and original>.95 support counters are conditional on retained raw rows. Gold literal IDs are not canonicalized; compound atoms are separate, with no joint recoverability claim.",
+        "Only3 queried atoms per tokenizer exceed32 tokens, all in nongenerated>8-token boundaries. This does not establish tokenizer truncation as a cause of candidate loss.",
+        "Existing FN/fold/model/cache provenance is reused; only new query subset and new diagnostic evidence are independently inspected."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2250/snapshots/public-boundary-diagnostic-review/audit_boundary.py",
+          "sha256": "c70f5d04a0cf7f0da7df583538b41b8204e2f06cf1fdf4d178a2aafa02b6bacf",
+          "bytes": 17117
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "post121-public-sap-two-feature-control",
-      "status": "正在准备/执行；未完成终点审查不纳本批，不以原生可用性替代质量结果。"
+      "id": "fixed-slot-binary-formal-terminal",
+      "status": "actual fresh2ep/32正式训练22:42:44启动，1800+30；尚无完整训练/双80F1评测终点。若只保存partial不得评测，完整终点另审。"
     }
   ],
-  "previous_live_index_sha256": "bc5e2c55283058905e6ff56bf884e3e186b11331c319046e150e290103c91a85",
+  "previous_live_index_sha256": "c34dfa5ea3b1d01a2a393d3eceb2974a178069d207508a0ebed3679dafda96f0",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批113→121：top3固定控制与九点校准均负、WIS零变化、proper-nesting训练侧与原dev增量、98分支与同12prompt全80CID条件似然负结果、PhenoBERT公开pair原生CPU可用性。旧113对象/1952refs零漂移，追加27个不可变小审查/脚本/汇总；不深抓pool/模型/全预测。旧.736526555最高完整快照及既有历史保留，新增.7375859173908417当前最高；仍未达.8，不验收合并/官方上传。",
+  "live_index_note": "本批121→128：top3+Sap与原池+Sap均负；PhenoBERT公共pair缓存已核，top3三特征主臂及原池三特征不超旧best，固定边界换ID微增不升级；固定槽二元新目标仅CPU/实际GPUprobe及正式入口/评测静态完成，训练仍进行；384边界供给只读诊断完成。旧121对象/1981refs与当前最高d531/.737585917全部不变，新增不可变小证据，不深抓模型/pool/全预测。未达.8，无官方上传。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
