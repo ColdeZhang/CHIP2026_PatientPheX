@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T22:02:38.098362+00:00",
+  "generated_utc": "2026-10-23T22:26:11.149435+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -11821,17 +11821,291 @@
           "bytes": 13064
         }
       ]
+    },
+    {
+      "id": "public-top3-control-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/review.json",
+        "sha256": "8368ffa1dab3c635d54d3d81c5931067ad367d0a963c08f192cccd85fdccaba5",
+        "bytes": 19932
+      },
+      "source_report_path": "validation/public-top3-control-review/review.json",
+      "completed_review_scope": "PASS_complete_uniform_top3_ID_fourfold_negative_control",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "全量top3 ID及六特征四fold控制质量负：pooled Score .725655389→.723467295，四折均负；3x预检STOP后、无fit/质量前获准3.1x，240秒预算不变，实际145.395秒。旧字段、非entities和关系全部保留。",
+      "limitations": [
+        "Same train64 development folds and globally calibrated .3; not blind testing or originaldev Score.",
+        "Baseline .3 predictions retain .4-origin association fields; both arms preserve those exact objects, not relations re-inferred from new entities.",
+        "Expanded candidate IDs and six neural observation features change together; this is not a single-feature causal ablation.",
+        "Missing top3 observation numeric0 is a placeholder flagged unobserved, not a measured zero posterior.",
+        "Raw NN source integrity is reused through pinned code/actual receipts; no old NN/H5/fullraw audit repeated."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/pool-lineage-review.json",
+          "sha256": "fe12dd82de24b423aac016f8c2fa194116acdc57201a3f3a274022d0d3ae1a78",
+          "bytes": 24051
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/replay-review.json",
+          "sha256": "1af5dd171b8f5b9a409259fa4a7d79428e0dbfb55c9fbbab70292d19a9843804",
+          "bytes": 4797
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/audit_pools.py",
+          "sha256": "0b9f9659d14275a3396c9db4854206732a3894d323c231771aa44b9d668b006f",
+          "bytes": 17566
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/replay.py",
+          "sha256": "929848733f17599061712c3b5001e0883c7b15c37f27b3ff42627a040f364121",
+          "bytes": 10311
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-control-review/independent-full-freeze.json",
+          "sha256": "c642f5453b41c0f7bd617f94d4bea4526adf2e5460437f1d70b40adad9758974",
+          "bytes": 1360
+        },
+        {
+          "path": "validation/index-next-20261023-2230/batch-manifest.json",
+          "sha256": "6595bb5ba5ad2e9329eade51b96a5ce2d9e5f07be1f04510fdfd9e39327fcd9f",
+          "bytes": 14633
+        }
+      ]
+    },
+    {
+      "id": "public-top3-cut-calibration-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/public-top3-cut-calibration-review/review.json",
+        "sha256": "cae2eabf598949b5ea8822c7a2f3dc68acc93c57d68a0baf69999d796014b45f",
+        "bytes": 6853
+      },
+      "source_report_path": "validation/public-top3-cut-calibration-review/review.json",
+      "completed_review_scope": "PASS_fixed_top3_nine_cut_training_calibration_negative",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "top3九点固定校准best .4实体目标.777516517仍低旧best .3的.780192596，四fold实体目标均负，当前配方关闭；仅训练内校准拟合目标，不是Score或泛化证据。",
+      "limitations": [
+        "All64 labels participate in choosing the cut. This is a calibration-fit diagnostic, not an unbiased quality estimate, full competition Score or .8 success.",
+        "The new maximum remains below the old maximum and all four fold entity objectives decrease; this does not rescue the prior fixed.3 negative top3 result.",
+        "The post-result scale diagnostic was separately authorized after the fixed.3 negative result. Only the same prespecified nine cuts were evaluated; no new fit, features, ranking or overlap policy.",
+        "Earlier model/pool/fold provenance is reused; no old selector fit, old curve decode/table evaluation, NN or raw model scan was repeated.",
+        "Nonentities including associations inherited from oldcut.4 remain unchanged; only Task1 mention and document counts select the cut."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-cut-calibration-review/audit_cut.py",
+          "sha256": "79c291ef27daa375c84d566fc5d67d7f8035c42aacdb29180797a2e484d6b61a",
+          "bytes": 11685
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-cut-calibration-review/independent-table.json",
+          "sha256": "cad981f4de7db6cf9d4344c3d9750592a6cccd150f7cd979057b4f73fa81705a",
+          "bytes": 34707
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/public-top3-cut-calibration-review/independent-decode-freeze.json",
+          "sha256": "3e69afe5b9850c33e446a13defcc15752c1d9918d69a51223959b054b6aabd98",
+          "bytes": 5661
+        }
+      ]
+    },
+    {
+      "id": "weighted-interval-control-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/weighted-interval-control-review/review.json",
+        "sha256": "4802573af918c2a31a009cb4b3a35295ab46f166a7a8f4cd35e59ec3386c6202",
+        "bytes": 17646
+      },
+      "source_report_path": "validation/weighted-interval-control-review/review.json",
+      "completed_review_scope": "PASS_fixed_WIS_math_replay_and_complete_training_side_terminal",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "WIS固定效用p-.3、精确有理数及原greedy交集tie控制，248穷举/随机边界通过；全部64预测字节不变，Score .725655389，零收益。",
+      "limitations": [
+        "This utility-optimal decoder yields exactly the same predictions on all64 supplied documents; there is no score improvement and no reason to migrate this fixed control to originaldev.",
+        "Summed selector probability minus .3 is a chosen utility, not a proof of calibrated probabilities or optimal F1. No alternate utility/cut/tie was searched.",
+        "Same64 labels participated in previous method development and selecting global cut .3. This is a development decoder control, not blind validation or an originaldev/official score.",
+        "Existing training-fold/model provenance is reused through frozen fit manifests; no source selector was refit or old NN repeated.",
+        "Original greedy nonentities, including associations inherited from cut .4, remain unchanged; entity decisions do not reassign Task2 relationships.",
+        "Old baseline metrics were available before WIS prediction freeze, as declared. New source reads labels only after all eight complete outputs freeze; no new WIS label-dependent choice occurs before freeze.",
+        "Source evaluation_started timestamp occurs after label/HPO parsing; chronology is established by static first-label-read placement after complete-freeze, not by treating that timestamp as the first byte read."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/weighted-interval-control-review/audit_wis.py",
+          "sha256": "32c81134d9a9e009e9ec42bffd1b9356453e65c7cb49c8d2c9b39bef874cf4bc",
+          "bytes": 15048
+        }
+      ]
+    },
+    {
+      "id": "selector-nested-control-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/selector-nested-control-review/review.json",
+        "sha256": "f5482b858d4f6d1cc416eefc1787f0cbd5d7736c3d6797c91089e523d62629f1",
+        "bytes": 19332
+      },
+      "source_report_path": "validation/selector-nested-control-review/review.json",
+      "completed_review_scope": "PASS_fixed_selector_proper_nesting_terminal",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "旧HGB .3固定proper-nesting政策：pooled Score .725655389→.727975656，195新增86TP109FP，3折升1折降。保留旧entities和全部非entities；不是全局优化或盲测。",
+      "limitations": [
+        "Training-side development result; .3 was selected using all64 labels and source methods developed on these folds. Not blind or originaldev/official quality.",
+        "Pooled gain is .002320267 with3 positive folds/1 negative. New entities contain86TP/109FP (44.10% precision), so this is a modest aggregate gain with a precision tradeoff.",
+        "This transfers structure/valid-ID/negation policy only. It does not reproduce the old GLiNER/Sap pipeline.",
+        "Existing entities including NIL or potentially negated old decisions remain protected. Valid-ID and negation filtering apply only to new candidates.",
+        "Greedy candidate order is fixed and can affect subsequent additions; this is not a global optimal nested decoder, no alternate cut or ranking was explored.",
+        "Association objects are unchanged; added entity evidence does not imply new patient ownership.",
+        "First gold read is statically after all8 full predictions freeze. Recorded evaluation_started follows gold/HPO parsing and is not claimed as first-byte-read timestamp."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/selector-nested-control-review/audit_nested.py",
+          "sha256": "769d93574873c3e27323dfeb10ee008fc0c37641174611827eba4ac92bae9958",
+          "bytes": 15995
+        }
+      ]
+    },
+    {
+      "id": "selector-nested-dev-transfer-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/selector-nested-dev-transfer-review/review.json",
+        "sha256": "9c068d49ad5068771a858578a24e91e66a7f9723c0c608271be93aa224c48bd8",
+        "bytes": 12535
+      },
+      "source_report_path": "validation/selector-nested-dev-transfer-review/review.json",
+      "completed_review_scope": "PASS_single_fixed_originaldev_selector_nesting_transfer",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "唯一原dev政策迁移Score .736526555→.737585917，38新增14TP24FP；mention下降、document上升，1004旧实体及368关系完整保留。当前最高，仍低.8。",
+      "limitations": [
+        "Originaldev was previously used repeatedly for method development; this is a fixed transfer, not a blind or official result.",
+        "Score rises by .001059362 but mention F1 falls .000882558 while document F1 rises .005120007.38 added entities contain14TP/24FP (36.84% precision); no claim of uniformly improved quality.",
+        "All368 old relationship entries are preserved. Newly added entities do not trigger extra relationship support, new inference or patient reassignment.",
+        "Same13,144 cached candidates, same probabilities and .3 policy. Old model/cache/fourfold evidence reused; no refit, new threshold selection, NN or repeated fourfold review.",
+        "Source evaluation timestamp follows gold parsing; first-read chronology follows the static freeze-before-gold control flow and complete frozen prediction verification.",
+        "Score .737585917 remains below .8. This audit does not authorize acceptance merge or official submission."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/selector-nested-dev-transfer-review/audit_dev.py",
+          "sha256": "df54bae6c7cb95c0eddf0e454be825d192816aa04dea2486ec43c168605f7e1c",
+          "bytes": 11371
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/selector-nested-dev-transfer-review/independent-prediction-check.json",
+          "sha256": "df77e6af07c6ad46ba88ce46bf9ed665ff8ec9428f202bce5bb350e54a908443",
+          "bytes": 725
+        }
+      ]
+    },
+    {
+      "id": "conditional-subset-likelihood-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/conditional-subset-likelihood-review/review.json",
+        "sha256": "5204f184efbedb4fd2aa8466fbfbc56ff433502a4bb5bba8086feb90b634c0db",
+        "bytes": 7320
+      },
+      "source_report_path": "validation/conditional-subset-likelihood-review/review.json",
+      "completed_review_scope": "PASS_incremental_fixed98_conditional_subset_pilot",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "同12prompt每条一个CID的98合法子集诊断：26pair旧6TP0FP0FN→新4TP2FP2FN，固定.5质量负。序列化失败为零forward工程故障；修复后在原绝对截止内完成，79.071秒。",
+      "limitations": [
+        "Tiny input-selected12CID F1 development mechanism test; no publicv2 Score, threshold search, originaldev, training or generalized calibration evidence.",
+        "Canonical ordered 2^P subset strings including closing delimiter define restricted continuation events. No EOS or full assistant completion scored; normalized marginals are not true unconditional patient posteriors.",
+        "Previous CID context is fixed old greedy output, not a marginalized joint history.",
+        "Actual GPU logits were not rerun; review re-tokenizes every input and independently recomputes all finite-score aggregation and label metrics.",
+        "Managed API provides running=false, not model process exit code."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-subset-likelihood-review/audit.py",
+          "sha256": "9512a56d914a976abd90e6730e65bc597790a709bef7b3a527d1fc709cde17f2",
+          "bytes": 13530
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-subset-likelihood-review/finish_repair.py",
+          "sha256": "adcbc130da0625eae1d3ebd0dc394f5cbb95d06a98fdf16f6620c4e383c4eda2",
+          "bytes": 15379
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-subset-likelihood-review/token-replay.json",
+          "sha256": "dcc2f1f53d0d85afd1cbeb7b1c0a16a137c7b2057d7f99601abf2aacc2012f56",
+          "bytes": 1985
+        }
+      ]
+    },
+    {
+      "id": "conditional-all80cid-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/conditional-all80cid-review/review.json",
+        "sha256": "ddd3e00918727e6b9cde912fb91fc629fbc18abbca4a8b4559946cb5eaa50696",
+        "bytes": 6636
+      },
+      "source_report_path": "validation/conditional-all80cid-review/review.json",
+      "completed_review_scope": "PASS_incremental_same12_all80CID_conditional_likelihood_control",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "同12输入全部80CID/530分支，旧98编码与分数精确复用、432新增333.460秒；158pair旧34TP7FP4FN→新24TP21FP14FN，F1 .860759→.578313，Brier/AUC同负。关闭当前固定机制，不迁dev/扫cut。",
+      "limitations": [
+        "Same12 input-selected prompts, expanded to all80CID after negative26pair pilot; development mechanism test, not blind/newtest/publicv2 Score.",
+        "Restricted canonical subset continuation normalization; includes comma/brace, no EOS/full answer; fixed oldgreedy precedingCID history, not calibrated/unconditional posterior.",
+        "Old98 outputs reused only with exact complete encodings and model/runtime equality; new432 GPU logits not independently rerun.",
+        "Managed API exposes runningfalse, release command rc0 is not a model-process exit-code claim."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-all80cid-review/token_audit.py",
+          "sha256": "5e2908142e4332835f15a659fadb9e525e5c24b3cd9e05c6d05dc8be65a68d83",
+          "bytes": 6062
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-all80cid-review/terminal_audit.py",
+          "sha256": "b0652ee8d4119c43947cd69aaf10603911f2b032f4506d9053a530ba7e8d807c",
+          "bytes": 10128
+        },
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/conditional-all80cid-review/token-replay.json",
+          "sha256": "a31ae4b0c5569cddce510fde51a4005f30a46c5540cf283391639079718091e1",
+          "bytes": 2750
+        }
+      ]
+    },
+    {
+      "id": "phenobert-pair-native-review",
+      "report": {
+        "path": "validation/index-next-20261023-2230/snapshots/phenobert-pair-native-review/review.json",
+        "sha256": "5a8a718520a61d44c0764e5f84c9bf87d8a103474acf6ce8d157c61625cd068a",
+        "bytes": 17949
+      },
+      "source_report_path": "validation/phenobert-pair-native-review/review.json",
+      "completed_review_scope": "PASS_INCREMENTAL_PUBLIC_PAIR_NATIVE_CPU_READINESS_NOT_QUALITY",
+      "scope": "已完成增量独审；复用旧来源/模型/数据，不深抓历史链。仅固定选取小报告、独立脚本和必要汇总。",
+      "conclusion": "公开PhenoBERT pair原生CPU可用性通过：官方87源码、完整checkpoint SHA链、201tensor/108312579param严格还原及合成接口边界通过；不宣称比赛质量、旧Torch数值等同或对称Related语义。",
+      "limitations": [
+        "Five original-vs-current Torch built-in SourceChangeWarnings are retained: torch.nn.modules.activation.Tanh, torch.nn.modules.container.ModuleList, torch.nn.modules.dropout.Dropout, torch.nn.modules.linear.Linear, torch.nn.modules.sparse.Embedding.",
+        "Current Torch2.6.0 CPU finite output does not prove bitwise parity with original Torch1.3; no source compatibility shim/model conversion was introduced.",
+        "Official Git commit pins source; mutable Google Drive binary is pinned only by the observed complete SHA, not cryptographically by that Git commit.",
+        "This validates the public pair component only; CNN/router, fastText, Stanza, full PhenoBERT span pipeline and second pretrained encoder were not loaded or validated.",
+        "Three-class softmax is conditional phrase-pair evidence, not calibrated posterior over all HPO IDs and not patient attribution. No class threshold or competition quality conclusion was selected.",
+        "No claim of model training-history completeness or final official competition acceptance. Existing source/licensing interpretation is reused.",
+        "Native output and parameter-value evidence was reviewed from the exact actual CPU artifacts; this independent review did not repeat the forward or load all tensor bytes."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261023-2230/snapshots/phenobert-pair-native-review/audit_native.py",
+          "sha256": "f1719e71b9e4fe5e43627d74cb079dcd64a0569f8e4150ce8f981bd1ef0e899e",
+          "bytes": 18450
+        }
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "post113-new-controls-await-complete-review",
-      "status": "本批八项已完成；后继top3候选控制或其他新实验不属于这些冻结终审，只有实际完成后另行追加。"
+      "id": "post121-public-sap-two-feature-control",
+      "status": "正在准备/执行；未完成终点审查不纳本批，不以原生可用性替代质量结果。"
     }
   ],
-  "previous_live_index_sha256": "4199e8e69416080c1cc053fb1855973e04e0834e44fc9edc949270f663be13d5",
+  "previous_live_index_sha256": "bc5e2c55283058905e6ff56bf884e3e186b11331c319046e150e290103c91a85",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批105→113：九点训练内校准、Bioformer原dev两cut终点、F1公开新增关系、F1及outer0支持控制、Task1 FN/缓存top3诊断、纯加载选择器入口、原dev唯一支持关联终点。旧105对象/1915引用零漂移；新增34个不可变小审查/源码/汇总文件，不递归历史来源或复制全量预测/数据/模型。完整保存旧.7287945948814191 current对象，追加.7322577652468377中间受审状态及.7365265550338013当前最高；0.8门槛/评测器不变，未验收合并或官方上传。",
+  "live_index_note": "本批113→121：top3固定控制与九点校准均负、WIS零变化、proper-nesting训练侧与原dev增量、98分支与同12prompt全80CID条件似然负结果、PhenoBERT公开pair原生CPU可用性。旧113对象/1952refs零漂移，追加27个不可变小审查/脚本/汇总；不深抓pool/模型/全预测。旧.736526555最高完整快照及既有历史保留，新增.7375859173908417当前最高；仍未达.8，不验收合并/官方上传。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
@@ -11937,12 +12211,67 @@
         "raw_unscored": true,
         "new_training": false,
         "note": "原生公开候选并集减去所有466旧候选概念，42提示/276新CID全部生成后用既定.3实体按文献支持；保留1004实体及333旧关系，35新增为18TP/17FP。只评支持过滤后唯一新臂，原始145关联未在原dev评分。文献支持不证明患者归属；仍低于.8，未验收合并或官方提交。"
+      },
+      "public_Bioformer_selector_supported_relations_nested_entities": {
+        "Score": 0.7375859173908417,
+        "entry_id": "selector-nested-dev-transfer-review",
+        "review_sha256": "9c068d49ad5068771a858578a24e91e66a7f9723c0c608271be93aa224c48bd8",
+        "previous_combination_Score": 0.7365265550338013,
+        "delta_vs_previous_combination": 0.0010593623570404054,
+        "metrics": {
+          "menF1": 0.7858472998137802,
+          "docF1": 0.8219944082013048,
+          "micF1": 0.7088915956151035,
+          "macF1": 0.633610365933178,
+          "Score": 0.7375859173908417
+        },
+        "prediction_sha256": "d531f2ee098d56dc7a40551eca147c046eb548469f8bff11947555afff557440",
+        "counts": {
+          "mention": {
+            "tp": 844,
+            "fp": 198,
+            "fn": 262,
+            "precision": 0.8099808061420346,
+            "recall": 0.7631103074141049,
+            "f1": 0.7858472998137802
+          },
+          "document": {
+            "tp": 441,
+            "fp": 72,
+            "fn": 119,
+            "precision": 0.8596491228070176,
+            "recall": 0.7875,
+            "f1": 0.8219944082013048
+          },
+          "relation": {
+            "tp": 291,
+            "fp": 77,
+            "fn": 162,
+            "precision": 0.7907608695652174,
+            "recall": 0.6423841059602649,
+            "f1": 0.7088915956151035
+          }
+        },
+        "added_entities": {
+          "entity_added_tp": 14,
+          "entity_added_fp": 24,
+          "entity_removed_tp": 0,
+          "entity_removed_fp": 0,
+          "relation_added_tp": 0,
+          "relation_added_fp": 0,
+          "relation_removed_tp": 0,
+          "relation_removed_fp": 0
+        },
+        "old_entities_retained": 1004,
+        "old_associations_retained": 368,
+        "new_training": false,
+        "note": "同冻结13,144候选/.3和proper-nesting政策，仅38新增实体14TP24FP；mention下降/doc上升，全部旧非entities不变。原dev历史参与开发，非盲测或官方，仍低.8。"
       }
     },
     "highest_verified": {
-      "Score": 0.7365265550338013,
-      "entry_id": "public-relation-dev-support-review",
-      "review_sha256": "245c1f0049ca6d7e53ed4644100a379e3e258444abc466949dfe0df4e922a489",
+      "Score": 0.7375859173908417,
+      "entry_id": "selector-nested-dev-transfer-review",
+      "review_sha256": "9c068d49ad5068771a858578a24e91e66a7f9723c0c608271be93aa224c48bd8",
       "scope": "cross_route_combination_originaldev16_development",
       "acceptance_threshold": 0.8,
       "acceptance_threshold_met": false
@@ -11961,6 +12290,14 @@
         "path": "validation/index-next-20261023-2205/prior-current-verified-original-dev.json",
         "sha256": "19e69f693b0a7879bb29b80961d0606e81fd04401b13925c7eecc1a3d43aaf0e",
         "bytes": 3466
+      }
+    },
+    "prior_113_state_snapshot": {
+      "base_index_sha256": "bc5e2c55283058905e6ff56bf884e3e186b11331c319046e150e290103c91a85",
+      "snapshot": {
+        "path": "validation/index-next-20261023-2230/prior-current-verified-original-dev.json",
+        "sha256": "b6d5cbc51ac1003d2de71e3f73f0be0c193926e8e594a6669f94b43e67b4551c",
+        "bytes": 6390
       }
     }
   },
