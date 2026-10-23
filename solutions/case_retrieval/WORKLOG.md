@@ -7,14 +7,14 @@
 - **记录入口**：[实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[小型证据](evidence/round2/README.md)。
 - **运行位置**：外部 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`，完整日志、预测、模型不得入 Git。
 - **当前结果**：内部fold0原版 .613151 → compound修复 .615159；实体不变、关联微升，5项行为测试通过。固定 dev16 已得到 .625073738（原 .613517597），仍未达标；独立复评、重新拟合逐字节复现、36组内部输出复评全部通过。
-- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。真实optimizer续训状态独立检查通过；305窗2epoch BF16 LoRA已训练完成（78steps），.100正在同90窗adapter推断；.3并行69批基础HPO链接。先span边际诊断，再同链路完整Score。全文关系负结果交训练内错误分类，不在原dev调试。
+- **下一步**：90窗口原文抽取已完成；一条截断按原文缩窗重试一次，92条合并响应全部有效。真实optimizer续训状态独立检查通过；305窗2epoch BF16 LoRA及原90窗推断均完成：span-F1 .3983→.5392，仍不是Score。当前.100处理6失败窗的唯一17子窗恢复，之后A800运行同构HPO链；基座完整HPO控制为负，详见r2-08。全文关系负结果交训练内错误分类，不在原dev调试。
 - **边界**：只修改本方案目录；共享变更与主线程协调；本轮不得上传官方。关键检查点及时 commit/push，回报版本与证据。
 
 ## 运行与恢复
 
 - Qwen来源：10.5.2.100，mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，`case-retrieval/round2/`；恢复进程已完成，13文件全部源SHA一致，证据 `evidence/round2/qwen-download-complete.json`。
-- 本路线仅用GPU1 `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`；GPU0现有他人进程，禁止使用；主线程正为本体安排另一台A800并复制共享公共权重。
-- 解释器只读 `/home/zhangyuheng/projects/ScratchVL/.venv/bin/python`，`PYTHONPATH` 指向本项目 `case-retrieval/round2/runtime`，`PYTHONDONTWRITEBYTECODE=1`。
+- 本路线仅用GPU1 `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`；GPU0现有他人进程，禁止使用；A800公共权重与运行时已由其它路线验证，当前分配其GPU2给本路线后续HPO标准化，启动前仍需核空。
+- 解释器只读 `/home/zhangyuheng/projects/ScratchVL/.venv/bin/python`，基础模型的`PYTHONPATH` 指向本项目 `case-retrieval/round2/runtime`；adapter/训练需`case-retrieval/round2/training-runtime:case-retrieval/round2/runtime`两个完整绝对路径（见外部inference-plan.json的env），`PYTHONDONTWRITEBYTECODE=1`。
 - 已完成对照：`llm-relations-v2-fold0/` 和 `llm-extract-v2-fold0/`（16篇90窗口，原始结果冻结；一次格式重试另存retry）。全文关系及新跨度负结果见实验报告。
 - SapBERT FP16只读归一化模型从首日产物复制到同机自有 `models/SapBERT/`，全部文件已校验；内部fold0的43,437条HPO/训练别名CLS索引已预计算（6.85秒），已有1218个可定位抽取，391精确别名，827需语义候选/链接。
 
@@ -27,3 +27,5 @@
 - HPO基础模型链接69批已在 .3 GPU0独立运行，作业`proc_6f907c9a-4fe7-468d-8a28-15a5e4e321ce`，远端`case-retrieval/round2-normalization/full/`；先最短5729/最长8593tokens smoke全部合法无截断，保持同一固定prompt。
 
 - 13:47:55 UTC：正式SFT epoch002固定90窗推断启动，.100 GPU1作业`proc_9329ac93-4399-46d1-8616-1534c5e855d3`，远端`sft-extract-fold0-bf16-v1/inference/`，原prompt SHA55bf2795...；仅推断epoch002，epoch001保留而未选择。
+
+- 14:01:49 UTC：.100 GPU1唯一17窗格式恢复`proc_b672ed53-ccb7-4ed7-a2ad-9ef6e5694d6a`，远端`sft-extract-fold0-bf16-v1/inference/retry/`。原90响应已完成且永久冻结；外部inference-plan.json标注完成状态，inference-job.json保存实际原作业。

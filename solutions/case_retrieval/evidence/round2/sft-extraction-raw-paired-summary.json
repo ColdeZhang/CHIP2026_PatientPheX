@@ -1,0 +1,188 @@
+{
+  "scope": "Paired original 90 windows only. Span-only metrics, never competition Score; original base format retry excluded. Prediction generation never reads gold.",
+  "prompts_sha256": "55bf2795c1af17a6ea3877a650e61780d35607b70662d755aeeccd92ef6b1faa",
+  "diagnostic_code_sha256": "647f30b00cc5508baba9ccd1549e8f6267aa6b81e183fdb7e37af01a20970ade",
+  "parser_code_sha256": "4cd1aa35743537defd450a3e24630f0de855fd27f18f98089a6f82d11be5928c",
+  "records": {
+    "sft": {
+      "responses_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/responses.jsonl",
+      "responses_sha256": "ca82948b547fe2f494d015ce7450becea32203175c33d2c37d47a9999734371b",
+      "rows": 90,
+      "unique_rows": 90,
+      "all_90_expected_row_ids": true,
+      "structure": {
+        "strict_json_array": 84,
+        "frozen_parse_array": 84,
+        "all_string_array": 84
+      },
+      "parser_stats": {
+        "valid_responses": 84,
+        "negated_occurrence": 23,
+        "unmatched_quote": 12,
+        "invalid_quote": 9,
+        "invalid_json": 6
+      },
+      "hit_token_limit_count": 6,
+      "hit_token_limit_rows": [
+        "5452357:extract:2",
+        "5959423:extract:3",
+        "5452357:extract:6",
+        "5575846:extract:0",
+        "5575846:extract:2",
+        "12444410:extract:4"
+      ],
+      "non_array_rows_after_frozen_parse": [
+        "5452357:extract:2",
+        "5959423:extract:3",
+        "5452357:extract:6",
+        "5575846:extract:0",
+        "5575846:extract:2",
+        "12444410:extract:4"
+      ],
+      "removed_demonstrations": 0,
+      "max_output_tokens": 1600,
+      "occurrence_count": 942,
+      "items_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/raw-span-items.json",
+      "items_sha256": "6432b81567b1dac3e2e2d647ef81d792cb1a4306c73f055a33dbe98441ac0819",
+      "span_only": {
+        "baseline": {
+          "tp": 787,
+          "fp": 160,
+          "fn": 363,
+          "precision": 0.8310454065469906,
+          "recall": 0.6843478260869565,
+          "f1": 0.7505960896518836
+        },
+        "extracted": {
+          "tp": 564,
+          "fp": 378,
+          "fn": 586,
+          "precision": 0.5987261146496815,
+          "recall": 0.49043478260869566,
+          "f1": 0.5391969407265774
+        },
+        "novel_coordinates": {
+          "tp": 96,
+          "fp": 332,
+          "fn": 1054,
+          "precision": 0.22429906542056074,
+          "recall": 0.08347826086956522,
+          "f1": 0.12167300380228137
+        },
+        "nonoverlapping": {
+          "tp": 75,
+          "fp": 244,
+          "fn": 1075,
+          "precision": 0.23510971786833856,
+          "recall": 0.06521739130434782,
+          "f1": 0.10211027910142954
+        },
+        "union": {
+          "tp": 883,
+          "fp": 492,
+          "fn": 267,
+          "precision": 0.6421818181818182,
+          "recall": 0.7678260869565218,
+          "f1": 0.6994059405940594
+        }
+      },
+      "diagnostic_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/raw-span-diagnostics.json",
+      "diagnostic_sha256": "ad2e5aa45324096757d4cbf34c7db57e53287e7f8a1d7965c1e067b8015b3ebe"
+    },
+    "base_original90": {
+      "responses_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/responses.jsonl",
+      "responses_sha256": "9aaed8179e401dfe00bec3bae0809bd4d05f8aa66d44910da6a6e500d43224d8",
+      "rows": 90,
+      "unique_rows": 90,
+      "all_90_expected_row_ids": true,
+      "structure": {
+        "strict_json_array": 89,
+        "frozen_parse_array": 89,
+        "all_string_array": 89
+      },
+      "parser_stats": {
+        "valid_responses": 89,
+        "unmatched_quote": 58,
+        "negated_occurrence": 16,
+        "invalid_json": 1
+      },
+      "hit_token_limit_count": 1,
+      "hit_token_limit_rows": [
+        "3563609:extract:4"
+      ],
+      "non_array_rows_after_frozen_parse": [
+        "3563609:extract:4"
+      ],
+      "removed_demonstrations": 0,
+      "max_output_tokens": 1600,
+      "occurrence_count": 1170,
+      "items_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/base-original90-span-items.json",
+      "items_sha256": "e066c61c899bf40243ad5f8419111c439a05bbfe761e78e6a750c1e57fc12857",
+      "span_only": {
+        "baseline": {
+          "tp": 787,
+          "fp": 160,
+          "fn": 363,
+          "precision": 0.8310454065469906,
+          "recall": 0.6843478260869565,
+          "f1": 0.7505960896518836
+        },
+        "extracted": {
+          "tp": 462,
+          "fp": 708,
+          "fn": 688,
+          "precision": 0.39487179487179486,
+          "recall": 0.4017391304347826,
+          "f1": 0.39827586206896554
+        },
+        "novel_coordinates": {
+          "tp": 102,
+          "fp": 681,
+          "fn": 1048,
+          "precision": 0.13026819923371646,
+          "recall": 0.08869565217391304,
+          "f1": 0.10553543714433523
+        },
+        "nonoverlapping": {
+          "tp": 66,
+          "fp": 476,
+          "fn": 1084,
+          "precision": 0.12177121771217712,
+          "recall": 0.057391304347826085,
+          "f1": 0.07801418439716312
+        },
+        "union": {
+          "tp": 889,
+          "fp": 841,
+          "fn": 261,
+          "precision": 0.5138728323699422,
+          "recall": 0.7730434782608696,
+          "f1": 0.6173611111111111
+        }
+      },
+      "diagnostic_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold0-bf16-v1/inference/base-original90-span-diagnostics.json",
+      "diagnostic_sha256": "406b7938d635ab3a16551e250fe0d902317e3810447f2e65ddc5fa8ed7bede58"
+    }
+  },
+  "adapter_sha_matches_training": true,
+  "matched_generation_configuration": {
+    "max_input_tokens": {
+      "base": 4000,
+      "sft": 4000
+    },
+    "max_new_tokens": {
+      "base": 1600,
+      "sft": 1600
+    },
+    "batch_size": {
+      "base": 3,
+      "sft": 3
+    },
+    "model_revision": {
+      "base": "b968826d9c46dd6066d109eabc6255188de91218",
+      "sft": "b968826d9c46dd6066d109eabc6255188de91218"
+    }
+  },
+  "base_elapsed_seconds": 341.64,
+  "sft_elapsed_seconds": 680.821
+}

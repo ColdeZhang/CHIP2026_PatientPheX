@@ -1,0 +1,617 @@
+{
+  "purpose": "Frozen zero-shot extraction plus one structural NER retry; HPO errors unresolved explicitly; only inner fold0, not dev or official",
+  "entity_ablation": [
+    {
+      "label": "Qwen-only entities, CRF rule associations unchanged",
+      "matched_baseline_score": null,
+      "metrics": {
+        "menF1": 0.350848158874638,
+        "docF1": 0.5079365079365079,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.5628804660816292
+      },
+      "prediction_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/linked-original/new-only.jsonl",
+      "prediction_sha256": "cbbc8b3d7aa745c5b53d4f6099af39b82de62a986f123dd24306eebc27d9d654"
+    },
+    {
+      "label": "lexical default entities plus nonoverlap Qwen, k11/.48 associations unchanged",
+      "matched_baseline_score": 0.615158558,
+      "metrics": {
+        "menF1": 0.5849772382397572,
+        "docF1": 0.593607305936073,
+        "micF1": 0.5687203791469194,
+        "macF1": 0.5095823113557627,
+        "Score": 0.5642218086696281
+      },
+      "prediction_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/linked-original/lexical-union.jsonl",
+      "prediction_sha256": "a0927fd6534fa81f9326f16899a9a9fa99f08502f93310105974c3656e4075dc"
+    },
+    {
+      "label": "CRF+Sap entities plus nonoverlap Qwen, rule associations unchanged",
+      "matched_baseline_score": 0.711353522,
+      "metrics": {
+        "menF1": 0.6073688128023819,
+        "docF1": 0.6062874251497006,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.6515983588668633
+      },
+      "prediction_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/linked-original/union.jsonl",
+      "prediction_sha256": "9d1d5289bf8aa0288955ef8d106925fd9e178373a6f64fe9e524dc9e95d4ef09"
+    }
+  ],
+  "full_retrieval": [
+    {
+      "label": "lexical union with rebuilt k21/.35 associations",
+      "matched_baseline_score": 0.6246086526696386,
+      "metrics": {
+        "menF1": 0.5849772382397572,
+        "docF1": 0.593607305936073,
+        "micF1": 0.5126135216952573,
+        "macF1": 0.49031560600242935,
+        "Score": 0.5453784179683793
+      },
+      "prediction_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/linked-original/lexical-union.retrieval.jsonl",
+      "prediction_sha256": "4f11d51499b0b36951e19d5063a32c018701744a7f6fdea03fd0673d65854ad8"
+    },
+    {
+      "label": "CRF+Sap union with rebuilt k21/.35 associations",
+      "matched_baseline_score": 0.6576385432569052,
+      "metrics": {
+        "menF1": 0.6073688128023819,
+        "docF1": 0.6062874251497006,
+        "micF1": 0.5289421157684631,
+        "macF1": 0.49381278538736767,
+        "Score": 0.5591027847769783
+      },
+      "prediction_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/llm-extract-v2-fold0/linked-original/union.retrieval.jsonl",
+      "prediction_sha256": "4f4ec4efaf5efcff66a70612c142d7a13d8caa36c58603debe984a271df24ed8"
+    }
+  ],
+  "link_errors": {
+    "requests": 69,
+    "invalid_json": 1,
+    "token_limit": 1,
+    "out_of_candidate_values": 12,
+    "missing_item_keys": 1,
+    "unresolved_occurrences": 25,
+    "resolved_occurrences": 1193,
+    "format_validation_errors": 0,
+    "format_validation_warnings": 0
+  },
+  "link_response_sha256": "748de65c974d01f579c03940e4138482902c86d5ada91e8ac267e55412ec34ca",
+  "runtime": {
+    "configuration": {
+      "model": "../../shared-models/qwen3-8b-b968826",
+      "prompts": "link-prompts.jsonl",
+      "output": "full/responses.jsonl",
+      "adapter": null,
+      "max_input_tokens": 14000,
+      "max_new_tokens": 1600,
+      "batch_size": 1,
+      "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "fingerprint": {
+      "configuration": {
+        "model": "../../shared-models/qwen3-8b-b968826",
+        "prompts": "link-prompts.jsonl",
+        "output": "full/responses.jsonl",
+        "adapter": null,
+        "max_input_tokens": 14000,
+        "max_new_tokens": 1600,
+        "batch_size": 1,
+        "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "prompts_sha256": "a7119412e6a270993e2f579f4ea239209c99d301ce5ad77941a3400d711a91c7",
+      "code_sha256": "8fdf5121a56dd559b69fb606a97611252b0d6d8971fa739d2f0e9d88b4ee9b25",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "parameter_count": 8190735360,
+    "torch": "2.7.0+cu128",
+    "transformers": "4.51.3",
+    "gpu": "NVIDIA A30",
+    "max_gpu_allocated_bytes": 18582082560,
+    "elapsed_seconds": 961.431,
+    "output_sha256": "748de65c974d01f579c03940e4138482902c86d5ada91e8ac267e55412ec34ca"
+  },
+  "marginal_diagnostics": {
+    "span_only": {
+      "baseline": {
+        "tp": 787,
+        "fp": 160,
+        "fn": 363,
+        "precision": 0.8310454065469906,
+        "recall": 0.6843478260869565,
+        "f1": 0.7505960896518836
+      },
+      "extracted": {
+        "tp": 474,
+        "fp": 719,
+        "fn": 676,
+        "precision": 0.39731768650461025,
+        "recall": 0.4121739130434783,
+        "f1": 0.4046094750320102
+      },
+      "novel_coordinates": {
+        "tp": 107,
+        "fp": 690,
+        "fn": 1043,
+        "precision": 0.1342534504391468,
+        "recall": 0.09304347826086956,
+        "f1": 0.10991268618387262
+      },
+      "nonoverlapping": {
+        "tp": 70,
+        "fp": 480,
+        "fn": 1080,
+        "precision": 0.12727272727272726,
+        "recall": 0.06086956521739131,
+        "f1": 0.08235294117647059
+      },
+      "union": {
+        "tp": 894,
+        "fp": 850,
+        "fn": 256,
+        "precision": 0.5126146788990825,
+        "recall": 0.7773913043478261,
+        "f1": 0.61782999308915
+      }
+    },
+    "span_and_hpo_v2": {
+      "baseline": {
+        "tp": 769,
+        "fp": 178,
+        "fn": 408,
+        "precision": 0.8120380147835269,
+        "recall": 0.653355989804588,
+        "f1": 0.724105461393597
+      },
+      "extracted": {
+        "tp": 424,
+        "fp": 816,
+        "fn": 753,
+        "precision": 0.3419354838709677,
+        "recall": 0.3602378929481733,
+        "f1": 0.350848158874638
+      },
+      "novel_coordinates": {
+        "tp": 67,
+        "fp": 777,
+        "fn": 1110,
+        "precision": 0.07938388625592417,
+        "recall": 0.05692438402718777,
+        "f1": 0.06630380999505195
+      },
+      "nonoverlapping": {
+        "tp": 47,
+        "fp": 516,
+        "fn": 1130,
+        "precision": 0.08348134991119005,
+        "recall": 0.03993203058623619,
+        "f1": 0.054022988505747126
+      },
+      "union": {
+        "tp": 837,
+        "fp": 958,
+        "fn": 340,
+        "precision": 0.46629526462395543,
+        "recall": 0.7111299915038233,
+        "f1": 0.5632570659488559
+      }
+    },
+    "per_document": [
+      {
+        "pmc_id": "10553122",
+        "baseline": {
+          "tp": 56,
+          "fp": 10
+        },
+        "extracted": {
+          "tp": 33,
+          "fp": 83
+        },
+        "novel_coordinates": {
+          "tp": 9,
+          "fp": 83
+        },
+        "nonoverlapping": {
+          "tp": 7,
+          "fp": 64
+        },
+        "union": {
+          "tp": 65,
+          "fp": 93
+        }
+      },
+      {
+        "pmc_id": "10789033",
+        "baseline": {
+          "tp": 88,
+          "fp": 6
+        },
+        "extracted": {
+          "tp": 48,
+          "fp": 30
+        },
+        "novel_coordinates": {
+          "tp": 6,
+          "fp": 29
+        },
+        "nonoverlapping": {
+          "tp": 4,
+          "fp": 13
+        },
+        "union": {
+          "tp": 94,
+          "fp": 35
+        }
+      },
+      {
+        "pmc_id": "11196099",
+        "baseline": {
+          "tp": 58,
+          "fp": 8
+        },
+        "extracted": {
+          "tp": 33,
+          "fp": 50
+        },
+        "novel_coordinates": {
+          "tp": 4,
+          "fp": 49
+        },
+        "nonoverlapping": {
+          "tp": 4,
+          "fp": 31
+        },
+        "union": {
+          "tp": 62,
+          "fp": 57
+        }
+      },
+      {
+        "pmc_id": "11826603",
+        "baseline": {
+          "tp": 10,
+          "fp": 3
+        },
+        "extracted": {
+          "tp": 4,
+          "fp": 39
+        },
+        "novel_coordinates": {
+          "tp": 3,
+          "fp": 39
+        },
+        "nonoverlapping": {
+          "tp": 1,
+          "fp": 36
+        },
+        "union": {
+          "tp": 13,
+          "fp": 42
+        }
+      },
+      {
+        "pmc_id": "11919040",
+        "baseline": {
+          "tp": 47,
+          "fp": 5
+        },
+        "extracted": {
+          "tp": 12,
+          "fp": 26
+        },
+        "novel_coordinates": {
+          "tp": 4,
+          "fp": 26
+        },
+        "nonoverlapping": {
+          "tp": 3,
+          "fp": 14
+        },
+        "union": {
+          "tp": 51,
+          "fp": 31
+        }
+      },
+      {
+        "pmc_id": "12444410",
+        "baseline": {
+          "tp": 53,
+          "fp": 20
+        },
+        "extracted": {
+          "tp": 41,
+          "fp": 83
+        },
+        "novel_coordinates": {
+          "tp": 6,
+          "fp": 83
+        },
+        "nonoverlapping": {
+          "tp": 1,
+          "fp": 74
+        },
+        "union": {
+          "tp": 59,
+          "fp": 103
+        }
+      },
+      {
+        "pmc_id": "12652105",
+        "baseline": {
+          "tp": 40,
+          "fp": 3
+        },
+        "extracted": {
+          "tp": 30,
+          "fp": 25
+        },
+        "novel_coordinates": {
+          "tp": 5,
+          "fp": 25
+        },
+        "nonoverlapping": {
+          "tp": 4,
+          "fp": 16
+        },
+        "union": {
+          "tp": 45,
+          "fp": 28
+        }
+      },
+      {
+        "pmc_id": "12779223",
+        "baseline": {
+          "tp": 27,
+          "fp": 4
+        },
+        "extracted": {
+          "tp": 22,
+          "fp": 11
+        },
+        "novel_coordinates": {
+          "tp": 3,
+          "fp": 10
+        },
+        "nonoverlapping": {
+          "tp": 2,
+          "fp": 6
+        },
+        "union": {
+          "tp": 30,
+          "fp": 14
+        }
+      },
+      {
+        "pmc_id": "3563609",
+        "baseline": {
+          "tp": 46,
+          "fp": 8
+        },
+        "extracted": {
+          "tp": 28,
+          "fp": 74
+        },
+        "novel_coordinates": {
+          "tp": 12,
+          "fp": 72
+        },
+        "nonoverlapping": {
+          "tp": 9,
+          "fp": 46
+        },
+        "union": {
+          "tp": 58,
+          "fp": 80
+        }
+      },
+      {
+        "pmc_id": "4678370",
+        "baseline": {
+          "tp": 58,
+          "fp": 1
+        },
+        "extracted": {
+          "tp": 41,
+          "fp": 20
+        },
+        "novel_coordinates": {
+          "tp": 6,
+          "fp": 20
+        },
+        "nonoverlapping": {
+          "tp": 5,
+          "fp": 14
+        },
+        "union": {
+          "tp": 64,
+          "fp": 21
+        }
+      },
+      {
+        "pmc_id": "5452357",
+        "baseline": {
+          "tp": 47,
+          "fp": 16
+        },
+        "extracted": {
+          "tp": 24,
+          "fp": 106
+        },
+        "novel_coordinates": {
+          "tp": 6,
+          "fp": 104
+        },
+        "nonoverlapping": {
+          "tp": 4,
+          "fp": 85
+        },
+        "union": {
+          "tp": 53,
+          "fp": 120
+        }
+      },
+      {
+        "pmc_id": "5537416",
+        "baseline": {
+          "tp": 79,
+          "fp": 25
+        },
+        "extracted": {
+          "tp": 47,
+          "fp": 41
+        },
+        "novel_coordinates": {
+          "tp": 15,
+          "fp": 39
+        },
+        "nonoverlapping": {
+          "tp": 6,
+          "fp": 19
+        },
+        "union": {
+          "tp": 94,
+          "fp": 64
+        }
+      },
+      {
+        "pmc_id": "5575846",
+        "baseline": {
+          "tp": 84,
+          "fp": 12
+        },
+        "extracted": {
+          "tp": 30,
+          "fp": 56
+        },
+        "novel_coordinates": {
+          "tp": 10,
+          "fp": 56
+        },
+        "nonoverlapping": {
+          "tp": 6,
+          "fp": 25
+        },
+        "union": {
+          "tp": 94,
+          "fp": 68
+        }
+      },
+      {
+        "pmc_id": "5959423",
+        "baseline": {
+          "tp": 39,
+          "fp": 27
+        },
+        "extracted": {
+          "tp": 36,
+          "fp": 33
+        },
+        "novel_coordinates": {
+          "tp": 11,
+          "fp": 16
+        },
+        "nonoverlapping": {
+          "tp": 9,
+          "fp": 9
+        },
+        "union": {
+          "tp": 50,
+          "fp": 43
+        }
+      },
+      {
+        "pmc_id": "6338757",
+        "baseline": {
+          "tp": 36,
+          "fp": 6
+        },
+        "extracted": {
+          "tp": 31,
+          "fp": 19
+        },
+        "novel_coordinates": {
+          "tp": 2,
+          "fp": 16
+        },
+        "nonoverlapping": {
+          "tp": 1,
+          "fp": 11
+        },
+        "union": {
+          "tp": 38,
+          "fp": 22
+        }
+      },
+      {
+        "pmc_id": "6491447",
+        "baseline": {
+          "tp": 19,
+          "fp": 6
+        },
+        "extracted": {
+          "tp": 14,
+          "fp": 23
+        },
+        "novel_coordinates": {
+          "tp": 5,
+          "fp": 23
+        },
+        "nonoverlapping": {
+          "tp": 4,
+          "fp": 17
+        },
+        "union": {
+          "tp": 24,
+          "fp": 29
+        }
+      }
+    ],
+    "definitions": {
+      "span_only": "Exact (pmc_id, offset, length), excludes note=NO; ignores all identifiers; not Score.",
+      "novel_coordinates": "Exact coordinates absent from baseline; may overlap a different baseline span.",
+      "nonoverlapping": "No character overlap with any baseline entity; half-open raw-text offsets.",
+      "span_and_hpo_v2": "Shared frozen evaluator mention_counts, including compound identifiers and -1 wildcard.",
+      "subset_recall": "Subset FN/recall still use all gold; use subset TP/FP/precision to assess marginal quality."
+    },
+    "purpose": "Read-only evaluation; never creates or changes predictions",
+    "files": {
+      "gold": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+      "baseline": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+      "pred": "cbbc8b3d7aa745c5b53d4f6099af39b82de62a986f123dd24306eebc27d9d654"
+    },
+    "code_sha256": "647f30b00cc5508baba9ccd1549e8f6267aa6b81e183fdb7e37af01a20970ade",
+    "evaluator_sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "candidate_coverage": {
+    "all_correct_spans": {
+      "spans": 478,
+      "unlinked_gold": 20,
+      "exact_alias": 349,
+      "all_gold_ids_in_candidates": 463,
+      "any_gold_id_in_candidates": 463,
+      "unresolved": 4,
+      "all_gold_ids_selected": 423,
+      "any_gold_id_selected": 424
+    },
+    "nonoverlap_correct_spans": {
+      "spans": 71,
+      "unlinked_gold": 20,
+      "exact_alias": 2,
+      "all_gold_ids_in_candidates": 66,
+      "any_gold_id_in_candidates": 66,
+      "unresolved": 1,
+      "all_gold_ids_selected": 46,
+      "any_gold_id_selected": 47
+    }
+  },
+  "source_sha256": {
+    "normalize_extraction.py": "4cd1aa35743537defd450a3e24630f0de855fd27f18f98089a6f82d11be5928c",
+    "merge_extraction.py": "479bae303a3cd024a63e8bea8c25e383ddd1669d2f771e6579c672cdd9940fa0",
+    "apply_retriever.py": "db1acc79ec4329cd99f32a4ef023eceac95d5bcb3826d31d8be19c066215618e",
+    "diagnose_entities.py": "647f30b00cc5508baba9ccd1549e8f6267aa6b81e183fdb7e37af01a20970ade"
+  }
+}
