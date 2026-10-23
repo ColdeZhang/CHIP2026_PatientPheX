@@ -54,3 +54,4 @@
 
 - **固定槽后继 CPU 政策已预写**：主 .5 双臂完成后一次患者期望 F1 集合解码，1557 literal 单元一一对应/0 compound与重复；固定 tie/保留准则，30秒、无搜索。当前只保存源码/计划，未产生该臂质量；[计划](evidence/round2/fixed-slot-expected-f1-plan.json)。
 - **资源恢复只读准备**：23:00:05Z 重新全字节 SHA 核 .100 旧48/64 epoch002 两 adapter 共346,364,718B，均与原A800一致。逐文件backup locator及反向恢复命令已保存，未上传/运行恢复、未删除；6份旧optimizer仍只在A800。当前训练活跃目录不动，是否释放重复副本由后继实际收益与root决定。[资源记录](evidence/round2/fixed-slot-resource-locators.json)。
+- **固定槽正式训练完整终点**：fresh2ep/32 optimizer calls（含首lr0）、1222.669s、峰allocated25.653GB，未触发partial；唯一epoch002 adapter776ceaf1，Adam/RNG完整。23:03:17Z GPU2空、watch63323结束。真实绑定双80推断plan284e16d3已准备，300+30总限，不重训；[终点](evidence/round2/fixed-slot-binary-training-complete.json)。
