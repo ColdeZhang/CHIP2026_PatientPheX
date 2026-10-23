@@ -1,0 +1,263 @@
+{
+  "status": "complete_independently_reviewed_no_full64_or_originaldev",
+  "at_utc": "2026-10-23T23:08:23.204524+00:00",
+  "scope": "Strict train32 F2+F3 fresh objective vs cached samefold SFT32; F1 previously used for development; unchanged1189 entities/587CID/1557pairs/39patients",
+  "arms": {
+    "base": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.3532608695652174,
+        "macF1": 0.22383280138508732,
+        "Score": 0.49800815168474133
+      },
+      "relation": {
+        "tp": 130,
+        "fp": 86,
+        "fn": 390,
+        "precision": 0.6018518518518519,
+        "recall": 0.25,
+        "f1": 0.3532608695652174
+      },
+      "prediction_sha256": "20266bd1e001f1045f37d50b3e6cc71a1b7e3f177e9046e4c653f2ed47f84f84"
+    },
+    "adapter": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6163069544364509,
+        "macF1": 0.48974481126354463,
+        "Score": 0.630247675372164
+      },
+      "relation": {
+        "tp": 257,
+        "fp": 57,
+        "fn": 263,
+        "precision": 0.8184713375796179,
+        "recall": 0.49423076923076925,
+        "f1": 0.6163069544364509
+      },
+      "prediction_sha256": "968af5b9047a17772dd45c72b8286acb443c97eb136c542ae9ba5f98b2e3003f"
+    }
+  },
+  "expected_F1": {
+    "metrics": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6363636363636364,
+      "macF1": 0.5408278634857159,
+      "Score": 0.6480326089095032
+    },
+    "relation": {
+      "tp": 280,
+      "fp": 80,
+      "fn": 240,
+      "precision": 0.7777777777777778,
+      "recall": 0.5384615384615384,
+      "f1": 0.6363636363636364
+    },
+    "prediction_sha256": "9e7b8c6fc70708f2308fbbad1176a22cd831006f9724ec0cc746344ded860998",
+    "delta_vs_same_adapter_point5": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": 0.02005668192718546,
+      "macF1": 0.051083052222171244,
+      "Score": 0.01778493353733923
+    },
+    "predeclared_retention_pass": true,
+    "elapsed_seconds": 2.5258019949978916
+  },
+  "cached_SFT32": {
+    "metrics": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6866002214839424,
+      "macF1": 0.5422288533401712,
+      "Score": 0.6609420026531936
+    },
+    "relation": {
+      "tp": 310,
+      "fp": 73,
+      "fn": 210,
+      "precision": 0.8093994778067886,
+      "recall": 0.5961538461538461,
+      "f1": 0.6866002214839424
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    }
+  },
+  "pair_diagnostics": {
+    "base": {
+      "pairs": 1557,
+      "positive": 365,
+      "old_greedy": {
+        "tp": 310,
+        "fp": 73,
+        "fn": 55,
+        "F1": 0.8288770053475936
+      },
+      "new": {
+        "tp": 130,
+        "fp": 86,
+        "fn": 235,
+        "F1": 0.4475043029259897
+      },
+      "Brier": 0.15249603288512223,
+      "AUC": 0.7340236278385585,
+      "old_Brier": 0.08220937700706486,
+      "old_FN_recovered": 4,
+      "old_TP_lost": 184,
+      "new_FP": 65,
+      "old_FP_removed": 52
+    },
+    "adapter": {
+      "pairs": 1557,
+      "positive": 365,
+      "old_greedy": {
+        "tp": 310,
+        "fp": 73,
+        "fn": 55,
+        "F1": 0.8288770053475936
+      },
+      "new": {
+        "tp": 257,
+        "fp": 57,
+        "fn": 108,
+        "F1": 0.7569955817378498
+      },
+      "Brier": 0.0792824734395318,
+      "AUC": 0.9349142686402501,
+      "old_Brier": 0.08220937700706486,
+      "old_FN_recovered": 4,
+      "old_TP_lost": 57,
+      "new_FP": 13,
+      "old_FP_removed": 29
+    }
+  },
+  "training": {
+    "status": "fresh_fixed_slot_training_complete",
+    "epochs": 2,
+    "global_step": 32,
+    "successful_optimizer_calls": 32,
+    "no_overflow_skips": true,
+    "manifest_sha256": "707c2b2117cebdb5bfc1e68a39409c5ffc58c8b364140d3c956bfedef9a7da16",
+    "checkpoint_sha256": "8cd7e06fd6870390e1d15b960cfaac537a26edc25f8313091a4383be2dd1a8f3",
+    "updates_sha256": "914262be757247db6e3f3e34358276be0d881ca360d34d924afe1cdbb3ab719c",
+    "first_update_sha256": "ae9b4d3d043767ff014bf1036bf01cea2c3217884d98c908bf047b3ee73d3e8f",
+    "elapsed_seconds": 1222.6694673108868,
+    "completed_epoch": 1792796590.9220657,
+    "peak_allocated_bytes": 25652554752,
+    "peak_reserved_bytes": 28215083008,
+    "no_F1_labels": true,
+    "no_quality": true
+  },
+  "inference": {
+    "status": "both80_fixed_slot_forward_complete",
+    "arms": {
+      "base": {
+        "rows": 80,
+        "pairs": 1557,
+        "forward_seconds": 44.689401923213154,
+        "probabilities_sha256": "1234247bee7c1d1134633b47a2b969dcb2a2051ef6ada36f6292b05b30169be7",
+        "responses_sha256": "d030db31a676b226f0ab1f4a3545eded729c5cc73bc4fd9620bc098a8bce2417",
+        "adapter_disabled": true
+      },
+      "adapter": {
+        "rows": 80,
+        "pairs": 1557,
+        "forward_seconds": 55.779866865836084,
+        "probabilities_sha256": "b14ef30bda31e70e7e3861eaf183634b85fa9ab10ba6a1eb959554aefa0f9c71",
+        "responses_sha256": "96b2b53b91aa8228e27675578dee93bc70fd4aca46a7819502e1e1383a068516",
+        "adapter_disabled": false
+      }
+    },
+    "rows_each": 80,
+    "CIDs_each": 587,
+    "pairs_each": 1557,
+    "manifest_sha256": "55efe0e86f6ff02b308c2ab0bb36d888bc9222597b9a561fa2a6390ccc74949e",
+    "plan_sha256": "8d957a37069efffaa36f71fb6f090a225e73251b89de1d699346e3d023a6bdf1",
+    "elapsed_seconds": 122.7148940358311,
+    "forward_seconds": 100.46981055429205,
+    "completed_epoch": 1792796785.4925666,
+    "peak_allocated_bytes": 19654981632,
+    "peak_reserved_bytes": 25857884160,
+    "no_labels": true,
+    "no_generation": true,
+    "no_search": true
+  },
+  "references": {
+    "training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/training_complete.json",
+      "bytes": 720,
+      "sha256": "37406a3ed34323b0a06aca036d3935ab2364f97c8280d70168df5e5e74ae14d6"
+    },
+    "checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/epoch-002/checkpoint.json",
+      "bytes": 1022,
+      "sha256": "8cd7e06fd6870390e1d15b960cfaac537a26edc25f8313091a4383be2dd1a8f3"
+    },
+    "training_release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-formal-v2/gpu-release.json",
+      "bytes": 438,
+      "sha256": "1b52cbfd6c3a6625142fcca45bf7ef4bb975d283998929f4ab4fbca2667ca367"
+    },
+    "main_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/summary.json",
+      "bytes": 34363,
+      "sha256": "46500aeeca545ef74d94651f7eca718133ad773285ff1a5f0caccd1fc8badbee"
+    },
+    "main_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/paired-full-predictions-freeze.json",
+      "bytes": 2027,
+      "sha256": "040ccb1799886472edbff59b0b40e204c2c5e4cf66705faef394bdc6de9bc1b5"
+    },
+    "inference_release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/gpu-release.json",
+      "bytes": 438,
+      "sha256": "263706b9795b78ac6f02ff826cdddb34d81c6049dd6473d055c23beb10141f4a"
+    },
+    "expected_policy": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/expected-f1-policy.json",
+      "bytes": 2638,
+      "sha256": "1b4a258a7bafbe06a430295d34f4f2b0453cb0630402e6cef903ef6bad26d7ac"
+    },
+    "literal_unit_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/expected-f1-literal-unit-audit.json",
+      "bytes": 722,
+      "sha256": "14d2c8525c4c6c6447ecd77a96086e8670088551b79fb5a91799f40fb54c4eea"
+    },
+    "expected_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-expected-f1-v1/summary.json",
+      "bytes": 39971,
+      "sha256": "f4eb9cdac744298844242ab6bf16f2fe3d3f35436a42e6332c633c8db9f32fe1"
+    },
+    "expected_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-expected-f1-v1/prediction-freeze.json",
+      "bytes": 1643,
+      "sha256": "2331aa24b397f3c7da7408bbbbeaa79bfd4b5f7b5bce69cd21960d4c87adabe4"
+    },
+    "expected_execution": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-expected-f1-v1/local-execution.json",
+      "bytes": 720,
+      "sha256": "761e2e2bd2f9a04477b6079b192dd8f535f8ae09a89f997d4d6f0b4bb82f92a5"
+    },
+    "review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/fixed-slot-binary-terminal-review/review.json",
+      "bytes": 8078,
+      "sha256": "0d22930bd6721f8eeaf498f621e18b253a7d35328448bb9dc9eef0530b0ad51b"
+    }
+  },
+  "decision": "Fixedslot learner improves over same-template base but fixed.5 and expected-F1 remain below cached SFT32. Keep conditional decoder evidence; no sweep or automatic full64/dev.",
+  "limits": [
+    "32optimizer calls includes firstlr0, not32nonzero weight changes",
+    "Native MCP reports running=false, not native exit code; watcher/release rc0 not native rc",
+    "Training-side F1 development control, not originaldev/official",
+    "Candidate-internal365 positive vs literal fullgold520; missing155 cannot be recovered here",
+    "Expected-F1 assumes independent calibrated Bernoulli candidate units, not guaranteed combined micro+macro optimum"
+  ],
+  "no_official": true,
+  "no_more_GPU": true
+}

@@ -25,7 +25,7 @@
 - **原dev唯一支持追加完成**：原6401 .732257765→**.736526555**（+.004268790）；新增35=18TP17FP，旧1004entities/333assoc全保留，关系291TP77FP162FN，micro+.014235/macro+.002840。42strict/276CID/0触顶回退，139.727s；fullfreeze36fd0124先于唯一新arm评分，pred e9b30447，raw未评分。2026-10-23T21:57:55.235482+00:00 A800 GPU2 fresh空释放、watcher9688结束，勿重启；独审245c1f00通过，无GPU后继/不上传。[结果](evidence/round2/public-new-relations-dev-result.json)。
 - **条件子集分数诊断完成**：固定12CID/26pair/98分支全部有限，79.071s总/52.680s实际forward，22:11:31.682Z在原22:11:42截止内；22:11:39.721Z A800 GPU2 fresh空释放，watcher94304结束。先完整scores/边际freeze再预写统计：旧greedy6TP0FP0FN，新固定.5为4TP2FP2FN/Brier .103977；样本原本无FN，不能检验补召回或外推Score。首attempt在加载元数据序列化时零forward失败，仅修serializer且同绝对预算内完成，不记质量负；无后续GPU。独审5204f184通过（98数值/26边际/指标exact及同预算修复谱系）。[结果](evidence/round2/conditional-subset-likelihood-result.json)。
 - **全80CID条件分数已负结案**：同12prompt/158pair/530分支（旧98exact复用），旧greedy34TP7FP4FN/F1 .860759→新.5 24TP21FP14FN/F1 .578313；回收2FN却丢12TP、新18FP/移4旧FP，Brier/AUC均负。新432总333.460s/forward307.520s，22:22:09.253Z完整、22:22:14.936732Z fresh空释放，watcher99868结束；独审ddd3e009通过。全部530先共同freeze再唯一预写统计，不扫cut/温度、不迁移dev。[结果](evidence/round2/conditional-all80cid-result.json)。
-- **新固定槽目标已 CPU 冻结**：同124/2506标签，输入全无答案/翻转label不变；可读模板424087tokens/max6777，cap7168不截断，原冻结LM head两列且无新head。独立token审f8e7c8ce通过；只推荐fresh2ep32updates，原SFT32同F1对照。实际probe39.436s通过，short三槽full/选位logits exact，最长6777单步13.123s、峰25.142GB/三family更新、head冻结；22:39:26Z已释放。两轮代理1642.42s+90余量<1800，22:42:44Z已启动唯一fresh正式proc_40b515fd/watch63323（1800+30，native23:12:44）；最终完整checkpoint约520MB/磁盘890MB，原历史不动；同模板base与adapter共160prefill总300s，双完整freeze再评。[设计与边界](research/fixed-slot-binary-design.md)。
+- **固定槽判别完整结案**：fresh32/2ep/32calls1222.669s，单模板base .498008→adapter固定.5 .630248；唯一CPU期望F1对照2.526s→.648033，对自家+.017785但仍低同折旧SFT32 .660942。固定.5只回收4旧FN却丢57TP；expected净增23TP23FP，仍整体少旧30TP、多7FP。不扩full64、不迁dev、不扫cut。双80推断122.715s，23:06:29Z A800 GPU2空释放，watch63323/97632均结束；独立终审0d22930b通过。[完整结果](evidence/round2/fixed-slot-binary-result.json)。
 - **记录入口**：[关键实验过程](experiments/E-20261023-008.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。大量产物根目录 `/workspace/patientphex-runs/round2-20261023/case_retrieval/`。
 
 ## 已完成与失败结果
@@ -50,7 +50,7 @@
 
 ## 备份与边界
 
-只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `c86c2e3`（全CID准备与实际作业恢复检查点），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
+只修改`solutions/case_retrieval/`，共享总账/HANDOFF由root维护。最近远端已push/ls-remote核验 `203fee2`（固定槽完整训练与双臂推断计划检查点），实际probe终点按阶段提交；间歇401已恢复，无凭据变更。本台账允许滞后自身提交；大权重/预测/原始日志不进Git。冻结HPO、训练与验证文献隔离、禁止官方上传的约束持续有效。
 
 - **固定槽后继 CPU 政策已预写**：主 .5 双臂完成后一次患者期望 F1 集合解码，1557 literal 单元一一对应/0 compound与重复；固定 tie/保留准则，30秒、无搜索。当前只保存源码/计划，未产生该臂质量；[计划](evidence/round2/fixed-slot-expected-f1-plan.json)。
 - **资源恢复只读准备**：23:00:05Z 重新全字节 SHA 核 .100 旧48/64 epoch002 两 adapter 共346,364,718B，均与原A800一致。逐文件backup locator及反向恢复命令已保存，未上传/运行恢复、未删除；6份旧optimizer仍只在A800。当前训练活跃目录不动，是否释放重复副本由后继实际收益与root决定。[资源记录](evidence/round2/fixed-slot-resource-locators.json)。
