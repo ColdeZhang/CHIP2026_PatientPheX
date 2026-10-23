@@ -6,6 +6,7 @@
 
 - 模型 `cambridgeltl/SapBERT-from-PubMedBERT-fulltext`，revision `090663c3ae57bf35ffe4d0d468a2a88d03051a4d`，Apache-2.0；UMLS2020AA 自对齐，PubMedBERT基础。
 - 需将公开仓库的 `config.json`、`model.safetensors`、`special_tokens_map.json`、`tokenizer_config.json`、`vocab.txt` 放入模型目录，并保存来源及SHA-256 manifest。
+- 可运行 `python prepare_model.py --output /persistent/sapbert-fp32 --fp16-output /persistent/sapbert-fp16` 下载固定版本并制作半精度副本；该步骤额外需要 `safetensors==0.7.0` 与 numpy。转换来源、操作与新旧权重哈希均写入 manifest，方便网络受限服务器中转。
 - 仅接受独立的带标签训练文件和去掉 entities/association 的推理文件；训练、推理 pmc_id 重叠时直接报错。
 - 输入 HPO 必须由共享校验器核验为指定 2026-06-23；本程序只使用 HP:0000118 非obsolete分支，处理 alt_id。
 

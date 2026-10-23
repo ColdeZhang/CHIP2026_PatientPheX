@@ -96,7 +96,8 @@ class Encoder:
             self.model = ort.InferenceSession(str(Path(model_dir) / 'model.onnx'), sess_options=options, providers=['CPUExecutionProvider'])
             self.inputs = {x.name for x in self.model.get_inputs()}
         config = Path(model_dir) / 'config.json'
-        self.signature = kind + sha(config)
+        manifest = Path(model_dir) / 'manifest.json'
+        self.signature = kind + sha(config) + (sha(manifest) if manifest.exists() else '')
 
     def encode(self, texts, label):
         digest = hashlib.sha256((self.signature + '\0' + '\0'.join(texts)).encode()).hexdigest()
