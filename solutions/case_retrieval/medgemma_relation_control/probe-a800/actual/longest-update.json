@@ -1,0 +1,25 @@
+{
+  "native_loss": 0.6394292712211609,
+  "same_logits_manual_loss": 0.6394292116165161,
+  "rtol": 1e-05,
+  "atol": 1e-05,
+  "gradient_norm_before_clip": 7.924286365509033,
+  "families": [
+    "MLP",
+    "attention"
+  ],
+  "changed_probes": {
+    "attention": "base_model.model.model.language_model.layers.0.self_attn.q_proj.lora_B.default.weight",
+    "MLP": "base_model.model.model.language_model.layers.0.mlp.gate_proj.lora_B.default.weight"
+  },
+  "frozen_base_no_grad": true,
+  "visual_forward_calls": 0,
+  "update_seconds": 3.0227785953320563,
+  "allocated_peak": 29518475264,
+  "reserved_peak": 30838620160,
+  "diagnostic_learning_rate": 0.0001,
+  "optimizer_dtype": [
+    "torch.float32"
+  ],
+  "not_formal_first_step": true
+}

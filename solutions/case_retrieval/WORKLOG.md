@@ -4,7 +4,7 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **当前MedGemma单模型诊断准备**：19件8.64GB跨窗口已核完整；唯一900恢复实际722.052秒、03:14:31Z完成，server/fetch实停，首503失败保留。源/knownjobs此前3df8e42已push。原native CPU10.453秒通过；实际ACK绑定[唯一probe计划](medgemma_relation_control/probe-a800/run-plan.json)，bf0a22c已push后A800隐藏CUDA差异核6.791秒通过、fresh空卡；唯一probe03:15:33Z实际起proc_0319d924/watch68029，绝对03:18:32Z+TERM30，最长5380token更新与2token缓存；无正式两轮/质量。
+- **当前MedGemma诊断通过、正式对照准备**：唯一native21.588秒，最长5380更新3.023秒，allocated29.518GB/reserved30.839GB，完整加载/CE/梯度/真实2token cache均过；03:16:08Z GPU2实际释放。统一审1dc8c37b；[结果与训练前修订](medgemma_relation_control/RESULT.md)。root据实际授权固定fresh124×2ep共享1200+30与每epoch持久ACK，后原80另600+30；预先primary Med、唯一secondary oldSFT32∪Med，双完整freeze后各唯一v2，无新quality/正式训练尚未启动。
 
 - **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking4096采样单条也已完整格式失败并结案，见下。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
