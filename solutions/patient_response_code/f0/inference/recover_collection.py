@@ -42,7 +42,13 @@ def main():
  for offset in range(0,metadata['zip_bytes'],32768):
   size=min(32768,metadata['zip_bytes']-offset); path=B/f'collect-part-{offset:09d}.bin'; receipt=B/f'collect-part-{offset:09d}-recovered.json'
   if path.exists():
-   assert receipt.exists(); ref=json.loads(receipt.read_text()); data=path.read_bytes(); assert len(data)==size==ref['bytes'] and digest(data)==ref['sha256']
+   if not receipt.exists():
+    original=B/f'collect-part-{offset:09d}-tool.json'; tool=json.loads(original.read_text()); assert not tool.get('isError')
+    result=tool.get('structuredContent') or json.loads(tool['content'][0]['text']); assert result['exit_code']==0
+    prior=json.loads(result['stdout']); data=path.read_bytes(); assert data==base64.b64decode(prior['b64'])
+    assert len(data)==size==prior['bytes'] and digest(data)==prior['sha256']
+    save(receipt,dict(bytes=len(data),sha256=digest(data),original_successful_tool_sha256=digest(original.read_bytes()),original_collector_piece_reused=True))
+   ref=json.loads(receipt.read_text()); data=path.read_bytes(); assert len(data)==size==ref['bytes'] and digest(data)==ref['sha256']
   else:
    r=remote(part_code,{'path':metadata['remote_archive'],'offset':offset,'size':size},f'part-{offset:09d}'); data=base64.b64decode(r['b64']); assert len(data)==size==r['bytes'] and digest(data)==r['sha256']
    save(receipt,dict(bytes=len(data),sha256=digest(data)))

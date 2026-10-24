@@ -1,0 +1,193 @@
+{
+  "status": "COMPLETE_FIXED_F0_POSITIVE_VS_N_CANDIDATE_NOT_GLOBAL_BEST",
+  "at_utc": "2026-10-24T13:17:39.175420+00:00",
+  "same_final_adapter_sha256": "2c777e88f86ed6f1aa620755f30ec176668578fe6349009470c4a58941cc0316",
+  "no_new_training": true,
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-readiness-v1/ancestry.json",
+    "bytes": 6788,
+    "sha256": "ebba308f0be46def025f5818eb1b6b048909d8f41f9d68b3cd2a6f24ed44d25d"
+  },
+  "comparison_scope": "Codedhead32 vs existing normalN head48; shared candidates48 excludeF0. A1002.6 vs priorN A8002.7. Actual candidate comparison, not isolated encoding or uniformtrain32 pipeline.",
+  "CPU": {
+    "native_seconds": 12.197953950613737,
+    "wrapper_seconds": 13.125329494476318,
+    "all58_native_Auto_IDs_template_decode_exact": true,
+    "total_tokens": 516365,
+    "max_tokens": 16542,
+    "input_guard": 16896,
+    "previous_F1_guard": 14848,
+    "no_truncation": true,
+    "model_context": 262144
+  },
+  "inference": {
+    "status": "COMPLETE_RESPONSE_CODE_SHORT_SFT32_FULLTEXT58_FRESH_NO_QUALITY",
+    "expected_rows": 58,
+    "fresh_rows": 58,
+    "cached_rows": 0,
+    "cached_original_indices": [],
+    "strict_complete_rows": 58,
+    "whole_row_abstentions": 0,
+    "fresh_generation_seconds": 442.503217574209,
+    "loading_seconds": 13.358412943780422,
+    "elapsed_seconds": 514.5793960988522,
+    "base_parameters": 8953803264,
+    "total_parameters": 8997081600,
+    "max_allocated_bytes": 22850691072,
+    "max_reserved_bytes": 24278728704,
+    "responses_sha256": "914889920c493bfabb77b2b9ad3f51bb4429a004901594118b819b122423f8ee",
+    "canonical_sha256": "09769d7b7183d2d238cc89cd0fc2572cfed54b112e4835bcef9591b77000aa7d",
+    "plan_sha256": "8b6087cff44f3136ff7c156cfacc3b35cb966bb36df4cebb491a9326d57143c7",
+    "source_sha256": "c69129bed4e6346375b1430df26dfdee31cab8bbeabbee60666a3554583b4b74",
+    "raw_ids_saved_before_decode": true,
+    "raw_response_saved_before_parse": true,
+    "gold_read": false,
+    "quality_calls": 0
+  },
+  "wrapper": {
+    "at_utc": "2026-10-24T13:14:20.722876+00:00",
+    "returncode": 0,
+    "cap_seconds": 1200,
+    "term_grace_seconds": 30,
+    "wrapper_seconds": 515.9796120487154,
+    "plan_sha256": "8b6087cff44f3136ff7c156cfacc3b35cb966bb36df4cebb491a9326d57143c7",
+    "source_sha256": "487080ccad97db20701477b68732277df7180c4f10871f4dbc72f5eca6736522"
+  },
+  "release": {
+    "at_utc": "2026-10-24T13:14:20.836959+00:00",
+    "target_csv": [
+      "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40339, 40960"
+    ],
+    "target_compute_rows": []
+  },
+  "quality": {
+    "status": "COMPLETE_FIXED_RESPONSE_CODE_F0",
+    "arms": {
+      "coded-alone": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6813509544787077,
+          "macF1": 0.6695472649603135,
+          "Score": 0.7008937773510117
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 232,
+            "fp": 70,
+            "fn": 147,
+            "precision": 0.7682119205298014,
+            "recall": 0.6121372031662269,
+            "f1": 0.6813509544787077
+          }
+        },
+        "delta_vs_strong_N": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.0020809981840141933,
+          "macF1": 0.01924020861213238,
+          "Score": 0.0042898026070294915
+        },
+        "beats_strong": true,
+        "delta_vs_historical_fullsupport": -0.010613802675988326,
+        "delta_vs_root2of3": -0.023563577980988293,
+        "beats_root2of3": false,
+        "beats_historical_fullsupport": false,
+        "metrics_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/coded-alone/metrics.json",
+          "bytes": 13085,
+          "sha256": "aec83ccfc25fab34c369cbf8a591b6508ff694e2e2e21a058daeb34591779558"
+        }
+      },
+      "N-union-coded": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6789250353606789,
+          "macF1": 0.6706409995312393,
+          "Score": 0.7005607312142359
+        },
+        "counts": {
+          "mention": {
+            "tp": 769,
+            "fp": 178,
+            "fn": 408,
+            "precision": 0.8120380147835269,
+            "recall": 0.653355989804588,
+            "f1": 0.724105461393597
+          },
+          "document": {
+            "tp": 357,
+            "fp": 58,
+            "fn": 208,
+            "precision": 0.8602409638554217,
+            "recall": 0.631858407079646,
+            "f1": 0.7285714285714285
+          },
+          "relation": {
+            "tp": 240,
+            "fp": 88,
+            "fn": 139,
+            "precision": 0.7317073170731707,
+            "recall": 0.633245382585752,
+            "f1": 0.6789250353606789
+          }
+        },
+        "delta_vs_strong_N": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.004506917302043001,
+          "macF1": 0.020333943183058256,
+          "Score": 0.0039567564702537306
+        },
+        "beats_strong": true,
+        "delta_vs_historical_fullsupport": -0.010946848812764087,
+        "delta_vs_root2of3": -0.023896624117764054,
+        "beats_root2of3": false,
+        "beats_historical_fullsupport": false,
+        "metrics_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/N-union-coded/metrics.json",
+          "bytes": 13072,
+          "sha256": "7017bb104db33b0cbb2491753a9b3cd607e403d3502ebec794ef97f28fdd848d"
+        }
+      }
+    },
+    "primary_pass": true,
+    "selected_candidate": "coded-alone",
+    "keep": true,
+    "Score_only_macro_reported": true,
+    "common_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/common-freeze.json",
+      "bytes": 1269,
+      "sha256": "428cc96c130d2e68d03046a7e7fcaccb31cc950ab0e5f718b3a2ba421711f287"
+    },
+    "new_quality_calls": 2,
+    "old_quality_calls": 0,
+    "automatic_otherfold_dev_official": false,
+    "seconds": 0.5839178562164307
+  },
+  "limitations": [
+    "Both relation micro scores decline vs N while macro and totalScore improve; Score-only rule retained.",
+    "Both remain below stronger existing strongB0 .711507580027 and root2of3 .724457355332; no global-best/originaldev claim.",
+    "All58 strict; no decoder repair, extra probe, cache, retry or resampling.",
+    "Original managed GPU ID unavailable after UNKNOWN; actual original driver196256/child196277 and deadline recovered without second start."
+  ],
+  "no_GPU_remaining": true,
+  "no_automatic_otherfold_dev_official": true
+}

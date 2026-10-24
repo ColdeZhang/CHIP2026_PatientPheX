@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：F1主臂 .686618943020 已独审通过、202件小包已持久；F0同2c777e88权重的唯一58fresh实际运行（driver196256/child196277），TERM13:25:44.871579+30，13:09实读22/58。原startUNKNOWN已恢复实际PID，不重启。固定主coded-alone/诊断N∪coded对N48 .696603974744；只改本路线，无新训练/官网。
+当前：固定strict编码单模型F1 .686618943020、F0 .700893777351均超过各自强N；两折都选coded-alone。F0两micro下降而macro/总Score升，仍低全流程更强参考，不称globalbest。F1已独审/202包持久；F0187件全收、两固定质量完成，正做小备份/终审交接。无活跃GPU/监控；原结果不改。root另授权下一独立PT cyclic1仅CPU/source准备，待本次持久收尾后新建分支。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -118,3 +118,7 @@ A100 CPU finished13:03:21.831548 rc0/13.125329s (native12.197954s), complete7-me
 ### 2026-10-24 13:06 UTC — original unique F0 GPU start confirmed after UNKNOWN
 
 Archiveed66def0/364,005B fetchUNKNOWN resolved by read-only exact11member/12piece verification plusfsync; no retransmission. Original.100HTTPstoptrue. Unique start returnedUNKNOWN but actualdriver196256 began13:05:44.871579; child/PGID196277, TERM13:25:44.871579+30, plan8b6087cf. ManagedID unavailable, not fabricated. Originalinspect confirmedactualdriver0/58 duringloading; no secondstart. F1immutable independentreview187cfa0f passed allchain, pointer only added without rewriting202bundle.
+
+### 2026-10-24 13:16 UTC — complete F0 strict58 and fixed positive quality
+
+Original GPU finished13:14:20.722876 rc0/515.979612s and released13:14:20.836959.58strict/0abstention/58fresh/0cache.187member zip5de9e767/69,494B complete; last3958B UNKNOWN resumed once using prior two verified pieces. Two complete predictions froze13:16:41.258865→2new/0old v2 .583918s. Primary .700893777351 (+.004289802607vsN), union .700560731214 (+.003956756470); primary selected. Bothmicro decline, macro improve; both belowstrongB0/root2of3. Pureprimary9e6b5840 supplied to root independentfusion. F0-final-review-entry.json immutable; smallbackup pending. No further GPU here.

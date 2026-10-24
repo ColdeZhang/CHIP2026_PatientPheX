@@ -16,12 +16,17 @@ def main():
  for n in ['plan.json','entry.json','deployment-manifest.json','start-intent.json','job.json','observed-job.json','start-tool.json','terminal-manifest.json','terminal.zip','collect-intent.json','collect-manifest-tool.json']:
   if (I/n).is_file():add('inference/'+n,I/n)
  for p in I.glob('deployment-recovery-*.json'):add('inference/'+p.name,p)
+ for p in I.glob('readonly-recovery-boundary*.json'):add('inference/'+p.name,p)
  for folder in I.glob('collect-recovery-*'):
   for p in folder.glob('*.json'):
    if not p.name.startswith('part-'):add('inference/'+folder.name+'/'+p.name,p)
  for p in (I/'quality').rglob('*'):
   if p.is_file():add('quality/'+p.relative_to(I/'quality').as_posix(),p)
  add('F0-final-review-entry.json',B/'F0-final-review-entry.json')
+ add('terminal-summary.json',S.parent/'evidence/F0-terminal-summary.json')
+ qp=json.loads((S/'quality-plan.json').read_text())
+ for key in ['strong_N','strong_metrics']:
+  r=qp[key];p=Path(r['path']);assert p.stat().st_size==r['bytes'] and hashlib.sha256(p.read_bytes()).hexdigest()==r['sha256'];add('baseline/'+key+('.jsonl' if key=='strong_N' else '.json'),p)
  for n in ['bridge-capability-cleanup.json','bridge-capability-cleanup-source.py']:add('transport/'+n,B/n)
  refs={n:dict(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for n,p in paths.items()};archive=D/'terminal.tar.gz'
  with tarfile.open(archive,'x:gz') as t:
