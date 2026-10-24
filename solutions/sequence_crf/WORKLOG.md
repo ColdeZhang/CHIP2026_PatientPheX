@@ -14,7 +14,7 @@
 - **probe输入/源码**：12行唯一编码0.693748秒、44992tokens/530监督，原IDs/labels/rendered/整metadata exact，payload4cfdb1f1；source6f0188d4/hook97a0c5ce/driverafa8c149已独审静态无阻断。[部署原件](patient_balanced_loss/probe-deployment.json)。原H5初次释放后等其机械恢复完成才start，旧快照保留但未作当前gate。
 - **正式两轮完整成功**：proc_afaf0b83-b325-446e-9769-5955d8c8136d / driver19546，08:52:35.025475Z实际driver启动，2400+TERM30（TERM09:32:35.025472/KILL09:33:05.025472）。源fc24e27先push，trainer3eab/同7b99hook、driver43c730、plan e3c80b43；19成员已完整SHA/fsync/reopen。固定124×2/32calls/warmup2/尾4，fresh模型/newLoRA，探针状态丢弃；09:17:01实际rc0/1466.505575秒、124×2/32calls；两epoch含保存699.541837/693.651216秒。69原件全SHA/fsync收回，collection22117c77、formal_reported_success=true；两ACK/四大件实际重开SHA核过，完整Adam/RNG与两adapter留原持久目录，峰allocated25.698GB。09:17:04 GPU2实际0/40339释放。[作业记录](patient_balanced_loss/formal-deployment-start.json)、[操作与后继入口](patient_balanced_loss/OPERATIONS.md)。工程统一终审7a010be3已PASS，仅证明工程/源码，未声明正式或质量成功。
 - **运行位置**：本地 `R/research/patient-balanced-mixed-loss-alpha05/formal-v1`；R=`/workspace/patientphex-runs/round2-20261023`。远端mount476f/project `sequence-round2/patient-balanced-alpha05/formal-v1`，输出formal2ep；不要重启/另namespace重复fit。
-- **下一步**：所有正式train/infer/两质量均已终态，禁止重复。完成统一终审和最小持久补包后由root安排新独立路线；原seq保留历史，不合并未达标实现。
+- **下一步**：所有正式train/infer/两质量均已终态，禁止重复。统一终审10bc9846与132件253516B最小持久补包9499ef1f均已完整；两NN原ZIP/两完整状态原位置保留，[恢复指针](patient_balanced_loss/endpoint-persistent.json)。root已分配新explore/grounded-generation，本seq保留历史，不合并未达标实现。
 
 
 ## 当前最佳及官方授权
