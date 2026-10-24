@@ -47,7 +47,7 @@
     "actual_read_calls": 7,
     "prior273_chain_unchanged": true
   },
-  "updated_at_utc": "2026-10-24T17:02:52.409928+00:00",
+  "updated_at_utc": "2026-10-24T17:21:46.336640+00:00",
   "purpose": "Thin live recovery index. Milestones are observations, not fresh remote inventory. First inspect original local watcher/owner state; never restart a job solely from an old snapshot.",
   "history": {
     "commit": "bc8084e756f6f24fb9e633cc4fd31f8395b43f30",
@@ -57,76 +57,52 @@
   },
   "active_jobs": [
     {
-      "route": "training_seed_ensemble",
-      "branch": "research/training-seed-ensemble",
-      "owner": "/root/ontology_recover_0518",
-      "status": "FULL39_INFERENCE_RUNNING",
-      "worktree": "/workspace/patientphex-worktrees/research-training-seed-ensemble",
-      "recovery": "solutions/training_seed_ensemble/evidence/active-idle-handoff.json",
-      "artifact_root": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-v1",
-      "host": "10.5.3.12 GPU2",
-      "process": "proc_89bc0c0d-a45a-423a-a371-d40eb5226ff1",
-      "driver": 36536,
-      "child": 36557,
-      "started_utc": "2026-10-24T15:57:39.738226+00:00",
-      "TERM_utc": "2026-10-24T16:47:38.444861+00:00",
-      "KILL_utc": "2026-10-24T16:48:08.444861+00:00",
-      "watcher": {
-        "pid": 201543,
-        "start_ticks": 11282195,
-        "interval_seconds": 180,
-        "source": "inference_helper/watch_inference.py"
-      },
-      "latest_milestone": "Originalsolewatch recovered16:40; actualtrainingrc0 at16:30:57/controller2000.189s,87x2/22updates, bothfullACKs,adapterc3dc7de5. Actualtrainingrelease16:31:00. Originalcollector25metadata members196b22f6. Same .12GPU2 reserved for full39, not yet SCST release.",
-      "formula": "B4 union [G_new intersection (G_old union S union Q union C)]",
-      "next": "Originalclock counts98seconds deployment before actualstart; full39deadline17:11:09 retained. NecessarypublicSap .3GPU0 afterdocumentowneractualrelease; SCST waits actualA100inference release.",
-      "parser": "Ordinary G: nonEOS/invalidJSON whole-row abstain; otherwise reject invalid literal anchors per item, retaining valid items. Helper corrected before inference.",
-      "owner_status": "Active owner, soleoriginalinferencewatch; latest observations transportfailure, not model failure. No duplicate model/query.",
-      "wake_on": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-v1/infer-F1-v1/watch/terminal-observed.json",
-      "inference_plan": {
-        "sha256_prefix": "66bf2e69",
-        "clock_start_utc": "2026-10-24T16:41:09+00:00",
-        "TERM_utc": "2026-10-24T17:11:09+00:00",
-        "KILL_utc": "2026-10-24T17:11:39+00:00",
-        "admission_expires_utc": "2026-10-24T16:46:09+00:00",
-        "actual_started_utc": "2026-10-24T16:42:47.217496+00:00",
-        "managed_job": "proc_803b4f9d-6be0-421e-a4ef-0f115a25126d",
-        "driver": 67252
-      },
-      "checkpoint": "93e3b55d"
-    },
-    {
-      "route": "boundary_veto",
-      "branch": "explore/boundary-veto",
-      "owner": "/root",
-      "status": "F1_POSITIVE_SAMEHEAD_F0_1085_INFERENCE_RUNNING",
-      "worktree": "/workspace/patientphex-worktrees/explore-boundary-veto",
-      "recovery": "solutions/boundary_veto/README.md",
-      "checkpoint": "1a893035",
-      "source_review": "/workspace/patientphex-runs/round2-20261023/validation/boundary-veto-source-review/review.json",
-      "formula": "Delete only exact-span entities whose complete strict parent output is BOUNDARY; preserve NO/NIL/parse failures and all remaining objects.",
-      "next": "Complete all1085 then fixed strictBOUNDARY veto/1v2; noheadunion. ActualGPU1release toGPselector owner. Strictpositive required beforeoriginaldev1061.",
-      "result": ".7286975364690524→.729204283038573;3deleted0TP3FP;men+.000873012/doc+.001153974,relations exact. Full1416 before freeze;1newv2/old0/noNN.",
-      "entry": "/workspace/patientphex-worktrees/explore-boundary-veto/solutions/boundary_veto/evidence/result.json",
-      "F0": {
-        "baseline_sha256_prefix": "79d3568e",
-        "baseline_Score": 0.74057214044,
-        "entities": 1085,
-        "patients": 47,
-        "source_commit": "da63ebb2",
-        "cpu": "All1085 native6.673s/616583tokens/max698;24memberscomplete; 538queries=165cached+373newpublicTop8.",
-        "host": "10.5.2.100 GPU1",
-        "managed_job": "proc_9320b6db",
-        "driver": 2756581,
-        "started_utc": "2026-10-24T17:03:03.946223763+00:00",
-        "budget_seconds": 1800,
-        "grace_seconds": 30,
-        "loaded_model": "epoch2beecfb84;504adaptertensors exact,8234382336params,trainable0",
-        "recovery": "solutions/mention_boundary_selection/evidence/F0-running.json"
-      }
+      "route": "biomedical_gp_features",
+      "owner": "/root/sequence_recover_0518",
+      "branch": "research/long-context-gp-selector",
+      "worktree": "/workspace/patientphex-worktrees/research-long-context-gp-selector",
+      "recovery": "solutions/long_context_gp_selector/EXECUTION_HANDOFF.md",
+      "status": "FORMAL_RUNNING",
+      "checkpoint": "fd499e58",
+      "host": "10.5.2.100 GPU1",
+      "process": "proc_5c2a3038-fd67-477c-a0e7-7332504ddd7c",
+      "driver": 2757749,
+      "child": 2757757,
+      "started_utc": "2026-10-24T17:20:26.912310+00:00",
+      "TERM_utc": "2026-10-24T17:35:26.912310+00:00",
+      "KILL_utc": "2026-10-24T17:35:56.912310+00:00",
+      "plan_sha256_prefix": "53f716b3",
+      "method": "Faithful originalstrong train48 LGB with strict lowertrain32 OOF; original101→103 features,160trees/.3 unchanged. ReuseGP23 onlyF0, threefresh GP03/02/023 fits andfourcomplete14763/15031/15071/16417 boundaryscores.",
+      "latest_milestone": "ActualfreshGPU1 0MiB/noapps and389.88GB disk atstart; fullsource/assets alreadyACK. Soleowner ≥120s originaljob observations, no duplicate training.",
+      "next": "Complete shared900+30 thenCPU60 onefullF1 quality vs.728697536469; no partial endpoint/cutscan."
     }
   ],
   "recent_closed": [
+    {
+      "route": "long_context_relations",
+      "owner": "/root/document_relations",
+      "branch": "explore/long-context-relations",
+      "checkpoint": "b63af4dc",
+      "status": "CLOSED_FIXED_F1_NEGATIVE",
+      "entry": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/final-review-entry.json",
+      "entry_sha256": "a6abb440987f6419d462d1d66a726a958b4b4ca49f32c41318950bf8928a2aca",
+      "result": "B4 .701325377212172→.6647158351885;181new14TP167FP,1189entities/39patients/705relations,Task1 exact. Onefixedprimary/old0, noF0/cutscan.",
+      "actual": "30epochs960visits240Adam/17windows2874scores,497.329s complete17:15:06.020657; release17:15:06.210255 .3GPU0 4MiB/noapps. Finalstate63db2cca/563tensorACK13eafe5b; nine necessaryoriginals fullSHA.",
+      "backup": "39container79027B ZIP38e4b857 actualcompletea8ebe3bc;1.793GBstate remoteACK only."
+    },
+    {
+      "route": "boundary_veto_F0",
+      "owner": "/root/schema_extraction",
+      "branch": "explore/mention-boundary-selection",
+      "checkpoint": "5f6c7a5a",
+      "status": "CLOSED_BOTH_FOLD_GATE_FAILED",
+      "recovery": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/f0_veto/README.md",
+      "result": "F1 .728697536469→.729204283039 positive3FPdeleted; sameheadF0 .7405721404401228→.7404920258945116 negative,4delete1TP3FP,relations exact. Nooriginaldev/cutchange.",
+      "actual": "Full1085 native770.098s,991HPO90NO4BOUNDARY,2202members allSHA; actualrelease17:15:54.981426 GPU1zero/noapps.",
+      "terminal_sha256": "864c1e24fd06b23ede7d05dc35aa7fa85a886541eeb8279d5254fe4273184663",
+      "result_sha256_prefix": "76ec98cf",
+      "backup": "64member298302B ZIP72af4dbc,actualreceipt ee283965."
+    },
     {
       "route": "biomedical_long_context",
       "branch": "research/biomedical-long-context",
@@ -256,9 +232,10 @@
     }
   ],
   "pending_review_batch": [
-    "278 fivecompleted controls published and actuallyrestored91members; SCSTsource483db+b370 and newlongrelation1decb sourcechecks remain activityreferences, not qualitycompleted."
+    "Index278 alreadypublished and91membersactuallyrestored. Newthreeendpoint incremental review: longrelationsF1negative, BOUNDARYF0negative, newtrainingseedF1positive. No qualityreruns/oldpayloadsweep.",
+    "SCSTsource483db+b370, longrelation source1decb, LongT5sharedinput820d remain independentengineeringreferences; no newqualityclaim fromprobes."
   ],
-  "resource_rule": ".7 freshreadonly16:51 all4cardsstillforeign. .100GPU1 Sap373 released16:57:09; GPselectorassetprep andBOUNDARY1085nativeprep coordinate firstfullyready. GPU0 LongT5asset/600probe pending, SCSTnormalizerpriority. .12GPU2 seed39 originalsolewatchactive17:11harddeadline; uponactualrelease wakeSCSTcdb77c7e. .3 sharedLUNA17:00:43 backoff17:03:48; no newGPUstart,relationformal waitsseedSap. No foreignprocesschanged.",
+  "resource_rule": ".100GPU1 GPselector actual17:20:26→TERM17:35:26+30; GPU0 reservedSCSTnecessarySap afterseed actual17:09:44 release. .12GPU2 SCST first69s0NN terminal/released17:10:58, freshrecovery transportwaiting17:22:45; seedF0next2100+30. .3GPU0 actualrelationrelease17:15:06 butMCPofflinecopy; T5awaitsrecovery. .7 latest16:51 all4foreign. Do notduplicateunknownjobs or changeforeignprocesses.",
   "operational_notes": [
     "Admission expiry does not terminate an already admitted job; runtime deadlines above are separate.",
     "Transient MCP UNKNOWN reads recover original objects; do not rerun model to replace lost transport.",
@@ -267,60 +244,55 @@
   ],
   "CPU_research": [
     {
-      "route": "patient_set_self_critical_training",
-      "owner": "/root/next_method_readiness",
-      "status": "FINAL_SOURCE_AND_DEPLOYMENT_READY_WAIT_SEED39_RELEASE",
-      "evidence": "87complete train patients/818v2 atoms incl4 literal targets not covered by original G output;5empty.32cases equivalentconceptset underdifferentquote. CPUgradientidentity4.38e-11. Original target .9946 is target-normalization check, not model accuracy.",
-      "next": "Upon actual .12GPU2 seed39 release, owner authorized freshgate directly4x2/newloss1800+30; no furtherapproval/repeatedaudit. Original91b6 namespace preservedunstarted. .100GPU0 necessarySap inside sharedclock.",
-      "branch": "research/patient-set-risk",
-      "worktree": "/workspace/patientphex-worktrees/research-patient-set-risk",
-      "proposal_sha256": "f423d7478cd5075227ef407d25280383e375cfebe342d168292905024ef9d442",
-      "checkpoint": "cdb77c7e",
-      "preoutput_amendment": "At least2 nonzero actual advantages, one nonempty-gold pair both valid and distinct concept F1; second may be actual validity difference. Original stricter proposal preserved. No patient/seed/cap replacement.",
-      "generation_config_delta": "ActualTF5.20.2 inheritedmin_p reproduced thenreset underlyingspecialIDs-onlydefaults; root narrowreviewb3700255, no newmath/gates/budget. Finalsourcef7c9f813/bound776b98e0,10filesactualdeployed.",
-      "owner_status": "Agent released slot, prepared only; noadmission/noGPU. Rootwake afterseed39actualrelease.",
-      "recovery": "/workspace/patientphex-worktrees/research-patient-set-risk/solutions/patient_set_risk/EXECUTION_HANDOFF.md"
+      "route": "training_seed_ensemble",
+      "owner": "/root/ontology_recover_0518",
+      "branch": "research/training-seed-ensemble",
+      "checkpoint": "eea18a1e",
+      "status": "F1_POSITIVE_F0_CPU_READY_WAIT_A100",
+      "worktree": "/workspace/patientphex-worktrees/research-training-seed-ensemble",
+      "recovery": "solutions/training_seed_ensemble/f0/README.md",
+      "entry": "solutions/training_seed_ensemble/evidence/F1-result.json",
+      "entry_sha256_prefix": "0d163b51",
+      "formula": "B4 union [G_new intersection (G_old union S union Q union C)]",
+      "result": "FixedF1 .701325377212172→.7046634499148483;8new6TP2FP,all1189entities/39patients unchanged. Originaldevbest unchanged.",
+      "actual": "Newseed20261025 G32 twoepochs22Adam doubleACK adapterc3dc7de5; all39infer1319.293s peak21014939136B,35EOS4cap;206necessarySap8.990s complete. Actual.12release17:04:46.618734, .100Saprelease17:09:44.596978.",
+      "backup": "122members/654860B actualpersistent81568e60, largefullstates remainremote dualACK.",
+      "next": "F0 sameadapter47/max9935/289420tokens prepped, onefixedendpoint vsB4 .728195628911,2100+30 afterSCSTactualrelease. NoF0 GPUstart orclock yet.",
+      "evaluation_count_correction": "Incrementalreview found evaluate_report is1primary+4fixedsensitivity calls, not1bottom-level evaluate. OriginalF1 result/primaryscore retained; owner updating labels andF0 to oneevaluate, noF1 rerun."
     },
     {
-      "route": "long_context_relations",
-      "owner": "/root/document_relations",
-      "status": "PROBE_PASS_FORMAL_SOURCE_DEPLOYMENT_WAITING_SEED_SAP",
-      "branch": "explore/long-context-relations",
-      "method": "FreshpublicBioClinical149M; wholeencoder context, spanmean→oldlogsumexpmentions→projectedblock32bilinear, no fullattention tensor extraction. All4495trainpairs727positive and87patients; nativewholecontext adds61positive/1994negative directinteractions comparedwith actualold512windows.",
-      "proposal": "30epochs/accum4=240Adam, encoder2e-5/head1e-4,warmup24,allpairs,no negative sampling, fixedcut0, B4 protectedunion唯一1v2; oldDocREnegative and jointarchitecturechange disclosed.",
-      "next": "Freshformal2400+30 authorized with same30ep240Adam; plan9a85de3e frozen,quality prediction fsync fixede32e47c5. .3transportbackoff17:03:48; source.zipUNKNOWN only,0formal start. Same-SHA smallsource fallback permitted. Waitseed .3Sap realrelease thenstart.",
-      "checkpoint": "7b910743",
-      "source_review": "/workspace/patientphex-runs/round2-20261023/validation/long-context-relations-source-review/review.json",
-      "engineering": ".3 actual16:53:37.575758→16:53:59.103917 21.528s,6FB/1nonzeroAdam/140updatedparam/563state exact,3.965GBpeak. Probe discardeddb5d273c."
+      "route": "patient_set_self_critical_training",
+      "owner": "/root/next_method_readiness",
+      "branch": "research/patient-set-risk",
+      "worktree": "/workspace/patientphex-worktrees/research-patient-set-risk",
+      "recovery": "solutions/patient_set_risk/EXECUTION_HANDOFF.md",
+      "checkpoint": "2c3a12d9",
+      "status": "FIRST_PROBE_CLOSED_0_FORWARD_RECOVERY_WAIT_CONNECTION",
+      "first_attempt": "proc_cc308f8f-3898-4760-93a6-8f73610a2bab driver85653/child85669 .12GPU2, actual17:09:49.159650→17:10:58.188/69.028669s rc1 beforeLoRA/forward/generation/Adam; loadinginfo set serializationH39. ActualGPU2release0MiB/noapps. Original21container complete collected.",
+      "repair": "ExactoldG serializerAST+localsets/unknown/NaNcontract PASS. IndependentactualTF5.20.2 tinyCPU call UNKNOWN retained, no repeatedCPU/model. No freshrecovery startyet.",
+      "next": "After17:22:45 transportbackoff, source/admission verified directlyfresh1800+30 separate namespace; fixed4x2 trajectories/seeds/loss/gates unchanged. NecessarySap .100GPU0 reserved inside sharedclock. No tinyCPUreceipt unnecessary gate.",
+      "source_review": "483db3ba plus generation-configdelta b3700255",
+      "preoutput_amendment": "At least2 actual nonzeroadvantages;≥1 nonemptygold pair bothvalid/differentconceptF1; second mayvaliditydifference. No reseed/replacement/cap extension."
     },
     {
       "route": "seq2seq_patient_set",
       "owner": "/root/boundary_veto_control",
-      "status": "ORIGINAL_PROBE_CLOSED_BEFORE_CUDA_SHARED_PARAMETER_IDENTITY_RECOVERY",
       "branch": "research/seq2seq-patient-set",
-      "candidate": "OriginalLongT5 tglobalbase247587456, ModelScope/HF assetidentity fixed. Single originalG87quote target801anchors/814canonical,4unrepresented818goldatoms disclosed. DirectID proposal retainedunselected.",
-      "limitations": "AuthoritativeSP33of126fastIDs differ. Native inputUNK(<,~) disclosed. Twoquote< characters use existingextra_id_0(ID32099), no newtoken/parameter; literalJSONunicodeescape itselfbackslashUNK and rejected. 87 targetoriginalbytes afterpiece decode/restore exactlyroundtrip; targetserialization change disclosed.",
-      "next": "ActualTF4.50/Torch2.7 loaded shared/encoder/decoder embeddings as3Parameterobjects sharing1storage, raisingnamedcount296936064 vs247587456. CPU native set_input_embeddings rebinding authorized only if originalvalues/headunchanged; correctedsharedload source then recoveredprobe must retain originalTERM17:12:39/KILL17:13:09, notfresh600. No actualsuccessclaimed.",
-      "checkpoint": "659015fc",
-      "probe_attempt": "Originalproc38df0107/driver2756533 start17:02:39,failedloadguard6.287s beforecuda/FB/Adam/decode; actualGPU0release17:02:45.594 zero/noapps. Base990446387B fullySHAverified."
+      "worktree": "/workspace/patientphex-worktrees/research-seq2seq-patient-set",
+      "recovery": "solutions/seq2seq_patient_set/WORKLOG.md",
+      "checkpoint": "1f405d5a",
+      "status": "PROBE_PASS_FORMAL_SOURCE_PREP_TRANSPORT_WAIT",
+      "candidate": "OriginalLongT5tglobalbase247587456,originalSP;87Gquote targets801anchors814canonical vs818gold/5empty. NativeinputUNK227 disclosed; targetliteral< usesexisting32099 only,all87 originalbytes roundtrip.",
+      "engineering": "Original6.287s preCUDA failure shared3Parameter1storage. Nativeinput identity repair withallstatekeySHA unchanged/independentLMhead. Recoveredprobe14.028s 4FB2Adam finite,peak10.828GiB,actualrelease17:05:05.631;no checkpoint save inprobe. Rootreview820d6cdb, H73.",
+      "formal": "Freshbase fullAdamW1e-4/wd.01/10x87/accum4tail3=220steps,warmup22,seed20261024,1800+30 training+fullstateACK. NewCPUfullstate/identity/uniqueoptimizercontract; no formal started.",
+      "next": ".3 priorrelationactualrelease17:15:06.210255 butMCPLUNA/UNKNOWN blocksoriginalprivatecopy. SourceTTLclosed17:18:42,delivered=[]/0asset, noGPUrequest. Recoveroriginalclient terminal thenfreshTTL sameassets if.3 available; .100GPU0 reservedSCST untilrelease.",
+      "inference": "All39 separatelybounded later,greedy/cap1600, originalGitemwise validation; onefixedB4 union[T5 intersection(Gold unionS unionQ unionC)] endpoint."
     },
     {
-      "route": "quote_output_order",
-      "owner": "/root/sequence_recover_0518",
-      "status": "CPU_ONLY_SHUFFLE_CE_DEPRIORITIZED",
-      "branch": "research/quote-output-order",
-      "result": "67of87 multi-quote/801total. Twofixed permutations preserve451672input/11884targettokens, but originalnaturalorder87small samples and Vinyals2016 randomorder negative evidence; randomCE not true permutationinvariant objective. Oldinput/CIDjointreverse alreadynegative; no newGPU.",
-      "next": "Close boundedreadiness and inspect strictOOF newGPfeature possibility separately."
-    },
-    {
-      "route": "biomedical_gp_features",
-      "owner": "/root/sequence_recover_0518",
-      "status": "AUTHORIZED_3_FRESH_FITS_PREPARING_ASSETS_NO_GPU_START",
-      "method": "OldBiomedGPfeatures alreadyF1positive/F0negative/4foldpoolednegative. NewBioClinicalencoder signal distinct; faithfulstrongLGB usestrain48 withtrain32 lowerOOF, notwholetrain32. Need fullcandidate scores notonlyold1313selected.",
-      "next": ".100privateTF4.50 overlay mayreuseT5; source .3 sharedbackoff17:03:48 for public599MB+GP23model-only CPUexport. GPU1 nowBOUNDARY1085 untilactualrelease, noGPstart. 3fresh896updates/4fullscores900+30 preserved.",
-      "branch": "research/long-context-gp-selector",
-      "checkpoint": "b800b915",
-      "supply": "4candidateboundary sets14763/15031/15071/16417, only5trainOOF unaligned usevalidfalse/logit0;heldallrepresented.101→103 features,160trees/.3 unchanged."
+      "route": "mature_method_research",
+      "owner": "/root/new_methods_research",
+      "status": "CPU_ONLY_RESEARCH",
+      "next": "Up to2 mature implementable mechanisms after checking priorclosedrecipes, trainonlydata andcost; no GPU/model download."
     }
   ]
 }

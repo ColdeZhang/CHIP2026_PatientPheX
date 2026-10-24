@@ -94,3 +94,8 @@
 - 碰到可复用的坑，同步更新 `HANDOFF.MD`；本文件只索引实验，不重复工作台账。
 
 - 长上下文 GP 原跨度删除控制：[路线台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/63aa3829/solutions/long_context_span_veto/WORKLOG.md)；固定 max<0 全17窗负结果，关闭且不扫描阈值。
+
+- 全文关系模型：[路线台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/95556c81/solutions/long_context_relations/WORKLOG.md)，独立 `explore/long-context-relations`。
+- 新长文本 GP 严格OOF特征：[执行入口](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/fd499e58/solutions/long_context_gp_selector/EXECUTION_HANDOFF.md)，独立 `research/long-context-gp-selector`。
+- LongT5患者证据集合：[路线台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/fc55630d/solutions/seq2seq_patient_set/WORKLOG.md)，独立 `research/seq2seq-patient-set`。
+- 输出顺序的有限研究：[报告](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/3e5f65b1/solutions/quote_output_order/REPORT.md)，随机shuffle CE未投入GPU。

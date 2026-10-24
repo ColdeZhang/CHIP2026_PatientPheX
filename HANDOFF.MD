@@ -265,6 +265,8 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 
 FLA独立A后继曾再次用普通writer保存真实loading info，32.688秒wrapper在任何forward前失败；原件保留。机械恢复逐字复用既有serializer，空/非空set、frozenset及未知类型检查通过，随后85.423秒wrapper在原绝对截止内完成数值采集。该入口错误已修复；所得跨backend数值差异是另外的实验结论，不能合并成同一个失败原因。终审`validation/fla-A-final-review/review.json`（`8959740a…`）通过；仅远端保留的大tensor校验范围仍明确披露。
 
+SCST首个9B探针再次遗漏同一serializer，69.029秒后在loading info写入退出，0forward/0生成/0Adam；实际卡已释放。恢复`2c3a12d9`的helper AST与原G完全相同，本地集合/未知类型/NaN合同通过；另一个实际TF5.20.2微型CPU测试遇到UNKNOWN，结果仍未确认，不能记为通过或反复启动它。该已知窄修复不依赖重复运行模型；独立恢复须新namespace和事前预算，保留原失败与原截止，真实训练结果另记。
+
 GLiNER2.5无验证集训练的原生摘要含`best_metric=inf`哨兵；六次真实更新与有限loss/梯度已保存，最终严格JSON写入仍使wrapper退出1。恢复只把没有计算的指标明确记为null及`not_computed_no_eval`，保留原退出码/失败和部分摘要，不重跑已完成的GPU步骤；真实loss非有限仍须报错，不能通用清洗所有inf。CPU恢复终态`research/gliner25-task1-v1/metadata-recovery-v2/complete.json`（`458768a1…`）与六步原件共同证明工程结果，不能把wrapper rc1直接等同训练数值失败。
 
 ## H40：逐文OOF资源不自动满足新验证划分的隔离
@@ -475,3 +477,9 @@ F0必要Sap的启动请求返回UNKNOWN；原namespace仅有启动意图，manag
 **触发与影响**：实际 Transformers 5.20.2 `_prepare_generation_config` 会把调用方 config 中的 `None` 从 `model.generation_config` 补入；只新建 config 并设置 T=1/top_k=0/top_p=1，仍可能继承 `min_p`，不等于完整原始 categorical。SCST准备阶段用实际API与合成祖先min_p=.3复现，未加载模型/GPU，未发生真实错误采样。
 
 **避免与状态**：先保存原模型默认配置，再把underlying默认重置为仅原EOS/pad/bos的fresh config；记录并核实际prepared配置与processor列表。不要盲传该版本已不存在的`use_model_defaults=False`。本次f7c9f813修补及CPU API8b3a1fc4、root窄审b3700255通过；真实9B探针仍待运行，结论不外推其他版本。见[源码与接手入口](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/cdb77c7e/solutions/patient_set_risk/EXECUTION_HANDOFF.md)。
+
+## H73：共享存储不等于同一个 Parameter，优化器前须核共享嵌入身份
+
+**触发与影响**：LongT5-base 在实际 TF4.50/Torch2.7.1 `from_pretrained` 后，shared/encoder/decoder 输入嵌入共享一个storage，却变成3个Parameter对象；`model.parameters()`计数从原设计247,587,456变为296,936,064。配置本就`tie_word_embeddings=false`，LM head应独立，不能为压计数把输出head也绑上。原计数门在CUDA/Adam前拦下；此状态若直接建优化器会把输入别名分别纳入，不能当正确训练共享。
+
+**避免与状态**：记录实际对象身份/storage/参数数后，调用原生`set_input_embeddings(model.shared)`恢复原设计输入共享；核所有state key SHA前后完全不变、其他Parameter身份不变、三个输入为同一Parameter且LM head独立。CPU原件f0eb0fb2通过，保原截止的恢复probe14.028秒完成4FB/2Adam并释放卡；本probe未保存checkpoint，正式保存/重载后还须核身份与优化器唯一性。不外推其他模型/加载版本。见[实际修复和记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/fc55630d/solutions/seq2seq_patient_set/evidence/shared-identity-repair.json)，root窄审820d6cdb。

@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：新增工作线覆盖跨度、文档关系、患者条件生成、训练长度、预训练联合抽取、原生Qwen3关系及主线程共识融合；各有独立分支/worktree和分层记录。负配方及时关闭，当前安排见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：full64三源二票将原dev从ee39的.755240提高至 **.769236**；相对原901新增4关系3TP1FP，macro .657186→.713196，实体不变。双采样旧最佳ee39和原901恢复入口保留。四来源内部两折均正，但完整full64原dev .768401低于三源best，新增5=1TP4FP，已保留负结果。
-- **实际运行/恢复**：BOUNDARY固定删除控制在F1 .728698→.729204（删3个误报、无误删），正迁移条件在核；其父并集与新长文本GP并集均负。独立种子G全39推断中；SCST已准备，等同卡释放。下一批研究是长序列T5、全文关系与新GP严格OOF特征，均先核来源/成本。见[运行快照](docs/campaigns/round2-current-work.json)。
+- **实际运行/恢复**：独立训练种子G的固定支持融合F1 **.701325→.704663**（新增6TP/2FP），F0全部47条已准备；原始dev最高未变。新长文本GP严格OOF特征17:20:26已启动900+30；LongT5正式源准备，SCST修复已知元数据序列化问题后等待服务器连接恢复。BOUNDARY删除F0微负、全文关系F1明显负，均关闭原配方。见[运行快照](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
 - **证据备份**：278项/6719引用已完成增量独审和发布；80新引用＋11控制共91成员实际7次回读，继承273之前完整链。QSC F0的83成员、两个root删除控制共48成员也已实际恢复。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@0a4e30aa`；BOUNDARY正控制已推`1a893035`，各新工作线源码/预算和正负结论独立推送，未达标实现不合入main。Git401/503按H18有限重试。
+- **Git**：最近已核验`origin/main@aa85d558`；各新工作线源码/预算和正负结论独立推送，未达标实现不合入main。Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
