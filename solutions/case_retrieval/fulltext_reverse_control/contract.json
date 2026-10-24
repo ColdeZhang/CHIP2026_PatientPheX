@@ -1,0 +1,163 @@
+{
+  "schema": "fixed-SFT32-fulltext-candidate-reverse-F1-v1",
+  "status": "SOURCE_ONLY_CPU_NOT_RUN",
+  "cpu_seconds": 60,
+  "input_references": {
+    "short_original80": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "fulltext_normal80": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "normal_row_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/row-audit.json",
+      "bytes": 79950,
+      "sha256": "35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb"
+    }
+  },
+  "tokenizer_files": {
+    "config.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/config.json",
+      "bytes": 3126,
+      "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+    },
+    "tokenizer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "tokenizer_config.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer_config.json",
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    "chat_template.jinja": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "vocab.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/vocab.json",
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    },
+    "merges.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/merges.txt",
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+    }
+  },
+  "sources": {
+    "prepare_cpu.py": {
+      "bytes": 9682,
+      "sha256": "531687e9797ba6cb5dfe2842d13c1ae8292d82a5bcdd8d9b830c94540dd55e14"
+    },
+    "reverse_fulltext.py": {
+      "bytes": 4056,
+      "sha256": "b96f2b6ffe679a29bb99826b4945abfb704e1865c52d7eda2493344098a2a48a"
+    }
+  },
+  "normal_original_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/plan.json",
+    "bytes": 7636,
+    "sha256": "73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d"
+  },
+  "normal_input_CPU_result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/input-cpu/actual-result.json",
+    "bytes": 2454,
+    "sha256": "f029779093c37fbf42b68274a19309298662e9644c0f9ca6ba1f304d4e8b3c38"
+  },
+  "normal_pred": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 154584,
+    "sha256": "f33a30f1f3c505022dbcf846a19e6496b3810627808e97cde595a9ed53d17866"
+  },
+  "normal_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12922,
+    "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+  },
+  "baseline_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6952789699570815,
+    "macF1": 0.5959675129046342,
+    "Score": 0.676546354662594
+  },
+  "expected": {
+    "rows": 80,
+    "documents": 16,
+    "patients": 39,
+    "concepts": 587,
+    "pairs": 1557,
+    "entities": 1189,
+    "normal_tokens": 670122,
+    "normal_max_tokens": 14390
+  },
+  "model": {
+    "base_id": "Qwen/Qwen3.5-9B",
+    "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "independent_parameters": 8997081600,
+    "adapter_files": {
+      "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+      "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+    },
+    "adapter_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/thinking-budget-final-v1/old32-adapter",
+    "base_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "tokenizers": "0.23.1",
+      "actual_tokenizer_class": "Qwen3_5Tokenizer",
+      "matmul_TF32": false,
+      "cudnn_TF32": true
+    },
+    "base_modelscope_revision": "aa2aaf6060dd45e8ca24da2d37ffb0172eb985d6",
+    "original_complete_asset_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "transform": "Apply original reverse_json_order parts/replace_top_code/reverse to the exact old short prefix; append already frozen full-report suffix unchanged byte-for-byte; full row and CID map inverse exact. No report reconstruction, candidate additions, wording or PID changes.",
+  "generation": {
+    "do_sample": false,
+    "use_cache": true,
+    "thinking": false,
+    "precision": "BF16_text_only_native_SDPA_no_quantization",
+    "eos": "same legacy generation-config union tokenizer EOS",
+    "max_new_tokens": 1600,
+    "max_input_policy": "ceil(actual_max_native_input_tokens/512)*512; no truncation; cap+1600 <= actual config context"
+  },
+  "probe": {
+    "parent_only_not_started": true,
+    "budget_seconds": 240,
+    "TERM_grace_seconds": 30,
+    "selection": "maximum native input tokens; row_id ascending breaks ties",
+    "GPU": "fresh .100 A30 GPU1 UUID gate before parent unique launch",
+    "source": "parent to bind actual CPU/probe runner; this source has no GPU launcher"
+  },
+  "quality": {
+    "primary": "fulltext-normal union fulltext-reverse",
+    "diagnostic": "fulltext-reverse alone",
+    "complete_both_predictions_frozen_before_gold": true,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "comparator": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6952789699570815,
+      "macF1": 0.5959675129046342,
+      "Score": 0.676546354662594
+    },
+    "retention": "Score strictly greater than cached fulltext-normal .676546354662594; macro/all components disclosed, no extra macro gate; endpoint identities fixed.",
+    "no_new_originaldev_F0_or_official": true
+  },
+  "hardware_disclosure": "Cached normal fulltext ran on A800; proposed new reverse runs on A30, both native BF16/SDPA. Hardware/backend numerical differences remain a confound; do not claim bitwise same runtime or a perfectly isolated single-variable hardware experiment.",
+  "data_scope": "Previously examined train32->F1 development set; no new gold read in preparation. Original train32 full ancestors and old candidate pool retained. No fitting/new model download."
+}

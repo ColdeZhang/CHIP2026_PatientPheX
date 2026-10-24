@@ -1,0 +1,77 @@
+{
+  "conclusion": "No exact fulltext80+old4f48+candidate-reversal actual run found in bounded owner history. Not a server-wide proof of absence.",
+  "scope": [
+    "case_retrieval route WORKLOG/experiment/research controls",
+    "sequence reverse_json_order F1/F0/dev sources/plans/results",
+    "ontology SFT32 full-report F1/F0 plan and result pointers",
+    "four-source-fulltext actual source references",
+    "order-warmstart training result"
+  ],
+  "facts": {
+    "short_reverse": {
+      "input_tokens": 250691,
+      "alone_score": 0.65056637,
+      "short_old_union_score": 0.662472447
+    },
+    "normal_fulltext": {
+      "input_tokens": 670122,
+      "max_input_tokens": 14390,
+      "score": 0.676546354662594
+    },
+    "four_source": "Cached short reverse + normal fulltext + old/patient union, no new fulltext reverse generation",
+    "warmstart": "New two-epoch training from old adapter; not inference-only old4f48 fulltext reverse"
+  },
+  "references": {
+    "short_reverse_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/report.json",
+      "bytes": 1812,
+      "sha256": "c6021002bb19ad3e34f53dbf710e497b9d56feb6cdd5ac11fa1859f4c492b7a6"
+    },
+    "short_reverse_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/plan.json",
+      "bytes": 7339,
+      "sha256": "aac0c682926aaf6816159054f0eeefa8b7d621e373f463444415f094d39a192c"
+    },
+    "short_reverse_results": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/evidence/round2/reverse-json-order-results.json",
+      "bytes": 7784,
+      "sha256": "c10493ac8b4b801f838cecc7ee77f3a9cd79233142c4757f459e71626a695fe1"
+    },
+    "normal_fulltext_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/plan.json",
+      "bytes": 7636,
+      "sha256": "73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d"
+    },
+    "normal_fulltext_result_pointer": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_readiness/full80/result-pointer.json",
+      "bytes": 4429,
+      "sha256": "2691f1d78d36998cee585b8b16bb8fe5403b8c3d37f662f2eac4291f4f6505d3"
+    },
+    "four_source_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/plan.json",
+      "bytes": 17470,
+      "sha256": "3a869a101f61dc43c43b770fa5f87c2a6b0b3c05f04bb6c69faad045704a50aa"
+    },
+    "four_source_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/evaluation/summary.json",
+      "bytes": 6243,
+      "sha256": "93770641e13ee1c9daae9aa7f2ba1576dc03bb9371198d971ad1f668e52df39d"
+    },
+    "reverse_transform_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/reverse_json_order/prepare.py",
+      "bytes": 7579,
+      "sha256": "97a2ae3568277c8ef2f9ea09e4ae62c23586a931f7c9bdf25950dfe56cdd731a"
+    },
+    "warmstart_result": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/order_warmstart_stage/RESULT.md",
+      "bytes": 5664,
+      "sha256": "93a552780790fe87780f65de745692e43cb52d86cfb56328bda0f66269ae038f"
+    }
+  },
+  "preparation_checks": {
+    "source_compile_files": 2,
+    "three_original_reverse_functions_source_exact": true,
+    "CPU_tokenizer_or_model_run": false,
+    "new_gold_or_quality": false
+  }
+}
