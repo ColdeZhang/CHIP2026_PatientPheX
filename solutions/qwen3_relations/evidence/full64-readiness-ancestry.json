@@ -1,0 +1,187 @@
+{
+  "status": "PASS_CONDITIONAL_FULL64_ALL_TASK_ANCESTORS_EXCLUDE_ORIGINALDEV",
+  "training_documents": 64,
+  "training_rows": 265,
+  "original_training_target_rows_preserved": true,
+  "training_candidate_folds": [
+    {
+      "fold": 0,
+      "candidate_train_documents": 48,
+      "input_documents": 16,
+      "originaldev_overlap": 0
+    },
+    {
+      "fold": 1,
+      "candidate_train_documents": 48,
+      "input_documents": 16,
+      "originaldev_overlap": 0
+    },
+    {
+      "fold": 2,
+      "candidate_train_documents": 48,
+      "input_documents": 16,
+      "originaldev_overlap": 0
+    },
+    {
+      "fold": 3,
+      "candidate_train_documents": 48,
+      "input_documents": 16,
+      "originaldev_overlap": 0
+    }
+  ],
+  "dev_rows": 64,
+  "dev_documents": 16,
+  "dev_patients": 36,
+  "dev_concepts": 466,
+  "dev_candidate_pairs": 1006,
+  "dev_fulltext_reconstruction_exact": true,
+  "candidate_resources": "train265 uses four OOF train48 candidate folds; dev64 uses CRF/Sap/LR train64 plus GLiNER span train48 subset64. All exclude originaldev. Existing originaldev development/policy selection not a blind test.",
+  "prior_generation_adapter_NOT_REUSED": true,
+  "full64_model": "conditional fresh public native Qwen3, not trained or authorized here",
+  "refs": {
+    "train_original": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/train.jsonl",
+      "bytes": 3698173,
+      "sha256": "27ecf4769e2917bfc06c7c47f679d2dea19ac9013626288093b4e4cb6dffab3c"
+    },
+    "train_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/preparation-manifest.json",
+      "bytes": 13653,
+      "sha256": "389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44"
+    },
+    "dev_input": {
+      "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "bytes": 294884,
+      "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+    },
+    "train_fold0_assembly": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.manifest.json",
+      "bytes": 1754,
+      "sha256": "be74700a232e04ea827c424c9ab5ef87a548d842c50f8e3167df6b4f145d7e4f"
+    },
+    "train_fold0_semantic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold0-sapbert/manifest.json",
+      "bytes": 3455,
+      "sha256": "042640d40b2ced7a619d856fcfdfe421297dfd9bc1ca4271585b54449f02d275"
+    },
+    "train_fold0_crf": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/baseline-fold0/pred-manifest.json",
+      "bytes": 1648,
+      "sha256": "2603a97baed1954f895a5a676a775785d1871d2677a353691a4f07eb643ba4d8"
+    },
+    "train_fold1_assembly": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold1/rules.pred.manifest.json",
+      "bytes": 1754,
+      "sha256": "03cd30f899c41a4d575467b547503575f5bee47ad5b5635daa382ee5b43db5b9"
+    },
+    "train_fold1_semantic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold1-sapbert/manifest.json",
+      "bytes": 3454,
+      "sha256": "e1d1d425ea4c16f6aa7a4f85961b8e796b9ab799ee7ee3e3480a9713c2d7a1c8"
+    },
+    "train_fold1_crf": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/baseline-fold1/pred-manifest.json",
+      "bytes": 1648,
+      "sha256": "2cc30f8976055220941a7276816b0f31b7d500a2a65e7bfbf3b78a01a2eca853"
+    },
+    "train_fold2_assembly": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold2/rules.pred.manifest.json",
+      "bytes": 1754,
+      "sha256": "b39a9b90e423aed56b35d1103c24e1c2657af97a24c50dcbcd54276bf6eb6a0e"
+    },
+    "train_fold2_semantic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold2-sapbert/manifest.json",
+      "bytes": 3455,
+      "sha256": "c15f77f9d9d9e98bbe24d350068a8e283671d6202be020f86424e4bcf9bf78cc"
+    },
+    "train_fold2_crf": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/baseline-fold2/pred-manifest.json",
+      "bytes": 1648,
+      "sha256": "7498caceb8799c31a27f54333fedf51cfbf9c2a04f93afd527225ac6d54c072b"
+    },
+    "train_fold3_assembly": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold3/rules.pred.manifest.json",
+      "bytes": 1753,
+      "sha256": "11c9bb277ffac67ed73a71c187c37bafc9184e5fd15b53fabdb40ad07744ab07"
+    },
+    "train_fold3_semantic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/frozen-fold3-sapbert/manifest.json",
+      "bytes": 3454,
+      "sha256": "11b0de48dab254bab13a3df5b9b9843339cb5d9d7d2391166ab28c4c70db910d"
+    },
+    "train_fold3_crf": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/baseline-fold3/pred-manifest.json",
+      "bytes": 1647,
+      "sha256": "47aef183519eeb54247f44c4bee649064ac00aac78fabea88ee0745f93377c55"
+    },
+    "prior_pure_input": {
+      "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "bytes": 294884,
+      "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+    },
+    "prior_generation_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/preparation-manifest.json",
+      "bytes": 13653,
+      "sha256": "389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44"
+    },
+    "prior_original_short_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prompts.jsonl",
+      "bytes": 880994,
+      "sha256": "e09bcc41553e6aca540ffae8d2dcab77022f0ad71870d0a2e9164fbeb8aa975d"
+    },
+    "prior_short_prompt_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prompts.manifest.json",
+      "bytes": 958,
+      "sha256": "1aeb067f585ed61dcb5ac080cc9f44e1d834a18a155c0757333110d430e27c0e"
+    },
+    "prior_sequence_crf/gliner-dev-transfer/assembled/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/manifest.json",
+      "bytes": 2868,
+      "sha256": "40b063dc8c5ecd2268249c8b7a32e5b75b7d1a5d269a19513b32d84ede442fec"
+    },
+    "prior_sequence_crf/gliner-dev-transfer/link-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/link-manifest.json",
+      "bytes": 7407,
+      "sha256": "738bf9fd59acefe9726fd17d52b4e97156ee34aece548cd6c0bdbad68c29fbde"
+    },
+    "prior_sequence_crf/crf-semantic-dev/lr.pred.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-dev/lr.pred.manifest.json",
+      "bytes": 1686,
+      "sha256": "ca2cf9da97aea75d4961c186f9f685b80ca48add4ca5177340696a7272a10b87"
+    },
+    "prior_ontology_rules/dev16-sapbert/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-sapbert/manifest.json",
+      "bytes": 3472,
+      "sha256": "394fd304f12b45ccd99d0775fb5170c1104080d9c076e60f845d0aeb3c0647bb"
+    },
+    "prior_constructor": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/construct.py",
+      "bytes": 2818,
+      "sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44"
+    },
+    "prior_legacy_constructor": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/legacy_full_context.py",
+      "bytes": 12751,
+      "sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb"
+    },
+    "actual_train64": {
+      "path": "/workspace/patientphex-data/day1/train64.jsonl",
+      "bytes": 2003594,
+      "sha256": "cb45e7df6f449f0cb9e3676e7a7eb7530a89a7541a0adae5fa0c77bfae3865f2"
+    },
+    "prior_dev_input_ancestry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-consensus-full64-readiness-20261024/preparation-v1/complete.json",
+      "bytes": 252037,
+      "sha256": "236df7d67a7e48c2df55a0740033c377ee766a96195675e59d87ea4905194647"
+    },
+    "dev_expanded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-consensus-full64-readiness-20261024/preparation-v1/expanded64.jsonl",
+      "bytes": 2126088,
+      "sha256": "4621fec59ec5a758dff0d15665ae24dbe8a2da22540d7cf5e40de25fac0d5565"
+    }
+  },
+  "originaldev_gold_read": false,
+  "GPU": false,
+  "new_fit_calls": 0,
+  "quality_calls": 0
+}
