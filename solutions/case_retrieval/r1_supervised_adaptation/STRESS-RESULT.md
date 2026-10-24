@@ -6,6 +6,6 @@
 
 每步当前idx/loss/finite/stat先保存，再断言；CPU合成NaN检查确认null+finite=false及idx证据先落盘。所有实际行均finite。首次更新后的gradient174,587,904B、Adam tensor349,177,824B，状态只属该诊断，未保存adapter/checkpoint，进程结束后丢弃；不得接着这个权重开始正式训练。
 
-49份server小件全部回收逐大小/SHA校验。GPU1实际释放0MiB/free24164MiB，查询时间和完整receipt保存外部；GPU0其他任务未操作。原数值失败、独立数值诊断与本stress三段分别保留。独立终审pending；完整训练未启动，也没有新质量。
+49份server小件全部回收逐大小/SHA校验。GPU1实际释放0MiB/free24164MiB，查询时间和完整receipt保存外部；GPU0其他任务未操作。原数值失败、独立数值诊断与本stress三段分别保留。独立终审92fab5e1已通过；完整训练未启动，也没有新质量。
 
 完整train32建议仍为fresh base/2epoch、124条×2、32次更新、2warmup、按每组实际大小平均。802582输入tokens按本12行39.382秒作线性量级估计约**700秒**，不包含额外optimizer次数、完整epoch保存、加载及I/O变化，且序列长度对代价非严格线性。建议完整训练硬上限**1800秒+TERM30**，包含两份完整adapter/Adam/scheduler/RNG状态及fsync；先由root确定正式合同。原R1完整80推断3445秒仅成本参照，适配后是否缩短未知，训练与质量仍应单独限时。

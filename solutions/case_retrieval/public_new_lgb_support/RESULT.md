@@ -18,3 +18,5 @@ F0固定112个raw正关系，支持保留30→39，相对旧支持加16/删7；�
 这是 **train48支持流程升级开发控制**：F1旧/新支持都训练F0+F2+F3，保留SFT32 raw不代表strict32；两折任务fit祖先分别排除完整目标折，但cut .3及方法选型已用pooled64，F0不能称整个流程未使用的独立outertest。HGB/greedy→LGB/BioBERT/nested包含多项既有流程差异，不作单一算法归因。
 
 执行没有fit、模型predict、NN或GPU，也没有原dev操作与官方提交。keep仅保留这个固定开发结论，不自动迁移原dev；完整终点等待源＋实际统一复核。
+
+两fold与唯一原dev迁移的统一终审`5c043574…`通过；原dev结果另见full64/RESULT.md，不重评本端点。

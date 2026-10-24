@@ -1,6 +1,6 @@
 # public-new 缓存关系：双折 LGB 支持控制
 
-目标是验证现成 Task1 支持流程升级能否改善同一批 public-new 关系，不重新训练或推断神经模型。源、[计划](plan.json)和[来源合同](source-lineage.json)先以79e2ef5发布，唯一0.316秒CPU控制已完成，**两折keep=true，独立终审pending**；见[结果](RESULT.md)。小型检查与精确产物入口见 [指针](entry-pointer.json)。此前仅 F0 的库存建议由本次明确的双折开发控制取代。
+目标是验证现成 Task1 支持流程升级能否改善同一批 public-new 关系，不重新训练或推断神经模型。源、[计划](plan.json)和[来源合同](source-lineage.json)先以79e2ef5发布，唯一0.316秒CPU控制已完成，**两折keep=true，独立终审5c043574通过**；见[结果](RESULT.md)。小型检查与精确产物入口见 [指针](entry-pointer.json)。此前仅 F0 的库存建议由本次明确的双折开发控制取代。
 
 ## 固定变量与主终点
 
