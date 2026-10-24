@@ -7,3 +7,5 @@
 执行入口：`contracts.py --encoded EXISTING --output REPORT`（CPU无模型权重）；`driver.py --mode formal --plan plan.json --source SOURCE --encoded EXISTING --output NEW_RUN`（唯一900+TERM30）。复用原两个真实最大图压力检查，不新探针、不重分词。`assemble.py`冻结两完整预测后由`quality.py`唯一各1v2；旧B/8轮/24轮只读。
 
 外部根：`/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-v1`。具体源、资产、数据隔离与预算见`plan.json`。完整raw、checkpoint和日志均不进Git。
+
+本次已完整负结案：主.676794409655 < 强B.686338981272；诊断.507641213990。见evidence/quality-summary.json与实验记录。

@@ -1,0 +1,108 @@
+{
+  "status": "COMPLETE_AGGREGATE_EXISTING_F1_DIAGNOSIS_NO_NEW_V2",
+  "counts": {
+    "old8": {
+      "new": 47,
+      "TP": 6,
+      "FP": 41,
+      "FP_other_gold_patient_same_literal_concept": 17,
+      "FP_literal_concept_absent_all_gold_patient_relations": 24,
+      "absent_relation_but_present_gold_entity_concept": 11,
+      "absent_relation_and_absent_gold_entity_concept": 13,
+      "span_evidence": {
+        "FP_with_any_exact_positive_gold_span": 27,
+        "FP_with_any_exact_span_literal_concept_mismatch": 2,
+        "FP_with_exact_linked_gold_span_wrong_HPO": 0,
+        "FP_with_any_exact_NIL_only_gold_span": 2,
+        "FP_with_any_exact_matching_concept_alternative": 25,
+        "FP_all_exact_supporting_spans_literal_mismatch": 2,
+        "FP_with_multiple_supporting_spans": 10,
+        "missing_source_mapping": 0
+      },
+      "non_gold_support": {
+        "new_relations": 47,
+        "strong_task1_document_concept_supported": 41,
+        "strong_task1_document_concept_unsupported": 6,
+        "overlap_B507": 0,
+        "overlap_B524": 0,
+        "overlap_B524_minus_B507": 0
+      }
+    },
+    "old24": {
+      "new": 87,
+      "TP": 10,
+      "FP": 77,
+      "FP_other_gold_patient_same_literal_concept": 55,
+      "FP_literal_concept_absent_all_gold_patient_relations": 22,
+      "absent_relation_but_present_gold_entity_concept": 5,
+      "absent_relation_and_absent_gold_entity_concept": 17,
+      "span_evidence": {
+        "FP_with_any_exact_positive_gold_span": 61,
+        "FP_with_any_exact_span_literal_concept_mismatch": 4,
+        "FP_with_exact_linked_gold_span_wrong_HPO": 3,
+        "FP_with_any_exact_NIL_only_gold_span": 1,
+        "FP_with_any_exact_matching_concept_alternative": 57,
+        "FP_all_exact_supporting_spans_literal_mismatch": 4,
+        "FP_with_multiple_supporting_spans": 12,
+        "missing_source_mapping": 0
+      },
+      "non_gold_support": {
+        "new_relations": 87,
+        "strong_task1_document_concept_supported": 74,
+        "strong_task1_document_concept_unsupported": 13,
+        "overlap_B507": 6,
+        "overlap_B524": 8,
+        "overlap_B524_minus_B507": 2
+      }
+    },
+    "geometry24": {
+      "new": 55,
+      "TP": 8,
+      "FP": 47,
+      "FP_other_gold_patient_same_literal_concept": 31,
+      "FP_literal_concept_absent_all_gold_patient_relations": 16,
+      "absent_relation_but_present_gold_entity_concept": 7,
+      "absent_relation_and_absent_gold_entity_concept": 9,
+      "span_evidence": {
+        "FP_with_any_exact_positive_gold_span": 39,
+        "FP_with_any_exact_span_literal_concept_mismatch": 2,
+        "FP_with_exact_linked_gold_span_wrong_HPO": 0,
+        "FP_with_any_exact_NIL_only_gold_span": 2,
+        "FP_with_any_exact_matching_concept_alternative": 37,
+        "FP_all_exact_supporting_spans_literal_mismatch": 2,
+        "FP_with_multiple_supporting_spans": 6,
+        "missing_source_mapping": 0
+      },
+      "non_gold_support": {
+        "new_relations": 55,
+        "strong_task1_document_concept_supported": 46,
+        "strong_task1_document_concept_unsupported": 9,
+        "overlap_B507": 3,
+        "overlap_B524": 4,
+        "overlap_B524_minus_B507": 1
+      }
+    }
+  },
+  "new_quality_calls": 0,
+  "new_predictions": 0,
+  "new_model_calls": 0,
+  "known_F1_development_gold": true,
+  "limitations": [
+    "relation TP uses frozen evaluator literal compound expansion; no HPO hierarchy or text normalization",
+    "concept absent from gold relationships does not prove unmentioned, nonphenotypic or wrongly normalized; entity concept detail only annotation coverage",
+    "exact gold span is document evidence, not proof of patient assignment; multiple span contributors may disagree",
+    "any-span mismatch and matching-alternative counters can overlap; all_exact_supporting_spans_mismatch excludes cases with a matching exact alternative but says nothing about unmatched spans",
+    "NIL exact-span wildcard mention credit differs from literal relation concept match; linked-HPO mismatch reported separately",
+    "support and B507/B524 overlaps use all additions without gold or patient selection; no output filtering or new Score"
+  ],
+  "intent": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-error-diagnosis-20261024/intent.json",
+    "bytes": 4666,
+    "sha256": "f49fc654e97b76ab12fbf5ab9f5e7d645da6b38bef8247b0701d044a2573af81"
+  },
+  "no_gold_support": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-error-diagnosis-20261024/support-no-gold.json",
+    "bytes": 912,
+    "sha256": "943eb0f86cd4e60ad6c0f4e32de3a533b25540ebdf1703b323cace5e42c1f8da"
+  }
+}
