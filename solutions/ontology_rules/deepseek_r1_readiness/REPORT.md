@@ -1,8 +1,10 @@
 # DeepSeek-R1-0528-Qwen3-8B：准确检查点可行性
 
+**当前资产终点：PASS。** 原唯一下载于03:36:58完成，1862.200秒，9文件/16,388,603,517B全部SHA与固定revision一致，399 BF16 tensors、8,190,735,360参数、两片连续payload与精确EOF通过；原managed已实际running=false。未重试/扩预算。actual完整收据5c7ed899、头ef4303dc；执行plan dc3ba5f1绑定既有CPU/YaRN，唯一短GPU尚未启动，无质量分。
+
 官方overview §4.2 Agriv用Qwen3-8B与本检查点共同生成患者—表型证据，再以OOF/LightGBM融合。每个独立模型≤10B允许这一方向。其公开权重卡也列出准确模型；这支持研究价值，不证明本项目边际收益。现有本地记录没有找到该准确检查点的实际任务质量或缓存，普通Qwen3/9B思维模式负结果不能替代它的实测。搜索范围见existing-resource-search.json，未在可行性阶段新查远端磁盘。
 
-魔搭 `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B` 固定revision `5ee5fa4832e658ab84298806de06ed2a167834bd`，MIT代码/权重许可。已取5个小文件并逐个对API SHA；仅HTTP Range读取两权重头共46,076B，**0 tensor payload**，核399 BF16 tensors、8,190,735,360参数，16,381,470,720数值字节与index完全一致。两完整权重预期SHA/大小在metadata/modelscope-files.json；尚未核权重数值字节，不宣称资产完整。config为36层、4096宽、32Q/8KV heads、128 head_dim、12288 MLP、151936词表、独立embedding/lm_head，固定YaRN配置原留。
+魔搭 `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B` 固定revision `5ee5fa4832e658ab84298806de06ed2a167834bd`，MIT代码/权重许可。已取5个小文件并逐个对API SHA；仅HTTP Range读取两权重头共46,076B，**0 tensor payload**，核399 BF16 tensors、8,190,735,360参数，16,381,470,720数值字节与index完全一致。两完整权重预期SHA/大小在metadata/modelscope-files.json；该只读阶段尚未核权重数值字节；随后完整资产终点见顶部。config为36层、4096宽、32Q/8KV heads、128 head_dim、12288 MLP、151936词表、独立embedding/lm_head，固定YaRN配置原留。
 
 **接口不能套普通Qwen。** 官方说明架构相同但必须用本repo全部配置；tokenizer_config为DeepSeek特殊token/LlamaTokenizerFast，chat_template没有enable_thinking开关。0528支持system，无需人为加`<think>`起始；不能用普通Qwen的enable_thinking=False宣称关闭思考。README的23K平均推理token描述大R1，不能冒称此8B成本。8B基准64K上限也不适合作赛事预算。
 
