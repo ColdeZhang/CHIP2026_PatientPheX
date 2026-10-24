@@ -27,3 +27,7 @@
 原probe wrapper04:56:38.904→39.140在GPU字段校验退出：真实used1/free81156/total81920，源误将free当total81156，未spawn主程序/加载模型/0NN；managed终态与空卡实际齐。独立probe-attempt2仅total字面改81920（launcher c7a0a658），原阈值和UUID不变。真实gate+5拒绝反例CPU通过c09d58d1；原模型/6028输入/codec/240+30全留，主模型窗尚未消耗。
 
 新plan a3745b9a已冻，新五源实际SHA/compile已通过。小部署校验器一次占位替换SyntaxError发生在任何命令body前，原回执保留；修正生成字符串并先本地compile后核现有包再解包，无重传/NN。启动前检查点后只启动这一修复模型尝试，不扩完整58。
+
+修复版唯一主程序实际04:59:33.345679开始，managed proc_915b22e8、timeout/PGID7385，fresh f516 used1/free81156/total81920与无目标进程通过；主截止05:03:33.345679+TERM30。恢复先读probe-attempt2的原job/monitor，不重复start。原F1原job持续运行。
+
+若后继完整58获授权，使用[full58-source-capacity-fix](full58-source-capacity-fix/NOTE.md)，其唯一生产修复同为total81920，其他6源逐字节原留，真实gate/6拒绝反例与边界及raw-first合成均过；manifest79088699。旧full58-source只作保留历史，后继预算/cache/完整授权仍null。
