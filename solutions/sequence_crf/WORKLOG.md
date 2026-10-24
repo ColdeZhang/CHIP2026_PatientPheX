@@ -8,9 +8,10 @@
 - **固定机制**：原 train32 patient-first 124行/32文献/87患者、原两轮顺序；保留一半原 token CE，新增一半患者及患者内 chunk 等权 list-value CE。每epoch P87/S16；row内新系数含真实group size，保留外层 `/len(group)`，包括尾4。原格式/key/EOS/换行由旧半项保留；不按 prepared 正例数加权，prepared空不等于真实gold空。
 - **训练侧准备已完整通过**：唯一2.716751秒，manifest `c713111b…`；原全部124行IDs/labels/rendered/audit exact，400614 tokens/4694监督/max5556。精确 Fraction 证明两轮每患者新增份额1/87、混合1/174，跨两个患者value token为0，106处空列表保留。此系数不等于实际梯度、Adam更新或质量因果。[协议/源](patient_balanced_loss/README.md)、[实际清单](patient_balanced_loss/preparation-actual.json)。
 - **数值合同完整通过并独审**：原唯一A100 Torch2.6.0+cu124、60+TERM5/CPU隐藏，worker5.207856/driver5.690608秒。8原件全SHA/fsync、317观察全PASS，source141c/plan2145；完整124系数桥接1/87→1/174、FP32/BF16、ignored NaN/Inf及g4/g8均通过。独审8765aeb8/10376B已PASS；FP32 loss最大绝对误差4.768e−7/grad3.388e−9，BF16梯度对已舍入参考max0，不声称所有loss位精确。[单份终态](patient_balanced_loss/CPU-terminal-summary.json)。原start UNKNOWN与收件UNKNOWN/LUNA只影响传输，保留原收据；无重执行。
-- **新工程入口**：12行仅一次native编码0.693748秒，44992tokens/530监督，原IDs/labels/rendered及整rowmetadata exact，payload4cfdb1f1；顺序[62,108,84,87,63,93,106,78,65,85,80,6]。GPU源6f0188d4/hook97a0c5ce/driverafa8c149及CPU输入静态核无阻断。H5 proc431edce8已08:21:27运行，原600窗至08:31:27；新probe包94176B/b0bd5acf与14成员已CPU部署SHA/compile/fsync/重开通过，无UNKNOWN，无GPU启动。H5原08:24:13释放后，root现优先其新H5格式guard机械恢复至原08:31:27窗；probe没有start-intent/job，旧release快照仅历史，不用作当前启动gate。等恢复新实际release后fresh核唯一probe；[部署与恢复](patient_balanced_loss/probe-deployment.json)。
-- **运行位置**：外部 `R/research/patient-balanced-mixed-loss-alpha05/{preparation,cpu-numerical-v1}`；R=`/workspace/patientphex-runs/round2-20261023`。远端 mount476f / project `sequence-round2/patient-balanced-alpha05/cpu-contract-v1/actual`。模型未载入；原数值任务已终态；新GPU2排在H5后，尚未启动。
-- **下一步**：完整CPU已收回并统一独审；现源计划push → 私有包CPU部署 → H5实际释放/fresh卡核 → 原240+TERM30唯一probe → 原结果全SHA收回。后继 [trainer接线设计](patient_balanced_loss/FUTURE-INTEGRATION.md)已落实为probe专用hook；尚无正式训练入口。root已给上述唯一probe预算，须CPU全件到齐、H5实际释放、fresh卡核和源计划push后执行。候选保留总Score为准、macro完整披露，不恢复旧macro硬门。
+- **唯一GPU工程probe已真实启动**：`proc_470248fd-6214-4214-8ab2-02f57590ab3b` / PID4698，08:31:12.123256Z，A100 GPU2 UUID2c22。H5新恢复08:29:47实际释放收据58cf05a8绑定，原目录无start/PID，原包14件已全验；240+TERM30，近似TERM08:35:12/KILL08:35:42，以remote driver为准。只12反向/1非零Adam/丢状态，无正式训练或评分，结果未知；[作业与恢复](patient_balanced_loss/probe-job.json)。禁止重复start。
+- **probe输入/源码**：12行唯一编码0.693748秒、44992tokens/530监督，原IDs/labels/rendered/整metadata exact，payload4cfdb1f1；source6f0188d4/hook97a0c5ce/driverafa8c149已独审静态无阻断。[部署原件](patient_balanced_loss/probe-deployment.json)。原H5初次释放后等其机械恢复完成才start，旧快照保留但未作当前gate。
+- **运行位置**：外部 `R/research/patient-balanced-mixed-loss-alpha05/{preparation,cpu-numerical-v1}`；R=`/workspace/patientphex-runs/round2-20261023`。远端 mount476f / project `sequence-round2/patient-balanced-alpha05/cpu-contract-v1/actual`。模型未载入；原数值任务已终态；新GPU2在H5恢复后已唯一启动probe。
+- **下一步**：完整CPU已收回并统一独审；现在只观察原probe → 终态全SHA收件 → 实际工程增量审 → 报root耗时/显存再定正式预算。后继 [trainer接线设计](patient_balanced_loss/FUTURE-INTEGRATION.md)已落实为probe专用hook；尚无正式训练入口。root已给上述唯一probe预算，须CPU全件到齐、H5实际释放、fresh卡核和源计划push后执行。候选保留总Score为准、macro完整披露，不恢复旧macro硬门。
 
 ## 当前最佳及官方授权
 
@@ -47,4 +48,4 @@
 
 - [实验索引 E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[原证据索引](evidence/round2/README.md)。大日志、raw、完整pred、权重均在R或已核持久locator，不进Git。
 - 最近实际推送核验：`dec93f4691ffeea985eeb8b6e1704a80ad65c8d5`，含新probe源/12编码事前计划/quality固定设计；`dd7f782`是原CPU执行前源冻结，`3a81ef4`保留首次UNKNOWN启动收据。后续结果按实际完成更新，不为台账自身hash循环提交。
-- 所有既有train/infer/score终态均不可重启或重评。当前待执行的是上述已授权唯一GPU工程probe；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。
+- 所有既有train/infer/score终态均不可重启或重评。当前运行中的是上述已授权唯一GPU工程probe；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。
