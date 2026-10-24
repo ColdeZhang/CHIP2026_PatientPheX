@@ -46,3 +46,5 @@
 11:13:10.349原39在原窗完整rc0，无补跑；native1103.215秒/wrapper1104.592/controller1104.730，39EOS/cap0/peak21.015GB，GPU释放11:13:10.376。90件完整回收5c32d2f8，全raw/token/end状态SHA核过，extraction实际计划已绑定，尚无质量；见[evidence/inference-terminal.json](evidence/inference-terminal.json)。
 
 完整39一次解析acfbb8a6：573 exact anchors/434 unique quote，126项拒绝，0整行JSON弃答但1行全item被拒，39EOS/cap0。同32/public固定strict准备759e42b8产生254必要query；0f97c594计划绑定最新schema F0实际release，180+30，估25.08秒，既有41099 bank不重编码/不fit。先push再fresh门唯一启动，未使用held gold或评分。
+
+254必要Sap唯一proc9f6935a7已11:15:44.484 rc0，wrapper11.603秒/controller11.779秒，实际GPU释放11:15:44.491。13小件f1720f1c完整逐SHA回收，原queryvectors留持久locator；无重bank/fit。实际finalize计划已绑定原全573 anchors与254 scores，固定policy不变，随后只CPU normalize/双冻结/两v2。
