@@ -83,3 +83,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 13:34接续：原36推断在原1200窗内完整成功，无续跑或重生成；原包所有实际成员SHA核过，extraction-plan已冻结。Sap尚无start，按root新队列只将目标绑定GPU1 UUIDfc5d0525，模型/银行/政策/runtime不变，实际fresh门仍必须通过。
 
 原84实际件collection e48e8fa5完整：36EOS/0cap，native370.471秒、wrapper371.410秒，峰20.665GB。固定解析59382717保453原文锚点/347词面，拒7项、1患者全部item被拒，原raw未修。train64/b59准备c8ab6c8a产生171必要Sap，实际plan a599a115锁.100GPU1/180+30，预计23.42秒；root/span/schema均已协调，下一步fresh门唯一启动。
+
+171必要Sap已13:35:08.520实际原driver2743171/child2743179启动，proc_c4e3f457，.100GPU1 UUIDfc5；TERM13:38:08.520/KILL13:38:38.520，原180+30。源plan bb631b02已push exact，初观察正常无stderr；只继续原进程，不重复start。
