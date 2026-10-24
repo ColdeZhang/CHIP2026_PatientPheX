@@ -91,7 +91,14 @@ def main():
     baseline = read_jsonl(args.baseline)
     assert {str(row['pmc_id']) for row in baseline} == {doc['pmc_id'] for doc in held}
     assert sum(len(doc['entities']) for doc in baseline) == 1189
-    assert sum(len(doc['patient']) for doc in baseline) == 39
+    patients = {doc['pmc_id']: {entity['id'] for entity in doc['entities']
+                             if entity['kind'] == 'patient'} for doc in held}
+    assert sum(map(len, patients.values())) == 39
+    for doc in baseline:
+        # Official predictions need association records, not a copy of the
+        # input's patient metadata. Confirm the exact existing identity set.
+        ids = [str(row['patient_id']) for row in doc['association']]
+        assert len(ids) == len(set(ids)) and set(ids) == patients[str(doc['pmc_id'])]
     predictions = {}
     for policy in ['union', 'candidate_replacement']:
         rows = []
@@ -100,7 +107,7 @@ def main():
             old = relations(original)
             changed = deepcopy(original)
             changed['association'] = []
-            for patient in original['patient']:
+            for patient in original['association']:
                 pid = str(patient['patient_id'])
                 values = old[pid] | positive[pmc][pid] if policy == 'union' else (old[pid] - candidates[pmc][pid]) | positive[pmc][pid]
                 changed['association'].append({'patient_id': patient['patient_id'], 'phenotype': sorted(values)})
