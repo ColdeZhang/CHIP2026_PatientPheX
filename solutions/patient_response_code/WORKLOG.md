@@ -1,6 +1,6 @@
 # 工作台账
 
-当前优先：fresh full64 响应编码组件。原A100 H51已13:40:05完整PASS并释放，168.330秒/12反向+1Adam/两Pareto；压力99.427秒、峰allocated25.330GB/reserved26.873GB。唯一proc59b45bec不重跑。原终态包c22bc082/82839B已服务器冻结，本地第二片read UNKNOWN按30秒纯读恢复；原真实源/plan保持。齐后直接条件激活5400共享两ACK→64fresh1200，无本线质量。
+当前优先：fresh full64 响应编码组件。H51真实PASS、53件回收09ad8c62、cost4955.064<5400与actualplan c5b636f9已91a1bfef推送。正式563472B包在.100完整；A100首fetch及后两纯读UNKNOWN（非LUNA），未调用formal campaign/start。下一唯一只读恢复13:47:28.468 UTC，见evidence/full64-formal-deployment-recovery.json。原包/源/240探针均不重跑；齐后5400共享两ACK→64fresh1200，零本线quality。
 
 - 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
@@ -36,3 +36,7 @@ Source checkpoint6aa76b44与probeplan83497912已push；唯一CLI在CLAIM RPC UNK
 ### 2026-10-24 13:41 UTC — H51 complete, actual formal gate opened
 
 53件小终点09ad8c62/zipc22bc082完整SHA，第二片纯读UNKNOWN按30秒恢复成功，无LUNA/重算。12FB/1Adam、6462/125及4800/128通过，168.330s，pressure99.427s，allocated25.330GB/reserved26.873GB/free14.873GB。新cost88c88aa8估计4955.064秒（含两完整导出1200与未测120余量），不是保证；正式actualgate已验证，fresh265×2/68updates/warmup4/5400两ACK包完成。首次本地prepare因缺父目录在创建controller前退出，创建父目录后原源原数据同门恢复，无远端/模型。正式尚未启动。
+
+### 2026-10-24 13:42–13:44 UTC — same deployment transfer UNKNOWN, formal not started
+
+.100包345dab64/563472B与新full64桥接18片全部SHA/fsync，源HTTP13:42:43至13:52:43。A100新私有namespace已确认空/uid1045/磁盘49.8GB/SHM116.7GB；唯一fetch UNKNOWN后只读两次仍UNKNOWN，不误记LUNA。originalmodel start从未发送，本地campaign/epoch1intent不存在。一次30秒只读恢复后转185秒窗口，13:47:28.468原片SHA库存；不重传未确认mutation，不重训。
