@@ -1,5 +1,5 @@
 {
-  "status": "COMPLETE_POSITIVE_F1_PAIR_PENDING_INDEPENDENT_INCREMENTAL_REVIEW",
+  "status": "COMPLETE_POSITIVE_F1_PAIR_INDEPENDENT_REVIEW_PASS",
   "summary": {
     "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext-fla-quality-control-20261024/quality-v1/summary.json",
     "bytes": 5799,
@@ -183,8 +183,12 @@
   "quality_wrapper_seconds": 0.4497589349921327,
   "new_v2_calls": 2,
   "old_v2_calls": 0,
-  "independent_review": null,
-  "review_activation": "followup_task rejected thread limit; root notified, queued refs sent; not yet reviewed",
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/fla-fulltext-F1-quality-review/review.json",
+    "bytes": 16358,
+    "sha256": "8ca5be23f6e9535579bf5e14308c04a1a15c169367c875c422917e8586a94fd9"
+  },
+  "review_activation": "Unified actual/source incremental review completed; no model/parser/quality repeated.",
   "hardware_disclosure": "Cached native normal fulltext N ran on A800; fresh normal FLA variant runs on A30. Both retain original BF16/SDPA text-only model and native convolution, while two GDN functions use FLA. Long-input numerical differences are already established: this is an independent quality variant, not a transparent replacement or isolated pure-backend causal comparison.",
   "known_F1_development_not_blind": true,
   "no_F0_originaldev_official": true
