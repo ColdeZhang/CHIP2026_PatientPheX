@@ -305,6 +305,12 @@ NeuralCR官方fastText文件完整大小1,345,465,351字节、SHA `e9947f25…`�
 
 **避免方法**：先查精确作用对象及已公开的获准用法。官方综述PDF第4页§3.1写明“Each individual model was limited to 10 billion parameters”，第10页§4.2介绍Qwen3-8B与DeepSeek-R1-0528-Qwen3-8B共同集成。以**每个独立模型≤10B、所有资源披露**执行，MoE单模型总量和基座/适配器/学习头仍须真实核计；流水线总和是资源信息，不是该门槛。PDF SHA `e583c8b0…`与原文定位见[纠正清单](docs/campaigns/round2-model-parameter-rule.json)。02:45发现时去B实验尚未fit，已保留其静态准备并改为保留BioBERT后测试NCR增量；已有质量终点及运行中的患者优先训练均不改写。
 
+## H48：新版AutoTokenizer可能按类名重建并改变发布的处理链
+
+R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.20.2实际构造`LlamaTokenizer`，重建BPE、normalizer、Metaspace预切分与SentencePiece风格decoder，未保留发布`tokenizer.json`的ByteLevel链。两个AutoTokenizer接口给出同样IDs曾被当成准备通过；后续生成解码出现字面`Ġ/Ċ`才发现，实际80/80输入IDs都与发布原生文件不同，Auto往返解码0/80，发布原生/generic各自80/80。词表和special IDs相同并不能保证分词相同。
+
+**避免方法**：GPU前同时核发布文件与实际运行对象的完整处理链，并用独立原生加载器比较真实输入编码、解码及特殊token边界；不能只比较同一错误入口的两个API。不假设所有模型都逐字符无损，预期规范化必须与发布处理链一致。此次已定位，使用发布JSON的generic修正核验中；raw/generic各自往返正确不自动等于两者IDs相同，新入口须直接核全部80行及序列化缺省字段。旧1024/4096作业、原输入与输出保持，限定为TF5重建tokenizer下的工程记录，不能当发布模型的格式/质量负结论；已有2644 IDs正确解码后仍只有2/8候选键，原strict合同不通过，不能补空列表冒充模型答案。实际CPU11.833秒，无权重/GPU/质量；统一纠正审查`validation/deepseek-r1-format-cost-review/successor-and-interface-correction-review.json`，SHA`4cc5b614…`。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
