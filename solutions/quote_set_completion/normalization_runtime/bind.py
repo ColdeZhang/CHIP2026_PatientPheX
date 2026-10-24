@@ -21,8 +21,8 @@ PINS = {
     'semantic.py': 'e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82',
     'public_bank.py': 'd17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061',
     'policy_v1.json': 'b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20',
-    'held_query.py': '2d72ada971f59255646384b09ede4400af8c303d5a193f3db38e4303069e71aa',
-    'held_driver.py': '3e043fa57e1c23897139028340723b574730df1ef5caf4ddcba7bbdb387d5106',
+    'held_query.py': '8eb9734786bfc73c7bbbf5b684b5a7623764c4d374937cbd6622ffdf8c2b449b',
+    'held_driver.py': 'e72a01853f77b5a7f75541d18f6869558a7341d95170e38c9b901b29ef00e81a',
 }
 
 
@@ -105,7 +105,7 @@ def main():
     runtime = read(original/'terminal/actual/encoder-runtime.json')
     complete = read(original/'terminal/actual/complete.json')
     assert complete['status'] == 'COMPLETE_FIXED_PUBLIC_TRAIN_QUERIES' and complete['public_bank_rows'] == 41099 and complete['query_count'] == 624
-    sources = {name:ref(N/name) for name in PINS}
+    sources = {name:ref((S if name in ['held_query.py','held_driver.py'] else N)/name) for name in PINS}
     assert {name:item['sha256'] for name,item in sources.items()} == PINS
     for name in ['strict.py','semantic.py','public_bank.py','policy_v1.json']:
         assert sources[name]['sha256'] == oldplan['files'][OLD_ROOT+'/'+name]['sha256']
@@ -125,12 +125,12 @@ def main():
     release_ref = ref(args.release_evidence) if args.release_evidence else generation['wrapper']
     plan = dict(schema='grounded-fixed-held-public-queries-v1',authorized=True,
         authorization='Root: complete39 completion then one necessary fixed-policy train32 public-Sap pass <=180+TERM30; fresh coordinatedGPU; no fit/bank encoding',
-        budget_seconds=180,authorized_budget_seconds=180,grace_seconds=30,query_count=n,complete_necessary_queries=True,
+        budget_seconds=180,authorized_budget_seconds=180,grace_seconds=30,admission_window_seconds=300,query_count=n,complete_necessary_queries=True,
         cost_estimate_seconds=20+.02*n,cost_basis='Prior624=15.3473s; conservative20s+.02s/query, actual deadline authoritative',
         remote_root=ROOT,output_dir=ROOT+'/output',python=host['python'],environment=env,gpu_uuid=gpu,storage_parent=PROJECT,
         files=files,payload_sources=sources,reuse_packages=[],reuse_actual_artifacts={},operations_source=ref(S/'remote.py'),
         collection_source=ref(S/'collect.py'),binding_source=ref(__file__),
-        input_sources=dict(preparation=ref(args.preparation_manifest),original_public_bank_collection=ref(original/'collection.json'),
+        input_sources=dict(original_query_source=ref(N/'held_query.py'),original_driver_source=ref(N/'held_driver.py'),preparation=ref(args.preparation_manifest),original_public_bank_collection=ref(original/'collection.json'),
             release_evidence=release_ref,original_generation_collection=generation['collection'],original_generation_wrapper=generation['wrapper'],
             fixed_policy=sources['policy_v1.json'],same_assets_host=ref(host_path)),
         prerequisite_complete39=generation,host_migration=host,queries=ROOT+'/queries.json',policy=ROOT+'/policy_v1.json',

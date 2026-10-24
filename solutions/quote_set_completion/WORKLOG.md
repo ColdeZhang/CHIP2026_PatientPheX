@@ -1,6 +1,6 @@
 # 工作台账
 
-分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前唯一261行warm-d52正式训练运行中，实际身份/原时钟见文末；完整39推断及单一B4并集端点的源码已准备，尚未执行推断或质量。前述174行/3600秒仅保留为已替代历史。
+分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前261行warm-d52正式训练与完整持久ACK均已成功，唯一39补全推断运行中；无新质量。实际身份/原时钟见文末和evidence/live-inference.json。前述174行/3600秒仅保留为已替代历史。
 
 目标：检验给定已报告表型时的条件补全，是否比独立重新生成更能回收遗漏患者关系。当前原dev最佳 .769235669942；本线不读其gold、不宣称预计达标。先复用原train32的87患者弱quote目标，构造两个互补known/remaining视图；原真实关系标签不变，词面代表弱锚点而非人工患者证据。原双采样F1正/F0负已在旧分支关闭，不能重复其采样共识。
 
@@ -33,3 +33,5 @@ Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30�
 原formal完整成功：261/33、2464.423秒，峰28.292GB allocated/32.617GB reserved；新adaptercd977a24/fullstated90b14fd，完整持久ACK4b486327。原watch正常结束；原GNU timeout HTTP wrapper rc0/85.837秒，自有driver和timeoutchild实际已退出。34原件collection3c799b44逐SHA核齐，无重训。后继39实际plan b89a8f45已绑定；按H69新增5分钟启动有效期，入口/子Popen/模型加载前核，独立1800+30运行钟不变，12个exact-source CPU边界检查通过，未增加模型/质量。
 
 39唯一推断已16:08:29.878 start proc_4ac60fcc-feb9-4000-baec-d052cea8547a/driver36169/child36205，实际原TERM16:38:30.114/KILL16:39:00.114；admission截止16:13:28.846，全部39 HF/native输入核过、模型加载正常。只读watch沿已核full64入口仅36→39，下一次沿现有observe+180秒，不重复启动或加频。窄读helper仅核新后继schema无阻断即结束，未造新审查或重跑旧sample。
+
+Root已预排必要Sap在.100 GPU0（teacher16:07真实释放），全39后fresh门直接唯一180+30；不占.3的adapted query或GPU1 BOUNDARY。H69只新增启动有效期，原Sap查询/driver剥离admission插入后AST逐同、12边界检查2152eeac通过，固定FP16/41099bank/全部query/policy不变；实际plan仍待完整queries绑定。

@@ -1,5 +1,7 @@
 # 本线恢复入口
 
+更新：原formal已完整ACK4b486327/collection3c799b44；现在唯一39推断proc_4ac60fcc/driver36169/child36205，原TERM16:38:30.114 UTC，KILL16:39:00.114。本地只读watch PID/SID197018、ready4a4c49c7，每180秒原observe；实际入口见evidence/live-inference.json。下述formal步骤已完成，不再start或重训。必要Sap已由root预排.100GPU0，仍须fresh空卡门；不碰GPU1/.3。
+
 当前分支 `explore/quote-set-completion`，工作树 `/workspace/patientphex-worktrees/explore-quote-set-completion`，只改 `solutions/quote_set_completion/`。先读当前 main 的 AGENTS/HANDOFF/WORKLOG，核本工作树状态。实际作业与 source SHA 见 [live-formal.json](evidence/live-formal.json)。
 
 令 Q 为本方案目录；N 为 `/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1`。当前唯一原正式作业 `proc_ad68dbeb-c7e6-453a-821a-b0fac0d57ab9`，A800 GPU2、driver13674。模型 TERM **16:28:43.644688 UTC**，KILL16:29:13.644688；持久ACK最迟 **16:30:43.644688**。原共享4200秒包含120秒ACK，不能重置时钟或重启模型。
