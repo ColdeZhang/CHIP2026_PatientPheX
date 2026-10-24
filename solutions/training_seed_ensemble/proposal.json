@@ -1,0 +1,249 @@
+{
+  "schema": "training-seed-ensemble-readiness-v2",
+  "GPU_authorized": false,
+  "train_seed": 20261025,
+  "old_train_seed": 20261023,
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v2/train.py",
+    "bytes": 27697,
+    "sha256": "43a902c49151c4f232c3402bf8b6ee5e05b55fe7ddc21cce62538b25da7cbc94"
+  },
+  "original_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/train.py",
+    "bytes": 27697,
+    "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+  },
+  "original_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/formal-plan.json",
+    "bytes": 21239,
+    "sha256": "d6dfe769835029bf6cb4d6a27f4b379fdb5a7372f45fef1914a59f8394ee3866"
+  },
+  "configuration": {
+    "rows": 87,
+    "epochs": 2,
+    "steps_per_epoch": 11,
+    "optimizer_calls": 22,
+    "warmup_steps": 2,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "tail_group_size": 7,
+    "seed": 20261025,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    },
+    "packing": false,
+    "quantization": false,
+    "loss": "standard per-row mean causal CE; divide each row by actual group size",
+    "full_training_tokens": 451672,
+    "supervised_tokens": 11884,
+    "maximum_full_tokens": 9210
+  },
+  "encoded": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/terminal/actual/encoded.json.gz",
+    "bytes": 809334,
+    "sha256": "4b503cd295ddf84af902efdbcb0df2337ea24ab0bff42c272424ceabbcc7cb06"
+  },
+  "initialization": {
+    "source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/slot_model.py",
+      "bytes": 4959,
+      "sha256": "e8baf724a8aaf31d7686e53586033fdf0b07290d5f92f43e5617e436d1473647"
+    },
+    "Python_NumPy_Torch_CPU_CUDA": true,
+    "fresh_LoRA": true,
+    "frozen_pretrained_backbone": true,
+    "dropout_randomness": true,
+    "actual_new_LoRA_tensor_difference_measured": false
+  },
+  "train_documents": 32,
+  "unchanged_train_and_target": true,
+  "folds": {
+    "F1": {
+      "base": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+        "bytes": 141149,
+        "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+      },
+      "old_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+        "bytes": 13158,
+        "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+      },
+      "old_G": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+        "bytes": 152760,
+        "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+      },
+      "Score": 0.701325377212172,
+      "documents": 16,
+      "patients": 39,
+      "baseline_relations": 524,
+      "old_G_relations": 282,
+      "old_G_outside_baseline": 62,
+      "support_sources": {
+        "G": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+          "bytes": 152760,
+          "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+        },
+        "S": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/assembled-v1/primary-B-union-S1-intersect-S2.pred.jsonl",
+          "bytes": 155876,
+          "sha256": "31d090f0cd0bfec43b61243a68e425eac224e785df32a2f1be76ce4d6ff6497e"
+        },
+        "Q": {
+          "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1/single.prediction.jsonl",
+          "bytes": 154632,
+          "sha256": "103cab0f1eae88356bc164ed5b8924272642c686a3e031652010e584f2d7a9c4"
+        },
+        "C": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/coded-alone/pred.jsonl",
+          "bytes": 154344,
+          "sha256": "a5a75d050029038703641e8242c0d6b9557a0e4ac8c69914b0d8859e5857517b"
+        }
+      },
+      "support_counts": {
+        "G": {
+          "stored_relations": 282,
+          "outside_B4": 62
+        },
+        "S": {
+          "stored_relations": 505,
+          "outside_B4": 4
+        },
+        "Q": {
+          "stored_relations": 416,
+          "outside_B4": 58
+        },
+        "C": {
+          "stored_relations": 395,
+          "outside_B4": 9
+        }
+      },
+      "inherited_baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+        "bytes": 155402,
+        "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+      },
+      "inherited_baseline_contained_B4": true,
+      "inherited_baseline_removed_from": [
+        "S"
+      ],
+      "support_union_outside_baseline": 133,
+      "broader_only_outside_baseline": 71,
+      "upper_bound_only_not_TP_or_score": true
+    },
+    "F0": {
+      "base": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/prediction.jsonl",
+        "bytes": 112937,
+        "sha256": "0c37ee543876f957bbb04049d0be51a905565d6219559ebab5d66abd43bc3ac3"
+      },
+      "old_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/metrics.json",
+        "bytes": 13104,
+        "sha256": "58760aded0d12a1cc46a5addb712c59b52ca54c2be2eb6d7a7c4d056f66350bf"
+      },
+      "old_G": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-pure-relations-v1/new-only.jsonl",
+        "bytes": 122519,
+        "sha256": "d1f712cacf7da83807797429d0a153408a1b6ce2ae8a61be5f861b3d90b56206"
+      },
+      "Score": 0.7281956289113009,
+      "documents": 16,
+      "patients": 47,
+      "baseline_relations": 343,
+      "old_G_relations": 173,
+      "old_G_outside_baseline": 28,
+      "support_sources": {
+        "G": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-pure-relations-v1/new-only.jsonl",
+          "bytes": 122519,
+          "sha256": "d1f712cacf7da83807797429d0a153408a1b6ce2ae8a61be5f861b3d90b56206"
+        },
+        "S": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/assembled-v1/primary-B0-union-S1-intersect-S2.pred.jsonl",
+          "bytes": 124775,
+          "sha256": "3ec75365ebcf1e0ae386faadb3b5791e7a2a47ea7e37d3d7bf0872d08d9e9ae1"
+        },
+        "Q": {
+          "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/f0-v1/quality/protected-union.prediction.jsonl",
+          "bytes": 126117,
+          "sha256": "1cca1391c9d836a0775001d5b69d74354d9ea5a192d3f8110313b2875c468399"
+        },
+        "C": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/coded-alone/pred.jsonl",
+          "bytes": 124301,
+          "sha256": "9e6b58402a64c16e720091fa49274eee6155bb94afebda3922c3e3ea188bcc8f"
+        }
+      },
+      "support_counts": {
+        "G": {
+          "stored_relations": 173,
+          "outside_B4": 28
+        },
+        "S": {
+          "stored_relations": 336,
+          "outside_B4": 8
+        },
+        "Q": {
+          "stored_relations": 432,
+          "outside_B4": 93
+        },
+        "C": {
+          "stored_relations": 302,
+          "outside_B4": 12
+        }
+      },
+      "inherited_baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/supported.pred.jsonl",
+        "bytes": 124485,
+        "sha256": "94504b974d5203fdde6b68ff10ca12bb67d24b0db235023023920b0ec595e1bc"
+      },
+      "inherited_baseline_contained_B4": true,
+      "inherited_baseline_removed_from": [
+        "S",
+        "Q"
+      ],
+      "support_union_outside_baseline": 141,
+      "broader_only_outside_baseline": 113,
+      "upper_bound_only_not_TP_or_score": true
+    }
+  },
+  "formula": "B4 UNION (G_new_seed INTERSECT (G_old UNION S UNION Q UNION C))",
+  "support_contract": {
+    "path": "/workspace/patientphex-worktrees/research-training-seed-ensemble/solutions/training_seed_ensemble/evidence/support-inputs.json",
+    "bytes": 3784,
+    "sha256": "0e1da56c6b700647ead02886bf139e5245edc4fb493428f25703fa719611d582"
+  },
+  "superseded_unexecuted_formula": "B4 UNION (G_old INTERSECT G_new_seed)",
+  "one_endpoint_per_fold": true,
+  "no_single_member_quality": true,
+  "future_new_v2_max_per_fold": 1,
+  "future_old_v2": 0,
+  "identity_endpoint_reuses_baseline_zero_v2": true,
+  "new_v2_now": 0,
+  "old_v2_now": 0,
+  "future_gate": "F1 strict Score improvement before F0; both folds strict Score improvement required for full64 proposal, macro disclosed",
+  "normalization_policy": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+    "bytes": 1699,
+    "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+  },
+  "new_sampling": false,
+  "greedy": true,
+  "max_new_tokens": 1600,
+  "no_truncation": true,
+  "no_checkpoint_selection": true,
+  "normalization": "Same train32 aliases/public41099 bank/b59 policy; new eligible query embeddings only; no fitting",
+  "fresh_seed_not_old_adapter_warmstart": true,
+  "requires_future_new_namespace_resource_binding": true
+}

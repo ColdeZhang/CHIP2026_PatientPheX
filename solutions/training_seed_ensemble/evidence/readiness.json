@@ -1,0 +1,248 @@
+{
+  "status": "READY_LOCAL_SOURCE_AND_DATA_CONTRACT_NO_GPU_FIT_OR_QUALITY",
+  "base_main": "ff7ad16777e3907ed3b4b4231794439017aa5bf8",
+  "branch": "research/training-seed-ensemble",
+  "audit_scope": "Bounded actual local Grounded32/full64 sources/plans, same-adapter sampling, epoch averaging and quote completion. No same87fresh independent training seed member found; not an inventory of unrecorded runs.",
+  "seed": {
+    "old": 20261023,
+    "new": 20261025,
+    "effects": "Fresh LoRA initialization + dropout RNG + epoch shuffle jointly; frozen pretrained backbone unchanged. No claim which one causes any future difference.",
+    "actual_new_tensor_measurement": false
+  },
+  "CPU": {
+    "seconds": 0.18426845999783836,
+    "rows": 87,
+    "docs": 32,
+    "epochs": 2,
+    "updates": 22,
+    "warmup": 2,
+    "tails": [
+      7,
+      7
+    ],
+    "tokens": 451672,
+    "supervision": 11884,
+    "max_tokens": 9210,
+    "old_groups_match_actual": true,
+    "new_groups_complete": true,
+    "AST_only_3_seed_values": true,
+    "support_outside_B4": {
+      "F1": 133,
+      "F0": 141
+    },
+    "counts_not_TP_or_score": true,
+    "new_model_tokenizer_fit_gold_v2_calls": 0
+  },
+  "refs": {
+    "actual_G32_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/train.py",
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "actual_G32_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/formal-plan.json",
+      "bytes": 21239,
+      "sha256": "d6dfe769835029bf6cb4d6a27f4b379fdb5a7372f45fef1914a59f8394ee3866"
+    },
+    "actual_G32_run_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/run_manifest.json",
+      "bytes": 65803,
+      "sha256": "71a9ed030e2f8ddf80f4170b1574886746534a0916426a01c83b3fb0d3d4aa06"
+    },
+    "actual_G32_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/wrapper-complete.json",
+      "bytes": 6367,
+      "sha256": "d1d20d175b7b951f8814d1e1dda5a76f20c1ccc5fc5575ed69498579ed5c65cd"
+    },
+    "actual_G32_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/training_complete.json",
+      "bytes": 1239,
+      "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+    },
+    "actual_G32_epoch_groups": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/epoch-groups.json",
+      "bytes": 2013,
+      "sha256": "2df6fe2c6e9e79b25ae458a949546588e99fa1010338159a9bfd74392876e5cd"
+    },
+    "actual_G64_run_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/formal-v1/terminal/output/run_manifest.json",
+      "bytes": 67360,
+      "sha256": "a4fbd6e123e3ff7feb65e98b5406062ea92da3762d0313a518aa23bc669d4bb4"
+    },
+    "same_adapter_sampling_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/a30/infer-plan.json",
+      "bytes": 22637,
+      "sha256": "d5c60e9a7c0678dd4ea087f567e6c2a8298c936f45e1bddd167a3ddfc73cf26c"
+    },
+    "same_adapter_copy_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/copy_a30/copy-plan.json",
+      "bytes": 3040,
+      "sha256": "6332da1b2bef10941afb891776ea22b5797c0c84323d98319858314a250991fb"
+    },
+    "epoch_average_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/candidate-plan.json",
+      "bytes": 3770,
+      "sha256": "1f67d4bf967bcc51ab3ecba8d2683780ebf21855ac5de880a185278fe6a89e82"
+    },
+    "different_quote261_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/plan-v2.json",
+      "bytes": 3945,
+      "sha256": "56a22d05ea69712efb19e3a83650b8095216eb5649a76021735a896f0cecf941"
+    },
+    "different_quote261_formal_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/training/frozen/formal-plan.json",
+      "bytes": 9603,
+      "sha256": "1aef08e8be11ff0ce962b796af39386b1f8f2ba6a04d938192aaefbde884cd3b"
+    },
+    "bounded_source_search": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/source-seed-search.json",
+      "bytes": 2332,
+      "sha256": "81ed576d71db8c50b91af3db5d1e9bcd92985d0fd5ed162926ce54e42e97ff7b"
+    },
+    "original_F1_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/infer-F1-v1/terminal/wrapper-complete.json",
+      "bytes": 1115,
+      "sha256": "d911485673591224ec6162cf88ca593b9476e44f2292b92c64bf0ef6e42702b8"
+    },
+    "original_F0_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/infer-F0-v1/terminal/wrapper-complete.json",
+      "bytes": 1047,
+      "sha256": "9ddf044708a15f355b5d8843eb37170bd4548e12b0021417768d33c6e59b3c5b"
+    },
+    "original_F1_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/infer-F1-v1/terminal/output/complete.json",
+      "bytes": 24514,
+      "sha256": "4fd32a757d3d3e38d03484ddbd72f812ac65b3c4a46a2c0c63611847c6dd324b"
+    },
+    "original_F0_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/infer-F0-v1/terminal/output/complete.json",
+      "bytes": 29324,
+      "sha256": "915cb922591343e6501b4fdc542821b76e25402ebaa2b858391f7c00a0508f53"
+    },
+    "original_indexed_head": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/runtime/indexed_head.py",
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "original_loader": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/slot_model.py",
+      "bytes": 4959,
+      "sha256": "e8baf724a8aaf31d7686e53586033fdf0b07290d5f92f43e5617e436d1473647"
+    },
+    "old_unexecuted_Gonly_proposal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v1/proposal.json",
+      "bytes": 5460,
+      "sha256": "cca57546923c2debc865c070ee440007d34ee7fe83f7a5e9391d866bea129766"
+    },
+    "old_CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v1/result.json",
+      "bytes": 3871,
+      "sha256": "13f9a8f712f88f713d7597f1f198d396711c97b9425b386d7e03b409b70eccba"
+    },
+    "current_CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v2/result.json",
+      "bytes": 8019,
+      "sha256": "3b01db60fc8200dc0a05af05672a3ab6591affb97c0d57ac783169083fb7925b"
+    },
+    "current_groups": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v2/epoch-groups.json",
+      "bytes": 4951,
+      "sha256": "c4b2e59cea2706563cc0dd626a365df87f18cab71f9cbb85cc0ffd3f863121d1"
+    },
+    "current_group_shapes": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v2/group-shape-costs.json",
+      "bytes": 6592,
+      "sha256": "8df0b60bf78d32531a043a34f51c60511477661b0b223028ce53d96aade61522"
+    },
+    "new_seed_generated_trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/prepared-v2/train.py",
+      "bytes": 27697,
+      "sha256": "43a902c49151c4f232c3402bf8b6ee5e05b55fe7ddc21cce62538b25da7cbc94"
+    },
+    "original_F1_inference_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/infer-plan.json",
+      "bytes": 18976,
+      "sha256": "7c9c3026ac34efe10f8793c86c507f4a2a715a9541d65ba40c15fefc6b464058"
+    },
+    "original_F0_inference_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/f0/infer-plan.json",
+      "bytes": 18370,
+      "sha256": "ed3c9297684c445d86541a6481e56f2142bd602579c99569b86f4e6945101f75"
+    }
+  },
+  "fixed_proposal": {
+    "path": "/workspace/patientphex-worktrees/research-training-seed-ensemble/solutions/training_seed_ensemble/proposal.json",
+    "bytes": 10077,
+    "sha256": "e7d310902b6948c4d88d329878b0f7f59f5b45db8736698e01766e38634af184"
+  },
+  "cost": {
+    "interpretation": "Historical actuals; new seed costs not measured. No execution authorized.",
+    "train_A100": {
+      "seconds": 2041.9586318209767,
+      "allocated_bytes": 28177982464,
+      "reserved_bytes": 31388073984,
+      "full_state_bytes_per_epoch": 519904753,
+      "proposed_cap_seconds": 3000
+    },
+    "F1_A100": {
+      "seconds": 1104.7302728518844,
+      "rows": 39,
+      "proposed_cap_seconds": 1800,
+      "reason": "Old1200 cap close to actual1104.73; new adapter output lengths unknown."
+    },
+    "F0_A800": {
+      "seconds": 594.5842383462004,
+      "rows": 47,
+      "proposed_cap_seconds": 2100,
+      "reason": "Original2100 cap retained; actual594.58 is A800, not A100 cost."
+    },
+    "matched_host_actual_sum_seconds": 3741.2731430190615,
+    "matched_host_train_plus_F1_seconds": 3146.688904672861,
+    "proposed_neural_stage_caps_seconds": 6900,
+    "proposed_Sap_newquery_cap_per_fold_seconds": 180,
+    "proposed_adapter_private_copy_cap_seconds": 600,
+    "proposed_CPU_quality_cap_per_fold_seconds": 120,
+    "all_proposed_stage_caps_before_graces_seconds": 8100,
+    "stage_TERM_grace_seconds": 30,
+    "preferred_hosts": "Original A100 GPU2 training+F1; original A800 GPU2 conditional F0. Wait for root allocation/owner release; no claim or remote query now.",
+    "runtime": "Original train/F1 Torch2.6.0+cu124; F0 A800 Torch2.7.1+cu126. Both original TF5.20.2,PEFT.21.2,tokenizers.23.1/native SDPA. Preserve original per-fold host where possible.",
+    "durable_disk_proposed_min_bytes": 2147483648,
+    "checkpoint_rule": "2 full model/optimizer/scheduler/RNG states, file and directory fsync/reopened SHA ACK. If disk insufficient use proven SHM-to-persistent bridge, never silently discard state.",
+    "minimum_new_risk_check": "No routine14step or fulltokenizer probe for seed-only same host/runtime/shape. Preserve real fresh-load/finite-gradient/update/state guards. New host/interface requires explicit incremental assessment.",
+    "not_measured": [
+      "New seed runtime/memory/output lengths",
+      "Eligible new Sap query count",
+      "Queue or transfer delay"
+    ]
+  },
+  "literature": [
+    {
+      "citation": "Lakshminarayanan, Pritzel, Blundell. Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. NeurIPS2017.",
+      "url": "https://papers.nips.cc/paper/2017/hash/9ef2ed4b7fd2c810847ffa5fa85bce38-Abstract.html",
+      "local_pdf": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/deep-ensembles-2017.pdf",
+        "bytes": 1185123,
+        "sha256": "835735938688c03e411b23ffd8fff172b3b2db3ad33e29e7d6b567c8b94694a0"
+      },
+      "scope": "Section2.4: full data, independent initialization and shuffle. Original predictive distribution averaging is not our frozen-backbone LoRA + relation-set support gate."
+    },
+    {
+      "citation": "Fort, Hu, Lakshminarayanan. Deep Ensembles: A Loss Landscape Perspective. arXiv1912.02757.",
+      "url": "https://arxiv.org/abs/1912.02757",
+      "local_abstract": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-readiness-20261024/paper-2.html",
+        "bytes": 43346,
+        "sha256": "2e34900df822593a4ea377b3281ee06154e884352203b8f717c3217b2b23b653"
+      },
+      "scope": "Function-space diversity from independent initialization motivates a distinct mechanism from one trajectory; no guarantee for this task or LoRA."
+    }
+  ],
+  "limitations": [
+    "F1/F0 are development folds with known old metrics, not blind tests.",
+    "One new seed cannot estimate performance distribution across seeds.",
+    "Same weak targets and frozen base may yield correlated errors; independent error supply is a hypothesis.",
+    "Original four partially unsupported patient targets are inherited, not relabeled.",
+    "No remote deployment, model, new output or quality. Generated trainer needs future isolated source-bound controller and expiring launch admission before execution.",
+    "Broader support gate was fixed before new output; old G-only proposal is retained unexecuted. Not a pure seed-only score ablation."
+  ]
+}
