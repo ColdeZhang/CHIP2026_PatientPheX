@@ -1,0 +1,224 @@
+{
+  "schema": "patientphex-order-warmstart-paired-F1-v1",
+  "control_sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d",
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "trainer_sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4",
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+  "historical_F1_gold_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+  "references": {
+    "tree_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/llm_feature_tree.py",
+      "bytes": 21699,
+      "sha256": "6093741856c42fe56dc0f13d365b3eaf4c962e2f67befa5fa3ce865362989bef"
+    },
+    "fusion_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/fusion.py",
+      "bytes": 13984,
+      "sha256": "53a954f0b31db34e87e64ccf8733446d426defeb084e4fa2ba3623489a3b7942"
+    },
+    "parser": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/merge_pair_rag.py",
+      "bytes": 3684,
+      "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1"
+    },
+    "parser_base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/run.py",
+      "bytes": 21153,
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "old_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "model_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379",
+      "bytes": 154176
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+      "bytes": 13115
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/qwen35_runner.py",
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    }
+  },
+  "arms": {
+    "original": {
+      "references": {
+        "training_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/epoch-002/run_manifest.json",
+          "bytes": 12600,
+          "sha256": "a5fcedb5e19e4a4c3727db8c496095340bb852423e7223c058aac092b119f3fe"
+        },
+        "training_complete": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/train-002/training_complete.json",
+          "bytes": 1344,
+          "sha256": "fc86fcd3f8c7566ca08469dc534d3dee6b7103e61fcad176e991cde1c632fcfc"
+        },
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/epoch-002/checkpoint.json",
+          "bytes": 11942,
+          "sha256": "25c945d0cdeb99e80714d802ea62e6e2922587523425400574d132f022fa1ee9"
+        },
+        "export_ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/epoch-002/export-ack.json",
+          "bytes": 2262,
+          "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+        },
+        "responses": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/responses.jsonl",
+          "bytes": 25271,
+          "sha256": "c398d63705c5ab7b67250fa6115f1b4b44c7f40a0ce848e3ae6e37750b6e3373"
+        },
+        "response_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/responses.manifest.json",
+          "bytes": 4293,
+          "sha256": "89509094a7456aa4116ceaac340c7910ba3219b610f831590be18dd5c84bcb03"
+        },
+        "response_freeze": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/responses-freeze.json",
+          "bytes": 323,
+          "sha256": "d7cffa088ae853254074f2637fe59e48630c7b9221b081cab2fdbe3390d1fcc7"
+        },
+        "inference_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/inference-plan.json",
+          "bytes": 825,
+          "sha256": "b47327b5a536dc2791954627b6f7dddb6d5234494033190013a1ab507dd67253"
+        }
+      }
+    },
+    "reverse-first": {
+      "references": {
+        "training_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/epoch-002/run_manifest.json",
+          "bytes": 12615,
+          "sha256": "9d8a66f4a321b5c79654a8ba24bffa0512cda1e0f1d11820e6da1822cfe803e6"
+        },
+        "training_complete": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/train-002/training_complete.json",
+          "bytes": 1349,
+          "sha256": "3f7e5206566ecc82c5d66b2436252a26b2f5ad1467d9c74f2bb00737f1e462ed"
+        },
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/epoch-002/checkpoint.json",
+          "bytes": 11957,
+          "sha256": "0312521ad8ab864fdbbd5edf03ec425b44f6e9a186ed53b9ecaeae5b441bb148"
+        },
+        "export_ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/epoch-002/export-ack.json",
+          "bytes": 2272,
+          "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+        },
+        "responses": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/responses.jsonl",
+          "bytes": 25089,
+          "sha256": "a5849b495f8054f581a07662b68d4d2febaae2e64c55cdc47ec11eed671ced26"
+        },
+        "response_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/responses.manifest.json",
+          "bytes": 4303,
+          "sha256": "64ce357d8769fe8d7a54eb181898f95e6424a084bd39ff6bd40afbd0bc81bb60"
+        },
+        "response_freeze": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/responses-freeze.json",
+          "bytes": 323,
+          "sha256": "8fdf0a91ea5e53a7738bfc541b17374f3cc9cb3e779cda715f72ccf15c4aec4b"
+        },
+        "inference_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/inference-plan.json",
+          "bytes": 830,
+          "sha256": "1881c066d24382eacbb5d5aa031ec5515f8350aaafb1ee5e4b48842fc1c45635"
+        }
+      }
+    }
+  },
+  "execution_history": {
+    "original_epoch1_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/original/epoch-001/checkpoint.json",
+      "bytes": 11942,
+      "sha256": "3f9f3402674ce37ce6b651b34e55d9a9916dab0bf2377fd81b5fdf301cd0c5bb"
+    },
+    "original_epoch1_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/original/epoch-001/run_manifest.json",
+      "bytes": 12600,
+      "sha256": "a5fcedb5e19e4a4c3727db8c496095340bb852423e7223c058aac092b119f3fe"
+    },
+    "original_epoch1_persistent_ack": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/original/epoch-001/export-ack.json",
+      "bytes": 2263,
+      "sha256": "9311e05540c1d4bd34aba7bd8a355bba48032d9a442496ae63bd03954f641132"
+    },
+    "original_epoch2_persistent_ack": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/epoch-002/export-ack.json",
+      "bytes": 2262,
+      "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+    },
+    "reverse_first_epoch1_persistent_ack": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/epoch-001/export-ack.json",
+      "bytes": 2272,
+      "sha256": "d40a64307f1089e674be14e4165094b2700332aa227c80c38862b72fca3f5aac"
+    },
+    "reverse_first_epoch2_persistent_ack": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/epoch-002/export-ack.json",
+      "bytes": 2272,
+      "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+    },
+    "original_deadline_state_archive": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/execution-state-before-ack-recovery.json",
+      "bytes": 287,
+      "sha256": "a17919df6e4afded28e3a1cae97d89869c954f626db5bec000bb6c55db21663f"
+    },
+    "minimal_recovery_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/ack-name-recovery-plan.json",
+      "bytes": 4808,
+      "sha256": "bacdc837f604293b461e79de28cb0e40537bd8e94dac07ce8c83bb3891f3c9b3"
+    },
+    "actual_ack_rename": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/actual-ack-rename.json",
+      "bytes": 375,
+      "sha256": "56c12036a37f54baee0bb05749d077757cf6c70ce514363df2f00e2f16590b70"
+    },
+    "both_responses_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/all-responses-complete.json",
+      "bytes": 1099,
+      "sha256": "0d35400fb3a41c0bd7e592fcab857e31cd9d3dbfeb6eaa38547d341e12dc2fe0"
+    }
+  },
+  "history_materializer_source_sha256": "25f2669768d110497d974eddd4b768d52b18cfcaf19e603513e825b2901578fc",
+  "same_original_deadline_and_no_extra_updates": true
+}
