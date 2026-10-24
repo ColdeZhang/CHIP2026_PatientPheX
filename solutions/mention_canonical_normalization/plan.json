@@ -1,0 +1,124 @@
+{
+  "phase": "CPU_PREPARATION_ONLY",
+  "base_commit": "bc939eebd6527252ff079c5ed91a1687acc9f24f",
+  "inputs": {
+    "train_targets": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/train-targets.jsonl",
+      "bytes": 1840212,
+      "sha256": "3be63e082e878a64afb5ae7873ac0198b1fc2885740cd5ba182e911f64f3a416"
+    },
+    "train32": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "strong_base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "strong_base_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+      "bytes": 13085,
+      "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+    },
+    "gliner_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/gliner25-task1-v1/normalization-v1-collected/actual/entities.json",
+      "bytes": 150848,
+      "sha256": "6ac9aa51a14b0cfd5f289f15dc4e3e29e8e375401e8e872f9a36a4a13f46e82d"
+    }
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-mention-canonical-normalization/solutions/mention_canonical_normalization/prepare.py",
+    "bytes": 4799,
+    "sha256": "a2fd1bf6d071292df0df4570afc1aebc91c28e58fe558005eb6abe12b420dea5"
+  },
+  "schema_source": {
+    "path": "/workspace/patientphex-worktrees/explore-mention-canonical-normalization/solutions/mention_canonical_normalization/mention_schema.py",
+    "bytes": 3373,
+    "sha256": "5a61253d35dd9ad4a713e5419d2583d4edcf691b14792eddc42fc8bb7344bf5b"
+  },
+  "reuse_sources": {
+    "path": "/workspace/patientphex-worktrees/explore-mention-canonical-normalization/solutions/mention_canonical_normalization/reuse-sources.json",
+    "bytes": 2658,
+    "sha256": "44b3caaf02deb6c3dd4859354bded73d536c804a882791ae081d731c6616f472"
+  },
+  "model": {
+    "name": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "existing_assets_only": true,
+    "commercial_API": false
+  },
+  "supersedes": {
+    "report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/REPORT.md",
+      "bytes": 7874,
+      "sha256": "ecc6242a1d874ec2ec3e7c0fcc2e4765d671b0283525f5365b3973a874c969f3"
+    },
+    "original_proposal": "Existing-span ID replacement with NO fallback only",
+    "root_fixed_decision": "All strong8cb entity spans union all gliner accepted886 entity spans, exact span dedup; primary strongB union all accepted new-head entities; diagnostic all fixed spans replaced by new head; either complete endpoint strictly exceeds strongB gate. No filtering by held labels/scores."
+  },
+  "targets": {
+    "HPO": "nonempty public canonical name JSON array; compound exact set",
+    "NIL": "JSON object with sole NIL key and exact original input quote; output entity ID=-1 with original text",
+    "NO": "empty JSON list -> no new entity",
+    "train_rows": 2353,
+    "HPO_rows": 2222,
+    "NIL_rows": 44,
+    "NO_rows": 87,
+    "compound_rows": 16,
+    "excluded_positive_outside_branch": 8,
+    "context_chars_each_side": 256,
+    "source_span_never_trimmed": true
+  },
+  "ancestry": {
+    "new_head_supervision": "train32 F2F3 only; all2353; heldF1 disjoint",
+    "GLiNER_span_proposer": "formal10ep train32 F2F3 plus same train32 normalization/public41099; no F1 labels",
+    "strong_span_proposer": "Frozen root-bound fold1 LightGBM nested prediction8cb61ba9, task training ancestors excludeF1; originaldev never used by this new head",
+    "public_models": "Published pretrained provenance retained; complete original pretraining data unknown"
+  },
+  "future_training_proposal_not_authorized": {
+    "epochs": 2,
+    "final_epoch": 2,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "steps_per_epoch": 295,
+    "total_updates": 590,
+    "tail_group_size": 1,
+    "warmup_steps": 30,
+    "seed": 20261023,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "holdout": false,
+    "earlystop": false,
+    "epoch_selection": false,
+    "loop": "Exact pinned doc native.train/common/loss_ops; no new trainer",
+    "budget_seconds": null
+  },
+  "endpoints": {
+    "baseline_score": 0.7286975364690524,
+    "primary": "StrongB objects retained; union every accepted new HPO/NIL atom, exact atomic dedup only",
+    "diagnostic": "Fixed union span pool mapped by new head only; NO no entity, NIL retains original quote",
+    "other_fields": "All original baseline relations/patients/other objects fixed",
+    "freeze": "Both complete16doc/39patient predictions before exactly2new publicv2(all/text), old0",
+    "candidate_gate": "Either endpoint strictly greater than strong baseline; both scores reported",
+    "originaldev": false,
+    "official": false
+  }
+}
