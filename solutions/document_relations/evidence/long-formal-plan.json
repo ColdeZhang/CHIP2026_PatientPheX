@@ -1,0 +1,36 @@
+{
+  "mode": "formal",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/formal-marker-long-v3",
+  "budget_seconds": 900,
+  "source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3",
+  "encoded": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/marker-encoded-v2",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/marker-encoded-v2/train.json.gz": "2a61a283cd1a24e85166a28d1c0f194fcdde9c9bf978c2a9d7cf61e89daab4c8",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/marker-encoded-v2/held.json.gz": "37dd3266a33e1684d2a86a0925a9a25c0b7fac84f1318ca802b206e5e2b47912",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/model.py": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/train.py": "8c6613b5274e5809a29021ed739ca9f1c6cccb3563a1619eed5536e7597a3e9b",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/encode.py": "6e41cb02a8dc1c3a0d78cc51a842732943c6aac8578e8f2ccd54ca652755cc1e",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/driver.py": "30babfa4d4edfd2e2cd00e41a7cc34f2ce475fb2ca6b7194cf4bd3934eced25d",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/marker_encode.py": "9c5ba05db056d78785b4f00f85b374cfc3188b4e7f2ab5ebfbcc5234fdab9bff"
+  },
+  "model_assets": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+  },
+  "scope": "Approved fixed optimization-duration control. Fresh same public base and exact marker-v2 inputs/representation, 30 fixed epochs/240Adam. Only final complete F1 logits, zero-cut and same two frozen endpoints. Encoder/head LR unchanged; 10% warmup and linear decay scale to new total steps. No intermediate quality/checkpoint selection or F1 cutoff sweep. If both endpoints fail strong N, close this control series.",
+  "epochs": 30
+}

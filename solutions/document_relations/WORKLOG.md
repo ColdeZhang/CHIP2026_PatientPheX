@@ -29,3 +29,5 @@ marker改变输入长度，维持510窗上限的必要重映射已披露：训�
 marker正式178.409秒rc0，8epoch/64Adam/16held全部完成，state1.319GB SHA14858de2…持久；scores2874/SHA8c94001c…实际回收。候选AP .44811→.54738，多患者AP .41319→.50542；新167条43TP/124FP，仍不足以改善强N。端点前两完整预测共冻，未作cut/epoch选择。源47ae85d已push并远端核准，当前整理两run持久交接；固定更充分训练仅为待协调后继，不冒称已执行。
 
 两run小型终点已95件/321669B持久备份并从.3实际读回逐SHA，见evidence/two-control-backup.json；完整state不在小包、原远端locator不变。待协调后继固定30epochs/240Adam，唯一变化是训练时长及相同warmup比例/线性decay按新总steps缩放，不按F1挑epoch；源仅参数化3行、默认仍8，尚未部署/启动，原已运行源保留于95件包及原远端source。
+
+固定30epoch/240Adam后继现已获root批准唯一900+30，排GP F0真实释放后，fresh同marker/base，仍两完整共冻端点/各1v2旧0；若两臂仍不升强N则关闭本组。低成本CPU实际核过：只3行epoch参数/状态断言改变，其余与已完成marker源码逐字相同；960doc/134850pair passes、24warmup，held唯一loop在全部epochs之后。新独立source-long-v3保留原remote source不动。批准计划8ad76336…与CPU证据见evidence/long-formal-plan.json、long-cpu-contract.json；当前未GPU启动。
