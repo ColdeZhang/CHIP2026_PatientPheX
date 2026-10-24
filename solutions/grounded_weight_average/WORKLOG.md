@@ -2,7 +2,13 @@
 
 分支 `explore/grounded-weight-average`，起点 main `85611ab1e245cb60b7b450d71b0caf01512b46c7`，只写本目录。仓外产物 `R/research/grounded-weight-average-readiness-20261024/`。
 
-## 当前任务 GWA-20261024-001
+## 当前状态 GWA-20261024-001
+
+实际CPU合成与tiny PEFT已通过；A100 GPU2唯一完整39条推断进行中，proc06596b00/PID239977/child239995，开始14:08:54Z，TERM14:38:54.278290Z，KILL14:39:24.278290Z。见[evidence/inference-start.json](evidence/inference-start.json)；远端原 `grounded-weight-average-v1/F1/infer-v1/wrapper-complete.json` 为唯一终态。恢复入口 `inference/remote.py observe --directory R/research/grounded-weight-average-v1/F1/infer-v1`，绝不重start。
+
+当前根授权范围：同一固定平均、39 fresh greedy、必要固定Sap180+30、唯一 `B4∪(G_meanweights∩G_originalgreedy)` 完整freeze后1v2；若byteexact则0v2。原candidate-plan保留为历史，新执行见[execution-plan.json](execution-plan.json)。无新训练、无gold读取或质量结果；后处理源码和差异合同已push。仓外实际产物 `R/research/grounded-weight-average-v1/F1/`，真实CPU16件包3116a023完整回收；新adapter346,294,736B/ed184ecc留原持久服务器。
+
+## 准备阶段记录（授权前历史）
 
 - 真实目标：检验现有同轨迹两epoch LoRA有效增量平均是否能成为更可靠的grounded关系视图，补充当前四来源强对照。
 - 本阶段仅准备：历史查重、两真实checkpoint/配置/祖先、精确数学和加载schema、成本与唯一未执行终点。无GPU、fit、gold、质量或大权重下载。

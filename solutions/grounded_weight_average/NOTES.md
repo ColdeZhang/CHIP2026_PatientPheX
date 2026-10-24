@@ -6,4 +6,4 @@ Model soups（arXiv2203.05482）真实标题为 *Model soups: averaging weights 
 
 精确等式：原各层Δi=2BiAi；等权Δmean=B1A1+B2A2。令A′=concat(A1,A2,axis0)，B′=concat(B1,B2,axis1)，新r32/alpha32 scaling1即得目标。直接平均两个A与两个B会生成交叉项，不能替代有效delta平均。eval模式关闭dropout；实数等式不代表BF16/GPU逐位相同。
 
-已有PEFT0.21.2固定tag eaa35c77缓存源码的`add_weighted_adapter(..., weights=[.5,.5], combination_type="cat")`采用同一拼接公式，并令新alpha=新rank。只复用成熟数学与schema，不自动调用其需要加载基座的API。实际CPU微型PEFT加载尚未执行（本机未装Torch/PEFT）；本阶段用NumPy数学＋已核源码，不把它写成PeftModel.from_pretrained通过。
+已有PEFT0.21.2固定tag eaa35c77缓存源码的`add_weighted_adapter(..., weights=[.5,.5], combination_type="cat")`采用同一拼接公式，并令新alpha=新rank。只复用成熟数学与schema，不自动调用其需要加载基座的API。准备阶段只做NumPy数学与源码核查。随后经根授权，在原服务器CPU实际完成PEFT0.21.2的12类tiny cat/save/load合同（无大基座/GPU），加载张量与输出exact；独立凭据见evidence/CPU-synthesis.json，不将tiny合同扩大为完整大模型GPU成功。
