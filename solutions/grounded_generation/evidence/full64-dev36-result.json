@@ -1,0 +1,142 @@
+{
+  "schema": "grounded-full64-dev36-supply-result-v1",
+  "status": "COMPLETE_FIXED_METHOD_SUPPLY_NO_LOCAL_QUALITY",
+  "review_status": "Concentrated independent review pending parent scheduling",
+  "entry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-final-review-entry.json",
+    "bytes": 14246,
+    "sha256": "620347ae77608db4bc01d4385653c05ad6736d722f11e74a94bd1bd544605c90"
+  },
+  "recipe": "Fresh train64 cb45,173 patients,2ep44Adam,warmup4,lr1e-4,seed20261023; final e129 adapter; native full36 greedy1600 rawfirst; fixed train64 aliases+b59/public41099; literal all250 generated relations, no inherited baseline or gold-driven selection",
+  "prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-pure-relations-v1/new-only.jsonl",
+    "bytes": 138256,
+    "sha256": "fc267414a0a33a718d217b12f42a7a82955c3074a0500766fe3a2f2c725d7df7"
+  },
+  "pure_keys": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-pure-relations-v1/pure-relation-keys.json",
+    "bytes": 15807,
+    "sha256": "f6174dc98603a3f8e1fbcefb0f1a4aa4c07e75c9a6607905ad02243fcb350007"
+  },
+  "freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-pure-relations-v1/freeze.json",
+    "bytes": 1869,
+    "sha256": "3873c442154ab3296eb0690ebc7c3533cf19b34386689180d45793c700a51f05"
+  },
+  "all_normalized_quotes": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-normalized-v1/normalizations.jsonl",
+    "bytes": 632591,
+    "sha256": "d77065bbca0fc6ebb2e0806115fd509d6b555c2b53968ae6f46d683f76a5b8b6"
+  },
+  "normalization": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-normalized-v1/manifest.json",
+    "bytes": 5393,
+    "sha256": "3a6ef68603224478fcbb3032d188279aa31886ce6f92ffee7bfa76506ce65bd9"
+  },
+  "actual_summary": {
+    "train_rows": 173,
+    "epochs": 2,
+    "optimizer_calls": 44,
+    "warmup4": true,
+    "held_rows": 36,
+    "EOS": 36,
+    "cap": 0,
+    "native_generation_seconds": 370.47091131284833,
+    "normalization_status_counts": {
+      "mapped": 269,
+      "nil": 0,
+      "abstain": 184
+    },
+    "relation_count": 250
+  },
+  "format_validation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/dev36-pure-relations-v1/validation.json",
+    "bytes": 425,
+    "sha256": "8b594ee65e04f680f8829200abbf5da1a325edd44afd1888cde863e85f820dbb"
+  },
+  "cost": {
+    "epoch_wrapper_seconds": {
+      "1": 1781.3558511734009,
+      "2": 1780.596791267395
+    },
+    "both_training_wrapper_seconds": 3561.952642440796,
+    "epoch_native_loop_and_save_seconds": {
+      "1": 1755.118514884729,
+      "2": 1751.5031263390556
+    },
+    "whole_campaign_elapsed_seconds": 3839.6170749664307,
+    "export_seconds": {
+      "1": 61.460167014971375,
+      "2": 57.11860849801451
+    },
+    "training_complete_elapsed_scope": "Second resumed process only; never report as both epochs total",
+    "training_complete_elapsed_seconds": 1779.7459619943984,
+    "training_complete_peak_scope": "Second resumed process only; first-process full training peak not separately captured",
+    "resumed_process_peak_allocated_bytes": 29693282304,
+    "resumed_process_peak_reserved_bytes": 34166800384
+  },
+  "inference_native_seconds": 370.47091131284833,
+  "inference_wrapper_seconds": 371.41040417784825,
+  "normalization_native_seconds": 7.39889202080667,
+  "normalization_wrapper_seconds": 8.189936774782836,
+  "accepted_source_counts": {
+    "literal": 133,
+    "case_whitespace": 84,
+    "public_semantic": 52
+  },
+  "normalization_reason_counts": {
+    "semantic_cosine_below_fixed_boundary": 141,
+    "unanimous_whole_span_alias": 217,
+    "semantic_possible_compound_quote": 27,
+    "public_sap_cosine_and_concept_margin": 52,
+    "semantic_distinct_concept_margin_too_small": 10,
+    "semantic_quote_too_long": 2,
+    "ambiguous_mapping": 3,
+    "semantic_insufficient_lexical_context": 1
+  },
+  "persistent_checkpoints": {
+    "output/epoch-001/adapter/adapter_model.safetensors": {
+      "bytes": 173181072,
+      "sha256": "325ecfa015d726d5ec6b01ef2d1b170bec3a2231a8a55d95539aa75f816cb245",
+      "original_SHM_path": "/dev/shm/patientphex-grounded-full64-1045-v1/output/epoch-001/adapter/adapter_model.safetensors",
+      "persistent_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-full64-v1/formal-v1/checkpoints/epoch-001/adapter/adapter_model.safetensors",
+      "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "actual_ACK_sha256": "593a538f48b9ce8a7d165b32110aff1fd5e45ba06184df122888120a894bbdb1",
+      "not_downloaded": true,
+      "source_actual_fsynced_and_reopened_SHA": true
+    },
+    "output/epoch-001/training_state.pt": {
+      "bytes": 346707693,
+      "sha256": "87c7e560522e25368f7ae54527166392976d74b8dc1fcc3a78a14f0caba39868",
+      "original_SHM_path": "/dev/shm/patientphex-grounded-full64-1045-v1/output/epoch-001/training_state.pt",
+      "persistent_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-full64-v1/formal-v1/checkpoints/epoch-001/training_state.pt",
+      "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "actual_ACK_sha256": "593a538f48b9ce8a7d165b32110aff1fd5e45ba06184df122888120a894bbdb1",
+      "not_downloaded": true,
+      "source_actual_fsynced_and_reopened_SHA": true
+    },
+    "output/epoch-002/adapter/adapter_model.safetensors": {
+      "bytes": 173181072,
+      "sha256": "e129d63445b79b26193870ee9d0f2590c36c4f2369638c94c1e9d599c2563852",
+      "original_SHM_path": "/dev/shm/patientphex-grounded-full64-1045-v1/output/epoch-002/adapter/adapter_model.safetensors",
+      "persistent_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-full64-v1/formal-v1/checkpoints/epoch-002/adapter/adapter_model.safetensors",
+      "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "actual_ACK_sha256": "5bac5e0817b768cf7fb1231270ea0864a43b4cceb1cebc2ad752a2fde94a9195",
+      "not_downloaded": true,
+      "source_actual_fsynced_and_reopened_SHA": true
+    },
+    "output/epoch-002/training_state.pt": {
+      "bytes": 346707693,
+      "sha256": "f43373af06aabd57300f2a20a2b2535b386f2324cef6a31d9c6351b6f6a806df",
+      "original_SHM_path": "/dev/shm/patientphex-grounded-full64-1045-v1/output/epoch-002/training_state.pt",
+      "persistent_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-full64-v1/formal-v1/checkpoints/epoch-002/training_state.pt",
+      "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "actual_ACK_sha256": "5bac5e0817b768cf7fb1231270ea0864a43b4cceb1cebc2ad752a2fde94a9195",
+      "not_downloaded": true,
+      "source_actual_fsynced_and_reopened_SHA": true
+    }
+  },
+  "root_quality_contract": "Root only: fixed 901 union all grounded and 901 union3-source2of3, both predictions freeze before two unique v2. This route opens no originaldev gold and runs no evaluator.",
+  "quality_calls": 0,
+  "official_calls": 0
+}

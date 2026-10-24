@@ -9,13 +9,13 @@
 - **F0作业均已完整结束**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
 - **full64已授权、CPU完整**：原173train/36纯dev实际209回放16.104秒通过，14件collection a77eaa7b；tinyCPU Adam/scheduler/Python/NumPy/Torch状态恢复通过，CUDA只结构未冒称实测。唯一13反向压力已12:14:37完整PASS/201.284秒：10637/557与6346/646两Pareto，已有Adam/累积梯度，峰29.684GB allocated/34.578GB reserved，状态丢弃；GPU2已真实释放，完整54件collection9e0c83c8已收齐。
 - **正式后继持续授权**：probe成功且实耗可容纳后，fresh173×2/44updates/warmup4/尾5/原LR1e-4，单6000+30共享两epoch与SHM→.100完整ACK；后继原dev纯36/1200+30与必要Sap180+30。只交new-only和完整quote，最终两个原dev质量由root执行，本线不读dev gold/评分。
-- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点e43d50fd，后继源/计划先推送再启动。
+- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点73b9f5db，后继源/计划先推送再启动。
 
 ## 执行与下一步
 
 1. 原CPU proc07b171cc已完整；collector95847已14件全SHA收齐。无原CPU/GPU重复启动。
 2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b原epoch1已1781.356秒完整，22步/尾5。第二轮13:20:39完整44步，.100双ACK593a538f/5bac5e08齐，原watch13:22:59正常终结；53件完整collection7f2ac0e6已收，全state逻辑恢复实际通过。
-3. full64两轮/双ACK/53件完整回收已结束；原dev36唯一推断13:31:44完整rc0，wrapper371.410秒，GPU2真实释放，原readonlywatch退出。完整原件已收齐，下一步固定全quote解析、train64/b59规范化（root最新指定.100 GPU1，180+30），只给root纯供给，不读gold/评分。
+3. full64两轮/双ACK/53件完整回收已结束；原dev36唯一推断13:31:44完整rc0，wrapper371.410秒，GPU2真实释放，原readonlywatch退出。完整原件已收齐，下一步固定全quote解析、train64/b59规范化（root最新指定.100 GPU1，180+30），只给root纯供给，不读gold/评分。完整171查询已8.190秒结束并释放，13件c6dab8da全收；269映射/184弃答归约250关系，fc267414已交root，当前无GPU任务。
 
 ## 历史阶段记录（准确原时点，非当前作业）
 
@@ -85,3 +85,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 原84实际件collection e48e8fa5完整：36EOS/0cap，native370.471秒、wrapper371.410秒，峰20.665GB。固定解析59382717保453原文锚点/347词面，拒7项、1患者全部item被拒，原raw未修。train64/b59准备c8ab6c8a产生171必要Sap，实际plan a599a115锁.100GPU1/180+30，预计23.42秒；root/span/schema均已协调，下一步fresh门唯一启动。
 
 171必要Sap已13:35:08.520实际原driver2743171/child2743179启动，proc_c4e3f457，.100GPU1 UUIDfc5；TERM13:38:08.520/KILL13:38:38.520，原180+30。源plan bb631b02已push exact，初观察正常无stderr；只继续原进程，不重复start。
+
+13:37完整交付：固定453记录→269mapped/0NIL/184abstain，严格217+semantic52，全部250 new-only关系；16文献/36患者/1061实体及901非关系bytes全部保持，validator8b594ee6有效。纯pred fc267414、共冻3873c442、完整quote d77065bb、集中终审entry620347ae已交root；未读原devgold/评分。根负责固定两端点，当前仅结案与等待集中终审后最小补包。源73b9f5db已推，所有GPU真实释放。
