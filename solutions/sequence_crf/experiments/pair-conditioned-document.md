@@ -55,3 +55,5 @@ NumPy 13项合同通过：两臂两标签对全部98个小模型参数及输入�
 ## 恢复
 
 外存 `R/research/pair-conditioned-document-feasibility/`：`plan/report` 原passage，`packed-plan/packed-report` 完整坐标/窗口，`head-plan/head-contracts` 合成数学，`budget-plan/budget-report` 同序padding复算；大token/offset/window文件保留外存。Git小索引见 `evidence/round2/pair-document-feasibility.json`，真实源 `pair_document_feasibility/`。所有源和输入SHA及实际命令在索引；无GPU/模型权重加载/任务训练/F1gold/originaldev读取。
+
+实际Torch CPU 0.191秒通过，完整两臂四标签case的NumPy→autograd参数/输入梯度最大误差<1e-12；padding NaN、重叠梯度、未知候选、整文跨chunk weighted BCE与旧weighted CE等价通过。实际.3 torch2.7.0+cu128/TF4.50.0支持非reentrant checkpoint，六公共文件完整SHA无变化。最长**train32**是PMC5793168/7023正文/19窗/5对，连既有训练标签后5对全负，未换样本；全局2506对594正/1912负，权重w0=.655334728/w1=2.109427609，整文sum(wBCE)/sum(w)，不逐chunk改分母。旧CE按随机16行batch与本次docbatch不同，但双新臂完全相同。工具首次绝对路径及随后大payload失败都发生在CPU/GPU之前，已留attempt并改mount相对路径/256KiB分块；数学/输入未变。新probe-plan已冻结，真实GPU尚未开始，索引pair-document-probe-plan.json。
