@@ -28,3 +28,5 @@ root预锁三源2of3在F1/F0均正，F0 .724457355332高于固定双采样 .7219
 新shape已64.748844秒完整PASS，13FB/1Adam，全部504梯度及504Adam状态finite，峰allocated21.628GB；固定成本估2245.071238秒<2400，旧数学/held-prefill0次。已discard后fresh正式child1207643于12:09:42.129377启动，TERM12:49:42.129377/KILL12:50:12.129377。两个完整epoch ACK待实际终态。
 
 Epoch1完整34updates已12:22:09.652993 UTC取得ACK：504adapter/504Adam1512tensor及scheduler/RNG重开exact，checkpoint6b681bb2；adapter174655536B/df4ef6ca，state349612141B/dc56ad04。receipt记录3.212588秒，不把它当包括最后ACK/父链同步的严格总成本。第二轮沿原窗口继续。
+
+正式两轮已12:34:29.703457完整PASS：68updates，530行曝光/1,732,990tokens/30,820监督tokens；train1478.328467秒、phase1487.504494秒，峰allocated21,627,827,200B。两份完整ACK成立，epoch2 checkpoint a8a02d4e、adapter59fb484a/state45e5c7e4。原控制器12:34:31.050998接唯一infer child1209224，TERM12:54:31.050998/KILL12:55:01.050998；完整64fresh仍待终态，无质量调用。
