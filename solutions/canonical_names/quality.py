@@ -22,6 +22,15 @@ def load(path):
     actual=json.loads(checked(p['actual']['infer_complete']).read_text())
     assert actual['status']=='COMPLETE_ALL39_FRESH_CANONICAL_NAMES_NO_QUALITY' and actual['fresh_rows']==actual['rows']==39
     for item in p['actual'].values():checked(item)
+    formal=json.loads(checked(p['actual']['formal_complete']).read_text())
+    assert formal['global_step']==22 and len(formal['acknowledgements'])==2
+    assert formal['counts']==dict(rows=174,tokens=869164,supervised=10812)
+    loaded=json.loads(checked(p['actual']['infer_model_manifest']).read_text())
+    assert loaded['loaded_adapter_tensors_exact']==504 and loaded['total_parameters']==8234382336
+    assert loaded['adapter'].endswith('/formal/epoch-002/adapter')
+    driver=json.loads(checked(p['actual']['driver_result']).read_text())
+    assert driver['status']=='COMPLETE_THREE_PHASES' and len(driver['stages'])==3
+    assert all(x['return_code']==0 and not x['timed_out'] and x['complete_file_exists'] for x in driver['stages'])
     return p,H,gate
 
 def assemble(path):
