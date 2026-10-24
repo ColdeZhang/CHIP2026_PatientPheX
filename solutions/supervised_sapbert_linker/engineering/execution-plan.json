@@ -1,0 +1,71 @@
+{
+  "schema": "supervised-sapbert-engineering-probe-v1",
+  "authorization": "Root: sole300+TERM30 engineering; no formal training authorization",
+  "candidate_plan_sha256": "e6b1a3ce42b3662c5c98ba6fd1851257962567f86ca2d6896b694f96a0b4bfd6",
+  "counts": {
+    "train": 1160,
+    "bank": 41099,
+    "held": 303
+  },
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+  "model_files": {
+    "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+    "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+    "manifest.json": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8"
+  },
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "launch": {
+    "prebound_validity_seconds": 300,
+    "check_at": [
+      "entry",
+      "before_Popen"
+    ],
+    "exclusive": "job/exclusive-launch.json"
+  },
+  "budget_seconds": 300,
+  "term_grace_seconds": 30,
+  "formal_started": false,
+  "engineering": "Initial full public bank+train retrieval; actual count/length Pareto batches, exact warmup twoAdam and extra accumulated backward with resident state; full model/optimizer/scheduler/scaler/RNG save-reopen; discard all probe state.",
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/probe-v1/data.json.gz",
+    "bytes": 843117,
+    "sha256": "36b6e77d979c5d8637a8d0696d2f238d12a1a60a7f817548236d27f82d84e47f"
+  },
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/engineering/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/engineering/native_cpu.py",
+      "bytes": 2635,
+      "sha256": "4f9e76175805c2c14e2fb77cfbb29208ac8fc3d8acc7133ac26259608d3f7a67"
+    },
+    "probe.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/engineering/probe.py",
+      "bytes": 10889,
+      "sha256": "3a0b5f7179f91bed63e2beb0958d9ccee1878e74b3dac3941d2586792ea2dbc8"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/engineering/driver.py",
+      "bytes": 3475,
+      "sha256": "809867b129574700387086405fc9619b23e27a2c7a04959c024ebda96289e61e"
+    }
+  }
+}
