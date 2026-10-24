@@ -1,0 +1,108 @@
+{
+  "schema": "bioclinical-native-GP-engineering-v1",
+  "authorization": "root fixed native32/completeF1 CPU + sole180TERM30 probe only",
+  "candidate_plan": {
+    "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/candidate-plan.json",
+    "bytes": 6714,
+    "sha256": "e2fcb0447368a55d623eb865c8826d459f87b531c6774bd4c74de486fafa8c25"
+  },
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "model_files": {
+    "config.json": {
+      "bytes": 1149,
+      "sha256": "dd3550a1b22f63cbc24b2015dbcd8b64bcf1050c265c3d30191236be886fb071",
+      "sha_basis": "actual_small_file"
+    },
+    "model.safetensors": {
+      "bytes": 598635000,
+      "sha256": "ea7388682b12cb833491ca8a697e84e3e67122c65c9c658f4ad3355fdd891546",
+      "sha_basis": "publisher_LFS_not_local_full_download"
+    },
+    "special_tokens_map.json": {
+      "bytes": 693,
+      "sha256": "e232f6a2ac8b149dc247c27e30282c42b0b70720a35cc845fa3e791f9ee9da00",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer.json": {
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer_config.json": {
+      "bytes": 20809,
+      "sha256": "11251bae0abce4551fb3e1822e487b31700b1ccc3c036743f4c64cf2161b9457",
+      "sha_basis": "actual_small_file"
+    }
+  },
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "budget_seconds": 180,
+  "term_grace_seconds": 30,
+  "launch_TTL_seconds": 300,
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/probe-v1/data.json.gz",
+    "bytes": 1948468,
+    "sha256": "8095180e13c10cde3fb071670d1f3d9f308ec55bc0946370e67aa2a75cc69626"
+  },
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/runtime/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/runtime/driver.py",
+      "bytes": 3241,
+      "sha256": "07b079ca9f2c2fca231f8f107d0b465295efe2ec4994a77bead5c0da5ff41464"
+    },
+    "model.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/runtime/model.py",
+      "bytes": 2992,
+      "sha256": "636a0ac4fd4e0b28c4919c133cabf48d7e995110a0fc82110b6baa721a786d3a"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/runtime/native_cpu.py",
+      "bytes": 3983,
+      "sha256": "141b5bf34daece28f4d45827bf58444958f86a6bc1e308060e33600ec21d9d55"
+    },
+    "probe.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/runtime/probe.py",
+      "bytes": 6971,
+      "sha256": "6a7683cf8b87e15d61c0c0be7db47c4a8a5bdd26114fd009898f0d75befc8cf9"
+    }
+  },
+  "formal_not_started": true,
+  "probe_state_discard": true,
+  "held_inference_unexecuted": true,
+  "local_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/probe-v1/local-preparation.json",
+    "bytes": 2659,
+    "sha256": "9d62e73e3f39ccdd84f011326ef05f679f3bae751096537eda17ea31368e5fdc"
+  },
+  "training_schedule_candidate": {
+    "epochs": 8,
+    "documents_per_step": 1,
+    "accumulation": 1,
+    "updates": 256,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_updates": 25,
+    "seed": 20261024,
+    "checkpoint": "last epoch8 only",
+    "budget": "To be fixed from actual probe; not authorized to start yet",
+    "endpoint": "single completeF1 strong Task1 baseline protected union of strict final newspans; relations fixed. Freeze before onev2; no cutscan. Exact assembly will reuse originalGP.",
+    "baseline_score": 0.7286975364690524,
+    "gate": "strictly better fullScore and formatpass before F0"
+  }
+}
