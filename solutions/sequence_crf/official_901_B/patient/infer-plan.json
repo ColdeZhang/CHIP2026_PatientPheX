@@ -1,0 +1,156 @@
+{
+  "phase": "infer",
+  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "project": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "remote_preparation": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation",
+  "control": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/control/infer",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prediction",
+  "cap_seconds": 3600,
+  "grace_seconds": 30,
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "rows": 420,
+  "documents": 100,
+  "patients": 244,
+  "concepts": 3003,
+  "candidate_pairs": 7147,
+  "argv": [
+    "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/infer.py",
+    "--model",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "--source-manifest",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/model-source-manifest.json",
+    "--adapter",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002/adapter",
+    "--training-checkpoint",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002/checkpoint.json",
+    "--training-complete",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/training_complete.json",
+    "--training-durability",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/durability-epoch-002.json",
+    "--prompts",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/prompts.jsonl",
+    "--token-audit",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/input-token-audit.json",
+    "--input-contract",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/input-contract.json",
+    "--input-contract-sha256",
+    "eabbfa5fc713aecc2a36cd2a70ca2632b2693dc5a7d3df007fa4d9bb384ab106",
+    "--output",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prediction/responses.jsonl"
+  ],
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/infer.py": {
+      "bytes": 21397,
+      "sha256": "5b899375fd82121ca8119d85aa5f62a3c0f3c725544a6bbb73516928f77946c7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/patient_first.py": {
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/limited_codec.py": {
+      "bytes": 4601,
+      "sha256": "60731e1297930415afd8bb8c2a979814d7c8cb9a8c132c6c6debbd85d50cb289"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/raw_store.py": {
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/driver.py": {
+      "bytes": 5374,
+      "sha256": "46abb83540b93c83a704e0aeaa921ec3157b0d159cbd014f9d5b8e083b2d8c0e"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/prompts.jsonl": {
+      "bytes": 5403066,
+      "sha256": "9f94fffc474b1b3503032f492dfcdc6355f205c72abe8203d1c0f1aa72761d86"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/input-token-audit.json": {
+      "bytes": 121782,
+      "sha256": "ccafddec3e9f66e1176becf982e1ab1aae4bbb9e209d8ece054e78b316c27932"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/input-contract.json": {
+      "bytes": 2115,
+      "sha256": "eabbfa5fc713aecc2a36cd2a70ca2632b2693dc5a7d3df007fa4d9bb384ab106"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared/manifest.json": {
+      "bytes": 1808,
+      "sha256": "2a218813aa6dc00c216fda9476319f00a9387f749cd419a22e5dbd4e56380012"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/training_complete.json": {
+      "bytes": 527,
+      "sha256": "9c9c7d356d373f10d81f1ad987eb04ac4b9ab4fb3d22c7240e9ae810383376a3"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002/checkpoint.json": {
+      "bytes": 12697,
+      "sha256": "0f8cb039da6db2552eb8ef6693e087c4dc53b6b083ecb535896d131fff7f954d"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/durability-epoch-002.json": {
+      "bytes": 2234,
+      "sha256": "bd174b1fd07bb77b5494c8f6ade1627ebf010b71de3a2a3f710e5e20ab5cd8be"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "source_checkpoint": "18da43c8b5de34620963a0f4118a424fedf07f4d",
+  "minimum_free_disk_bytes": 1073741824,
+  "source_policy": "Same f787 final epoch2, native BF16 greedy 14000/1600, complete B fresh, original limited codec, no baseline fallback",
+  "native_CPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/patient/prepared-collected/prepared/manifest.json",
+    "bytes": 1808,
+    "sha256": "2a218813aa6dc00c216fda9476319f00a9387f749cd419a22e5dbd4e56380012"
+  },
+  "native_CPU_terminal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/patient/prepared-collected/control/prepare/wrapper-complete.json",
+    "bytes": 328,
+    "sha256": "d14acd10edc17022b5a0eec3851c7d4ea761ec56868b14ce282d72f848f7287a"
+  },
+  "native_CPU_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/patient/prepare-collection.json",
+    "bytes": 2509,
+    "sha256": "869fc661a4844b9d0d75c0b380d84cbfba9a6704d130749f906672330fa7f5fd"
+  },
+  "space_proof": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/patient/space-proof/proof.json",
+    "bytes": 22547,
+    "sha256": "b68adf7cca53d9a3e203291e326c7809de3ddecf76c6b0ce5e34c14c563bc6da"
+  },
+  "cost_basis": {
+    "originaldev": {
+      "rows": 64,
+      "sum_input_tokens": 202999,
+      "max_input_tokens": 5198,
+      "sum_output_tokens": 2228,
+      "sum_generation_seconds": 236.714,
+      "overall_wrapper_seconds": 311.0340459346771,
+      "notes": "Observed originaldev runtime only; actual B inputs will determine frozen full-run cap, no output sampling"
+    },
+    "B_total_input_tokens": 1240743,
+    "B_max_input_tokens": 6055,
+    "scale": 7.104373757455268,
+    "estimated_seconds": 1756.0247755569435,
+    "budget_seconds": 3600,
+    "budget_over_estimate": 2.0500849703889963,
+    "not_a_runtime_guarantee": true,
+    "no_B_NN_sampling": true
+  },
+  "no_fit": true,
+  "no_score": true,
+  "no_retry": true,
+  "no_partial_resume": true
+}
