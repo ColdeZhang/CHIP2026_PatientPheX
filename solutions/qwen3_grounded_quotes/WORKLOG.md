@@ -7,3 +7,5 @@
 - 复用已核Q3 `full64_component/native.py/common.py/loss_ops.py` 的参数化训练/状态接口；CPU复用canonical的native renderer/完整census。原messages/answers字节不变，模型模板/IDs实际检查另做。
 - 现有.100公开8B基座与TF4.51.3，无大下载；资源未交卡，不发GPU请求。GPU探针/正式/39推断预算须新形状与实耗支持，不能套旧canonical峰23.617GB。
 - 下一步：先push此准备检查点；唯一50+5 CPU完整126原生/HF对照→全产物回收→预算与最小shape delta计划。原GPU队列由root安排。
+
+实际.100 CPU 11.309s/wrapper11.765s rc0完成，全部输出已收集并逐SHA核验(collection238253e7)：train447734/max9099/监督11946，held201749/max9999；新三Pareto6460×451、9099×399、5634×611。原126 native/HF完整IDs/解码及87原answer/labels/EOS全exact，无模型/质量。root已授权document实际交卡后.3GPU0唯一600+30 delta probe；正式预算仍待实耗。旧.3 Q3 base/runtime已定位，先新host CPU同encoded77c1c5bd，不并发轮询document。

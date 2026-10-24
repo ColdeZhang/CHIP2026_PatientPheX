@@ -56,6 +56,11 @@ def main():
     write(out / 'native-plan.json', native_plan)
     native = census(native_plan, out / 'native')
     encoded = json.loads(gzip.decompress((out / 'native/encoded.json.gz').read_bytes()))
+    if plan.get('expected_local_native'):
+        expected = plan['expected_local_native']
+        assert ref(out / 'native/encoded.json.gz')['sha256'] == expected['encoded_sha256']
+        for field in ['full_training_tokens', 'supervised_tokens', 'held_input_tokens']:
+            assert native[field] == expected[field]
     tk = AutoTokenizer.from_pretrained(model, local_files_only=True)
     raw_tokenizer = Tokenizer.from_file(str(model / 'tokenizer.json'))
     observations = []
@@ -101,6 +106,7 @@ def main():
         pareto_indices=[row['index'] for row in native['joint_length_supervision_frontier']],
         pareto_shapes=[[row['full_tokens'], row['supervised_tokens']] for row in native['joint_length_supervision_frontier']],
         all126_native_HF_IDs_decode_exact=True, all87_original_answers_EOS_labels_exact=True,
+        prior_host_encoded_exact=bool(plan.get('expected_local_native')),
         complete_no_truncation=True, no_model_GPU_fit_forward_or_quality=True,
         seconds=time.monotonic() - started)
     print(json.dumps(write(out / 'result.json', result)), flush=True)

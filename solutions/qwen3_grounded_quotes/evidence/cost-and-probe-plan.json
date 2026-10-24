@@ -1,0 +1,46 @@
+{
+  "status": "PRE_GPU_PROXY_NOT_MEASURED_NEW_MODEL",
+  "new_cpu": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-grounded-quotes-v1/native-cpu-v1/collected/actual/result.json",
+    "bytes": 2786,
+    "sha256": "ffcd8cf950970d13732dd51275be9fef39b95ae908d684562eef489a5ac44ede"
+  },
+  "old_canonical_tokens": 434582,
+  "old_canonical_train_seconds": 745.0194030376151,
+  "new_train_tokens": 447734,
+  "linear_input_proxy_seconds": 767.5663451308235,
+  "new_supervised_tokens": 11946,
+  "old_supervised_tokens": 5406,
+  "new_two_epoch_tokens": 895468,
+  "formal_candidate_budget_seconds": 2400,
+  "formal_not_yet_authorized": true,
+  "new_probe_steps": {
+    "shortest_train_FB": 1,
+    "actual_Adam": 1,
+    "resident_Adam_Pareto_FB": 3,
+    "total_FB": 4,
+    "gradient_accumulation_during_three_extremes": true,
+    "probe_checkpoint_saved": false,
+    "original_Qwen3_checkpoint_contract_reused": true,
+    "held_generation": 0
+  },
+  "new_pareto_shapes": [
+    [
+      6460,
+      451
+    ],
+    [
+      9099,
+      399
+    ],
+    [
+      5634,
+      611
+    ]
+  ],
+  "probe_budget_seconds": 600,
+  "grace_seconds": 30,
+  "cost_gate": "1.5 * max(actual_FB_seconds/input_tokens) * 895468 + actual_load_seconds + 120 <= 2400",
+  "risk": "Old actual23.617GB not certificate for9099x399 or5634x611; require measured new resident Adam shapes. No target truncation/dtype/kernel adaptation to pass.",
+  "inference_budget": "unbound; complete39greedy1600 throughput separately; oldCID80x504s not this task"
+}
