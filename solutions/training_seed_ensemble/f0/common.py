@@ -47,7 +47,7 @@ def save(path, value):
 
 
 def verify_sources():
-    manifest = read(S / 'source-manifest.json')
+    manifest = read(S / 'source-manifest-v2.json')
     for item in manifest['original_sources'].values(): checked(item)
     for item in manifest['helper_sources'].values(): checked(item)
     for item in manifest['fixed_protocol'].values(): checked(item)

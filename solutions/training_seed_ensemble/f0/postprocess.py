@@ -86,13 +86,13 @@ def main():
   print(json.dumps(dict(freeze=ref(out/'freeze.json'),added=len(add),constrained=len(constrained))))
  else:
   out=D/'quality-v1';f=read(out/'freeze.json');assert f['source']==ref(__file__);checked(f['prediction']);p=read(checked(f['inputs']));r=p['references'];base=read(checked(r['baseline_metrics']))
-  save(out/'evaluation-intent.json',dict(at_unix=time.time(),freeze=ref(out/'freeze.json'),new_calls=0 if f['byteexact_to_baseline'] else 1,old_calls=0))
-  if f['byteexact_to_baseline']:save(out/'result.json',dict(status='CLOSED_BYTEEXACT_NO_INCREMENT',fixed_protocol=ref(ROUTE/'proposal.json'),metrics=base['metrics'],new_v2=0,old_v2=0,strict_positive=False));return
+  save(out/'evaluation-intent.json',dict(at_unix=time.time(),freeze=ref(out/'freeze.json'),new_calls=0 if f['byteexact_to_baseline'] else 1,old_calls=0,report_invocations=0,underlying_evaluate_calls=0 if f['byteexact_to_baseline'] else 1,sensitivity_calls=0))
+  if f['byteexact_to_baseline']:save(out/'result.json',dict(status='CLOSED_BYTEEXACT_NO_INCREMENT',fixed_protocol=ref(ROUTE/'proposal.json'),metrics=base['metrics'],new_v2=0,old_v2=0,strict_positive=False,evaluation_calls=dict(primary_endpoints=0,report_invocations=0,underlying_evaluate=0,sensitivity_evaluate=0)));return
   for item in r.values():checked(item)
   assert base['metrics']['Score']==0.7281956289113009
   guard['open']=True;sys.path.insert(0,str(Path(r['evaluator']['path']).parent));import evaluate as ev,validate_predictions as va
-  gold=va.load_jsonl(checked(GOLD));pred=va.load_jsonl(f['prediction']['path']);report=ev.evaluate_report(gold,pred,body_scope='all',no_id_doc='text');save(out/'metrics.json',report)
-  delta={k:report['metrics'][k]-v for k,v in base['metrics'].items()};assert delta['menF0']==delta['docF0']==0
+  gold=va.load_jsonl(checked(GOLD));pred=va.load_jsonl(f['prediction']['path']);report=ev.evaluate(gold,pred,body_scope='all',no_id_doc='text',wildcard_no_id=True,validate=True);report.update(evaluator_version=ev.VERSION,result_type='local_public_rule_approximation_not_official',configuration=dict(body_scope='all',unlinked_document_mode='text',wildcard_no_id=True,validate=True),evaluation_calls=dict(primary_endpoints=1,report_invocations=0,underlying_evaluate=1,sensitivity_evaluate=0));save(out/'metrics.json',report)
+  delta={k:report['metrics'][k]-v for k,v in base['metrics'].items()};assert delta['menF1']==delta['docF1']==0
   adds=set(map(tuple,f['added_pairs']));tp=len(adds & pairs(gold,ev))
-  save(out/'result.json',dict(status='COMPLETE_SINGLE_FIXED_TRAINING_SEED_F0',fixed_protocol=ref(ROUTE/'proposal.json'),metrics=report['metrics'],baseline=base['metrics'],delta=delta,added=len(adds),added_TP=tp,added_FP=len(adds)-tp,strict_positive=delta['Score']>0,new_v2=1,old_v2=0,not_blind=True,NN_calls=0,fit_calls=0,freeze=ref(out/'freeze.json')));print(json.dumps(read(out/'result.json')))
+  save(out/'result.json',dict(status='COMPLETE_SINGLE_FIXED_TRAINING_SEED_F0',fixed_protocol=ref(ROUTE/'proposal.json'),metrics=report['metrics'],baseline=base['metrics'],delta=delta,added=len(adds),added_TP=tp,added_FP=len(adds)-tp,strict_positive=delta['Score']>0,new_v2=1,old_v2=0,not_blind=True,NN_calls=0,fit_calls=0,evaluation_calls=report['evaluation_calls'],freeze=ref(out/'freeze.json')));print(json.dumps(read(out/'result.json')))
 if __name__=='__main__':main()

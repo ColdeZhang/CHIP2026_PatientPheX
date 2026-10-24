@@ -16,3 +16,5 @@ python solutions/training_seed_ensemble/prepare.py \
 ```
 
 入口校验原 trainer/编码/支持预测的 SHA，生成新 seed trainer、完整分组和禁用 GPU 的提案。已完成结果在外存 `prepared-v2/`，无须为接手重跑。将来执行还需独立 namespace、实际资产/资源绑定和有启动有效期的控制器；这里没有可误启动旧作业的入口。
+
+评分调用计数更正：已完成F1为1主端点、1次`evaluate_report`、5次底层`evaluate`（1主+4固定sensitivity），旧基线0次；未改预测/主分/选择。F0新入口直接一次`evaluate(all/text)`，没有自动sensitivity。原件和更正见 `evidence/F1-evaluation-count-addendum.json`。

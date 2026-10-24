@@ -79,7 +79,7 @@ def main():
     for key in ('python', 'model', 'gpu_uuid', 'environment', 'storage_parent'): p[key] = trainplan[key]
     p['argv'] = [p['python'], '-u', REMOTE + '/run.py', '--plan', REMOTE + '/infer-plan.json']
     p['input_sources'] = dict(old['input_sources'], formal_collection=ref(args.formal_directory / 'collection.json'),
-                             formal_plan=ref(args.formal_plan), helper_sources=ref(S / 'source-manifest.json'), F1_result=ref(B/'F1-postprocess-v1/quality-v1/result.json'), original_F0_plan=ref(G/'f0/infer-plan.json'))
+                             formal_plan=ref(args.formal_plan), helper_sources=ref(S / 'source-manifest-v2.json'), F1_result=ref(B/'F1-postprocess-v1/quality-v1/result.json'), original_F0_plan=ref(G/'f0/infer-plan.json'))
     p['reuse_packages'] = [ref(args.formal_directory / 'package.json'), ref(OLD_B / 'native-cpu-v2/package.json')]
     p['reuse_actual_artifacts'] = {}
     for name, member in [('checkpoint.json', 'output/epoch-002/checkpoint.json'),

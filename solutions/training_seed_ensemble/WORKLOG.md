@@ -2,7 +2,7 @@
 
 2026-10-24 UTC，分支 `research/training-seed-ensemble`，起点 `main@ff7ad16777e3907ed3b4b4231794439017aa5bf8`。仅修改本方案目录。共享规则已读，后继启动尤其遵循 H49 原始响应先存、H68 按实际成本做最小工程检查、H69 启动有效期与运行预算分开。
 
-**当前：固定F1组合正，Score .701325377212→.704663449915（+ .003338072703），8新增=6TP2FP；原单端点1v2/旧0。按预锁条件准备F0，同权重/同公式，不新增训练或单臂评测。**
+**当前：固定F1组合正，Score .701325377212→.704663449915（+ .003338072703），8新增=6TP2FP；原1主端点/1次report调用/5次底层evaluate（1主+4固定sensitivity），旧0。按预锁条件准备F0，同权重/同公式，不新增训练或单臂评测。**
 
 **历史释槽交接（现已恢复）**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
 
@@ -49,3 +49,5 @@ F1原39已17:04:46完整rc0/1319.293s并真实释放，17:07:33原watch恢复终
 完整F1结果与唯一入口 [evidence/F1-result.json](evidence/F1-result.json)。35EOS/4cap原样，原itemwise坏quote105/duplicate1不补答。206必要Sap实际8.990秒、17:09:44.596978 .100GPU0真释放；.12已17:04:46.618734真释放并交SCST。root重新安排F0卡前只CPU/source；同host39耗时1319.293×47/39≈1589.917为预算代理，非F0保证。主微宏皆升，尚非原dev分数。
 
 F1小备份已完整持久ACK：122成员/654860B，archive af99e606，receipt81568e60；权重和state仍由原A100两份完整ACK保存，未重复拷贝大模型。指针 evidence/F1-backup.json。F0新独立f0/已完成元数据合同0.127秒、47/16/289420/max9935和train32排F0，原generate AST及raw_store完全相同，复用原native全IDs证明，不重分词。固定2100+30，输入比例加120秒代理1995.502秒；原F1峰allocated21.015GB，reserved未记录。保同A100等待SCST是排期选择，不是A30不适用结论。尚无F0bind/start/NN/质量，唯一准备入口f0/README.md。
+
+评分次数纠正：F1旧“1v2”只指1主端点/1次evaluate_report，实际底层evaluate为5次（1主+4固定sensitivity），主分/冻结/选择不变；独立evidence/F1-evaluation-count-addendum.json保原件SHA，未改任何原F1产物或重评分。F0在任何输出前改为只调用evaluate(all/text)一次；新source-manifest-v2.json与调用链CPU增量，原v1历史源外存留存。顺带修正机械折名替换误改的menF0/docF0为真实固定指标键menF1/docF1，尚无F0质量，因此没有半评测或重跑。
