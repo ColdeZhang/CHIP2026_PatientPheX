@@ -84,3 +84,10 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 01:58 实际恢复后，原 part 被确证不存在且目录为空；仅补传原冻结 archive（cd50df2c，254466B），18成员 SHA 与实际 Python compile 通过。native runtime 首次实际通过：Torch 2.6.0+cu124、Transformers 5.20.2、PEFT 0.21.2、原生 GDN/无 FLA，CUDA隐藏且未初始化。
 
 首次 native data CPU 在构造 tokenizer 后、124行编码前因“禁止 Torch 出现在 sys.modules”过严 guard 退出（13.098秒 roundtrip，rc1，无产物目录），不能记为模型或数据失败。单独实际导入检查证明只有 Torch 被携带导入，`USE_TORCH=0`仍在，CUDA available/initialized均false，无权重或forward。窄修为导入前必须隐藏CUDA、后续实际未初始化、禁止其他后端；记录真实Torch导入，不再声称所有后端未导入或CUDA查询次数为0。六输入SHA、逐行token/label合同、最长5556、训练loss和GPU180+30全部不变。原源码/计划/失败保存在原archive及53d提交；远端新文件使用`data_contract_v2.py`与`data-plan-v2.json`，不覆盖首次失败入口。[修复与来源](../evidence/round2/patient-first-CPU-import-guard-repair.json)。
+
+
+### 实际 native CPU 与唯一 GPU 计划冻结
+
+修复后的 CPU 子进程7.189640秒、rc0（合同内部6.284941秒）；真实TF5.20.2 tokenizer对124行所有新token/label哈希及32文献来源exact，总400614/监督4694，最长5556/5421/135。Torch实际导入，CUDA仍隐藏/未初始化，无模型权重或forward；没有重跑旧25例。三件原始收据/编码已按实际SHA回收，并保持原字节flat复制到远端根目录。选中编码9c84e688（108350B），CPU收据2c5d8254（8020B），runtime689d3317（905B）。[CPU收据](../evidence/round2/patient-first-native-CPU-receipt.json)、[真实环境](../evidence/round2/patient-first-native-runtime.json)。
+
+[最终run-plan](../evidence/round2/patient-first-probe-run-plan.json)固定原23成员SHA、actual CPU收据及选中编码，明确fresh state丢弃、180+TERM30、仅一次非零LR1e-4/native full CE真实更新；无推断/质量/正式训练。NCR实际01:58:17释放GPU2，启动仍由原operations核fresh空卡/写唯一intent。先完成并回报峰值/耗时，再由主线程安排后续训练；本体修复后的NCR在本probe实际release后接卡。
