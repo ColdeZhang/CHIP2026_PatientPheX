@@ -14,3 +14,5 @@ vendor/legacy_linker.py与semantic_encoder.py复用项目非archive现行源；�
 首轮证据改变了优先级：全池新增正确HPO仅12，弱边界假阳远多于规范化错；下一步如继续应检验严格OOF学分数过滤，不能把union负结果包装成联合规范化已经验证失败。
 
 第二控制工程经验：旧ontology与sequence均把入口命名run.py，拼接同解释器的feature/decoder时必须隔离sys.modules查找，保留对象引用并核实际模块路径；CPU合同已验证旧完整概率/实体逐值一致。MCP大文件write_file可能在HTTP层413（此次ZIP2107921B/base64后超限）；先stat明确缺失，再对同一已冻结ZIP分512KiB块、分别SHA、远端拼回原SHA，不重打包或重复启动。
+
+2026-10-24查重补正：root的只读helper查到旧`run_linker_rerank.py`确已运行“固定CRF+Sap选中跨度→Sap Top8新HPO→±180上下文+BiomedBERT监督CE”，正式保护NIL/唯一exact改13ID，Score .642033887→.637749023，实体两项也降。它与旧same-span LGBRanker未fit是不同事实。现不重复该宽泛提案，不凭换loss推定有收益；若重开，先证明当前强选中跨度的train-only可修复ID供给。历史Pheno top3扩池来自PubMed/Bioformer分类头，并不是Sap Top3。详细只读报告及逐源SHA保存外部`research/context-normalization-gap-20261024/REPORT.md`、`sources.json`；本路线未新读gold/fit/评测此方案。
