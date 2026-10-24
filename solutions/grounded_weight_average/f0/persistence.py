@@ -14,6 +14,7 @@ def build():
  'freeze':D/'quality-v1/freeze.json','evaluation_intent':D/'quality-v1/evaluation-intent.json','result':D/'quality-v1/result.json','format':D/'quality-v1/format.json','quality_bound_inputs':D/'quality-v1/bound-inputs.json','primary_prediction':D/'quality-v1/prediction.jsonl','unscored_pure_mean':D/'quality-v1/mean-new-only.jsonl',
  'F1_mean_and_query_implementation':F1/'final-review-entry.json','F1_backup':F1/'final-backup-v1/complete.json','ancestry':S.parent/'evidence/F0-ancestry.json','protocol':S/'execution-plan.json','normalization_amendment':S.parent/'normalization-amendment.json','actual_verifier':S/'verify_direct.py','quality_source':S/'postprocess.py'}
  if (D/'infer-v1/direct-recovery/complete-from-observation.json').exists():named['complete_observation_byte_recovery']=D/'infer-v1/direct-recovery/complete-from-observation.json'
+ if (D/'infer-v1/direct-recovery/command-read/complete.json').exists():named['original_response_CPU_read_fallback']=D/'infer-v1/direct-recovery/command-read/complete.json'
  if (D/'quality-v1/metrics.json').exists():named['metrics']=D/'quality-v1/metrics.json'
  if (D/'Sap-CPU100-v1/collection.json').exists():
   for k,n in [('query_collection','collection.json'),('query_complete','terminal/output/complete.json'),('query_runtime','terminal/output/encoder-runtime.json'),('query_vector_locator','terminal/member-index.json')]:named[k]=D/'Sap-CPU100-v1'/n
