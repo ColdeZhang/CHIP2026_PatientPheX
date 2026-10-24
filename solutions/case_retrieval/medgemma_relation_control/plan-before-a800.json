@@ -1,0 +1,137 @@
+{
+  "status": "fixed_preparation_and_conditional_single_probe_not_formal_training_authorization",
+  "experiment_id": "E-20261024-001",
+  "target": "MedGemma standalone relation replacement control on same strict train32/F1 input pool; no union/model fallback before individual result",
+  "source_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/source-manifest.json",
+    "bytes": 7362,
+    "sha256": "8b9685196d740a25227b8b93859990f51725884f9e87e4863af6c348d6ac0175"
+  },
+  "model_id": "google/medgemma-1.5-4b-it",
+  "MS_revision": "9bca96ca3e3049f6a084d8c876078cedb3069f18",
+  "HF_revision": "91850547d9f0b2fdd21aa7c5f4f3d1a8a52c243b",
+  "full_bundle_counted": 4300079472,
+  "text_lora_parameters": 29802496,
+  "total_single_model_parameters": 4329881968,
+  "limit_scope": "10B per individual model (official overview L164-165 / paper §3.1); full pipeline inventory disclosed separately, not a joint10B rejection rule",
+  "CPU": {
+    "rows": 124,
+    "train_docs": 32,
+    "full_tokens": 382000,
+    "max_tokens": 5380,
+    "supervised_tokens": 7150,
+    "inference_rows": 80,
+    "inference_docs": 16,
+    "inference_tokens": 238727,
+    "inference_max_tokens": 5422,
+    "candidate_CIDs": 587,
+    "candidate_patient_pairs": 1557
+  },
+  "native_protocol": {
+    "class": "Gemma3ForConditionalGeneration",
+    "runtime": "cached native Transformers5.20.2 / PEFT0.21.2",
+    "model_card_transformers": "4.57.1, no new environment installed",
+    "text_only": true,
+    "vision_and_projector_forward_guards": true,
+    "language_targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "embedding_head_frozen_tied": true,
+    "full_CE": "native assistant-label mean per row; actual8/4-row accumulation mean; no selected-logit loss replacement",
+    "chat_changes": "native system merged into first user with2newlines; assistant becomes model; target JSON bytes unchanged; supervises native turn106 and terminal newline",
+    "eos_ids": [
+      1,
+      106
+    ],
+    "generation_cache": "native TF5 default dynamic mixed full/sliding cache; publishedv4 legacy hybrid config not copied into a custom cache"
+  },
+  "single_GPU_probe": {
+    "authorized_conditionally_by_root": true,
+    "not_started": true,
+    "candidate_mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "candidate_gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "fresh_empty_GPU_required": true,
+    "budget_seconds": 180,
+    "TERM_grace_seconds": 30,
+    "longest_training_row": {
+      "row_id": "11235872:relations:8",
+      "full_tokens": 5380,
+      "prefix_tokens": 5274,
+      "supervised_tokens": 106
+    },
+    "full_native_loss_manual_same_logits_tolerance": {
+      "rtol": 1e-05,
+      "atol": 1e-05
+    },
+    "diagnostic_optimizer_calls": 1,
+    "diagnostic_lr": 0.0001,
+    "update_checks": [
+      "finite loss/gradient",
+      "nonzero attention and MLP gradients",
+      "both B-family probes changed",
+      "base/head/embed/visual frozen"
+    ],
+    "generation": "at most2greedy tokens from same input prefix; actualforward cache usage recorded; firsttokenEOS only provesprefill; no retry for that case",
+    "state_discarded": true,
+    "no_quality_score": true,
+    "no_gold": true
+  },
+  "formal_recipe_planned_only": {
+    "fresh_public_base_required": true,
+    "epochs": 2,
+    "samples_per_epoch": 124,
+    "exposures": 248,
+    "optimizer_calls": 32,
+    "batch_size": 1,
+    "accumulation": 8,
+    "tail_samples": 4,
+    "seed": 20261023,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_calls": 2,
+    "max_grad_norm": 1.0,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": "use_reentrant=False",
+    "quantization": false,
+    "packing": false,
+    "max_seq_rejection_cap": 8192,
+    "truncate": false,
+    "budget": "not authorized until actual longest-update cost/peak; do not start formal2ep from this plan",
+    "checkpoint": "every complete epoch adapter+Adam/scheduler/RNG, fileSHA/fsync and atomic directory publish in own persistent A100 namespace; incomplete state never scored",
+    "checkpoint_bytes_proxy_each": 357629952,
+    "checkpoint_bytes_note": "29,802,496FP32adapter +2FP32Adam buffers only; metadata/RNG/notice overhead extra; actual sizes must be recorded"
+  },
+  "inference_planned_only": {
+    "prompts_sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe",
+    "greedy": true,
+    "batch_size": 1,
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "fallback_to_old9B": false,
+    "union": false,
+    "old_baseline_cached_Score": 0.6609420026531936,
+    "quality": "aftercomplete fresh2ep only; raw and full prediction freeze before unique existing v2 all/text; original F1 development scope, no F0/originaldev/official"
+  },
+  "storage": {
+    "A100_actual_free_at_023947": 58139041792,
+    "copied_assets_bytes": 8639802098,
+    "two_checkpoints_proxy_bytes": 715259904,
+    "require_before_copy_free_bytes": 11811160064,
+    "no_history_deletion": true
+  },
+  "transfer_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/transfer/formal/run-plan.json",
+    "bytes": 3299,
+    "sha256": "8b510a14406f24eae975c00aca38c71009b8eefbed0c04cdbad28527ca17cdb2"
+  }
+}

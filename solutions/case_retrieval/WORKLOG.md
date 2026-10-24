@@ -4,6 +4,8 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
+- **当前MedGemma独立关系控制准备**：原始19件8.64GB/full SHA/883 header就绪；缓存native CPU10.453秒/CUDAfalse通过，旧train124→382000tokens/max5380，原F1 80输入max5422。完整bundle＋仅语言LoRA4.329882B，head/embed/vision冻结；旧数据/训练数学保持。A100源码包MCP write及一次read-only失败后root确认离线，原计划标superseded-unstarted；改A800独立SHM，实际native/247GB空间已核，小源准备中，600复制窗尚未开始。等sequence最终release才做唯一180诊断；不抢其GPU。正式两轮尚未授权。见[统一记录](medgemma_relation_control/README.md)、[计划](medgemma_relation_control/plan.json)。
+
 - **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking4096采样单条也已完整格式失败并结案，见下。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
 - **共指B提示完整负结案**：同旧SFT32/原80仅加可逆B标签，Score .660942003→.660756991；301TP82FP219FN，micro下降/macro上升，总分不升。80完整282.153秒/A800已释放，首次预评分guard失败保留、最小旧schema修复后唯一质量；30小终点已e5d502a备份，独审34959cc4通过。无A/union/原dev扩展，见[报告](public_coreference_readiness/prompt-control-b/REPORT.md)。

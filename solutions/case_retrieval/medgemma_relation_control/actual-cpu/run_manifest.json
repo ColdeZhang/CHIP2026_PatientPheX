@@ -1,0 +1,357 @@
+{
+  "fingerprint": {
+    "base_files": {
+      "HF_revision": "91850547d9f0b2fdd21aa7c5f4f3d1a8a52c243b",
+      "MS_revision": "9bca96ca3e3049f6a084d8c876078cedb3069f18",
+      "actual_files": {
+        "added_tokens.json": {
+          "bytes": 35,
+          "sha256": "50b2f405ba56a26d4913fd772089992252d7f942123cc0a034d96424221ba946"
+        },
+        "chat_template.jinja": {
+          "bytes": 1532,
+          "sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4"
+        },
+        "config.json": {
+          "bytes": 2551,
+          "sha256": "300c724c2c1fcdea39f1e21865cb1b14a605f1e3bb5ef50550faaa48da944fc8"
+        },
+        "generation_config.json": {
+          "bytes": 115,
+          "sha256": "921a391e0d387377b4c4a05273a68b7bc2196cf2a272ee605007853ea37f3224"
+        },
+        "special_tokens_map.json": {
+          "bytes": 662,
+          "sha256": "2f7b0adf4fb469770bb1490e3e35df87b1dc578246c5e7e6fc76ecf33213a397"
+        },
+        "tokenizer.json": {
+          "bytes": 33384570,
+          "sha256": "7d4046bf0505a327dd5a0abbb427ecd4fc82f99c2ceaa170bc61ecde12809b0c"
+        },
+        "tokenizer.model": {
+          "bytes": 4689074,
+          "sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c"
+        },
+        "tokenizer_config.json": {
+          "bytes": 1155415,
+          "sha256": "88269475414d45d3e59892d3519b0d4e28ec6416fecf6b523fb986cbe452075f"
+        }
+      },
+      "all19_files_verified": false,
+      "model": "google/medgemma-1.5-4b-it",
+      "source_manifest_sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+    },
+    "configuration": {
+      "fixed": {
+        "alpha": 32,
+        "attention": "sdpa",
+        "batch_size": 1,
+        "dropout": 0.05,
+        "dtype": "bfloat16",
+        "epochs": 2,
+        "gradient_accumulation": 8,
+        "gradient_checkpointing": {
+          "use_reentrant": false
+        },
+        "learning_rate": 0.0001,
+        "max_grad_norm": 1.0,
+        "max_seq_length": 8192,
+        "packing": false,
+        "quantization": false,
+        "rank": 16,
+        "seed": 20261023,
+        "targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "warmup_ratio": 0.05,
+        "weight_decay": 0.01
+      },
+      "paths_and_device": {
+        "data_manifest": "research/medgemma-relation-control/preparation/preparation-manifest.json",
+        "excluded_input": "research/medgemma-relation-control/preparation/excluded.input.jsonl",
+        "gpu_uuid": null,
+        "inference_prompts": "research/medgemma-relation-control/preparation/meta.prompts.jsonl",
+        "mode": "cpu",
+        "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/medical-small-model-readiness/models/medgemma-1.5-4b-it-9bca96ca3e30",
+        "model_source_manifest": "research/medgemma-relation-control/preparation/expected-files.json",
+        "output_dir": "research/medgemma-relation-control/cpu-contract-v1",
+        "train": "research/medgemma-relation-control/preparation/train.jsonl"
+      }
+    },
+    "copied204_trainer_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+    "copied_epoch_loop_source_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+    "encoded_sha256": "066c1b6d918d212eb8ab590003df233921f6eca2a7e8948b780207d40fda6896",
+    "environment": {
+      "executable": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+      "modeling_source_sha256": "8ca9a7ad9c0eafb222dfdd34e5ecb86d608e678b22db6391ce5a44e5281db6ae",
+      "packages": {
+        "accelerate": "1.15.0",
+        "causal-conv1d": null,
+        "fla-core": null,
+        "flash-linear-attention": null,
+        "huggingface-hub": "1.31.0",
+        "numpy": "2.2.6",
+        "peft": "0.21.2",
+        "safetensors": "0.8.0",
+        "tokenizers": "0.23.1",
+        "torch": "2.7.1+cu126",
+        "transformers": "5.20.2"
+      },
+      "peft_source_sha256": "d22a1c50dea7a046ce28e71a79dfc20b1d96a2d238a9b457be6a88b6068e04d5",
+      "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+      "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+      "torch_cuda": "12.6"
+    },
+    "excluded_document_ids": [
+      "10313222",
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11871647",
+      "11906559",
+      "11919040",
+      "12386172",
+      "12444410",
+      "12455887",
+      "12652105",
+      "12779223",
+      "12891056",
+      "2964533",
+      "3563609",
+      "4607013",
+      "4678370",
+      "5415817",
+      "5425407",
+      "5452357",
+      "5473715",
+      "5537416",
+      "5538066",
+      "5575846",
+      "5789735",
+      "5959423",
+      "6048891",
+      "6063015",
+      "6338757",
+      "6491447",
+      "9327653"
+    ],
+    "excluded_input_sha256": "2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82",
+    "helper_sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+    "inference_input_sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe",
+    "interface_sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be",
+    "meta32_preparation_sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47",
+    "protocol_sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c",
+    "schema": "patientphex-medgemma15-fullbundle-text-relation-lora-v1",
+    "source_sha256": "3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f",
+    "text_config": {
+      "_name_or_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/medical-small-model-readiness/models/medgemma-1.5-4b-it-9bca96ca3e30",
+      "architectures": [
+        "Gemma3ForConditionalGeneration"
+      ],
+      "boi_token_index": 255999,
+      "chunk_size_feed_forward": 0,
+      "dtype": "bfloat16",
+      "eoi_token_index": 256000,
+      "eos_token_id": [
+        1,
+        106
+      ],
+      "id2label": {
+        "0": "LABEL_0",
+        "1": "LABEL_1"
+      },
+      "image_token_index": 262144,
+      "initializer_range": 0.02,
+      "is_encoder_decoder": false,
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "mm_tokens_per_image": 256,
+      "model_type": "gemma3",
+      "output_attentions": false,
+      "output_hidden_states": false,
+      "problem_type": null,
+      "return_dict": true,
+      "text_config": {
+        "_name_or_path": "",
+        "_sliding_window_pattern": 6,
+        "architectures": null,
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "attn_logit_softcapping": null,
+        "bos_token_id": 2,
+        "chunk_size_feed_forward": 0,
+        "dtype": "bfloat16",
+        "eos_token_id": 1,
+        "final_logit_softcapping": null,
+        "head_dim": 256,
+        "hidden_activation": "gelu_pytorch_tanh",
+        "hidden_size": 2560,
+        "id2label": {
+          "0": "LABEL_0",
+          "1": "LABEL_1"
+        },
+        "initializer_range": 0.02,
+        "intermediate_size": 10240,
+        "is_encoder_decoder": false,
+        "label2id": {
+          "LABEL_0": 0,
+          "LABEL_1": 1
+        },
+        "layer_types": [
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention"
+        ],
+        "max_position_embeddings": 131072,
+        "model_type": "gemma3_text",
+        "num_attention_heads": 8,
+        "num_hidden_layers": 34,
+        "num_key_value_heads": 4,
+        "output_attentions": false,
+        "output_hidden_states": false,
+        "pad_token_id": 0,
+        "problem_type": null,
+        "query_pre_attn_scalar": 256,
+        "return_dict": true,
+        "rms_norm_eps": 1e-06,
+        "rope_parameters": {
+          "full_attention": {
+            "factor": 8.0,
+            "rope_theta": 1000000,
+            "rope_type": "linear"
+          },
+          "sliding_attention": {
+            "rope_theta": 10000,
+            "rope_type": "default"
+          }
+        },
+        "sliding_window": 1024,
+        "tie_word_embeddings": true,
+        "use_bidirectional_attention": false,
+        "use_cache": false,
+        "vocab_size": 262208
+      },
+      "tie_word_embeddings": true,
+      "transformers_version": "5.20.2",
+      "vision_config": {
+        "_name_or_path": "",
+        "architectures": null,
+        "attention_dropout": 0.0,
+        "chunk_size_feed_forward": 0,
+        "dtype": "bfloat16",
+        "hidden_act": "gelu_pytorch_tanh",
+        "hidden_size": 1152,
+        "id2label": {
+          "0": "LABEL_0",
+          "1": "LABEL_1"
+        },
+        "image_size": 896,
+        "intermediate_size": 4304,
+        "is_encoder_decoder": false,
+        "label2id": {
+          "LABEL_0": 0,
+          "LABEL_1": 1
+        },
+        "layer_norm_eps": 1e-06,
+        "model_type": "siglip_vision_model",
+        "num_attention_heads": 16,
+        "num_channels": 3,
+        "num_hidden_layers": 27,
+        "output_attentions": false,
+        "output_hidden_states": false,
+        "patch_size": 14,
+        "problem_type": null,
+        "return_dict": true,
+        "vision_use_head": false
+      }
+    },
+    "train_sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8",
+    "training_document_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ]
+  },
+  "examples": 124,
+  "max_tokens": 5380,
+  "total_tokens": 382000,
+  "supervised_tokens": 7150,
+  "steps_per_epoch": 16,
+  "epochs": 2,
+  "total_optimizer_steps": 32,
+  "warmup_steps": 2,
+  "smoke_only": false,
+  "resume_unit": "complete epoch only; partial epoch work must replay",
+  "new_gpu_resume_numerical_equivalence_tested": false,
+  "fresh_base_on_initial_run": true,
+  "validation_labels_used": false
+}
