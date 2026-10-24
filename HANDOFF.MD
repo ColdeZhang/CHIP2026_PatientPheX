@@ -313,6 +313,12 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 后续修正CPU7.932秒通过：80行raw/generic/chat-template IDs直接全等、往返及special一致，按顺序mergepairs与原发布文件相同；新first2014/max5689，原长度2171/6002不得沿用。证据`published-interface-v1/cpu/actual-result.json` SHA`d0aace8e…`，新GPU/质量另记。另一次同环境17.716秒核Med与Qwen3.5各80纯输入，其Auto/native编码及双decode均相同；不据R1故障否定旧模型。该结果仅覆盖实际文本：Qwen序列化组件/未用音频special存在差异，不能扩大成所有输入或序列化字节等价。
 
+## H49：先解析后保存会丢失最需要诊断的失败响应
+
+患者优先F0首次固定58推断在第24条`3563609:relations:8`遇到患者矩阵键检查失败。runner在`parse_final`后才写raw，因此只保存了23条成功响应；失败条的原始文本和token IDs丢失，无法确认缺了哪个患者、是否有未知键或其他具体内容。调用顺序只支持此前的EOS/非截断/JSON门槛已过，不能冒称已逐项读取失败响应。训练两轮和完整状态仍有效，这不是质量负分数。
+
+**避免方法**：每条生成结束即原子保存原始IDs、解码文本、实际EOS/cap/超时、输入身份及耗时，再做严格解析；校验错误写独立状态，不覆盖raw。此次原rc1/130.785秒、23条缓存和trace保留；后继使用独立目录、复用23条并重新生成其余35条，失败行的新输出不等于找回旧响应。有限缺键弃答政策在任何F0质量前另行冻结，原strict失败不改写，不补负答案或评分不完整子集。修复与完整质量当前待实际验证；恢复入口见[序列方案F0记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-F0.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
