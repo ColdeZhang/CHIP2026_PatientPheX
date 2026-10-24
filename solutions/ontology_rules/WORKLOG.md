@@ -83,3 +83,5 @@
 - A10008:10:01明确LUNA_OFFLINE，H5正式尚无GPU/start，源/分片保留，owner最早08:13:06唯一库存后恢复；sequence同mount CPU未知启动也不重复。H5工程/正式源联合独审d2734bc0通过（真实full20/held质量待后继）；head实际/新正式源联合e35dba61通过。
 
 - 08:17 A100再次明确LUNA_OFFLINE，H5正式依旧无start/job/600时钟，下一唯一库存≥08:20:08.743648；单条原包恢复入口已准备，只校验/补缺且不触模型。Qwen原93f50仍formal_training。已准备新adapter F1全80fresh入口，复用原加载/generate/parser AST，14400/1600不变；实际2epoch持久ACK绑定前模板不能执行，旧idx19缓存完全移除。[入口](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/README.md)。
+
+- H5现成候选诊断.383495秒：池16595→16499，public1769→1550；固定selector54删/12增，全部仍可由旧/新共同池供给，53删和12增仅public字段变。确有feature shift，但无持久化a465逐候选概率，不能证明校准失准或重fit获益；原固定配方关闭，只保留严格OOF后继可行性。[诊断](public_h5_adaptation_readiness/formal_train/CANDIDATE_SHIFT.md)。
