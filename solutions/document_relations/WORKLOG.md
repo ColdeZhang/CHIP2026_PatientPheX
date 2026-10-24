@@ -1,9 +1,9 @@
 # 文档级关系工作台账
 
-- **当前状态：三组直接零阈值控制负结案；另开一次已授权CPU低容量meta-OOF融合筛查。** 新[E002](experiments/E-20261024-DOCRE-002.md)固定R1四组、8个LR fit/2次v2，比较完整历史.686338981与配对base-only；源码/CPU合同已完成，尚未fit。新实验明确使用F1其他12文献的标签训练每个meta模型，不称盲测；不扩F0/full64/dev，不扫描阈值。
+- **当前状态：三组直接零阈值控制及一次固定低容量meta-OOF筛查均负结案，无新方案上线。** [E002](experiments/E-20261024-DOCRE-002.md)实际1.189秒/8个LR fit/2次v2，+DocRE **.674068552245** 低于完整历史/base-only **.686338981272**，micro/macro均降；不扩F0/full64/dev，不扫描阈值。明确使用F1其他12文献的标签训练每个meta模型，不称盲测。
 - 分支 `explore/document-relations`，worktree `/workspace/patientphex-worktrees/explore-document-relations`，起点 main `0c0672d`；只维护本方案目录。用户原固定dev≥.8的总目标未改变，本线未达到。
 - 当前无GPU作业。最后唯一job `proc_3973bb9b-954c-4b6a-afff-3e71eb2f1baa` / PID1199462，30ep/240Adam+全部F1完成，639.318447秒rc0；10:29:54.550211实际GPU0回4MiB/noapps。root已将下一顺位交span四折补全，其后grounded必要Sap查询。
-- 最近已核远端检查点 `9a12fef4c1f5d7c0ca26a94ff893c01242825371`；新meta执行前计划/源将继续push。原 `evidence/long-resume.json` 是启动前历史记录，不能据它再start。
+- 最近已核远端检查点 `54da0627607e0941804b807f0db362f5818ef710`；本次完整负结果继续push。原 `evidence/long-resume.json` 是启动前历史记录，不能据它再start。
 
 ## 结果与决定
 
