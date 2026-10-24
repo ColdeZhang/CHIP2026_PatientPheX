@@ -1,8 +1,8 @@
 # 原生 Qwen3 关系工作台账
 
-- 目标：固定strict F2+F3 train32原124行normal关系监督，原生Qwen/Qwen3-8B非thinking两轮，完整F1全文80推断；新单臂与fullsupport整体并集两端点中至少一个Score严格高于.686338981才考虑F0。原dev.8总目标未达，本线尚无质量结果。
+- 目标：固定strict F2+F3 train32原124行normal关系监督，原生Qwen/Qwen3-8B非thinking两轮，完整F1全文80推断；新单臂与fullsupport整体并集两端点中至少一个Score严格高于.686338981才考虑F0。原dev.8总目标未达；本线F1固定并集已过内部继续门，另一折F0进行中。
 - 来源：`explore/qwen3-relations`，base `ff676a01615cce944b95ea8032e8d9bcd056cfdf`。只维护本目录。DocRE另线四组负结案保持。
-- 当前：查重/公共资产/真实CPU分词census和标准损失合同已通过；完整源与两固定端点已预写，已在目标runtime持久化原124/80全编码（9.115569s，train9b5e2fab/heldd4ec43b0），无新gold；两种Pareto为5152/116与5534/106。未GPU/fit；先等待schema固定F0真实释放`.100`GPU1。root已授权CPU通过后唯一420+30探针，discard后根据实测成本允许fresh2ep2400+30、完整80fresh1200+30；24GB若OOM不截输入，待A800另行调度。
+- 当前：F1完整正候选为固定fullsupport并集 .689312034492（强对照 .686338981272）；单臂负。F0同训练32 epoch2原权重全58纯推断正在.3 GPU0原900+30窗口，无重训。完成后仅B0保护并集1v2/旧0，raw新单臂不评分供root固定融合。条件full64原265/纯dev64 CPU已过，尚无full64 GPU或原dev质量授权；详见下方最新项和独立实验记录。
 - 原生标准模型与R1-0528-Qwen3-8B为不同发布权重；两者都是全注意力，不称首次attention或冠军复现。历史Qwen3 Task1 train48→F1已做过，strict32关系SFT＋fullF1未见现有终点。
 - 固定HF b968826d9c46dd6066d109eabc6255188de91218，ModelScope26028140be3ee69b82b1d1450179ab71bb1121b9，Apache2.0。基座8,190,735,360＋r16七线性LoRA43,646,976=8,234,382,336，每模型<10B。
 - CPU11.979837s已核204原生/raw IDs及解码exact：train124/32总403151/max5534/监督7170；F1 full80/16总666591/max14322。源cb7f67e1与2a95bad1不变；no new gold/quality。
@@ -32,3 +32,5 @@
 - F0 唯一推断已实际启动：11:46:42.243320 UTC，proc_8618168a / PID1206030，child1206034；TERM12:01:42.243320、KILL12:02:12.243320。首观察3/58，非训练；启动和全卡只读门见 evidence/F0-start.json。
 
 - 条件full64 CPU完成：265/64原行 native token/双解码与shift mask精确；train866495 tokens/max6155/监督15410，dev509609/max13175。2ep68updates，Pareto(4992,116)/(6155,113)。证据416da6ef，成本推算见 full64_readiness/cost-and-conditional-plan.json；尚未获或执行full64 GPU/原dev质量。
+
+- F0全58实际终态成功：428.808083s、rc0/no-timeout，11:53:51.051205 UTC GPU0回4MiB/noapps，已交生成线Sap；evidence/F0-release.json。收包/冻结质量仍在CPU进行。
