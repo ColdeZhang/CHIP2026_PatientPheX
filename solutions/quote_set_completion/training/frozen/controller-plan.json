@@ -1,0 +1,164 @@
+{
+  "schema": "quote-set-completion-oneepoch-persistent-controller-v2",
+  "formal_training_authorized": true,
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "remote_relative": "quote-set-completion-v2/formal-v1",
+  "remote_absolute": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1",
+  "persistent_remote_relative": "quote-set-completion-v2/formal-v1",
+  "persistent_remote_absolute": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1",
+  "persistent_checkpoint_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/quote-set-completion-v2/checkpoints",
+  "storage_parent": "/dev/shm/patientphex-quote-set-completion-v2-formal",
+  "output_dir": "/dev/shm/patientphex-quote-set-completion-v2-formal/output",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "persistent_python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "source_private_IP": "10.5.4.7",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "configuration": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "seed": 20261023,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    },
+    "packing": false,
+    "quantization": false,
+    "loss": "standard per-row mean causal CE; divide each row by actual group size",
+    "rows": 261,
+    "documents": 32,
+    "held_rows": 0,
+    "steps_per_epoch": 33,
+    "optimizer_calls": 33,
+    "warmup_steps": 2,
+    "tail_group_size": 5,
+    "full_training_tokens": 1380333,
+    "supervised_tokens": 12406,
+    "maximum_full_tokens": 9307
+  },
+  "cap_seconds": 4200,
+  "term_grace_seconds": 30,
+  "persistent_ack_reserve_seconds": 120,
+  "export_seconds_each": 600,
+  "trainer_sha256": "a79214654072955796fde88a3d6f3f8cb53f2a485098f0bb08b776ab10866349",
+  "expanded_train_sha256": "72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623",
+  "fingerprint_schema": "quote-set-completion-warm-oneepoch-indexed-CE-v2",
+  "export_trainer_basename": "train.py",
+  "export_run_files": [
+    "run_manifest.json",
+    "train.py",
+    "configuration.py",
+    "runtime_contract.py",
+    "warm_model.py",
+    "indexed_head.py",
+    "qwen35_smoke.py",
+    "qwen35_relation_cost.py",
+    "progress.json"
+  ],
+  "source_training_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/formal-v1/formal-plan.json",
+    "bytes": 9603,
+    "sha256": "1aef08e8be11ff0ce962b796af39386b1f8f2ba6a04d938192aaefbde884cd3b"
+  },
+  "CPU_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/native-cpu-v2/terminal/actual/result.json",
+    "bytes": 2815,
+    "sha256": "c7ffbdb2047b3931af58681c9244f4c2fd4bfeb8f7f10195e8fa3d07874638b6"
+  },
+  "train_argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/train.py",
+    "--plan",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/formal-plan.json"
+  ],
+  "payload_files": {
+    "train.py": {
+      "bytes": 21919,
+      "sha256": "a79214654072955796fde88a3d6f3f8cb53f2a485098f0bb08b776ab10866349"
+    },
+    "configuration.py": {
+      "bytes": 1792,
+      "sha256": "65be55a81082bc7b58b7e9abc0ed42aa35483d97cae66963f9aacbd9b9ef0cfa"
+    },
+    "runtime_contract.py": {
+      "bytes": 7482,
+      "sha256": "9b01f386f8ab4c7acecdc3c968fbd307db8eb48fa5d1e32deb55c8f88ce0d8ef"
+    },
+    "epoch_driver.py": {
+      "bytes": 5602,
+      "sha256": "b0811c0f629d78e05c111c149f39c8913c8f454ff5f6bdb4c05fecf14606bc4f"
+    },
+    "io_driver.py": {
+      "bytes": 3269,
+      "sha256": "7b621a95cddfd400dbea916890bf97990ea463e159d86270e3dcf77f1aa8da64"
+    },
+    "export_checkpoint_server.py": {
+      "bytes": 6387,
+      "sha256": "631e1aa0f54c71e9bb4d9ab7d8f22f5a866b6e85c271522b9d583bb4f9482d6d"
+    },
+    "fetch_checkpoint.py": {
+      "bytes": 7128,
+      "sha256": "0beca8e432eef85710548b741863af1c43fb883adb2a8e410e3daf3ffe3959f2"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "formal-plan.json": {
+      "bytes": 9603,
+      "sha256": "1aef08e8be11ff0ce962b796af39386b1f8f2ba6a04d938192aaefbde884cd3b"
+    }
+  },
+  "decompress": {},
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/dev/shm/patientphex-quote-set-completion-v2-formal"
+  },
+  "no_probe_state_reuse": true,
+  "no_inference_or_quality_here": true,
+  "resume_policy": "Fresh public base with original G32d52 warm weights only; freshAdam/scheduler/RNG, no probe state. One261 epoch/33calls then fullSHM state fsync/reopen and .100 durableACK before inference. No resume/epoch selection.",
+  "local_operations": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/training/controller/operations.py",
+    "bytes": 16449,
+    "sha256": "0c4fbe483be6f643c11624dee726b609b150492082a0d295de4282c65e8df449"
+  },
+  "local_watcher": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/training/controller/watch_authorized_campaign.py",
+    "bytes": 4531,
+    "sha256": "f91924213adfa5b2d25038d2860739b1467a5db0ec6d910c2a6f11b104f649ab"
+  },
+  "binding_source": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/training/prepare_formal.py",
+    "bytes": 11081,
+    "sha256": "cf6b42e2afe7da965361ad345cca2a505041c1952d0634ecbc1126dd42439808"
+  },
+  "actual_CPU_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/native-cpu-v2/collection.json",
+    "bytes": 6756,
+    "sha256": "c2ff0d454519921a1f3ca4e503db35bba443043c1b4cdd42712aad5b62b970e5"
+  },
+  "actual_probe_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/probe-two-shape-v1/collection.json",
+    "bytes": 9606,
+    "sha256": "1984c2c2d1013db1a8a5dc0722cd5a173eb527f46e1f667ddfb7765758144cfa"
+  }
+}

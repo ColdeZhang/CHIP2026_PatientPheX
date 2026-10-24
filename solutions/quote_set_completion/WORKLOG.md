@@ -21,3 +21,5 @@ Root在首次GPU前授权固定第三视图：每原87患者加入full-known→[
 新独立两极工程15:16:30→15:17:33完整63.351秒PASS：2FB+1Adam，峰27.791GB/28.255GB，所有496梯度有限/三族B变，全adapter+Adam/scheduler/Python/NumPy/Torch/CUDA RNG序列化/fsync重开逻辑exact后原scratch删除；23原件1984c2c2。原failed10件b02与timeout41件998独立保留，不混终点。
 
 正式尚未启动：预写max(两极token代理3012.506,同host完整epoch代理2567.219)×1.2+300=3915.007超过3600，CPU成本guard在生成formal计划前停止，证据d1d495cc，已报root；原partial9仅成本代理2561.377，不当覆盖证明。完整39 known-only输入109c已构建（328原Gaccepted,6空，211943tokens/max10854），纯本地native/HF实际待infer前绑定；不读heldgold、不评分。
+
+Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30，仍预留120秒ACK（模型绝对窗4080），不降低max代理×1.20+300公式；原3600源/失败d1d保留。实际完整trainer.verify_inputs CPU已通过261/33/尾5/所有ID/位置/来源，ac104d60；正式plan/controller b7a9bb2f，见training/frozen及evidence/formal-authorization.json。下一fresh卡/盘门后唯一启动，SHM完整state→.100逐SHA/fsync/reopenACK后才39推断。

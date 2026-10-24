@@ -1,0 +1,206 @@
+{
+  "schema": "quote-set-completion-warm-oneepoch-v2",
+  "formal_training_authorized": true,
+  "route": "quote-set-completion-v2",
+  "configuration": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "seed": 20261023,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    },
+    "packing": false,
+    "quantization": false,
+    "loss": "standard per-row mean causal CE; divide each row by actual group size",
+    "rows": 261,
+    "documents": 32,
+    "held_rows": 0,
+    "steps_per_epoch": 33,
+    "optimizer_calls": 33,
+    "warmup_steps": 2,
+    "tail_group_size": 5,
+    "full_training_tokens": 1380333,
+    "supervised_tokens": 12406,
+    "maximum_full_tokens": 9307
+  },
+  "budget_seconds": 4200,
+  "grace_seconds": 30,
+  "output_dir": "/dev/shm/patientphex-quote-set-completion-v2-formal/output",
+  "storage_parent": "/dev/shm/patientphex-quote-set-completion-v2-formal",
+  "persistent_checkpoint_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/quote-set-completion-v2/checkpoints",
+  "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "minimum_SHM_free_bytes": 4294967296,
+  "minimum_persistent_free_bytes": 2147483648,
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "assets": {
+    "train": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train.jsonl",
+      "bytes": 11150937,
+      "sha256": "72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623"
+    },
+    "train_audit": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train-audit.json",
+      "bytes": 198290,
+      "sha256": "60734a781454d70076b2d73bfc5ace01ba0abf48e85c04a62027c6b189a98453"
+    },
+    "cpu_plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/cpu-plan.json",
+      "bytes": 10382,
+      "sha256": "ea37506b1b5c2b1ad67c016e4a9724b3a2856ed40b2918d19f29114782c26ad4"
+    },
+    "native_cpu_source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/native_cpu.py",
+      "bytes": 10089,
+      "sha256": "07ed4e29bd17f395bec07d3809c36c9f6db4295c54732d3d7bb9e8e1746f6090"
+    },
+    "cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual/result.json",
+      "bytes": 2815,
+      "sha256": "c7ffbdb2047b3931af58681c9244f4c2fd4bfeb8f7f10195e8fa3d07874638b6"
+    },
+    "cpu_runtime": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual/runtime.json",
+      "bytes": 750,
+      "sha256": "bff9f30e2cb5d057089faeed7f04de2edd603db3775d4251d2defc2b270d54da"
+    },
+    "encoded": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual/encoded.json.gz",
+      "bytes": 1937465,
+      "sha256": "52cafc609c271fa38ee452ee4fdbcaa4098d772145fe71d0882c082529322d7b"
+    },
+    "state_cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual/state-interface.json",
+      "bytes": 707,
+      "sha256": "7f46243a65c022447b9d8a9117d530d4ac1dab67e798f6da1c09528d9d2a62a9"
+    },
+    "probe_complete": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/complete.json",
+      "bytes": 475,
+      "sha256": "98fb4a1b1c8430cbb8b9bdab4cec1abf12f009b2bbd92ce9ffb1e4a522061322"
+    },
+    "probe_step": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/step.json",
+      "bytes": 4258,
+      "sha256": "37a4261fb860b9b5aea481d30518a550b3b7859e5556c865bfe1fdff08ff25af"
+    },
+    "probe_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/run-manifest.json",
+      "bytes": 5968,
+      "sha256": "76400d3881051e21ba206a088b1f7d79d0bb4d65ffa161067dd09d9de1e55472"
+    },
+    "indexed_head": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/indexed_head.py",
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "warm_model": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/warm_model.py",
+      "bytes": 3738,
+      "sha256": "ddca072a7d88f870af5ca65c918cc75cbf6bfcbc0cfa7c33b63d70eb266dd565"
+    },
+    "qwen35_runner": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/qwen35_runner.py",
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "qwen35_relation_cost": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/qwen35_relation_cost.py",
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "qwen35_smoke": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/probe-two-shape-v1/qwen35_smoke.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "trainer": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/train.py",
+      "bytes": 21919,
+      "sha256": "a79214654072955796fde88a3d6f3f8cb53f2a485098f0bb08b776ab10866349"
+    },
+    "configuration": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/configuration.py",
+      "bytes": 1792,
+      "sha256": "65be55a81082bc7b58b7e9abc0ed42aa35483d97cae66963f9aacbd9b9ef0cfa"
+    },
+    "runtime_contract": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/runtime_contract.py",
+      "bytes": 7482,
+      "sha256": "9b01f386f8ab4c7acecdc3c968fbd307db8eb48fa5d1e32deb55c8f88ce0d8ef"
+    },
+    "model_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/formal-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "warm_adapter": {
+    "directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/F0-inference-cache/epoch-002/adapter",
+    "files": {
+      "adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba"
+      },
+      "adapter_config.json": {
+        "bytes": 1341,
+        "sha256": "a9e753c405c1a0b0f3811d54224437455629c9cd96d647cfe5f6cf8222dfd307"
+      }
+    }
+  },
+  "warm_model_sha256": "ddca072a7d88f870af5ca65c918cc75cbf6bfcbc0cfa7c33b63d70eb266dd565",
+  "probe_contract": {
+    "backwards": 2,
+    "status": "PASS_indexed_warm_d52_two_Pareto_combined_Adam_state_save_no_quality",
+    "frontier": [
+      {
+        "index": 132,
+        "tokens": 9307,
+        "supervised": 187
+      },
+      {
+        "index": 249,
+        "tokens": 5773,
+        "supervised": 307
+      }
+    ]
+  },
+  "actual_CPU_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/native-cpu-v2/collection.json",
+    "bytes": 6756,
+    "sha256": "c2ff0d454519921a1f3ca4e503db35bba443043c1b4cdd42712aad5b62b970e5"
+  },
+  "actual_probe_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/probe-two-shape-v1/collection.json",
+    "bytes": 9606,
+    "sha256": "1984c2c2d1013db1a8a5dc0722cd5a173eb527f46e1f667ddfb7765758144cfa"
+  },
+  "budget_basis": {
+    "actual2_backward_seconds": 32.91132608242333,
+    "actual2_tokens": 15080,
+    "complete_oneepoch_tokens": 1380333,
+    "token_rate_proxy_seconds": 3012.505932714167,
+    "same_host_complete173_proxy_seconds": 2567.218873094431,
+    "same_host_actual_complete_epoch": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-v1/formal-v1/epoch-001-state.json",
+      "bytes": 1327,
+      "sha256": "fe69da378ee2b4220c9730ec0c6180f6c39fcc6a08e6650b0744b3c1042e87fc"
+    },
+    "conservative_proxy_seconds": 3915.0071192570003,
+    "conservative_formula": "1.20 * max(two-shape token proxy, sameA800 complete173 epoch token proxy) + 300s loading/33updates/save/export/control allowance; within shared4200 with120ACK reserve; original3600 guard retained and root explicitly revised budget beforeanyformal",
+    "actual_runtime_not_guaranteed": true,
+    "original_absolute_cap_seconds": 4200,
+    "TERM_grace_seconds": 30
+  },
+  "state_policy": "Fresh public base with original G32d52 warm weights only; freshAdam/scheduler/RNG, no probe state. One261 epoch/33calls then fullSHM state fsync/reopen and .100 durableACK before inference. No resume/epoch selection.",
+  "quality_policy": "After actual final complete-state persistentACK: fixed39 fullF1 completion, known originalG32accepted quotes, greedy1600 under separate1800+30. Same train32aliases/public41099/b59 necessarySap180+30. Only B4union additionalrelations completefreeze then1v2/old0; positive strictly toF0, no originaldev."
+}

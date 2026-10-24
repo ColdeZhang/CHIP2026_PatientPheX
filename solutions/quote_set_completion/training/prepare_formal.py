@@ -60,7 +60,7 @@ def main():
     assert historical_wrapper['returncode']==0 and historical_wrapper['global_step']==22
     same_host_proxy=historical_wrapper['elapsed_seconds']/957793*1380333
     conservative=max(token_proxy,same_host_proxy)*1.20+300
-    assert conservative<3600,'Actual pressure cost does not fit authorized conservative full run; report before training'
+    assert conservative<4200,'Actual pressure cost does not fit authorized conservative full run; report before training'
     cfg=configuration.validate(configuration.EXPECTED,'quote-set-completion-v2')
     local={};remote={}
     def add(name,local_path,remote_path):
@@ -84,7 +84,7 @@ def main():
     assert identity(local['runtime_contract'])==identity(cpu_package['members']['runtime_contract.py'])
     env={**cpu_plan['environment'],'CUDA_VISIBLE_DEVICES':probe_plan['gpu_uuid'],'PATIENTPHEX_DURABILITY_ROOT':SHM}
     formal=dict(schema='quote-set-completion-warm-oneepoch-v2',formal_training_authorized=True,route='quote-set-completion-v2',configuration=cfg,
-        budget_seconds=3600,grace_seconds=30,output_dir=SHM+'/output',storage_parent=SHM,
+        budget_seconds=4200,grace_seconds=30,output_dir=SHM+'/output',storage_parent=SHM,
         persistent_checkpoint_root=P+'/research/quote-set-completion-v2/checkpoints',persistent_mount_id='5a9955da-5240-41cc-9e52-05d3d8da8a3c',
         minimum_SHM_free_bytes=4*1024**3,minimum_persistent_free_bytes=2*1024**3,
         model=cpu_plan['model'],gpu_uuid=probe_plan['gpu_uuid'],assets=remote,warm_adapter=probe_plan['warm_adapter'],warm_model_sha256=local['warm_model']['sha256'],
@@ -92,8 +92,8 @@ def main():
         actual_CPU_collection=ref(cpu_dir/'collection.json'),actual_probe_collection=ref(probe_dir/'collection.json'),
         budget_basis=dict(actual2_backward_seconds=actual_bw_seconds,actual2_tokens=probe_plan['diagnostic_tokens'],
             complete_oneepoch_tokens=1380333,token_rate_proxy_seconds=token_proxy,
-            same_host_complete173_proxy_seconds=same_host_proxy,same_host_actual_complete_epoch=ref(historical),conservative_proxy_seconds=conservative,conservative_formula='1.20 * max(two-shape token proxy, sameA800 complete173 epoch token proxy) + 300s loading/33updates/save/export/control allowance; within shared3600 with120ACK reserve',
-            actual_runtime_not_guaranteed=True,original_absolute_cap_seconds=3600,TERM_grace_seconds=30),
+            same_host_complete173_proxy_seconds=same_host_proxy,same_host_actual_complete_epoch=ref(historical),conservative_proxy_seconds=conservative,conservative_formula='1.20 * max(two-shape token proxy, sameA800 complete173 epoch token proxy) + 300s loading/33updates/save/export/control allowance; within shared4200 with120ACK reserve; original3600 guard retained and root explicitly revised budget beforeanyformal',
+            actual_runtime_not_guaranteed=True,original_absolute_cap_seconds=4200,TERM_grace_seconds=30),
         state_policy='Fresh public base with original G32d52 warm weights only; freshAdam/scheduler/RNG, no probe state. One261 epoch/33calls then fullSHM state fsync/reopen and .100 durableACK before inference. No resume/epoch selection.',
         quality_policy='After actual final complete-state persistentACK: fixed39 fullF1 completion, known originalG32accepted quotes, greedy1600 under separate1800+30. Same train32aliases/public41099/b59 necessarySap180+30. Only B4union additionalrelations completefreeze then1v2/old0; positive strictly toF0, no originaldev.')
     # Run the real trainer's metadata verifier against the identical local bytes.
@@ -110,7 +110,7 @@ def main():
         remote_relative=REL,remote_absolute=REMOTE,persistent_remote_relative=REL,persistent_remote_absolute=REMOTE,
         persistent_checkpoint_root=formal['persistent_checkpoint_root'],storage_parent=SHM,output_dir=formal['output_dir'],
         python=cpu_plan['python'],persistent_python='/home/zhangyuheng/projects/ScratchVL/.venv/bin/python',source_private_IP='10.5.4.7',
-        model=formal['model'],gpu_uuid=formal['gpu_uuid'],configuration=cfg,cap_seconds=3600,term_grace_seconds=30,persistent_ack_reserve_seconds=120,
+        model=formal['model'],gpu_uuid=formal['gpu_uuid'],configuration=cfg,cap_seconds=4200,term_grace_seconds=30,persistent_ack_reserve_seconds=120,
         export_seconds_each=600,trainer_sha256=local['trainer']['sha256'],expanded_train_sha256=local['train']['sha256'],
         fingerprint_schema='quote-set-completion-warm-oneepoch-indexed-CE-v2',export_trainer_basename='train.py',export_run_files=run_files,
         source_training_plan=ref(out/'formal-plan.json'),CPU_contract=local['cpu_result'],
