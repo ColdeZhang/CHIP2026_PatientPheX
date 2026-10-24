@@ -450,3 +450,9 @@ exact-quote trie 的 CPU 接口核验发现：前缀约束会把不合法 token 
 上述路径修复沿原绝对截止启动恢复时，只剩120秒，却用了未经实耗支撑的70秒门；同A800已有13步200.35秒证据，新输入预计约170秒。结果按原时钟终止，仅完成9次反向/1次Adam，未覆盖两极形状及保存验证，不能记成13步PASS。
 
 **避免方法**：先用同host/相近形状的真实成本判断剩余窗口，再启动；不足时明确独立预算，不能隐式延期。根据本次真正新增的风险选择最小检查，不机械照搬13步：完整261输入和33组/尾5已有CPU合同后，独立180秒检查只做已冻结的两极形状反向、一次Adam及完整adapter/optimizer/scheduler/RNG保存重开，63.351秒全部通过，probe状态弃掉。实际正式成本保守代理3915秒超过旧3600提案，因此在任何formal启动前另行明确4200共享预算（含120秒持久ACK），未降低公式或延长运行中的作业。原超时de86c2bf/partial998a3757与完整修复98fb4a1b均见[证据索引](docs/campaigns/round2-quote-completion-engineering-recovery.json)。
+
+## H69：启动请求的有效期与模型运行超时是两个时钟
+
+F0必要Sap的启动请求返回UNKNOWN；原namespace仅有启动意图，managed registry与进程表都无匹配，但旧driver在实际运行后才建立180秒截止，不能由等待180秒推定迟到请求已无效。
+
+**避免方法**：新入口预先绑定启动有效期，在入口与创建子进程/载模型前再次检查；实际计算预算另外计时。恢复这次未知请求时，先核旧driver必经的exclusive发布点，在原路径原子创建明确标记`FENCED_UNKNOWN_LAUNCH/resource_PASS=false`的封锁记录；已有文件则不能覆盖或重启。其1053B/SHA599e2e7f已fsync并读回，迟到旧driver将在Popen前发布失败；没有观察到旧模型实际运行，不把它记为模型失败。独立恢复namespace保持原296查询/政策，新增5分钟启动有效期、180+30运行预算，实际9.799秒完成并释放GPU。此方法仅适用于已核验的排他入口，不能泛化成任意任务的重试许可。原请求、源码和封锁回执见仓库外`research/copy-grounded-decode-v1/F0-proposer-v1/unknown-fence-v3/complete.json`（2233B/SHA18b088de）；源分支`explore/copy-grounded-decode@64f61010`保留原UNKNOWN与恢复差异。
