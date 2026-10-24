@@ -6,7 +6,7 @@ F1 patient-first单独负，oldSFT32∪new的固定secondary仅+.003479519，mic
 
 按主线程2026-10-24授权，复用旧strict train48完整204行与原F0纯输入58，转置同一闭集矩阵，fresh基座/2epoch/原优化器和解码不变。只允许primary新方案和secondary旧SFT48∪new，实体与候选池原样；两份完整预测共同freeze后各唯一v2，旧baseline复用不重评。保留条件沿用delta(micro+macro)>0且macro不降。未经后续明确安排不迁原dev/官方、不加第三组合/阈值，不使用F0 targets构建训练/资源。
 
-## 当前授权与状态
+## 初始授权与状态（历史，当前见台账）
 
 - 已读当前main规则与H46/H47：每个独立模型≤10B，允许模型组合；不能把流水线总和当门槛。
 - 新外部目录：`research/patient-first-closed-set-F0/`。自有helper只写其`cpu-preparation/`，做来源locator、先冻结plan、新204/58转换/分词与训练矩阵还原；不改Git、不MCP/GPU、不读F0 gold。
@@ -79,3 +79,12 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 ## 第1轮完整且已真实持久化
 
 03:47:58正常只读监控取得首轮完成收据：epoch1/26calls，epoch_seconds1102.546863、mean_group_train_loss .2208504973；publisher于03:46:01完成5成员file/dir/全部祖先链fsync与重新开SHA，checkpoint总519,866,582B。adapter SHA6fc6d2d6、完整optimizer/scheduler/RNG state151bbe39、metadata9e44eb4a；所有receipt值为远端原件读出的JSON，当前观察保留其MCP原回包SHA，原件字节将在最终统一collection回收，不将重序列化观察冒称原件SHA。原invocation继续epoch2，无暂停/重启/新质量，已记录peakallocated37.416GB。此前03:37监控UNKNOWN已在≥60s后单次小读恢复，非模型失败；原截止未变。[首轮观察](../evidence/round2/patient-first-F0-formal-epoch1-observation.json)。
+
+
+## 正式两轮完整训练与持久回收
+
+原单invocation于04:04:29正常rc0结束：native2279.144899秒/wrapper2280.456254秒，两轮52calls/3warmup，无OOM/数值/预算失败。第2轮1106.754564秒、mean_group_train_loss .1009211968；峰allocated37,416,358,912B/reserved40,802,189,312B。训练指标仅证明训练有效，不代表F0质量。两个epoch的adapter+optimizer/scheduler/RNG+元数据各519,866,582B，全部file/dir/项目祖先链fsync、原子rename、重新开SHA；epoch1原receipt22591ba4、epoch2原receipt23eff58b。final adapter51f8c7a4、state9932ff4d、metadata6a0b9906；原小文件16件226,862B已实际回收并逐SHA核验，collection b9693ce9。04:04:29.167 GPU2空卡，仍保留给此camp的固定58推断。
+
+04:06一次正常监控明确LUNA_OFFLINE，≥60秒后同小只读恢复，得真实完成终态；没有重启训练或把网络错误当模型失败。后续按冻结600+30计划只推断durable epoch2，完整58严格输出后才两预测共同freeze/唯一双评。终点汇集器已离线准备，仅核已有收据链、不读gold/权重、不执行评分，待真正终点后运行。
+
+运行环境如实不同：旧48正式为A800/Torch2.7.1+CUDA12.6/Python3.11.17，新48为A100/Torch2.6.0+CUDA12.4/Python3.10.21；TF5.20.2/PEFT.21.2/native modeling SHA相同。保持旧数值配方并不证明跨硬件逐位等价，不能把极小差值无条件归因schema。main H48已针对R1 tokenizer链独立纠正；检索侧对Qwen3.5原80文本已actual核Auto与发布JSON IDs/双decode一致，不改变或重跑本固定F0。

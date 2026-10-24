@@ -11,20 +11,20 @@
 
 ## 当前唯一GPU作业：patient-first F0
 
-**第1轮已完整持久化，原作业正在第2轮；尚无F0患者优先质量结果。** 严格train48/204条、原F0纯输入58；fresh公开9B、r16、同优化器/seed、连续2epoch/52calls/3warmup。唯一变化是PID→CID集合监督；原binary目标可双逆还原，但token级损失权重随因子分解变化，不能称数值目标相同。
+**两轮52calls已完整训练并持久化；正在准备固定原58推断，尚无F0患者优先质量结果。** 严格train48/204条、原F0纯输入58；fresh公开9B、r16、同优化器/seed、连续2epoch/52calls/3warmup。唯一变化是PID→CID集合监督；原binary目标可双逆还原，但token级损失权重随因子分解变化，不能称数值目标相同。
 
 | 项目 | 当前事实 |
 |---|---|
 | 作业 | `proc_ced868e2-fd8c-4ae4-b4b5-da75a8bb06a0`，driver PID64875 / trainer PID64892 |
 | 设备 | A100 GPU2，UUID `GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1` |
 | 权威开始/截止 | 2026-10-24 03:26:28.596527 UTC；TERM **04:31:28.596**，KILL **04:31:58.596** |
-| 最近实际监控 | 03:47:58取得epoch1/26calls持久收据；首轮1102.547秒、mean_group_train_loss .2208504973；已进入epoch2，peakallocated37.416GB，无失败终态 |
+| 真实训练终点 | 04:04:29 rc0，native2279.145秒/wrapper2280.456秒；两轮52calls，epoch2 train loss .1009212；峰allocated37.416GB/reserved40.802GB |
 | 保存 | A100项目持久盘；每epoch adapter+optimizer/scheduler+全部RNG，file/dir及新父链fsync、原子rename、重开SHA、独立durability收据 |
 | 固定源/计划 | trainer `cc707253`，train-plan `4b70dbce`；完整入口独审 `bcaf14d3` PASS |
 
 新最长5769 token单步已真实PASS，13.936秒step、81.688秒wrapper；峰allocated36.894GB/reserved41.748GB。**仅单步证据，不保证accum8/常驻optimizer/多形状全程稳定**。正式预算3900+TERM30包含保存，首OOM/数值/截止失败停，不改loss/精度/allocator/长度、不自动重启。
 
-完整持久epoch2后才执行固定原58推断（另600+30）；primary和预设oldSFT48∪new保持947实体/415CID/1166对，两完整预测共同freeze后各唯一v2，旧baseline .6954439475814587不重评。保留条件是delta(micro+macro)>0且macro不降；不得新增8B/其他规则组合或据分数改政策。
+两个epoch全部5成员各519,866,582B，已file/dir/祖先链fsync及重新开SHA；final adapter51f8c7a4、state9932ff4d。16件小终点226,862B已回收逐SHA核验（collection b9693ce9）。04:06正常监控短暂LUNA_OFFLINE，≥60秒后原只读恢复；未重启。训练释放不代表本camp移交卡，下一步执行固定原58推断（另600+30）；primary和预设oldSFT48∪new保持947实体/415CID/1166对，两完整预测共同freeze后各唯一v2，旧baseline .6954439475814587不重评。保留条件是delta(micro+macro)>0且macro不降；不得新增8B/其他规则组合或据分数改政策。
 
 - [完整方法、失败恢复和证据链](experiments/patient-first-F0.md)；[入口终审](evidence/round2/patient-first-F0-formal-entry-review.json)、[真实job](evidence/round2/patient-first-F0-formal-train-job.json)。
 - 外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`；P内 `resource.json`、`train-job.json`、`train-launch-intent.json` 和 `RECOVERY.md` 是恢复入口。A100自有目录 `sequence-round2/patient-first-F0-formal-v1/`，不要重调train start。
@@ -45,5 +45,5 @@
 ## 记录与备份
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
-- 截至本页整理前，已push并lsremote确认 `b8cc2e4df701ece8448bbc02a75f75a3d8f797ae`，包含正式启动/入口及旧模型并集负终审。不要为记录台账自身SHA递归提交。
-- 下一里程碑是epoch1真实持久收据、完整epoch2、原58完整推断及唯一双质量终点；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 截至本页整理前，已push并lsremote确认 `8946555a80c6c5711449b8460a4fabf9ad0942e8`，包含首轮持久收据；本次完整训练终点即刻备份。不要为记录台账自身SHA递归提交。
+- 下一里程碑是原58完整推断及唯一双质量终点；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
