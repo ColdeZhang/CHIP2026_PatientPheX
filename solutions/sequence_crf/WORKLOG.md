@@ -11,14 +11,14 @@
 
 ## 当前唯一GPU作业：patient-first F0
 
-**正式两轮运行中，尚无F0患者优先质量结果。** 严格train48/204条、原F0纯输入58；fresh公开9B、r16、同优化器/seed、连续2epoch/52calls/3warmup。唯一变化是PID→CID集合监督；原binary目标可双逆还原，但token级损失权重随因子分解变化，不能称数值目标相同。
+**第1轮已完整持久化，原作业正在第2轮；尚无F0患者优先质量结果。** 严格train48/204条、原F0纯输入58；fresh公开9B、r16、同优化器/seed、连续2epoch/52calls/3warmup。唯一变化是PID→CID集合监督；原binary目标可双逆还原，但token级损失权重随因子分解变化，不能称数值目标相同。
 
 | 项目 | 当前事实 |
 |---|---|
 | 作业 | `proc_ced868e2-fd8c-4ae4-b4b5-da75a8bb06a0`，driver PID64875 / trainer PID64892 |
 | 设备 | A100 GPU2，UUID `GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1` |
 | 权威开始/截止 | 2026-10-24 03:26:28.596527 UTC；TERM **04:31:28.596**，KILL **04:31:58.596** |
-| 最近实际监控 | 03:32:05已到epoch1/step5；训练loss .2026448834、lr9.795918e-5、peakallocated34.669GB；无失败或完整终点 |
+| 最近实际监控 | 03:47:58取得epoch1/26calls持久收据；首轮1102.547秒、mean_group_train_loss .2208504973；已进入epoch2，peakallocated37.416GB，无失败终态 |
 | 保存 | A100项目持久盘；每epoch adapter+optimizer/scheduler+全部RNG，file/dir及新父链fsync、原子rename、重开SHA、独立durability收据 |
 | 固定源/计划 | trainer `cc707253`，train-plan `4b70dbce`；完整入口独审 `bcaf14d3` PASS |
 

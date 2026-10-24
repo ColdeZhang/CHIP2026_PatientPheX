@@ -74,3 +74,8 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 ## 正式F0训练实际启动
 
 完整增量入口bcaf14d3 PASS（保存父链窄修、实际20部署/新CPU及双臂端点一组闭环）。source+actualCPU已push/lsremote9f9de5d。fresh GPU2 UUID2c22空卡与持久盘门槛通过后，唯一proc_ced868e2-fd8c-4ae4-b4b5-da75a8bb06a0/PID64875于03:26:28.486604Z启动。原204×2/52calls3warmup连续单invocation，3900+TERM30；approx TERM04:31:28.487/KILL04:31:58.487，远端driver-started为权威。模型/epoch/质量均待真实结果；不能把入口PASS或历史job running=true当当前完成。恢复看formal-preparation/train-{launch-intent,job}.json及A100自有formal-v1/control/train，不重复start。完整训练/持久epoch2后才启动固定原58，唯一双评；新8B∪9B单独CPU控制不改变本实验方案。
+
+
+## 第1轮完整且已真实持久化
+
+03:47:58正常只读监控取得首轮完成收据：epoch1/26calls，epoch_seconds1102.546863、mean_group_train_loss .2208504973；publisher于03:46:01完成5成员file/dir/全部祖先链fsync与重新开SHA，checkpoint总519,866,582B。adapter SHA6fc6d2d6、完整optimizer/scheduler/RNG state151bbe39、metadata9e44eb4a；所有receipt值为远端原件读出的JSON，当前观察保留其MCP原回包SHA，原件字节将在最终统一collection回收，不将重序列化观察冒称原件SHA。原invocation继续epoch2，无暂停/重启/新质量，已记录peakallocated37.416GB。此前03:37监控UNKNOWN已在≥60s后单次小读恢复，非模型失败；原截止未变。[首轮观察](../evidence/round2/patient-first-F0-formal-epoch1-observation.json)。
