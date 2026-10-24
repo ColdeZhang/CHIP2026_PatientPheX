@@ -1,6 +1,6 @@
 # 全文患者概念关系
 
-当前：唯一工程已真实21.528秒PASS并释放；root已授权fresh30轮240Adam/完整F1共享2400+30，待seed必要Sap实际release后fresh启动。分支 explore/long-context-relations 起点9709b712，独立目录，只复用旧DocRE完整公共候选与已验证BioClinical原厂资产/原生IDs。Task1负方案保持关闭，不加载其训练权重。
+当前：唯一工程已真实21.528秒PASS并释放；root已授权fresh30轮240Adam/完整F1共享2400+30，已按root资源修订唯一实际启动，后续仅恢复此原作业。分支 explore/long-context-relations 起点9709b712，独立目录，只复用旧DocRE完整公共候选与已验证BioClinical原厂资产/原生IDs。Task1负方案保持关闭，不加载其训练权重。
 
 目的：检验完整文档内patient/phenotype token交互的实际价值。旧512窗已全覆盖文本；按任意旧窗start-marker几何，新增长上下文直接交互61训练正对+1994负对，不称此前错例。原4495对/727正/818可达性边界，F1纯输入2874对全部保留。旧10组同跨度概念歧义不掩盖。
 
@@ -21,3 +21,5 @@
 17:04:25原路径纯读恢复8247B/SHA4f6a9f94，证实UNKNOWN上传实际已落；直接原包extract五成员和原probe data SHA23248ecf成功，未重传、fallback副本未使用。仍0formal start，等seed Sap。后继launch-ticket改用已恢复run_command排他写/fsync/读回，同300秒H69/原driver/实际启动预算不变；若该写未知仍先恢复原ticket，不重发start。
 
 root资源修订：T5于17:05:05.631真实释放.100GPU0，seed必要Sap改该同缓存卡；本线不再等待seed的.3释放，可按原9a85正式计划/fresh门立即启动。只改资源队列，模型/数据/2400+30/唯一质量门不变；原等待计划及新resource-amendment分别保留。
+
+正式实际：proc_e18cb722/PID1227634、child1227642，17:06:48.691644 UTC start，原TERM17:46:48.691644/+30。首正常观察2/30轮、16Adam，每轮4495对，stderr空。没有加载probe或GP状态；完整epoch30与2874held前不质量、不早停。恢复入口formal_ops.py observe，唯一原intent已存在禁止再start。
