@@ -1,0 +1,137 @@
+{
+  "schema": "bioclinical-long-context-candidate-v1",
+  "status": "ENGINEERING_AUTHORIZED_FORMAL_NOT_STARTED",
+  "base_main": "21dca5f301c0e7437488b65d3b9f9e440006787c",
+  "model": "thomas-sounack/BioClinical-ModernBERT-base",
+  "revision": "c3648aa87af95837c809e6f0c5f85d08160db437",
+  "license": "MIT",
+  "files": {
+    "config.json": {
+      "bytes": 1149,
+      "sha256": "dd3550a1b22f63cbc24b2015dbcd8b64bcf1050c265c3d30191236be886fb071",
+      "sha_basis": "actual_small_file"
+    },
+    "model.safetensors": {
+      "bytes": 598635000,
+      "sha256": "ea7388682b12cb833491ca8a697e84e3e67122c65c9c658f4ad3355fdd891546",
+      "sha_basis": "publisher_LFS_not_local_full_download"
+    },
+    "special_tokens_map.json": {
+      "bytes": 693,
+      "sha256": "e232f6a2ac8b149dc247c27e30282c42b0b70720a35cc845fa3e791f9ee9da00",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer.json": {
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer_config.json": {
+      "bytes": 20809,
+      "sha256": "11251bae0abce4551fb3e1822e487b31700b1ccc3c036743f4c64cf2161b9457",
+      "sha_basis": "actual_small_file"
+    }
+  },
+  "pretraining": "Published MLM continuation on PubMed/PMC and raw clinical notes; no task-specific externally labeled phenotype checkpoint used. Public paper downstream Phenotype benchmark is separate. Exact upstream per-source preprocessing unavailable; no new external labels are imported.",
+  "modelscope": "Exact owner repository absent; valid Name search returned only different NeuML embeddings fine-tune. Never substitute it. Authorized HF origin fallback.",
+  "remote_model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1",
+  "mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "source_supply": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/train-census-v2/summary.json",
+      "bytes": 3780,
+      "sha256": "de0a737e9c3a7c4bc8621f5740d89307c47a50e6b643e48006a8928972922e11"
+    },
+    "held_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/held-input-census.json",
+      "bytes": 507,
+      "sha256": "a881fcc244c137b3a39968be59a9ed517e452e777a5e04fcc5634df663f17a11"
+    },
+    "history": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/history/REPORT.md",
+      "bytes": 10721,
+      "sha256": "36798a807649b5374bae08292c675f4faeb97b85403f3d2bb90938ec38c6f502"
+    },
+    "weight_header": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/public/weight-header-receipt.json",
+      "bytes": 550,
+      "sha256": "7c337cf22bff5af8d0030aa2210472c07edd76b328e4d385d0924b4b5817c00e"
+    }
+  },
+  "supervision": {
+    "admission": "exact old GP; 2266 unique positive spans,87NOexcluded,8nonphenotypicIDs excluded",
+    "train_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "unrepresentable": {
+      "count": 1,
+      "policy": "Keep in coverage manifest, no fabricated token boundary or corrected gold; not silently presented as fully supervised."
+    },
+    "tokenizer": "published NFC/ByteLevel, deterministic exterior-whitespace boundary trim; all untouched text/character coordinates preserved"
+  },
+  "encoding": {
+    "max_length": 8192,
+    "body": 8190,
+    "overflow_overlap": 512,
+    "train_docs": 32,
+    "train_windows": 32,
+    "held_docs": 16,
+    "held_patients": 39,
+    "held_windows_expected": 17,
+    "held_max_body_tokens": 8371,
+    "full_document_attention": "All32train documents and15/16held; remainingheld2overlapping windows, fulltokenunion",
+    "output_hidden_states": false,
+    "output_attentions": false,
+    "reference_compile": false,
+    "attention": "native sdpa with original global/local masks; no customattentionkernel",
+    "precision": "FP32parameters, BF16autocast, FP32 GPscore/loss",
+    "activation_checkpointing": true
+  },
+  "head": {
+    "type": "original64-dimensional RoPE GlobalPointer, one phenotype type",
+    "locality": "Score only original passage spans using full-context token representations; no crosspassage output spans",
+    "loss": "Per-original-passage multilabel categorical logsumexp, average over nonempty passage blocks per document; document batches. Different reduction from old384window batch disclosed.",
+    "raw_floor": -2.0,
+    "decode_cut": 0.0,
+    "normalization": "Reuse old strict+Sap mapping and publicbank unchanged; no newlinkertraining"
+  },
+  "engineering": {
+    "budget_seconds": 180,
+    "term_grace_seconds": 30,
+    "train_shapes": "Actual two Pareto docshapes: max encoderlength and max total localspanmatrixcells",
+    "steps": "Real forward/backward on both, originalwarmup firstlr0 then nonzerolrAdam, resident optimizer/accumulatedgrad pressure; fullstate save/reopen; discard allprobe state",
+    "admission_ttl_seconds": 300,
+    "fresh_gate": "UUID GPU0free/noapp;disk>=4GB; CPU originalID/labelcontractpass"
+  },
+  "formal_candidate_unexecuted": {
+    "epochs": 8,
+    "documents_per_step": 1,
+    "accumulation": 1,
+    "updates": 256,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_updates": 25,
+    "seed": 20261024,
+    "checkpoint": "last epoch8 only",
+    "budget": "To be fixed from actual probe; not authorized to start yet",
+    "endpoint": "single completeF1 strong Task1 baseline protected union of strict final newspans; relations fixed. Freeze before onev2; no cutscan. Exact assembly will reuse originalGP.",
+    "baseline_score": 0.7286975364690524,
+    "gate": "strictly better fullScore and formatpass before F0"
+  }
+}
