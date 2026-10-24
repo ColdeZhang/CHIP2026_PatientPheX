@@ -8,3 +8,5 @@
 - 资源：.3 GPU0由root排在document_relations之前，≤600+TERM30含一次丢弃probe/8epoch/fullheld/linking；先CPU≤120秒实际编码/数学合同。真实start及释放随后记录，不以旧空卡快照替代新门。
 - 数据/权重：仓库外R/stage8-span-normalization，.3现有Biomed/Sap公开权重只读；任何监督词库仅从新train32重建，排F0/F1。
 - 最近验证：实际CPU编码1.324秒，train32 1148窗/117170 tokens/2266独立跨度，2263可精确token对齐、3不可表示；嵌套10个，不能把嵌套缺口夸成主因。held16纯输入588窗/60850 tokens。实际Torch2.7.0 CPU合同.098秒PASS，loss/梯度方向/padding零梯度/RoPE标量对照均通过；CUDA未初始化。尚无本路线新分数。
+
+- 当前作业：.3 GPU0原恢复proc_f83b21dd/PID1196954，09:45:05.190878Z，保原09:49:09.705568+30截止，未启新时钟。来源/恢复见evidence/runtime-pointer.json。09:41短暂LUNA离线，已单owner退避恢复，原失败ZIP197a1fb5。
