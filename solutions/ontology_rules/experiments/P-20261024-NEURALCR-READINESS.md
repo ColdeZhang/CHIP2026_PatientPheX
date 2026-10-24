@@ -60,3 +60,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 本地input-only census完整6.427秒：64文献/2301段，683438 raw坐标、408272真实token key（原生512约798批），坐标全核；旧公共canonical坐标6787中6542覆盖/245未覆盖，raw差集不代表已预测HPO或质量。详见[报告](../public_neuralcr_readiness/input-only-census/REPORT.md)。主线程已再次实际确认服务恢复，01:21单次A100plan读取成功；新[recovery-attempt2](../public_neuralcr_readiness/relay-recovery-attempt2-0122/recovery-plan.json)仍沿原截止，仅对旧7缺片的原路径及上次目标路径做增量SHA库存，单worker，首明确LUNA_OFFLINE即全局停止。无网络fixture实际验证首失败仅1次模拟write请求、其余6项跳过；源/plan此时准备并推送，尚未执行新补写。
 
 独立attempt2增量库存已实际完成：原7缺口及前次7目标共14路径均核不存在，仍需7×512KiB；其余2273既有SHA核验记录复用，不把旧复核写成重跑，最终组装仍核全部2280段。实际bound plan已更新，单worker/首offline全停，源与实际缺口推送后才启动writer。
+
+第二轮实际于01:25:01启动、45.901秒后首LUNA_OFFLINE全局结束：1片512KiB成功、1次失败、5片未请求，未启动assembly/native；壳PID85174无命令字节，实际rc未由本监视器获取，不根据源码推断返回码。剩6片状态须稳定连接后再实核，不能因为失败响应直接判定未落盘；当前无自动第三轮writer。[真实终态](../public_neuralcr_readiness/relay-recovery-attempt2-0122/terminal.json)含成功片路径和状态SHA。
