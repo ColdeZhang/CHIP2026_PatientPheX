@@ -182,11 +182,11 @@ def deployment_items(directory):
     items = []
     for name, expected in p['source_files'].items():
         item = ref(DOWN / name); assert item['sha256'] == expected
-        items.append({'local': item, 'remote': core['application'] + '/downstream/' + name})
+        items.append({'local': item, 'remote': core['application'] + '/downstream-bounded-v2/' + name})
     for key in ['held_encoded', 'prompts_gzip']:
         item = p['local_inputs'][key]; assert ref(Path(item['path'])) == item
         items.append({'local': item, 'remote': p[key]['path']})
-    items.append({'local': ref(out / 'inference-plan.json'), 'remote': core['application'] + '/downstream/inference-plan.json'})
+    items.append({'local': ref(out / 'inference-plan.json'), 'remote': core['application'] + '/downstream-bounded-v2/inference-plan.json'})
     assert all(0 < x['local']['bytes'] <= CHUNK for x in items)
     return items
 
@@ -236,8 +236,8 @@ def start_infer(directory, remote):
     assert json.loads((out / 'deployment.json').read_text()) == deployment_items(directory)
     intent = out / 'infer-start-intent.json'
     assert not intent.exists(), 'Start already intended: inspect the ORIGINAL infer80 run, never start again'
-    args = {'command': shlex.join([p['python'], p['application'] + '/downstream/driver.py', '--plan', p['application'] + '/downstream/inference-plan.json']),
-            'cwd': control.relative(p['application'] + '/downstream'),
+    args = {'command': shlex.join([p['python'], p['application'] + '/downstream-bounded-v2/driver.py', '--plan', p['application'] + '/downstream-bounded-v2/inference-plan.json']),
+            'cwd': control.relative(p['application'] + '/downstream-bounded-v2'),
             'env': dict(p['environment'], CUDA_VISIBLE_DEVICES='', PYTHONNOUSERSITE='1')}
     save(intent, {'at_utc': now(), 'arguments': args, 'plan': ref(out / 'inference-plan.json')})
     response = remote.call('start_process', **args)

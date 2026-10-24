@@ -27,17 +27,22 @@ def main():
     env = dict(os.environ)
     env.update(plan['environment'])
     env['CUDA_VISIBLE_DEVICES'] = plan['gpu_uuid']
-    command = [plan['python'], str(Path(__file__).parent / 'infer.py'), '--plan', str(Path(args.plan).resolve())]
+    # The native child retains its own hard deadline even if this controller
+    # disappears; its PID here is the timeout wrapper, not the Python native PID.
+    command = ['timeout','--signal=TERM','--kill-after=30','1200',
+               plan['python'], str(Path(__file__).parent / 'infer.py'), '--plan', str(Path(args.plan).resolve())]
     with (root / 'stdout.log').open('xb') as out, (root / 'stderr.log').open('xb') as err:
         child = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=out, stderr=err,
                                  env=env, start_new_session=True)
         start = {'at_utc': now.isoformat(), 'driver_pid': os.getpid(), 'child_pid': child.pid,
                  'TERM_at_utc': (now + timedelta(seconds=1200)).isoformat(),
-                 'KILL_at_utc': (now + timedelta(seconds=1230)).isoformat(), 'plan': ref(args.plan)}
+                 'KILL_at_utc': (now + timedelta(seconds=1230)).isoformat(), 'plan': ref(args.plan),
+                 'command':command,'child_pid_is_timeout_wrapper':True}
         save(root / 'child-start.json', start)
         timed_out = False
         try:
             child.wait(timeout=max(.001, deadline - time.monotonic()))
+            timed_out=child.returncode in (124,137)
         except subprocess.TimeoutExpired:
             timed_out = True
             os.killpg(child.pid, signal.SIGTERM)

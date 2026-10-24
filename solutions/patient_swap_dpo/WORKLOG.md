@@ -24,3 +24,5 @@
 - 14:27:04实际GPU工程门通过：26FB/26coefficient forward，504梯度/504Adam状态/1512tensor finite；峰allocated20.672GB/reserved21.987GB，成本估1040.034s≤1800。fresh正式14:27:05.278767，timeout父1216698，原probe状态丢弃。证据probe-pass-formal-start.json；后续完整ACK再绑定80fresh推断。
 
 - 14:36:21正式终结并释放4MiB/no apps：74/148/519954tokens/9344监督，FP32 LoRA504、Adam504/1512 tensor及所有RNG回读完全一致；完整adapter75518d93(174655536B)、state d31283d6(349612077B)，无恢复旧Adam。完整小终态ZIP全成员SHA/安全路径核验后回收；原reference三件再次SHA绑定。inference-plan按实际epoch1/global10启用80fresh，1200+30，未发送start。
+
+- 推断首次start前补H64：旧driver只由控制器限时，现加native自身GNU timeout1200+30；旧68b69118只到部分源部署，MCP只读失败已退出，实际未发送infer start。保旧intent/source/plan，切deployment-infer-v2及远端downstream-bounded-v2。新计划2e17afa5，模型/80输入/生成/codec/quality.py/主端点不变。
