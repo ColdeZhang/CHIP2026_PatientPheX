@@ -1,0 +1,10 @@
+# 患者交换偏好训练台账
+
+目标：在固定四源融合中替换Qwen3关系组件，提高患者归属质量。原train64/dev16目标≥.8；本线先做train32→内部F1固定控制。
+
+- 分支 `explore/patient-swap-dpo`，从main `979e9492` 建立；仅本目录。
+- 已完成：74成对样本/17篇、1149合法swap供给；完整原生token CPU1.917s；原124chosen与缓存IDs/mask全部exact。14个选中样本为多阳性，其余患者正例保留。
+- 已核原B4关系集合严格等于B471∪四pure中至少2票，非关系对象及B471列表前缀保持；重序列化对象列表顺序不同，不称byteexact。
+- 固定：Qwen3 train32 epoch2适配器543c82a5；β.1/LR1e-5/1epoch74pairs/10updates，新Adam；单完整主终点，不读取heldgold/不评分。
+- 当前准备实际tiny Torch/PEFT CPU合同，50+5秒，CUDA隐藏。真实大模型显存/成本门尚未执行，GPU未启动。
+- 仓外 `R/research/patient-swap-dpo-readiness-20261024` 保存数据、完整public源码与CPU产物；候选协议见 `candidate-plan.json`。

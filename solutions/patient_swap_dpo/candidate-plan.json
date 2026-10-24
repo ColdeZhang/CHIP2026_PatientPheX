@@ -1,0 +1,68 @@
+{
+  "id": "E-20261024-PATIENT-SWAP-DPO-001",
+  "at_utc": "2026-10-24T14:06:27.612649+00:00",
+  "status": "CPU_READINESS_ONLY_NO_GPU_AUTHORIZATION",
+  "base_commit": "979e9492",
+  "parent_model": "Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218",
+  "parent_adapter_sha256": "543c82a582dedc42f463f44d551257b35231352e5d76dcfdaffc43320097e3c8",
+  "parent_adapter_bytes": 174655536,
+  "individual_parameters": 8234382336,
+  "init": "LoRA-only warm start from original strict train32 epoch2, fresh Adam/schedule; not optimizer resume",
+  "reference": "Same immutable parent adapter, summed response logps including EOS/newline precomputed once on all148 complete sequences; no update/no sampled answer",
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/cpu-v1/result.json",
+    "bytes": 3310,
+    "sha256": "c4341c9080f36938dae7ddc1ca08be142d51db6a8dacc786af906197f5643abc"
+  },
+  "preference_construction": "74 eligible rows/17 train docs; exactly one SHA20261024-picked true-positive to true-negative patient swap within oneCID; other positives unchanged. No new candidates or prompts. Source124 fullgoldanswers preserve.",
+  "recipe": {
+    "epochs": 1,
+    "pairs": 74,
+    "gradient_accumulation_pairs": 8,
+    "optimizer_updates": 10,
+    "tail_pairs": 2,
+    "beta": 0.1,
+    "learning_rate": 1e-05,
+    "warmup_updates": 1,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "seed": 20261024,
+    "dropout": 0.0,
+    "objective": "original DPO sigmoid, no length normalization/label smoothing/reference-free/extraSFT",
+    "precision": "bfloat16 backbone; selected logits FP32",
+    "memory": "one live sequence graph at a time; no-grad current pair coefficient then serial chosen/rejected backward. No optimizer change until complete8/last2pair group. Actual numerical replay gate required."
+  },
+  "primary": "B471 UNION at_least_two(G,S,Q_DPO,C)",
+  "baseline_score": 0.701325377212172,
+  "baseline_formula_check": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/baseline-formula.json",
+    "bytes": 2845,
+    "sha256": "9615787315abc9b6ee8036c1860214d01dda5e837010852f210a3af4b46e5bef"
+  },
+  "endpoint_policy": "One completeF1 all80 raw strict outputs, preserveB471/Task1/patient objects; one fullpredictionfreeze then1v2/old0. If semanticset unchanged inherit exactoldB4 and0v2. No Qalone/fullunion/beta/epoch scan. Report additions/deletions. Strict improvement before anyF0.",
+  "proposal_revisions_before_GPU": [
+    "InitialPT-codeparent idea superseded by originalQwen3 train32 parent on available.3 assets; no PT preference dataset/GPU run.",
+    "Initialaddition-only endpoint superseded by root-agreed fixedQ replacement to permit correction; no heldgold read."
+  ],
+  "engineering_next": [
+    "actual tiny Qwen3/PEFT CPU dense-vs-indexed/paired-vs-serial gradients and oneAdam",
+    "actual target-runtime fullpair tokens/HF interfaces and immutable parent locators",
+    "root allocatedGPU freshUUID/resources; bounded H51/repeated-forward gate, cost before formal"
+  ],
+  "suggested_budgets_seconds": {
+    "CPU": 50,
+    "probe": 240,
+    "reference": 600,
+    "formal": 1200,
+    "inference": 1200,
+    "TERM_grace": 30
+  },
+  "budgets_status": "planning only; fullmodelcost not measured; root activates actualGPU plan",
+  "forbidden": [
+    "heldgold training",
+    "threshold/beta/epoch/swap-count scans",
+    "silent truncation",
+    "official actions"
+  ],
+  "no_GPU_started": true
+}
