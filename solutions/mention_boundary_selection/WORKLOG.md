@@ -14,4 +14,6 @@
 
 root独立BOUNDARY-veto F1小正（删3=0TP/3FP），不改本线主头两负。3470训练及两个负例候选祖先排F0，因此复用固定head，无需重训。按root最终协议只用强F0的1085原跨度，373必要Sap已经完整且实际释放，新1085 nativeCPU6.673秒通过（616583tokens/max698），所有24小成员已回收。
 
-同头唯一F0推断1800+30就绪，完整EOS/strictparse后只删BOUNDARY，唯一veto冻结→至多1v2，与强F0 .740572140440比较。详见[f0_veto/README.md](f0_veto/README.md)、[协议](f0_veto/decision.json)。未运行原dev或官网；原F1主头负终态不变。
+同头唯一F0推断1800+30已17:03:03.946 UTC启动（proc9320b6db），完整EOS/strictparse后只删BOUNDARY，唯一veto冻结→至多1v2，与强F0 .740572140440比较。详见[f0_veto/README.md](f0_veto/README.md)、[协议](f0_veto/decision.json)。未运行原dev或官网；原F1主头负终态不变。
+
+窄增量源核5ea22755未发现确认bug；静态覆盖依赖已用纯输入/基线核实1085精确跨度双射（51cdf15f），不读模型输出/gold或改已锁公式，见[evidence/F0-source-delta.json](evidence/F0-source-delta.json)。
