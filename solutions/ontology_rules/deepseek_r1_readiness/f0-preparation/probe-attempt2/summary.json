@@ -1,0 +1,203 @@
+{
+  "status": "PASS_FIXED_F0_LONGEST_FORMAT_COST_ONLY_NO_QUALITY",
+  "at_utc": "2026-10-24T05:01:43.201634+00:00",
+  "final_result_exists": true,
+  "progress_only": false,
+  "result_status": "PASS_PUBLISHED_NORMALIZED_F0_LONGEST_FORMAT_COST_ONLY_NOT_QUALITY",
+  "error": null,
+  "main_returncode": 0,
+  "wrapper_seconds": 89.50698830001056,
+  "program_seconds": 88.69005768466741,
+  "load_seconds": 5.074515272863209,
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1",
+    "GPU": "NVIDIA A800 80GB PCIe",
+    "uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "precision": "native_BF16_SDPA_no_quantization",
+    "TF32_matmul": false,
+    "TF32_cudnn": false
+  },
+  "parameters": {
+    "tensors": 399,
+    "count": 8190735360,
+    "all_actual_shapes_dtype_finite": true,
+    "full_value_comparison_to_files_not_performed": true,
+    "untied_embedding_and_lm_head": true
+  },
+  "actual_rotary": {
+    "dtype": "torch.float32",
+    "shape": [
+      64
+    ],
+    "device": "cuda:0",
+    "inv_freq_bytes_sha256": "427ed49dc1d6e18683800eca336467c70fc6817bfdae8a61166cbc7e01b05cb1",
+    "attention_scaling": 1.0,
+    "native_GPU_reference_bytes_sha256": "43e83c2cc303c14096cbfeb5b607a7deccab909277391bfe4b0308c8a1049280",
+    "CPU_reference_bytes_sha256": "427ed49dc1d6e18683800eca336467c70fc6817bfdae8a61166cbc7e01b05cb1",
+    "actual_vs_same_device_native": {
+      "maximum_abs": 1.862645149230957e-09,
+      "maximum_relative": 9.070477346995176e-08,
+      "exact": false
+    },
+    "GPU_native_vs_CPU_native": {
+      "maximum_abs": 1.862645149230957e-09,
+      "maximum_relative": 9.07047663645244e-08,
+      "exact": false
+    },
+    "actual_vs_CPU_native": {
+      "maximum_abs": 0.0,
+      "maximum_relative": 0.0,
+      "exact": true
+    },
+    "rtol": 9.5367431640625e-07,
+    "atol": 0.0,
+    "tolerance_basis": "8 FP32 eps relative for elementary pow/div/mul evaluation across devices; no absolute floor, no dtype casting or model/config change",
+    "native_function_source_sha256": "6a0727073e080e163d0287e15fc1acb90035e9a9df9cb19a13b632a40abfac24"
+  },
+  "TF32_end": {
+    "matmul": false,
+    "cudnn": false
+  },
+  "peak_memory": {
+    "allocated": 19495760896,
+    "reserved": 19505610752
+  },
+  "rows": [
+    {
+      "row_id": "3563609:relations:0",
+      "original_index": 30,
+      "input_tokens": 6028,
+      "input_ids_sha256": "a2223ead78b10b3e02a4f7d95a7ef66934fd4cf3136966629432bb13f3438064",
+      "generated_tokens": 3427,
+      "generated_ids_sha256": "af35a6d5d23cbccbab4ac7bf941ddbad27c5e40f6f3baf73c29effc35c065625",
+      "native_EOS_observed": true,
+      "stopped_at_token_cap": false,
+      "stopped_at_wall_budget": false,
+      "generation_seconds": 78.93806578312069,
+      "tokens_per_second_including_prefill": 43.413782260836626,
+      "think_open_count": 1,
+      "think_close_count": 1,
+      "strict_final_valid": true,
+      "legal_sparse_valid": true,
+      "normalized_valid": true,
+      "normalized_invalid_reason": null,
+      "peak_allocated_bytes": 19495760896,
+      "peak_reserved_bytes": 19505610752,
+      "raw": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/recovered/terminal/row0.raw.json",
+        "bytes": 56318,
+        "sha256": "8e683b18c42e3d88dae7662820befb3346137610211a8b58c9db0ed6a4cb79af"
+      },
+      "ids": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/recovered/terminal/row0.ids.json",
+        "bytes": 32356,
+        "sha256": "b0418fdf92c581b92fc504128ba5a1498457e2d5a842695cfffa351e6df00343"
+      },
+      "parsed": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/recovered/terminal/row0.json",
+        "bytes": 58947,
+        "sha256": "908574938c2603aa72360d595299b3e828a0444b831538c549a6e09b21ffd7ee"
+      },
+      "normalized_coverage": {
+        "provided_mapping": {
+          "C000": [
+            "O1P2",
+            "O2P",
+            "O4P"
+          ],
+          "C001": [
+            "O2P"
+          ],
+          "C002": [
+            "O5P"
+          ],
+          "C003": [
+            "O2P",
+            "O3P",
+            "O4P",
+            "O5P",
+            "O6P",
+            "O7P"
+          ],
+          "C004": [
+            "O1P1",
+            "O1P2",
+            "O1P3",
+            "O2P",
+            "O3P",
+            "O4P",
+            "O5P",
+            "O6P",
+            "O7P"
+          ],
+          "C005": [
+            "O1P1",
+            "O1P2",
+            "O1P3",
+            "O2P",
+            "O3P",
+            "O4P",
+            "O5P",
+            "O6P",
+            "O7P"
+          ],
+          "C006": [
+            "O1P1"
+          ],
+          "C007": [
+            "O1P1"
+          ]
+        },
+        "abstained_CIDs": [],
+        "normalized_every_CID": true,
+        "missing_CIDs_are_negative": false,
+        "whole_outer_fence_removed": false,
+        "fence_language": null,
+        "integer_PID_aliases_applied": [],
+        "semantic_answer_repair_performed": false
+      }
+    }
+  ],
+  "actual_release": {
+    "at": "2026-10-24T05:01:02.963175+00:00",
+    "gpu": "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 1, 81156, 81920",
+    "compute_apps": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435"
+  },
+  "released": true,
+  "quality_evaluated": false,
+  "full58_inference_authorized": false,
+  "asset_copy": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/asset-copy/formal/asset-copy-ack.json",
+    "bytes": 2253,
+    "sha256": "87353c492bb4889d6b722b82e3150be8aeab5aece6133e29115b2ef5d30b498f"
+  },
+  "prior_zero_NN_wrapper_failure": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe/recovered/wrapper-result.json",
+    "bytes": 1911,
+    "sha256": "98f0ed9bbf06f177a5ca7059c04c9ddb41dd878b975fbdba25018535ccb9229e"
+  },
+  "source_assets": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/f0-longest-v1/metadata/assets_result.json",
+    "bytes": 8605,
+    "sha256": "5c7ed899da2f6361cb273a64ec5c8c41440a607dba62ca29b0b2ceb2167c8159"
+  },
+  "source_template": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-source/plan.template.json",
+    "bytes": 7260,
+    "sha256": "f2a1370e18338218810c62bbfbfb813f513cc40d68efa0aa893fce40bebfc6b5"
+  },
+  "actual_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/plan.json",
+    "bytes": 10505,
+    "sha256": "a3745b9a362aadbf515edc6cd119af5db042dfa1d3e38b6eeaa7a33b0932abaa"
+  },
+  "original_F0_58_CPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/cpu/actual-result.json",
+    "bytes": 8399,
+    "sha256": "e97b2ba4232bf4f4ff826d8740ef5c086e6747efce35dc0d3fd71b26a95459de"
+  },
+  "raw_first_policy_verified_on_actual_files": true,
+  "scope": "One actual longest original F0 row on A800; fresh same seed from original prompt, no KV/RNG continuation. Output may be reused only by a later explicitly identical formal configuration, not assumed cross-hardware F1 bitwise equivalent."
+}
