@@ -1,0 +1,151 @@
+{
+  "status": "CPU_feasibility_complete_no_training_or_quality",
+  "completed_utc": "2026-10-24T01:01:36.056084+00:00",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/prepare.py",
+    "bytes": 14990,
+    "sha256": "77969db1904c2a1cf17da23a17b8e2902735f15f8799ed40bcd155c4932ab5f2"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/plan.json",
+    "bytes": 6248,
+    "sha256": "c8ba7bf6b9d8dbd905676a1b6f2c4552bbda001913f83f1bf36e9cdb9726745a"
+  },
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "tokenizers": "0.22.1",
+    "jinja2": "3.1.6",
+    "torch_imported": false,
+    "cuda_visible_devices": ""
+  },
+  "cpu_seconds": 2.834751422997215,
+  "training_documents": 32,
+  "excluded_document_overlap": 0,
+  "existing_train_label_only": true,
+  "original": {
+    "rows": 124,
+    "tokens": 402594,
+    "maximum": 5523,
+    "minimum": 591,
+    "median": 3311.0,
+    "supervised_tokens": 7170,
+    "prefix_tokens": 395424,
+    "over6144": 0,
+    "truncated": 0
+  },
+  "reverse": {
+    "rows": 124,
+    "tokens": 402596,
+    "maximum": 5523,
+    "minimum": 591,
+    "median": 3310.5,
+    "supervised_tokens": 7170,
+    "prefix_tokens": 395426,
+    "over6144": 0,
+    "truncated": 0
+  },
+  "original124_all_fields_equal_saved_native_tokenizer_audit": true,
+  "reversed_changed_rows": 119,
+  "token_changed_rows": 16,
+  "target_changed_rows": 109,
+  "all124_prompt_and_target_inverse_exact": true,
+  "candidate_values": 880,
+  "positive_patient_concept_pairs": 594,
+  "total_patient_concept_pairs": 2506,
+  "synthetic": {
+    "upstream_exact_prompt_reverse_cases": 6,
+    "training_target_cases": [
+      {
+        "candidates": 1,
+        "answer_inverse_exact": true,
+        "literal_CIDs_unchanged": true
+      },
+      {
+        "candidates": 2,
+        "answer_inverse_exact": true,
+        "literal_CIDs_unchanged": true
+      },
+      {
+        "candidates": 3,
+        "answer_inverse_exact": true,
+        "literal_CIDs_unchanged": true
+      },
+      {
+        "candidates": 8,
+        "answer_inverse_exact": true,
+        "literal_CIDs_unchanged": true
+      },
+      {
+        "candidates": 11,
+        "answer_inverse_exact": true,
+        "literal_CIDs_unchanged": true
+      }
+    ]
+  },
+  "matched_schedule": {
+    "logical_epochs": 4,
+    "control": "O/O/O/O",
+    "augmented": "O/R/O/R",
+    "optimizer_calls": 64,
+    "nonzero_lr_calls": 63,
+    "warmup_calls": 4,
+    "example_exposures": 496,
+    "full_groups": 60,
+    "short4_groups": 4,
+    "identical_original_sample_ids_per_call": true,
+    "control_tokens": 1610376,
+    "augmented_tokens": 1610380,
+    "control_supervised_tokens": 28680,
+    "augmented_supervised_tokens": 28680,
+    "ordinary248x2_calls": 62,
+    "ordinary248x2_does_not_match64": true,
+    "schedule_is_CPU_proposal_not_a_training_launch": true
+  },
+  "throughput_projections": {
+    "same_A800_old124x2": {
+      "observed_seconds": 1149.460371017456,
+      "observed_tokens": 805188,
+      "control_seconds": 2298.920742034912,
+      "augmented_seconds": 2298.9264523056613
+    },
+    "same_A800_full265x2": {
+      "observed_seconds": 2446.435878276825,
+      "observed_tokens": 1729874,
+      "control_seconds": 2277.4384862226498,
+      "augmented_seconds": 2277.444143133797
+    },
+    "same_A800_public212x2": {
+      "observed_seconds": 1803.2216730117798,
+      "observed_tokens": 1303024,
+      "control_seconds": 2228.558265157064,
+      "augmented_seconds": 2228.5638006550225
+    }
+  },
+  "projection_caveat": "Token-linear estimates include old loading/checkpoint overhead; no new GPU speed guarantee, floating-point equivalence, or model quality.",
+  "no_F1_gold": true,
+  "no_original_dev": true,
+  "no_model_weights": true,
+  "no_fit": true,
+  "artifacts": {
+    "reverse124.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/reverse124.jsonl",
+      "bytes": 1725840,
+      "sha256": "34778f082d1057cab4646a3ef259fd0f15f4e48f13944ad5216bbde042e609b8"
+    },
+    "augmented248.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/augmented248.jsonl",
+      "bytes": 3449324,
+      "sha256": "949bc488f3a6bea177daeebdea57668f5c2a55873f3754a46e4526da462eda55"
+    },
+    "row-inverse-and-token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/row-inverse-and-token-audit.json",
+      "bytes": 243161,
+      "sha256": "2dd81e8027ff5604013a82b1d62d967f8c4af8a3e46178f6287b6581ebbc2b8b"
+    },
+    "matched-call-schedule.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/matched-call-schedule.json",
+      "bytes": 32013,
+      "sha256": "d3c1101f07dbe4257b80c52c5d32cc253aa537c78ec1128a9e026a4e6b6cd014"
+    }
+  }
+}

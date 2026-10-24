@@ -1,0 +1,138 @@
+{
+  "status": "PASS_SINGLE_SAMPLED_THINKING_FORMAT_DIAGNOSTIC_INVALID_FINAL_NO_QUALITY",
+  "at_utc": "2026-10-24T01:05:08.814048+00:00",
+  "scope": "Incremental source/prompt/sampler/strict-final/chronology review; no reviewer GPU, generation, target parsing or quality evaluation.",
+  "result": {
+    "input_tokens": 2030,
+    "output_tokens": 4096,
+    "presence_calls": 4096,
+    "maximum_generated_suffix_length": 4095,
+    "think_closed": false,
+    "EOS": false,
+    "token_limit": true,
+    "strict_final": false,
+    "reason": "token_limit"
+  },
+  "actual": {
+    "generation_seconds": 186.896,
+    "native_total_seconds": 209.493,
+    "peak_allocated_bytes": 18724500992,
+    "cap_seconds": 300,
+    "TERM_grace_seconds": 30,
+    "GPU_release_utc": "2026-10-24T01:03:39.439051+00:00",
+    "managed_running_false": true,
+    "managed_exit_code_not_returned": true
+  },
+  "checks": {
+    "original_first_input_whole_object_exact": true,
+    "input_contains_only_system_user": true,
+    "actual_true_tokenizer_fingerprint_exact": true,
+    "old32_adapter_and_public_model_fingerprint_exact": true,
+    "source_bound_generated_suffix_distinct_token_additive_presence": true,
+    "actual_CPU_nine_cases_verified_receipts": true,
+    "actual_generate_4096_processor_calls": true,
+    "strict_final_nine_reviewer_counterexamples_pass": true,
+    "one_original_job_no_NN_retry": true,
+    "recovery_only_monitor_and_collection": true,
+    "complete_raw_frozen_before_summary": true,
+    "no_targets_or_scores": true
+  },
+  "limitations": [
+    "Single predetermined input and multiple differences from previous full64/greedy1600 attempt; no causal or quality comparison.",
+    "Reaching 4096 without a closing think/final invalidates this bounded inference recipe, not every thinking model or larger budget.",
+    "Presence runtime math is checked from frozen source and actual CPU receipts; no second generation or numeric GPU rerun.",
+    "MCP returns running=false but no inference exit code. The rc0 in GPU-release.json belongs only to the resource check."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/run-plan.json",
+      "bytes": 6763,
+      "sha256": "84d785833f232fcfd05827065684632ee385f85528aa99b452e64fe771ddf952"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/cpu-result.json",
+      "bytes": 1324,
+      "sha256": "c0ba70548c69342b29a6301c6d159cacc8892223d5cb5ee30efec274bf538406"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/cpu-execution.json",
+      "bytes": 2100,
+      "sha256": "1a90e5101125d10c6383979fa416d78a116a582ddc9cbb4c00936a0e617fc7ec"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/runner.py",
+      "bytes": 12514,
+      "sha256": "71a60738ceb5ed3da0577706530250c22e8d42f9959d23f8c47ff78d1343162a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/presence.py",
+      "bytes": 1194,
+      "sha256": "3a0fce715ff44837f5d61f132543a59dfc2e9869b3369a900b3902321b443d04"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/cpu_contract.py",
+      "bytes": 3698,
+      "sha256": "7771f365d233cc56312ee85d5ab76d84dff95b465603c22eafb1d5d2e2f871c4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/finalize.py",
+      "bytes": 3679,
+      "sha256": "aff4a2fc80730d4249885e961abf4a0b31e16e0b8df3e52ca8c08984cd7e7584"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/runner-source.diff",
+      "bytes": 4571,
+      "sha256": "85e9635851d8a613b7c45abe088dca6a39a902f7885fe7a0e51cea9d80c128a3"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses-freeze.json",
+      "bytes": 519,
+      "sha256": "2dfb94f6431a08102620a0af77813d578876286cc6bd0e444383b105afce1821"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses.manifest.json",
+      "bytes": 4640,
+      "sha256": "92d932111b7c702b195d1c68dda4088bdf19226d9b751044d50314cfb917f686"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/summary.json",
+      "bytes": 2463,
+      "sha256": "31b753727a8b4e2a6e6a1cf0f208aaadd765e030ceca0584af5fec8aa1c0db06"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/gpu-release.json",
+      "bytes": 441,
+      "sha256": "6d5d7e99f915ecb4fc3662e02deccd38181c247bab582fad0d658fef5e5941a3"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/monitor.json",
+      "bytes": 182,
+      "sha256": "3a8725379e9561bc49c6e338b7cb18779853913874c4e95d8f74a8bf3ababa5d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/job.json",
+      "bytes": 1165,
+      "sha256": "c46975f5092e30e5dc4c6336b2bfabe18169e2a9c47ca891aeea3996f6f1d404"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/recovery-plan.json",
+      "bytes": 822,
+      "sha256": "6a998d73cef16ac59c2243e7d85b1465c3e7e7cf29915b87ca77ab3d4ae792f1"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/recover_existing.py",
+      "bytes": 4448,
+      "sha256": "93b1f7125d392dc1d8b0a31f796f242e7837b36972115161e6858c373fdf44dd"
+    }
+  ],
+  "raw_response_locator": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses.jsonl",
+    "bytes": 39846,
+    "sha256": "5ebdd137e01e6b22bfb5b08d3303b54334df9abf2c4b73d3f7f896be09ddfee9"
+  },
+  "reviewer_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/thinking-sampling-terminal-review/audit.py",
+    "bytes": 8990,
+    "sha256": "0fb1464e52e5207256509cae89668354316626114c8d91059bd0c23d3e12bae0"
+  }
+}

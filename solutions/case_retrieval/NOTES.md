@@ -62,4 +62,6 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 
 真实Qwen短行591与追加8masked pad的599在原生full CE本身出现−.018571差；不能用跨shape模型输出严格不变来证明/否定新loss mask。应逐shape比较原生full与选位loss，单独保存跨shape原生差；再在同冻结logits上poison被忽略目标，核loss和grad严格不变。实际probe通过后仍披露梯度容差，不称bitwise；失败日志原样保留。见value-weighted attempt2证据。
 
-- Thinking后继只读：原full64 greedy1600首条未闭think是已完成负记录；官方sampling/更长cap尚未跑。实际HF5.20.2无原生presence penalty，自定义需只减生成suffix已出现token一次、与multiplicative repetition分开；先固定单条格式/成本探针，不算质量。源码/预算边界见[一页提案](research/thinking-sampling-followup.md)。
+- Thinking后继：原full64 greedy1600首条未闭think是已完成负记录；随后旧SFT32首条官方sampling4096也触顶未闭think，已独审关闭。实际HF5.20.2无原生presence penalty，自定义需只减生成suffix已出现token一次、与multiplicative repetition分开；先固定单条格式/成本探针，不算质量。源码/预算边界见[一页提案](research/thinking-sampling-followup.md)。
+
+- 等曝光不等于等optimizer调用：124样本/accum8每epoch16calls；直接翻倍248样本只31calls。顺序增强以四124逻辑epoch/O-O-O-O对O-R-O-R，原ID顺序与每轮短尾flush固定，496曝光/64calls。先CPU重放实际分组/LR，再谈等预算训练；不能把新四轮历史对比写成只改变排列。

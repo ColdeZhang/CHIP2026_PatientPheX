@@ -4,14 +4,15 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking只读提案区分旧1600greedy失败与未做的官方sampling/4096；实际HF不原生支持presence，需要明确自定义suffix-only加性惩罚，已新增独立CPU实现并获单条有界GPU授权，尚未启动，见[提案](research/thinking-sampling-followup.md)。
+- **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking4096采样单条也已完整格式失败并结案，见下。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
 - **共指B提示完整负结案**：同旧SFT32/原80仅加可逆B标签，Score .660942003→.660756991；301TP82FP219FN，micro下降/macro上升，总分不升。80完整282.153秒/A800已释放，首次预评分guard失败保留、最小旧schema修复后唯一质量；30小终点已e5d502a备份，独审34959cc4通过。无A/union/原dev扩展，见[报告](public_coreference_readiness/prompt-control-b/REPORT.md)。
-- **thinking单条运行中**：A800GPU2 fresh81156MiB，旧SFT32+原80第一条true2030token，固定官方sampling4096/seed20261023/presence1.5（9个actualCPU契约3.919秒）。`proc_260680cf-7024-405d-a752-3f00e09f8d80`/watch10194，00:59:59.477Z起/主截止01:04:59.477Z/+TERM30；source/plan2679bdc已备份。只格式/成本、无targets/质量/重试，H32读原job勿重复launch，见[恢复入口](evidence/round2/thinking-sampling-start.json)。
-- **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，未接入LLM/未评分；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
-- **FLA仅CPU准备备份**：root独立helper私有安装/原生CPU合成合同通过，隐藏CUDA下fused import因Triton需driver失败；后继由helper进行GPU可见gate已实际绑定；首次数值采样器因cache结构失败，native单项0.4345秒后未完成fused比较。最小cache采样修复CPU合同通过，原01:07:50绝对截止不延长；尚无完整数值/速度结论。源码、失败与冻结plan见[CPU报告](fla_kernel_readiness/CPU_REPORT.md)，后继GPU由helper独占，本路线未启动。
+- **thinking单条格式负结案、独审e5f68aef通过**：旧SFT32/首条2030输入、真实suffix-only presence/官方采样4096，186.896秒生成/209.493秒native；4096触顶未闭think、无合法final，重复复核C003而未结束。01:03:39.439Z A800空释放；环境恢复只续采原job，没有新NN/targets/Score/重试，不扩大。[完整终点](research/thinking-sampling-followup.md)、[结果](evidence/round2/thinking-sampling-result.json)。
+- **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，该阶段未接LLM，后继B质量负结案已另列；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
+- **FLA合成数值控制未通过、已结束**：私有fused绑定及单GDN前向/梯度/cache通过，首128token全9B raw-logit relL2 .090575>.01、maxabs13.03125>.25（KL .0004124<.001），按事前合同停止；无其余三条/LoRA/质量，01:04:59 A30GPU1核空。首次采样器失败与修复链保留，不切换正式runtime、不把rawlogit失败说成任务质量负。[结果](fla_kernel_readiness/GPU_RESULT.md)。
+- **训练顺序增强CPU可行性完成**：严格旧124→可逆R124，候选/患者/目标语义不变；四逻辑epoch控制O/O/O/O与O/R/O/R，均64calls/496曝光，普通248×2ep只有62calls。实2.835秒、旧token审计exact；每臂A800约2229–2299秒仅代理。暂未训练，先准备reference runtime最小diff、实际SHM/持久存储与固定预算，[报告](research/candidate-order-training-feasibility.md)。
 - **目标仍未达**：root已核原dev固定逆序并集最新.746081965；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
-- **最近备份**：`ee27624`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
+- **最近备份**：`5257677`已push并ls-remote一致；本次新增thinking完整终点、独审和顺序增强CPU准备待同批检查点。大权重/raw在外部持久目录，当前没有本路线运行中的GPU作业。
 
 ## 已完成主要结果（历史摘要）
 

@@ -1,0 +1,415 @@
+{
+  "block_output": {
+    "reference_l2": 92.71479760353138,
+    "error_l2": 0.5265127954519859,
+    "relative_l2": 0.0056788431734863835,
+    "max_abs": 0.00390625,
+    "shape": [
+      1,
+      256,
+      4096
+    ],
+    "passed": true
+  },
+  "block_decode": {
+    "reference_l2": 17.449430143740365,
+    "error_l2": 0.021384474759871794,
+    "relative_l2": 0.0012255113538789718,
+    "max_abs": 0.001953125,
+    "shape": [
+      1,
+      8,
+      4096
+    ],
+    "passed": true
+  },
+  "block_grad/dt_bias": {
+    "reference_l2": 0.00016452904436278567,
+    "error_l2": 1.2369475152215989e-08,
+    "relative_l2": 7.518110373838531e-05,
+    "max_abs": 8.381903171539307e-09,
+    "shape": [
+      32
+    ],
+    "passed": true
+  },
+  "block_grad/A_log": {
+    "reference_l2": 0.00029825516136292854,
+    "error_l2": 1.3427459875467327e-07,
+    "relative_l2": 0.0004502004194699675,
+    "max_abs": 1.1920928955078125e-07,
+    "shape": [
+      32
+    ],
+    "passed": true
+  },
+  "block_grad/conv1d.weight": {
+    "reference_l2": 0.0010039047208072745,
+    "error_l2": 6.239909987290876e-06,
+    "relative_l2": 0.006215639649819705,
+    "max_abs": 2.682209014892578e-07,
+    "shape": [
+      8192,
+      1,
+      4
+    ],
+    "passed": true
+  },
+  "block_grad/norm.weight": {
+    "reference_l2": 0.0014590868758738544,
+    "error_l2": 2.431401974483864e-06,
+    "relative_l2": 0.0016663860217560284,
+    "max_abs": 9.5367431640625e-07,
+    "shape": [
+      128
+    ],
+    "passed": true
+  },
+  "block_grad/out_proj.weight": {
+    "reference_l2": 0.0019005286612253107,
+    "error_l2": 1.4168436665507707e-05,
+    "relative_l2": 0.007454997630171501,
+    "max_abs": 5.960464477539063e-08,
+    "shape": [
+      4096,
+      4096
+    ],
+    "passed": true
+  },
+  "block_grad/in_proj_qkv.weight": {
+    "reference_l2": 0.029391129996985618,
+    "error_l2": 0.0002023910590655267,
+    "relative_l2": 0.006886127178039229,
+    "max_abs": 9.5367431640625e-07,
+    "shape": [
+      8192,
+      4096
+    ],
+    "passed": true
+  },
+  "block_grad/in_proj_z.weight": {
+    "reference_l2": 0.008946338154010202,
+    "error_l2": 7.618338811397606e-05,
+    "relative_l2": 0.008515594515039296,
+    "max_abs": 7.152557373046875e-07,
+    "shape": [
+      4096,
+      4096
+    ],
+    "passed": true
+  },
+  "block_grad/in_proj_b.weight": {
+    "reference_l2": 0.004181743647806751,
+    "error_l2": 2.416249095423528e-05,
+    "relative_l2": 0.0057780899522399155,
+    "max_abs": 4.76837158203125e-07,
+    "shape": [
+      32,
+      4096
+    ],
+    "passed": true
+  },
+  "block_grad/in_proj_a.weight": {
+    "reference_l2": 0.0009486260976562613,
+    "error_l2": 4.578514975300038e-06,
+    "relative_l2": 0.00482646955066071,
+    "max_abs": 1.1920928955078125e-07,
+    "shape": [
+      32,
+      4096
+    ],
+    "passed": true
+  },
+  "block_cache/0": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 104.96620254902754,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 5.958077668463106,
+        "error_l2": 0.014875237261741411,
+        "relative_l2": 0.002496650444904069,
+        "max_abs": 0.0009531304240226746,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/1": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 105.0181139477026,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 5.988678940299634,
+        "error_l2": 0.0038924613381715796,
+        "relative_l2": 0.0006499699477923301,
+        "max_abs": 0.0004175156354904175,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/2": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 105.22337679863504,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.265539184490805,
+        "error_l2": 0.002256349367103406,
+        "relative_l2": 0.0003601205420099496,
+        "max_abs": 0.00023597478866577148,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/3": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 105.33754524398111,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.4411974384312085,
+        "error_l2": 0.0016181302954639532,
+        "relative_l2": 0.0002512157577734581,
+        "max_abs": 0.00019290950149297714,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/4": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 105.37743708417672,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.209449470128766,
+        "error_l2": 0.0010114933072162733,
+        "relative_l2": 0.00016289581098649278,
+        "max_abs": 0.00012291688472032547,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/5": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 105.09815920038251,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.033352318321341,
+        "error_l2": 0.0008343557543825096,
+        "relative_l2": 0.00013829057385706466,
+        "max_abs": 0.00010537868365645409,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/6": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 104.57501366713453,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.15613026435907,
+        "error_l2": 0.000626675703458364,
+        "relative_l2": 0.00010179701802063943,
+        "max_abs": 7.998710498213768e-05,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/7": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 104.83353280323972,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.161467951295918,
+        "error_l2": 0.0004403261710103029,
+        "relative_l2": 7.146449100943402e-05,
+        "max_abs": 5.6099146604537964e-05,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "block_cache/8": {
+    "structure_sha256": "3e7ae4fd813c474bd1db0445af3924089c923c4b5e464dad64240001e5101144",
+    "state_tensor_count": 2,
+    "tensor_metrics": {
+      "0/conv_states/int:0": {
+        "reference_l2": 104.69727118868344,
+        "error_l2": 0.0,
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "shape": [
+          1,
+          8192,
+          4
+        ],
+        "passed": true
+      },
+      "0/recurrent_states/int:0": {
+        "reference_l2": 6.048939704426064,
+        "error_l2": 0.00037793386212745705,
+        "relative_l2": 6.24793568120574e-05,
+        "max_abs": 4.824437201023102e-05,
+        "shape": [
+          1,
+          32,
+          128,
+          128
+        ],
+        "passed": true
+      }
+    }
+  },
+  "synthetic-0/logits": {
+    "reference_l2": 20043.438328392956,
+    "error_l2": 1815.436884214154,
+    "relative_l2": 0.09057512261468924,
+    "max_abs": 13.03125,
+    "shape": [
+      1,
+      128,
+      248320
+    ],
+    "mean_kl": 0.00041240028804168105,
+    "passed": false
+  }
+}

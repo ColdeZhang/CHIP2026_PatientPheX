@@ -1,0 +1,35 @@
+{
+  "status": "readonly_single_output_behavior_description_not_quality",
+  "at_utc": "2026-10-24T01:05:38.342023+00:00",
+  "raw_sha256": "5ebdd137e01e6b22bfb5b08d3303b54334df9abf2c4b73d3f7f896be09ddfee9",
+  "tokenizer_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+  "decode_method": "Fixed tokenizer JSON vocab and exact ByteLevel inverse; complete4096 decode equals saved native response. No tokenizer library reinstallation.",
+  "generated_ids_decode_exact_response": true,
+  "output_tokens": 4096,
+  "response_characters": 16470,
+  "CID_string_occurrences": {
+    "C000": 5,
+    "C001": 3,
+    "C002": 3,
+    "C003": 17,
+    "C004": 3,
+    "C005": 3,
+    "C006": 7,
+    "C007": 3
+  },
+  "wait_word_occurrences": 5,
+  "check_word_occurrences": 9,
+  "all8_candidates_have_explicit_intermediate_decisions_before_refinement": true,
+  "refining_C003_section_starts_character": 7268,
+  "observation_zh": "通读完整16470字符，内容一直围绕给定P1及8个CID；前一分析段已逐项给出中间列表决定，后半反复讨论C003 Diabetes mellitus与文本diabetes、亲属归属及是否足够明确，不是无关话题漂移。多个段落重复宣告C003/P1和C006/P1的暂定决定后又重新核查；不是逐字固定字符串循环。",
+  "last200_tokens": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/last200tokens.txt",
+    "bytes": 684,
+    "sha256": "0852d27f8c864e1d122a7632e3cc338e64b597e9e2b3b2a11ea7e9d70eb9c7c1",
+    "observation_zh": "仍在复核否定项、C006和C003是否应排除，最后停在Sometimes；没有转入闭合think或最终完整JSON。前文已有暂定明确决定，不足以据此断言再给少量token就会结束。"
+  },
+  "interpretation_zh": "本条表现为相关任务内重复复核、难以结束；触顶是事实，但无法只凭该样本区分更长预算最终会成功还是继续复核，不能据此延长或重试。",
+  "no_targets_or_scores": true,
+  "no_generation_or_parser_change": true,
+  "local_import_note": "Recovered local interpreter no longer has tokenizers package; two import checks failed before writes/data processing. Direct fixed-vocab decode avoids installing dependencies and was verified against entire native text."
+}

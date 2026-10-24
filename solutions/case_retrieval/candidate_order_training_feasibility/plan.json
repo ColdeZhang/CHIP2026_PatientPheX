@@ -1,0 +1,112 @@
+{
+  "schema": "candidate-order-training-feasibility-v1",
+  "frozen_utc": "2026-10-24T01:01:30.193534+00:00",
+  "scope": "Train32 existing labels only, CPU reverse preparation/token-mask/reconstruction/cost. No training/model loading/GPU/forward/quality/F1gold/original-dev.",
+  "source_sha256": "77969db1904c2a1cf17da23a17b8e2902735f15f8799ed40bcd155c4932ab5f2",
+  "references": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "preparation_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "native_token_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/tokenizer-audit.json",
+      "bytes": 73773,
+      "sha256": "46b005eff0cabad879c2a74034a7d2b3d4c1a0dc552338a339fc9b463b211555"
+    },
+    "reverse_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/reverse_inference_upstream.py",
+      "bytes": 7579,
+      "sha256": "97a2ae3568277c8ef2f9ea09e4ae62c23586a931f7c9bdf25950dfe56cdd731a"
+    },
+    "encode_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_encode_helper.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "trainer_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_trainer.py",
+      "bytes": 28818,
+      "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+    },
+    "original_prepare_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_prepare.py",
+      "bytes": 6991,
+      "sha256": "d46dbdcae45a7db69d2ca10b9a57cfc2b0a5ad0bf3ec525b4076b66797718caf"
+    },
+    "original_prompt_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_prompt_prepare.py",
+      "bytes": 6846,
+      "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+    },
+    "tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "template": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "old_training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "d52918ed293c83e20f40faee2825cc7fc2eb5b0484cc94972d8bccdc5dcff20b"
+    },
+    "full64_training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "16b674d6a4d960086f8f208995c79f0c5c940eda880752a8e2dfa94d21ef7bf2"
+    },
+    "public212_training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/formal2ep/training_complete.json",
+      "bytes": 527,
+      "sha256": "9335bdc1dcf0df02577b3aa0169b8649d0cca5032f334dd9bdf78f33d40a82ff"
+    },
+    "old_training_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/run-plan.json",
+      "bytes": 13675,
+      "sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28"
+    },
+    "training_stats": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/training-stats-diagnostic/summary.json",
+      "bytes": 27950,
+      "sha256": "29d5119fc71ed6f71330def48e130515e67d831e30601065135b5bf7404ab15f"
+    }
+  },
+  "cpu_cap_seconds": 120,
+  "schedule": {
+    "seed": 20261023,
+    "original_rows": 124,
+    "logical_epochs": 4,
+    "control": "O/O/O/O",
+    "augmented": "O/R/O/R",
+    "same_original_sample_ID_per_call": true,
+    "gradient_accumulation": 8,
+    "flush_tail_per_124": true,
+    "batch_size": 1,
+    "optimizer_calls": 64,
+    "examples_exposed": 496,
+    "proposed_warmup_calls": 4,
+    "proposed_peak_lr": 0.0001,
+    "fresh_base_required_for_any_later_training": true,
+    "ordinary248x2_calls": 62,
+    "authorization": "root via retrieval owner fixed four124 logical epochs; CPU feasibility only"
+  },
+  "reversal": {
+    "prompt": "reuse exact upstream parts/replace_top_code/reverse/contracts; only candidate order and top-level CID values/code_map",
+    "answer": "rename top-level target keys by same old→new map, emit original code sequence; preserve patient list order, require canonical compact old JSON, double reversal byteexact",
+    "row_ids": "reverse copy suffix :reverse-candidates, recorded separately and removed on inverse; original124 unchanged",
+    "no_evidence_reselection": true,
+    "no_new_candidates": true,
+    "no_new_labels": true
+  },
+  "token_contract": "fixed verified tokenizer.json + chat template through Rust tokenizers/Jinja; AST-reuse original helper.encode; demand every old124 full audit field, rendered SHA/input-ID SHA/label SHA equal actual saved native TF5.20.2 audit. No claim installed tokenizer version equals remote native.",
+  "cost": "token-linear projections from old A800124x2, full265x2 andpublic212x2; not actual new runtime; no reuse of A100 weighted target as same-machine CE."
+}

@@ -1,0 +1,83 @@
+{
+  "status": "STOP_NUMERIC_CONTRACT_FAILED_NO_FURTHER_RETRY",
+  "at_utc": "2026-10-24T01:05:50.119157+00:00",
+  "scope": "synthetic engineering diagnostic, not competition quality",
+  "failed_comparison": "synthetic-0/logits",
+  "metrics": {
+    "reference_l2": 20043.438328392956,
+    "error_l2": 1815.436884214154,
+    "relative_l2": 0.09057512261468924,
+    "max_abs": 13.03125,
+    "shape": [
+      1,
+      128,
+      248320
+    ],
+    "mean_kl": 0.00041240028804168105,
+    "passed": false
+  },
+  "passed_scope": {
+    "single_block_forward": {
+      "reference_l2": 92.71479760353138,
+      "error_l2": 0.5265127954519859,
+      "relative_l2": 0.0056788431734863835,
+      "max_abs": 0.00390625,
+      "shape": [
+        1,
+        256,
+        4096
+      ],
+      "passed": true
+    },
+    "single_block_decode": {
+      "reference_l2": 17.449430143740365,
+      "error_l2": 0.021384474759871794,
+      "relative_l2": 0.0012255113538789718,
+      "max_abs": 0.001953125,
+      "shape": [
+        1,
+        8,
+        4096
+      ],
+      "passed": true
+    },
+    "single_block_gradient_parameters": 9,
+    "gradient_max_relative_l2": 0.008515594515039296,
+    "cache_snapshots": 9,
+    "cache_tensors_each": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "uncompleted": [
+    "full-model first-row teacherforced/cache/greedy comparisons",
+    "255/256/513-token full-model cases",
+    "three-repeat full-model timing",
+    "LoRA gradient and optimizer-step comparison"
+  ],
+  "managed_process_running": false,
+  "remote_exit_code": null,
+  "gpu_released": true,
+  "release_utc": "2026-10-24T01:04:59.034588+00:00",
+  "first_confirmed_stopped_utc": "2026-10-24T01:04:40.779067+00:00",
+  "attempt2_elapsed_upper_bound_seconds": 195.68065762519836,
+  "original_deadline_unix": 1792804070.1162088,
+  "deadline_extended": false,
+  "base_model_changed": false,
+  "numerical_thresholds_changed": false,
+  "new_quality_evaluation": false,
+  "third_attempt": false,
+  "limitations": [
+    "Logit relative L2 and maxabs fail while KL passes; this alone is not task-quality evidence or a root-cause proof.",
+    "No full raw logits retained; cannot retrospectively prove constant-shift/centered equivalence.",
+    "Managed API exposes running=false but no independent exit code.",
+    "Warm full-model timing and LoRA step are uncompleted."
+  ]
+}
