@@ -1,40 +1,40 @@
 {
-  "created_at_utc": "2026-10-24T02:23:13.209389+00:00",
+  "created_at_utc": "2026-10-24T02:58:36.738321+00:00",
   "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
   "server": "10.5.2.100",
   "remote_directory": "day1/coordinator-backup/git",
-  "remote_manifest": "day1/coordinator-backup/git/round2-review-records-20261024T022313Z.manifest.json",
+  "remote_manifest": "day1/coordinator-backup/git/round2-review-records-20261024T025836Z.manifest.json",
   "files": [
     {
-      "filename": "round2-review-records-20261024T022313Z.tar.gz",
-      "remote_path": "day1/coordinator-backup/git/round2-review-records-20261024T022313Z.tar.gz",
-      "bytes": 6050355,
-      "sha256": "0279124b8d47a8f78b6bb80eeecdf1d788c37934569d941ef2c41a6f3a27effb",
+      "filename": "round2-review-records-20261024T025836Z.tar.gz",
+      "remote_path": "day1/coordinator-backup/git/round2-review-records-20261024T025836Z.tar.gz",
+      "bytes": 6515538,
+      "sha256": "3fffda83a3fba38bcda4729a7fe32ac181e8f9a057492cbdb27bd0641e446e6c",
       "action": "uploaded_verified",
       "kind": "independent_review_records",
-      "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-20261024T022313Z.tar.gz"
+      "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-20261024T025836Z.tar.gz"
     }
   ],
-  "index_sha256": "214cf874dcef637348a9e044e774fff4b4f6741a3c68a634500178e7119415d1",
-  "scope": "Exact index and referenced review records only; excludes predictions, models, data and unreferenced logs. This preserves conclusions and provenance, not a self-contained model reproduction environment.",
+  "index_sha256": "b0dfd28ee6ea47088c4457c0615788aeb0ff343a7165debc4e51abd948790e45",
+  "scope": "Exact 169-entry index, its 2817 referenced review records, and four root integrity/publication/generator records; excludes predictions, models, data and unrelated logs. Preserves conclusions and provenance, not a self-contained model reproduction environment.",
   "restore_command": "python scripts/backup_submissions.py restore --manifest docs/campaigns/round2-review-backup.json --destination /workspace/patientphex-restored/reviews",
-  "generator_sha256": "dbe0fbb911a4ec171eea09789c3edcf0cb2ca9c48f858fc50a462fcda099bb03",
-  "member_count": 2578,
+  "generator_sha256": "77781e8324b92965ed71ccca8542d9ebe97906a77588659fd393424c13cfff14",
+  "member_count": 2822,
   "full_manifest": {
-    "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-20261024T022313Z.manifest.json",
-    "remote_path": "day1/coordinator-backup/git/round2-review-records-20261024T022313Z.manifest.json",
-    "bytes": 562304,
-    "sha256": "810f979ac6b305f658fa6a4b15b69dc4074899c12fa318f67ac3fe442944c079",
-    "purpose": "Full per-member inventory remains outside Git; this compact pointer retains every field used by backup_submissions.py restore."
+    "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-20261024T025836Z.manifest.json",
+    "remote_path": "day1/coordinator-backup/git/round2-review-records-20261024T025836Z.manifest.json",
+    "bytes": 629417,
+    "sha256": "a0e44158141b472a91679a8349ad41a3a4e4eb4ed73f30f9f8501224c6db3457",
+    "purpose": "Full per-member inventory remains outside Git; compact pointer retains every field needed for archive download."
   },
   "actual_restore_verification": {
-    "at_utc": "2026-10-24T02:32:59.881775+00:00",
+    "at_utc": "2026-10-24T03:07:43.113842+00:00",
     "status": "actual_remote_restore_all_unique_regular_members_SHA_pass",
-    "members": 2578,
-    "manifest_sha256": "810f979ac6b305f658fa6a4b15b69dc4074899c12fa318f67ac3fe442944c079",
-    "archive_sha256": "0279124b8d47a8f78b6bb80eeecdf1d788c37934569d941ef2c41a6f3a27effb",
-    "index_sha256": "214cf874dcef637348a9e044e774fff4b4f6741a3c68a634500178e7119415d1",
+    "members": 2822,
+    "manifest_sha256": "a0e44158141b472a91679a8349ad41a3a4e4eb4ed73f30f9f8501224c6db3457",
+    "archive_sha256": "3fffda83a3fba38bcda4729a7fe32ac181e8f9a057492cbdb27bd0641e446e6c",
+    "index_sha256": "b0dfd28ee6ea47088c4457c0615788aeb0ff343a7165debc4e51abd948790e45",
     "scope": "Actual remotely downloaded archive; all unique regular members sizes and SHA checked. No model inference or quality rerun."
   },
-  "member_inventory_note": "2578 member hashes are already represented by the frozen verification index and full external manifest; omitted here to avoid duplicating the index in Git. Full manifest is required for the independent per-member restore verifier."
+  "member_inventory_note": "Full external manifest is required for independent per-member restore verification; hashes are not duplicated here."
 }

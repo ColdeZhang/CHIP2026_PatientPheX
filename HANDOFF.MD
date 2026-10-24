@@ -209,6 +209,8 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 **避免方法**：恢复后先核本地Git状态、方案台账与已保存job/manifest，再读取原managed进程、实际checkpoint和目标GPU的UUID/进程。确认已有作业状态后才恢复监控或重建代理；不要以代理消失推断训练失败，也不要重新跑已完成实验。若确需重启，使用独立输出目录并记录旧进程终态。当前原作业 `proc_b554a946-3034-416e-94b7-bc12084e6b44` 已确认持续运行，未重启；恢复入口见[序列方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)（检查点 `31361f9`）和[总记录](docs/campaigns/round2-20261023.md)。
 
+同类传输故障：MedGemma首次私网复制时，本地MCP初始化503触发controller的`finally`，过早停止仍供下载的源HTTP进程，随后fetch报连接拒绝。**监控失败或UNKNOWN只表示观察失败，不能自动清理健康远端作业。** 保存已知job和绝对截止；仅在fetch确认终态、明确停止或截止时清理源，两端各自受绝对TTL约束。修复后3项CPU边界检查及增量独审通过（`validation/medgemma-runtime-readiness-review/transfer-recovery-source-checks.json`，SHA `558ccde4…`）；唯一断点恢复722.052秒内完成19件8.64GB，03:14:31取得完整ACK。10件继承此前完整核验/未变文件证明，9件本轮SHA，不能冒称19件均重新hash；原失败和600秒未启动旧恢复计划保留。完整copy终审 `4b9e48c0…`，恢复不重下公共权重、不代表GPU或质量通过。
+
 ## H33：标准库辅助函数也依赖实际 Python 版本
 
 GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_digest`，而实际系统解释器为 3.10.12，首次在校验文件时退出，尚未加载模型或使用GPU。模型库能导入不代表外围启动器的标准库调用兼容。
