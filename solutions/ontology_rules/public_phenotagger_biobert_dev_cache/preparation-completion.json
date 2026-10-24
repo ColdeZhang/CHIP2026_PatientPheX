@@ -1,0 +1,120 @@
+{
+  "status": "READY_CPU_ONLY_PREPARATION_COMPLETE_GPU_NOT_STARTED",
+  "completed_at": "2026-10-24T00:02:57.365844+00:00",
+  "scope": "Only unlabeled originaldev pureinput and same-BioBERT raw reuse; no NN/model construction/GPU/gold/quality/fitting run by helper",
+  "remote_cwd": "public-phenotagger-biobert",
+  "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "remote_source_directory": "dev16-cache",
+  "process_id": "proc_d8656ee3-7bb8-439f-937e-050782f712de",
+  "process_running": false,
+  "stderr_empty": true,
+  "full_preparation_print_observed_before_sys_exit0": true,
+  "CPU_cap_seconds": 120,
+  "CPU_TERM_grace_seconds": 5,
+  "CPU_only_single_thread_env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TF_NUM_INTRAOP_THREADS": "1",
+    "TF_NUM_INTEROP_THREADS": "1",
+    "FORCE_TF_AVAILABLE": "1",
+    "USE_TF": "1",
+    "USE_TORCH": "0"
+  },
+  "preparation": {
+    "documents": 16,
+    "passages": 514,
+    "verified_token_offsets": 44998,
+    "candidates": 64288,
+    "unique_lower_token_inputs": 55203,
+    "reused_forward_keys": 4655,
+    "new_forward_keys": 50548,
+    "reused_forward_sha256": "6b41083473cc49016671b24d29b9b556899bda667c6ca0d04490455bfdc49139",
+    "reused_forward_parent_manifest_sha256": "26ca138da95bf6dc1610ad2bb942c442556cf7ac770e066016bc0a022da6f695",
+    "dictionary_candidates": 979,
+    "seconds": 20.483298886567354,
+    "input_sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+  },
+  "source_and_refs": {
+    "run_dev16.py": {
+      "sha256": "2ad5d7347dea774b8604f53a8c04364ab249c185d0194150be51d213cd2c9d26",
+      "bytes": 15519
+    },
+    "make_provenance.py": {
+      "sha256": "179baa560151fa01881950a09f6f273b89b19717774b01d9f96c5aa358fbc41a",
+      "bytes": 6698
+    },
+    "plan.json": {
+      "sha256": "7cf2a4165e066319c96ad823a801c0981cdc9cdf63dd3b0bae565d62a7472d8c",
+      "bytes": 7898
+    },
+    "source-equivalence.json": {
+      "sha256": "3b245eda6af997ab5d9a7c4a2234bfbba9a7882dad6c31b79a914d2158ec1587",
+      "bytes": 2358
+    },
+    "source-delta.patch": {
+      "sha256": "69fa88f829c4920eb9d5407706680923deb9cda48fa53c9592e74432e28dea95",
+      "bytes": 10537
+    },
+    "input-manifest.json": {
+      "sha256": "a16f3b5f733b89b1275709c9de453c36574bf880554bcf5997f8943360742b4e",
+      "bytes": 647
+    },
+    "input-contract-check.json": {
+      "sha256": "fece5acab25594ecbdef585ff0b7717ac7b8deb9b17cba5efd1365e1f6c5de19",
+      "bytes": 340
+    },
+    "deployment.json": {
+      "sha256": "53e961678406df256eeb1b0fc4c8bea9d04001c1718b25dcc819d6ebbe29f9a9",
+      "bytes": 698
+    },
+    "CPU-preparation-job.json": {
+      "sha256": "cc53233c5f2d5db18368c23772d044e1fbd50f0463b06d9acbfcf8f230e94b1d",
+      "bytes": 1188
+    },
+    "CPU-preparation-terminal.json": {
+      "sha256": "7c40dcceeaa777a7151e935e9404c2b118c453dcca0306a92eecf3a5011124d1",
+      "bytes": 1070
+    },
+    "CPU-preparation.json": {
+      "sha256": "287a2f14429e9d4b126162a8d27e4609434e0fd62ca2855c0a1d66b132fc9132",
+      "bytes": 554
+    }
+  },
+  "cost_estimate_not_measurement_of_dev_GPU": {
+    "source_train_native_manifest_sha256": "26ca138da95bf6dc1610ad2bb942c442556cf7ac770e066016bc0a022da6f695",
+    "source_train_completion_sha256": "d05fa3f8222c9480904378fe8b0a85751f8f1227e2607151b17cbf5519d8257a",
+    "train_unique_new_forward": 244938,
+    "train_NN_seconds": 157.24099258705974,
+    "train_native_child_seconds": 232.33122933655977,
+    "new_forward_ratio": 0.2063705917415836,
+    "projected_pure_NN_seconds": 32.44991668622548,
+    "conservative_train_fixed_overhead_plus_scaled_NN_seconds": 107.54015343572551,
+    "proposed_owner_GPU_cap_seconds": 300,
+    "limitations": "Warmup, NLTK/hash/cache read/model load included in fixed overhead estimate; projected amount only, actual GPU run and first-batch gate still pending; canonical/provenance outputs do not yet exist."
+  },
+  "preserved_contract": {
+    "candidate_sentence_words": [
+      2,
+      8
+    ],
+    "native_strict_threshold": 0.95,
+    "maxlen": 32,
+    "upstream_word_lower": true,
+    "cased_tokenizer": true,
+    "vocabulary": 28996,
+    "native_variables": 201,
+    "head_columns": 17266,
+    "same_model_reuse_keys": 4655,
+    "other_model_logits_reused": false,
+    "fixed_policy_exact_equal_train64": true,
+    "cache_origin": "biobert_dev16_public_protocol"
+  },
+  "next_owner_step": "Commit/push small frozen sources/plan. Owner may write bounded wrapper and start only after fresh GPU allocation check; native first real batch plus provenance must complete before downstream selector consumes cache."
+}

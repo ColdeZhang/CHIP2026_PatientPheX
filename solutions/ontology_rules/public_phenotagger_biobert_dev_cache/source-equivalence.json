@@ -1,0 +1,50 @@
+{
+  "status": "PASS_STATIC_NARROW_ADAPTATION",
+  "created_at": "2026-10-24T00:01:56.877456+00:00",
+  "source_parents": {
+    "biobert_train64_run": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-train64-cache/run_train64.py",
+      "sha256": "b255251423ae31077177c19938cd03f449145aedfce95c61c6520ce632e65e68"
+    },
+    "biobert_train64_provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-train64-cache/make_provenance.py",
+      "sha256": "9e22517d7030f686184c40b48bcfa3ec033a5e98b31d11a67add7ce0c175dae0"
+    },
+    "bioformer_dev_same_model_reuse": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-dev16-cache/run_dev16.py",
+      "sha256": "4dfedd9a8535e4bdecd3542a1ae30fc2a19561252cc02e6a4399bf69e06fa847"
+    }
+  },
+  "outputs": {
+    "run_dev16.py": {
+      "sha256": "2ad5d7347dea774b8604f53a8c04364ab249c185d0194150be51d213cd2c9d26",
+      "bytes": 15519
+    },
+    "make_provenance.py": {
+      "sha256": "179baa560151fa01881950a09f6f273b89b19717774b01d9f96c5aa358fbc41a",
+      "bytes": 6698
+    },
+    "source-delta.patch": {
+      "sha256": "69fa88f829c4920eb9d5407706680923deb9cda48fa53c9592e74432e28dea95",
+      "bytes": 10537
+    }
+  },
+  "exact_sections_from_BioBERT_train64": [
+    "candidate token/coordinate construction, except stricter four-field equality",
+    "complete model loading and first real batch gate, except dev16 provenance text",
+    "raw native .95 decoder/dictionary/abbreviation/current-map composition"
+  ],
+  "same_model_reuse_only": {
+    "parent_manifest_sha256": "26ca138da95bf6dc1610ad2bb942c442556cf7ac770e066016bc0a022da6f695",
+    "parent_raw_sha256": "6b41083473cc49016671b24d29b9b556899bda667c6ca0d04490455bfdc49139",
+    "parent_keys": 244938
+  },
+  "changes": [
+    "train64 to dev16 input/output names and count16",
+    "insert already completed Bioformer dev exact-key reuse logic but bind solely BioBERT model, raw SHA and manifest",
+    "input key set equality strengthened from subset; no labels permitted",
+    "retain BioBERT first real batch tokenizer201/head17266 checks unchanged",
+    "final provenance manifest has model_type biobert and cache_origin biobert_dev16_public_protocol"
+  ],
+  "no_gpu_nn_fit_gold_quality_executed": true
+}
