@@ -11,3 +11,5 @@
 - 下一步：按 `F0-plan.template.json` 绑定三完整F0输出及祖先 → 保B0全量装配 → root和固定2of3共同冻结 → 各唯一v2。F0 gold在共同冻结通知前禁止读取或哈希；必须严格胜B0和固定2of3。
 
 主线程现已委托本owner接管两个F0方案的联合冻结与各唯一评价，无需再等待逐阶段批准。`joint_quality.py` 强制两完整预测/计划SHA及原947实体/315关系保护，先格式验证与共同冻结，再独立读gold；LR必须同时严格胜B0和固定2of3。固定2of3分支已追加同joint门（`0a432ef`），未改变其算法。当前仅sampled F0已完整，S1/S2全strict、交集280，原F1窄接口实际可用；另两source仍待完整核。F1拟合源码、参数与计划不修改；若实际F0出现文本/纯compound/明确弃答，再另建兼容层而不丢行或重fit。
+
+F0三源完整绑定：grounded173（含4原文literal）、sample交集280、Qwen3362，完整union431；B0原315不参与特征。来源全排F0，sample/Qwen候选train48与F1train32差异披露。grounded47完整但3cap/2严格JSON弃答，输出原样使用。因为实际4literal，已新增独立 `common_f0.py`；只拆纯HPOcompound、其他文字原样，明确整行弃答只可为空。原F1 common/plan/model逐SHA不变。F0计划 `08a415e6`、祖先 `205ac0a4`；两个装配计划先推送再运行，当前未读F0 gold。

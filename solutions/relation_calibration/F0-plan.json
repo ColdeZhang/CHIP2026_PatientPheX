@@ -1,0 +1,69 @@
+{
+  "status": "BOUND_COMPLETE_F0_SOURCES",
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "bytes": 350409,
+    "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "documents": 16,
+  "patients": 47,
+  "sample_rows_per_seed": 58,
+  "features": [
+    "grounded",
+    "sampleintersection",
+    "qwen3"
+  ],
+  "cut": 0.5,
+  "model_state": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/fit-v1/model.json",
+    "bytes": 706,
+    "sha256": "0fc19cbed85fadc7be7e23e8365d1d734843d33e467c7f154ebe1f8eff51d1a2"
+  },
+  "raw_sources": {
+    "grounded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-pure-relations-v1/new-only.jsonl",
+      "bytes": 122519,
+      "sha256": "d1f712cacf7da83807797429d0a153408a1b6ce2ae8a61be5f861b3d90b56206"
+    },
+    "qwen3": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/f0-v1/quality/new-alone-unscored.prediction.jsonl",
+      "bytes": 125143,
+      "sha256": "75dbdc653b81c9baba14c12d7fb33ad33ce83d6981670e82656a2c0bdc3dd277"
+    },
+    "sampled_diagnostics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/assembled-v1/row-diagnostics.jsonl",
+      "bytes": 129167,
+      "sha256": "ad361fc23f5876ae7b12590091afa902e0fe7fed144d9803c782b6c6910563de"
+    }
+  },
+  "F0_ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/F0-ancestry.json",
+    "bytes": 6167,
+    "sha256": "205ac0a4b635c80325f3ddd8e13a61add653016b32ddd78abfb8a4c532d6c9fa"
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/supported.pred.jsonl",
+    "bytes": 124485,
+    "sha256": "94504b974d5203fdde6b68ff10ca12bb67d24b0db235023023920b0ec595e1bc"
+  },
+  "sources": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common.py",
+      "bytes": 7873,
+      "sha256": "37578e207d4f8be6f2faf880c99b7f0a1cf155a82075c806311f8f8c5c98a5a7"
+    },
+    "common_f0.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common_f0.py",
+      "bytes": 3218,
+      "sha256": "66121dadba6dfa0022b83163cd9565734025cef8aede38b8cc11172be0296334"
+    },
+    "assemble_F0.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/assemble_F0.py",
+      "bytes": 2667,
+      "sha256": "a322d53493a5bf435b05badc4574dc4b0ab7fb131681c0e23313504fd26e0c39"
+    }
+  },
+  "source_policy": "All three complete raw sources, all task training ancestors exclude F0; no baseline-derived feature or candidate selection.",
+  "next": "Bind actual refs, assemble complete prediction without gold, send freeze to root. Root jointfreezes with fixed2of3 before either v2.",
+  "success": "Strict Score increase over B0 .7115075800266846 and root fixed2of3; no scan/no fallback recipe."
+}

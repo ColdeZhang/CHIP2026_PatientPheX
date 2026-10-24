@@ -3,7 +3,9 @@ import argparse
 import json
 import math
 from pathlib import Path
-from common import FEATURES, append_relations, candidates, checked, mkdir_new, now, read_json, ref, write_bytes, write_json
+from common import FEATURES, append_relations, checked, mkdir_new, now, read_json, ref, write_bytes, write_json
+
+from common_f0 import candidates
 
 
 def run(plan_path, output):
