@@ -1,0 +1,84 @@
+{
+  "id": "E-20261024-FOUR-SOURCE-001",
+  "at_utc": "2026-10-24T13:17:10.074054+00:00",
+  "fold": 0,
+  "formula": "baseline UNION (coded INTERSECT (grounded UNION sampled UNION qwen3))",
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+      "bytes": 507921,
+      "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "grounded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/strong-support-union-F0-v1/prediction.jsonl",
+      "bytes": 125003,
+      "sha256": "1b515fa111ad2b67a523e5d3e288196faf2b93646c342cf5fc38e2dfb70199aa"
+    },
+    "sampled": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/assembled-v1/primary-B0-union-S1-intersect-S2.pred.jsonl",
+      "bytes": 124775,
+      "sha256": "3ec75365ebcf1e0ae386faadb3b5791e7a2a47ea7e37d3d7bf0872d08d9e9ae1"
+    },
+    "qwen3": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/f0-v1/quality/protected-union.prediction.jsonl",
+      "bytes": 126117,
+      "sha256": "1cca1391c9d836a0775001d5b69d74354d9ea5a192d3f8110313b2875c468399"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/two_of_three.prediction.jsonl",
+      "bytes": 112769,
+      "sha256": "311aee8c6d586fd843713a5d4219cc800b135bdfd00b36f5f41cadd96c192921"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/two_of_three.metrics.json",
+      "bytes": 12930,
+      "sha256": "d781a75b573ce6c1ce70f325562ca754ca476cd1363b2aeca0dcae45ade445a1"
+    },
+    "coded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/coded-alone/pred.jsonl",
+      "bytes": 124301,
+      "sha256": "9e6b58402a64c16e720091fa49274eee6155bb94afebda3922c3e3ea188bcc8f"
+    },
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-four-source-fusion/solutions/four_source_fusion/decision.json",
+      "bytes": 1276,
+      "sha256": "186155a2b01f12f88b63336344afbbcb9e705d512fb8ce00786608f06b8238be"
+    },
+    "source": {
+      "path": "/workspace/patientphex-worktrees/explore-four-source-fusion/solutions/four_source_fusion/run.py",
+      "bytes": 6207,
+      "sha256": "65e0c1d27345a67135d44f176cbf754ff8bda88844e94e7175f2ea07ae37ce7b"
+    }
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1",
+  "baseline_score": 0.7244573553320438,
+  "baseline_relations": 330,
+  "entities": 947,
+  "patients": 47,
+  "ancestry": "C strict sameF2F3 train32 adapter2c777e88; source candidate/oldN48 ancestors excludeF0 per response-code F0 ancestry and oldthree-source205ac0a4. Fullcoded58/47patients; noF0labels inmap/prompt/decoder. F0alreadyusedforresearch, notblind.",
+  "prior_ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/F0-ancestry.json",
+    "bytes": 6167,
+    "sha256": "205ac0a4b635c80325f3ddd8e13a61add653016b32ddd78abfb8a4c532d6c9fa"
+  }
+}

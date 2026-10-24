@@ -7,3 +7,5 @@
 source/plan62565701已先推送核验，13:04:07共同freeze后唯一1v2、旧0、无NN/fit。完整预测/指标在外部，见[入口](evidence/entry.json)。后续：等待原strict coded58，按原固定公式做F0；双折正才提出full64。不同去重解码政策不混入本实验。
 
 自身12内容小包（含新完整预测）已在.100持久并实际2次read_file回读、逐SHA/fsync/reopen通过，zip31982B，回执[1f66ef85](evidence/F1-backup.json)。旧四源raw/模型沿原完整包继承，不重复备份。
+
+F0原strict58已完整，按原决定绑定[同公式计划](plan-F0.json)。C单臂.700894已知、低当前强B3 .724457；此不是单臂过门替代融合验收。仍只在完整预测冻结后唯一v2，不改formula/source选择。
