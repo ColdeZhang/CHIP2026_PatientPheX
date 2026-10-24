@@ -102,3 +102,7 @@ F0 original58/16docs/47patients/415concepts/1166pairs are exact descendants of C
 ### 2026-10-24 12:55 UTC — F0 CPU start unknown during explicit offline
 
 A100 CPU5members/10pieces verified deployment plan1d136fad; .100 original shortHTTP stoppedtrue. Unique CPU120+5 start request returned explicitLUNA, nojob returned; originalintent/error retained. Readonly recovery follows recovery-offline-boundary.json before any conditional action, no repeated CPU/model start. F0 GPU has not been requested. Same inference generate/loading/decode calls and entire raw-first sampling-loop AST exactly match F1; unchanged PT decoder. Only F0metadata/cap and required longest-formal-first scheduling differ.
+
+### 2026-10-24 12:58 UTC — original F0 CPU remains unobservable
+
+The scheduled single read12:58:27.406877 again returned explicitLUNA, not model/CPU failure. Latest independent boundary13:01:32.406877; original startintent remains, no model or CPU restart. New recovery reader uses the maximum of preserved offline boundaries. F1 positive result and durable archive unaffected.

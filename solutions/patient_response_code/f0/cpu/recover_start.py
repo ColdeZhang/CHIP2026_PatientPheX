@@ -17,7 +17,7 @@ def call(name,params,label):
  if r.get('isError'):raise RuntimeError('Ambiguous/offline preserved: inspect original state, no blind replay')
  return r.get('structuredContent') or json.loads(r['content'][0]['text'])
 if a.action=='inspect':
- boundary=json.loads((B/'recovery-offline-boundary.json').read_text());assert time.time()>=boundary['next_inventory_not_before_epoch']
+ boundaries=[json.loads(q.read_text()) for q in B.glob('recovery-offline-boundary*.json')];assert boundaries;assert time.time()>=max(q['next_inventory_not_before_epoch'] for q in boundaries)
  code='''from pathlib import Path
 import os,json,time
 r=Path(ROOT);out={'at_unix':time.time(),'namespace':str(r),'processes':[],'files':{}}
