@@ -1,0 +1,80 @@
+{
+  "status": "complete_predictions_frozen_before_quality_evaluation",
+  "plan_sha256": "df959495915550ed8300ea293523cfa872ed7c71ebfd704c1e4864f62b5b5766",
+  "source_sha256": "443acaeaa5e670a76890745b1c6eda0cae7dcfef012b22bf3023b6c19b02f04b",
+  "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+  "model_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+  "model_parameters": 122759794,
+  "model_variables": 201,
+  "strict_native_gpu_smoke_sha256": "8d0ed6465ec09c8894de2bba54b7d7791f78b847d9942ddb18ddea5ae2a6f185",
+  "old_label_order_sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+  "public_model_training_on_task": false,
+  "new_forward_keys": 347634,
+  "reused_forward_keys": 15145,
+  "cache_parent_sha256": "d3d813f40c17f637440c77f89803d7f9ae4f82175da070a9a26ba99e9dc7067f",
+  "additional_cache_parent_sha256": "270c1bd405c52ad24cfdeeca668962e96158dcfa0b50be4cd23dd86b80905e6f",
+  "fixed_policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "counts": {
+    "raw_neural_candidates": 446799,
+    "raw_dictionary_candidates": 6100,
+    "hybrid_pre_abbreviation": 8684,
+    "hybrid_after_abbreviation": 8933,
+    "canonical_kept": 8929,
+    "invalid_current_branch_dropped": 4
+  },
+  "inference_seconds": 238.0604105181992,
+  "elapsed_seconds": 326.82752249389887,
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "memory_growth": true,
+  "tf32_default_enabled": true,
+  "GPU_peak_memory": {
+    "current": 527161088,
+    "peak": 664717568
+  },
+  "outputs": {
+    "preparation.json": {
+      "sha256": "4525b9b09cfbe542feb3dc53ef68f0bccb0439187b7c57235b7fb2975c713b40",
+      "bytes": 556
+    },
+    "new-forward-predictions.jsonl": {
+      "sha256": "9b2330a6776a0287be8d145707d25dd3476f5452caab8ad8db64830af910a480",
+      "bytes": 182976499
+    },
+    "unique-raw-predictions.jsonl": {
+      "sha256": "b7e6e69607500ad40a84c2138db7fb650d9add312b8208df2c81818bc8446c87",
+      "bytes": 191239818
+    },
+    "raw-neural-candidates.jsonl": {
+      "sha256": "a187c9578f62f535cca26581bb637acca00b45d13828bb2f4d731947b6842895",
+      "bytes": 277108985
+    },
+    "raw-dictionary-candidates.jsonl": {
+      "sha256": "4540c8ed26eebcb73acd5d17a8c5deb00f9b168cf8ba19d1542ca3d1acda8ad4",
+      "bytes": 1419603
+    },
+    "native-hybrid-stages.jsonl": {
+      "sha256": "ea71de24ec95f82890082011a889512e36a3dc4d09993f90087eef0138aded52",
+      "bytes": 1040957
+    },
+    "canonical-entities.jsonl": {
+      "sha256": "fbcadc3664c38fb9862ef744a663beb4028749eae9fbda5a2b22570d49fec2ae",
+      "bytes": 2321734
+    }
+  }
+}
