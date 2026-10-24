@@ -277,6 +277,18 @@ FLA 数值探针将实际 Transformers 5.20.2 的缓存 `dict[int, Tensor | None
 
 **避免方法**：按实际版本的容器结构取值，保留层号、键、shape 和 dtype；未知类型、漏键或意外空状态应明确失败，不能简单跳过非 Tensor 项而假通过。修复先在 CPU 用实际容器和混合 dict/list/tuple/Tensor/None 检查，再在原绝对预算剩余时间内恢复独立 attempt。此次只替换缓存采样与结构比较，原 probe、计划、输入和数值门槛未改；后续单块合同通过，全模型另因原始 logits 超容差停止，两个原因分列。统一终审 `validation/fla-kernel-terminal-review/review.json` SHA `b78eec326865b71ac2c41e96b3ae8b7f2423928d3139e95716ae0a4f948ba2c1`，源码与完整结果见检索分支 `solutions/case_retrieval/fla_kernel_readiness/`。
 
+## H44：检查点通配符会误收同前缀的备份回执
+
+顺序增强第一轮完成并持久导出后，controller将回执命名为`epoch-001-export-ack.json`。旧trainer用`glob('epoch-*')`判断最新检查点，该普通文件被误认为最新epoch，导致第二轮在模型加载前退出；第一轮权重、优化器和RNG完整有效。这是恢复入口故障，不是训练数值或质量失败。
+
+**避免方法**：模型目录与回执使用不同命名空间；发现冲突时，先保存原失败与回执字节，再将回执移至不匹配的`export-ack-epoch-001.json`，核对所有同前缀项确实都是完整检查点。此次仅修改controller两处回执basename，trainer、数据、epoch1全状态与原绝对截止保持；3项实际CPU反例和持久ACK核验通过，增量独审 `validation/candidate-order-warmstart-entry-review/ack-filename-recovery-addendum.json` SHA `baa8be3b795510c40e8d3b73ff898d81f979dc3079bace42d884080fbab01a11`。后续恢复必须按台账的新controller入口，不能误启保留的旧失败入口；修复通过不代表第二轮训练或质量已完成。
+
+## H45：完整公开权重也可能存在旧序列化布局差异
+
+NeuralCR官方fastText文件完整大小1,345,465,351字节、SHA `e9947f25…`核验通过，但其首词`the\0`位于84字节、prune字段位于88字节，与固定fastText 0.9.1的保存/加载布局相反。不能把下载完整当作可直接安全加载，也不能在未知结构上试着交换字节。
+
+**避免方法**：先以无模型解析器核完整666,817词条、两矩阵shape、实际参数和EOF，再对照指定版本源码。仅在本文件精确前提满足时，独立派生副本交换84–96区间内的4/8字节，保留原件；前84字节、96后全部字节、词/count/type顺序及两完整数值矩阵均核对不变。派生SHA `fa7509ec…`后完成唯一原生CPU加载及四合成接口，实际10ensemble/60变量数值精确相等；H5加载的`np.array_equal`不应冒称另做了内存字节SHA。统一终审 `validation/neuralcr-native-terminal-review/review.json` SHA `050b512b8c91cfa655e4edf6d386342e5f7aab71600812718dae04cab08d1508`。这是该固定文件的兼容处理，不是通用修复，也不代表赛事质量改善。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
