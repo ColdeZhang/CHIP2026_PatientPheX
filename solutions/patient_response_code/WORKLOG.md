@@ -134,3 +134,11 @@ Newnamespace full64: originalshort265 train64/173patients/1908CID/5328pairs; ori
 ### 2026-10-24 13:23 UTC — full64 CPU deployment offline, no start
 
 Original629,576B package .100 stage/server successful; A100 fetch13:23:37.996 returned explicitLUNA, not CPU/modelfailure. Sole readonly namespace recovery not before13:26:42.996; retain originalHTTPdeadline13:33:31.506638 and original package, adopt only byteexactexistingfiles. No CPU/GPU start requested.
+
+### 2026-10-24 13:25 UTC — independent native100 CPU accepted
+
+A100 originalCPU has neverstarted; explicitLUNA evidence retained. Rootauthorized .100 independentnamespace using exact7filepackage without retransmission, actualdeploymentSHA/fsync passed. SoleCPU proc_53d9fb9c/PID2741879 accepted2026-10-24T13:25:12.84241827Z;120+TERM5, CUDAhidden, Torch2.7.1+TF5.20.2 vs plannedA1002.6 disclosed. This is a newCPUattempt, not recovery or duplicateA100model. Originalcode/inputs/codec remainexact.
+
+### 2026-10-24 13:25–13:29 UTC — full64 actualCPU pass, conditional GPU source frozen
+
+.100CPU实际28.590s rc0/native27.836s，train918058/17399/max6462、held523821/max13425；两Pareto6462/125与4800/128。全部329原生IDs与roundtrip通过。OriginalA100 CPU未start，第二次13:26:49只读LUNA后统一13:29:54窗口。Root条件授权240+30H51→fresh5400+30两ACK→64pure1200+30，无quality；probeplan83497912、12FB52201tokens，旧warmup.05实核→4/68。formal/helper并行准备，尚无GPU启动。
