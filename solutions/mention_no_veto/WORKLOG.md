@@ -2,4 +2,4 @@
 
 E-20261024-MENTION-NO-VETO-001 已负结案：.728697536469→.722573801595，删133=60TP73FP，1新v2/旧0，无模型或训练。基于main979e9492，执行源67b3b981，原prelock667d268d。
 
-20项CPU合同、完整1416记录匹配、完整预测/格式/对象保护通过。固定门未通过，不扩F0/原dev，细节见 REPORT.md 与 evidence/terminal.json。完整产物仓外，正在持久备份；失败证据保留。
+20项CPU合同、完整1416记录匹配、完整预测/格式/对象保护通过。固定门未通过，不扩F0/原dev，细节见 REPORT.md 与 evidence/terminal.json。完整产物仓外，16内容小包已上传并实际2次read_file回收、逐SHA/fsync/reopen核验（5e280a59）；失败证据保留。
