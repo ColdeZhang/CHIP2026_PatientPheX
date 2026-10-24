@@ -20,3 +20,5 @@
 - 已完整终态：80/80 fresh、80 strict complete、0弃权、无cap；infer504.491s/child505.297s。11:22:53.883520实际GPU1 0MiB/noapps，已交还root。
 - 固定F1两pred共同freeze554e1c92（11:24:22.324593）后各1v2、旧0，格式0err/warn：single .653487056578，fullsupport_union .689312034492，比强.686338981272高.002973053220。union micro .720737327189（−.017910503285）、macro .621571874990（+.029802716166）；Task1不变，471→565关系，新增94=25TP69FP。只有预写union通过F0候选门，尚无F0/原dev泛化提升结论。
 - 终包892169B/338件，SHA46d568798e7c2d672d0363a7a065213266621a6a6993f2494a4800085b2d96d0，各件全SHA回收；整包read_file一次UNKNOWN后128KiB分块恢复，无重复train/infer。详见evidence/terminal-pointer.json和外部terminal-manifest.json；根共享记录由root收录。
+
+- 最终source/两质量终点补包108292B/48件，SHA92004344，已在同.100真实重开全SHA并联核原338件46d56879；evidence/quality-backup-ack.json。交validation只读终审；接下来仅CPU核F0原祖先/完整全文CID和可用runtime，未授权/未启动新GPU。
