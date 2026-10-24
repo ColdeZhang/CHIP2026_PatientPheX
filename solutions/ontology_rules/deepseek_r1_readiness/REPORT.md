@@ -13,3 +13,7 @@ BF16权重约15.256GiB，理论batch1 KV为每token147456B，8192总token约1.12
 下一已获根线程授权仅资产准备：.100持久自有目录缓存优先，单2100秒+TERM30固定下载窗口、完整SHA/真实头核；不装环境、不加载模型、不GPU/新gold/评分。原metadata和当前源码先入Git，未知启动/监控先核原intent/job，partial保留，不重复下载。
 
 资产唯一作业已于2026-10-24T03:05:56.359Z启动：`proc_1c596785-307e-4471-8541-c982943da8bb`，.100 mount5a9955da；绝对截止2026-10-24T03:40:49.472593+00:00+TERM30。原intent/job与远端启动标记是恢复依据；原Git401已由主线程03:07代推解决：4edacb9 push+lsremote exact，源/job已GitHub备份；远端3源SHA与Python3.10实际编译也通过。恢复入口`assets/poll_original.py`，不要重发start。
+
+原生CPU终点已完成：首入口因TF5默认BatchEncoding与list比较失败4.791秒，实际单行input_ids逐项相等；只加return_dict=False后5.582秒通过全部80/16篇，消息/候选/患者原样。native长度852/3425/6002（min/median/max），固定index0/67/73输入2171/3425/6002；parser2正12负通过，未加载模型。YaRN实际64个FP32频率与HF4.51官方参考逐位/字节SHA相同，缩放均1.138629436111989；两版均不读取非标准attn_factor，保留原配置及warning，不推断其他引擎或作者意图。脚本首次占位符语法错误原留，未进CPU函数；修复后实际通过。完整[CPU清单](cpu-terminal-manifest.json)，资产仍在原35分钟窗口下载。
+
+后继三条探针仅检格式/成本：若1024预算截断，它只说明此预算不可用，不否定R1全部质量机制；保存完整实际生成ID/token速度，是否值得更大预算或80条须由根线程据实测另定。
