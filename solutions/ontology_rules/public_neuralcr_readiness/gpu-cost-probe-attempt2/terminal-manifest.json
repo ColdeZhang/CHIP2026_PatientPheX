@@ -1,0 +1,296 @@
+{
+  "status": "complete_fixed_GPU_cost_probe_PASS_pending_terminal_independent_review",
+  "frozen_at_utc": "2026-10-24T02:08:42.791824+00:00",
+  "scope": "One intended fixed 3x512 input-only cost probe plus original4 CPU synthetic comparisons; initial API attempt had no model load/forward; no full train64 cache/fit/quality yet",
+  "attempt1": {
+    "failure_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/failure-summary.json",
+      "bytes": 1661,
+      "sha256": "20d7c5b574c167942de715c3ec8abb3fde24876bf2a33152f485be029ff7bf8e"
+    },
+    "original_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/probe.py",
+      "bytes": 8770,
+      "sha256": "0695d65c41dde1a08c5acdc25293f179d8c3b2badcdcd12c4d639f34c65a56e2"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/plan.json",
+      "bytes": 6913,
+      "sha256": "d71f5b0639da25ae8be528a08f15626e5e6fa382df61a3c762ab5e73b1a0ba2c"
+    },
+    "result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/result.json",
+      "bytes": 1097,
+      "sha256": "00f0abd9f8bf0183fe8a757327385610ea7d5a4dfe42d314eeb14638d04b3484"
+    },
+    "wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/run-state.json",
+      "bytes": 2180,
+      "sha256": "654dc6af64ab10bcd3cc3a34e7c97fd6008223d14ac6051f0c23347a72683641"
+    },
+    "child_seconds": 9.198835492134094,
+    "child_returncode": 1,
+    "model_load_or_forward": false,
+    "actual_GPU_released": {
+      "at_utc": "2026-10-24T01:58:17.241714+00:00",
+      "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, NVIDIA A100-SXM4-40GB, 0, 40960",
+      "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+    }
+  },
+  "minimal_repair": {
+    "diff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/probe-api.diff",
+      "bytes": 452,
+      "sha256": "a1a863a6ae53e414149d5681fa9aa1cc0395d964736b141841890e738a1ab2b1"
+    },
+    "source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/probe.py",
+      "bytes": 8760,
+      "sha256": "f2b11577ade9418142567beb9ba61c2754929a0d052d2743294f06e0fce02e05"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/plan.json",
+      "bytes": 7932,
+      "sha256": "126ae2db4335ec16596a8681fc3b9ae37a1a7c24021eb52e47a22976596fe6dd"
+    },
+    "CPU_api_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/CPU-policy-result.json",
+      "bytes": 2086,
+      "sha256": "a0c4ad62a4024d87a02614df9e7f9601dc0567a23d4a6efc331ab9f99881e524"
+    },
+    "CPU_job": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/CPU-policy-job.json",
+      "bytes": 601,
+      "sha256": "cd2f6ea230442a4b6b4f57a3865cd57b724a56573155dab5af252cbec75d3859"
+    },
+    "change": "Only harness TensorFlow import switched from compat.v1 to top-level TF2; ncrmodel math/import/weights unchanged. Actual CPU global float32 and original compat layer compute/variable dtypes passed; TF32 false."
+  },
+  "attempt2": {
+    "result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/result.json",
+      "bytes": 28177,
+      "sha256": "3701009bbf03dfe11c4046f962bc2dcb17be813a8945007b46324e8bccf7bdad"
+    },
+    "wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/run-state.json",
+      "bytes": 2241,
+      "sha256": "1981eb575f92b811b4ad23fcf4a3567a70c6fb0be59e6fa18c0034c06f59a0e3"
+    },
+    "child_returncode": 0,
+    "child_seconds": 23.150384284555912,
+    "program_seconds": 22.078737746924162,
+    "model_load_seconds": 9.53977083414793,
+    "cap_seconds": 170,
+    "TERM_grace_seconds": 30,
+    "all60_weights": "Actual GPU model variables shape/dtype/finite/np.array_equal to full H5, not an additional native-variable byte hash",
+    "parameters": {
+      "NN": 157705490,
+      "FT_input_and_output": 333363400,
+      "total": 491068890,
+      "ensembles": 10
+    },
+    "runtime": {
+      "tensorflow": "2.12.0",
+      "numpy": "1.23.5",
+      "GPU_device_details": {
+        "compute_capability": [
+          8,
+          0
+        ],
+        "device_name": "NVIDIA A100-SXM4-40GB"
+      },
+      "mixed_precision_policy": "float32",
+      "TF32_enabled": false,
+      "GPU_visible_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "CPU_threads": 1
+    },
+    "TF32_enabled_at_end": false,
+    "batch_seconds": [
+      0.6076809652149677,
+      0.26827019453048706,
+      0.2676839679479599
+    ],
+    "batch_shapes": [
+      [
+        512,
+        14261
+      ],
+      [
+        512,
+        14261
+      ],
+      [
+        512,
+        14261
+      ]
+    ],
+    "batch_forward_and_sync_seconds": [
+      0.40907301008701324,
+      0.05895819514989853,
+      0.05909093841910362
+    ],
+    "all_full_probabilities_finite_in_range_and_normalized": true,
+    "top1_rows": 1536,
+    "synthetic_queries": 41,
+    "synthetic_top1_IDs_query_order_thresholds_spans_identical_to_CPU": true,
+    "synthetic_CPU_score_max_abs_error": 4.76837158203125e-07,
+    "TF_allocator_peak_bytes": 1203339008,
+    "fresh_gpu_gate": {
+      "at_utc": "2026-10-24T02:03:45.283555+00:00",
+      "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, NVIDIA A100-SXM4-40GB, 0, 40960",
+      "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+    },
+    "actual_GPU_released": {
+      "at_utc": "2026-10-24T02:04:08.508145+00:00",
+      "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, NVIDIA A100-SXM4-40GB, 0, 40960",
+      "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+    }
+  },
+  "aggregate_GPU_child_seconds": 32.349219776690006,
+  "within_original180_seconds_main_budget": true,
+  "cost_estimate": {
+    "queries": 408272,
+    "batches_at512": 798,
+    "low_seconds": 223.49157425388694,
+    "high_seconds_with25percent_warm_margin_and60seconds_setup_io": 337.41163310036063,
+    "formula": "low=measured_load+firstbatch+797*min(warm); high=measured_load+firstbatch+797*max(warm)*1.25+60",
+    "not_measured_full_run": true,
+    "not_statistical_confidence_interval": true,
+    "selection_bias": "deterministic first1536 keys are an a-prefix, not a representative content sample; actual full vocabulary/preprocessing/serialization may differ",
+    "batch_timing_scope": "original get_match incl phrase2vec, native FP32 NN, synchronized .numpy, extra full probability integrity check and native top1 argpartition; full probability file writing excluded; no 512b repetitions"
+  },
+  "estimate_interpretation": "223.49–337.41s is a planning computation forecast from only2 warm prefix batches; not full-cache measurement or confidence interval. Connector transfer and outages are not measured by GPU benchmark.",
+  "source_and_input_refs": {
+    "launch.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/launch.py",
+      "bytes": 2655,
+      "sha256": "c22ab2136ec66623a4fc4510788a8a561ed51835502fd6a32aac59f309a75708"
+    },
+    "control.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/control.py",
+      "bytes": 5649,
+      "sha256": "663d1447eecbbf8cfede5dd9629c60f291b6cea7e3bc9d9342125cd151b69bb7"
+    },
+    "check_policy_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/check_policy_cpu.py",
+      "bytes": 2862,
+      "sha256": "8963faddd0af045e1810ec093f0d14058c580576ed3ed2092eba7d5bc828159d"
+    },
+    "cpu_launch.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/cpu_launch.py",
+      "bytes": 1086,
+      "sha256": "611f6bb9557e39f3b3d41ffd5e424fb38363437989d786a43713ce3f318ee352"
+    },
+    "deployment-state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/deployment-state.json",
+      "bytes": 1197,
+      "sha256": "a187583c799ec962efb61cbe2d9c51874f43485247c47783e44617022b05d096"
+    },
+    "CPU-start-intent.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/CPU-start-intent.json",
+      "bytes": 1141,
+      "sha256": "a5bf96331a53cc174e2fe8e87a5e7e93524b74fe671b16afeed21d4029597b86"
+    },
+    "CPU-tool-receipt.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/CPU-tool-receipt.json",
+      "bytes": 629,
+      "sha256": "9da8583911cd49f257542d5184a791db2d15196134234ecf887d7f232fd31991"
+    },
+    "sequence-release-authorization.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/sequence-release-authorization.json",
+      "bytes": 949,
+      "sha256": "2010a30f6b69d4861800918ba33d2a547fa9f8a28ad23bfb9f52b5edfdd2ae62"
+    },
+    "start-intent.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/start-intent.json",
+      "bytes": 617,
+      "sha256": "f8af2cabe3e807b16c9828cda4694f2e3c2ab412d8867cc43937537bd3a39e48"
+    },
+    "managed-job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/managed-job.json",
+      "bytes": 383,
+      "sha256": "e56faac1b6fae04629eb3308fac7d59398445d6cbd9100f60ddb11780cab41a9"
+    },
+    "probe-inputs.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/probe-inputs.json",
+      "bytes": 44193,
+      "sha256": "e4bda364b3c6011b813794db1a905834eba63d212e966506e1f6788735d267d4"
+    },
+    "cpu-reference.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/cpu-reference.json",
+      "bytes": 23532,
+      "sha256": "8c3aea0021d2809270c04204ed7847f6a23cfe042998bcce87288dc3e3e0ad12"
+    }
+  },
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/handoff-manifest.json",
+    "bytes": 2618,
+    "sha256": "ba8bc5337661fa1703656ca0b939b73b15149e561364c86ef2cb58bbc7efd640"
+  },
+  "prior_full_CPU_readiness": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/readiness-result.json",
+    "bytes": 16691,
+    "sha256": "daa06aca4c276949120a16cc01685c6a4e016183e10b606ea4738b88df2277b9"
+  },
+  "prior_CPU_independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/review.json",
+    "bytes": 33717,
+    "sha256": "050b512b8c91cfa655e4edf6d386342e5f7aab71600812718dae04cab08d1508"
+  },
+  "compact_cache_static_design": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/cache-replacement-static/manifest.json",
+    "bytes": 2948,
+    "sha256": "b94dea98e58ccdec680990fd8a703a189bcf2577c87d3d7f6d47799a5d939b7e"
+  },
+  "remote_batch_artifacts": [
+    {
+      "probabilities": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch0.probabilities.npy",
+        "bytes": 29206656,
+        "sha256": "a6fce3556c7738b3e2139d8e3915f17b8629e192dae9e6d6717de0b40b89fe06"
+      },
+      "top1": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch0.top1.jsonl",
+        "bytes": 39556,
+        "sha256": "97fce77518eb0cce194517e673fe146f98914ed1668af07d78b13ce1a98ced14"
+      }
+    },
+    {
+      "probabilities": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch1.probabilities.npy",
+        "bytes": 29206656,
+        "sha256": "a585a73eb4cf0ed3e0a3800664ca729dc3f286061b471e797ca5b2f73f0925ac"
+      },
+      "top1": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch1.top1.jsonl",
+        "bytes": 41464,
+        "sha256": "e347bc5a93a34cd4d183be95180cccdd7c4a5c7c9259095b50095a66d1444a0d"
+      }
+    },
+    {
+      "probabilities": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch2.probabilities.npy",
+        "bytes": 29206656,
+        "sha256": "0588d83f257c389ef320d365992c839f4f0c380f17454d2ce3b7778840622b4c"
+      },
+      "top1": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch2.top1.jsonl",
+        "bytes": 41195,
+        "sha256": "25e909ef1480bf576a984282104da4a190a75a84f7536161f8b97c5d82cc7ab6"
+      }
+    }
+  ],
+  "external_logs": {
+    "probe.stdout.log": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/probe.stdout.log",
+      "bytes": 61,
+      "sha256": "18a9d070b822bc1093cf99e68ca2dee5ffd622f83c8b1d44b7400e5ce542fd58"
+    },
+    "probe.stderr.log": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe-attempt2/probe.stderr.log",
+      "bytes": 396,
+      "sha256": "92ee34c11233d7ca4b6e8a926927233d18487d493b1a83788be6e89a91599b5a"
+    }
+  },
+  "next": "Root authorized a separate900s+TERM30 fulltrain64 pure input cache after this actual cost and static dependency closure; it has not started here. Full cache/fit/quality must have separate source/plan and completeness evidence."
+}

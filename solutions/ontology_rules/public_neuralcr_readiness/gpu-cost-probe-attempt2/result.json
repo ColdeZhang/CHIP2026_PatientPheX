@@ -1,0 +1,1068 @@
+{
+  "status": "pass_fixed_cost_probe_no_quality",
+  "started_at": "2026-10-24T02:03:45.408391+00:00",
+  "source_sha256": "f2b11577ade9418142567beb9ba61c2754929a0d052d2743294f06e0fce02e05",
+  "plan_sha256": "126ae2db4335ec16596a8681fc3b9ae37a1a7c24021eb52e47a22976596fe6dd",
+  "competition_gold_or_quality": false,
+  "fit": false,
+  "batches": [
+    {
+      "index": 0,
+      "phase": "first_forward_after_load",
+      "queries": 512,
+      "native_get_match_seconds": 0.6076809652149677,
+      "forward_and_sync_seconds": 0.40907301008701324,
+      "output_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+      "output_shape": [
+        512,
+        14261
+      ],
+      "output_dtype": "float32",
+      "probability_sum_max_error": 3.5762786865234375e-07,
+      "outputs": {
+        "probabilities": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch0.probabilities.npy",
+          "bytes": 29206656,
+          "sha256": "a6fce3556c7738b3e2139d8e3915f17b8629e192dae9e6d6717de0b40b89fe06"
+        },
+        "top1": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch0.top1.jsonl",
+          "bytes": 39556,
+          "sha256": "97fce77518eb0cce194517e673fe146f98914ed1668af07d78b13ce1a98ced14"
+        }
+      },
+      "TF_allocator_memory": {
+        "current": 713527040,
+        "peak": 1203338752
+      }
+    },
+    {
+      "index": 1,
+      "phase": "warm",
+      "queries": 512,
+      "native_get_match_seconds": 0.26827019453048706,
+      "forward_and_sync_seconds": 0.05895819514989853,
+      "output_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+      "output_shape": [
+        512,
+        14261
+      ],
+      "output_dtype": "float32",
+      "probability_sum_max_error": 2.384185791015625e-07,
+      "outputs": {
+        "probabilities": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch1.probabilities.npy",
+          "bytes": 29206656,
+          "sha256": "a585a73eb4cf0ed3e0a3800664ca729dc3f286061b471e797ca5b2f73f0925ac"
+        },
+        "top1": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch1.top1.jsonl",
+          "bytes": 41464,
+          "sha256": "e347bc5a93a34cd4d183be95180cccdd7c4a5c7c9259095b50095a66d1444a0d"
+        }
+      },
+      "TF_allocator_memory": {
+        "current": 713527040,
+        "peak": 1203339008
+      }
+    },
+    {
+      "index": 2,
+      "phase": "warm",
+      "queries": 512,
+      "native_get_match_seconds": 0.2676839679479599,
+      "forward_and_sync_seconds": 0.05909093841910362,
+      "output_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+      "output_shape": [
+        512,
+        14261
+      ],
+      "output_dtype": "float32",
+      "probability_sum_max_error": 2.384185791015625e-07,
+      "outputs": {
+        "probabilities": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch2.probabilities.npy",
+          "bytes": 29206656,
+          "sha256": "0588d83f257c389ef320d365992c839f4f0c380f17454d2ce3b7778840622b4c"
+        },
+        "top1": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/gpu-cost-probe-attempt2/batch2.top1.jsonl",
+          "bytes": 41195,
+          "sha256": "25e909ef1480bf576a984282104da4a190a75a84f7536161f8b97c5d82cc7ab6"
+        }
+      },
+      "TF_allocator_memory": {
+        "current": 713527040,
+        "peak": 1203339008
+      }
+    }
+  ],
+  "synthetic_tests": [
+    {
+      "text": "Seizures.",
+      "queries": [
+        {
+          "query": "Seizures",
+          "HPO": "HP:0001250",
+          "score": 0.991995632648468
+        }
+      ],
+      "spans": [
+        {
+          "start": 0,
+          "end": 8,
+          "text": "Seizures",
+          "HPO": "HP:0001250",
+          "score": 0.991995632648468
+        }
+      ],
+      "seconds": 0.2561465948820114,
+      "CPU_score_max_abs_error": 5.960464477539063e-08,
+      "CPU_top1_ID_query_order_threshold_and_span_coordinates_exact": true,
+      "score_tolerance": {
+        "rtol": 0.0001,
+        "atol": 1e-05
+      },
+      "forwards": [
+        {
+          "forward_and_sync_seconds": 0.25538894161581993,
+          "device": "/job:localhost/replica:0/task:0/device:GPU:0",
+          "probability_sum_max_error": 5.960464477539063e-08,
+          "shape": [
+            1,
+            14261
+          ],
+          "dtype": "float32"
+        }
+      ]
+    },
+    {
+      "text": "The patient has kidney cancer.",
+      "queries": [
+        {
+          "query": "The",
+          "HPO": "None",
+          "score": 0.9996781349182129
+        },
+        {
+          "query": "The patient",
+          "HPO": "None",
+          "score": 0.9997907876968384
+        },
+        {
+          "query": "The patient has",
+          "HPO": "None",
+          "score": 0.9999935030937195
+        },
+        {
+          "query": "The patient has kidney",
+          "HPO": "None",
+          "score": 0.7998143434524536
+        },
+        {
+          "query": "The patient has kidney cancer",
+          "HPO": "HP:0009726",
+          "score": 0.6987146735191345
+        },
+        {
+          "query": "patient",
+          "HPO": "None",
+          "score": 0.9995288848876953
+        },
+        {
+          "query": "patient has",
+          "HPO": "None",
+          "score": 0.9999927282333374
+        },
+        {
+          "query": "patient has kidney",
+          "HPO": "None",
+          "score": 0.798626184463501
+        },
+        {
+          "query": "patient has kidney cancer",
+          "HPO": "HP:0009726",
+          "score": 0.7060086131095886
+        },
+        {
+          "query": "has",
+          "HPO": "None",
+          "score": 0.9999944567680359
+        },
+        {
+          "query": "has kidney",
+          "HPO": "None",
+          "score": 0.925233006477356
+        },
+        {
+          "query": "has kidney cancer",
+          "HPO": "HP:0009726",
+          "score": 0.9583740234375
+        },
+        {
+          "query": "kidney",
+          "HPO": "HP:0000077",
+          "score": 0.6149952411651611
+        },
+        {
+          "query": "kidney cancer",
+          "HPO": "HP:0009726",
+          "score": 0.9919754862785339
+        },
+        {
+          "query": "cancer",
+          "HPO": "HP:0002664",
+          "score": 0.9880913496017456
+        }
+      ],
+      "spans": [
+        {
+          "start": 16,
+          "end": 29,
+          "text": "kidney cancer",
+          "HPO": "HP:0009726",
+          "score": 0.9919754862785339
+        }
+      ],
+      "seconds": 0.07653940841555595,
+      "CPU_score_max_abs_error": 4.76837158203125e-07,
+      "CPU_top1_ID_query_order_threshold_and_span_coordinates_exact": true,
+      "score_tolerance": {
+        "rtol": 0.0001,
+        "atol": 1e-05
+      },
+      "forwards": [
+        {
+          "forward_and_sync_seconds": 0.07379305735230446,
+          "device": "/job:localhost/replica:0/task:0/device:GPU:0",
+          "probability_sum_max_error": 1.1920928955078125e-07,
+          "shape": [
+            15,
+            14261
+          ],
+          "dtype": "float32"
+        }
+      ]
+    },
+    {
+      "text": "She has short-stature; hearing loss.",
+      "queries": [
+        {
+          "query": "She",
+          "HPO": "None",
+          "score": 0.9998719096183777
+        },
+        {
+          "query": "She has",
+          "HPO": "None",
+          "score": 0.9999886751174927
+        },
+        {
+          "query": "She has short",
+          "HPO": "None",
+          "score": 0.9999187588691711
+        },
+        {
+          "query": "She has short stature",
+          "HPO": "None",
+          "score": 0.9584744572639465
+        },
+        {
+          "query": "has",
+          "HPO": "None",
+          "score": 0.9999944567680359
+        },
+        {
+          "query": "has short",
+          "HPO": "None",
+          "score": 0.9999191164970398
+        },
+        {
+          "query": "has short stature",
+          "HPO": "HP:0004322",
+          "score": 0.732689619064331
+        },
+        {
+          "query": "short",
+          "HPO": "None",
+          "score": 0.9639006853103638
+        },
+        {
+          "query": "short stature",
+          "HPO": "HP:0004322",
+          "score": 0.9877088665962219
+        },
+        {
+          "query": "stature",
+          "HPO": "HP:0004322",
+          "score": 0.9051624536514282
+        },
+        {
+          "query": "hearing",
+          "HPO": "HP:0000365",
+          "score": 0.9214844703674316
+        },
+        {
+          "query": "hearing loss",
+          "HPO": "HP:0000365",
+          "score": 0.9667060971260071
+        },
+        {
+          "query": "loss",
+          "HPO": "None",
+          "score": 0.8702147603034973
+        }
+      ],
+      "spans": [
+        {
+          "start": 8,
+          "end": 21,
+          "text": "short-stature",
+          "HPO": "HP:0004322",
+          "score": 0.9877088665962219
+        },
+        {
+          "start": 23,
+          "end": 35,
+          "text": "hearing loss",
+          "HPO": "HP:0000365",
+          "score": 0.9667060971260071
+        }
+      ],
+      "seconds": 0.09735330939292908,
+      "CPU_score_max_abs_error": 2.384185791015625e-07,
+      "CPU_top1_ID_query_order_threshold_and_span_coordinates_exact": true,
+      "score_tolerance": {
+        "rtol": 0.0001,
+        "atol": 1e-05
+      },
+      "forwards": [
+        {
+          "forward_and_sync_seconds": 0.09369011223316193,
+          "device": "/job:localhost/replica:0/task:0/device:GPU:0",
+          "probability_sum_max_error": 1.1920928955078125e-07,
+          "shape": [
+            13,
+            14261
+          ],
+          "dtype": "float32"
+        }
+      ]
+    },
+    {
+      "text": "Caf\u00e9 patient.\nHe has retinal neoplasm.",
+      "queries": [
+        {
+          "query": "Caf",
+          "HPO": "None",
+          "score": 0.925822913646698
+        },
+        {
+          "query": "patient",
+          "HPO": "None",
+          "score": 0.9995288848876953
+        },
+        {
+          "query": "He",
+          "HPO": "None",
+          "score": 0.9999950528144836
+        },
+        {
+          "query": "He has",
+          "HPO": "None",
+          "score": 0.9999985694885254
+        },
+        {
+          "query": "He has retinal",
+          "HPO": "None",
+          "score": 0.9800860285758972
+        },
+        {
+          "query": "He has retinal neoplasm",
+          "HPO": "None",
+          "score": 0.5436906218528748
+        },
+        {
+          "query": "has",
+          "HPO": "None",
+          "score": 0.9999944567680359
+        },
+        {
+          "query": "has retinal",
+          "HPO": "HP:0000479",
+          "score": 0.513867199420929
+        },
+        {
+          "query": "has retinal neoplasm",
+          "HPO": "HP:0012777",
+          "score": 0.9674795269966125
+        },
+        {
+          "query": "retinal",
+          "HPO": "HP:0000479",
+          "score": 0.8427273631095886
+        },
+        {
+          "query": "retinal neoplasm",
+          "HPO": "HP:0012777",
+          "score": 0.9966858625411987
+        },
+        {
+          "query": "neoplasm",
+          "HPO": "HP:0002664",
+          "score": 0.9671030044555664
+        }
+      ],
+      "spans": [
+        {
+          "start": 21,
+          "end": 37,
+          "text": "retinal neoplasm",
+          "HPO": "HP:0012777",
+          "score": 0.9966858625411987
+        }
+      ],
+      "seconds": 0.04070742800831795,
+      "CPU_score_max_abs_error": 1.7881393432617188e-07,
+      "CPU_top1_ID_query_order_threshold_and_span_coordinates_exact": true,
+      "score_tolerance": {
+        "rtol": 0.0001,
+        "atol": 1e-05
+      },
+      "forwards": [
+        {
+          "forward_and_sync_seconds": 0.03888477385044098,
+          "device": "/job:localhost/replica:0/task:0/device:GPU:0",
+          "probability_sum_max_error": 5.960464477539063e-08,
+          "shape": [
+            12,
+            14261
+          ],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 22.078737746924162,
+  "runtime": {
+    "tensorflow": "2.12.0",
+    "numpy": "1.23.5",
+    "GPU_device_details": {
+      "compute_capability": [
+        8,
+        0
+      ],
+      "device_name": "NVIDIA A100-SXM4-40GB"
+    },
+    "mixed_precision_policy": "float32",
+    "TF32_enabled": false,
+    "GPU_visible_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "CPU_threads": 1
+  },
+  "model_load_seconds": 9.53977083414793,
+  "weight_checks": [
+    {
+      "H5_dataset": "/ncr_core/conv1d/kernel:0",
+      "model_variable": "conv1d/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core/conv1d/bias:0",
+      "model_variable": "conv1d/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core/dense/kernel:0",
+      "model_variable": "dense/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core/dense/bias:0",
+      "model_variable": "dense/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core/hierarchical_aggregate/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core/hierarchical_aggregate/bias:0",
+      "model_variable": "hierarchical_aggregate/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/conv1d_1_1/kernel:0",
+      "model_variable": "conv1d_1/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/conv1d_1_1/bias:0",
+      "model_variable": "conv1d_1/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/dense_1/kernel:0",
+      "model_variable": "dense_1/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/dense_1/bias:0",
+      "model_variable": "dense_1/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/hierarchical_aggregate_1/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_1/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_1/hierarchical_aggregate_1/bias:0",
+      "model_variable": "hierarchical_aggregate_1/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/conv1d_2_1/kernel:0",
+      "model_variable": "conv1d_2/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/conv1d_2_1/bias:0",
+      "model_variable": "conv1d_2/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/dense_2/kernel:0",
+      "model_variable": "dense_2/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/dense_2/bias:0",
+      "model_variable": "dense_2/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/hierarchical_aggregate_2/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_2/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_2/hierarchical_aggregate_2/bias:0",
+      "model_variable": "hierarchical_aggregate_2/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/conv1d_3_1/kernel:0",
+      "model_variable": "conv1d_3/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/conv1d_3_1/bias:0",
+      "model_variable": "conv1d_3/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/dense_3/kernel:0",
+      "model_variable": "dense_3/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/dense_3/bias:0",
+      "model_variable": "dense_3/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/hierarchical_aggregate_3/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_3/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_3/hierarchical_aggregate_3/bias:0",
+      "model_variable": "hierarchical_aggregate_3/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/conv1d_4_1/kernel:0",
+      "model_variable": "conv1d_4/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/conv1d_4_1/bias:0",
+      "model_variable": "conv1d_4/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/dense_4/kernel:0",
+      "model_variable": "dense_4/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/dense_4/bias:0",
+      "model_variable": "dense_4/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/hierarchical_aggregate_4/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_4/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_4/hierarchical_aggregate_4/bias:0",
+      "model_variable": "hierarchical_aggregate_4/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/conv1d_5_1/kernel:0",
+      "model_variable": "conv1d_5/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/conv1d_5_1/bias:0",
+      "model_variable": "conv1d_5/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/dense_5/kernel:0",
+      "model_variable": "dense_5/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/dense_5/bias:0",
+      "model_variable": "dense_5/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/hierarchical_aggregate_5/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_5/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_5/hierarchical_aggregate_5/bias:0",
+      "model_variable": "hierarchical_aggregate_5/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/conv1d_6_1/kernel:0",
+      "model_variable": "conv1d_6/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/conv1d_6_1/bias:0",
+      "model_variable": "conv1d_6/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/dense_6/kernel:0",
+      "model_variable": "dense_6/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/dense_6/bias:0",
+      "model_variable": "dense_6/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/hierarchical_aggregate_6/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_6/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_6/hierarchical_aggregate_6/bias:0",
+      "model_variable": "hierarchical_aggregate_6/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/conv1d_7_1/kernel:0",
+      "model_variable": "conv1d_7/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/conv1d_7_1/bias:0",
+      "model_variable": "conv1d_7/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/dense_7/kernel:0",
+      "model_variable": "dense_7/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/dense_7/bias:0",
+      "model_variable": "dense_7/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/hierarchical_aggregate_7/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_7/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_7/hierarchical_aggregate_7/bias:0",
+      "model_variable": "hierarchical_aggregate_7/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/conv1d_8_1/kernel:0",
+      "model_variable": "conv1d_8/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/conv1d_8_1/bias:0",
+      "model_variable": "conv1d_8/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/dense_8/kernel:0",
+      "model_variable": "dense_8/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/dense_8/bias:0",
+      "model_variable": "dense_8/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/hierarchical_aggregate_8/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_8/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_8/hierarchical_aggregate_8/bias:0",
+      "model_variable": "hierarchical_aggregate_8/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/conv1d_9_1/kernel:0",
+      "model_variable": "conv1d_9/kernel:0",
+      "shape": [
+        1,
+        100,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/conv1d_9_1/bias:0",
+      "model_variable": "conv1d_9/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/dense_9/kernel:0",
+      "model_variable": "dense_9/kernel:0",
+      "shape": [
+        1024,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/dense_9/bias:0",
+      "model_variable": "dense_9/bias:0",
+      "shape": [
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/hierarchical_aggregate_9/raw_embeddings:0",
+      "model_variable": "hierarchical_aggregate_9/raw_embeddings:0",
+      "shape": [
+        14261,
+        1024
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    },
+    {
+      "H5_dataset": "/ncr_core_9/hierarchical_aggregate_9/bias:0",
+      "model_variable": "hierarchical_aggregate_9/bias:0",
+      "shape": [
+        14261
+      ],
+      "dtype": "float32",
+      "all_finite_and_numeric_equal": true
+    }
+  ],
+  "parameters": {
+    "NN": 157705490,
+    "FT_input_and_output": 333363400,
+    "total": 491068890,
+    "ensembles": 10
+  },
+  "full408272_estimate": {
+    "queries": 408272,
+    "batches_at512": 798,
+    "low_seconds": 223.49157425388694,
+    "high_seconds_with25percent_warm_margin_and60seconds_setup_io": 337.41163310036063,
+    "formula": "low=measured_load+firstbatch+797*min(warm); high=measured_load+firstbatch+797*max(warm)*1.25+60",
+    "not_measured_full_run": true,
+    "not_statistical_confidence_interval": true,
+    "selection_bias": "deterministic first1536 keys are an a-prefix, not a representative content sample; actual full vocabulary/preprocessing/serialization may differ",
+    "batch_timing_scope": "original get_match incl phrase2vec, native FP32 NN, synchronized .numpy, extra full probability integrity check and native top1 argpartition; full probability file writing excluded; no 512b repetitions"
+  },
+  "TF_allocator_peak_memory": {
+    "current": 713527040,
+    "peak": 1203339008
+  },
+  "TF32_enabled_at_end": false,
+  "finished_at": "2026-10-24T02:04:07.487079+00:00"
+}

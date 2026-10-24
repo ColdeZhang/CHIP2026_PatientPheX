@@ -144,3 +144,9 @@ root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；�
 GPU attempt2实际部署/同机输入硬链接/编译通过。actualCPU 02:03:05.007840→02:03:07.888770Z，2.880931秒/rc0；TF2.12实际GPU overlay、CUDA隐藏、global_policy=float32、TF32=false，原compat Conv1D/Dense/HierarchicalAggregate compute及全部小变量dtype=float32，0forward/0NCR模型权重。sequence 02:02:19.724010 actual release GPU2无进程/0MiB、收据SHA baf707e6已核；先checkpoint再由NCR自己的fresh UUID/空卡门进入唯一170+30修复版。
 
 02:03:40.217584Z 唯一修复版managed `proc_b8204310-4c62-4e6d-b497-1b506b908cec`（PID8436）启动，源f2b11577/plan126ae2db，主cap170秒+TERM30、原3×512+4合成。sequence真实release已绑定，wrapper再fresh核GPU2；不因此授权全cache/fit/quality或额外样本。
+
+### GPU attempt2完整成本终点PASS，卡已释放
+
+实际02:03:45.356432→02:04:08.508108Z GPU子程序23.150384秒/rc0，程序22.078738秒、模型加载9.539771秒；加原失败9.198835合计32.349220<原180秒。10ensemble/60变量完整shape/dtype/finite/np.array_equal，491068890参数；TF2.12/NumPy1.23.5、FP32、TF32始终false。三批512原get_match0.607681/0.268270/0.267684秒，output全[512,14261]float32/GPU0，TF allocator峰1203339008B。4合成41query的原ID/order/阈值/坐标全同CPU，max分差4.768e-7。02:04:08.508145 release GPU2=0MiB/无进程，已交sequence/root。
+
+冻结公式得到全408272/798批计算223.491574–337.411633秒估计（非实测/置信区间，不包括不稳定MCP取回）；两暖态prefix样本局限保留。统一terminal-manifest绑定原失败/一行修复/actualCPU/源plan/完整结果/外存概率与GPU释放，交validator一次收口。root另授权后继900秒+TERM30全train64纯输入cache，source/compact格式/key/headSHA与实际重建核定后才启动；不授权fit/quality，本次未扩样本。
