@@ -42,3 +42,5 @@
 - 最终持久备份：同.3 quality-source.zip 76286B/29件/SHA1ddde88e，与原terminal202件2549e153逐件重开全SHA通过，两个archive和父链fsync、ACK写入后父目录再次fsync；evidence/F0-backup-ack.json。本线独立full64已按F0门关闭，raw继续供root预锁融合，GPU和I/O均无在途任务。
 
 - 新组合full64控制器唯一12:08:35.986798Z启动proc_e5d04680/PID1207543，source f69d88d0/plan5490e564；初次source上传LUNA且实际未落文件，恢复后v2源成功，无先前GPU。freshGPU0 4MiB/noapps/盘169.31GB。精确probe child/截止见 evidence/full64-component-start.json；原240→2400→1200各+30自动有门顺序接续，原dev不独立评分。
+
+- 组合full64新shape实际64.748844s PASS：13indexedFB/1Adam，504梯度/504Adam1512状态finite，峰allocated21,628,089,344B，固定成本估2245.071238<2400。probe state丢弃后正式child1207643于12:09:42.129377启动；TERM12:49:42.129377/KILL12:50:12.129377，原两轮完整链继续。读probe子receipt一次UNKNOWN只属I/O，原formal身份已明确，不重启。

@@ -24,3 +24,5 @@ root预锁三源2of3在F1/F0均正，F0 .724457355332高于固定双采样 .7219
 ## 实际状态
 
 源f69d88d0已push。首次小ZIP上传LUNA_OFFLINE，三次间隔只读恢复后明确NOT_FOUND；没有旧GPU/start。v2源已实际解包/完整data与schedule合同通过，freshGPU0 4MiB/noapps/盘169.31GB。唯一控制器proc_e5d04680/PID1207543于12:08:35.986798Z启动；精确probe子进程和截止见evidence/full64-component-start.json。后续按两个完整ACK及全部64raw补记。
+
+新shape已64.748844秒完整PASS，13FB/1Adam，全部504梯度及504Adam状态finite，峰allocated21.628GB；固定成本估2245.071238秒<2400，旧数学/held-prefill0次。已discard后fresh正式child1207643于12:09:42.129377启动，TERM12:49:42.129377/KILL12:50:12.129377。两个完整epoch ACK待实际终态。
