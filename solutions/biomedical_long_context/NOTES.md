@@ -9,3 +9,7 @@
 ByteLevel offset包含前导空白：只去除token边界外空白并显式映回原passage，不改变原文。1条训练词内标注不可表示要保留覆盖说明，不扩成伪标签。
 
 SDPA原实现会建立两个L²mask，不能仅凭149M参数断言24GB必够；工程含真实驻留Adam与两极形状。不得打开全层hidden/attention或MLM词表logits。
+
+实际工程证明本32/17形状A30可行：峰4.11GB，native新模型约170秒完成8epoch，不以此外推所有关系/marker形状。原public Sap代码政策为.65旧GP字典，不应误借Gquote41099/.90或适配Sap证书。两个端点（本线保护追加、root另线max<0删）同encoder均负，分别记录，不据此事后改零阈值。
+
+归档只保必要source/配置/最终prediction/metrics/小receipt；1.79GB模型留远端并以全SHA+stateACK定位，日志不进Git。质量冻结先于gold，后续只读既有metrics作计数差，不再次评测或读取gold例子。
