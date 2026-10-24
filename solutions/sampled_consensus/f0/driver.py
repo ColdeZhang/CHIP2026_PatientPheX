@@ -39,7 +39,8 @@ def gpu_state(uuid):
     assert len(rows) == 1
     apps = subprocess.check_output(['nvidia-smi', '--query-compute-apps=gpu_uuid,pid,used_gpu_memory', '--format=csv,noheader,nounits'], text=True)
     return {'at_utc': datetime.now(timezone.utc).isoformat(), 'gpu': rows[0],
-            'target_compute_rows': [line for line in apps.splitlines() if line.split(',')[0].strip() == uuid]}
+            'target_compute_rows': [line for line in apps.splitlines() if line.split(',')[0].strip() == uuid],
+            'all_gpu_rows':gpu.splitlines(),'all_compute_rows':apps.splitlines()}
 
 
 def main():
