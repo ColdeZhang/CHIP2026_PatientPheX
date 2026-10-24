@@ -81,7 +81,7 @@ shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(6668
 
 ### 01:35 派生副本保真通过，四合成native plan冻结
 
-条件12字节布局修复实际20.108秒/rc0。原FT字节与mtime未变；所有666817词的有序word/count/type摘要一致，两个完整矩阵shape/offset/全SHA一致，84前及96后逐字节相同、EOF精确。派生文件只在独立postdownload目录，完整SHA `fa7509ecf7f42e06ed780de5c4599eeeb595cfd02c2547dd875fc528b0460752`。native仅四固定合成句、CPU1线程/GPU隐藏、180秒+TERM15，实际60权重数组对H5全finite/bitexact、10ensemble、14261列/概率/offset检查。完整实际依赖/输入plan先checkpoint后执行，无赛事样本或质量断言。
+条件12字节布局修复实际20.108秒/rc0。原FT字节与mtime未变；所有666817词的有序word/count/type摘要一致，两个完整矩阵shape/offset/全SHA一致，84前及96后逐字节相同、EOF精确。派生文件只在独立postdownload目录，完整SHA `fa7509ecf7f42e06ed780de5c4599eeeb595cfd02c2547dd875fc528b0460752`。native仅四固定合成句、CPU1线程/GPU隐藏、180秒+TERM15，实际60权重数组对H5全shape/dtype/finite/np.array_equal、10ensemble、14261列/概率/offset检查。完整实际依赖/输入plan先checkpoint后执行，无赛事样本或质量断言。
 
 ### native部署写入UNKNOWN_OUTCOME（非模型失败）
 
@@ -90,3 +90,9 @@ shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(6668
 只读实际核验结果：9/9 source/plan完整size/SHA精确，0缺件/0mismatch；UNKNOWN_OUTCOME写入实际已经落盘。无需重新上传任何文件。冻结收据后再核完整源SHA和hardlinks，启动原180秒native。
 
 01:38:41.524730Z 原唯一native已启动 `proc_27eefef9-23c9-4b1e-82bd-da11f0e391ae`，PID268904，原180秒+TERM15 cap/GPU隐藏。恢复controller只核9份SHA和现有hardlinks、0文件重传，原plan/source/model数学不变。
+
+### 01:39 唯一原生四合成终点PASS（独审待完成）
+
+native从01:38:41.619290Z到01:39:09.611785Z实际27.992051秒/rc0，程序27.042664秒，模型加载12.785668秒。10ensemble/60变量/157705490 NN参数全部形状、类型、finite及np.array_equal精确；原字段名bit_exact比实际检查语义强，未做额外运行时字节SHA，明确限于数值精确一致。完整FT333363400计入后总491068890。
+
+四句1/15/13/12个query，原生[1/15/13/12,14261]概率均finite且归一化误差≤5.96e-7，返回1/1/2/1跨度全部绑定实际query/HPO/score/原文坐标。annotate分别1.608804/1.711094/1.363402/1.313566秒，合5.996867秒/41 queries；不能冒充512批量或GPU吞吐。未读赛事输入/gold，无fit/新质量。统一manifest `postdownload-readiness/readiness-result.json`将全部原失败、成功输运、完整parser/派生保真/native源/plan/实际收据串联，交统一独审一次收口。
