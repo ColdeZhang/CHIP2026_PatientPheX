@@ -21,6 +21,13 @@ def resources():
  return dict(at_utc=datetime.now(timezone.utc).isoformat(),gpu=query('--query-gpu=index,uuid,memory.used,memory.free,memory.total'),processes=query('--query-compute-apps=gpu_uuid,pid,used_memory'),disk_free_bytes=os.statvfs('.').f_bavail*os.statvfs('.').f_frsize)
 def main():
  os.umask(0o077);p=json.loads(Path('infer-plan.json').read_text());cap=p['budget_seconds']
+ claim=json.loads(Path('start-intent.json').read_text())
+ def admission():
+  assert claim['plan']['sha256']==sha('infer-plan.json')
+  assert claim['admission_window_seconds']==300 and claim['admission_deadline_unix']==claim['admission_created_unix']+300
+  assert claim['admission_created_unix']<=time.time()<claim['admission_deadline_unix'],'Launch admission expired; no child or model retry'
+ admission()
+ save('admission.json',dict(checked_unix=time.time(),claim_sha256=sha('start-intent.json'),valid_until_unix=claim['admission_deadline_unix'],runtime_budget_separate=True))
  assert p['schema']=='quote-completion-F1-fresh39-v2' and p['inference_authorized'] is True
  assert cap==p['authorized_budget_seconds']==1800 and p['grace_seconds']==30 and p['expected_rows']==39 and p['all_rows_fresh']
  for name,item in p['files'].items():assert Path(name).stat().st_size==item['bytes'] and sha(name)==item['sha256']
@@ -31,6 +38,7 @@ def main():
  start=time.monotonic();utc=time.time();command=p['argv'];timed_out=False
  save('driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),plan_sha256=sha('infer-plan.json'),command=command,deadline_TERM_unix=utc+cap,deadline_KILL_unix=utc+cap+30,budget_seconds=cap,grace_seconds=30,no_automatic_retry=True))
  with Path('stdout.log').open('xb') as out,Path('stderr.log').open('xb') as err:
+  admission()
   child=subprocess.Popen(command,stdout=out,stderr=err,start_new_session=True)
   save('child-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),child_pid=child.pid))
   try:rc=child.wait(timeout=max(.001,start+cap-time.monotonic()))

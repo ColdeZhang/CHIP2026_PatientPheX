@@ -19,6 +19,11 @@ def ref(p):p=Path(p).resolve();return dict(path=str(p),bytes=p.stat().st_size,sh
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);a=ap.parse_args();p=json.loads(Path(a.plan).read_text());started=time.monotonic()
  assert p['schema']=='quote-completion-F1-fresh39-v2' and p['inference_authorized'] is True
+ claim_path=Path(a.plan).resolve().parent/'start-intent.json';claim=json.loads(claim_path.read_text())
+ def admission():
+  assert claim['plan']['sha256']==sha(a.plan) and claim['admission_window_seconds']==300
+  assert claim['admission_deadline_unix']==claim['admission_created_unix']+300 and claim['admission_created_unix']<=time.time()<claim['admission_deadline_unix'],'Launch admission expired before model loading'
+ admission()
  assert p['max_new_tokens']==1600 and p['all_rows_fresh'] and p['expected_rows']==39
  assets=p['assets']
  for name,item in assets.items():assert ref(item['path'])==item,name
@@ -107,6 +112,7 @@ def main():
    return scores
  finite_processors=LogitsProcessorList([FiniteLogitsOnly()])
  config=Qwen3_5TextConfig.from_pretrained(modelpath,local_files_only=True)
+ admission()
  model,loading=Qwen3_5ForCausalLM.from_pretrained(modelpath,config=config,dtype=torch.bfloat16,device_map='cuda:0',attn_implementation='sdpa',local_files_only=True,output_loading_info=True)
  publish_json(out/'loading.json',loading,root)
  assert all(not loading.get(k) for k in ['missing_keys','unexpected_keys','mismatched_keys','error_msgs'])

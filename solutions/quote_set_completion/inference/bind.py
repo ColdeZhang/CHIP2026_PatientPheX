@@ -41,7 +41,7 @@ def main():
  env={**controller['env'],'PATIENTPHEX_DURABILITY_ROOT':P}
  plan=dict(schema='quote-completion-F1-fresh39-v2',phase='infer',inference_authorized=True,
  authorization='Root fixed one261warm epoch durableACK then39 onecompletionpass1800+30; originalG32acceptedknown328 only; fixed B4union endpoint separately.',
- budget_seconds=1800,authorized_budget_seconds=1800,grace_seconds=30,expected_rows=39,all_rows_fresh=True,max_new_tokens=1600,
+ budget_seconds=1800,authorized_budget_seconds=1800,grace_seconds=30,admission_window_seconds=300,expected_rows=39,all_rows_fresh=True,max_new_tokens=1600,
  assets=assets,payload_sources=payload,files={ROOT+'/'+k:identity(v) for k,v in payload.items()},
  python=controller['python'],model=controller['model'],gpu_uuid=controller['gpu_uuid'],environment=env,storage_parent=P,output_dir=ROOT+'/output',
  checkpoint_directory=cp,adapter=cp+'/adapter',training_output_dir=controller['output_dir'],persistent_checkpoint_root=controller['persistent_checkpoint_root'],

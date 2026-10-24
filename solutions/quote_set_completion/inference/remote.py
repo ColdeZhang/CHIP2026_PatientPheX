@@ -352,7 +352,9 @@ def main():
             assert env['CUDA_VISIBLE_DEVICES']==plan['gpu_uuid'] and env['PATIENTPHEX_DURABILITY_ROOT']==plan['storage_parent']
             executable=plan['python'];launch=shlex.join([executable,'-u','infer_driver.py'])
             intent=dict(command=launch,cwd=REL,environment=env,package=ref(out/'package.json'),plan=cfg['plan'],
-                source=ref(__file__),inventory=inventory,no_retry=True,fresh_GPU_gate_inside_driver=True)
+                source=ref(__file__),inventory=inventory,no_retry=True,fresh_GPU_gate_inside_driver=True,
+                admission_created_unix=time.time(),admission_window_seconds=300)
+            intent['admission_deadline_unix']=intent['admission_created_unix']+300
             save(out/'start-intent.json',intent)
             claim=command(CLAIM,'claim-unique-start',dict(claim=intent))
             save(out/'remote-start-claim.json',claim)
