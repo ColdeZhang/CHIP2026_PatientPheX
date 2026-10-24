@@ -1,0 +1,117 @@
+{
+  "scope": "CPU_PREPARATION_AND_MISSING_PUBLIC_SAP_ONLY_NO_LLM_TRAIN_OR_QUALITY",
+  "base_main": "0878cbdf72972e459c755b16f1fb9e94b148a5a8",
+  "train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-hard-negatives-v1/prepared-v1/train.jsonl",
+    "bytes": 4234306,
+    "sha256": "2d50135bafee44e833dced33a1d76ebe90d9380dc8571a96d05fba12f0dae01e"
+  },
+  "held": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/prepared-v1/F1.input.jsonl",
+    "bytes": 1947285,
+    "sha256": "6ff12825202539eb1a309300c3b17030ee08ba450c5cf9bf7de0176baa7e6621"
+  },
+  "public_names": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/prepared-v1/public-names.json",
+    "bytes": 968797,
+    "sha256": "f7a4052f2bf89511ec5d509b778aba687d22d90c9374b2b726680c35f12f7142"
+  },
+  "cached_public_queries": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-public-top8-readiness-20261024/query-v1-collected/actual/results.json",
+    "bytes": 1885908,
+    "sha256": "277b65f6cc8ec4669d9ccf36e5402ded1ac4af3b9fcffb8ccdbd9a6b7936308b"
+  },
+  "missing_queries": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/queries.json",
+    "bytes": 27086,
+    "sha256": "8dd7c1fe37de07b9575b38b17c8e4963079e5d774d8d75f774a8cde93b0a5d87"
+  },
+  "missing_native_lengths": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/cpu-lengths.json",
+    "bytes": 7568,
+    "sha256": "dd44e47c2e43e36293d6a7c1ff2f38c3a6a3a3dd02fe5e646d96a44ce769ee5d"
+  },
+  "counts": {
+    "train": 2931,
+    "held": 1416,
+    "train_HPO": 2222,
+    "train_NIL": 44,
+    "train_NO": 665,
+    "missing_quotes": 1034,
+    "cached_quotes": 1284
+  },
+  "hypothesis": "Explicit retrieved alternatives and missing state can reduce open canonical ID substitutions; not guaranteed by train-only cover@8",
+  "recipe": {
+    "model": "Qwen/Qwen3-8B",
+    "HF_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "MS_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+    "base_parameters": 8190735360,
+    "lora_parameters": 43646976,
+    "individual_total_parameters": 8234382336,
+    "fresh": true,
+    "load_old_adapter": false,
+    "epochs": 2,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "learning_rate": 0.0001,
+    "seed": 20261023,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "updates": 734,
+    "updates_per_epoch": 367,
+    "tail_group_rows": 3,
+    "warmup": 37,
+    "max_grad_norm": 1,
+    "weight_decay": 0.01,
+    "loss": "unchanged native per-row supervised shifted CE; actualgroupmean",
+    "eval_or_holdout": false,
+    "final_epoch_only": 2
+  },
+  "CPU_contract": {
+    "train_cap": 2048,
+    "inference_total_cap": 2176,
+    "max_new_tokens": 128,
+    "full_native_HF": 4347,
+    "target_masks": "every train answer + chat EOS newline; no truncation",
+    "finite_outputs_count_at8": 513,
+    "empty_selected_missing_false": "reject",
+    "missing": "emit only chosen existing HPO IDs; missing never invents or becomes NIL"
+  },
+  "future_quality_not_now": {
+    "baseline_score": 0.7286975364690524,
+    "baseline_sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f",
+    "endpoints": [
+      "strongB union allaccepted",
+      "new-only entities with strongB nonentity objects exact"
+    ],
+    "joint_freeze": true,
+    "v2_calls": 2,
+    "old_calls": 0,
+    "originaldev": false,
+    "official": false
+  },
+  "ancestry": "newhead labels/OOF negatives F2F3 only, public query bank; pureF1 proposer48 includesF0, so pipeline not puretrain32 nor F0isolated",
+  "confounds": "Compared with2353, prompt/target and578 negative rows jointly change; no pureprompt causal claim",
+  "prior_negative": "Biomed SapTop8 pairbinary CE;9B suppliedspanID binary;2353 wholecanonical generation all remain original negative outcomes",
+  "source_files": {
+    "schema.py": "d9c31806c416a7bd7e2311e8e9f056c20e8888cc719751d7a12e847cafb5f417",
+    "prepare.py": "316444a9f039777e659df56a2f3fa9329b2661f06c76105c7a63dcb3211eb691",
+    "cpu_contract.py": "d5978fe4d98c5a418dcc538edad81eff45abaf98fe0479413c259f04867e07df",
+    "helpers.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "reuse/native_tokenizer.py": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026",
+    "reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+    "query/driver.py": "34dc1cd650e1684a4fd4b6b04d15ce6c77e4b57f5787bd7fbcaf36b1adeaad3c",
+    "query/query.py": "a092329605abb020444fb056fea1db325bf5800069a4f1599a2c5f51ed9093b6",
+    "reuse/doc/common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "reuse/doc/loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "reuse/doc/literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "reuse/doc/native.py": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c",
+    "reuse/canonical/common.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "reuse/canonical/schema_contract.py": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+    "reuse/canonical/token_census.py": "f4316599a50d6f6ecd5d8d9bf56c63787d7a867a7e0bda245afd8412e1af1ad9",
+    "query/reuse/public_bank.py": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+    "query/reuse/semantic.py": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82",
+    "query/reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  }
+}

@@ -4,4 +4,4 @@
 
 保全部2931(原2353+578难NO)，同原1416纯跨度/±256context；原1284 public查询逐SHA复用，新增1034词面（train428/held610、交4）。候选不插gold/exact/训练别名。输出selected数组+missing bool、NIL:true、NO:true互斥；missing不补ID或转NIL。新鲜Qwen3-8B/r16/lr1e-4/2epochs/seed20261023拟定，原native loop复用，不载旧2353adapter。
 
-长期2931原proc92c的.3训练独立不改。原2353自由名称配方及旧BiomedTop8 CE负结论保留；本新输入/目标+578监督共同变化，不称纯prompt因果消融。外存R/research/mention-candidate-selection-v1；现先CPU实际长度，尚未Sap/GPU/LLM。
+长期2931原proc92c的.3训练独立不改。原2353自由名称配方及旧BiomedTop8 CE负结论保留；本新输入/目标+578监督共同变化，不称纯prompt因果消融。外存R/research/mention-candidate-selection-v1；缺1034实际CPU长度全≤15，保原Sap32不截断；等待sequence→span短卡队列后唯一补query180+30，尚未本任务GPU/LLM。新CPU合同全4347 native/HF/mask和513完整合法输出/严格拒绝，准备在候选齐后执行。
