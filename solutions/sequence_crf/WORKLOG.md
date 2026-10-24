@@ -13,7 +13,7 @@
 
 selected-CE fresh训练已06:03:05Z完成265×2/68calls，rc0/2991.911秒；两个epoch各5成员519,867,104B均fsync/祖先fsync与重开SHA通过。真实epoch2三SHA绑定后，唯一原dev64推断 `proc_05ce4894-3a78-49c7-8c9b-60191eac14d4` 已06:13:10Z **rc0/311.034秒**；64条全fresh，64 strict/codec complete、零partial/abstain，203小件逐SHA及原始ID独立decode通过。两作业均已结束，卡实际释放，不重启或重评分。
 
-唯一a179∪patient新 **Score .746261042824**，相对原a179 .746081964986 **+.000179077837**；新增6关联=3TP3FP，micro+.001940340117、**macro−.001224028768**。1072实体不变、旧391关系和35public-new全保留、最终397关系。完整raw/pred先冻2ac4b470，再唯一v2；格式0错0警告。新pred765cd5a0/141732B。仍低root最新已独审全局支持gate3049d9fe **.754216969282**（完成端点时的前一0e2c为.748583439566），原dev .8未完成，未替换全局best、未合并/官方上传。[完整结果](evidence/patient-first-full64-memory-recovery/final-results.json)、[终点与原件索引](evidence/patient-first-full64-memory-recovery/final-terminal-summary.json)。终点增量独审待统一回收；不为等待独审重跑旧合同或新质量。
+唯一a179∪patient新 **Score .746261042824**，相对原a179 .746081964986 **+.000179077837**；新增6关联=3TP3FP，micro+.001940340117、**macro−.001224028768**。1072实体不变、旧391关系和35public-new全保留、最终397关系。完整raw/pred先冻2ac4b470，再唯一v2；格式0错0警告。新pred765cd5a0/141732B。仍低root最新已独审全局支持gate3049d9fe **.754216969282**（完成端点时的前一0e2c为.748583439566），原dev .8未完成，未替换全局best、未合并/官方上传。[完整结果](evidence/patient-first-full64-memory-recovery/final-results.json)、[终点与原件索引](evidence/patient-first-full64-memory-recovery/final-terminal-summary.json)。终点增量独审ae594212 PASS（原203件/64EOS/三SHA/保留合同/唯一评分顺序），不重跑旧合同或新质量。
 
 F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal`。实际training-collection b5164026，inference-collection f68df296；训练/推断原raw、两个fullstate、freeze/metrics/旧OOM均外存。已完的train/infer launch-intent及watcher-terminal是终态凭据；恢复只读既有小文件，不执行旧start/bind/assemble/evaluate命令。[恢复操作](patient_first_full64/memory_recovery/OPERATIONS.md)。
 
@@ -45,8 +45,12 @@ F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-mem
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
 - 截至本页整理前，已push并lsremote确认 `ca72c3cde197650428ed2ba4550aa84bd20f1f43`，含原失败、新工程完整终点、fresh正式job、环境重连恢复与后继单一dev入口。不要为记录台账自身SHA递归提交。
-- 旧full64 OOM完整保留；新selected-CE fresh两轮与原dev64唯一a179并集已完整结束，下一步仅终态增量独审/记录。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 旧full64 OOM完整保留；新selected-CE fresh两轮与原dev64唯一a179并集已完整结束，终态增量独审已PASS；新唯一CPU合成另设源与计划，不改原终点。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
 - full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z启动，04:51:51 OOM/rc1退出；原4500+30未耗尽。见 [full64记录](experiments/patient-first-full64.md)。
 
 - 新正式fresh已05:13:13Z启动 `proc_7f51657c` / driver141616，4500+30，近似TERM06:28:13/KILL06:28:43（remote driver为准）；已实际部署22件SHA/compile/fsync，持久盘free57.076GB；保持265×2/68calls/4warmup、4500+30及原dev64另900+30，原a179单臂不变。新probe通过但不保证完整两轮；[entry](evidence/patient-first-full64-memory-recovery/formal-entry-readiness.json)已获root一次统一授权，**当时fresh启动，现已06:03:05完整结束**；旧OOM与新probe状态独立。恢复入口见[操作说明](patient_first_full64/memory_recovery/OPERATIONS.md)。
+
+## 后继唯一CPU合成已获明确授权
+
+root于本次终点后明确授权：用最新已接受3049d9fe/.7542169692819372完整预测作底，仅加765cd5a0相对a179的精确6条差集；1061实体/36患者/410现有关系、非关系字节及旧列表顺序保持，不恢复新支持gate删除的2条public关系。待准确refs→源/plan推送→完整16pred freeze→唯一v2，旧metrics复用。仅这一合成，非盲验证、不扫阈值或新NN；Score严格升才候选。当前尚未执行。

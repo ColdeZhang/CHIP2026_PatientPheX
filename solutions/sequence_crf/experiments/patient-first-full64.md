@@ -103,3 +103,5 @@ root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由
 完整实际[结果](../evidence/patient-first-full64-memory-recovery/final-results.json)与[终点原件索引](../evidence/patient-first-full64-memory-recovery/final-terminal-summary.json)。没有换LightGBM实体/追加质量臂/官方上传。终态记录时一次本地exec transport断开，下一只读已恢复，模型/评测没有重跑。旧OOM、两轮状态、全部原输出和唯一新pred保留；等待统一终点增量独审，不重新运行已完成任务。
 
 随后root同步另一独立端点支持gate3049d9fe已独审接受，全局best更新为.754216969282；本patient端点仍低该值。root将待两端点收尾后决定是否只把相对a179的6条新增做一次固定CPU合成；当前未合成、未替换本端点1072实体或391旧关系。
+
+统一终审ae594212（12260B）PASS：实际203件SHA、64fresh/strict/EOS、三actualSHA与manifest绑定、a1791072实体/391关系prefix/非关系字节和唯一v2时序均通过；无模型/parser/质量重跑。root随后已明确授权独立CPU六差集合成，原端点与ae594审查保持不变。
