@@ -40,3 +40,8 @@ helper纯CPU6.715304s已通过，来源/矩阵/旧native全编码逐字核验。
 03:11第4次库存确认仅part000；随后只补缺part001成功，原archive9343e282全部16成员SHA/compile通过，无重复已成功块或mkdir。实际runtime Torch2.6.0+cu124 / TF5.20.2 / PEFT0.21.2、native GDN b4b17fe0、FLA不存在、CUDA隐藏且未初始化；当前两allocator环境变量均null，不能回推历史。新204 native tokenizer/六输入来源/全row与encoded哈希实际7.470150秒通过，最长5769/5695/74与本地精确。收据76ae7940、runtime ba808e77、selected55bb276a已完整回收，原件保留并核flat副本。
 
 最终唯一probe计划ef9c6225绑定19个实际成员，180s+TERM30、非零lr1e-4一次fresh native CE、三family B更新/base冻结检查，不改allocator/attention/loss/长度；诊断状态丢弃。计划已明确正式训练未启动/未授权。正式源草案仅用新native receipt替换占位得990dfd0c，推断草案仅绑定此trainer得f1bba655；完整2轮仍待probe实际成本/空间预算及root安排，旧F1源不变。
+
+
+## 唯一最长行probe实际启动
+
+source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226。fresh GPU2 UUID2c22、0MiB/无计算进程通过后，唯一proc_68557469-8cf0-41f7-abb8-a7b3fb0c94c1/PID55826于03:13:02.591809Z启动；180+TERM30，approx TERM03:16:02.592/KILL03:16:32.592（以远端driver-started为准）。未重复start，诊断状态不保存；终点待完整forward/backward/step、显存/有限值/耗时和实际release，不能将启动记为成功。独立native入口eae78122通过，终点将同一组收口，不重复旧合同。
