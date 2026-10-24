@@ -1,0 +1,245 @@
+{
+  "status": "PASS_UNIFIED_MEMORY_RECOVERY_ENGINEERING_AND_AUTHORIZED_FRESH_FORMAL_ENTRY",
+  "at_utc": "2026-10-24T05:13:36.755399+00:00",
+  "original_failure": {
+    "review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-formal-failure-review/review.json",
+      "bytes": 14739,
+      "sha256": "f7668be7bab42c5559569124fc9986896792ee7d9fba8d1d948f8aa0f664290d"
+    },
+    "native_seconds": 556.1889805793762,
+    "wrapper_seconds": 557.6660487651825,
+    "observed_call": "trainer.py:573 backward",
+    "last_logged_completed_step": 10,
+    "exact_failed_microbatch_or_CUDA_operator_known": false,
+    "complete_epoch_checkpoint_available": false,
+    "new_run_is_fresh_not_exact_resume": true,
+    "old_longest_single_step_PASS_preserved": true
+  },
+  "mathematical_implementation_delta": {
+    "selected_loss_sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9",
+    "change": "Unchanged complete BF16 head logits; native causal label shift; gather only supervised complete-vocabulary rows before FP32; unchanged native fixed CE and original denominator.",
+    "unchanged": [
+      "training input IDs/labels",
+      "full head GEMM",
+      "BF16/SDPA/native GDN",
+      "per-example mean divided by actual accumulation group length",
+      "effective batch8/last group1",
+      "optimizer/scheduler/seed",
+      "allocator and absence of explicit gc/del/empty_cache"
+    ],
+    "CPU_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/CPU-source-checks.json",
+      "bytes": 9875,
+      "sha256": "d47b8877a014d6b5898946aae8224c84d8cfe7a5b2c3e8fd242f6a8a028676ec"
+    },
+    "actual_CPU_transport": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/CPU-transport-checks.json",
+      "bytes": 1385,
+      "sha256": "0950eb6bd5b06947a29003fededfcd83683e15d85fea377c0995e33a1cedf74b"
+    },
+    "CPU_detail": "Target Torch2.6 CPU288 Cartesian cases incl32 native all-ignore mean NaNs; complete tiny-head autograd and groups1/2/8. Max loss abs7.6294e-6 under relative+absolute tolerance, all tested gradient differences0. Actual zero-parameter property hook verified, not a new model forward."
+  },
+  "actual_probe": {
+    "source_sha256": "deb3de7f92ad4a6e15f861a52c4069de2d82a4ae8393fd630a63ecbfd65757d5",
+    "plan_sha256": "903699b37403ecb3d38790cdc4a5c8de31ca4064f09e5d828d6f0d590170c59c",
+    "job": "proc_b7a810e6-cd1d-41f3-b74e-faf467077e76",
+    "actual_driver_start": "2026-10-24T05:08:43.130469+00:00",
+    "actual_returncode": 0,
+    "native_seconds": 146.10882521793246,
+    "wrapper_seconds": 147.29535913467407,
+    "compute_window_seconds": 79.90141022950411,
+    "cap_seconds": 240,
+    "TERM_grace": 30,
+    "forwards": 12,
+    "backwards": 12,
+    "optimizer_updates": 1,
+    "tokens": 44305,
+    "longest_tokens": 6166,
+    "longest_supervised": 122,
+    "sequence": "Original first8 -> real Adam update at diagnostic LR1e-4 -> zero grad but preserve Adam -> original group12 first3 accumulated -> longest4th backward.",
+    "before_longest": {
+      "gradient_tensors": 496,
+      "gradient_bytes": 173113344,
+      "optimizer_parameters_with_state": 496,
+      "optimizer_tensor_bytes": 346228672,
+      "optimizer_state_dtypes": [
+        "torch.float32"
+      ],
+      "all_grad_finite": true,
+      "frozen_base_no_gradient": true
+    },
+    "three_LoRA_B_families_changed": true,
+    "base_frozen_no_gradients": true,
+    "all_checked_numerics_finite": true,
+    "memory": {
+      "allocated_bytes": 18719874560,
+      "reserved_bytes": 29976690688,
+      "peak_allocated_bytes": 25031000576,
+      "peak_reserved_bytes": 29976690688,
+      "free_bytes": 11769544704
+    },
+    "actual_release": {
+      "at_utc": "2026-10-24T05:11:10.524555+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "target_has_no_process": true,
+      "target_memory": [
+        "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+      ]
+    },
+    "checkpoint_saved": false,
+    "inference_or_quality": false,
+    "state_discarded": true,
+    "all45_members_byte_SHA_verified": true
+  },
+  "formal_increment": {
+    "actual_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/entry-readiness.json",
+      "bytes": 4155,
+      "sha256": "53e9823002181d9935f6619f08d4f0a8017904ac38adeb94eb9adf773b6ca617"
+    },
+    "source_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/delegated-formal-draft/checks.json",
+      "bytes": 8414,
+      "sha256": "0c7ee084902368d42d99ecf953cbace3e15abc0de6ec795a4f286af863ab1053"
+    },
+    "trainer_sha256": "1203139eabbbb501d4e532ea9080773b9f662a8aae9638f4519b0f58a24109f7",
+    "all_remaining_AST_exact_to_old_after_only_declared_hook_and_logging": true,
+    "new_failure_context": [
+      "epoch",
+      "next optimizer step",
+      "completed prior optimizer steps",
+      "microbatch/row/tokens",
+      "forward/backward/optimizer stage"
+    ],
+    "no_tensor_lifetime_changes_from_logging": true,
+    "actual_deployment": {
+      "entry": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/entry-readiness.json",
+        "bytes": 4155,
+        "sha256": "53e9823002181d9935f6619f08d4f0a8017904ac38adeb94eb9adf773b6ca617"
+      },
+      "train_plan": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/train-plan.json",
+        "bytes": 8194,
+        "sha256": "efa97e9a111c959170a914a4c01b1ffc6e89fea981fa591677630b4789bb08ea"
+      },
+      "actual_deployed_files": 22,
+      "actual_deployed_SHA_compile": true,
+      "actual_free_bytes": 57075748864,
+      "actual_file_and_ancestor_fsync": [
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+      ],
+      "fresh_not_resume": true,
+      "source_contract_only_no_actual_formal_run_claim": true,
+      "epochs": 2,
+      "rows": 265,
+      "optimizer_steps": 68,
+      "warmup_steps": 4,
+      "train_budget": 4500,
+      "inference_budget": 900,
+      "grace": 30,
+      "unique_originaldev_a179_union": true,
+      "frozen_pending_flags": "Original draft/plan pending-probe flags retained; actual entry addendum binds completed probe/deployment, not retroactive rewriting or proof of formal execution."
+    },
+    "root_authorization": "Root explicitly authorized new fresh4500+30 on the observed c85fa31c/147.295s stress result and 53e98230 actual entry; no additional verifier approval gate.",
+    "actual_new_formal_execution_in_this_report": "Not yet observed; no formal-success or quality claim.",
+    "training_contract": {
+      "fresh_from_public_base": true,
+      "prior557_666s_failure_retained_no_complete_epoch_or_resume_state": true,
+      "new_unique_namespace": "patient-first-full64-selected-CE-formal-v1",
+      "old_adapter_or_resume_in_plan": false,
+      "CONFIG_seed_batch_plan_unchanged": true,
+      "rows": 265,
+      "epochs": 2,
+      "optimizer_steps": 68,
+      "warmup_steps": 4,
+      "microbatch": 1,
+      "accumulation": 8,
+      "last_group_per_epoch": 1,
+      "full_tokens_per_epoch": 860405,
+      "supervised_per_epoch": 9818,
+      "max_tokens": 6166,
+      "train_SHA": "4fee5f9c3817730c08673bdd26bf5127d7cd7856d37d3f9082554f5db755c882",
+      "data_isolation_guards": "Exact unchanged full64 old/new preparation bridge, four generator48/target16 chains exclude originaldev16, native265 full token hashes and train64/dev16 identities; no new label or data read by this reviewer.",
+      "budget": {
+        "train_cap": 4500,
+        "grace": 30,
+        "inference_cap": 900,
+        "grace_inference": 30
+      },
+      "durability": "Unchanged full adapter/optimizer/scheduler/Python+NumPy+Torch+CUDA RNG checkpoint at34/68; source/member SHA verified, fsync files/subdirs/ancestors through explicit project persistent root, atomic rename, reopened all-memberSHA and durable ACK inside process budget. No SHM export gap."
+    },
+    "future_quality_contract": {
+      "old_policy_sha256": "901b5b2fd7817016b077c7a706f106a443a850ae8c5127d45532547ad840153b",
+      "new_policy_sha256": "faf149351c65e4f6272bd07ce2a2a5a632eeb18bf50d06c926a9e34321b38419",
+      "single_original_a179_literal_union_unchanged": true,
+      "contract": {
+        "rows": 64,
+        "documents": 16,
+        "patients": 36,
+        "entities": 1072,
+        "candidates": 466,
+        "pairs": 1006,
+        "baseline_relations": 391,
+        "preserved_public_new_relations": 35,
+        "cached_rows": 0,
+        "new_rows": 64,
+        "terminal_members": 203
+      },
+      "baseline_pred_sha256": "a179a5de5b7271979a0fba851afc269d63125248a56681674e7388d0c6728c39",
+      "new_quality_calls": 1,
+      "baseline_quality_calls": 0,
+      "patient_alone_calls": 0,
+      "candidate_rule": "delta(Score)>0",
+      "macro": "Disclose macro decrease, no new hard macro gate",
+      "target": 0.8,
+      "complete203_freeze_before_gold": "Inherited endpoint code byteexact except policy SHA; all fixed input/source refs preserved; final actual training/inference bindings intentionally pending."
+    }
+  },
+  "independent_evidence": {
+    "actual_terminal_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/terminal-checks.json",
+      "bytes": 62006,
+      "sha256": "f90619f431c7edd3d933d441c554c4251b7f0f26f2c0894bebb44c9bdb1f5396"
+    },
+    "original_owner_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/terminal-manifest.json",
+      "bytes": 5241,
+      "sha256": "c85fa31cf14155215daec416edc26cd418d68ea0da7509f3768d59badba3d28b"
+    },
+    "new_formal_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/entry-readiness.json",
+      "bytes": 4155,
+      "sha256": "53e9823002181d9935f6619f08d4f0a8017904ac38adeb94eb9adf773b6ca617"
+    },
+    "source_snapshot_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/probe-source-snapshot-manifest.json",
+      "bytes": 2117,
+      "sha256": "b09224118359a22fbf672957a07642da0c971e8ad265750d6ea5423f75b9b079"
+    },
+    "formal_snapshot_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-memory-recovery-review/delegated-formal-draft/snapshot-manifest.json",
+      "bytes": 11614,
+      "sha256": "eb333f91977ac9419d7a2b831b5ef94121b0a775525d7c52f77b365d0640f5c6"
+    }
+  },
+  "concrete_blockers": [],
+  "limitations": [
+    "Selected-CE stress success is not a whole two-epoch stability guarantee or exact original failure replay; no causal claim that original OOM occurred specifically at FP32 cast.",
+    "Tiny CPU numerical checks do not prove GPU bitwise identity. Final free11.770GB is not peak-time free headroom.",
+    "Original failed557.666s and stress147.295s are separately recorded costs; no hidden reuse of probe/failed optimizer state.",
+    "Current originaldev best0e2c .748583439566388 remains; independently declared patient endpoint stays a179 literal union, not silently combined with the newer entities.",
+    "Future complete epoch2/durability/64row203member evidence must bind actual inference; originaldev target is Score improvement/.8, with all metrics and any macro decrease disclosed."
+  ],
+  "verifier_actions": {
+    "CPU_GPU_owner_model_execution": false,
+    "gold_or_labeled_payload_read_or_hashed": false,
+    "model_pickle_or_weights_read_or_hashed": false,
+    "MCP_Git_or_live_index_mutation": false,
+    "source_AST_and_existing_small_receipts_only": true
+  }
+}
