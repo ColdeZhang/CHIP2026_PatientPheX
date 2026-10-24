@@ -10,4 +10,4 @@ Task2旧full64 Qwen1a703b正序/逆序提示来自独立CRF/Sap/LR64+GLiNER48 fu
 
 资源由root调度：R1原formal完成并持久后暂缓其index73新模型探针，.100GPU1先GLiNER48、再旧normalB；A800安排reverse/public-new；sequence负责patient f787与GLiNER48和共同oldpool。所有B模型、候选、预测、原始响应与manifest留外部`R/official-b-901`，Git只源/合同/摘要。
 
-固定Task1 B应用已完整15.40675秒完成：93710候选→6816实体，100文献／244患者，空关系阶段pred b29651ee…；见[B实体结果指针](B-task1-result-pointer.json)。后续关系只读这些实体作public支持。06:59:55实际A800仅GPU2空闲、项目盘可用0B，部署空间门暂停该服务器，主线程正协调；.100 normal资源不受影响。
+固定Task1 B应用已完整15.40675秒完成：93710候选→6816实体，100文献／244患者，空关系阶段pred b29651ee…；见[B实体结果指针](B-task1-result-pointer.json)。后续关系只读这些实体作public支持。06:59:55实际A800仅GPU2空闲、项目盘可用0B；[历史状态持久迁移](storage_recovery/README.md)已于07:10:59释放338,419,712B，随后reverse实际07:11:43启动（proc_f314a9a9，2820+30）。normal已07:04:55在.100 GPU1启动（proc_af58ba33，4080+30）；public-new原286条/1800+30已完整部署，等同A800 GPU2释放再启动。共享盘后台仅迁自有已完成state增加余量，不改推断。患者actual推断由sequence单独协调；若A100持续离线，预留normal终态释放后的.100 GPU1，R1新模型仍暂停。
