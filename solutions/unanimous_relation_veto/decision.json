@@ -1,0 +1,21 @@
+{
+  "experiment": "E-20261024-UNANIMOUS-VETO-001",
+  "at_utc": "2026-10-24T13:34:28.429759+00:00",
+  "base_main": "0878cbdf72972e459c755b16f1fb9e94b148a5a8",
+  "formula": "B4 minus (S1neg intersect S2neg intersect Qneg intersect Cneg minus Gpositive)",
+  "definitions": {
+    "negative": "At least one exact atomic candidate for the actual patient; every relevant row complete strict/noncap/naturalEOS, all reject this patient. Any positive, missing candidate/patient, missing row, parsefail, cap or abstention keeps.",
+    "compound": "Positive compound splits using frozen v2; rejected compound never authorizes atom negatives. A related compound-only rejection remains unknown even when another row offers an atomic negative.",
+    "literal_NIL": "Existing literal candidate text unchanged (including semicolons), never split unless entire string is pure compound HPO. Empty/-1/mixed HP strings do not authorize negative.",
+    "G": "Use pure grounded prediction as positive protection only; absence is not negative.",
+    "render": "Preserve original JSON bytes outside association, patient/association object fields and order; remove only proven atoms, retain order inside partially retained pure-HPO compounds."
+  },
+  "endpoints": {
+    "F1": "current B4 .701325377212172/524 pairs; exactly one full prediction; no deletion=>byteexact0v2 close; otherwise freeze1v2/old0; totalScore strictly higher to proceed",
+    "F0": "Only if F1 strictly wins; identical method on current B4 .728195628911/343; source SHA plan freeze before actual intersection; no alternate cut or subset",
+    "full64": "Only both internal folds strictly positive; no automatic training or originaldev scoring in this task"
+  },
+  "new_model_fit_remote": 0,
+  "development_not_blind": true,
+  "no_threshold_or_subset_scan": true
+}
