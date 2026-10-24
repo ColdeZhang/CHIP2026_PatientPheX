@@ -14,7 +14,7 @@
 - 原唯一完整80：79fresh＋idx19精确缓存1，80/80严格完整JSON与自然EOS、0整行弃答。wrapper **376.475652秒/rc0**、fresh生成347.081604秒；05:39:04.322610 A800_GPU2实际used1/free81156/无进程。原proc_cce6e47e已完成，不能重启。
 - binder绑定240原始逐行证据后，两个完整pred共同freeze f0ccf03c，再各唯一v2、旧0；summary d2eddae4。独立统一实际终审d655/metadata修订8d19通过。303内容成员包d7cb2131（190297B）已在.100全成员SHA/fsync；8d19及scope66c5两小附录单独持久，不重打包。root已明确授权下述F0复核，仍不自动迁原dev/官方。
 - 外部 `F=R/research/qwen35-sft32-full-report-feasibility/full80-v1`；[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)、[关键结果指针](qwen35_sft32_full_report_readiness/full80/result-pointer.json)、[指标](qwen35_sft32_full_report_readiness/full80/quality-summary.json)。恢复只读原F1终点与job，不再start/评分。
-- root已授权F0：原58/415CID/47PID/1166pairs、947实体，原SFT48 adapter8e32；同全文后缀。当前本地构造58全保，609passages/158markers/0skip、训练48与F0文献无交叉；原A800旧48SHM和.100原件实际SHA全等，不需搬运。native CPU token核准备中；按实际max向上512定input cap，max>32768先报告。最长240+30，若合法EOS/生成含prefill≤30秒/allocated≤60GB则条件授权完整58 1200+30、缓存1+57fresh。详见[事前执行政策](qwen35_sft32_full_report_readiness/f0/execution-policy.json)，两完整端点共冻各1v2/旧0，主Score升且macro不降。
+- root已授权F0：原58/415CID/47PID/1166pairs、947实体，原SFT48 adapter8e32；同全文后缀。当前本地构造58全保，609passages/158markers/0skip、训练48与F0文献无交叉；原A800旧48SHM和.100原件实际SHA全等，不需搬运。native CPU实际7.478秒PASS（wrapper8.124s rc0），195355→505090tokens，max16245唯一idx30，工程cap16384；58行Auto/native/template IDs与双decode全核、不截断。probe源24172262/planb21fb7f9已冻结，准备唯一启动。最长240+30，若合法EOS/生成含prefill≤30秒/allocated≤60GB则条件授权完整58 1200+30、缓存1+57fresh。详见[事前执行政策](qwen35_sft32_full_report_readiness/f0/execution-policy.json)，两完整端点共冻各1v2/旧0，主Score升且macro不降。
 
 ## 最近：R1 F1完整负结案，F0扩展不启动
 
@@ -33,5 +33,5 @@
 
 - 强BioBERT+NCR四fold **.730993616→.731229952**，仅2/4非降<事前3/4而关闭；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)，独审de325a2c。
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
-- 最近已核Git远端 **94d6948cbdf904fb2fff2ba474147e3301e3d4d2**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
+- 最近已核Git远端 **0798d977c7f552df2ba94a012ceabd7d9c0daf8b**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
