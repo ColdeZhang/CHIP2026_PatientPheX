@@ -70,3 +70,7 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 01:29实际21路径SHA复查通过：复用R2已成功1片，现2274片/1342319623字节完整，真实缺6×524288=3145728字节；无mismatch。64KiB分块组装本地76800字节跨界fixture逐字节相同、0网络。实际库存/绑定plan先push，再启动新单worker。
 
 新writer在55b07ff远端确认后01:29:39启动，PID85456、cap883秒。01:30:22.583640Z首原512KiB片（start1316487168、SHA35e345ce36c4ef61a92f797d410923024dee126ea5a95b95852eb774712f54a6）8块重建全SHA通过，42.966秒；同writer继续余5片，无根因推断。
+
+### 01:33 完整资产到齐，冻结shape plan
+
+64KiB补缺225.522662秒完成6原片/54个小块（含manifest），无错误；01:33:24.953Z启动最终assembly，实际7.349991秒/rc0，全2280片SHA再次核验。FT完整1345465351字节，SHA `e9947f25ef59693c3dd46eb33418b0a44d0663f2c4675adf98c99a187c0d20c5`。联合`postdownload-readiness/verified-assets.json`引用旧HP和新FT，不改写任何旧失败状态。下一shape的完整666817字典/双矩阵/EOF解析按既定120秒CPU cap独立执行，source未改，实际完整资产绑定plan先checkpoint。
