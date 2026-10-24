@@ -1,0 +1,210 @@
+{
+  "status": "READ_ONLY_FEASIBILITY_NO_NEW_MODEL_PREDICTION_THRESHOLD_OR_QUALITY",
+  "F1_raw_coverage": {
+    "raw_retained_spans": 1542,
+    "raw_globalNER_gt0_spans": 1343,
+    "NER_gt0_any_patient_gt0_spans": 408,
+    "globalNER_gt0_all_patients_le0_not_normalized": 935,
+    "all_patient_logit_entries": 4285,
+    "exact_zero_patient_logits_in_NER_positive_spans": 0
+  },
+  "existing_selected_mapping_complete_for_strict_patient_gt_t_when_t_ge0_and_fixed_NER_gt0": true,
+  "explicit_relation_max_table_already_saved": false,
+  "relation_max_can_be_derived_CPU": "From existing selected physical spans only, for each accepted literal and aligned positive patient logit, max across all contributing spans; retain physical source keys and ties. No normalizer/model rerun. Strict >t, not >=t.",
+  "scope_limit": "Does not cover negative patient thresholds or changing globalNER gate; omitted all-patient<=0 spans have no normalization but can never pass strict >t for t>=0.",
+  "F0_shape_reference": {
+    "pure_documents": 16,
+    "pure_patients": 47,
+    "maximum_patients": 9,
+    "existing_DocRE_original_unmarked_tokens": 61460,
+    "maximum_original_unmarked_tokens": 7098,
+    "windows_from_original_cached_lengths_using_same510_384_rule": 164,
+    "maximum_windows": 19,
+    "actual_PCS_F0_geometry_not_built": true,
+    "DocRE_marked_candidates_not_reused": true
+  },
+  "ancestry": {
+    "NN_train_documents": 32,
+    "train_overlap_F0": 0,
+    "train_overlap_F1": 0,
+    "strict_normalizer_training_ids_same32": true,
+    "strict_supervised_train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "not_entirely_public_normalization": "Strict aliases are supervised F2F3 train32; HPO/Sap encoder/bank public. No F0/F1 supervised assets.",
+    "no_strong_B0_CID_selector_dependencies": true,
+    "F1_already_used_for_method_development": true
+  },
+  "measured_costs": {
+    "F1_16_doc_inference_loop_seconds": 1.2324134828522801,
+    "F1_fixed_normalization_inside_seconds": 9.095060781110078,
+    "F1_normalization_subprocess_seconds": 10.09571385383606,
+    "old48_geometry_CPU_seconds": 30.26157850259915,
+    "old48_geometry_and_HF_CPU_contract_seconds": 44.05242902832106,
+    "F0_new_CPU_estimate_seconds": "15-30; exact geometry/anchors/token identity not yet measured",
+    "F0_NN_load_fullinfer_norm_estimate_seconds": "20-45; norm query count unknown; suggested future bounded120+30 if authorized",
+    "F0_estimates_are_not_measurements": true
+  },
+  "references": {
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/source/plan.json",
+      "bytes": 12290,
+      "sha256": "1220573789251f7988041409f84463d472b7d69a56459542dea8e21d01ebe914"
+    },
+    "initialized": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/initialized.json",
+      "bytes": 5795,
+      "sha256": "c2afb86020f9cefdfbb84b06eac6e2735d8c072a2224493374467fe7e2392122"
+    },
+    "native_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/complete.json",
+      "bytes": 80171,
+      "sha256": "dbec35a2113a63a245c16d4344e294f05a1b8a11b4680e15205b226fdbecd33b"
+    },
+    "normalization_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/normalization/complete.json",
+      "bytes": 12783,
+      "sha256": "1fbd723d6c95e5294f4c1c7a78224743d907160c46233454f3d0d33779dade8c"
+    },
+    "selected_spans": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/normalization/selected-spans.json.gz",
+      "bytes": 28626,
+      "sha256": "f4d78e458e1e31dec1b158ad2a56be310b4ee14f61d46e4d0eccb0f8f9a6bf89"
+    },
+    "normalizations": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/normalization/normalizations.json",
+      "bytes": 406377,
+      "sha256": "5c23b7957372ae612758b5da53a2cb3196f510d49e2e86622523c4ccd259a0b8"
+    },
+    "checkpoint_reload": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/checkpoint-reload.json",
+      "bytes": 60544,
+      "sha256": "13b265d769e4bf8f5913d3a2cc54775113dee329779eb51f7bc5e49a834ca301"
+    },
+    "pureF0": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "pureF1": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "oldF0_encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-relation-consensus/docre-f0/collected/encoded/held.json.gz",
+      "bytes": 160911,
+      "sha256": "a3fda0a28b5005071f98e6c7f6c48d6daff7d20adb4d6537e430a33e3db28ec3"
+    },
+    "oldF0_prepared": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-relation-consensus/docre-f0/prepared/prepared.json.gz",
+      "bytes": 133076,
+      "sha256": "0b0fce00146261e7b8f556a4b6b1876097eb165605b59962869a004e176edb5e"
+    },
+    "base_model_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/source/vendor/base_model.py",
+      "bytes": 5868,
+      "sha256": "83e6ba33ba2939c7417487eb4b7911ad9fb7919fa6a7598be465eff54a205b47"
+    },
+    "geometry_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/source/vendor/geometry_model.py",
+      "bytes": 3507,
+      "sha256": "d36d75a9682f249991ae4a032629e1a5f7005cbc36cb1780472af8ae11760c38"
+    },
+    "normalizer_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/source/normalize.py",
+      "bytes": 4626,
+      "sha256": "15df0cb42524fb1fecfdc82eec9109c7bfc9d11eb38ee58c27bd65053b6cd39d"
+    },
+    "prepare_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/collected/formal-source-v1/prepare.py",
+      "bytes": 10389,
+      "sha256": "4dd4c885f747e6f86a0233bc2f00d287b11d7cf3744767345ce6e06a300dae90"
+    }
+  },
+  "raw_refs": {
+    "raw-10313222.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-10313222.json.gz",
+      "bytes": 1052,
+      "sha256": "b4f433d6772d99ed1c2fabf32817fc4a52073b958d210b39c41366deff33f29a"
+    },
+    "raw-11871647.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-11871647.json.gz",
+      "bytes": 1703,
+      "sha256": "508032559c73898f4c4888d352fd82e0e56479f5aa81c493562df81a509bfa9d"
+    },
+    "raw-11906559.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-11906559.json.gz",
+      "bytes": 4690,
+      "sha256": "d01b5f946e28d3731070a8e09cb885709918df65b0df5ea3915edb5ac2fc0e9c"
+    },
+    "raw-12386172.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-12386172.json.gz",
+      "bytes": 3940,
+      "sha256": "bb0a85267f56c6e5a5fa3d04c1172c5fc2a4feace9e738e59d89f0e78c9fe448"
+    },
+    "raw-12455887.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-12455887.json.gz",
+      "bytes": 5272,
+      "sha256": "2c379c04025385abdb6550b39d6eaa47b5b36d323e31e2dfd5dbabea61066b7f"
+    },
+    "raw-12891056.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-12891056.json.gz",
+      "bytes": 4331,
+      "sha256": "a584fbb5b0f6e440f310bed4047d91ae32fc0cfdf8d01f033b2ac69fc1d882eb"
+    },
+    "raw-2964533.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-2964533.json.gz",
+      "bytes": 2875,
+      "sha256": "ef54708076cc9ad7e0e6932b6b2bca203224b949c4833e946590948e18920bdf"
+    },
+    "raw-4607013.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-4607013.json.gz",
+      "bytes": 5867,
+      "sha256": "0de95ca3b7563626248e8f06cc385313f0db31d4afc98336aca34bed301da1e6"
+    },
+    "raw-5415817.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-5415817.json.gz",
+      "bytes": 2527,
+      "sha256": "83f12c0d98befcb4e3306435cf2f8a9b22eb8f28b26fd0c2a0ae620f68324e91"
+    },
+    "raw-5425407.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-5425407.json.gz",
+      "bytes": 1792,
+      "sha256": "d76b39b9e6ce5ef35e334d9bf2c006b989257ea2d38cba505e418d7e42d62886"
+    },
+    "raw-5473715.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-5473715.json.gz",
+      "bytes": 11581,
+      "sha256": "d86cb6afee3655c845bcbcfd80ca0de90e15fe92bb2ebf1dce9ca1bbb271790c"
+    },
+    "raw-5538066.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-5538066.json.gz",
+      "bytes": 6820,
+      "sha256": "fd50dc2ceb68085d28867f471c3eddf67458bb7cfbfd7fb1d9aa30e67dd55fbb"
+    },
+    "raw-5789735.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-5789735.json.gz",
+      "bytes": 12609,
+      "sha256": "734ea54bbf8f5189a815595822c1da127df07a53e433a0fbe4ebd71a9997d05c"
+    },
+    "raw-6048891.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-6048891.json.gz",
+      "bytes": 3243,
+      "sha256": "4ea2c62e84a46d973c32b30da8c8200acc15739efb634c628ef65e56b9f19ed9"
+    },
+    "raw-6063015.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-6063015.json.gz",
+      "bytes": 6749,
+      "sha256": "a80bce36afefad177b001b7bfb7f78846e4d17c75ff0acc9fdf914464bd18441"
+    },
+    "raw-9327653.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/collected/run/native/raw-9327653.json.gz",
+      "bytes": 705,
+      "sha256": "a6b4a63c3c4430abb01b6c5bd82eadcf8c5e189f6303833cdc7098e21ad14080"
+    }
+  },
+  "new_gold_reads": 0,
+  "new_predictions": 0,
+  "new_quality_calls": 0,
+  "new_model_calls": 0,
+  "thresholds_fit": 0
+}
