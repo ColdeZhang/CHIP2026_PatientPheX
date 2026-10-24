@@ -106,7 +106,7 @@ def endpoint():
  pid=wrapper['child_pid'];p=Path('/proc')/str(pid)/'stat';state=p.read_text().split(') ',1)[1].split()[0] if p.exists() else None
  if state not in (None,'Z','X'):return dict(status='not_terminal',reason='original child still running',child_pid=pid,process_state=state)
  if wrapper['returncode']==0 and not wrapper['timed_out'] and 'endpoint_error' not in wrapper:
-  assert wrapper['complete78_actual_members_verified']
+  assert wrapper['complete94_actual_members_verified']
   assert (root/'output/complete.json').is_file()
  return dict(status='terminal',wrapper=wrapper,child_exit=dict(pid=pid,process_state=state,no_running_process=True))
 if archive.exists():
@@ -285,7 +285,7 @@ def main():
         archive=ref(archive), remote_archive=ready['archive'], member_index=ref(terminal / 'member-index.json'),
         original_remote=REMOTE, mount=MOUNT, package=ref(package_path), source=ref(__file__),
         wrapper=wrapper, child_exit_before_freeze=index['child_exit'],
-        inference_reported_success=(wrapper['returncode'] == 0 and not wrapper['timed_out'] and wrapper.get('complete78_actual_members_verified') is True and 'endpoint_error' not in wrapper),
+        inference_reported_success=(wrapper['returncode'] == 0 and not wrapper['timed_out'] and wrapper.get('complete94_actual_members_verified') is True and 'endpoint_error' not in wrapper),
         failed_or_timed_out_outputs_also_preserved=True, all_original_output_files_included=True, no_model_checkpoints_written=True,
         all_actual_SHA_verified=True, files_and_ancestor_directories_fsynced=True, zip_safety_checked=True,
         read_file_chunk_limit=CHUNK, no_inference_reexecution_or_GPU_query_or_kill=True)

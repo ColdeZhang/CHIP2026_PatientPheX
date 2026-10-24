@@ -49,7 +49,7 @@ def main():
    assert set(v['seed_completes'])=={'20261024','20261025'}
    for item in [v['responses']]+v['raw_refs']+v['generation_refs']+list(v['seed_completes'].values()):
     q=Path(item['path']);q.resolve().relative_to(Path(p['output_dir']).resolve());assert q.stat().st_size==item['bytes'] and sha(q)==item['sha256']
-   report.update(complete_sha256=sha(complete),complete78_actual_members_verified=True,no_quality_performed=True)
+   report.update(complete_sha256=sha(complete),complete94_actual_members_verified=True,no_quality_performed=True)
   except Exception as error:report['endpoint_error']=dict(type=type(error).__name__,message=str(error))
  try:report['gpu_release']=resources();report['target_has_no_process']=p['gpu_uuid'] not in report['gpu_release']['processes']
  except Exception as error:report['release_unknown']=type(error).__name__

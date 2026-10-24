@@ -1,6 +1,6 @@
 """Detach one local read-only inference watcher, then verify its own session and lock.
 
-No new remote model start here. The watcher only observes the original78 job and
+No new remote model start here. The watcher only observes the original94 job and
 cannot start a model or change a deadline.
 """
 import argparse
