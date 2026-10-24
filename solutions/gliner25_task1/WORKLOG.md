@@ -10,6 +10,7 @@
 - **完整原件：** 正式642小件/6外部大件、推断508件、规范化17件均全SHA回收；原始候选/拒绝和分数保留。epoch5与final的模型/optimizer/scheduler/scaler/RNG读回一致，未声称原生自动完整resume。[训练/推断入口](evidence/formal-inference-complete.json)。
 - **工程边界：** .2随机query增强未关；每轮全部320窗、19200raw loss分项有限，606实际schema保存。38个词内正annotation不适配固定splitter，提前审计且未扩边界；NO仅负上下文，未伪称全部pair显式负训练。前两次probe工程故障及纯CPU元数据恢复都保留。
 - **恢复目录：** R=/workspace/patientphex-runs/round2-20261023，本线R/research/gliner25-task1-v1。唯一后继是集中终审和小产物备份，不重评既有端点。
-- **最近已核远端：** 5adbb4ff；本次完整结案与小备份摘要随后提交推送。
+- **备份已完成：** [57件小包](evidence/backup.json)611113B/7cf053ba已写.100、全部成员核验并完整下载同SHA；3阶段大产物仍沿精确locators恢复。
+- **最近已核远端：** abca8b51；本次仅补完整备份回执。
 
 下一步：将统一终态/源交root作一次集中复核，保留23个独有正确实体与全部score供另立假设；当前配方已关闭，不将模型家族整体判死。
