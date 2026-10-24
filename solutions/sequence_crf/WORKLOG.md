@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**全局患者—表型聚合：完整负结案，待统一终审。** 严格train32/F1同2506/1557对、同全文窗口/encoder/344577头，双fresh各8ep256步，总351.677秒、峰2.443GB；模型actual SHA已核，GPU释放。两完整预测共同freeze后唯一固定.5 F1：uniform **.542015995**，pair **.557825484**，虽两臂间+.01580949，仍低同池SFT32 **.660942003**与rules **.644761594**；pair232TP/261FP/288FN，较SFT少78TP多188FP。1189实体/nonassociation exact，双格式0错警，keep=false关闭，不加轮次/扫cut/F0/原dev。MCP离线只影响回收，root已补回最后2文件，全9成员SHA闭合；未知小tar不作已验证备份声明。[完整协议与过程](experiments/pair-conditioned-document.md)、[固定终点](evidence/round2/pair-document-formal-results.json)、[回收证据](evidence/round2/pair-document-final-collection.json)。
+**全局患者—表型聚合：完整负结案，统一终审5ea352fb通过。** 严格train32/F1同2506/1557对、同全文窗口/encoder/344577头，双fresh各8ep256步，总351.677秒、峰2.443GB；模型actual SHA已核，GPU释放。两完整预测共同freeze后唯一固定.5 F1：uniform **.542015995**，pair **.557825484**，虽两臂间+.01580949，仍低同池SFT32 **.660942003**与rules **.644761594**；pair232TP/261FP/288FN，较SFT少78TP多188FP。1189实体/nonassociation exact，双格式0错警，keep=false关闭，不加轮次/扫cut/F0/原dev。MCP离线只影响回收，root已补回最后2文件，全9成员SHA闭合；未知小tar不作已验证备份声明。[完整协议与过程](experiments/pair-conditioned-document.md)、[固定终点](evidence/round2/pair-document-formal-results.json)、[回收证据](evidence/round2/pair-document-final-collection.json)。
 
 **原dev唯一逆序并集完整正，独审PASS（5a106306）。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
 

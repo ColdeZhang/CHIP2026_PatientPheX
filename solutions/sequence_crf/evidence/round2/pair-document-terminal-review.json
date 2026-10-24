@@ -1,0 +1,279 @@
+{
+  "status": "PASS_MATCHED_DOCUMENT_PAIR_COMPLETE_TERMINAL_NEGATIVE_VS_SFT_AND_RULES",
+  "at_utc": "2026-10-24T01:21:59.291998+00:00",
+  "scope": "Incremental complete endpoint after frozen probe/entry; two full final8epoch arms, fixed .5, original F1 only.",
+  "decision": "Close this fixed document-pair recipe: learned attention improves its matched uniform control but fails both same-pool SFT32 and rules. No threshold scan, extra epochs, originaldev migration or official action.",
+  "training": {
+    "arms": 2,
+    "epochs_each": 8,
+    "updates_each": 256,
+    "train_documents": 32,
+    "pairs": 2506,
+    "positives": 594,
+    "same_actual_initial_encoder_and_head_SHA": true,
+    "same_frozen_epoch_orders": true,
+    "all7_module_probes_updated_each_arm": true,
+    "encoder_parameters": 108891648,
+    "head_parameters": 344577,
+    "native_seconds": 351.6770844501443,
+    "per_arm_seconds": {
+      "uniform": 174.26267504692078,
+      "pair": 176.39838554803282
+    },
+    "peak_allocated_bytes": {
+      "uniform": 2443340288,
+      "pair": 2442630144
+    },
+    "final_states": {
+      "uniform": {
+        "path": "uniform/final-state.pt",
+        "bytes": 1311091575,
+        "sha256": "e414436e926902b276634c5064eba142dca52ad132783deb3184d162e789ea12"
+      },
+      "pair": {
+        "path": "pair/final-state.pt",
+        "bytes": 1311091575,
+        "sha256": "0c98692dd9826d3273aec7f180c8d29ece08a7f042ef7ac8c4a340d366211b2d"
+      }
+    },
+    "final_state_scope": "Remote actual size/SHA verified receipts; model/optimizer/RNG not loaded or copied by reviewer."
+  },
+  "process": {
+    "job_id": "proc_e34bff71-98fe-44d4-983b-698751e431d7",
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "GPU_UUID": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "started_at": "2026-10-24T01:07:33.525983474Z",
+    "GPU_release_at": "2026-10-24T01:15:13.445799+00:00",
+    "managed_until_confirmed_release_seconds": 459.919816,
+    "original_PID_absent": true,
+    "inference_or_training_exit_code_available": false,
+    "cap_seconds": 1800,
+    "TERM_grace_seconds": 30
+  },
+  "recovery": {
+    "all9_small_members_actual_size_SHA_verified": true,
+    "first7_reused": true,
+    "last2_root_single_read": true,
+    "unknown_tar_not_claimed_as_backup": true,
+    "no_new_GPU_or_training": true
+  },
+  "endpoint": {
+    "final_probability_keys_each": 1557,
+    "threshold": 0.5,
+    "both_predictions_frozen_before_first_gold": true,
+    "unchanged_entities": 1189,
+    "unchanged_nonassociation_fields": true,
+    "patients": 39,
+    "documents": 16,
+    "format_errors": 0,
+    "format_warnings": 0,
+    "owner_endpoint_CPU_seconds": 0.2667384150045109
+  },
+  "arms": {
+    "uniform": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.41418764302059496,
+        "macF1": 0.33893739986239885,
+        "Score": 0.5420159946679136
+      },
+      "relations": {
+        "tp": 181,
+        "fp": 173,
+        "fn": 339,
+        "selected": 354
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/uniform.predictions.jsonl",
+        "bytes": 153766,
+        "sha256": "f78f2f7097e68e0694fb24ac92673b33716c75c2ba3f14d85890fdba28752ae6"
+      },
+      "full_prediction_byteexact": true
+    },
+    "pair": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.45804540967423496,
+        "macF1": 0.35831759194376633,
+        "Score": 0.5578254843516655
+      },
+      "relations": {
+        "tp": 232,
+        "fp": 261,
+        "fn": 288,
+        "selected": 493
+      },
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/pair.predictions.jsonl",
+        "bytes": 155704,
+        "sha256": "38dd12014b0069e20d20b7e7654e0c1fb892a417edf42ed9b2fb78eacfad0cab"
+      },
+      "full_prediction_byteexact": true
+    }
+  },
+  "comparators": {
+    "old_sft": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6866002214839424,
+      "macF1": 0.5422288533401712,
+      "Score": 0.6609420026531936
+    },
+    "old_rules": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6161515453639083,
+      "macF1": 0.5479558936740699,
+      "Score": 0.6447615937066596
+    }
+  },
+  "pair_delta_vs": {
+    "uniform": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": 0.043857766653639996,
+      "macF1": 0.019380192081367487,
+      "Score": 0.015809489683751843
+    },
+    "old_sft": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": -0.22855481180970744,
+      "macF1": -0.1839112613964049,
+      "Score": -0.10311651830152813
+    },
+    "old_rules": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": -0.1581061356896733,
+      "macF1": -0.1896383017303036,
+      "Score": -0.08693610935499418
+    }
+  },
+  "keep_pair": false,
+  "independent_checks": {
+    "all46_terminal_manifest_files_size_SHA_exact": true,
+    "in_memory_fullpred_assembly_byteexact": true,
+    "independent_relation_counts_and39patient_macro_exact": true,
+    "cached_entity_metrics_reused_only_after_nonassociation_exact": true,
+    "no_evaluator_or_new_quality_variant_executed": true,
+    "seconds": 0.04443864399945596
+  },
+  "limitations": [
+    "F1 is repeatedly observed development, not blind generalization or official score.",
+    "Only this fixed8epoch/.5 recipe is rejected; no conclusion about every global-document architecture.",
+    "The controlled comparison is pair versus same-capacity uniform. Historical SFT and rules have different architectures/training objectives.",
+    "GPU/model/update facts are verified source-bound actual receipts; reviewer did not rerun NN or deserialize remote final states.",
+    "MCP supplies no remote training exit code. Confirmed empty GPU/PID absence and complete artifacts establish the observed endpoint, not an invented rc0.",
+    "Unknown small-tar creation was not used or claimed as verified backup."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-formal-review/review.json",
+      "bytes": 5906,
+      "sha256": "e5180c9b82acd6a451909eb55f4dba10fd798091cf2aef5e5ce24645d2630537"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-probe-review/review.json",
+      "bytes": 5767,
+      "sha256": "8ed0b35ff50c6cd4b052ed1df9ab68df92ba262f92c3270671bffd04189a0002"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/terminal-artifact-manifest.json",
+      "bytes": 14650,
+      "sha256": "48124fca1c26aa9db42f14826a22619b67c8e719b0dbebfe248e1e8e27927301"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/formal-plan.json",
+      "bytes": 6934,
+      "sha256": "b26d6df54ca7952c7fd644cdf9ad158c8ffd20c36e720028c93f1696dfb6d27b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/endpoint-plan.json",
+      "bytes": 3143,
+      "sha256": "a455dcbef8d84554a5020a8010dd6eaefb07c71d24f1351a47fbd561550f242d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/finish_pair_document.py",
+      "bytes": 5805,
+      "sha256": "c0506ccacad8fd8eb405bfa5d31f5d410df935282f5ecf452bef8547e3d34dad"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/train_pair_document.py",
+      "bytes": 10444,
+      "sha256": "66c290aef40eee4b554e1f191dd71f60f8fdd8efbff7aa58a2195a921e4e12ef"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/job.json",
+      "bytes": 1258,
+      "sha256": "9e860ff52c4c4b2d6195a2baf261f25bc2a7a343c5b1b6214ccc2babdd817357"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/terminal/training-complete.json",
+      "bytes": 9960,
+      "sha256": "7ac9f29e917159c9a1ddc9439a9fed1aef41c85142c1623119265926324c5cef"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/terminal/artifact-actual-hashes.json",
+      "bytes": 752,
+      "sha256": "57a68e1b877f3409f54b61a847af08e0e0509b180b4af4296b57035761531bf5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/terminal/gpu-release.json",
+      "bytes": 209,
+      "sha256": "483944df9754c2af0e6b3aeff6d0812957a0d24d8b36a643944e3ae6e8c15ec4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/collection.json",
+      "bytes": 3303,
+      "sha256": "396c73bd6156f029ece5f6238a353d7f38b051aa1d2f09ff7c70116a09dd59ee"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/root-read-recovery-0120.json",
+      "bytes": 402,
+      "sha256": "341d6e05dc639009e3b605b8e36b5bdc8d24524486e083b9ce25612a9ab9ef8f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/prediction-freeze.json",
+      "bytes": 817,
+      "sha256": "ff34eb9ef6a8f0c296823c55cf62a04fe25d3c4569231170256e3c73f7dc5a3f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/evaluation-started.json",
+      "bytes": 337,
+      "sha256": "359620d60f38bfc22aabdc2cf6ad6625d215b74f5227478c1bb2ffbbeda6a4bd"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/results.json",
+      "bytes": 4420,
+      "sha256": "597c35377d072b6d310e2938a93e028b9e65389f1092b4e69e2d7903bca04374"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/pair.metrics.json",
+      "bytes": 13159,
+      "sha256": "49352ec4b96636b60ad4077812415b69c3f30e9c43b74ce16991eee74f89546c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/uniform.metrics.json",
+      "bytes": 13177,
+      "sha256": "988eb12614fb7bf71af1efe4a36029db684785e009f1f7b5af78e925ae1d5f8e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/pair.format.json",
+      "bytes": 425,
+      "sha256": "4a9122ff34bcb4d18ca3bb30e98cb7497dd941aea5c2f5807c25eff010c26747"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/uniform.format.json",
+      "bytes": 425,
+      "sha256": "d2d4f4e8f7e3777f268e750d5e04088bca929a66cd264a44ace6895281cd7d0a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-terminal-review/audit.py",
+      "bytes": 13334,
+      "sha256": "8e1976d3081e9b7a44679a9543f366cbd94514e50a94bf5cd21788b284068e19"
+    }
+  ]
+}
