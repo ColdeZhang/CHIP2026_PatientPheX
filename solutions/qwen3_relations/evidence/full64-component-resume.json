@@ -1,0 +1,38 @@
+{
+  "status": "FORMAL_RUNNING_ORIGINAL_JOB_DO_NOT_RESTART",
+  "source_commit": "f69d88d0fc93c774cdcc4718679701fd749bc452",
+  "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "managed_process": "proc_e5d04680-485e-4b47-b153-87130a9a1255",
+  "driver_pid": 1207543,
+  "formal_child": {
+    "phase": "formal",
+    "pid": 1207643,
+    "started_at_utc": "2026-10-24T12:09:42.129377+00:00",
+    "term_at_utc": "2026-10-24T12:49:42.129377+00:00",
+    "kill_at_utc": "2026-10-24T12:50:12.129377+00:00",
+    "budget_seconds": 2400,
+    "command": [
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-component-v1/source/native.py",
+      "formal",
+      "--plan",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-component-v1/source/plan.json"
+    ]
+  },
+  "remote_prefix": "research/stage8-qwen3-relations/full64-component-v1/run/",
+  "read_only_status_files": [
+    "driver-progress.json",
+    "formal/progress.json",
+    "formal/epoch-001-persistent-ack.json",
+    "formal/epoch-002-persistent-ack.json",
+    "formal/complete.json",
+    "infer-child-start.json",
+    "infer/progress.json",
+    "driver-result.json",
+    "small-terminal-receipt.json"
+  ],
+  "completed_only_collection_command": "python /workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/collect_full64_component.py",
+  "completed_only_assembly_command": "python /workspace/patientphex-worktrees/explore-qwen3-relations/solutions/qwen3_relations/full64_component/assemble_component.py --plan /workspace/patientphex-worktrees/explore-qwen3-relations/solutions/qwen3_relations/full64_component/assembly-plan.json",
+  "no_originaldev_gold_or_quality": true,
+  "failure_policy": "Recover original status. No automatic restart, truncation, recipe changes or extra epochs. Root fixed ensemble decides originaldev quality."
+}
