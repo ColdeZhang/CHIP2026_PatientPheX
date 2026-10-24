@@ -1,0 +1,57 @@
+{
+  "status": "deployment_interrupted_UNKNOWN_OUTCOME_no_CPU_or_GPU_started",
+  "at_utc": "2026-10-24T01:55:15.899905+00:00",
+  "source_checkpoint": "53d485c382876e3e3b68e76c8dfdbf8f7793425b",
+  "remote_directory": "sequence-round2/patient-first-longest-probe-v1",
+  "directory_creation": "controller observed mkdir rc0 before advancing to write_file; not a separate mkdir receipt",
+  "one_part": "upload.part000",
+  "part_bytes": 254466,
+  "archive_sha256": "cd50df2ca57bd5193a9487693dbe174454e60d0688bc440439cedf18897e1795",
+  "part_write": "UNKNOWN_OUTCOME, may have landed",
+  "one_post_write_actual_SHA_inventory": "UNKNOWN_OUTCOME, existence/SHA still unknown",
+  "unpacked": false,
+  "native_runtime_CPU_started": false,
+  "native_data_CPU_started": false,
+  "GPU_launch_intent_exists": false,
+  "GPU_job_exists": false,
+  "MCP_calls_paused": true,
+  "recovery_order": [
+    "After root/ontology confirms actual execution recovery, read only existing upload.part000 size/SHA against archive; do not call deploy again",
+    "If exact: use existing archive to unpack/verify all18 members+CPU compile; do not reupload",
+    "Then native runtime_check and data_contract in separate CUDA-hidden processes; on unknown inspect saved files before any rerun",
+    "Use deploy_cpu.py recover only after the three nativeCPU output files exist; it does not inspect interrupted source upload",
+    "Freeze final GPU run-plan only after actual nativeCPU receipts; wait NCR actualGPUrelease then freshempty once before unique180+30 launch"
+  ],
+  "references": {
+    "intent": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-deployment-intent.json",
+      "bytes": 2775,
+      "sha256": "97ba30e85641104802a694ee28ac9875529e91b53fe85000e357d2cab948e619"
+    },
+    "zip": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-deployment.zip",
+      "bytes": 254466,
+      "sha256": "cd50df2ca57bd5193a9487693dbe174454e60d0688bc440439cedf18897e1795"
+    },
+    "write_unknown": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/deployment-unknown-write.json",
+      "bytes": 217,
+      "sha256": "ac6193a8c86517a6f0c3cd69e083e318d4e804bdd03d6d89c84fddc207be4233"
+    },
+    "read_unknown": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/post-unknown-part-inventory-mcp.json",
+      "bytes": 136,
+      "sha256": "58be7e3a2c74f4c7dec110a639b7772c5ed03281a633a458d55ec43fceff697c"
+    },
+    "prior_runtime_LUNA": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/runtime-preflight-mcp.json",
+      "bytes": 122,
+      "sha256": "e6db213f776866f4f51db71d54f46a0dfcdbdd13c9ff7fdcac26a3e4c2eebf14"
+    },
+    "latest_proposal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/probe-proposal-v2.json",
+      "bytes": 7259,
+      "sha256": "0adf70da4c4afe2e73071f7943fe31d257f92ab0fe9042c890492f1ce0328e9b"
+    }
+  }
+}

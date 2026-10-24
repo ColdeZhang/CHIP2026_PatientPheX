@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**下一步：patient-first闭集矩阵转置，仅准备最长行更新探针。** helper已在外部`research/patient-first-closed-set/`完成旧train32 124行/新F1纯input80转置、实际分词、25项schema反例；13件实际SHA已核，源码/小证据已原字节接管，未训练/推断/读F1 labels。新最长5556tokens，旧最长5523；监督token减少不等于质量改善。新data-plan/实际124逐行SHA guard已实现，唯一fresh原生5556更新180+TERM30获准；非零lr诊断与正式warmup区分、允许A首梯度0、只验3小B变化。当前MCP LUNA_OFFLINE，nativeCPU/GPU均未执行；静态源审3275b461通过。GPU2先给本体NCR，等实际释放后恢复，不抢A800 warm卡。[方法/资源与恢复](experiments/patient-first-closed-set.md)、[冻结准备](evidence/round2/patient-first-probe-proposal.json)。
+**下一步：patient-first闭集矩阵转置，仅准备最长行更新探针。** helper已在外部`research/patient-first-closed-set/`完成旧train32 124行/新F1纯input80转置、实际分词、25项schema反例；13件实际SHA已核，源码/小证据已原字节接管，未训练/推断/读F1 labels。新最长5556tokens，旧最长5523；监督token减少不等于质量改善。新data-plan/实际124逐行SHA guard已实现，唯一fresh原生5556更新180+TERM30获准；非零lr诊断与正式warmup区分、允许A首梯度0、只验3小B变化。MCP曾实际恢复后mkdir成功，但唯一254466B upload.part000写入与其后一次SHA读取均UNKNOWN_OUTCOME；是否落盘未知，未解包/nativeCPU/GPU，已停新MCP。静态源审3275b461通过，源码53d已push。[部署分段状态/只读恢复](evidence/round2/patient-first-probe-deployment-state.json)。GPU2先给本体NCR，等实际释放后恢复，不抢A800 warm卡。[方法/资源与恢复](experiments/patient-first-closed-set.md)、[冻结准备](evidence/round2/patient-first-probe-proposal.json)。
 
 **完整80 thinking固定政策准备完成、明确暂缓。** 唯一思考2304/final512，原80输入实核587CID/1557pairs、max5689；最密compact合法JSON242tokens。旧trace全CID字面1479、七列表1721、C003肯定映射2214、全八列表3529，旧“前半八项全决定”已纠正，不把一条位置外推80充分性。A800预计约3小时，建议硬4h+30但未启动；root决定不降cap凑成本，优先更便宜patient-first。[固定政策/状态机/成本](experiments/thinking-budget-80-plan.md)、[冻结JSON](evidence/round2/thinking-budget-80-policy.json)。
 

@@ -71,3 +71,9 @@ env CUDA_VISIBLE_DEVICES= TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
 **当前阻塞**：A100 runtime只读核验立即返回LUNA_OFFLINE，未取得新runtime执行结果；ontology NCR成本probe亦尚未启动，root统一恢复连接。当前仅本地source/manifest/AST与静态增量审3275b461完成；真实nativeCPU绑定与GPU更新均未执行。等待ontology成功的实际只读roundtrip后恢复同一次CPU检查，先让其NCR短探针完成释放，再fresh查GPU空闲启动本单步；不凭mount online认定恢复。
 
 外部`probe-preparation/`有resource/data-plan/source proposal/payload及MCP故障收据。恢复入口：`patient_first/deploy_cpu.py deploy --directory <probe-preparation>`，完成后`recover`回收三CPU文件；若工具返回unknown，先检查已落盘文件，禁止重复盲发同一部署/CPU动作。源/计划推送、实际CPU收据与最终GPU run-plan冻结后再使用`operations.py start`的单次intent入口。GPU启动前无需新增用户确认，但具体阻断必须先处理。
+
+### 连接恢复后的部署中断（仍无CPU/GPU模型执行）
+
+ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目录部署。目录创建被controller观察为rc0；唯一254466B `upload.part000` 的write_file返回UNKNOWN_OUTCOME，随后只做一次该part实际SHA读取也返回UNKNOWN_OUTCOME。**不能记成part不存在或传输成功。** 没有解包、native runtime/data CPU命令、GPU start-intent或GPUjob；已停新MCP，等待root统一恢复。ontology的NCR也尚无GPU作业，不存在本方案占卡等待。
+
+源码53d485c已推；本地zip、18文件清单、intent及两次未知收据完整，见[精确分段状态](../evidence/round2/patient-first-probe-deployment-state.json)。恢复后只核已有part实际SHA；若与zip相同，解包既有字节并逐成员核验/compile，再执行尚未执行的CPU步骤，不重新上传或调用`deploy`从头创建目录。`deploy_cpu.py recover`仅用于三个CPU结果已经落盘后的回收，不能替代本次upload-part库存检查。
