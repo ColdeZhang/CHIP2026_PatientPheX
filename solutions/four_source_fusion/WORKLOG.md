@@ -15,3 +15,5 @@ F0同公式完整正：**.728195628911**（强三源+.003738273579），13新增
 F0新12内容（完整pred+固定recipe/质量）小包27452B已.100实际2次read_file回读、逐SHA/fsync/reopen通过，[回执480f44c4](evidence/F0-backup.json)。F1旧包不重复，模型/原raw仍继承各源已核备份。
 
 原dev源码准备：`run_originaldev.py`实现已预锁b05a019f公式，实际四个full64来源齐后才绑定plan。校验原B3必须等于同G/S/Q的固定二票，保全部B901与非关系对象；单完整预测freeze后最多1新v2。若字节等于B3、当前best或原901则继承指标，0重评分。编译及两项有区别投票合同通过，尚未实际装配/读gold。C full64仍待正式工程探针/训练，未新增质量结果。
+
+完整 C 已到：64 fresh 全 strict、300纯关系，final-handoff78615a55；原临时服务/GPU已实际释放。已绑定[唯一原dev计划](plan-originaldev.json)，四源新增供给分别{'grounded': 28, 'sampled': 8, 'qwen3': 23, 'coded': 14}；当前best为05cfa90f/.769235669942。先推送源码/计划，再全预测冻结与最多1次新v2；保留全部901实体与关系，不做C单臂或子集扫描。
