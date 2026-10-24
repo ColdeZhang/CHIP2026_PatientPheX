@@ -1,0 +1,38 @@
+{
+  "status": "clarification_of_active_pipeline_inventory_not_a_new_quality_run",
+  "supersedes_wording_only": "fixed-dev-protocol and carried result metadata called 9597467990 shared weights and said adapters separately. Correct total already includes one actually used full64 adapter; do not add it again or infer a meta1 adapter from directory name. Frozen plans/results/allowlists retained unchanged.",
+  "inventory": {
+    "Qwen_text_shared_once": 8953803264,
+    "one_full64_LoRA_adapter": 43278336,
+    "public_PubMedBERT_PhenoTagger": 122759794,
+    "public_Bioformer_PhenoTagger": 51380594,
+    "SapBERT": 109482240,
+    "GLiNER_medium": 195175936,
+    "public_BioBERT_PhenoTagger": 121587826
+  },
+  "total_unique_parameters_including_active_adapter": 9597467990,
+  "remaining_below_10B": 402532010,
+  "actual_adapter_evidence": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.manifest.json",
+      "sha256": "97b322255ac2872d2b8a375b0cee4baf6e0fc0afa7dc049674c625d7ff7663a0",
+      "bytes": 4212
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations-dev/responses.manifest.json",
+      "sha256": "b1b71facb4820972b48ab99a7e8ab5588a3e62869392c01bac8db2d61ca510f9",
+      "bytes": 4197
+    }
+  ],
+  "actual_adapter_files_exact": {
+    "adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+    "adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+  },
+  "base_and_adapter_actual_count_delta": 43278336,
+  "other_components": "Reuse root verified existing production inventory and prior native/model manifests; no new tensor loading or parameter recount in this clarification.",
+  "inactive_models_excluded": [
+    "meta1 train32 control adapter",
+    "closed binary/entity/other experimental modules"
+  ],
+  "no_new_model_fit_inference_prediction_or_quality": true
+}
