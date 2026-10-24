@@ -1,0 +1,356 @@
+{
+  "fingerprint": {
+    "base_files": {
+      "actual_files": {
+        "LICENSE": {
+          "bytes": 11544,
+          "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+        },
+        "README.md": {
+          "bytes": 77643,
+          "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0"
+        },
+        "chat_template.jinja": {
+          "bytes": 7756,
+          "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+        },
+        "config.json": {
+          "bytes": 3126,
+          "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+        },
+        "merges.txt": {
+          "bytes": 3353259,
+          "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+        },
+        "model.safetensors-00001-of-00004.safetensors": {
+          "bytes": 5276436216,
+          "sha256": "db6f444b43d318c92f360a13a25561a6a65b10c0631b8ed305a426dbaa6c380e"
+        },
+        "model.safetensors-00002-of-00004.safetensors": {
+          "bytes": 5335161512,
+          "sha256": "31c7d7e2dd5d207840b31cc59083c8f4c4718959149e0358c0364052bb9a0330"
+        },
+        "model.safetensors-00003-of-00004.safetensors": {
+          "bytes": 5368717440,
+          "sha256": "7ec36ba3a4176a44c3c0876ad80c56a2f70c84bf008d82e9501df642f17dadec"
+        },
+        "model.safetensors-00004-of-00004.safetensors": {
+          "bytes": 3325995712,
+          "sha256": "b62b0c4cd7e44edee103ee8f4fe225f246d5e768e07bfd5f25b63a8aa1fdd0c6"
+        },
+        "model.safetensors.index.json": {
+          "bytes": 79657,
+          "sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5"
+        },
+        "preprocessor_config.json": {
+          "bytes": 390,
+          "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+        },
+        "tokenizer.json": {
+          "bytes": 12807982,
+          "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+        },
+        "tokenizer_config.json": {
+          "bytes": 16710,
+          "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+        },
+        "video_preprocessor_config.json": {
+          "bytes": 385,
+          "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+        },
+        "vocab.json": {
+          "bytes": 6722759,
+          "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+        }
+      },
+      "all15_files_verified": true,
+      "hf_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model": "Qwen/Qwen3.5-9B",
+      "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "configuration": {
+      "fixed": {
+        "alpha": 32,
+        "attention": "sdpa",
+        "batch_size": 1,
+        "dropout": 0.05,
+        "dtype": "bfloat16",
+        "epochs": 2,
+        "gradient_accumulation": 8,
+        "gradient_checkpointing": {
+          "use_reentrant": false
+        },
+        "learning_rate": 0.0001,
+        "max_grad_norm": 1.0,
+        "max_seq_length": 6144,
+        "packing": false,
+        "quantization": false,
+        "rank": 16,
+        "seed": 20261023,
+        "targets": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "in_proj_qkv",
+          "in_proj_z",
+          "in_proj_b",
+          "in_proj_a",
+          "out_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "warmup_ratio": 0.05,
+        "weight_decay": 0.01
+      },
+      "paths_and_device": {
+        "data_manifest": "case-retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+        "excluded_input": "case-retrieval/qwen35-preparation/sft-meta1-fusion/excluded.input.jsonl",
+        "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+        "mode": "train",
+        "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+        "model_source_manifest": "case-retrieval/qwen35-preparation/model-source-manifest.json",
+        "order_arm": "original",
+        "output_dir": "/dev/shm/patientphex-order-warm32-1045-20261024/original",
+        "reverse_train": "case-retrieval/qwen35-preparation/order-warmstart-stage/reverse124.jsonl",
+        "train": "case-retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+        "warm_start_checkpoint": "case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002"
+      }
+    },
+    "copied204_trainer_sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b",
+    "copied_epoch_loop_source_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+    "encoded_sha256": "7fa9ef2b46a5600497887b594d44474d27aaa4165056650958626b454641bcb3",
+    "encoded_variant_sha256": {
+      "O": "7fa9ef2b46a5600497887b594d44474d27aaa4165056650958626b454641bcb3",
+      "R": "4215a70aa9704aa44d242a0dc1c02c998721f180b470efc4236a0c99aedcae28"
+    },
+    "environment": {
+      "executable": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+      "gpu_capability": [
+        8,
+        0
+      ],
+      "gpu_name": "NVIDIA A800 80GB PCIe",
+      "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "modeling_source_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+      "packages": {
+        "accelerate": "1.15.0",
+        "causal-conv1d": null,
+        "fla-core": null,
+        "flash-linear-attention": null,
+        "huggingface-hub": "1.31.0",
+        "numpy": "2.4.6",
+        "peft": "0.21.2",
+        "safetensors": "0.8.0",
+        "tokenizers": "0.23.1",
+        "torch": "2.7.1",
+        "transformers": "5.20.2"
+      },
+      "peft_source_sha256": "d22a1c50dea7a046ce28e71a79dfc20b1d96a2d238a9b457be6a88b6068e04d5",
+      "platform": "Linux-5.4.0-216-generic-x86_64-with-glibc2.31",
+      "python": "3.11.17 (main, Oct 21 2026, 17:46:53) [Clang 23.1.3 ]",
+      "torch_cuda": "12.6"
+    },
+    "epoch_variants": [
+      "O",
+      "O"
+    ],
+    "excluded_document_ids": [
+      "10313222",
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11871647",
+      "11906559",
+      "11919040",
+      "12386172",
+      "12444410",
+      "12455887",
+      "12652105",
+      "12779223",
+      "12891056",
+      "2964533",
+      "3563609",
+      "4607013",
+      "4678370",
+      "5415817",
+      "5425407",
+      "5452357",
+      "5473715",
+      "5537416",
+      "5538066",
+      "5575846",
+      "5789735",
+      "5959423",
+      "6048891",
+      "6063015",
+      "6338757",
+      "6491447",
+      "9327653"
+    ],
+    "excluded_input_sha256": "2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82",
+    "helper_sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3",
+    "meta32_preparation_sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47",
+    "order_arm": "original",
+    "protocol_sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c",
+    "reverse_train_sha256": "34778f082d1057cab4646a3ef259fd0f15f4e48f13944ad5216bbde042e609b8",
+    "schema": "patientphex-qwen35-meta32-order-warmstart-stage-v1",
+    "source_sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4",
+    "text_config": {
+      "_name_or_path": "",
+      "architectures": null,
+      "attention_bias": false,
+      "attention_dropout": 0.0,
+      "attn_output_gate": true,
+      "bos_token_id": null,
+      "chunk_size_feed_forward": 0,
+      "dtype": "bfloat16",
+      "eos_token_id": 248044,
+      "full_attention_interval": 4,
+      "head_dim": 256,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "id2label": {
+        "0": "LABEL_0",
+        "1": "LABEL_1"
+      },
+      "initializer_range": 0.02,
+      "intermediate_size": 12288,
+      "is_encoder_decoder": false,
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "layer_types": [
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention",
+        "linear_attention",
+        "linear_attention",
+        "linear_attention",
+        "full_attention"
+      ],
+      "linear_conv_kernel_dim": 4,
+      "linear_key_head_dim": 128,
+      "linear_num_key_heads": 16,
+      "linear_num_value_heads": 32,
+      "linear_value_head_dim": 128,
+      "mamba_ssm_dtype": "float32",
+      "max_position_embeddings": 262144,
+      "mlp_only_layers": [],
+      "model_type": "qwen3_5_text",
+      "mtp_num_hidden_layers": 1,
+      "mtp_use_dedicated_embeddings": false,
+      "num_attention_heads": 16,
+      "num_hidden_layers": 32,
+      "num_key_value_heads": 4,
+      "output_attentions": false,
+      "output_hidden_states": false,
+      "pad_token_id": null,
+      "problem_type": null,
+      "return_dict": true,
+      "rms_norm_eps": 1e-06,
+      "rope_parameters": {
+        "mrope_interleaved": true,
+        "mrope_section": [
+          11,
+          11,
+          10
+        ],
+        "partial_rotary_factor": 0.25,
+        "rope_theta": 10000000,
+        "rope_type": "default"
+      },
+      "tie_word_embeddings": false,
+      "transformers_version": "5.20.2",
+      "use_cache": false,
+      "vocab_size": 248320
+    },
+    "train_sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8",
+    "training_document_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ],
+    "upstream_old32_trainer_sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1",
+    "warm_start": {
+      "adapter_files": {
+        "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+        "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+      },
+      "kind": "new_stage_adapter_warm_start_fresh_optimizer_RNG",
+      "not_exact_old_stage_resume": true,
+      "old_optimizer_loaded": false,
+      "old_training_state_opened": false,
+      "source_checkpoint_sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120",
+      "source_epochs": 2,
+      "source_optimizer_calls": 32
+    }
+  },
+  "files": {
+    "adapter/README.md": "9054672de2e89b26ae5d91135c9b20743333493d3a24ff945b6c2d8c288bfbab",
+    "adapter/adapter_config.json": "1cfba17310842786f3374df37fe6037ae258c0f4b99e7dfb3155bbd73c3167c2",
+    "adapter/adapter_model.safetensors": "14b8ece52aad2c281767743c12b317e41fe4819bafe816b84e9c0a72c5b69deb",
+    "training_state.pt": "e9c8abb8f0d5be6e9fab03784d66b4be418dfa9a9166b3fd7cd1302c364bdea7"
+  },
+  "completed_epochs": 2,
+  "global_step": 32,
+  "smoke_only": false,
+  "new_resume_numerical_equivalence_tested": false
+}
