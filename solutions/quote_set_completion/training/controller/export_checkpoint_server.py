@@ -87,7 +87,15 @@ def main():
         'manifest_sha256':hashlib.sha256(payload).hexdigest(),'manifest':manifest}),flush=True)
     server.timeout=.5;server.daemon_threads=True
     try:
-        while time.time()<a.deadline:server.handle_request()
+        while time.time()<a.deadline:
+            ack_path=root/manifest['ack_basename']
+            if ack_path.exists():
+                ack=json.loads(ack_path.read_text())
+                assert ack['status']=='persistent_checkpoint_verified' and ack['files']==manifest['files']
+                assert ack['transport_manifest_sha256']==hashlib.sha256(payload).hexdigest()
+                assert ack['source_checkpoint_directory']==str(cp)
+                break
+            server.handle_request()
     finally:server.server_close()
 
 

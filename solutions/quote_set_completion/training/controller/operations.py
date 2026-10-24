@@ -182,6 +182,6 @@ else:
  ready=json.loads((B/('epoch-%03d-server-ready.json'%epoch)).read_text());ack=d['ack'];assert ack['files']==ready['manifest']['files'] and ack['transport_manifest_sha256']==ready['manifest_sha256'] and ack['completed_epochs']==epoch and ack['global_step']==plan['configuration']['steps_per_epoch']*epoch
  save('epoch-%03d-export-ack.json'%epoch,ack);save('epoch-%03d-export-verification.json'%epoch,d)
  published=publish_json(source,plan['output_dir']+'/export-ack-epoch-%03d.json'%epoch,ack,'epoch-%03d-source-ack-tool.json'%epoch);save('epoch-%03d-source-ack-copy.json'%epoch,published)
- job=json.loads((B/('epoch-%03d-server-job.json'%epoch)).read_text());stopped=call(source,'stop_process',dict(process_id=job['id']),'epoch-%03d-server-stop-tool.json'%epoch);save('epoch-%03d-server-stop.json'%epoch,stopped)
+ # The bounded server observes its exact source ACK and exits itself; no assumed recursive stop_process cleanup.
  if epoch==1:save('campaign-complete.json',dict(status='ONE_COMPLETE_EPOCH_DURABLE_ACK_VERIFIED',at_epoch=time.time(),campaign=load_campaign(),epoch1_ack_sha256=sha((B/'epoch-001-export-ack.json').read_bytes()),no_quality=True))
  print(json.dumps(dict(complete=True,epoch=epoch,bytes=ack['total_bytes'],seconds=ack['seconds'],ack_sha256=d['ack_sha256'],persistent_directory=ack['persistent_directory'])))

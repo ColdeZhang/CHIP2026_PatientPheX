@@ -100,6 +100,15 @@ def verify_archive():
 def endpoint():
  plan=json.loads((root/'controller-plan.json').read_text());assert sha((root/'controller-plan.json').read_bytes())==cfg['controller_plan_sha256']
  assert cfg['campaign_complete']['status']=='ONE_COMPLETE_EPOCH_DURABLE_ACK_VERIFIED'
+ server_control=root/'control/export-server-epoch-001'
+ server_wrapper=server_control/'wrapper-complete.json'
+ if not server_wrapper.exists():return dict(status='not_terminal',reason='original bounded HTTP wrapper not terminal')
+ sw=json.loads(server_wrapper.read_text());assert sw['returncode']==0 and not sw['timed_out']
+ server_child=json.loads((server_control/'child-started.json').read_text())['pid']
+ server_driver=json.loads((server_control/'driver-started.json').read_text())['pid']
+ for original_pid in [server_child,server_driver]:
+  proc=Path('/proc')/str(original_pid)/'stat';state=proc.read_text().split(') ',1)[1].split()[0] if proc.exists() else None
+  if state not in (None,'Z','X'):return dict(status='not_terminal',reason='original HTTP owner still exiting',pid=original_pid)
  wrappers={};children=[]
  for epoch in (1,):
   control=root/'control'/('epoch-%03d'%epoch);wrapper_path=control/'wrapper-complete.json'
@@ -184,15 +193,10 @@ def main():
     campaign_complete=json.loads((root/'campaign-complete.json').read_text())
     deployment=json.loads((root/'deployment-manifest.json').read_text());controller=json.loads((root/'controller-plan.json').read_text())
     assert campaign_complete['status']=='ONE_COMPLETE_EPOCH_DURABLE_ACK_VERIFIED'
-    guardian_path=root.parent/'export-guardian-v1/terminal-collection.json'
-    guardian=json.loads(guardian_path.read_text())
-    assert guardian['both_original_HTTP_children_exited'] and guardian['collection_only_no_remote_or_signals']
-    assert guardian['campaign_complete']==ref(root/'campaign-complete.json')
-    assert guardian['actual']['started.json']['plan_sha256']==ref(root/'controller-plan.json')['sha256']
-    # Freeze metadata only after the original two HTTP stdout writers have also exited.
+    # Freeze metadata only after the original one bounded HTTP stdout writer have also exited.
     package=dict(mount=MOUNT,remote=REMOTE,members=deployment['files'],controller_plan=ref(root/'controller-plan.json'),
-        campaign_complete=ref(root/'campaign-complete.json'),HTTP_guardian_terminal=ref(guardian_path),ACKs={str(e):ref(root/('epoch-%03d-export-ack.json'%e)) for e in (1,2)},source=ref(__file__))
-    for e in (1,2):assert campaign_complete['epoch%d_ack_sha256'%e]==package['ACKs'][str(e)]['sha256']
+        campaign_complete=ref(root/'campaign-complete.json'),ACKs={str(e):ref(root/('epoch-%03d-export-ack.json'%e)) for e in (1,)},source=ref(__file__))
+    for e in (1,):assert campaign_complete['epoch%d_ack_sha256'%e]==package['ACKs'][str(e)]['sha256']
     save(package_path,package)
     assert package['mount'] == MOUNT and package['remote'] == REMOTE
     assert isinstance(package['members'], dict) and 'formal-plan.json' in package['members']
