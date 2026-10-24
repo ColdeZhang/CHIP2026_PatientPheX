@@ -1,25 +1,23 @@
-# 双随机种子原生共识
+# 非思考双种子共识台账
 
-当前：E-20261024-SAMPLE-001 已完整完成，primary内部F1正，diagnostic负；正在做一次完整终审与小备份。root另授权F0只做同配方primary的CPU准备，尚无新GPU授权。目标检验同一SFT32模型的非思考随机输出一致性，是否能补强已有fullsupport关系。使用原 native A800 后端、同4f4815适配器与80完整全文输入，复用已完整80自然EOS的greedy G；不混FLA、不训练。
+## 当前状态
 
-固定参数：两流20261024/25，逐行SHA256导出63bit种子；T.7/p.8/k20/min_p0/repetition1、presence0（不添加processor）、maxnew1600。各80条fresh，一次1800+30共享预算，模型仅载一次；无新probe/重试补答案。完整raw先保存；格式/非EOS/think/触顶整行弃答，不修JSON。
+- 固定主配方 `B ∪ (S1 ∩ S2)` 内部F1 **.686338981→.693653304**（+.007314）、内部F0 **.711507580→.721969518**（+.010462）均正；每折 micro/macro 同升，实体保持各自强B。原dev最佳901及官方成绩未更新。
+- F1完整160已终审PASS `e5437e12…`，原替换型多数诊断负保留。F0完整116已807.028秒rc0并于11:48:37.791245Z释放 .100 GPU1，全部EOS/strict，375成员原包完整恢复。F0唯一主端点冻结后仅1次v2，独立终审/小证据备份正在收尾。
+- F0预测`3ec75365…`保947实体/全部B315（池外39），固定新增21=9TP12FP，0删除；分项和可复现入口见[实验002](experiments/E-20261024-SAMPLE-002.md)。完整原始两seed已交root固定融合，不按逐项正确性选择。
+- 条件full64 CPU准备已完成[说明](full64_readiness/README.md)：原normal64短提示不能冒称全文，新完整64每轮512091 tokens/max13230，原full64适配器1a703b已实核，无需重训。仅CPU，无原devgold/NN/quality；是否运行由root后续决定。
+- 分支`explore/sampled-consensus`；最新已核远端`8f07116`（完整F0冻结、唯一评分前），后续结果提交正常续推。全量产物在`R/research/nonthinking-sampled-consensus-native-20261024/`及`R/research/nonthinking-sampled-consensus-F0-20261024/`，Git仅源码/短记录/manifest。
 
-两个端点事前固定：primary `B∪(S1∩S2)`；diagnostic `M2of3(G,S1,S2)`。都保持B的1189实体，primary原471关系及88池外关系全部保留。160条终态后共冻，再仅各一次v2，旧分数复用、不单评seed。最高端点严格升于B .686338981可候选，primary成功另报，micro/macro无条件报告；否则关闭不扫参。仅内部F1研发，不读原dev/官网。
+## 执行与恢复
 
-来源/固定计划见[plan.json](plan.json)，实验细节见[实验记录](experiments/E-20261024-SAMPLE-001.md)。外部产物：`/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/`。起点main `cd4086b`，只修改本目录。源码/CPU合同/冻结plan先push后启动；UNKNOWN恢复原意图、不盲重启。
+| 控制 | 已完成与决定 | 证据 |
+|---|---|---|
+| [SAMPLE-001](experiments/E-20261024-SAMPLE-001.md) | A800同native4f48、80×2；主正、替换多数负；完整终审PASS、两个包全读回 | `evidence/result.json`、外部F1 terminal-manifest.json；终审e5437e12 |
+| [SAMPLE-002](experiments/E-20261024-SAMPLE-002.md) | A30同native4f48、58×2、每seed最长首行属于正式116；完整主正；无新训练 | `evidence/F0-result.json`、外部F0 terminal-manifest.json；终审待收 |
+| full64条件准备 | 全祖先排原dev，纯输入完整文本构造+真实CPU token合同；首脚本命名遮蔽stdlib已独立恢复 | `evidence/full64-readiness.json`；原始失败与恢复都保留 |
 
-CPU真实原runtime门已20.323270秒通过：模型与adapter全部实际SHA、旧80 IDs/自然EOS、输入670122/max14390、两seed160唯一row_seed、实际Temperature/TopK/TopP/MinP处理器及CPU多项式抽样可重复。未创建模型/调用CUDA/重tokenize旧链。原native无FLA/causal_conv1d；同版本torch2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1。完整资产/seed证据留外部。装配CPU合同另核两端点、B88池外保留、19类弃答/7类身份失败，尚无新质量。
+F0原作业 `proc_972436a9-26f2-4af2-91d7-87c81710dc58` / PID2734284 已完成，不重启。原TERM12:10:10.631670Z/KILL12:10:40.631670Z保留；`monitor_once.py`仅用于必要原终态恢复，当前已持有真实release。CPU装配`f0/assemble.py`、终态核验`f0/verify_terminal.py`、唯一质量`f0/quality.py`，实际命令见外部assembly-intent/quality-command。所有新GPU、原dev质量或官方动作均需root给新任务，不能从readiness自动启动。
 
-唯一实际作业已启动：11:10:24.424427 UTC，A800 GPU2，proc_c9eb4b95-3078-4bfe-a789-0a86f4acb483 / PID10566；TERM11:40:24.424412、KILL11:40:54.424412。初次观察已3/160完整fresh，source c555f808。恢复入口外部monitor_once.py，只读原作业；绝不重启新副本。两端点的TP/FP增量诊断沿v2 association语义拆完整compound HPO，而共识票本身仍按原literal串，不改预测/门。
+## 关键边界
 
-160/160原生fresh全量成功：两seed各80自然EOS/strict80，0cap/think/弃答，输出4707/4740 tokens；单窗口728.463375秒rc0，11:22:33.021760 UTC真实释放A800卡2（1MiB/noapps），已交sequence。506件原包347365B/1b07b483已完整回收逐SHA；160 raw/独立IDS/canonical逐行精确闭环。两个端点已共冻：primary505关系=471旧+34，diag416，两个均1189实体，primary88池外全保。当前尚未quality，准备各唯一一次v2。
-
-固定质量结论：primary Score .686338981272→.693653303500（+.007314322229），mic .738647830474→.745365853659，mac .591769158824→.614308424554；34新增=16TP18FP，0删除。diag .674868887537（−.011470093734），mic.690170940171/mac.594365674189；删除108含65TP，新增53含22TP，不能替代强B。primary预写门通过，两个模型实体分项精确不变，格式均0error/0warning。实际2v2、旧0、单seed0、fit0，无原dev/官网操作。[结果](evidence/result.json)。这仍是内部F1研发信号，不是原dev新best或0.8达标；不扫seed/温度，不扩大成所有多数票无效。
-
-## F0 固定复验准备（E-20261024-SAMPLE-002）
-
-F1 已集中终审通过 `e5437e12…`，双证据包实际恢复备份完成。现在准备同4f48/两seed的 F0 唯一主终点，完整58×2、47患者、B0全部315关系与947实体保留；候选层32→48差异已披露。实际 .100 隐CUDA CPU确认相同native runtime及4f48资产，无新权重下载；正式窗口2100+30，每seed最长行先作为116之一。详见实验记录和 `f0/plan.json`；实际native CPU资产/采样合同21.435秒通过，装配19类弃答/16类拒绝通过；最终source/receipt已冻结，下一步唯一116正式推断。未启动GPU、未读F0gold。
-
-F0 唯一正式116已11:35:10.631690Z启动，`proc_972436a9-26f2-4af2-91d7-87c81710dc58` / PID2734284，原TERM12:10:10.631670Z/KILL12:10:40.631670Z。恢复入口为外部 `monitor_once.py`，只恢复原作业；已fresh核A30 GPU1空闲，GPU0仅记录不操作。实测完整raw与质量待原作业终态。
-
-F0全116已807.028秒成功，11:48:37.791245Z真实释放GPU1；两seed58+58全部EOS/strict、0截断/弃答，峰allocated22.754GB。375内容原包全SHA回收，唯一primary冻结`3ec75365…`，保947实体/全部315旧关系，新增21→336；质量尚未读取，下一步已固定1次v2。完整信号已交root/validation供另一个锁定融合。
+F1候选祖先训练32、F0复用候选训练48，均排目标折；生成模型始终同F2+F3训练32。F0换A30但native源码/版本/参数不变，不声称跨硬件逐位等价。保护强B的固定追加与替换型投票不同；两个正结果支持本配方，不证明全部采样/联合方案有效。失败、零收益和单独的条件部署准备保持可追溯。
