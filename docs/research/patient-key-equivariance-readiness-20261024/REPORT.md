@@ -13,3 +13,9 @@
 **最小否定证据与去向。** 源码直接复用原 PID、官方 O/P 语义、缺少独立 code 映射，已足以否定“在当前接口上只做任意内部键置换”的前提，故不自动实施 CPU/NN 控制。将来若专门引入独立 code 层，须把原临床 ID 作为不变身份属性保留，并建立结构化 marker/target/解析器的双向合同与证据字节检查；那属于新的 prompt 表示设计，不能冒称当前控制的无语义变换。本次不扩展该设计，不干扰当前训练。
 
 全部证据的路径、大小及 SHA256 见同目录 `sources.json`；没有修改任何路线源文件或共享文档。
+
+## 历史范围更正（同日后续复查）
+
+上文“有限检索未发现 patient-ID renaming 实跑”遗漏了本体 E007 第六阶段的中文“P001身份映射”记录，不能扩大为全项目不存在可逆 code 实现。`solutions/ontology_rules/prepare_context.py::build(patient_codes=True)` 实际建立 `P001 → 原PID` 映射，在文档副本的结构化患者 ID 中替换并同步 marker；`repair_context.py` 只对22窗中3个严格格式失败窗单次重跑，再逆映射。旧合法19窗保留，修复后严格格式全部合法，但 Score .581179 低于原规则 .704790；这是旧8B方法的格式恢复，**不是**同源完整 patient-first、固定 permutation 的质量控制，不能单独推断 code 层有正或负效果。
+
+准确结论缩为：**当前 patient-first renderer 没有独立 code 层；项目其他旧接口存在可逆 code，尚未看到当前 patient-first 的全量患者置换控制。** 不能断言该机制不可实现；引入独立 code 时应保留原 O 编号语义，并核新表示/原证据/目标的完整可逆合同。本次仍不运行控制。此更正源：本体 `prepare_context.py`、`repair_context.py` 及 `experiments/E-20261023-007.md`，与 root 已同步。
