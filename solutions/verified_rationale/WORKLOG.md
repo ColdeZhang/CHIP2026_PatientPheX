@@ -1,6 +1,6 @@
 # 患者归属理由蒸馏：只读与 CPU 供给准备
 
-状态：15条教师供给已获条件授权；源码/CPU合同/12件远端部署已完成，等待Copy47及必要Sap整链释放。当前仍为0模型/0held gold/0fit/0质量；学生训练和全814教师调用未授权。
+状态：唯一15条公开R1教师供给正在.100 GPU0执行，driver2752489/child2752493；15:57:26 UTC开始，TERM16:42:26/KILL16:42:56。最长9400输入先行，固定3072；0学生训练/0held gold/0质量。恢复见 `evidence/pilot-start.json`，不可重复启动。
 
 目标：判断训练标签约束的教师理由是否提供直接 JSON 标签、弱 quote 与 DPO 之外的新监督，先检验可定位证据和患者歧义的真实供给。
 
@@ -23,3 +23,5 @@
 
 - 12件小payload已在.100原模型host逐SHA核验部署，[入口](evidence/deployed.json)。当前未创建admission/启动意图；唯一启动器要求上游整链release凭据，先freshGPU门再生成5分钟SHA绑定admission；UNKNOWN只查原作业，不自动重发。
 - root对实际pilot/driver/evidence_contract和execution2549842e的增量静核PASS，2780B/SHA df947aee，[独立指针](evidence/source-review.json)；未重CPU/GPU/质量。当前继续等copy47+必要Sap整链release，实际启动不再需要重复预算确认。
+
+- 15:56:38 Copy47+126必要Sap整链实际release后，freshGPU0=0MiB/noapps/24164free；唯一proc_e0d16e85于15:57:26启动，原2700+30时钟/300秒admission均已绑定。先保存raw再解析，等完整15后逐条语义审查；不据部分行判供给通过。
