@@ -1,0 +1,79 @@
+{
+  "status": "PROPOSED_SINGLE_CONTROL_NOT_FIT_OR_GPU_AUTHORIZED",
+  "training_identity": "public PubMedBERT H5 d58af55a; train32 F2+F3 only; single epoch policy666596d4 plus stable-logits addendum",
+  "held_input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "bytes": 342703,
+    "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+  },
+  "all16_documents_and_all_patients_preserved": true,
+  "held_gold_read_in_preparation": false,
+  "primary": {
+    "name": "adapted-PubMed plus frozen strong Task1 stack",
+    "old_complete_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "old_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+      "bytes": 13085,
+      "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+    },
+    "old_score": 0.7286975364690524,
+    "old_metrics_values": {
+      "menF1": 0.7749437359339835,
+      "docF1": 0.8210526315789474,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.7286975364690524
+    },
+    "old_selector_model": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/fitted/model-vectorizer.pkl",
+      "sha256": "a465e716fedab408a027f4c3af20f2e9870f88ac3a02209e7206d2ebf6b41227",
+      "bytes": 294434
+    },
+    "selector_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/fitted/manifest.json",
+      "bytes": 8953,
+      "sha256": "4ee0fdb63b74bf5e3094e0cd8c693a860b506539a9add503e8e374a8a113ad8e"
+    },
+    "vectorizer_features": 103,
+    "cut": 0.3,
+    "assembly": "Replace only public PubMed neural/hybrid cached contribution using its unchanged native policy; regenerate full candidate/103-feature pool from same fold1 base, Sap/CRF and cached other2public; old fitted LGB/vec/cut/decoder unchanged. Preserve every original association and all nonentity bytes.",
+    "success": "Complete heldF1 Score strictly increases vs exact old endpoint; report men/doc/relation/macro, no added macro veto.",
+    "scope": "This endpoint tests transfer into the frozen current Task1 stack, including score-distribution shift; not a matched pure-estimator experiment or full901. A failure closes this fixed recipe, not all public-checkpoint adaptation."
+  },
+  "same_source_diagnostic": {
+    "old_canonical": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/canonical-entities.jsonl",
+      "bytes": 1580994,
+      "sha256": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7"
+    },
+    "old_provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/source-provenance.jsonl",
+      "bytes": 1837436,
+      "sha256": "3a7ab2c7bb1fe42f769924d6577e797a5d7518d8f63c97db7ba25c2c1320e45c"
+    },
+    "fold_filter": "exact heldF1 input IDs only; reuse old outputs, never re-infer old model",
+    "new_source": "same tokenizer/ngram/POS/round5 neural>.95/current-map/dictionary/abbreviation/hybrid; only trained weights changed",
+    "comparison": "Whole16 native-hybrid entity endpoint, same fixed association/template for both old/new; define exact old standalone assembly and any existing matching metrics before training. No choosing a threshold or a subset from held gold.",
+    "baseline_artifact_status": "Original canonical cached complete; standalone official-shape prediction/metric identity still to bind if this diagnostic is approved; no fabricated old Score."
+  },
+  "no_extra_control": "No parallel 3architectures, no cut/negative-ratio/loss scan, no retraining the selector, no autoF0/dev migration.",
+  "next_replication": "If primary positive, root determines same fixed recipe train48 excludingF0 and fullF0 verification before originaldev migration; no F0 labels have selected samples here.",
+  "budget": {
+    "actual_same_architecture_forward": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/completion.json",
+      "bytes": 5052,
+      "sha256": "9871fd46e3ab5b41ba8e03794570641d052254c10a3eca5ba32c97b95d5eaac2"
+    },
+    "actual_48_new_NN_seconds": 119.95155585184693,
+    "actual_48_new_forward_per_second": 1496.7042213420002,
+    "official_B_model_actual": "PubMed338.456952684s native plus5.185938392s provenance; includes CPU preparation/load, not training.",
+    "training_backward_optimizer_actual_seconds": null,
+    "formal_training_cap_seconds": null,
+    "probe_proposal": "After official acceptance and root scheduling only: short single native-H5 strict-load, stable-loss whole-encoder backward, Adam and H5-save/reopen engineering check; measure load/first/steady batch64/update/save. Do not reuse a trained probe checkpoint for formal control.",
+    "formal_budget_method": "From actual training unique rows/ceil(N/64), measured steady update cost, load/serialization/fsync, with explicit conservative margin; current forward throughput alone cannot license a full-training cap."
+  }
+}

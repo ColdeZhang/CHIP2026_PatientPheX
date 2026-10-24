@@ -1,0 +1,61 @@
+{
+  "status": "EXACT_SAME_SOURCE_DIAGNOSTIC_BOUND_BEFORE_ANY_TRAINING",
+  "revises_only_pending_comparator_in": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/proposed-control.json",
+    "bytes": 5510,
+    "sha256": "b09a4ba4381da8b07f5b21a1cfa39cb9eb2930a1e565f61d179c052b544e0b55"
+  },
+  "diagnostic_name": "same public PubMed native hybrid via original fixed overlay endpoint",
+  "old_complete_prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembled/prediction.jsonl",
+    "bytes": 194934,
+    "sha256": "24d18da2848eff770af197e5e2f2966d616e4470b5886369bbdaa6e03a7c1051"
+  },
+  "old_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembled/prediction-freeze.json",
+    "bytes": 439,
+    "sha256": "ee7bfb29402ec2d313d18e7ade08348df370c8eb844360d1e6aef17528ef9cae"
+  },
+  "old_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembled/metrics.json",
+    "bytes": 13238,
+    "sha256": "1704bdc0e4c9f742747434ecd229be406abecf4f8032916e43a4160c230d9516"
+  },
+  "old_metrics_values": {
+    "menF1": 0.6891228070175439,
+    "docF1": 0.7801980198019802,
+    "micF1": 0.6161515453639083,
+    "macF1": 0.5479558936740699,
+    "Score": 0.6583570664643756
+  },
+  "old_assembly_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-native/assembly-plan.json",
+    "bytes": 7863,
+    "sha256": "69c20c69e3b7d9ff2a59a0c90a0f2bb093ce2f86ca64be45729c1700e353d2ec"
+  },
+  "new_control": "Use the same original base8acd, original assembler d9481ea8, no-entity-overlap/negation/remaining-source policies and preserved associations; only adapted PubMed native output substituted. Original old predictions and metrics reused.",
+  "primary_unchanged": "Current strong103-column LGB primary remains old8cb61ba9/Score.7286975364690524; same-source diagnostic oldScore.6583570664643756 is a weaker separate endpoint, never compare absolute scores across arms or select diagnostic as new primary after seeing quality.",
+  "holdout": "Both use all F1 original16 documents; no filtering unsupported training labels or examples from held evaluation.",
+  "future_quality": "If authorized later: both complete new predictions common-freeze before held labels, one v2 each/old metrics reused. Retention is the preregistered primary Score strictly higher. Diagnostic only explains where changes transmit.",
+  "same_architecture_actual_inference": {
+    "counts": {
+      "raw_neural_candidates": 75790,
+      "raw_dictionary_candidates": 1174,
+      "hybrid_pre_abbreviation": 1756,
+      "hybrid_after_abbreviation": 1769,
+      "canonical_kept": 1769,
+      "invalid_current_branch_dropped": 0
+    },
+    "inference_seconds": 45.881796434521675,
+    "elapsed_seconds": 75.31512179598212,
+    "GPU_peak_memory": {
+      "current": 527161088,
+      "peak": 664721152
+    },
+    "model_parameters": 122759794,
+    "model_variables": 201,
+    "model_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+    "old_label_order_sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b"
+  },
+  "current_GPU_fit_quality_authorized": false
+}

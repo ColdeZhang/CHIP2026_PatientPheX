@@ -1,0 +1,144 @@
+{
+  "status": "PASS_CPU_SYNTHETIC_STABLE_LOSS_AND_DENSE_INTERFACE",
+  "tensorflow": "2.12.0",
+  "GPU_visible": [],
+  "classes": 17266,
+  "cases": [
+    {
+      "name": "single",
+      "columns": [
+        7
+      ],
+      "loss": [
+        10.048786657327739,
+        9.349747921945331
+      ],
+      "max_gradient_error": 1.3552527156068805e-20,
+      "checks": {
+        "finite": true,
+        "gradient_matches_stable_analytic": true,
+        "single_equals_native_logits_CE": true
+      }
+    },
+    {
+      "name": "equivalent_columns",
+      "columns": [
+        7,
+        19,
+        17264
+      ],
+      "loss": [
+        9.148803380488436,
+        8.973438687703283
+      ],
+      "max_gradient_error": 1.3552527156068805e-20,
+      "checks": {
+        "finite": true,
+        "gradient_matches_stable_analytic": true
+      }
+    },
+    {
+      "name": "None",
+      "columns": [
+        17265
+      ],
+      "loss": [
+        11.830583793641205,
+        11.078711093032723
+      ],
+      "max_gradient_error": 1.3552527156068805e-20,
+      "checks": {
+        "finite": true,
+        "gradient_matches_stable_analytic": true,
+        "single_equals_native_logits_CE": true
+      }
+    },
+    {
+      "name": "wrong_class_extreme_single",
+      "columns": [
+        7
+      ],
+      "loss": [
+        2000.0,
+        2000.0
+      ],
+      "max_gradient_error": 0.0,
+      "checks": {
+        "finite": true,
+        "gradient_matches_stable_analytic": true,
+        "single_equals_native_logits_CE": true,
+        "true_wrong_class_gradient_not_clipped_to_zero": true
+      }
+    },
+    {
+      "name": "wrong_class_extreme_equivalent",
+      "columns": [
+        7,
+        19
+      ],
+      "loss": [
+        1999.30685281944,
+        1999.30685281944
+      ],
+      "max_gradient_error": 0.0,
+      "checks": {
+        "finite": true,
+        "gradient_matches_stable_analytic": true,
+        "true_wrong_class_gradient_not_clipped_to_zero": true
+      }
+    }
+  ],
+  "invalid_targets": [
+    {
+      "columns": [],
+      "rejected": true
+    },
+    {
+      "columns": [
+        -1
+      ],
+      "rejected": true
+    },
+    {
+      "columns": [
+        17266
+      ],
+      "rejected": true
+    },
+    {
+      "columns": [
+        1,
+        1
+      ],
+      "rejected": true
+    },
+    {
+      "columns": [
+        true
+      ],
+      "rejected": true
+    }
+  ],
+  "head": {
+    "native_softmax_equals_same_dense_preactivation": true,
+    "all_original_variables_identical_objects": true,
+    "weight_bytes_unchanged": true,
+    "activation_still_softmax": true,
+    "single_loss_abs_diff": 0.0,
+    "gradient_max_abs_differences": [
+      0.0,
+      1.4551915228366852e-11,
+      7.275957614183426e-12
+    ],
+    "gradients_finite": true
+  },
+  "seconds": 0.3298633135855198,
+  "source_sha256": "e4f24d5398322410a649c39d534f97a9586b96be5a279b46477d19f5941b9bf7",
+  "public_model_or_weights_loaded": false,
+  "optimizer_or_fit": false,
+  "limitations": [
+    "Synthetic logits and small hidden-to-head graph only; no actual public encoder backward/memory/quality proof.",
+    "Training adapter must use original Dense variables and training=True hidden graph; original inference model and softmax unchanged.",
+    "No probability clipping; empty or invalid target columns fail before loss."
+  ]
+}

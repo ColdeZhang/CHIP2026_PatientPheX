@@ -1,0 +1,183 @@
+{
+  "status": "COMPLETE_NATIVE_CPU_TRAIN32_PREPARATION",
+  "source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-h5-train32-cpu-v1/native_cpu.py",
+    "bytes": 11382,
+    "sha256": "76f6ac389da69f663b3f4a6c8799c31f5ceef63ce791d0edcd3cf7f49630a3a5"
+  },
+  "entry": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-h5-train32-cpu-v1/entry.json",
+    "bytes": 3715,
+    "sha256": "427508a908b0e0cbb05d4f06efde7c2768676c58e4b6e341444b971d96936a00"
+  },
+  "request": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-h5-train32-cpu-v1/request.json.gz",
+    "bytes": 343482,
+    "sha256": "fda48b1fe79da2ce7be7d2a5de6676f299932af4003660bec66f018d51ebfaea"
+  },
+  "runtime": {
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "python_version": "3.10.21",
+    "transformers": "4.30.1",
+    "tokenizers": "0.13.3",
+    "nltk": "3.8.1",
+    "tensorflow": "2.12.0",
+    "numpy": "1.23.5",
+    "GPU_visible": [],
+    "CUDA_VISIBLE_DEVICES": "",
+    "weights_loaded": false,
+    "model_instantiated": false,
+    "training_or_fit": false
+  },
+  "training_documents": 32,
+  "held_F1_documents_preserved": 16,
+  "held_gold_read": false,
+  "raw_event_counts": {
+    "positive_supported": 2197,
+    "positive_NIL": 44,
+    "explicit_NO": 87,
+    "boundary_negative": 451,
+    "candidate_nonentity_negative": 277,
+    "positive_canonical_absent_original_head": 11,
+    "positive_multiple_canonical_compound": 15,
+    "positive_outside_valid_HPO_branch": 8
+  },
+  "input_status_by_kind": [
+    {
+      "kind": "boundary_negative",
+      "status": "native_candidate",
+      "count": 451
+    },
+    {
+      "kind": "candidate_nonentity_negative",
+      "status": "native_candidate",
+      "count": 277
+    },
+    {
+      "kind": "explicit_NO",
+      "status": "native_candidate",
+      "count": 42
+    },
+    {
+      "kind": "explicit_NO",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 45
+    },
+    {
+      "kind": "positive_NIL",
+      "status": "native_candidate",
+      "count": 33
+    },
+    {
+      "kind": "positive_NIL",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 11
+    },
+    {
+      "kind": "positive_canonical_absent_original_head",
+      "status": "native_candidate",
+      "count": 10
+    },
+    {
+      "kind": "positive_canonical_absent_original_head",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 1
+    },
+    {
+      "kind": "positive_multiple_canonical_compound",
+      "status": "native_candidate",
+      "count": 9
+    },
+    {
+      "kind": "positive_multiple_canonical_compound",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 6
+    },
+    {
+      "kind": "positive_outside_valid_HPO_branch",
+      "status": "native_candidate",
+      "count": 4
+    },
+    {
+      "kind": "positive_outside_valid_HPO_branch",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 4
+    },
+    {
+      "kind": "positive_supported",
+      "status": "native_candidate",
+      "count": 1481
+    },
+    {
+      "kind": "positive_supported",
+      "status": "not_exact_native_token_span",
+      "count": 4
+    },
+    {
+      "kind": "positive_supported",
+      "status": "outside_native_2to8gram_or_POS_filter",
+      "count": 712
+    }
+  ],
+  "native_census": {
+    "processed_passages": 461,
+    "native_candidates_in_event_passages": 93706
+  },
+  "lower_queries": 1658,
+  "actual_encoded32_queries": 1658,
+  "different_lower_queries_collapsed_by_token32": 0,
+  "queries_truncated": 0,
+  "max_untruncated_tokens": 21,
+  "tokenization_seconds": 0.5115419663488865,
+  "group_status": {
+    "eligible_before_fixed_negative_cap": 1252,
+    "excluded_positive_negative_same_actual_input": 95,
+    "excluded_no_native_candidate_occurrence": 238,
+    "excluded_unsupported_positive_protection": 71,
+    "excluded_multiple_positive_canonical_same_actual_input": 2
+  },
+  "conflicts": {
+    "excluded_positive_negative_same_actual_input": 95,
+    "excluded_unsupported_positive_protection": 71,
+    "excluded_multiple_positive_canonical_same_actual_input": 2
+  },
+  "eligible_positive_queries": 811,
+  "positive_multi_original_column_queries": 31,
+  "negative_selection": {
+    "explicit_NO": {
+      "eligible": 27,
+      "cap": 27,
+      "selected": 27
+    },
+    "boundary_negative": {
+      "eligible": 237,
+      "cap": 811,
+      "selected": 237
+    },
+    "candidate_nonentity_negative": {
+      "eligible": 177,
+      "cap": 811,
+      "selected": 177
+    }
+  },
+  "training_queries": 1252,
+  "training_categories": {
+    "boundary_negative": 237,
+    "candidate_nonentity_negative": 177,
+    "positive": 811,
+    "explicit_NO": 27
+  },
+  "selected_truncated_queries": 0,
+  "single_pass_batch64_steps": 20,
+  "dataset": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-h5-train32-cpu-v1/native-result/training-queries.jsonl.gz",
+    "bytes": 85936,
+    "sha256": "9590645dc63bc15d1fa2ec1c75ba48e87de4a508d8b707becbf8e864ba5fe1d3"
+  },
+  "audit": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-h5-train32-cpu-v1/native-result/occurrence-audit.json.gz",
+    "bytes": 87282,
+    "sha256": "c1d739654d0a998a5ebcc0c1c804a24dd47db861f3a7651013b3b78437d363d3"
+  },
+  "seconds": 14.164822436869144
+}

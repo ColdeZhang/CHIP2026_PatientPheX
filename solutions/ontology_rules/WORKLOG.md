@@ -55,3 +55,5 @@
 - 公开原生H5监督适配只读盘点：native接口可行，但原上游训练入口不先load H5、旧19120头builder与17266列/None末列不同，不能直接套。复用历史train64类覆盖，不重读标签；NO词面冲突、canonical多列与固定LGB分布迁移须另冻合同。[可行性](public_h5_adaptation_readiness/README.md)。无数据准备/训练/新GPU。head_index准备另获独审102f5148无阻断，仍未部署/GPU，原formal不改。
 
 - root新授权公开PubMedH5 CPU准备：唯一原生H5/train32 F2+F3；源码/标签合同已冻结，公开缓存负例不混train48谱系。canonical多原列用概率质量监督，真实多canonical/NIL/缺列显式不支持，实际token32冲突整组排除；只CPU，未fit/GPU。候选主端点为替换该源后固定F1强103列LGB，与完整16旧端点比较，held不筛。
+
+- PubMed train32 CPU完整成功：native14.164822秒/整体18.536317秒rc0，1658原native实际输入0截断/max21；冲突与unsupported保护后1252 unique=811正+27NO+237边界负+177普通负，31正query多原等价列、单轮64共20步。稳定logits loss同TF CPU0.329863秒5数值+5拒绝及Dense接口通过，未加载原模型/fit/GPU/heldgold。主比较已冻F1强Task1 .728697536469、同源诊断 .658357066464分别比自身旧端点；完整预算仍待真实反向工程。源码/小清单及全产物双地指针见[CPU完成](public_h5_adaptation_readiness/train32_prepare/README.md)。
