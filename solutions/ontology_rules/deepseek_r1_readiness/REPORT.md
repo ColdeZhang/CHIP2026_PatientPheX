@@ -1,6 +1,6 @@
 # DeepSeek-R1-0528-Qwen3-8B：原生资产、接口与成本
 
-准备实验 `P-20261024-R1-0528-READINESS`。**准确模型资产及原生加载通过；1,024 token预算未产生完整最终答案。** 唯一GPU程序45.260秒、wrapper46.141秒/rc0，首条达到token上限后按事前规则停止余两条；无gold、全80推断或质量分，不据此否定R1提升比赛分数的可能性。完整[合一清单](terminal-manifest.json) SHA `d172a788…`，实际[小摘要](gpu-probe/terminal-summary.json) SHA `a1d3aea0…`；统一独立终审等待中。
+准备实验 `P-20261024-R1-0528-READINESS`。**准确模型资产及原生加载通过；1,024 token预算未产生完整最终答案。** 唯一GPU程序45.260秒、wrapper46.141秒/rc0，首条达到token上限后按事前规则停止余两条；无gold、全80推断或质量分，不据此否定R1提升比赛分数的可能性。完整[合一清单](terminal-manifest.json) SHA `d172a788…`，实际[小摘要](gpu-probe/terminal-summary.json) SHA `a1d3aea0…`；统一独立终审8fa2f637通过（validation/deepseek-r1-format-cost-review/review.json）；质量仍未知。
 
 ## 为什么研究这个准确模型
 
@@ -41,3 +41,5 @@ YaRN原配置保留，包括非标准attn_factor；实际TF5与HF4.51原生函�
 持久mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，自有根目录：`/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/`。模型在 `models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6/`，CPU固定样本在 `cpu-preparation-v2/actual/`，GPU全部源/执行plan与原生输出在 `gpu-probe-v1/`；资产与GPU原job均终止，无待恢复运行。
 
 本地完整证据：`R/research/deepseek-r1-0528-qwen3-8b-feasibility`（R=`/workspace/patientphex-runs/round2-20261023`）。Git只保存小源/收据/索引，完整提示、生成IDs/text、权重保留外部；每件SHA见合一清单和collection manifest。不得重发已有start脚本。
+
+后继独立阶段已由主线程授权：同首条2171输入从原prompt重新生成，不拼接旧KV/RNG，max4096/总240+TERM30，225秒内部软停；只此一条，不运行余两条或80质量。新源/计划见gpu-probe-single4096，原1024终点不改写；尚未启动。

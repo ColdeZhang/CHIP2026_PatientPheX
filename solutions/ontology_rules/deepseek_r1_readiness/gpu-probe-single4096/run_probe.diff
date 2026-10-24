@@ -1,0 +1,37 @@
+--- original1024/run_probe.py
++++ single4096/run_probe.py
+@@ -1 +1 @@
+-"""At most three frozen native R1 generations; first truncation/invalid final stops. No quality."""
++"""One frozen first native R1 generation with4096-token cap; no continuation or quality."""
+@@ -24,2 +24,2 @@
+-        assert plan['execution_ready'] is True and plan['process_budget_seconds']==180 and plan['TERM_grace_seconds']==30
+-        assert plan['max_new_tokens']==1024 and plan['seed']==20261024 and plan['temperature']==.6 and plan['top_p']==.95 and plan['top_k']==0
++        assert plan['execution_ready'] is True and plan['process_budget_seconds']==240 and plan['TERM_grace_seconds']==30
++        assert plan['max_new_tokens']==4096 and plan['seed']==20261024 and plan['temperature']==.6 and plan['top_p']==.95 and plan['top_k']==0
+@@ -40 +40 @@
+-        assert [x['row_id'] for x in rows]==plan['row_ids']==[x['row_id'] for x in encoded]
++        assert [x['row_id'] for x in rows]==plan['CPU_frozen_source_row_ids']==[x['row_id'] for x in encoded]
+@@ -41,0 +42,4 @@
++        assert plan['selected_CPU_index']==0
++        rows=rows[:1];encoded=encoded[:1]
++        assert [x['row_id'] for x in rows]==plan['row_ids']==['10313222:relations:0'] and plan['input_tokens']==[2171]
++        report['fixed_selected_row_count']=1;report['fresh_prompt_not_old_KV_or_RNG_continuation']=True
+@@ -80,3 +84,3 @@
+-        # A fixed internal wall stop leaves15seconds for serialization/release under the external180s cap.
+-        soft_deadline=start+165;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':1024,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
+-        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=165
++        # A fixed internal wall stop leaves15seconds for serialization/release under the external240s cap.
++        soft_deadline=start+225;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':4096,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
++        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=225
+@@ -96,2 +100,2 @@
+-            torch.cuda.synchronize();elapsed=time.monotonic()-gen_start;full=generated.sequences[0].tolist();assert full[:prefix_len]==enc['input_ids'];output_ids=full[prefix_len:];assert len(output_ids)<=1024
+-            eos=bool(output_ids and output_ids[-1]==tok.eos_token_id);cap=not eos and len(output_ids)>=1024;raw=tok.decode(output_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False);content_ids=output_ids[:-1] if eos else output_ids;content=tok.decode(content_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)
++            torch.cuda.synchronize();elapsed=time.monotonic()-gen_start;full=generated.sequences[0].tolist();assert full[:prefix_len]==enc['input_ids'];output_ids=full[prefix_len:];assert len(output_ids)<=4096
++            eos=bool(output_ids and output_ids[-1]==tok.eos_token_id);cap=not eos and len(output_ids)>=4096;raw=tok.decode(output_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False);content_ids=output_ids[:-1] if eos else output_ids;content=tok.decode(content_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)
+@@ -98,0 +103 @@
++            item['think_open_count']=raw.count('<think>');item['think_close_count']=raw.count('</think>');item['first_think_close_character_offset']=raw.find('</think>')
+@@ -105,2 +110,2 @@
+-        else:report['status']='PASS_THREE_NATIVE_FINAL_FORMAT_COST_ONLY_NOT_QUALITY'
+-        report['full_generation_IDs_preserved']=True;report['limitation']='A1024-token or180-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'
++        else:report['status']='PASS_SINGLE_NATIVE_FINAL_FORMAT_COST_ONLY_NOT_QUALITY'
++        report['full_generation_IDs_preserved']=True;report['limitation']='A4096-token or240-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'
