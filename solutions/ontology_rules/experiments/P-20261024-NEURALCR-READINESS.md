@@ -132,3 +132,7 @@ root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；�
 01:57:02.924372→01:57:08.576435Z实际5.652060秒/rc0；参考目标当时缺失，已从同机既有完整native-cpu-result硬链接，0再次上传。全部5文件size/SHA通过、actual Python3.10.21 compile与3×512结构检查通过，远端samehost-reference-receipt先落盘。原probe/launch/plan/source/预算不变；实际入口收据先checkpoint后发唯一GPU start，旧传输/部署/恢复失败全留。
 
 01:58:02.826851Z 唯一GPU probe managed `proc_3f17369e-4f4a-4285-880d-53cc20c0ec4b`，原plan d71f5b06、源不改；wrapper先fresh GPU2 UUID/空卡，再180+30。后继静态cache契约采用严格key行序/SHA绑定的uint16原列+float32分数，数值payload约2.45MB，不回传全logits或重复字符串；远端同SHA输入可按原AST生成同SHAkeys，尚未执行/定预算。只保留启动与最终必要证据，不为轮询建立新实验文档。
+
+### GPU attempt1工程API失败（非模型或质量失败），已释放
+
+实际freshGPU2 UUID2c22/0MiB通过。01:58:08.041419→01:58:17.241672Z子程序9.198835秒/rc1，程序8.649069秒，在compat.v1.keras.mixed_precision缺set_global_policy时退出；尚未导入NCR模型/加载权重/任何forward，batches与synthetics均空。实际release GPU2 0/40960MiB、compute_apps无该UUID，已交sequence；源/plan/结果/trace/release原留。root授权最小顶层TF2 precision API修复，先隐藏CUDA实际CPU验证global_policy及原compat层compute/variable dtype，独立attempt2最多170秒+TERM30，两次主程序预算合计<原180秒；须等sequence实际释放再试。完整CPUreadiness PASS不变，无GPU吞吐结果或质量结论。

@@ -1,0 +1,50 @@
+{
+  "status": "failed_preserved",
+  "started_at": "2026-10-24T01:58:02.920553+00:00",
+  "source_sha256": "61e98a4b227fe9e666174140d7a702656aadb787df729cb2d3ad98412572829e",
+  "plan_sha256": "d71f5b0639da25ae8be528a08f15626e5e6fa382df61a3c762ab5e73b1a0ba2c",
+  "cap_seconds": 180,
+  "TERM_grace_seconds": 30,
+  "fresh_gpu_gate": {
+    "at_utc": "2026-10-24T01:58:07.947761+00:00",
+    "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, NVIDIA A100-SXM4-40GB, 0, 40960",
+    "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+  },
+  "gpu_started_at": "2026-10-24T01:58:08.041419+00:00",
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "180s",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python",
+    "probe.py"
+  ],
+  "GPU_environment": {
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-neuralcr-readiness/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/tf-gpu-overlay",
+    "LD_LIBRARY_PATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/tf-gpu-overlay/nvidia/cudnn/lib:/usr/local/cuda-11.8/lib64",
+    "FORCE_TF_AVAILABLE": "1",
+    "USE_TF": "1",
+    "USE_TORCH": "0",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TF_NUM_INTRAOP_THREADS": "1",
+    "TF_NUM_INTEROP_THREADS": "1",
+    "TF_CPP_MIN_LOG_LEVEL": "2"
+  },
+  "returncode": 1,
+  "gpu_elapsed_seconds": 9.198835492134094,
+  "gpu_finished_at": "2026-10-24T01:58:17.241672+00:00",
+  "release": {
+    "at_utc": "2026-10-24T01:58:17.241714+00:00",
+    "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, NVIDIA A100-SXM4-40GB, 0, 40960",
+    "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+  },
+  "error": "AssertionError(1)",
+  "finished_at": "2026-10-24T01:58:17.328585+00:00"
+}
