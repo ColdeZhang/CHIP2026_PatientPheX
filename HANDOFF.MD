@@ -271,6 +271,12 @@ JSON 值加权的首次探针比较591 token与追加8个masked pad后的599 tok
 
 **避免方法**：分别验证三个问题：同一输入形状下的新旧loss实现；固定logits上被忽略位置的loss/梯度屏蔽；骨干跨形状的行为。冻结logits并污染8个忽略位置时，loss/梯度均完全不变；最长5523 token的真实无padding更新通过，head保持冻结、三类LoRA参数实际更新。保留第一次失败，数值诊断状态丢弃后再fresh正式训练，不把探针通过当质量改善。证据 `validation/json-value-weighted-probe-review/attempt2-review.json` SHA `d71c6e5298a6a3a5a94e57a8a15a2806e1e1cd725ba15de859f6dc96ecc6675a`；实际96.492秒、GPU已释放，后续训练状态见检索方案台账。
 
+## H43：缓存检查器必须适配实际运行版本的数据结构
+
+FLA 数值探针将实际 Transformers 5.20.2 的缓存 `dict[int, Tensor | None]` 当作 Tensor 列表遍历，首个原生块前后向后对整数键调用 `detach()` 而退出，尚未进行 fused 数值比较。这是检查器故障，不能记成模型或 kernel 质量失败。
+
+**避免方法**：按实际版本的容器结构取值，保留层号、键、shape 和 dtype；未知类型、漏键或意外空状态应明确失败，不能简单跳过非 Tensor 项而假通过。修复先在 CPU 用实际容器和混合 dict/list/tuple/Tensor/None 检查，再在原绝对预算剩余时间内恢复独立 attempt。此次只替换缓存采样与结构比较，原 probe、计划、输入和数值门槛未改；后续单块合同通过，全模型另因原始 logits 超容差停止，两个原因分列。统一终审 `validation/fla-kernel-terminal-review/review.json` SHA `b78eec326865b71ac2c41e96b3ae8b7f2423928d3139e95716ae0a4f948ba2c1`，源码与完整结果见检索分支 `solutions/case_retrieval/fla_kernel_readiness/`。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
