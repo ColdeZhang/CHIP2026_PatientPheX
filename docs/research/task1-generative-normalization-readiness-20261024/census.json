@@ -1,0 +1,157 @@
+{
+  "status": "COMPLETE_TRAIN32_CPU_TARGET_CENSUS_ONLY",
+  "sources": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "strict_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    },
+    "source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/census.py",
+      "bytes": 7020,
+      "sha256": "cef259feebe42e22943f9dd952bef0fdbb7c7d4a142087262e57d3b8e357a9b0"
+    }
+  },
+  "training_documents": 32,
+  "raw_annotation_counts": {
+    "annotations": 2362,
+    "positive": 2275,
+    "positive_valid": 2267,
+    "positive_HPO": 2223,
+    "HPO_atomic_labels": 2332,
+    "compound_annotation": 16,
+    "raw_alt_atoms": 7,
+    "positive_NIL": 44,
+    "NO": 87,
+    "NO_valid": 85,
+    "NO_HPO": 83,
+    "NO_NIL": 2,
+    "unique_span_public_exact_covers_all": 1199,
+    "unique_span_not_public_exact_all": 1023
+  },
+  "exact_unique_occurrences": 2361,
+  "repeated_annotations_at_same_occurrence": 1,
+  "target_counts": {
+    "HPO": 2222,
+    "compound_HPO_rows": 16,
+    "HPO_target_atoms": 2246,
+    "NIL": 44,
+    "NO": 87
+  },
+  "target_rows": 2353,
+  "excluded_unique_occurrences": 8,
+  "excluded_reasons": {
+    "positive_outside_official_branch_or_root": 8
+  },
+  "outside_annotations": [
+    {
+      "pmc_id": "11765409",
+      "index": 31,
+      "identifier": "HP:0031135",
+      "NO": true
+    },
+    {
+      "pmc_id": "12118522",
+      "index": 60,
+      "identifier": "HP:0020094",
+      "NO": false
+    },
+    {
+      "pmc_id": "12334843",
+      "index": 30,
+      "identifier": "HP:0002686",
+      "NO": true
+    },
+    {
+      "pmc_id": "12628480",
+      "index": 98,
+      "identifier": "HP:0025237",
+      "NO": false
+    },
+    {
+      "pmc_id": "4644339",
+      "index": 40,
+      "identifier": "HP:0003819",
+      "NO": false
+    },
+    {
+      "pmc_id": "5023785",
+      "index": 36,
+      "identifier": "HP:0012824",
+      "NO": false
+    },
+    {
+      "pmc_id": "6057141",
+      "index": 2,
+      "identifier": "HP:6000529",
+      "NO": false
+    },
+    {
+      "pmc_id": "6057141",
+      "index": 8,
+      "identifier": "HP:6000529",
+      "NO": false
+    },
+    {
+      "pmc_id": "6057141",
+      "index": 46,
+      "identifier": "HP:0040006",
+      "NO": false
+    },
+    {
+      "pmc_id": "6390251",
+      "index": 103,
+      "identifier": "HP:0031375",
+      "NO": false
+    }
+  ],
+  "unique_train_target_hpo": 783,
+  "public_canonical_names": 19119,
+  "unique_normalized_surfaces": 1239,
+  "surfaces_multiple_supervision_targets": 39,
+  "surfaces_positive_and_NO": 34,
+  "context_chars_256_each_side": {
+    "max": 581,
+    "total": 1045101,
+    "mean": 444.156821079473
+  },
+  "passage_quote_mechanism_census": {
+    "all_passages": 1122,
+    "nonempty_passages": 1122,
+    "passages_with_annotations": 419,
+    "passages_with_positive": 416,
+    "passages_with_NO": 44,
+    "same_passage_surface_positive_and_NO": 5
+  },
+  "files": {
+    "targets": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/train-targets.jsonl",
+      "bytes": 1840212,
+      "sha256": "3be63e082e878a64afb5ae7873ac0198b1fc2885740cd5ba182e911f64f3a416"
+    },
+    "excluded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/excluded.json",
+      "bytes": 2142,
+      "sha256": "30768bee9e084219ecc31a85fb3b69386fa76ed28b3b864b1230902cb6a3f80b"
+    }
+  },
+  "no_held_or_originaldev_files_read": true,
+  "no_model_tokenizer_GPU_fit_quality": true,
+  "limits": [
+    "The char-context shape is a proposed train-only input census, not a tokenizer/cap check or runtime contract.",
+    "Gold train32 mentions demonstrate supervised target availability only; they do not prove current strong-pool normalization errors or expected score gain.",
+    "NO is separate from NIL; all87 NO kept because their concept ID is not the NO target. Eight outside-branch positive annotations excluded explicitly, never coerced to NO/NIL.",
+    "No negative non-entity candidates constructed: NO only supplies negated phenotypes; rejecting arbitrary erroneous detector spans remains a separate unproven requirement."
+  ],
+  "seconds": 0.8100676600006409
+}

@@ -1,0 +1,152 @@
+{
+  "created_utc": "2026-10-24T12:09:49.966521+00:00",
+  "scope": "CPU source/history review and train32 target census only. No held/original-dev files, gold, model/tokenizer, remote, GPU, fit, new predictions or evaluator. Prior quality quoted from immutable existing summaries.",
+  "searched_scopes": [
+    "round2-case-retrieval source and E008 r2-07..13",
+    "round2-sequence-crf source/NOTES/entity-slot report and H59 fixed report",
+    "round2-ontology-rules source and H59 fixed report",
+    "grounded_generation current target sources",
+    "canonical_names patient-set current CPU sources",
+    "qwen3_relations native trainer interface"
+  ],
+  "qualified_gap": "No completed supervised fixed-mention full-public-canonical-name/NIL generation found in these sources; generic LLM candidate normalization and passage quote SFT are already completed.",
+  "historical_extraction_training_source_sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+  "files": [
+    {
+      "id": "S01",
+      "path": "/workspace/CHIP2026_PatientPheX/docs/research/context-normalization-gap-20261024/REPORT.md",
+      "bytes": 6502,
+      "sha256": "c246fe3654da8827356fa7979483262aaf26d77c8359dd18f4b6448d7d3e8029",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S01-REPORT.md",
+      "role": "H59已负CE与Top8机制/结果"
+    },
+    {
+      "id": "S02",
+      "path": "/workspace/CHIP2026_PatientPheX/docs/research/context-normalization-gap-20261024/sources.json",
+      "bytes": 7861,
+      "sha256": "3f9e6b19cad976c0e7733e3e2fcb9bccbf0a60b4d32714fdeacef13df4365127",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S02-sources.json",
+      "role": "H59历史执行SHA与当前源码分离"
+    },
+    {
+      "id": "S03",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/prepare_extraction.py",
+      "bytes": 6021,
+      "sha256": "738abb682c91de3b0d5f9b67caeba99d4bc7764bb8f37122288418631bedeb0d",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S03-prepare_extraction.py",
+      "role": "旧逐窗输入/正quote监督/全词面occurrence局限"
+    },
+    {
+      "id": "S04",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/prepare_sft.py",
+      "bytes": 1918,
+      "sha256": "976e5ba76d07ec962bbf4f7f6210513cde8eb946ee01906a45709a068bbef873",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S04-prepare_sft.py",
+      "role": "旧正式监督305窗口构建接口"
+    },
+    {
+      "id": "S05",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/normalize_extraction.py",
+      "bytes": 8848,
+      "sha256": "4cd1aa35743537defd450a3e24630f0de855fd27f18f98089a6f82d11be5928c",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S05-normalize_extraction.py",
+      "role": "已执行零样本char+Sap候选ID链接，非全名称SFT"
+    },
+    {
+      "id": "S06",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/train_lora.py",
+      "bytes": 24477,
+      "sha256": "2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S06-train_lora.py",
+      "role": "可复用答案mask/no truncation/LoRA/epoch状态训练接口当前源"
+    },
+    {
+      "id": "S07",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/experiments/E-20261023-008.md",
+      "bytes": 108910,
+      "sha256": "cf38e5710bc388f877be32201af22facde9ad1486adbb9250d92fb5c9c0f6032",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S07-E-20261023-008.md",
+      "role": "实际读取r2-07至13及机制关键词；既有质量引用"
+    },
+    {
+      "id": "S08",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/evidence/round2/extraction-fold1-fixed-replication.json",
+      "bytes": 11511,
+      "sha256": "8ff7fa7790c488533aeeb1458d63dc6b5c764365f0007e6e2cf421ead68f1aa5",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S08-extraction-fold1-fixed-replication.json",
+      "role": "真实F1七端点/训练与推断/负结案"
+    },
+    {
+      "id": "S09",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/evidence/round2/sft-linked-filtered-control-summary.json",
+      "bytes": 21842,
+      "sha256": "2a0c7ef7b97e605326e56215c99af8d190b14d537a76e922c70c15687ee07d0d",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S09-sft-linked-filtered-control-summary.json",
+      "role": "真实F0已有结果与增量"
+    },
+    {
+      "id": "S10",
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/training-plan.json",
+      "bytes": 1390,
+      "sha256": "04332d4d01fc334602ff445f4a682e55f0bfcc8c6c915f773b93bad52a3a9287",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S10-training-plan.json",
+      "role": "历史实际源2a25b83d与固定配方"
+    },
+    {
+      "id": "S11",
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/sft-extract-fold1-bf16-v1/training-verification.json",
+      "bytes": 1218,
+      "sha256": "091a5e5d38949c818da6890dec3502d21e5b062ac177ec5889fec0e9e50d82e9",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S11-training-verification.json",
+      "role": "历史实际8B参数/78steps/542秒，非新成本实测"
+    },
+    {
+      "id": "S12",
+      "path": "/workspace/patientphex-worktrees/explore-canonical-names/solutions/canonical_names/schema_contract.py",
+      "bytes": 5709,
+      "sha256": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S12-schema_contract.py",
+      "role": "当前patient-set标准名CPU trie/严格解析；三分支需增量"
+    },
+    {
+      "id": "S13",
+      "path": "/workspace/patientphex-worktrees/explore-canonical-names/solutions/canonical_names/prepare.py",
+      "bytes": 3739,
+      "sha256": "578ef631ee7326c00841047fceb6b032265005a944861b4c8e8d509197f32762",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S13-prepare.py",
+      "role": "Task2association目标，不是Task1mention"
+    },
+    {
+      "id": "S14",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/REPORT.md",
+      "bytes": 8150,
+      "sha256": "96a23ebad8de8fd067faa1802ba400f6b08465c0be1caf88792387470ccda42b",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S14-REPORT.md",
+      "role": "现有GENRE/REBEL/TF5来源与CPU边界，非新下载"
+    },
+    {
+      "id": "S15",
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S15-schema.py",
+      "role": "当前patient-conditioned quote+occurrence机制"
+    },
+    {
+      "id": "S16",
+      "path": "/workspace/patientphex-worktrees/explore-qwen3-relations/solutions/qwen3_relations/native.py",
+      "bytes": 20164,
+      "sha256": "803685a649385ebce71f33c37148624007e0ae43896d8914f56732061f5e25be",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S16-native.py",
+      "role": "新原生Qwen3真实loss/raw/EOS接口；本次只静读"
+    },
+    {
+      "id": "S17",
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/task1-generative-normalization-readiness-20261024/sources/S17-strict.py",
+      "role": "本census复用HPO/compound/原坐标验证"
+    }
+  ]
+}

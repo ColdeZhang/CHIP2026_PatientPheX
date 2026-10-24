@@ -412,3 +412,9 @@ Grounded首个质量入口假设旧N的metrics含`prediction_sha256/gold_sha256`
 GLiNER2.5原生`synthetic_entity_label_prob=.2`会将phenotype随机改成entity1等schema查询。探针把一次CPU采样缓存的IDs当作固定行身份，遇到另一合法采样时在首个forward前断言失败；这是检查器的错误前提，不能据此关闭增强或宣称模型分词错误。首次实际IDs未在断言前保存，这部分证据无法补回。
 
 **避免方法**：保留原生学习变量，用本次实际schema tokens、query layout、input IDs、目标和RNG状态共同核验，在断言前落盘；固定数据目标与随机增强实例分开记录。机械修复保留.2，六个真实更新全部通过、encoder和boundary权重均变化，原失败保持；CPU修复证据`research/gliner25-task1-v1/recovery-cpu-complete.json`（`9cd4fc00…`），真实结果见同路线`metadata-recovery-v2/complete.json`（`458768a1…`）。该探针不替代完整训练和质量终点。
+
+## H63：压缩容器身份与模型实际输入身份要分开核验
+
+同一编码表在本地与远端分别生成gzip，长度同为743576字节但SHA不同；检查器在9B备用CPU合同末尾退出。两个已有对象解压后5091977字节完全相同（`aa047a34…`），87/39行的IDs、labels、字段顺序都相同；root另核压缩对象只在偏移9的gzip OS字段不同（03/ff）。该次未到达HF processor步骤，不能补称其已通过。
+
+**避免方法**：跨环境重建数据时，同时记录容器SHA和解压后实际输入身份，以实际IDs/labels及序列化内容判断模型输入是否改变；保留首个错误guard，先比较已有对象，不重跑tokenization或模型。传输同一个冻结压缩包仍必须逐字节SHA一致，不能据此放宽复制校验。证据见名称分支`solutions/canonical_names/evidence/qwen35-container-diagnosis.json`；首个正式候选已另行固定8B，此9B备用检查不影响其训练链。
