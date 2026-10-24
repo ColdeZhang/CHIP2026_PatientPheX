@@ -10,7 +10,7 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 B最终合成还须按root规则核：patient合法HPO来自oldpool，public-new来自相对oldpool差集，在实际canonical/alt处理后逐doc空间及输出级严格互斥才允许等价全union；否则精确原counterfactual a179_B差集，不能猜或临时删patient。此证明与retrieval共同完成。
 
-恢复补线：患者173MB第二副本仍未完成。两次source部署观察错误，06:23及06:24实际目录为空；06:25结构化写明确LUNA_OFFLINE，按≥180s退避，HTTP/fetch从未启动。原A100完整state仍持久；.100新最小901补包尚待完成，不宣称已备份。
+恢复补线：患者173,200,462B四件第二副本已06:31:24实际完成（22.709秒rc0），两端fsync/SHA及目标祖先fsync全过，ACK c38a609b，源原完整state不变。此前LUNA只影响部署；实际两次空库存后同字节压缩部署成功，唯一HTTP06:31启动且完成后仅停止自身。零GPU。新最小901补包尚待完成；[复制终态](evidence/support-patient-synthesis/adapter-copy-terminal.json)。
 
 ## 目标与已知最佳
 
@@ -67,4 +67,6 @@ root在两独立结果及终审已知后明确授权；源b9ea4f50/plan edee73ab
 
 Score **.754216969282→.754361398199（+.000144428917）**；men .792801107522/doc .828677839851不变，micro .736964078795→.738780207135（+.001816128340），macro .658424850960→.657186438289（−.001238412671）。按固定Score门和统一终审76ada874 PASS，root已接受为当前全局best；幅度很小且macro下降，尚未.8。pred9016863c/140578B，格式valid/0错0警告，assemble .02849秒、eval .17502秒；0NN/旧重评/扫描。终审已回收；最小补包和新adapter第二副本正在持久化，不重复模型/评分。已有原dev反复开发，不是盲验证。[终点](evidence/support-patient-synthesis/terminal-summary.json)、[结果](evidence/support-patient-synthesis/result.json)、[源码与恢复](support_patient_synthesis/README.md)。
 
-恢复资源必须按同一Qwen3.5基座**两份不同full64 LoRA**记录，不能再称单adapter重复推断；[资源locator](evidence/support-patient-synthesis/two-adapter-resources.json)。旧LoRA的A800原weight已在此前释放，.100已有真实SHA副本；原state/checkpoint仍A800，不能称原目录完整自包含。新patient完整state在A100；root明确授权4文件173200462B另外备份.100，8MiB/s/180+10，仅CPU/磁盘。当前首部署观察错误后实查源tools未落，尚无HTTP或fetch；继续原字节补部署，不重模型。
+恢复资源必须按同一Qwen3.5基座**两份不同full64 LoRA**记录，不能再称单adapter重复推断；[资源locator](evidence/support-patient-synthesis/two-adapter-resources.json)。旧LoRA的A800原weight已在此前释放，.100已有真实SHA副本；原state/checkpoint仍A800，不能称原目录完整自包含。新patient完整state在A100；root明确授权4文件173200462B另外备份.100，8MiB/s/180+10，仅CPU/磁盘。现已06:31:24复制完成，见上述实际ACK；先前未落部署/LUNA保留为历史，不重模型。
+
+B CPU底座6件来源入口已完成，见[阶段摘要](official_901_B/old_pool_cpu/cpu-stage-summary.json)：旧dev55f完整字节回放；B CRF5229实体、rules5728，100/244；经root明确授权的纯计数恢复不新fit，Sap90303候选/65673 query、42575 labelbank精确。GLiNER .100GPU0被他人占，root已改排.3 GPU0单owner，Sap/GLiNER顺序，不碰.100R1/Qwen卡。
