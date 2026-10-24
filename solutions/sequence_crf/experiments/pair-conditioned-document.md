@@ -68,3 +68,6 @@ NumPy 13项合同通过：两臂两标签对全部98个小模型参数及输入�
 共享GPU总预算1800s+TERM30，含两臂fresh加载/8轮/final checkpoint/末轮F1推断，按实测最长文仅作保守成本代理，不能保证完成。每臂只存末轮model/optimizer/RNG及小进度；中断只保存明确不供推断的partial，不把部分轮次当最终模型。两臂完整1557概率/全16预测共同冻结后，单次CPU端点≤30s才读F1gold，fixed.5，无阈值扫描、F1早停、原dev访问。旧同池SFT32指标.660942003、规则.644761594复用已审metrics（后者不是F0 .711353522）。新pair仅在Score同时胜uniform/SFT/rules且macro对三者均不降时保留；两臂微正但未胜强基线只能作机制证据。
 
 源码与恢复：外部 `formal-v1/formal-plan.json` b26d6df5、`endpoint-plan.json` a455dcbe，Git小索引 `evidence/round2/pair-document-formal-preparation.json`；训练和F1数据分别364,776B/195,670B留外存。部署仅上传冻结源码/输入并CPU编译，启动入口强制fresh GPU/无已有模型目录/统一审查PASS/已push commit；managed job另记 `job.json`，恢复只读原job，不盲重启。最终模型仍未训练、尚无质量。
+
+
+正式入口独审 `e5180c9b…` 通过，源码检查点 `c9043ad` 已推并核远端；01:07:33.525983Z fresh核 `.3` A30 GPU0 无compute PID后实际启动 `proc_e34bff71-98fe-44d4-983b-698751e431d7` / PID1164449。外层共享1800s+TERM30，主截止01:37:33.526Z/最晚01:38:03.526Z。远端仅 `sequence-round2/pair-document-formal-v1`，以原job读取输出恢复，不能重启；本地 `formal_operations.py collect --directory .../formal-v1` 运行中只报告状态，结束后才回收小文件/确认卡空。当前训练中，无验证结果。
