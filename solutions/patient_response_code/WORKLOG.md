@@ -1,6 +1,6 @@
 # 工作台账
 
-当前优先：fresh full64 响应编码组件。完整329 CPU通过；原metadata CLAIM已逐字恢复，唯一A100 GPU2 H51已13:37:16.755启动，proc_59b45bec-a90d-42da-a8e4-a34b8929c6bc/PID218274。原240+30，实际TERM13:41:16.967707/KILL13:41:46.967707；不重复模型。完整12步/成本/释放通过后自动原fresh2ep5400链。
+当前优先：fresh full64 响应编码组件。原A100 H51已13:40:05完整PASS并释放，168.330秒/12反向+1Adam/两Pareto；压力99.427秒、峰allocated25.330GB/reserved26.873GB。唯一proc59b45bec不重跑。原终态包c22bc082/82839B已服务器冻结，本地第二片read UNKNOWN按30秒纯读恢复；原真实源/plan保持。齐后直接条件激活5400共享两ACK→64fresh1200，无本线质量。
 
 - 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
@@ -32,3 +32,7 @@ Source checkpoint6aa76b44与probeplan83497912已push；唯一CLI在CLAIM RPC UNK
 ### 2026-10-24 13:37 UTC — full64 H51 unique start recovered
 
 13:35与13:37纯读确认4548B/b6967056原CLAIM精确、无driver/child；原start_process从未调用。recover_claim只补首次模型start，返回proc59b45bec/PID218274，实际driver13:37:16.967707启动240+30；原CUDA/plan/方法保持。Formal模板272784a5已push核验；新增full64专属sourcebridge包装器避免继承旧C32已关闭namespace，原transport源码不改。新增pure-component装配只消费最终64strictcanonical、保955实体/36患者/全部非关系字节，零gold/v2/模型。
+
+### 2026-10-24 13:41 UTC — H51 complete, actual formal gate opened
+
+53件小终点09ad8c62/zipc22bc082完整SHA，第二片纯读UNKNOWN按30秒恢复成功，无LUNA/重算。12FB/1Adam、6462/125及4800/128通过，168.330s，pressure99.427s，allocated25.330GB/reserved26.873GB/free14.873GB。新cost88c88aa8估计4955.064秒（含两完整导出1200与未测120余量），不是保证；正式actualgate已验证，fresh265×2/68updates/warmup4/5400两ACK包完成。首次本地prepare因缺父目录在创建controller前退出，创建父目录后原源原数据同门恢复，无远端/模型。正式尚未启动。
