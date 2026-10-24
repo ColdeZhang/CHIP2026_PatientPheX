@@ -1,0 +1,81 @@
+{
+  "status": "read_only_F1_development_fixed_public62_bucket_diagnosis",
+  "arms": {
+    "old124": {
+      "raw": {
+        "n": 193,
+        "TP": 72,
+        "FP": 121
+      },
+      "supported": {
+        "n": 65,
+        "TP": 41,
+        "FP": 24
+      },
+      "rejected_by_fixed_support": {
+        "n": 128,
+        "TP": 31,
+        "FP": 97
+      }
+    },
+    "new212": {
+      "raw": {
+        "n": 132,
+        "TP": 48,
+        "FP": 84
+      },
+      "supported": {
+        "n": 47,
+        "TP": 30,
+        "FP": 17
+      },
+      "rejected_by_fixed_support": {
+        "n": 85,
+        "TP": 18,
+        "FP": 67
+      }
+    }
+  },
+  "raw_delta": {
+    "added": {
+      "n": 3,
+      "TP": 0,
+      "FP": 3
+    },
+    "removed": {
+      "n": 64,
+      "TP": 24,
+      "FP": 40
+    },
+    "added_supported": {
+      "n": 1,
+      "TP": 0,
+      "FP": 1
+    },
+    "removed_supported": {
+      "n": 19,
+      "TP": 11,
+      "FP": 8
+    },
+    "added_rejected": {
+      "n": 2,
+      "TP": 0,
+      "FP": 2
+    },
+    "removed_rejected": {
+      "n": 45,
+      "TP": 13,
+      "FP": 32
+    }
+  },
+  "available_new_pair_truth": 103,
+  "elapsed_seconds": 1.010097570004291,
+  "fixed_support_not_changed": true,
+  "no_competing_full_raw_prediction_or_Score": true,
+  "evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/F1-rejection-diagnostic/summary.json",
+    "sha256": "f48e10460c582337d3676f15016bc77e8c37cc6545631e3fd1843da0a325745b",
+    "bytes": 5249
+  },
+  "conclusion": "New212 raw already loses24 oldTP and gains0TP; support accounts for11 of these losses, not a new changed gate. Old/new support rejects31/18 true pairs; this diagnosis does not authorize changing gate or scoring a competing raw arm."
+}
