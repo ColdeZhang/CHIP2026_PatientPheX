@@ -41,3 +41,5 @@ Root已预排必要Sap在.100 GPU0（teacher16:07真实释放），全39后fresh
 F1唯一质量已完整：pred50bb61dc/141199B，freezebc8a9de1在先，唯一新v2/旧0 resultfb352642；Score .701325377212→.702224686258 (+.000899309)，新增2TP0FP，micro+.002391889/macro+.001205347，Task1不变。稳定entry a9044674/36466B已交统一终审，结果evidence/F1-result.json，细节唯一实验QSC-001。Root授权同cd977 F0全47/强B4 .728195628911/普通G32合法known，1800+30和必要Sap，负平关闭；新full64仍仅条件CPU，须F0严格正另预算。
 
 F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47/16纯输入296853tokens/max10262，低于实际F1max10854；train32/d52/cd977/normalizer完整祖先与F0文献互斥。新plan e3047615，同native greedy1600/1800+30/5min admission；唯一对照B4F0 .728195628911/343关系/947实体，固定并全completion，负平关闭。源/输入/基线绑定CPU通过，尚未F0 GPU/质量；不重旧probe。
+
+- F0 唯一启动16:22:33在载模型前资源门失败：GPU2新PID46312/484MiB（target493MiB）；driver14768明确退出，无child/forward。原N/inference-F0-v1与H69意图保留，未重start/未碰外部PID；待root资源协调。F1补包203+1原成员正在.100持久部署。
