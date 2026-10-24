@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-24T02:13:04.395676+00:00",
+  "generated_utc": "2026-10-24T02:51:39.494329+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -15791,29 +15791,1370 @@
         }
       ],
       "quality_experiment": false
+    },
+    {
+      "id": "matched-warmstart-complete-paired-F1-terminal-negative",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/review.json",
+        "bytes": 47305,
+        "sha256": "d253f6258ea21cdcfcd933d9eef9a6638896ec234a6ecdd03617561376e19a36"
+      },
+      "source_report_path": "validation/candidate-order-warmstart-terminal-review/review.json",
+      "completed_review_scope": "PASS_complete_negative_fixed_warmstart_order_configuration",
+      "scope": "严格旧train32双臂O/O与R/O warm两轮、四checkpoint持久ACK、原80输入共同freeze后的完整F1负终审。",
+      "conclusion": "旧.660942003；O/O .658421563、R/O .645528610，二者均负，不迁原dev。80/80输出、587候选均有效、非关系对象不变；实际四次完整状态持久导出及SHA/恢复指纹已核。旧ACK命名故障与恢复保留；本次只收编既有完整终审，不重新评分。",
+      "limitations": [
+        "No fresh GPU uninterrupted-versus-resumed numerical-equivalence test; existing full-state resume source is retained.",
+        "No unseen validation/generalization claim from this repeatedly used F1 fold.",
+        "Actual GPU managed exit codes were unavailable; do not replace them with invented rc0.",
+        "Production best a179 and public neural parameter subtotal inventory are unchanged."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/checks.json",
+          "bytes": 7814,
+          "sha256": "cd516aa904f6a46320b46c24b73b2da880e1b2b4dc55096141e4343e59d4d174"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshot-manifest.json",
+          "bytes": 35524,
+          "sha256": "edb44c12ba630c0c5623a2e66df448df20ae0866129adb215a51ef9ead367528"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/audit_terminal.py",
+          "bytes": 9629,
+          "sha256": "cc3803f14aa94f9a7d558ab7f2bba973d9d3ed1f22adc1ef314a414d0950eecb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--terminal-result.json",
+          "bytes": 9093,
+          "sha256": "675a9876fcbeb85c7f3282d18e9e73d43b044818f1bded83b80f17bae6f81940"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--summary.json",
+          "bytes": 5650,
+          "sha256": "32690b5217b2f0a96b94e99cc2e5ef8ca159d53779d5b65abe9f28e4a036d980"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--run-plan.json",
+          "bytes": 12463,
+          "sha256": "053e99ee93e50df0c8b02067e336097535b5c60014d201f22be7415003a7ed60"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--paired-predictions-freeze.json",
+          "bytes": 5133,
+          "sha256": "e35f9c3a1cc6d54e292d3fa1ebd601a1d0a1764db3dff67ab671c85b88bc4fc9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--evaluation-reservation.json",
+          "bytes": 349,
+          "sha256": "d13cdcace544206cfd1b71eb7b8cfa6a5bfd98e83ec3853c53e20e250617fb31"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--evaluation-started.json",
+          "bytes": 416,
+          "sha256": "b969763d99c97c3bcbb24f80b229c68339e776e9a69fb42feccbc5fc3628850f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--all-responses-complete.json",
+          "bytes": 1099,
+          "sha256": "0d35400fb3a41c0bd7e592fcab857e31cd9d3dbfeb6eaa38547d341e12dc2fe0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/prepare_recovered_evaluation.py",
+          "bytes": 2570,
+          "sha256": "25f2669768d110497d974eddd4b768d52b18cfcaf19e603513e825b2901578fc"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/evaluate_paired.py",
+          "bytes": 20575,
+          "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--execution-state-before-ack-recovery.json",
+          "bytes": 287,
+          "sha256": "a17919df6e4afded28e3a1cae97d89869c954f626db5bec000bb6c55db21663f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--actual-ack-rename.json",
+          "bytes": 375,
+          "sha256": "56c12036a37f54baee0bb05749d077757cf6c70ce514363df2f00e2f16590b70"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--gpu-release.json",
+          "bytes": 274,
+          "sha256": "5cfc03e73e662b7396cdabaa63d033226765bcf337d71afb1a82eb5e80c704d4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--progress.json",
+          "bytes": 253,
+          "sha256": "46f6e5d676e44da39e46025cd5c86a2622ac916dd542a9ab5aea59d730b3a941"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--paused.json",
+          "bytes": 349,
+          "sha256": "2cc744fe5e461ec3384205bd41afa355d05d6e7980bc50639a6ba25ea3cc0fd9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--process-terminal.json",
+          "bytes": 2051,
+          "sha256": "e2958cbdc5bc103fc77d9e94295b4390dad611e6c71c1672054d3a40a6f1ede6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "868f9d27a74940d6bdb7e7876892f9ad7e3d201e9fb21cf539cbcade6763f936"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--persistent-actual-readback.json",
+          "bytes": 2171,
+          "sha256": "bedd4e96979880ce3a0d37d1038e27aea0c37e69cb78ec71ea5a288ec3b95ac6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--server-stopped.json",
+          "bytes": 83,
+          "sha256": "77d1c79a1c2f9171b7f51dc4b6c55eaf1b98d56b4fc6e6166ad6e592daf7e80a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--export-ack.json",
+          "bytes": 2263,
+          "sha256": "9311e05540c1d4bd34aba7bd8a355bba48032d9a442496ae63bd03954f641132"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--source-ack-written.json",
+          "bytes": 121,
+          "sha256": "1ad8a1a468bed0f8844f3714b5bae2e0e223a931825a5d5b673449ec51044822"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--server-ready.json",
+          "bytes": 2038,
+          "sha256": "91f3a3693e12a3c209bf8c052142d4e0cd6f76b66522422f45d8584840f83e6a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--gpu-release.json",
+          "bytes": 274,
+          "sha256": "ef7c613febaf12f567f81756c2e4366c27f8cfbf327b96797b400f03a95057cb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--process-terminal.json",
+          "bytes": 2283,
+          "sha256": "0471e60a720d10ad4d07b10b9745c5edc27ec5306238a3905fb50d3a944e316b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--gpu-preflight.json",
+          "bytes": 273,
+          "sha256": "b89c17e8b048ca7b2c2ac3f7b4bd98439651ddf3a0a0591bf47bcb9013311e3c"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--run_manifest.json",
+          "bytes": 12600,
+          "sha256": "a5fcedb5e19e4a4c3727db8c496095340bb852423e7223c058aac092b119f3fe"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--checkpoint.json",
+          "bytes": 11942,
+          "sha256": "3f9f3402674ce37ce6b651b34e55d9a9916dab0bf2377fd81b5fdf301cd0c5bb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--fetch--process-terminal.json",
+          "bytes": 1226,
+          "sha256": "d39093d9441a6a0d98c28f04114331c78f8321dc4b69db1decf45f9722ad5b3d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses.manifest.json",
+          "bytes": 4293,
+          "sha256": "89509094a7456aa4116ceaac340c7910ba3219b610f831590be18dd5c84bcb03"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-plan.json",
+          "bytes": 825,
+          "sha256": "b47327b5a536dc2791954627b6f7dddb6d5234494033190013a1ab507dd67253"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-gpu-release.json",
+          "bytes": 274,
+          "sha256": "74705ecc4a179e02a4a5f845f50408811632fd800221246e07e66092e119e3d4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses.checkpoint.json",
+          "bytes": 3594,
+          "sha256": "dbbcf627d77b8ab5cc05fa5057fb205021a6beac1cc197eaa03bea2ee4c86c61"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "dd9a9cc4284c3bb46295cfbadefe384a84a240f7259e5322ef3b02a4b9cd427f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses-freeze.json",
+          "bytes": 323,
+          "sha256": "d7cffa088ae853254074f2637fe59e48630c7b9221b081cab2fdbe3390d1fcc7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--progress.json",
+          "bytes": 253,
+          "sha256": "6c6deba63baeabcdc6ca0484271ccf143952f4fa085aeb8e1b2b5c761de79cb4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--export-ack.json",
+          "bytes": 2262,
+          "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--checkpoint.json",
+          "bytes": 11942,
+          "sha256": "25c945d0cdeb99e80714d802ea62e6e2922587523425400574d132f022fa1ee9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--gpu-release.json",
+          "bytes": 274,
+          "sha256": "28dacbe6424e3429a5ac5e6fd5153d766f6ae7299165ada1cdacba663e656bda"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--process-terminal.json",
+          "bytes": 2283,
+          "sha256": "afc0532f930e64c2d94d2c46b5581ce92284f85ffbbe05a0d2ad29f3804d8dce"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "193f5b43d071d191c877030c9becc28ef038d18e3883858f863124e31bb83d14"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--training_complete.json",
+          "bytes": 1344,
+          "sha256": "fc86fcd3f8c7566ca08469dc534d3dee6b7103e61fcad176e991cde1c632fcfc"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--persistent-actual-readback.json",
+          "bytes": 2170,
+          "sha256": "1d3056ac7207b1122da4be0fe59fc13577f34d4a6e13592b99ca74850d72b102"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--server-stopped.json",
+          "bytes": 83,
+          "sha256": "cb5bbfeef9c1aada2c7033d3c237c6f64bddd4b99202e45a89012148cf5f5666"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--source-ack-written.json",
+          "bytes": 121,
+          "sha256": "a0d9be254fb941b5e91a57718cfb08ecce1f822b7d4e5abf099432c8247d02d8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--server-ready.json",
+          "bytes": 2038,
+          "sha256": "212e89670d225590c59ae3c60b6b3d0276657863150becdc5fe3be4dc7acdd85"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference--process-terminal.json",
+          "bytes": 1581,
+          "sha256": "c60be500c0c023a02a617639c17deecf37b7fb46dc9e22605b2bbbc0d9730afb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--fetch--process-terminal.json",
+          "bytes": 1226,
+          "sha256": "fea984db87c12a4d78d1cde4587f63302a382cdab3327bcf311f5b50fe2ce490"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses.manifest.json",
+          "bytes": 4303,
+          "sha256": "64ce357d8769fe8d7a54eb181898f95e6424a084bd39ff6bd40afbd0bc81bb60"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-plan.json",
+          "bytes": 830,
+          "sha256": "1881c066d24382eacbb5d5aa031ec5515f8350aaafb1ee5e4b48842fc1c45635"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-gpu-release.json",
+          "bytes": 274,
+          "sha256": "856903f5a26d280ef07bf2cbf3e0dfa8dd6a7264562ace12c3f40fa1e8962e69"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses.checkpoint.json",
+          "bytes": 3604,
+          "sha256": "08c552c84877f2e8d7fbdef6222cfd97abe91f1910be0ac55f34dc8ca7f65e7e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "66e07f174c98ba2657e7db3ec7b0f91a21b854151594f3e05b9844b345936b5a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses-freeze.json",
+          "bytes": 323,
+          "sha256": "8fdf0a91ea5e53a7738bfc541b17374f3cc9cb3e779cda715f72ccf15c4aec4b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--gpu-release.json",
+          "bytes": 272,
+          "sha256": "dfd2cf5ab920da543ac6e56c9dc14808dbd919caeb2147081258a0bf6a89d76f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--progress.json",
+          "bytes": 258,
+          "sha256": "ed66d3c6a4a6a9bb45a30674d73b5d1ee520f318f40f31c6309225b319ee1d62"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--paused.json",
+          "bytes": 358,
+          "sha256": "86441aeed36604bba65a874e9a1cfb0c853efb3b5636eb0a08eee6cf952b4341"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--process-terminal.json",
+          "bytes": 2060,
+          "sha256": "50e18badbc5ac65276b44cf770c8ba5af0ebdb329b7a01427e5536e337723789"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "6e928a810a63bf383db46e735f5e9dae66cd4990d2b071e53f111b2498d38dbe"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--persistent-actual-readback.json",
+          "bytes": 2180,
+          "sha256": "c165becc9cddd5d7243a4a6c7840fb2007ae13a93f0dbfb267372f30b2aa680f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--server-stopped.json",
+          "bytes": 83,
+          "sha256": "88ea8856c0b92114efaa19dd7a8b408b598bc475d3b449c592511ef8912bb990"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--export-ack.json",
+          "bytes": 2272,
+          "sha256": "d40a64307f1089e674be14e4165094b2700332aa227c80c38862b72fca3f5aac"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--source-ack-written.json",
+          "bytes": 121,
+          "sha256": "1e51251f4bade14f8941d9f48dff2f84f8685b3c94e7b7b740d3871acb65fe16"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--server-ready.json",
+          "bytes": 2043,
+          "sha256": "4f476fa37fea5e959ee4ce58dddda23140957076433db1610932278d5f7e9621"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--progress.json",
+          "bytes": 258,
+          "sha256": "6e9f2c7a6700546ee1a1d93d4b4fcd9e0383c696bff6d42d81c58e71ee06d139"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--run_manifest.json",
+          "bytes": 12615,
+          "sha256": "9d8a66f4a321b5c79654a8ba24bffa0512cda1e0f1d11820e6da1822cfe803e6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--export-ack.json",
+          "bytes": 2272,
+          "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--checkpoint.json",
+          "bytes": 11957,
+          "sha256": "0312521ad8ab864fdbbd5edf03ec425b44f6e9a186ed53b9ecaeae5b441bb148"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--gpu-release.json",
+          "bytes": 273,
+          "sha256": "79c8caa4f8742fff91c712fe62d7a79756945d928d94653fecb3a8432a78ced6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--process-terminal.json",
+          "bytes": 2303,
+          "sha256": "40dfc427a94705fe962d394cb35cb70330bb1d8e8000e277568bcb7e17957bbd"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "0c9bda1ca15dfe2237dfc2a1cd8bef52381c609850b0ee34320de0b370ff602e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--training_complete.json",
+          "bytes": 1349,
+          "sha256": "3f7e5206566ecc82c5d66b2436252a26b2f5ad1467d9c74f2bb00737f1e462ed"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--checkpoint.json",
+          "bytes": 11957,
+          "sha256": "eff27e6b8911918e34bf4f2a3931c14cabf1b2a86440b93f5bc8ae511a53d9d4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--persistent-actual-readback.json",
+          "bytes": 2180,
+          "sha256": "00ca2e5267e39b5c575ff6c8b9179a142e3bee7f822b64bac2413f796717011d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--server-stopped.json",
+          "bytes": 83,
+          "sha256": "845084ae294b0b1df265873824ba600e99474cbd393ca96fbbfd49af0058d20c"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--source-ack-written.json",
+          "bytes": 121,
+          "sha256": "711967a86acabc5df99c922254fcee6b6e30dac96838682524ba9993a03f29e1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--server-ready.json",
+          "bytes": 2043,
+          "sha256": "53399ff12ca28875b330586e2257425add431e9d8f94639bbdec9659d932339f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference--process-terminal.json",
+          "bytes": 1591,
+          "sha256": "65b2f66ac37d35610c41658834dbbff6e0971d41955fce38de38e25b503adf5d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--fetch--process-terminal.json",
+          "bytes": 1231,
+          "sha256": "5e2a8e716814f69bff145e991c760e1ee4bb7c3d6253c1f120a461e9dc88763e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--fetch--process-terminal.json",
+          "bytes": 1231,
+          "sha256": "d29b006589de159d392f34a332948452860df72d662ec0d97035a6519cdb33b3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--metrics.json",
+          "bytes": 13117,
+          "sha256": "e47440ea40d3a73d382e6dff0f7b615b6dfbfbc55e7333b73897c2d008847119"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--assembly-command.json",
+          "bytes": 2361,
+          "sha256": "f655e877c6ebb74330a69659b3cbb6ad454d3a30738279f9c92afa16bf40417a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--pred.manifest.json",
+          "bytes": 1347,
+          "sha256": "1ea2a2c4a48f0156601471b1f0e72b77a0d6fa50e8f4ef7ddfa5b30dcf99b6b6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--validation.json",
+          "bytes": 686,
+          "sha256": "9d01d00cd2d11af6a22b97fc2fe1cfe62b30d00281dc7616ece595004141b7f3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--evaluation-command.json",
+          "bytes": 1037,
+          "sha256": "ffc7c8cdd95d964269b143305eb6111db139a2357b8dca64275a18498d1a37a1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--validation-command.json",
+          "bytes": 1483,
+          "sha256": "40e196958dca66fb120909192581fc76b471e8f810117c9d5b0170d0f63e81b6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--metrics.json",
+          "bytes": 13169,
+          "sha256": "ae6634100a3f381a58747042f3f5754c8e4ba56ceb270cd967e377e864b65445"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--assembly-command.json",
+          "bytes": 2381,
+          "sha256": "fe102c63d56756a279e218cd9eee133fe0a27fcd05a55d02fec768345cca581d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--pred.manifest.json",
+          "bytes": 1357,
+          "sha256": "5ebd0c162268c4a82ced0379931489ae77dc7a07aff5b690d409cc4b3d97f21b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--validation.json",
+          "bytes": 686,
+          "sha256": "7edc601505a0c677fb6f2f4416a693c01e8a7ade71c021d4eee0db793b93a037"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--evaluation-command.json",
+          "bytes": 1047,
+          "sha256": "a2bc476952ae3c5e210cd2160494f6181f57568ee5fc364d362f14bd38b43fd0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--validation-command.json",
+          "bytes": 1493,
+          "sha256": "de3a79b3d4b9c6bc2c8fb7cf67aa183d0526836089da5a0bff3f11e8692afb8e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/batch-manifest.json",
+          "bytes": 132840,
+          "sha256": "5400d7eb00fbea13396e279ddffef1e20bc809315d9ee67967729568c5cc9c8f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/source-aliases.json",
+          "bytes": 130821,
+          "sha256": "a5e20d18ecc9e1cfef3ac873a528aa8bc0dd89064a93107ced522bbed45dfad9"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": true
+    },
+    {
+      "id": "patient-first-formal-native-CPU-durable-export-and-unique-launch-entry",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/review.json",
+        "bytes": 24656,
+        "sha256": "71d71097c177222ccee3489343ba4e03e30e70b31e5989f4b5e11d19eaf454f7"
+      },
+      "source_report_path": "validation/patient-first-formal-entry-review/review.json",
+      "completed_review_scope": "PASS_incremental_formal_entry_actual_CPU_and_unique_launch_not_quality",
+      "scope": "患者优先fresh两轮的actual CPU/导出合同/唯一正式启动入口；不是正式训练、80条推断或质量终点。",
+      "conclusion": "旧124训练与F1原80来源、原生CPU21.456秒/15文件实际SHA、fullCE与accum8计划、final-only冻结评分边界已核。五类合成导出反例及真实fsync通过；首次cwd拒绝未启动GPU，窄修为mount-relative后唯一job启动。训练/持久checkpoint/推断/质量仍待完整终点。",
+      "limitations": [
+        "This is formal entry/actual CPU and launch review, not final GPU/quality acceptance.",
+        "Longest-row one-update success does not prove gradient-accumulation8 stability; formal results pending.",
+        "Neural model parameter inventory does not certify all pipeline learned state; wider inventory remains separate.",
+        "No gold reads, evaluator rerun, GPU/model execution, MCP operation, owner-source edit or Git mutation by this verifier."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/build_review.py",
+          "bytes": 12638,
+          "sha256": "75a495f688ae08b1c4002808b394e9150f30e94116253f57602cedc632714228"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/check_export_fixture.py",
+          "bytes": 6503,
+          "sha256": "49bce1787f27bd7048d10691cc076e64f7e1843bf1f8c797a2d2507fd3cf92e0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/final-snapshots/readiness.json",
+          "bytes": 6283,
+          "sha256": "d5dfa72fe4470f5a83a48f49c2ad3d5e451e57d760b556b1bd856556f8105b56"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-entry.json",
+          "bytes": 8106,
+          "sha256": "d6e67714c24d147579b584de3c9e9d177a2db51359b7ad0fa0805f3348e50786"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/readiness.json",
+          "bytes": 6287,
+          "sha256": "80e9e750fc69a98f6329a88eb75ffc8cd01ce4a0e245c41088c2dd6d15844527"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/snapshots/original_trainer.py",
+          "bytes": 28818,
+          "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--train_patient_first.py",
+          "bytes": 37047,
+          "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU.json",
+          "bytes": 4227,
+          "sha256": "3faa63a5b8640129a4332c1412e523f25f4bb1406f75b30c46bdb4a7e5fa4352"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--infer.py",
+          "bytes": 15142,
+          "sha256": "d605534102e25e8bc762a4607d6ce3d557c7089b1c9e3a8ab7fbdd44a171c6ff"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--final_parser.py",
+          "bytes": 1381,
+          "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--finish.py",
+          "bytes": 8946,
+          "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/export-CPU-contract.json",
+          "bytes": 1708,
+          "sha256": "ac4d5209c4a31ebece3a0510c1c76ec947ebfcbcb1de1aa06d037ebbf49ef4f5"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/actual-A800-CPU-scope-clarification.json",
+          "bytes": 625,
+          "sha256": "623d7e8a4d718a0352b372fb37b87d2f868900a79f4137f3faa6efb7d63720f0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/recover-cwd-start.py",
+          "bytes": 4050,
+          "sha256": "b231049cd9fb0c3008b98cf5d2a43e12738444af507de7733f55ee1b3f943a86"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-job.json",
+          "bytes": 1749,
+          "sha256": "6fd8ab24c7617a6e33e8bd4dda5a06aa8dadd8a52a8c38700395412d21888c09"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU-source.py",
+          "bytes": 3052,
+          "sha256": "1e8a6b64b0fe9375db11ccf4f88554e042b041c4ea64b75b6e221ecec6b3bda2"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU-execution.json",
+          "bytes": 8487,
+          "sha256": "5bf475d0b7c28e7a3110017ac6dce823b2886236d9c06053987e6d995d601831"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/controller-patch-actual.json",
+          "bytes": 2645,
+          "sha256": "fe6cd4c0690d8a14197c45709ba5cf9000ee12f3f70e482392243ef7627972ff"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/actual-entry-snapshots/export-fetcher-deployment.json",
+          "bytes": 139,
+          "sha256": "2eca76a74dce22e00a46e0d9ba5308b8e00251a18ade896c53174f057256ee3c"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/source-contract-findings.json",
+          "bytes": 1357,
+          "sha256": "e2368c2e9ead5c6147e834a48db62250fd56ca7081a9769cd3c418261f4e815a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-repair.json",
+          "bytes": 1754,
+          "sha256": "779803ad0857bd7b17b793182b66f41baf5206190f57556441ff2f399ee2962a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-patch-actual.json",
+          "bytes": 1819,
+          "sha256": "5c9e1b04b10be9224d106c55a0ecfa8fde1239511b82148c6b91895d906974e0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-patch-intent.json",
+          "bytes": 875,
+          "sha256": "77c72501316628317ad286dc5b87d29c58b6aa79da3e0a361f1ede33f2af2055"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-start-path-inventory.json",
+          "bytes": 643,
+          "sha256": "7f8df2b8d02b64827ba45d52c840e23f443c5ec84fc4e6b6787098cb857e82e0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-start-path-rejection.json",
+          "bytes": 288,
+          "sha256": "742f43cf4f4f495b1c6447344c4c557826e5a4c78c6c5b2aa147effec2b13da8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-intent.json",
+          "bytes": 1266,
+          "sha256": "9c796b14149dac4436e7d3086a833752e19d54fa68faf92012127ee128430e01"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-fresh-resource.json",
+          "bytes": 595,
+          "sha256": "87d29145b1a3e41a29a46ecc305db93cb0f2e7bc67d5de01486c40d2354b21b0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-RPC.json",
+          "bytes": 1166,
+          "sha256": "f87574f228880abfef5ead446a40a2049c1b5b63cd6ca2a2bcf2a0ee657e6e92"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/storage-readiness.json",
+          "bytes": 2618,
+          "sha256": "f7c8965af7fdadffe4db08081ad1ce5af14d9cee62f1e59d32f5f8a5f4f11c6b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--prepare_endpoint.py",
+          "bytes": 5964,
+          "sha256": "71a9fa9d197d53e8a7c729549d83cd9ff81231ab8a62c69d6f6042a9f2e4b594"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--formal_driver.py",
+          "bytes": 5328,
+          "sha256": "536fa775103fafc83b4f50542d8a8314ecf22978c680fe9a5dffca5f18c06eeb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--formal_operations.py",
+          "bytes": 10973,
+          "sha256": "f3889a168081a208fe2848514e5fd4fd153d13b673dac73308c3380f085d43ed"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--export_checkpoint_server.py",
+          "bytes": 5421,
+          "sha256": "d8e103fa33ba4bdde8ae851b5a519892144b7118e3b658aa7d1d9a60f326afba"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--fetch_checkpoint.py",
+          "bytes": 7023,
+          "sha256": "34d9a28380a68f51d0cacd06cf6dce790cf3d86beea2cdc7a42443b0b41257cc"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--export_operations.py",
+          "bytes": 9837,
+          "sha256": "912e502506c8c7c9c7c5084e85cc4fa0c089b0c1a043db196c41c8a2fb357fca"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--resource.json",
+          "bytes": 1833,
+          "sha256": "ec093231b522172d3415e1933aa3252e9b000d6eabb3914a3a80d2f2b0676a0b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--train-plan.json",
+          "bytes": 7182,
+          "sha256": "eb21b47f51e594d0216109d0fc0e180791461ce1979744897e338446f51cd838"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--infer-plan.json",
+          "bytes": 6701,
+          "sha256": "db11abe24f79644e12ecf6841916991df4cade30d08c3b9b003e2e6d250d8645"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--endpoint-plan.json",
+          "bytes": 3447,
+          "sha256": "bb375d9cc6aafe2528a0b6f0619b2a987e27447e816803e64f685cee6cf890c6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--export-plan.json",
+          "bytes": 2415,
+          "sha256": "66a2fb583c2a61a02745bfab8fe8e0f20cd071a3a33c2a22991151229ffd8d17"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--payload.json",
+          "bytes": 5975,
+          "sha256": "e1a2f1da858194719c8a575aa9e3962f451cbb3c8c605c88aeb44a1aec8dbf40"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--CPU-source-contract.json",
+          "bytes": 9378,
+          "sha256": "bd251cd6418a928883a59d4a98110ecda6f3ce647ae37d502e4f3da09d99597b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--endpoint-CPU-contract.json",
+          "bytes": 13047,
+          "sha256": "d401c6746c3bb9e6f222b1cae16886326035819a5493ef707ae44a847a7659c6"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--allocator-summary.json",
+          "bytes": 5380,
+          "sha256": "38874fc2bc523a22a8874e7e156c16098728ea8eb18ec367798b20681233bf4d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--controller-fsync-contract.json",
+          "bytes": 2743,
+          "sha256": "8683942fdf2b9703f37675a61bde8693bce096f456674671b500285fc15e2a8c"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/snapshots/additional--storage-A800-actual.json",
+          "bytes": 1728,
+          "sha256": "61b653986eb333847dc390d7c6a7f2bfdfe6ad3c51445e6e93cce77a088b81dc"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/snapshots/additional--storage-persistent100-actual.json",
+          "bytes": 1333,
+          "sha256": "986a7be46bf3b5ea52eb35f59b740c3bfb8feeeb0439fff5628c02d841fabcb4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/patient-first-formal-entry-review/final-snapshots/sources--formal_operations.py",
+          "bytes": 10688,
+          "sha256": "2e0699d92a388911a041447fd460a74ccf57e8f6d8de83b1a5c0f4660b4576be"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false
+    },
+    {
+      "id": "nonneural-deployment-learned-state-actual-inventory",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/inventory.json",
+        "bytes": 10025,
+        "sha256": "f9e2718eda4d0d6f12fb8201378f883ad5873ff3b189adfbed7f818aa7a18dde"
+      },
+      "source_report_path": "research/nonneural-deployment-inventory/inventory.json",
+      "completed_review_scope": "READONLY_non_neural_and_fitted_state_inventory_complete_no_prediction",
+      "scope": "实际CRF/小LR/既有HGB/POS与经验状态结构盘点和17份冻结来源；无fit/predict/gold。",
+      "conclusion": "实际结构检查1.063秒；独立学习状态、派生embeddingbank/缓存及固定词典区分，保留旧97列关系支持HGB依赖，fresh NCR HGB未知，不伪称全部新部署参数exact。真实数值与条件上界保留；旧全链10B余量仅历史自设预算，已由本批per-individual规则纠正覆盖。",
+      "limitations": [
+        "这是已部署/计划组件的资源与依赖库存，不是赛事收益或官方逐项计数认证。",
+        "fresh NCR HGB尚未拟合；旧去BioBERT方案是历史静态方案，不能推定当前实际部署或强制删除BioBERT。",
+        "原报告真实计数保留；全链10B合规推论由本批规则纠正和独立ERRATA撤销。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/REPORT.md",
+          "bytes": 6961,
+          "sha256": "a2e1b51d19c399cb2e1ffcb468248dab36c20bc3e90dba7ecb6f2d03e9b3276d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/audit.py",
+          "bytes": 13984,
+          "sha256": "9aa6499a24caabd7aa0d5ec3f62689beafaf2d7db43e82d6a7660fee3974b4be"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/lineage-evidence.json",
+          "bytes": 12206,
+          "sha256": "8e17b6b4bcf7a8ebc98895e49b4759751daf90e7a5635847fae08177232cb614"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/CRF_linker_source.py",
+          "bytes": 21153,
+          "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/NCR_static_feature_dependency.json",
+          "bytes": 36637,
+          "sha256": "36f5d94ff6d0ca7f2436812d5a06e5be53c1b721b1e1cd31d9902447995952f7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/Qwen_full64_relation_merge_manifest.json",
+          "bytes": 1301,
+          "sha256": "cd2e2ae7393ec69f5d5ea30e359dc36dd8c6ad30413ed660e56178b78c713fa9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/Qwen_relation_merge_source.py",
+          "bytes": 3684,
+          "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/Qwen_relation_prompt_source.py",
+          "bytes": 6846,
+          "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/Sap_reconstruction_manifest.json",
+          "bytes": 18373,
+          "sha256": "469e5299cdc9593a53efae907741b4df9bd3ee7e6b15ed2eebfd48062a775a5f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/biobert_parameter_clarification.json",
+          "bytes": 2054,
+          "sha256": "b67fd7a49189356f292d87ef143a467d94f99d37da9eea017546936f8dd3ea6f"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/historical_best_resource_index.json",
+          "bytes": 12458,
+          "sha256": "0c7e5ff4415950ed77ad9f8ef44c255e63594c0dddca4618cb93ef3eacc66522"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/historical_best_resource_report.md",
+          "bytes": 4504,
+          "sha256": "f222e363d8248ba7bdce8d5355e31d301043e43fdc2792db1f97eba95fc446ec"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/native_NLTK_download_manifest.json",
+          "bytes": 915,
+          "sha256": "24a4b21fe3de39d36a52e381226c7821c1bf670cd33df0e3395c9533494e0102"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/native_PhenoTagger_preprocessor_source.py",
+          "bytes": 1724,
+          "sha256": "5925dbe25cbaaaa26ef2ca10291958969eeb95822e69cc2badab8c4177d1b2f7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/older_neural_inventory.json",
+          "bytes": 7018,
+          "sha256": "a91a86576b3e759c50c4a17919a080f77aed9bb6b8f99488b10de8fac0d2b150"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/ontology_gazetteer_manifest.json",
+          "bytes": 1643,
+          "sha256": "d4bb04f9780f55a7e2092ddbecb1bd1d2794ffdd674c422a06ea7fa476763a92"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/ontology_gazetteer_source.py",
+          "bytes": 16709,
+          "sha256": "56cdcb45dffd821bfa7fce6ac54b28364624ae7b603058487ecb3485c5878f7a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/outgoing_103_HGB_manifest.json",
+          "bytes": 15114,
+          "sha256": "5dcd974800716b6bef80ccf26132f7f7655368e5bac232dea5ec79f5023497a4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/publicnew_relation_fixed_support_plan.json",
+          "bytes": 15007,
+          "sha256": "284826fb2591a6a6d4e1879f0aabb68b1cf6d68d61aa2181fea6550462aaad29"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/source-snapshots/retained_97_support_HGB_manifest.json",
+          "bytes": 9240,
+          "sha256": "9c52eac7d20fb62f9fdf3c14f6b469a8df6830076d22d0abc5d0cc5333d3380d"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false
+    },
+    {
+      "id": "MedGemma-fixed-public-assets-full-SHA-and883-header-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/manifest.json",
+        "bytes": 12353,
+        "sha256": "0b12197200d323001b7ed5da2a9b8fdf145e3019f7e7ca1171d62196dfd6237b"
+      },
+      "source_report_path": "research/medical-small-model-readiness/assets/handoff/manifest.json",
+      "completed_review_scope": "FIXED_MEDGEMMA_19_FILES_AND_883_HEADERS_COMPLETE",
+      "scope": "固定ModelScope MedGemma1.5资产下载/完整SHA/实际883header结构终点及必要原metadata；无模型质量结论。",
+      "conclusion": "MS9bca96ca…固定19文件8,639,802,098B；实际下载/全SHA949.172秒、包含header完成949.210秒，1200s绝对deadline内结束，原PID已消失。883BF16 keys全shape/dtype/index/EOF对齐固定公式，完整4,300,079,472参数、文本3,880,263,168。保留HAI-DEF/NOTICE及来源；远端rc未暴露，不冒写rc0。Qwen4B只历史metadata，无新下载。",
+      "limitations": [
+        "此终点证明固定公开资产和结构一致，不是模型加载、GPU成本或患者归属质量。",
+        "大weights/tokenizer留远端私有模型目录；本地1MiB不完整tokenizer.part未复制/未复用。",
+        "原医学/配套报告中的全链10B和只能替旧9B结论均由本批per-individual policy及ERRATA覆盖。",
+        "原metadata阶段“未下载”表述是历史状态；以此完整资产终点更新，原文件不回写。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/README.md",
+          "bytes": 3311,
+          "sha256": "45fe95b3558f8afdc545d046c36b531409a3c3f5dc61d848c041624ae4f29fa1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/REPORT.md",
+          "bytes": 9289,
+          "sha256": "aa29d06d7820a63c81572373cdb4fecdb2a871951958d398ae819d70f16423f3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/artifact-index.json",
+          "bytes": 18403,
+          "sha256": "97dbc2f01162a446b5a57c403c5023235b583d8b0b95376abf8f3ae67c929c93"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/source/download_medgemma.py",
+          "bytes": 9834,
+          "sha256": "e611c729c7406762282cf8036365e2349b14c311bad25bdc268fca8c9099290b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/expected/expected-files.json",
+          "bytes": 7145,
+          "sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/expected/derived-tensor-shapes.json",
+          "bytes": 167275,
+          "sha256": "0640c2e2e58224d9affa1e75f0a96f7a40a3a7ef20ef6d91b0c0e9ceff63ff29"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/actual/complete.json",
+          "bytes": 15896,
+          "sha256": "888bc238dd41fc1cb9400f861b622799c3a881fc3b307e7c11354e7fcbf0a2de"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/actual/actual-header-inventory.json",
+          "bytes": 874,
+          "sha256": "f0467e046b69396c85f9786ffdab4b1937ed7c3a2a225ef095b3b530ba4e6cbc"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/actual/terminal-postflight.json",
+          "bytes": 1459,
+          "sha256": "aa3bf4132c0c3088066b886abce1cbe3289524ed9f8a4a4c3ffa4a0211018579"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/actual/remote-tokenizer-ready.json",
+          "bytes": 1955,
+          "sha256": "686a07193ab6934cf84980b6cf741173261053aaea01dba495556849f8b33c28"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/intent.json",
+          "bytes": 694,
+          "sha256": "4607d1b7c6c3a89cc6fc965f8cbfa98b8c441b6761614e8c0f55a26521eb045e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/start-attempt.json",
+          "bytes": 1258,
+          "sha256": "7bfd9b1dd5b0b62a89073f55d897fcc1766eb34d3c60b51910b471b287a358b8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/download-job.json",
+          "bytes": 1976,
+          "sha256": "7570db1b2c6dcfbbc73c141e30ff280d2bbaf63e190fb2ece05b645effb9fe6e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/started.json",
+          "bytes": 345,
+          "sha256": "ab63b5df43ee65f1b024c220300dc5233b5f72723eed8cb66571cc167c02c629"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/monitor-state.json",
+          "bytes": 141,
+          "sha256": "fda3d34b9cd6b73f11cebd3e736d8c95e8d9c901482a93a55979cf51f13689fb"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/fresh-cache-disk-uid-probe.json",
+          "bytes": 1607,
+          "sha256": "fd2d1727b5bc5790ab64ec395101e2ab5544d594ed87dbf13bc162f238610de7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/private-directory-result.json",
+          "bytes": 475,
+          "sha256": "b925c411d1674894eb074357ee4a940066ab116637518f12a5b63ced6caf4541"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/remote-source-preflight.json",
+          "bytes": 1285,
+          "sha256": "43ec51e881b315c2aaa9daf51b9ab0f4ca7570b7e7f86bfdaae20ab12d0662c3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/local-standard-library-check.json",
+          "bytes": 267,
+          "sha256": "969d3ae8b73348176bb20371779b16ae5e4bfbb91099de772ca18fa064e9814d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/control/local-copy-stopped.json",
+          "bytes": 1148,
+          "sha256": "55ab5fd1217a0b5a663b62194ecd2ce34cc38429bdf0a4efc9c9f7a2837d94b8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/metadata/parameter_formula.py",
+          "bytes": 4503,
+          "sha256": "b8c5887da74581c1691dca341fc8ee6361d30d0ea37f4f105285db5188d7ba53"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/metadata/parameter-formula.json",
+          "bytes": 2782,
+          "sha256": "26990aaff3821ad6df0158b1d21923c6f84f21ee94b0de0e9854cc2366c1dc63"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/metadata/ms_files.txt",
+          "bytes": 6527,
+          "sha256": "ff1c1d1ee7691298715859155785e4396b7bba35eb372de98487d2ec81b928ee"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/assets/handoff/metadata/hf_fixed_blobs.txt",
+          "bytes": 9048,
+          "sha256": "ec1a699528477568ca596cf65b30e73c28822c72094dfa0da950b1dfc93051db"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/fetch_metadata.py",
+          "bytes": 2319,
+          "sha256": "e7c2962061c6151e2e1c0aeef4c09bd9eae43602bc26277f42d209e6498e6f92"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/fetch-results.json",
+          "bytes": 6692,
+          "sha256": "2f565b4f7987262b294c48e68bf01745f8558a0368ac418cf915396b0ee1f380"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/fixed-fetch-results.json",
+          "bytes": 3065,
+          "sha256": "54479f9a38637a52c2644e5d44363f7f00c60c284814628f24de7d3c47367ff0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/supplement-fetch-results.json",
+          "bytes": 1595,
+          "sha256": "f2d72aac6596cb4195226326e15705d8db21122be59ac1bfb5778096205fd069"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/usage-fetch-results.json",
+          "bytes": 1313,
+          "sha256": "225077b00842c4e2fc5d7b5790215eeaf22188f2402b9dd479b9e84ce7e060a5"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_revisions.txt",
+          "bytes": 222,
+          "sha256": "cd60a239984124a35068d57a9226b57928859e5a12eff78812095cd6b523a181"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_fixed_config.txt",
+          "bytes": 2551,
+          "sha256": "300c724c2c1fcdea39f1e21865cb1b14a605f1e3bb5ef50550faaa48da944fc8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_fixed_generation_config.txt",
+          "bytes": 115,
+          "sha256": "921a391e0d387377b4c4a05273a68b7bc2196cf2a272ee605007853ea37f3224"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_fixed_index.txt",
+          "bytes": 90558,
+          "sha256": "77f4b67de084c31c7bcd373b039908108eee6c6181607e6d53da730e5f0bc659"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_fixed_readme.txt",
+          "bytes": 41503,
+          "sha256": "f27a352b40f1437ad0ef1cc070702cc15d5d0869fbb0c48c740d2bad09c01c95"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/ms_fixed_template.txt",
+          "bytes": 1532,
+          "sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/gemma3_config_source.txt",
+          "bytes": 17851,
+          "sha256": "0e4da9c802622202a8aaa63fc4909c192a2bdde0078f4250ffd53b4a779219d9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/gemma3_source.txt",
+          "bytes": 59213,
+          "sha256": "b92013d0558381b76b0f74d2b30890cd3aaa9daa58a269d7a12b5a5c5a8e9eb7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/siglip_source.txt",
+          "bytes": 42039,
+          "sha256": "da1b862c915b861f211ec6dac7615e28d8642f9905b86165ddbdc23b8093eb1d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_terms.txt",
+          "bytes": 82287,
+          "sha256": "3f532850e9775321c4fe3741a2e5c68168e63dfa5d28588c61f8abd2e6b89fdd"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_terms-readable.txt",
+          "bytes": 14681,
+          "sha256": "d6e04648ea42074545e2f2a1a719209b3d42d47658a1b301a4148af45eaaaf9a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_prohibited_policy.txt",
+          "bytes": 72748,
+          "sha256": "8431adf980b9578331ee2429701f317ece0c11158f0e61dde09802651aee55ae"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_prohibited_policy-readable.txt",
+          "bytes": 4846,
+          "sha256": "d8af73fc109ab668898670c075c8cdf47800829301d0481df9537d3535c2fe98"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_text_usage-cells.txt",
+          "bytes": 8133,
+          "sha256": "f45b9f996296ffe1224effd40d38d7324c11be13d54fe3f16710e61d846b90f4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/medical/official_github_readme.txt",
+          "bytes": 2360,
+          "sha256": "b41c24f6594b405fdc99134302a0a874c2606cbf27fb6b050e7395e0401b1590"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/REPORT.md",
+          "bytes": 4178,
+          "sha256": "f78df792b4be839e22d58606da8592010e44cc8cc0f0bc1de342e9c71612b2e9"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/parameter-formula.json",
+          "bytes": 272,
+          "sha256": "91515510c363d8c4156846570ff2f197e0cccaad427193caa55671edb29681f4"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/readiness.json",
+          "bytes": 1973,
+          "sha256": "a41f1594799a2508b4a0a18b56ff040af94b33b686f8ab4f5390ed3e533c7df0"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/sources-fixed.json",
+          "bytes": 3880,
+          "sha256": "8db8798f37caa40d0f1ca2c3e35e6a54e494647a1ed60433c2c042ce374121d7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/ms-fixed-config.txt",
+          "bytes": 727,
+          "sha256": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/ms-fixed-files.txt",
+          "bytes": 5640,
+          "sha256": "f269a8a817516ac0935608001f03fa8da58f71c9ec2fdbfb4d21f1646f76abe8"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/ms-fixed-index.txt",
+          "bytes": 32819,
+          "sha256": "d6c42883a895dfef5b0080ed2116a1bcd764f558406b98923d675978a1abf29c"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/ms-fixed-license.txt",
+          "bytes": 11343,
+          "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/ms-fixed-template.txt",
+          "bytes": 9377,
+          "sha256": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/general/hf-api-blobs.txt",
+          "bytes": 8906,
+          "sha256": "0f362c83266130df551dc5ab083ed3407872549000b8bc2f67345bb009ddac9b"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false
+    },
+    {
+      "id": "official-per-individual-model-10B-rule-and-immutable-report-errata",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/review.json",
+        "bytes": 4196,
+        "sha256": "5bd082d3c04e378e9735cbf174dd95d90420d7375b317201ebc16585f3ed9a80"
+      },
+      "source_report_path": "validation/model-parameter-rule-correction/review.json",
+      "completed_review_scope": "CONFIRMED_RULE_IS_PER_INDIVIDUAL_MODEL_NOT_SUM_OF_PIPELINE",
+      "scope": "已缓存官方overview真实PDF重新提取的逐个模型参数规则独核，三份旧报告独立勘误；无新研究或质量。",
+      "conclusion": "§3.1 PDF第4页明确Each individual model≤10B；§4.2第10页两个8B模型集成佐证。撤销流水线合计10B、Med必须替9B、双adapter必然非法、NCR必须去BioBERT的过严推论；逐个模型实际参数/适配器/头及全部资源仍披露。旧报告/SHA/数值不改，独立sidecar覆盖解释；数据隔离及禁止外部人工表型标签不变。",
+      "limitations": [
+        "This independently verifies the already cached organizer overview and source integrity; it is not a new private organizer clarification. No evidence here establishes a pipeline aggregate10B limit. Individual-model actual accounting remains required.",
+        "规则纠正不自动授权额外下载、训练、质量评测或官方上传。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/RULE_CORRECTION.md",
+          "bytes": 1267,
+          "sha256": "de4f4b56312613ab65b430c89818e963e650c3c841c7883c52ca810cef86e6e2"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/overview-fresh-extraction.txt",
+          "bytes": 45381,
+          "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/source-record.json",
+          "bytes": 244,
+          "sha256": "2bfc0ca003b301ac1d8c7165a6c8c6e8766d44b0f823102b68c285ab05901831"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/tianchi-introduction.snapshot.md",
+          "bytes": 8772,
+          "sha256": "05f8d5ff4e3a33b2e5bbe6afa92374acdf716714c119c745420c7eed7d2f56db"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/parameter-rule-errata-20261024/README.md",
+          "bytes": 1621,
+          "sha256": "b71077411fccb93426b5a792a5558c98370d90bfcac94bbf3a4856f14427519a"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/parameter-rule-errata-20261024/manifest.json",
+          "bytes": 2384,
+          "sha256": "3a4767e912bfcf4a9c2c1e30d6876ef296aa47033718a21bbd4196b5f830474e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/score-gap-review-0136/ERRATA-20261024-PER-MODEL-10B.md",
+          "bytes": 1499,
+          "sha256": "ef8b9b382b8e50f737bdfe9850439acc5161d751aa7015e87589b96f0b1a9e7e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/score-gap-review-0136/REPORT.md",
+          "bytes": 9522,
+          "sha256": "59ed20a0be58be1b2bddbc4acfacfcbd6fe68b09a9c201a8ee747f4f285c04b3"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/ERRATA-20261024-PER-MODEL-10B.md",
+          "bytes": 1525,
+          "sha256": "248515e1b2075da6a558e5ecf9e9a4f9d6030aa8a159f8ac940400038912e191"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/REPORT.md",
+          "bytes": 6961,
+          "sha256": "a2e1b51d19c399cb2e1ffcb468248dab36c20bc3e90dba7ecb6f2d03e9b3276d"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/ERRATA-20261024-PER-MODEL-10B.md",
+          "bytes": 1687,
+          "sha256": "4b0a4d09d52e7d55bfb8b9b04e3093b2c4779c5ae835412dbd9d132f93c441be"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/medical-small-model-readiness/REPORT.md",
+          "bytes": 9289,
+          "sha256": "aa29d06d7820a63c81572373cdb4fecdb2a871951958d398ae819d70f16423f3"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false
+    },
+    {
+      "id": "cross-passage-raw-context-historical-negative-closure",
+      "report": {
+        "path": "validation/index-next-20261024-0250/snapshots/research/cross-passage-context-history-check/REPORT.md",
+        "bytes": 3929,
+        "sha256": "e36dffc3d848b07dc6b64ce4a1e736716c212296cff645b85e3540e687087959"
+      },
+      "source_report_path": "research/cross-passage-context-history-check/REPORT.md",
+      "completed_review_scope": "COMPLETED_READ_ONLY_HISTORY_CHECK_NO_NEW_QUALITY",
+      "scope": "源码与既有aggregate复查：真实同池旧prompt后追加全部给定原文，非新质量或新token census。",
+      "conclusion": "历史58行同池8B Score .618120269→.610344254、9B .633859674→.624732353；TP各+3而FP+47/+83，输入token约2.567/2.585倍。旧CID/PID/证据/指令完整保留，追加609passages/158标记；同机制已有负证据，当前不再立邻段实验。",
+      "limitations": [
+        "历史base/旧fold0全文控制，不精确反证当前strict train32 SFT/F1的有限邻段政策。",
+        "31缺marker是已发表aggregate，未逐例读取FN/gold或选择段落；覆盖缺失不等价于可恢复关系。",
+        "既有8B/9B质量审查由旧163索引沿用，不重新评分或重新包装为本批新增质量。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/research/cross-passage-context-history-check/sources.json",
+          "bytes": 3010,
+          "sha256": "e0f9f9a18d54faa32e809518708b1ba7e7d0f1807442ed1c5ae5f042bac4473b"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/validation/index-next-20261024-0250/source-excerpts/cross-fulltext-preparation-summary.json",
+          "bytes": 1543,
+          "sha256": "a87e027fe9e13fb78b607d3bdaf45a8c4109ef8350c4ed38cd75a177f1e6ce78"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/case_retrieval/qwen35-preparation/full-context58-control/preparation-summary.json",
+          "bytes": 1353,
+          "sha256": "4c0e668955eabe58e25bbf9a77e993ad31ae973705e8faa2c79717d4706a51e7"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/case_retrieval/qwen35-preparation/full-context58-control/preparation-checks.json",
+          "bytes": 770,
+          "sha256": "b07e37b780cc041f5b66e41826d8956d6832e588d25b78237a8d2c29d4ebe969"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/case_retrieval/qwen35-preparation/full-context58-control/tokenizer-audit.json",
+          "bytes": 13311,
+          "sha256": "105023729b4ec835552d3099452f5583d5972a4064e366ee968435f93b7201e1"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/case_retrieval/qwen35-preparation/full-context8b-a30/paired-token-budget.json",
+          "bytes": 25712,
+          "sha256": "7fff730cdaac3d820a6f3f986457e66cb65131c41f10b52c0e12e961c98c3e1e"
+        },
+        {
+          "path": "validation/index-next-20261024-0250/snapshots/case_retrieval/qwen35-preparation/full-context8b-a30/paired-summary.json",
+          "bytes": 5480,
+          "sha256": "c804a9047b5fa8c15944587fdae37f26d121dee1e2dc5ccad3a53e4b8d36ea3d"
+        }
+      ],
+      "quality_experiment": false,
+      "previously_indexed_evidence": [
+        {
+          "source_alias": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/prepare_full_context_control.py",
+          "indexed_path": "validation/qwen35-interface-review/prepare_full_context_control.reviewed.snapshot.py",
+          "expected_sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb",
+          "expected_bytes": 12751,
+          "basis": "previous163 reference record reused; historical payload not rehashed"
+        },
+        {
+          "source_alias": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prepare_pair_rag.py",
+          "indexed_path": "validation/qwen35-dev-transfer-review/source/prepare_pair_rag.py",
+          "expected_sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97",
+          "expected_bytes": 6846,
+          "basis": "previous163 reference record reused; historical payload not rehashed"
+        },
+        {
+          "source_alias": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full-context9b-a800/cap-equivalence.json",
+          "indexed_path": "validation/full-context9b-terminal-review/evidence/cap-equivalence.json",
+          "expected_sha256": "bf2a2ac356eb36d405e980fe1625bca872d472785c0ab8ba0a5c40c84a122332",
+          "expected_bytes": 58298,
+          "basis": "previous163 reference record reused; historical payload not rehashed"
+        },
+        {
+          "source_alias": "/workspace/patientphex-runs/round2-20261023/validation/full-context8b-terminal-review/review.json",
+          "indexed_path": "validation/full-context8b-terminal-review/review.json",
+          "expected_sha256": "a855fa6af4155ab315306a6099450be6ab52ca52c6d681a912c2e41acaac6d53",
+          "expected_bytes": 10173,
+          "basis": "previous163 reference record reused; historical payload not rehashed"
+        },
+        {
+          "source_alias": "/workspace/patientphex-runs/round2-20261023/validation/full-context9b-terminal-review/review.json",
+          "indexed_path": "validation/full-context9b-terminal-review/review.json",
+          "expected_sha256": "2091eebc58bc1bc3e4e726fc4feccf9f7d4d8a70efa40102cce990b6213df6d9",
+          "expected_bytes": 5893,
+          "basis": "previous163 reference record reused; historical payload not rehashed"
+        }
+      ],
+      "includes_preexisting_quality_terminal": false
     }
   ],
   "pending_review": [
     {
-      "id": "candidate-order-warmstart-stage-formal-terminal",
-      "status": "入口与ACK窄恢复已审；完整四checkpoint持久ACK、双原80推断/共同freeze后F1仍等待实际完整终点，不由恢复审宣称完成。"
-    },
-    {
-      "id": "NCR-full-train64-input-only-cache",
-      "status": "完整native与固定GPU成本已审；全train64纯输入缓存、全部tokenkeys/坐标完整性、实际运行成本和终点仍待单独冻结审查。"
+      "id": "NCR-full-cache-and-fresh-retain-BioBERT-HGB-quality-terminal",
+      "status": "本批只沿用既有native与固定cost终点；完整cache/CPU收尾和保留BioBERT后freshHGB及质量不在本批，不宣称完成。"
     },
     {
       "id": "patient-first-formal-train32-F1-terminal",
-      "status": "矩阵/实际CPU及最长行单步已审；正式多步训练、持久checkpoint、原80输入完整推断/唯一F1终点待完成，不由单步推广稳定性或质量。"
+      "status": "本批只有正式入口/CPU/唯一启动审；实际多步训练、持久checkpoint、原80完整推断及冻结F1质量仍待终点。"
     },
     {
-      "id": "production-all-learned-state-inventory",
-      "status": "正在补核CRF/HGB/TFIDF/NLTK POS等学习状态；现有9597467990及NCR替换算式仅神经权重小计，不提前宣称全库存exact或完成合规终审。"
+      "id": "MedGemma-native-GPU-cost-and-formal-quality-terminal",
+      "status": "本批仅固定19资产/883header及历史metadata；Med GPU成本或正式训练/验证质量不在本批。"
     }
   ],
-  "previous_live_index_sha256": "06884bd75514e28fd6b29b6020e83a34f3c05f48ab1bad245655e2031a6c87cd",
+  "previous_live_index_sha256": "214cf874dcef637348a9e044e774fff4b4f6741a3c68a634500178e7119415d1",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "旧157条/2348引用及全部出现顺序、current预测指标完整对象不变。新增6组已完成工程/依赖终点；无新质量或官方提交，最高仍a179/.746081965。NCR native旧pending关闭；warm完整双臂、NCR全输入cache、patient-first正式训练及全学习状态库存仍pending。参数小计口径单列，不改旧current或把未完库存当PASS。旧157已实际服务器恢复；此新候选的归档恢复尚无收据。",
+  "live_index_note": "旧163条及全部旧ref对象/出现顺序、current预测指标与evaluation合同完全保留。追加6组共169条；warm完整F1负终点、患者正式入口、实际非神经库存、Med完整资产、官方参数规则纠正、跨段历史负核。没有新评分或官方上传，最高仍a179/.746081965。NCR fresh链、患者正式质量、Med GPU/正式质量待完成。全链10B的历史解释由model_parameter_policy明确覆盖，真实计数不改。新候选未做服务器备份/恢复。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
@@ -16117,6 +17458,17 @@
   "archived_first41_sha256": "2c5b52f14fbce673b0da1db50901fd79330dff57028a35e93b051612ebcb87f5",
   "archived_first52_sha256": "c6a20b1133001fb55d6cfd8a0af12594c81b7f1da6d580d545db29e53edd77ec",
   "parameter_inventory_status": {
+    "status": "COMPLETED_EXISTING_NONNEURAL_STATE_INVENTORY_FRESH_NCR_HGB_PENDING",
+    "report": {
+      "path": "validation/index-next-20261024-0250/snapshots/research/nonneural-deployment-inventory/inventory.json",
+      "bytes": 10025,
+      "sha256": "f9e2718eda4d0d6f12fb8201378f883ad5873ff3b189adfbed7f818aa7a18dde"
+    },
+    "exact_new_full_pipeline_inventory": false,
+    "interpretation": "Actual structures and source17 audited; neural subtotal is not all learned state. New HGB actualF/trees unknown. Old total10B margin is historical resource arithmetic, not the official compliance test.",
+    "parameter_cap_policy": "OFFICIAL_LIMIT_IS_PER_INDIVIDUAL_MODEL_NOT_PIPELINE_SUM"
+  },
+  "parameter_inventory_previous_status": {
     "status": "PENDING_non_neural_and_other_learned_state_inventory",
     "interpretation": "历史9597467990、追加NCR10088536880、移除新增BioBERT后9966949054等是已列神经/embedding权重小计，尚不代表全部学习状态exact。",
     "pending_components": [
@@ -16128,5 +17480,19 @@
     "current_object_modified": false,
     "all_learned_state_exact_PASS": false,
     "action": "由进行中的库存盘点给出实际状态、来源、计数及复用边界；本索引候选不提前推定pass。"
+  },
+  "model_parameter_policy": {
+    "status": "OFFICIAL_LIMIT_IS_PER_INDIVIDUAL_MODEL_NOT_PIPELINE_SUM",
+    "individual_model_parameter_limit": 10000000000,
+    "primary_quote": "Each individual model was limited to 10 billion parameters;",
+    "source_sections": "Organizer overview PDF page4 section3.1; page10 section4.2 corroborating two8B ensemble.",
+    "correction_report": {
+      "path": "validation/index-next-20261024-0250/snapshots/validation/model-parameter-rule-correction/review.json",
+      "bytes": 4196,
+      "sha256": "5bd082d3c04e378e9735cbf174dd95d90420d7375b317201ebc16585f3ed9a80"
+    },
+    "supersedes": "All historical pipeline-sum10B legality conclusions in this index and supporting reports, including NCR must drop BioBERT, Med must replace9B, and second-adapter aggregate illegality. Historical component counts and artifact bytes remain intact.",
+    "retained": "Per-model actual base/adapter/head inventory, all-resource disclosure, train/held isolation, no external manually annotated phenotype datasets, no official uploads; aggregate totals remain resource accounting.",
+    "authorization_expanded": false
   }
 }
