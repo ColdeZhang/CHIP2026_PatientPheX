@@ -1,0 +1,96 @@
+{
+  "experiment": "E-20261024-BOUNDARY-VETO-F0-001",
+  "locked_utc": "2026-10-24T17:02:26.715026+00:00",
+  "status": "PRELOCKED_SAME_HEAD_COMPLETE1085_BEFORE_F0_INFERENCE",
+  "owner": "schema_extraction under root F0 authorization",
+  "baseline_score": 0.7405721404401228,
+  "formula": "Delete every baseline entity iff its identical (pmc_id,offset,length,text) held row has complete EOS, uncapped, strict parsed BOUNDARY. Apply uniformly to all matching entity objects including compound identifiers. Retain all HPO/NO/NIL/parse failures/unmatched; no entity addition, identifier replacement, threshold, patient or HPO subset. Duplicate held row/span or inconsistent evidence is a full contract failure. Preserve every other object and remaining entity order.",
+  "complete_rows": 1085,
+  "baseline_entities": 1085,
+  "documents": 16,
+  "patients": 47,
+  "endpoints": 1,
+  "new_v2_max": 1,
+  "old_v2": 0,
+  "zero_change": "inherit exact baseline bytes and metrics; zero gold opens and zero v2",
+  "gate": "strict F0 Score > .7405721404401228; originaldev remains separately authorized",
+  "ancestor_scope": "Head3470 and all train-derived OOF candidates F2/F3 only. Public Top8 no fit. Inference uses strongF0 spans from train48 excluding F0. Old F1 proposer containing F0 is not a training ancestor.",
+  "refs": {
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold0/lightgbm.nested.jsonl",
+      "bytes": 143086,
+      "sha256": "79d3568e60de2ab9424c0ece5e3d6b1f95bb1a32da388bdc76ca29ec78d222d5"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold0/lightgbm.metrics.json",
+      "bytes": 13008,
+      "sha256": "5f23fd69025b018fadcbfc7c937fb5dea5a94b72c449ec1f1363bd64a4392b6c"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+      "bytes": 507921,
+      "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+    },
+    "mentions": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/prepared-v1/held.jsonl",
+      "bytes": 3531712,
+      "sha256": "ba232adb49669f4aba337d3c84ccf4b14c4ebc6b3e7aa492ae2600d502bad5d6"
+    },
+    "pool_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/prepared-v1/manifest.json",
+      "bytes": 1828,
+      "sha256": "a00d2d831068b44605bd6b41ff8123d2dd0d98b81b71c587c1a495a340fd8007"
+    },
+    "cpu_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/cpu-v1-selected/actual/complete.json",
+      "bytes": 1760,
+      "sha256": "9391a9240d3b4afadccb87c39de298ce1ba881eb336dc39542829e430399003f"
+    },
+    "parent_schema": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/f0_veto/schema.py",
+      "bytes": 4170,
+      "sha256": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4"
+    },
+    "parent_infer_source": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/f0_veto/infer.py",
+      "bytes": 4072,
+      "sha256": "f9c31b9a99300092331f7f76bb0e8101c24e4ef3d8a42b9b2cbfb564d0decd7b"
+    },
+    "parent_gpu_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/f0_veto/infer-plan.json",
+      "bytes": 6498,
+      "sha256": "9772208b1a671e115da2e57fcf4b55d58bab8eb88de7c68935b6c0a0d6d7d575"
+    },
+    "encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/cpu-v1-collected/actual/dev.encoded.jsonl.gz",
+      "bytes": 374353,
+      "sha256": "bba0938e09d997b195c93d5d2cc978294a6e6572d8f72b490ed71c6be91f72ad"
+    }
+  },
+  "upstream_source": {
+    "path": "/workspace/patientphex-worktrees/explore-boundary-veto/solutions/boundary_veto/run.py",
+    "bytes": 15950,
+    "sha256": "8e29b95e9e9b28f51ab22462a7203b1818824e1cb83c9b869ee8d7fac3774ec2"
+  },
+  "adaptation": "Only exact row/entity counts1416/1313→1085,patient39→47,experimentID. Same boundary_keys/veto/payload/quality formula and copied exact schema."
+}

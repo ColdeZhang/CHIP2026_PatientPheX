@@ -1,0 +1,150 @@
+{
+  "model_id": "Qwen/Qwen3-8B",
+  "ModelScope_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+  "license": "Apache-2.0",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "native_forward_sha256": "f0ec853368a9b19d664bfa6099d14f6c0d96e9d06a8ca540b181157be8246069",
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "tokenizers": "0.21.2",
+    "accelerate": "1.6.0",
+    "safetensors": "0.5.3",
+    "huggingface_hub": "0.30.2"
+  },
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "gpu_index": 1,
+  "seed": 20261023,
+  "model_files": {
+    "LICENSE": {
+      "size": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "config.json": {
+      "size": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "generation_config.json": {
+      "size": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "merges.txt": {
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "model-00001-of-00005.safetensors": {
+      "size": 3996250744,
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+    },
+    "model-00002-of-00005.safetensors": {
+      "size": 3993160032,
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+    },
+    "model-00003-of-00005.safetensors": {
+      "size": 3959604768,
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+    },
+    "model-00004-of-00005.safetensors": {
+      "size": 3187841392,
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+    },
+    "model-00005-of-00005.safetensors": {
+      "size": 1244659840,
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+    },
+    "model.safetensors.index.json": {
+      "size": 32878,
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+    },
+    "tokenizer.json": {
+      "size": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "size": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "size": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "max_new_tokens": 128,
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-F0-veto-v1/infer-v1/actual",
+  "cpu_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-F0-veto-v1/cpu-v1/actual/complete.json",
+    "bytes": 1760,
+    "sha256": "9391a9240d3b4afadccb87c39de298ce1ba881eb336dc39542829e430399003f"
+  },
+  "adapter_model": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/formal/epoch-002/adapter/adapter_model.safetensors",
+    "bytes": 174655536,
+    "sha256": "beecfb84824764826ab8f207f4979db09da161dc6395e55b032b77a413bb0579"
+  },
+  "adapter_config": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/formal/epoch-002/adapter/adapter_config.json",
+    "bytes": 918,
+    "sha256": "016397b0759a9d3f4828a9a400d5e8bf917f3d6ffa964d88fa84086fb88f1af2"
+  },
+  "training_ACKs": [
+    {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/formal/epoch-001-persistent-ack.json",
+      "bytes": 1785,
+      "sha256": "874860639d890bd9d6e4290ed3f0418c1341321a2d33a439e33a328c26e8acd9"
+    },
+    {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/formal/epoch-002-persistent-ack.json",
+      "bytes": 1784,
+      "sha256": "d87852b017accb585158040284b58fea4b2e2d5cae1d63e6555a14bbc9882120"
+    }
+  ],
+  "prior_verified_assets": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/probe/verified-assets.json",
+    "bytes": 2575,
+    "sha256": "20a78adee99445927eaf76b6ae062a08b39a6826973637e4c924b7abcbcd5143"
+  },
+  "source_files": {
+    "infer.py": "f9c31b9a99300092331f7f76bb0e8101c24e4ef3d8a42b9b2cbfb564d0decd7b",
+    "driver.py": "40dc72a29f72aae664d8ef3f62775e471caab38cb28fc65653298820ddd8eb72",
+    "schema.py": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4",
+    "parent/gpu_entry.py": "b5d5852dab675a3c4f60b0a7cd0e7f9b8c9ecfcac21fa9fd5ebcad2eee76b561",
+    "parent/helpers.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "parent/schema.py": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4",
+    "parent/reuse/canonical/common.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "parent/reuse/canonical/schema_contract.py": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+    "parent/reuse/canonical/token_census.py": "f4316599a50d6f6ecd5d8d9bf56c63787d7a867a7e0bda245afd8412e1af1ad9",
+    "parent/reuse/doc/common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "parent/reuse/doc/literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "parent/reuse/doc/loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "parent/reuse/doc/native.py": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c",
+    "parent/reuse/native_tokenizer.py": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026",
+    "parent/reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  },
+  "budget_seconds": 1800,
+  "TERM_grace": 30,
+  "scope": "Complete1085 strongF0 spans only; final3470 epoch2 adapter unchanged; no fit/probe/quality",
+  "cost_proxy": {
+    "same_head_F1_rows": 1416,
+    "same_head_F1_seconds": 1007.237241,
+    "ratio_proxy_seconds": 771.7884226588984,
+    "safety_1_5x_seconds": 1157.6826339883476,
+    "budget_seconds": 1800
+  }
+}

@@ -10,6 +10,8 @@
 
 大产物：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1`。root独立预锁BOUNDARY-veto由其自行消费同一完整输出，本线不另跑该端点。
 
-## 后继独立控制准备
+## 后继独立 F0 控制
 
-root预锁BOUNDARY-veto F1小正（删3=0TP/3FP），不改本线两负。CPU迁移核已确认3470训练与两个负例候选祖先排F0，无需重训；现成F0强LGB1085与同GLiNER接受736合为1149跨度，缺403公共Top8，完整头推断代理834秒/保守1254秒。原dev1061缺408queries，作为后继备用；未GPU/质量。见[evidence/transfer-readiness.json](evidence/transfer-readiness.json)，等待root固定F0端点与资源安排。
+root独立BOUNDARY-veto F1小正（删3=0TP/3FP），不改本线主头两负。3470训练及两个负例候选祖先排F0，因此复用固定head，无需重训。按root最终协议只用强F0的1085原跨度，373必要Sap已经完整且实际释放，新1085 nativeCPU6.673秒通过（616583tokens/max698），所有24小成员已回收。
+
+同头唯一F0推断1800+30就绪，完整EOS/strictparse后只删BOUNDARY，唯一veto冻结→至多1v2，与强F0 .740572140440比较。详见[f0_veto/README.md](f0_veto/README.md)、[协议](f0_veto/decision.json)。未运行原dev或官网；原F1主头负终态不变。
