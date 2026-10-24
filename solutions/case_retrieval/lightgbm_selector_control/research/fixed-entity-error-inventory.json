@@ -1,0 +1,285 @@
+{
+  "status": "fixed_original_dev_gold_aware_error_inventory_no_model_or_new_score",
+  "sources": {
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/lightgbm.a179-entities-only.jsonl",
+      "bytes": 140228,
+      "sha256": "0e2c26f8a546af6e8ab343f9883f212792d5b32ad01f4db8d28ac1ee27a2345e"
+    },
+    "scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/selector-scores.jsonl",
+      "bytes": 11446613,
+      "sha256": "a48e140e84f6d45cc77a454c6aa15d3024e420f7e9e8a48f2d6921dc29d023d4"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/day1/dev16.gold.jsonl",
+      "bytes": 443056,
+      "sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050"
+    },
+    "metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/metrics.json",
+      "bytes": 12938,
+      "sha256": "32652c11d086709c320d3f03b24c7e3090288c27035e9641259623b70d5b46d3"
+    }
+  },
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/diagnose_fixed_entities.py",
+    "bytes": 4869,
+    "sha256": "b79da46a4d1dd7bfbb320c8ef45ba2364894265f517b155b7e49683285db6427"
+  },
+  "exact_cached_counts": {
+    "tp": 859,
+    "fp": 202,
+    "fn": 247
+  },
+  "missing_partition": {
+    "correct_candidate_below_fixed_cut": 126,
+    "exact_span_present_wrong_concepts_only": 50,
+    "no_exact_span_but_overlapping_candidates": 64,
+    "no_overlapping_candidate": 3,
+    "correct_candidate_at_or_above_cut_not_selected": 4
+  },
+  "extra_partition": {
+    "overlaps_positive_gold_different_span": 132,
+    "no_overlapping_positive_gold": 58,
+    "gold_positive_exact_span_wrong_or_extra_concept": 12
+  },
+  "candidate_optimistic_coverage": {
+    "gold_units": 1106,
+    "available_candidate_units": 989,
+    "absent_candidate_units": 117
+  },
+  "missed_correct_candidate_source_memberships": {
+    "semantic_source": 89,
+    "public_present": 41,
+    "is_base": 18,
+    "bioformer_present": 40,
+    "biobert_present": 41,
+    "crf": 8
+  },
+  "per_document": [
+    {
+      "pmc_id": "12147048",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 12,
+        "exact_span_present_wrong_concepts_only": 5,
+        "no_exact_span_but_overlapping_candidates": 3
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 10,
+        "no_overlapping_positive_gold": 3
+      },
+      "candidate_available_units": 88
+    },
+    {
+      "pmc_id": "6151044",
+      "missing": {
+        "exact_span_present_wrong_concepts_only": 3,
+        "correct_candidate_below_fixed_cut": 11,
+        "no_exact_span_but_overlapping_candidates": 2
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 10,
+        "gold_positive_exact_span_wrong_or_extra_concept": 1,
+        "no_overlapping_positive_gold": 2
+      },
+      "candidate_available_units": 26
+    },
+    {
+      "pmc_id": "5562981",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 9,
+        "no_exact_span_but_overlapping_candidates": 20,
+        "no_overlapping_candidate": 1,
+        "exact_span_present_wrong_concepts_only": 3
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 12,
+        "no_overlapping_positive_gold": 14,
+        "gold_positive_exact_span_wrong_or_extra_concept": 1
+      },
+      "candidate_available_units": 100
+    },
+    {
+      "pmc_id": "6332535",
+      "missing": {
+        "exact_span_present_wrong_concepts_only": 5,
+        "correct_candidate_below_fixed_cut": 11,
+        "no_exact_span_but_overlapping_candidates": 2
+      },
+      "extra": {
+        "gold_positive_exact_span_wrong_or_extra_concept": 1,
+        "no_overlapping_positive_gold": 2,
+        "overlaps_positive_gold_different_span": 14
+      },
+      "candidate_available_units": 67
+    },
+    {
+      "pmc_id": "6096008",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 15,
+        "no_exact_span_but_overlapping_candidates": 1,
+        "exact_span_present_wrong_concepts_only": 6
+      },
+      "extra": {
+        "no_overlapping_positive_gold": 5,
+        "gold_positive_exact_span_wrong_or_extra_concept": 1,
+        "overlaps_positive_gold_different_span": 1
+      },
+      "candidate_available_units": 54
+    },
+    {
+      "pmc_id": "12733031",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 4,
+        "no_overlapping_candidate": 1,
+        "no_exact_span_but_overlapping_candidates": 1
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 3,
+        "no_overlapping_positive_gold": 2
+      },
+      "candidate_available_units": 24
+    },
+    {
+      "pmc_id": "12126309",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 7,
+        "exact_span_present_wrong_concepts_only": 1
+      },
+      "extra": {
+        "no_overlapping_positive_gold": 3,
+        "overlaps_positive_gold_different_span": 7
+      },
+      "candidate_available_units": 52
+    },
+    {
+      "pmc_id": "6220403",
+      "missing": {
+        "exact_span_present_wrong_concepts_only": 2,
+        "correct_candidate_below_fixed_cut": 3,
+        "correct_candidate_at_or_above_cut_not_selected": 1,
+        "no_exact_span_but_overlapping_candidates": 3
+      },
+      "extra": {
+        "gold_positive_exact_span_wrong_or_extra_concept": 1,
+        "no_overlapping_positive_gold": 1,
+        "overlaps_positive_gold_different_span": 6
+      },
+      "candidate_available_units": 52
+    },
+    {
+      "pmc_id": "5693559",
+      "missing": {
+        "exact_span_present_wrong_concepts_only": 7,
+        "correct_candidate_below_fixed_cut": 5,
+        "no_exact_span_but_overlapping_candidates": 2,
+        "correct_candidate_at_or_above_cut_not_selected": 1
+      },
+      "extra": {
+        "gold_positive_exact_span_wrong_or_extra_concept": 3,
+        "overlaps_positive_gold_different_span": 12,
+        "no_overlapping_positive_gold": 1
+      },
+      "candidate_available_units": 69
+    },
+    {
+      "pmc_id": "6049015",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 8,
+        "no_exact_span_but_overlapping_candidates": 7,
+        "no_overlapping_candidate": 1,
+        "exact_span_present_wrong_concepts_only": 2
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 10
+      },
+      "candidate_available_units": 61
+    },
+    {
+      "pmc_id": "12640707",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 14,
+        "no_exact_span_but_overlapping_candidates": 2,
+        "exact_span_present_wrong_concepts_only": 2,
+        "correct_candidate_at_or_above_cut_not_selected": 1
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 10,
+        "no_overlapping_positive_gold": 8
+      },
+      "candidate_available_units": 141
+    },
+    {
+      "pmc_id": "4899602",
+      "missing": {
+        "exact_span_present_wrong_concepts_only": 2,
+        "no_exact_span_but_overlapping_candidates": 4,
+        "correct_candidate_below_fixed_cut": 2
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 4,
+        "no_overlapping_positive_gold": 1
+      },
+      "candidate_available_units": 20
+    },
+    {
+      "pmc_id": "11986149",
+      "missing": {
+        "no_exact_span_but_overlapping_candidates": 7,
+        "correct_candidate_below_fixed_cut": 11,
+        "exact_span_present_wrong_concepts_only": 4
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 25,
+        "no_overlapping_positive_gold": 6,
+        "gold_positive_exact_span_wrong_or_extra_concept": 1
+      },
+      "candidate_available_units": 96
+    },
+    {
+      "pmc_id": "11221135",
+      "missing": {
+        "no_exact_span_but_overlapping_candidates": 3,
+        "correct_candidate_below_fixed_cut": 9
+      },
+      "extra": {
+        "no_overlapping_positive_gold": 2,
+        "overlaps_positive_gold_different_span": 3
+      },
+      "candidate_available_units": 29
+    },
+    {
+      "pmc_id": "12017973",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 2,
+        "correct_candidate_at_or_above_cut_not_selected": 1,
+        "no_exact_span_but_overlapping_candidates": 4
+      },
+      "extra": {
+        "no_overlapping_positive_gold": 8,
+        "overlaps_positive_gold_different_span": 3
+      },
+      "candidate_available_units": 60
+    },
+    {
+      "pmc_id": "6036836",
+      "missing": {
+        "correct_candidate_below_fixed_cut": 3,
+        "exact_span_present_wrong_concepts_only": 8,
+        "no_exact_span_but_overlapping_candidates": 3
+      },
+      "extra": {
+        "overlaps_positive_gold_different_span": 2,
+        "gold_positive_exact_span_wrong_or_extra_concept": 3
+      },
+      "candidate_available_units": 50
+    }
+  ],
+  "limits": [
+    "Candidate coverage is optimistic and not realizable Score; ignores incompatible and negated candidates.",
+    "Gold used only for explicitly authorized development error diagnosis after frozen result; no parameter/output changes.",
+    "Source memberships overlap and are not exclusive error causes; boundary and concept categories are descriptive."
+  ],
+  "seconds": 0.12173223600257188
+}

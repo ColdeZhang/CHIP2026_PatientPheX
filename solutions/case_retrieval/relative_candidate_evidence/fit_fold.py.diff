@@ -1,0 +1,34 @@
+--- frozen-lightgbm/fit_fold.py
++++ relative-evidence/fit_fold.py
+@@ -1 +1 @@
+-"""Same audited strong-BioBERT fold; sole estimator replaced by fixed LightGBM."""
++"""Same fixed LightGBM fold with eighteen input-only relative public-source features."""
+@@ -13,0 +14 @@
++from features import relative_features, FEATURES as RELATIVE_FEATURES
+@@ -71 +72,2 @@
+-                xs.extend(feature(multi,row,c) for c in row['candidates'])
++                extras=relative_features(row['candidates'])
++                xs.extend(feature(multi,row,c)|extra for c,extra in zip(row['candidates'],extras))
+@@ -79 +81,5 @@
+-    assert vectorizer.feature_names_==strong['features'] and len(ys)==strong['training_examples'] and sum(ys)==strong['training_positive']
++    assert [n for n in vectorizer.feature_names_ if n not in RELATIVE_FEATURES]==strong['features']
++    assert set(RELATIVE_FEATURES)<=set(vectorizer.feature_names_) and len(vectorizer.feature_names_)==len(strong['features'])+18
++    baseline=read(checked(plan['baseline_lightgbm_fit_manifests'][a.fold]))
++    assert baseline['features']==strong['features']
++    assert len(ys)==strong['training_examples']==baseline['training_examples'] and sum(ys)==strong['training_positive']==baseline['training_positive']
+@@ -82,0 +89 @@
++    assert model.get_params()==baseline['estimator']
+@@ -95 +102,2 @@
+-            features=[feature(multi,row,c) for c in cs];values=vectorizer.transform(features)
++            extras=relative_features(cs)
++            features=[feature(multi,row,c)|extra for c,extra in zip(cs,extras)];values=vectorizer.transform(features)
+@@ -110,3 +118,3 @@
+-                  old_input_candidates=nold['input'],input_candidates=nnew['input'],features=vectorizer.feature_names_,new_features=FEATURES,
+-                  old_feature_count=len(old_fit['features']),actual_feature_count=len(vectorizer.feature_names_),
+-                  actual_new_feature_names=sorted(set(vectorizer.feature_names_)-set(old_fit['features'])),
++                  old_input_candidates=nold['input'],input_candidates=nnew['input'],features=vectorizer.feature_names_,new_features=list(RELATIVE_FEATURES),relative_feature_source=ref(Path(__file__).with_name('features.py')),
++                  old_feature_count=len(strong['features']),actual_feature_count=len(vectorizer.feature_names_),
++                  actual_new_feature_names=sorted(set(vectorizer.feature_names_)-set(strong['features'])),
+@@ -118 +126 @@
+-                  strong_biobert_reference=plan['strong_biobert_fit_manifests'][a.fold],
++                  strong_biobert_reference=plan['strong_biobert_fit_manifests'][a.fold],baseline_lightgbm_reference=plan['baseline_lightgbm_fit_manifests'][a.fold],

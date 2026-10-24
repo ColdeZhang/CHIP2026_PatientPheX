@@ -2,14 +2,15 @@
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
-## 当前：LightGBM原dev正结果 .748583440，未达.8
+## 当前：LightGBM原dev .748583440；相对证据CPU控制准备执行
 
 - 用户目标仍是原train64/dev16公共v2 Score≥.8；原dev已审候选当前**.748583440**（旧a179 .746081965）。内部F1、train64四fold均是多次研发使用的开发结果，不冒称原dev、盲测或官方。用户通知前禁止官方上传。
 - [固定LightGBM](lightgbm_selector_control/REPORT.md)：同强BioBERT八池/原feature/label、160轮/15叶/min35/lr.06/L2=5，.3/nested不变；仅将sklearn HGB替成LightGBM4.6.0，分箱/生长数值不宣称等价。实际维数102/101/103/103；4fit/predict/回载59.389秒<180，finalize2.933秒<30，全部160轮、原生正列与保存回载exact。
 - pooled **.730993616492→.731545429370**（+.000551812878）；F0/F1/F2正，F3−.000405716，达到事前pooled严格升且≥3/4fold不降。44篇49加55删，非entity/关系literal bytes不变；完整四pred共冻e31cfa67先于eval marker，新5v2/旧0。结果6fc2c9e7、终点087572cf；入口审084923ce通过，完整终审1d6ed9fd已PASS/keeptrue。
 - source f71e491已push核验；正式controller session13703已rc0，外部 `research/lightgbm-selector-readiness/formal-control/execution-state.json` 为complete，不重启。原plan d893继承的HGB/120秒旧说明字段未执行，实际LGB/180/Score门以新字段与源为准；[sidecar c19fb7ea](lightgbm_selector_control/results/plan-interpretation-addendum.json)明确，不修改原冻结字节。
 - [唯一full64结果](lightgbm_selector_control/full64-results/result.json)：原103列vec transform/同pool/fresh1fit，全部16.901秒<120。原dev **.746081964986→.748583439566**（+.002501474580）；men .786960514→.792801108，doc .824512535→.828677840，关系两项不变。11篇6加17删、最终1061实体/391关系/36患者；全部非entity literal bytes及35public-new保留。完整newpred先冻后唯一v2，旧分数复用；[终审a1b2c622](lightgbm_selector_control/full64-results/terminal-review.json)PASS。model803b6467/pred0e2c26f8/terminal64172581。
-- 两个CPU控制均complete且rc0，无运行作业；full64外部 `research/lightgbm-selector-readiness/full64-dev-control/execution-state.json` 为complete，禁止重启。[同一持久包](lightgbm_selector_control/full64-results/persistent-backup.json)288622b9/3.83MB/58成员已服务器逐成员SHA+fsync，manifest168b0c39；root负责唯一实际restore。sequence独立患者关系仍使用原a179，不偷偷合成。接下来仅有限历史/误差诊断，提出一个未重复实体研究，不调本轮cut或新fit。
+- 两个CPU控制均complete且rc0，无运行作业；full64外部 `research/lightgbm-selector-readiness/full64-dev-control/execution-state.json` 为complete，禁止重启。[同一持久包](lightgbm_selector_control/full64-results/persistent-backup.json)288622b9/3.83MB/58成员已服务器逐成员SHA+fsync，manifest168b0c39；root已完成唯一server→local restore及58成员SHA复核。sequence独立患者关系仍使用原a179，不偷偷合成。[固定误差/历史查重](lightgbm_selector_control/research/next-entity-history.md)已完成；原dev只是事后方法选择依据，不用于新控制fit或手工补规则。
+- 新[相对候选证据控制](relative_candidate_evidence/README.md)：同强8池新增18列来源竞争证据，原LGB配置/.3/nested不变；baseline固定LGB pooled.731545429370。实际纯输入5.475秒/246804候选/18列非退化，最终plan304c9e95/entry035abcff已冻，统一源审并行。sourcepush后唯一4fit/predict180秒、共冻后5newv2端点30秒；保留pooled严格升且≥3/4fold不降，不迁原dev/官方。恢复查外部`research/relative-candidate-evidence-control/formal-control/execution-state.json`，勿重启已有目录。
 
 ## 已关闭或保留的关键控制
 

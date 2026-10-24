@@ -1,0 +1,34 @@
+--- frozen-lightgbm/execute_control.py
++++ relative-evidence/execute_control.py
+@@ -1 +1 @@
+-"""Four fixed LightGBM fits in one 180s window, then freeze and evaluate once."""
++"""Four fixed relative-feature LightGBM fits, compared to the frozen LightGBM control."""
+@@ -28 +28 @@
+-    prepared=read(checked(plan['prepared_manifest']));baseline_freeze=read(checked(plan['strong_biobert_freeze']))
++    prepared=read(checked(plan['prepared_manifest']));baseline_freeze=read(checked(plan['baseline_lightgbm_freeze']))
+@@ -51 +51 @@
+-        path=target/'lightgbm.nested.jsonl';path.write_bytes(''.join(output).encode('utf-8'))
++        path=target/'relative.nested.jsonl';path.write_bytes(''.join(output).encode('utf-8'))
+@@ -71 +71 @@
+-        baseline=read(checked(plan['strong_biobert_fold_metrics'][f]))
++        baseline=read(checked(plan['baseline_lightgbm_fold_metrics'][f]))
+@@ -75,2 +75,2 @@
+-        write(root/f'fold{f}/lightgbm.metrics.json',report);write(root/f'fold{f}/lightgbm.validation.json',valid)
+-        results.append(dict(fold=f,baseline=baseline['metrics'],lightgbm=report['metrics'],
++        write(root/f'fold{f}/relative.metrics.json',report);write(root/f'fold{f}/relative.validation.json',valid)
++        results.append(dict(fold=f,baseline=baseline['metrics'],relative=report['metrics'],
+@@ -81 +81 @@
+-    oldpooled=read(checked(plan['strong_biobert_pooled_metrics']))
++    oldpooled=read(checked(plan['baseline_lightgbm_pooled_metrics']))
+@@ -83 +83 @@
+-    write(root/'lightgbm.pooled.metrics.json',pooled)
++    write(root/'relative.pooled.metrics.json',pooled)
+@@ -86 +86 @@
+-                freeze=ref(root/'complete-freeze.json'),folds=results,pooled_baseline=oldpooled['metrics'],pooled_lightgbm=pooled['metrics'],
++                freeze=ref(root/'complete-freeze.json'),folds=results,pooled_baseline=oldpooled['metrics'],pooled_relative=pooled['metrics'],
+@@ -116,0 +117,5 @@
++    census=read(checked(plan['input_census']));contract=read(checked(plan['feature_contract']))
++    assert census['status']=='PASS_pure_input_eight_pool_relative_feature_contract' and census['seconds']<60
++    assert census['contract']==plan['feature_contract'] and census['feature_source']==contract['source']
++    assert contract['source']==ref(Path(__file__).with_name('features.py')) and len(census['features'])==18
++    checked(plan['baseline_terminal_review'])

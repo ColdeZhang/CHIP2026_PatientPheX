@@ -1,0 +1,109 @@
+{
+  "status": "fixed_input_only_definition_before_census_or_fit",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/relative_candidate_evidence/features.py",
+    "sha256": "52668fc4faa44699fef779f8d494ef79d349ac68eb75b44d80647fffd8e2225c",
+    "bytes": 2751
+  },
+  "feature_count": 18,
+  "source_fields": "cached native-hybrid exact literal-key maximum; not raw posterior or fitted selector probability",
+  "sets": {
+    "same_span_other_id": "same offset/length; different entire literal identifier; exclude self",
+    "same_id_overlapping_span": "same entire literal identifier; different offset/length; strict positive intersection; exclude self; adjacent spans excluded"
+  },
+  "per_source_fields": [
+    "exists",
+    "max_score",
+    "self_minus_max"
+  ],
+  "sources": [
+    "public",
+    "bioformer",
+    "biobert"
+  ],
+  "missing_policy": "presence and score keys required; presence bool; present score finite numeric non-bool in [0,1]; absent score literal False/0 only. Only source-present competitors count. None -> all3 zero; otherwise own absent treated0 in own-minus-max. No score imputation for invalid/missing fields.",
+  "compound_identifiers": "literal equality only; no splitting or ontology change",
+  "CPU_cap_seconds": 60,
+  "no_gold_no_fit_no_predict": true,
+  "prepared_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/manifest.json",
+    "sha256": "0ba8dffdf4fd69d32765cd2de4878c64f6d9e95e20ab7d910d15239bd66206ce",
+    "bytes": 16846
+  },
+  "pools": [
+    {
+      "fold": 0,
+      "role": "train",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold0/train.pool.jsonl.gz",
+        "sha256": "e02dba7dee5755eb4c357e422fcc75556acf859994abd5eb446200eccecfd870",
+        "bytes": 2626651
+      }
+    },
+    {
+      "fold": 0,
+      "role": "input",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold0/input.pool.jsonl.gz",
+        "sha256": "3640eac32e7e2f73fcabe041cd13226a2dea11b6c4e1ecac02ce84c997832de5",
+        "bytes": 848236
+      }
+    },
+    {
+      "fold": 1,
+      "role": "train",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold1/train.pool.jsonl.gz",
+        "sha256": "72aa15825a2b719ac06e4ecf1bb813a9defe4df0c1cfd1e28a2d0f446ba5f987",
+        "bytes": 2549622
+      }
+    },
+    {
+      "fold": 1,
+      "role": "input",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold1/input.pool.jsonl.gz",
+        "sha256": "de95dbedb6fbe71e428208755fa848106c785363b25816bce6e5d35c85069854",
+        "bytes": 934763
+      }
+    },
+    {
+      "fold": 2,
+      "role": "train",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold2/train.pool.jsonl.gz",
+        "sha256": "2b6f1cc58c3b7bf8a5870bf68a8e61701047eb2589d67a07d7ce81810afe1208",
+        "bytes": 2594415
+      }
+    },
+    {
+      "fold": 2,
+      "role": "input",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold2/input.pool.jsonl.gz",
+        "sha256": "56877ad669ec88c81299cf8ab7e51f2bddad30e3c81013a719be4f2229e8fd25",
+        "bytes": 855097
+      }
+    },
+    {
+      "fold": 3,
+      "role": "train",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold3/train.pool.jsonl.gz",
+        "sha256": "c4e2d759ec994cf380f6b31057a21be6538a76255b35608598113026a7ba2e71",
+        "bytes": 2613164
+      }
+    },
+    {
+      "fold": 3,
+      "role": "input",
+      "reference": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold3/input.pool.jsonl.gz",
+        "sha256": "c8362cb1815d622a5eff6313facb52f9b1ccacc11cb58dd62bc01d6ca3418714",
+        "bytes": 864191
+      }
+    }
+  ],
+  "baseline_lgb_cv_score": 0.7315454293696573,
+  "method_selection_note": "Proposed after authorized posthoc originaldev fixed-error diagnosis; train64 folds are reused development, not blind method selection."
+}

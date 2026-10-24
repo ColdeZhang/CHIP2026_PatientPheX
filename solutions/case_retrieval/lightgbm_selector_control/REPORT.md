@@ -68,3 +68,6 @@ pooled menF1 **.771948494→.772867639**，docF1 **.809789609→.811077716**；�
 [完整结果](full64-results/result.json) `ce560fb5`、[冻结](full64-results/complete-freeze.json) `f8bc9f48`、[终点manifest](full64-results/terminal-manifest.json) `64172581`保持实际原字。新model+vec `803b646771d5d7701730ce2a7161275158e63b63ddec36fed9ce793b64e6f98d`，完整预测 `0e2c26f8a546af6e8ab343f9883f212792d5b32ad01f4db8d28ac1ee27a2345e`，均位于仓库外 `R/research/lightgbm-selector-readiness/full64-dev-control/`。[唯一终审](full64-results/terminal-review.json) `a1b2c622`通过：全部非entity原始UTF8片段、391关系和既有35public-new保留，无重fit/评分/gold读取。持久小包另记，包含确切模型、vec、预测、源码、指标和本审查，依赖旧a179持久链，不声称是包含全部NN权重/数据的独立训练环境。
 
 持久备份已完成：[标准restore指针](full64-results/persistent-backup.json)，remote manifest `day1/coordinator-backup/git/original-dev-lightgbm-0e2c26f8-20261024T050047Z.manifest.json`、完整manifest SHA `168b0c39`。archive `288622b9` /3,827,082B，58成员；实际服务器逐成员SHA以及archive/manifest/父目录fsync完成。root另负责唯一服务器→本地恢复核验，本收据不抢先声称已恢复。
+
+
+后续已授权的[相对候选证据CPU控制](../relative_candidate_evidence/README.md)使用本次LightGBM四fold作为强基线；前置[固定误差/历史盘点](research/next-entity-history.md)明确原dev事后开发性质。该后继独立目录，不改本次原dev模型、预测或阈值。
