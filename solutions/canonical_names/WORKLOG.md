@@ -3,7 +3,7 @@
 2026-10-24 UTC。分支 `explore/canonical-names`，起点 `b1d73cc9`。本路线只写本目录；共享协调由 root 负责。
 
 - **目标**：全文患者条件 → HPO canonical-name 集合 → 精确 HPO 映射，补现有强 B 关系；实际目标仍为原 train64/dev16 v2 all/text ≥0.8。
-- **阶段**：唯一 managed 链 `proc_b327dfd3-24dd-4775-881a-713165fa1bcb` 的实际探针已通过（83.776 秒），13 FB／1 Adam、504 梯度与状态有限，两 Pareto 与训练行约束生成接口均通过。释放探针状态后正式训练自动于 12:17:08.859 UTC 开始，child2737169，原 TERM12:57:08.859／KILL12:57:38.859。12:21:07 已到 epoch1/update7；仍无质量结果。
+- **阶段**：唯一 managed 链 `proc_b327dfd3-24dd-4775-881a-713165fa1bcb` 已完整完成探针及正式两轮：174行／869164 tokens／10812监督、22更新，两完整持久ACK通过，正式751.674秒。全39推断 child2738039 于12:29:41.471 UTC开始，原TERM12:44:41.471／KILL12:45:11.471；尚无质量。
 - **基座选择**：Qwen3-8B b968826 已在任何新 held 质量前固定；base 与目标同时变化，不称纯目标消融。9B只保留后备：本地完整模板通过，额外运行因 gzip 容器 SHA guard 退出；已有解压 payload 全等，未复跑，实际HF processor未到达。
 - **固定终点**：强 B F1 Score .6863389812716092 的关系 ∪ 本头所有新 HPO 关系；1189 实体与 471 原关系保留。完整 freeze 后一次新 v2，严格总 Score 改善才候选；micro/macro 报分项，不额外加“双项同升”验收门。单头保存 raw，不评分。
 - **复用**：readiness 已完成 HPO/train32 目标与原生 trie 检查；不重复这些检查。实际 8B 直接调用 document owner 的固定 `native.probe/train`，两轮完整状态原子落入 .100 持久目录并 ACK；9B 的 grounded 共享桥仅作后备，不参与本次训练。不写第三训练 loop。
