@@ -137,3 +137,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 02:29:03.366900Z 路径恢复后真实启动proc_d9d0823d-54a7-47a2-be01-87b5aca2ade0/PID52420，A800 GPU2 f516。恢复前actual control空、训练输出不存在、匹配driver进程0、卡1MiB无process，窄补三件后两phase全部SHA通过。原被拒start不是模型尝试；独立恢复intent与RPC/job保留。源码439ff981已push核远端；硬3900+30，近似TERM03:34:03/KILL03:34:33。当前无训练/质量结论，只监控原job并按冻结训练→持久epoch2→最终80→唯一F1收尾，不再start。[启动清单](../evidence/round2/patient-first-formal-launch.json)。
+
+
+唯一正式入口独审71d71097 PASS（44冻结refs）：包括actual A800 CPU、三控制器fsync、新HTTP合成合同、F1纯输入scope澄清、cwd窄修和唯一真实job；原train/infer数值与完整数据隔离绑定通过。审查未新增CPU/NN，也不代表正式训练、最终80或质量已完成；终点仍按上述原任务收尾。[入口独审](../evidence/round2/patient-first-formal-entry-review.json)。

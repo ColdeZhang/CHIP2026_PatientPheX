@@ -1,0 +1,417 @@
+{
+  "status": "PASS_incremental_formal_entry_actual_CPU_and_unique_launch_not_quality",
+  "reviewed_at_utc": "2026-10-24T02:30:10.011854+00:00",
+  "scope": "New patient-first fresh two-epoch training, final-only 80-row inference, durable export and single-F1 endpoint. Prior schema/native longest-row contracts reused; no old CPU contracts, NN, gold or evaluator rerun.",
+  "concrete_blockers": [],
+  "entry_provenance": {
+    "initial_readiness_sha256": "2efccba39085798a84c2eb796a0f12b19d00a9aacbf6fbf2fb1a7ebdceadf044",
+    "post_fsync_readiness": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/final-snapshots/readiness.json",
+      "bytes": 6283,
+      "sha256": "d5dfa72fe4470f5a83a48f49c2ad3d5e451e57d760b556b1bd856556f8105b56"
+    },
+    "actual_CPU_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-entry.json",
+      "bytes": 8106,
+      "sha256": "d6e67714c24d147579b584de3c9e9d177a2db51359b7ad0fa0805f3348e50786"
+    },
+    "final_namespace_readiness": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/readiness.json",
+      "bytes": 6287,
+      "sha256": "80e9e750fc69a98f6329a88eb75ffc8cd01ce4a0e245c41088c2dd6d15844527"
+    },
+    "final_branch_checkpoint": "439ff9815284d4eed6bda8703393552594be71ad",
+    "final_readiness_members_verified": 21,
+    "actual_entry_members_verified": 12
+  },
+  "data_and_training": {
+    "numerical_training_body_exact": true,
+    "numeric_body_bytes": 8863,
+    "numeric_body_sha256": "358e3e7ba0c01254d610f95528c0615b95692d76609c193c09f4c27a5b857b2e",
+    "old_trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/snapshots/original_trainer.py",
+      "bytes": 28818,
+      "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+    },
+    "new_trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--train_patient_first.py",
+      "bytes": 37047,
+      "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+    },
+    "changed": "Schema/provenance/token-audit guards, metadata/CLI/fingerprints and exact checkpoint-directory selection; optimizer/scheduler/forward/loss/backward/update/checkpoint numerical body retained.",
+    "actual_training_rows": 124,
+    "training_documents": 32,
+    "excluded_pure_input_documents": 32,
+    "train_excluded_overlap": 0,
+    "split": "Training F2/F3 only; F1 and outer held-out labels excluded from training/generator provenance. Excluded32 pure input is read for document-ID isolation.",
+    "CPU_scope_correction": "The original receipt field F1_data_or_gold_reads=0 is too broad and must not be repeated literally. Actual verifier reads stripped excluded32 containing F1 input; it does not read F1 targets/gold/separate prompts/predictions. Original source/receipt preserved; owner clarification bound below.",
+    "total_full_tokens": 400614,
+    "supervised_tokens": 4694,
+    "max_full_tokens": 5556,
+    "max_sequence_length": 6144,
+    "truncation": "reject; no truncation",
+    "encoded_sha256": "8d69e59232fd8517ec60f429aad0c51492488b9a672f800156b2fc196e628a44",
+    "config": {
+      "epochs": 2,
+      "rows_per_epoch": 124,
+      "batch_size": 1,
+      "gradient_accumulation": 8,
+      "optimizer_calls_per_epoch": 16,
+      "total_optimizer_calls": 32,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.01,
+      "warmup_calls": 2,
+      "max_grad_norm": 1,
+      "LoRA_r": 16,
+      "LoRA_alpha": 32,
+      "LoRA_dropout": 0.05,
+      "seed": 20261023
+    },
+    "training_math": "Fresh base and fresh LoRA; native full-vocabulary causal CE, BF16 SDPA, non-reentrant checkpointing. Only adapter optimized; no packing/quantization/old warm adapter. Ordinary export ACK files excluded by exact epoch-NNN directory matching.",
+    "checkpoint": "Atomic completed epoch directory includes adapter/config, optimizer, scheduler and Python/NumPy/Torch/CUDA RNG with metadata SHA. Final epoch2/32calls only; no automatic resume or best-epoch selection."
+  },
+  "actual_CPU_environment": {
+    "receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU.json",
+      "bytes": 4227,
+      "sha256": "3faa63a5b8640129a4332c1412e523f25f4bb1406f75b30c46bdb4a7e5fa4352"
+    },
+    "seconds": 21.45579095883295,
+    "packages": {
+      "torch": "2.7.1+cu126",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "tokenizers": "0.23.1"
+    },
+    "model": "Qwen/Qwen3.5-9B",
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "all15_model_files_actual_SHA_verified": true,
+    "native_modeling_source_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "bindings": {
+      "torch_chunk_gated_delta_rule": "transformers.models.qwen3_5.modeling_qwen3_5",
+      "torch_recurrent_gated_delta_rule": "transformers.models.qwen3_5.modeling_qwen3_5"
+    },
+    "FLA_present": false,
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "weight_loads": 0,
+    "forward_calls": 0,
+    "allocator_env": {
+      "PYTORCH_ALLOC_CONF": null,
+      "PYTORCH_CUDA_ALLOC_CONF": null
+    },
+    "limits": "Full files hashed and tokenization executed on A800 CPU; this is not formal GPU training stability or quality evidence."
+  },
+  "inference_and_quality_boundary": {
+    "source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--infer.py",
+      "bytes": 15142,
+      "sha256": "d605534102e25e8bc762a4607d6ce3d557c7089b1c9e3a8ab7fbdd44a171c6ff"
+    },
+    "parser": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--final_parser.py",
+      "bytes": 1381,
+      "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+    },
+    "endpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--finish.py",
+      "bytes": 8946,
+      "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+    },
+    "final_checkpoint": "Actual epoch2/32calls/new trainer+new training SHA, full-state persistent ACK before inference. All15 base files, native b4b17 implementation/two native bindings/noFLA and model parameter inventory are checked.",
+    "fixed_inputs": 80,
+    "documents": 16,
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "decode": "greedy nonthinking, same ascending length/row order, no input removal or truncation",
+    "strictness": "Exact identity/actual generated-token accounting. Only terminal EOS248044/248046 stripped. Strict full JSON; all PID keys exact and CID subsets valid. Duplicate/unknown keys, missing/embedded EOS, limit hits, prompt removal, partial coverage rejected. Parser runs before each response is saved; partial results cannot get a complete marker.",
+    "CPU_contract": "7 new envelope cases read from frozen report; prior25 schema cases reused. Compact dense response max303 is an observed fixed serialization cost, not an arbitrary-output-length upper bound.",
+    "assembly": "Exactly80 unique rows/16documents; native token-ID decode checked. Same1189 baseline entities and all non-association fields retained; candidate mapping587 concepts/1557 pairs; relation replacement only, no fallback.",
+    "freeze_then_gold": "Create exclusive assembled directory and freeze complete prediction first; exclusive evaluation directory and before-gold marker precede first gold hash/read. One fixed v2 all/text F1 using HPO2026-06-23.",
+    "baseline": "Existing7e36 metrics reused, not rescored. No threshold/cap/union scan, original-dev evaluation or official upload.",
+    "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+    "quality_available": false
+  },
+  "persistence_and_controls": {
+    "storage": "Actual A800 disk small; model and own state on SHM. .100 separate persistent destination has443631423488 free bytes in frozen02:19 receipt. Storage availability is not an exported production checkpoint.",
+    "source_mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "persistent_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "transport": "Read-only member allowlist, exact source namespace/epoch/trainer/fingerprint, manifest SHA pinned from ready. Range retry is transport-only within one absolute180s deadline; final file and directory fsync, reopened size/SHA, durable export-ack-epoch-002.json. Training state treated as opaque bytes.",
+    "independent_fixture": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/export-CPU-contract.json",
+      "bytes": 1708,
+      "sha256": "ac4d5209c4a31ebece3a0510c1c76ec947ebfcbcb1de1aa06d037ebbf49ef4f5"
+    },
+    "fixture_scope": "One local actual HTTP server/fetch synthetic fixture, only root directories redirected. Five cases including wrong namespace/epoch, extra member, valid11members38403B and duplicateACK. Real23file+33directory fsync; no model/gold/remote execution, no prior Range fixture rerun.",
+    "fsync_patch": "Three controller save functions only, plus needed os imports. Actual file/directory fsync and duplicate rejection CPU evidence; remote3source+2plan patch rc0 and both phase member SHA exact.",
+    "limits_seconds": {
+      "train": 3900,
+      "train_TERM_grace": 30,
+      "infer": 600,
+      "infer_TERM_grace": 30,
+      "export": 180,
+      "export_TERM_grace": 10
+    },
+    "production_export_complete": false,
+    "no_automatic_retries": true,
+    "unknown_start_rule": "Inspect original outcome, never blindly restart."
+  },
+  "namespace_failure_and_unique_launch": {
+    "first_failure": "MCP start_process rejected absolute cwd with PATH_OUTSIDE_MOUNT before a managed job. Original intent/rejection retained; actual read-only inventory showed empty control, absent output/driver and idle target GPU.",
+    "repair": "formal_operations only converts same absolute control directory to mount-relative cwd with mount consistency assertion. Phase configs/argv/budgets unchanged; only controller SHA refs differ. Final remote patch verified all members.",
+    "scope_clarification": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/actual-A800-CPU-scope-clarification.json",
+      "bytes": 625,
+      "sha256": "623d7e8a4d718a0352b372fb37b87d2f868900a79f4137f3faa6efb7d63720f0"
+    },
+    "recovery_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/recover-cwd-start.py",
+      "bytes": 4050,
+      "sha256": "b231049cd9fb0c3008b98cf5d2a43e12738444af507de7733f55ee1b3f943a86"
+    },
+    "fresh_resource": "GPU UUID exact, no process,1MiB allocated, empty control/no output,248568627200 SHM free. Intent fsynced before unique start.",
+    "job": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-job.json",
+      "bytes": 1749,
+      "sha256": "6fd8ab24c7617a6e33e8bd4dda5a06aa8dadd8a52a8c38700395412d21888c09"
+    },
+    "managed_id": "proc_d9d0823d-54a7-47a2-be01-87b5aca2ade0",
+    "pid": 52420,
+    "started_at": "2026-10-24T02:29:03.366900696Z",
+    "status_at_receipt": "running; training/inference/export/quality not complete",
+    "only_once_NN_process_started": true
+  },
+  "limitations": [
+    "This is formal entry/actual CPU and launch review, not final GPU/quality acceptance.",
+    "Longest-row one-update success does not prove gradient-accumulation8 stability; formal results pending.",
+    "Neural model parameter inventory does not certify all pipeline learned state; wider inventory remains separate.",
+    "No gold reads, evaluator rerun, GPU/model execution, MCP operation, owner-source edit or Git mutation by this verifier."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/readiness.json",
+      "bytes": 6287,
+      "sha256": "80e9e750fc69a98f6329a88eb75ffc8cd01ce4a0e245c41088c2dd6d15844527"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-entry.json",
+      "bytes": 8106,
+      "sha256": "d6e67714c24d147579b584de3c9e9d177a2db51359b7ad0fa0805f3348e50786"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU.json",
+      "bytes": 4227,
+      "sha256": "3faa63a5b8640129a4332c1412e523f25f4bb1406f75b30c46bdb4a7e5fa4352"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU-source.py",
+      "bytes": 3052,
+      "sha256": "1e8a6b64b0fe9375db11ccf4f88554e042b041c4ea64b75b6e221ecec6b3bda2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/actual-A800-CPU-execution.json",
+      "bytes": 8487,
+      "sha256": "5bf475d0b7c28e7a3110017ac6dce823b2886236d9c06053987e6d995d601831"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/controller-patch-actual.json",
+      "bytes": 2645,
+      "sha256": "fe6cd4c0690d8a14197c45709ba5cf9000ee12f3f70e482392243ef7627972ff"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/actual-entry-snapshots/export-fetcher-deployment.json",
+      "bytes": 139,
+      "sha256": "2eca76a74dce22e00a46e0d9ba5308b8e00251a18ade896c53174f057256ee3c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/source-contract-findings.json",
+      "bytes": 1357,
+      "sha256": "e2368c2e9ead5c6147e834a48db62250fd56ca7081a9769cd3c418261f4e815a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/export-CPU-contract.json",
+      "bytes": 1708,
+      "sha256": "ac4d5209c4a31ebece3a0510c1c76ec947ebfcbcb1de1aa06d037ebbf49ef4f5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/check_export_fixture.py",
+      "bytes": 6503,
+      "sha256": "49bce1787f27bd7048d10691cc076e64f7e1843bf1f8c797a2d2507fd3cf92e0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/actual-A800-CPU-scope-clarification.json",
+      "bytes": 625,
+      "sha256": "623d7e8a4d718a0352b372fb37b87d2f868900a79f4137f3faa6efb7d63720f0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-repair.json",
+      "bytes": 1754,
+      "sha256": "779803ad0857bd7b17b793182b66f41baf5206190f57556441ff2f399ee2962a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-patch-actual.json",
+      "bytes": 1819,
+      "sha256": "5c9e1b04b10be9224d106c55a0ecfa8fde1239511b82148c6b91895d906974e0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/cwd-patch-intent.json",
+      "bytes": 875,
+      "sha256": "77c72501316628317ad286dc5b87d29c58b6aa79da3e0a361f1ede33f2af2055"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/recover-cwd-start.py",
+      "bytes": 4050,
+      "sha256": "b231049cd9fb0c3008b98cf5d2a43e12738444af507de7733f55ee1b3f943a86"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-start-path-inventory.json",
+      "bytes": 643,
+      "sha256": "7f8df2b8d02b64827ba45d52c840e23f443c5ec84fc4e6b6787098cb857e82e0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-start-path-rejection.json",
+      "bytes": 288,
+      "sha256": "742f43cf4f4f495b1c6447344c4c557826e5a4c78c6c5b2aa147effec2b13da8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-intent.json",
+      "bytes": 1266,
+      "sha256": "9c796b14149dac4436e7d3086a833752e19d54fa68faf92012127ee128430e01"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-fresh-resource.json",
+      "bytes": 595,
+      "sha256": "87d29145b1a3e41a29a46ecc305db93cb0f2e7bc67d5de01486c40d2354b21b0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-path-recovery-RPC.json",
+      "bytes": 1166,
+      "sha256": "f87574f228880abfef5ead446a40a2049c1b5b63cd6ca2a2bcf2a0ee657e6e92"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/train-job.json",
+      "bytes": 1749,
+      "sha256": "6fd8ab24c7617a6e33e8bd4dda5a06aa8dadd8a52a8c38700395412d21888c09"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/storage-readiness.json",
+      "bytes": 2618,
+      "sha256": "f7c8965af7fdadffe4db08081ad1ce5af14d9cee62f1e59d32f5f8a5f4f11c6b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--train_patient_first.py",
+      "bytes": 37047,
+      "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--infer.py",
+      "bytes": 15142,
+      "sha256": "d605534102e25e8bc762a4607d6ce3d557c7089b1c9e3a8ab7fbdd44a171c6ff"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--final_parser.py",
+      "bytes": 1381,
+      "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--finish.py",
+      "bytes": 8946,
+      "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--prepare_endpoint.py",
+      "bytes": 5964,
+      "sha256": "71a9fa9d197d53e8a7c729549d83cd9ff81231ab8a62c69d6f6042a9f2e4b594"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--formal_driver.py",
+      "bytes": 5328,
+      "sha256": "536fa775103fafc83b4f50542d8a8314ecf22978c680fe9a5dffca5f18c06eeb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--formal_operations.py",
+      "bytes": 10973,
+      "sha256": "f3889a168081a208fe2848514e5fd4fd153d13b673dac73308c3380f085d43ed"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--export_checkpoint_server.py",
+      "bytes": 5421,
+      "sha256": "d8e103fa33ba4bdde8ae851b5a519892144b7118e3b658aa7d1d9a60f326afba"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--fetch_checkpoint.py",
+      "bytes": 7023,
+      "sha256": "34d9a28380a68f51d0cacd06cf6dce790cf3d86beea2cdc7a42443b0b41257cc"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/sources--export_operations.py",
+      "bytes": 9837,
+      "sha256": "912e502506c8c7c9c7c5084e85cc4fa0c089b0c1a043db196c41c8a2fb357fca"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--resource.json",
+      "bytes": 1833,
+      "sha256": "ec093231b522172d3415e1933aa3252e9b000d6eabb3914a3a80d2f2b0676a0b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--train-plan.json",
+      "bytes": 7182,
+      "sha256": "eb21b47f51e594d0216109d0fc0e180791461ce1979744897e338446f51cd838"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--infer-plan.json",
+      "bytes": 6701,
+      "sha256": "db11abe24f79644e12ecf6841916991df4cade30d08c3b9b003e2e6d250d8645"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--endpoint-plan.json",
+      "bytes": 3447,
+      "sha256": "bb375d9cc6aafe2528a0b6f0619b2a987e27447e816803e64f685cee6cf890c6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--export-plan.json",
+      "bytes": 2415,
+      "sha256": "66a2fb583c2a61a02745bfab8fe8e0f20cd071a3a33c2a22991151229ffd8d17"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/plans--payload.json",
+      "bytes": 5975,
+      "sha256": "e1a2f1da858194719c8a575aa9e3962f451cbb3c8c605c88aeb44a1aec8dbf40"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--CPU-source-contract.json",
+      "bytes": 9378,
+      "sha256": "bd251cd6418a928883a59d4a98110ecda6f3ce647ae37d502e4f3da09d99597b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--endpoint-CPU-contract.json",
+      "bytes": 13047,
+      "sha256": "d401c6746c3bb9e6f222b1cae16886326035819a5493ef707ae44a847a7659c6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--allocator-summary.json",
+      "bytes": 5380,
+      "sha256": "38874fc2bc523a22a8874e7e156c16098728ea8eb18ec367798b20681233bf4d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/namespace-repair-snapshots/CPU--controller-fsync-contract.json",
+      "bytes": 2743,
+      "sha256": "8683942fdf2b9703f37675a61bde8693bce096f456674671b500285fc15e2a8c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/snapshots/additional--storage-A800-actual.json",
+      "bytes": 1728,
+      "sha256": "61b653986eb333847dc390d7c6a7f2bfdfe6ad3c51445e6e93cce77a088b81dc"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/snapshots/additional--storage-persistent100-actual.json",
+      "bytes": 1333,
+      "sha256": "986a7be46bf3b5ea52eb35f59b740c3bfb8feeeb0439fff5628c02d841fabcb4"
+    }
+  ],
+  "reused_previous_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-entry-review/terminal-review.json",
+    "bytes": 26776,
+    "sha256": "3f22cbfcfecaa4d59869a7957d66e5be07313acff16d34a6ba72348230514678"
+  }
+}
