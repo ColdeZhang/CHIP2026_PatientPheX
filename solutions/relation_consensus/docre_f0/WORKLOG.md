@@ -9,3 +9,5 @@
 - 外部产物：`/workspace/patientphex-runs/round2-20261023/stage8-relation-consensus/docre-f0/`。源码/计划先推送，CPU 门通过后补冻结实际 encoded SHA，再启动唯一 GPU。
 
 入口：本地 `prepare_inputs.py --mode public`；原远端 runtime 执行 `--mode encode`；`driver.py --plan <frozen-plan>` 唯一窗口内执行 `infer.py`。完整实际命令、原输入与资产 SHA、进程和截止时间保存外部。
+
+CPU 门已全部通过：原 BertTokenizerFast/transformers4.50.0，64,854 tokens、172 个510/384完整窗口（单篇最多19），所有提及唯一 owner、剥 marker 原 token 精确还原、相邻/共享/嵌套边界合同通过。编码 a3fda0a2（160,911B），保留全部2,195对。原 F1 164窗推断1.598秒；F0 180+30 包含读取/校验1.3GB检查点，预算足够。

@@ -71,7 +71,8 @@
     "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
     "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
     "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
-    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/formal-marker-long-v3/native/checkpoint.pt": "67317bdd67d5fae26846806844edf59c5dc3ea4f2478f9a137fd9c8d1abe3142"
   },
   "tokenizer_assets": {
     "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
@@ -111,5 +112,39 @@
   "fixed_logit_use": "No thresholding here. Root consensus uses original raw logit > 0; zero-context pairs retained.",
   "expected_pairs": 2195,
   "expected_patients": 47,
-  "prepared_sha256": "0b0fce00146261e7b8f556a4b6b1876097eb165605b59962869a004e176edb5e"
+  "prepared_sha256": "0b0fce00146261e7b8f556a4b6b1876097eb165605b59962869a004e176edb5e",
+  "encoded_ref": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/encoded/held.json.gz",
+    "bytes": 160911,
+    "sha256": "a3fda0a28b5005071f98e6c7f6c48d6daff7d20adb4d6537e430a33e3db28ec3"
+  },
+  "encoding_contract": {
+    "status": "complete_full_tokens_all_pairs_unique_owner_markers",
+    "documents": 16,
+    "patients": 47,
+    "pairs": 2195,
+    "windows": 172,
+    "maximum_windows": 19,
+    "tokens": 64854,
+    "physical_mentions": 1904,
+    "contracts": {
+      "adjacent_start_and_end_separate": true,
+      "shared_boundaries_deduplicated": true,
+      "nested_and_duplicate_spans": true,
+      "literal_source_marker_preserved": true,
+      "full_marked_span_window_owner": true
+    }
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/driver.py": "17b673895b4e1e87c68e20c6ba2946a1461a181d0070beb508f9ccf643c68592",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/infer.py": "7ea971c8ec9ad03af6e3eba8c23293eb2fe45c5fe9136754017c95487f820d2f",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/prepare_inputs.py": "c3764078eace2952f85daea27cdcbc786c472d67e0ff6e132b82b16fdba16a03",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/vendor/encode.py": "6e41cb02a8dc1c3a0d78cc51a842732943c6aac8578e8f2ccd54ca652755cc1e",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/vendor/marker_encode.py": "9c5ba05db056d78785b4f00f85b374cfc3188b4e7f2ab5ebfbcc5234fdab9bff",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/vendor/model.py": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source/vendor/prepare.py": "1fcf64f54b28de06a4ef1de19976940648d587403ea52459eebf5ad9cd681ef5",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/encoded/held.json.gz": "a3fda0a28b5005071f98e6c7f6c48d6daff7d20adb4d6537e430a33e3db28ec3"
+  },
+  "source_checkpoint": "ad65a011aaca610230757f18e06e0d7e84caf4fb",
+  "cost_basis": "Old F1 full164windows/2874pairs inference1.597736s. F0 complete172windows/2195pairs; fixed180+30 includes hashes/load; no GPU probe."
 }
