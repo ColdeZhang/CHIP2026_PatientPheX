@@ -1,0 +1,369 @@
+{
+  "status": "synthetic input contract only; not model output, no quality score",
+  "execution": "No model invoked",
+  "contract": [
+    "All ranges are half-open and original Unicode character offsets.",
+    "For each span verify text[local_start:local_end] equals quote and global offset equals passage.offset+local_start.",
+    "Predicted clusters require a unique original patient anchor; zero or multiple patient IDs means unknown.",
+    "Exact anchor matching is the initial conservative gate. No relaxed matching/alias broadcast after seeing failures.",
+    "Identity clusters do not assert clinical phenotype attribution or positive polarity."
+  ],
+  "examples": [
+    {
+      "id": "two_patients",
+      "passage": {
+        "offset": 100,
+        "text": "Patient A is Ada. She has seizures. Patient B is Beth. She has no seizures."
+      },
+      "patient": [
+        {
+          "patient_id": "P1",
+          "mention": [
+            {
+              "text": "Ada",
+              "local_start": 13,
+              "local_end": 16,
+              "offset": 113,
+              "length": 3
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mention": [
+            {
+              "text": "Beth",
+              "local_start": 49,
+              "local_end": 53,
+              "offset": 149,
+              "length": 4
+            }
+          ]
+        }
+      ],
+      "hand_constructed_identity_contract": [
+        {
+          "patient_id": "P1",
+          "mentions": [
+            {
+              "text": "Ada",
+              "local_start": 13,
+              "local_end": 16,
+              "offset": 113,
+              "length": 3
+            },
+            {
+              "text": "She",
+              "local_start": 18,
+              "local_end": 21,
+              "offset": 118,
+              "length": 3
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mentions": [
+            {
+              "text": "Beth",
+              "local_start": 49,
+              "local_end": 53,
+              "offset": 149,
+              "length": 4
+            },
+            {
+              "text": "She",
+              "local_start": 55,
+              "local_end": 58,
+              "offset": 155,
+              "length": 3
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "repeated_name",
+      "passage": {
+        "offset": 1100,
+        "text": "Patient 1, Alex, had ataxia. Patient 2, also named Alex, had deafness. The second Alex had no ataxia."
+      },
+      "patient": [
+        {
+          "patient_id": "P1",
+          "mention": [
+            {
+              "text": "Patient 1",
+              "local_start": 0,
+              "local_end": 9,
+              "offset": 1100,
+              "length": 9
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mention": [
+            {
+              "text": "Patient 2",
+              "local_start": 29,
+              "local_end": 38,
+              "offset": 1129,
+              "length": 9
+            }
+          ]
+        }
+      ],
+      "hand_constructed_identity_contract": [
+        {
+          "patient_id": "P1",
+          "mentions": [
+            {
+              "text": "Patient 1",
+              "local_start": 0,
+              "local_end": 9,
+              "offset": 1100,
+              "length": 9
+            },
+            {
+              "text": "Alex",
+              "local_start": 11,
+              "local_end": 15,
+              "offset": 1111,
+              "length": 4
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mentions": [
+            {
+              "text": "Patient 2",
+              "local_start": 29,
+              "local_end": 38,
+              "offset": 1129,
+              "length": 9
+            },
+            {
+              "text": "Alex",
+              "local_start": 51,
+              "local_end": 55,
+              "offset": 1151,
+              "length": 4
+            },
+            {
+              "text": "The second Alex",
+              "local_start": 71,
+              "local_end": 86,
+              "offset": 1171,
+              "length": 15
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "The two occurrences of Alex are distinct people; never broadcast by identical text."
+      ]
+    },
+    {
+      "id": "relative_and_unicode",
+      "passage": {
+        "offset": 2100,
+        "text": "The proband, Zoë, had seizures. She was a girl. Her mother, Emma, was unaffected. She had no seizures."
+      },
+      "patient": [
+        {
+          "patient_id": "P1",
+          "mention": [
+            {
+              "text": "Zoë",
+              "local_start": 13,
+              "local_end": 16,
+              "offset": 2113,
+              "length": 3
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mention": [
+            {
+              "text": "Emma",
+              "local_start": 60,
+              "local_end": 64,
+              "offset": 2160,
+              "length": 4
+            }
+          ]
+        }
+      ],
+      "hand_constructed_identity_contract": [
+        {
+          "patient_id": "P1",
+          "mentions": [
+            {
+              "text": "The proband",
+              "local_start": 0,
+              "local_end": 11,
+              "offset": 2100,
+              "length": 11
+            },
+            {
+              "text": "Zoë",
+              "local_start": 13,
+              "local_end": 16,
+              "offset": 2113,
+              "length": 3
+            },
+            {
+              "text": "She",
+              "local_start": 32,
+              "local_end": 35,
+              "offset": 2132,
+              "length": 3
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mentions": [
+            {
+              "text": "Her mother",
+              "local_start": 48,
+              "local_end": 58,
+              "offset": 2148,
+              "length": 10
+            },
+            {
+              "text": "Emma",
+              "local_start": 60,
+              "local_end": 64,
+              "offset": 2160,
+              "length": 4
+            },
+            {
+              "text": "She",
+              "local_start": 82,
+              "local_end": 85,
+              "offset": 2182,
+              "length": 3
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Possessive Her may refer to P1, while Her mother refers to P2; overlapping ownership is not automatic.",
+        "Use Unicode character offsets, not UTF-8 byte offsets."
+      ]
+    },
+    {
+      "id": "negation_background_history",
+      "passage": {
+        "offset": 3100,
+        "text": "Patient A, Nora, was assessed. She did not have ataxia. Patient B, Owen, was well. He had no seizures. Patients with syndrome Z often have ataxia. In an earlier report, a woman named Nora had seizures."
+      },
+      "patient": [
+        {
+          "patient_id": "P1",
+          "mention": [
+            {
+              "text": "Nora",
+              "local_start": 11,
+              "local_end": 15,
+              "offset": 3111,
+              "length": 4
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mention": [
+            {
+              "text": "Owen",
+              "local_start": 67,
+              "local_end": 71,
+              "offset": 3167,
+              "length": 4
+            }
+          ]
+        }
+      ],
+      "hand_constructed_identity_contract": [
+        {
+          "patient_id": "P1",
+          "mentions": [
+            {
+              "text": "Nora",
+              "local_start": 11,
+              "local_end": 15,
+              "offset": 3111,
+              "length": 4
+            },
+            {
+              "text": "She",
+              "local_start": 31,
+              "local_end": 34,
+              "offset": 3131,
+              "length": 3
+            }
+          ]
+        },
+        {
+          "patient_id": "P2",
+          "mentions": [
+            {
+              "text": "Owen",
+              "local_start": 67,
+              "local_end": 71,
+              "offset": 3167,
+              "length": 4
+            },
+            {
+              "text": "He",
+              "local_start": 83,
+              "local_end": 85,
+              "offset": 3183,
+              "length": 2
+            }
+          ]
+        },
+        {
+          "patient_id": null,
+          "mentions": [
+            {
+              "text": "a woman named Nora",
+              "local_start": 169,
+              "local_end": 187,
+              "offset": 3269,
+              "length": 18
+            },
+            {
+              "text": "Nora",
+              "local_start": 183,
+              "local_end": 187,
+              "offset": 3283,
+              "length": 4
+            }
+          ]
+        },
+        {
+          "patient_id": null,
+          "mentions": [
+            {
+              "text": "Patients with syndrome Z",
+              "local_start": 103,
+              "local_end": 127,
+              "offset": 3203,
+              "length": 24
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Negation does not change person identity. Identity does not license a positive phenotype relation.",
+        "Cited Nora is not supplied P1; generic Patients is not an automatic union of P1 and P2."
+      ]
+    }
+  ]
+}

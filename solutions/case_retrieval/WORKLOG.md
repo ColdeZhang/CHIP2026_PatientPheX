@@ -2,7 +2,16 @@
 
 实验 `E-20261023-008`，独立分支 `round2/case-retrieval`，本轮基点 `00f7da8`。
 
-## 当前状态
+## 当前状态与接手入口（2026-10-24 UTC）
+
+- **当前运行**：唯一旧124 JSON value2 fresh训练，A100 GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，本地watch58297；实际00:13:40.410Z开始，主截止00:48:40.410Z，TERM最晚00:49:10.410Z。外存 `qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/{job,monitor,run-plan}.json`。恢复先查原job，禁止重新launch。
+- **固定后继**：只完整epoch2/32calls可推原80 F1（600+30），比较cached旧SFT32 .660942003；旧候选/完整JSON/decoder不改，不混62公开新提示，不扫weight/epoch，不自动F0或原dev。partial保留Adam/RNG/next-group，仅可恢复，不评质量。入口独审e45db090通过，详见[正式计划](evidence/round2/json-value-weighted-formal-plan.json)和[启动](evidence/round2/json-value-weighted-formal-start.json)。
+- **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
+- **独立准备**：root新派helper只在外部 `research/public-coreference-readiness/`准备小共指模型下载/CPU接口与input-only普查；本路线负责小源码/计划push。无赛事NN、GPU或质量；不影响上述训练。
+- **目标仍未达**：root汇总原dev当前最高.737585917；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
+- **最近备份**：`5985e3a`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
+
+## 已完成主要结果（历史摘要）
 
 - **目标**：原 train64/dev16、冻结公共评测 v2 all/text 的 Score ≥ 0.8；未达标，不合并主线，不上传官方。
 - **原dev两种口径**：原独立检索 CPU k21/.35 **.625073738**（首日 .613517597）；共享公开Pheno/CRF/GLiNER实体+Qwen full64关系、固定新候选支持追加 **.736526555**（独审245c1f00通过），高于此前6401组合 **.732257765**。新结果是共享组件组合进展，不冒称纯检索分；未达.8。
@@ -36,7 +45,7 @@
 - 固定Sap筛选小幅正：旧LR未保存，使用原train48/源码/18缓存重建，14,480旧候选p完全相同；新池与旧池共享829项因FP16批次有数值微差但阈值决定全同。固定`.65/.92`只保留18新增；见[完整控制](evidence/round2/sft-linked-filtered-control-summary.json)及[筛选来源](evidence/round2/sap-filter-control.md)。
 - 真实optimizer续训状态已独立核验：Adam step/moments、scheduler、RNG恢复完整；独立fresh训练数值轨迹等价未证明，不宣称bitwise训练复现。
 
-## 当前任务与恢复
+## 历史任务与资源定位
 
 1. **9B原58完整配对已结束**。原adapter作业 `proc_301c8be3-bba6-4c69-9634-bf4a0dbf752b` 与本地watcher93066均正常结束；58/58严格JSON、0触顶、415/415候选合法、0格式错，生成203.10秒。原base .633859674→adapter .695443948，仍低rules；小证据见[配对结果](evidence/round2/qwen35-relation-paired-result.json)，完整raw/预测/SHA在外存 `qwen35-preparation/relation-quality-plan/`。不重启，不挑epoch。
 2. **训练已结束**。fresh204行×2ep/52updates，原作业 `proc_c35c5440-2f32-4842-b4aa-8e444173673b` 与monitor89754已结束。实际1855.10秒，allocated37.48GB/reserved78.50GB分开记录，无OOM；epoch002 adapter SHA8e32daee…，两epoch及Adam/scheduler/RNG全实际SHA在外存 `relation-training-preparation/checkpoint-actual-hashes.json`。完整配置、命令与终点见[完成证据](evidence/round2/qwen35-relation-training-complete.json)，不挑epoch1质量，不宣称新的数值resume等价。
@@ -81,3 +90,5 @@
 - **value权重唯一正式对照准备**：原124/402594tokens/7170监督不变、值token权重2，其余1，fresh32文献×2ep/32calls/2warmup。A100实际CPU9.571s核所有编码/权重/末4行分母与meta参数，CUDAfalse；2100+30/软2040可恢复partial、只final推断。后继唯一原80 F1对旧.660942003，600+30且不混public62；[冻结计划](evidence/round2/json-value-weighted-formal-plan.json)。源码/计划推送后核UUID空卡启动，探针状态不复用。
 
 - **value权重正式训练已启动**：A100GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，2026-10-24T00:13:40.565107+00:00；2100主截止2026-10-24T00:48:40.565107+00:00、TERM最晚2026-10-24T00:49:10.565107+00:00，watch58297。plan248e9c32/trainer8121f8fe、入口3246f81已push；actualCPU9.571s通过。H32先读外存formal2ep/job、monitor，勿重复启动。仅完整2ep32calls才原80 F1600+30；[恢复入口](evidence/round2/json-value-weighted-formal-start.json)。
+
+- **小共指模型仅准备**：root委派helper冻结F-coref e91dfff固定公开90.53M参数；ModelScope同身份404后使用固定HF revision、362MB权重SHA。只授权.100自有下载600秒、私有overlay180秒/CPU4构造例180秒与input-only普查，无赛事NN/质量/GPU。原train32/F1分别87患者255mentions和39患者162mentions，存在共享alias，禁止按名字广播身份。27小源/plan共152KB已按SHA收入[目录](public_coreference_readiness/INTEGRATION.md)，提交push后helper启动。
