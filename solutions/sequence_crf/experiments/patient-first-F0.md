@@ -52,3 +52,12 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 唯一proc68557469实际native80.301720/wrapper81.688066秒，rc0；真实单步13.935736秒，loss .4758164287、clip前grad5.950649261，三family B实际变化；248个B梯度非零、A首步0符合fresh零B。仅adapter在optimizer，base无梯度，FP32 optimizer states，未保存模型/推断/质量。峰allocated36,893,822,976B、reserved41,748,004,864B；free16,836,263,936B为**结束时**空闲，不能当峰时余量。03:14:24.493747 GPU2核0MiB/无进程，诊断状态丢弃，无自动重试。8件终点SHA全部回收，manifest50acff1b；统一增量独审e300f328 PASS，无新CPU/NN/评分。单最长行通过仍不证明accum8、后续optimizer常驻/多形状碎片稳定。
 
 主线程现已给正式条件授权：同204×2/52calls/3warmup，A100项目持久盘按原epoch边界fsync/重开SHA保存完整adapter+optimizer/scheduler/RNG；3900+TERM30含保存，首OOM/数值/截止停，不改变数学/长度/精度或追加预算。完整plan和保存增量集中审查无具体阻断、freshUUID/空卡后执行；原58另600+30，两完整预测共同freeze再各唯一v2，旧SFT48不重评。此处仅记录授权，正式任务尚未启动。
+
+
+## 正式固定源/预算与持久恢复合同
+
+已冻结readiness be8e2798、train03e668ce、inferf2cbd7ce、endpoint143638ee。`patient_first_f0/formal/`为新正式源，旧probe引用990df/f1bba保持。trainer f08c只在原epoch保存边界增加逐file/dir fsync、原子rename、重开全成员SHA、durability-epoch-NNN排他收据；原CONFIG/52calls3warmup/连续两轮与整个run()去掉新I/O后逐字相同。唯一标准库真实小文件fixture0.0392s、20file+14dir fsync、3rename：两epoch成功、坏SHA无成功收据、已有目标拒绝，未读取真实weights/state。最终infer6ef4只绑定此trainer并修旧模板头文案，解码/严格parser不变。
+
+3900+30含实际保存；按13.935736s最长5769与2×656837总token线性粗估3173.343s、约727s余量，**不是完整吞吐或显存保证**。A100项目持久盘最近free58.139GB，开跑fresh要求≥4GiB，两完整state估1.04GB；首OOM/数值/截止停，不改allocator/精度/loss/长度、不自动重启。每epoch保留adapter、optimizer/scheduler、Python/NumPy/Torch/CUDA RNG和元数据，恢复必须核完整SHA且另由主线程决定，不能声称GPU resume数值等价已测。
+
+固定原58另600+30，只完整持久epoch2可推断。新policy d2b8已在质量前固定primary/oldSFT48∪new，实体947/415CID/1166对不变；finish92b3/uniondf82先共同freeze两fullpred与原raw/来源，再各唯一v2；primary独立提前evaluate受共同freeze+before-both marker硬阻断。旧baseline .6954439475814587直接复用，保持sum(micro+macro)升且macro不降。gold仅独立后置locator，SHA来自旧baseline既有metrics、此时只stat文件大小，未读gold内容或计算其新SHA。10件已核数据/辅助源在A100本地copy并逐SHA，另上传10件新源/输入/plan；实际部署/新formalCPU尚待完成。
