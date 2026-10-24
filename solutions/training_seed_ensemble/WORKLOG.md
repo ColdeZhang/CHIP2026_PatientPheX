@@ -43,3 +43,5 @@ V4 CPU真实4.761801秒PASS，同87/32输入及实际import Torch2.6.0+cu124/TF5
 F1 actual proc803b4f9d/driver67252/child67270，.12GPU2，16:42:47.217启动，原TERM17:11:09.465607不重置；新sole只读watch详见evidence/F1-running.json。此前只读inventory UNKNOWN没有start intent，恢复库存后才唯一claim/start，未知写入分片逐SHA复用。SCST等待这条39真实release；必要Sap由root安排在document_relations当前.3作业完成后fresh核原GPU0。首次localwatch启动误用不存在/usr/local/bin/python，Popen前失败、0新进程；新receipt改实际sys.executable，原空日志/failure保留，远端不变。
 
 资源后继修订：root改排必要Sap至.100 GPU0/126293b9，避免.3长关系空等；新源码normalization_A30及host-contract d92953d3核原10资产SHA全同，继承QSC真实同host encoder运行，仅实际runtime从2.7.0/4.50到2.7.1/4.51.3明确披露。query/driver/admission字节保持、无bank重编码/fit/新query结果。原.3helper保持未执行，原F1NN/source/硬钟不改，quality仍唯一固定组合。
+
+F1原39已17:04:46完整rc0/1319.293s并真实释放，17:07:33原watch恢复终态（非运行耗时）；90成员collection b0160497已逐SHA完整收回。保原cap/逐item解析、extract7e7f7219与必要query preparation6fb3a772完成，无gold/质量。Sap真实全部206条，.100GPU0唯一plan已绑定，180+30/300秒TTL，源先push再fresh门启动。 .12卡已直接交root/SCST，不等本后处理。
