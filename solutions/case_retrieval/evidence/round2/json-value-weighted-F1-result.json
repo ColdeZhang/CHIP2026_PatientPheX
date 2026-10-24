@@ -1,0 +1,168 @@
+{
+  "status": "closed_fixed_value2_recipe_no_score_gain_pending_incremental_quality_review",
+  "scope": "Repeatedly observed training-side F1 development; no generalization/official claim; old A800 vs new A100 runtime difference disclosed",
+  "protocol": {
+    "train_documents": 32,
+    "train_rows": 124,
+    "epochs": 2,
+    "optimizer_calls": 32,
+    "nonzero_lr_calls": 31,
+    "value_weight": 2,
+    "other_suffix_EOS_weight": 1,
+    "prompt_padding_weight": 0,
+    "group_normalization": "weighted token mean per row then actual group mean8/4",
+    "evaluation": "Only old80 F1 16docs/39patients/587CID/1557pairs; no public62/F0/originaldev"
+  },
+  "old_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6866002214839424,
+    "macF1": 0.5422288533401712,
+    "Score": 0.6609420026531936
+  },
+  "new_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6666666666666666,
+    "macF1": 0.5614721799274976,
+    "Score": 0.6607694455957062
+  },
+  "delta": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.019933554817275767,
+    "macF1": 0.019243326587326415,
+    "Score": -0.00017255705748742134
+  },
+  "old_relation_counts": {
+    "tp": 310,
+    "fp": 73,
+    "fn": 210
+  },
+  "new_relation_counts": {
+    "tp": 301,
+    "fp": 82,
+    "fn": 219,
+    "precision": 0.7859007832898173,
+    "recall": 0.5788461538461539,
+    "f1": 0.6666666666666666
+  },
+  "keep_by_score_increase": false,
+  "entities1189_nonrelation_exact": true,
+  "parse": {
+    "valid_candidate_decisions": 587,
+    "unresolved_candidate_decisions": 0
+  },
+  "raw": {
+    "rows": 80,
+    "input_tokens": 250696,
+    "max_input_tokens": 5691,
+    "hit_token_limit": 0,
+    "max_output_tokens": 109,
+    "elapsed_seconds": 513.989,
+    "max_gpu_allocated_bytes": 19771037184,
+    "loading_information": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    }
+  },
+  "format": {
+    "valid": true,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "gpu": {
+    "uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "released_utc": "2026-10-24T00:50:31.788939Z",
+    "fresh_free_MiB": 40339,
+    "watcher33072_finished": true,
+    "remote_managed_exit_code_not_exposed": true
+  },
+  "source_plan_checkpoint": "a80fd13c69fda19549d7546da55eab3b4f159072",
+  "references": {
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/run-plan.json",
+      "bytes": 13764,
+      "sha256": "abd21c5208d7c54c9687026569c5254b1e121cf2ac8c6cc8f1bf614375e62558"
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/summary.json",
+      "bytes": 2983,
+      "sha256": "3232f9c585d8d2496e3c8dcfd6009247f9c504d6f9d6f3ec938b9fc05ed0356f"
+    },
+    "responses-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/responses-freeze.json",
+      "bytes": 505,
+      "sha256": "6a09af65ea6ff5b8cb03ef91a659e26dbe9f2b7b8fe81a1c867e930f4a83d05f"
+    },
+    "responses.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/responses.jsonl",
+      "bytes": 25258,
+      "sha256": "e659c4317d1d615bc681f8e68c7f670427266b26d80afc5af17e7c4d561b48fb"
+    },
+    "responses.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/responses.manifest.json",
+      "bytes": 4415,
+      "sha256": "bd0f84b095fe985f08534e4dae9f4db813d20d61c7b5e1f67a0a455417c2196c"
+    },
+    "paired-predictions-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/paired-predictions-freeze.json",
+      "bytes": 1712,
+      "sha256": "442fa26e421cc281777d820726a401ed2e85332c801847d044e306ca2524c01d"
+    },
+    "evaluation-started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/evaluation-started.json",
+      "bytes": 413,
+      "sha256": "4a89f41599f2cbd4dbce31e1cb768a7145d0f32f95c62f57d7efca0cf43713f8"
+    },
+    "pred.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/pred.jsonl",
+      "bytes": 154174,
+      "sha256": "c39de09ba35c27456936dc6a3be670d7a13426cdd668be93aed92470c92b3d3e"
+    },
+    "pred.manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/pred.manifest.json",
+      "bytes": 1381,
+      "sha256": "09e96aa85215ed22ada4252ad9ae015970ffa6478b113adb590f9d31966e13d9"
+    },
+    "metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/metrics.json",
+      "bytes": 13113,
+      "sha256": "a0ef7801775303587db066a218a40f6ca4b2369c4b2acec08726d316ce633074"
+    },
+    "validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/validation.json",
+      "bytes": 686,
+      "sha256": "fd619e7fb733ef1f301fb49f7733234126059685f1791279c3a3be9d8da612dc"
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/gpu-release.json",
+      "bytes": 383,
+      "sha256": "6fee1231792a8b7126e3c593a4d7e6ba2e7b622242518a82642f8aade8ddd3bd"
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/job.json",
+      "bytes": 1257,
+      "sha256": "c2aa3a7475d99c5189fba9da4ff8be27079577c6266d7900d935fb6f84b7d0bd"
+    },
+    "monitor.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/monitor.json",
+      "bytes": 184,
+      "sha256": "97442ac1cbf4dd61c520682ff03dcca00b597727450ee7171f15b7e689786915"
+    }
+  },
+  "training_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/json-value-weighted-terminal-review/training-review.json",
+    "bytes": 7330,
+    "sha256": "73fba9369fa5c3b2e7ffecc7a7a2dd3ca3809d64c715ffa63329166e36dbd282"
+  },
+  "limitations": [
+    "Repeatedly observed training-side F1 development set",
+    "Old SFT32 A800 torch2.7.1 vs current A100 torch2.6 runtime difference; no hardware-only control",
+    "Selected vs full gradient probe passed predeclared2percent tolerance, not bitwise",
+    "Online weighted training loss is not comparable absolute original CE/generalization evidence"
+  ],
+  "decision": "Close this fixed recipe; no longer training, weight scan, public candidates, F0 or originaldev migration. Preserve first failed implementation probe separately."
+}

@@ -4,12 +4,12 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **唯一原80 F1运行中**：value2旧124 fresh训练已完整2ep32calls/1485.777秒、actual adapter`c5988519`，训练watch58297结束勿重启。F1旧80（587CID/1557pair）已在A100 GPU2 fresh核空启动`proc_16bc710a-3657-436f-ad47-8db46bbe67f9`，watch33072，00:41:38.207Z起/主截止00:51:38.207Z/TERM最晚00:52:08.207Z。外存`json-value-weighted-cpu-preparation/F1-old80/{job,monitor,run-plan}.json`；同原提示/decoder，只完整冻结后唯一质量，见[运行恢复](evidence/round2/json-value-weighted-F1-start.json)。
-- **固定后继**：只完整epoch2/32calls可推原80 F1（600+30），比较cached旧SFT32 .660942003；旧候选/完整JSON/decoder不改，不混62公开新提示，不扫weight/epoch，不自动F0或原dev。partial保留Adam/RNG/next-group，仅可恢复，不评质量。入口独审e45db090通过，详见[正式计划](evidence/round2/json-value-weighted-formal-plan.json)和[启动](evidence/round2/json-value-weighted-formal-start.json)。
+- **value2完整负结案、待质量独审**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
+- **共指B质量对照独立运行**：helper独占A800GPU2 `proc_4d814817-46d4-4e86-bafd-7837330bb64a`，00:49:59.627Z起/600秒主截止00:59:59.627Z/+TERM30，watch12031；外存`research/public-coreference-readiness/prompt-control-b/{job,monitor,run-plan}.json`，plan7084fd6c/source已ee27624备份。仅旧SFT32+原80已选上下文加B标签，strip exact、264626tokens/max5895；完整freeze后唯一质量，由helper管理，不与本次value2混合。
 - **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，未接入LLM/未评分；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
-- **目标仍未达**：root汇总原dev当前最高.737585917；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
-- **最近备份**：`a80fd13`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
+- **目标仍未达**：root已核原dev固定逆序并集最新.746081965；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
+- **最近备份**：`ee27624`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
 
 ## 已完成主要结果（历史摘要）
 
