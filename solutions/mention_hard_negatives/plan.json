@@ -1,0 +1,33 @@
+{
+  "phase": "CPU_ONLY_NO_NEW_GPU",
+  "base_commit": "23b053e67636249e8f24415b5f770f86db0363e9",
+  "current_run_unchanged": "proc_d77f2343-46bf-421c-a752-5b90fee305e8",
+  "fixed_negative_rule": {
+    "per_document_K": "ceil(original HPO+NIL target rows / 4)",
+    "pool": "pureF3toF2 andF2toF3 caches; zero overlap with every formal annotation, including NIL/NO/outbranch",
+    "ranking": [
+      "probability descending",
+      "similarity descending",
+      "offset ascending",
+      "length ascending"
+    ],
+    "shortfall": "take all and report",
+    "meaning": "annotation-negative, not guaranteed biological negative; annotation omissions remain possible",
+    "no_sampling_sweep": true
+  },
+  "preserve_all_original_targets": 2353,
+  "held_rows": 1416,
+  "endpoints": {
+    "baseline_score": 0.7286975364690524,
+    "primary": "StrongB objects retained; union every accepted new HPO/NIL atom, exact atomic dedup only",
+    "diagnostic": "Fixed union span pool mapped by new head only; NO no entity, NIL retains original quote",
+    "other_fields": "All original baseline relations/patients/other objects fixed",
+    "freeze": "Both complete16doc/39patient predictions before exactly2new publicv2(all/text), old0",
+    "candidate_gate": "Either endpoint strictly greater than strong baseline; both scores reported",
+    "originaldev": false,
+    "official": false
+  },
+  "source_original_plan": "/workspace/patientphex-worktrees/explore-mention-canonical-normalization/solutions/mention_canonical_normalization/plan.json",
+  "native_CPU_delta": "Only appended rows require fresh native/HF IDs, labels, cap and grammar; unchanged2353 encoded and1416 inputs reused exact from actual previous CPU. No repeated processor/FB/Adam test.",
+  "GPU_training_authorized": false
+}
