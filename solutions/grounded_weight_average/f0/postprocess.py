@@ -5,7 +5,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]));from synthesize impo
 S=Path(__file__).resolve().parent;R=Path('/workspace/patientphex-runs/round2-20261023');D=R/'research/grounded-weight-average-v1/F0'
 G=Path('/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation')
 OLD=json.loads((G/'quality/plan.json').read_text());F0OLD=json.loads((G/'f0/quality-plan.json').read_text());GOLD=F0OLD['gold'];OLD['gold']=GOLD
-OLD['references']['F0_input']=F0OLD['references']['input'];del OLD['references']['F0_input']
+OLD['references']['F0_input']=F0OLD['references']['input'];del OLD['references']['F1_input']
 for key,name in [('extract_quotes','extract_quotes.py'),('held_prepare','held_prepare.py'),('held_finalize','held_finalize.py')]:OLD['references'][key]=ref(G/'f0'/name)
 
 def checked(v):assert ref(v['path'])==v;return Path(v['path'])
@@ -23,6 +23,8 @@ def main():
   if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)) and os.path.realpath(os.fsdecode(args[0]))==os.path.realpath(GOLD['path']) and not guard['open']:raise PermissionError('Gold prohibited before single frozen GWA endpoint')
  sys.addaudithook(audit)
  if a.stage=='contract':
+  assert 'F1_input' not in OLD['references'] and OLD['references']['F0_input']==F0OLD['references']['input']
+  assert GOLD==F0OLD['gold']
   assert primary_keys({'b'},{'m','common'},{'g','common'})=={'b','common'}
   assert primary_keys({'b'},set(),{'b','old'})=={'b'}
   assert primary_keys({'b'},{'x'},{'x'})=={'b','x'}
@@ -34,7 +36,7 @@ def main():
   sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');import evaluate as ev
   d={'pmc_id':'D','association':[{'patient_id':'P','phenotype':['HP:0001250;HP:0001251','unmapped;text','NO']} ]}
   assert pairs([d],ev)=={('D','P','HP:0001250'),('D','P','HP:0001251'),('D','P','unmapped;text')}
-  save(S.parent/'evidence/F0-endpoint-contract.json',dict(status='PASS',pure_intersection_not_union=True,base_protected_even_when_absent_from_both_views=True,compound_old_prefix_and_nonphenotype_bytes_exact=True,literal_NIL_semicolon_not_split=True,NO_excluded=True,quality_calls=0,source=ref(__file__)))
+  save(S.parent/'evidence/F0-endpoint-contract-v2.json',dict(status='PASS',pure_intersection_not_union=True,base_protected_even_when_absent_from_both_views=True,compound_old_prefix_and_nonphenotype_bytes_exact=True,literal_NIL_semicolon_not_split=True,NO_excluded=True,quality_calls=0,source=ref(__file__)))
  elif a.stage=='extract-bind':
   col=read(D/'infer-v1/collection.json');assert col['inference_reported_success'] and col['all_actual_SHA_verified']
   p=read(G/'f0/extraction-plan.json');frozen=read(S/'infer-plan.json')

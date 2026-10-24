@@ -39,3 +39,5 @@ Root另准CPU准备既有 `.100 GPU0` Sap包装：原.3已给DPO，不迁大生�
 原严格解析得到402锚点、308不同词面、180无效条目被拒、4行cap弃答；174必要Sap查询，精确query plan在 `normalization_cpu/held-query-plan.json`，CUDA隐藏、FP32/16线程/300+30，预写后唯一执行。无新gold/质量/拟合；原4cap不重采样。
 
 - F0 固定复验已授权：同 r32 合成权重、47 完整输入、同 CPU FP32 查询策略；289420 tokens / max9935，成本预估2685.36s < 3000+30。原生ID CPU合同先行；不读F0 gold、不新训。双父train32逐document排F0见 evidence/F0-ancestry.json。
+
+F0 原生47 CPU 8.513秒全通过，实际 IDs/rendered/decode 与旧缓存一致（90be3840）；新推断14:54:40.106115Z proc3d9e8637/driver271042/child271060，TERM15:44:40.327297Z/KILL15:45:10.327297Z，同A100/GPU2。计划4edd175c、源码470b81bf已先推。只读watcher185906按180秒观察原intent；未重新训练或改候选。下游静态检查修正F0引用键删除写错（无下游执行/质量），补有区分力键合同v2；不改变正在运行源。
