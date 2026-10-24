@@ -10,13 +10,14 @@ import time
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def load(p):return json.loads(Path(p).read_text())
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--extraction',required=True);ap.add_argument('--normalizer-source',required=True);ap.add_argument('--references',required=True);ap.add_argument('--input',required=True);ap.add_argument('--train',required=True);ap.add_argument('--hpo',required=True);ap.add_argument('--bank',required=True);ap.add_argument('--model',required=True);ap.add_argument('--output',required=True);ap.add_argument('--device',default='cpu');args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--extraction',required=True);ap.add_argument('--normalizer-source',required=True);ap.add_argument('--references',required=True);ap.add_argument('--input',required=True);ap.add_argument('--train',required=True);ap.add_argument('--hpo',required=True);ap.add_argument('--bank',required=True);ap.add_argument('--model',required=True);ap.add_argument('--output',required=True);ap.add_argument('--device',default='cpu');ap.add_argument('--dataset-contract');args=ap.parse_args()
     refs=load(args.references);source=Path(args.normalizer_source)
     for name,item in refs['files'].items():assert sha(source/name)==item['sha256']
     sys.path.insert(0,str(source));from semantic import GroundedNormalizer
     start=time.monotonic();base=Path(args.extraction);complete=load(base/'complete.json');assert complete['mode']=='full' and complete['documents']==16
-    assert sha(args.input)=='962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415'
     docs={str(d['pmc_id']):d for d in [json.loads(x) for x in Path(args.input).read_text().splitlines() if x]}
+    from dataset_contract import check_dataset
+    check_dataset(args.dataset_contract,args.input,list(docs.values()),'input')
     normalizer=GroundedNormalizer(args.hpo,args.train,model_dir=args.model,bank_dir=args.bank,policy_path=source/'policy_v1.json',device=args.device)
     normalizer.strict.assert_disjoint_input(args.input)
     files=sorted(base.glob('*.mapped.json'));assert len(files)==complete['windows']

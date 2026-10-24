@@ -12,6 +12,7 @@ from pathlib import Path
 import time
 
 from prepare import original_span, patient_for_span, sha
+from dataset_contract import check_dataset
 
 def json_value(x):
     if x is None or isinstance(x,(str,bool,int)):return x
@@ -124,7 +125,7 @@ def execute(engine,schema,config,doc,i,chunk,out):
     return record
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--model',required=True);ap.add_argument('--input',required=True);ap.add_argument('--protocol',required=True);ap.add_argument('--output',required=True);ap.add_argument('--mode',choices=['audit','probe','full'],required=True);ap.add_argument('--dtype',default='float32',choices=['float32','float16','bfloat16']);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--model',required=True);ap.add_argument('--input',required=True);ap.add_argument('--protocol',required=True);ap.add_argument('--output',required=True);ap.add_argument('--mode',choices=['audit','probe','full'],required=True);ap.add_argument('--dtype',default='float32',choices=['float32','float16','bfloat16']);ap.add_argument('--dataset-contract');args=ap.parse_args()
     out=Path(args.output);out.mkdir(parents=True,exist_ok=False);start=time.monotonic()
     try:
         import torch,transformers,gliner2
@@ -132,8 +133,7 @@ def main():
         torch.set_num_threads(4)
         protocol=json.loads(Path(args.protocol).read_text())
         docs=[json.loads(line) for line in Path(args.input).read_text().splitlines() if line]
-        assert sha(args.input)=='32599878940a98d32327541a79ba73fa43869954dfa41f7d040fda15f680d48b'
-        assert len(docs)==16 and sum(len(d['patients']) for d in docs)==39
+        data=check_dataset(args.dataset_contract,args.input,docs,'prepared')
         schema=JointSchema.from_dict(protocol['schema']);config=JointIEConfig(**protocol['joint_config'])
         device='cpu' if args.mode=='audit' else 'cuda'
         if args.mode=='audit':assert not torch.cuda.is_available(),'Audit must hide CUDA devices'
@@ -150,7 +150,7 @@ def main():
                        boundary_settings=engine.model.boundary_settings)
         write(out/'inventory.json',inventory)
         windows=all_windows(docs,engine,protocol);census,compiled=inspect_inputs(engine,windows,schema,protocol,args.model)
-        write(out/'input-census.json',dict(documents=16,patients=39,windows=len(windows),
+        write(out/'input-census.json',dict(documents=len(docs),patients=sum(len(d['patients']) for d in docs),windows=len(windows),
               max_input_ids=max(c['input_ids'] for c in census),word_and_character_mapping_exact=True,
               no_truncation=True,compiled_schema=compiled,rows=census))
         if args.mode=='audit':
