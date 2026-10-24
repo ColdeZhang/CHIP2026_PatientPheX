@@ -72,3 +72,7 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 ### 2026-10-24：复现入口与资产链的实际边界
 
 当前LightGBM103/nested不能沿用旧HGB97/greedy加载器，原full64脚本又含fit/eval。新增纯加载入口已3.272秒精确重建0e2c，但它固定16篇合同并从候选缓存和旧关系模板开始，不等于原文端到端。58件best包已含a179模板；纯input c0fc在上游72件包，不能只查最新包就认定丢失。此次仅补18ac候选pool、HPOa509和新源/合同/审查，旧模型/预测/轮子不重打。完整证据见[纯加载说明](lightgbm_selector_control/PURE-LOAD.md)。
+
+## 2026-10-24 FLA 独立后端后备研究
+
+[有界数值与成本提案](fla_kernel_readiness/research-backend-followup.md)：旧 raw-logit 门仍失败且 raw 未保存，不能据 mean KL 通过直接迁移。建议新 namespace 保存128全词表和真实14390固定32位置、native自身重复与冷暖耗时；raw上界约637MiB/1GiB硬限。只读准备，未GPU/forward/gold，数值/稳态推断/训练各阶段需由root另定，不改现行native或原负结论。
