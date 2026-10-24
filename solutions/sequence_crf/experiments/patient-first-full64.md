@@ -45,3 +45,5 @@
 04:42:33.455619Z `proc_5b00069a-f26c-45c5-a559-c9aa3e7d1d64` / PID120406 已启动，A100 GPU2 fresh UUID/无进程/持久空间门槛通过。4500+TERM30，近似TERM05:57:33/KILL05:58:03，真正截止由remote driver-started确定；源/actualCPU检查点46e6829已push。控制目录 `sequence-round2/patient-first-full64-formal-v1/control/train`，输出同root `/run/formal2ep`。未知观察只读现存job/小状态，不再次start。
 
 单一dev端点已静态冻结87633491/policy901b5b2f，等待真实训练与推断小收据再绑定；203成员、64生成IDs独立decode和codec/strict并列、只a179 literal union一份预测/一次v2。原政策a0b2的Score升best及macro披露口径不变。后续推断仍依完整durable epoch2，不使用probe或部分epoch。
+
+04:45:40首次常规观察：原child120423已完成基座实际指纹/完整编码审计/载模，进入formal_training；无失败或终点，不冒称实际步数。终点控制器 `finish_setup.py` 已准备但未执行，仅在真实epoch2/fullstate齐后绑定3SHA、受限部署两小件并绑定单一dev端点。输入级窄查有2个原候选字面字符串（increased apoptosis、cardiovascular），它们与其余候选同样保持；辅助全HPO假设过严失败单独保存，不改任何训练/推断/端点源码或筛掉候选。
