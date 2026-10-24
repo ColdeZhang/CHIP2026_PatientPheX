@@ -1,0 +1,50 @@
+{
+  "status": "FROZEN_CPU_FIT_AND_ONE_EVALUATION_INTENT_BEFORE_GPU_COMPLETE",
+  "at_utc": "2026-10-24T10:01:57.118896+00:00",
+  "command": [
+    "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+    "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/fit_oof_features.py",
+    "--plan",
+    "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/oof-plan.json",
+    "--actual",
+    "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/actual",
+    "--output",
+    "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/quality",
+    "--hpo",
+    "/workspace/patientphex-data/hp.obo",
+    "--gold",
+    "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl"
+  ],
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/fit_oof_features.py",
+    "bytes": 9981,
+    "sha256": "f6d4277225c60b2480676b3e47525ab5ea0fd7a216cab01681e2508100cfdb21"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/oof-plan.json",
+    "bytes": 14592,
+    "sha256": "89dc2087a318cb704de7a100ad956d27bdf8666e7346079e1f6a4befa72eba4c"
+  },
+  "expected_hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "expected_F1_gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "gold_ref_origin": "Existing stage1 supply identity; no new gold file opened to write this intent",
+  "budget_seconds": 120,
+  "new_fits": 1,
+  "new_v2_calls": 1,
+  "old_v2_calls": 0
+}
