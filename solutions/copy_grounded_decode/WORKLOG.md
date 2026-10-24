@@ -1,6 +1,6 @@
 # Copy-grounded decode 台账
 
-当前状态：**.100 实际 CPU 门通过，GPU39 正式计划已冻结，待推送/新鲜空卡门后唯一启动；尚无新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**.100 GPU0 原正式39推断运行中；尚无新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
 最近远端检查点：2026-10-24 14:47 UTC，`origin/explore/copy-grounded-decode` 的 `b00734176a5d8ec7d2eb372df628fdf38e26b7fc` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
@@ -17,3 +17,5 @@
 - GPU0 须等 sequence 的 F094 和必要 Sap 最终真实释放，再 fresh gate 唯一启动；不会凭旧F1 release/空卡表抢占。后继固定原归一化政策 b59/train32alias/41099 bank，必要 FP16 GPU query 180+30；只冻一份16/39/1189 primary，再一次v2/旧0或零增量byteexact0。F1严格正才考虑F0及新的排F0候选资源。
 - .100 CPU `proc_6dd24d19` 实际14:53:37 rc0、无超时：native7.527秒/wrapper8.390秒；234个真实processor调用状态通过，原39完整203588 tokens/模板/双decode一致，逆序mask→finite确实失败、正确顺序保留原logits并拒绝NaN/±inf。结果 `8c2a642b…`，CUDA未初始化、无模型/forward/generate。
 - sequence 已确认原F094及195必要Sap结束，14:52:39.579562 GPU0=0/noapps；原wrapper `7dfef780…` 已绑定 GPU plan。正式源 [infer.py](infer.py)、[infer-plan](infer-plan.json) 保原同d52/39、greedy/nonthinking/max1600/1800+30；全raw持久后才逐token与完整三元组校验，任何无EOS/cap/非法行阻断质量。
+- 14:56:04.120818 实际唯一正式启动：`proc_4367dbef-1163-4dd1-8778-02436c18a636`，driver2748471/child2748482；GPU0 fresh=0 MiB/24164 MiB free，无其进程，GPU1 foreign保持。TERM15:26:04.120813/KILL15:26:34.120813，不重启/加时。运行源与计划在启动前 `544295b3` 推送核验；该提交已冻结任何无EOS/cap/非法行阻断质量政策，完整39失败不得冒充pipeline漏行或临时改为abstain继续评分。
+- 后处理只改namespace/新source/schema绑定与既定同意公式，复用G严格定位、train32 alias、b59语义政策和原FP16 Sap。`collect_inference.py` 只在原child结束后冻原件ZIP；`postprocess.py contract` 已核旧字面前缀/非关系字节保护及其他旧流支持的新G能入primary，未读gold/调用模型/评分。
