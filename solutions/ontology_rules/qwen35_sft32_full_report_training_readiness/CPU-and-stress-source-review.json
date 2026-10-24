@@ -1,0 +1,413 @@
+{
+  "schema": "delegated-source-review-v1",
+  "at_utc": "2026-10-24T06:14:02.171093+00:00",
+  "status": "PASS_INCREMENTAL_SOURCE_AND_ACTUAL_CPU_NO_CONCRETE_BLOCKER",
+  "scope": "Train124 full-report append and target Torch CPU evidence plus already-authorized unique420+30 stress source; actual GPU terminal is outside this report.",
+  "checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/checks.json",
+    "bytes": 6105,
+    "sha256": "9c287a57f678d3c9b63fc52a774045519343f75ad042e6eef84263ed662c482d"
+  },
+  "source_snapshot_manifest_entries": 29,
+  "conclusion": {
+    "CPU_actual_pass": true,
+    "stress_static_no_blocker": true,
+    "GPU_actual_reviewed": false,
+    "formal_training_authorized": false,
+    "quality_measured": false
+  },
+  "findings": [
+    "训练来源仍为 F2+F3 的 32 文献124行；prepare.py 逐原候选生成/目标折核 (2,3)/(3,2)，排除 F0/F1；独立重核 metadata 文献集合32/32且交集0。未打开标注正文或训练目标。",
+    "全文仅追加到末尾 user 消息，旧构造器 exact SHA 复用；原答案 UTF8、CID/PID和局部证据保留。255 mention 中254 marker，1个同passage重叠mention跳过；owner额外metadata确认该文所有患者仍有marker和全文精确重建，此次不重复打开document-audit正文。",
+    "真实目标运行库的124行 native/Auto/template/双decode检查通过；从安全row audit独立聚合402594→1009181 tokens，最大5523→13549，唯一idx98；7170监督tokens逐行计数及原有实际ID一致收据保留，无截断，cap13824<context262144。",
+    "复用 b469 selected CE 数学/架构证明与 exact dfd0759f loss 源；新增Torch2.7.1+cu126 CPU实际288+2+4+4+4合同通过。最大loss差7.62939453125e-6在既定容差内，已测梯度最大差0；不能说loss逐位相等或GPU梯度必相同。",
+    "对旧H51 probe做源diff；模型/LoRA/完整BF16head/selected loss/真实Adam与梯度累积逻辑保持，新变化限定数据身份/长度、Torch版本、420预算、显式TF32和证据字段。12行使用原native IDs/mask hash检查，105332 tokens；诊断首8建Adam，119/55/69三累积后idx98。",
+    "该压力顺序有意跨原shuffle组边界，非正式次序或warmup重放；非零LR1e-4仅一次诊断更新。fresh公开基座而非旧adapter，状态丢弃，无checkpoint/质量入口。独立模型8997081600含43278336 LoRA，沿用已核库存。",
+    "最终operations53cf/entryadf6绑定实际部署plan SHA；15base SHA新鲜ACK≤300秒和launcher重复fresh GPU UUID/空闲门、privateUID目录、exclusive本地intent+远端driver保证唯一start。MCP unknown保留intent且只读inspect；420+TERM30进程组终止及release证据受控。",
+    "prep导入修正发生token编码/产物前；初版operations list/name/size schema修正发生远端动作前，原未执行版保留。最终source manifest是准备时快照，不能用其PREPARED_NOT_STARTED覆盖后续真实运行状态。"
+  ],
+  "limits": [
+    "这是源/CPU增量审，GPU实际收据、12次backward/Adam状态、最长峰显存及GPU释放由父级统一终审；没有重新运行任何owner程序或远端。",
+    "两epoch2881.348秒是线性token代理，不是实测时间。单次420压力通过也不证明完整训练、多形状显存或质量，正式训练尚未授权。",
+    "原文/训练答案/encoded IDs/gold/权重均未打开或快照；只核安全source、文献来源ID、长度、哈希和数值合同metadata。源代码审查与已有actual receipt构成保真证据，本次不重复tokenizer或loss执行。"
+  ],
+  "safe_snapshots": [
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/prepare.py",
+        "bytes": 6263,
+        "sha256": "e9017f854b0f5ad8702339ec5a25713f72942ee0e8a55b78a8bc774213a9811b"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/e9017f854b0f--prepare.py",
+        "bytes": 6263,
+        "sha256": "e9017f854b0f5ad8702339ec5a25713f72942ee0e8a55b78a8bc774213a9811b"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/preparation.json",
+        "bytes": 4263,
+        "sha256": "c489a9eeb2bc17462e26b23e7e7cf18950c8d0b66ba125bb2da0cfb1deefd14b"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/c489a9eeb2bc--preparation.json",
+        "bytes": 4263,
+        "sha256": "c489a9eeb2bc17462e26b23e7e7cf18950c8d0b66ba125bb2da0cfb1deefd14b"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/native_cpu.py",
+        "bytes": 7949,
+        "sha256": "54d32fe3644120456e473cd0299746bf52384c53401b35eff544781d9c1425b7"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/54d32fe36441--native_cpu.py",
+        "bytes": 7949,
+        "sha256": "54d32fe3644120456e473cd0299746bf52384c53401b35eff544781d9c1425b7"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/cpu-plan.json",
+        "bytes": 3922,
+        "sha256": "a85cc2698c28b26db8069c5e1f7a30b4a154c64202ddfe3f27996f6e44a9ca04"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/a85cc2698c28--cpu-plan.json",
+        "bytes": 3922,
+        "sha256": "a85cc2698c28b26db8069c5e1f7a30b4a154c64202ddfe3f27996f6e44a9ca04"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/run_cpu_once.py",
+        "bytes": 15900,
+        "sha256": "7d1a6e00c2aa28fee6fda2838ceac8d6aee6f522b1ba43497bebff0467f4e230"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/7d1a6e00c2aa--run_cpu_once.py",
+        "bytes": 15900,
+        "sha256": "7d1a6e00c2aa28fee6fda2838ceac8d6aee6f522b1ba43497bebff0467f4e230"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/native-result.json",
+        "bytes": 3013,
+        "sha256": "6a82b6a63c88812a1ab1fdc86d92fb5af9e4b53a4606712790257ea6a8f2acfa"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/6a82b6a63c88--native-result.json",
+        "bytes": 3013,
+        "sha256": "6a82b6a63c88812a1ab1fdc86d92fb5af9e4b53a4606712790257ea6a8f2acfa"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/native-row-audit.json",
+        "bytes": 132192,
+        "sha256": "38afa9b9df2685b074346aa285c2e93e33e81d43764c694763e89a5f6f585935"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/38afa9b9df26--native-row-audit.json",
+        "bytes": 132192,
+        "sha256": "38afa9b9df2685b074346aa285c2e93e33e81d43764c694763e89a5f6f585935"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/CPU-complete.json",
+        "bytes": 404,
+        "sha256": "b51fbc777028b1a9245930570c6129cdab0eac1966c1e0e2e447969b7ea5c709"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/b51fbc777028--CPU-complete.json",
+        "bytes": 404,
+        "sha256": "b51fbc777028b1a9245930570c6129cdab0eac1966c1e0e2e447969b7ea5c709"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/actual-cpu-pointer.json",
+        "bytes": 2492,
+        "sha256": "d998216f0e30797cf6de518c2ff402903584726ffb8d475c9aada38ef27d402f"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/d998216f0e30--actual-cpu-pointer.json",
+        "bytes": 2492,
+        "sha256": "d998216f0e30797cf6de518c2ff402903584726ffb8d475c9aada38ef27d402f"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/readback-verified-1792821789376989904.json",
+        "bytes": 641,
+        "sha256": "bcb46d3178bb3407d1f91b685fcfb1f43586a5f05e1679a45cee11fe61bf39e1"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/bcb46d3178bb--readback-verified-1792821789376989904.json",
+        "bytes": 641,
+        "sha256": "bcb46d3178bb3407d1f91b685fcfb1f43586a5f05e1679a45cee11fe61bf39e1"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/selected_cpu.py",
+        "bytes": 10361,
+        "sha256": "c11868cfa284e4b7fc756e3f2fc816429e08c50c48c13689f47dc4dc2f40fc86"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/c11868cfa284--selected-ce-cpu--selected_cpu.py",
+        "bytes": 10361,
+        "sha256": "c11868cfa284e4b7fc756e3f2fc816429e08c50c48c13689f47dc4dc2f40fc86"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/selected_loss.py",
+        "bytes": 1101,
+        "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/dfd0759fd43a--selected-ce-cpu--selected_loss.py",
+        "bytes": 1101,
+        "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/plan.json",
+        "bytes": 2443,
+        "sha256": "5a718f29346bf3eaa6868a0615c0fb54a5da79cf4e22cbd0f8250df496f5c138"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/5a718f29346b--selected-ce-cpu--plan.json",
+        "bytes": 2443,
+        "sha256": "5a718f29346bf3eaa6868a0615c0fb54a5da79cf4e22cbd0f8250df496f5c138"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/run_cpu_once.py",
+        "bytes": 15665,
+        "sha256": "96f80c8d720d2d2d670d385542400b8b5831d3ec237138a203f6ee3a4fb39c6d"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/96f80c8d720d--selected-ce-cpu--run_cpu_once.py",
+        "bytes": 15665,
+        "sha256": "96f80c8d720d2d2d670d385542400b8b5831d3ec237138a203f6ee3a4fb39c6d"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/contract-result.json",
+        "bytes": 88396,
+        "sha256": "3e10ab129436c77adacec072e93e0ddf0ba729daf559b1a9a16421ebca02afb1"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/3e10ab129436--selected-ce-cpu--contract-result.json",
+        "bytes": 88396,
+        "sha256": "3e10ab129436c77adacec072e93e0ddf0ba729daf559b1a9a16421ebca02afb1"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/CPU-complete.json",
+        "bytes": 416,
+        "sha256": "4b0e12a6a37fc64338af75b3861846889b2fd5174503e51f15ba20fd0d2cb163"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/4b0e12a6a37f--selected-ce-cpu--CPU-complete.json",
+        "bytes": 416,
+        "sha256": "4b0e12a6a37fc64338af75b3861846889b2fd5174503e51f15ba20fd0d2cb163"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/readback-verified-1792821742925609732.json",
+        "bytes": 499,
+        "sha256": "7a0f7d46497deea24a5671ceab82e4507a7753747cf68a203b5766678ff8e2ea"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/7a0f7d46497d--selected-ce-cpu--readback-verified-1792821742925609732.json",
+        "bytes": 499,
+        "sha256": "7a0f7d46497deea24a5671ceab82e4507a7753747cf68a203b5766678ff8e2ea"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-actual-summary.json",
+        "bytes": 4381,
+        "sha256": "609c76e1fd40b786f9a6a2884789c26b14af3636ff68d6fdfe2b0006d6c6f133"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/609c76e1fd40--selected-ce-actual-summary.json",
+        "bytes": 4381,
+        "sha256": "609c76e1fd40b786f9a6a2884789c26b14af3636ff68d6fdfe2b0006d6c6f133"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/probe.py",
+        "bytes": 14046,
+        "sha256": "165e9bfcb075d1ec918df4318beabee086957b81aa6d3eb7e4e423d11e6018ee"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/165e9bfcb075--stress-probe-v1--probe.py",
+        "bytes": 14046,
+        "sha256": "165e9bfcb075d1ec918df4318beabee086957b81aa6d3eb7e4e423d11e6018ee"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/plan.json",
+        "bytes": 8618,
+        "sha256": "32f089dfe6f387ac257bec1ca40072d96fbf44e3c2c36f83a31a3551f970194e"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/32f089dfe6f3--stress-probe-v1--plan.json",
+        "bytes": 8618,
+        "sha256": "32f089dfe6f387ac257bec1ca40072d96fbf44e3c2c36f83a31a3551f970194e"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/launch.py",
+        "bytes": 3773,
+        "sha256": "ac3d2bd06c75f86b82a3a1f59ce66f388eaa3f83b535f93093e021ea478d33dc"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/ac3d2bd06c75--stress-probe-v1--launch.py",
+        "bytes": 3773,
+        "sha256": "ac3d2bd06c75f86b82a3a1f59ce66f388eaa3f83b535f93093e021ea478d33dc"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/operations.py",
+        "bytes": 12030,
+        "sha256": "53cf1c7a28decb79303d1b64258f0ad8997b48a04b62bdd038f1c8ce44686bae"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/53cf1c7a28de--stress-probe-v1--operations.py",
+        "bytes": 12030,
+        "sha256": "53cf1c7a28decb79303d1b64258f0ad8997b48a04b62bdd038f1c8ce44686bae"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/entry.json",
+        "bytes": 1272,
+        "sha256": "adf673ddae3c87d2bdbedfeb4aa800b5decf110c1ae70ffdb47aa75a32d8b1da"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/adf673ddae3c--stress-probe-v1--entry.json",
+        "bytes": 1272,
+        "sha256": "adf673ddae3c87d2bdbedfeb4aa800b5decf110c1ae70ffdb47aa75a32d8b1da"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/source-manifest.json",
+        "bytes": 7161,
+        "sha256": "f200c4ccba388391aa2d8bdbee35d7a15e51f75f1798fd4f72726396cd7367c2"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/f200c4ccba38--stress-probe-v1--source-manifest.json",
+        "bytes": 7161,
+        "sha256": "f200c4ccba388391aa2d8bdbee35d7a15e51f75f1798fd4f72726396cd7367c2"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/probe-data.json",
+        "bytes": 3340,
+        "sha256": "c2d8322154933b7fc6808f60498671463524be0d05daccd37a1af8187b15decb"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/c2d832215493--stress-probe-v1--probe-data.json",
+        "bytes": 3340,
+        "sha256": "c2d8322154933b7fc6808f60498671463524be0d05daccd37a1af8187b15decb"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/prepare.py",
+        "bytes": 9393,
+        "sha256": "c4f625fd5152708ab6643cdcc0d8be4f2d355d276d89ff73b37ba8fed5225abf"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/c4f625fd5152--stress-probe-v1--prepare.py",
+        "bytes": 9393,
+        "sha256": "c4f625fd5152708ab6643cdcc0d8be4f2d355d276d89ff73b37ba8fed5225abf"
+      },
+      "content_class": "source"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/preparation-import-correction.json",
+        "bytes": 213,
+        "sha256": "e2baf62ce5eb49930ccfae19ebbcdf40d049a58a54ee50c5c6cd3407810c7f18"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/e2baf62ce5eb--stress-probe-v1--preparation-import-correction.json",
+        "bytes": 213,
+        "sha256": "e2baf62ce5eb49930ccfae19ebbcdf40d049a58a54ee50c5c6cd3407810c7f18"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/deployment-manifest.json",
+        "bytes": 2355,
+        "sha256": "f256cd93c1ee2de874f247cc1f2ee186523cbd058446a372c491f244f8bb5dec"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/f256cd93c1ee--stress-probe-v1--deployment-manifest.json",
+        "bytes": 2355,
+        "sha256": "f256cd93c1ee2de874f247cc1f2ee186523cbd058446a372c491f244f8bb5dec"
+      },
+      "content_class": "safe_metadata_no_payload"
+    },
+    {
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/stress-probe-v1/model-source-manifest.json",
+        "bytes": 3911,
+        "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen35-fulltext-training-probe-review/delegated-source/snapshots/74e82bd3a6ee--stress-probe-v1--model-source-manifest.json",
+        "bytes": 3911,
+        "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+      },
+      "content_class": "safe_metadata_no_payload"
+    }
+  ]
+}
