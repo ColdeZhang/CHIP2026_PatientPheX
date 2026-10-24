@@ -59,3 +59,5 @@
 - PubMed train32 CPU完整成功：native14.164822秒/整体18.536317秒rc0，1658原native实际输入0截断/max21；冲突与unsupported保护后1252 unique=811正+27NO+237边界负+177普通负，31正query多原等价列、单轮64共20步。稳定logits loss同TF CPU0.329863秒5数值+5拒绝及Dense接口通过，未加载原模型/fit/GPU/heldgold。主比较已冻F1强Task1 .728697536469、同源诊断 .658357066464分别比自身旧端点；完整预算仍待真实反向工程。源码/小清单及全产物双地指针见[CPU完成](public_h5_adaptation_readiness/train32_prepare/README.md)。
 
 - PubMed原H5唯一GPU工程入口已准备（未部署/未GPU）：独立gpu_probe命名空间，plan186b82ff，真实首64/次64/tail36、freshAdam5e−6三更新，原softmax/共享Dense合同与差异先存、原unused pooler2例外，其余encoder/head梯度与Adam状态核；总240+TERM30。15项本地静态/已有数据检查通过，7件119502B包c1c06368；activation/job不存在，仍等官方accepted及root调度，不自动20步或held评分。[工程入口](public_h5_adaptation_readiness/gpu_probe/README.md)。
+
+- root已给PubMed短探针条件授权：收到真实官方accepted回执后，fresh空A100 GPU2可直接唯一240+30，无需再次批准；尚未收到回执/未建activation/未GPU。仍不自动20步或held质量。原plan186b82ff不改，另存[条件授权](public_h5_adaptation_readiness/gpu_probe/conditional-authorization.json)。
