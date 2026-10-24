@@ -12,4 +12,4 @@ BF16权重约15.256GiB，理论batch1 KV为每token147456B，8192总token约1.12
 
 下一已获根线程授权仅资产准备：.100持久自有目录缓存优先，单2100秒+TERM30固定下载窗口、完整SHA/真实头核；不装环境、不加载模型、不GPU/新gold/评分。原metadata和当前源码先入Git，未知启动/监控先核原intent/job，partial保留，不重复下载。
 
-资产唯一作业已于2026-10-24T03:05:56.359Z启动：`proc_1c596785-307e-4471-8541-c982943da8bb`，.100 mount5a9955da；绝对截止2026-10-24T03:40:49.472593+00:00+TERM30。原intent/job与远端启动标记是恢复依据；Git源07b46dc两次401尚未推送，但已完成远端3源SHA核与Python3.10实际编译，后续有界重试Git。恢复入口`assets/poll_original.py`，不要重发start。
+资产唯一作业已于2026-10-24T03:05:56.359Z启动：`proc_1c596785-307e-4471-8541-c982943da8bb`，.100 mount5a9955da；绝对截止2026-10-24T03:40:49.472593+00:00+TERM30。原intent/job与远端启动标记是恢复依据；原Git401已由主线程03:07代推解决：4edacb9 push+lsremote exact，源/job已GitHub备份；远端3源SHA与Python3.10实际编译也通过。恢复入口`assets/poll_original.py`，不要重发start。

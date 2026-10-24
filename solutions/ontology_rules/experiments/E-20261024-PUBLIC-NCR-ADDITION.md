@@ -41,3 +41,5 @@
 正式plan的`status/template_policy`保留模板阶段描述，运行前已明确`execution_ready=true`及根线程持续授权，源实际检查后启动唯一window；运行中未修改冻结plan，实际边界由window与完整终点证明。后续新计划应同步清理模板描述，避免记录语义混杂。
 
 增删归因边界：现有冻结诊断只记录nested解码的输入侧碰撞/追加，metrics只含逐文与聚合计数，**未保存相对强B的新增/删除各自TP/FP分解**。按本次只复用证据的范围，不新增gold诊断/预测/调参；−7TP/−17FP只是净变化，不能从中唯一反推出四格。聚合小正伴随净FP减少、召回略降；关闭的是本次固定配方，不能推广为NCR所有用法无效。证据 [可用性](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/existing-diagnostic-availability.json)。
+
+持久备份：03:10:45 .100实际归档并全SHA/fsync/readback/65成员逐一校验通过。660803B包SHA `bb9aa427b3fc28d81bc86e9103c818d5ecc7ee5fcd56b270d3a54dd7041adf02`，包含四最终预测/metrics/实际小HGB+vectorizer/终审/必要源manifest，不含gold、NN权重、大特征或全cache。[恢复locator与回执](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/persistent-terminal-backup/stored-receipt.json)，解包时仅恢复自有目标目录并按members.json核每件；依赖输入仍按原manifest外部定位。
