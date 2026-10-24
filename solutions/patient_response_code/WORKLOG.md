@@ -1,6 +1,6 @@
 # 工作台账
 
-当前优先：A800 full64 H51已13:50:37 rc0/108.261秒完整PASS并释放，53件回收0f6d74e2。12反向+1Adam/两Pareto/三家族/base冻结，allocated25.330GB/reserved26.873GB/free57.672GB。实际cost保守4877.762<5400；新formal真实gate/源已齐，下一唯一fresh265×2/68updates/warmup4/5400两ACK→64fresh1200纯组件，严禁旧A100bootstrap。
+当前优先：A800 full64 fresh2ep已13:53:55真实start proc_81366e65/PID49750，原bootstrap driver49955于13:54:12进入epoch1。共享5400硬截止15:23:52.618929 UTC（TERM+30），两个完整state ACK均含在窗内，尾1/warmup4/68updates不变。独立watcher178713/PPID1/SID178713、真实exclusive lock已核，首inspect13:54:15成功。唯一恢复入口full64_a800/controller/entry.py、仓外B=R/research/patient-response-code-full64-a800-v1/controller；只接原作业，严禁旧A100bootstrap或另起watch。完成两ACK后原64fresh1200+30纯组件，零本线gold/v2。
 
 - 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
@@ -52,3 +52,7 @@ A100原formal campaign/start均0，closure独立保存，不再bootstrap；其�
 ### 2026-10-24 13:52 UTC — A800 real probe PASS, formal activated
 
 原proc f275c605于13:50:37.311755结束108.260981s，12FB/1Adam，pressure81.110216s，Torch2.7.1+cu126/TF5.20.2实际source/native IDs核过；496Adam+496积累梯度全finite/base无梯度、三LoRA族真实更新，最大6462/125及4800/128都过。GPU释放1MiB/noapps。53原终点0f6d74e2齐，A800新actualcoste2c93eef沿旧A100更保守3557.762训练代理加1200导出/120未测余量→4877.762（估计非保证）。fresh2ep原5400硬窗不扩，entry7129f94a已实际激活但未modelstart。Helper97源合同/40py+24内嵌compile全过；仅新推断launch补原assembler所需timed_out布尔metadata，旧源不动，无方法变化。A100原临时HTTP13:50:23实际关闭、能力文件两端删除，原失败/未执行源与有效probe保留。
+
+### 2026-10-24 13:54 UTC — unique formal actual start, monitor proved live
+
+1838f263已推核，标准deploy两机逐文件SHA/compile/fsync通过；原bootstrap515bd290唯一proc81366e65/PID49750于13:53:55.724846301启动。共享campaign从13:53:52.618929起，截止15:23:52.618929；driver49955于13:54:12.029481实际进入epoch1/source_and_data，旧A100完全未start。detached watcher178713实际PPID1/SID178713/start_ticks10267944，第二非阻塞flock实测被拒，首inspect13:54:15成功且stderr空。原源/计划/e124与5400时钟不变，监控与模型分别记录；未知状态先恢复，不重复训练。
