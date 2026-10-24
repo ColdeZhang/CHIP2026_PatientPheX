@@ -22,6 +22,8 @@
 - 最后job `proc_d63b7015-88a0-4da5-981e-cda0ee2ee160` 已观察running=false，实际终点在 `published-interface-v1/codec-longest-v1/gpu/recovered/`；只读恢复脚本 `poll_original.py`，不得重发start。
 - 统一终审09612e0f通过；主线程已授权下一阶段同F1固定80（2缓存+78新）、逐row fresh同seed、10800+TERM30。[正式作业](deepseek_r1_readiness/full80-preparation/README.md) `proc_12e6dfa0-4f21-4f0a-a2d2-4ad35a5ab248` 已04:12:06.254启动，主截止07:12:06.254+TERM30；plan4a88bd33原留。CPU同入口0.084秒通过，监控 `full80-preparation/monitor_original.py`（local52878），不得重发start。固定standalone与唯一oldSFT32∪R1两臂，共同冻结后各唯一v2；失败行弃答不修补。
 
+- 并行[F0准备](deepseek_r1_readiness/f0-preparation/README.md)：原58提示CPU与.100→A800私有SHM九资产copy，单2400+30预算；未start GPU/质量。资产+58CPU齐后仅最长一条240+30已获工程授权，另冻真实输入/源，不自动全58。
+
 ## 最近结案与索引
 
 - 强 BioBERT+NCR固定四fold **.730993616→.731229952**，仅2/4非降<事前3/4，关闭当前配方；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact、0错警，不迁原dev/扫cut。60.879秒/rc0，独审de325a2c。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)。
