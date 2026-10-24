@@ -215,6 +215,8 @@ GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_di
 
 **避免方法**：按运行命令所用解释器核对版本，对新增辅助函数先做相同环境的CPU检查；跨3.10/3.11的文件哈希使用分块 `hashlib.sha256().update()`。已修复兼容调用，wrapper SHA `2688f27b…`；实际3.10.12哈希检查通过，重启作业也通过文件绑定并进入推断。专门CPU自检发生在重启后，不能记成启动前已执行。首次失败、原源码和修复记录保存在外部 `sequence_crf/gliner-biomed-nested/attempt1-pythonhash/`、`attempt1-failure.json`、`actual-wrapper-hash-probe.json`；模型/解码协议未改变，不能将启动器失败记成模型质量负结果。后续质量结论见[序列台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/WORKLOG.md)。
 
+同类实例（2026-10-24）：ICL adapter传输源使用默认Python3.8，HTTP handler调用3.9才支持的 `str.removeprefix`，源端请求即退出，目标端表现为 `RemoteDisconnected`。不能只检查目标机或把该症状直接归因网络。改为兼容的 `startswith`/切片后，实际两文件18.432秒完成并核完整SHA，源服务已停止；失败保留于外部 `research/retrieved-json-example/formal/attempt2-python38-transfer/`，成功凭据 `formal/adapter-transfer.json` SHA `fd5ed20b4b3658333e231db3d5d0e1b41b8faf52273a58cf2b04621e5bf28644`。辅助源服务器同样要按实际解释器检查，不只检查模型进程。
+
 ## H34：文件哈希不能恢复当时未提交的可变文档
 
 生成式NER研究读取方案台账和实验记录时，这两份文件含尚未提交的变更。报告保存了当时SHA，但文件随后继续编辑，记录的Git HEAD也不含这些字节；本次检查现有提交与快照后无法精确恢复。主体研究脚本、报告及已有实验结果仍可核验，不应把两份背景版本缺失夸大为全部结果失效，也不能宣称完整来源字节可复原。
@@ -262,6 +264,12 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 私有 TensorFlow 2.12 / Transformers 4.30.1 环境中，`import tensorflow` 成功不保证 Transformers 的后端探测认为 TensorFlow 可用。BioBERT 新启动器遗漏旧加载入口的 `FORCE_TF_AVAILABLE=1`，5.375秒后在 `TFAutoModel.from_config` 退出，尚未构建编码器、加载H5或forward；这是此前已遇到的环境问题再次出现，不能记成模型质量失败。
 
 **避免方法**：复用入口时检查完整命令和环境，而非只复制模型代码；在首次导入 Transformers 前设置已验证的后端开关，不在已缓存后端状态的进程里补设。CPU检查继续隐藏CUDA、共享依赖只读。此次仅在独立attempt2补上上述变量，原模型/配置/词表和检查代码不变，20.054秒完成201变量、121,587,826参数严格恢复和4条合成短语接口检查；两次共25.430秒，原失败证据保留。结果 `research/public-phenotagger-biobert/attempt2/native-h5-result.json` SHA `545eadcb6f9d5419aece46ab89031d5dcc27b347f30a2949c22c5e75d47aee5f`，独审 `validation/public-biobert-native-review/review.json` SHA `f954be78a92fae7a88c720ea153aaa2edb6d8cb8e7c64f4860cc8a9baef3806d`；仅证明实际加载/接口通过，未证明赛事质量。
+
+## H42：验证 loss mask 时，不能混入骨干模型跨形状的数值变化
+
+JSON 值加权的首次探针比较591 token与追加8个masked pad后的599 token，因loss差超过预设容差退出；当时未保存同形状原生参考，不能判定加权实现错误。独立第二次诊断发现，原生full CE跨形状本身变化−.0185713；在各自固定形状内，selected/full logits完全相同、weight2 loss相同，LoRA梯度相对L2差1.62–1.69%，通过事前2%容差，但并非逐位相同。骨干变化的具体原因仍未确认，不能直接归因BF16或宣布任意padding等价。
+
+**避免方法**：分别验证三个问题：同一输入形状下的新旧loss实现；固定logits上被忽略位置的loss/梯度屏蔽；骨干跨形状的行为。冻结logits并污染8个忽略位置时，loss/梯度均完全不变；最长5523 token的真实无padding更新通过，head保持冻结、三类LoRA参数实际更新。保留第一次失败，数值诊断状态丢弃后再fresh正式训练，不把探针通过当质量改善。证据 `validation/json-value-weighted-probe-review/attempt2-review.json` SHA `d71c6e5298a6a3a5a94e57a8a15a2806e1e1cd725ba15de859f6dc96ecc6675a`；实际96.492秒、GPU已释放，后续训练状态见检索方案台账。
 
 ## 更新方式
 
