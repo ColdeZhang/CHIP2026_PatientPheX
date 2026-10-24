@@ -1,5 +1,7 @@
 # DeepSeek-R1-0528-Qwen3-8B：原生资产、接口与成本
 
+**当前入口**：[准确发布接口及有限codec终点](published-interface-v1/REPORT.md)。正确first2014与longest5689分别产生746/2197 token并自然结束；新codec两条可用，旧拒绝保留。最长wrapper92.494秒/rc0、GPU已释放；无全80或质量评分。下文保留先前资产及错误AutoTokenizer阶段的历史证据，不能作为当前发布输入结论。
+
 **后续接口纠正：当前TF5 AutoTokenizer改写了发布ByteLevel编码，80条输入ID均不同。旧CPU/GPU事实原留，不能称准确发布输入验证；见[完整纠正与下一步](ERRATA-TOKENIZER-20261024.md)。**
 
 准备实验 `P-20261024-R1-0528-READINESS`。**准确模型资产及原生加载通过；1,024 token预算未产生完整最终答案。** 唯一GPU程序45.260秒、wrapper46.141秒/rc0，首条达到token上限后按事前规则停止余两条；无gold、全80推断或质量分，不据此否定R1提升比赛分数的可能性。完整[合一清单](terminal-manifest.json) SHA `d172a788…`，实际[小摘要](gpu-probe/terminal-summary.json) SHA `a1d3aea0…`；统一独立终审8fa2f637通过（validation/deepseek-r1-format-cost-review/review.json）；质量仍未知。

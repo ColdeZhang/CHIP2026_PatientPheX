@@ -12,4 +12,11 @@
 
 实际Python3.10纯标准库CPU0.000987秒/rc0，5正23负通过；仅复用已冻first746生成文本，正常化后8个原有CID、2个整数→P1别名，6个[]原本已经明确给出，没有新填。原strict=false及raw SHA42ea06fa保持；新normalized-valid另记于[CPU收据](codec-longest-v1/actual-cpu-result.json) SHA9251c886。无tokenizer/模型/新预测/质量执行。
 
-后继仅longest5689/index73，fresh固定seed从原提示生成，不续旧RNG/KV、first不重NN。单4096/240+TERM30/225soft，原发布tokenizer/scale1/采样参数保持；遇截断/非法归一结果停止，不继续宽化codec或预算。源a737f47e、plan d6f6bc5e，actual5源SHA/Python3.10compile通过，尚未启动。新政策及作业与已终止原pilot分开记录。
+后继仅longest5689/index73，fresh固定seed从原提示生成，不续旧RNG/KV、first不重NN。单4096/240+TERM30/225soft，原发布tokenizer/scale1/采样参数保持；遇截断/非法归一结果停止，不继续宽化codec或预算。源a737f47e、plan d6f6bc5e，actual5源SHA/Python3.10compile通过。新政策及作业与已终止原pilot分开记录。
+
+
+唯一后继现已完整结束：longest5689→2197 token，79.0131秒/27.8055 token/s（含prefill），自然EOS、think各一次完整闭合，没有token/wall截断；原strict、新sparse与normalized均通过，8/8 CID均明确给出，无缺键，也无需围栏剥离或整数别名转换。wrapper92.4942秒/rc0，加载6.6024秒，峰allocated19,495,760,896B，04:04:37.441实际目标GPU1为0MiB/无计算进程。只有这一个新生成，first没有重跑。
+
+新[合一清单](codec-longest-v1/terminal-manifest.json) SHA02986fde、[实际摘要](codec-longest-v1/gpu/terminal-summary.json) SHA459f5c7c保存CPU/最长原始来源；raw/全部2197生成IDs留本地及.100持久namespace，SHA9317e39a。原两个错误AutoTokenizer作业和首条旧strict拒绝保持。当前仅证实两个确定输入的格式与成本：首条24.315秒、最长79.013秒；不是完整80的吞吐或质量。其余78条没有推理，不自行扩预算或读取gold，后继同池对照由主线程另定。
+
+统一终审[09612e0f](codec-longest-v1/review.json)通过，31引用及10实际产物完整核验；未重复模型或CPU测试。后继主线程已授权同F1固定80（2缓存+78新）的独立正式对照，10800+TERM30，源/计划另冻；本报告只结案当前格式成本阶段。

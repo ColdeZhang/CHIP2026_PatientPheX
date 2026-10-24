@@ -1,0 +1,149 @@
+{
+  "status": "PASS_FIXED_CODEC_CPU_AND_ACTUAL_LONGEST_FORMAT_COST_NOT_TASK_QUALITY",
+  "reviewed_at_utc": "2026-10-24T04:08:18.300451+00:00",
+  "scope": "仅增量核新有限codec/缓存first纯CPU与唯一fresh最长GPU的完整收据。原发布80CPU/资产/原pilot源合同沿用，不重运行tokenizer、parser、fixture、NN、evaluator，不读gold或修改owner/Git/live。",
+  "prior_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-published-interface-review/review.json",
+    "sha256": "6c8e929380a19ddebbcdb3fd37f41a4b6617ba73af4db31b23bd570a1cf070ac",
+    "bytes": 10284
+  },
+  "checks": {
+    "source_and_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/checks.json",
+      "sha256": "b0ba437828f5c30d9c7b6a9c704e4263edf300995e5993e9cc1408e23536254d",
+      "bytes": 6413
+    },
+    "actual_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/actual-terminal-checks.json",
+      "sha256": "648d2aff324eb46581770299f7bd2d9a3d98f3c74952d72a5cd641ed437921fc",
+      "bytes": 1028
+    }
+  },
+  "snapshots": {
+    "source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshot-manifest.json",
+      "sha256": "55e1bfa32414145ac08fc1e62c6aa24efe2555ce33a0e2e6b5879046e9916c9e",
+      "bytes": 9074
+    },
+    "terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/terminal-snapshot-manifest.json",
+      "sha256": "138ec2aaa1d4674d9806547637d59cef5797f257eb128dc0318d1db9f65a8e64",
+      "bytes": 14673
+    }
+  },
+  "owner_terminal_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/terminal-snapshots/terminal-manifest.json",
+    "sha256": "02986fde63eeafeb430105779ddf57782ec4b2843945b58008a62865c33d3b23",
+    "bytes": 10948
+  },
+  "owner_terminal_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/terminal-summary.json",
+    "sha256": "459f5c7ccdf4a344b36a4a68cee7112dce99015c35cc889b604b7a532a0ae2fb",
+    "bytes": 7177
+  },
+  "new_policy": {
+    "codec": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/normalized_final.py",
+      "sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe",
+      "bytes": 4465
+    },
+    "codec_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/codec-plan.json",
+      "sha256": "4d4ece9e325260e5321d2c52ea344cdc35fc8e37212cc1b18dd413330d77aa10",
+      "bytes": 1491
+    },
+    "scope": "An explicitly new policy after old strict failure, before any quality. Only a whole JSON body or single complete lowercasejson/empty-language outer fence; no surrounding prose/arbitrary-language fences/substrings. DuplicateJSONkeys/nonfiniteconstants reject. Existing allowed literal string PIDs unchanged; type(value)isint and value>=0 maps only to exact allowed P+canonical decimal, no padded inference; bool,float,negative,unknown and duplicates after normalization reject. MissingCID is abstention, never filled []. NativeEOS/closed optional reasoning still required.",
+    "boundary_examples": "Integer0 permitted only if literalP0 allowed. Integer1 does not implyP01. A literalP01 is accepted only if it is itself explicitly in allowed strings; no alias inference.",
+    "limits": "No truncation repair or semantic answer substitution; further codec widening requires a separate explicit policy, never automatic."
+  },
+  "cached_first_CPU": {
+    "actual": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/actual-cpu-result.json",
+      "sha256": "9251c88609cf77fbda687d484905bb7a8962a011917e2290f58fe6f79cff6eeb",
+      "bytes": 1832
+    },
+    "seconds": 0.0009871218353509903,
+    "runtime_python": "3.10.12",
+    "exit_code": 0,
+    "budget_seconds": "29+TERM1",
+    "cases": {
+      "valid": 5,
+      "rejected": 23
+    },
+    "first_raw_SHA256": "42ea06fa327f55bf49741ee7bce45d0f02903a9200038b207f9356e16ee8edac",
+    "existing_generated_tokens": 746,
+    "new_normalized": "All8 CID present, only C003/C006 integer1 mapped to exactP1, one wholejson fence removed,0abstentions/0filledkeys. Other six empty lists were actually present in original output.",
+    "old_verdict": "Original strict=false/JSONchar0 error and rawbytes unchanged. This is a separate cached parse result, not regenerated model output. No NN/tokenizer/weights/gold in CPU stage."
+  },
+  "new_longest_entry": {
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/plan.json",
+      "sha256": "d6f6bc5e3b84fc41c73d060f3e9dca8df01959e9ffabad51ba870cbede3c3604",
+      "bytes": 6524
+    },
+    "runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/run_probe.py",
+      "sha256": "a737f47e818a3eff8e5b9eea26eb3f13538cc0077b8319b1c12fc21e1b827d67",
+      "bytes": 18805
+    },
+    "launcher": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/launch_probe.py",
+      "sha256": "00e3a2583f61d459bcd1bfa162ad52ec5a56ee617b1f230e617a0bf0c1564834",
+      "bytes": 4117
+    },
+    "selection": "Only originalpair[1:2], index73/row6063015:relations:0, newpublished5689 IDs dcebddee; first2014 not regenerated.",
+    "sampling": "Fresh native load and seed20261024, no priorRNG/KV continuation; same publishedgenericJSON and derivedattention_factor1.0, originalconfig unchanged. temperature.6/top_p.95/top_k0/repetition1; max4096.",
+    "budget": {
+      "main_seconds": 240,
+      "TERM_grace_seconds": 30,
+      "internal_soft_seconds": 225
+    },
+    "source_delta": "Original input/native model/rotary loading block byte-identical; only selected-longest, finitecodec, newbudget/status/source bindings. No new modelcheck/GPUprobe by reviewer."
+  },
+  "actual_longest": {
+    "job": "proc_d63b7015",
+    "started_at": "2026-10-24T04:03:04.811096+00:00",
+    "row_id": "6063015:relations:0",
+    "input_tokens": 5689,
+    "generated_tokens": 2197,
+    "generated_IDs_SHA256": "d0b785cc61103f55f9cf44e97972cb9b763a1666b5e15a9b62c378bf82d60b4d",
+    "row": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/terminal/row0.json",
+      "sha256": "9317e39a71a0a53be0c50cfce207523e39e4a0a4d76d36e0881c5db135018c16",
+      "bytes": 38213
+    },
+    "natural": "Exactly one nativeEOS151645 at end, one thinkopen/close, no token/wallcap. Partial2176 is exact finalprefix only.",
+    "format": "Originalstrict,lawfulsparse and newnormalized allvalid. Same all8CID mappings and allowed OII-1/OII-2 literal PIDs in allthree savedviews; none missing. Longest needed0fence removal/0integeraliases. Reviewer checks recordedmapping equality/types/allowedsets but doesnotrerunparser.",
+    "wrapper_returncode": 0,
+    "wrapper_seconds": 92.49415340321139,
+    "native_seconds": 91.52517994400114,
+    "load_seconds": 6.6023604911752045,
+    "generation_seconds": 79.01309342496097,
+    "generation_tps_includingprefill": 27.80551810803989,
+    "peak_allocated_bytes": 19495760896,
+    "peak_reserved_bytes": 19505610752,
+    "parameters": {
+      "count": 8190735360,
+      "tensors": 399,
+      "loading_missing_unexpected_mismatched_errors": 0,
+      "all_actual_shape_BF16_finite": true,
+      "full_weight_value_byte_compare_against_asset_files": false
+    },
+    "rotary": "ActualFP32/64 values,scale1.0; actualCPUfrequency byteSHA427e exact. SameGPU reference relative9.07048e-8 withinpredeclared8eps9.53674e-7, notbyteexact; no claimed fullvLLMlogit equivalence.",
+    "TF32_end": {
+      "matmul": false,
+      "cudnn": false
+    },
+    "release": {
+      "at": "2026-10-24T04:04:37.441102+00:00",
+      "gpu": "1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, NVIDIA A30, 0, 24164, 24576",
+      "compute_apps": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2661694"
+    },
+    "target_UUID_empty": true
+  },
+  "integrity": "All30 owner refs+manifest size/SHA frozen,15 reuse source snapshots/16 new snapshots109183B; all10 recovered members exact. No weights or gold copied. Native full9assetSHA receipt reused with currentstat stability and completeparameterloading, not a new16GBhash scan.",
+  "interpretation": "Finite codec and longest format/cost are established for these two fixed samples. This doesnot measure correct phenotype-patient relations or all80 reliability/score. Root is considering a separatefixed80 qualityplan; none executed or reviewed here, no extrapolated success. Prior oldwrongtokenizer and originalstrictfirstnegative records remain immutable.",
+  "official_submission": false,
+  "current_original_dev_unchanged": 0.7460819649861977,
+  "issues": []
+}
