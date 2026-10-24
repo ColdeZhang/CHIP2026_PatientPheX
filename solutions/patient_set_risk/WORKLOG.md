@@ -54,3 +54,5 @@ sequence的F047+必要27Sap链已于16:36:26.770621释放.100GPU0，原wrapper33
 原91b6执行绑定与已部署v1 namespace完全保留、未admit/start。新增v4绑定使用pilot-A100-v2新namespace，原fixed4 inputs相同。没有重跑旧loss/normalizer数学或另做整套源审。
 
 v4新namespace的10件部署完整fsync/reopen通过，原v3部署完全保留。新inputs仍为86,878B/1c78f25a，无输入变化。`evidence/deployed-A100-generation-reset.json`是当前部署入口；没有admission/start。准确前序owner为ontology_recover_0518，须等待其seed39真实释放.12GPU2，schema_extraction只管另一台.100GPU1，不能混用释放信息。
+
+根线程确认seed39已16:42:47启动、尚需约1105秒，要求释放agent槽等待owner事件，不开远端watch。最终单一接手入口 `EXECUTION_HANDOFF.md` 已写，含776b最新完整部署/源码/root增量审、真实资源条件、单次启动→8raw→动态奖励→收件准确命令、UNKNOWN恢复边界。此刻local unique-start-intent仍不存在；没有admission或GPU开始。收到ontology实际release后由root唤醒本owner沿同意图继续。
