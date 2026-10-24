@@ -2,7 +2,7 @@
 Only CPU HTTP/disk I/O; owner freezes the separate absolute min600/remaining-campaign export deadline.
 """
 from pathlib import Path, PurePosixPath
-import argparse, datetime, hashlib, json, os, re, time, urllib.request
+import argparse, datetime, hashlib, json, os, re, time, urllib.request, shutil
 
 CHECKPOINT_REQUIRED = {'training_state.pt','adapter/adapter_model.safetensors','adapter/adapter_config.json'}
 CHECKPOINT_ALLOWED = CHECKPOINT_REQUIRED | {'adapter/README.md'}
@@ -47,6 +47,9 @@ def main():
     started=time.monotonic();root=Path(a.destination)
     assert root.is_absolute() and '..' not in root.parts and root.parent==PERSISTENT_ROOT
     assert root.name in {'epoch-001','epoch-002'} and not root.is_symlink()
+    existing=root.parent
+    while not existing.exists():existing=existing.parent
+    assert shutil.disk_usage(existing).free>=2*1024**3,'Preserve persistent checkpoint headroom before each export'
     assert time.time()<a.deadline
     with urllib.request.urlopen(a.url+'/manifest.json',timeout=min(20,max(1,a.deadline-time.time()))) as response:data=response.read()
     assert hashlib.sha256(data).hexdigest()==a.manifest_sha256
