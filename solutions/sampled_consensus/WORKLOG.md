@@ -9,3 +9,5 @@
 来源/固定计划见[plan.json](plan.json)，实验细节见[实验记录](experiments/E-20261024-SAMPLE-001.md)。外部产物：`/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/`。起点main `cd4086b`，只修改本目录。源码/CPU合同/冻结plan先push后启动；UNKNOWN恢复原意图、不盲重启。
 
 CPU真实原runtime门已20.323270秒通过：模型与adapter全部实际SHA、旧80 IDs/自然EOS、输入670122/max14390、两seed160唯一row_seed、实际Temperature/TopK/TopP/MinP处理器及CPU多项式抽样可重复。未创建模型/调用CUDA/重tokenize旧链。原native无FLA/causal_conv1d；同版本torch2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1。完整资产/seed证据留外部。装配CPU合同另核两端点、B88池外保留、19类弃答/7类身份失败，尚无新质量。
+
+唯一实际作业已启动：11:10:24.424427 UTC，A800 GPU2，proc_c9eb4b95-3078-4bfe-a789-0a86f4acb483 / PID10566；TERM11:40:24.424412、KILL11:40:54.424412。初次观察已3/160完整fresh，source c555f808。恢复入口外部monitor_once.py，只读原作业；绝不重启新副本。两端点的TP/FP增量诊断沿v2 association语义拆完整compound HPO，而共识票本身仍按原literal串，不改预测/门。

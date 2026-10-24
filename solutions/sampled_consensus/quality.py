@@ -27,11 +27,14 @@ def main():
     out=Path(a.output);out.mkdir(parents=True,exist_ok=False)
     # All complete predictions/format checks are frozen before the first gold read.
     save_json(out/'evaluation-intent.json',{'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'plan':reference(a.plan),'joint_freeze':reference(a.freeze),'native_complete':reference(a.native_complete),'fixed_endpoints':list(ENDPOINTS),'new_v2_planned':2,'old_v2':0,'single_seed_v2':0,'sources':{n:reference(Path(__file__).parent/n) for n in ['quality.py','assemble.py']}})
-    gold=va.load_jsonl(verify(refs['gold']));goldpairs=relation_set(gold);basepairs=relation_set(base);results={}
+    gold=va.load_jsonl(verify(refs['gold']))
+    def metric_pairs(documents):
+        return {(str(d['pmc_id']),pid,concept) for d in documents for pid,concepts in ev.associations(d).items() for concept in concepts}
+    goldpairs=metric_pairs(gold);basepairs=metric_pairs(base);results={}
     for name in ENDPOINTS:
         sub=out/name;sub.mkdir();save_json(sub/'format.json',formats[name]);metric=ev.evaluate_report(gold,predictions[name],body_scope='all',no_id_doc='text');metric['gold_sha256']=refs['gold']['sha256'];metric['prediction_sha256']=freeze['endpoints'][name]['sha256'];save_json(sub/'metrics.json',metric)
-        delta={k:metric['metrics'][k]-old[k] for k in old};pairs=relation_set(predictions[name]);add=pairs-basepairs;remove=basepairs-pairs
-        results[name]={'metrics':metric['metrics'],'delta':delta,'prediction':freeze['endpoints'][name],'metrics_file':reference(sub/'metrics.json'),'format_file':reference(sub/'format.json'),'relations':len(pairs),'added':len(add),'added_TP':len(add&goldpairs),'added_FP':len(add-goldpairs),'removed':len(remove),'removed_TP':len(remove&goldpairs),'removed_FP':len(remove-goldpairs),'strictly_above_B':delta['Score']>0}
+        delta={k:metric['metrics'][k]-old[k] for k in old};pairs=metric_pairs(predictions[name]);add=pairs-basepairs;remove=basepairs-pairs
+        results[name]={'metrics':metric['metrics'],'delta':delta,'prediction':freeze['endpoints'][name],'metrics_file':reference(sub/'metrics.json'),'format_file':reference(sub/'format.json'),'relation_set_semantics':'v2 associations (compound HPO split); fusion remains literal','relations':len(pairs),'added':len(add),'added_TP':len(add&goldpairs),'added_FP':len(add-goldpairs),'removed':len(remove),'removed_TP':len(remove&goldpairs),'removed_FP':len(remove-goldpairs),'strictly_above_B':delta['Score']>0}
     best=max(ENDPOINTS,key=lambda n:results[n]['metrics']['Score']);retained=results[best]['strictly_above_B']
     save_json(out/'result.json',{'status':'COMPLETE_FIXED160_TWO_ENDPOINTS_F1_DEVELOPMENT','baseline':old,'endpoints':results,'primary_success':results[ENDPOINTS[0]]['strictly_above_B'],'retain_any_fixed_endpoint':retained,'best_fixed_endpoint':best,'gate':'Score strictly above B, micro/macro unconditionally reported; no further seed/temperature choices','new_v2':2,'old_v2':0,'single_seed_v2':0,'fit_calls':0,'original_dev_read':False,'official_calls':0,'not_blind':True,'joint_freeze':reference(a.freeze),'plan':reference(a.plan),'native_complete':reference(a.native_complete)})
     print(json.dumps({'best':best,'retain':retained,'metrics':{k:v['metrics'] for k,v in results.items()}}),flush=True)
