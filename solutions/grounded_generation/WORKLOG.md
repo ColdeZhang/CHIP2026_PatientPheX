@@ -5,7 +5,7 @@
 ## 当前目标和状态
 
 - **F1完整且终审PASS**：原GG001 N∪grounded .681717659986（强N .676546354663），new-only .583496662244；独立GG002强支持B∪全部grounded .695950447742（B .686338981272），micro下降.013393436/macro上升.051839302。9B只复制原文词面、独立HPO规范化，quote是弱词面锚定而非人工归属span。完整终审0fcffd7b，F1补包184内容已root实际服务器恢复c48d3776；原dev最高.754361398和官网结果不变。
-- **当前唯一NN**：同d52模型的F0全文47，A800 GPU2 `proc_1a64fada-6c00-43a3-806e-b9ea4b755862`，driver63172/child63188；11:38:58.166起，TERM12:13:58.166、KILL12:14:28.166。原plan ed3c9297/f657e38已推。唯一只读watch session54389/PID157105每180秒；先核其实际存在，禁止重复start。准确入口[f0/actual-start.json](f0/actual-start.json)、[恢复步骤](f0/RECOVERY.md)。
+- **F0原47已完整**：11:48:52.618 rc0，44 EOS/3 cap；native593.562秒/wrapper594.451/controller594.584、peak20.975GB，GPU2实际已释放、原watch退出。完整原包回收与固定normalizer待接，3 cap保原弃答不重试。原唯一身份：同d52模型的F0全文47，A800 GPU2 `proc_1a64fada-6c00-43a3-806e-b9ea4b755862`，driver63172/child63188；11:38:58.166起，TERM12:13:58.166、KILL12:14:28.166。原plan ed3c9297/f657e38已推。唯一只读watch session54389/PID157105每180秒；先核其实际存在，禁止重复start。准确入口[f0/actual-start.json](f0/actual-start.json)、[恢复步骤](f0/RECOVERY.md)。
 - **已完成F0工程**：47原生输入5.522秒全部ID/渲染/decode一致，289420/max9935；11件5bcd8c19。173MB d52推断缓存19.422秒完成四SHA/两端fsync/reopen，原fullstate和两ACK仍A100。A800 Torch2.7.1相对训练A1002.6.0如实披露，原native/greedy1600/b59阈值不变。原LUNA与2GiB保守容量门失败保留；按实际cache/raw上界768MiB copy/512MiB infer，未清其他资产。
 - **F0固定质量**：全47→原解析/固定train32别名与public41099/Sap→全部新关系。只强B0 .7115075800266846∪全新关系一v2、旧0，保947实体/全部原关系/非关系字节；new-only只输出不评分，完整供root固定2of3与校准。不得因独立F0负删source，不自动原dev/官网。
 - **条件full64仅CPU已完成**：[full64_readiness/summary.json](full64_readiness/summary.json)，173患者全覆盖、1711有效关系可构建、1678弱quote，dev纯36；957793训练tokens、监督24997，max10637/646。两轮代理4242–4582秒、候选6000+30不是实测或授权，新形状需后续实际工程。train64含内部F0/F1监督，但这批独立未来资源绝未进入当前已冻结F0模型/别名。无原devgold、新fit、GPU或质量。
@@ -13,7 +13,7 @@
 
 ## 执行与下一步
 
-1. 维持原F0唯一watch，真实47完整终态后沿原collection回收；所有EOS、cap、strict失败原样保留，不按质量重试。
+1. 原F0已完整且watch退出，沿唯一collector回收原不可变全包；所有EOS、cap、strict失败原样保留，不按质量重试。
 2. 固定parser/normalizer完整闭环，先给root/validation纯new关系完整产物，再完整强B0union冻结→唯一v2。逐项实际命令见f0/RECOVERY.md。
 3. 完整终点一次增量审，结果和原件最小持久包、及时push；不逐阶段重复审旧链。
 4. 仅当独立F0或root固定2of3通过，再由root决定full64工程/训练；当前readiness不能当执行许可。
