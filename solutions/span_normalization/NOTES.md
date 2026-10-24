@@ -1,0 +1,9 @@
+# 方法与研究笔记
+
+Global Pointer（Su et al., arXiv:2208.03054）将每个起止位置对作为整体做多标签判别，RoPE编码相对边界，logsumexp正/负集合损失缓解巨量非实体span。官方repo bojone/GlobalPointer commit1e66ba360b3cbf6f785d2d93a1c0caa880932824；英文论文与CMeEE结果支持作为成熟span方案研究，不当本任务收益证据。bert4keras参考实现使用Apache-2.0；本路线按方程独立写PyTorch头和loss，来源完整SHA见evidence/method-sources.json，全文缓存外部。
+
+对比SpanMarker/PL-Marker：显式marker有强基线，但本项目英语词级BIO转换可能丢嵌套；先选能直接接字符span且头极小的GP。没有下载公开赛训权重。
+
+历史已有BioMed/BioLink-large BIO、五标签、GLiNER及focal、上下文CE、HPO top-k的完整负结果，不重跑同名配置。新变量是整体边界打分+多标签跨度目标，不只是换encoder。旧BioLink保存候选仅补强池1个正确ID，不能拿其弱单路更换当新贡献。GP是否有独立高质量跨度由本次完整固定控制回答。
+
+vendor/legacy_linker.py与semantic_encoder.py复用项目非archive现行源；二者训练派生资源按本次train32重新构建，Sap公开encoder未做本赛训练。原Sap最大32 token的规范化截断规则照实保留并计数，不能称任意长度规范化无截断。

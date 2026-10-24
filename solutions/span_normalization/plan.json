@@ -1,0 +1,51 @@
+{
+  "experiment_id": "E-20261024-SPAN-001",
+  "method": "BiomedBERT GlobalPointer RoPE64 and multi-label categorical cross entropy, frozen fold-local Sap normalization",
+  "training_documents": 32,
+  "training_folds": [
+    2,
+    3
+  ],
+  "held_fold": 1,
+  "held_documents": 16,
+  "old_plan_revision": "Original train48/F0 draft changed before any execution by root common-fold coordination; no GPU or CPU data run discarded",
+  "model": "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext",
+  "model_weight_sha256": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+  "source_model_parameters_estimate": 109000000,
+  "model_parameter_limit": 10000000000,
+  "seed": 20261024,
+  "epochs": 8,
+  "learning_rate": 3e-05,
+  "batch_size": 16,
+  "max_length": 384,
+  "stride": 64,
+  "head_size": 64,
+  "encoder_autocast": "bfloat16",
+  "head_and_loss": "float32",
+  "raw_pool_floor": -2.0,
+  "decode_threshold": 0.0,
+  "normalization_threshold": 0.65,
+  "normalization_max_length": 32,
+  "normalization_rule": "original fold-local exact aliases; unknown text Sap >=.65 replaces original char/NIL fallback; no new cut search",
+  "pool_policy": "Persist every generated span >=-2.0 with all normalization/confidence fields; max across overlap windows, no truncation of held document set",
+  "word_boundary": "alphanumeric word boundary or positive train32 surface whitelist; saved as flag, raw pool retained",
+  "primary": "Preserve full strong baseline. Add GP>0 accepted legal-HPO spans only when disjoint or proper containment with different ID; reject same span conflicting ID and crossing overlap; deterministic descending GP score order. All nonentity fields exact.",
+  "diagnostic": "GP-only entities with exact same strong baseline nonentity fields, including permitted NIL; no other classifier or relation fit",
+  "strong_baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+    "bytes": 173758,
+    "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+  },
+  "strong_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+    "bytes": 13085,
+    "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+  },
+  "success": "Primary Score strictly improves .7286975364690524, disclose both entity metrics. Diagnostic/supply do not equal full64/dev improvement; if not positive report novel supply for root future OOF decision, no automatic threshold sweep.",
+  "evaluation": "Freeze both complete predictions before first F1 gold read, each one public-v2 call, reuse old metrics; no original dev read",
+  "gpu_budget_seconds": 600,
+  "term_grace_seconds": 30,
+  "budget_scope": "One longest two-row discarded GPU probe + fresh formal8epochs + full held inference + all declared pool normalization. CPU encoding/math contract outside GPU budget, <=120 seconds.",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "remote_mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99"
+}
