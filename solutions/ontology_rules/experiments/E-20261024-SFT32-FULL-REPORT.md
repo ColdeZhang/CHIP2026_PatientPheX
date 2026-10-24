@@ -6,7 +6,7 @@ CPU实际11.767秒：80提示/16文献/587CID/39PID；570passages和162给定men
 
 唯一授权A800最长idx19、240+TERM30工程probe。原adapter4f4815b6/config965644实际全SHA；恢复只读确认目标目录不存在且GPU2空卡。loader/generation复用固定旧33a源码语义：BF16 text-only/native SDPA、PEFT0.21.2/TF5.20.2、无采样、原EOS并集。新runner先持久generated IDs，再decode/raw，再严格已给CID/PID完整JSON检查；工程probe不读gold或评分。GPU前重核UUID/无进程/空间。
 
-全文单独仅诊断，未来主臂为oldSFT32∪fulltext；两完整预测共同freeze后各唯一v2，原.660942003指标复用，1189实体及非关系字节保持。主保留条件是关系micro+macro和严格升且macro不降。完整80尚未授权，需实际最长成本/格式后统一定预算；只有精确同配置才可复用probe1条。
+全文单独仅诊断，未来主臂为oldSFT32∪fulltext；两完整预测共同freeze后各唯一v2，原.660942003指标复用，1189实体及非关系字节保持。主保留条件是关系micro+macro和严格升且macro不降。当时完整80未授权；后续依据实际最长结果获得下文1200+30统一预算，精确同配置复用probe1条。
 
 入口：`qwen35_sft32_full_report_readiness/probe/operations.py`，外部B=`/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/probe-v1`。plan1ab430d2、runner062cbf90；部署/启动前先看既有intent和job，未知状态不重复start。大输入/IDs/raw/log保留外部，Git仅源和小索引。
 
@@ -18,3 +18,5 @@ CPU实际11.767秒：80提示/16文献/587CID/39PID；570passages和162给定men
 13件终点已完整回收、逐SHA：manifest ed9f4e94。14390输入→70输出，native6.547998秒、wrapper33.770421秒rc0，load5.186099秒；完整供给CID/PID严格JSON与自然EOS、无cap。峰allocated22,233,742,848/reserved23,502,782,464字节；05:23:33.776673实际GPU2无进程。raw-first保证从generate返回后开始，不保证生成中OOM/TERM仍能回收部分IDs。
 
 据此root统一授权一次完整80、1200+TERM30，idx19精确缓存1＋79fresh，同input14400/gen1600及原模型/adapter/greedy/math flags；不自动扩时或再生成。旧80 282.502秒×输入token2.673只是约755秒成本代理，非保证。新source9bb2b322/plan73ebed7c，按原长度/row_id排序，逐行IDs→raw持久后按probe严格供给CID/PID完整JSON校验；EOS/cap/格式失败整行弃答、无补负答案。完整两个端点共同freeze后才各唯一v2，1189实体与全部非关系literal bytes保持，旧分复用；不自动迁F0/dev。当前source准备、无新质量。
+
+完整后继CPU评测源已冻结：8件56455字节，manifest84346afc，evaluator ef28ec27 / template3b170a4e / binder1251ce92。合成自检约0.01秒PASS，模板保持disabled，只有完整80、rc0、卡释放和240份逐行证据核验后才绑定；共同freeze后首次gold，固定新2次v2/旧0。静态增量62f1a2c1无阻断，实际评测尚未执行。

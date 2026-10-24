@@ -11,7 +11,7 @@
 ## 当前：SFT32全文完整80准备
 
 - 唯一最长idx19探针已PASS：14390→70，native6.548秒，wrapper33.770秒rc0；严格供给CID/PID完整JSON、自然EOS、无cap，峰allocated22.234GB。05:23:33.776673 A800GPU2实际释放。原proc_7fce4726已结束，不能重启；原始IDs先保存、raw再解析已实际核。
-- root据实测统一授权完整80 **1200+TERM30**：精确idx19缓存1＋79fresh，input14400/gen1600，同旧SFT32/base/greedy/runtime。plan73ebed7c、runner9bb2b322，源与小片部署准备中，尚未start。完整两个端点共冻后各唯一v2、旧0；主old∪fulltext沿原micro+macro升且macro不降，不自动迁F0/dev。
+- root据实测统一授权完整80 **1200+TERM30**：精确idx19缓存1＋79fresh，input14400/gen1600，同旧SFT32/base/greedy/runtime。plan73ebed7c、runner9bb2b322，源047fb47已push并核远端，13件/7小片部署进行中，尚未start。完整两个端点共冻后各唯一v2、旧0；主old∪fulltext沿原micro+macro升且macro不降，不自动迁F0/dev。
 - `F=R/research/qwen35-sft32-full-report-feasibility/full80-v1`；只读恢复 `operations.py inspect --directory <F>`，唯一start前先查intent/job。probe证据在同级probe-v1，完整quality在完成80前禁用。[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)。
 
 ## 最近：R1 F1完整负结案，F0扩展不启动
@@ -25,11 +25,11 @@
 - `R=/workspace/patientphex-runs/round2-20261023`；完整R1源码/响应/预测在 `R/research/deepseek-r1-0528-qwen3-8b-feasibility/`，大文件不入Git。
 - .100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，自有root `/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness`；完整模型9文件16,388,603,517B在 `models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6`，全SHA/header/399 tensors/8.19073536B通过。原full80-v1响应仍持久保留。
 - A800副本 `/dev/shm/patientphex-r1-f0-1045-20261024/` 是易失缓存，不能替代.100持久源。所有原源/失败/接口纠正保留；旧AutoTokenizer GPU记录不能冒称发布输入质量。
-- 当前新机制：已有SFT32原80提示只追加完整允许article，CPU11.767秒通过，max14390；主线程已授权input cap14400/gen1600与A800最长idx19单探针240+30，须先查上下文≥15990、真实缓存SHA/空卡。完整80尚未授权，无新质量；详情见新全文准备目录。环境重连后先查原intent/job，不能重复start。
+- 当前新机制：已有SFT32原80提示只追加完整允许article，CPU11.767秒通过，max14390；主线程已授权input cap14400/gen1600与A800最长idx19单探针240+30，须先查上下文≥15990、真实缓存SHA/空卡。最长已通过，完整80现获1200+30授权；当前仍无新质量，实际状态见上方当前项。环境重连后先查原intent/job，不能重复start。
 
 ## 最近结案与索引
 
 - 强BioBERT+NCR四fold **.730993616→.731229952**，仅2/4非降<事前3/4而关闭；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)，独审de325a2c。
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
-- 最近已核Git远端 **9b059b445f51bcf13d53a7c4926379e193090854**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
+- 最近已核Git远端 **047fb47b300212f05cc796d510ede67f55fdd542**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
