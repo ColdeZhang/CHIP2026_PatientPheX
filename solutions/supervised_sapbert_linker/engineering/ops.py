@@ -65,7 +65,7 @@ print(json.dumps({'status':'EXTRACTED_ALL_MEMBERS','members':len(members),'archi
         ticket=dict(created_unix=time.time(),launch_not_after_unix=time.time()+300,
             plan=dict(path=remote+'/execution-plan.json',bytes=package['plan']['bytes'],sha256=package['plan']['sha256']))
         with open(marker,'x') as f:json.dump(ticket,f,indent=2)
-        call('write_file',dict(mount_id=mount,path=rel+'/launch-ticket.json',content=json.dumps(ticket),encoding='utf-8',create_parents=False),'launch-ticket')
+        call('write_file',dict(mount_id=mount,path=rel+'/launch-ticket.json',content=base64.b64encode(json.dumps(ticket).encode()).decode(),encoding='base64',create_parents=False),'launch-ticket')
         v=call('start_process',dict(mount_id=mount,cwd=rel,command=shlex.join([plan['python'],'-u',remote+'/driver.py']),env=plan['environment']),'start')
         (D/'start.response.json').write_text(json.dumps(v,indent=2)+'\n');print(json.dumps(v))
     elif args.action=='observe':

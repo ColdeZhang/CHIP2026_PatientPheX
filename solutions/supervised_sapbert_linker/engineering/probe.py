@@ -143,6 +143,9 @@ def main():
     model.load_state_dict(restored['model'],strict=True);optimizer.load_state_dict(restored['optimizer']);scheduler.load_state_dict(restored['scheduler']);scaler.load_state_dict(restored['scaler'])
     random.setstate(restored['rng']['python']);ns=restored['rng']['numpy'];np.random.set_state((ns[0],ns[1].numpy().astype('uint32'),ns[2],ns[3],ns[4]));torch.set_rng_state(restored['rng']['torch']);torch.cuda.set_rng_state_all(restored['rng']['cuda'])
     tensor_compare(optimizer.state_dict(),restored['optimizer']);tensor_compare(model.state_dict(),restored['model'])
+    tensor_compare(scheduler.state_dict(),restored['scheduler']);tensor_compare(scaler.state_dict(),restored['scaler'])
+    tensor_compare(random.getstate(),restored['rng']['python']);tensor_compare(torch.get_rng_state(),restored['rng']['torch']);tensor_compare(torch.cuda.get_rng_state_all(),restored['rng']['cuda'])
+    ns=np.random.get_state();tensor_compare((ns[0],torch.from_numpy(ns[1].astype('int64')),ns[2],ns[3],ns[4]),restored['rng']['numpy'])
     save(out/'complete.json',dict(status='PASS_REAL_ENGINEERING_PROBE_DISCARD_STATE',elapsed_seconds=time.monotonic()-begin,
         bank_seconds=bank_seconds,query_seconds=query_seconds,batches=times,real_adam_updates=2,backwards=4,
         scheduler='Original fresh linear warmup schedule; first lr0 then first nonzero lr; final probe state discarded.',
