@@ -2,32 +2,27 @@
 
 ## 当前状态
 
-- 固定主配方 `B ∪ (S1 ∩ S2)` 内部F1 **.686338981→.693653304**（+.007314）、内部F0 **.711507580→.721969518**（+.010462）均正；每折 micro/macro 同升，实体保持各自强B。原dev最佳901及官方成绩未更新。
-- F1完整160已终审PASS `e5437e12…`，原替换型多数诊断负保留。F0完整116已807.028秒rc0并于11:48:37.791245Z释放 .100 GPU1，全部EOS/strict，375成员原包完整恢复。F0唯一主端点冻结后仅1次v2；74内容质量包303654B/63a41eb1已远端fsync、逐成员核SHA并整包实际读回，终审入口已交独立validator。
-- F0预测`3ec75365…`保947实体/全部B315（池外39），固定新增21=9TP12FP，0删除；分项和可复现入口见[实验002](experiments/E-20261024-SAMPLE-002.md)。完整原始两seed已交root固定融合，不按逐项正确性选择。
-- 条件full64 CPU准备已完成[说明](full64_readiness/README.md)：原normal64短提示不能冒称全文，新完整64每轮512091 tokens/max13230，原full64适配器1a703b已实核，无需重训。仅CPU，无原devgold/NN/quality；是否运行由root后续决定。
-- 分支`explore/sampled-consensus`；最新已核远端`5aefca4`（完整F0正结果/来源/台账），本次备份指针提交正常续推。全量产物在`R/research/nonthinking-sampled-consensus-native-20261024/`及`R/research/nonthinking-sampled-consensus-F0-20261024/`，Git仅源码/短记录/manifest。
+固定主配方 `B ∪ (S1 ∩ S2)` 已完成内部F1、F0及原dev唯一迁移。原dev由 **.754361398199→.755239908536**（+.000878510337），micro/macro均微升；新增8=3TP5FP，全部1061实体/416旧关系/54池外关系及其他对象保持。按预写严格升门保留本线候选，未达到用户.8目标，不称盲测或新增高精度。未进行官方上传。
 
-## 执行与恢复
-
-| 控制 | 已完成与决定 | 证据 |
+| 实验 | 完整控制与结果 | 终审/证据 |
 |---|---|---|
-| [SAMPLE-001](experiments/E-20261024-SAMPLE-001.md) | A800同native4f48、80×2；主正、替换多数负；完整终审PASS、两个包全读回 | `evidence/result.json`、外部F1 terminal-manifest.json；终审e5437e12 |
-| [SAMPLE-002](experiments/E-20261024-SAMPLE-002.md) | A30同native4f48、58×2、每seed最长首行属于正式116；完整主正；无新训练 | `evidence/F0-result.json`、外部F0 terminal-manifest.json；终审待收 |
-| full64条件准备 | 全祖先排原dev，纯输入完整文本构造+真实CPU token合同；首脚本命名遮蔽stdlib已独立恢复 | `evidence/full64-readiness.json`；原始失败与恢复都保留 |
+| [SAMPLE-001](experiments/E-20261024-SAMPLE-001.md) | SFT32同native A800，80×2；F1 .686338981→.693653304，+34=16TP18FP；替换型多数诊断负完整保留 | PASS e5437e12；`evidence/result.json` |
+| [SAMPLE-002](experiments/E-20261024-SAMPLE-002.md) | 同4f48 native A30，58×2；F0 .711507580→.721969518，+21=9TP12FP | PASS 1c110220；`evidence/F0-result.json` |
+| [SAMPLE-003](experiments/E-20261024-SAMPLE-003.md) | full64模型1a703b、真正全文64×2；原dev .754361398→.755239909，+8=3TP5FP；仅1v2 | 完整结果/备份交集中增量审；`evidence/full64-result.json` |
 
-F0原作业 `proc_972436a9-26f2-4af2-91d7-87c81710dc58` / PID2734284 已完成，不重启。原TERM12:10:10.631670Z/KILL12:10:40.631670Z保留；`monitor_once.py`仅用于必要原终态恢复，当前已持有真实release。CPU装配`f0/assemble.py`、终态核验`f0/verify_terminal.py`、唯一质量`f0/quality.py`，实际命令见外部assembly-intent/quality-command。所有新GPU、原dev质量或官方动作均需root给新任务，不能从readiness自动启动。
+原dev128已852.191541秒rc0，12:10:33.243420Z实际释放.100 GPU1为0MiB/noapps；64×2全EOS/strict，0截断/弃答。411内容原包284031B/01e7681e已逐SHA并整包读回，全部原IDs/raw/canonical/input/source合同通过。唯一预测ee39defb在commit68228730中于质量前冻结；之后仅1新v2，0旧/单seed，未训练。完整两seed原始关系299/343、交集289全部保留供后续预定融合，不能只取原dev正确新增。
+
+## 接手入口
+
+分支 `explore/sampled-consensus`；主入口 `full64/{cpu_gate,driver,infer,verify_terminal,assemble,quality}.py`，固定计划 `full64/plan.json`。外部R=`/workspace/patientphex-runs/round2-20261023`：
+
+- F1：`research/nonthinking-sampled-consensus-native-20261024/terminal-manifest.json`，原包及质量包均全读回。
+- F0：`research/nonthinking-sampled-consensus-F0-20261024/terminal-manifest.json`（ee822542）；375原内容、74质量内容均全读回。
+- 原dev：`research/nonthinking-sampled-consensus-full64-20261024/terminal-manifest.json`（6236e9d8），完整actual命令/来源/quality/终态均绑定；两seed逐行诊断在`assembled-v1/row-diagnostics.jsonl`（b3830063）。
+- 原dev全文准备：`research/nonthinking-consensus-full64-readiness-20261024/readiness.json`（ce842e9e）。旧normal64短提示不可冒称全文，新完整64为512091 tokens/pass，max13230；CPU独审1c110220只覆盖先前准备，不覆盖本次128质量。
+
+三次GPU均已结束，禁止按旧start脚本重启。最后原devjob `proc_de171481-475e-41b2-806d-5ff33364cd8d` / PID2735800；原TERM12:31:20.925286Z/KILL12:31:50.925286Z保留，未延长。新GPU、额外原dev变体或官方动作需root新任务；本次已授权链只剩质量备份/集中审交接。
 
 ## 关键边界
 
-F1候选祖先训练32、F0复用候选训练48，均排目标折；生成模型始终同F2+F3训练32。F0换A30但native源码/版本/参数不变，不声称跨硬件逐位等价。保护强B的固定追加与替换型投票不同；两个正结果支持本配方，不证明全部采样/联合方案有效。失败、零收益和单独的条件部署准备保持可追溯。
-
-## 已授权原dev迁移（SAMPLE-003）
-
-root根据F1/F0主配方均正，已授权同native normal full64、128fresh、单2100+30及唯一B901保护主端点。CPU装配/范围已核：1061实体/416旧关系（池外54）全保；完整输入和所有拟合祖先沿readiness。源/计划准备中，尚未GPU或原dev新质量。见[实验003](experiments/E-20261024-SAMPLE-003.md)。
-
-原dev迁移native CPU门4.384秒已通过：复用原已核基座证书并逐inode/mtime/size精确一致，新1a703b适配器SHA完整重核，128行seed/四samplerprocessor合同通过，无新tokenization/GPU。F0+full64准备独审`1c110220…`已PASS，范围不含新的128运行。最终plan/receipt冻结后即唯一启动。
-
-原dev唯一128已实际11:56:20.925305Z启动，`proc_de171481-475e-41b2-806d-5ff33364cd8d` / PID2735800，原TERM12:31:20.925286Z/KILL12:31:50.925286Z。GPU1 fresh0MiB，GPU0为其他路线6146MiB进程未碰；最长index1正式首行已EOS/strict成功，后续仍待完整128，禁止重新启动。恢复入口外部`nonthinking-sampled-consensus-full64-20261024/monitor_once.py`。
-
-原dev128已完整：852.192秒rc0，12:10:33.243420Z实际释放GPU1为0MiB/noapps，全部EOS/strict/0弃答。411成员原包284031B/01e7681e完整读回及逐SHA核过，128原IDs/raw/canonical/source合同通过。唯一主预测ee39defb与freeze已固定，保全部B901；此提交前新v2仍0，随后仅评预定主端点1次。
+F1候选训练32、F0候选训练48，所有目标折祖先排除；前两控制生成适配器均F2+F3训练32。原dev改为现成train64适配器1a703b，全部任务拟合祖先排原dev，无新训练。F1 A800/F0及原devA30保持native源码/版本/采样规则，不声称跨硬件逐位等价。内部收益未等比例迁原dev，强B已覆盖交集281/289；原dev微升是真实但有限的研发结果。
