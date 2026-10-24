@@ -1,0 +1,28 @@
+{
+  "schema": "fixed-quote-completion-F1-quality-v1",
+  "known_source": {
+    "parent_known_source": "original G32 d52 greedy F1 exact-grounded and fixed-normalizer accepted quotes; reuse complete39 output, never resample or teacher-generate",
+    "known_list": "all accepted mapped/NIL quote triples per patient, exact tuple deduplicate and source-coordinate order; no confidence or held-label selection",
+    "rows": 39,
+    "passes": 1,
+    "decode": "native nonthinking greedy max_new_tokens1600; whole cap/nonEOS/strict failure abstain",
+    "normalizer": "same train32 aliases/public41099/b59 fixed policy",
+    "output": "additional literal normalized relations; union collapses repeats"
+  },
+  "quality": {
+    "baseline_prediction_sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e",
+    "baseline_score": 0.701325377212172,
+    "formula": "B4 UNION all normalized completion relations",
+    "one_endpoint": true,
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "no_added_zero_v2": true,
+    "keep": "F1 strictly above B4, then identical fixed F0; both positive before full64",
+    "all_entities_patients_and_old_relations_preserved": true,
+    "no_oracle": true
+  },
+  "literal_relations": true,
+  "whole_cap_or_nonEOS_or_parse_failure_abstain": true,
+  "no_partial_prefix": true,
+  "no_single_patient_selection": true
+}

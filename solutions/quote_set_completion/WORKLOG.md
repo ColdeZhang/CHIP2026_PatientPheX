@@ -1,6 +1,6 @@
 # 工作台账
 
-分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前仅成熟方法查重与 train-only CPU 供给/原生token准备，无GPU、fit、held输入或质量。
+分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前唯一261行warm-d52正式训练运行中，实际身份/原时钟见文末；完整39推断及单一B4并集端点的源码已准备，尚未执行推断或质量。前述174行/3600秒仅保留为已替代历史。
 
 目标：检验给定已报告表型时的条件补全，是否比独立重新生成更能回收遗漏患者关系。当前原dev最佳 .769235669942；本线不读其gold、不宣称预计达标。先复用原train32的87患者弱quote目标，构造两个互补known/remaining视图；原真实关系标签不变，词面代表弱锚点而非人工患者证据。原双采样F1正/F0负已在旧分支关闭，不能重复其采样共识。
 
@@ -23,3 +23,7 @@ Root在首次GPU前授权固定第三视图：每原87患者加入full-known→[
 正式尚未启动：预写max(两极token代理3012.506,同host完整epoch代理2567.219)×1.2+300=3915.007超过3600，CPU成本guard在生成formal计划前停止，证据d1d495cc，已报root；原partial9仅成本代理2561.377，不当覆盖证明。完整39 known-only输入109c已构建（328原Gaccepted,6空，211943tokens/max10854），纯本地native/HF实际待infer前绑定；不读heldgold、不评分。
 
 Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30，仍预留120秒ACK（模型绝对窗4080），不降低max代理×1.20+300公式；原3600源/失败d1d保留。实际完整trainer.verify_inputs CPU已通过261/33/尾5/所有ID/位置/来源，ac104d60；正式plan/controller b7a9bb2f，见training/frozen及evidence/formal-authorization.json。下一fresh卡/盘门后唯一启动，SHM完整state→.100逐SHA/fsync/reopenACK后才39推断。
+
+唯一formal实际15:20:44.761823 start proc_ad68dbeb-c7e6-453a-821a-b0fac0d57ab9/driver13674，freshGPU2空、SHM215.866GB/.100393.918GB；4200共享campaign起15:20:43.644688、模型TERM16:28:43.644688，持久ACK最迟16:30:43.644688。detached/flock watcher PID/SID190459（ready0593adbf）唯一每180秒原inspect，健康时不另查。恢复入口training/controller/operations.py inspect --directory N/formal-v1；不可重复start。关键坑精确源见evidence/handoff-pointers.json。
+
+后继完整39推断/必要Sap/唯一B4union源已准备：只有正式完整ACK后bind实际权重；原始生成IDs→raw→strict解析→固定train32/public41099规范化，所有合法新关系统一并入B4，不评单臂、不筛新增。all39 HF/native IDs在模型加载前核；后继1800+30、Sap180+30和唯一v2 30+1分别独立，实际计划等待前驱全量终点绑定。固定参考postprocess/fixed-references.json已锁，当前无held输出或质量。
