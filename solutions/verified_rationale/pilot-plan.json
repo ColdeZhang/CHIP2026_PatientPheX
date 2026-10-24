@@ -1,0 +1,200 @@
+{
+  "status": "PRELOCKED_SINGLE_TRAIN_ONLY_PILOT_NO_GPU_OR_WEIGHT_TRANSFER_STARTED",
+  "at_utc": "2026-10-24T15:41:42.282892+00:00",
+  "parents": {
+    "checkpoint": "e1c17c1cfac126bd215256b2df567c05d8781511",
+    "native15": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/native-cpu-v1/result.json",
+      "bytes": 5669,
+      "sha256": "bd98026695b3bd7e6e4ad15e808b94ee20d5fc557eb73aa16e53178d7a5484cc"
+    },
+    "input15": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/proposed-inputs-v2/teacher-inputs.proposed.jsonl",
+      "bytes": 336107,
+      "sha256": "932fde5734abebbfeb118ac5f40e4ba0fd8d908ddd24f6203c3b6e4afa949aba"
+    },
+    "selection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/train-census/hard-probe-selection.json",
+      "bytes": 20243,
+      "sha256": "45746639d848af200a875403724b66b9ab7f0f36b2ab5e3751f627ec593a27b7"
+    },
+    "model9files": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/R1-expected-files.json",
+      "bytes": 3549,
+      "sha256": "ee707db3a5b314c94c213386c2c8b8640fd9406759e68f9e729640f70ccbfaec"
+    },
+    "old_full80": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/recovered/terminal/result.json",
+      "bytes": 69123,
+      "sha256": "d7fe7386b86c84777c4207fc207280267f4f2debc53126f749ebf4eed95b665b"
+    }
+  },
+  "sources": {
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/native_cpu.py",
+      "bytes": 4485,
+      "sha256": "c6ff906babe28e0df30f288dd660633827074c3e2a1e6f2d9d33faa719dc65fe"
+    },
+    "evidence_contract.py": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/evidence_contract.py",
+      "bytes": 5360,
+      "sha256": "7a020c096634564818f3dcfab21f6bdce8399704b2330860635d6922ad19df60"
+    },
+    "transport_probe.py": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/transport_probe.py",
+      "bytes": 2264,
+      "sha256": "cd14cd2230f247d7511ba1b4f128aac0cd333bec5c1979dc3dbc96206dc2770c"
+    }
+  },
+  "model": {
+    "id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    "MSrevision": "5ee5fa4832e658ab84298806de06ed2a167834bd",
+    "task_adapter": null,
+    "base_parameters": 8190735360,
+    "dtype": "BF16",
+    "derived_runtime_config": "Original native published tokenizer and explicit yarn attention_factor=1.0 as reviewed original full80; do not edit model metadata files",
+    "target_host": "10.5.3.12 A10040GB GPU2 subject to fresh UUID/free gate",
+    "donor_host": "10.5.2.100 exact old public R1 cache"
+  },
+  "generation": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 0,
+    "repetition_penalty": 1.0,
+    "do_sample": true,
+    "max_new_tokens": 3072,
+    "seed": 20261024,
+    "seed_policy": "Reset torch CPU and CUDA seed to20261024 before each row, same as old full80",
+    "use_cache": true,
+    "num_return_sequences": 1,
+    "row_order": [
+      8,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "row_order_reason": "Longest actual9400input first; then original remaining order. First row is realpilot record, no discarded extraGPUprobe. Perrow seed independent of traversal."
+  },
+  "input": {
+    "rows": 15,
+    "documents": 15,
+    "full_reports_untruncated": true,
+    "total_tokens": 82445,
+    "max_input_tokens": 9400,
+    "max_total_tokens": 12472,
+    "unknown_unreviewed_context_change": "7rows exceed old5689max; no measured new GPU memory"
+  },
+  "budget": {
+    "pilot_TERM_seconds": 2700,
+    "pilot_KILL_extra_seconds": 30,
+    "soft_stop_seconds": 2670,
+    "cost_derivation": {
+      "old_generation_seconds": 3431.0892688143067,
+      "old_full80_program_seconds": 3445.4676397279836,
+      "old_output_tokens": 103199,
+      "new_max_output_tokens": 46080,
+      "output_proxy_seconds": 1532.0361002234833,
+      "proxy_multiplier_for_longer_context": 1.5,
+      "loading_persistence_margin_seconds": 150,
+      "old_fresh_rows": 78,
+      "full_old80_output_tokens_including2cached_not_used_for_rate": 106142
+    },
+    "cost_is_proxy_not_measured_A100_throughput": true,
+    "clock_origin": "one actualfresh pilot process; includes load/all15/raw durablewrite; never reset on errors",
+    "preexecution_proposal_correction": "Unexecuted2400proposal revised2700 before sourcefreeze after same-scope78fresh cost correction; no GPU deadline ever started."
+  },
+  "mechanical_acceptance": {
+    "parser": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/evidence_contract.py",
+      "bytes": 5360,
+      "sha256": "7a020c096634564818f3dcfab21f6bdce8399704b2330860635d6922ad19df60"
+    },
+    "EOS_required": true,
+    "token_cap_rejected_for_training": true,
+    "think_if_present": "one opening at start and one closing; whole finalJSON only",
+    "JSON": "exact5keys; duplicatekeys/fence/trailing prose rejected, no repair",
+    "quotes": "exactunit/text/occurrence; targetanchor contains givenpatientmention; phenotypeanchor contains a selectedconcept trainmention; bridges<=3 and unique",
+    "rationale_max_whitespace_words": 80,
+    "abstain": "supported=false with emptyanchors/bridges retained",
+    "synthetic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/evidence-contract.json",
+      "bytes": 375,
+      "sha256": "3663f5ae04867965abecdee1a14b9923d7c831dab54bd9486ae7b2e1988e1acf"
+    }
+  },
+  "semantic_review": {
+    "scope": "All15 completed rawrecords plus complete sourcecontext; train-only weak supervision review, not goldlabel prediction accuracy and not blinded to route design",
+    "categories": [
+      "SUPPORTED_ATTRIBUTION_CHAIN",
+      "TEACHER_ABSTAIN",
+      "MECHANICAL_REJECT",
+      "WRONG_PATIENT_OR_FAMILY",
+      "NEGATED_HYPOTHETICAL_OR_GENERAL",
+      "GOLD_HINT_TAUTOLOGY",
+      "QUOTE_ONLY_NO_ATTRIBUTION",
+      "INSUFFICIENT_OR_AMBIGUOUS"
+    ],
+    "accept": "Only SUPPORTED_ATTRIBUTION_CHAIN after mechanicalPASS; explain concrete subject/coreference/group membership and why it refers to target; exactquote and teacher repeatedlabel insufficient",
+    "review_fields": [
+      "row_id",
+      "mechanical_status",
+      "category",
+      "specific_source_connection",
+      "group_or_cross_sentence_bridge",
+      "unresolved_contradiction",
+      "reviewer",
+      "review_utc"
+    ],
+    "review_disagreement": "retain uncertainty and reject from training; do not change prompt or regenerate"
+  },
+  "single_endpoint": {
+    "name": "all15 accepted attribution-chain supply count",
+    "minimum_for_considering_full_supply": 10,
+    "minimum_explicit_group_or_cross_sentence_cases": 5,
+    "threshold_role": "Predefined engineering usefulness gate, not paper result/statistical generalization; still no automatic studenttraining authorization",
+    "no_F1_or_F0_or_original_dev_quality": true
+  },
+  "failure_policy": {
+    "no_retry_generation": true,
+    "no_truncation": true,
+    "no_temperature_or_cap_or_seed_scan": true,
+    "no_forced_thinkclose": true,
+    "no_nearest_evidence_repair": true,
+    "OOM_or_runtime_error": "stop,preservepartial,report engineering failure; do not call it full15negative supply",
+    "cap_or_invalidrow": "retain raw and markunusable, continue fixed remainingrows within budget",
+    "gold_hint_caveat": "given label is input toteacher; matchingit not correct prediction"
+  },
+  "transfer": {
+    "status": "NOT_STARTED_target_OFFLINE_before32MiBprobe_server_start",
+    "files": 9,
+    "total_bytes": 16388603517,
+    "fresh_target_free_bytes": 49459544064,
+    "copy_plan": "perfile partial→completeSHA/fsync/reopen→rename in newownedcache; no tar doublecopy; donorreadonly unchanged",
+    "disk_gate": "free>=totalbytes+10GiB immediatelybeforestart",
+    "network_probe_state": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/network-probe-v1/target-source-upload.json",
+      "bytes": 122,
+      "sha256": "e6db213f776866f4f51db71d54f46a0dfcdbdd13c9ff7fdcac26a3e4c2eebf14"
+    },
+    "large_transfer_execution_requires_root_allocation": true
+  },
+  "forbidden": [
+    "studenttraining",
+    "heldgold",
+    "score",
+    "official",
+    "wholemodeldownload",
+    "unallocatedGPU"
+  ]
+}
