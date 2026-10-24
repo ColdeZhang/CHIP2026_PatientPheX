@@ -2,12 +2,13 @@
 import json
 
 INPUT_KEYS = {'pmc_id', 'pmid', 'patient', 'full_text'}
-SYSTEM = '''Extract observed phenotypic abnormalities of the TARGET patient from this report.
-Use all patient mentions to distinguish the target from relatives, other cases, and general discussion.
-Include positive clinical abnormalities; exclude negated findings, hypothetical risks, and causal syndrome names.
+SYSTEM = '''Determine the positive phenotype concepts of the TARGET patient using the whole report and all patient mentions.
+Distinguish the target from relatives and other cases. Exclude concepts negated for the target, hypothetical risks, and causal syndrome names.
+For each positive concept, copy a short phrase from anywhere in the supplied report that expresses that concept.
+A copied phrase is only a lexical anchor for concept normalization, NOT proof that the phrase's own occurrence refers to the target. It may occur in a discussion or another case; target attribution must follow the whole report, never phrase proximity alone.
 Return only a JSON array of [unit_id, exact_quote, occurrence_index] triples.
 Copy a short complete phenotype phrase exactly from one supplied source unit. occurrence_index is zero-based among exact occurrences of that quote inside the unit.
-Do not generate HPO codes, explanations, new wording, or information absent from the report. If no supported abnormality is found, return [].'''
+Do not generate HPO codes, explanations, new wording, or information absent from the report. If no target-positive concept with a copyable phrase is found, return [].'''
 
 
 def compact(value):

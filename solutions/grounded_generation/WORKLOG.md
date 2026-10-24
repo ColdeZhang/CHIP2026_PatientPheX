@@ -19,3 +19,6 @@
 4. 两完整预测共同冻结后各唯一v2、旧分数复用。主臂N∪new、诊断new-only，Task1/患者/非关系字节保持；另一内部折有益后再full64/原dev验收。
 
 大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前无运行job，无需要恢复的GPU进程；未知状态先查原intent，禁止重复启动。
+
+
+2026-10-24 GPU前澄清：全文先判目标患者的概念，复制quote只作概念词面锚定，不把该处出现当患者归属证据；最近mention只是确定训练代表词面的弱选取规则。首CPU产物targets-v1与源c3b69eb保留，v2仅修正prompt语义，目标/身份/全文不变并逐项对照。170/814处其他患者更近已如实披露。

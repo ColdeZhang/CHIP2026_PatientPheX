@@ -1,0 +1,55 @@
+{
+  "schema": "grounded-train32-F1-weak-lexical-target-CPU-plan-v2",
+  "cpu_budget_seconds": 60,
+  "references": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "held_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "split_provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "sources": {
+    "schema.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "prepare.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/prepare.py",
+      "bytes": 9417,
+      "sha256": "51d7d1514b6e565a4574b968001e9c8fd35e48d2f72d9f6cd6eb05764b2afd42"
+    },
+    "normalization/strict.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    }
+  },
+  "target_policy": "For each known positive atomic concept use the exact locatable original entity nearest the target mention; ties by shorter length/earlier offset/entity index. Weak attribution only; expose ambiguity/unsupported. Deduplicate and source-order triples.",
+  "quote_address": "Original passage unit, exact quote, zero-based literal occurrence; no gold-dependent segmentation or fuzzy repair.",
+  "training_coverage": "All87 patients inventoried; true empty may target[]. Positive with zero constructible quotes explicitly excluded from SFT rather than mislabeled negative. Partial missing positives exposed.",
+  "held_policy": "All16 docs39 patients input-only, no pruning/truncation",
+  "no_held_or_original_dev_gold_access": true,
+  "no_model_no_tokenizer_no_score": true,
+  "original_source_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/evidence/preparation-plan.json",
+    "bytes": 2616,
+    "sha256": "b99931d46730bfcb9d0413736894e45d4414c794168148511c6d5b89909aa40a"
+  },
+  "prompt_refinement": "Before any GPU/tokenization: whole-report attribution is distinct from copied phrase lexical grounding; the chosen quote is not human-confirmed target evidence. Targets and inputs except system prompt must match original CPU output."
+}
