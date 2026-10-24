@@ -2,7 +2,7 @@
   "execution_ready": false,
   "status": "SOURCE_TEMPLATE_WAITING_ACTUAL_COMPLETE_ASSETS_REF_NO_GPU_STARTED",
   "sources": {
-    "run_probe.py": "7eaa96d808e4f2b1ec49a12cc1768d4850b1b3278b20341f9d4949b9318c9fee",
+    "run_probe.py": "796df0d7e91e4bb26797a7aef8766f9ffb43a585cf2ff41417d5a5d1dcaf0c72",
     "launch_probe.py": "084aabe899a63d6cedf1e46586dd612e1a312c74d4d234932e925189a316c9d3",
     "strict_final.py": "20943d8681b4cf81aee0465b0f217d3491460a311be00f3bbc2818b721013fad"
   },
@@ -65,5 +65,14 @@
   "GPU_environment": {
     "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime"
   },
-  "future_authorization": "root conditional authorization: only after actual assets+nativeCPU+YaRN pass and freshGPU1 gate"
+  "future_authorization": "root conditional authorization: only after actual assets+nativeCPU+YaRN pass and freshGPU1 gate",
+  "rotary_comparison_policy": {
+    "native_dtype_required": "torch.float32",
+    "rtol": 9.5367431640625e-07,
+    "atol": 0,
+    "compare_actual_to_same_GPU_native_and_GPU_to_CPU": true,
+    "CPU_vs_HF451_original_bytes_proof_retained": true,
+    "unknown_dtype": "explicit_error_no_cast",
+    "no_new_independent_GPU_probe": true
+  }
 }

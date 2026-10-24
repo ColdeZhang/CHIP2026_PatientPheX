@@ -59,8 +59,23 @@ def main():
         for name,p in parameters.items():
             e=shapes[name];assert list(p.shape)==e['shape_derived_from_config_and_native_source'] and p.numel()==e['numel'] and p.dtype==torch.bfloat16 and p.device.type=='cuda' and bool(torch.isfinite(p).all());total+=p.numel()
         assert total==8190735360 and model.get_input_embeddings().weight.data_ptr()!=model.get_output_embeddings().weight.data_ptr()
-        rotary=model.model.rotary_emb;inv=rotary.inv_freq.detach().cpu();report['actual_rotary']={'dtype':str(inv.dtype),'shape':list(inv.shape),'inv_freq_bytes_sha256':hashlib.sha256(inv.numpy().tobytes()).hexdigest(),'attention_scaling':float(rotary.attention_scaling)}
-        assert report['actual_rotary']['inv_freq_bytes_sha256']==yarn['native_inv_freq_bytes_sha256'] and report['actual_rotary']['attention_scaling']==yarn['native_attention_scaling']
+        # Native FP32 nonpersistent buffers may be initialized/copied on a different device.
+        # Preserve the CPU-v4.51 byte proof; compare actual GPU math with a same-device native reference.
+        import inspect
+        from transformers.modeling_rope_utils import ROPE_INIT_FUNCTIONS
+        rotary=model.model.rotary_emb;inv=rotary.inv_freq.detach();original=rotary.original_inv_freq.detach()
+        assert inv.dtype==original.dtype==torch.float32 and inv.device.type=='cuda' and inv.shape==original.shape==(64,), 'Unexpected native rotary dtype/device/shape; do not silently cast or repair'
+        assert bool(torch.isfinite(inv).all()) and bool((inv>0).all()) and torch.equal(inv,original)
+        native_fn=ROPE_INIT_FUNCTIONS['yarn'];assert digest(inspect.getsourcefile(native_fn))==yarn['native_full_source_sha256']
+        ref_gpu,scale_gpu=native_fn(model.config,device=inv.device);ref_cpu,scale_cpu=native_fn(model.config,device=torch.device('cpu'))
+        assert ref_gpu.dtype==ref_cpu.dtype==torch.float32 and ref_gpu.device==inv.device and ref_gpu.shape==ref_cpu.shape==inv.shape
+        assert bool(torch.isfinite(ref_gpu).all()) and bool((ref_gpu>0).all()) and bool(torch.isfinite(ref_cpu).all()) and bool((ref_cpu>0).all())
+        cpu_hash=hashlib.sha256(ref_cpu.numpy().tobytes()).hexdigest();assert cpu_hash==yarn['native_inv_freq_bytes_sha256']
+        inv_cpu=inv.cpu();gpu_cpu=ref_gpu.cpu();rtol=8*torch.finfo(torch.float32).eps;atol=0.0
+        def differences(a,b):return {'maximum_abs':float((a-b).abs().max()),'maximum_relative':float(((a-b).abs()/b.abs()).max()),'exact':bool(torch.equal(a,b))}
+        report['actual_rotary']={'dtype':str(inv.dtype),'shape':list(inv.shape),'device':str(inv.device),'inv_freq_bytes_sha256':hashlib.sha256(inv_cpu.numpy().tobytes()).hexdigest(),'attention_scaling':float(rotary.attention_scaling),'native_GPU_reference_bytes_sha256':hashlib.sha256(gpu_cpu.numpy().tobytes()).hexdigest(),'CPU_reference_bytes_sha256':cpu_hash,'actual_vs_same_device_native':differences(inv,ref_gpu),'GPU_native_vs_CPU_native':differences(gpu_cpu,ref_cpu),'actual_vs_CPU_native':differences(inv_cpu,ref_cpu),'rtol':rtol,'atol':atol,'tolerance_basis':'8 FP32 eps relative for elementary pow/div/mul evaluation across devices; no absolute floor, no dtype casting or model/config change','native_function_source_sha256':yarn['native_full_source_sha256']}
+        assert torch.allclose(inv,ref_gpu,rtol=rtol,atol=atol) and torch.allclose(gpu_cpu,ref_cpu,rtol=rtol,atol=atol)
+        assert float(rotary.attention_scaling)==float(scale_gpu)==float(scale_cpu)==yarn['native_attention_scaling']
         report['parameters']={'tensors':len(parameters),'count':total,'all_actual_shapes_dtype_finite':True,'full_value_comparison_to_files_not_performed':True,'untied_embedding_and_lm_head':True};report['weight_shape_finite_seconds']=time.monotonic()-finite_start
         # A fixed internal wall stop leaves15seconds for serialization/release under the external180s cap.
         soft_deadline=start+165;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':1024,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
