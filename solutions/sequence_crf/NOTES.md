@@ -186,3 +186,5 @@ ATLOP原局部乘积需要两端attention支持相交；独立passage编码下�
 
 
 - 2026-10-24，全局pair-conditioned聚合与uniform同容量/同全文窗口的正式8轮对照：pair在固定F1比uniform高.01581，但仍比同池旧SFT低.10312，误报显著增加；两臂训练正常/损失下降不构成替换依据。当前配置关闭，不能把该控制记作未尝试，也不能由一次独立实现推成所有ATLOP类模型无效。协议与完整负结论见[文档聚合记录](experiments/pair-conditioned-document.md)。
+
+- 2026-10-24，s1的最大思考预算机制是人工插入结束思考/答案阶段边界，`Wait`则延长思考。当前Qwen真实边界是248069 `</think>`（added token但special=false），不是s1的`<|im_start|>answer`。原生成IDs与输入SHA使当前4096输出可exact拼接，但重新prefill、RNG未存和人为边界必须显式披露；人工闭合不回改原失败。后续只能解析新suffix完整JSON，不能挖中间思考或吞掉非法特殊token后宣称格式成功。[CPU研究与独立提案](experiments/thinking-budget-forcing-readiness.md)。

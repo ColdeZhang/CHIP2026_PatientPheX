@@ -1,0 +1,160 @@
+{
+  "status": "CPU_prepared_proposal_NOT_launched",
+  "experiment_id": "E-20261023-009-thinking-budget-forcing-readiness",
+  "at_utc": "2026-10-24T01:27:04.160892+00:00",
+  "scope": "one_old_fixed_input_format_and_cost_only_no_gold_targets_or_quality",
+  "authorization": "Parent authorized CPU/source/research only; no GPU or LLM executed by this task",
+  "method": "s1-inspired posthoc artificial thinking boundary, not s1 reproduction and not natural closure",
+  "original_failure_preserved": true,
+  "replay": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/replay/replay-input.json",
+    "bytes": 56404,
+    "sha256": "f90fd19f3c7b6361dd320ddb07d12b8b6d0094b49ea4e5325b7fd56ac0308ad8"
+  },
+  "CPU_readiness": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/replay/replay-readiness.json",
+    "bytes": 4792,
+    "sha256": "da4bb9a5b0cd80fd6e6e731328a7d22266156830f394e8751a540befb572d61d"
+  },
+  "format_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/format-contract-checks.json",
+    "bytes": 683,
+    "sha256": "e35ac79bf538e9ad9ca817d8e24f96960801acc0903d31c19181bb12731e7c4d"
+  },
+  "source_references": {
+    "s1_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/s1-sources/source-manifest.json",
+      "bytes": 5847,
+      "sha256": "289912f87d778f7fd309eb7c25867cbdba9f16c1f28544a1051fb3f6dfbe2ed1"
+    },
+    "s1_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/s1-sources/REPORT.md",
+      "bytes": 7538,
+      "sha256": "b82a87c433d7f23174dfd642913e7cc3479742107cb1a55723cae20e90ec5e01"
+    },
+    "old_inference": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses.manifest.json",
+      "bytes": 4640,
+      "sha256": "92d932111b7c702b195d1c68dda4088bdf19226d9b751044d50314cfb917f686"
+    },
+    "old_failure_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/summary.json",
+      "bytes": 2463,
+      "sha256": "31b753727a8b4e2a6e6a1cf0f208aaadd765e030ceca0584af5fec8aa1c0db06"
+    }
+  },
+  "input": {
+    "row_id": "10313222:relations:0",
+    "original_input_tokens": 2030,
+    "original_generated_tokens": 4096,
+    "artificial_boundary_text": "\n</think>\n\n",
+    "artificial_boundary_ids": [
+      198,
+      248069,
+      271
+    ],
+    "replay_input_tokens": 6129,
+    "replay_input_sha256": "e1876ed36ea7db983b90fc6afd81d317867a39a2f40132d22346e163644289a4",
+    "frozen_generated_ids_must_be_used_not_decoded_reencoding": true,
+    "add_chat_template_again": false,
+    "insert_final_answer_label": false
+  },
+  "future_single_final": {
+    "max_new_tokens": 512,
+    "max_input_tokens": 14000,
+    "seed": 20261024,
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "presence_penalty": 1.5,
+    "presence_scope": "distinct tokens in frozen4096 model-generated history plus newly generated final only; exclude original2030 prompt and three operator-inserted boundary IDs",
+    "new_rng_seed_explicit": true,
+    "old_rng_state_available": false,
+    "old_KV_cache_available": false,
+    "prefix_prefill_required": true,
+    "bitwise_hidden_state_equivalence_not_asserted": true,
+    "eos_token_ids": [
+      248044,
+      248046
+    ],
+    "pad_token_id": 248044,
+    "reasoning_close_is_not_EOS": true,
+    "batch_size": 1,
+    "cap_seconds_including_coldload_prefill_and_final": 180,
+    "term_grace_seconds": 30,
+    "retries": 0,
+    "no_prompt_removal": true,
+    "no_rerun_old_thinking": true,
+    "no_final_budget_increase": true
+  },
+  "runtime": {
+    "model": "Qwen/Qwen3.5-9B",
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "model_remote_path": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "adapter_remote_path": "case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/adapter",
+    "adapter_files": {
+      "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+      "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+    },
+    "runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "tokenizers": "0.23.1",
+      "cuda": "12.6",
+      "gpu": "NVIDIA A800 80GB PCIe",
+      "visible_gpu": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc"
+    },
+    "native_GDN": true,
+    "FLA": false,
+    "precision": "text_only_bfloat16_sdpa_no_quantization",
+    "actual_text_base_parameters": 8953803264,
+    "with_adapter_parameters": 8997081600,
+    "resource": "A800 existing reference environment; old GPU currently allocated to retrieval warm-stage, no allocation/availability claim",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime"
+  },
+  "cost": {
+    "old_measured_input": 2030,
+    "old_measured_generated": 4096,
+    "old_generation_seconds": 186.896,
+    "old_native_total_seconds": 209.493,
+    "old_peak_allocated_bytes": 18724500992,
+    "linear_decode_only_proxy_seconds": 23.362,
+    "proxy_excludes_extra_prefill_coldload_hashes_and_context_length_effects": true,
+    "new_actual_runtime_and_memory": "unmeasured"
+  },
+  "success": {
+    "new_suffix_only": true,
+    "original_4096_never_used_as_final_JSON": true,
+    "required_codes": [
+      "C000",
+      "C001",
+      "C002",
+      "C003",
+      "C004",
+      "C005",
+      "C006",
+      "C007"
+    ],
+    "legal_patient_ids": [
+      "P1"
+    ],
+    "rejects": [
+      "token_limit without EOS",
+      "missing duplicate or extra CID",
+      "illegal or duplicate PID",
+      "partial JSON",
+      "markdown or non-JSON final",
+      "any new thinking/role marker",
+      "prefix mismatch"
+    ],
+    "quality_not_measured": true,
+    "no_automatic_expansion_to80_F1_or_originaldev": true
+  },
+  "next_implementation": "If parent selects this proposal: small fixed-ID generation entrypoint, CPU presence-history counterexamples and exact source/plan freeze before any single bounded run; reuse verified loader/environment rather than changing backend"
+}
