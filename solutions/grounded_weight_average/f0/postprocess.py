@@ -29,6 +29,8 @@ def main():
   assert primary_keys({'b'},set(),{'b','old'})=={'b'}
   assert primary_keys({'b'},{'x'},{'x'})=={'b','x'}
   sys.path.insert(0,str(G/'quality'));import support
+  sys.path.insert(0,str(S));import verify_direct
+  assert Path(verify_direct.__file__).resolve()==S/'verify_direct.py'
   spans,mask=support.byte_helpers(OLD['references']['byte_helper'])
   raw='{"pmc_id":"D", "entities":[],"association":[{"patient_id":"P", "phenotype":["HP:0001250;HP:0001251", "unmapped;text"], "extra": 7}]}\n'
   rendered=support.replace_phenotypes(raw,{'P':['HP:0001250;HP:0001251','unmapped;text','HP:0001252']},spans,mask)
@@ -36,7 +38,7 @@ def main():
   sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');import evaluate as ev
   d={'pmc_id':'D','association':[{'patient_id':'P','phenotype':['HP:0001250;HP:0001251','unmapped;text','NO']} ]}
   assert pairs([d],ev)=={('D','P','HP:0001250'),('D','P','HP:0001251'),('D','P','unmapped;text')}
-  save(S.parent/'evidence/F0-endpoint-contract-v2.json',dict(status='PASS',pure_intersection_not_union=True,base_protected_even_when_absent_from_both_views=True,compound_old_prefix_and_nonphenotype_bytes_exact=True,literal_NIL_semicolon_not_split=True,NO_excluded=True,quality_calls=0,source=ref(__file__)))
+  save(S.parent/'evidence/F0-endpoint-contract-v3.json',dict(status='PASS',pure_intersection_not_union=True,base_protected_even_when_absent_from_both_views=True,compound_old_prefix_and_nonphenotype_bytes_exact=True,literal_NIL_semicolon_not_split=True,NO_excluded=True,quality_calls=0,source=ref(__file__)))
  elif a.stage=='extract-bind':
   col=read(D/'infer-v1/collection.json');assert col['inference_reported_success'] and col['all_actual_SHA_verified']
   p=read(G/'f0/extraction-plan.json');frozen=read(S/'infer-plan.json')
@@ -55,7 +57,7 @@ def main():
   # Use the mature actual-raw and normalization verifier, not its old two-arm runner.
   sys.path.insert(0,str(G/'quality'));import support,assemble
   for x in list(r.values())+list(p['actual'].values()):checked(x)
-  inputs=support.jsonl(r['F0_input']['path']);from verify_direct import verify_actual
+  inputs=support.jsonl(r['F0_input']['path']);sys.path.insert(0,str(S));from verify_direct import verify_actual
   normalized,coverage=verify_actual(p,inputs)
   strict=support.load_module('_mean_strict',r['strict']);hpo=strict.HPO(r['hpo']['path']);schema=support.load_module('_mean_schema',r['schema'])
   class BoundStrict:
