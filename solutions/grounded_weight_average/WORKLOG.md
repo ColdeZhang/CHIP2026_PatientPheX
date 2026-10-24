@@ -12,4 +12,4 @@
 - 已完成：32项NumPy数学/严格schema合同PASS；actual PEFT加载/权重header/实际合成仍未执行。短报告与唯一未执行协议见[evidence/readiness.json](evidence/readiness.json)。
 - 参数：拟r32 text+adapter9,040,359,936；即全bundle保守9,739,661,040，≤10B。原39推断1103.2秒仅成本proxy，建议root决定有界完整控制。
 - 供给：原G282关系中62在当前B4外，只是潜在新增上界，未读gold或计算新分数。
-- 下一步：提交推送本准备；root决定实际CPU合成/PEFT微型加载及GPU，不自动开跑。
+- 已提交并实际核验远端 `origin/explore/grounded-weight-average@d23a7fb06a85ce3d9c23dab929d6008cb72a1d88`，源码/短报告/未执行plan均已备份。下一步仅由root决定实际CPU合成/PEFT微型加载及GPU，不自动开跑。
