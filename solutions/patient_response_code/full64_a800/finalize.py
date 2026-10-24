@@ -64,6 +64,7 @@ def main():
     assert restore['status'] == 'PASS_EXACT_LOGICAL_FULL_STATE_RESTORE'
     assert restore['completed_epochs'] == 1 and restore['global_step'] == 34
     assert restore['restored_state_digest'] == restore['serialized_state_digest'] and restore['all_RNG_restored']
+    assert read(controller / 'export-service-closure.json')['all_exact_servers_absent']
     result = read(inference / 'terminal/summary.json')
     assert result['expected_rows'] == result['fresh_rows'] == 64 and result['cached_rows'] == 0
     assert result['strict_complete_rows'] + result['whole_row_abstentions'] == 64
@@ -111,7 +112,8 @@ def main():
         add(name, root / name)
     for name in ('entry.json', 'controller-plan.json', 'campaign.json', 'campaign-complete.json', 'GPU-AUTHORIZATION.json',
                  'source-deployment.json', 'target-deployment.json', 'bootstrap-entry.json', 'watch-job.json',
-                 'watch-lifecycle-observed.json', 'watch-lock-contract.json'):
+                 'watch-lifecycle-observed.json', 'watch-lock-contract.json',
+                 'export-service-closure-intent.json', 'export-service-closure-tool.json', 'export-service-closure.json'):
         add('controller/' + name, controller / name)
     for epoch in (1, 2):
         for suffix in ('job', 'state', 'export-ack', 'export-verification', 'source-ack-copy', 'server-ready'):

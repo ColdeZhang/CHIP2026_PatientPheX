@@ -26,3 +26,5 @@ python solutions/patient_response_code/full64_a800/inference/operations.py start
 发现原运行/回收入口的机械异常时，保留原错误和源SHA，只修接口/传输，不更改数据、方法、原截止或重新生成响应。恢复监控使用独立 recovery 意图，先证明旧 watcher 已死且没有双owner。
 
 完成本地封包后使用 `python solutions/patient_response_code/full64_a800/store_terminal.py --directory B/terminal-backup`，复用固定SHA的既有私有传输实现，仅切换独立full64目录。尚未执行；上传UNKNOWN时先核原同字节分块，不重复盲写。真正stored-receipt到齐才称持久备份完成。
+
+两轮ACK后再运行一次 `python solutions/patient_response_code/full64_a800/verify_export_closure.py --controller B/controller`，只核两个原导出HTTP的精确进程身份是否消失，不发信号、不查GPU；避开原watch在途调用。若尚在则保留实际状态，不能凭managed stop回执称完整关闭。终态包绑定此原收据。
