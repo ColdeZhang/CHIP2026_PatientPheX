@@ -92,3 +92,5 @@
 - **value权重正式训练已启动**：A100GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，2026-10-24T00:13:40.565107+00:00；2100主截止2026-10-24T00:48:40.565107+00:00、TERM最晚2026-10-24T00:49:10.565107+00:00，watch58297。plan248e9c32/trainer8121f8fe、入口3246f81已push；actualCPU9.571s通过。H32先读外存formal2ep/job、monitor，勿重复启动。仅完整2ep32calls才原80 F1600+30；[恢复入口](evidence/round2/json-value-weighted-formal-start.json)。
 
 - **小共指模型仅准备**：root委派helper冻结F-coref e91dfff固定公开90.53M参数；ModelScope同身份404后使用固定HF revision、362MB权重SHA。只授权.100自有下载600秒、私有overlay180秒/CPU4构造例180秒与input-only普查，无赛事NN/质量/GPU。原train32/F1分别87患者255mentions和39患者162mentions，存在共享alias，禁止按名字广播身份。27小源/plan共152KB已按SHA收入[目录](public_coreference_readiness/INTEGRATION.md)，提交push后helper启动。
+
+- **小共指readiness完整**：fixed F-coref8文件/362MB权重全SHA、native90,526,466参数精确。直连75.162s失败0权重字节，原600窗口内CDN42.515s恢复；私有overlay109.500+46.770s，原CPU窗口内attempt2 6.630s成功（首次缺click 2.956s保留）。4构造例坐标roundtrip合法，但精确span映射A接0cluster，不能报患者归属质量；6自有job均停，无GPU/赛事NN。详见[终点](public_coreference_readiness/READINESS-REPORT.md)。root后继只授权train32/F1 input-only CPU覆盖普查，另冻结新plan再执行。

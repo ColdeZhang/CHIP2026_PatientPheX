@@ -1,0 +1,13 @@
+# F-coref readiness: complete, CPU synthetic only
+
+Fixed author model `biu-nlp/f-coref@e91dfff12879495d882ba9460d0c5d5dd44ade59` loaded successfully with unchanged inference source `ae224139196d122b225af5a7e73b5fc0b6e1076d`. The 362,162,101-byte weight SHA256 is `30ea6efe2bce49a857fe8aba41dcfe28b4147f77e3dec9f14100950bf4de1aa5`; all eight model files verified. Native unique parameters: **90,526,466** (82,118,400 backbone + 8,408,066 head). Together with current 9,597,467,990: **9,687,994,456**; this does not include a prospective NCR model.
+
+The direct HF request failed before weight bytes (75.162s). Recovery used the fixed revision's official CDN and completed in 42.515s, inside the original 600s deadline. Signed URL runtime files were removed locally/remotely and never committed. Private dependency overlays used 109.500s plus 46.770s repair (156.269s cumulative). Shared environment and vendor sources remained unchanged.
+
+Initial native attempt failed after 2.956s importing missing `click`, before model load. Private repair pinned `click==8.1.8`, `typer==0.16.1`. The unchanged native source's second attempt started 2026-10-24T00:33:39.518838Z and completed in **6.629952s**, before original deadline 00:34:10.916789Z; cumulative native time **9.586185s**. No attempt3 was needed. Torch2.7.1+cu126, Transformers4.51.3, spaCy3.8.7, NumPy2.2.6; CPU BF16, one thread, blank English spaCy, no spaCy neural model. All missing/unexpected/mismatched/error loading lists were empty.
+
+All four synthetic examples returned valid original character slices. Exact-span mapping A attached **zero clusters**: native model prefers `Patient A` or larger NPs such as `The proband, Zoë,`, while supplied patient anchors are names. The repeated-name fixture returned no clusters. These are descriptive outputs, not evidence of clinical attribution quality. Original output and failure traces are retained.
+
+The input-only anchor audit covered exactly train32 F2+F3 (87 patients /255 original mentions) and F1 (39/162), with no shared exact anchor coordinates or missing patient anchors. Literal alias strings are shared across patients in 5 training docs and2 F1 docs, so aliases cannot identify patients. No corpus text was sent through the model in this completed readiness phase; no gold labels, quality scores, GPU or LLM calls were used.
+
+See `attempt2/CPU-state.json`, `attempt2/synthetic-native-clusters.json`, `attempt2/CPU.stderr.log`, `download-complete.json`, dependency manifests and owned terminal processes. Upstream vendor trailing whitespace/EOF formatting is intentionally preserved to retain exact source hashes. Later input-only native census, if executed, has its own separately frozen plan and results.
