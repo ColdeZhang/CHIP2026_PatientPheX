@@ -27,3 +27,7 @@ GP首个实际训练已09:39:09.637056在.3 GPU0唯一启动proc_03655e70-29ef-4
 GP首入口6.766秒在任何forward前因未列已弃用pooler两权重退出，随后.3短暂离线；原失败完整保存。09:45:05.190878连接恢复后唯一proc_f83b21dd/PID1196954继续同原09:49:09.705568+30截止，未重置预算，数据/方法不变。docRE完整CPU实际1.250秒，train300窗/held156窗；727正对中720有attention支持交叠，7条context=0但两端全提及embedding保留且不删pair，不冒称完整全局注意力。释放后最长doc工程获120+30窗口。生成任务已澄清quote为复制的表型词面、非人工患者证据：87训练451672tokens、监督11884、max输入9210、max监督610；39held max10080。全部身份/targets保留，原生CPU回放120+5及A100 GPU2真实14反向/Adam/三Pareto420+30已授权，尚未新训练。
 
 后备第四控制：在新生成路线的A100显存工程完成前，先CPU准备一次patient-first原标准CE的fresh4epoch/64calls/warmup4对照，独立分支`explore/patient-schedule`。既有[轮数复盘](../research/round2-next-method-gap-20261024/EPOCH-ADDENDUM.md)只发现normal累计四轮曝光负，未发现patient-first fresh统一四轮终点；这不是继续LR已经归零的旧checkpoint，也不是扫一组epoch。固定F2+F3→F1、原124行/输入/schema/CE/LoRA/seed不变，只有统一训练长度与同比warmup/schedule改变；保存最终第4轮，复用旧第2轮对照，不新增中途held挑epoch。CPU/source准备先行，A800是否分配由新生成显存结果决定，尚未授权实际GPU启动。
+
+首轮两条小模型均完整负：GP直接追加 .701293122低强.728697536，GP-only .663575802；新增361概念单元仅51严格TP+6NIL匹配、304未匹配，真正强池外TP4/NIL2。当前只在原强池加GP span置信特征：原a465三个严格nested OOF与101列保留，新增valid/raw-logit两列含低于−2分数，不扩候选/换ID；3新模型与4全量打分277.219秒完成，唯一CPU LGB/F1终点待收。DocRE union .645655645、候选内替换.534242627低N .676546355；候选覆盖469/520，当前选择ATLOP原成熟`*`边界及起始marker表示新对照，源98f9b6a，10:04唯一600+30正式启动，方法与候选其余条件不变。
+
+生成模型A100唯一14反向压力已10:00:29启动proc7d1bc518/66162，420+30；首8微批/1Adam和三族更新已过，最终Pareto峰尚待。独立normalizer624条train-only query16.717秒完整，公共bank仅切片不重编码；LODO117对/11错是训练诊断，不是held分数。后备patient4路线已实际CPU构建强N∪旧P2 .671703123的匹配baseline，低N .676546355；未来两预写端点可择超过强N的最高Score，主并集是否胜匹配2轮另报，不以primary名称否定真正更高单臂。尚未patient4 GPU。
