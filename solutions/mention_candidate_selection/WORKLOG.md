@@ -1,5 +1,7 @@
 # 当前状态
 
+独立完整终审已通过：[稳定报告指针](evidence/final-review.json)；2941 原件、734 更新、两 ACK、1416 完整输出、两负终点与 87 件备份闭合。原终态不改。
+
 2026-10-24 UTC：固定F1配方负结案；不扩F0或原dev，不改阈值。独立 explore/mention-candidate-selection，实际GPU源 f47a8bcb43dc9fd65d4bd0a81aee44ab8af8687b；唯一proc791完整probe→fresh两轮→1416推断结束。
 
 | 完整端点 | Score | menF1 | docF1 | 实体数 |
