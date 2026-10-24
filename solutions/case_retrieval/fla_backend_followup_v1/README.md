@@ -1,5 +1,7 @@
 # 独立 FLA A 数值诊断
 
+**当前已完整结束，GPU释放，无自动后继。** 原metadata失败按H39保留，独立机械恢复在同一原截止内完成8次调用；两个后端各自重复exact，长32位置有1个top1跨后端变化，不能透明替换native。174小件已回收、40raw333.8MB原server持久，不重复传大张量；见 [完整结果](A-RESULT.md)与[引用](result-pointer.json)。root决定暂不B/C/质量/训练或替换，统一增量终审由validator在当前索引后完成；等待新训练质量再决定后续。
+
 本目录只含 A：128-token 裸基座全部 logits，以及真实14390-token old4f48 完整上下文固定32位置＋8步共同 teacher-forced 历史。各组 N1/F1/N2/F2，同输入/相同起始 RNG/不更新权重；convolution native，只在独立子进程切两个 GDN 绑定。没有任务答案、金标、质量、训练、旧数值门重算或自动 B/C。原失败仍引用历史证据，所有新统计都没有通过/迁移阈值。
 
 固定32位置 `floor(i*14389/31)`，head前索引由原 modeling 接口执行；引用已独审 e35dba61 头部合同，仅检查本次实际索引，不重复该数学合同。包保存原 tensor dtype，先 fsync/SHA/reopen逐字节，再写finite统计并判定；NaN原件保留。总raw tensor上限1GiB，长输入不产生14GB全logits。CPU阶段已实际验证常量平移、32位置和NaN保存先后，见 cpu-result-pointer.json；没有导入torch/FLA/Triton/Transformers。
