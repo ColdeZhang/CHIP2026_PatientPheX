@@ -1,0 +1,53 @@
+{
+  "status": "CONFIRMED_RULE_IS_PER_INDIVIDUAL_MODEL_NOT_SUM_OF_PIPELINE",
+  "reviewed_at_utc": "2026-10-24T02:46:12.969384+00:00",
+  "source_url": "https://arxiv.org/pdf/2610.29606",
+  "source": "Task-organizer overview of CHIP2026 Shared Task1, fixed cached PDF; linked to the same competition532512 and post-evaluation phase.",
+  "primary_quote": "Each individual model was limited to 10 billion parameters;",
+  "section": "3.1",
+  "PDF_page_1_based": 4,
+  "existing_cached_text_lines": "164-165",
+  "independent_check": "Re-extracted directly from the actual SHA-verified PDF using pdftotext -layout; sentence matches existing cache. No website revisit or learned-model execution.",
+  "corroboration": {
+    "section": "4.2",
+    "PDF_page_1_based": 10,
+    "quote": "For Subtask 2, the team constructed candidate patient-phenotype pairs and employed Qwen3-8B and DeepSeek-R1-0528-Qwen3-8B to extract patient-specific phenotype information from full-text articles. Predictions from multiple large language models, together with contextual and positional features, were integrated into a LightGBM classifier to determine patient-phenotype associations.",
+    "context": "The preceding paragraph states top3 were selected considering performance and competition-rule compliance. Two separate8B models plus other components support the explicit individual-model wording; this is corroboration, not the primary rule."
+  },
+  "earlier_Tianchi_cache": "Chinese cached task intro says 模型参数不超过10B without the word individual; it does not expressly impose a sum over the full pipeline. Organizer overview supplies the explicit scope.",
+  "correction": "Earlier project-level aggregate10B ceiling was an unnecessarily restrictive self-imposed interpretation, not the quoted official constraint. Supersede it; do not call a pipeline noncompliant merely because separately eligible models sum above10B.",
+  "operational_effects": [
+    "Keep an exact list and per-model parameter/state inventories plus actual dependencies. Aggregate totals remain useful resource accounting, not the official cap test.",
+    "Retain strong BioBERT and add NCR for the newly authorized fixed160/15/.3/nested fresh4fold control; unexecuted mandatory-dropB design is historical, not a prerequisite. Actual B fields/dependency stay declared.",
+    "MedGemma4B and Qwen9B may be considered together under this per-model interpretation; current authorized single-model engineering probe is unchanged. This correction alone does not authorize another training or evaluation.",
+    "No change to train/held isolation, prohibition on external manually annotated phenotype datasets, required model/resource disclosure, or prohibition on official uploads in this campaign."
+  ],
+  "limits": "This independently verifies the already cached organizer overview and source integrity; it is not a new private organizer clarification. No evidence here establishes a pipeline aggregate10B limit. Individual-model actual accounting remains required.",
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/overview.pdf",
+      "bytes": 1011804,
+      "sha256": "e583c8b07ab94c4781e2349f40ca4a2993a9bfd7dac938fb69885588bf50a984"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/overview.txt",
+      "bytes": 45381,
+      "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/model-parameter-rule-correction/overview-fresh-extraction.txt",
+      "bytes": 45381,
+      "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/model-parameter-rule-correction/source-record.json",
+      "bytes": 244,
+      "sha256": "2bfc0ca003b301ac1d8c7165a6c8c6e8766d44b0f823102b68c285ab05901831"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/model-parameter-rule-correction/tianchi-introduction.snapshot.md",
+      "bytes": 8772,
+      "sha256": "05f8d5ff4e3a33b2e5bbe6afa92374acdf716714c119c745420c7eed7d2f56db"
+    }
+  ]
+}

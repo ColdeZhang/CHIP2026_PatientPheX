@@ -59,3 +59,11 @@ NCR实际完成408,272键、798批（复用3批，新增795次forward）与5,341
 非神经库存已补：CRF9,238、Sap类型LR769、实际PhenoTagger预处理依赖POS271,206权重，以及旧97列公共新关系支持HGB等。拟议NCR链 **9,966,949,054只是神经权重小计**；小模型、经验表和结构宽预留568,356后余32,482,590，仍须扣实际新HGB。新头真实F、树节点及阈值待fit补录；派生TFIDF/Sap表示缓存不重复算独立训练权重。完整结构证据 `research/nonneural-deployment-inventory/inventory.json` SHA `f9e2718e…`，实际只读1.063秒，无predict/fit/gold；防遗漏规则见H46。
 
 按用户魔搭优先建议，启动 `google/medgemma-1.5-4b-it@9bca96ca3e3049f6a084d8c876078cedb3069f18` 资产下载，仅作为关系模型替换候选；完整发布参数4,300,079,472、拟议文本LoRA29,802,496，完整权重/header仍待核验。原HAI-DEF条款/NOTICE随资产保存，不把MS公开可下载解释为模型Apache许可。检索负责人准备同strict train32旧124条→F1旧80条、同CID闭集schema的固定控制；尚无GPU、训练或质量，不下载可选Qwen4B，也不先做两模型并集。来源与参数推导见外部 `research/medical-small-model-readiness/REPORT.md`。
+
+## 02:46：纠正10B规则作用对象，保留有效组件
+
+重新核对已缓存官方综述，PDF第4页§3.1明确 **“Each individual model was limited to 10 billion parameters”**，第10页§4.2进一步记录Qwen3-8B与DeepSeek-R1-0528-Qwen3-8B共同集成。网页中文只写“模型”不能被自行扩成全流水线总和。主线程与独立复核均重新从原PDF提取确认，PDF SHA `e583c8b0…`，独审 `5bd082d3…` 已原字节保存为[规则纠正](round2-model-parameter-rule.json)。此前的全链10B限制是项目过严解释，现已撤销。
+
+因此，上述02:33库存中的真实组件/数量继续有效，但“33M余量不足不能加适配器、NCR必须删除BioBERT、Med必须替换9B”等推论均被替代。NCR此时尚无fresh fit/质量，去B源码与静态审查保留为superseded-before-fit，后继改为强B八池保留六字段，再加入NCR两来源字段并fresh同160/15/.3/nested四fold；原900+30授权延续，原公共缓存无需重做。实际每个基座及其适配器/学习头仍需计数，全部模型/资源仍须披露；流水线合计用于资源预算。
+
+Med下载已完成：19件8,639,802,098字节全部SHA通过，实际883个BF16 header的shape/offset/EOF匹配4,300,079,472参数，含header终态949.210秒、原PID结束；统一23件小handoff `0b121972…`，没有复制权重或大tokenizer到Git。原生CPU124训练/80输入10.453秒通过（382000/238727 token，max5380/5422），纯文本238投影LoRA29,802,496，head/embed/vision冻结。准备私网A100转存与最长行真实诊断；当前仍只测单模型，未来组合须有实际证据，规则纠正不等于分数改善。患者优先在跑训练与唯一F1终点保持不变。
