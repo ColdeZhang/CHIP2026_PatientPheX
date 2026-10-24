@@ -1,6 +1,6 @@
 # 病例检索路线：当前工作索引
 
-- **独立新授权**：[完整901∪完整FLA](fla_best901_whole_union/README.md)，根在已知替换负结果后明确一次缓存整体并集，非盲开发；复用通用union/字面政策，源88b9c60b/plan50441ae6先7799f4c push后唯一CPU.286306/外.384725秒完成，保416全并加2→418且新增均FP；.754361398199→.753601147974（−.000760250225），完整pred186d319e先freeze29998675→1newv2旧0，summaryf23fc80a，固定负关闭。已交一次增量审、尚未已审；不改前一负计划，不扫子流。
+- **独立新授权**：[完整901∪完整FLA](fla_best901_whole_union/README.md)，根在已知替换负结果后明确一次缓存整体并集，非盲开发；复用通用union/字面政策，源88b9c60b/plan50441ae6先7799f4c push后唯一CPU.286306/外.384725秒完成，保416全并加2→418且新增均FP；.754361398199→.753601147974（−.000760250225），完整pred186d319e先freeze29998675→1newv2旧0，summaryf23fc80a，固定负关闭。独立小终审562c81ef通过；20件36KB补包abceb8ef/manifest069bc120已服务器SHA/fsync/reopen，root实际恢复待办；不改前一负计划，不扫子流。
 
 - **固定负结案：[901原配方FLA](fla_best901_control/QUALITY-RESULT.md)**：四流normal64/reverse64/public42/patient64，共234，715548旧实际tokens；仅改backend、全部fresh。CPU234 native核3.957秒通过（c5a132f1），全部715548输入tokens/原顺序exact；原四raw唯一CPU复装0.109740秒byteexact901（dff40c6f），0gold/v2；新GPU源449cb790/计划178ae0ec已冻，唯一proc_e4930517/PID2721779已10:28:14.990完整结束，外1056.450秒/rc0，234fresh自然EOS/0cap/0cache，.100GPU1实际0MiB/noapps释放；terminal0fd11978。原1800+30共享截止未重置，724原成员/包28af55a3已全SHA一次回收，actual质量plan a6604c27已核全部234/源/原始IDs顺序；单pred fba773f7/140592B冻结4b911c4d后唯一v2：.754361398199→.753895452309（−.000465946），实体两项同、关系两项均降，321TP95FP→321TP96FP；CPU.647549/外.824667秒，summaryc21eff00，keepfalse，不扫组合/不改best901。统一增量终审b952104c通过，实际2加1删/415保留；质量补包e52757bf/manifest aaf91438已服务器全SHA/fsync/reopen，root实际恢复待办。
 
@@ -11,7 +11,7 @@
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
-## 当前：901原配方四流FLA已审负结案；独立完整缓存并集亦负，待其小增量审
+## 当前：901原配方四流FLA已审负结案；独立完整缓存并集亦负且已审/持久，当前无运行或待评分
 
 - **当前官方状态**：最高901方案的 B50ef5daa/894806B（100篇/244患者/6816实体/2395关联）已经 root 于07:54:13 UTC 唯一提交并 accepted（8d39aba4），额度5→4，未查询成绩；联合审cd7a6040通过。15件最终补包 c9f3451f 已.100持久且 root 实际回读恢复，不重复备份。完整来源见 [official B闭环](official_b_901/README.md)，无新fit，未混新R1或train80模型。
 - **当前单次CPU任务已结案**：[BioLink供给决定](biolink_supply_diagnostic/DECISION.md)。唯一有效F0统计.384376秒：新增133支持ID单位（117新边界/16换ID）仅补强池遗漏的1个严格gold，文献概念新增54也只补1；132为annotation-unmatched而非模型FP，另7NIL跨度单列。原train48完整排F0，未原dev/fit/NN/v2；首次schema在gold前退出保留。源plan先55a6c02 push，result1fca36ec；当前不推荐新OOF学习融合、不启动后继。
