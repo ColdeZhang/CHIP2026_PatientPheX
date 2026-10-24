@@ -60,3 +60,7 @@ Root clarified first pure-read UNKNOWN may retry once after30s;185s applies expl
 ### 2026-10-24 12:11 UTC — original phase durable, epoch2 uniquely accepted
 
 Original .100 fetch proc_bb6ac3d4 began12:09:17.227461 and completed ACK12:10:19.359279 (62.004988s), before phase deadline12:10:32.215268. All13 members/520,024,979B full SHA/fsync/reopen passed; ACKadc62307/source-copyf5ca5efe match exactly. Later local observation12:10:34 is not ACK creation time. Original server stop complete; no extra I/O recovery window used. Epoch2 proc_eacc8793-19f3-461b-aa25-39efadbafbc6/PID158377 accepted12:10:35.344602073Z, original whole deadline unchanged and~2069s remaining. It resumes the exact first state/ACK; actual full restore proof will be collected at training terminal, not inferred from start acceptance.
+
+### 2026-10-24 12:13 UTC — bounded inference transport prepared only
+
+Prepared inference/deploy_via_bridge.py by reusing the already-successful authenticated .100 private archive bridge in a new namespace. It binds the final inference archive only after both training ACKs, retains capability private/redacted, and executes the original inference operations.py deployment verification literal verbatim after same-SHA transfer. Source plus4 generated remote-code literals compile; no new remote action/model/quality. Native inference, generation, decoder and paired quality source unchanged. This avoids repeating fragile many-call A100 upload; whole archive and every member remain verified before original unique launch.
