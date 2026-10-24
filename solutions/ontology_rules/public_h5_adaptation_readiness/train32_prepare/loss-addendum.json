@@ -1,0 +1,26 @@
+{
+  "status": "PRETRAINING_NUMERICAL_ADDENDUM_NO_FIT",
+  "original_policy": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/policy.json",
+    "bytes": 3409,
+    "sha256": "666596d43f437f965f3216838ec271703a30eacd18bfd13aac43d74a1e17444c"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/loss_contract.py",
+    "bytes": 5321,
+    "sha256": "e4f24d5398322410a649c39d534f97a9586b96be5a279b46477d19f5941b9bf7"
+  },
+  "objective": "logsumexp(all 17266 logits)-logsumexp(equivalent original target logits), then mean over unique input rows; no softmax clipping.",
+  "native_Dense_access": "Use original graph endpoint finalDense.input as hidden model, training=True; logits=hidden @ SAME finalDense.kernel + SAME bias. Do not replace Dense or activation; original inference softmax model preserved.",
+  "CPU_only_cap_seconds": 45,
+  "actual_public_encoder_backward": false,
+  "checks": [
+    "single target reduces to sparse logits CE",
+    "multiple equivalent columns analytic gradient",
+    "None17265",
+    "extremely wrong logits finite nonzero target gradient",
+    "empty invalid/duplicate targets rejected",
+    "same Dense preactivation reproduces native softmax and single-target gradients"
+  ],
+  "source_policy_extension": "Clarifies stable computation only; original data/negative/epoch policy unchanged."
+}
