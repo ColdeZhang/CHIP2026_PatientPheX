@@ -33,3 +33,10 @@ helper纯CPU6.715304s已通过，来源/矩阵/旧native全编码逐字核验。
 03:05 同目录库存实际恢复，UID1045、自有目录已创建且为空、磁盘free58,139,037,696B。复用原377023B/16成员archive，无重复mkdir；part000有成功回执，part001在03:06:41返回UNKNOWN，尚未解包/nativeCPU/GPU。03:08:33间隔至少60秒后的单次库存仍UNKNOWN；遵照主线程持续授权按退避后同目录只读核验，仅补实际缺件，不把未知当未发生。原source02435386与docs f376d212已GitHub lsremote实核。
 
 正式204训练草案e1aaf284保持旧9d2 CONFIG和8863B数值循环逐字一致，52calls/3warmup，新增新schema/三chain/656837full/7612监督绑定。nativeCPU实际收据SHA仍显式pending，入口硬拒绝执行；没有启动正式训练或把旧F1收据移用。旧F0原58 baseline仅定位现有pred63aefe68/metricse16ff5b0，Score .6954439475814587，未重评。
+
+
+## 实际A100 native CPU通过与唯一probe入口
+
+03:11第4次库存确认仅part000；随后只补缺part001成功，原archive9343e282全部16成员SHA/compile通过，无重复已成功块或mkdir。实际runtime Torch2.6.0+cu124 / TF5.20.2 / PEFT0.21.2、native GDN b4b17fe0、FLA不存在、CUDA隐藏且未初始化；当前两allocator环境变量均null，不能回推历史。新204 native tokenizer/六输入来源/全row与encoded哈希实际7.470150秒通过，最长5769/5695/74与本地精确。收据76ae7940、runtime ba808e77、selected55bb276a已完整回收，原件保留并核flat副本。
+
+最终唯一probe计划ef9c6225绑定19个实际成员，180s+TERM30、非零lr1e-4一次fresh native CE、三family B更新/base冻结检查，不改allocator/attention/loss/长度；诊断状态丢弃。计划已明确正式训练未启动/未授权。正式源草案仅用新native receipt替换占位得990dfd0c，推断草案仅绑定此trainer得f1bba655；完整2轮仍待probe实际成本/空间预算及root安排，旧F1源不变。

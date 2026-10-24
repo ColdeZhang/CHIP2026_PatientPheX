@@ -1,0 +1,120 @@
+{
+  "status": "PASS_stdlib_AST_inference_draft_actual_trainer_SHA_pending",
+  "completed_utc": "2026-10-24T03:10:43.670242+00:00",
+  "elapsed_seconds": 0.03210965899779694,
+  "checker": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/static_check.py",
+    "bytes": 6429,
+    "sha256": "4510d622dc306d1d75644e3f41743f8b31fe81c3d836e8d80ad4539f8d202a53"
+  },
+  "old_F1_infer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/source-snapshots/infer.py",
+    "bytes": 15142,
+    "sha256": "d605534102e25e8bc762a4607d6ce3d557c7089b1c9e3a8ab7fbdd44a171c6ff"
+  },
+  "new_template": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/infer_f0.py",
+    "bytes": 15568,
+    "sha256": "89ac69c659abd74b845747b28a96d75d991a37d4b4d3402d186bef3b717ae4b0"
+  },
+  "diff": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/against-F1-infer.diff",
+    "bytes": 5096,
+    "sha256": "a9ca964d4b9c71152c562bb6f9848cd6dacc60f73c3c0cd3f6cfb652e717782c"
+  },
+  "unchanged_functions_byteexact": {
+    "digest": {
+      "bytes": 207,
+      "sha256": "894fd02e14fffe3ceada738b8e752d0f9e0872b1ff2653524a5c6bb022fa05ea"
+    },
+    "json_default": {
+      "bytes": 273,
+      "sha256": "e691320ddcde425b3e35790aa41442a36806e3b4f880f3ba9dcac1306599a259"
+    },
+    "atomic_json": {
+      "bytes": 215,
+      "sha256": "cd25a1645081a85434a6e05e717757ccc9523f7657b4a9f37b2ed96df3034a31"
+    },
+    "read_prompts": {
+      "bytes": 621,
+      "sha256": "ed491816adadef714de832ce0edfdf2650ac3e239440d02ae50eae4e33881ba4"
+    },
+    "validate_existing": {
+      "bytes": 1024,
+      "sha256": "63163a9e3dc1a87e0ac3f9936e1bded80e8507173834ed39de46dfd622fdd903"
+    },
+    "verify_model": {
+      "bytes": 976,
+      "sha256": "1192c232b0c5c016445682accc2e98b42cfbf4e23b6296ef403ca3e1ef9a33fd"
+    }
+  },
+  "loading_through_final_coverage_span_byteexact": {
+    "start_marker": "text_config = Qwen3_5TextConfig.from_pretrained(args.model, local_files_only=True)",
+    "exclusive_end_marker": "atomic_json(output.with_suffix(\".manifest.json\"), {",
+    "bytes": 3666,
+    "sha256": "8b5ef497c499fa099170e292271491e8de72ae8f7a3cbbabb1b88ec5a4ae4135"
+  },
+  "fixed_input_and_unchanged_parser": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/F0.input58.patient-first.jsonl",
+      "bytes": 825019,
+      "sha256": "dae9b5d8eeade4c61ec693af28bbdc3993b3864135b1b6260b769b79c35e960b"
+    },
+    "input_token_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/F0-input-token-audit.json",
+      "bytes": 43152,
+      "sha256": "0d7180d9231304076a59c7f4d9d421c93c03bc62dc2f9b176c5484f358492602"
+    },
+    "final_parser.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/final_parser.py",
+      "bytes": 1381,
+      "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+    },
+    "patient_first.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-inference-draft/patient_first.py",
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    }
+  },
+  "draft_contract": {
+    "training_sha256": "ec64defd2106d65f5c4f6149480b78354484a40a2cc173ad81826ff36503a2d8",
+    "epochs": 2,
+    "final_global_step": 52,
+    "prompt_rows": 58,
+    "documents": 16,
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "thinking": false,
+    "batch_size": 1,
+    "do_sample": false,
+    "sort_order": "input_tokens then row_id",
+    "no_truncation_or_prompt_removal": true,
+    "strict_single_actual_terminal_EOS_and_whole_PID_CID_JSON": true,
+    "native_no_FLA_runtime_unchanged": true
+  },
+  "pending_gate": {
+    "placeholder": "__TRAINER_SHA_PENDING__",
+    "actual_rejection_exercised": true,
+    "before_first_data_IO_or_NN_import_in_main": true,
+    "final_trainer_SHA_not_bound": true,
+    "training_checkpoint_actual_status_not_examined": true
+  },
+  "scope": {
+    "AST_compile": true,
+    "stdlib_only": true,
+    "target_modules_imported": false,
+    "tokenizer_run": false,
+    "NN_or_GPU": false,
+    "MCP": false,
+    "Git_changed": false,
+    "gold_or_targets_opened": false,
+    "quality_run": false,
+    "old_schema_parser_or_probe_tests_repeated": false,
+    "input_files_hashed_only_not_parsed": true
+  },
+  "limitations": [
+    "Template and static evidence only; owner binds actual final trainer source after native receipt integration.",
+    "No model or checkpoint weights were read; no inference output exists from this task.",
+    "Endpoint notes are a separate adaptation proposal, not executed assembly/freeze/evaluation."
+  ]
+}
