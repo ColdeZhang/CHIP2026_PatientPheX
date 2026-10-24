@@ -1,6 +1,6 @@
 # Copy-grounded decode 台账
 
-当前状态：**F1独立弃答v2严格正；原V1仍失败/0quality。排F0完整47已rc0/47EOS/47strict，0cap/0parserfail；126必要FP16 Sap计划已冻结待唯一启动，无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**F1独立弃答v2严格正；原V1仍失败/0quality。排F0完整47已rc0/47EOS/47strict，0cap/0parserfail；126必要FP16 Sap已完整并释放；全16/47/947唯一primary新增32/删0已冻结，尚未F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
 最近远端检查点：2026-10-24 15:24 UTC，`origin/explore/copy-grounded-decode` 的 `e8a6de06a792691b9ffd23df7e30346270c23c35` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
@@ -41,3 +41,5 @@
 - 原GLiNER大包后台回收已15:41:51.615933完整结束：701原件collection998f08bd、ZIP3355845B/cb201713全部实际本地SHA吻合；sidecar `F0-proposer-v1/infer-v1/full-raw-collection-status.json`，accepted a1242b31保持原字节。见f0_proposer/full-readback-ref.json。47原job继续，暂无F0评分。
 
 - 原47在15:54:43.690492完整rc0、735.498秒/no timeout，真实GPU0释放15:54:43.723052；完整收件后确认47EOS/47strict、0cap/0parserfail，701anchors/309quotes、0rejected/0abstain。原F1 V1失败记录不变。完整原件collection和quotes均逐SHA绑定，固定train32/b59归一化仅126必要query；新Sap计划27bb31db、180+30，先push再唯一fresh门启动，暂无F0评分。
+
+- 必要126Sap proc_08f195ea、driver2752408/child2752416在15:56:38.365865完整rc0，8.041秒；真实释放15:56:38.370788、GPU0=0/noapps，wrapper1573499d，已交next_method。原FP16/b59/41099固定链完整收件后，全16/47/947 primary保343旧关系、新增32/删0，pure373仅审计不评分；freeze515123f9先push再唯一1newv2/old0，非关系字节/旧字面前缀全部保护，无cap救回或单臂。
