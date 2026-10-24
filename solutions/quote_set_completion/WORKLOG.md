@@ -15,3 +15,5 @@ Root在首次GPU前授权固定第三视图：每原87患者加入full-known→[
 唯一远端CPU15:07:32→15:07:51，19.062秒rc0；15原件SHA回收c2ff0d45，261全部HF/native IDs/labels/rendering/EOS、known/target集合隔离及33-update toy完整状态接口通过。未载模型或质量。见evidence/native-v2.json。
 
 下一唯一240+30工程：warm-d52/freshAdam，固定8次反向非零更新→3次累积→最长9307/187与最多监督5773/307，13backward，保原indexedCE/native/BF16；完整adapter/Adam/scheduler/所有RNG临时SHM序列化并重开校验后弃掉。正式训练草稿尚未运行；不能沿probe权重继续。源码/plan先推后fresh门启动。
+
+原13步工程路径修正后15:13:27→15:15:28按原绝对截止TERM，120.847秒rc−15；已真实group8 Adam/三族参数变，未完成全部极端shape/保存，不能记PASS。首次beforemodel5.225秒失败及恢复partial全部保留；旧进程/卡已实际释放。70秒剩余门过于乐观，已纠正成本依据，不再复用。Root另授权独立180+30最小工程：仅冻结两极形状各FB合并真实Adam，并全state保存/重开验证，fresh父d52不沿partial；不重复13步或261CPU。
