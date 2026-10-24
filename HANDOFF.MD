@@ -213,6 +213,8 @@ CRF GPU入口曾以 `Path(path).name` 为字典键，CRF与语义编码器都叫
 
 同类传输故障：MedGemma首次私网复制时，本地MCP初始化503触发controller的`finally`，过早停止仍供下载的源HTTP进程，随后fetch报连接拒绝。**监控失败或UNKNOWN只表示观察失败，不能自动清理健康远端作业。** 保存已知job和绝对截止；仅在fetch确认终态、明确停止或截止时清理源，两端各自受绝对TTL约束。修复后3项CPU边界检查及增量独审通过（`validation/medgemma-runtime-readiness-review/transfer-recovery-source-checks.json`，SHA `558ccde4…`）；唯一断点恢复722.052秒内完成19件8.64GB，03:14:31取得完整ACK。10件继承此前完整核验/未变文件证明，9件本轮SHA，不能冒称19件均重新hash；原失败和600秒未启动旧恢复计划保留。完整copy终审 `4b9e48c0…`，恢复不重下公共权重、不代表GPU或质量通过。
 
+DocRE的CPU入口曾把长wrapper交给`run_command(timeout_seconds=1)`，工具返回TIMEOUT、wrapper退出状态未保存，但分离的原编码子进程实际完成1.250秒，完整输出仍在。恢复只核原PID、encoded清单与原始SHA，未重编码；随后改用已验证`start_process`。API超时不是子任务失败或可重复启动的证明，缺失的wrapper rc也不能补写0；细节见新文档关系分支`solutions/document_relations/WORKLOG.md`。
+
 ## H33：标准库辅助函数也依赖实际 Python 版本
 
 GLiNER-BioMed 的新启动器使用了 Python 3.11 才引入的 `hashlib.file_digest`，而实际系统解释器为 3.10.12，首次在校验文件时退出，尚未加载模型或使用GPU。模型库能导入不代表外围启动器的标准库调用兼容。
@@ -364,3 +366,15 @@ A800项目盘06:38尚有约119MB，06:59已为0；显卡空闲不代表能安全
 患者均衡loss的数学/梯度CPU合同通过后，首个真实Qwen forward仍在hook的`not kwargs`断言退出。实际PEFT默认传入`output_attentions=None`和`output_hidden_states=None`，Transformers将它们继续透传给loss；两者不改变该loss目标。原失败72.035秒、0反向/Adam更新，不能作为方法质量负结论。
 
 **避免方法**：除了纯函数数值合同，检查实际安装版本的完整调用链与默认参数；不假定`**kwargs`必为空，也不一概忽略所有额外参数。此次只白名单已证的两个None值，未知键/非None仍拒绝，并先持久保存调用字段再断言。27项薄接口合同通过，原317核心数值合同复用；独立恢复完整12反向/真实Adam/最长5556成功159.844秒，独审`7a010be3…`。正式trainer同步绑定同一修复hook，避免只修probe；原失败和原预算保留，新恢复预算独立记录。细节见序列分支`patient_balanced_loss/interface_recovery/`和外部`validation/patient-balanced-alpha05-engineering-review/`。
+
+## H56：预训练编码器未使用的head权重不等于加载损坏
+
+GP显式`add_pooling_layer=False`加载现成BiomedBERT，原生load成功但新检查只允许`cls.*`额外权重，漏掉实际未使用的`pooler.dense.weight/bias`，6.766秒在任何forward前退出。此为加载信息门错误，不是模型或方法质量失败。
+
+**避免方法**：按实际模型构造区分预训练head、主动禁用pooler、必需编码器权重；保存完整loading info，对missing/mismatch保持检查，不假设所有unexpected都非法。此次仅补两个已解释的unused键，保原失败和原截止；同数据恢复后真实probe和8epoch/全F1推断95.520秒成功。未使用head参数及是否计入部署库存分别披露。见新跨度分支`solutions/span_normalization/WORKLOG.md`、原failure包197a1fb5。
+
+## H57：函数模块标签和包装器源码位置不必属于同一包
+
+FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getsourcefile`必须在FLA wheel的Python文件清单中；实际函数经Torch包装，源码指向已核`torch/_dynamo/eval_frame.py`，而旧A已验证同样结构。首次因此0forward退出，不能记成FLA未启用。
+
+**避免方法**：复用实际已验证的binding graph、wheel来源和运行开关合同；需要加强检查时先保存真实包装链，再验证其语义，不用单一路径归属替代后端身份。恢复撤回新增过强断言、infer源码不变，保存实际graph并保持原绝对截止；80条fresh和终审8ca5be23通过。原数值差异仍保留，不因接口修复称native/FLA逐位等价。见检索分支`fla_fulltext_quality_control/`及外部`validation/fla-fulltext-F1-quality-review/`。
