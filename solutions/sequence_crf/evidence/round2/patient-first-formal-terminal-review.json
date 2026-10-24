@@ -1,0 +1,313 @@
+{
+  "status": "PASS_COMPLETE_TERMINAL_PRIMARY_NEGATIVE_FIXED_SECONDARY_SMALL_POSITIVE",
+  "created_at_utc": "2026-10-24T02:57:22.787782+00:00",
+  "verifier": "validation_recover_0102",
+  "scope": "Incremental endpoint audit after prior formal entry71d71097 and pre-quality amendment4eafc8f2. Train32(F2+F3) to innerF1 16 documents/80 prompt rows, public approximation v2 all/text; this is not original dev16, F0 or official score.",
+  "conclusion": {
+    "primary": "Do not promote patient-first alone: Score0.6455318611085445 vs cached oldSFT32 0.6609420026531936, delta -0.015410141544649036.",
+    "secondary": "The one prospectively fixed oldSFT32 union patient-first passes the recorded keep rule: Score0.664421521724852, delta +0.0034795190716584434.",
+    "tradeoff": "microF1 decreases0.0023896951681529055, macroF1 increases0.0163077714547869; delta(micro+macro)=0.013918076286633994>0 and macro does not fall. Exactly47 added relations:15TP+32FP, zero removals. This is a small macro-driven gain, not evidence of0.8 or originaldev improvement.",
+    "next_decision": "Root may decide a separately bounded F0 transfer validation; no F0/newtraining/newcombo/upload was executed or authorized by this review."
+  },
+  "independent_checks": {
+    "status": "PASS_COMPLETE_TERMINAL_INCREMENT",
+    "owner_manifest_refs_exact": 77,
+    "training": {
+      "epochs": 2,
+      "optimizer_calls": 32,
+      "rows_per_epoch": 124,
+      "fresh_initial_base": true,
+      "same_checkpoint_fingerprint_both_epochs": true,
+      "actual_total_tokens_per_epoch": 400614,
+      "supervised_tokens_per_epoch": 4694,
+      "native_seconds": 1141.720449924469,
+      "wrapper_seconds": 1142.7218506336212,
+      "model_parameters": 8997081600,
+      "native_no_FLA": true
+    },
+    "persistent_final_export": {
+      "files": 12,
+      "bytes": 519972522,
+      "seconds": 60.14975272398442,
+      "adapter_sha256": "8b73876c9566224c2ce5adce8d7609e4239f76188f04591486800875be354dd8",
+      "training_state_sha256": "9c98f3a0b494160ad053570e77f6281a7c36f7bd1c173af647cc9e838832881b",
+      "producer_checkpoint_export_and_inference_SHA_exact": true,
+      "actual_reopened_full_SHA_receipt": true,
+      "no_large_checkpoint_retransfer_or_deserialize": true
+    },
+    "inference": {
+      "rows": 80,
+      "unique_rows": 80,
+      "native_seconds": 194.801,
+      "wrapper_seconds": 199.62451887130737,
+      "actual_all_EOS": true,
+      "EOS_counts": {
+        "248046": 80
+      },
+      "all_saved_parsed_CID_PID_decisions_assemble_exact_primary": true,
+      "native_strict_parser_receipts_reused_not_rerun": true,
+      "no_fallback_or_limit": true,
+      "final_GPU_release": {
+        "at_utc": "2026-10-24T02:53:13.364416+00:00",
+        "target": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+        "target_has_no_process": true,
+        "target_memory": [
+          "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, 1, 81920"
+        ]
+      }
+    },
+    "predictions": {
+      "documents": 16,
+      "entities": 1189,
+      "closed_pairs": 1557,
+      "old_relations": 383,
+      "primary_relations": 362,
+      "secondary_relations": 430,
+      "all_nonassociation_and_patient_metadata_object_bytes_exact": true,
+      "secondary_exact_literal_union": true,
+      "added": 47,
+      "removed": 0
+    },
+    "quality": {
+      "baseline_metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6866002214839424,
+        "macF1": 0.5422288533401712,
+        "Score": 0.6609420026531936
+      },
+      "primary": {
+        "completed_at_utc": "2026-10-24T02:54:48.906630+00:00",
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6349206349206349,
+          "macF1": 0.5322678737248826,
+          "Score": 0.6455318611085445
+        },
+        "baseline": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6866002214839424,
+          "macF1": 0.5422288533401712,
+          "Score": 0.6609420026531936
+        },
+        "baseline_reused_not_rescored": true,
+        "delta": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.05167958656330751,
+          "macF1": -0.009960979615288634,
+          "Score": -0.015410141544649036
+        },
+        "changes": {
+          "added_tp": 15,
+          "added_fp": 32,
+          "removed_tp": 45,
+          "removed_fp": 23
+        },
+        "keep": false,
+        "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+        "scope": "One final-epoch patient-first F1; same entities/pool. No union, scans, originaldev or official submission.",
+        "seconds": 0.22264515999995638
+      },
+      "secondary": {
+        "completed_at_utc": "2026-10-24T02:54:49.104396+00:00",
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6842105263157895,
+          "macF1": 0.5585366247949581,
+          "Score": 0.664421521724852
+        },
+        "baseline": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6866002214839424,
+          "macF1": 0.5422288533401712,
+          "Score": 0.6609420026531936
+        },
+        "baseline_reused_not_rescored": true,
+        "delta": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.0023896951681529055,
+          "macF1": 0.0163077714547869,
+          "Score": 0.0034795190716584434
+        },
+        "changes": {
+          "added_tp": 15,
+          "added_fp": 32,
+          "removed_tp": 0,
+          "removed_fp": 0
+        },
+        "keep": true,
+        "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+        "scope": "One pre-quality fixed oldSFT32 union patient-first secondary; no other combinations or scans.",
+        "common_freeze": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union/common-freeze.json",
+          "bytes": 2820,
+          "sha256": "a98b223ce614de9695753892ad5581df3ee7a6afc1a0152955c413e86547697b"
+        }
+      },
+      "both_format_zero_errors_warnings": true,
+      "new_evaluator_invocations": 2,
+      "baseline_evaluator_invocations": 0,
+      "scope": "train32(F2+F3) to inner F1 16 documents; reused research holdout, not original dev16 or official"
+    },
+    "timing": {
+      "amendment_at": "2026-10-24T02:50:16.219700+00:00",
+      "inference_started_before_amendment_explicit": true,
+      "amendment_before_owner_new_response_or_quality_reads": true,
+      "common_freeze": "2026-10-24T02:54:46.042505+00:00",
+      "first_gold": "2026-10-24T02:54:48.712050+00:00",
+      "secondary_gold": "2026-10-24T02:54:48.920063+00:00"
+    },
+    "verifier_actions": "Local immutable SHA/size checks, metadata arithmetic, prediction nonassociation bytes and literal relation-set checks only. No gold/model/tokenizer/parser/evaluator run, no new GPU, no remote action, no Git mutations."
+  },
+  "preserved_history": {
+    "prior_entry": "Original no-job PATH_OUTSIDE_MOUNT launch rejection and namespace-only repair preserved in71d entry review. One real training process only.",
+    "CPU_scope": "Original broader F1-data-zero wording is superseded by623d7e8a scope clarification: excluded pure input IDs were read, no F1 labels or quality.",
+    "amendment_timing": "Frozen02:50:16.219700 after inference started02:49:53.527, before owner read new responses or quality, exactly as root conditional authorization; not described as pre-inference.",
+    "primary_policy": "Original primary8fd2809a/planbb375d9c source and decision rule unchanged; its historical no-union field remains original scope and explicit fixed-secondary amendment is separate.",
+    "staged_status": "Original training-results and driver receipt stated export_pending at their creation; later actual final-export-collection completed. Historical bytes retained, not silently rewritten."
+  },
+  "runtime_and_storage_limits": {
+    "actual_model_parameters": 8997081600,
+    "rule": "Official10B applies per individual model. Multiple adapters/models may be combined with full disclosure; no aggregate10B compliance claim.",
+    "training_allocated_peak_bytes": 36737212416,
+    "training_reserved_peak_bytes": 80752934912,
+    "inference_allocated_peak_bytes": 19772130304,
+    "training_native_seconds": 1141.720449924469,
+    "training_wrapper_seconds": 1142.7218506336212,
+    "inference_native_seconds": 194.801,
+    "inference_wrapper_seconds": 199.62451887130737,
+    "train_budget_seconds": 3900,
+    "inference_budget_seconds": 600,
+    "TERM_grace_seconds_each": 30,
+    "final_export_seconds": 60.14975272398442,
+    "final_export_bytes": 519972522,
+    "final_GPU": "Actual target process-empty,1MiB reported at02:53:13.364416Z; do not rewrite as0MiB.",
+    "large_state_verification": "Original producer/fullSHA plus actual destination fsync/reopen receipt and cross-run fingerprints verified; no new large transfer or deserialize.",
+    "no_restart_equivalence_claim": "Fresh2ep completed uninterrupted. Saved optimizer/RNG state is complete under frozen trainer contract; no new numerical-resume-equivalence test was run."
+  },
+  "limitations": [
+    "The same innerF1 has been reused by research; this is not a new independent generalization estimate.",
+    "The secondary was explicitly authorized before new quality, but after inference start; both predictions were frozen together before any new gold marker.",
+    "Only15/47 additions correct; pooled microF1 declines despite macro gain.",
+    "Frozen v2 reports were checked arithmetically and against byte-identical entity projections. Verifier did not read gold or invoke the parser/evaluator again.",
+    "Current originaldev a179/.7460819649861977 unchanged; no official upload."
+  ],
+  "evidence_storage": {
+    "snapshot_entries": 81,
+    "snapshot_total_bytes": 1017760,
+    "note": "All77 owner refs checked and small source/metadata/full prediction snapshots preserved; inherited entry contracts not rerun. Same-content source aliases can be deduplicated in next root index."
+  },
+  "refs": {
+    "checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/checks.json",
+      "bytes": 5483,
+      "sha256": "4107bd4f6f53c36b0d2ce72124d8236d2ddd1d7da8ad657fbfbf667e7df8921e"
+    },
+    "audit_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/audit_terminal.py",
+      "bytes": 14051,
+      "sha256": "e746578e884e0d935ae00a43dc037369e92c01adc14b35b9698a2f402b50b32b"
+    },
+    "snapshot_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshot-manifest.json",
+      "bytes": 34554,
+      "sha256": "65bfdd57b9e1a3492aea1e30c87afc657aa69d8812686d87293af2a7704b5047"
+    },
+    "owner_terminal_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/terminal-manifest.json",
+      "bytes": 20458,
+      "sha256": "5f05776937eac88f128148b557d77ac14c1bb6dd24152497ce31b40e15783a2f"
+    },
+    "owner_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/results.json",
+      "bytes": 7614,
+      "sha256": "168f6da03a4a4b0553ee540e6eafac35a1e66370b16f7ce5978975ce73d810e3"
+    },
+    "prior_entry_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-entry-review/review.json",
+      "bytes": 24656,
+      "sha256": "71d71097c177222ccee3489343ba4e03e30e70b31e5989f4b5e11d19eaf454f7"
+    },
+    "pre_quality_amendment_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/secondary-amendment-review.json",
+      "bytes": 4396,
+      "sha256": "4eafc8f26ea6d97b587e48863522b298351511db42f0a24efa29d3e4242e9bee"
+    },
+    "primary_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/assembled--patient-first.jsonl",
+      "bytes": 153874,
+      "sha256": "2d73259b82d3c23ca82f56dd70207d963e5ef003cc4c58c25f60518df9bc7bcf"
+    },
+    "secondary_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/secondary-union--union.jsonl",
+      "bytes": 154826,
+      "sha256": "3749215cd8e65c1ee83c68a97f2783ad903c218af8d7233d809b4cd941dd4aa5"
+    },
+    "raw_inference": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/inference-terminal--responses.jsonl",
+      "bytes": 36182,
+      "sha256": "f64dda1b4e69d0ecad32da9738526ba44fa9c99bbcec68940948e812469657ef"
+    },
+    "common_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/secondary-union--common-freeze.json",
+      "bytes": 2820,
+      "sha256": "a98b223ce614de9695753892ad5581df3ee7a6afc1a0152955c413e86547697b"
+    },
+    "amendment": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/secondary-union-amendment--amendment.json",
+      "bytes": 1394,
+      "sha256": "f43f6f60ff39ee9883ca83e64f23dda81913d9cdfc454e1a627bd0c7c43c959f"
+    },
+    "primary_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/evaluation--metrics.json",
+      "bytes": 12941,
+      "sha256": "02d9a78958d3fff18fada5416d6b00e6e15db966eda59cf6158d7db984facbc3"
+    },
+    "secondary_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/secondary-union--evaluation--metrics.json",
+      "bytes": 12968,
+      "sha256": "37f52dbf8ff85b0617d50e10307f39203b106250451508b8359c90743256fd99"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/baseline-metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "final_persistent_export_receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/final-export-collection.json",
+      "bytes": 3222,
+      "sha256": "f9d1abf472d17f37b4712870c2e04424c5de62e173281965bd424b2d6f684db4"
+    },
+    "final_inference_and_GPU_release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/inference-terminal--wrapper-complete.json",
+      "bytes": 617,
+      "sha256": "12f1898780709ce73ddb1cb8745fb1d06b252f048503e9913361711b3e782452"
+    },
+    "actual_training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/training-terminal--training_complete.json",
+      "bytes": 526,
+      "sha256": "e327ce9d731375074f88137fdf56473050ad44ba09e923ccb168444e8d71ee01"
+    },
+    "runtime_inference_provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/inference-terminal--responses.manifest.json",
+      "bytes": 5302,
+      "sha256": "2eb52ac02759011976b6429a2981f45d71f1dbb6d583dff0990ce3654a86f20b"
+    },
+    "primary_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/external--patient_first--finish.py",
+      "bytes": 8946,
+      "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+    },
+    "secondary_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/terminal-snapshots/secondary-union-amendment--secondary_union.py",
+      "bytes": 8634,
+      "sha256": "05fe6b4271a8c9ab028ab686be1dd93460ebca9d85f417529d9ddeada12519e9"
+    }
+  }
+}

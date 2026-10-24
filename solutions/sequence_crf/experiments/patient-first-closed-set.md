@@ -174,3 +174,10 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 两臂men=.667191188/doc=.747747748完全不变，均格式0错警。primary新增15TP32FP，却移除旧45TP23FP，Score−.015410142，单独替换失败。union完整保留旧383关联，仅加15TP32FP，Score+.003479519；micro−.002389695、macro+.016307771，满足预先固定关系两F1之和升且macro不降。新47项中只有15项为真，不能把这个小幅macro收益当作普遍改善或.8达标。保留原primary负结论，secondary仅是本次已授权的pre-quality单一并集；尚未试F0/原dev/三方组合，不事后加臂或扫cut。
 
 入口71d71097与并集增量4eafc8f2均通过，完整77项终点已交独审；此处终审仍待返回。按主线程后续决定是否用独立F0验证并集，不直接迁原dev。原PATH_OUTSIDE_MOUNT/CPU读入范围澄清/所有旧协议快照均保留，既没有重训也没有重复quality。[完整结果](../evidence/round2/patient-first-formal-results.json)、[终点清单](../evidence/round2/patient-first-formal-terminal-manifest.json)、[共同freeze](../evidence/round2/patient-first-formal-common-freeze.json)。
+
+
+### 统一终审及备份完成
+
+终审a786ca43 PASS，沿77refs/81快照（1,017,760B）独核完整2ep/持久finalstate、实际80 EOS/解析、primary逐字节重建、union不变字段与集合、共冻先gold及两唯一v2；未重跑GPU/旧CPU/新质量。primary负、secondary小幅macro正及micro下降结论保持。完整终点79成员（含原响应、两fullpred、指标、关键源）打包200,060B，在.100自有terminal-evidence/terminal-evidence.zip于02:56:35实际file+dir fsync/全成员SHA通过，archive4b76005a；独立于519MB模型state，不把大型产物加入Git。[统一终审](../evidence/round2/patient-first-formal-terminal-review.json)、[持久小证据备份](../evidence/round2/patient-first-formal-terminal-backup.json)。
+
+主线程已明确同意一次固定F0稳健性复验，当前仅开始旧train48完整204/原58纯输入的CPU转置及成本准备；不直接迁原dev，不加入第三组合。新任务独立目录/记录，保留本F1全部源/协议/结果。[F0准备](patient-first-F0.md)。
