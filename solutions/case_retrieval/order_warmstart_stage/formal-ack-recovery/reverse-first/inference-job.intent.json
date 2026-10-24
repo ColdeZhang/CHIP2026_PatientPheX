@@ -1,0 +1,43 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import os,time;remaining=int(1792808951.5793016-time.time());assert remaining>0,\"Absolute campaign deadline reached before remote start\";os.execvp(\"/usr/bin/timeout\",[\"/usr/bin/timeout\",\"--signal=TERM\",\"--kill-after=30s\",str(remaining)]+['/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python', '-u', 'case-retrieval/qwen35-preparation/sft-meta1-fusion/qwen35_runner.py', '--model', '/dev/shm/patientphex-qwen35-1045-c20223623576', '--source-manifest', 'case-retrieval/qwen35-preparation/model-source-manifest.json', '--prompts', 'case-retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl', '--max-input-tokens', '14000', '--max-new-tokens', '1600', '--output', 'case-retrieval/qwen35-preparation/order-warmstart-stage/inference/reverse-first/responses.jsonl', '--adapter', '/dev/shm/patientphex-order-warm32-1045-20261024/reverse-first/epoch-002/adapter'])"
+  ],
+  "payload_argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "case-retrieval/qwen35-preparation/sft-meta1-fusion/qwen35_runner.py",
+    "--model",
+    "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "--source-manifest",
+    "case-retrieval/qwen35-preparation/model-source-manifest.json",
+    "--prompts",
+    "case-retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+    "--max-input-tokens",
+    "14000",
+    "--max-new-tokens",
+    "1600",
+    "--output",
+    "case-retrieval/qwen35-preparation/order-warmstart-stage/inference/reverse-first/responses.jsonl",
+    "--adapter",
+    "/dev/shm/patientphex-order-warm32-1045-20261024/reverse-first/epoch-002/adapter"
+  ],
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "cwd": ".",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "OMP_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "absolute_deadline_unix": 1792808951.5793016,
+  "at_utc": "2026-10-24T02:20:08.468628+00:00",
+  "status": "intent_before_start_no_known_job_yet"
+}
