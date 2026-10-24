@@ -456,3 +456,16 @@ exact-quote trie 的 CPU 接口核验发现：前缀约束会把不合法 token 
 F0必要Sap的启动请求返回UNKNOWN；原namespace仅有启动意图，managed registry与进程表都无匹配，但旧driver在实际运行后才建立180秒截止，不能由等待180秒推定迟到请求已无效。
 
 **避免方法**：新入口预先绑定启动有效期，在入口与创建子进程/载模型前再次检查；实际计算预算另外计时。恢复这次未知请求时，先核旧driver必经的exclusive发布点，在原路径原子创建明确标记`FENCED_UNKNOWN_LAUNCH/resource_PASS=false`的封锁记录；已有文件则不能覆盖或重启。其1053B/SHA599e2e7f已fsync并读回，迟到旧driver将在Popen前发布失败；没有观察到旧模型实际运行，不把它记为模型失败。独立恢复namespace保持原296查询/政策，新增5分钟启动有效期、180+30运行预算，实际9.799秒完成并释放GPU。此方法仅适用于已核验的排他入口，不能泛化成任意任务的重试许可。原请求、源码和封锁回执见仓库外`research/copy-grounded-decode-v1/F0-proposer-v1/unknown-fence-v3/complete.json`（2233B/SHA18b088de）；源分支`explore/copy-grounded-decode@64f61010`保留原UNKNOWN与恢复差异。
+
+
+## H70：有限loss和短probe通过，不代表后续FP16反向始终有限
+
+监督Sap首次正式训练在73次更新后，第二轮出现有限loss但unscale后非有限梯度，被clip的数值检查停止；没有最终检查点。原批次身份/梯度细节未在检查前保存，不能把GradScaler初始65536断言为已证实的唯一根因。
+
+**避免方法**：在失败检查前保存当前批次身份及有限性元数据；核实际Adam的state.step，不能将GradScaler.step调用数当有效更新数。此次保留原失败，另从相同公开父权重、相同seed/data/loss/LR重新训练，只将初始scale降至4096并补故障记录，沿原绝对截止完成219次有效Adam/零跳步、四次全库编码和303查询；未加载失败状态，不能称resume。通过只证明新数值配方可执行，质量仍单独比较，完整F1负结案。证据入口`research/supervised-linker-readiness-20261024/formal-recovery-v1/final-review-entry.json`（10408B/e25813cb），源码与原失败见[路线记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/7ce093ae/solutions/supervised_sapbert_linker/experiments/E-20261024-SAP-001.md)。
+
+## H71：实验名称与运行协议、实际import版本与发行包元数据应分开
+
+独立训练种子G首次入口把实验名写进原trainer要求的schema，0.121秒在载模型前失败。修正schema后，额外版本检查又把distribution的Torch `2.6.0` 与实际import的 `2.6.0+cu124` 当作不一致；真实TF/PEFT/tokenizers版本相同，不能把此例写成已证实的overlay冲突。
+
+**避免方法**：复用入口时保留其既定schema，以独立route_id标识实验；核实际import的模块路径/版本和既有环境证据，解释发行版本后缀，不凭新加的字符串相等门推断环境变更。断言前先保存观察值。两次工程失败均未训练；原无模型campaign关闭后，在真实CPU通过且旧剩余预算不足时另行事前固定新3000秒窗口，未延长运行中的训练。首个有效更新已核三族权重变化，完整质量尚待。来源见训练种子分支`solutions/training_seed_ensemble/evidence/first-update-runtime.json`及其原件169b8c6d。
