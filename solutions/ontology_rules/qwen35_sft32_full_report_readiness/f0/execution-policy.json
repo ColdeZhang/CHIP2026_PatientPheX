@@ -1,0 +1,46 @@
+{
+  "status": "ROOT_AUTHORIZED_FIXED_F0_CONDITIONAL_CONTROL_BEFORE_NEW_QUALITY",
+  "at_utc": "2026-10-24T05:46:08.976775+00:00",
+  "purpose": "Check whether same append-only full report benefit persists on known F0 using original SFT48; not blind/originaldev/official.",
+  "rows": 58,
+  "documents": 16,
+  "patients": 47,
+  "CIDs": 415,
+  "pairs": 1166,
+  "baseline_entities": 947,
+  "old_baseline_Score": 0.6954439475814587,
+  "adapter": "original relation-training epoch002 SFT48, not patient-first F0",
+  "adapter_model_sha256": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513",
+  "adapter_config_sha256": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+  "input_policy": "Same F1 full allowed report suffix; all original messages prefix/schema/CID/PID/local evidence unchanged; never truncate.",
+  "input_cap": "ceil(actual maximum/512)*512 engineering cap; if maximum>32768 report before GPU expansion",
+  "generation": {
+    "max_new_tokens": 1600,
+    "do_sample": false,
+    "same_runtime_precision_math_flags": true,
+    "same_strict_supplied_CID_PID_complete_JSON": true,
+    "raw_IDs_before_decode_and_raw_response_before_parse": true
+  },
+  "longest_probe": {
+    "cap_seconds": 240,
+    "term_grace_seconds": 30,
+    "no_gold_no_quality": true
+  },
+  "conditional_complete58": {
+    "condition": "Longest complete/natural EOS/legal/normal exit AND generation including prefill <=30sec AND peak allocated<=60000000000B",
+    "cap_seconds": 1200,
+    "term_grace_seconds": 30,
+    "exact_probe_cache_rows": 1,
+    "fresh_rows": 57,
+    "no_retry_or_regeneration": true
+  },
+  "endpoints": [
+    "diagnostic-fulltext-alone",
+    "primary-oldSFT48-union-fulltext"
+  ],
+  "quality_policy": "Freeze both complete predictions before first new gold; exactly one v2 all/text each, old metrics reused with zero reevaluations; preserve all 947 entities and all nonassociation UTF8 bytes.",
+  "primary_retain": "Score strictly increases versus old cached baseline AND macF1 does not decrease",
+  "diagnostic_check": "Report alone relative to old also, without changing F1 primary/secondary roles.",
+  "automatic_originaldev_or_official_migration": false,
+  "resource": "Fresh actual GPU UUID/process/space and adapter/base assets before any model load; full80 reserved74.942GB must not be confused with allocated22.047GB."
+}

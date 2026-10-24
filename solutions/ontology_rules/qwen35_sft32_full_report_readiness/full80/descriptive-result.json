@@ -1,0 +1,300 @@
+{
+  "schema": "qwen35-SFT32-full-report-F1-descriptive-existing-results-v1",
+  "created_at_utc": "2026-10-24T05:41:54.023041+00:00",
+  "status": "DESCRIPTIVE_ONLY_EXISTING_FROZEN_RESULTS_NO_NEW_EVALUATION",
+  "scope": "已知 F1 内部开发折，16 文献/39 患者；不是原 dev16 或官方结果。",
+  "operations": {
+    "gold_read": false,
+    "public_evaluator_imported_or_called": false,
+    "new_quality_calls": 0,
+    "model_generation": false,
+    "prediction_modifications": false,
+    "source_modifications": false
+  },
+  "sources": {
+    "quality_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/summary.json",
+      "bytes": 5521,
+      "sha256": "d2eddae4f9ff254f175a1f762a53a152e42d297f928b846d5982bd7ff76128ca"
+    },
+    "old_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "old_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "fulltext_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+      "bytes": 12922,
+      "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+    },
+    "primary_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/primary-oldSFT32-union-fulltext/metrics.json",
+      "bytes": 12979,
+      "sha256": "f996c5697a6bebb5ff1acdbb011aa2111b06ed5d75ff947f3fd7cb118b6dc7ef"
+    },
+    "fulltext_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+      "bytes": 154584,
+      "sha256": "f33a30f1f3c505022dbcf846a19e6496b3810627808e97cde595a9ed53d17866"
+    },
+    "primary_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/primary-oldSFT32-union-fulltext/pred.jsonl",
+      "bytes": 154804,
+      "sha256": "b7450e70dadd3fd700b58e50f400848aa8a90b67b0e2691f8891675753596f98"
+    },
+    "canonical": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/canonical.jsonl",
+      "bytes": 21006,
+      "sha256": "8442a1258422a79a226d5867d3995253356a4fc02372de430da4d58c70b492a1"
+    },
+    "responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/responses.jsonl",
+      "bytes": 28171,
+      "sha256": "fbc6f5bee29591a4308325c5e19d65fb23d09d1950a328e416ec290fbbc8201f"
+    },
+    "inference_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/summary.json",
+      "bytes": 982,
+      "sha256": "9982af3528a501e44f25b69e8483dffc314c66308bb1be9c289e87897f2ee2d3"
+    }
+  },
+  "frozen_decision": {
+    "primary_endpoint": "primary-oldSFT32-union-fulltext",
+    "diagnostic_endpoint": "diagnostic-fulltext-alone",
+    "primary_retain_vs_old": true,
+    "rule": "Primary relation micF1+macF1 strictly increases AND macF1 does not decrease.",
+    "diagnostic_score_higher": true,
+    "diagnostic_minus_primary_Score": 0.00699155521384176,
+    "primary_not_reselected_after_results": true,
+    "automatic_migration": false
+  },
+  "metrics_reused_verbatim_and_arithmetic_deltas": {
+    "old": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6866002214839424,
+        "macF1": 0.5422288533401712,
+        "Score": 0.6609420026531936
+      },
+      "relation_counts": {
+        "tp": 310,
+        "fp": 73,
+        "fn": 210,
+        "precision": 0.8093994778067886,
+        "recall": 0.5961538461538461,
+        "f1": 0.6866002214839424
+      },
+      "delta_metrics_vs_old": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": 0.0
+      }
+    },
+    "fulltext": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6952789699570815,
+        "macF1": 0.5959675129046342,
+        "Score": 0.676546354662594
+      },
+      "relation_counts": {
+        "tp": 324,
+        "fp": 88,
+        "fn": 196,
+        "precision": 0.7864077669902912,
+        "recall": 0.6230769230769231,
+        "f1": 0.6952789699570815
+      },
+      "delta_metrics_vs_old": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.008678748473139097,
+        "macF1": 0.053738659564463,
+        "Score": 0.015604352009400468
+      }
+    },
+    "primary": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6940928270042194,
+        "macF1": 0.5691874350021292,
+        "Score": 0.6695547994487523
+      },
+      "relation_counts": {
+        "tp": 329,
+        "fp": 99,
+        "fn": 191,
+        "precision": 0.7686915887850467,
+        "recall": 0.6326923076923077,
+        "f1": 0.6940928270042194
+      },
+      "delta_metrics_vs_old": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.007492605520276974,
+        "macF1": 0.02695858166195797,
+        "Score": 0.008612796795558708
+      }
+    }
+  },
+  "format_and_generation": {
+    "rows": 80,
+    "strict_complete": 80,
+    "whole_row_abstentions": 0,
+    "non_null_abstention_reasons": 0,
+    "natural_EOS": 80,
+    "hit_token_limit": 0,
+    "cached_rows": 1,
+    "fresh_rows": 79,
+    "provided_CIDs": 587,
+    "explicit_empty_CIDs": 266,
+    "positive_CID_PID_assignments": 412,
+    "input_tokens_sum": 670122,
+    "output_tokens_sum": 4727,
+    "output_tokens_min": 8,
+    "output_tokens_max": 128,
+    "fresh_generation_seconds": 347.08160393917933,
+    "inference_elapsed_seconds": 375.48534471495077,
+    "raw_response_text_reparsed": false
+  },
+  "relation_set_diff": {
+    "key": [
+      "pmc_id",
+      "patient_id",
+      "literal_phenotype"
+    ],
+    "literal_and_v2_unit_sets_identical_for_all_three_actual_predictions": true,
+    "v2_compound_rule_checked_without_evaluator": "Split only exact HP:[0-9]{7}(;HP:[0-9]{7})+ strings, deduplicate per patient; all actual sets unchanged by this rule.",
+    "counts": {
+      "old": 383,
+      "fulltext": 412,
+      "primary_union": 428,
+      "old_intersection_fulltext": 367,
+      "fulltext_minus_old": 45,
+      "old_minus_fulltext": 16,
+      "primary_minus_old": 45,
+      "old_minus_primary": 0
+    },
+    "aggregate_truth_count_decomposition_from_existing_metrics": {
+      "method": "Union TP/FP minus old TP/FP gives added-set counts; union minus fulltext gives removed-old-set counts. No individual relation is labeled from gold.",
+      "added_fulltext_minus_old": {
+        "tp": 19,
+        "fp": 26
+      },
+      "removed_old_minus_fulltext": {
+        "tp": 5,
+        "fp": 11
+      },
+      "fulltext_net_vs_old": {
+        "tp": 14,
+        "fp": 15,
+        "fn": -14
+      },
+      "primary_net_vs_old": {
+        "tp": 19,
+        "fp": 26,
+        "fn": -19
+      }
+    }
+  },
+  "distribution": {
+    "documents": {
+      "basis": "原 metrics 已保存的 per_document.relation F1/TP/FP/FN；只作减法与分组计数，不重评分。",
+      "F1_change_counts": {
+        "fulltext": {
+          "improved": 5,
+          "degraded": 6,
+          "unchanged": 5
+        },
+        "primary": {
+          "improved": 5,
+          "degraded": 6,
+          "unchanged": 5
+        }
+      },
+      "F1_change_document_ids": {
+        "fulltext": {
+          "improved": [
+            "12891056",
+            "4607013",
+            "5415817",
+            "5789735",
+            "6063015"
+          ],
+          "degraded": [
+            "11871647",
+            "12386172",
+            "12455887",
+            "5425407",
+            "5473715",
+            "5538066"
+          ],
+          "unchanged": [
+            "10313222",
+            "11906559",
+            "2964533",
+            "6048891",
+            "9327653"
+          ]
+        },
+        "primary": {
+          "improved": [
+            "12891056",
+            "4607013",
+            "5415817",
+            "5538066",
+            "6063015"
+          ],
+          "degraded": [
+            "11871647",
+            "12386172",
+            "12455887",
+            "5425407",
+            "5473715",
+            "5789735"
+          ],
+          "unchanged": [
+            "10313222",
+            "11906559",
+            "2964533",
+            "6048891",
+            "9327653"
+          ]
+        }
+      }
+    },
+    "patients": {
+      "quality_improvement_counts_available": false,
+      "reason": "Existing metrics contain per-document but no per-patient quality tables; output changes are not patient-level improvements.",
+      "fulltext_patients_with_output_changes": 21,
+      "primary_patients_with_output_changes": 18,
+      "single_patient_documents_with_direct_mapping": 7
+    }
+  },
+  "interpretation": [
+    "预定主端点 Score 从 .660942003 到 .669554799，micro 与 macro 都上升，满足原保留规则；两新端点均未到 .8，且当前不是原 dev16 验收。",
+    "诊断全文单独 Score .676546355 更高，仅作为已预定诊断，不能事后改为 primary 或据此自动迁移。",
+    "两端点各有 5 篇关系 F1 上升、6 篇下降、5 篇不变；整体正收益不代表普遍改善。5538066 在主并集改善、全文单独退步；5789735 相反。",
+    "6063015 占主并集新增 19 个 TP 中的 9 个（47.37%）；其全文单独净 +8 TP/-2 FP，现有文献关系 F1 +.114000185，是明显的收益集中点。",
+    "相较全文单独，主并集加回旧 16 个关系，现有计数可知为 5 TP/11 FP；其中 6063015 加回 1 TP/9 FP，解释该文献差距的一部分。不能据此给每个新增/删除关系判真伪。",
+    "80 条均 strict complete、自然 EOS，无 cap/弃答；收益不是本次格式失败比例改变的证据，也不证明任意局部证据缺失已被修复。",
+    "31/55 局部无 marker 只是先前输入诊断；本摘要不将它们等同可恢复 TP，不把新增 TP 归因于该子集。",
+    "macF1 的已有总值支持总体患者平均上升；缺 per_patient 明细，无法定位多患者文献内部的改善分布。"
+  ],
+  "external_complete_description": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/descriptive-result.json",
+    "bytes": 38760,
+    "sha256": "9d700eb7db804ba5cbbb9f8b67998da8f803d5cd989a258eea6fd2de4cf1420b",
+    "repository_scope": "Aggregate metrics and distribution only; detailed unlabeled relation differences remain outside Git."
+  }
+}
