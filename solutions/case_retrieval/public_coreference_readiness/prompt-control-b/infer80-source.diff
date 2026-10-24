@@ -1,0 +1,16 @@
+--- /workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/source/infer80.py
++++ infer80.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""One inference-only original80-weighted124 run, fixed600s +TERM30; no retries."""
++"""One inference-only original80-coreference-B-oldSFT32 run, fixed600s +TERM30; no retries."""
+ from pathlib import Path
+ import argparse,hashlib,json,shlex,sys,time,datetime
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+@@ -45,5 +45,5 @@
+  assert {x['row_id']:str(x['pmc_id']) for x in raw}==plan['row_documents'] and meta['elapsed_seconds']<600 and meta['output_sha256']==sha(b/'responses.jsonl')
+  assert fp['adapter_files']==plan['adapter_files'] and fp['source_sha256']==plan['runner_sha256'] and fp['prompts_sha256']==sha(b/'prompts.jsonl') and fp['thinking'] is False
+  audit={x['row_id']:x['input_tokens'] for x in cpu['rows']};assert {x['row_id']:x['input_tokens'] for x in raw}==audit
+- save('responses-freeze.json',dict(status='complete80_weighted_original_concepts_frozen',plan_sha256=sha(b/'run-plan.json'),raw_sha256=sha(b/'responses.jsonl'),manifest_sha256=sha(b/'responses.manifest.json'),gpu_release_sha256=sha(b/'gpu-release.json'),rows=80,elapsed_seconds=meta['elapsed_seconds'],at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat()));print('COMPLETE80_FROZEN_GPU_RELEASED',flush=True)
++ save('responses-freeze.json',dict(status='complete80_coreference_B_oldSFT32_frozen',plan_sha256=sha(b/'run-plan.json'),raw_sha256=sha(b/'responses.jsonl'),manifest_sha256=sha(b/'responses.manifest.json'),gpu_release_sha256=sha(b/'gpu-release.json'),rows=80,elapsed_seconds=meta['elapsed_seconds'],at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat()));print('COMPLETE80_FROZEN_GPU_RELEASED',flush=True)
+ if __name__=='__main__':main()

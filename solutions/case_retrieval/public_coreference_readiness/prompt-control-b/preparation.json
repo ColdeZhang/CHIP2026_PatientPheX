@@ -1,0 +1,100 @@
+{
+  "status": "CPU_prompt_construction_reversible_exact_before_token_audit",
+  "counts": {
+    "contexts": 982,
+    "contexts_with_new_markers": 424,
+    "marker_occurrences": 1645,
+    "rows": 80,
+    "rows_with_new_markers": 67,
+    "unique_B_mentions_used": 286,
+    "F1_B_mentions_available": 392,
+    "docs_with_new_markers": 15
+  },
+  "fixed_system_appendix": "Inline [COREF P1: text] markers are automatic coreference suggestions; verify them against the original clinical text before assigning a phenotype.",
+  "all80_strip_to_original_exact": true,
+  "old_evidence_selection_order_and_global_anchors_unchanged": true,
+  "B_only": true,
+  "original_entities": 1189,
+  "concepts": 587,
+  "patient_concept_pairs": 1557,
+  "references": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "old_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "old_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "old_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+      "bytes": 25270,
+      "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+    },
+    "old_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.manifest.json",
+      "bytes": 4142,
+      "sha256": "84e0eec5c9a005d5ee9e372e69fe34afbf764c8539db2b4a8b11b209302e7733"
+    },
+    "parser_base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/run.py",
+      "bytes": 21153,
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    "original_prompt_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-feasibility/local-snapshots/13-prepare_pair_rag.py",
+      "bytes": 6846,
+      "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+    },
+    "coref_native_output": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/input-native-census/full48/documents.jsonl",
+      "bytes": 4600495,
+      "sha256": "db0f3932c20ccb330dc67cde0bca0513f6baac418702b5c09ddcfbbbbeab1b71"
+    },
+    "coref_gpu_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/input-native-census/gpu-plan.json",
+      "bytes": 3754,
+      "sha256": "584967df547a83810a1f171d88d481b22df87721c7626d9df28b3e8c0b3e8535"
+    },
+    "coref_input_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/input-native-census/input-manifest.json",
+      "bytes": 8754,
+      "sha256": "116454736d652ce670bd0e5bac201fb2dcba7541ec56e5391fe0fd03ed9196af"
+    },
+    "coref_mapping_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/input-native-census/anchor_mapping_ab.py",
+      "bytes": 1712,
+      "sha256": "d56ff6ea6a51e9bce377d5225841f711412120408ceeafcfec0888126740b017"
+    },
+    "original_mapping_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/anchor_mapping.py",
+      "bytes": 5127,
+      "sha256": "9bad647bd33526dd98ca015fdf7e32d106897f47f803655c11eb530359a74a39"
+    }
+  },
+  "outputs": {
+    "prompts.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/prompts.jsonl",
+      "bytes": 1123265,
+      "sha256": "e0d1299416f4900c67296cc5c4e3148d9d6f595dbb6a72185e83116392e9074f"
+    },
+    "prompt-sidecars.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/prompt-sidecars.jsonl",
+      "bytes": 1524347,
+      "sha256": "1576a244f374f732f501f07a35606299cd9c666cfc60529b0ea2ad39772ccf53"
+    }
+  },
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/prepare_prompts.py",
+    "bytes": 10509,
+    "sha256": "5005c2834f766afe9d873dd905c4947f0c09ff67949d9fbbb1845512072a6ee8"
+  },
+  "no_gold_or_new_NN_access": true
+}
