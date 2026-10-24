@@ -1,0 +1,736 @@
+{
+  "status": "PASS_COMPLETE_PUBLIC_NEURALCR_SOURCE_COMPATIBILITY_PARAMETERS_CPU_INTERFACE_ONLY",
+  "at_utc": "2026-10-24T01:41:02.325065+00:00",
+  "scope": "One unified complete endpoint. Verified frozen source and actual receipts; no parser/NN/GPU rerun, no competition inference/gold, no quality conclusion.",
+  "official_source": {
+    "repository": "https://github.com/data-team-uhn/NeuralCR",
+    "revision": "1af8851b5e4a1ebeec7ced6c2f50d2dd34d4db0f",
+    "release": "1.1",
+    "assets": [
+      {
+        "filename": "HP.tar.gz",
+        "bytes": 583483718,
+        "actual_full_sha256": "08e48710399ce8aa321367d6dafdef87a464048b85437552edc728e0e129668b"
+      },
+      {
+        "filename": "pmc_model_new.bin",
+        "bytes": 1345465351,
+        "actual_full_sha256": "e9947f25ef59693c3dd46eb33418b0a44d0663f2c4675adf98c99a187c0d20c5"
+      }
+    ],
+    "publisher_digest_available": false,
+    "note": "SHA values are measured complete download hashes bound to fixed official release URLs, not invented publisher checksums."
+  },
+  "compatibility": {
+    "original_standard_header_invalid": true,
+    "malformed_original_never_passed_to_Cpp": true,
+    "only_12_byte_layout_reorder": "Original [84:88] the+NUL and [88:96] prune=-1 exchanged; before84/after96 byte exact.",
+    "derived_sha256": "fa7509ecf7f42e06ed780de5c4599eeeb595cfd02c2547dd875fc528b0460752",
+    "dictionary_and_matrices": {
+      "word_count": 666817,
+      "words_counts_types_ordered_sha256": "af5c3ca697661928f1a65f78d8e41df1ba7cb71b522345d3ebde3909a2939d32",
+      "first": {
+        "word_hex": "74686500",
+        "count": 167615206,
+        "kind": 0
+      },
+      "matrices": [
+        {
+          "name": "input_word_and_subword",
+          "shape": [
+            2666817,
+            100
+          ],
+          "data_offset": 12011734,
+          "data_end_exclusive": 1078738534,
+          "sha256": "5715e1dac711fbbb8fb83829907511248e9dc2b3def48bf2737d217838fe12f3"
+        },
+        {
+          "name": "output",
+          "shape": [
+            666817,
+            100
+          ],
+          "data_offset": 1078738551,
+          "data_end_exclusive": 1345465351,
+          "sha256": "5a72098b30cefdad3d56014edd641bda398b8561e29362884978d1ddaf53bf35"
+        }
+      ],
+      "EOF_exact": true
+    },
+    "all_numerical_parameter_bytes_unchanged": true,
+    "TF_change": "Only tensorflow import -> tensorflow.compat.v1; model mathematical source otherwise byte exact.",
+    "JSON_ontology_only": true,
+    "runtime_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/runtime-preparation.json",
+      "bytes": 2000,
+      "sha256": "0cfd3e948e5e284a9cd56fa68751ac128b0ca13cc10a3d32edf19ccacb440aa7"
+    }
+  },
+  "parameters": {
+    "H5_unique_arrays": 60,
+    "H5_parameters": 157705490,
+    "ensembles": 10,
+    "fastText_both_matrices_parameters": 333363400,
+    "NCR_total": 491068890,
+    "current_production": 9597467990,
+    "append_total": 10088536880,
+    "append_exceeds_10B": true,
+    "replace_BioBERT_total": 9966949054,
+    "conditional_replacement_only": "Requires actually removing BioBERT121587826 and all dependent feature usage/rebuilding affected selectors. Metadata subtraction alone is invalid."
+  },
+  "native": {
+    "actual_all_60_weights_loaded": true,
+    "weight_check": "Exact shape/dtype, finite, np.array_equal against every H5 array; no extra claim of per-array byte hashing.",
+    "output_head": 14261,
+    "ensembles": 10,
+    "synthetic_cases": [
+      {
+        "text": "Seizures.",
+        "spans": 1,
+        "actual_queries": 1,
+        "forward_shapes": [
+          [
+            1,
+            14261
+          ]
+        ],
+        "seconds": 1.6088043078780174
+      },
+      {
+        "text": "The patient has kidney cancer.",
+        "spans": 1,
+        "actual_queries": 15,
+        "forward_shapes": [
+          [
+            15,
+            14261
+          ]
+        ],
+        "seconds": 1.7110938616096973
+      },
+      {
+        "text": "She has short-stature; hearing loss.",
+        "spans": 2,
+        "actual_queries": 13,
+        "forward_shapes": [
+          [
+            13,
+            14261
+          ]
+        ],
+        "seconds": 1.363402497023344
+      },
+      {
+        "text": "Café patient.\nHe has retinal neoplasm.",
+        "spans": 1,
+        "actual_queries": 12,
+        "forward_shapes": [
+          [
+            12,
+            14261
+          ]
+        ],
+        "seconds": 1.3135659284889698
+      }
+    ],
+    "threshold": 0.8,
+    "ngram_lengths": "1..7",
+    "python_codepoint_end_exclusive_and_actual_query_binding": true,
+    "load_seconds": 12.785668030381203,
+    "native_seconds": 27.042663987725973,
+    "CPU_only": true,
+    "GPU_seconds": 0
+  },
+  "costs": {
+    "shape": {
+      "returncode": 0,
+      "elapsed_seconds": 5.644243162125349,
+      "cap_seconds": 120,
+      "grace_seconds": 15,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-job-state.json",
+        "bytes": 712,
+        "sha256": "a500a5cf92b0e49b4838a8fd689a63e4cf40a63880835211e6967a7293b0abca"
+      }
+    },
+    "repair": {
+      "returncode": 0,
+      "elapsed_seconds": 20.108305409550667,
+      "cap_seconds": 120,
+      "grace_seconds": 15,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-job-state.json",
+        "bytes": 720,
+        "sha256": "ee34f2d380ceb1b375455a398f122d151fc9d3eca6ef122b13d6aaa692ca1fb8"
+      }
+    },
+    "native": {
+      "returncode": 0,
+      "elapsed_seconds": 27.992050603032112,
+      "cap_seconds": 180,
+      "grace_seconds": 15,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-job-state.json",
+        "bytes": 710,
+        "sha256": "eda969c2804e3c1d15f046f703154cd96274608e8a69e3c1c417589b45a6c3c8"
+      }
+    }
+  },
+  "engineering_history": {
+    "unknown_deployment_write": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-attempt1-failure.json",
+      "bytes": 712,
+      "sha256": "d224110d7cfe871b7a45338ebbc82fd84d05ea7c12fc28f038f086dcb9057609"
+    },
+    "reconciled_existing_bytes_before_start": true,
+    "no_duplicate_native_start": true,
+    "malformed_header_is_serialization_not_quality_failure": true
+  },
+  "decision": "Complete official resources, conservative parameter inventory and four synthetic native interface cases pass after exact serialization compatibility repair. Still no task quality evidence. Direct append exceeds 10B; actual replacement is a separate future integration decision.",
+  "limitations": [
+    "Four nonempty synthetic inputs do not measure target HPO mapping, recall, patient attribution or task score.",
+    "Original empty-input behavior is unsupported and unchanged.",
+    "CPU interface timing is not a GPU or full-corpus latency estimate.",
+    "Large remote assets/weight arrays were checked by frozen execution receipts; this verifier did not rehash/reload them.",
+    "Preterminal preparation flags such as CPU_load_not_run were point-in-time facts and are superseded by this actual terminal, not silently edited."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/verified-assets.json",
+      "bytes": 17786,
+      "sha256": "2a1e7930522b0a619906155612c7d71ad97ecb60be950d11f26dac9c0a140e1b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/HP.tar.gz.assembly.json",
+      "bytes": 14076,
+      "sha256": "e18b5af6f1532ac22c228e1eb68039752dd7485981657b1c571429cacc3744d2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-plan.json",
+      "bytes": 2109,
+      "sha256": "93ad82f47ac592a5a47761baf303e6648bd8394dfdb2c3538d4595e2ec7a8610"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/inspect_complete.py",
+      "bytes": 4172,
+      "sha256": "60cd7848819efdb09c0e0c8da85262b2088c6c8ae23745ee8bd60f1f36542ead"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-inventory.json",
+      "bytes": 29224,
+      "sha256": "3c45eea1e4ef5c454c46620548c4f3021e6bdc20b10bf611c701fef86516ae84"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-job-state.json",
+      "bytes": 712,
+      "sha256": "a500a5cf92b0e49b4838a8fd689a63e4cf40a63880835211e6967a7293b0abca"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-plan.json",
+      "bytes": 990,
+      "sha256": "fea2f322511d3c9a06748d837e3d04c3557adb328841517b5a7a472b9f726f9a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair_fasttext_header.py",
+      "bytes": 4159,
+      "sha256": "a36cfa85a5b60db7b3046fd31b580283272f98ec8591e58fd978c3f88de9a3f5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-report.json",
+      "bytes": 1964,
+      "sha256": "1a3b0bc75752805c78b05ab9185a9c26d48f3c3ead675511930778e2b950ee24"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-job-state.json",
+      "bytes": 720,
+      "sha256": "ee34f2d380ceb1b375455a398f122d151fc9d3eca6ef122b13d6aaa692ca1fb8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-cpu-plan.json",
+      "bytes": 2041,
+      "sha256": "0107a27be02792eb4454ed3a1cf35a5b864f59afcbf45930c46b930a9e109560"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/check_native.py",
+      "bytes": 5490,
+      "sha256": "35e1a8407b6c41b6203750b6b5529cc830be4f3b82bc1c9ee4a279fa0001ed16"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel.py",
+      "bytes": 8124,
+      "sha256": "e46754e922f3c8aee4ae4bd1788d1b60643c74340c7b8bc366352fe363329e26"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel-upstream.py",
+      "bytes": 8114,
+      "sha256": "7d196049361dd19d9e88601c2e91c21c055b63ce3f29afa17d8bdb85259e9aef"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/tensorflow-compat.diff",
+      "bytes": 178,
+      "sha256": "51bc49171d401d4d9b3a612d4f60cdc2d038c277fd95a0921a5b46fb2aaf6fd9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/stage_runner.py",
+      "bytes": 1499,
+      "sha256": "fe1a9ed0c99fef32d8dc332e531c693ed0970e72abea6e68f709123f70025b50"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-attempt1-failure.json",
+      "bytes": 712,
+      "sha256": "d224110d7cfe871b7a45338ebbc82fd84d05ea7c12fc28f038f086dcb9057609"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-recovery.py",
+      "bytes": 4867,
+      "sha256": "d6ed0c0f2c505222f71b7428ab94f69582d32562ff772c09c87c7016171120c7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-recovery-inventory.json",
+      "bytes": 2940,
+      "sha256": "f31ffb9875dacbca3dc9ab82f4a72f5d2e2e48da36ea9e35b6354800763b893f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment.json",
+      "bytes": 3738,
+      "sha256": "023a20bfd842378b997d50520054ba40a82fcc3a4801fd0a7b3e0c67c8844ca8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-launch.json",
+      "bytes": 663,
+      "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-start-intent.json",
+      "bytes": 663,
+      "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-managed-job.json",
+      "bytes": 398,
+      "sha256": "ca224015036f96f20ee56744614503b543083318711152723ea36e71ecbae597"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-cpu-result.json",
+      "bytes": 23532,
+      "sha256": "8c3aea0021d2809270c04204ed7847f6a23cfe042998bcce87288dc3e3e0ad12"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-job-state.json",
+      "bytes": 710,
+      "sha256": "eda969c2804e3c1d15f046f703154cd96274608e8a69e3c1c417589b45a6c3c8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-process-status.json",
+      "bytes": 180,
+      "sha256": "b20ca5ab8bb1b509de2107d18002bfb6cc79f3cb86d26b29f047efadc2c3a431"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/shape-attempt2-preparation/download-plan.json",
+      "bytes": 3718,
+      "sha256": "d6051ef69feb65ac966916bb6df449e969e540b48c812eccc1adbb215988c729"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/runtime-preparation.json",
+      "bytes": 2000,
+      "sha256": "0cfd3e948e5e284a9cd56fa68751ac128b0ca13cc10a3d32edf19ccacb440aa7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/fasttext-runtime-path-note.json",
+      "bytes": 1174,
+      "sha256": "c9eb19aebbf5dc160a9409a5aba1fbb0eb7acf2e8771c787e70d160089902fb1"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotype-model-inventory-increment/fasttext-v091-dictionary.txt",
+      "bytes": 13702,
+      "sha256": "5cffc5985bf9267ab309f32335135527f8cfc09f19c3d305290408ef02836a3b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotype-model-inventory-increment/neuralcr-fixed-readme.txt",
+      "bytes": 6087,
+      "sha256": "fe0230625ae6588cf44a3ccb359e3a43dd6664f90dc6cf8ef7d3aa63c3490f65"
+    }
+  ],
+  "snapshots": [
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/verified-assets.json",
+        "bytes": 17786,
+        "sha256": "2a1e7930522b0a619906155612c7d71ad97ecb60be950d11f26dac9c0a140e1b"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/00-verified-assets.json",
+        "bytes": 17786,
+        "sha256": "2a1e7930522b0a619906155612c7d71ad97ecb60be950d11f26dac9c0a140e1b"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/HP.tar.gz.assembly.json",
+        "bytes": 14076,
+        "sha256": "e18b5af6f1532ac22c228e1eb68039752dd7485981657b1c571429cacc3744d2"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/01-HP.tar.gz.assembly.json",
+        "bytes": 14076,
+        "sha256": "e18b5af6f1532ac22c228e1eb68039752dd7485981657b1c571429cacc3744d2"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-plan.json",
+        "bytes": 2109,
+        "sha256": "93ad82f47ac592a5a47761baf303e6648bd8394dfdb2c3538d4595e2ec7a8610"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/02-shape-plan.json",
+        "bytes": 2109,
+        "sha256": "93ad82f47ac592a5a47761baf303e6648bd8394dfdb2c3538d4595e2ec7a8610"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/inspect_complete.py",
+        "bytes": 4172,
+        "sha256": "60cd7848819efdb09c0e0c8da85262b2088c6c8ae23745ee8bd60f1f36542ead"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/03-inspect_complete.py",
+        "bytes": 4172,
+        "sha256": "60cd7848819efdb09c0e0c8da85262b2088c6c8ae23745ee8bd60f1f36542ead"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-inventory.json",
+        "bytes": 29224,
+        "sha256": "3c45eea1e4ef5c454c46620548c4f3021e6bdc20b10bf611c701fef86516ae84"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/04-shape-inventory.json",
+        "bytes": 29224,
+        "sha256": "3c45eea1e4ef5c454c46620548c4f3021e6bdc20b10bf611c701fef86516ae84"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/shape-job-state.json",
+        "bytes": 712,
+        "sha256": "a500a5cf92b0e49b4838a8fd689a63e4cf40a63880835211e6967a7293b0abca"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/05-shape-job-state.json",
+        "bytes": 712,
+        "sha256": "a500a5cf92b0e49b4838a8fd689a63e4cf40a63880835211e6967a7293b0abca"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-plan.json",
+        "bytes": 990,
+        "sha256": "fea2f322511d3c9a06748d837e3d04c3557adb328841517b5a7a472b9f726f9a"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/06-repair-plan.json",
+        "bytes": 990,
+        "sha256": "fea2f322511d3c9a06748d837e3d04c3557adb328841517b5a7a472b9f726f9a"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair_fasttext_header.py",
+        "bytes": 4159,
+        "sha256": "a36cfa85a5b60db7b3046fd31b580283272f98ec8591e58fd978c3f88de9a3f5"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/07-repair_fasttext_header.py",
+        "bytes": 4159,
+        "sha256": "a36cfa85a5b60db7b3046fd31b580283272f98ec8591e58fd978c3f88de9a3f5"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-report.json",
+        "bytes": 1964,
+        "sha256": "1a3b0bc75752805c78b05ab9185a9c26d48f3c3ead675511930778e2b950ee24"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/08-repair-report.json",
+        "bytes": 1964,
+        "sha256": "1a3b0bc75752805c78b05ab9185a9c26d48f3c3ead675511930778e2b950ee24"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/repair-job-state.json",
+        "bytes": 720,
+        "sha256": "ee34f2d380ceb1b375455a398f122d151fc9d3eca6ef122b13d6aaa692ca1fb8"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/09-repair-job-state.json",
+        "bytes": 720,
+        "sha256": "ee34f2d380ceb1b375455a398f122d151fc9d3eca6ef122b13d6aaa692ca1fb8"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-cpu-plan.json",
+        "bytes": 2041,
+        "sha256": "0107a27be02792eb4454ed3a1cf35a5b864f59afcbf45930c46b930a9e109560"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/10-native-cpu-plan.json",
+        "bytes": 2041,
+        "sha256": "0107a27be02792eb4454ed3a1cf35a5b864f59afcbf45930c46b930a9e109560"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/check_native.py",
+        "bytes": 5490,
+        "sha256": "35e1a8407b6c41b6203750b6b5529cc830be4f3b82bc1c9ee4a279fa0001ed16"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/11-check_native.py",
+        "bytes": 5490,
+        "sha256": "35e1a8407b6c41b6203750b6b5529cc830be4f3b82bc1c9ee4a279fa0001ed16"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel.py",
+        "bytes": 8124,
+        "sha256": "e46754e922f3c8aee4ae4bd1788d1b60643c74340c7b8bc366352fe363329e26"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/12-ncrmodel.py",
+        "bytes": 8124,
+        "sha256": "e46754e922f3c8aee4ae4bd1788d1b60643c74340c7b8bc366352fe363329e26"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel-upstream.py",
+        "bytes": 8114,
+        "sha256": "7d196049361dd19d9e88601c2e91c21c055b63ce3f29afa17d8bdb85259e9aef"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/13-ncrmodel-upstream.py",
+        "bytes": 8114,
+        "sha256": "7d196049361dd19d9e88601c2e91c21c055b63ce3f29afa17d8bdb85259e9aef"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/tensorflow-compat.diff",
+        "bytes": 178,
+        "sha256": "51bc49171d401d4d9b3a612d4f60cdc2d038c277fd95a0921a5b46fb2aaf6fd9"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/14-tensorflow-compat.diff",
+        "bytes": 178,
+        "sha256": "51bc49171d401d4d9b3a612d4f60cdc2d038c277fd95a0921a5b46fb2aaf6fd9"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/stage_runner.py",
+        "bytes": 1499,
+        "sha256": "fe1a9ed0c99fef32d8dc332e531c693ed0970e72abea6e68f709123f70025b50"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/15-stage_runner.py",
+        "bytes": 1499,
+        "sha256": "fe1a9ed0c99fef32d8dc332e531c693ed0970e72abea6e68f709123f70025b50"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-attempt1-failure.json",
+        "bytes": 712,
+        "sha256": "d224110d7cfe871b7a45338ebbc82fd84d05ea7c12fc28f038f086dcb9057609"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/16-native-deployment-attempt1-failure.json",
+        "bytes": 712,
+        "sha256": "d224110d7cfe871b7a45338ebbc82fd84d05ea7c12fc28f038f086dcb9057609"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-recovery.py",
+        "bytes": 4867,
+        "sha256": "d6ed0c0f2c505222f71b7428ab94f69582d32562ff772c09c87c7016171120c7"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/17-native-deployment-recovery.py",
+        "bytes": 4867,
+        "sha256": "d6ed0c0f2c505222f71b7428ab94f69582d32562ff772c09c87c7016171120c7"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment-recovery-inventory.json",
+        "bytes": 2940,
+        "sha256": "f31ffb9875dacbca3dc9ab82f4a72f5d2e2e48da36ea9e35b6354800763b893f"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/18-native-deployment-recovery-inventory.json",
+        "bytes": 2940,
+        "sha256": "f31ffb9875dacbca3dc9ab82f4a72f5d2e2e48da36ea9e35b6354800763b893f"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-deployment.json",
+        "bytes": 3738,
+        "sha256": "023a20bfd842378b997d50520054ba40a82fcc3a4801fd0a7b3e0c67c8844ca8"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/19-native-deployment.json",
+        "bytes": 3738,
+        "sha256": "023a20bfd842378b997d50520054ba40a82fcc3a4801fd0a7b3e0c67c8844ca8"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-launch.json",
+        "bytes": 663,
+        "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/20-native-launch.json",
+        "bytes": 663,
+        "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-start-intent.json",
+        "bytes": 663,
+        "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/21-native-start-intent.json",
+        "bytes": 663,
+        "sha256": "264de15f640591f7df98488a2c32e18b13116d439702b47422d49365254abf8a"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-managed-job.json",
+        "bytes": 398,
+        "sha256": "ca224015036f96f20ee56744614503b543083318711152723ea36e71ecbae597"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/22-native-managed-job.json",
+        "bytes": 398,
+        "sha256": "ca224015036f96f20ee56744614503b543083318711152723ea36e71ecbae597"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-cpu-result.json",
+        "bytes": 23532,
+        "sha256": "8c3aea0021d2809270c04204ed7847f6a23cfe042998bcce87288dc3e3e0ad12"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/23-native-cpu-result.json",
+        "bytes": 23532,
+        "sha256": "8c3aea0021d2809270c04204ed7847f6a23cfe042998bcce87288dc3e3e0ad12"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-job-state.json",
+        "bytes": 710,
+        "sha256": "eda969c2804e3c1d15f046f703154cd96274608e8a69e3c1c417589b45a6c3c8"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/24-native-job-state.json",
+        "bytes": 710,
+        "sha256": "eda969c2804e3c1d15f046f703154cd96274608e8a69e3c1c417589b45a6c3c8"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/native-process-status.json",
+        "bytes": 180,
+        "sha256": "b20ca5ab8bb1b509de2107d18002bfb6cc79f3cb86d26b29f047efadc2c3a431"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/25-native-process-status.json",
+        "bytes": 180,
+        "sha256": "b20ca5ab8bb1b509de2107d18002bfb6cc79f3cb86d26b29f047efadc2c3a431"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/shape-attempt2-preparation/download-plan.json",
+        "bytes": 3718,
+        "sha256": "d6051ef69feb65ac966916bb6df449e969e540b48c812eccc1adbb215988c729"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/26-download-plan.json",
+        "bytes": 3718,
+        "sha256": "d6051ef69feb65ac966916bb6df449e969e540b48c812eccc1adbb215988c729"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/runtime-preparation.json",
+        "bytes": 2000,
+        "sha256": "0cfd3e948e5e284a9cd56fa68751ac128b0ca13cc10a3d32edf19ccacb440aa7"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/27-runtime-preparation.json",
+        "bytes": 2000,
+        "sha256": "0cfd3e948e5e284a9cd56fa68751ac128b0ca13cc10a3d32edf19ccacb440aa7"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/fasttext-runtime-path-note.json",
+        "bytes": 1174,
+        "sha256": "c9eb19aebbf5dc160a9409a5aba1fbb0eb7acf2e8771c787e70d160089902fb1"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/28-fasttext-runtime-path-note.json",
+        "bytes": 1174,
+        "sha256": "c9eb19aebbf5dc160a9409a5aba1fbb0eb7acf2e8771c787e70d160089902fb1"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotype-model-inventory-increment/fasttext-v091-dictionary.txt",
+        "bytes": 13702,
+        "sha256": "5cffc5985bf9267ab309f32335135527f8cfc09f19c3d305290408ef02836a3b"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/29-fasttext-v091-dictionary.txt",
+        "bytes": 13702,
+        "sha256": "5cffc5985bf9267ab309f32335135527f8cfc09f19c3d305290408ef02836a3b"
+      }
+    },
+    {
+      "original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotype-model-inventory-increment/neuralcr-fixed-readme.txt",
+        "bytes": 6087,
+        "sha256": "fe0230625ae6588cf44a3ccb359e3a43dd6664f90dc6cf8ef7d3aa63c3490f65"
+      },
+      "snapshot": {
+        "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/terminal-snapshots/30-neuralcr-fixed-readme.txt",
+        "bytes": 6087,
+        "sha256": "fe0230625ae6588cf44a3ccb359e3a43dd6664f90dc6cf8ef7d3aa63c3490f65"
+      }
+    }
+  ],
+  "reviewer_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/audit.py",
+    "bytes": 14324,
+    "sha256": "690b9b1e56c3efa403c5634cb396ed2c288f524b38847c31dc63f7e4ee002d65"
+  },
+  "no_MCP_GPU_or_gold": true,
+  "no_model_import_or_repeat_native": true
+}

@@ -1,0 +1,176 @@
+{
+  "status": "pass_CPU_only_three_frozen_512_batches",
+  "finished_at_utc": "2026-10-24T01:42:42.341338+00:00",
+  "source_sha256": "a7b1f45b004d1ff3f5af3c74d5fcffe47e17b408553aef45eb255ebc2d76703e",
+  "plan_sha256": "e3ce1c1e880257064c207f8835a392d14fb639862dd579c1d5f755d402e16834",
+  "pure_functions_AST_sha256": "fbff7752e04aba97593f2c7977e3fc8ddd1fbd8f8a37833c9b20017c441c333f",
+  "entire_frozen_file_rows_checked": 408272,
+  "entire_frozen_file_strict_sorted_unique": true,
+  "entire_frozen_file_native_token_roundtrip_failures": 0,
+  "entire_frozen_file_INT_FLOAT_marker_counts": {},
+  "entire_frozen_file_token_length_counts": {
+    "1": 10810,
+    "2": 55916,
+    "3": 81328,
+    "4": 80689,
+    "5": 70871,
+    "6": 59518,
+    "7": 49140
+  },
+  "selected_rows_zero_based": [
+    0,
+    1536
+  ],
+  "selected_count": 1536,
+  "selected_native_token_keys_exact": true,
+  "selected_keys_reordered_filtered_replaced": false,
+  "probe_inputs": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/probe-inputs.json",
+    "bytes": 44193,
+    "sha256": "e4bda364b3c6011b813794db1a905834eba63d212e966506e1f6788735d267d4"
+  },
+  "batch_artifacts": [
+    {
+      "batch_index": 0,
+      "source_rows_zero_based": [
+        0,
+        512
+      ],
+      "query_count": 512,
+      "first_query": "a",
+      "last_query": "a cgc substitution for tac at the",
+      "token_length_counts": {
+        "1": 1,
+        "2": 58,
+        "3": 103,
+        "4": 115,
+        "5": 96,
+        "6": 76,
+        "7": 63
+      },
+      "artifact": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/batch-000.json",
+        "bytes": 13413,
+        "sha256": "6d1d014ba843ffec789b543eaeb630c0062cf4a0dd08dfbd0e2a267a5ed21a66"
+      }
+    },
+    {
+      "batch_index": 1,
+      "source_rows_zero_based": [
+        512,
+        1024
+      ],
+      "query_count": 512,
+      "first_query": "a cgh",
+      "last_query": "a comparative overview of our three",
+      "token_length_counts": {
+        "2": 50,
+        "3": 102,
+        "4": 105,
+        "5": 98,
+        "6": 85,
+        "7": 72
+      },
+      "artifact": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/batch-001.json",
+        "bytes": 15385,
+        "sha256": "ef88c89bb6d7439c632a86001fc727a7f95d6659bd912077aedbef2e5896413d"
+      }
+    },
+    {
+      "batch_index": 2,
+      "source_rows_zero_based": [
+        1024,
+        1536
+      ],
+      "query_count": 512,
+      "first_query": "a comparative overview of our three patients",
+      "last_query": "a de novo ppp",
+      "token_length_counts": {
+        "2": 58,
+        "3": 94,
+        "4": 109,
+        "5": 102,
+        "6": 80,
+        "7": 69
+      },
+      "artifact": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/batch-002.json",
+        "bytes": 15341,
+        "sha256": "71fe9becd33488c0ba9e9291025195ed5344f112991f364c0fb6da2a8a634927"
+      }
+    }
+  ],
+  "marker_semantics": {
+    "general_join_then_retokenize_is_not_idempotent": true,
+    "examples": [
+      {
+        "input": "123",
+        "first_tokens": [
+          "INT"
+        ],
+        "joined_then_retokenized": [
+          "int"
+        ],
+        "idempotent": false
+      },
+      {
+        "input": "nan",
+        "first_tokens": [
+          "FLOAT"
+        ],
+        "joined_then_retokenized": [
+          "float"
+        ],
+        "idempotent": false
+      },
+      {
+        "input": "inf",
+        "first_tokens": [
+          "FLOAT"
+        ],
+        "joined_then_retokenized": [
+          "float"
+        ],
+        "idempotent": false
+      },
+      {
+        "input": "INT",
+        "first_tokens": [
+          "int"
+        ],
+        "joined_then_retokenized": [
+          "int"
+        ],
+        "idempotent": true
+      },
+      {
+        "input": "FLOAT",
+        "first_tokens": [
+          "float"
+        ],
+        "joined_then_retokenized": [
+          "float"
+        ],
+        "idempotent": true
+      }
+    ],
+    "observed_actual_corpus_has_no_INT_FLOAT_markers": true,
+    "actual_full_corpus_and_selected_prefix_safe": true,
+    "reason": "The actual native candidate generator splits on non-ASCII-letter/non-space characters, so numeric text is not directly enumerated; FLOAT can still arise from literal nan/inf, so all 408272 frozen keys were checked rather than assuming safety.",
+    "representative_mapping": "Census persists normalized keys only, not a key-to-original-query map. Its original four-field input manifest remains available for exact pre-NN re-enumeration if ever needed. No representative reconstruction was needed or performed here."
+  },
+  "input_only_provenance": {
+    "census_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/train64.input.jsonl",
+      "bytes": 1351066,
+      "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+    },
+    "original_input_opened_by_this_preparation": false,
+    "gold_or_FN_files_read": false,
+    "selection_uses_only_frozen_file_order": true,
+    "no_MCP_GPU_NN_fit_quality": true,
+    "no_TensorFlow_or_fasttext_import": true
+  },
+  "elapsed_seconds": 2.798752547998447
+}

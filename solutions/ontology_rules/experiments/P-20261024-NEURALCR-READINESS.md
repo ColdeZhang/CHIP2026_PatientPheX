@@ -96,3 +96,9 @@ shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(6668
 native从01:38:41.619290Z到01:39:09.611785Z实际27.992051秒/rc0，程序27.042664秒，模型加载12.785668秒。10ensemble/60变量/157705490 NN参数全部形状、类型、finite及np.array_equal精确；原字段名bit_exact比实际检查语义强，未做额外运行时字节SHA，明确限于数值精确一致。完整FT333363400计入后总491068890。
 
 四句1/15/13/12个query，原生[1/15/13/12,14261]概率均finite且归一化误差≤5.96e-7，返回1/1/2/1跨度全部绑定实际query/HPO/score/原文坐标。annotate分别1.608804/1.711094/1.363402/1.313566秒，合5.996867秒/41 queries；不能冒充512批量或GPU吞吐。未读赛事输入/gold，无fit/新质量。统一manifest `postdownload-readiness/readiness-result.json`将全部原失败、成功输运、完整parser/派生保真/native源/plan/实际收据串联，交统一独审一次收口。
+
+### 完整readiness统一独审PASS；下一固定GPU成本探针准备
+
+统一独审`050b512b8c91cfa655e4edf6d386342e5f7aab71600812718dae04cab08d1508`已核32份原源/收据及最终owner manifest追加38引用，未重NN。完整CPU准备结案。root授权唯一A100 GPU2 180秒+TERM30成本探针，sequence确认空卡协调。新目录`gpu-cost-probe`固定冻key文件原序前3×512，CPU辅助核全408272键分词往返0错、2.799秒；前缀a不代表内容分布，不能据输出改选样本。
+
+仍加载10ensemble和全FT，原生FP32且显式关TF32。第一actual forward是512批0（无前置合成暖机），再两暖批，之后仅复用原四合成CPU输出作ID/坐标/阈值一致及概率rtol1e-4/atol1e-5检查。get_match真实时间含phrase2vec/同步numpy/概率全体完整性/原top1，输出大矩阵仓外；记录TF峰显存、fresh UUID/空卡与释放。798批成本以load+cold+797×暖态min至1.25×max+60估计，仅规划范围不是真实全缓存或置信区间。源码/plan先push，尚未启动、不读gold/fit/quality，任何具体错误停，未知启动按H32查证。
