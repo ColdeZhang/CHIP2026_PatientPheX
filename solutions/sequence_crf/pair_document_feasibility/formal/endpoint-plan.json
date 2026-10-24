@@ -1,0 +1,61 @@
+{
+  "schema": "pair-document-fixed-F1-endpoint-v1",
+  "created_at_utc": "2026-10-24T01:06:27.351940+00:00",
+  "source_sha256": "c0506ccacad8fd8eb405bfa5d31f5d410df935282f5ecf452bef8547e3d34dad",
+  "operations": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/formal_operations.py",
+    "bytes": 7037,
+    "sha256": "47cffdb8ee0d664ef1b7be2818a160cf26058e8187841b5509189c1441d6be3b"
+  },
+  "formal_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/formal-plan.json",
+    "bytes": 6934,
+    "sha256": "b26d6df54ca7952c7fd644cdf9ad158c8ffd20c36e720028c93f1696dfb6d27b"
+  },
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+  "gold_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+  "references": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "old_sft_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "old_sft_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "old_rules_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "old_rules_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.metrics.json",
+      "bytes": 13170,
+      "sha256": "cf70f6d920840754253edf3e1191285a2e0e636dd347b8bac3c67f65fe8b7c35"
+    }
+  },
+  "policy": "Two final epoch8 arm outputs; fixed .5; both full predictions and all1189 entities/nonassociation exact frozen before first gold read; reuse SFT32 and same-pool rules metrics; no new baseline evaluation, no threshold scan or originaldev.",
+  "budget_seconds": 30
+}

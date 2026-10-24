@@ -57,3 +57,14 @@ NumPy 13项合同通过：两臂两标签对全部98个小模型参数及输入�
 外存 `R/research/pair-conditioned-document-feasibility/`：`plan/report` 原passage，`packed-plan/packed-report` 完整坐标/窗口，`head-plan/head-contracts` 合成数学，`budget-plan/budget-report` 同序padding复算；大token/offset/window文件保留外存。Git小索引见 `evidence/round2/pair-document-feasibility.json`，真实源 `pair_document_feasibility/`。所有源和输入SHA及实际命令在索引；无GPU/模型权重加载/任务训练/F1gold/originaldev读取。
 
 实际Torch CPU 0.191秒通过，完整两臂四标签case的NumPy→autograd参数/输入梯度最大误差<1e-12；padding NaN、重叠梯度、未知候选、整文跨chunk weighted BCE与旧weighted CE等价通过。实际.3 torch2.7.0+cu128/TF4.50.0支持非reentrant checkpoint，六公共文件完整SHA无变化。最长**train32**是PMC5793168/7023正文/19窗/5对，连既有训练标签后5对全负，未换样本；全局2506对594正/1912负，权重w0=.655334728/w1=2.109427609，整文sum(wBCE)/sum(w)，不逐chunk改分母。旧CE按随机16行batch与本次docbatch不同，但双新臂完全相同。工具首次绝对路径及随后大payload失败都发生在CPU/GPU之前，已留attempt并改mount相对路径/256KiB分块；数学/输入未变。新probe-plan已冻结，真实GPU尚未开始，索引pair-document-probe-plan.json。
+
+实际双fresh probe已完整PASS并释放：managed `proc_b9270cc8` 00:57:15.239Z启动，00:57:26.662结果完成，含import约11.423秒；函数内部计时7.692秒不含import。uniform/pair训练步1.822/1.206秒（后者环境已暖，不作速度结论），峰2.09GiB；实际108891648 encoder+344577头、全部encoder梯度finite，嵌入/首末层/U/W/A/o均非零且参数改变。原生源码和完整公共权重SHA闭合，未保存probe状态。00:57:38.068GPU核空；managed仅running=false、无独立退出码，不写未观测rc0。后续8ep两臂共4912窗口/2401824编码token，按窗粗代理391–471秒，逐文全当最长约933秒；最大pair文372对/12窗未单测，不能把5对最长文当head上界。根同意准备共享1800+30正式方案，仍未启动；完整结果见pair-document-probe-results.json。
+
+
+## 正式匹配双臂：8轮协议（准备完成，待统一入口审查）
+
+根于01:01明确授权本协议在增量入口核验/源码推送后启动，无需重跑probe。训练文献32、2506对/594正；F1输入16篇/1557对另存gzip，严格无label/answer/association。相同public encoder、同seed与实际初始化hash、相同8轮文献ID顺序、每文一个AdamW步、每臂256更新；encoder/head常数LR2e-5/1e-4、wd.01、clip1、FP32/eager、非reentrant checkpoint、窗micro4/pairchunk32、整文weightedBCE分母全部一致。只有uniform与pair attention不同。原包装入口误导入无需使用的tokenizers依赖，两次在写文件前失败；改为纯JSON四helper，未重分词、输入与模型政策不变。
+
+共享GPU总预算1800s+TERM30，含两臂fresh加载/8轮/final checkpoint/末轮F1推断，按实测最长文仅作保守成本代理，不能保证完成。每臂只存末轮model/optimizer/RNG及小进度；中断只保存明确不供推断的partial，不把部分轮次当最终模型。两臂完整1557概率/全16预测共同冻结后，单次CPU端点≤30s才读F1gold，fixed.5，无阈值扫描、F1早停、原dev访问。旧同池SFT32指标.660942003、规则.644761594复用已审metrics（后者不是F0 .711353522）。新pair仅在Score同时胜uniform/SFT/rules且macro对三者均不降时保留；两臂微正但未胜强基线只能作机制证据。
+
+源码与恢复：外部 `formal-v1/formal-plan.json` b26d6df5、`endpoint-plan.json` a455dcbe，Git小索引 `evidence/round2/pair-document-formal-preparation.json`；训练和F1数据分别364,776B/195,670B留外存。部署仅上传冻结源码/输入并CPU编译，启动入口强制fresh GPU/无已有模型目录/统一审查PASS/已push commit；managed job另记 `job.json`，恢复只读原job，不盲重启。最终模型仍未训练、尚无质量。

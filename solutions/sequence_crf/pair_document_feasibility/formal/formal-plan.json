@@ -1,0 +1,191 @@
+{
+  "schema": "patientphex-pair-document-formal-v1",
+  "created_at_utc": "2026-10-24T01:05:07.832428+00:00",
+  "authorization": "Root 01:01 UTC approved after one incremental review, source push and fresh GPU check; no repeated probe",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
+  "model_files": {
+    "tokenizer_config.json": {
+      "bytes": 28,
+      "sha256": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+    },
+    "pytorch_model.bin": {
+      "bytes": 440474434,
+      "sha256": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193"
+    },
+    "LICENSE.md": {
+      "bytes": 1072,
+      "sha256": "8542b3a65414366ae3228e8f1658e538ec95f9b8855599c9c6e36751d592be66"
+    },
+    "README.md": {
+      "bytes": 2436,
+      "sha256": "33ee2e0c3178e144af68c8e8c741a227373304151a6b53660c8542306fffb0d4"
+    },
+    "config.json": {
+      "bytes": 385,
+      "sha256": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1"
+    },
+    "vocab.txt": {
+      "bytes": 226150,
+      "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    }
+  },
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "seed": 20261023,
+  "arms": [
+    "uniform",
+    "pair"
+  ],
+  "epochs": 8,
+  "updates_per_arm": 256,
+  "train_ids": [
+    "11203018",
+    "11235872",
+    "11765409",
+    "12059664",
+    "12078887",
+    "12110755",
+    "12110769",
+    "12118522",
+    "12250201",
+    "12334843",
+    "12405443",
+    "12628480",
+    "12646972",
+    "12798528",
+    "12811285",
+    "12846941",
+    "2866573",
+    "4644339",
+    "5023785",
+    "5368377",
+    "5422868",
+    "5574094",
+    "5763540",
+    "5773845",
+    "5793168",
+    "5866036",
+    "5970456",
+    "6057141",
+    "6059678",
+    "6134758",
+    "6219255",
+    "6390251"
+  ],
+  "heldout_ids": [
+    "10313222",
+    "11871647",
+    "11906559",
+    "12386172",
+    "12455887",
+    "12891056",
+    "2964533",
+    "4607013",
+    "5415817",
+    "5425407",
+    "5473715",
+    "5538066",
+    "5789735",
+    "6048891",
+    "6063015",
+    "9327653"
+  ],
+  "class_weights": [
+    0.6553347280334728,
+    2.1094276094276094
+  ],
+  "class_loss": "sum(weight[y]*BCE(logit,y))/sum_doc(weight[y]); equivalent to old weighted CE on logits [0,logit]; denominator global to whole doc, not each pair chunk",
+  "LR": {
+    "encoder": 2e-05,
+    "head": 0.0001
+  },
+  "weight_decay": 0.01,
+  "clip_norm": 1.0,
+  "encoder_window_microbatch": 4,
+  "pairchunk": 32,
+  "precision": "FP32; TF32 disabled; eager; nonreentrant checkpoint",
+  "budget_seconds": 1800,
+  "grace_seconds": 30,
+  "fixed_probability_cut": 0.5,
+  "CPU_endpoint_budget_seconds": 30,
+  "policy": "same seed/reset and document orders, same all trainable encoder/head parameters; only uniform versus learned pair attention; epoch8 only, no threshold scan/early stopping; both full predictions frozen before F1 gold evaluation",
+  "keep_policy": "pair must strictly improve Score versus uniform and each same-pool old SFT/rules reference; pair macro must not fall versus any of these references. Otherwise retain mechanism evidence only and stop.",
+  "update_check_modules": [
+    "encoder.embeddings.word_embeddings.weight",
+    "encoder.encoder.layer.0.attention.self.query.weight",
+    "encoder.encoder.layer.11.output.dense.weight",
+    "head.U",
+    "head.W",
+    "head.A",
+    "head.o"
+  ],
+  "references": {
+    "packed_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/packed-report.json",
+      "bytes": 6539,
+      "sha256": "c6383799ce19733ca084d9cd6b070f8e4ddc8dd21849199f8a6021741a79d832"
+    },
+    "train_labels": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "probe": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/terminal/probe-result.json",
+      "bytes": 8025,
+      "sha256": "ba96adaca1a47177bf19d8055fef626ab173ba197ff053380b8e161cec7afcd6"
+    },
+    "probe_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-probe-review/review.json",
+      "bytes": 5767,
+      "sha256": "8ed0b35ff50c6cd4b052ed1df9ab68df92ba262f92c3270671bffd04189a0002"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "F1_candidates": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "F1_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    }
+  },
+  "remote_files": {
+    "F1-input-documents.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/F1-input-documents.json.gz",
+      "bytes": 195670,
+      "sha256": "a6d467fd0f86caaacab001f19d6e7367b0b4b49f736e4474d601b52a8068f557"
+    },
+    "epoch-orders.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/epoch-orders.json",
+      "bytes": 4035,
+      "sha256": "f2a2e6baf51cdf718f5c3d409471c803bf11afd22d16147508cbb8ad78c57036"
+    },
+    "probe.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/probe.py",
+      "bytes": 8129,
+      "sha256": "723fe6e8aead1a650e002209029460b311af96f0e7937be51dab53566a956182"
+    },
+    "torch_head.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/torch_head.py",
+      "bytes": 2588,
+      "sha256": "264a484135a8b8fa56573386da623e42384defdde893f5d84a1bf99c345a7393"
+    },
+    "train-documents.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/train-documents.json.gz",
+      "bytes": 364776,
+      "sha256": "3636a78751cfb365f047e749bbe08b2f638d7a7fe22b2f3ebefb0a6eb5c5832a"
+    },
+    "train_pair_document.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/train_pair_document.py",
+      "bytes": 10444,
+      "sha256": "66c290aef40eee4b554e1f191dd71f60f8fdd8efbff7aa58a2195a921e4e12ef"
+    }
+  },
+  "quality_evaluation": false
+}

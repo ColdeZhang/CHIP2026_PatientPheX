@@ -1,0 +1,117 @@
+{
+  "status": "PASS_two_fresh_single_step_document_pair_head_probe_only",
+  "frozen_at_utc": "2026-10-24T01:01:20.556043+00:00",
+  "scope": "Incremental packed-token/endpoint/new-head objective and actual two fresh GPU steps. No reviewer NN rerun, no quality score or formal-training claim.",
+  "formula": "Each original valid token averages overlapping encoded copies; each occurrence averages its tokens and endpoint averages occurrences. q=tanh([patient,concept]U+bq), z=tanh(HW+bz). Uniform versus softmax(qz/sqrt(128)) changes only global-context weights. Both q and c and q*c feed shared-capacity learned head.",
+  "data": {
+    "train_documents": 32,
+    "held_input_documents": 16,
+    "train_pairs": 2506,
+    "train_positive": 594,
+    "selected_document": "5793168",
+    "raw_tokens": 7023,
+    "windows": 19,
+    "pairs": 5,
+    "positive": 0,
+    "selection": "longest input then lexical tie before training-label join",
+    "all_original_tokens_deduplicated": true,
+    "endpoint_positions_valid": true
+  },
+  "objective": {
+    "head_parameters": 344577,
+    "encoder_parameters": 108891648,
+    "both_arms_U_W_trainable": true,
+    "weighted_CE_equivalence": true,
+    "whole_document_denominator": true,
+    "CPU_all_parameter_and_input_gradient_errors_max": 1.1102230246251565e-16,
+    "CPU_padding_NaN_excluded": true,
+    "actual_cpu_source_bound": true
+  },
+  "actual": {
+    "native_seconds": 7.691847470123321,
+    "managed_start_to_complete_seconds": 11.422777,
+    "shared_budget_seconds": 180,
+    "TERM_grace_seconds": 15,
+    "max_allocated_bytes": 2245782528,
+    "same_initial_head": true,
+    "each_fresh_public_encoder": true,
+    "seven_modules_nonzero_gradient_and_actual_update_each": true,
+    "all_encoder_gradients_finite": true,
+    "FP32_TF32disabled": true,
+    "gradient_checkpoint_nonreentrant": true,
+    "managed_running_false": true,
+    "managed_exit_code_not_returned": true,
+    "release_utc": "2026-10-24T00:57:38.068259+00:00",
+    "GPU_empty": true,
+    "saved_weights_or_optimizer": false
+  },
+  "limitations": [
+    "Only one input-selected document with five negative pairs; CPU mixed-label contracts cover the loss implementation, not positive-label full-model training quality.",
+    "Longest-token document is not necessarily maximal pair-count/head-memory workload. No throughput guarantee for eight full epochs.",
+    "Both new arms use per-document normalized weighted loss, differing from historical random16 pair batching; uniform vs pair is the controlled comparison.",
+    "Public MLM/pooler bundle weights are explicitly excluded; actually used encoder is108891648 parameters.",
+    "Actual GPU tensor checks are verified frozen execution receipts, not rerun by reviewer."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/probe-plan.json",
+      "bytes": 5413,
+      "sha256": "d1a1370d4624f27fdb952550f3010e26dd16a7ebdc795635789d1d057a4e1523"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/preparation.json",
+      "bytes": 3644,
+      "sha256": "029666943843f7fcafeb2b6806891d186e4bba751277346c6f626633b40ac11a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/cpu-result.json",
+      "bytes": 1712,
+      "sha256": "fb39a4e98ee0c32e1068f8a14352f31c2ca9070cf4f1e321bffbf1bf0707736e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/terminal/probe-result.json",
+      "bytes": 8025,
+      "sha256": "ba96adaca1a47177bf19d8055fef626ab173ba197ff053380b8e161cec7afcd6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/terminal/gpu-release.json",
+      "bytes": 124,
+      "sha256": "4e0020da99e464481df63c4d8b7acfa3b52c4f2896dab1aaeb936cca664de5af"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/collection.json",
+      "bytes": 645,
+      "sha256": "dc1b4f9bafd5a0dc3c750e8d97c1d2228d2e1644fe036ecf86314488c7a81bd6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/job.json",
+      "bytes": 1133,
+      "sha256": "40ec3d98aa9ffe99297277031e64d3dd22a466ff052d632015a5f9b142de4799"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/process-terminal.json",
+      "bytes": 5528,
+      "sha256": "a7206f297e2761d733dbc46803963b787eb3a4cf95edfe374d68f4ba75ce3aee"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/torch_head.py",
+      "bytes": 2588,
+      "sha256": "264a484135a8b8fa56573386da623e42384defdde893f5d84a1bf99c345a7393"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/probe.py",
+      "bytes": 8129,
+      "sha256": "723fe6e8aead1a650e002209029460b311af96f0e7937be51dab53566a956182"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/probe-v1/torch_contracts.py",
+      "bytes": 5117,
+      "sha256": "48eddd1090ef7d75a50b7730bb9cff1775af37e46e47f86e50786d1c8e95599b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-probe-review/audit.py",
+      "bytes": 9307,
+      "sha256": "21edbed73a0f45f3183a06b8a8028b8798a655a8b524b04b3c883da62825bc54"
+    }
+  ]
+}
