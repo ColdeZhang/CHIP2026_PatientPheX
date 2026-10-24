@@ -20,11 +20,11 @@
 - 本地 `R/research/deepseek-r1-0528-qwen3-8b-feasibility`，`R=/workspace/patientphex-runs/round2-20261023`；大权重、提示、raw生成IDs/text在仓库外。
 - .100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，自有 `/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/`；model在 `models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6`，新CPU/两次GPU在 `published-interface-v1/`。
 - 最后job `proc_d63b7015-88a0-4da5-981e-cda0ee2ee160` 已观察running=false，实际终点在 `published-interface-v1/codec-longest-v1/gpu/recovered/`；只读恢复脚本 `poll_original.py`，不得重发start。
-- 统一终审09612e0f通过；主线程已授权下一阶段同F1固定80（2缓存+78新）、逐row fresh同seed、10800+TERM30。当前准备源/plan，尚未启动。固定standalone与唯一oldSFT32∪R1两臂，共同冻结后各唯一v2；失败行弃答不修补。
+- 统一终审09612e0f通过；主线程已授权下一阶段同F1固定80（2缓存+78新）、逐row fresh同seed、10800+TERM30。当前[正式源/plan](deepseek_r1_readiness/full80-preparation/README.md)已冻结4a88bd33，待实际部署/CPU检查后唯一启动。固定standalone与唯一oldSFT32∪R1两臂，共同冻结后各唯一v2；失败行弃答不修补。
 
 ## 最近结案与索引
 
 - 强 BioBERT+NCR固定四fold **.730993616→.731229952**，仅2/4非降<事前3/4，关闭当前配方；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact、0错警，不迁原dev/扫cut。60.879秒/rc0，独审de325a2c。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)。
 - NCR全cache408272键、两工程错误与CPU-only恢复均原留；65件关键预测/metrics/小HGB/source在.100自有 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B，SHA bb9aa427，fsync/全成员通过，不含gold/大权重/大特征。
-- 最近已核远端 **6f3944f650a8962639fd59cb1632823898caf8e2**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
+- 最近已核远端 **82470a143744d9ea565eb073a6f938a4aa554420**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
 - 完整过程：[截至03:36旧台账](worklog/WORKLOG-through-20261024-0336.md)、[截至04:08旧台账](worklog/WORKLOG-through-20261024-0408.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。

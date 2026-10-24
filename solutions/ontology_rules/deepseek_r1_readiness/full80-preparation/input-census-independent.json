@@ -1,0 +1,1363 @@
+{
+  "status": "complete_independent_input_only_census_no_tokenizer_model_or_quality",
+  "created_utc": "2026-10-24T04:09:28.637796+00:00",
+  "inputs": {
+    "frozen_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "frozen_CPU_all80_input_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/published-interface-v1/cpu/recovered/all80-input-audit.json",
+      "bytes": 47614,
+      "sha256": "36003a4e5464fbf75325a1af8fca4370d1363f2671dd10dc9a5757cdaa557229"
+    }
+  },
+  "scope": "Input structure and recorded CPU lengths only. Prompt message content was included solely in byte/canonical-row SHA calculations; no labels, gold, predictions or quality report were opened.",
+  "counts": {
+    "rows": 80,
+    "documents": 16,
+    "CID_occurrences": 587,
+    "document_patient_ID_instances": 39,
+    "distinct_patient_ID_strings_across_documents": 21,
+    "row_patient_CID_pairs": 1557,
+    "documents_with_cross_row_HPO_repeats": 0,
+    "rows_with_within_row_HPO_repeats": 0,
+    "documents_with_patient_list_inconsistency": 0,
+    "unique_doc_concepts": 587,
+    "unique_concept_labels_across_documents": 429,
+    "possible_unique_doc_patient_concept_pairs": 1557,
+    "valid_HP7_doc_concepts": 584,
+    "non_HP7_doc_concepts": 3,
+    "valid_HP7_identifiers_across_documents": 426,
+    "non_HP7_patient_concept_pairs": 11,
+    "valid_HP7_patient_concept_pairs": 1546
+  },
+  "CID_count_histogram": {
+    "1": 2,
+    "2": 3,
+    "3": 2,
+    "5": 2,
+    "6": 1,
+    "7": 3,
+    "8": 67
+  },
+  "string_and_schema_checks": {
+    "all_patient_IDs_are_strings": true,
+    "all_patient_IDs_nonempty": true,
+    "all_patient_IDs_already_trimmed": true,
+    "all_patient_IDs_ASCII": true,
+    "all_patient_IDs_NFC_unchanged": true,
+    "all_patient_IDs_NFKC_unchanged": true,
+    "all_patient_IDs_have_no_whitespace_or_control_characters": true,
+    "all_patient_IDs_use_ASCII_alphanumeric_or_hyphen": true,
+    "all_patient_lists_duplicate_free": true,
+    "all_document_IDs_digit_strings": true,
+    "all_row_CIDs_exact_local_C000_sequence": true,
+    "all_row_IDs_match_document_and_relations_chunk": true,
+    "all_concept_labels_are_HP_seven_digit_identifiers": false
+  },
+  "patient_ID_strings_observed": [
+    "O1",
+    "O2",
+    "O3",
+    "O4",
+    "O5",
+    "O6",
+    "O7",
+    "OII-1",
+    "OII-2",
+    "OII-3",
+    "OII-4",
+    "OIII-1",
+    "OIII-2",
+    "OIII-3",
+    "OP1",
+    "OP2",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
+  ],
+  "identity_semantics": [
+    "CID labels restart at C000 in each row. Decode with that row code_map; a (pmc_id,CID) key alone is ambiguous across rows.",
+    "Patient strings are document-local identities and remain exact. OII-1, OIII-1, OP1 and O1 are valid observed strings; do not coerce them to integers or renumber them into Pn.",
+    "Possible patient-concept pair counts enumerate choices from input only; they are not positive relations, generated predictions or quality evidence.",
+    "The frozen code_map contains 584 valid HP:seven-digit document concepts and 3 literal non-HP labels. All 587 are counted as original doc-concepts; this census does not map, drop or repair the 3 labels. Any downstream policy must remain explicit and match the frozen baseline contract."
+  ],
+  "CPU_audit_binding": {
+    "rows_matched_in_original_order": 80,
+    "original_row_canonical_SHA_matches": 80,
+    "canonical_row_serialization": "json.dumps(row,ensure_ascii=False,separators=(comma,colon),sort_keys=False).encode(utf-8)",
+    "raw_generic_ID_exact_both_roundtrip_and_special_prefix_receipts_all_true": true,
+    "lengths_recomputed_by_tokenizer_in_this_task": false,
+    "total_native_input_tokens": 249937,
+    "first": {
+      "index": 0,
+      "row_id": "10313222:relations:0",
+      "native_input_tokens": 2014
+    },
+    "longest": {
+      "indices": [
+        73
+      ],
+      "index": 73,
+      "row_id": "6063015:relations:0",
+      "native_input_tokens": 5689
+    },
+    "minimum_native_input_tokens": 773,
+    "median_native_input_tokens": 3129.0,
+    "mean_native_input_tokens": 3124.2125
+  },
+  "per_document": [
+    {
+      "pmc_id": "10313222",
+      "row_indices": [
+        0,
+        1,
+        2
+      ],
+      "rows": 3,
+      "row_CID_counts": [
+        8,
+        8,
+        3
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 19,
+      "unique_doc_concepts": 19,
+      "possible_unique_doc_patient_concept_pairs": 19,
+      "concept_set_sorted_json_sha256": "9dbeb9b40d876237ede6f47f4a35f8bae582e5cd919d3003e68454fe66076aa0",
+      "non_HP7_concept_labels": [
+        "metabolic diseases"
+      ],
+      "valid_HP7_doc_concepts": 18
+    },
+    {
+      "pmc_id": "11871647",
+      "row_indices": [
+        3,
+        4,
+        5
+      ],
+      "rows": 3,
+      "row_CID_counts": [
+        8,
+        8,
+        5
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 21,
+      "unique_doc_concepts": 21,
+      "possible_unique_doc_patient_concept_pairs": 21,
+      "concept_set_sorted_json_sha256": "2cc31dc305f4cd88f5165b7107dfcb37ffd5ef8fff3738046ce89dd5bf55bc13",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 21
+    },
+    {
+      "pmc_id": "11906559",
+      "row_indices": [
+        6,
+        7,
+        8
+      ],
+      "rows": 3,
+      "row_CID_counts": [
+        8,
+        8,
+        1
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "OII-1",
+        "OII-2",
+        "OIII-1",
+        "OIII-2",
+        "OIII-3"
+      ],
+      "patient_count": 5,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 17,
+      "unique_doc_concepts": 17,
+      "possible_unique_doc_patient_concept_pairs": 85,
+      "concept_set_sorted_json_sha256": "1954cf8b17328e66ba961981b9f941f1d958f2c45a709431ee874e4ef8053170",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 17
+    },
+    {
+      "pmc_id": "12386172",
+      "row_indices": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "rows": 5,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 40,
+      "unique_doc_concepts": 40,
+      "possible_unique_doc_patient_concept_pairs": 40,
+      "concept_set_sorted_json_sha256": "aea43797c28e4e645a25a62325b265640ab636b9716b66b1bf2450f3be75eaf4",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 40
+    },
+    {
+      "pmc_id": "12455887",
+      "row_indices": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "rows": 8,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        2
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "OP1",
+        "OP2"
+      ],
+      "patient_count": 2,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 58,
+      "unique_doc_concepts": 58,
+      "possible_unique_doc_patient_concept_pairs": 116,
+      "concept_set_sorted_json_sha256": "964fd1e2050d92673dfe71124de6e87ee90be68fb2d506bd9a1cb19b465a5cda",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 58
+    },
+    {
+      "pmc_id": "12891056",
+      "row_indices": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "rows": 6,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 47,
+      "unique_doc_concepts": 47,
+      "possible_unique_doc_patient_concept_pairs": 47,
+      "concept_set_sorted_json_sha256": "992764b7644b08e41edfdbd11e826a66d83c5e3da7c450105a48ef640e3c14ee",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 47
+    },
+    {
+      "pmc_id": "2964533",
+      "row_indices": [
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "rows": 5,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        2
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "O1",
+        "O2"
+      ],
+      "patient_count": 2,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 34,
+      "unique_doc_concepts": 34,
+      "possible_unique_doc_patient_concept_pairs": 68,
+      "concept_set_sorted_json_sha256": "d869765047f87d38b536685a7b874c818328856cfddd944c43b3814e55789e99",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 34
+    },
+    {
+      "pmc_id": "4607013",
+      "row_indices": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "rows": 6,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "patient_count": 3,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 48,
+      "unique_doc_concepts": 48,
+      "possible_unique_doc_patient_concept_pairs": 144,
+      "concept_set_sorted_json_sha256": "8ab4fdc736ae299ad649fba8f512f3ad59921a0f8def52e93b95d753fc630af8",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 48
+    },
+    {
+      "pmc_id": "5415817",
+      "row_indices": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "rows": 5,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        5
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 37,
+      "unique_doc_concepts": 37,
+      "possible_unique_doc_patient_concept_pairs": 37,
+      "concept_set_sorted_json_sha256": "92fcf2440815fa4e965982866c97253b276ed5af1264a251dbcb6f02c4f76606",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 37
+    },
+    {
+      "pmc_id": "5425407",
+      "row_indices": [
+        44,
+        45,
+        46
+      ],
+      "rows": 3,
+      "row_CID_counts": [
+        8,
+        8,
+        7
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 23,
+      "unique_doc_concepts": 23,
+      "possible_unique_doc_patient_concept_pairs": 23,
+      "concept_set_sorted_json_sha256": "780bba503c314965f916bd08bbbd59c2d82d11c9b79cc1d4d1d0bf7ca93232ef",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 23
+    },
+    {
+      "pmc_id": "5473715",
+      "row_indices": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "rows": 6,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        2
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "O1",
+        "O2",
+        "O3",
+        "O4",
+        "O5",
+        "O6",
+        "O7"
+      ],
+      "patient_count": 7,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 42,
+      "unique_doc_concepts": 42,
+      "possible_unique_doc_patient_concept_pairs": 294,
+      "concept_set_sorted_json_sha256": "f60836be379b043f5b8f1a7be8dabf0f6862cf65f606a1c2f4d5ed9855b4d0db",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 42
+    },
+    {
+      "pmc_id": "5538066",
+      "row_indices": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "rows": 8,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        3
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "O1",
+        "O2"
+      ],
+      "patient_count": 2,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 59,
+      "unique_doc_concepts": 59,
+      "possible_unique_doc_patient_concept_pairs": 118,
+      "concept_set_sorted_json_sha256": "690426fa9cc4993940c8ab18a274cc5459af11553f9a16b7bd1615034b06fc9a",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 59
+    },
+    {
+      "pmc_id": "5789735",
+      "row_indices": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "rows": 8,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "patient_count": 5,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 64,
+      "unique_doc_concepts": 64,
+      "possible_unique_doc_patient_concept_pairs": 320,
+      "concept_set_sorted_json_sha256": "921a6755a44acd7fec26ebcce5f39a7f491a9373112dc298133d6f95a380ce75",
+      "non_HP7_concept_labels": [
+        "learning disability",
+        "low-set"
+      ],
+      "valid_HP7_doc_concepts": 62
+    },
+    {
+      "pmc_id": "6048891",
+      "row_indices": [
+        69,
+        70,
+        71,
+        72
+      ],
+      "rows": 4,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        6
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1",
+        "P2"
+      ],
+      "patient_count": 2,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 30,
+      "unique_doc_concepts": 30,
+      "possible_unique_doc_patient_concept_pairs": 60,
+      "concept_set_sorted_json_sha256": "4ea78a9d76b11a5ad85a6554224c2e15904417a643c090bf8ebb34edde2331b8",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 30
+    },
+    {
+      "pmc_id": "6063015",
+      "row_indices": [
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "rows": 5,
+      "row_CID_counts": [
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "OII-1",
+        "OII-2",
+        "OII-3",
+        "OII-4"
+      ],
+      "patient_count": 4,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 39,
+      "unique_doc_concepts": 39,
+      "possible_unique_doc_patient_concept_pairs": 156,
+      "concept_set_sorted_json_sha256": "b4a1ac68b28bb691136be69ca5f8dc88cbb67d5a1f54312b24d69d97c879214c",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 39
+    },
+    {
+      "pmc_id": "9327653",
+      "row_indices": [
+        78,
+        79
+      ],
+      "rows": 2,
+      "row_CID_counts": [
+        8,
+        1
+      ],
+      "HPOs_repeated_across_rows": 0,
+      "within_row_HPO_repeats": 0,
+      "patient_ids_exact_order": [
+        "P1"
+      ],
+      "patient_count": 1,
+      "same_patient_list_all_rows": true,
+      "same_patient_set_all_rows": true,
+      "rows_contiguous_in_file": true,
+      "row_offsets_follow_chunks_of_eight": true,
+      "candidate_concept_occurrences": 9,
+      "unique_doc_concepts": 9,
+      "possible_unique_doc_patient_concept_pairs": 9,
+      "concept_set_sorted_json_sha256": "bf46b6c62b2e2b4110a4633feeed99b5ffb025cfe5d774124d598f6de524c580",
+      "non_HP7_concept_labels": [],
+      "valid_HP7_doc_concepts": 9
+    }
+  ],
+  "per_row": [
+    {
+      "index": 0,
+      "row_id": "10313222:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2014
+    },
+    {
+      "index": 1,
+      "row_id": "10313222:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2609
+    },
+    {
+      "index": 2,
+      "row_id": "10313222:relations:16",
+      "cid_count": 3,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 3,
+      "native_input_tokens_from_frozen_CPU_audit": 882
+    },
+    {
+      "index": 3,
+      "row_id": "11871647:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3509
+    },
+    {
+      "index": 4,
+      "row_id": "11871647:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3131
+    },
+    {
+      "index": 5,
+      "row_id": "11871647:relations:16",
+      "cid_count": 5,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 5,
+      "native_input_tokens_from_frozen_CPU_audit": 1914
+    },
+    {
+      "index": 6,
+      "row_id": "11906559:relations:0",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3664
+    },
+    {
+      "index": 7,
+      "row_id": "11906559:relations:8",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3284
+    },
+    {
+      "index": 8,
+      "row_id": "11906559:relations:16",
+      "cid_count": 1,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 5,
+      "native_input_tokens_from_frozen_CPU_audit": 1006
+    },
+    {
+      "index": 9,
+      "row_id": "12386172:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2341
+    },
+    {
+      "index": 10,
+      "row_id": "12386172:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2858
+    },
+    {
+      "index": 11,
+      "row_id": "12386172:relations:16",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2764
+    },
+    {
+      "index": 12,
+      "row_id": "12386172:relations:24",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2269
+    },
+    {
+      "index": 13,
+      "row_id": "12386172:relations:32",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2632
+    },
+    {
+      "index": 14,
+      "row_id": "12455887:relations:0",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2429
+    },
+    {
+      "index": 15,
+      "row_id": "12455887:relations:8",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2678
+    },
+    {
+      "index": 16,
+      "row_id": "12455887:relations:16",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3415
+    },
+    {
+      "index": 17,
+      "row_id": "12455887:relations:24",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2610
+    },
+    {
+      "index": 18,
+      "row_id": "12455887:relations:32",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2732
+    },
+    {
+      "index": 19,
+      "row_id": "12455887:relations:40",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 4058
+    },
+    {
+      "index": 20,
+      "row_id": "12455887:relations:48",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2839
+    },
+    {
+      "index": 21,
+      "row_id": "12455887:relations:56",
+      "cid_count": 2,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 4,
+      "native_input_tokens_from_frozen_CPU_audit": 1535
+    },
+    {
+      "index": 22,
+      "row_id": "12891056:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3460
+    },
+    {
+      "index": 23,
+      "row_id": "12891056:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3794
+    },
+    {
+      "index": 24,
+      "row_id": "12891056:relations:16",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 4270
+    },
+    {
+      "index": 25,
+      "row_id": "12891056:relations:24",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3716
+    },
+    {
+      "index": 26,
+      "row_id": "12891056:relations:32",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2572
+    },
+    {
+      "index": 27,
+      "row_id": "12891056:relations:40",
+      "cid_count": 7,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 7,
+      "native_input_tokens_from_frozen_CPU_audit": 2914
+    },
+    {
+      "index": 28,
+      "row_id": "2964533:relations:0",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2617
+    },
+    {
+      "index": 29,
+      "row_id": "2964533:relations:8",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2899
+    },
+    {
+      "index": 30,
+      "row_id": "2964533:relations:16",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3065
+    },
+    {
+      "index": 31,
+      "row_id": "2964533:relations:24",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2621
+    },
+    {
+      "index": 32,
+      "row_id": "2964533:relations:32",
+      "cid_count": 2,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 4,
+      "native_input_tokens_from_frozen_CPU_audit": 1004
+    },
+    {
+      "index": 33,
+      "row_id": "4607013:relations:0",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 3467
+    },
+    {
+      "index": 34,
+      "row_id": "4607013:relations:8",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 2971
+    },
+    {
+      "index": 35,
+      "row_id": "4607013:relations:16",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 3514
+    },
+    {
+      "index": 36,
+      "row_id": "4607013:relations:24",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 3255
+    },
+    {
+      "index": 37,
+      "row_id": "4607013:relations:32",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 3692
+    },
+    {
+      "index": 38,
+      "row_id": "4607013:relations:40",
+      "cid_count": 8,
+      "patient_count": 3,
+      "possible_patient_concept_pairs": 24,
+      "native_input_tokens_from_frozen_CPU_audit": 2871
+    },
+    {
+      "index": 39,
+      "row_id": "5415817:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3053
+    },
+    {
+      "index": 40,
+      "row_id": "5415817:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3554
+    },
+    {
+      "index": 41,
+      "row_id": "5415817:relations:16",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3127
+    },
+    {
+      "index": 42,
+      "row_id": "5415817:relations:24",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3399
+    },
+    {
+      "index": 43,
+      "row_id": "5415817:relations:32",
+      "cid_count": 5,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 5,
+      "native_input_tokens_from_frozen_CPU_audit": 1631
+    },
+    {
+      "index": 44,
+      "row_id": "5425407:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3871
+    },
+    {
+      "index": 45,
+      "row_id": "5425407:relations:8",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 2610
+    },
+    {
+      "index": 46,
+      "row_id": "5425407:relations:16",
+      "cid_count": 7,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 7,
+      "native_input_tokens_from_frozen_CPU_audit": 2933
+    },
+    {
+      "index": 47,
+      "row_id": "5473715:relations:0",
+      "cid_count": 8,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 56,
+      "native_input_tokens_from_frozen_CPU_audit": 4443
+    },
+    {
+      "index": 48,
+      "row_id": "5473715:relations:8",
+      "cid_count": 8,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 56,
+      "native_input_tokens_from_frozen_CPU_audit": 4270
+    },
+    {
+      "index": 49,
+      "row_id": "5473715:relations:16",
+      "cid_count": 8,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 56,
+      "native_input_tokens_from_frozen_CPU_audit": 3661
+    },
+    {
+      "index": 50,
+      "row_id": "5473715:relations:24",
+      "cid_count": 8,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 56,
+      "native_input_tokens_from_frozen_CPU_audit": 3691
+    },
+    {
+      "index": 51,
+      "row_id": "5473715:relations:32",
+      "cid_count": 8,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 56,
+      "native_input_tokens_from_frozen_CPU_audit": 2919
+    },
+    {
+      "index": 52,
+      "row_id": "5473715:relations:40",
+      "cid_count": 2,
+      "patient_count": 7,
+      "possible_patient_concept_pairs": 14,
+      "native_input_tokens_from_frozen_CPU_audit": 1194
+    },
+    {
+      "index": 53,
+      "row_id": "5538066:relations:0",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3620
+    },
+    {
+      "index": 54,
+      "row_id": "5538066:relations:8",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3815
+    },
+    {
+      "index": 55,
+      "row_id": "5538066:relations:16",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3939
+    },
+    {
+      "index": 56,
+      "row_id": "5538066:relations:24",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 4446
+    },
+    {
+      "index": 57,
+      "row_id": "5538066:relations:32",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3403
+    },
+    {
+      "index": 58,
+      "row_id": "5538066:relations:40",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3016
+    },
+    {
+      "index": 59,
+      "row_id": "5538066:relations:48",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2865
+    },
+    {
+      "index": 60,
+      "row_id": "5538066:relations:56",
+      "cid_count": 3,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 6,
+      "native_input_tokens_from_frozen_CPU_audit": 1148
+    },
+    {
+      "index": 61,
+      "row_id": "5789735:relations:0",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3733
+    },
+    {
+      "index": 62,
+      "row_id": "5789735:relations:8",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3655
+    },
+    {
+      "index": 63,
+      "row_id": "5789735:relations:16",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3854
+    },
+    {
+      "index": 64,
+      "row_id": "5789735:relations:24",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3862
+    },
+    {
+      "index": 65,
+      "row_id": "5789735:relations:32",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3034
+    },
+    {
+      "index": 66,
+      "row_id": "5789735:relations:40",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 4178
+    },
+    {
+      "index": 67,
+      "row_id": "5789735:relations:48",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3229
+    },
+    {
+      "index": 68,
+      "row_id": "5789735:relations:56",
+      "cid_count": 8,
+      "patient_count": 5,
+      "possible_patient_concept_pairs": 40,
+      "native_input_tokens_from_frozen_CPU_audit": 3171
+    },
+    {
+      "index": 69,
+      "row_id": "6048891:relations:0",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 4110
+    },
+    {
+      "index": 70,
+      "row_id": "6048891:relations:8",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 2940
+    },
+    {
+      "index": 71,
+      "row_id": "6048891:relations:16",
+      "cid_count": 8,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 16,
+      "native_input_tokens_from_frozen_CPU_audit": 3063
+    },
+    {
+      "index": 72,
+      "row_id": "6048891:relations:24",
+      "cid_count": 6,
+      "patient_count": 2,
+      "possible_patient_concept_pairs": 12,
+      "native_input_tokens_from_frozen_CPU_audit": 3094
+    },
+    {
+      "index": 73,
+      "row_id": "6063015:relations:0",
+      "cid_count": 8,
+      "patient_count": 4,
+      "possible_patient_concept_pairs": 32,
+      "native_input_tokens_from_frozen_CPU_audit": 5689
+    },
+    {
+      "index": 74,
+      "row_id": "6063015:relations:8",
+      "cid_count": 8,
+      "patient_count": 4,
+      "possible_patient_concept_pairs": 32,
+      "native_input_tokens_from_frozen_CPU_audit": 4632
+    },
+    {
+      "index": 75,
+      "row_id": "6063015:relations:16",
+      "cid_count": 8,
+      "patient_count": 4,
+      "possible_patient_concept_pairs": 32,
+      "native_input_tokens_from_frozen_CPU_audit": 4403
+    },
+    {
+      "index": 76,
+      "row_id": "6063015:relations:24",
+      "cid_count": 8,
+      "patient_count": 4,
+      "possible_patient_concept_pairs": 32,
+      "native_input_tokens_from_frozen_CPU_audit": 4494
+    },
+    {
+      "index": 77,
+      "row_id": "6063015:relations:32",
+      "cid_count": 7,
+      "patient_count": 4,
+      "possible_patient_concept_pairs": 28,
+      "native_input_tokens_from_frozen_CPU_audit": 3785
+    },
+    {
+      "index": 78,
+      "row_id": "9327653:relations:0",
+      "cid_count": 8,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 8,
+      "native_input_tokens_from_frozen_CPU_audit": 3755
+    },
+    {
+      "index": 79,
+      "row_id": "9327653:relations:8",
+      "cid_count": 1,
+      "patient_count": 1,
+      "possible_patient_concept_pairs": 1,
+      "native_input_tokens_from_frozen_CPU_audit": 773
+    }
+  ],
+  "cross_row_HPO_repeats": [],
+  "within_row_HPO_repeats": [],
+  "patient_list_inconsistent_documents": [],
+  "read_gold": false,
+  "model_or_tokenizer_run": false,
+  "remote_calls": false,
+  "fit_predict_or_score": false,
+  "parent_sources_or_docs_modified": false,
+  "non_HP7_concepts_preserved_without_mapping_or_dropping": [
+    {
+      "index": 2,
+      "row_id": "10313222:relations:16",
+      "pmc_id": "10313222",
+      "cid": "C002",
+      "original_concept_label": "metabolic diseases",
+      "patient_count": 1
+    },
+    {
+      "index": 68,
+      "row_id": "5789735:relations:56",
+      "pmc_id": "5789735",
+      "cid": "C006",
+      "original_concept_label": "learning disability",
+      "patient_count": 5
+    },
+    {
+      "index": 68,
+      "row_id": "5789735:relations:56",
+      "pmc_id": "5789735",
+      "cid": "C007",
+      "original_concept_label": "low-set",
+      "patient_count": 5
+    }
+  ]
+}
