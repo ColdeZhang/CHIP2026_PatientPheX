@@ -2,7 +2,7 @@
 
 核对象是已结束PCL末轮checkpoint **9ad43c5e…**（24/768、32篇F2F3），不是重新训练的模型。未拟合阈值、未读取新gold、未新建预测/Score/NN任务。
 
-1. **现有F1 raw足够支持受限的纯CPU重解码。** 1542个NER≥−2物理跨度保存全部4285 patient logits；其中1343个NER>0。408个NER>0且至少一患者>0的跨度已规范化，逐条分数与patient IDs均和raw exact；另935个全部patient≤0未规范化。固定globalNER>0及严格patient>t、t≥0时，后者永不入选，所以无需再跑模型或规范化。当前没有显式relation-max表，但可沿已保存的accepted identifiers/原patient IDs/物理跨度，按(doc,pid,literal)取max并保留全部来源及ties。阈值与max可交换。此结论不覆盖t<0、改变NER门或将>改成≥。
+1. **现有F1 raw足够支持受限的纯CPU重解码。** 1542个NER≥−2物理跨度保存全部4285 patient logits；其中1343个NER>0。408个NER>0且至少一患者>0的跨度已规范化，逐条分数与patient IDs均和raw exact；另935个全部patient≤0未规范化。固定globalNER>0及严格patient>t、t≥0时，后者永不入选，所以无需再跑模型或规范化。**准确完整性限于max>0的关系及t≥0解码；非正关系的全候选真实max不完整，不能填造−inf冒称真值。** 当前没有显式relation-max表，但可沿已保存的accepted identifiers/原patient IDs/物理跨度，按(doc,pid,literal)取max并保留全部来源及ties。阈值与max可交换。此结论不覆盖t<0、改变NER门或将>改成≥。
 
 2. **F0纯输入新推断可以保持训练资产排除F0/F1。** 实核NN train32与两纯输入文献ID交集都为0；StrictNormalizer的监督aliases精确也是38c353ea同train32。HPO/Sap encoder/public bank均公共，无B0/CID/selector依赖。准确说法是“train32 strict aliases＋公共Sap”，不是全公共规范化。F1已经用于此前模型/方法开发，因此未来即使阈值只在F0选择，也应称新固定开发验证，不能称首次盲测。
 
