@@ -42,7 +42,7 @@ def main():
   save(S/'extraction-plan.json',p)
  elif a.stage=='normalize-bind':
   p=read(G/'normalization/held-finalize-plan.json');prep=read(D/'normalization-preparation/manifest.json');p['preparation']=ref(D/'normalization-preparation/manifest.json');p['output_dir']=str(D/'normalized-v1');p['binding_source']=ref(__file__)
-  for k,n in [('query_collection','collection.json'),('query_scores','terminal/output/query-scores.json'),('query_complete','terminal/output/complete.json')]:p[k]=ref(D/'Sap100-v1'/n) if prep['necessary_public_query_count'] else None
+  for k,n in [('query_collection','collection.json'),('query_scores','terminal/output/query-scores.json'),('query_complete','terminal/output/complete.json')]:p[k]=ref(D/'Sap-CPU100-v1'/n) if prep['necessary_public_query_count'] else None
   save(S/'normalization-finalize-plan.json',p)
  elif a.stage=='assemble':
   p=copy.deepcopy(OLD);p['actual']={};ex=read(D/'quotes-v1/manifest.json');nm=read(D/'normalized-v1/manifest.json')
@@ -75,7 +75,7 @@ def main():
    for a in d['association']:a['phenotype']=sorted(h for did,pid,h in mean if did==str(d['pmc_id']) and pid==a['patient_id'])
   assert pairs(pure,ev)==mean;publish(out/'mean-new-only.jsonl',b''.join((json.dumps(x,ensure_ascii=False)+'\n').encode() for x in pure))
   fmt=va.validate_predictions(inputs,pred,va.read_hpo(r['hpo']['path']));save(out/'format.json',fmt);assert fmt['valid']
-  save(out/'bound-inputs.json',dict(source=ref(__file__),execution_plan=ref(S/'execution-plan.json'),references=r,actual=p['actual'],inherited_actual_verifier=ref(G/'quality/assemble.py'),inherited_support=ref(G/'quality/support.py')))
+  save(out/'bound-inputs.json',dict(source=ref(__file__),execution_plan=ref(S/'execution-plan.json'),normalization_amendment=ref(S/'normalization-amendment.json'),references=r,actual=p['actual'],inherited_actual_verifier=ref(G/'quality/assemble.py'),inherited_support=ref(G/'quality/support.py')))
   save(out/'freeze.json',dict(at_unix=time.time(),prediction=ref(out/'prediction.jsonl'),mean_pure_unscored=ref(out/'mean-new-only.jsonl'),inputs=ref(out/'bound-inputs.json'),source=ref(__file__),formula='B4 UNION (G_meanweights INTERSECT G_originalgreedy)',baseline=524,mean=len(mean),original_G=282,intersection=len(mean&original_view),added=len(add),added_pairs=sorted(add),removed=0,nonphenotype_bytes_exact=True,baseline_prefixes_exact=True,no_gold_opened=True,new_v2=0,old_v2=0,coverage=coverage,normalization_counts=counts,byteexact_to_baseline=raw==Path(r['baseline']['path']).read_bytes()))
   print(json.dumps(dict(freeze=ref(out/'freeze.json'),added=len(add),mean=len(mean))))
  else:

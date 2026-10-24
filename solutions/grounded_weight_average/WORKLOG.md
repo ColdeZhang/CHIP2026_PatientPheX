@@ -6,7 +6,9 @@
 
 实际CPU合成与tiny PEFT已通过；A100 GPU2唯一完整39条推断进行中，proc06596b00/PID239977/child239995，开始14:08:54Z，TERM14:38:54.278290Z，KILL14:39:24.278290Z。见[evidence/inference-start.json](evidence/inference-start.json)；远端原 `grounded-weight-average-v1/F1/infer-v1/wrapper-complete.json` 为唯一终态。恢复入口 `inference/remote.py observe --directory R/research/grounded-weight-average-v1/F1/infer-v1`，绝不重start。
 
-当前根授权范围：同一固定平均、39 fresh greedy、必要固定Sap180+30、唯一 `B4∪(G_meanweights∩G_originalgreedy)` 完整freeze后1v2；若byteexact则0v2。原candidate-plan保留为历史，新执行见[execution-plan.json](execution-plan.json)。无新训练、无gold读取或质量结果；后处理源码和差异合同已push。仓外实际产物 `R/research/grounded-weight-average-v1/F1/`，真实CPU16件包3116a023完整回收；新adapter346,294,736B/ed184ecc留原持久服务器。
+当前根授权范围：同一固定平均、39 fresh greedy，随后必要 Sap 采用另行明确授权的 **CPU FP32 /16线程/300+30**，`B4∪(G_meanweights_CPUquery∩G_originalgreedy_FP16query)` 完整freeze后仅1v2（byteexact则0v2）。新[normalization-amendment.json](normalization-amendment.json)在规范化/质量前冻结：原GPU查询确为FP16，因此这是一项权重平均＋查询精度/device的联合实现，不能把涨分纯归因于平均权重。公共41099 bank、train32 aliases、池化/L2/topk/阈值保持，原GPU提议保留未执行；不会另跑两种normalize择优。
+
+仓外实际产物 `R/research/grounded-weight-average-v1/F1/`，真实CPU16件包3116a023完整回收；新adapter346,294,736B/ed184ecc留原持久服务器。当前无新质量结果或gold读取。
 
 ## 准备阶段记录（授权前历史）
 
