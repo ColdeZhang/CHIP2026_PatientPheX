@@ -1,0 +1,170 @@
+{
+  "status": "source and CPU interface checks ready; no GPU or remote command executed by this subagent",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/official_901_B/old_pool_cpu/encode_sap_queries.py",
+    "bytes": 18002,
+    "sha256": "8930e7cd7ba76e1a76d8fa70f31711279f60d8b26943b8c1df51cfde7a78fcc3"
+  },
+  "parent_controls_execution_and_budget": true,
+  "runtime": {
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/bin/python",
+    "mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "parent_reported_torch": "2.7.0+cu128",
+    "parent_reported_transformers": "4.50",
+    "actual_runtime_recorded_by_scorer": true
+  },
+  "proposed_remote_workdir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer",
+  "counts": {
+    "documents": 100,
+    "original_candidates": 90303,
+    "unique_queries_per_document_total": 65673,
+    "encoder_batches_256": 308,
+    "nearest_blocks_512": 231,
+    "maximum_unique_queries_in_document": 2975,
+    "maximum_candidates_in_document": 4414
+  },
+  "policy": {
+    "semantic_source_sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a",
+    "detector_sha256": "adb8ff8c8f395d74e2d76dc02995b5c51bf6e0fde818de7a7f4e8667e8b6b626",
+    "bank_sha256": "4fc0e062ea7940365222aad637058aadfb37dc57681e444eb2091577b591ae03",
+    "bank_bytes": 130790528,
+    "original_encoder": true,
+    "batch": 256,
+    "max_length": 32,
+    "bank_reencoding": false,
+    "fit": false,
+    "gold": false,
+    "precision": "Original FP16 backbone; FP32 CLS/L2 and GPU dot; loaded float64 detector LR",
+    "map_before_scoring": true,
+    "origin_changes_algorithm": false,
+    "failure_policy": "immutable run directory; full per-doc scores atomic before checking; first failure.json; no truncation/batch changes/retry",
+    "cache_policy": "Existing query array must match reconstruction cache SHA or scorer-created receipt; new array receipt records SHA/signature/source"
+  },
+  "deployment_inputs": {
+    "B.raw-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/sap-table/B.raw-candidates.jsonl",
+      "bytes": 11054044,
+      "sha256": "78b90aaf27c33d86a948f5964002a7243225c8f1a25ed51e1568d55efafa11e2"
+    },
+    "B.query-requests.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/sap-table/B.query-requests.jsonl",
+      "bytes": 2739050,
+      "sha256": "a477c250e98432697de37567d52d63da74877a64c9d4aace354202360a312380"
+    },
+    "dev.raw-candidates.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/sap-table/dev.raw-candidates.jsonl",
+      "bytes": 1553591,
+      "sha256": "6bfaff019cadfae4a931a4ab387ce75fde434ac0b796118c3d3433f4ad536c2e"
+    },
+    "dev.query-requests.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/scorer-preparation/dev.query-requests.jsonl",
+      "bytes": 381670,
+      "sha256": "f567c1db111b964902bc7f1a94e6d28cb63b8becb8ce246e5ea3c6c100dcdf2d"
+    },
+    "B.input.jsonl": {
+      "path": "/workspace/patientphex-data/day1/B.input.jsonl",
+      "bytes": 2060389,
+      "sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
+    },
+    "bank-labels.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/collected/sap/request/bank-labels.json",
+      "bytes": 2380866,
+      "sha256": "a369ec3de1f32764272748f30d0de4244b743fbd28f527adea767bd5fa0b2cd2"
+    }
+  },
+  "local_cpu_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/scorer-preparation/local-cpu-checks.json",
+    "bytes": 1539,
+    "sha256": "e30ee441a56ca511c475b88940d0670182a3de81bc7e36725ff9e45b57130399"
+  },
+  "cpu_cache_replay_argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/encode_sap_queries.py",
+    "--semantic-source",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/run.py",
+    "--model-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+    "--bank",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+    "--bank-labels",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/bank-labels.json",
+    "--detector",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-dev16/reconstruction/reconstructed-detector.npz",
+    "--reconstruction-manifest",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-dev16/reconstruction/reconstruction.manifest.json",
+    "--mode",
+    "cpu-cache",
+    "--origin",
+    "frozen-dev16-cache-replay",
+    "--input",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/data/dev16.input.jsonl",
+    "--input-sha256",
+    "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "--requests",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/dev.query-requests.jsonl",
+    "--requests-sha256",
+    "f567c1db111b964902bc7f1a94e6d28cb63b8becb8ce246e5ea3c6c100dcdf2d",
+    "--raw-candidates",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/dev.raw-candidates.jsonl",
+    "--raw-candidates-sha256",
+    "6bfaff019cadfae4a931a4ab387ce75fde434ac0b796118c3d3433f4ad536c2e",
+    "--cache-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/dev16-sapbert/embeddings",
+    "--output-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/dev-cache-replay",
+    "--reference-scored",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/dev16-sapbert/scored-candidates.jsonl.gz",
+    "--reference-scored-sha256",
+    "8e96fe840fa9520d7792b522583e263a35dcf89e114c021143362f3820470197"
+  ],
+  "gpu_B_argv_draft": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/encode_sap_queries.py",
+    "--semantic-source",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/run.py",
+    "--model-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+    "--bank",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+    "--bank-labels",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/bank-labels.json",
+    "--detector",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-dev16/reconstruction/reconstructed-detector.npz",
+    "--reconstruction-manifest",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/phenotagger-dev16/reconstruction/reconstruction.manifest.json",
+    "--mode",
+    "gpu",
+    "--expected-gpu-uuid",
+    "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "--origin",
+    "old-pool-Sap64-B",
+    "--input",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/B.input.jsonl",
+    "--input-sha256",
+    "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+    "--requests",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/B.query-requests.jsonl",
+    "--requests-sha256",
+    "a477c250e98432697de37567d52d63da74877a64c9d4aace354202360a312380",
+    "--raw-candidates",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/inputs/B.raw-candidates.jsonl",
+    "--raw-candidates-sha256",
+    "78b90aaf27c33d86a948f5964002a7243225c8f1a25ed51e1568d55efafa11e2",
+    "--cache-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/B-query-embeddings",
+    "--output-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-official-901-B/sap-query-scorer/B-scored"
+  ],
+  "gpu_environment": {
+    "CUDA_VISIBLE_DEVICES": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "real_dev_embedding_replay": "not run locally; missing local bank and query arrays; prepared cpu-cache entry must use existing remote arrays",
+  "gliner_followup": "Same scorer and origin metadata only; prepare exact_identifiers via frozen bank membership/best ID and preserve raw ontology_exact; all source scores retained. No budget or new query count assumed."
+}
