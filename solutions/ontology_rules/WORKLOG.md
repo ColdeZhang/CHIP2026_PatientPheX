@@ -16,7 +16,7 @@
 - 原生80纯输入CPU完成，三固定row输入2171/3425/6002 token；首BatchEncoding错误与修复原留。YaRN CPU对HF4.51参考64值bitexact，配置不改。[完整CPU清单](deepseek_r1_readiness/cpu-terminal-manifest.json)。
 - **唯一GPU探针已结束并释放**：.100 GPU1，managed `proc_2eb8109a-602c-4714-956c-1aa4db401a35`；wrapper46.141秒/rc0，加载6.714秒/399实际参数完整。first2171输入→1024新token，33.219秒/30.826 token/s，无EOS，首token cap停止余2条；峰allocated19.496GB。03:39:03.804目标卡0MiB且无进程。仅当前预算不够，无gold/80质量，不关闭模型质量方向。[实际摘要](deepseek_r1_readiness/gpu-probe/terminal-summary.json)。
 - **4096已结束＋tokenizer接口纠正**：97.441秒/rc0，2644token自然EOS/think闭合，非cap/wall，03:44:55.871GPU1释放；原Auto解码异常。CPU实际确认TF5 Llama类改写发布ByteLevel编码，80输入ID全不同；旧2171输入与两个GPU终点不能冒充准确发布输入。正确解既有IDs后仅2/8CID，strict仍拒绝。[纠正/证据](deepseek_r1_readiness/ERRATA-TOKENIZER-20261024.md)。
-- **发布接口首轮已结案，新codec最长行准备完**：新CPU80完整发布IDs合同通过；原pilot first2014→746自然EOS，36.812秒/rc0，围栏使strict+sparse在char0拒绝，最长未跑，03:55:44.577释放；独审6c8e9293。主线程另授有限整段围栏/唯一整数P码codec，实际CPU5正23负、只复用first746正常化8原键/2别名，旧拒绝不变。新longest5689/freshseed/4096/240+30 plan d6f6bc5e已冻结，尚未GPUstart；不全80/质量。[当前记录](deepseek_r1_readiness/published-interface-v1/REPORT.md)。
+- **发布接口首轮已结案，新codec最长行运行中**：新CPU80完整发布IDs合同通过；原pilot first2014→746自然EOS，36.812秒/rc0，围栏使strict+sparse在char0拒绝，最长未跑，03:55:44.577释放；独审6c8e9293。主线程另授有限整段围栏/唯一整数P码codec，实际CPU5正23负、只复用first746正常化8原键/2别名，旧拒绝不变。新longest5689/freshseed/4096/240+30 plan d6f6bc5e，原proc_d63b7015-88a0-4da5-981e-cda0ee2ee160于04:03:04.811启动，主截止04:07:04.811+TERM30；不全80/质量。[当前记录](deepseek_r1_readiness/published-interface-v1/REPORT.md)。
 - 原生FP32 rotary同device比较及CPU/GPU 8eps容差在启动前冻结，原CPU证据保留；source实际SHA/compile通过。执行恢复入口为外部 `gpu-probe/{plan.json,start-intent.json,job.json}` 与 `gpu-probe/recovered/wrapper-result.json`，实际生成结果在 `recovered/`；只有真实产生后才作为已运行证据。[研究/过程/边界](deepseek_r1_readiness/REPORT.md)。
 
 ## 最近结案
