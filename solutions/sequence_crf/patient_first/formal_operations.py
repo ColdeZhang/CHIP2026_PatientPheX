@@ -112,7 +112,9 @@ print(json.dumps(dict(at_utc=datetime.datetime.now(datetime.timezone.utc).isofor
         result = run(code); assert result['exit_code'] == 0, result
         save(phase+'-fresh-resource.json', result)
         command = shlex.join(['python3','-u',resource['remote_preparation_absolute']+'/formal_driver.py','--plan',remote_plan])
-        arguments = dict(command=command,cwd=control,env=resource['env'])
+        mount_root = Path(resource['remote_preparation_absolute']).parents[len(Path(resource['remote_preparation']).parts)-1]
+        assert str(Path(resource['remote_preparation_absolute']).relative_to(mount_root)) == resource['remote_preparation']
+        arguments = dict(command=command,cwd=str(Path(control).relative_to(mount_root)),env=resource['env'])
         save(phase+'-launch-intent.json', dict(at_utc=datetime.now(timezone.utc).isoformat(),
              arguments=arguments,checkpoint=args.checkpoint,plan_sha256=digest(phase_path.read_bytes()),
              once_only=True,unknown_outcome='Inspect original job/files. Never call start again.'))

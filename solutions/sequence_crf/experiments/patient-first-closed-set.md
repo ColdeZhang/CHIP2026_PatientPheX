@@ -131,3 +131,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 02:27:12.289Z actual A800 CPU完成21.456s：TF5.20.2/PEFT0.21.2/Torch2.7.1+cu126，native modeling b4b17fe0及两个GDN binding原生、无FLA；hiddenCUDA未初始化、无权重load/forward。真实正式trainer.verify_sources_and_data/encode_all对124行400614/4694/max5556及combined8d69e592完全匹配；15个只读SHM模型文件均完整SHA。没有读F1数据/答案，两allocator env实际null。3源+2plan窄补后两计划全部21成员SHA精确，旧件远端独立快照；.100 fetcher部署完成SHA/compile。详见[实际入口](../evidence/round2/patient-first-formal-actual-entry.json)。下一操作是原授权fresh GPU核验与唯一训练start，不重复CPU或改变配方。
+
+
+启动前fresh资源通过，但start_process返回明确PATH_OUTSIDE_MOUNT，没有managed job；原intent已落盘。故障来自MCP start的cwd命名空间要求相对挂载，而控制器用了真实绝对路径。保存原intent/source/plan在before-cwd-fix，只改控制器cwd为同一目录的挂载内相对路径；命令、训练数值、输入和3900+30保持。恢复必须先实际查控制目录/输出/driver进程/GPU，确认原start没有运行后，按独立恢复intent发送一次；不能直接重调start覆盖原证据。
