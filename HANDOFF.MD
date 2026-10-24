@@ -325,6 +325,12 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 **避免方法**：按实际运行入口明确模块搜索路径，或先以canonical模块名注册已核SHA的兄弟依赖，再载入评测器；只加载路径正确不代表所有依赖可用。此次保持原source/plan/错误trace、模型与冻结预测，独立恢复入口先注册固定validator，只执行一次成功v2，无重训或重预测。五信号结案manifest `research/relation-stacking-five-feature-control/manifest.json` SHA`9c3c1357…`，恢复源`a36928a3…`；原始import异常与质量负结果分列。
 
+## H51：最长样本单步通过，不保证完整训练的显存可行
+
+患者full64的6166-token单次真实更新通过，峰allocated38.184GB；后续A100完整训练仍在首epoch的backward申请5.71GiB时OOM。原stdout最后记录step10，但没有精确失败行或CUDA算子，不能把这个进度值当故障位置，也不能仅据错误提示把根因归为碎片。已确认没有完整epoch或optimizer/RNG检查点，后继必须标明fresh重训。
+
+**避免方法**：短探针按实际训练状态设计，覆盖已有优化器状态、梯度累积及相关输入形状，而不只测长度最大值。显存优化先核实际loss/梯度语义，再用目标运行库和真实模型验证；不静默删样本、截输入、改监督或精度。保存首次失败、独立恢复入口与各自预算，单步工程通过和完整训练/质量终点分开记录。原失败统一终审`validation/patient-first-full64-formal-failure-review/review.json`，SHA`f7668be7…`；唯一恢复在准备，详见[序列方案full64记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-full64.md)。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
