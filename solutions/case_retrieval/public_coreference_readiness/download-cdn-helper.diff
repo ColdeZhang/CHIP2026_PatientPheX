@@ -1,0 +1,71 @@
+--- /workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert/download_public_h5.py
++++ download_cdn_recovery.py
+@@ -11,11 +11,12 @@
+ import subprocess
+ import sys
+ import time
++from datetime import datetime, timezone
+ import urllib.request
+ 
+ HERE = Path(__file__).resolve().parent
+-PRIVATE = HERE / 'download-state.private.json'
+-STATUS = HERE / 'download-status.json'
++PRIVATE = HERE / 'cdn-runtime.private.json'
++STATUS = HERE / 'download-recovery-status.json'
+ START = time.monotonic()
+ 
+ 
+@@ -42,15 +43,17 @@
+ def main():
+     cfg = json.loads(PRIVATE.read_text())
+     os.chmod(PRIVATE, 0o600)
++    deadline = datetime.fromisoformat(cfg['absolute_deadline_utc']).timestamp()
++    if time.time() >= deadline: raise TimeoutError('original deadline exhausted')
+     expected_bytes = cfg['weight_bytes']
+     expected_sha = cfg['weight_sha256']
+-    final = HERE / 'biobert_PT_v1.2.h5'
++    final = HERE / 'model' / 'pytorch_model.bin'
+     if final.exists():
+         if final.stat().st_size != expected_bytes or digest(final) != expected_sha:
+             raise ValueError('existing_weight_does_not_match_pinned_identity')
+         progress('existing_weight_verified', bytes=expected_bytes, sha256=expected_sha)
+     else:
+-        parts = HERE / '.download-parts'
++        parts = HERE / '.coref-download-parts'
+         parts.mkdir(exist_ok=True, mode=0o700)
+         chunk = cfg.get('chunk_bytes', 16 * 1024 * 1024)
+         ranges = [(i, start, min(start + chunk, expected_bytes) - 1)
+@@ -65,7 +68,8 @@
+                 tmp = dest.with_suffix('.tmp')
+                 try:
+                     req = urllib.request.Request(cfg['cdn_url'], headers={'Range': f'bytes={first}-{last}'})
+-                    with urllib.request.urlopen(req, timeout=60) as response:
++                    if time.time() >= deadline: raise TimeoutError('original deadline exhausted')
++                    with urllib.request.urlopen(req, timeout=min(30,max(1,deadline-time.time()))) as response:
+                         if response.status != 206 or response.headers.get('Content-Range') != f'bytes {first}-{last}/{expected_bytes}':
+                             raise ValueError('unexpected_range_response')
+                         received = 0
+@@ -96,7 +100,7 @@
+                 transferred += result['bytes']
+                 if complete % 8 == 0 or complete == len(ranges):
+                     progress('downloading', completed_parts=complete, total_parts=len(ranges), completed_bytes=transferred, expected_bytes=expected_bytes)
+-        staging = HERE / 'biobert_PT_v1.2.h5.tmp'
++        staging = HERE / 'model' / 'pytorch_model.bin.tmp'
+         progress('assembling', expected_bytes=expected_bytes)
+         with staging.open('wb') as output:
+             for index, first, last in ranges:
+@@ -115,6 +119,14 @@
+     manifest={k:cfg[k] for k in ['repo_id','revision','source_resolve_url','weight_bytes','weight_sha256']}
+     manifest.update({'download_complete':True,'verified_full_weight_sha256':digest(final),'download_seconds':time.monotonic()-START,'temporary_url_config_removed':not PRIVATE.exists(),'download_script_sha256':digest(Path(__file__)),'GPU_used':False})
+     write_json(HERE/'weight-source-manifest.json',manifest)
++    plan=json.loads((HERE/'download-plan.json').read_text())
++    verified={}
++    for a in plan['files']:
++        f=HERE/'model'/a['name']; actual=digest(f); assert f.stat().st_size==a['bytes']
++        if a.get('sha256'): assert actual==a['sha256']
++        else: assert hashlib.sha1(b'blob '+str(a['bytes']).encode()+b'\0'+f.read_bytes()).hexdigest()==a['git_blob_sha1']
++        verified[a['name']]={'bytes':a['bytes'],'sha256':actual,'source_url':a['url']}
++    write_json(HERE/'download-complete.json',{'status':'complete_verified_all_files','files':verified,'recovery':'official CDN ranges after HF connection timeout','original_absolute_deadline_utc':cfg['absolute_deadline_utc']})
+     progress('complete',bytes=expected_bytes,sha256=expected_sha,temporary_url_config_removed=True)
+ 
+ 
