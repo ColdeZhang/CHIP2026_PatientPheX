@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已rc0完成，原导出服务已接受/待ready恢复。原campaign截止12:45:04.713781 UTC，恢复监控PID161802（watch-recovery-3，12:06:59.348后查询）；未开始第二轮/F1/质量。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已rc0完成，原导出服务已接受/待ready恢复。原campaign截止12:45:04.713781 UTC，恢复监控PID162090（watch-recovery-4；具体退避见其events）；未开始第二轮/F1/质量。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -52,3 +52,7 @@ First epoch actually ended11:59:58.919894 rc0/840.611566s/16updates; GPU2 releas
 ### 2026-10-24 12:04 UTC — same-entry server accepted, pure readiness read unknown
 
 Unique recovery CPU server proc_827ccc3e/PID153761 accepted12:03:41.141091Z under unchanged600s phase. Next start-fetch only read server-ready, returned UNKNOWN12:03:54.348 before any fetch intent/publication/start. This is distinct from earlier explicit LUNA. No server replay. Independent monitor161802/watch-recovery-3 waits until12:06:59.348 then resumes that original read and unchanged fetch/ACK path; original phase ends12:10:32.215268, campaign12:45:04.713781. Both failed local monitors and original error receipts remain.
+
+### 2026-10-24 12:07 UTC — read-only recovery classification
+
+Root clarified first pure-read UNKNOWN may retry once after30s;185s applies explicit LUNA, repeated UNKNOWN remains conservatively bounded. Idle watch161802 had no child operation and was explicitly stopped, no remote process touched. New162090/watch-recovery-4 uses separate frozen monitor source3379e477, covers pure inspect/server-ready/export-read failures but never repeats unknown publication/start/ACK mutation. Actual12:06:01.548 ready-read returned explicit LUNA; next12:09:06.548 leaves85.7s in original export phase. No fetch has started; original server may continue while control is offline. Any actual phase failure remains separate from valid first-epoch checkpoint.
