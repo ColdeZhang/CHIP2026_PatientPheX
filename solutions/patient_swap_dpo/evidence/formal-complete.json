@@ -1,0 +1,159 @@
+{
+  "status": "COMPLETE_FIXED_ONE_EPOCH_DPO_WITH_DURABLE_ACK",
+  "at_utc": "2026-10-24T14:36:19.849947+00:00",
+  "counts": {
+    "pairs": 74,
+    "sequences": 148,
+    "tokens": 519954,
+    "supervised": 9344
+  },
+  "global_step": 10,
+  "training_seconds": 544.4871151330881,
+  "memory": {
+    "allocated": 17096881152,
+    "reserved": 22743613440,
+    "peak_allocated": 20665163776,
+    "peak_reserved": 22743613440,
+    "free_bytes": 2277834752
+  },
+  "acknowledgement": {
+    "status": "DURABLE_COMPLETE_EPOCH_ALL_ADAPTER_ADAM_RNG_REOPEN_EXACT",
+    "at_utc": "2026-10-24T14:36:19.842160+00:00",
+    "epoch": 1,
+    "global_step": 10,
+    "adapter_tensors": 504,
+    "optimizer_states": 504,
+    "optimizer_tensor_entries": 1512,
+    "all_rng_exact": true,
+    "checkpoint": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/formal/epoch-001/checkpoint.json",
+      "bytes": 1319,
+      "sha256": "02d764bb8a70c332d6ecab3f0d1a8bc647a51164ca16dc4bbd13c4979f64485b"
+    },
+    "seconds": 2.8876674259081483,
+    "files": {
+      "adapter/README.md": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/formal/epoch-001/adapter/README.md",
+        "bytes": 5152,
+        "sha256": "1e2294293d88be71fc726e101ec0c7a7637845b0762c9ce8cb9d6b9c456b069f"
+      },
+      "adapter/adapter_config.json": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/formal/epoch-001/adapter/adapter_config.json",
+        "bytes": 918,
+        "sha256": "5431f7eb6218f751c832deb97468869d714f132690d288b01347d57553056198"
+      },
+      "adapter/adapter_model.safetensors": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/formal/epoch-001/adapter/adapter_model.safetensors",
+        "bytes": 174655536,
+        "sha256": "75518d9398eb14172d98ba1d3ec9d479c25afe5d64a17d21829ec891a69432d2"
+      },
+      "training_state.pt": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/formal/epoch-001/training_state.pt",
+        "bytes": 349612077,
+        "sha256": "d31283d6349640fd0601bdca4d9868e435cc7ab1261e337896eafca8a1dbde7e"
+      }
+    }
+  },
+  "phase_results": [
+    {
+      "phase": "probe",
+      "pid": 1216601,
+      "started_at_utc": "2026-10-24T14:25:48.819442+00:00",
+      "term_at_utc": "2026-10-24T14:31:00.518905+00:00",
+      "kill_at_utc": "2026-10-24T14:31:30.518905+00:00",
+      "budget_seconds": 311.699463,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30",
+        "311.699463",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/runtime/native.py",
+        "probe",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/execution-plan.json"
+      ],
+      "finished_at_utc": "2026-10-24T14:27:05.130857+00:00",
+      "return_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 76.31145316269249,
+      "complete_file_exists": true,
+      "released_gpu": {
+        "at_utc": "2026-10-24T14:27:05.276841+00:00",
+        "target_gpu": [
+          "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4"
+        ],
+        "target_apps": []
+      }
+    },
+    {
+      "phase": "formal",
+      "pid": 1216698,
+      "started_at_utc": "2026-10-24T14:27:05.278767+00:00",
+      "term_at_utc": "2026-10-24T14:57:05.278767+00:00",
+      "kill_at_utc": "2026-10-24T14:57:35.278767+00:00",
+      "budget_seconds": 1800,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30",
+        "1800",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/runtime/native.py",
+        "formal",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/execution-plan.json"
+      ],
+      "finished_at_utc": "2026-10-24T14:36:20.915573+00:00",
+      "return_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 555.636850672774,
+      "complete_file_exists": true,
+      "released_gpu": {
+        "at_utc": "2026-10-24T14:36:21.040107+00:00",
+        "target_gpu": [
+          "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4"
+        ],
+        "target_apps": []
+      }
+    }
+  ],
+  "collected_files": {
+    "formal/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core/formal/complete.json",
+      "bytes": 7943,
+      "sha256": "a801e627a060378e726c50f7abc45b329fb5d72830a300f17fe117307042d73e"
+    },
+    "formal/epoch-001-persistent-ack.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core/formal/epoch-001-persistent-ack.json",
+      "bytes": 1779,
+      "sha256": "aaa73bce59580a1ba897cc0463fea75082de0b0ab4953df718a1b1a6f986a7f8"
+    },
+    "formal/epoch-001/checkpoint.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core/formal/epoch-001/checkpoint.json",
+      "bytes": 1319,
+      "sha256": "02d764bb8a70c332d6ecab3f0d1a8bc647a51164ca16dc4bbd13c4979f64485b"
+    }
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core-collected.json",
+    "bytes": 3983,
+    "sha256": "af97511b4ae61678f1ef05e6b9dc6f1fb87bcdc316dc1eef83d9295642033f63"
+  },
+  "archive": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core-terminal.zip",
+    "bytes": 62969,
+    "sha256": "cea780b588e7cde45491a466a0bf541935c2c70c7ef7005fc533ebd4415363e6"
+  },
+  "probe_complete": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/core-terminal/run/probe/complete.json",
+    "bytes": 5919,
+    "sha256": "6447e7056d691a67e2ac361c09846dbecc54fd3c0ddf81ff1147737315ebd36c"
+  },
+  "inference_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/downstream-v1/inference-plan.json",
+    "bytes": 8558,
+    "sha256": "68b69118f89a161231d7c5067222c68eaa51abd0cf7773e2493f1468e3b01cec"
+  },
+  "quality_calls": 0
+}
