@@ -82,3 +82,7 @@ shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(6668
 ### 01:35 派生副本保真通过，四合成native plan冻结
 
 条件12字节布局修复实际20.108秒/rc0。原FT字节与mtime未变；所有666817词的有序word/count/type摘要一致，两个完整矩阵shape/offset/全SHA一致，84前及96后逐字节相同、EOF精确。派生文件只在独立postdownload目录，完整SHA `fa7509ecf7f42e06ed780de5c4599eeeb595cfd02c2547dd875fc528b0460752`。native仅四固定合成句、CPU1线程/GPU隐藏、180秒+TERM15，实际60权重数组对H5全finite/bitexact、10ensemble、14261列/概率/offset检查。完整实际依赖/输入plan先checkpoint后执行，无赛事样本或质量断言。
+
+### native部署写入UNKNOWN_OUTCOME（非模型失败）
+
+原controller小source/plan上传循环返回UNKNOWN_OUTCOME并实际rc1；原uploader未逐文件记录，故不编造失败filename/请求数/完整耗时。native部署验证/启动intent/managedjob均不存在，未发模型启动。保留原失败收据。按H32仅只读核9份实际source/plan的完整SHA，补真实缺件后再验证全量SHA与已有hardlinks，沿原0107a27b plan唯一180秒native；不重shape/repair、不上传大模型，未知写入不视作未落盘。
