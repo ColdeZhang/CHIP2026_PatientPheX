@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：新分支explore/patient-response-code，base main cd4086b；正在冻结并推送新H51，尚未启动GPU。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，唯一fresh两轮训练运行中。原campaign截止12:45:04.713781 UTC，恢复监控PID158832；未开始F1/质量。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -36,3 +36,7 @@ New mechanical bootstrap entryd13841bc preserves original entry9183521c and all 
 ### 2026-10-24 11:47 UTC — unique formal activation and explicit read-only monitor recovery
 
 Managed bootstrap proc_4e8346b7-b644-425b-9edf-8b323fc54ed8 /PID141053 accepted11:45:06.757009Z. Original shared campaign11:45:04.713781→12:45:04.713781 UTC, unchanged3600+TERM30. First detached watch158482 exited on explicit read-only LUNA at11:45:34.691; process stateZ and failure receipt retained, not unexplained lifecycle loss. No remote restart. Independent new watcher only retries the unchanged `inspect` for explicitLUNA/UNKNOWN with185s backoff; mutation ambiguity still stops. First recovery not before11:48:39.691. Model progress will be reported only after actual recovery. Owned authenticated .100 source HTTP was explicitly stopped after verified archive fetch; no GPU touched by bridge cleanup.
+
+### 2026-10-24 11:51 UTC — actual original training confirmed
+
+Read-only recovery succeeded11:48:47.771 UTC: original epoch1 driverPID141673 started11:45:58.308 and passed source/data/native token-mask/fresh GPU/base load into formal_training. Same original campaign/deadline, no second model. Recovery watcherPID158832 holds the exclusive lock. Next11:50:50 read returned UNKNOWN_OUTCOME; preserved separately from LUNA and backed off185s to11:53:55.245739. No assumption of remote failure and no repeated model start. Whole source/state/export chain remains fixed; F1 awaits both actual complete durable ACKs.
