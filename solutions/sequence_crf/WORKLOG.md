@@ -11,7 +11,7 @@
 
 ## 当前任务：患者优先 full64 正式训练 → 原 dev 唯一并集
 
-**正在运行**：A100 GPU2 唯一 `proc_5b00069a-f26c-45c5-a559-c9aa3e7d1d64` / driver PID120406、child120423；04:42:33.455Z启动，fresh265×2/68calls/4warmup，4500+TERM30，近似TERM05:57:33/KILL05:58:03。04:45:40实际已进入正式训练，尚无完整epoch终点。不要再次start。外部F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-preparation`；只读`monitor_existing.py <新收据名>`，完整终点用`formal_operations.py collect --phase train`。
+**正在运行**：A100 GPU2 唯一 `proc_5b00069a-f26c-45c5-a559-c9aa3e7d1d64` / driver PID120406、child120423；04:42:33.455Z启动，fresh265×2/68calls/4warmup，4500+TERM30，近似TERM05:57:33/KILL05:58:03。最后成功观察04:48:59到epoch1 step5（loss有限/三族真实更新）；04:54正常读取返回LUNA_OFFLINE，当前终态未知，尚无完整epoch回收。不要再次start。外部F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-preparation`；只读`monitor_existing.py <新收据名>`，完整终点用`formal_operations.py collect --phase train`。
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
 - [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当前未新devgold/未质量/未官方。
