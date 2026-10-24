@@ -6,7 +6,7 @@
 
 **历史释槽交接（现已恢复）**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
 
-**唯一活跃入口**：`training/formal-entry-fresh-v1.json`，外存`training-seed-ensemble-v1/formal-fresh-v1`，远端proc89bc/child36557。只读watcher195513（start_ticks11011112）负责观察；不要再运行下方历史formal-v1/recovery_v2/v3/v4的start。新共享TERM16:47:38.444861。16:04:12已实见epoch1 step3，step2三LoRA家族B更新及native源SHA通过。 不更改任何其他 owner 的运行。15:42 根线程资源观察为 .7 GPU2 quote、.100 GPU0 Copy/GPU1 boundary、.12 teacher pilot、.3 Sap；本线没有另查卡或占用外部进程所在卡。观察仅为历史，不代表下一次可用。随后根线程15:44:04只读核到 .12 GPU2=0MiB/noapps，取消R1大模型迁移，允许本线提出在原缓存机排程；正式具体预算仍待根线程确认，本线未据此启动。
+**历史训练入口（已正常结束，watch已退出）**：`training/formal-entry-fresh-v1.json`，外存`training-seed-ensemble-v1/formal-fresh-v1`，远端proc89bc/child36557。只读watcher195513（start_ticks11011112）负责观察；不要再运行下方历史formal-v1/recovery_v2/v3/v4的start。新共享TERM16:47:38.444861。16:04:12已实见epoch1 step3，step2三LoRA家族B更新及native源SHA通过。 不更改任何其他 owner 的运行。15:42 根线程资源观察为 .7 GPU2 quote、.100 GPU0 Copy/GPU1 boundary、.12 teacher pilot、.3 Sap；本线没有另查卡或占用外部进程所在卡。观察仅为历史，不代表下一次可用。随后根线程15:44:04只读核到 .12 GPU2=0MiB/noapps，取消R1大模型迁移，允许本线提出在原缓存机排程；正式具体预算仍待根线程确认，本线未据此启动。
 
 - 查重：实际旧 G32 的 trainer 与 run manifest 对齐；仅 seed20261023。full64 同 seed 但不同数据；双采样的20261024/25是推断种子；平均源 `fresh_training=false`；quote261改目标并 warm-start。查重范围是已存在的来源/计划，不声称覆盖未记录实验。
 - CPU：初版 0.205 秒核 seed-only 来源、87行两轮分组和旧实际分组；G-only 提案未执行。root 在任何新模型/质量前改为四源固定支持并集。V2 0.184 秒重新核唯一公式与全部 refs，133/141 纯预测供给，不读 held gold，不重新分词/fit/v2。
@@ -47,3 +47,5 @@ F1 actual proc803b4f9d/driver67252/child67270，.12GPU2，16:42:47.217启动，�
 F1原39已17:04:46完整rc0/1319.293s并真实释放，17:07:33原watch恢复终态（非运行耗时）；90成员collection b0160497已逐SHA完整收回。保原cap/逐item解析、extract7e7f7219与必要query preparation6fb3a772完成，无gold/质量。Sap真实全部206条，.100GPU0唯一plan已绑定，180+30/300秒TTL，源先push再fresh门启动。 .12卡已直接交root/SCST，不等本后处理。
 
 完整F1结果与唯一入口 [evidence/F1-result.json](evidence/F1-result.json)。35EOS/4cap原样，原itemwise坏quote105/duplicate1不补答。206必要Sap实际8.990秒、17:09:44.596978 .100GPU0真释放；.12已17:04:46.618734真释放并交SCST。root重新安排F0卡前只CPU/source；同host39耗时1319.293×47/39≈1589.917为预算代理，非F0保证。主微宏皆升，尚非原dev分数。
+
+F1小备份已完整持久ACK：122成员/654860B，archive af99e606，receipt81568e60；权重和state仍由原A100两份完整ACK保存，未重复拷贝大模型。指针 evidence/F1-backup.json。F0新独立f0/已完成元数据合同0.127秒、47/16/289420/max9935和train32排F0，原generate AST及raw_store完全相同，复用原native全IDs证明，不重分词。固定2100+30，输入比例加120秒代理1995.502秒；原F1峰allocated21.015GB，reserved未记录。保同A100等待SCST是排期选择，不是A30不适用结论。尚无F0bind/start/NN/质量，唯一准备入口f0/README.md。
