@@ -21,3 +21,5 @@ F1预设old∪reverse主臂小增且macro不降，经独审baf7aec6通过；root
 旧Score **.6954439476→.7046874401**（+.0092434925），micro **.6900763359→.6989720999**（+.0088957640），macro **.6390225645→.6671007704**（+.0280782059）。新增12TP14FP，无删旧关系；947实体及其他非association字段原样，格式0错警。达到事前Score升/macro不降keep。逆序alone留存未评分，未原dev/其他组合。
 
 F1预设同union也是Score/macro微升，但micro下降；两组只是有限开发证据，不代表当前强实体/全部公开新概念关系体系已提升。后继需root决定，不能自动迁移dev。实际模型/临时副本/输入/完整freeze与结果路径见 `evidence/round2/reverse-json-order-f0-results.json`；唯一终点独审正在进行。源与预算未改，现无本路线活动GPU。
+
+F0终审PASS：`validation/reverse-json-candidate-order-f0-review/review.json` SHA `ac631bcd5cc3ed7e7af0f4f9775e37655482037bb0e63a1804d9fc4d043eeb9c`。原reverse/union装配exact，严格只union新v2；947实体/旧276关联metadata保留，58raw415概念有效，freeze先gold、预算及GPU释放通过。无待审或活动作业。

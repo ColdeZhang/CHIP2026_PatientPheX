@@ -27,3 +27,5 @@
 主臂Score+.001530444、macro+.011380279符合事前keep，但micro−.005258502、新增precision仅29.4%，只是温和且混合的单F1开发信号；不直接迁移原dev。逆序alone负，保留其排序敏感性事实。没有追加intersection/其他逆序/阈值扫描。完整原job、原始响应、source/runtime、双freeze和唯一v2路径见 `evidence/round2/reverse-json-order-results.json`；唯一增量独审进行中。
 
 终点独审 PASS：`validation/reverse-json-candidate-order-terminal-review/review.json` SHA `baf7aec632415a304a273ec6bff7745a63fa16477683836ca6555f77b07a59b0`。两completepred、v2/format与literal union全部独立复现；未重评旧baseline。
+
+F1审查时间字段更正另存 `validation/reverse-json-candidate-order-terminal-review/timing-clarification.json`：旧审JSON的runner_seconds误标wrapper290.848，真实native282.419；本方案上文数字原已区分正确，旧报告/质量不变。

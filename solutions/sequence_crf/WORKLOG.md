@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**固定逆序并集F0终点正，GPU已释放，独审进行中。** 原58/SFT48/旧候选415全有效，wrapper222.352秒；唯一union Score **.695443948→.704687440**（+.009243492），micro+.008895764/macro+.028078206，只新增12TP14FP，原947实体/旧关系全留，0错警。符合事前keep，reverse-alone未评；F1同union微升但micro负限制保留，不自动迁原dev。GPU2于00:29:56核空；旧48只读SHM副本可从.100持久原件恢复，无活动job。[终点及恢复](evidence/round2/reverse-json-order-f0-results.json)、[方法](experiments/reverse-json-order-f0.md)。
+**固定逆序并集F0终点正，独审PASS（ac631bcd），GPU已释放。** 原58/SFT48/旧候选415全有效，wrapper222.352秒；唯一union Score **.695443948→.704687440**（+.009243492），micro+.008895764/macro+.028078206，只新增12TP14FP，原947实体/旧关系全留，0错警。符合事前keep，reverse-alone未评；F1同union微升但micro负限制保留，不自动迁原dev。GPU2于00:29:56核空；旧48只读SHM副本可从.100持久原件恢复，无活动job。[终点及恢复](evidence/round2/reverse-json-order-f0-results.json)、[方法](experiments/reverse-json-order-f0.md)。
 
 **固定候选逆序两臂完成，独审PASS（baf7aec6），GPU已释放。** 同旧80/SFT32原位A800，80/587有效、无fallback，290.848秒。双完整预测先freeze再唯一F1：reverse alone .650566370（负）；预设old∪reverse **.662472447**，较旧.660942003+.001530444，新增15TP36FP，micro−.005258502/macro+.011380279。满足事前Score升且macro不降，但precision仅29.4%，不直接迁dev；原1189实体保持、0错警。没有intersection/扫描。原job proc_f40cda16已结束，00:22:02Z GPU2核空；禁止重推。[结果与恢复](evidence/round2/reverse-json-order-results.json)、[方法](experiments/reverse-json-order.md)。
 
