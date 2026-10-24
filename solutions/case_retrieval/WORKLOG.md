@@ -4,12 +4,12 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **训练已完整结束、F1待启动**：唯一旧124 JSON value2 fresh训练，A100 GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，本地watch58297；实际00:13:40.410Z开始，主截止00:48:40.410Z，TERM最晚00:49:10.410Z。外存 `qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/{job,monitor,run-plan}.json`。已完整2ep32calls/1485.777秒，watch58297结束，勿重新launch；下一原80F1新job另记。
+- **唯一原80 F1运行中**：value2旧124 fresh训练已完整2ep32calls/1485.777秒、actual adapter`c5988519`，训练watch58297结束勿重启。F1旧80（587CID/1557pair）已在A100 GPU2 fresh核空启动`proc_16bc710a-3657-436f-ad47-8db46bbe67f9`，watch33072，00:41:38.207Z起/主截止00:51:38.207Z/TERM最晚00:52:08.207Z。外存`json-value-weighted-cpu-preparation/F1-old80/{job,monitor,run-plan}.json`；同原提示/decoder，只完整冻结后唯一质量，见[运行恢复](evidence/round2/json-value-weighted-F1-start.json)。
 - **固定后继**：只完整epoch2/32calls可推原80 F1（600+30），比较cached旧SFT32 .660942003；旧候选/完整JSON/decoder不改，不混62公开新提示，不扫weight/epoch，不自动F0或原dev。partial保留Adam/RNG/next-group，仅可恢复，不评质量。入口独审e45db090通过，详见[正式计划](evidence/round2/json-value-weighted-formal-plan.json)和[启动](evidence/round2/json-value-weighted-formal-start.json)。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
-- **独立准备**：root新派helper只在外部 `research/public-coreference-readiness/`准备小共指模型下载/CPU接口与input-only普查；本路线负责小源码/计划push。无赛事NN、GPU或质量；不影响上述训练。
+- **独立CPU普查**：F-coref公开90.5M实际加载/合成坐标接口已通过；input-only train32+F1共48篇的A/B锚点策略已冻结并备份a80fd13，helper正在执行≤60s首篇probe、后继唯一≤600s full48。无任务质量/LLM/GPU；小源码与报告见[共指准备](public_coreference_readiness/READINESS-REPORT.md)。
 - **目标仍未达**：root汇总原dev当前最高.737585917；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
-- **最近备份**：`5985e3a`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
+- **最近备份**：`a80fd13`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
 
 ## 已完成主要结果（历史摘要）
 
