@@ -1,6 +1,6 @@
 # 病例检索路线：当前工作索引
 
-- **进行中：[F0 全文 FLA](fla_fulltext_F0_control/README.md)**：原排F0旧SFT48/58全文和native终点已核，直接复用 .696603974744，不重NN/旧评分；新58fresh/900+30、idx30最长16245先工程门。源/计划dfbdf4f已push；唯一proc6e63661c于09:47:18.582实际启动、fresh GPU1=0MiB/noapps，原TERM10:02:18.582/KILL10:02:48.582，最长门6c79a77f已自然EOS/strict通过（19.905秒，峰alloc21.874GB）；已09:53:46完整58/58 strict/EOS、387.541秒/外390.092秒rc0，09:53:48 GPU释放。321原件888854B已全SHA恢复；双质量实际计划7883b940待唯一2v2，旧0；F1双正 .678896254/.678549648 已收口且统一增量审8ca5be23通过，34件126KB质量补包d648aaf2已服务器SHA/fsync（root回读待办）。
+- **[F0 全文 FLA完整质量](fla_fulltext_F0_control/QUALITY-RESULT.md)**：旧native .696603974744→主/诊断同 **.697299773647**（+.000695799），新增1TP/0FP，同分选primary；仍低同骨架强triple .709556743085，不是globalbest。原58fresh/最长16245门通过，387.541秒rc0/实际GPU释放；321原件全SHA恢复，双pred共冻8c201d5e后2newv2/旧0、CPU.306秒，summaryc7f32fb8。F1已审8ca5be23也主正+.002349900；两折局部正不自动迁原dev/组合/官方。F0统一审因threadlimit待槽，不能称已审。
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
