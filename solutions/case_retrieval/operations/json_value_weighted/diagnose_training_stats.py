@@ -17,7 +17,7 @@ def trace(p):
 def main():
  p=argparse.ArgumentParser();p.add_argument('--qwen-root',type=Path,required=True);a=p.parse_args();q=a.qwen_root;b=q/'sft-meta1-fusion';w=b/'json-value-weighted-cpu-preparation/formal2ep';out=b/'json-value-weighted-cpu-preparation/training-stats-diagnostic';out.mkdir()
  specs=[('old32_JSON_CE',b/'formal2ep',b/'train.stdout.log',b/'epoch1-progress.json','progress'),('full64_JSON_CE',q/'full64-relation-cpu-preparation/formal2ep',q/'full64-relation-cpu-preparation/formal.stdout.log',q/'full64-relation-cpu-preparation/epoch1-observation.json','actual'),('value2_32_weighted_CE',w,w/'updates.jsonl',w/'epoch-001-summary.json',None)]
- arms={};sources={'source':ref(__file__)}
+ arms={};sources={'source':ref(__file__),'existing_full64_fixed12_training_fit':ref(q/'full64-objective-diagnostic/fixed12-run/fit-result.json')} 
  for name,d,log,first,key in specs:
   manifest=read(d/'run_manifest.json');complete=read(d/'training_complete.json');cp=read(d/'epoch-002/checkpoint.json');step=int(complete['global_step']);warm=int(manifest['warmup_steps']);per=int(manifest['steps_per_epoch']);assert complete['epochs']==cp['completed_epochs']==2 and cp['global_step']==step==2*per
   v=trace(log);assert all(math.isfinite(x['loss']) and math.isfinite(x['learning_rate']) for x in v)

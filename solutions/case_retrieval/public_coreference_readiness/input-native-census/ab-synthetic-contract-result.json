@@ -1,0 +1,128 @@
+{
+  "status": "PASS_adapter_contract_only",
+  "frozen_before_any_corpus_native": true,
+  "rows": [
+    {
+      "fixture": "two_patients",
+      "A": {
+        "statuses": {
+          "unanchored": 2
+        },
+        "added_mentions": []
+      },
+      "B": {
+        "statuses": {
+          "unanchored": 2
+        },
+        "added_mentions": []
+      },
+      "multi_patient_NP_rejected": true,
+      "shared_coordinate_rejected": true,
+      "cross_passage_rejected": true
+    },
+    {
+      "fixture": "repeated_name",
+      "A": {
+        "statuses": {},
+        "added_mentions": []
+      },
+      "B": {
+        "statuses": {},
+        "added_mentions": []
+      },
+      "multi_patient_NP_rejected": true,
+      "shared_coordinate_rejected": true,
+      "cross_passage_rejected": true
+    },
+    {
+      "fixture": "relative_and_unicode",
+      "A": {
+        "statuses": {
+          "unanchored": 2
+        },
+        "added_mentions": []
+      },
+      "B": {
+        "statuses": {
+          "unique_patient": 2
+        },
+        "added_mentions": [
+          {
+            "patient_id": "P1",
+            "mention": {
+              "offset": 2132,
+              "length": 3,
+              "text": "She"
+            },
+            "cluster_id": 0,
+            "source": {
+              "synthetic_native_sha256": "40a38836a3adbc86b581d291961b38b228f8ca95cae04a5ff8690450ac810762"
+            }
+          },
+          {
+            "patient_id": "P2",
+            "mention": {
+              "offset": 2182,
+              "length": 3,
+              "text": "She"
+            },
+            "cluster_id": 1,
+            "source": {
+              "synthetic_native_sha256": "40a38836a3adbc86b581d291961b38b228f8ca95cae04a5ff8690450ac810762"
+            }
+          }
+        ]
+      },
+      "multi_patient_NP_rejected": true,
+      "shared_coordinate_rejected": true,
+      "cross_passage_rejected": true
+    },
+    {
+      "fixture": "negation_background_history",
+      "A": {
+        "statuses": {
+          "unanchored": 2
+        },
+        "added_mentions": []
+      },
+      "B": {
+        "statuses": {
+          "unique_patient": 2
+        },
+        "added_mentions": [
+          {
+            "patient_id": "P1",
+            "mention": {
+              "offset": 3131,
+              "length": 3,
+              "text": "She"
+            },
+            "cluster_id": 0,
+            "source": {
+              "synthetic_native_sha256": "40a38836a3adbc86b581d291961b38b228f8ca95cae04a5ff8690450ac810762"
+            }
+          },
+          {
+            "patient_id": "P2",
+            "mention": {
+              "offset": 3183,
+              "length": 2,
+              "text": "He"
+            },
+            "cluster_id": 1,
+            "source": {
+              "synthetic_native_sha256": "40a38836a3adbc86b581d291961b38b228f8ca95cae04a5ff8690450ac810762"
+            }
+          }
+        ]
+      },
+      "multi_patient_NP_rejected": true,
+      "shared_coordinate_rejected": true,
+      "cross_passage_rejected": true
+    }
+  ],
+  "A_unique_clusters": 0,
+  "B_unique_clusters": 4,
+  "B_added_mentions": 4,
+  "limitation": "A/B cannot prove patient identity or clinical attribution. NP with one supplied anchor and an unanchored other person can still attach; no unsupported semantic safeguard claimed."
+}

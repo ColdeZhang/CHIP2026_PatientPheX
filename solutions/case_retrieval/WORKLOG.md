@@ -4,7 +4,7 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **当前运行**：唯一旧124 JSON value2 fresh训练，A100 GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，本地watch58297；实际00:13:40.410Z开始，主截止00:48:40.410Z，TERM最晚00:49:10.410Z。外存 `qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/{job,monitor,run-plan}.json`。恢复先查原job，禁止重新launch。
+- **训练已完整结束、F1待启动**：唯一旧124 JSON value2 fresh训练，A100 GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，本地watch58297；实际00:13:40.410Z开始，主截止00:48:40.410Z，TERM最晚00:49:10.410Z。外存 `qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/{job,monitor,run-plan}.json`。已完整2ep32calls/1485.777秒，watch58297结束，勿重新launch；下一原80F1新job另记。
 - **固定后继**：只完整epoch2/32calls可推原80 F1（600+30），比较cached旧SFT32 .660942003；旧候选/完整JSON/decoder不改，不混62公开新提示，不扫weight/epoch，不自动F0或原dev。partial保留Adam/RNG/next-group，仅可恢复，不评质量。入口独审e45db090通过，详见[正式计划](evidence/round2/json-value-weighted-formal-plan.json)和[启动](evidence/round2/json-value-weighted-formal-start.json)。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
 - **独立准备**：root新派helper只在外部 `research/public-coreference-readiness/`准备小共指模型下载/CPU接口与input-only普查；本路线负责小源码/计划push。无赛事NN、GPU或质量；不影响上述训练。
@@ -94,3 +94,5 @@
 - **小共指模型仅准备**：root委派helper冻结F-coref e91dfff固定公开90.53M参数；ModelScope同身份404后使用固定HF revision、362MB权重SHA。只授权.100自有下载600秒、私有overlay180秒/CPU4构造例180秒与input-only普查，无赛事NN/质量/GPU。原train32/F1分别87患者255mentions和39患者162mentions，存在共享alias，禁止按名字广播身份。27小源/plan共152KB已按SHA收入[目录](public_coreference_readiness/INTEGRATION.md)，提交push后helper启动。
 
 - **小共指readiness完整**：fixed F-coref8文件/362MB权重全SHA、native90,526,466参数精确。直连75.162s失败0权重字节，原600窗口内CDN42.515s恢复；私有overlay109.500+46.770s，原CPU窗口内attempt2 6.630s成功（首次缺click 2.956s保留）。4构造例坐标roundtrip合法，但精确span映射A接0cluster，不能报患者归属质量；6自有job均停，无GPU/赛事NN。详见[终点](public_coreference_readiness/READINESS-REPORT.md)。root后继只授权train32/F1 input-only CPU覆盖普查，另冻结新plan再执行。
+
+- **value2正式训练完整**：2ep32calls（首lr0、其余31非零），1485.777s<2100，epoch加权groupmean .193627→.084381（不可与普通CE数值直比）；final c5988519/Adam-RNG完整、非partial，actualSHA全核。2026-10-24T00:38:33.683571+00:00 A1002 fresh空、watch58297结束；同卡继续已授权原80 F1600+30，planabd21c52，尚无新质量。[终点](evidence/round2/json-value-weighted-training-complete.json)。

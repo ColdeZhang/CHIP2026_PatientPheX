@@ -1,0 +1,119 @@
+{
+  "status": "saved_training_trajectory_readonly_complete",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/json_value_weighted/diagnose_training_stats.py",
+    "bytes": 5360,
+    "sha256": "107db3df160af72a23e92148faa50bc50e926373a14e3f6dc868ba38b36e5a89"
+  },
+  "summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/training-stats-diagnostic/summary.json",
+    "bytes": 27950,
+    "sha256": "29d5119fc71ed6f71330def48e130515e67d831e30601065135b5bf7404ab15f"
+  },
+  "arms": {
+    "old32_JSON_CE": {
+      "examples": 124,
+      "tokens": 402594,
+      "supervised_tokens": 7170,
+      "optimizer_calls": 32,
+      "nonzero_lr_calls": 31,
+      "warmup": 2,
+      "first_recorded_step": 5,
+      "last_recorded_step": 30,
+      "first_recorded_loss": 0.10441061132587492,
+      "last_recorded_loss": 0.06654893874656409,
+      "logged_loss_min": 0.05256366590037942,
+      "logged_loss_max": 0.10441061132587492,
+      "full_per_step_trace": false,
+      "logged_records": 6,
+      "recorded_loss_increases": 1,
+      "lr_schedule_reconstructed_from_frozen_config_and_matching_saved_records": {
+        "first": 0.0,
+        "maximum": 0.0001,
+        "last_optimizer_call": 3.3333333333333333e-06,
+        "after_final_scheduler": 0.0,
+        "all_saved_lr_match": true
+      },
+      "elapsed_seconds": 1149.460371017456,
+      "no_recorded_nonfinite": true,
+      "complete_finite_loss_gradient_guard_was_active": true
+    },
+    "full64_JSON_CE": {
+      "examples": 265,
+      "tokens": 864937,
+      "supervised_tokens": 15410,
+      "optimizer_calls": 68,
+      "nonzero_lr_calls": 67,
+      "warmup": 4,
+      "first_recorded_step": 5,
+      "last_recorded_step": 65,
+      "first_recorded_loss": 0.20430700853466988,
+      "last_recorded_loss": 0.047397711081430316,
+      "logged_loss_min": 0.028715971508063376,
+      "logged_loss_max": 0.20430700853466988,
+      "full_per_step_trace": false,
+      "logged_records": 13,
+      "recorded_loss_increases": 5,
+      "lr_schedule_reconstructed_from_frozen_config_and_matching_saved_records": {
+        "first": 0.0,
+        "maximum": 0.0001,
+        "last_optimizer_call": 1.5625e-06,
+        "after_final_scheduler": 0.0,
+        "all_saved_lr_match": true
+      },
+      "elapsed_seconds": 2446.435878276825,
+      "no_recorded_nonfinite": true,
+      "complete_finite_loss_gradient_guard_was_active": true
+    },
+    "value2_32_weighted_CE": {
+      "examples": 124,
+      "tokens": 402594,
+      "supervised_tokens": 7170,
+      "optimizer_calls": 32,
+      "nonzero_lr_calls": 31,
+      "warmup": 2,
+      "first_recorded_step": 1,
+      "last_recorded_step": 32,
+      "first_recorded_loss": 0.5536838490515947,
+      "last_recorded_loss": 0.10113860631827265,
+      "logged_loss_min": 0.03473616988048889,
+      "logged_loss_max": 0.5536838490515947,
+      "full_per_step_trace": true,
+      "logged_records": 32,
+      "recorded_loss_increases": 11,
+      "lr_schedule_reconstructed_from_frozen_config_and_matching_saved_records": {
+        "first": 0.0,
+        "maximum": 0.0001,
+        "last_optimizer_call": 3.3333333333333333e-06,
+        "after_final_scheduler": 0.0,
+        "all_saved_lr_match": true
+      },
+      "elapsed_seconds": 1485.7773506641388,
+      "no_recorded_nonfinite": true,
+      "complete_finite_loss_gradient_guard_was_active": true
+    }
+  },
+  "epoch_mean_losses": {
+    "old32_JSON_CE": [
+      0.15256409098947188,
+      0.06568977648839791
+    ],
+    "full64_JSON_CE": [
+      0.11426781427101507,
+      0.06050015168308592
+    ],
+    "value2_32_weighted_CE": [
+      0.19362679676851258,
+      0.08438053120426048
+    ]
+  },
+  "interpretation": [
+    "Old32/full64 epoch averages decline, but they are online losses under changing weights and different shuffled groups, not fixed-final evaluation losses.",
+    "Sparse old traces start atstep5/end30 or65, not true beginning/end losses; only weighted32 has allstep records.",
+    "Warmup begins atzero and final scheduler reacheszero; 32/68 are calls,31/67 have nonzero learningrate. Reconstructed rates are distinguished from saved records.",
+    "No same-data original JSON recipe completed quality control with more than2epochs is present in this route; different binary/NER/identity tasks do not supply that control.",
+    "Full64 existing input-selected12 training generation fitF1 .883721/exact7of12 supports learning, but is a small training diagnostic, not full training loss or generalization.",
+    "Value2 weightedloss units differ from unweightedCE; neither its absolute size nor online decline demonstrates better generalization.",
+    "Current evidence does not establish obvious underfitting. Further epochs would require a new fixed schedule/control, not blindly continuing a schedule already atzero."
+  ]
+}
