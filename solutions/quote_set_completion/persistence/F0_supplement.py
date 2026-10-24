@@ -48,19 +48,20 @@ def inventory():
   entries['prior-F1/'+name]=N/'endpoint-F1-supplement-v1'/name
  actual=N/'endpoint-F1-supplement-v1/root-actual-restore-v1/complete.json'
  assert m.ref(actual)['sha256']=='bf565288008727f7d100e3c8ff56ae8dc8451138e63b1f539daf99cd31057a73'
- review=read(REVIEW/'review.json');assert str(review['status']).startswith('PASS')
- manifest=read(REVIEW/'manifest.json')
- for name in ['review.json','manifest.json']:entries['review/'+name]=REVIEW/name
- def safe_refs(value):
-  if isinstance(value,dict):
-   if {'path','bytes','sha256'}.issubset(value):
-    q=Path(value['path'])
-    if q.is_relative_to(REVIEW) and q.suffix in {'.py','.json','.md','.txt'} and value['bytes']<100000:
-     assert m.ref(q)=={k:value[k] for k in ['path','bytes','sha256']};entries['review/'+q.relative_to(REVIEW).as_posix()]=q
-   for v in value.values():safe_refs(v)
-  elif isinstance(value,list):
-   for v in value:safe_refs(v)
- safe_refs(manifest)
+ if REVIEW is not None:
+  review=read(REVIEW/'review.json');assert str(review['status']).startswith('PASS')
+  manifest=read(REVIEW/'manifest.json')
+  for name in ['review.json','manifest.json']:entries['review/'+name]=REVIEW/name
+  def safe_refs(value):
+   if isinstance(value,dict):
+    if {'path','bytes','sha256'}.issubset(value):
+     q=Path(value['path'])
+     if q.is_relative_to(REVIEW) and q.suffix in {'.py','.json','.md','.txt'} and value['bytes']<100000:
+      assert m.ref(q)=={k:value[k] for k in ['path','bytes','sha256']};entries['review/'+q.relative_to(REVIEW).as_posix()]=q
+    for v in value.values():safe_refs(v)
+   elif isinstance(value,list):
+    for v in value:safe_refs(v)
+  safe_refs(manifest)
  entries['source/persistence/F0_supplement.py']=Path(__file__)
  entries['transport/F1_supplement.py']=PRIOR
  entries['transport/sampled_F1_supplement.py']=p.PRIOR
@@ -82,7 +83,7 @@ def pack(out):
         original_terminal_content_counts={name:value[0] for name,value in PHASES.items()},
         failed_and_partial_originals_preserved_as_failed=True,
         exclusions=['old F1 payloads already restored','conditional full64 CPU readiness','held gold bodies','weights/optimizer/RNG/public bank','transport chatter'],
-        no_NN_no_score_no_decode=True)
+        no_NN_no_score_no_decode=True,F0_final_review='pending' if REVIEW is None else m.ref(REVIEW/'review.json'))
     encoded=m.encoded(manifest);assert len(encoded)<=m.CHUNK
     m.publish(out/'members-manifest.json',encoded);archive=out/'endpoint-supplement.zip'
     with zipfile.ZipFile(archive,'x',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
@@ -104,7 +105,7 @@ def pack(out):
         unpacked_bytes=sum(map(len,payload.values())),target_mount=m.MOUNT,target=m.TARGET,chunks=chunks,
         source=m.ref(__file__),transport_source=m.ref(p.prior.TRANSPORT),prior_protocol_source=m.ref(PRIOR),
         external_archives=[],external_resources=locators,package_readback_exact=True,
-        all_original_sources_SHA_in_manifest=True,review=m.ref(REVIEW/'review.json'))
+        all_original_sources_SHA_in_manifest=True,review=m.ref(REVIEW/'review.json') if REVIEW is not None else None,F0_review_pending=REVIEW is None)
     m.publish(out/'package.json',m.encoded(package))
     print(json.dumps(dict(package=m.ref(out/'package.json'),archive=package['archive'],manifest=package['manifest'],
         content_members=len(payload),ZIP_members_including_embedded_manifest=len(payload)+1,chunks=len(chunks))))
@@ -115,7 +116,8 @@ if __name__=='__main__':
  assert __debug__;os.umask(0o077);p.prior.guard_gold();out=N/'endpoint-F0-supplement-v1';out.mkdir(exist_ok=True)
  owner=(out/'owner.lock').open('a');fcntl.flock(owner,fcntl.LOCK_EX|fcntl.LOCK_NB)
  if args.stage=='pack':
-  assert args.review_root;REVIEW=Path(args.review_root).resolve();assert REVIEW.is_relative_to(N.parents[1]/'validation')
+  if args.review_root:
+   REVIEW=Path(args.review_root).resolve();assert REVIEW.is_relative_to(N.parents[1]/'validation')
   pack(out)
  else:
   for q in (out/'deployment').glob('*.backoff.json'):assert time.time()>=read(q)['retry_not_before_unix']+5
