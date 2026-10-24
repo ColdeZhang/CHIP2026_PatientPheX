@@ -79,3 +79,5 @@
 - **value权重attempt2实现通过**：两shape内logits exact、CE差≤1.2e−7，全LoRA梯度1.62–1.69%差在预写2%内，非bitwise；同冻结logits poison padding loss/grad exact。原生跨shapeCE也差−.018571，旧失败保留，不归因具体内核。最长5523加权真更新12.181s/peak23.859GB，总96.492s，00:05:03Z A100GPU2空交ontology，watch53301结束。新增独审d71c6e52通过，旧失败ffe5e4c0原样保留；仅工程检查无质量/正式训练；[结果](evidence/round2/json-value-weighted-attempt2-result.json)。
 
 - **value权重唯一正式对照准备**：原124/402594tokens/7170监督不变、值token权重2，其余1，fresh32文献×2ep/32calls/2warmup。A100实际CPU9.571s核所有编码/权重/末4行分母与meta参数，CUDAfalse；2100+30/软2040可恢复partial、只final推断。后继唯一原80 F1对旧.660942003，600+30且不混public62；[冻结计划](evidence/round2/json-value-weighted-formal-plan.json)。源码/计划推送后核UUID空卡启动，探针状态不复用。
+
+- **value权重正式训练已启动**：A100GPU2 `proc_de211f2a-91ba-48f9-b99c-aeb5bc18ec78`，2026-10-24T00:13:40.565107+00:00；2100主截止2026-10-24T00:48:40.565107+00:00、TERM最晚2026-10-24T00:49:10.565107+00:00，watch58297。plan248e9c32/trainer8121f8fe、入口3246f81已push；actualCPU9.571s通过。H32先读外存formal2ep/job、monitor，勿重复启动。仅完整2ep32calls才原80 F1600+30；[恢复入口](evidence/round2/json-value-weighted-formal-start.json)。
