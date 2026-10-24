@@ -1,0 +1,616 @@
+{
+  "status": "pass_input_only_native_enumeration_no_model_or_quality",
+  "at_utc": "2026-10-24T01:21:31.167745+00:00",
+  "source_sha256": "e9779e084da6fe220ee92f6e799ef79e0c6046aa05b2dabd396483507b1ee29b",
+  "plan_sha256": "3364d09a8770e9efb3697db4e5d2509a438485afbb343fe501cfce1ce7f9b7d8",
+  "exact_native_pre_get_match_AST": true,
+  "extracted_body_AST_sha256": "44a7eff872d5bf5d98466a887064c4533fbe57d1052c9ee5f35eda4d5caba0b9",
+  "synthetic_contracts": [
+    {
+      "text": "Seizures.",
+      "expected_spans": [
+        [
+          0,
+          8
+        ]
+      ],
+      "actual_candidates": 1,
+      "offset_roundtrip": true
+    },
+    {
+      "text": "A B C",
+      "expected_spans": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "actual_candidates": 6,
+      "offset_roundtrip": true
+    },
+    {
+      "text": "ab-cd",
+      "expected_spans": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "actual_candidates": 3,
+      "offset_roundtrip": true
+    },
+    {
+      "text": "aa  bb",
+      "expected_spans": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "actual_candidates": 2,
+      "offset_roundtrip": true
+    },
+    {
+      "text": "Café x",
+      "expected_spans": [
+        [
+          0,
+          3
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "actual_candidates": 2,
+      "offset_roundtrip": true
+    },
+    {
+      "text": "",
+      "expected_spans": [],
+      "actual_candidates": 0,
+      "offset_roundtrip": true
+    }
+  ],
+  "input_documents": 64,
+  "input_fields": [
+    "pmc_id",
+    "pmid",
+    "patient",
+    "full_text"
+  ],
+  "input_sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246",
+  "passages": 2301,
+  "characters": 1131581,
+  "raw_candidate_occurrences": 683438,
+  "unique_raw_case_sensitive_strings": 414801,
+  "unique_phrase2vec_token_keys": 408272,
+  "ngram_length_occurrences": {
+    "1": 166745,
+    "2": 131640,
+    "3": 108573,
+    "4": 90056,
+    "5": 74638,
+    "6": 61470,
+    "7": 50316
+  },
+  "zero_candidate_passages": 0,
+  "all_candidate_offsets_roundtrip": true,
+  "old_public_canonical_coordinate_comparison": {
+    "source_rows": 11933,
+    "unique_coordinates": 6787,
+    "coordinates_represented_in_NCR_raw_enumeration": 6542,
+    "old_coordinates_absent_from_NCR_raw_enumeration": 245,
+    "NCR_raw_coordinates_outside_old_public_canonical": 676896,
+    "scope": "Raw coordinate supply only, not accepted NCR HPOs, true positives, or recall against labels."
+  },
+  "cache_reuse": {
+    "other_model_neural_logits_reusable": 0,
+    "reason": "Different fastText/CNN/HPO model; identical text does not make PhenoTagger outputs reusable.",
+    "old_raw_key_intersection_measured": false,
+    "old_raw_key_limitation": "Complete existing raw 244938-key cache is remote-only; no extra MCP retrieval during outage. Canonical coordinate comparison above is independently available locally.",
+    "NCR_internal_dedup_key": "Exact tokenize(phrase)[:49] tuple, represented by joined ASCII tokens; all generated phrases <=7 tokens. No NN executed."
+  },
+  "workload_only": {
+    "unique_batches_at_native512": 798,
+    "max_sequence_length": 50,
+    "word_vector_dim": 100,
+    "ensembles": 10,
+    "ontology_output_columns": 14261,
+    "native_four_synthetic_pending": true,
+    "seconds_projection": null,
+    "reason": "No matching actual native batch throughput measured; enum CPU time is not NN inference time."
+  },
+  "per_document": [
+    {
+      "pmc_id": "5425407",
+      "passages": 19,
+      "raw_candidates": 6760,
+      "unique_normalized_queries": 5095,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11235872",
+      "passages": 35,
+      "raw_candidates": 7172,
+      "unique_normalized_queries": 5583,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11765409",
+      "passages": 48,
+      "raw_candidates": 15178,
+      "unique_normalized_queries": 10264,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "4607013",
+      "passages": 37,
+      "raw_candidates": 8287,
+      "unique_normalized_queries": 5940,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11203018",
+      "passages": 27,
+      "raw_candidates": 7036,
+      "unique_normalized_queries": 4903,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12628480",
+      "passages": 79,
+      "raw_candidates": 17907,
+      "unique_normalized_queries": 13299,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "10313222",
+      "passages": 25,
+      "raw_candidates": 9088,
+      "unique_normalized_queries": 6800,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11919040",
+      "passages": 42,
+      "raw_candidates": 9784,
+      "unique_normalized_queries": 7118,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5789735",
+      "passages": 29,
+      "raw_candidates": 7069,
+      "unique_normalized_queries": 4990,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6338757",
+      "passages": 13,
+      "raw_candidates": 8212,
+      "unique_normalized_queries": 6179,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12811285",
+      "passages": 32,
+      "raw_candidates": 9089,
+      "unique_normalized_queries": 7301,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11826603",
+      "passages": 16,
+      "raw_candidates": 6292,
+      "unique_normalized_queries": 5013,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "4644339",
+      "passages": 37,
+      "raw_candidates": 7374,
+      "unique_normalized_queries": 5902,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12846941",
+      "passages": 49,
+      "raw_candidates": 10552,
+      "unique_normalized_queries": 7995,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11906559",
+      "passages": 50,
+      "raw_candidates": 13024,
+      "unique_normalized_queries": 9677,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12078887",
+      "passages": 18,
+      "raw_candidates": 8042,
+      "unique_normalized_queries": 6129,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "9327653",
+      "passages": 25,
+      "raw_candidates": 8019,
+      "unique_normalized_queries": 5889,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5970456",
+      "passages": 41,
+      "raw_candidates": 12475,
+      "unique_normalized_queries": 9362,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5473715",
+      "passages": 41,
+      "raw_candidates": 18112,
+      "unique_normalized_queries": 13895,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "4678370",
+      "passages": 38,
+      "raw_candidates": 10421,
+      "unique_normalized_queries": 7361,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12110769",
+      "passages": 32,
+      "raw_candidates": 12845,
+      "unique_normalized_queries": 9686,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5866036",
+      "passages": 55,
+      "raw_candidates": 19127,
+      "unique_normalized_queries": 13569,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6048891",
+      "passages": 25,
+      "raw_candidates": 6929,
+      "unique_normalized_queries": 5352,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5773845",
+      "passages": 12,
+      "raw_candidates": 3161,
+      "unique_normalized_queries": 2577,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12250201",
+      "passages": 42,
+      "raw_candidates": 15693,
+      "unique_normalized_queries": 11201,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12386172",
+      "passages": 47,
+      "raw_candidates": 14460,
+      "unique_normalized_queries": 11205,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12110755",
+      "passages": 39,
+      "raw_candidates": 10031,
+      "unique_normalized_queries": 7546,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6057141",
+      "passages": 18,
+      "raw_candidates": 6850,
+      "unique_normalized_queries": 5234,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5763540",
+      "passages": 28,
+      "raw_candidates": 8563,
+      "unique_normalized_queries": 6715,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12059664",
+      "passages": 42,
+      "raw_candidates": 11750,
+      "unique_normalized_queries": 8381,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5452357",
+      "passages": 46,
+      "raw_candidates": 22167,
+      "unique_normalized_queries": 16608,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11196099",
+      "passages": 20,
+      "raw_candidates": 8014,
+      "unique_normalized_queries": 6440,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5422868",
+      "passages": 36,
+      "raw_candidates": 11122,
+      "unique_normalized_queries": 8528,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12118522",
+      "passages": 18,
+      "raw_candidates": 5902,
+      "unique_normalized_queries": 4390,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5574094",
+      "passages": 24,
+      "raw_candidates": 7876,
+      "unique_normalized_queries": 5424,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12405443",
+      "passages": 29,
+      "raw_candidates": 8624,
+      "unique_normalized_queries": 6558,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "2964533",
+      "passages": 20,
+      "raw_candidates": 6890,
+      "unique_normalized_queries": 5099,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12646972",
+      "passages": 16,
+      "raw_candidates": 2896,
+      "unique_normalized_queries": 2464,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6063015",
+      "passages": 33,
+      "raw_candidates": 9823,
+      "unique_normalized_queries": 6884,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "10553122",
+      "passages": 41,
+      "raw_candidates": 11699,
+      "unique_normalized_queries": 8951,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6390251",
+      "passages": 40,
+      "raw_candidates": 9542,
+      "unique_normalized_queries": 7186,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5959423",
+      "passages": 33,
+      "raw_candidates": 8220,
+      "unique_normalized_queries": 5901,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6134758",
+      "passages": 33,
+      "raw_candidates": 12003,
+      "unique_normalized_queries": 9413,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12334843",
+      "passages": 44,
+      "raw_candidates": 8025,
+      "unique_normalized_queries": 5918,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5575846",
+      "passages": 40,
+      "raw_candidates": 11843,
+      "unique_normalized_queries": 8551,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5793168",
+      "passages": 42,
+      "raw_candidates": 21030,
+      "unique_normalized_queries": 15088,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12891056",
+      "passages": 26,
+      "raw_candidates": 14080,
+      "unique_normalized_queries": 10552,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6491447",
+      "passages": 31,
+      "raw_candidates": 8304,
+      "unique_normalized_queries": 6430,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "2866573",
+      "passages": 38,
+      "raw_candidates": 8344,
+      "unique_normalized_queries": 6626,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5023785",
+      "passages": 13,
+      "raw_candidates": 7578,
+      "unique_normalized_queries": 5917,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "3563609",
+      "passages": 82,
+      "raw_candidates": 16250,
+      "unique_normalized_queries": 11299,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12455887",
+      "passages": 69,
+      "raw_candidates": 21925,
+      "unique_normalized_queries": 16316,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5537416",
+      "passages": 16,
+      "raw_candidates": 10083,
+      "unique_normalized_queries": 7417,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "11871647",
+      "passages": 56,
+      "raw_candidates": 10671,
+      "unique_normalized_queries": 8284,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5538066",
+      "passages": 41,
+      "raw_candidates": 12305,
+      "unique_normalized_queries": 9319,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "10789033",
+      "passages": 46,
+      "raw_candidates": 9563,
+      "unique_normalized_queries": 6620,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5415817",
+      "passages": 27,
+      "raw_candidates": 10034,
+      "unique_normalized_queries": 8078,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6219255",
+      "passages": 30,
+      "raw_candidates": 10537,
+      "unique_normalized_queries": 7861,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12652105",
+      "passages": 48,
+      "raw_candidates": 13104,
+      "unique_normalized_queries": 9892,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "5368377",
+      "passages": 46,
+      "raw_candidates": 12486,
+      "unique_normalized_queries": 8121,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "6059678",
+      "passages": 40,
+      "raw_candidates": 8978,
+      "unique_normalized_queries": 6246,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12444410",
+      "passages": 68,
+      "raw_candidates": 12920,
+      "unique_normalized_queries": 8877,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12798528",
+      "passages": 39,
+      "raw_candidates": 13045,
+      "unique_normalized_queries": 10286,
+      "zero_candidate_passages": 0
+    },
+    {
+      "pmc_id": "12779223",
+      "passages": 29,
+      "raw_candidates": 8253,
+      "unique_normalized_queries": 6511,
+      "zero_candidate_passages": 0
+    }
+  ],
+  "artifact": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/input-only-census/unique-normalized-queries.jsonl",
+    "bytes": 16445155,
+    "sha256": "1924f3691da766a81de963690d9a72bbd4f030ff34c3e191c082c64bc6ff7b96"
+  },
+  "competition_labels_read": false,
+  "task_NN_run": false,
+  "new_HPO_predictions": false,
+  "quality_evaluation": false,
+  "elapsed_seconds": 6.426594614997157
+}

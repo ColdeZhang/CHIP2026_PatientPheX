@@ -56,3 +56,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 恢复前完整远端库存实际3.546秒/rc0：2280段中2273段、1,341,795,335字节实核正确，只有7片共3,670,016字节缺失；部分原失败RPC实际已落盘，故不能直接按12个失败请求全量重写。报告首取回`UNKNOWN_OUTCOME`，仅再次读取同一已有报告成功，未重跑库存。实际[补缺计划](../public_neuralcr_readiness/relay-recovery-0113/recovery-bound-plan.json)只写这7片新目录；对未来managed start先落intent，若响应不确定先核原进程，禁止盲目重启（H32）。
 
 已冻结7缺片补缺启动后，连接再次离线：110.265秒/21次实际LUNA_OFFLINE/0补写成功，无assembly，原state与本地range保留；不把失败请求视为未落盘，恢复时仍须重新库存。主线程统一确认连接前不再启动writer/native。并行[纯输入候选普查](../public_neuralcr_readiness/input-only-census/plan.json)从原生源AST逐字句提取NN前枚举，6合成坐标合同通过；首跑仅因24个已有passage含title元数据被过严allowlist拒绝，失败源/plan保留，只放行该元数据后重跑CPU，不改枚举/输入/门槛。
+
+本地input-only census完整6.427秒：64文献/2301段，683438 raw坐标、408272真实token key（原生512约798批），坐标全核；旧公共canonical坐标6787中6542覆盖/245未覆盖，raw差集不代表已预测HPO或质量。详见[报告](../public_neuralcr_readiness/input-only-census/REPORT.md)。主线程已再次实际确认服务恢复，01:21单次A100plan读取成功；新[recovery-attempt2](../public_neuralcr_readiness/relay-recovery-attempt2-0122/recovery-plan.json)仍沿原截止，仅对旧7缺片的原路径及上次目标路径做增量SHA库存，单worker，首明确LUNA_OFFLINE即全局停止。无网络fixture实际验证首失败仅1次模拟write请求、其余6项跳过；源/plan此时准备并推送，尚未执行新补写。
