@@ -15,3 +15,5 @@ root已授权唯一600s+TERM30推断：原SFT32 epoch2 adapter `4f4815b6…` / c
 准备与真实source恢复见 [CPU证据](../evidence/round2/retrieved-json-example-preparation.json)、[正式计划](../evidence/round2/retrieved-json-example-formal-plan.json)。外部 `research/retrieved-json-example/` 保存唯一query、完整选择记录、实际token报告；`formal/` 保存运行/回收/评分入口。源码在本方案 `retrieved_json_example/`，包括逐字节冻结的必要legacy依赖。
 
 Adapter-only transfer recovery: the first transport attempt stopped with `RemoteDisconnected`; the source default interpreter is Python 3.8 and the handler used the Python 3.9 `str.removeprefix` API. The source was stopped and the empty destination preserved. The transfer helper now uses a prefix check plus slicing, accepts only that empty own destination, and writes a valid JSON receipt. Both old source/plan/process records remain in external `formal/attempt2-python38-transfer/`; no GPU or inference had started. Model, prompts, runner and budget are unchanged.
+
+实际两文件传输18.432秒成功，目标逐文件完整SHA回读通过，临时服务stop后端口连接返回111。部署全部source/input SHA完成；最终ready入口为 `formal/readiness.json`。根在传输修复期间重新排短任务，当前明确暂停GPU启动，等待交回；此时没有推断/质量结果。
