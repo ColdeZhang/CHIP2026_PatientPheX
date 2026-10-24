@@ -36,3 +36,6 @@ root已条件授权：资产复制到A800独立SHM并核本机原生runtime差�
 首600秒窗口因本地监控 MCP initialize HTTP503 中断；旧controller finally停止源server，fetch随后connection refused。两个原job均实际停止，10个小件完整、首权重2,091,970,488B断点保留。没有模型加载或质量结果。按实测剩余6.548GB和9.0–9.3MB/s，root在恢复启动前明确把原600恢复提案改为唯一900秒＋TERM30；原未启动600计划与首失败原样保留。
 
 恢复仅从冻结part续传，10个已完成文件依原full-SHA后atomic rename和不变stat继承，不宣称本窗口重读；其余逐文件full SHA。19原件仍持久在.100，A800 SHM仅临时副本。监控失联现在只保留known job，不再finally打断可能健康的传输；远端绝对超时继续有效。详见transfer-a800-recovery。尚未启动GPU诊断或正式训练。
+
+
+恢复已于03:14:31.612Z完整结束，实际722.052秒<900。19件8,639,802,098B：10小件继承原核验，9件本轮完整SHA；ACK逐项分列，源server和fetch均已停止。原首窗口失败仍保留。实际ACK绑定的单次A800 probe计划已冻结；45秒隐藏CUDA差异核后fresh空卡，180+TERM30最长更新及最多2token缓存诊断，尚不正式训练/评分。
