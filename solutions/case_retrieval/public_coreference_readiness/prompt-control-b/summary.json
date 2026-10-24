@@ -1,0 +1,96 @@
+{
+  "status": "complete_B_coreference_oldSFT32_fixed_original80_F1",
+  "scope": "Repeatedly observed training-side F1 development; no generalization/official claim; old SFT32 cached A800 baseline vs new A800 B-only markers; no retraining",
+  "prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/pred.jsonl",
+    "bytes": 154176,
+    "sha256": "dcfd8efd29fcff4be772053b1b3e26746e7781a2c1721f8d62982bdb3f8718e9"
+  },
+  "freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/paired-predictions-freeze.json",
+    "bytes": 1548,
+    "sha256": "71d17cc486e8e7e859a47da3c8f1f11178be8f84b6be2e66769ce865711c6d1c"
+  },
+  "metrics_file": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/metrics.json",
+    "bytes": 13173,
+    "sha256": "d5d148706ab18070daf9eee5c8f4ff9cdb587bdd791b556bb05eff787babff1b"
+  },
+  "format": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-coreference-readiness/prompt-control-b/validation.json",
+    "bytes": 686,
+    "sha256": "72ba7e7e072c3bf57af1a400ab80d324ed6675aa539d21e1a5f9bd0831f7ae2f"
+  },
+  "old_cached_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+    "bytes": 13115,
+    "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+  },
+  "old_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6866002214839424,
+    "macF1": 0.5422288533401712,
+    "Score": 0.6609420026531936
+  },
+  "new_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6666666666666666,
+    "macF1": 0.5614223612751563,
+    "Score": 0.6607569909326209
+  },
+  "counts": {
+    "mention": {
+      "tp": 848,
+      "fp": 341,
+      "fn": 505,
+      "precision": 0.7132043734230445,
+      "recall": 0.6267553584626755,
+      "f1": 0.6671911880409127
+    },
+    "document": {
+      "tp": 498,
+      "fp": 89,
+      "fn": 247,
+      "precision": 0.848381601362862,
+      "recall": 0.6684563758389261,
+      "f1": 0.7477477477477478
+    },
+    "relation": {
+      "tp": 301,
+      "fp": 82,
+      "fn": 219,
+      "precision": 0.7859007832898173,
+      "recall": 0.5788461538461539,
+      "f1": 0.6666666666666666
+    }
+  },
+  "delta": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.019933554817275767,
+    "macF1": 0.019193507934985088,
+    "Score": -0.0001850117205727253
+  },
+  "keep_by_precommitted_policy": false,
+  "policy": "Score strictly increases and macro does not decrease; no alternate arm",
+  "old_SFT32_adapter_exact": true,
+  "only_B_markers_and_fixed_system_sentence_changed": true,
+  "entities1189_exact": true,
+  "no_union_no_intersection_no_training_no_search": true,
+  "elapsed_CPU_seconds": 2.7016844669997226,
+  "relation_changes": {
+    "added_relations": 29,
+    "added_correct": 11,
+    "added_incorrect": 18,
+    "added_wrong_supplied_patient": 14,
+    "added_concept_in_no_gold_supplied_patient": 4,
+    "removed_relations": 29,
+    "removed_correct": 20,
+    "removed_incorrect": 9,
+    "new_wrong_supplied_patient_total": 35,
+    "old_wrong_supplied_patient_total": 28,
+    "source": "same evaluator associations canonicalization; aggregate only after unique F1 score"
+  }
+}
