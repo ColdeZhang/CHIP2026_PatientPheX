@@ -37,13 +37,19 @@ def main():
               'local-watch-intent.json', 'local-watch-events.jsonl', 'local-watch-failure.json']:
         add('controller/'+n, C/n)
     for epoch in [1, 2]:
-        for suffix in ['job', 'start-intent', 'state', 'export-ack', 'export-verification', 'source-ack-copy']:
+        for suffix in ['job', 'start-intent', 'state', 'export-intent', 'server-job', 'server-ready',
+                       'fetch-intent', 'fetch-job', 'export-ack', 'export-verification', 'source-ack-copy']:
             n = f'epoch-{epoch:03d}-{suffix}.json'
             add('controller/'+n, C/n)
     # Independent monitor recovery receipts are local metadata, never capability-bearing.
-    for path in (C/'watch-recovery-1').iterdir():
-        if path.is_file() and path.suffix in {'.json', '.jsonl'}:
-            add('controller/watch-recovery-1/'+path.name, path)
+    for folder in sorted(C.glob('watch-recovery-*')):
+        if not folder.is_dir():
+            continue
+        for path in folder.iterdir():
+            if path.is_file() and path.suffix in {'.json', '.jsonl'}:
+                add('controller/'+folder.name+'/'+path.name, path)
+    for path in C.glob('epoch-*-server-recovery-*.json'):
+        add('controller/'+path.name, path)
     for n in ['terminal.zip', 'manifest.json', 'checks.json']:
         add('training-terminal/'+n, C/'training-terminal'/n)
     for n in ['plan.json', 'entry.json', 'deployment-manifest.json', 'start-intent.json',

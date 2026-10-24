@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，唯一fresh两轮训练运行中。原campaign截止12:45:04.713781 UTC，恢复监控PID158832；未开始F1/质量。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已rc0完成，原导出服务已接受/待ready恢复。原campaign截止12:45:04.713781 UTC，恢复监控PID161802（watch-recovery-3，12:06:59.348后查询）；未开始第二轮/F1/质量。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -45,6 +45,10 @@ Read-only recovery succeeded11:48:47.771 UTC: original epoch1 driverPID141673 st
 
 Original read-only inspect11:56:14 succeeded: epoch1 step10/loss .07682358, peak allocated24,166,990,336 B; no completed epoch/ACK yet. Small independent read-only review found no concrete post-training inference/quality interface blocker, without running parser/model/quality. Prepared one private terminal bundle entry and reused prior .100 CPU-only fsync/SHA storage helper under this route namespace; not executed yet. Capability/transport intents, model tensors and held gold are excluded; actual private clinical output remains outside Git.
 
-### 2026-10-24 12:02 UTC — first epoch complete, export-publication recovery
+### 2026-10-24 12:01 UTC — first epoch complete, export-publication recovery
 
 First epoch actually ended11:59:58.919894 rc0/840.611566s/16updates; GPU2 released12:00:00.368811. Full checkpoint exists in private SHM; persistent ACK pending. At12:00:32.536 explicit LUNA occurred while publishing the export entry, before any server start_process call. Original monitor158832 exitedZ and all receipts remain. Original entry7cd0dfda phase deadline12:10:32.215268 and overall12:45:04.713781 remain fixed. Single A100 cooldown until12:03:37.536. Prepared a unique managed CPU publication recovery that checks/reuses identical entry bytes and execs unchanged io_driver; no repeated model or export server, no new phase clock.
+
+### 2026-10-24 12:04 UTC — same-entry server accepted, pure readiness read unknown
+
+Unique recovery CPU server proc_827ccc3e/PID153761 accepted12:03:41.141091Z under unchanged600s phase. Next start-fetch only read server-ready, returned UNKNOWN12:03:54.348 before any fetch intent/publication/start. This is distinct from earlier explicit LUNA. No server replay. Independent monitor161802/watch-recovery-3 waits until12:06:59.348 then resumes that original read and unchanged fetch/ACK path; original phase ends12:10:32.215268, campaign12:45:04.713781. Both failed local monitors and original error receipts remain.
