@@ -44,3 +44,5 @@ binder plan3e3cea20，两个完整预测共冻f0ccf03c后，CPU0.334秒固定新
 root据F1正向结果明确授权同策略固定F0复核，另用原SFT48（8e32/165d），不能混用patient-F0 adapter。原58/415CID/47患者/1166对/947实体；本地追加核609段与158标记全保、无截断，native token CPU尚待。既有A800旧48SHM与.100原件实际全SHA通过，可直接复用，无新模型下载/权重传输。完整后继条件与双端点质量规则在任何新F0gold前冻结为f0/execution-policy.json，不自动迁原dev。
 
 F0实际CPU已完成：source358a2359/plan124bc87c、7.478078秒，wrapper8.123522秒rc0。58原/追加Auto/native/template IDs和双decode直接全核；195355→505090 tokens（2.585498倍），唯一最长原index30=16245，按冻结512向上取整input16384，+原gen1600=17984<context262144。0截断、CUDA未初始化、未加载模型/adapter/gold。完整row-audit2fa5c495在外部，原始三文件分片回收逐SHA通过。最长probe source24172262/planb21fb7f9，只改F0身份/长度断言和旧48配置，原loader/generate调用AST及raw/parse helpers与F1完全相同。240+TERM30/fresh GPU条件沿原授权，尚未start。
+
+F0最长唯一工程作业实际05:50:24.976094启动：proc_50f66d5a-5dd0-4bb0-9474-68547584037a/PID14426，childPGID14436；TERM05:54:24.976094、另30秒KILL。source c98e9fa已push，8件actual SHA/compile/fsync通过，fresh GPU门禁在原launcher执行。首次只读原driver/child存在，未有终态，不重复start。
