@@ -1,11 +1,13 @@
-# 当前任务
+# 当前状态
 
-2026-10-24；base main0878cbdf，独立explore/mention-candidate-selection，仅本目录。目标：固定公开Top8多选+NO/NIL/OTHER是否可改善强Task1，当前CPU已完整通过；root已授权唯一13FB/Adam/闭集生成压力240+30，按事前成本≤7200门自动fresh全2931两轮，再完整1416推断1800+30和两端点共冻2v2。
+2026-10-24 13:53 UTC：独立 explore/mention-candidate-selection，实际 GPU 源 f47a8bcb。唯一 controller proc_791d296d-367e-4dd6-9e63-209793d50c3e / PID2744284 在 .100 GPU1；真实压力探针全部通过，已于13:51:04.487677自动 fresh 开始正式两轮。当前还没有完整训练、验证集预测或质量结果。
 
-保全部2931(原2353+578难NO)，同原1416纯跨度/±256context；原1284 public查询逐SHA复用，新增1034词面（train428/held610、交4）。候选不插gold/exact/训练别名。输出selected数组+missing bool、NIL:true、NO:true互斥；missing不补ID或转NIL。新鲜Qwen3-8B/r16/lr1e-4/2epochs/seed20261023拟定，原native loop复用，不载旧2353adapter。
+固定2931训练行（原2353+578 annotation-negative）、1416纯跨度、±256字符上下文；公开Sap Top8不插gold/exact/训练别名。生成互斥 selected+missing、NIL、NO；empty+missing=false非法，missing不发明HPO或变NIL。新Qwen3-8B/r16/lr1e-4/seed20261023，2epochs/734updates/尾3/warmup37；保原生训练循环，无holdout、早停或挑epoch。正式7200+TERM30，两个完整状态ACK；随后全1416推断1800+TERM30，两个完整端点共冻再2v2/旧0。任一严格胜强B .728697536469才是候选；不涉及原dev/官网。
 
-长期2931原proc92c的.3训练独立不改。原2353自由名称配方及旧BiomedTop8 CE负结论保留；本新输入/目标+578监督共同变化，不称纯prompt因果消融。外存R/research/mention-candidate-selection-v1；缺1034实际CPU长度全≤15，保原Sap32不截断；sequence→span真实释放后，本query唯一proc_f29bbee6于13:37:40启动并13:38:01完整释放，1034/1034实际19.589s/wrapper20.531s rc0；19原件309599B/a96441c4全SHA回收，无LLM训练。新CPU合同全4347 native/HF/mask和513完整合法输出/严格拒绝，准备在候选齐后执行。
+实际探针：13FB/1Adam，最大572/17与684/13；四类训练输入受限generate均EOS、未cap/拒绝，只证明运行合法，不代表语义正确。native34.164秒、wrapper34.947秒rc0，峰17.607GB。事前token成本门估4530.200秒≤7200，冷步旧估6885.573秒；不是耗时上界证明。探针状态丢弃，正式从公开权重重新加载。evidence/probe-and-fresh-formal.json保原始收据指纹。
 
-全部2931/1416候选数据已0.187秒准备：122HPO行missing（117emptyOTHER+5partial），6多选、44NIL、665NO全部保留；无gold插候选。train12b48f03/heldd5092be9，source/targets指纹evidence/data-ready.json。即将执行全nativeCPU120+TERM5，不加载模型权重。
+数据与CPU：新增1034查询完整19.589秒；全部4347行native/HF输入与训练mask核验27.215秒，513合法grammar/12293prefix；每epoch1516620输入tokens、33522监督tokens，训练max684/17、held max621；全部51原件SHA回收。122HPO训练行missing（117empty OTHER+5partial），6多选、44NIL、665NO全保留。入口evidence/data-ready.json、evidence/native-cpu-complete.json及experiments/E-20261024-CANDIDATE-SELECTION-001.md。
 
-最新nativeCPU：13:41:50.685491 rc0，27.215秒；4347独立native/HF模板IDs，2931全mask/EOS，513输出/12293prefix，15实际HF processor/13拒绝全部通过。每epoch1516620tokens/33522监督，max684/17，Pareto572/17与684/13，held715952/max621。51原件ZIP2ef7d8d3/8247997B经断点缺块全SHA恢复，不重CPU；精确入口evidence/native-cpu-complete.json。当前GPU源gpu-plan.json已冻结，实际启动/成本/终点待收，不声明已训练。
+恢复入口：R/research/mention-candidate-selection-v1/gpu-start-intent.json、gpu-started.json、gpu-latest-observation.json；唯一50秒只读watch与唯一finish_gpu_once在本地运行。先恢复原job，不因MCP UNKNOWN另起训练。完整大产物在外存，仓库仅源码、方案和小证据。
+
+归因：原2353自由名称和旧Biomed Top8逐pair CE负结论保留。本路线候选输入/目标与578监督共同变化，不称纯prompt因果；F1 proposer训练48含F0、head训练F2F3，不能称整个管线pure train32。另一条原2931自由名称在.3按原job独立完成，不受本线结果影响。

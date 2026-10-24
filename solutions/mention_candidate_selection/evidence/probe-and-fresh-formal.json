@@ -1,0 +1,201 @@
+{
+  "jobs/controller-start.json": {
+    "value": {
+      "unix": 1792849829.4090867,
+      "pid": 2744284,
+      "plan": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu-plan.json",
+      "budgets": {
+        "probe": 240,
+        "formal": 7200,
+        "infer": 1800,
+        "each_TERM_grace": 30
+      }
+    },
+    "bytes": 288,
+    "sha256": "a29ea04e7f9d12b9225805e43615a16933336ef85bb3596a5bfc625620af99c0"
+  },
+  "probe/complete.json": {
+    "value": {
+      "status": "COMPLETE_CANDIDATE_REAL_FB_ADAM_AND_CLOSED_MODE_GENERATE_PROBE",
+      "indexed_forward_backward": 13,
+      "optimizer_updates": 1,
+      "cost": {
+        "rule": "load+cold_first_FB+1.25*(3033240*max12_steady_FB_seconds_per_input_token+734*actual_first_Adam)+120s_two_ACK_IO",
+        "steady_max_seconds_per_token": 0.0011466870872447123,
+        "actual_first_Adam_seconds": 0.06326964776962996,
+        "native_probe_wall_seconds": 8.319725993089378,
+        "cold_first_FB_seconds": 0.9755588117986917,
+        "estimated_formal_seconds": 4530.199605795984,
+        "budget_seconds": 7200,
+        "fits": true,
+        "legacy_native_including_cold_scaled_estimate": 6885.573401186224,
+        "diagnostic_worst_row_everywhere_estimate": 4828.766457490157,
+        "estimation_limit": "token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit"
+      },
+      "formal_budget_gate": true,
+      "probe_state_must_be_discarded": true,
+      "generation": [
+        {
+          "training_target_state": "HPO",
+          "index": 364,
+          "seconds": 0.7860191087238491,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "NIL",
+          "index": 1677,
+          "seconds": 0.7200877452269197,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "NO",
+          "index": 2768,
+          "seconds": 0.7220074608922005,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "OTHER",
+          "index": 1638,
+          "seconds": 0.7285602181218565,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        }
+      ],
+      "all_generated_tokens_within_actual_constraint": true,
+      "no_semantic_quality_claim": true,
+      "memory": {
+        "allocated": 16573116928,
+        "reserved": 16859004928,
+        "peak_allocated": 17606927360,
+        "peak_reserved": 17897095168,
+        "free_bytes": 8162508800
+      },
+      "at_utc": "2026-10-24T13:51:03.652347+00:00",
+      "elapsed_seconds": 34.16420176718384,
+      "phase": "probe"
+    },
+    "bytes": 2301,
+    "sha256": "22749c4ef96a29b7de3ef0f1dd1906237355ee4ea0f97c74b8d7552a8c3bd468"
+  },
+  "probe/cost.json": {
+    "value": {
+      "rule": "load+cold_first_FB+1.25*(3033240*max12_steady_FB_seconds_per_input_token+734*actual_first_Adam)+120s_two_ACK_IO",
+      "steady_max_seconds_per_token": 0.0011466870872447123,
+      "actual_first_Adam_seconds": 0.06326964776962996,
+      "native_probe_wall_seconds": 8.319725993089378,
+      "cold_first_FB_seconds": 0.9755588117986917,
+      "estimated_formal_seconds": 4530.199605795984,
+      "budget_seconds": 7200,
+      "fits": true,
+      "legacy_native_including_cold_scaled_estimate": 6885.573401186224,
+      "diagnostic_worst_row_everywhere_estimate": 4828.766457490157,
+      "estimation_limit": "token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit"
+    },
+    "bytes": 710,
+    "sha256": "39b7141bb61348808aac4aafe410cec0b96c58ca1f3b7e99b267a87b51b00716"
+  },
+  "jobs/probe/start.json": {
+    "value": {
+      "at_unix": 1792849829.4104795,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30s",
+        "240s",
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "-u",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu_entry.py",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu-plan.json",
+        "--mode",
+        "probe"
+      ],
+      "budget_seconds": 240,
+      "grace_seconds": 30
+    },
+    "bytes": 542,
+    "sha256": "6d3d2be7af69a4a4d3880401302317f83b59f96537e24c66f430da944345841f"
+  },
+  "jobs/probe/child.json": {
+    "value": {
+      "pid": 2744288
+    },
+    "bytes": 21,
+    "sha256": "3c93077705a0b772183731e14489d8de7a8b4fd1ef27bb290ed12ae4f8755046"
+  },
+  "jobs/probe/ended.json": {
+    "value": {
+      "at_unix": 1792849864.3579397,
+      "child_exit_code": 0,
+      "seconds": 34.94748131604865,
+      "gpu": "0, GPU-126293b9-6677-8464-cee7-01e693efbf29, 0\n1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 0\n",
+      "apps": ""
+    },
+    "bytes": 215,
+    "sha256": "92863f072c6f512256323a29f05de3f28ad3762fd2d41f58f6606278b9957563"
+  },
+  "jobs/formal/start.json": {
+    "value": {
+      "at_unix": 1792849864.4876773,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30s",
+        "7200s",
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "-u",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu_entry.py",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu-plan.json",
+        "--mode",
+        "formal"
+      ],
+      "budget_seconds": 7200,
+      "grace_seconds": 30
+    },
+    "bytes": 545,
+    "sha256": "851a503353689747b33def5668f7f23078362a8c6f173bf7575e6e3eba8847e7"
+  },
+  "jobs/formal/child.json": {
+    "value": {
+      "pid": 2744337
+    },
+    "bytes": 21,
+    "sha256": "809b2e3e2fdb698ec7f732d99de23739d8068a2fe00c216cde77975ec6242730"
+  },
+  "runtime_source_commit": "f47a8bcb43dc9fd65d4bd0a81aee44ab8af8687b",
+  "managed_process": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"command\":\"/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu_driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu-plan.json --python /home/zhangyuheng/projects/ScratchVL/.venv/bin/python\",\"id\":\"proc_791d296d-367e-4dd6-9e63-209793d50c3e\",\"mount_id\":\"5a9955da-5240-41cc-9e52-05d3d8da8a3c\",\"pid\":2744284,\"port\":45285,\"project_id\":\"64baaea6-43e2-435f-9896-7e4935aa5091\",\"running\":true,\"started_at\":\"2026-10-24T13:50:29.34056981Z\"}"
+      }
+    ],
+    "structuredContent": {
+      "command": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu_driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/gpu-plan.json --python /home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+      "id": "proc_791d296d-367e-4dd6-9e63-209793d50c3e",
+      "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "pid": 2744284,
+      "port": 45285,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-24T13:50:29.34056981Z"
+    }
+  },
+  "observation_scope": "Original objects parsed from a read-only observation; individual SHA/bytes refer to original server files, not these reserialized objects."
+}
