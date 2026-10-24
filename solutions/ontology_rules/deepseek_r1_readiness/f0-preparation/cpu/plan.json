@@ -1,0 +1,82 @@
+{
+  "status": "FROZEN_PUBLISHED_FULL58_F0_CPU_READY",
+  "execution_ready": true,
+  "source_sha256": "1c7b6c26b181326c7cb30a582523dd122d8048422f833566fc5d76c258d155d7",
+  "MS_revision": "5ee5fa4832e658ab84298806de06ed2a167834bd",
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6",
+  "refs": {
+    "config.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6/config.json",
+      "bytes": 859,
+      "sha256": "1b1cbbba841c180e94192f7a25d2d97e21498fc1a0a0b4785942158af5eee183"
+    },
+    "tokenizer_config.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6/tokenizer_config.json",
+      "bytes": 3957,
+      "sha256": "a58700120f68f96faf27a8921876e5e3dbb95f66355c6b331312354cbbf792f9"
+    },
+    "tokenizer.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6/tokenizer.json",
+      "bytes": 7032822,
+      "sha256": "47d3a3ffb1ff38eb6a22f8a2d207306bfa3ea2499ff70df4baeaa559bf7453c7"
+    },
+    "prompts": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/f0-preparation-v1/cpu/prompts.jsonl.gz",
+      "bytes": 75241,
+      "sha256": "d138963c8369b32a39a2ae15ed09693b886653a01928b2e5756568917e3af8e9"
+    },
+    "published_derived_config": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/published-interface-v1/cpu/actual/derived-config.json",
+      "bytes": 889,
+      "sha256": "95fb72c1f55c9e23c94b961087f468a445b4474b7473bf242b79a9e6480b284c"
+    },
+    "prior_published_CPU_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/published-interface-v1/cpu/actual/result.json",
+      "bytes": 6854,
+      "sha256": "d0aace8e9af032550dff4129ca256602f400a16a68aee8a8dfc414126970668d"
+    },
+    "prior_published_CPU_source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/published-interface-v1/cpu/prepare_cpu.py",
+      "bytes": 9610,
+      "sha256": "c6314de1a90ebd804214db8c173ba15f2240e0fe0e386e34fc02a91defac3345"
+    }
+  },
+  "prompts_encoding": "gzip",
+  "original_prompts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+    "bytes": 823917,
+    "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+  },
+  "CPU_main_cap_seconds": 59,
+  "TERM_kill_after_seconds": 1,
+  "expected_input_counts": {
+    "rows": 58,
+    "documents": 16,
+    "document_concepts": 415,
+    "possible_patient_concept_pairs": 1166,
+    "document_patient_ids": 47
+  },
+  "selection": "first original row then longest by actual published input IDs; earliest original row among ties; deduplicate if same",
+  "expected_runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1"
+  },
+  "derived_config": "Copy exact95fb72c1/889B; compare to original config plus only attention_factor=1.0; inherit existing config/source evidence, no new weights/shape/parameter/frequency profile.",
+  "deployment_notes": [
+    "Owner replaces model_dir and refs paths for the independent .100 directory, keeping pinned bytes/SHA. Set execution_ready only in the actual frozen deployed plan.",
+    "To transfer gzip, replace refs.prompts with actual compressed file ref and set prompts_encoding=gzip; decompressed SHA d387 and823917B are hard-pinned. original_prompts retains the immutable source locator.",
+    "CLI --plan PLAN writes PLAN.parent/actual; reject existing output. Hidden CUDA, UID1006,59s main+1s termination budget.",
+    "No old80 audit or AutoTokenizer path. This preparation imports no model and reads no weight files; prior CPU result is config evidence only.",
+    "No actual F0 token lengths/first-longest result claimed until owner CPU run completes."
+  ],
+  "outputs_expected": [
+    "actual/selected-prompts.jsonl",
+    "actual/selected-encoded.json",
+    "actual/all58-input-audit.json",
+    "actual/all58-published-encoded.jsonl.gz",
+    "actual/derived-config.json",
+    "actual/result.json"
+  ],
+  "authorization": "Root fixed F0 input-only native tokenizer preparation while F1 runs; 59seconds+TERM1 total60; no weights/model/GPU/gold."
+}
