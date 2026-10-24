@@ -8,7 +8,7 @@
 - 原32金标38c353ea/969963B和356109e9谱系已核：F2+F3、32文献87患者；F1输入16文献39患者，与训练不交。held/原dev gold没有读取或哈希。
 - 历史边界已核：旧8B窗口抽取/SFT直接并集两折不稳；旧患者HP+quote自由编号严重失败。新机制改变为患者条件证据复制、禁止HP生成、独立规范化，不能只把换9B当创新。
 - 真实schema已核：association只有patient_id→phenotype；实体独立含offset与identifier。目标quote只是按关系选出的弱证据，不能称人工归属证据。用原passage单位ID保全原始offset，避免按gold切句。
-- 目标v2实际85979cdc/.484秒已完成，全87训练行/39held保留：814有效原子键全部有可定位词面，801去重目标，4关系无效/分支外明确列出；原文位置边界7项通过。local token实际c8f29baf/3.253秒：451672完整训练tokens，最长9210，监督11884/max610，held203588/max10080；三Pareto形状9210/399、6521/449、5676/610。原生TF CPU120+5与420+30工程已执行完成，正式训练已唯一10:13:49启动，held生成/质量未执行。规范化冻结公共银行与624个train-only查询已完整，政策未按scores调整。CPU与14步真实工程均已完整PASS，见下方实际终点；probe状态丢弃，正式87×2/3000+30已批准。
+- 目标v2实际85979cdc/.484秒已完成，全87训练行/39held保留：814有效原子键全部有可定位词面，801去重目标，4关系无效/分支外明确列出；原文位置边界7项通过。local token实际c8f29baf/3.253秒：451672完整训练tokens，最长9210，监督11884/max610，held203588/max10080；三Pareto形状9210/399、6521/449、5676/610。原生TF CPU120+5与420+30工程已执行完成，正式训练已唯一完成87×2/22updates；10:47:48实际rc0，两durable ACK通过，held生成/质量未执行。规范化冻结公共银行与624个train-only查询已完整，政策未按scores调整。CPU与14步真实工程均已完整PASS，见下方实际终点；probe状态丢弃，正式87×2/3000+30已批准。
 - 资源：A100 GPU2由root保留；实际新input/答案token census后提出工程压力和完整训练预算，不套旧32.693GB，不截最长样本。其他卡/作业由root调度。
 
 ## 执行与下一步
@@ -34,3 +34,7 @@
 10:32:16原只读观察已见第一完整epoch/step11/尾7，程序epoch耗时982.831秒，mean group loss .3920198；summary绑定durability ACK d51df102/2031B，原第二轮自动继续。此时未收最终ACK全文/两epoch成员，不把它冒充完整训练终审；统一待唯一终态collection。按首轮实耗约10:48前后可能结束，实际硬TERM11:03:49.227不变。
 
 10:38:10.265原A100 readonly观察明确LUNA_OFFLINE；最后真实健康10:35:28为epoch2/step13。唯一watcher144628仍alive，按原backoff最早10:41:15.267再观察；不增加owner、不重start，远端driver绝对TERM11:03:49不变。后继.3 E004已10:38:31完整结束并实际释放，准确local release为stage8-span-normalization/oof-fourfold-completion/gpu-release-observation.json；真正Sap启动仍需当时fresh门。
+
+10:53:29原watch恢复发现正式已10:47:48 rc0完整完成，wrapper2039.028秒/controller2041.959秒，两ACK d51df102/5f8ca5fc，epoch2 adapter d52e2e6c/fullstate47ae7027，GPU实际10:47:51释放；原watch正常退出。唯一完整collector首inventory返回UNKNOWN（只读，未冻结/启动），保留错误后沿原namespace库存恢复，不重训。准确终态与两ACK在[formal-terminal](evidence/formal-terminal.json)；完整本地collection及后继39尚待，不冒称新质量。
+
+原collector已恢复并完整回收25件433659a2，原四个大checkpoint全SHA/fsync核验且留A100持久locator；无新模型。39fresh实际计划7c9c3026已绑定两ACK/epoch2/原39native IDs/固定b59eb规范化，预算1200+TERM30、greedy1600；当前源/计划先推送，实际start后补唯一ID。
