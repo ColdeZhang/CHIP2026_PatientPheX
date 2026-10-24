@@ -47,3 +47,5 @@ F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47
 - F0资源恢复预锁：原A8000forward明确终态保留；同cd977持久ACK改.100GPU0，f0_a30/source-contract记录全部机械差异。CopyF0实际max9935/峰20.98GB，新10262多327tokens，root明确允许按余量做完整47有界尝试，不冒称exactshape覆盖；1800+30/启动300秒不变。F1最小补包已203+1实际服务器SHA/fsync/reopen，根唯一下载另记。
 
 - F0 A30实际16:28:43启动proc_bca573cc/driver2754362 child2754370；TERM16:58:43.887/KILL16:59:13.887，1800+30。只读watch见live-F0-A30。原47/known204/同cd977完整保持，备份/conditional519 CPU已分离；不得把full64标签用于本F0。
+
+- F0 A30原47完整：223.082秒/47EOS/0cap/峰21.066GB；16:32:27真实释放GPU0。108原件逐SHA回收e27cb54d，原固定解析53anchors/47词面、必要Sap27，完整规范化后唯一B4union质量。F1实际服务器恢复bf565已root完成；条件full64仍仅CPU。
