@@ -1,0 +1,107 @@
+{
+  "schema": "long-context-relations-probe-v1",
+  "budget_seconds": 180,
+  "term_grace_seconds": 30,
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/probe-v1/data.json.gz",
+    "bytes": 375741,
+    "sha256": "23248ecfe3aa9d2604bf5020861603c39364aa2af5c0b85549dce5b62911e68c"
+  },
+  "parent_cpu": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1/cpu-complete.json",
+    "bytes": 5807,
+    "sha256": "479a8cb0e01a13bb464b52ba9c899253a4e45eca265c653a25d91c12f692ca59"
+  },
+  "parent_native_data": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1/data.json.gz",
+    "bytes": 1948468,
+    "sha256": "8095180e13c10cde3fb071670d1f3d9f308ec55bc0946370e67aa2a75cc69626"
+  },
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/runtime/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/runtime/driver.py",
+      "bytes": 3231,
+      "sha256": "52a7064cbe812eef63a508644f3eda2b3777036cc0af0e7f77b3a29ceaaad06c"
+    },
+    "model.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/runtime/model.py",
+      "bytes": 2524,
+      "sha256": "1a2cedc0b3954cf3d04eebbe604d2524b30d10f77eb489caf2a472e354a8ba14"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/runtime/native_cpu.py",
+      "bytes": 4075,
+      "sha256": "958021d99ce99b0287b2a24cd71c1daecca4159f21749131ac9733d7e2512448"
+    },
+    "probe.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/runtime/probe.py",
+      "bytes": 6435,
+      "sha256": "86bbbd97911eb15a1d9bd6b13622c5c3b92676fdd5d250d6f08b0eea04a6f4ce"
+    }
+  },
+  "proposed_formal": {
+    "epochs": 30,
+    "updates": 240,
+    "accumulation": 4,
+    "warmup": 24,
+    "encoder_lr": 2e-05,
+    "head_lr": 0.0001,
+    "cut": 0,
+    "seed": 20261024,
+    "not_yet_authorized": true
+  },
+  "same_candidate_pair_coverage": {
+    "train": 4495,
+    "positive": 727,
+    "total_train_gold": 818,
+    "held": 2874
+  },
+  "selected_shapes": {
+    "longest": {
+      "pmc_id": "5793168",
+      "max_encoder_tokens": 7494,
+      "encoder_tokens": 7494,
+      "windows": 1,
+      "pairs": 17,
+      "entities": 18,
+      "physical_mentions": 41
+    },
+    "most_pairs": {
+      "pmc_id": "11235872",
+      "max_encoder_tokens": 3068,
+      "encoder_tokens": 3068,
+      "windows": 1,
+      "pairs": 616,
+      "entities": 58,
+      "physical_mentions": 121
+    }
+  },
+  "expected_parameters": 149416193,
+  "probe": {
+    "actual_FB": 6,
+    "actual_Adam": 1,
+    "first_accumulation": 4,
+    "resident_Adam_accumulation": 2,
+    "full_state_reopen_restore": true,
+    "discard": true
+  },
+  "H69_launch_TTL_seconds": 300,
+  "no_held_model_or_quality": true
+}
