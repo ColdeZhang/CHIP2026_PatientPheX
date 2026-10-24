@@ -31,3 +31,5 @@ marker正式178.409秒rc0，8epoch/64Adam/16held全部完成，state1.319GB SHA1
 两run小型终点已95件/321669B持久备份并从.3实际读回逐SHA，见evidence/two-control-backup.json；完整state不在小包、原远端locator不变。待协调后继固定30epochs/240Adam，唯一变化是训练时长及相同warmup比例/线性decay按新总steps缩放，不按F1挑epoch；源仅参数化3行、默认仍8，尚未部署/启动，原已运行源保留于95件包及原远端source。
 
 固定30epoch/240Adam后继现已获root批准唯一900+30，排GP F0真实释放后，fresh同marker/base，仍两完整共冻端点/各1v2旧0；若两臂仍不升强N则关闭本组。低成本CPU实际核过：只3行epoch参数/状态断言改变，其余与已完成marker源码逐字相同；960doc/134850pair passes、24warmup，held唯一loop在全部epochs之后。新独立source-long-v3保留原remote source不动。批准计划8ad76336…与CPU证据见evidence/long-formal-plan.json、long-cpu-contract.json；当前未GPU启动。
+
+比较标签补全：固定N .676546355是normal-fulltext强对照，并非历史F1整条流水线最高。已只读核历史public-new LGB支持组合 .686338981、mic .738647830/mac .591769159，16文献/39患者/同1189实体逐项相同，metrics SHA59242df4…。其支持gate train48排F1、含F0，资源条件不同；不改当前门、不新增端点。只胜N只能称待融合候选，不能称全流程新best，见evidence/historical-full-pipeline-reference.json。
