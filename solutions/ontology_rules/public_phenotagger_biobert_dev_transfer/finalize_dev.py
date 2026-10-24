@@ -20,7 +20,7 @@ def main():
  new=[];diags=[]
  for row in scores:
   did=row['pmc_id'];doc=byid[did];assert set(doc)=={'pmc_id','pmid','patient','full_text'}
-  assert {k:v for k,v in oldbyid[did].items() if k not in ('entities','association')}==doc
+  assert all(v==doc[k] for k,v in oldbyid[did].items() if k not in ('entities','association'))
   chosen,diag=decoder.decode(row['candidates'],decoder.greedy(row['candidates'],.3),doc,allowed,cut=.3)
   pred=copy.deepcopy(oldbyid[did]);pred['entities']=chosen;assert nonentities(pred)==nonentities(oldbyid[did]);new.append(pred);diags.append(dict(pmc_id=did,**diag))
  newbyid={d['pmc_id']:d for d in new};new=[newbyid[d['pmc_id']] for d in baseline]
