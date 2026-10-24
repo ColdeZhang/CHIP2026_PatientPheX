@@ -13,7 +13,7 @@
 
 **原训练已关闭**：A100 job `proc_5b00069a` 04:51:51 backward OOM，557.666s/rc1，最后记录completed step10，确切失败行/step/算子未知。无完整epoch/staging、不能exact续训；实际GPU已释放。独审f7668be7，详见[原终点](evidence/patient-first-full64/failure-terminal-manifest.json)。
 
-**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。仅GPU工程probe获授权，正式fresh重训须root统一决定；当前尚无新GPU start。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺smoke+plan调用UNKNOWN，先库存核实际是否落盘，不重复调用或启动。
+**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。仅GPU工程probe获授权，正式fresh重训须root统一决定；当前尚无新GPU start，actual native loss property/setter 隐藏CUDA核验通过（0参数/0forward），10远端成员SHA完整。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺UNKNOWN已库存核两缺件实际落盘；原hook无进程/无结果，独立一次接口CPU完成，未重288。准备fresh gate后启动唯一probe。
 
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。

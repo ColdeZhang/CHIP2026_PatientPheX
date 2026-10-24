@@ -1,0 +1,10 @@
+{
+  "status": "PASS_hidden_CPU_actual_native_loss_property_hook_no_model_construct_or_forward",
+  "torch": "2.6.0+cu124",
+  "cuda_initialized": false,
+  "exact_function_AST_matches_executed_fixture": true,
+  "model_parameters": 0,
+  "property_getter": "    @property\n    def loss_function(self):\n        if hasattr(self, \"_loss_function\"):\n            return self._loss_function\n\n        loss_type = getattr(self, \"loss_type\", None)\n\n        if loss_type is None or loss_type not in LOSS_MAPPING:\n            logger.warning_once(\n                f\"`loss_type={loss_type}` was set in the config but it is unrecognized. \"\n                f\"Using the default loss: `ForCausalLMLoss`.\"\n            )\n            loss_type = \"ForCausalLM\"\n        return LOSS_MAPPING[loss_type]\n",
+  "property_setter": "    @loss_function.setter\n    def loss_function(self, value):\n        self._loss_function = value\n",
+  "source_sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+}
