@@ -58,3 +58,5 @@
 - 患者跨度几何只读研究：当前PCS仅anchor语义池化+span RoPE，未显式输入锚点距离/同段；旧LR与identity bridge已用可学习几何，旧maxMIL亦完成，不能泛称项目从未尝试。现成train32 32篇/87患者/255锚点，1421/1503多患者实例的全锚点几何可区分患者，720/813正袋同段、另139/560多患者正袋所有实例有更近的其他患者（不是错误计数）。仅建议当前fresh24完成后，一个50参数全锚点距离×同段残差；零Parameter不耗RNG，旧LR3e-5/新表固定1e-2及同schedule，不扫描。外部报告与纯schedule算术见 evidence/patient-span-geometry-readiness.json；0新gold/fit/model/quality，未改owner源码/未启动新GPU。
 
 - Query-token classifier查重结案：发现旧fixed-slot-binary已真实Qwen3.5 fresh LoRA、全部无答案CID×PID查询共享prefill/末hidden两类CE，train124/2506pairs/2ep32steps→完整F1 80/1557pairs。固定.5 Score .630248、expected-F1 .648033均低旧JSON .660942；另F1→F0二特征校准已完整仅+.001102。旧输入局部概念证据+global anchors，非全文；独立可训练head/8B/全文仍是变量但非核心机制未试，不改名BCE/YesNo重训。本次0新gold/fit/model/quality/tokenize/remote；见 evidence/query-token-classifier-duplicate.json。
+
+- MedGemma1.5-4B准确版本查重结案：MS9bca96ca/HF91850547、完整bundle+LoRA4.329882B已核，短/全文train32×2ep及各完整F1/并集均真实负（短.603702/.644663；全文.592419/.627967；旧.660942）。旧实际原生文本/模板/EOS/许可与19资产已有证据；全文原生CE峰约52GB，不能以4B名称推断24GB可训。仅复用终态，不新网络/remote/tokenize/fit/model/gold/quality，见 evidence/medgemma15-duplicate.json。
