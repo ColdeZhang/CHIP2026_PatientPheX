@@ -1,0 +1,91 @@
+{
+  "hpo_sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+  "hpo_version": "hp/releases/2026-06-23",
+  "strict_source_sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+  "bank_utility_source_sha256": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+  "public_rows": 41099,
+  "rows_content_sha256": "55086bb25e540e11068cd086faeaa1a07c336f07e6b168075e3c3e2d3d89969f",
+  "ambiguous_rows": 1,
+  "text_preprocessing": "lower; whitespace split/join; original surface length >= 3",
+  "included_sources": [
+    "hpo_name",
+    "hpo_exact_synonym"
+  ],
+  "root_excluded": true,
+  "training_aliases_used": false,
+  "training_statistics_used": false,
+  "old_label_ids_used_for_mapping": false,
+  "fitted_head_used": false,
+  "id_contract": "active HP:0000118 descendants; canonical IDs; all public ambiguity retained; no compound/NIL labels",
+  "public_model": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+  "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+  "model_files_sha256": {
+    "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+    "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+    "manifest.json": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8"
+  },
+  "pooling": "CLS_L2",
+  "max_length": 32,
+  "audit": "local_metadata_only",
+  "historical_labels": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/collected/sap/request/bank-labels.json",
+    "sha256": "a369ec3de1f32764272748f30d0de4244b743fbd28f527adea767bd5fa0b2cd2",
+    "rows": 42575,
+    "ordered_texts_sha256": "ab10fc0bd1bc919643ec434a3b499ce772538993b614eb82071df591b71839c9"
+  },
+  "historical_reconstruction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-dev16/reconstruction/reconstruction.manifest.json",
+    "sha256": "469e5299cdc9593a53efae907741b4df9bd3ee7e6b15ed2eebfd48062a775a5f"
+  },
+  "historical_encoder_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/semantic_neural/run.py",
+    "sha256": "b1005687bc1162319aa5c87ab52fb6f8ef96ed8ed8518ea8295af4454c60647a"
+  },
+  "historical_bank": {
+    "label": "ontology-and-training-labels",
+    "path": "dev16-sapbert/embeddings/bc3b715246322f5190fdaa5564ac161a8ef701617cdc268836fbbe94366910bb.npy",
+    "sha256": "4fc0e062ea7940365222aad637058aadfb37dc57681e444eb2091577b591ae03",
+    "rows": 42575,
+    "unique": 42575,
+    "ordered_texts_sha256": "ab10fc0bd1bc919643ec434a3b499ce772538993b614eb82071df591b71839c9"
+  },
+  "public_rows_matched": 41099,
+  "nonpublic_rows_excluded": 1476,
+  "selection_indices_sha256": "e1369c96aea60a6e14fdaf3716c3c53c9b94901cb6213f8e707919c8d46daad4",
+  "old_mapping_conflicts_discarded": [
+    {
+      "text": "abnormal liver function",
+      "old_identifier": "HP:0001392",
+      "public_identifiers": [
+        "HP:0002910"
+      ]
+    },
+    {
+      "text": "intracranial calcifications",
+      "old_identifier": "HP:0002514",
+      "public_identifiers": [
+        "HP:0430048"
+      ]
+    },
+    {
+      "text": "maxillary hypoplasia",
+      "old_identifier": "HP:0430028",
+      "public_identifiers": [
+        "HP:0000327"
+      ]
+    },
+    {
+      "text": "ndd",
+      "old_identifier": "HP:0012759",
+      "public_identifiers": [
+        "HP:0012758"
+      ]
+    }
+  ],
+  "vector_provenance": "Frozen source Encoder.encode uses only supplied text and public AutoModel.eval; System.fit_detector is downstream of bank construction and does not alter encoder weights.",
+  "bank_bytes_verified_here": false,
+  "new_encoding_performed": false
+}
