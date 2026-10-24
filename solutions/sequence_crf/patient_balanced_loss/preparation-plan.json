@@ -1,0 +1,163 @@
+{
+  "schema": "patient-balanced-alpha05-preparation-v1",
+  "status": "source_plan_prepared_not_executed",
+  "authorization": "Root via sequence owner authorizes fixed alpha=.5 train32 patient-balanced mixed-loss CPU preparation only; source and plan must be pushed by parent before its unique local preparation. No GPU, fit, model or quality evaluation is authorized here.",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/prepare_weights.py",
+    "bytes": 17793,
+    "sha256": "49950c451eeb34667d96604a1c76aa1f87d3aebee6c90bbcfa381656d86c1f22"
+  },
+  "references": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train124.patient-first.jsonl",
+      "bytes": 1720127,
+      "sha256": "14af86cffe1a8b87af022d13e42f9b910281f0da478e3cc731bc2fbc9ba68c3b"
+    },
+    "token_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train-token-audit.json",
+      "bytes": 163235,
+      "sha256": "36f6faaee683fcaff319714a3b08535208848b45185ab72b7958829417d03586"
+    },
+    "tokenizer_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/prepare.py",
+      "bytes": 16106,
+      "sha256": "2d652d266756ee83bee5e2ef9cbc7fae16a722dea522c5bb6deb90d8606e2d24"
+    },
+    "tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "template": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "trainer": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/train_patient_first.py",
+      "bytes": 37047,
+      "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+    },
+    "census_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-objective-priority-20261024/census.py",
+      "bytes": 10002,
+      "sha256": "027923fcd9e0f187acd26be07417846926f80d13303deaff750d1b76b4ec89c4"
+    },
+    "census_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-objective-priority-20261024/plan.json",
+      "bytes": 3098,
+      "sha256": "4478e67b11d02fa2ee29b1a85759689a22411453e2988535f864ca11b9633f2a"
+    },
+    "census_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-objective-priority-20261024/summary.json",
+      "bytes": 7735,
+      "sha256": "63df29a96f9c6717255a31530caa56371149b6332ded4b91907e24f8e7725724"
+    }
+  },
+  "cpu_libraries": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/cpu-libs",
+  "cpu_timeout_seconds": 120,
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/preparation",
+  "alpha": {
+    "numerator": 1,
+    "denominator": 2
+  },
+  "expected": {
+    "rows": 124,
+    "documents": 32,
+    "patients": 87,
+    "full_tokens": 400614,
+    "prefix_tokens": 395920,
+    "supervised_tokens": 4694,
+    "max_sequence_length": 5556,
+    "groups_per_epoch": 16,
+    "patient_row_occurrences": 346,
+    "empty_patient_values": 106,
+    "cross_patient_value_tokens": 0
+  },
+  "original_tail_group_row_id_sha256": [
+    [
+      "c2a0e07f602750ea605e3d3e47aa0fee9325442ab8cd4fcfcd43b788ae9b51e5",
+      "dbcbea2f390a5fec937e1cace9db5f16a748155949c4b705fa84400a29d26abc",
+      "f37defcca48ba5800e1008b08a36a552cb3eefa2d2449e9e39ffaaf697af2a30",
+      "15b20c15acb85f5ecef8d8969a7766afe7fffbe62b829159a4ef2b98a1306096"
+    ],
+    [
+      "56cd7469060b04a6d67c604e092bff440cdc03cec34538b8cba0f5510e92e797",
+      "167e565d9b6cbea767934b60a33d011ab1da8afddae870a34c8e3fb3acdbe7b1",
+      "02a12caed07db9cf6b02a2971ce450bec9846de32d5a21f541e0169dbd8e1e33",
+      "e71b873506c8b39f86dcb74ec57d20676c39d9c39a1c9912bc4186674de98d13"
+    ]
+  ],
+  "unchanged_training": {
+    "context": 6144,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "epochs": 2,
+    "epoch_seeds": [
+      20261023,
+      20261024
+    ],
+    "groups_each_epoch": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      4
+    ],
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "max_grad_norm": 1.0,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "quantization": false,
+    "packing": false,
+    "gradient_checkpointing_use_reentrant": false,
+    "original124_row_order_and_input_target_text": true
+  },
+  "group_loss": ".5*mean_r(L_old(r)) + .5*S/P*sum_r sum_p meanCE(value(p,r))/n_p",
+  "row_loss_before_original_outer_division": ".5*L_old(r) + .5*S*group_size/P*sum_p meanCE(value(p,r))/n_p",
+  "value_positions": "Original complete native BPE offsets intersecting compact JSON list-value character ranges; full label index q and causal logit q-1; empty [] preserved. Whole token retained at value/key boundaries; reject any token intersecting two patient values. No character-fractional weighting.",
+  "native_identity_checks": "All original patient_first audit fields exactly equal, including default-json input_ids/labels SHA and rendered prefix/full SHA; 124/32/87/400614/395920/4694/5556 exact. Original source files unchanged after preparation.",
+  "coefficient_contract": "Using Fraction and original AST batch_plan, for each epoch average over S=16 group objectives yields per-patient new unscaled coefficient1/P, mixed coefficient alpha/P=1/174; count n_p from repeated original patient appearances only; both tail groups accounted without extra /4.",
+  "output_files": [
+    "row-weights.jsonl",
+    "epoch-groups.json",
+    "patient-component-contract.json",
+    "patient-counts.json",
+    "manifest.json"
+  ],
+  "opaque_patient_key": "sha256(patient-loss-census-v1:+str(pmc_id)+:+patient_id), same key construction as original census; no raw answer text exported",
+  "no_positive_count_weighting": true,
+  "prepared_empty_is_not_full_gold_empty": true,
+  "no_reexecution_of_original_census": true,
+  "no_torch_or_model_imports": true,
+  "no_heldout_gold_or_old_predictions": true,
+  "no_NN_fit_or_quality_score": true,
+  "no_alpha_scan": true,
+  "preparation_has_not_executed": true,
+  "parent_owned_parallel_files": [
+    "mixed_loss.py",
+    "cpu_contract.py"
+  ],
+  "failure_policy": "First mismatch stops and preserves failure. No truncation, answer rewrite, reassignment of shared value tokens or reuse of a completed output directory."
+}
