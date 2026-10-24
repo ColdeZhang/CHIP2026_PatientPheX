@@ -1,0 +1,29 @@
+{
+  "status": "CPU_cost_proposal_only_no_training_authorization",
+  "reference": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/terminal/step.json",
+    "bytes": 1444,
+    "sha256": "b6fbfdcf2ccf0777b6e91393ce3c24c0d491441687d0f6bbc63cc79631d3e064"
+  },
+  "microbatches_2ep": 248,
+  "optimizer_steps_reference": 32,
+  "training_tokens_2ep": 801228,
+  "longest_tokens": 5556,
+  "measured_one_longest_step_seconds": 13.238731682300568,
+  "token_linear_proxy_seconds": 1909.1509194287833,
+  "all_248_at_measured_longest_proxy_seconds": 3283.2054572105408,
+  "probe_other_native_seconds": 65.79315889626741,
+  "interpretation": "Proxies, not a timing guarantee: one probe includes norms/Adam every row whereas formal accumulates8 and optimizer32; shape/kernels/checkpoint I/O and sustained contention differ.",
+  "proposed_if_selected_train_hard_seconds": 3900,
+  "TERM_grace_seconds": 30,
+  "proposed_inference_if_later_authorized_separate_cap_seconds": 600,
+  "memory": {
+    "allocated_bytes": 36200963072,
+    "reserved_bytes": 40955281408,
+    "free_bytes": 793051136,
+    "limitation": "Fresh first forward precedes Adam-state creation; later full training keeps Adam/accumulated gradients and varied shape pools. Longest fresh step alone does not prove full2ep memory safety."
+  },
+  "recommended_resource": "Prefer released80GiB A800 for formal nativefull CE; A10040GiB remains tight and unproven for multi-step accumulation. Do not auto change loss/attention/truncate or launch another probe.",
+  "no_quality_estimate": true,
+  "no_new_GPU_or_labels": true
+}

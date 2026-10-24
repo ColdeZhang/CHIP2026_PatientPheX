@@ -94,3 +94,12 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 02:00:59.317Z 已fresh核A100 GPU2 0MiB/无目标进程后启动唯一`proc_9d262dcf-1234-47db-88d0-ec6c1a941d8f`、PID6498，源码检查点0a87abc。原180+TERM30，近似TERM02:03:59/KILL02:04:29，actual deadline由远端driver-started记录。只运行本最长行一步，结果未知；终点实际release后将卡交NCR，不能重复start。[启动/恢复](../evidence/round2/patient-first-probe-launch.json)。
+
+
+### 唯一最长行更新终点：通过，仅限实际更新与成本
+
+原proc_9d262dcf完成，native79.031891秒/wrapper80.192565秒、rc0；原180+30内，无重试。单步13.238732秒，loss .268331736、clip前norm2.70594263，三族梯度均有限非零；248个B梯度非零、A首梯度全零与fresh B初始化0一致，三小B探针均真实变化，base无梯度、优化器仅adapter。实际base8,953,803,264 + LoRA43,278,336 =8,997,081,600，加载无missing/unexpected/mismatch。没有保存checkpoint/推断/质量，状态随子进程退出丢弃。
+
+峰allocated36,200,963,072B（33.715GiB）、reserved40,955,281,408B（38.143GiB），结束前free793,051,136B（.739GiB）。02:02:19.724Z wrapper实核目标卡无进程、0/40960MiB；已通知ontology接其NCR，不开正式训练。8个终点原件/37项manifest已回收全SHA，stdout/stderr和完整模型库存外存。[结果](../evidence/round2/patient-first-probe-results.json)、[清单](../evidence/round2/patient-first-probe-terminal-manifest.json)。
+
+按801228训练tokens线性缩放单步约1909秒（31.8min）；若248微批均按该最长单步计约3283秒（54.7min），另有本次约65.8秒加载/校验等。两者只是成本代理：正式accum8/32次Adam，与probe每步Adam/诊断不同，长度、算子、I/O和负载会变，不能当实际完成时间或严格上界。若主线程选择，建议训练硬3900+30秒、后续完整80推断另600+30秒；此处没有启动授权扩大。A100首步forward尚无Adam state，正式后续常驻Adam/累积梯度及变化shape内存池可能更高，单次最长通过不保证2ep显存；优先等80GiB A800空闲，不自行改loss/attention或截断。仍无质量分数或达标推断。

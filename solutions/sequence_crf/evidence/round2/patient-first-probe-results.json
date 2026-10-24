@@ -1,0 +1,85 @@
+{
+  "status": "PASS_longest5556_one_fresh_native_CE_update_only",
+  "experiment": "patient-first-closed-set",
+  "terminal_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/terminal-manifest.json",
+    "bytes": 10698,
+    "sha256": "91c8248936bacbd909b06cd1c3c316209b2280e21622b0d8aa81d2aa5864e617"
+  },
+  "step": {
+    "status": "PASS_one_fresh_longest_patient_first_native_CE_update_not_quality",
+    "row_id": "11235872:relations:8",
+    "input_tokens": 5556,
+    "supervised_tokens": 135,
+    "loss": 0.26833173632621765,
+    "step_seconds": 13.238731682300568,
+    "gradient_norm_before_clip": 2.7059426307678223,
+    "family_gradient_squared_norms": {
+      "DeltaNet": 3.030371598246155,
+      "MLP": 2.5129749433194064,
+      "full_attention": 1.778778772873327
+    },
+    "changed_LoRA_B": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "first_step_A_nonzero_gradient_tensors": 0,
+    "first_step_B_nonzero_gradient_tensors": 248,
+    "initial_all_B_zero": true,
+    "A_zero_first_gradient_permitted": true,
+    "only_adapter_in_optimizer": true,
+    "frozen_base_no_gradient": true,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ],
+    "learning_rate": 0.0001,
+    "warmup_not_performed": true,
+    "native_full_logits_unweighted_CE": true,
+    "no_attention_or_loss_change": true,
+    "no_input_truncation": true,
+    "peak_allocated_bytes": 36200963072,
+    "peak_reserved_bytes": 40955281408,
+    "free_bytes": 793051136,
+    "actual_steps": 1,
+    "no_checkpoint": true,
+    "no_inference_or_quality": true,
+    "diagnostic_state_discarded_on_process_exit": true
+  },
+  "native_seconds": 79.03189057856798,
+  "wrapper_seconds": 80.19256544113159,
+  "returncode": 0,
+  "gpu_release": {
+    "at_utc": "2026-10-24T02:02:19.724010+00:00",
+    "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "target_has_no_process": true,
+    "target_memory": [
+      "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+    ]
+  },
+  "model_inventory": {
+    "base_parameters": 8953803264,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600
+  },
+  "constraints": {
+    "no_saved_adapter_loaded": true,
+    "base_frozen": true,
+    "only_adapter_in_optimizer": true,
+    "no_base_parameter_copies": true,
+    "no_checkpoint": true,
+    "no_inference": true,
+    "no_quality": true
+  },
+  "CPU_first_guard_failure_retained": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/actual-data-CPU-execution.json",
+    "bytes": 1630,
+    "sha256": "de9ef6db4de1de44a592db0c20b9ca52b56912f65546f0782b0a00a2f96ff21e"
+  },
+  "CPU_repair": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/CPU-import-guard-repair.json",
+    "bytes": 1806,
+    "sha256": "b9c9a60d251974d60ad58bb76556b93f26dd24b7f38c7b5585863c1f09a85930"
+  },
+  "formal_training_NOT_started": true
+}
