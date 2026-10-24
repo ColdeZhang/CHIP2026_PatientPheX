@@ -319,6 +319,12 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 **避免方法**：每条生成结束即原子保存原始IDs、解码文本、实际EOS/cap/超时、输入身份及耗时，再做严格解析；校验错误写独立状态，不覆盖raw。此次原rc1/130.785秒、23条缓存和trace保留；后继使用独立目录、复用23条并重新生成其余35条，失败行的新输出不等于找回旧响应。有限缺键弃答政策在任何F0质量前另行冻结，原strict失败不改写，不补负答案或评分不完整子集。修复与完整质量当前待实际验证；恢复入口见[序列方案F0记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-F0.md)。
 
+## H50：按文件路径加载模块不会自动加入其兄弟依赖目录
+
+五信号融合已完成fit和F0预测冻结，但以`spec_from_file_location`加载公共`evaluate.py`时，其顶层`import validate_predictions`找不到同目录模块。异常发生在首个F0 gold读取和评分调用前，因此是评测入口故障，不能当模型失败或重复fit。R1评测准备中也发现过同一导入顺序问题。
+
+**避免方法**：按实际运行入口明确模块搜索路径，或先以canonical模块名注册已核SHA的兄弟依赖，再载入评测器；只加载路径正确不代表所有依赖可用。此次保持原source/plan/错误trace、模型与冻结预测，独立恢复入口先注册固定validator，只执行一次成功v2，无重训或重预测。五信号结案manifest `research/relation-stacking-five-feature-control/manifest.json` SHA`9c3c1357…`，恢复源`a36928a3…`；原始import异常与质量负结果分列。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
