@@ -1,0 +1,48 @@
+{
+  "status": "proposed_frozen_definitions_no_count_execution",
+  "scope": "Only supplied F0/F1 fixed training-side inputs. No original-dev labels, new inference, fit, threshold search, candidate changes or official-B changes.",
+  "normalization": {
+    "document_patient": "str(pmc_id), str(patient_id); validate supplied patient membership per actual input; deduplicate identical tuples.",
+    "entity_typed_raw": "identifier == '-1' produces ('text', original text), preserving type/value even None. Otherwise split only full syntactically valid HP:ddddddd compound identifiers into atomic HPO. Malformed/mixed identifiers are separate reported exceptions, never silently made HPO.",
+    "entity_typed_canonical": "Map atomic HPO through frozen official2026 alt map; retain text separately; no ancestor expansion or text normalization. Record nonbranch/obsolete/unknown exceptions rather than silently changing denominator.",
+    "old_prompt_type": "Resolve code_map value against exact old entity association_keys mapping. Raw HPO and raw '-1' text stay distinct; a value that collides across both types is reported ambiguous, not guessed from regex alone.",
+    "public_prompt": "Only current valid canonical HPO code_map values; compare with frozen union.new-concepts, and full public2 canonical minus typed canonical oldpool. No second threshold on hybrid row score.",
+    "v2_vs_canonical": "Public v2 associations splits only full valid HPO compounds and does NOT canonicalize alt IDs. Posthoc canonical coverage must be labeled diagnostic and not substituted into score/FN denominator without a separate literal view."
+  },
+  "spaces_before_any_gold": {
+    "T": "(doc, canonical HPO) from CURRENT fixed LGB selected entities, ignoring its copied association field. Text concepts reported separately.",
+    "O": "(doc, kind, value) from old candidate entities after typed normalization; this is not old model positive relationships.",
+    "L_old": "Actual (doc, patient, typed raw concept) from each old prompt code_map value crossed with that same prompt patient_ids; then diagnostic canonical HPO projection.",
+    "L_pub": "Actual (doc, patient, canonical HPO) from frozen public-new prompt code_map crossed with that prompt patient_ids.",
+    "L": "L_old union L_pub; legal prompt opportunity, not positive outputs or recovered answers.",
+    "M": "T concepts for which no canonical document-HPO in L exists. Also report any patient-specific missing combinations if prompt patient coverage differs.",
+    "checks": [
+      "L_old document typed concepts versus O exact before and after canonicalization; raw-to-canonical collisions explicit.",
+      "L_pub document concepts versus frozen union.new-concepts and native public2 canonical minus O.",
+      "All selected Task1 entity exact keys occur in its frozen input pool; retain source flags from exact key.",
+      "Public spaces include native dictionary/abbreviation canonical rows regardless of hybrid score <=.95."
+    ]
+  },
+  "source_attribution_before_gold": {
+    "level": "For M use document-canonical HPO membership across COMPLETE three native canonical caches; additionally OR source flags across actually selected mention exact keys. Keep the two levels separately.",
+    "primary_disjoint_order": [
+      "public2_present_but_not_prompted: member of complete PubMed/Bioformer canonical doc-HPO but absent L; indicates mapping/difference/prompt-contract discrepancy requiring diagnosis, not assumed threshold loss.",
+      "BioBERT_only_native: absent complete public2 canonical doc-HPO and present BioBERT canonical doc-HPO.",
+      "nonpublic_or_other: absent all three complete public canonical doc-HPO; subdivide selected original source flags base/Sap/CRF and missing/ambiguous provenance."
+    ],
+    "orthogonal_observations": [
+      "Any selected exact mention carries biobert/public/bioformer present, neural, dictionary or abbreviation flags.",
+      "At doc-HPO/source level: max observed native hybrid score, any score>.95, all scores<=.95; missing is unknown, never score0.",
+      "At mention-key level: BioBERT-present does not imply BioBERT-only at document level.",
+      "The <=.95 observation is not causal attribution: existing F0/F1 canonical-to-prompt source has no second score filter."
+    ]
+  },
+  "later_gold_linked_FN_definition_not_executed": {
+    "required_unresolved_input": "Root must freeze CURRENT complete relation prediction for F0 and F1. Do not use Task1 lightgbm.nested association or old positive outputs as legal space.",
+    "literal_view": "Compute atomic linked-HPO G_literal and P_literal using unchanged publicv2 compound splitting; FNs=G_literal-P_literal. Keep non-HPO/text outside linked subset with explicit counts. Label this a subset diagnostic, not new v2 evaluation.",
+    "canonical_view": "Separately canonicalize valid atomic HPO with official alt map; report collapse/unknown/nonbranch changes and canonical FN count. Do not call it official raw-v2 FN.",
+    "opportunity": "Intersect fixed M×supplied patients and each pre-frozen source category with linked FN; report document-HPO and patient-HPO counts/fractions. This is oracle input supply opportunity, not expected TP recovery or score gain.",
+    "freeze_order": "Freeze all spaces, categories, source refs and proposed aggregation before reading F0/F1 gold. No per-gold candidate selection, prompt extension, model rerun or threshold sweep.",
+    "output": "Aggregate counts by fold/category; full keys remain outside Git if owner later authorizes them. No patient text/gold payload in repository notes."
+  }
+}
