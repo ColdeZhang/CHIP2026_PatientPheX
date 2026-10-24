@@ -1,0 +1,76 @@
+{
+  "status": "AUTHORIZED_FIXED_F0_BOUNDARY_VETO_SAME_FINAL_HEAD_NO_RETRAIN",
+  "scope": "All1085 original strongF0 spans, same independent prompt/Top8/greedy head; only explicit BOUNDARY deletes; no headunion,originaldev,cutscan or newtrain",
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-F0-veto-v1",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "rows": 1085,
+  "documents": 16,
+  "patients": 47,
+  "baseline_score": 0.7405721404401228,
+  "missing_queries": 373,
+  "max_new_tokens": 128,
+  "eos_token_id": 151645,
+  "budgets": {
+    "Sap": 180,
+    "infer": 1800,
+    "TERM_grace": 30
+  },
+  "head_adapter": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/formal/epoch-002/adapter/adapter_model.safetensors",
+    "bytes": 174655536,
+    "sha256": "beecfb84824764826ab8f207f4979db09da161dc6395e55b032b77a413bb0579"
+  },
+  "base_rule": "Keep all original strongB objects/order except entity objects whose exact pmc/text/offset/length has a complete strict BOUNDARY response; unknown/cap/NO/NIL/HPO keep original",
+  "new_v2_max": 1,
+  "old_v2": 0,
+  "originaldev_calls": 0,
+  "queue": "sequence GP900 actualrelease precedes our GPU1 freshgate; no\u62a2\u5360",
+  "input_refs": {
+    "pure_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold0/lightgbm.nested.jsonl",
+      "bytes": 143086,
+      "sha256": "79d3568e60de2ab9424c0ece5e3d6b1f95bb1a32da388bdc76ca29ec78d222d5"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold0/lightgbm.metrics.json",
+      "bytes": 13008,
+      "sha256": "5f23fd69025b018fadcbfc7c937fb5dea5a94b72c449ec1f1363bd64a4392b6c"
+    },
+    "pending": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/pending.jsonl",
+      "bytes": 824942,
+      "sha256": "d8e2ca77b8b21b61d61bf380bf579066d697bb14912d88bcce7bac5aec775e55"
+    },
+    "queries": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/queries.json",
+      "bytes": 9635,
+      "sha256": "05dbd66b020d7b37a7704173d27f4d738a89c37f7d8311affdac8ea23b51b23a"
+    },
+    "cached_top8": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1/cached-top8.json",
+      "bytes": 238678,
+      "sha256": "769b336157dc55cf8a9fca4e8d07d1893f548da43719f1251081542dd2bb3d0d"
+    },
+    "ancestry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/readiness-f0-originaldev-v1/census.json",
+      "bytes": 15529,
+      "sha256": "a6adc95cd3b33ca650cdb9c83ce938ec231602ea9b55839403df8e859a506105"
+    },
+    "parent_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/terminal.json",
+      "bytes": 13143,
+      "sha256": "15896d47d89a41523e2e490c23488b39acd2af7ef25b0eecf13d89d097ddb615"
+    },
+    "schema": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/f0_veto/schema.py",
+      "bytes": 4170,
+      "sha256": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4"
+    }
+  }
+}

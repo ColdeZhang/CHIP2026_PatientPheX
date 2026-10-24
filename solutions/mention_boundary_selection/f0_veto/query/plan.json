@@ -1,0 +1,97 @@
+{
+  "status": "FIXED373_F0_PURE_QUERIES_NO_GOLD_NO_LLM",
+  "assets": {
+    "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT",
+    "hpo": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/hp.obo",
+    "bank": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-bank.npy",
+    "labels": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-labels.json",
+    "bank_manifest": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-bank-manifest.json",
+    "files": {
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/tokenizer_config.json": {
+        "bytes": 198,
+        "sha256": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/manifest.json": {
+        "bytes": 1838,
+        "sha256": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/config.json": {
+        "bytes": 462,
+        "sha256": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/special_tokens_map.json": {
+        "bytes": 112,
+        "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/vocab.txt": {
+        "bytes": 226150,
+        "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT/model.safetensors": {
+        "bytes": 218990904,
+        "sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-bank.npy": {
+        "bytes": 126256256,
+        "sha256": "bc4ea231f10cab61db652900f59e5f1eab75bc2dad840a47d5b6669e4a227a59"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-labels.json": {
+        "bytes": 10807562,
+        "sha256": "60a27430437a25239768c5d33a6a58d9588dbe5e2f80168c19b9d4c955756b9f"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank/public-bank-manifest.json": {
+        "bytes": 4160,
+        "sha256": "443922dadf116ecc6d810af847b3ee9fbe513af9bd03f5896742543910a91f7e"
+      },
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/hp.obo": {
+        "bytes": 11222341,
+        "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+      }
+    },
+    "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "pythonpath": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "gpu_index": 1,
+    "expected_encoder_runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "parameters": 109482240,
+      "pooling": "CLS_L2",
+      "max_length": 32
+    },
+    "target_runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "tokenizers": "0.21.2"
+    }
+  },
+  "query_count": 373,
+  "source_rows": 1085,
+  "query_sha256": "05dbd66b020d7b37a7704173d27f4d738a89c37f7d8311affdac8ea23b51b23a",
+  "budget_seconds": 180,
+  "TERM_grace": 30,
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-F0-veto-v1/query-v1",
+  "source_files": {
+    "public_bank.py": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+    "semantic.py": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82",
+    "strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  },
+  "policy": {
+    "top_k_distinct_concepts": 8,
+    "score": "max cosine over public exact aliases",
+    "ties": "stable HPO ID order, then minimum public alias row",
+    "no_training_aliases": true,
+    "no_gold_insertion": true,
+    "no_exact_insertion": true,
+    "max_query_tokens": 32,
+    "long_query": "retain full training row; no truncated encode, empty candidates with token-count reason",
+    "encoder": "original PublicSapEncoder: FP16 backbone, FP32 CLS L2, no learning",
+    "no_conservative_acceptance_threshold": "This is a retrieval candidate census, not modification of frozen normalization policy b59eb."
+  },
+  "native_lengths": "required all373 full tokens before query start; pending CPU",
+  "entry_source_files": {
+    "query.py": "4d5b7382a9b88048b17671cc8716c3863a22cd7094367ccc08c9eb0de7f9d8cd",
+    "driver.py": "72b3b2ccc939d548ff906b4107dfd7f0ad424a8d1c8952977e95f1ae96da5fe0"
+  }
+}
