@@ -13,3 +13,5 @@ coded关系头用F2+F3 train32；旧N关系头和上游候选使用排F0的train
 正式唯一预算1200+TERM30；同原A100 UUID、9B/r16权重、native5.20.2、BF16/SDPA、greedy1600。原始IDs先落盘、raw先于解析；未知/重复/缺CID/不合法PID、无EOS及cap沿原strict整行弃答，无答案补齐或重生成。静态检查已确认F1与F0的loading/generation/decode调用及完整raw-first采样循环AST相同，PTcodec逐字相同。
 
 当前恢复入口：`../f0/ready.json`。F1已另行完成持久备份；本F0质量尚未运行。
+
+CPU实际13.125329秒rc0，native12.197954秒；58原生全IDs与decode通过。总token505090→516365，max16245→16542，最长唯一idx30。故明确提高工程guard14848→16896，不截断，模型context262144足够max+1600。正式源绑定同adapter2c777e88，最长idx30计入58先跑。原A100 start曾LUNA；确认原namespace完全空后同exclusive driver唯一重入成功，没有备用CPU或重复模型。

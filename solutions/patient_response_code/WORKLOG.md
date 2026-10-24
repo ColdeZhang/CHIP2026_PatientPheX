@@ -106,3 +106,11 @@ A100 CPU5members/10pieces verified deployment plan1d136fad; .100 original shortH
 ### 2026-10-24 12:58 UTC — original F0 CPU remains unobservable
 
 The scheduled single read12:58:27.406877 again returned explicitLUNA, not model/CPU failure. Latest independent boundary13:01:32.406877; original startintent remains, no model or CPU restart. New recovery reader uses the maximum of preserved offline boundaries. F1 positive result and durable archive unaffected.
+
+### 2026-10-24 13:03 UTC — actual A100 restored, sole CPU reentry accepted
+
+13:01:59 pure-read UNKNOWN used one30s bounded retry. Actual13:02:43.585 inventory showed original F0 CPU namespace no driver/native/terminal and no cwd process. Exclusive unchanged driver/command/env reentry accepted13:03:08.618951:proc_25ba1090/PID194503,120+5 CPU only. Delayed original request cannot pass the same exclusive driver claim; original LUNA intent retained. No fallback CPU launched and no GPU started.
+
+### 2026-10-24 13:03 UTC — actual complete58 CPU PASS and final binding
+
+A100 CPU finished13:03:21.831548 rc0/13.125329s (native12.197954s), complete7-member zip08d51e09 recovered. Original505090tokens/max16245→coded516365/max16542 uniqueidx30, no truncation; all58 Auto/nativeIDs/template/decode exact, clinicalmap bijective. Native context262144≥18142. Explicit engineering inputguard rises14848→16896 (ceil512), greedy1600 unchanged. Bound sameadapter2c777e88, 58fresh/0cache, longest30 first as one formal row, then old ascending length order. Source/plan/quality immutable and pushed before GPU activation.

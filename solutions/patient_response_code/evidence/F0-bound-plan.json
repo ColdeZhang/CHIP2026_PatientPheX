@@ -1,0 +1,199 @@
+{
+  "schema": "patient-response-code-same32-fulltextF0-58-native-v1",
+  "status": "COMPLETE_F0_ANCESTRY_AND_NATIVE_CPU_BOUND_NO_GPU",
+  "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "remote": "patient-response-code/F0-full58-v1",
+  "adapter": "/dev/shm/patientphex-response-code-20261024/formal2ep/epoch-002/adapter",
+  "adapter_files": {
+    "adapter_config.json": "36a74bd8c6a7746eb4779774ee48a246e412e4578b7662b90abfbc00ec964d54",
+    "adapter_model.safetensors": "2c777e88f86ed6f1aa620755f30ec176668578fe6349009470c4a58941cc0316"
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "cap_seconds": 1200,
+  "term_grace_seconds": 30,
+  "input_limit": 16896,
+  "generation_limit": 1600,
+  "cached_original_indices": [],
+  "fresh_rows": 58,
+  "training_completed_epochs": 2,
+  "training_global_step": 32,
+  "configured_eos_ids": [
+    248044,
+    248046
+  ],
+  "expected_runtime": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1",
+    "actual_tokenizer_class": "Qwen3_5Tokenizer",
+    "matmul_TF32": false,
+    "cudnn_TF32": true
+  },
+  "files": {
+    "infer_full58.py": {
+      "bytes": 11565,
+      "sha256": "c69129bed4e6346375b1430df26dfdee31cab8bbeabbee60666a3554583b4b74"
+    },
+    "probe_runner.py": {
+      "bytes": 8970,
+      "sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f"
+    },
+    "legacy_runner.py": {
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "launch.py": {
+      "bytes": 3802,
+      "sha256": "487080ccad97db20701477b68732277df7180c4f10871f4dbc72f5eca6736522"
+    },
+    "response_codec.py": {
+      "bytes": 4878,
+      "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "held.response-code.jsonl": {
+      "bytes": 2092727,
+      "sha256": "ad7683f59cdcb46cd274bdfae481caa644bbd8e8b2cfc639d05ae68252f262ca"
+    },
+    "training-campaign-complete.json": {
+      "bytes": 694,
+      "sha256": "f1e2d98ff28dd0b5e58ff6e12fe60142b5694734ac79a86b4c93888b995c94f1"
+    },
+    "training-epoch2-persistent-ACK.json": {
+      "bytes": 3067,
+      "sha256": "5c8cfe2c02f03cfed981bb5e6e88322a2092ac0052fcf44298e3d3854918f2e4"
+    },
+    "row-audit.json": {
+      "bytes": 18251,
+      "sha256": "c2a118298a9b9593fd11939a4d0bed5f7f8d203bd461c95785595730ce90067a"
+    }
+  },
+  "native_census": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-readiness-v1/native-terminal/native-result.json",
+    "bytes": 3608,
+    "sha256": "47cf48652d209befabf709bf06a4d8ac385b4f9ff2dbca4faca4f1298a170f34"
+  },
+  "quality_policy": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/f0/quality-policy.json",
+    "bytes": 896,
+    "sha256": "3f3d5477b5b7450a2db427a9753c8573ca7885613f958d93a067c742e35e7812"
+  },
+  "training_provenance": {
+    "controller": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/controller/controller-plan.json",
+      "bytes": 8510,
+      "sha256": "c03ebeb2c91add3e710684d6167816249c8497ed68a85d2039529cf4e954e068"
+    },
+    "campaign": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/controller/campaign-complete.json",
+      "bytes": 694,
+      "sha256": "f1e2d98ff28dd0b5e58ff6e12fe60142b5694734ac79a86b4c93888b995c94f1"
+    },
+    "ACKs": [
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/controller/epoch-001-export-ack.json",
+        "bytes": 2918,
+        "sha256": "adc6230703862a05e18282c0e843f7eea7949bf1541d2ed6f0662e4c013d0954"
+      },
+      {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/controller/epoch-002-export-ack.json",
+        "bytes": 3067,
+        "sha256": "5c8cfe2c02f03cfed981bb5e6e88322a2092ac0052fcf44298e3d3854918f2e4"
+      }
+    ],
+    "epoch2_full_files": {
+      "_run/indexed_head.py": {
+        "bytes": 10783,
+        "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+      },
+      "_run/progress.json": {
+        "bytes": 250,
+        "sha256": "93fb561efcf2e334a724cf341a3be89360febd2da35934fda19ffb0e48633718"
+      },
+      "_run/qwen35_relation_cost.py": {
+        "bytes": 22367,
+        "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+      },
+      "_run/qwen35_smoke.py": {
+        "bytes": 26050,
+        "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+      },
+      "_run/run_manifest.json": {
+        "bytes": 11888,
+        "sha256": "fe3f2e663fb922e77647724fc066222f7007e468f2ecbbb81a3daf04d9ec4455"
+      },
+      "_run/runtime_contract.py": {
+        "bytes": 7134,
+        "sha256": "854c794c5eaa3866c33b4dde6df438cdb91dd64f2111fa0d08803eac9710fa57"
+      },
+      "_run/selected_loss.py": {
+        "bytes": 1101,
+        "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+      },
+      "_run/train.py": {
+        "bytes": 38367,
+        "sha256": "9b8addda66b1efdbb45ee6c32ff5c284d75a899f414612e1c9f102431c0a62da"
+      },
+      "_run/training_complete.json": {
+        "bytes": 610,
+        "sha256": "48a0807d45ebdb796a2df506f3fcc94b393db378867ca0c65217c13db9ed25c7"
+      },
+      "adapter/README.md": {
+        "bytes": 5352,
+        "sha256": "bd7363c9041c455304d35f564fd75126a6bf31a4b8661ea33006050aba917e93"
+      },
+      "adapter/adapter_config.json": {
+        "bytes": 1341,
+        "sha256": "36a74bd8c6a7746eb4779774ee48a246e412e4578b7662b90abfbc00ec964d54"
+      },
+      "adapter/adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "2c777e88f86ed6f1aa620755f30ec176668578fe6349009470c4a58941cc0316"
+      },
+      "checkpoint.json": {
+        "bytes": 11992,
+        "sha256": "acb62fbbbc49f02684cf4a5db1e80d08960c8ba775844134c74a6f7701c3b6c9"
+      },
+      "training_state.pt": {
+        "bytes": 346707282,
+        "sha256": "f12d1b7e87663bd726ded81941bde2e91a14b626eb1891df03f5a0a62570c730"
+      }
+    }
+  },
+  "raw_first": true,
+  "whole_row_abstention": true,
+  "no_repair": true,
+  "unique_quality_calls": 2,
+  "old_quality_calls": 0,
+  "native_census_limits": {
+    "total_tokens": 516365,
+    "max_tokens": 16542,
+    "input_cap": 16896
+  },
+  "longest_first_index": 30,
+  "run_order": "One longest original row first as one of58, then original ascending length/rowID; no extra probe/cache",
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-readiness-v1/ancestry.json",
+    "bytes": 6788,
+    "sha256": "ebba308f0be46def025f5818eb1b6b048909d8f41f9d68b3cd2a6f24ed44d25d"
+  },
+  "comparison_scope": "Existing normalN head48 vs codedhead32; shared upstream candidates48 excludeF0; actual candidate comparison, not uniformtrain32 isolated encoding."
+}
