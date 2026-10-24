@@ -46,7 +46,10 @@ def all_windows(docs,engine,protocol):
             windows.append((doc,i,c))
     return windows
 
-def inspect_inputs(engine,windows,schema,protocol):
+def inspect_inputs(engine,windows,schema,protocol,model_path):
+    from tokenizers import Tokenizer
+    native=Tokenizer.from_file(str(Path(model_path)/"tokenizer.json"))
+    token_cache={}
     compiled=engine.compile_schema(schema)
     census=[]
     for doc,i,c in windows:
@@ -56,10 +59,20 @@ def inspect_inputs(engine,windows,schema,protocol):
         assert record.start_token_idx==[x[1] for x in expected]
         assert record.end_token_idx==[x[2] for x in expected]
         assert record.text_tokens==[x[0] for x in expected]
+        combined=[]
+        for struct in record.schema_tokens_list:
+            combined.extend(struct);combined.append(engine.model.processor.SEP_STRUCT)
+        if combined:combined.pop()
+        combined.append(engine.model.processor.SEP_TEXT);combined.extend(record.text_tokens)
+        expected_ids=[]
+        for token in combined:
+            if token not in token_cache:token_cache[token]=native.encode(token,add_special_tokens=False).ids
+            expected_ids.extend(token_cache[token])
+        assert expected_ids==record.input_ids,'Runtime tokenizer differs from published tokenizer.json processing chain'
         size=len(record.input_ids)
         assert size<=protocol['chunking']['maximum_wordpieces_with_schema'],size
         census.append(dict(pmc_id=doc['pmc_id'],window=i,start=c.start_char,end=c.end_char,
-                           start_word=c.start_word,end_word=c.end_word,words=len(expected),native_appended_period=record.text!=c.text,input_ids=size,
+                           start_word=c.start_word,end_word=c.end_word,words=len(expected),native_appended_period=record.text!=c.text,input_ids=size,actual_input_ids=record.input_ids,
                            input_ids_sha256=hashlib.sha256(json.dumps(record.input_ids,separators=(',',':')).encode()).hexdigest()))
     return census,compiled
 
@@ -74,6 +87,23 @@ def remap_result(doc,chunk,result):
                             source_rejection=reason,patient_id=patient,patient_rejection=p_reason)
     return dict(entities=list(entities.values()),relations=[dict(**r.to_dict(),head_entity=entities[r.head],tail_entity=entities[r.tail]) for r in result.relations],feasible=result.feasible)
 
+def native_catalog(doc,chunk,lattice):
+    mentions=[]
+    for mention in lattice.mentions:
+        item=json_value(mention)
+        if not 0 <= mention.start < mention.end <= len(lattice.start_mappings):
+            raise ValueError('Native candidate outside caller token coordinates')
+        a=lattice.start_mappings[mention.start]+chunk.start_char
+        b=lattice.end_mappings[mention.end-1]+chunk.start_char
+        source,reason=original_span(doc,a,b)
+        patient,p_reason=patient_for_span(doc,a,b) if mention.entity_type=='patient' else (None,None)
+        mentions.append(dict(**item,joined_start=a,joined_end=b,source=source,source_rejection=reason,
+                             patient_id=patient,patient_rejection=p_reason))
+    keys={(m['entity_type'],m['start'],m['end']) for m in mentions}
+    for edge in lattice.edges:
+        assert tuple(edge.head) in keys and tuple(edge.tail) in keys
+    return dict(mentions=mentions,edges=json_value(lattice.edges),native_cap_limited=True)
+
 def execute(engine,schema,config,doc,i,chunk,out):
     import torch
     start=time.monotonic()
@@ -84,6 +114,7 @@ def execute(engine,schema,config,doc,i,chunk,out):
     # remain available even if the selected relation fails patient/HPO mapping.
     raw=dict(pmc_id=doc['pmc_id'],window=i,chunk=json_value(chunk),result=result.to_dict(include_text=True),lattice=json_value(lattice))
     write(out/f'{doc["pmc_id"]}-{i:04d}.raw.json',raw)
+    write(out/f'{doc["pmc_id"]}-{i:04d}.candidates.json',native_catalog(doc,chunk,lattice))
     mapped=remap_result(doc,chunk,result)
     record=dict(pmc_id=doc['pmc_id'],window=i,elapsed_seconds=time.monotonic()-start,
                 native_mentions=len(lattice.mentions),native_edges=len(lattice.edges),
@@ -118,7 +149,7 @@ def main():
                        checkpoint_strict_load=True,source_sha256=sha(__file__),protocol_sha256=sha(args.protocol),input_sha256=sha(args.input),
                        boundary_settings=engine.model.boundary_settings)
         write(out/'inventory.json',inventory)
-        windows=all_windows(docs,engine,protocol);census,compiled=inspect_inputs(engine,windows,schema,protocol)
+        windows=all_windows(docs,engine,protocol);census,compiled=inspect_inputs(engine,windows,schema,protocol,args.model)
         write(out/'input-census.json',dict(documents=16,patients=39,windows=len(windows),
               max_input_ids=max(c['input_ids'] for c in census),word_and_character_mapping_exact=True,
               no_truncation=True,compiled_schema=compiled,rows=census))

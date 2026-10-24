@@ -9,3 +9,5 @@
 - 输入准备和六项坐标合同通过；首版schema/阈值/完整两端点已冻结，代码尚待真实CPU load。见[实验](experiments/E-20261024-SCHEMA-001.md)。
 - .3资产500MiB截断已识别，原partial Range续传中；后续GPU转root预留的.100 GPU1，尚未占卡。
 - 最近已核远端检查点8e33710；本阶段保存prepare/run_joint/protocol与失败恢复证据定位，不包含大资产。
+- .3资产已全SHA通过；CPU strict load和全164窗原生tokenizer独立IDs合同11.788s通过。未质量/未GPU。root授权.100 probe120+30、满足真实估计后full900+30；.100 runtime合同与复制进行中。
+- .3私网transfer首次start_process返回UNKNOWN_OUTCOME；原意图和token已持久化，只读恢复原server状态/port，不重启第二服务。
