@@ -1,0 +1,87 @@
+{
+  "status": "complete_predictions_frozen_before_quality_evaluation",
+  "plan_sha256": "a850623343523c0a38fdc76dce6e7ac3dae965e659249af41078fa164462132e",
+  "source_sha256": "3f8fc9a7386998dec425069ec533410649a1e64077e8eb2e359f859b4b812c8c",
+  "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+  "model_weight_sha256": "1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573",
+  "model_parameters": 121587826,
+  "model_variables": 201,
+  "strict_native_CPU_load_sha256": "545eadcb6f9d5419aece46ab89031d5dcc27b347f30a2949c22c5e75d47aee5f",
+  "GPU_first_batch_validation_sha256": "3170d96cd8f1dd13085498834cd294cd71afc1ba60d50f5e5b5f70fa8288034f",
+  "old_label_order_sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+  "public_model_training_on_task": false,
+  "model_type": "biobert",
+  "reused_other_model_logits": false,
+  "reused_forward_sha256": "6b41083473cc49016671b24d29b9b556899bda667c6ca0d04490455bfdc49139",
+  "reused_forward_parent_manifest_sha256": "26ca138da95bf6dc1610ad2bb942c442556cf7ac770e066016bc0a022da6f695",
+  "new_forward_keys": 347634,
+  "reused_forward_keys": 15145,
+  "fixed_policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "No downstream quality in cache stage; later candidate/feature policy separately fixed before any fitting.",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "counts": {
+    "raw_neural_candidates": 446799,
+    "raw_dictionary_candidates": 6100,
+    "hybrid_pre_abbreviation": 8484,
+    "hybrid_after_abbreviation": 8727,
+    "canonical_kept": 8723,
+    "invalid_current_branch_dropped": 4
+  },
+  "inference_seconds": 237.05256229639053,
+  "elapsed_seconds": 325.35429168492556,
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "memory_growth": true,
+  "tf32_default_enabled": true,
+  "GPU_peak_memory": {
+    "current": 535034624,
+    "peak": 664721152
+  },
+  "outputs": {
+    "preparation.json": {
+      "sha256": "e8f2a67f64bc0a74f58ce2a57c46b4273655f559eb9222d970f8ec948be85f11",
+      "bytes": 561
+    },
+    "new-forward-predictions.jsonl": {
+      "sha256": "cf74907650c4b1e85dcb7139d03fc93560850a42c7b64ff85c331b0d80282fc6",
+      "bytes": 183145822
+    },
+    "GPU-first-batch.json": {
+      "sha256": "3170d96cd8f1dd13085498834cd294cd71afc1ba60d50f5e5b5f70fa8288034f",
+      "bytes": 1007
+    },
+    "unique-raw-predictions.jsonl": {
+      "sha256": "6de1836ef2c6a4ac9bc40f3aac201d7f4bbe44b2d84a1238baec95123105a2b6",
+      "bytes": 191532055
+    },
+    "raw-neural-candidates.jsonl": {
+      "sha256": "b6d23bb6453518a35f9862f0344eaf0a0fd33c8aac9572ba719052a255c85e91",
+      "bytes": 277294431
+    },
+    "raw-dictionary-candidates.jsonl": {
+      "sha256": "4540c8ed26eebcb73acd5d17a8c5deb00f9b168cf8ba19d1542ca3d1acda8ad4",
+      "bytes": 1419603
+    },
+    "native-hybrid-stages.jsonl": {
+      "sha256": "85258ed7a5edfb87742b43cd95ac075442a3dfb36845bcf842312ca5f060efea",
+      "bytes": 1024688
+    },
+    "canonical-entities.jsonl": {
+      "sha256": "f66e1f450f72c88756c13b7ab980c6372b8087b01d0fc61fdb6ed853e9961c99",
+      "bytes": 2266655
+    }
+  }
+}
