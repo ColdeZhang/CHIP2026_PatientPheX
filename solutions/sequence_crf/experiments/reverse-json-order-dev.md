@@ -12,4 +12,6 @@
 
 原job64条完整/466候选有效，无fallback；native230.897秒、wrapper239.176秒，峰19,627,511,296B，00:40:47 fresh GPU空。00:40:54完整reverse/union先freeze，00:41:05唯一union评完。Score **.738493752650→.746081964986**（+.007588212336）；mention .786960514、document .824512535原样；micro .708891596→.725118483，macro .633610366→.647736327。新增15TP8FP、无移除；1072实体、全部368旧关系/35publicnew支持关系及其他对象完全保留，新391关系、0错警，符合事前keep。预测a179a5de5b7271979a0fba851afc269d63125248a56681674e7388d0c6728c39。
 
-原dev开发及A30→A800差异不变，不单独归因顺序、不重跑旧基线；仍未.8，不合并/不官方。入口增量独审ece9db59已过，完整终审进行中；当前无活动GPU，完整结果与恢复见evidence/round2/reverse-json-order-dev-results.json，实际源未改。
+原dev开发及A30→A800差异不变，不单独归因顺序、不重跑旧基线；仍未.8，不合并/不官方。入口增量独审ece9db59已过，完整终审PASS b4f5df0a（实际谱系0b9a71f3）；当前无活动GPU，完整结果与恢复见evidence/round2/reverse-json-order-dev-results.json，实际源未改。
+
+恢复小清单 formal/backup-allowlist.json 明确列文件/大小/SHA，继承baac已实际恢复的HGB/关系依赖链；root负责远端上传及回下载验证，本清单不冒称已完成备份。

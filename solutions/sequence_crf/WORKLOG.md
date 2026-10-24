@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**原dev唯一逆序并集完整正，终审进行中。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
+**原dev唯一逆序并集完整正，独审PASS（b4f5df0a）。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
 
 **固定逆序并集F0终点正，独审PASS（ac631bcd），GPU已释放。** 原58/SFT48/旧候选415全有效，wrapper222.352秒；唯一union Score **.695443948→.704687440**（+.009243492），micro+.008895764/macro+.028078206，只新增12TP14FP，原947实体/旧关系全留，0错警。符合事前keep，reverse-alone未评；F1同union微升但micro负限制保留，不自动迁原dev。GPU2于00:29:56核空；旧48只读SHM副本可从.100持久原件恢复，无活动job。[终点及恢复](evidence/round2/reverse-json-order-f0-results.json)、[方法](experiments/reverse-json-order-f0.md)。
 
