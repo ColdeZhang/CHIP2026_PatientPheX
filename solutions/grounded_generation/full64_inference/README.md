@@ -9,3 +9,5 @@
 下游必要Sap待当前A800任务完成后排.100空闲卡：公共bank/labels/manifest由span路线已同字节复制bc4ea231/60a27430/443922da，不重编码。原.3 Torch2.7.0+cu128/TF4.50.0与目标.100 Torch2.7.1+cu126/TF4.51.3不同，后续实际plan必须绑定真实环境/相同6个MODEL_FILES与固定CLS_L2/FP16/max32；held transport已改.100，held-target-assets.json绑定span实际CPU资产/同字节复制/真实runtime；实际query plan仍要在完整36输出和排期release后生成，不能把资产准备当GPU授权窗口。
 
 最终最小补包入口为 `persistence/full64_supplement.py`，仅在完整纯源和集中终审齐备后执行。原终点ZIP逐字节收进包；两完整checkpoint只引用实际.100持久ACK，不把SHM冒称持久，不复制旧F1/F0包或公共权重。当前仅语法/静态路径核过，尚无本轮补包。
+
+完整回收次序：原watch产出campaign-complete → 原guardian_remote仅observe得到两HTTP实际关闭 → finish_guardian纯本地冻结该收据 → collect_complete冻结训练metadata。这样不会在HTTP stdout writer仍活时归档；不改原训练/导出/ACK流程或新增停止动作。

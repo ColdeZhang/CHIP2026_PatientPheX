@@ -184,8 +184,14 @@ def main():
     campaign_complete=json.loads((root/'campaign-complete.json').read_text())
     deployment=json.loads((root/'deployment-manifest.json').read_text());controller=json.loads((root/'controller-plan.json').read_text())
     assert campaign_complete['status']=='TWO_COMPLETE_EPOCHS_DURABLE_ACKS_VERIFIED'
+    guardian_path=root.parent/'export-guardian-v1/terminal-collection.json'
+    guardian=json.loads(guardian_path.read_text())
+    assert guardian['both_original_HTTP_children_exited'] and guardian['collection_only_no_remote_or_signals']
+    assert guardian['campaign_complete']==ref(root/'campaign-complete.json')
+    assert guardian['actual']['started.json']['plan_sha256']==ref(root/'controller-plan.json')['sha256']
+    # Freeze metadata only after the original two HTTP stdout writers have also exited.
     package=dict(mount=MOUNT,remote=REMOTE,members=deployment['files'],controller_plan=ref(root/'controller-plan.json'),
-        campaign_complete=ref(root/'campaign-complete.json'),ACKs={str(e):ref(root/('epoch-%03d-export-ack.json'%e)) for e in (1,2)},source=ref(__file__))
+        campaign_complete=ref(root/'campaign-complete.json'),HTTP_guardian_terminal=ref(guardian_path),ACKs={str(e):ref(root/('epoch-%03d-export-ack.json'%e)) for e in (1,2)},source=ref(__file__))
     for e in (1,2):assert campaign_complete['epoch%d_ack_sha256'%e]==package['ACKs'][str(e)]['sha256']
     save(package_path,package)
     assert package['mount'] == MOUNT and package['remote'] == REMOTE
