@@ -5,3 +5,5 @@
 20756可用池只是标注意义负例，仍有漏标风险；全部边界重叠、正span错概念、NIL/outbranch不进入新增NO。固定1:4是成本受限的保守选择，不称最优。原候选prob来自class-balanced词面LR，并非上下文/概念正确概率；只做文内排序，不输入模型。
 
 完整来源分析R/research/mention-hard-negative-readiness-20261024/REPORT.md SHA7e8fba82；census81d46d98。F1输入proposer仍含训练F0的强48模型；F0后继必须替换排F0强池，不能把head纯train32误称全pipeline纯train32。
+
+运行环境迁移：本线.3 Torch2.7.0cu128，原2353为.100 Torch2.7.1cu126；其余TF/tokenizer/PEFT及核心数值源全等，不能把跨机比较宣称数据唯一数值变量。同机13资产此前已全SHA，复用实际size/mtime/inode守卫；之前成功压力/完整训练只证明工程边界，不证明本线质量。
