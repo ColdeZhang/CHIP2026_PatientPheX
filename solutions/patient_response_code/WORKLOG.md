@@ -44,3 +44,7 @@ Source checkpoint6aa76b44与probeplan83497912已push；唯一CLI在CLAIM RPC UNK
 ### 2026-10-24 13:46–13:48 UTC — root moved full64 to A800 before any A100 formal
 
 A100原formal campaign/start均0，closure独立保存，不再bootstrap；其原GPU工程结果有效但不作A800实际证明。sequence原.7sampling未start交卡，已独立转.100GPU0。A800实际13:47:27 inventory全部15基座SHA/native源码exact，Torch metadata2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1，无FLA；model原SHM缓存不复制。项目盘仅1.076GB，明确小部署/日志门512MiB，完整state全SHM→.100；新driver仍fresh70000MiB/noapps。原329 nativeCPU、12rows/52201tokens/两Pareto、seed/目标完全复用，只host/runtime/locator和工程门变，新240+30源6349cede。document_relations helper仅并行新formal/controller/inference源，我唯一Git/remote。
+
+### 2026-10-24 13:48 UTC — A800 unique H51 accepted
+
+最终plan21255251（仅修正最初6349复制的旧A100叙述）、package586a7a03已9826584b先push后13件实际部署SHA/fsync。唯一start13:48:48.839681393Z proc_f275c605-83eb-479d-a4a8-d46f9bcbab56/PID40008，A800GPU2 UUIDf516，240+TERM30。原A100bootstrap永不调用，新formal沿实际A800终态条件，不拿A100probe替代。cyclic1已另分支f4674b53负关闭、69件e777真实ACK，其helper已释放；这里只继续原标准PT full64。
