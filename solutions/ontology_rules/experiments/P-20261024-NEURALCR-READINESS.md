@@ -74,3 +74,7 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 ### 01:33 完整资产到齐，冻结shape plan
 
 64KiB补缺225.522662秒完成6原片/54个小块（含manifest），无错误；01:33:24.953Z启动最终assembly，实际7.349991秒/rc0，全2280片SHA再次核验。FT完整1345465351字节，SHA `e9947f25ef59693c3dd46eb33418b0a44d0663f2c4675adf98c99a187c0d20c5`。联合`postdownload-readiness/verified-assets.json`引用旧HP和新FT，不改写任何旧失败状态。下一shape的完整666817字典/双矩阵/EOF解析按既定120秒CPU cap独立执行，source未改，实际完整资产绑定plan先checkpoint。
+
+### 01:34 全文件结构通过，条件窄修plan冻结
+
+shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(666817,100)、EOF精确，333363400 FT参数；HP实际60数组/157705490，总491068890。标准prune header实际不合法，精确观察到the+NUL在84、prune=-1在88，其余记录完整。官方fastText v0.9.1固定源码Dictionary::save/load第431–465行明确prune应先于首词；源码SHA5cffc598…305290408ef02836a3b。因此仅触发已授权[84:88]与[88:96]交换，原件只读，所有有序词/count/type、双矩阵全SHA和其余字节须exact；修复plan先checkpoint，尚未进入C++。
