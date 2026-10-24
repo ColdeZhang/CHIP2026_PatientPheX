@@ -1,4 +1,4 @@
-# 闭集患者优先生成：CPU 准备完成
+# 闭集患者优先生成：单步通过，正式方案待启动
 
 真实目标是改变同一关系矩阵的自回归因子化，检验能否改善患者集合判断。约束是仅复用旧 strict train32 标签与 F1 纯输入；本阶段成功标准为全部关系双逆精确、来源隔离、实际分词/掩码和严格 schema 成立。**本阶段无训练、GPU、权重加载、F1 targets、原 dev gold 或新质量分数。**
 
@@ -103,3 +103,18 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 峰allocated36,200,963,072B（33.715GiB）、reserved40,955,281,408B（38.143GiB），结束前free793,051,136B（.739GiB）。02:02:19.724Z wrapper实核目标卡无进程、0/40960MiB；已通知ontology接其NCR，不开正式训练。8个终点原件/37项manifest已回收全SHA，stdout/stderr和完整模型库存外存。[结果](../evidence/round2/patient-first-probe-results.json)、[清单](../evidence/round2/patient-first-probe-terminal-manifest.json)。
 
 按801228训练tokens线性缩放单步约1909秒（31.8min）；若248微批均按该最长单步计约3283秒（54.7min），另有本次约65.8秒加载/校验等。两者只是成本代理：正式accum8/32次Adam，与probe每步Adam/诊断不同，长度、算子、I/O和负载会变，不能当实际完成时间或严格上界。若主线程选择，建议训练硬3900+30秒、后续完整80推断另600+30秒；此处没有启动授权扩大。A100首步forward尚无Adam state，正式后续常驻Adam/累积梯度及变化shape内存池可能更高，单次最长通过不保证2ep显存；优先等80GiB A800空闲，不自行改loss/attention或截断。仍无质量分数或达标推断。
+
+
+### 统一终审与正式方案准备（未启动）
+
+单步终审`3f22cbfc`通过：37refs/23部署/8终点与15模型元数据、nativeCPU窄修、真实更新/数值/退出/释放均独核，没有新NN或重跑25例。原data CPU过严guard失败仍保留；正式阶段沿用新的实际CPU收据，不再把Torch导入等同GPU或NN执行。
+
+主线程确定先等A800 GPU2现warm最终释放；fresh全卡survey无其他空卡，GPU0外部PID不共享或停止。独立输出`/dev/shm/patientphex-patient-first-1045/formal2ep`，只读复用reference SHM base/runtime；启动前还要实际空卡与SHM至少2GiB余量，.100持久空间至少2GiB，源/数据/基座实际SHA检查。当前仅准备，**没有正式launch授权或job**。A100旧显式配置没启用allocator选项，历史继承变量未保存；当前hiddenCUDA CPU实查Torch2.6/native、两allocator env均null，无新override。没有把当前配置回推旧运行，也不新增expandable_segments试探。
+
+正式训练源`a3ec17f5`从旧`08fc142c`最小改编：原fresh模型加载到两轮、32 optimizer calls、2 warmup、bs1/acc8、seed20261023/r16/alpha32/dropout.05/BF16/SDPA/nonreentrant/native逐行CE，以及epoch adapter+Adam/scheduler/Python/NumPy/Torch/CUDA RNG保存/恢复的整段源码逐字不变。新manifest明确区别旧provenance的cb7f train与新14af转置train；每行新schema/10字段token审计、400614/4694/5556和actualCPU combined SHA均硬绑定。唯一新增CPU源接线0.088秒实际返回124/32train/32excluded隔离，两个epoch shuffle逐字同旧、每轮15组8行+末组4行；H44反例只排除同前缀ack文件，不冒称完整GPU恢复等价。旧meta/causal CPU模式没有单独重跑。训练硬3900+TERM30；首OOM/数值/预算失败停，保留完整epoch，不减输入、不改loss、不自动重启或推断partial。
+
+最终推断仅epoch2/32calls、同原80输入和旧非thinking greedy设置14000/1600（不另改cap）。新input总251016/max5695，输入级synthetic全正compact响应参考最长303token；这是具体序列长度，不是任意空白或模型输出的上界。新增1有效+6拒绝EOS/身份合同，旧25 schema检查沿用；真实generated IDs/单终止EOS、完整PID键、合法CID及无重复、整串JSON必须全过，反向转回CID→PID后装配，禁止fallback。完整80与fullpred先freeze，再唯一F1 v2；原1189实体/非association字段完全不变，旧SFT32指标直接复用。保留条件固定`delta(micF1+macF1)>0 and delta(macF1)>=0`，否则负关闭，不并集、不扫参数/轮数、不原dev。推断另600+TERM30，CPU装配/评分各30秒。
+
+最终完整checkpoint计划由已核HTTP方式在独立180+TERM10内从A800自有SHM导出到`.100/sequence-round2/patient-first-formal/checkpoints/epoch-002`，只复制白名单adapter/Adam/RNG及小来源文件；目标fsync后重开完整SHA，再独立读回校验；动态端口、源进程记录先于start，未知结果查原进程，确认文件固定`export-ack-epoch-002.json`。新HTTP源使用兼容3.8的resolved-parent包含检查，避开H33。成功回收只停止本次server；连接未知时原远端180+10仍有界。最终导出实际成功前不进入推断。适配源码/恢复CLI已准备，未部署或发送权重。
+
+运行/恢复入口为外部`formal-preparation/`：[准备总清单](../evidence/round2/patient-first-formal-readiness.json)，`formal_operations.py deploy/start/collect --phase train|infer`负责唯一部署与phase intent，`export_operations.py prepare/start-server/start-fetch/collect/stop-server`负责CPU持久导出，`finish.py assemble`先freeze，随后才`evaluate`。实际runplan/文件SHA见清单。准备脚本与全部嵌入远端Python模板均compile检查；当前GPU/磁盘fresh preflight及新实际运行仍待资源释放和主线程安排，不把计划写成已执行结果。

@@ -1,0 +1,98 @@
+{
+  "status": "readonly_current_A100_not_historical_inheritance",
+  "actual": {
+    "torch": "2.6.0+cu124",
+    "env": {
+      "PYTORCH_ALLOC_CONF": null,
+      "PYTORCH_CUDA_ALLOC_CONF": null,
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "allocator_backend": "native",
+    "cuda_initialized": false,
+    "no_weight_or_forward": true,
+    "files": {
+      "include/c10/cuda/CUDAAllocatorConfig.h": {
+        "path": "/dataset/miniforge3/envs/vlm-det/lib/python3.10/site-packages/torch/include/c10/cuda/CUDAAllocatorConfig.h",
+        "bytes": 4348,
+        "sha256": "4399acdfe24f557f9c137b873385cef62b47922eb42e4019f2a7495928374526",
+        "hits": [
+          {
+            "line": 25,
+            "text": "  }\n\n  static bool expandable_segments() {\n#ifndef PYTORCH_C10_DRIVER_API_SUPPORTED\n    if (instance().m_expandable_segments) {"
+          },
+          {
+            "line": 27,
+            "text": "  static bool expandable_segments() {\n#ifndef PYTORCH_C10_DRIVER_API_SUPPORTED\n    if (instance().m_expandable_segments) {\n      TORCH_WARN_ONCE(\"expandable_segments not supported on this platform\")\n    }"
+          },
+          {
+            "line": 28,
+            "text": "#ifndef PYTORCH_C10_DRIVER_API_SUPPORTED\n    if (instance().m_expandable_segments) {\n      TORCH_WARN_ONCE(\"expandable_segments not supported on this platform\")\n    }\n    return false;"
+          },
+          {
+            "line": 32,
+            "text": "    return false;\n#else\n    return instance().m_expandable_segments;\n#endif\n  }"
+          },
+          {
+            "line": 63,
+            "text": "  // More description below in function roundup_power2_next_division\n  // As ane example, if we want 4 divisions between 2's power, this can be done\n  // using env variable: PYTORCH_CUDA_ALLOC_CONF=roundup_power2_divisions:4\n  static size_t roundup_power2_divisions(size_t size);\n"
+          },
+          {
+            "line": 83,
+            "text": "    static CUDAAllocatorConfig* s_instance = ([]() {\n      auto inst = new CUDAAllocatorConfig();\n      const char* env = getenv(\"PYTORCH_CUDA_ALLOC_CONF\");\n      inst->parseArgs(env);\n      return inst;"
+          },
+          {
+            "line": 129,
+            "text": "  std::atomic<double> m_garbage_collection_threshold;\n  std::atomic<size_t> m_pinned_num_register_threads;\n  std::atomic<bool> m_expandable_segments;\n  std::atomic<bool> m_release_lock_on_cudamalloc;\n  std::atomic<bool> m_pinned_use_cuda_host_register;"
+          }
+        ]
+      },
+      "include/c10/cuda/CUDACachingAllocator.h": {
+        "path": "/dataset/miniforge3/envs/vlm-det/lib/python3.10/site-packages/torch/include/c10/cuda/CUDACachingAllocator.h",
+        "bytes": 17482,
+        "sha256": "1af51a54e92e33e37335c36e9d26e95a6ffe109d6bfcfee8c1b11ca02830ba39",
+        "hits": [
+          {
+            "line": 105,
+            "text": "    SEGMENT_FREE, // a call to cudaFree to return memory to the OS (e.g. to\n                  // defragment or empty_caches)\n    SEGMENT_MAP, // a call to cuMemMap (used with expandable_segments)\n    SEGMENT_UNMAP, // unmap part of a segment (used with expandable segments)\n    SNAPSHOT, // a call to snapshot, used to correlate memory snapshots to trace"
+          },
+          {
+            "line": 157,
+            "text": "  size_t max_split_size;\n  size_t pinned_num_register_threads;\n  bool expandable_segments;\n  bool release_lock_on_malloc;\n  bool pinned_use_host_register;"
+          }
+        ]
+      },
+      "cuda/memory.py": {
+        "path": "/dataset/miniforge3/envs/vlm-det/lib/python3.10/site-packages/torch/cuda/memory.py",
+        "bytes": 41574,
+        "sha256": "131fcd492398bc4443ccff0c27a9963a5acb2ab1bde8e62f0430fb9fc8d3557b",
+        "hits": [
+          {
+            "line": 52,
+            "text": "    \"list_gpu_processes\",\n    \"mem_get_info\",\n    \"get_allocator_backend\",\n    \"CUDAPluggableAllocator\",\n    \"change_current_allocator\","
+          },
+          {
+            "line": 925,
+            "text": "\n\ndef get_allocator_backend() -> str:\n    r\"\"\"Return a string describing the active allocator backend as set by\n    ``PYTORCH_CUDA_ALLOC_CONF``. Currently available backends are"
+          },
+          {
+            "line": 927,
+            "text": "def get_allocator_backend() -> str:\n    r\"\"\"Return a string describing the active allocator backend as set by\n    ``PYTORCH_CUDA_ALLOC_CONF``. Currently available backends are\n    ``native`` (PyTorch's native caching allocator) and `cudaMallocAsync``\n    (CUDA's built-in asynchronous allocator)."
+          }
+        ]
+      }
+    }
+  },
+  "actual_receipt": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/allocator-readonly-actual.json",
+    "bytes": 8837,
+    "sha256": "26da63c5c56ae8fb2c34754ffe7a6e97b3b948ef6cb050a792a48fd8e450efb3"
+  },
+  "old_A100_explicit_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/formal2ep/run-plan.json",
+    "bytes": 10089,
+    "sha256": "248e9c3203651d76ae059c9ab325228289cdc4524020d9f66ede128ff7d137bc"
+  },
+  "old_explicit_override_absent": true,
+  "historical_inherited_environment_not_saved": true,
+  "new_allocator_configuration_added": false
+}

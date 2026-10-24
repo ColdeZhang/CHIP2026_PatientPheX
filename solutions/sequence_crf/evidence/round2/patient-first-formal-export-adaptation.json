@@ -1,0 +1,110 @@
+{
+  "status": "PATIENT_FIRST_EXPORT_SOURCE_READY_AST_ONLY_NOT_LAUNCHED",
+  "sources": {
+    "export_checkpoint_server.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/export_checkpoint_server.py",
+      "bytes": 3771,
+      "sha256": "e6d32ef491791ea46498f741a1502027bc0d46f215ae3779dce84bcd71d271ae"
+    },
+    "fetch_checkpoint.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/fetch_checkpoint.py",
+      "bytes": 3933,
+      "sha256": "24e92491c7657ab6409bcc08e200a043b3b0a418759beaccf9fc2e14a7860085"
+    },
+    "run_paired_ack_paths.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/run_paired_ack_paths.py",
+      "bytes": 15660,
+      "sha256": "9afc2dc07fe5fe9b044c4dce6eaec9fbb69bd089af238ff34930bddf99a427f5"
+    }
+  },
+  "adapted": {
+    "export_checkpoint_server.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/export_checkpoint_server.py",
+      "bytes": 5421,
+      "sha256": "d8e103fa33ba4bdde8ae851b5a519892144b7118e3b658aa7d1d9a60f326afba"
+    },
+    "fetch_checkpoint.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/fetch_checkpoint.py",
+      "bytes": 7023,
+      "sha256": "34d9a28380a68f51d0cacd06cf6dce790cf3d86beea2cdc7a42443b0b41257cc"
+    }
+  },
+  "trained_source_required": {
+    "name": "train_patient_first.py",
+    "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e",
+    "checkpoint_fingerprint_schema": "patientphex-qwen35-meta32-patient-first-lora-v1"
+  },
+  "source_run_root": "/dev/shm/patientphex-patient-first-1045/formal2ep",
+  "persistent_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-formal/checkpoints",
+  "epoch_directories": [
+    "epoch-001",
+    "epoch-002"
+  ],
+  "ack_basename": "export-ack-epoch-NNN.json",
+  "ack_location": "inside persistent epoch directory; owner may copy same basename to source run root; does not match epoch-*",
+  "server_CLI": "--checkpoint ABS_SOURCE_RUN_ROOT/epoch-NNN",
+  "fetch_CLI": "--url http://A800_IP:DYNAMIC_PORT --manifest-sha256 READY_SHA --destination ABS_PERSISTENT_ROOT/epoch-NNN --deadline ABS_UNIX_DEADLINE",
+  "strict_transport": {
+    "source_prefix_exact": true,
+    "checkpoint_names_whitelisted": [
+      "training_state.pt",
+      "adapter/adapter_model.safetensors",
+      "adapter/adapter_config.json",
+      "adapter/README.md (optional)"
+    ],
+    "run_files": [
+      "run_manifest.json",
+      "train_patient_first.py",
+      "qwen35_smoke.py",
+      "qwen35_relation_cost.py",
+      "patient_first.py",
+      "progress.json",
+      "training_complete.json (required for epoch2)"
+    ],
+    "model_state_opaque_bytes_not_deserialized": true,
+    "optimizer_scheduler_python_numpy_torch_CUDA_RNG_preserved_in_training_state_pt": true,
+    "manifest_SHA_pinned_by_owner": true,
+    "each_file_size_and_SHA": true,
+    "HTTP_range_resume_with_max3_attempts_within_same_absolute_deadline": "inherited transfer-only behavior; no training retry",
+    "independent_dynamic_port": 0,
+    "fsync_then_reopen_final_filename_SHA": true,
+    "existing_exact_target_also_fsynced_and_reopened": true,
+    "directory_creation_and_rename_fsync": true,
+    "ack_exclusive_write_fsync_and_reopen_SHA": true
+  },
+  "concrete_original_incompatibilities": [
+    "Original server root only accepted warm32 SHM prefix",
+    "Original server required train_qwen35_meta32.py rather than new copied source",
+    "Original fetch accepted only old relative warmstart destination",
+    "Original fetch wrote export-ack.json; source controller separately renamed ack, so owner must use new basename on both sides",
+    "Original existing-target shortcut did not fsync/reopen after durable verification and rename parent directory was not fsynced"
+  ],
+  "epoch2_final_export_plan": {
+    "CPU_only": true,
+    "cap_seconds": 180,
+    "status": "owner_must_freeze_actual_transfer_plan_after_checkpoint_ready; no server/fetch/controller launched",
+    "absolute_deadline": "owner supplies one shared deadline and externally bounds both server/fetch; server serve_forever unchanged and must be stopped even on failure",
+    "checkpoint_epoch": 2,
+    "global_step": 32,
+    "training_calls": "unchanged trainer; no additional update/NN/inference/quality"
+  },
+  "controller_compatibility": "run_paired_ack_paths.py was read for existing contract only, neither modified nor run. It still assumes export-ack.json; do not call it with these helpers without owner-owned new orchestration.",
+  "verification": "AST parse/compile, constants/source-name/forbidden-import static assertions only. No checkpoints or warm state contents/status read; no network/MCP/GPU/Git.",
+  "H33_compatibility_repair": {
+    "reason": "Path.is_relative_to requires3.9; default sourceHTTP Python previously3.8. Strict resolved parent-membership avoids this API.",
+    "sources": {
+      "export_checkpoint_server.py": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/export_checkpoint_server.py",
+        "bytes": 5421,
+        "sha256": "d8e103fa33ba4bdde8ae851b5a519892144b7118e3b658aa7d1d9a60f326afba"
+      },
+      "fetch_checkpoint.py": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/fetch_checkpoint.py",
+        "bytes": 7023,
+        "sha256": "34d9a28380a68f51d0cacd06cf6dce790cf3d86beea2cdc7a42443b0b41257cc"
+      }
+    },
+    "actual_HTTP_execution": false,
+    "prior_source_snapshot": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/export-before-python38"
+  }
+}

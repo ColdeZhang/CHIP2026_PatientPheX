@@ -1,0 +1,259 @@
+{
+  "status": "PASS_real_source_data_guards_and_batch_plan_H44_CPU_only",
+  "completed_utc": "2026-10-24T02:06:59.531332+00:00",
+  "elapsed_seconds": 0.08778220499516465,
+  "verify_sources_and_data_seconds": 0.015464750002138317,
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/train_patient_first.py",
+    "bytes": 37047,
+    "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+  },
+  "parent_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_trainer.py",
+    "bytes": 28818,
+    "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+  },
+  "imported_frozen_sources": {
+    "qwen35_smoke": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_smoke.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "qwen35_relation_cost": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_relation_cost.py",
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    }
+  },
+  "args": {
+    "train": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train124.patient-first.jsonl",
+    "excluded_input": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/excluded.input.jsonl",
+    "data_manifest": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+    "transposition_manifest": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/summary.json",
+    "train_token_audit": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train-token-audit.json",
+    "native_cpu_receipt": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-native/cpu-receipt.json",
+    "schema_helper": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/patient_first.py",
+    "model_source_manifest": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json"
+  },
+  "args_refs": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train124.patient-first.jsonl",
+      "bytes": 1720127,
+      "sha256": "14af86cffe1a8b87af022d13e42f9b910281f0da478e3cc731bc2fbc9ba68c3b"
+    },
+    "excluded_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/excluded.input.jsonl",
+      "bytes": 693112,
+      "sha256": "2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82"
+    },
+    "data_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "transposition_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/summary.json",
+      "bytes": 10469,
+      "sha256": "68d28bafb7b463b68857f44957d7cf33d05116ff2e49872183f7e363458cb254"
+    },
+    "train_token_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train-token-audit.json",
+      "bytes": 163235,
+      "sha256": "36f6faaee683fcaff319714a3b08535208848b45185ab72b7958829417d03586"
+    },
+    "native_cpu_receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-native/cpu-receipt.json",
+      "bytes": 8020,
+      "sha256": "2c5d825470e8a089b79040c8625d0b40f53bf6e1759f45b5fca87a369634b2d5"
+    },
+    "schema_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/patient_first.py",
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "model_source_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "actual_entry_called": "new.verify_sources_and_data(args)",
+  "actual_return": {
+    "rows": 124,
+    "unique_row_ids": 124,
+    "training_documents": 32,
+    "excluded_input_documents": 32,
+    "training_document_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ],
+    "excluded_document_ids": [
+      "10313222",
+      "10553122",
+      "10789033",
+      "11196099",
+      "11826603",
+      "11871647",
+      "11906559",
+      "11919040",
+      "12386172",
+      "12444410",
+      "12455887",
+      "12652105",
+      "12779223",
+      "12891056",
+      "2964533",
+      "3563609",
+      "4607013",
+      "4678370",
+      "5415817",
+      "5425407",
+      "5452357",
+      "5473715",
+      "5537416",
+      "5538066",
+      "5575846",
+      "5789735",
+      "5959423",
+      "6048891",
+      "6063015",
+      "6338757",
+      "6491447",
+      "9327653"
+    ],
+    "overlap": []
+  },
+  "training_answers_read": true,
+  "excluded_pure_input32_read": true,
+  "F1_targets_read": false,
+  "F1_separate_inputs_or_predictions_read": false,
+  "native_tokenization_reused_receipt_sha256": "2c5d825470e8a089b79040c8625d0b40f53bf6e1759f45b5fca87a369634b2d5",
+  "new_tokenization_calls": 0,
+  "CONFIG_AST_and_actual_values_exact": true,
+  "CONFIG": {
+    "max_seq_length": 6144,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "epochs": 2,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "in_proj_b",
+      "in_proj_a",
+      "out_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "quantization": false,
+    "packing": false,
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    }
+  },
+  "batch_plan_AST_exact": true,
+  "actual_epoch_batch_plans": [
+    {
+      "epoch_zero_based": 0,
+      "groups": 16,
+      "rows": 124,
+      "rows_per_microbatch": 1,
+      "first15_groups_rows_each": 8,
+      "last_group_rows": 4,
+      "old_new_serialized_plan_byteexact": true,
+      "plan_compact_json_bytes": 667,
+      "plan_compact_json_sha256": "7c619fc8af2e9df1e22ce038442182a33c8f18f920f5aae5e8ada0e2e3464d70",
+      "permutation_sha256": "24e43274e71b5dc974dd65aba35987c551481af41983b7ea61cf3c972e27b682"
+    },
+    {
+      "epoch_zero_based": 1,
+      "groups": 16,
+      "rows": 124,
+      "rows_per_microbatch": 1,
+      "first15_groups_rows_each": 8,
+      "last_group_rows": 4,
+      "old_new_serialized_plan_byteexact": true,
+      "plan_compact_json_bytes": 667,
+      "plan_compact_json_sha256": "ceb370a7622f738c92064f8172b83575544218acaceef4cd0bb8e8da311fd2d8",
+      "permutation_sha256": "fb9552d5bc0b14b29daccf18d1779312b5e1b49a4773ff70d924a62075d7374a"
+    }
+  ],
+  "H44_candidate_selection": {
+    "fixture_entries": {
+      "epoch-001": "empty directory",
+      "epoch-002": "empty directory",
+      "epoch-002.ack.json": "ordinary 3-byte acknowledgement file"
+    },
+    "executed_new_expression": "[p for p in output.iterdir() if p.is_dir() and re.fullmatch('epoch-[0-9]{3}', p.name)]",
+    "actual_new_candidates": [
+      "epoch-001",
+      "epoch-002"
+    ],
+    "actual_new_latest": "epoch-002",
+    "executed_old_expression": "max((p.name for p in output.glob('epoch-*')))",
+    "actual_old_latest": "epoch-002.ack.json",
+    "old_bad_new_correct": true,
+    "no_checkpoint_json_or_model_or_optimizer_state_created_or_read": true,
+    "scope": "Only latest-name candidate selection expression, not full validate_checkpoint or numerical resume. Temporary fixture removed."
+  },
+  "numeric_train_body_bytes_identical_to_parent": true,
+  "numeric_train_body_bytes": 8863,
+  "numeric_train_body_sha256": "358e3e7ba0c01254d610f95528c0615b95692d76609c193c09f4c27a5b857b2e",
+  "calls_not_made": [
+    "run",
+    "encode_all",
+    "causal_loss_probe",
+    "synthetic_contracts",
+    "validate_checkpoint",
+    "model load/forward/backward",
+    "torch import/CUDA"
+  ],
+  "model_packages_imported": [],
+  "native_CPU_contract_repeated": false,
+  "twenty_five_schema_contracts_repeated": false,
+  "no_Git_or_MCP_or_GPU": true
+}
