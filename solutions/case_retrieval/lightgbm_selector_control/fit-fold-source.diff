@@ -1,0 +1,68 @@
+--- /workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_selector/fit_control.py
++++ /workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/fit_fold.py
+@@ -1,4 +1,4 @@
+-"""One frozen HGB160 fold over audited old pools plus six BioBERT fields."""
++"""Same audited strong-BioBERT fold; sole estimator replaced by fixed LightGBM."""
+ import argparse
+ import json
+ import os
+@@ -8,8 +8,11 @@
+ import sys
+ import time
+ for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ.setdefault(k,'1')
++sys.path.insert(0,'/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_selector')
+ from prepare_pool import FEATURES,OLD_FEATURES,sha,ref,checked,read,rows,write,sources,same_old
+-sys.path.insert(0,str(Path(__file__).resolve().parent/'dependencies'))
++import configuration
++import lightgbm
++sys.path.insert(0,'/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_selector/dependencies')
+ import fit_helpers as prior
+ 
+ 
+@@ -72,14 +75,31 @@
+     assert len(ys)==nnew['train'] and nold['train']<=len(ys)<=1.5*nold['train']
+     vectorizer=single.DictVectorizer(sparse=False);matrix=vectorizer.fit_transform(xs)
+     assert set(old_fit['features'])|set(FEATURES)<=set(vectorizer.feature_names_)
+-    model=single.HistGradientBoostingClassifier(max_iter=160,max_leaf_nodes=15,min_samples_leaf=35,l2_regularization=5.,learning_rate=.06,random_state=20261023,early_stopping=False)
+-    assert model.get_params()==old_fit['estimator']==reference['estimator'];sources(plan);assert sha(a.plan)==plan_sha
++    strong=read(checked(plan['strong_biobert_fit_manifests'][a.fold]))
++    assert vectorizer.feature_names_==strong['features'] and len(ys)==strong['training_examples'] and sum(ys)==strong['training_positive']
++    assert old_fit['estimator']==reference['estimator']==strong['estimator']
++    model=configuration.estimator()
++    assert all(model.get_params()[k]==v for k,v in configuration.PARAMETERS.items())
++    sources(plan);assert sha(a.plan)==plan_sha
+     target=Path(plan['output_dir'])/('fold'+str(a.fold))/'fitted';target.mkdir(parents=True,exist_ok=False)
+-    model.fit(matrix,ys);assert model.n_iter_==160 and not model.do_early_stopping_
++    model.fit(matrix,ys)
++    assert model.n_iter_==model.booster_.current_iteration()==160 and single.np.array_equal(model.classes_,[0,1])
++    assert model.n_features_in_==len(vectorizer.feature_names_)
+     with (target/'model-vectorizer.pkl').open('xb') as f:pickle.dump({'model':model,'vectorizer':vectorizer,'features':vectorizer.feature_names_},f,protocol=5)
++    reloaded=pickle.loads((target/'model-vectorizer.pkl').read_bytes())
++    assert reloaded['features']==vectorizer.feature_names_ and single.np.array_equal(reloaded['model'].classes_,[0,1])
+     scored=[]
+     for row in pools['input']:
+-        cs=row['candidates'];probabilities=model.predict_proba(vectorizer.transform([feature(multi,row,c) for c in cs]))[:,1] if cs else []
++        cs=row['candidates']
++        if cs:
++            features=[feature(multi,row,c) for c in cs];values=vectorizer.transform(features)
++            all_probabilities=model.predict_proba(values)
++            assert all_probabilities.shape==(len(cs),2) and single.np.isfinite(all_probabilities).all()
++            assert single.np.array_equal(all_probabilities,reloaded['model'].predict_proba(reloaded['vectorizer'].transform(features)))
++            assert single.np.array_equal(all_probabilities[:,1],model.booster_.predict(values,num_threads=1))
++            assert single.np.allclose(all_probabilities.sum(axis=1),1.,rtol=0,atol=1e-15)
++            probabilities=all_probabilities[:,1]
++        else:probabilities=[]
+         scored.append({'pmc_id':row['pmc_id'],'candidates':[dict(c,selector_probability=float(p)) for c,p in zip(cs,probabilities)]})
+     with (target/'selector-scores.jsonl').open('x',encoding='utf-8') as f:
+         for row in scored:f.write(json.dumps(row,ensure_ascii=False)+'\n')
+@@ -93,7 +113,9 @@
+                   estimator=model.get_params(),actual_iterations=int(model.n_iter_),early_stopping_performed=False,threshold=.3,
+                   dependencies={m.__name__:sha(m.__file__) for m in modules},label_function_sha256=sha(prior.__file__),
+                   outputs={n:ref(target/n) for n in ('selector-scores.jsonl','model-vectorizer.pkl')},
+-                  runtime={'python':platform.python_version(),'sklearn':single.sklearn.__version__,'numpy':single.np.__version__},
++                  runtime={'python':platform.python_version(),'sklearn':single.sklearn.__version__,'numpy':single.np.__version__,'lightgbm':lightgbm.__version__},
++                  positive_class_probability_column=1,saved_reload_all_input_probabilities_exact=True,native_probability_column_exact=True,
++                  strong_biobert_reference=plan['strong_biobert_fit_manifests'][a.fold],
+                   original_dev_read=False,evaluation_gold_read=False,seconds=time.monotonic()-started)
+     write(target/'manifest.json',manifest);print(json.dumps({'fold':a.fold,'seconds':manifest['seconds'],'training_rows':len(ys),'actual_feature_count':len(vectorizer.feature_names_)}))
+ 
