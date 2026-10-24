@@ -56,3 +56,9 @@ sequence的F047+必要27Sap链已于16:36:26.770621释放.100GPU0，原wrapper33
 v4新namespace的10件部署完整fsync/reopen通过，原v3部署完全保留。新inputs仍为86,878B/1c78f25a，无输入变化。`evidence/deployed-A100-generation-reset.json`是当前部署入口；没有admission/start。准确前序owner为ontology_recover_0518，须等待其seed39真实释放.12GPU2，schema_extraction只管另一台.100GPU1，不能混用释放信息。
 
 根线程确认seed39已16:42:47启动、尚需约1105秒，要求释放agent槽等待owner事件，不开远端watch。最终单一接手入口 `EXECUTION_HANDOFF.md` 已写，含776b最新完整部署/源码/root增量审、真实资源条件、单次启动→8raw→动态奖励→收件准确命令、UNKNOWN恢复边界。此刻local unique-start-intent仍不存在；没有admission或GPU开始。收到ontology实际release后由root唤醒本owner沿同意图继续。
+
+## 2026-10-24 17:09 实际唯一探针启动
+
+root唤醒后沿776b/f7c9同计划恢复。先核ontology seed39实际17:04:46.618734释放.12GPU2（ec7da058），再fresh资源门；唯一proc_cc308f8f、driver85653/child85669于17:09:49.159650启动。原硬TERM **17:39:49.159593 UTC**，KILL **17:40:19.159593 UTC**，不重置。
+
+当前没有formal/held/quality。首观察尚在CPU/加载；精确源/意图/时钟见 `evidence/actual-start.json`。必要Sap前序更新为ontology206实际17:09:44.596978释放的fee6ee8f，使用外部 `Sap100-seed-prior-release.json`；原sequence receipt保留，不覆盖。后续reward_bridge应传这个最新release路径。
