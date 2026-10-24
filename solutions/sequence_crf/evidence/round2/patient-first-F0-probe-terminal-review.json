@@ -1,0 +1,160 @@
+{
+  "status": "PASS_newF0_input_nativeCPU_and_unique_longest_update_engineering_terminal_no_quality",
+  "at_utc": "2026-10-24T03:16:39.082887+00:00",
+  "owner_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/probe-preparation/terminal-manifest.json",
+    "bytes": 8747,
+    "sha256": "50acff1b2ddbd9791e6074f81b299c3b1ef090e9a5c75666d623efe307d1c2e2",
+    "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/terminal-snapshots/50acff1b2ddb--terminal-manifest.json"
+  },
+  "snapshot_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/terminal-snapshot-manifest.json",
+    "bytes": 15728,
+    "sha256": "cedcc22a928bf6cd7c80e4e576666645188ed2e70ea92b45466e473dbf7a0ca8"
+  },
+  "prior_incremental_checks_reused": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/source-checks.json",
+      "bytes": 17756,
+      "sha256": "161f264cb657afa5ade88cd18565a7838f007ee86e29360535697128df4eb788",
+      "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/terminal-snapshots/161f264cb657--source-checks.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/native-entry-checks.json",
+      "bytes": 16145,
+      "sha256": "eae7812287af89b2ce1f8d1f1d4eccb6f28e7a218429541038784ded532a4bc7",
+      "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/terminal-snapshots/eae7812287af--native-entry-checks.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/delegated-formal-source/checks.json",
+      "bytes": 7019,
+      "sha256": "d0c988bfdf461dfb0a84d58a319d98a6c689d50ede7a4558a10c5147e138089b",
+      "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/terminal-snapshots/d0c988bfdf46--checks.json"
+    }
+  ],
+  "actual_terminal": {
+    "references_checked": 34,
+    "collected_files": 8,
+    "one_NN_run": true,
+    "model_source_files_exact": 15,
+    "full_model_loading_no_missing_unexpected_mismatch": true,
+    "actual_native_parameters": {
+      "base": 8953803264,
+      "adapter": 43278336,
+      "total": 8997081600,
+      "model_limit_each_10B": true
+    },
+    "native_runtime": {
+      "torch": "2.6.0+cu124",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "cuda": "12.4",
+      "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "gpu": "NVIDIA A100-SXM4-40GB"
+    },
+    "native_GDN_noFLA": true,
+    "data": {
+      "train_documents": 48,
+      "training_rows": 204,
+      "F0_excluded_documents": 16,
+      "full_tokens": 656837,
+      "supervised_tokens": 7612,
+      "native_CPU_seconds": 7.470149926841259,
+      "selected_row_id": "6063015:relations:0",
+      "selected_tokens": 5769,
+      "prefix_tokens": 5695,
+      "selected_supervised": 74,
+      "actual_new_native_receipt_sha256": "76ae794059b82c1579f23fe93d71334ac16588eb9504a7becb0a767e58843e5e"
+    },
+    "step": {
+      "status": "PASS_one_fresh_longest_patient_first_native_CE_update_not_quality",
+      "row_id": "6063015:relations:0",
+      "input_tokens": 5769,
+      "supervised_tokens": 74,
+      "loss": 0.47581642866134644,
+      "step_seconds": 13.935736376792192,
+      "gradient_norm_before_clip": 5.950649261474609,
+      "family_gradient_squared_norms": {
+        "DeltaNet": 17.282600616108628,
+        "MLP": 10.317019006777537,
+        "full_attention": 7.8106073303779855
+      },
+      "changed_LoRA_B": {
+        "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+        "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+        "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+      },
+      "first_step_A_nonzero_gradient_tensors": 0,
+      "first_step_B_nonzero_gradient_tensors": 248,
+      "initial_all_B_zero": true,
+      "A_zero_first_gradient_permitted": true,
+      "only_adapter_in_optimizer": true,
+      "frozen_base_no_gradient": true,
+      "optimizer_state_dtypes": [
+        "torch.float32"
+      ],
+      "learning_rate": 0.0001,
+      "warmup_not_performed": true,
+      "native_full_logits_unweighted_CE": true,
+      "no_attention_or_loss_change": true,
+      "no_input_truncation": true,
+      "peak_allocated_bytes": 36893822976,
+      "peak_reserved_bytes": 41748004864,
+      "free_bytes": 16836263936,
+      "actual_steps": 1,
+      "no_checkpoint": true,
+      "no_inference_or_quality": true,
+      "diagnostic_state_discarded_on_process_exit": true
+    },
+    "native_seconds": 80.30171997845173,
+    "wrapper": {
+      "at_utc": "2026-10-24T03:14:24.383927+00:00",
+      "returncode": 0,
+      "elapsed_seconds": 81.68806624412537,
+      "cap_seconds": 180,
+      "grace_seconds": 30,
+      "complete_exists": true,
+      "failure_exists": false,
+      "gpu_release": {
+        "at_utc": "2026-10-24T03:14:24.493747+00:00",
+        "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+        "target_has_no_process": true,
+        "target_memory": [
+          "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+        ]
+      }
+    },
+    "budget_seconds": 180,
+    "grace_seconds": 30,
+    "fresh_empty_before_launch": {
+      "at_utc": "2026-10-24T03:13:02.205592+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960",
+      "target_no_process": true,
+      "plan_sha256": "ef9c6225db58c782f3019079f55df87ca55ddd34655513578fb43d7dc44243ce"
+    },
+    "fresh_base_no_saved_adapter": true,
+    "checkpoint_or_quality": false
+  },
+  "numerical_contract_interpretation": "One native full-logit unweighted CE update at nonzero lr1e-4, no truncation or loss/attention/allocator change. All3LoRA B families actually changed;248 B gradients nonzero; A first gradients zero are expected with initialB=0. Base/head frozen and only adapter optimizer state. This is a discarded diagnostic state, not formal warmup/training.",
+  "memory_interpretation": {
+    "peak_allocated_bytes": 36893822976,
+    "peak_reserved_bytes": 41748004864,
+    "end_free_bytes": 16836263936,
+    "end_free_is_not_peak_headroom": true,
+    "limitation": "A single fresh update does not establish accumulation8/later optimizer-state or varying-length allocator stability. Current allocator environment null; no causal claim about historical allocator state."
+  },
+  "preserved_history": "Earlier MCP deployment UNKNOWN/inventory failures retained; no GPU intent existed until exact16-source deployment and new204 nativeCPU recovery. One GPU launch and one wrapper rc0; managed job metadata in result is original running=true launch receipt, actual terminal comes from wrapper/complete/release.",
+  "formal_source_only": {
+    "trainer_sha256": "990dfd0cec7c9b63e36bc1ed041dc664f2dbc3c6bdd8bcfbd17d6c7cb2f6fada",
+    "infer_sha256": "f1bba6550b71f72a60b4260a035e1a228ee4754370cb5b0df3a9a2611b4b641c",
+    "old204_numeric_loop_byteexact": true,
+    "oldF1_generation_byteexact": true,
+    "anticipated_steps": 52,
+    "warmup": 3,
+    "last_accumulation_group": 4,
+    "formal_training_launched": false,
+    "formal_endpoint_storage_and_authorization_not_covered": true
+  },
+  "decision": "Engineering diagnostic passed; no F0 quality result, no checkpoint. Root owns any separately frozen formal2epoch budget/storage/endpoint authorization; current a179 remains unchanged.",
+  "scope": "Only standard-library snapshots, byte/hash/ref/JSON projection/number/time assertions. No remote/GPU/tokenizer/parser/evaluator, no gold or quality recomputation, no Git or live index mutation. Prior25/14/15 and F1 native contracts not rerun."
+}

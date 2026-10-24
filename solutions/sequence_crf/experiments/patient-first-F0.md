@@ -45,3 +45,10 @@ helper纯CPU6.715304s已通过，来源/矩阵/旧native全编码逐字核验。
 ## 唯一最长行probe实际启动
 
 source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226。fresh GPU2 UUID2c22、0MiB/无计算进程通过后，唯一proc_68557469-8cf0-41f7-abb8-a7b3fb0c94c1/PID55826于03:13:02.591809Z启动；180+TERM30，approx TERM03:16:02.592/KILL03:16:32.592（以远端driver-started为准）。未重复start，诊断状态不保存；终点待完整forward/backward/step、显存/有限值/耗时和实际release，不能将启动记为成功。独立native入口eae78122通过，终点将同一组收口，不重复旧合同。
+
+
+## 唯一5769更新诊断完整PASS
+
+唯一proc68557469实际native80.301720/wrapper81.688066秒，rc0；真实单步13.935736秒，loss .4758164287、clip前grad5.950649261，三family B实际变化；248个B梯度非零、A首步0符合fresh零B。仅adapter在optimizer，base无梯度，FP32 optimizer states，未保存模型/推断/质量。峰allocated36,893,822,976B、reserved41,748,004,864B；free16,836,263,936B为**结束时**空闲，不能当峰时余量。03:14:24.493747 GPU2核0MiB/无进程，诊断状态丢弃，无自动重试。8件终点SHA全部回收，manifest50acff1b；统一增量独审e300f328 PASS，无新CPU/NN/评分。单最长行通过仍不证明accum8、后续optimizer常驻/多形状碎片稳定。
+
+主线程现已给正式条件授权：同204×2/52calls/3warmup，A100项目持久盘按原epoch边界fsync/重开SHA保存完整adapter+optimizer/scheduler/RNG；3900+TERM30含保存，首OOM/数值/截止停，不改变数学/长度/精度或追加预算。完整plan和保存增量集中审查无具体阻断、freshUUID/空卡后执行；原58另600+30，两完整预测共同freeze再各唯一v2，旧SFT48不重评。此处仅记录授权，正式任务尚未启动。

@@ -1,0 +1,96 @@
+{
+  "status": "PASS_one_F0_longest_native_update_not_formal_training",
+  "at_utc": "2026-10-24T03:15:46.643043+00:00",
+  "gpu_job": {
+    "command": "python3 -u bounded_driver.py",
+    "id": "proc_68557469-8cf0-41f7-abb8-a7b3fb0c94c1",
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "pid": 55826,
+    "port": 39521,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-24T03:13:02.591809506Z"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/probe-preparation/run-plan.json",
+    "bytes": 5411,
+    "sha256": "ef9c6225db58c782f3019079f55df87ca55ddd34655513578fb43d7dc44243ce"
+  },
+  "complete": {
+    "status": "PASS_one_fresh_longest_patient_first_native_CE_update_not_quality",
+    "at_utc": "2026-10-24T03:14:23.052265+00:00",
+    "native_seconds": 80.30171997845173,
+    "step_sha256": "d2e3b368e5c5682b3c4f3bdab60a144209ce84078a9b905189766044d25159ad",
+    "manifest_sha256": "86447e1f82e0493f6c9c4848ccc264ba81523edac1ebcff26c186a20c1f9942c",
+    "actual_steps": 1,
+    "no_checkpoint": true,
+    "no_quality": true,
+    "fresh_state_discarded": true
+  },
+  "step": {
+    "status": "PASS_one_fresh_longest_patient_first_native_CE_update_not_quality",
+    "row_id": "6063015:relations:0",
+    "input_tokens": 5769,
+    "supervised_tokens": 74,
+    "loss": 0.47581642866134644,
+    "step_seconds": 13.935736376792192,
+    "gradient_norm_before_clip": 5.950649261474609,
+    "family_gradient_squared_norms": {
+      "DeltaNet": 17.282600616108628,
+      "MLP": 10.317019006777537,
+      "full_attention": 7.8106073303779855
+    },
+    "changed_LoRA_B": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "first_step_A_nonzero_gradient_tensors": 0,
+    "first_step_B_nonzero_gradient_tensors": 248,
+    "initial_all_B_zero": true,
+    "A_zero_first_gradient_permitted": true,
+    "only_adapter_in_optimizer": true,
+    "frozen_base_no_gradient": true,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ],
+    "learning_rate": 0.0001,
+    "warmup_not_performed": true,
+    "native_full_logits_unweighted_CE": true,
+    "no_attention_or_loss_change": true,
+    "no_input_truncation": true,
+    "peak_allocated_bytes": 36893822976,
+    "peak_reserved_bytes": 41748004864,
+    "free_bytes": 16836263936,
+    "actual_steps": 1,
+    "no_checkpoint": true,
+    "no_inference_or_quality": true,
+    "diagnostic_state_discarded_on_process_exit": true
+  },
+  "failure": null,
+  "wrapper": {
+    "at_utc": "2026-10-24T03:14:24.383927+00:00",
+    "returncode": 0,
+    "elapsed_seconds": 81.68806624412537,
+    "cap_seconds": 180,
+    "grace_seconds": 30,
+    "complete_exists": true,
+    "failure_exists": false,
+    "gpu_release": {
+      "at_utc": "2026-10-24T03:14:24.493747+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "target_has_no_process": true,
+      "target_memory": [
+        "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+      ]
+    }
+  },
+  "no_quality": true,
+  "formal_training_started": false,
+  "no_retry_or_alternative_attention_loss_allocator": true,
+  "limitations": [
+    "One fresh step does not prove accumulation8 or later optimizer-state and varied-shape stability.",
+    "Current allocator environment is null; prior historical inherited state remains unknown.",
+    "Single-row timing is not a complete two-epoch throughput measurement."
+  ]
+}
