@@ -10,3 +10,4 @@
 - 远端默认python命令不一定存在；使用已核的绝对解释器。.100通用ScratchVL解释器本身没有transformers；需显式已核私有PYTHONPATH，不能把另一路的私有包当全局已安装。
 - JointIE原生processor会为不以句末标点结束的窗口追加一个句点；审计记录这一步，caller映射只接受真实原字符。使用transform_record（不是旧transform_and_format）获取当前公共单记录合同。collate默认fallback改为error_policy=raise，防止静默dummy记录。
 - declarative relation description目前未被上游compiler写入model_schema；模型实际只见关系名称与head/tail槽位。不能用文档中的自然语言宣称模型具有未实现的硬性语义约束。
+- .3→.100首次server启动返回UNKNOWN_OUTCOME，随即.3 LUNA_OFFLINE，动态PORT未回收，不能猜port或重复启动。root协调由span稀疏恢复.3，我停止并发轮询；改为.100独立同SHA资产传输，.100旧fetch从未启动，不竞争同输出。旧server限时180秒、外层210+30，原意图/token保留待核终止后清理。

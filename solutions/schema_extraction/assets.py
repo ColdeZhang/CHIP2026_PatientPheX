@@ -23,20 +23,29 @@ def run(plan_path):
   dest=root/relative;dest.parent.mkdir(parents=True,exist_ok=True)
   if dest.exists():assert dest.stat().st_size==item['bytes'] and digest(dest)==item['sha256'];action='reused_exact'
   else:
-   part=dest.with_name(dest.name+'.part');n=part.stat().st_size if part.exists() else 0
-   headers={'User-Agent':'PatientPheX-schema-readiness'}
-   if n:headers['Range']=f'bytes={n}-'
-   with urllib.request.urlopen(urllib.request.Request(item['url'],headers=headers),timeout=40) as response:
-    if n and response.status==206:assert response.headers['Content-Range'].startswith(f'bytes {n}-');mode='ab'
-    else:
-     if n:part.rename(part.with_name(part.name+'.preserved-'+str(time.time_ns())))
-     mode='wb'
-    with part.open(mode) as f:
-     while True:
-      data=response.read(1<<20)
-      if not data:break
-      f.write(data)
-     f.flush();os.fsync(f.fileno())
+   part=dest.with_name(dest.name+'.part');transfers=[]
+   for attempt in range(4):
+    n=part.stat().st_size if part.exists() else 0
+    if n==item['bytes']:break
+    assert n<item['bytes'],'Partial exceeds declared asset size'
+    headers={'User-Agent':'PatientPheX-schema-readiness'}
+    if n:headers['Range']=f'bytes={n}-'
+    with urllib.request.urlopen(urllib.request.Request(item['url'],headers=headers),timeout=40) as response:
+     status=response.status;content_range=response.headers.get('Content-Range')
+     if n and status==206:assert content_range.startswith(f'bytes {n}-');mode='ab'
+     else:
+      if n:part.rename(part.with_name(part.name+'.preserved-'+str(time.time_ns())))
+      mode='wb'
+     received=0
+     with part.open(mode) as f:
+      while True:
+       data=response.read(1<<20)
+       if not data:break
+       f.write(data);received+=len(data)
+      f.flush();os.fsync(f.fileno())
+     transfers.append(dict(attempt=attempt+1,requested_resume_from=n,status=status,content_range=content_range,content_length=response.headers.get('Content-Length'),received_bytes=received,partial_bytes=part.stat().st_size))
+    write(root/'transfer-progress.json',dict(path=item['path'],transfers=transfers,elapsed_seconds=time.monotonic()-start))
+    assert received>0,'Empty transfer cannot make progress'
    assert part.stat().st_size==item['bytes'] and digest(part)==item['sha256'],item['path']
    os.replace(part,dest);action='downloaded_verified'
   results.append(dict(**ref(dest),action=action,url=item['url']))
