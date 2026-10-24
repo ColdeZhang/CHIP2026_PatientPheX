@@ -1,0 +1,91 @@
+{
+  "status": "PASS_INCREMENTAL_GPU_COST_AND_FOUR_SYNTHETIC_PARITY_SOURCE",
+  "at_utc": "2026-10-24T01:45:51.414256+00:00",
+  "scope": "Only new fixed3x512 GPU-cost source/selection/numerics/timing/resource boundary; CPU readiness050b512b reused. No new model execution by reviewer.",
+  "previous_CPU_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/review.json",
+    "bytes": 33717,
+    "sha256": "050b512b8c91cfa655e4edf6d386342e5f7aab71600812718dae04cab08d1508"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-gpu-cost-review/source-snapshots/plan.json",
+    "bytes": 6913,
+    "sha256": "d71f5b0639da25ae8be528a08f15626e5e6fa382df61a3c762ab5e73b1a0ba2c"
+  },
+  "sources": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-gpu-cost-review/source-snapshots/probe.py",
+      "bytes": 8770,
+      "sha256": "0695d65c41dde1a08c5acdc25293f179d8c3b2badcdcd12c4d639f34c65a56e2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-gpu-cost-review/source-snapshots/launch.py",
+      "bytes": 2655,
+      "sha256": "61e98a4b227fe9e666174140d7a702656aadb787df729cb2d3ad98412572829e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-gpu-cost-review/source-snapshots/control.py",
+      "bytes": 4800,
+      "sha256": "1edea94bccfd5b0b582b921efe8263b1cfb53aac3d32602a3dcf862900b60c81"
+    }
+  ],
+  "input_contract": {
+    "first_frozen_rows": [
+      0,
+      1536
+    ],
+    "batch_counts": [
+      512,
+      512,
+      512
+    ],
+    "frozen_key_sha256": "1924f3691da766a81de963690d9a72bbd4f030ff34c3e191c082c64bc6ff7b96",
+    "all408272_roundtrip_receipt_verified_not_reexecuted": true,
+    "selected_prefix_read_and_compared_independently": true,
+    "no_labels": true
+  },
+  "runtime_contract": {
+    "same491068890params": true,
+    "all60_H5_weights_shape_dtype_finite_array_equal": true,
+    "native10ensemble": true,
+    "FP32": true,
+    "TF32": false,
+    "output_on_GPU_required": true,
+    "complete_probability_shape": [
+      512,
+      14261
+    ],
+    "probability_finite_normalized_and_top1_matches_max": true,
+    "three_cost_batches_then_four_existing_synthetic_parity_cases": true,
+    "total_forwards": 7,
+    "no_discarded_warmup": true
+  },
+  "timing": {
+    "get_match_includes": "CPU phrase2vec, FP32 GPU NN, synchronized output.numpy, complete probability checks, native top1 argpartition",
+    "excludes": "probability/top1 file writes; recorded budget still includes those writes",
+    "first_cold_two_warm_separate": true,
+    "full408272_estimate_only": "load+cold+797*warm; high adds25percent warm margin and60s, not measured or a confidence interval; first a-prefix selection bias explicit"
+  },
+  "synthetic_parity": {
+    "same_four_CPU_cases": true,
+    "score_rtol": 0.0001,
+    "score_atol": 1e-05,
+    "query_order_top1IDs_threshold_decisions_and_span_coordinates_exact": true,
+    "not_quality": true
+  },
+  "execution_boundary": {
+    "one_fresh_A100_UUID": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "cap_seconds": 180,
+    "TERM_grace_seconds": 30,
+    "intent_before_unique_start": true,
+    "actual_subprocess_rc_and_release_expected": true,
+    "no_retry_on_unknown_start": true
+  },
+  "decision": "No concrete entry blocker. Root-authorized probe can proceed in parallel; collect one full cost/parity terminal, not separate partial quality endpoints.",
+  "limitations": [
+    "Actual timing and runtime parity remain pending until collected terminal.",
+    "Original malformed FT is not loaded; exact derived file and full H5/JSON sources retained.",
+    "No task quality or full-corpus cache claim."
+  ],
+  "no_MCP_GPU_or_gold_by_reviewer": true
+}
