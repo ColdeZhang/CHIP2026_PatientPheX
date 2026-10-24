@@ -34,7 +34,7 @@ def main():
   body=dict(target_patient=r['patient_id'],known_training_positive_concept=dict(key=r['key'],public_HPO_name=names.get(r['key'][1]) if r['key'][0]=='hpo' else None),all_patients=d['patient'],report=units)
   user='This is a TRAINING record. The provided positive association is a hint, not evidence. Return final JSON with supported (boolean), patient_anchor, phenotype_anchor, bridge (0 to 3 exact source snippets), and a brief rationale (at most 80 words). Every anchor/snippet must be [unit_id, exact_quote, zero_based_occurrence]. Cite evidence that connects the phenotype to this patient, including group membership or coreference when needed. If the report only supports another case, or the chain is unclear, return supported=false and empty arrays. Do not infer support from the provided label or nearest distance.\n'+json.dumps(body,ensure_ascii=False,separators=(',',':'))
   messages=[dict(role='system',content=system),dict(role='user',content=user)]
-  text=template.render(messages=messages,add_generation_prompt=True,**{k:v for k,v in config.items() if k.endswith('_token')})
+  text=template.render(messages=messages,add_generation_prompt=True,**{k:(v.get('content') if isinstance(v,dict) else v) for k,v in config.items() if k.endswith('_token')})
   rows.append(dict(row_id=f"{r['pmc_id']}:{r['patient_id']}:{r['key'][1]}",pmc_id=r['pmc_id'],messages=messages,train_label_conditioned=True))
   counts.append(dict(row_id=rows[-1]['row_id'],rendered_characters=len(text),rendered_sha256=hashlib.sha256(text.encode()).hexdigest()))
  p=out/'teacher-inputs.proposed.jsonl'

@@ -15,3 +15,5 @@
 - 记录范围已完成：0 held gold / 0 model / 0 fit / 0 quality；15条草案与1.04MB训练库存留仓外，Git只放源码与小摘要。新脚本真实CPU运行、链接/编译/diff/体积检查后提交并推送本分支。
 - 原检查点 `e1c17c1cfac126bd215256b2df567c05d8781511` 已推送并核远端。root继续授权 CPU native15/盘和网络成本准备；学生训练仍禁止。
 - .100 native15真实CPU全过，最长9400/总82445；已预锁单15pilot与证据验收，[计划](pilot-plan.json)。.12盘余量49.46GB可容一份16.39GB缓存；32MiB探针target上传遇离线，未启动任何服务/接收器。15:44之后只读在线退避，保留失败，无16GB复制/模型调用。
+- `cbce430a87ce4dbb3f38c816ad91b11ca46fe088`已推送，包含native15/固定机械及语义验收草案。随后本地对照发现AddedToken字典使草案字符摘要错误；原v2保留，修正后15渲染SHA与native全等、messages输入字节不变，没重CPU。成本亦按78fresh同scope纠正为103199/3431.089269，pilot预案2700+30，尚未执行。
+- 原native两件payload（100960B encoded+3871B audit）已实际全量回读逐SHA；无partial冒称完整。原16GB迁移仍未开始，网络小探针等15:44一次退避在线/盘/GPU库存。
