@@ -1,0 +1,50 @@
+--- old-86d-train.py
++++ indexed-train.py
+@@ -45,7 +45,7 @@
+ SELECTED_LOSS_SHA='dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9'
+ NATIVE_LOSS_SHA='83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe'
+ MODEL_SOURCE_SHA='b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3'
+-RUNTIME_CONTRACT_SHA='3f0c2427a0556790b7169561c7e8b1479a2d21dc9b8c91f712e4aee038a241b9'
++RUNTIME_CONTRACT_SHA='5504f20d3d56f548c9c61232033d8033730a20153fcdfc9aa9d4aa9a6bf66e24'
+ EXCLUDED_SHA='2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82'
+ PREPARATION_SHA='356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47'
+ COPIED_TRAINER_SHA='9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b'
+@@ -228,7 +228,7 @@
+     if args.absolute_deadline_unix-time.time()>8400:raise ValueError('Absolute deadline exceeds authorized total budget')
+     if os.environ.get('PYTORCH_ALLOC_CONF') or os.environ.get('PYTORCH_CUDA_ALLOC_CONF'):raise ValueError('Allocator configuration differs')
+     output=Path(args.output_dir)
+-    if str(output)!='/dev/shm/patientphex-qwen35-fulltext32-1045-20261024/formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
++    if str(output)!='/dev/shm/patientphex-qwen35-fulltext32-indexed-1045-20261024/formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
+     if not args.resume and args.resume_export_ack:raise ValueError('Fresh run cannot consume any old ACK')
+     if args.resume and not args.resume_export_ack:raise ValueError('Resume requires exact durable full-state ACK')
+     if output.exists() and any(output.iterdir()) and not args.resume:raise ValueError('Fresh invocation needs an empty output; use explicit own-run resume')
+@@ -279,7 +279,7 @@
+             if not torch.cuda.is_available() or torch.cuda.device_count()!=1 or not torch.cuda.is_bf16_supported():raise RuntimeError('Require one BF16 CUDA device')
+             environment.update(gpu_name=torch.cuda.get_device_name(0),gpu_uuid=args.gpu_uuid,gpu_capability=list(torch.cuda.get_device_capability(0)))
+             torch.cuda.manual_seed_all(CONFIG['seed'])
+-        fingerprint={'schema':'patientphex-qwen35-meta32-fulltext-selectedCE-lora-v1','configuration':semantic_configuration(args),
++        fingerprint={'schema':'patientphex-qwen35-meta32-fulltext-indexedHead-lora-v1','configuration':semantic_configuration(args),
+             'source_sha256':sha256(__file__),'helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
+             'copied_epoch_loop_source_sha256':OLD_TRAINER_SHA,'copied204_trainer_sha256':COPIED_TRAINER_SHA,
+             'meta32_preparation_sha256':PREPARATION_SHA,'train_sha256':TRAIN_SHA,
+@@ -322,8 +322,9 @@
+         import transformers.loss.loss_utils as native_loss
+         if sha256(selected_loss.__file__)!=SELECTED_LOSS_SHA or sha256(native_loss.__file__)!=NATIVE_LOSS_SHA:raise RuntimeError('Selected/native CE source changed')
+         if base.loss_function is not native_loss.ForCausalLMLoss:raise RuntimeError('Native loss dispatch differs')
+-        base.loss_function=selected_loss.selected_causal_loss
+-        if base.loss_function is not selected_loss.selected_causal_loss:raise RuntimeError('Instance loss hook did not bind')
++        import indexed_head
++        if sha256(indexed_head.__file__)!='0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb':raise RuntimeError('Validated indexed-head helper changed')
++        (output/'indexed_head.py').write_bytes(Path(indexed_head.__file__).read_bytes())
+         (output/'selected_loss.py').write_bytes(Path(selected_loss.__file__).read_bytes())
+         base.config.use_cache=False
+         if checkpoint:
+@@ -376,7 +377,7 @@
+                         if '.lora_B.' in name and protocol.family(name) not in probes:probes[protocol.family(name)]=(name,p,p.detach().clone())
+                 for indices in group:
+                     batch=collate([encoded[i] for i in indices],tokenizer.pad_token_id,torch)
+-                    with torch.autocast('cuda',dtype=torch.bfloat16):loss=model(**batch,use_cache=False).loss
++                    with torch.autocast('cuda',dtype=torch.bfloat16):loss=indexed_head.indexed_causal_loss(model,batch,native_loss.fixed_cross_entropy)
+                     if not bool(torch.isfinite(loss)):raise RuntimeError('Nonfinite training loss')
+                     (loss/len(group)).backward();group_loss+=float(loss.detach())/len(group)
+                 grad_norm=torch.nn.utils.clip_grad_norm_(parameters,CONFIG['max_grad_norm'])

@@ -1,0 +1,58 @@
+{
+  "model_repo": "lingbionlp/PhenoTagger_v1.2",
+  "revision": "02ce3f529820dccca46bae168c1933ba25253125",
+  "policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "remote_source_sha256": {
+    "native-pipeline/run_native_entities.py": "e6dbdc720334786bbe1d97bd7cea321906cf5910ae8e999dda4f5ade812a1bbf",
+    "native-pipeline/fixed_candidate_function.py": "1569e545fc83e5adf66406678e8b15dd315fa4437fc541a78a6cc0e9f3f966e7",
+    "native-pipeline/dictionary-current-HPO.json": "61ffd241f0d2cc24d55ff1a317b3e781c59133dd3de9bebe803ad9abf1b9a10a",
+    "original-column-to-current-HPO.json": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf",
+    "nn_represent.py": "06414652d00640cf192d0f730face946040f110129de1073a485267a524ef0ba",
+    "lable.vocab": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+    "pubmedbert-base/config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "pubmedbert-base/vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "pubmedbert-base/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+    "gpu-native-smoke.json": "8d0ed6465ec09c8894de2bba54b7d7791f78b847d9942ddb18ddea5ae2a6f185",
+    "gpu-overlay-state.json": "16f36df80eec70756166ff98a63f169612711bee37461d86fe0358ab84863879",
+    "native-pipeline/src/ssplit_tokenzier.py": "5925dbe25cbaaaa26ef2ca10291958969eeb95822e69cc2badab8c4177d1b2f7",
+    "native-pipeline/src/ml_ner.py": "9ee418916784f6fd26d1446faa0682ace9c9a07a959a07e9998977840409ef0d",
+    "native-pipeline/src/dic_ner.py": "2c7aa997d8bf4a72568be191169e6c1649242481b95284e5af32071625242ab1",
+    "native-pipeline/src/restore_index.py": "aa53414992c37473c465566b094086c365cd521fb215edca40da9cec9f2c82d8",
+    "native-pipeline/src/combine_result.py": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95",
+    "native-pipeline/src/abbre_resolution.py": "0afe29fa6f9ea7c4e70c4c2042843ae208fabc0e588809a8c7b9b2c63fef97ff",
+    "native-pipeline/dict/noabb_lemma.dic": "a4ffda2506be93053aa6fc2b94ce0ed09087183cb0fb614aa4925f777c36b610",
+    "native-pipeline/dict/word_id_map.json": "3e7649145d09f2778c194ce29033e3da8cf72d1b30e4ff5544734e7d104a866e",
+    "native-pipeline/dict/id_word_map.json": "5d48a49318e5e833e5b1b685db2e0525fead631cea3bd5285b13a42ce6b73e77"
+  },
+  "held_input_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+  "model_weight_sha256": "resolved only from actual fulltrain terminal; all held predictions fresh",
+  "scope": "Complete F1 adapted PubMed native, original policy, no previous model cache",
+  "source_refs": {
+    "infer_held.py": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/formal_train/infer_held.py",
+      "bytes": 11552,
+      "sha256": "74d5fb2fcf7a79f9e3df5a7aa6f7df39b8bd16e3445d37b63efaeaf4f633e4fd"
+    },
+    "provenance.py": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/formal_train/provenance.py",
+      "bytes": 6753,
+      "sha256": "87523b3c3e739b2f4a35ee8bc4d11ec2e80ccfe3424d38bfc5d24e5ad9ac837c"
+    }
+  }
+}

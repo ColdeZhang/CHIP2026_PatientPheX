@@ -1,0 +1,36 @@
+{
+  "status": "PASS_NEW_STATIC_INCREMENT_NO_NUMERIC_REPEAT",
+  "checks": [
+    "batch_plan AST exact",
+    "collate AST exact",
+    "semantic_configuration AST exact",
+    "validate_stop_epoch AST exact",
+    "epoch_outcome AST exact",
+    "actual GPU-validated indexed helper byteexact",
+    "unchanged scheduler=get_linear_schedule_with_warmup(optimizer,2,32)",
+    "unchanged (loss/len(group)).backward();group_loss+=float(loss.detach())/len(group)",
+    "unchanged optimizer.step();scheduler.step();global_step+=1",
+    "unchanged torch.set_rng_state(state['torch_rng']);torch.cuda.set_rng_state_all(state['cuda_rng'])"
+  ],
+  "old_CPU_contract": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_training_readiness/formal_train/CPU-contract-result.json",
+    "bytes": 7349,
+    "sha256": "5c55bac54ca3a48a8355ab875f95c85aa98a662bd352712f231c6989b7cc9670"
+  },
+  "old_training_plan": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_training_readiness/formal_train/training-plan.json",
+    "bytes": 8371,
+    "sha256": "0b97048c2aad3e23fcefc6b4f5d7eb879c592b80ea44ce48ef29a6c79d7afbfb"
+  },
+  "probe": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_training_readiness/head_index_probe/plan.json",
+    "bytes": 11549,
+    "sha256": "bf7170e2d2f079969f40b2b32650dd3eea6a326f7db6f3a7ed56361c23578fbd"
+  },
+  "new_trainer": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_training_readiness/formal_indexed/train.py",
+    "bytes": 35950,
+    "sha256": "3de5ed915a2b01a2abe36bd214ebffc6227774994b369abf4d850292bc45148f"
+  },
+  "runtime_Torch_or_model_tested": false
+}

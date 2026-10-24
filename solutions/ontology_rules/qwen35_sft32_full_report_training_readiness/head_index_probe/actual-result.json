@@ -1,0 +1,115 @@
+{
+  "status": "PASS_indexed_head_local_contract_then_fresh_group8_update_three_accumulated_plus_longest_no_quality",
+  "actual_optimizer_steps": 1,
+  "actual_forwards": 12,
+  "actual_backwards": 12,
+  "longest": {
+    "ordinal": 12,
+    "row_id": "5866036:relations:0",
+    "original_index": 98,
+    "tokens": 13549,
+    "supervised_tokens": 61
+  },
+  "diagnostic_window_seconds": 255.20862844074145,
+  "first_update": {
+    "actual_steps": 1,
+    "group_size": 8,
+    "loss": 0.43273675069212914,
+    "learning_rate": 0.0001,
+    "gradient_norm_before_clip": 5.274102687835693,
+    "changed_LoRA_B": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "inventory": {
+      "gradient_tensors": 496,
+      "gradient_bytes": 173113344,
+      "optimizer_parameters_with_state": 496,
+      "optimizer_tensor_bytes": 346228672,
+      "optimizer_state_dtypes": [
+        "torch.float32"
+      ],
+      "all_grad_finite": true,
+      "frozen_base_no_gradient": true
+    },
+    "memory": {
+      "allocated_bytes": 18807920128,
+      "reserved_bytes": 32075939840,
+      "peak_allocated_bytes": 30259273728,
+      "peak_reserved_bytes": 32075939840,
+      "free_bytes": 52469432320
+    }
+  },
+  "final_inventory": {
+    "gradient_tensors": 496,
+    "gradient_bytes": 173113344,
+    "optimizer_parameters_with_state": 496,
+    "optimizer_tensor_bytes": 346228672,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ],
+    "all_grad_finite": true,
+    "frozen_base_no_gradient": true
+  },
+  "final_family_gradient_squared_norms": {
+    "DeltaNet": 0.3630134121386197,
+    "MLP": 0.22761305148937336,
+    "full_attention": 0.20981625046030009
+  },
+  "memory": {
+    "allocated_bytes": 18841014272,
+    "reserved_bytes": 35123101696,
+    "peak_allocated_bytes": 32692638720,
+    "peak_reserved_bytes": 35123101696,
+    "free_bytes": 49422270464
+  },
+  "head_local_memory": {
+    "peak_allocated_bytes": 22936685568,
+    "peak_reserved_bytes": 25056772096
+  },
+  "head_local_summary": {
+    "status": "PASS_LOCAL_ACTUAL_HEAD_NOT_FULL_BACKBONE_BITWISE",
+    "row_id": "12811285:relations:16",
+    "original_index": 63,
+    "extra_backbone_forwards": 1,
+    "training_Torch_RNG_restored": true,
+    "no_adapter_gradient_created": true
+  },
+  "combined_peak_allocated_bytes": 32692638720,
+  "combined_peak_reserved_bytes": 35123101696,
+  "head_local_extra_backbone_forwards": 1,
+  "pressure_forward_count": 12,
+  "learning_rate": 0.0001,
+  "formal_warmup_not_replayed": true,
+  "unchanged_full_BF16_head": false,
+  "indexed_BF16_head": true,
+  "only_head_position_selection_and_loss_interface_changed": true,
+  "per_row_mean_divided_by_group8": true,
+  "no_explicit_gc_del_empty_cache": true,
+  "no_allocator_change": true,
+  "no_input_truncation": true,
+  "no_checkpoint": true,
+  "no_inference_or_quality": true,
+  "diagnostic_state_discarded_on_process_exit": true,
+  "wrapper": {
+    "at_utc": "2026-10-24T08:02:29.538217+00:00",
+    "returncode": 0,
+    "cap_seconds": 420,
+    "term_grace_seconds": 30,
+    "wrapper_seconds": 284.12173811206594,
+    "plan_sha256": "bf7170e2d2f079969f40b2b32650dd3eea6a326f7db6f3a7ed56361c23578fbd",
+    "source_sha256": "451a4379ece6c74f5163a78389a0bb19bfc8066652c4548cc60b99fdf19bb92d"
+  },
+  "release": {
+    "at_utc": "2026-10-24T08:02:29.650878+00:00",
+    "target_csv": [
+      "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, 1, 81156, 81920"
+    ],
+    "target_compute_rows": []
+  },
+  "terminal_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-head-index-probe-v1/terminal-manifest.json",
+    "sha256": "72040fb00406f540e0e1d1f4dbb16c0cba5e146550b0a0c5ed57011063075b85"
+  }
+}
