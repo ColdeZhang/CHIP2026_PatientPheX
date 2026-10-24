@@ -2,15 +2,20 @@
 
 分支 `explore/grounded-weight-average`，起点 main `85611ab1e245cb60b7b450d71b0caf01512b46c7`，只写本目录。仓外产物 `R/research/grounded-weight-average-readiness-20261024/`。
 
-## 当前状态 GWA-20261024-001
+## 当前状态 GWA-20261024-001：双折门失败，固定控制关闭
 
-F1 固定联合控制已完整完成并通过原门：B4 **.701325377212172→.703883137772596**（+.002557760560）；19新增7TP/12FP，micro−.000218063、macro+.010449105，Task1与所有非关系字节不变。单完整freeze3e6565be后仅1v2/旧0。该分低于新Gsample约.705226，不称F1新best。
+同一轨迹两轮有效 LoRA 增量平均（r32/alpha32）加固定 CPU FP32 Sap 查询的联合控制已完整结束。唯一公式 `B4 ∪ (G_mean ∩ G_original)`：
 
-真实CPU拼接/PEFT微型合同通过；A10039于14:32:24Z rc0/1409.885秒、35EOS/4cap，卡0MiB释放；174必要Sap在.100 CPU FP32/16线程14:41:29Z成功，仅7.034秒。查询FP16→FP32及device为额外联合实现，修订[normalization-amendment.json](normalization-amendment.json)在规范化与质量之前冻结，不把增益只归于权重平均。全部原GPU规范化方案未执行、无二选一。
+| 内部研发折 | B4 | 固定新端点 | Score差 | 新增关系 | micro差 / macro差 |
+|---|---:|---:|---:|---|---|
+| F1 | .701325377212 | .703883137773 | +.002557760560 | 19=7TP/12FP | −.000218063 / +.010449105 |
+| F0 | .728195628911 | .717985608916 | −.010210019996 | 19=2TP/17FP | −.013424249 / −.027415831 |
 
-39原件恢复collection3d846e05覆盖88必要文件；78raw/ID从原responses按原complete逐SHA证明字节一致重建，未冒称远端目录/ZIP已冻结。CPU query完整包dd8b73f2/13件与原embedding持久SHA locator保留。统一480685B小包已在.100写入并实际回读核验（db46d892）；完整终审已交validation，仓外 `R/research/grounded-weight-average-v1/F1/`，结果见[evidence/result.json](evidence/result.json)。
+两折各完整freeze后仅1v2/旧0，Task1和全部非关系字节不变；这些内部折已用于研发，不称盲测。严格双折门未过，**不迁originaldev、不调alpha/epoch/阈值/precision**。该结论只针对这份固定联合配方，不等于所有权重平均无效，也不能将收益或下降只归因权重平均。
 
-F0完整47已15:15:01.143707Z rc0成功，1220.816秒；同次GPU2=0MiB/noapps真实释放。原proc3d9e8637无重启或尾部，原3000+30期限未触及。只读watcher已终态退出，当前仅回收原raw与同CPU规范化，尚无F0质量。固定同ed184ecc权重、同CPU FP32查询与唯一B4 .7281956289113009交集终点；完整恢复顺序见 [f0/README.md](f0/README.md)。原39无需尾部，条件授权未使用。
+F1 39原输入1409.885秒、35EOS/4cap；174 CPU查询7.034秒。独审3a53a536已通过，480685B小包实际服务器写入与回读核验db46d892，入口 `evidence/terminal-pointer.json`。F0 47原输入1220.816秒、42EOS/5cap，15:15:01Z真实释放GPU2；同89 CPU查询7.037秒；完整16doc/47patient/947实体/B343保护。F0收件104必要文件、94raw/ID字节等价重建；离线后只读CPU分块取回原responses（64dbbb31），未重新生成。
+
+结果 `evidence/F0-result.json`；F0 freeze26c1d92a、预测9c3aa01b已13dbab90先推送再唯一评分。当前仅收尾统一小备份/终审，仓外 `R/research/grounded-weight-average-v1/{F1,F0}`。原有GPU规范化提议和未使用尾部授权保持未执行；无其他质量臂或官方操作。
 
 ## 准备阶段记录（授权前历史）
 
