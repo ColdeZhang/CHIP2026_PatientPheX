@@ -1,14 +1,14 @@
 {
-  "schema": "quote-set-completion-proposed-first-control-v1",
-  "status": "PROPOSED_NOT_GPU_AUTHORIZED",
+  "schema": "quote-set-completion-first-control-v2",
+  "status": "ROOT_AUTHORIZED_CPU_AND_ENGINEERING_FORMAL_CONDITIONAL_ON_ACTUAL_COST",
   "training": {
     "initial_adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
     "base": "exact Qwen3.5-9B c202236235762e1c871ad0ccb60c8ee5ba337b9a",
-    "rows": 174,
+    "rows": 261,
     "epochs": 1,
-    "optimizer_updates": 22,
+    "optimizer_updates": 33,
     "accumulation": 8,
-    "tail": 6,
+    "tail": 5,
     "warmup_updates": 2,
     "learning_rate": 1e-05,
     "optimizer": "fresh AdamW state; no old optimizer/scheduler/RNG continuation",
@@ -49,9 +49,9 @@
     "inference_grace": 30,
     "Sap_seconds": 180,
     "Sap_grace": 30,
-    "basis": "OldG32 174 total rows903344tokens2039.028s A100; new174rows920222tokens=1.0187x with fewer supervised tokens. A800/warm-start actual cost unknown; probe first, no guarantee."
+    "basis": "Original A1002039.028s/903344tokens versus new1380333=1.5280x (~3115.7s); A800 warmcost must be measured beforeformal. Sharedformal3600 provisionally reserves120seconds for durableACK, no silentdeadline extension."
   },
-  "deployment_shift": "Training known sets are true label subsets; deployment known sets may contain false positives, alternative synonyms, and complete/near-complete sets not covered for high-cardinality patients. No gold feedback.",
+  "deployment_shift": "Training has both halfknown residuals and all87 fullknown-stop states;112/261 targets empty. Deployment known sets may still contain false positives/alternative synonyms; no fabricated wrong labels or gold feedback.",
   "mechanism_difference": "p(missing_set | report,patient,already_reported_set), rather than repeated p(full_set | report,patient) or independent-sample filtering",
   "no_model_or_quality_executed": true,
   "revision": "v2-fixed-third-full-known-stop-before-first-GPU",
@@ -94,5 +94,34 @@
       "sha256": "65be55a81082bc7b58b7e9abc0ed42aa35483d97cae66963f9aacbd9b9ef0cfa"
     }
   },
-  "training_configuration": {}
+  "training_configuration": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "seed": 20261023,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    },
+    "packing": false,
+    "quantization": false,
+    "loss": "standard per-row mean causal CE; divide each row by actual group size",
+    "rows": 261,
+    "documents": 32,
+    "held_rows": 0,
+    "steps_per_epoch": 33,
+    "optimizer_calls": 33,
+    "warmup_steps": 2,
+    "tail_group_size": 5,
+    "full_training_tokens": 1380333,
+    "supervised_tokens": 12406,
+    "maximum_full_tokens": 9307
+  }
 }
