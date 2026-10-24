@@ -2,7 +2,7 @@
 
 唯一公式在 [decision.json](decision.json) 预锁：从强 F1 的原 1313 个实体中，只删除同一 `(pmc_id, offset, length, text)` 的完整、严格 `BOUNDARY` 输出所对应的全部实体对象。BOUNDARY 表示此跨度未获支持，与临床 NO 独立。其他实体、关系、患者、文档对象及顺序均保持。没有新增实体、替换 ID、阈值或 HPO/患者子集。重复输入 row/span 或 raw/parsed 身份冲突直接失败。
 
-执行只依赖 Python 标准库。`schema.py` 是父方法冻结 parser 的逐字节副本；其余代码独立，不修改父方法和旧 veto。已完成的来源核查与合成合同见 [台账](WORKLOG.md)。本目录没有实际 held 输出、预测或质量结果。
+执行只依赖 Python 标准库。`schema.py` 是父方法冻结 parser 的逐字节副本；其余代码独立，不修改父方法和旧 veto。已完成的来源核查与合成合同见 [台账](WORKLOG.md)。当前已完整执行F1并小幅正；见 [结果指针](evidence/result.json)。下列为已执行恢复入口，不要覆盖原排他intent重跑。
 
 父 owner 完整回收 1416 行 `results.json`、`complete.json` 和全部 `generation/0000..1415.{raw,parsed}.json` 后，root 先核原训练完整终态、两轮 ACK 与收集身份，再执行：
 
