@@ -204,3 +204,5 @@ FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcesso
 ## 2026-10-24：后继性能候选，当前未执行
 
 root提出：若原生Qwen forward支持Tensor `logits_to_keep`，可研究在LM head之前只选择causal监督位置，保持完整backbone/目标/归一，减少ignored位置的巨量head输出。必须先核实际API、同冻结hidden下loss/head梯度及数值差异，再独立工程试验；当前只有假设，未证等价或提速，也未授权修改本轮formal。当前已授全文训练继续使用已核完整BF16 head+CE前选择监督位置实现。
+
+- H5 格式防坑：本机 TF2.12 的 `save_weights("adapted.weights.h5", save_format="h5")` 实际文件没有 legacy `layer_names` 属性。内置 load_weights 可正确加载，额外手写旧 H5 遍历却会在预测前失败。必须按实际保存格式核验，或如本次按同一完整 checkpoint 对照全部201位置 tensor；不要直接删严格校验。并且含相对 dependency_root 的 CPU 入口要显式设置原 worktree cwd；本次两错误均保留，未重复训练/评分。

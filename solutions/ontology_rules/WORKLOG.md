@@ -12,7 +12,7 @@
 
 - 官方最高901的B预测已07:54:13真实accepted（回执8d39aba4，额度5→4），不查询成绩；现恢复本地冲0.8，其他上传暂停。
 - **A800 indexed全文正式运行中**：08:07:31唯一 `proc_93f50e85`/PID65024，epoch1；原124×2/32updates/7170监督，整体8400+30，绝对截止 `1792837648.873858`。每epoch必须完整state跨机.100持久ACK后继续；恢复入口 `research/qwen35-fulltext32-indexed-formal-v1/controller`，源[formal_indexed](qwen35_sft32_full_report_training_readiness/formal_indexed/README.md)。原fullhead正式版从未启动，独立保留。
-- **A100 H5正式已启动**：08:21:27唯一 `proc_431edce8`/PID274558，原fresh H5固定1252query/20steps+完整F1 native/双端点600+30；部署原dd9651包12件SHA通过，plancc1e不变。UNKNOWN合并传输未落地已只补缺片恢复，无重复模型。源码/CPU旧端点字节复现已push；[实际启动](public_h5_adaptation_readiness/formal_train/actual-start.json)。
+- **A100 H5固定20步已负结案**：唯一训练/完整F1与两质量已完成，主 .728697536469→.727938862709（−.000758674），同源诊断 .658357066464→.661787702194；不迁F0/dev、不调cut。原H5格式guard在held NN前失败保留，独立同权重恢复成功；两质量08:31:07已在原600截止内完成，GPU08:29:47释放交sequence。[结果](public_h5_adaptation_readiness/formal_train/RESULT.md)。
 - 两实际工程已通过：head284.122秒/12真实反向，peakallocated32.693GB、reserved35.123GB，独审e35dba61；PubMed69.501秒/原201变量/三Adam更新，独审d2734bc0。均不代表质量提升。H5旧F1实际vec101（full64才103），原a465/8cb基线身份不变。
 - 最近已核远端 `ed8a9c7`；两方案源码/启动/失败恢复及报告指针均已保存，原完整权重、数组和训练产物外存。以下为阶段历史，实际恢复以本节与新namespace为准。
 
