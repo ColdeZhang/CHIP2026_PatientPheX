@@ -14,6 +14,8 @@
 
 ## 正在执行与恢复入口
 
+**全局患者—表型聚合 CPU 可行性完成，真实短probe准备中。** 严格train32/F1旧2506/1557候选对不变，全文510/overlap128打包307/158窗、全部3444 occurrence精确覆盖；动态pad位置减34%但attention格数增加，未测吞吐不称加速。独立同344577参数uniform/pair头13项NumPy梯度/跨窗/重叠/边界合同通过，无F1gold/质量/GPU。原ATLOP局部乘积跨窗无支持且longseq只首尾1024，许可未找到，未复制代码。根新授权仅.3最长文档双臂180+15 probe，尚未运行/未授权正式训练。[可行性和精确预算](experiments/pair-conditioned-document.md)、[证据](evidence/round2/pair-document-feasibility.json)。
+
 **原dev唯一逆序并集完整正，独审PASS（5a106306）。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
 
 **固定逆序并集F0终点正，独审PASS（ac631bcd），GPU已释放。** 原58/SFT48/旧候选415全有效，wrapper222.352秒；唯一union Score **.695443948→.704687440**（+.009243492），micro+.008895764/macro+.028078206，只新增12TP14FP，原947实体/旧关系全留，0错警。符合事前keep，reverse-alone未评；F1同union微升但micro负限制保留，不自动迁原dev。GPU2于00:29:56核空；旧48只读SHM副本可从.100持久原件恢复，无活动job。[终点及恢复](evidence/round2/reverse-json-order-f0-results.json)、[方法](experiments/reverse-json-order-f0.md)。

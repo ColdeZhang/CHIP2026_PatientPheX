@@ -178,3 +178,8 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 ## 固定候选逆序输入控制：可行性，尚无质量
 
 原9B/SFT32同80未做过列表逆序或对应一致性组合（检索负责人确认；旧530条件枚举保留原顺序）。本次仅CPU把原候选逆序并同步CID/code_map，全部user双逆byteexact、587概念/患者/证据不变，max5691token。它检查AR多答案的排序依赖，不能先认定会提高正确率。原单检索示例F1已经负结案，不附加到此控制。无GPU/新评分，详见 experiments/reverse-json-order.md。
+
+
+### 局部注意力乘积不能自动变成全文证据
+
+ATLOP原局部乘积需要两端attention支持相交；独立passage编码下本train32有1616/2506候选对不满足，不能只把“所有窗口都编码了”称为跨段条件聚合。原longseq仅首/尾512，prepro默认截1022；新全文510/overlap128映射覆盖全部occurrence，但仍1065候选对不共窗，需独立的全局pair query。公开公式可独立实现，未找到许可的官方代码不复制。打包减少固定pad位置，却增加实际token和动态pad attention格数，先测真实吞吐再定预算。详见[本次CPU可行性](experiments/pair-conditioned-document.md)。
