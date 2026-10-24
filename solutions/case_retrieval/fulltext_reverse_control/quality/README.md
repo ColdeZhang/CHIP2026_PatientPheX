@@ -1,0 +1,11 @@
+# Fixed fulltext reverse paired quality
+
+Primary is cached fulltext-normal N union new fulltext-reverse R; diagnostic is R alone. Both keep N's 1189 entities and every nonassociation byte. Each receives one unchanged v2 all/text evaluation after both predictions are fully written, fsynced and frozen; N's cached Score 0.676546354662594 is reused without reevaluation. Either strictly higher Score passes; macro and all other metrics remain reported, with no extra macro gate. Higher passing Score wins and an exact tie selects primary. Endpoint identities do not change. This is previously inspected F1 development, not a new blind test; there is no automatic F0/dev/official action.
+
+The original ef28 evaluator is imported only for pure canonical_gate/make_primary/assemble_two/delta functions and its frozen 0fa4 literal helpers. Its old main/reference_gate/verify_inference/retain are never called. No R1 codec, raw response parser or native decoder runs here. The reused canonical validator's 14400 input bound only checks this known80 maximum14390; the GPU input cap remains14848. summary must equal complete except its two final finished_utc/elapsed_seconds fields.
+
+bind_actual.py checks the complete recovered original package, all member hashes, fixed old4f48/CPU/source references, ascending80 record order, 79fresh+one new reverse cache19, and exact cached IDs/raw/format bytes. It emits a new ready plan without reading gold. run_quality_once.py uses an exclusive output directory, durable intent, child hard CPU60 and absolute external wall65+TERM5; all outcomes preserve stdout/stderr and terminal. No retry or output cleanup occurs.
+
+Parent binds with --template template.json --inference-dir <full80-collected> --source evaluate.py --output <bound-plan.json>, pushes the bound plan/source checkpoint, then invokes run_quality_once.py --plan <bound-plan.json> --source evaluate.py --output-dir <unique-quality-execution>. The quality output location is fixed in template. An additional exclusive marker in the recovered inference directory prevents a second evaluation under another output location.
+
+Preparation performed only local syntax compilation and static schema/source checks. No binder, tokenizer, model, response parser, gold file, evaluation, remote job or GPU was executed by this helper.
