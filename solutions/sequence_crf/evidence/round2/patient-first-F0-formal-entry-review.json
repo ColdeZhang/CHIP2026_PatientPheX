@@ -1,0 +1,139 @@
+{
+  "status": "PASS_incremental_F0_formal_sources_actual_deployment_CPU_durability_and_fixed_twoarm_endpoint",
+  "at_utc": "2026-10-24T03:26:24.432756+00:00",
+  "readiness": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/readiness.json",
+    "bytes": 4660,
+    "sha256": "1cb194ea0333352fda328ee8cc37396dcfab2c613e9c5e0ee410f11cde2bed01",
+    "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-formal-review/final-snapshots/1cb194ea0333--readiness.json"
+  },
+  "snapshot_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-formal-review/final-snapshot-manifest.json",
+    "bytes": 21001,
+    "sha256": "febfed0eb582987168e2aa2449b259aa74bdad5f93601c0ec0e8a18cff13f3d2"
+  },
+  "reused_probe_terminal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-entry-review/review.json",
+    "bytes": 7896,
+    "sha256": "e300f328934afe6d5bdf66f6b9bc05e36bbb9295d1ac2a0fd6d3a6036fd263fe"
+  },
+  "source": {
+    "trainer_sha256": "cc707253ba277a87544d9f9f57f3735217e10b2d4ebd74a35ada8d5967591011",
+    "infer_sha256": "319ab559470436e22713139e581b35ea5761b1f9af4a0a053d39cbea82db07fb",
+    "finish_sha256": "92b3a9ad364495f249ff5cb21978a7eff35a89696090346413905d685fdff1bc",
+    "secondary_sha256": "df82af61510af3699114802549c7063e6b0c94099d34059e6388eecc80000252",
+    "policy_sha256": "d2b8d630ac3e609b315b64b1b9668887364adb9afbcbb03393604417e6cce86c",
+    "train_plan_sha256": "4b70dbcedbfec918c1f314bd859e6e567c713e006cd00f228d0b5f325e0bec04",
+    "infer_plan_sha256": "69c05df1a8fe83f0dce1e6ceb68a5eeb17190e81547e7ca564db4a0b7d00d631",
+    "endpoint_plan_sha256": "143638eed633470d7767ad4f88daab490e170e75fd30f8f0d527fe7d2d11c37e",
+    "original990df_entire_run_byteexact_after_single_IO_call_reversion": true,
+    "configuration_AST_exact": true
+  },
+  "actual_entry": {
+    "deployed20members_SHA_compile": true,
+    "reused_remote_existing10plus_new10": true,
+    "deployment_archive_sha256": "5390d934d9dc5273ddb25d72d7478b92ad23d03f5d7f46389fbd5a1580244021",
+    "actual_CPU": {
+      "source_sha256": "cc707253ba277a87544d9f9f57f3735217e10b2d4ebd74a35ada8d5967591011",
+      "manifest_sha256": "40409ec490d82c27206aea845aa3b7224ec075571b56ca3055715cbfcc7f4fc5",
+      "rows": 204,
+      "documents": 48,
+      "max_tokens": 5769,
+      "full_tokens": 656837,
+      "supervised_tokens": 7612,
+      "adapter_parameters": 43278336,
+      "total_parameters": 8997081600,
+      "cuda_initialized": false,
+      "elapsed_seconds": 9.527084112167358,
+      "not_training": true
+    },
+    "actual_CPU_manifest_sha256": "40409ec490d82c27206aea845aa3b7224ec075571b56ca3055715cbfcc7f4fc5",
+    "strict_48_16_isolation": true,
+    "F0_pure_input_read_for_ID_verification_only": true,
+    "no_F0_target_or_gold": true,
+    "new204_encoded_exact_native76ae": true
+  },
+  "authorized_train": {
+    "fresh_public_base": true,
+    "one_continuous_invocation": true,
+    "epochs": 2,
+    "training_rows": 204,
+    "train_documents": 48,
+    "optimizer_calls": 52,
+    "steps_per_epoch": 26,
+    "warmup_steps": 3,
+    "accumulation": 8,
+    "last_group": 4,
+    "seed": 20261023,
+    "native_full_unweighted_CE": true,
+    "cap_seconds": 3900,
+    "TERM_grace_seconds": 30,
+    "first_failure_stop": true,
+    "no_automatic_resume_retry_or_allocator_attention_precision_loss_change": true,
+    "checkpoint_each_complete_epoch": [
+      26,
+      52
+    ]
+  },
+  "persistent_checkpoints": {
+    "storage_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+    "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-F0-formal-v1/run/formal2ep",
+    "SHM": false,
+    "minimum_free_bytes": 4294967296,
+    "atomic_publish": "Close and fsync every full adapter+optimizer/scheduler/RNG member and directory, atomic incomplete→epoch rename, fsync entire ancestor chain to explicit PATIENTPHEX_DURABILITY_ROOT, reopen exact memberSHA before successreceipt; receiptfile and outputdir fsync afterwards.",
+    "membership": "No symlinks/absolute/dotdot members, exact inventory and trainer source, matching epoch26/52 metadata; no overwrite. Receipt namespace durability-epoch-* avoids H44 epoch-* collision.",
+    "failure": "Bad reopenedSHA retains checkpoint withoutsuccessreceipt; existingtarget rejected. No state deserialization or RNG/trainingmath calls in persistence helper.",
+    "actual_synthetic_evidence": {
+      "old_fixture_sha256": "3108263122191f40a0403ed88e0c5c74e3763db1e028b4b89b3d3c63db2ad3ae",
+      "old_fixture_seconds": 0.039213842996105086,
+      "new_ancestor_fixture_sha256": "209380ef0f4790a47a94256a9f5340305dd22a99a2f590fbcf7857e48baf7c7f",
+      "new_ancestor_seconds": 0.03178236199892126,
+      "actual_all_new_parents_fsynced_before_ACK": true,
+      "old_fixture_not_rerun": true
+    },
+    "before_ancestor_fix_preserved": "be8 readiness/f08trainer and originalplans remain byte-exact snapshots; only I/O helper/receiptdriver and necessary digest/environment bindings changed.",
+    "actual_fullstate_receipts": "Pending formalrun; no checkpoint successinvented."
+  },
+  "inference": {
+    "rows": 58,
+    "documents": 16,
+    "candidates": 415,
+    "pairs": 1166,
+    "cap_seconds": 600,
+    "TERM_grace_seconds": 30,
+    "pure_prompts_sha256": "dae9b5d8eeade4c61ec693af28bbdc3993b3864135b1b6260b769b79c35e960b",
+    "final_epoch2_only": true,
+    "require_both_durable_epoch_receipts_before_launch": true,
+    "actual_final_adapter_and_training_complete_SHA_preflight": true,
+    "unchanged_greedy_no_thinking": true,
+    "max_input": 14000,
+    "max_new": 1600,
+    "strict_EOS_PID_CID": true,
+    "no_fallback_or_partial_quality": true
+  },
+  "quality_policy": {
+    "frozen_at": "2026-10-24T03:14:46.945962+00:00",
+    "pre_new_F0_response_quality": true,
+    "arms": [
+      "primarypatient_first",
+      "literaloldSFT48_unionprimary"
+    ],
+    "same_nonassociation_entities": 947,
+    "patients": 47,
+    "baseline_prediction_sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb",
+    "baseline_metrics_sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218",
+    "old_baseline_reused_no_new_call": true,
+    "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+    "full_freeze_before_first_gold": "Primary strict58 assembly→secondary literalsetunion→commonfreeze allprediction/source/plan/input hashes→before-bothqualitymarker→primaryv2once→secondaryv2once. Standaloneprimary evaluation refuseswithoutcommonfreezeandmarker.",
+    "unique_new_calls": 2,
+    "no_other_models_combinations_thresholds_originaldev_official": true,
+    "separate_from_old8B_union_control": true
+  },
+  "known_limits": [
+    "Prior A1005769 singlefreshupdate passed but does not guarantee accumulation8 or later optimizer-state/allocator stability; firstfailure preserves completedepochs and stops.",
+    "F0 is a previously observed development split; this repeat is not a claim of untouched independent generalization.",
+    "Actual model8,997,081,600<10B perindividualmodel; ensemble sum is resource inventory.",
+    "This is source/entry pass, not completed formal training/inference/quality."
+  ],
+  "verifier_actions": "Static AST/byte/SHA/metadata and immutable small snapshots only; no actualCPU/fixture/model/parser/evaluator rerun, no goldread, remote, Git or liveindex."
+}

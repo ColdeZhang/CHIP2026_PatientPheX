@@ -69,3 +69,8 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 ## 实际正式部署和CPU预检通过
 
 最终source543e98e已push+lsremote。A100自有formal-v1目录全20成员actualSHA/compile通过（10件同机已核副本copy、10件新源/输入/plan；archive5390d934）。actual formalCPU 9.527084s通过，source cc707、204/48/max5769/656837full/7612监督、26steps/epoch×2、warmup3、总参数8,997,081,600，CUDA未初始化、not_training=true。completeabbe4d58、manifest40409ec4、audit881cf950三件回收SHA exact；未加载权重或执行model forward。显式说明本预检读excluded F0纯input用于ID隔离，不读F0 targets/gold或新质量。完整入口独审收口中，按原条件授权在fresh卡和空间核验后启动；这里尚未宣称正式训练已运行。
+
+
+## 正式F0训练实际启动
+
+完整增量入口bcaf14d3 PASS（保存父链窄修、实际20部署/新CPU及双臂端点一组闭环）。source+actualCPU已push/lsremote9f9de5d。fresh GPU2 UUID2c22空卡与持久盘门槛通过后，唯一proc_ced868e2-fd8c-4ae4-b4b5-da75a8bb06a0/PID64875于03:26:28.486604Z启动。原204×2/52calls3warmup连续单invocation，3900+TERM30；approx TERM04:31:28.487/KILL04:31:58.487，远端driver-started为权威。模型/epoch/质量均待真实结果；不能把入口PASS或历史job running=true当当前完成。恢复看formal-preparation/train-{launch-intent,job}.json及A100自有formal-v1/control/train，不重复start。完整训练/持久epoch2后才启动固定原58，唯一双评；新8B∪9B单独CPU控制不改变本实验方案。
