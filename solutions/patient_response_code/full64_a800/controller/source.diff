@@ -1,0 +1,154 @@
+--- full64/controller/activation.py
++++ full64_a800/controller/activation.py
+@@ -15,6 +15,26 @@
+     return json.loads(Path(record['path']).read_text())
+ 
+ 
++def check_probe_host(training, probe_plan):
++    """The old A100 result cannot activate the migrated A800 campaign."""
++    host = training['resource_migration']
++    if (host['mount_id'] != '69b991ee-183f-4add-af1a-579af92479c9'
++        or probe_plan['gpu_uuid'] != host['gpu_uuid']
++        or probe_plan['python'] != training['python']
++        or probe_plan['model'] != training['model']
++        or probe_plan['environment']['PYTHONPATH'] != training['pythonpath']
++        or probe_plan['environment']['CUDA_VISIBLE_DEVICES'] != host['gpu_uuid']
++        or probe_plan['resource_migration']['actual_torch_expected'] != training['formal_runtime']['torch']
++        or probe_plan['actual_native_CPU'] != training['data_arguments']['native_receipt']):
++        raise ValueError('New A800 probe host/native/runtime identity differs')
++    inventory = check(host['actual_inventory'])
++    if (probe_plan['resource_migration']['actual_A800_inventory'] != host['actual_inventory']
++        or host['source_private_IP'] not in inventory['host_addresses']
++        or inventory['model'] != training['model'] or inventory['python'] != training['python']):
++        raise ValueError('New A800 inventory binding differs')
++    return True
++
++
+ def require_actual_probe(training, wrapper_path, decision_path):
+     # Caller invokes this before creating a deployable controller directory or
+     # GPU authorization. Missing actual files fail without a fake placeholder.
+@@ -27,6 +47,7 @@
+         raise ValueError('Cost decision does not bind actual wrapper')
+     step = check(decision['probe_step']); done = check(decision['probe_complete'])
+     probe_plan = check(training['expected_probe_plan'])
++    check_probe_host(training, probe_plan)
+     if (step['actual_forwards'] != 12 or step['actual_backwards'] != 12 or step['actual_optimizer_steps'] != 1
+         or not step['max_supervision128_and_longest6462_completed']
+         or not step['final_inventory']['all_grad_finite'] or not step['final_inventory']['frozen_base_no_gradient']
+@@ -39,6 +60,11 @@
+     manifest_path = Path(decision['probe_step']['path']).parent / 'run-manifest.json'
+     manifest_ref = ref(manifest_path)
+     observed = json.loads(manifest_path.read_text())
++    runtime = observed['runtime']
++    if (any(runtime[name] != training['formal_runtime'][name] for name in ['torch', 'transformers', 'peft'])
++        or runtime['gpu_uuid'] != training['resource_migration']['gpu_uuid']
++        or observed['FLA'] is not False):
++        raise ValueError('Actual A800 probe runtime/GPU differs')
+     if (done['manifest_sha256'] != manifest_ref['sha256']
+         or observed['plan_sha256'] != training['expected_probe_plan']['sha256']
+         or observed['source_sha256'] != probe_plan['payload_sources']['probe.py']['sha256']):
+--- full64/controller/deploy.py
++++ full64_a800/controller/deploy.py
+@@ -45,6 +45,7 @@
+  verify='''from pathlib import Path
+ import os,pwd,json,hashlib,tarfile,gzip
+ p=Path(P['root']);assert pwd.getpwuid(os.getuid()).pw_name=='zhangyuheng' and p.stat().st_uid==os.getuid();os.chmod(p,0o700)
++assert os.statvfs(p).f_bavail*os.statvfs(p).f_frsize>=512*1024**2
+ assert not (p/'campaign.json').exists() and not (p/'control').exists()
+ def put(path,b):
+  if path.exists():assert not path.is_symlink() and path.read_bytes()==b
+--- full64/controller/epoch_driver.py
++++ full64_a800/controller/epoch_driver.py
+@@ -34,8 +34,9 @@
+   assert proof['fsync_all_files'] and proof['reopened_final_filename_SHA_all_files'] and proof['destination_directories_fsynced']
+   assert proof['checkpoint_sha256']==sha(output/'epoch-001/checkpoint.json')
+  fresh=gpu(plan);index,uuid,used,free,total=[x.strip() for x in fresh['target_csv'].split(',')]
+- assert index=='2' and int(used)<=100 and int(free)>=39000 and int(total)>=40000 and not fresh['target_compute_rows']
++ assert index=='2' and int(used)<=100 and int(free)>=70000 and int(total)>=80000 and not fresh['target_compute_rows']
+  assert os.statvfs(output.parent).f_bavail*os.statvfs(output.parent).f_frsize>=4*1024**3
++ assert os.statvfs(plan['remote_absolute']).f_bavail*os.statvfs(plan['remote_absolute']).f_frsize>=512*1024**2
+  save(control/'fresh-gpu.json',fresh)
+  argv=plan['train_argv']+['--absolute-deadline-unix',str(deadline)]
+  if epoch==1:argv+=['--stop-after-epoch','1']
+--- full64/controller/formal_cost.py
++++ full64_a800/controller/formal_cost.py
+@@ -11,10 +11,11 @@
+     parser.add_argument('--readiness', type=Path, required=True)
+     args = parser.parse_args()
+     root = args.readiness
+-    terminal = root / 'probe-v1/package/terminal'
++    terminal = root / 'probe-v1/package-runtime-v2/terminal'
+     wrapper = json.loads((terminal / 'wrapper-complete.json').read_text())
+     step = json.loads((terminal / 'step.json').read_text())
+-    prior = json.loads((root / 'cost-readiness.json').read_text())
++    prior_path = root.parent / 'patient-response-code-full64-readiness-v1/cost-readiness.json'
++    prior = json.loads(prior_path.read_text())
+     assert wrapper['returncode'] == 0 and not wrapper['timed_out'] and wrapper['target_has_no_process']
+     assert wrapper['all12_backwards_and_one_update_verified']
+     assert step['actual_forwards'] == step['actual_backwards'] == 12 and step['actual_optimizer_steps'] == 1
+@@ -32,14 +33,17 @@
+     estimate = projected_training + fixed_io_allowance + update_save_contingency
+     memory = step['memory']
+     assert memory['free_bytes'] >= 10 * 1024**3
+-    assert step['combined_peak_reserved_bytes'] < 35 * 1024**3
++    # Same >=10GiB residual margin, with a capacity bound for the new 80GiB host.
++    assert step['combined_peak_reserved_bytes'] < 70 * 1024**3
+     assert 0 < estimate <= 5400
+     value = dict(status='ACTUAL_FULL64_H51_PASS_COST_SUPPORTS_CONDITIONAL_FRESH_FORMAL',
+         probe_wrapper=ref(terminal / 'wrapper-complete.json'), probe_step=ref(terminal / 'step.json'),
+         probe_complete=ref(terminal / 'complete.json'),
+         probe_plan=ref(Path(__file__).resolve().parents[1] / 'probe/plan.json'),
+-        collection=ref(root / 'probe-v1/package/collection.json'), source=ref(__file__),
+-        prior_estimate=ref(root / 'cost-readiness.json'),
++        collection=ref(root / 'probe-v1/package-runtime-v2/collection.json'), source=ref(__file__),
++        prior_estimate=ref(prior_path),
++        prior_is_A100_proxy_not_A800_measurement=True,
++        real_probe_host='A800_80GiB_GPU2',
+         real_probe_training_window_seconds=window, probe_tokens=52201,
+         complete_twoepoch_tokens=2 * 918058,
+         token_scaled_probe_training_seconds=projected_pressure,
+--- full64/controller/full64_source_bridge.py
++++ full64_a800/controller/full64_source_bridge.py
+@@ -5,7 +5,8 @@
+ """
+ import source_bridge
+ 
+-source_bridge.REL = 'patient-response-code/full64-source-bridge-v1'
++source_bridge.MA = '69b991ee-183f-4add-af1a-579af92479c9'
++source_bridge.REL = 'patient-response-code/full64-a800-source-bridge-v1'
+ source_bridge.ROOT = '/home/zhangyuheng/projects/CHIP2026_PatientPheX/' + source_bridge.REL
+ 
+ if __name__ == '__main__':
+--- full64/controller/operations.py
++++ full64_a800/controller/operations.py
+@@ -43,9 +43,10 @@
+   for block in iter(lambda:reader.read(4*1024*1024),b''):h.update(block)
+  assert f.stat().st_size==item['size'] and h.hexdigest()==item['sha256'];actual.append(dict(name=item['name'],bytes=item['size'],sha256=item['sha256']))
+ gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,memory.free,memory.total','--format=csv,noheader,nounits'],text=True);apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_gpu_memory','--format=csv,noheader,nounits'],text=True)
+-row=[s for s in gpu.splitlines() if s.split(',')[1].strip()==plan['gpu_uuid']];assert len(row)==1;idx,uuid,used,free,total=[x.strip() for x in row[0].split(',')];assert idx=='2' and int(used)<=100 and int(free)>=39000 and int(total)>=40000 and uuid not in apps
++row=[s for s in gpu.splitlines() if s.split(',')[1].strip()==plan['gpu_uuid']];assert len(row)==1;idx,uuid,used,free,total=[x.strip() for x in row[0].split(',')];assert idx=='2' and int(used)<=100 and int(free)>=70000 and int(total)>=80000 and uuid not in apps
+ shm=Path(plan['output_dir']).parent;assert shm.stat().st_uid==os.getuid() and not Path(plan['output_dir']).exists();assert os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize>=4*1024**3
+-print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize)))
++disk_free=os.statvfs(p).f_bavail*os.statvfs(p).f_frsize;assert disk_free>=512*1024**2
++print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize,project_disk_free_bytes=disk_free)))
+ '''
+  d=remote(source,code,dict(root=root),'preflight-tool.json',60);save('preflight.json',d);print(json.dumps({k:v for k,v in d.items() if k!='files'}))
+ elif a.action=='start-epoch':
+--- full64/controller/prepare.py
++++ full64_a800/controller/prepare.py
+@@ -22,13 +22,13 @@
+  decompress={}
+  for key,n in [('train','train.response-code.jsonl'),('excluded_input','excluded.input.jsonl')]:
+   item=training['data_arguments'][key];assert ref(item['path'])==item;b=Path(item['path']).read_bytes();gz=n+'.gz';(B/gz).write_bytes(gzip.compress(b,mtime=0));decompress[gz]=dict(name=n,bytes=len(b),sha256=hashlib.sha256(b).hexdigest())
+- project='/home/zhangyuheng/projects/CHIP2026_PatientPheX';relative='patient-response-code/full64-v1';root=project+'/'+relative;python=training['python'];uuid='GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1';output=training['output_directory']
++ project='/home/zhangyuheng/projects/CHIP2026_PatientPheX';relative='patient-response-code/full64-a800-v1';root=project+'/'+relative;python=training['python'];uuid='GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc';output=training['output_directory']
+  allfiles=files+controls+data+list(decompress)
+  payload={n:{k:v for k,v in ref(B/n).items() if k!='path'} for n in allfiles}
+  for item in decompress.values():payload[item['name']]={k:item[k] for k in ['bytes','sha256']}
+  argv=[python,'-u',root+'/train.py','--mode','train','--train',root+'/train.response-code.jsonl','--excluded-input',root+'/excluded.input.jsonl','--data-manifest',root+'/original-preparation-manifest.json','--response-preparation',root+'/structural-result.json','--native-receipt',root+'/native-result.json','--native-row-audit',root+'/native-row-audit.json','--model',training['model'],'--model-source-manifest',root+'/model-source-manifest.json','--output-dir',output,'--gpu-uuid',uuid]
+  env=dict(CUDA_VISIBLE_DEVICES=uuid,PYTHONPATH=training['pythonpath'],PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',TOKENIZERS_PARALLELISM='false',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1')
+- plan=dict(status='FROZEN_FRESH_SHORT265_CODED_2EPOCHS_68UPDATES_TWO_DURABLE_ACKS',mount_id='476f81cf-09e7-445b-a7f0-d0e12b12e50f',persistent_mount_id='5a9955da-5240-41cc-9e52-05d3d8da8a3c',source_owner='zhangyuheng',remote_relative=relative,remote_absolute=root,persistent_remote_relative=relative,persistent_remote_absolute=root,persistent_checkpoint_root=training['persistent_directory'],python=python,persistent_python='/home/zhangyuheng/projects/ScratchVL/.venv/bin/python',source_private_IP='10.5.3.12',gpu_uuid=uuid,model=training['model'],output_dir=output,trainer_sha256=training['source_files']['train.py']['sha256'],train_sha256=training['train_sha256'],fingerprint_schema=training['fingerprint_schema'],export_trainer_basename='train.py',export_run_files=training['run_files'],total_absolute_budget_seconds=5400,term_grace_seconds=30,export_seconds_each=600,source_training_plan=ref(F/'training-plan.json'),CPU_contract=ref(F/'CPU-contract-result.json'),probe_terminal=ref(a.probe_terminal),cost_decision=ref(a.cost_decision),train_argv=argv,payload_files=payload,decompress=decompress,env=env,resume_policy=training['resume'],no_probe_state_reuse=True,no_inference_or_quality_here=True)
++ plan=dict(status='FROZEN_FRESH_SHORT265_CODED_2EPOCHS_68UPDATES_TWO_DURABLE_ACKS',mount_id='69b991ee-183f-4add-af1a-579af92479c9',persistent_mount_id='5a9955da-5240-41cc-9e52-05d3d8da8a3c',source_owner='zhangyuheng',remote_relative=relative,remote_absolute=root,persistent_remote_relative=relative,persistent_remote_absolute=root,persistent_checkpoint_root=training['persistent_directory'],python=python,persistent_python='/home/zhangyuheng/projects/ScratchVL/.venv/bin/python',source_private_IP='10.5.4.7',gpu_uuid=uuid,model=training['model'],output_dir=output,trainer_sha256=training['source_files']['train.py']['sha256'],train_sha256=training['train_sha256'],fingerprint_schema=training['fingerprint_schema'],export_trainer_basename='train.py',export_run_files=training['run_files'],total_absolute_budget_seconds=5400,term_grace_seconds=30,export_seconds_each=600,source_training_plan=ref(F/'training-plan.json'),CPU_contract=ref(F/'CPU-contract-result.json'),probe_terminal=ref(a.probe_terminal),cost_decision=ref(a.cost_decision),train_argv=argv,payload_files=payload,decompress=decompress,env=env,resume_policy=training['resume'],no_probe_state_reuse=True,no_inference_or_quality_here=True)
+  save(B/'controller-plan.json',plan);allfiles+=['controller-plan.json'];m={n:{k:v for k,v in ref(B/n).items() if k!='path'} for n in allfiles}
+  with tarfile.open(B/'deployment.tar.gz','w:gz') as t:
+   for n in allfiles:t.add(B/n,arcname=n,recursive=False)

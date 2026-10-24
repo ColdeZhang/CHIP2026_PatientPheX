@@ -1,0 +1,89 @@
+--- full64/formal_train/cpu_contract.py
++++ full64_a800/formal_train/cpu_contract.py
+@@ -80,7 +80,7 @@
+     bad=copy.deepcopy(state);del bad['optimizer']['state'][0]['exp_avg_sq']
+     reject('missing Adam second moment rejected',lambda:contract.validate_state_structure(bad,1,names))
+     reject('shared absolute deadline cannot reset',lambda:contract.check_deadline(time.time()-1))
+-    for fragment in ["args.absolute_deadline_unix-time.time()>5400","helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']","helpers.json_sha(row['labels'])!=actual['labels_sha256']","torch.__version__!='2.6.0+cu124'","'CPU_census_torch':'2.7.1+cu126'","scheduler.last_epoch!=global_step"]:
++    for fragment in ["args.absolute_deadline_unix-time.time()>5400","helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']","helpers.json_sha(row['labels'])!=actual['labels_sha256']","torch.__version__!='2.7.1+cu126'","'CPU_census_torch':'2.7.1+cu126'","scheduler.last_epoch!=global_step"]:
+         okay('fixed runtime/source '+fragment,fragment in text)
+     C=B.parent/'controller';activation=load(C/'activation.py','full64_activation')
+     with tempfile.TemporaryDirectory(prefix='full64-gate-contract-') as temporary:
+@@ -96,6 +96,28 @@
+     watch=(C/'watch_authorized_campaign.py').read_text()
+     okay('read-only LUNA UNKNOWN recovery retained','safe_read=' in watch and "'LUNA_OFFLINE'" in watch and "'UNKNOWN_OUTCOME'" in watch and 'unknown mutation never repeated' in watch)
+     okay('HTTP has own original export deadline',"while time.time()<a.deadline:server.handle_request()" in (C/'export_checkpoint_server.py').read_text())
++    previous=B.parents[1]/'full64'; prior=json.loads((previous/'formal_train/training-plan.json').read_text())
++    okay('original full64 plan provenance exact',ref(previous/'formal_train/training-plan.json')==p['resource_migration']['original_training_plan'])
++    unchanged=['configuration','training_rows','training_documents','excluded_documents','training_tokens_each_epoch','max_tokens','engineering_rejection_cap','supervised_tokens','optimizer_updates','steps_per_epoch','warmup_updates','groups_per_epoch','pure_inference_contract']
++    okay('full64 method/data/schedule/inference contract unchanged',all(p[key]==prior[key] for key in unchanged))
++    okay('all original data sources byteexact',all(p['data_arguments'][key]==prior['data_arguments'][key] for key in prior['data_arguments'] if key!='model_source_manifest'))
++    expected=(previous/'formal_train/train.py').read_text().replace('/full64-formal2ep','/full64-a800-formal2ep').replace('2.6.0+cu124','2.7.1+cu126').replace('Exact A100 Torch runtime differs','Exact A800 Torch runtime differs').replace("RUNTIME_CONTRACT_SHA='c4a7a6ff41004f85cad92d0b53a170bcca4540ae18d4b9c180df792a23b14e8b'", "RUNTIME_CONTRACT_SHA='"+ref(B/'runtime_contract.py')['sha256']+"'")
++    okay('entire full64 trainer differs only runtime/output/contract SHA',text==expected)
++    expected=(previous/'formal_train/runtime_contract.py').read_text().replace('patient-response-code/full64-v1','patient-response-code/full64-a800-v1')
++    okay('entire complete-state contract changes only persistent namespace',(B/'runtime_contract.py').read_text()==expected)
++    for name in ['indexed_head.py','selected_loss.py','qwen35_smoke.py','qwen35_relation_cost.py','model-source-manifest.json']:
++        okay('unchanged exact mathematical/base helper '+name,(B/name).read_bytes()==(previous/'formal_train'/name).read_bytes())
++    probe=json.loads(Path(p['expected_probe_plan']['path']).read_text())
++    okay('new A800 probe host/native binding accepted',activation.check_probe_host(p,probe))
++    reject('old A100 probe rejected before activation',lambda:activation.check_probe_host(p,json.loads((previous/'probe/plan.json').read_text())))
++    bad=copy.deepcopy(probe);bad['gpu_uuid']='GPU-foreign'
++    reject('foreign GPU probe rejected before activation',lambda:activation.check_probe_host(p,bad))
++    okay('A800 source engineering thresholds and SHM',all(fragment in (C/'operations.py').read_text() for fragment in ['int(free)>=70000','int(total)>=80000','disk_free>=512*1024**2','>=4*1024**3']))
++    okay('persistent target retains original2GiB guard','shutil.disk_usage(p).free>=2*1024**3' in (C/'bootstrap.py').read_text() and 'shutil.disk_usage(p).free>=2*1024**3' in (C/'deploy.py').read_text())
++    okay('original source-bridge mechanism exact',(C/'source_bridge.py').read_bytes()==(previous/'controller/source_bridge.py').read_bytes())
++    bridge=(C/'full64_source_bridge.py').read_text()
++    okay('wrapper overrides old bridge host and namespace',"source_bridge.MA = '69b991ee-183f-4add-af1a-579af92479c9'" in bridge and "source_bridge.REL = 'patient-response-code/full64-a800-source-bridge-v1'" in bridge)
++    okay('new inference runtime and all64 IDs contract',"assert torch.__version__ == '2.7.1+cu126'" in (B.parent/'inference/infer_full64.py').read_text() and 'all64_actual_ids_equal_prior_native_CPU' in (B.parent/'inference/infer_full64.py').read_text())
+     okay('no tokenizer/Torch/model imports',all(x not in sys.modules for x in ['torch','transformers','tokenizers']))
+     result=dict(status='PASS_STDLIB_FULL64_DATA_SCHEDULE_RESUME_AND_DISABLED_ACTIVATION_CONTRACT',checks_count=len(checks),checks=checks,seconds=time.monotonic()-start,source=ref(B/'train.py'),runtime_contract=ref(B/'runtime_contract.py'),cpu_source=ref(__file__),plan_sha256=ref(a.plan)['sha256'],actual_native_repeated=False,raw_training_target_parsed=False,model_GPU_remote_quality=False,formal_GPU_authorization_created=False,scope='New binding/schedule/epoch guards and copied mathematical source; future actual full-state restoration remains runtime assertion, not new GPU numerical equivalence proof.')
+     with (B/'CPU-contract-result.json').open('x') as f:json.dump(result,f,indent=2);f.write('\n')
+--- full64/formal_train/runtime_contract.py
++++ full64_a800/formal_train/runtime_contract.py
+@@ -55,7 +55,7 @@
+     if ack.get('trainer_sha256')!=trainer_sha or ack.get('source_checkpoint_directory')!=str(checkpoint):raise ValueError('ACK source identity differs')
+     if ack.get('checkpoint_sha256')!=sha(checkpoint/'checkpoint.json'):raise ValueError('ACK checkpoint SHA differs')
+     if ack.get('persistent_mount_id')!='5a9955da-5240-41cc-9e52-05d3d8da8a3c':raise ValueError('ACK is not on expected persistent mount')
+-    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-v1/checkpoints/epoch-001'
++    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-a800-v1/checkpoints/epoch-001'
+     if ack.get('persistent_directory')!=expected_directory:raise ValueError('ACK persistent namespace differs')
+     if not re.fullmatch('[0-9a-f]{64}',ack.get('transport_manifest_sha256','')):raise ValueError('ACK transport manifest SHA missing')
+     for key in ['fsync_all_files','reopened_final_filename_SHA_all_files','destination_directories_fsynced']:
+--- full64/formal_train/train.py
++++ full64_a800/formal_train/train.py
+@@ -45,7 +45,7 @@
+ SELECTED_LOSS_SHA='dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9'
+ NATIVE_LOSS_SHA='83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe'
+ MODEL_SOURCE_SHA='b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3'
+-RUNTIME_CONTRACT_SHA='c4a7a6ff41004f85cad92d0b53a170bcca4540ae18d4b9c180df792a23b14e8b'
++RUNTIME_CONTRACT_SHA='96047c5988171d26c0736ec1a72c934ba3fc886aa8adba772162456251bbb2d6'
+ EXCLUDED_SHA='c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e'
+ PREPARATION_SHA='389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44'
+ COPIED_TRAINER_SHA='9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b'
+@@ -265,7 +265,7 @@
+     if args.absolute_deadline_unix-time.time()>5400:raise ValueError('Absolute deadline exceeds authorized total budget')
+     if os.environ.get('PYTORCH_ALLOC_CONF') or os.environ.get('PYTORCH_CUDA_ALLOC_CONF'):raise ValueError('Allocator configuration differs')
+     output=Path(args.output_dir)
+-    if str(output)!='/dev/shm/patientphex-response-code-20261024/full64-formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
++    if str(output)!='/dev/shm/patientphex-response-code-20261024/full64-a800-formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
+     if not args.resume and args.resume_export_ack:raise ValueError('Fresh run cannot consume any old ACK')
+     if args.resume and not args.resume_export_ack:raise ValueError('Resume requires exact durable full-state ACK')
+     if output.exists() and any(output.iterdir()) and not args.resume:raise ValueError('Fresh invocation needs an empty output; use explicit own-run resume')
+@@ -288,7 +288,7 @@
+         random.seed(CONFIG['seed']);np.random.seed(CONFIG['seed']);torch.manual_seed(CONFIG['seed'])
+         torch.backends.cudnn.benchmark=False
+         torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=True
+-        if torch.__version__!='2.6.0+cu124':raise RuntimeError('Exact A100 Torch runtime differs')
++        if torch.__version__!='2.7.1+cu126':raise RuntimeError('Exact A800 Torch runtime differs')
+         import transformers.models.qwen3_5.modeling_qwen3_5 as q
+         if sha256(q.__file__)!=MODEL_SOURCE_SHA or importlib.util.find_spec('fla') is not None:raise RuntimeError('Native Qwen runtime differs')
+         if any(getattr(q,n).__module__!=q.__name__ or inspect.unwrap(getattr(q,n)).__module__!=q.__name__ for n in ['torch_chunk_gated_delta_rule','torch_recurrent_gated_delta_rule']):raise RuntimeError('Native GDN dispatch differs')
+@@ -333,7 +333,7 @@
+             'resume_unit':'complete acknowledged epoch only; no automatic partial epoch replay','new_gpu_resume_numerical_equivalence_tested':False,
+             'fresh_base_on_initial_run':True,'validation_labels_used':False,
+             'target_representation_changed':True,'old_original_supervised_tokens':15410,
+-            'original_clinical_user_UTF8_preserved':True,'CPU_census_torch':'2.7.1+cu126','formal_torch':'2.6.0+cu124'}
++            'original_clinical_user_UTF8_preserved':True,'CPU_census_torch':'2.7.1+cu126','formal_torch':'2.7.1+cu126'}
+         write_json(manifest_path,manifest)
+         for name,source in [('train.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('runtime_contract.py',contract.__file__)]:
+             (output/name).write_bytes(Path(source).read_bytes())

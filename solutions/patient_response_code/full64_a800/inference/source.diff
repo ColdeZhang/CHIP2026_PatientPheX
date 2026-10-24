@@ -1,0 +1,75 @@
+--- full64/inference/bind_after_training.py
++++ full64_a800/inference/bind_after_training.py
+@@ -50,9 +50,9 @@
+     done = json.loads((controller / 'campaign-complete.json').read_text())
+     assert cp['fingerprint_schema'] == SCHEMA
+     assert cp['train_sha256'] == TRAIN_SHA and cp['no_probe_state_reuse'] is True
+-    assert cp['remote_relative'] == 'patient-response-code/full64-v1'
+-    assert cp['remote_absolute'] == '/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-v1'
+-    assert cp['output_dir'] == '/dev/shm/patientphex-response-code-20261024/full64-formal2ep'
++    assert cp['remote_relative'] == 'patient-response-code/full64-a800-v1'
++    assert cp['remote_absolute'] == '/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-a800-v1'
++    assert cp['output_dir'] == '/dev/shm/patientphex-response-code-20261024/full64-a800-formal2ep'
+     assert cp['persistent_checkpoint_root'] == cp['remote_absolute'] + '/checkpoints'
+     assert done['status'] == 'TWO_COMPLETE_EPOCHS_68_STEPS_DURABLE_ACKS_VERIFIED'
+     assert done['campaign']['plan_sha256'] == sha(controller / 'controller-plan.json')
+@@ -126,13 +126,13 @@
+     files = {name: {key: value for key, value in ref(destination / name).items() if key != 'path'} for name in [*sources, 'row-audit.json']}
+     plan = dict(schema='patient-response-code-full64-two-epoch-originaldev64-native-v1',
+         status='TWO_ACTUAL_DURABLE_ACKS_BOUND_NO_MODEL', mount_id=cp['mount_id'], gpu_uuid=cp['gpu_uuid'],
+-        python=cp['python'], model=cp['model'], remote='patient-response-code/full64-v1/originaldev64-inference-v1',
++        python=cp['python'], model=cp['model'], remote='patient-response-code/full64-a800-v1/originaldev64-inference-v1',
+         adapter=cp['output_dir'] + '/epoch-002/adapter',
+         adapter_files={name: acks[1]['files']['adapter/' + name]['sha256'] for name in ('adapter_config.json', 'adapter_model.safetensors')},
+         env=cp['env'], cap_seconds=1200, term_grace_seconds=30, input_limit=13824, generation_limit=1600,
+         cached_original_indices=[], fresh_rows=64, training_completed_epochs=2, training_global_step=68,
+         configured_eos_ids=[248044, 248046],
+-        expected_runtime=dict(torch='2.6.0+cu124', transformers='5.20.2', peft='0.21.2', tokenizers='0.23.1',
++        expected_runtime=dict(torch='2.7.1+cu126', transformers='5.20.2', peft='0.21.2', tokenizers='0.23.1',
+             actual_tokenizer_class='Qwen3_5Tokenizer', matmul_TF32=False, cudnn_TF32=True),
+         native_CPU_runtime=native['runtime'], native_census=ref(native_path), native_full_audit=ref(audit_path),
+         originaldev_input=ref(args.dev_input), files=files,
+--- full64/inference/infer_full64.py
++++ full64_a800/inference/infer_full64.py
+@@ -67,7 +67,7 @@
+     from transformers import AutoTokenizer, Qwen3_5ForCausalLM, Qwen3_5TextConfig
+     from peft import PeftModel
+     assert transformers.__version__ == '5.20.2' and peft.__version__ == '0.21.2'
+-    assert torch.__version__ == '2.6.0+cu124'
++    assert torch.__version__ == '2.7.1+cu126'
+     torch.set_num_threads(1)
+     assert torch.cuda.is_available() and torch.cuda.device_count() == 1
+     assert torch.cuda.is_bf16_supported()
+@@ -115,7 +115,7 @@
+         'cudnn_TF32': torch.backends.cudnn.allow_tf32,
+         'cached_original_indices': [], 'no_truncation': True, 'gold_read': False,
+         'native_CPU_runtime': plan['native_CPU_runtime'],
+-        'runtime_difference': 'CPU Torch 2.7.1+cu126; inference Torch 2.6.0+cu124; all64 actual input IDs checked'})
++        'runtime_difference': 'CPU Torch 2.7.1+cu126; inference Torch 2.7.1+cu126; all64 actual input IDs checked'})
+     loading_started = time.monotonic()
+     model, loading = Qwen3_5ForCausalLM.from_pretrained(
+         plan['model'], config=text_config, dtype=torch.bfloat16, device_map='cuda:0',
+--- full64/inference/launch.py
++++ full64_a800/inference/launch.py
+@@ -37,10 +37,10 @@
+ target = [line for line in gpu.splitlines() if line.split(',')[1].strip() == plan['gpu_uuid']]
+ assert len(target) == 1
+ index, uuid, used, free, total = [part.strip() for part in target[0].split(',')]
+-assert index == '2' and int(used) <= 100 and int(free) >= 39000 and int(total) >= 40000
++assert index == '2' and int(used) <= 100 and int(free) >= 70000 and int(total) >= 80000
+ assert not any(line.split(',')[0].strip() == plan['gpu_uuid'] for line in apps.splitlines() if line.strip())
+ assert os.environ['CUDA_VISIBLE_DEVICES'] == plan['gpu_uuid']
+-assert os.statvfs('.').f_bavail * os.statvfs('.').f_frsize >= 30_000_000
++assert os.statvfs('.').f_bavail * os.statvfs('.').f_frsize >= 512 * 1024**2
+ save('fresh-gpu.json', {'at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                       'target_csv': target[0], 'target_compute_processes': [],
+                       'plan_sha256': sha('plan.json')})
+@@ -55,7 +55,7 @@
+     save('child-started.json', {'pid': child.pid, 'pgid': child.pid, 'argv_role': 'timeout_then_runner'})
+     rc = child.wait()
+ save('wrapper-complete.json', {'at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+-    'returncode': rc, 'cap_seconds': 1200, 'term_grace_seconds': 30, 'wrapper_seconds': time.monotonic() - started,
++    'returncode': rc, 'timed_out': rc in (124, 137), 'cap_seconds': 1200, 'term_grace_seconds': 30, 'wrapper_seconds': time.monotonic() - started,
+     'plan_sha256': sha('plan.json'), 'source_sha256': sha(__file__)})
+ gpu = subprocess.check_output(['nvidia-smi', '--query-gpu=index,uuid,memory.used,memory.free,memory.total',
+                               '--format=csv,noheader,nounits'], text=True)

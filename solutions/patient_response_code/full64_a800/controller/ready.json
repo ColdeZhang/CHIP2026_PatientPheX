@@ -1,0 +1,75 @@
+{
+  "status": "SOURCE_ONLY_STDLIB97_PASS_NEW_A800_ACTUAL_PRESSURE_AND_COST_REQUIRED",
+  "entry": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/controller/entry.py",
+    "bytes": 2663,
+    "sha256": "a6168de7d0cef25bbe8ed614731d50f608e76c56324176b90f82395ea550049b"
+  },
+  "training_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/formal_train/training-plan.json",
+    "bytes": 14090,
+    "sha256": "b9e31f4e248cf7e4573945920ce615823f5b9f4882872a85e3a35403ca8853a3"
+  },
+  "CPU_contract": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/formal_train/CPU-contract-result.json",
+    "bytes": 10537,
+    "sha256": "a180beed83a4b664a933658dcc1312865ca4acadc0e39b7e46cc254d06cd8e0f"
+  },
+  "source_checks": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/controller/source-checks.json",
+    "bytes": 15314,
+    "sha256": "0ff76194f70a77f273d035b17f35e1feb1d0f2c68fd2c45ef28b9721b70b32c6"
+  },
+  "expected_probe_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/probe/plan.json",
+    "bytes": 14804,
+    "sha256": "21255251ba4bb0ab432c182ee45b4f2d9729177575cdbaf1f21a5347a35ddfce"
+  },
+  "default_controller": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/controller",
+  "new_probe_terminal": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/probe-v1/package-runtime-v2/terminal",
+  "formal_cost_command": [
+    "python",
+    "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/controller/formal_cost.py",
+    "--readiness",
+    "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1"
+  ],
+  "prepare_command": [
+    "python",
+    "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/controller/entry.py",
+    "prepare",
+    "--controller",
+    "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/controller",
+    "--probe-terminal",
+    "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/probe-v1/package-runtime-v2/terminal/wrapper-complete.json",
+    "--cost-decision",
+    "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/formal-cost-decision.json"
+  ],
+  "source_bridge_entry": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/controller/full64_source_bridge.py",
+    "bytes": 529,
+    "sha256": "cef3ebee80567d04c32a9777cce7ee2e434a8bd837ebbf0d8b431f3a34922bb6"
+  },
+  "two_ACK_inference_binder": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/inference/bind_after_training.py",
+    "bytes": 10278,
+    "sha256": "0c15f05e38fb1c9df6083f480fabb9fcfbaa015c21bf40e82bb14902957e59c1"
+  },
+  "default_inference": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-a800-v1/originaldev64-inference-v1",
+  "component_assembly": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64_a800/inference/assemble_component.py",
+    "bytes": 7322,
+    "sha256": "ff189fe21b7464a68a7960fd0b63beb871c1fed75c8c111961a6e6bd0087f6b7"
+  },
+  "authorized": false,
+  "authorization_scope": "Source helper does not activate campaign. Root conditional formal chain is checked by owner against actual new A800 probe and cost at execution.",
+  "helper_model_remote_Git_quality_calls": 0,
+  "actual_pressure_result_read_by_helper": false,
+  "generated_training_authorization": false,
+  "generated_campaign": false,
+  "local_compatibility_fix": "inference launch now emits timed_out boolean already required by unchanged assembler; no inference output or method change",
+  "source_frame": {
+    "entities": 955,
+    "root_final_entities": 1061,
+    "source_entities_not_final_Task1": true
+  }
+}

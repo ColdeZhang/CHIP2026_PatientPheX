@@ -1,0 +1,134 @@
+"""Explicit once-only stages. Inspect unknown status; never regenerate model work."""
+from pathlib import Path
+import argparse,base64,hashlib,io,json,os,shlex,sys,time,tarfile
+sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts')
+from mcp_client import Client
+ap=argparse.ArgumentParser();ap.add_argument('action',choices=['preflight','start-epoch','inspect','start-server','start-fetch','collect-export']);ap.add_argument('--directory',type=Path,required=True);ap.add_argument('--epoch',type=int,choices=[1,2],default=1);a=ap.parse_args();B=a.directory;plan=json.loads((B/'controller-plan.json').read_text());epoch=a.epoch
+sha=lambda b:hashlib.sha256(b).hexdigest();plan_sha=sha((B/'controller-plan.json').read_bytes());source=plan['mount_id'];target=plan['persistent_mount_id'];root=plan['remote_absolute'];dest=plan['persistent_remote_absolute'];client=Client();client.initialize()
+def save(name,x):
+ with (B/name).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ fd=os.open(str(B),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+def call(mount,name,params,label):
+ result=client.request('tools/call',dict(name=name,arguments=dict(mount_id=mount,**params)));save(label,result)
+ if result.get('isError'):raise RuntimeError('Unknown/error '+name+'; inspect original intent/job, do not repeat mutation')
+ return result.get('structuredContent') or json.loads(result['content'][0]['text'])
+def remote(mount,code,params,label,timeout=30):
+ body='PARAM='+repr(params)+'\n'+code;compile(body,'remote.py','exec');r=call(mount,'run_command',dict(command='python3 -c '+shlex.quote(body),timeout_seconds=timeout),label)
+ assert r['exit_code']==0, 'Remote stage failed; inspect saved tool receipt'
+ return json.loads(r['stdout'])
+def write(mount,relative,raw,label):
+ return call(mount,'write_file',dict(path=relative,content=base64.b64encode(raw).decode(),encoding='base64',create_parents=True),label)
+def publish_json(mount,path,obj,label):
+ code='''from pathlib import Path
+import os,json,hashlib
+p=Path(PARAM['path']);b=(json.dumps(PARAM['value'],indent=2)+chr(10)).encode()
+if p.exists():assert p.read_bytes()==b
+else:
+ with p.open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())
+fd=os.open(str(p.parent),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+print(json.dumps(dict(path=str(p),bytes=len(b),sha256=hashlib.sha256(b).hexdigest())))
+'''
+ return remote(mount,code,dict(path=path,value=obj),label)
+def load_campaign():
+ d=json.loads((B/'campaign.json').read_text());assert d['plan_sha256']==plan_sha and d['absolute_deadline_unix']==d['started_unix']+5400
+ return d
+if a.action=='preflight':
+ assert not (B/'preflight-intent.json').exists();save('preflight-intent.json',dict(at_epoch=time.time(),no_model=True,plan_sha256=plan_sha))
+ code='''from pathlib import Path
+import hashlib,json,os,subprocess,time
+p=Path(PARAM['root']);plan=json.loads((p/'controller-plan.json').read_text());model=Path(plan['model']);manifest=json.loads((p/'model-source-manifest.json').read_text());actual=[]
+for item in manifest['files']:
+ f=model/item['name'];h=hashlib.sha256()
+ with f.open('rb') as reader:
+  for block in iter(lambda:reader.read(4*1024*1024),b''):h.update(block)
+ assert f.stat().st_size==item['size'] and h.hexdigest()==item['sha256'];actual.append(dict(name=item['name'],bytes=item['size'],sha256=item['sha256']))
+gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,memory.free,memory.total','--format=csv,noheader,nounits'],text=True);apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_gpu_memory','--format=csv,noheader,nounits'],text=True)
+row=[s for s in gpu.splitlines() if s.split(',')[1].strip()==plan['gpu_uuid']];assert len(row)==1;idx,uuid,used,free,total=[x.strip() for x in row[0].split(',')];assert idx=='2' and int(used)<=100 and int(free)>=70000 and int(total)>=80000 and uuid not in apps
+shm=Path(plan['output_dir']).parent;assert shm.stat().st_uid==os.getuid() and not Path(plan['output_dir']).exists();assert os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize>=4*1024**3
+disk_free=os.statvfs(p).f_bavail*os.statvfs(p).f_frsize;assert disk_free>=512*1024**2
+print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize,project_disk_free_bytes=disk_free)))
+'''
+ d=remote(source,code,dict(root=root),'preflight-tool.json',60);save('preflight.json',d);print(json.dumps({k:v for k,v in d.items() if k!='files'}))
+elif a.action=='start-epoch':
+ activation=json.loads((B/'GPU-AUTHORIZATION.json').read_text());assert activation['authorized'] is True and activation['controller_plan_sha256']==plan_sha and activation['budget_seconds']==5400
+ assert not (B/('epoch-%03d-start-intent.json'%epoch)).exists()
+ if epoch==1:
+  proof=json.loads((B/'preflight.json').read_text());assert proof['plan_sha256']==plan_sha and time.time()-proof['at_epoch']<300
+  assert not (B/'campaign.json').exists();started=time.time();campaign=dict(plan_sha256=plan_sha,cap_seconds=5400,grace_seconds=30,started_unix=started,absolute_deadline_unix=started+5400,no_budget_reset=True);save('campaign.json',campaign)
+  publish_json(source,root+'/campaign.json',campaign,'source-campaign.json');publish_json(target,dest+'/campaign.json',campaign,'target-campaign.json')
+ else:
+  campaign=load_campaign();ack=json.loads((B/'epoch-001-export-ack.json').read_text());assert ack['status']=='persistent_checkpoint_verified' and ack['completed_epochs']==1 and ack['global_step']==34 and (B/'epoch-001-source-ack-copy.json').exists()
+ assert time.time()<campaign['absolute_deadline_unix'];save('epoch-%03d-start-intent.json'%epoch,dict(at_epoch=time.time(),plan_sha256=plan_sha,campaign=campaign,epoch=epoch))
+ argv=[plan['python'],'-u',root+'/epoch_driver.py','--plan',root+'/controller-plan.json','--campaign',root+'/campaign.json','--epoch',str(epoch)]
+ d=call(source,'start_process',dict(command=shlex.join(argv),cwd=plan['remote_relative'],env=plan['env']),'epoch-%03d-start-tool.json'%epoch);save('epoch-%03d-job.json'%epoch,d);print(json.dumps(d))
+elif a.action=='inspect':
+ stamp=str(time.time_ns());code='''from pathlib import Path
+import json
+p=Path(PARAM['root']);out={};output=Path(PARAM['output'])
+for n in ['claim.json','failure.json','complete.json']:
+ f=p/'bootstrap-control'/n
+ if f.is_file():out['bootstrap-'+n]=json.loads(f.read_text())
+for epoch in [1,2]:
+ c=p/'control'/('epoch-%03d'%epoch);d={}
+ for n in ['driver-started.json','wrapper-complete.json','gpu-release.json']:
+  if (c/n).is_file():d[n]=json.loads((c/n).read_text())
+ if (c/'stdout.log').is_file():d['stdout_tail']=(c/'stdout.log').read_text()[-2000:]
+ out[str(epoch)]=d
+for n in ['progress.json','training_complete.json','failure.json']:
+ if (output/n).is_file():out[n]=json.loads((output/n).read_text())
+print(json.dumps(out))
+'''
+ d=remote(source,code,dict(root=root,output=plan['output_dir']),'inspect-'+stamp+'-tool.json');save('inspect-'+stamp+'.json',d)
+ if 'bootstrap-failure.json' in d:raise RuntimeError('Original bootstrap failed; inspect saved actual failure, never restart blindly')
+ for ep in [1,2]:
+  value=d.get(str(ep),{});wrapper=value.get('wrapper-complete.json');release=value.get('gpu-release.json');path=B/('epoch-%03d-state.json'%ep)
+  if wrapper and release and not path.exists():save(path.name,dict(wrapper=wrapper,release=release))
+ print(json.dumps(d))
+elif a.action=='start-server':
+ campaign=load_campaign();state=json.loads((B/('epoch-%03d-state.json'%epoch)).read_text());assert state['wrapper']['returncode']==0 and 'endpoint_error' not in state['wrapper'] and not state['release']['target_compute_rows']
+ name='epoch-%03d-export-intent.json'%epoch;assert not (B/name).exists();started=time.time();deadline=min(started+600,campaign['absolute_deadline_unix']);assert deadline>started
+ entry=dict(phase='server',epoch=epoch,plan_sha256=plan_sha,started_unix=started,absolute_deadline_unix=deadline);save(name,entry);publish_json(source,root+'/'+name,entry,'epoch-%03d-server-entry-copy.json'%epoch)
+ argv=[plan['python'],'-u',root+'/io_driver.py','--plan',root+'/controller-plan.json','--campaign',root+'/campaign.json','--entry',root+'/'+name]
+ d=call(source,'start_process',dict(command=shlex.join(argv),cwd=plan['remote_relative'],env={'CUDA_VISIBLE_DEVICES':'','PYTHONDONTWRITEBYTECODE':'1'}),'epoch-%03d-server-start-tool.json'%epoch);save('epoch-%03d-server-job.json'%epoch,d);print(json.dumps(d))
+elif a.action=='start-fetch':
+ campaign=load_campaign();entry=json.loads((B/('epoch-%03d-export-intent.json'%epoch)).read_text());assert time.time()<entry['absolute_deadline_unix'];assert not (B/('epoch-%03d-fetch-intent.json'%epoch)).exists()
+ code='''from pathlib import Path
+import json
+p=Path(PARAM['root'])/'control'/('export-server-epoch-%03d'%PARAM['epoch']);ready=None
+if (p/'stdout.log').is_file():ready=next((json.loads(s) for s in (p/'stdout.log').read_text().splitlines() if s.startswith('{')),None)
+print(json.dumps(dict(ready=ready,complete=json.loads((p/'wrapper-complete.json').read_text()) if (p/'wrapper-complete.json').is_file() else None)))
+'''
+ d=remote(source,code,dict(root=root,epoch=epoch),'epoch-%03d-server-ready-%s-tool.json'%(epoch,time.time_ns()));ready=d['ready']
+ if ready is None:print(json.dumps(d));raise SystemExit(0)
+ assert ready['ready'] and ready['manifest']['completed_epochs']==epoch and ready['manifest']['global_step']==34*epoch
+ state=json.loads((B/('epoch-%03d-state.json'%epoch)).read_text());assert ready['manifest']['checkpoint_sha256']==state['wrapper']['checkpoint_sha256']
+ save('epoch-%03d-server-ready.json'%epoch,ready);entry={**entry,'phase':'fetch','url':'http://'+plan['source_private_IP']+':'+str(ready['port']),'manifest_sha256':ready['manifest_sha256']};save('epoch-%03d-fetch-intent.json'%epoch,entry)
+ name='epoch-%03d-fetch-entry.json'%epoch;publish_json(target,dest+'/'+name,entry,'epoch-%03d-fetch-entry-copy.json'%epoch)
+ argv=[plan['persistent_python'],'-u',dest+'/io_driver.py','--plan',dest+'/controller-plan.json','--campaign',dest+'/campaign.json','--entry',dest+'/'+name]
+ d=call(target,'start_process',dict(command=shlex.join(argv),cwd=plan['persistent_remote_relative'],env={'CUDA_VISIBLE_DEVICES':'','PYTHONDONTWRITEBYTECODE':'1'}),'epoch-%03d-fetch-start-tool.json'%epoch);save('epoch-%03d-fetch-job.json'%epoch,d);print(json.dumps(d))
+else:
+ assert not (B/('epoch-%03d-export-ack.json'%epoch)).exists();stamp=str(time.time_ns())
+ code='''from pathlib import Path
+import hashlib,json,os
+root=Path(PARAM['root']);control=root/'control'/('export-fetch-epoch-%03d'%PARAM['epoch']);wrapper=control/'wrapper-complete.json'
+if not wrapper.exists():print(json.dumps(dict(complete=False)))
+else:
+ w=json.loads(wrapper.read_text());assert w['returncode']==0
+ cp=Path(PARAM['checkpoint']);p=cp/('export-ack-epoch-%03d.json'%PARAM['epoch']);raw=p.read_bytes();ack=json.loads(raw)
+ assert ack['status']=='persistent_checkpoint_verified' and ack['fsync_all_files'] and ack['reopened_final_filename_SHA_all_files'] and ack['destination_directories_fsynced']
+ for n,item in ack['files'].items():
+  f=cp/n;assert f.stat().st_size==item['bytes'];h=hashlib.sha256()
+  with f.open('rb') as reader:
+   os.fsync(reader.fileno())
+   for b in iter(lambda:reader.read(4*1024*1024),b''):h.update(b)
+  assert h.hexdigest()==item['sha256']
+ print(json.dumps(dict(complete=True,ack=ack,ack_sha256=hashlib.sha256(raw).hexdigest(),wrapper=w,all_files_reopened_SHA=True)))
+'''
+ d=remote(target,code,dict(root=dest,epoch=epoch,checkpoint=plan['persistent_checkpoint_root']+'/epoch-%03d'%epoch),'epoch-%03d-export-collect-%s-tool.json'%(epoch,stamp),60)
+ if not d['complete']:print(json.dumps(d));raise SystemExit(0)
+ ready=json.loads((B/('epoch-%03d-server-ready.json'%epoch)).read_text());ack=d['ack'];assert ack['files']==ready['manifest']['files'] and ack['transport_manifest_sha256']==ready['manifest_sha256'] and ack['completed_epochs']==epoch and ack['global_step']==34*epoch
+ save('epoch-%03d-export-ack.json'%epoch,ack);save('epoch-%03d-export-verification.json'%epoch,d)
+ published=publish_json(source,plan['output_dir']+'/export-ack-epoch-%03d.json'%epoch,ack,'epoch-%03d-source-ack-tool.json'%epoch);save('epoch-%03d-source-ack-copy.json'%epoch,published)
+ job=json.loads((B/('epoch-%03d-server-job.json'%epoch)).read_text());stopped=call(source,'stop_process',dict(process_id=job['id']),'epoch-%03d-server-stop-tool.json'%epoch);save('epoch-%03d-server-stop.json'%epoch,stopped)
+ if epoch==2:save('campaign-complete.json',dict(status='TWO_COMPLETE_EPOCHS_68_STEPS_DURABLE_ACKS_VERIFIED',at_epoch=time.time(),campaign=load_campaign(),epoch1_ack_sha256=sha((B/'epoch-001-export-ack.json').read_bytes()),epoch2_ack_sha256=sha((B/'epoch-002-export-ack.json').read_bytes()),no_quality=True))
+ print(json.dumps(dict(complete=True,epoch=epoch,bytes=ack['total_bytes'],seconds=ack['seconds'],ack_sha256=d['ack_sha256'],persistent_directory=ack['persistent_directory'])))
