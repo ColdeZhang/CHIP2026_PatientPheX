@@ -47,3 +47,5 @@
 - 后继待办（官方B关键依赖已交后执行）：root新授权F0/F1训练内纯覆盖审计，比较当前LGB Task1文档HPO与oldpool∪public2合法关系提示空间；先查等价历史，只聚合来源/≤.95/真实关系FN供给，不读原dev gold、不新NN/fit、不改本次B。549低分/534边界FP分组后置。head_index_probe由head_projection_feasibility helper独立准备仅CPU/源码，owner明确清单统一Git，不碰旧formal、不GPU；工程probe须官方接收后root另决。
 
 - head_index_probe独立18件ready2026d27e已SHA核齐：新probe143c2a3c/planbf7170e2，CPU0.156748秒的9训练+9同hidden局部+11拒绝检查通过，source41项通过；无部署/GPU，原formal不变。root事前后继边界：官方accepted后仅一个420+30工程控制；未过保留失败、不放宽数值门/连开诊断，继续原已验证formal；通过才另冻新正式版本与绑定，不能把理论head FLOPs节省称全训练实际提速。
+
+- 训练内关系候选空间审计唯一0.716438秒rc0：Task1缺口F0仅1个doc-HPO/6对/覆盖0FN，F1仅2个/9对/覆盖2FN；三者均BioBERT-only原生供给但同时有semantic候选，非独立贡献。old/public2实际提示空间等价全过、原关系252/63/127与366/105/154精确复核，新评分/模型0。建议不专门开GPU扩展；完整输入先冻、literal与canonical分列。[结案建议](relation_candidate_space_followup/RESULT.md)。
