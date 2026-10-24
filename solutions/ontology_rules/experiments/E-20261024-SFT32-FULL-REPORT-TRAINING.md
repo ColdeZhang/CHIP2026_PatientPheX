@@ -30,8 +30,10 @@ fresh base/r16/alpha32/dropout.05，原12目标模块，adapter43,278,336，总8
 
 ## 当前结果
 
-唯一探针已PASS/rc0：wrapper288.173982秒、训练窗口260.794100秒；12次完整前/反向和1次真实AdamW更新。最长13549前/反向42.930650秒；最长前已有496个Adam状态和496个有限梯度，三族LoRA B已实际改变，基座始终无梯度。峰allocated32,689,242,624B、reserved59,114,520,576B；06:16:04.859 GPU2 used1/free81156、无计算进程。48件终点已回收逐SHA，zip23537B/8ad38b1e，source/CPU增量独审dabb18f6通过，实际统一工程审待完成。无checkpoint或质量，probe状态已丢弃。
+唯一探针已PASS/rc0：wrapper288.173982秒、训练窗口260.794100秒；12次完整前/反向和1次真实AdamW更新。最长13549前/反向42.930650秒；最长前已有496个Adam状态和496个有限梯度，三族LoRA B已实际改变，基座始终无梯度。峰allocated32,689,242,624B、reserved59,114,520,576B；06:16:04.859 GPU2 used1/free81156、无计算进程。48件终点已回收逐SHA，zip23537B/8ad38b1e，source/CPU增量独审dabb18f6通过，统一工程审b39274ed通过，121内容件1302209B/48c74e22已在.100逐SHA/fsync持久。无checkpoint或质量，probe状态已丢弃。
 
 12微批实测计算260.519191秒/105332tokens，按全部124长度投影两轮：token加权4992秒、平方长度加权4503秒、均行5384秒、按最慢实测seconds/token6395秒。原2881秒代理低估了这次实际单步成本；这些新值也都是估计，不是正式训练事实或保证。
 
-同r16既有checkpoint五件合计519,867,104B（其中adapter173,181,072B/state346,666,642B）；A100此前checkpoint耗时含在epoch总时长，不能当A800→.100网络测速。项目盘当前约127MB，正式训练如获授权需新私有SHM保存全状态，每epoch持久至.100并全SHA/fsync后继续。已向root建议总绝对预算8400+TERM30，包含两个每epoch≤600秒持久导出预留；预算尚待决定，正式训练未执行。四源控制结论另见[独立结案](../four_source_fulltext_control/RESULT.md)，不在本实验内更改已冻结端点。
+同r16既有checkpoint五件合计519,867,104B（其中adapter173,181,072B/state346,666,642B）；A100此前checkpoint耗时含在epoch总时长，不能当A800→.100网络测速。项目盘当前约127MB，正式训练如获授权需新私有SHM保存全状态，每epoch持久至.100并全SHA/fsync后继续。已向root建议总绝对预算8400+TERM30，包含两个每epoch≤600秒持久导出预留；root已明确授权此预算和同原配方fresh124×2/32steps；完整state恢复/ACK/共享deadline入口正在准备，正式训练未执行。四源控制结论另见[独立结案](../four_source_fulltext_control/RESULT.md)，不在本实验内更改已冻结端点。
+
+后继F1质量现预定：最终两epoch均持久ACK后，原完整80纯输入全fresh（旧idx19模型不同不可缓存），inputcap14400/max14390/gen1600/greedy/raw-first。主新全文SFT-alone，诊断old短SFT32∪新全文SFT；两完整pred共冻→各1v2/旧0。强对照为旧短训练+全文推断alone Score .676546354662594/macro .5959675129046342；每臂需Score严格超且macro不降，另外报告相对旧短输入.660942003。无F0/dev自动迁移或扫描。
