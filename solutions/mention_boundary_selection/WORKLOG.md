@@ -14,6 +14,6 @@
 
 root的F1独立veto小正（删3=0TP/3FP）经同head严格F0复验失败：**.740572140440 → .740492025895**，删4=1TP/3FP，men小升但doc下降，两关系不变。唯一1v2/旧0在完整freeze351f651c之后；不原dev/子集/改cut/官方。此结果不改变本线原主头两负或F1小正历史。
 
-1085完整推断770.098秒，17:15:54.981426 UTC GPU1真实释放；2202小成员全SHA，adapter504逐值exact。20 Sap＋24 nativeCPU原件也全收。稳定终态864c1e24，见[f0_veto/result.json](f0_veto/result.json)、[实验](experiments/E-20261024-boundary-veto-F0.md)。窄源核5ea22755和base/held1085双射51cdf15f已完成，完整质量独审由root集中安排，小备份回执另补。
+1085完整推断770.098秒，17:15:54.981426 UTC GPU1真实释放；2202小成员全SHA，adapter504逐值exact。20 Sap＋24 nativeCPU原件也全收。稳定终态864c1e24，见[f0_veto/result.json](f0_veto/result.json)、[实验](experiments/E-20261024-boundary-veto-F0.md)。窄源核5ea22755和base/held1085双射51cdf15f已完成，完整质量独审由root集中安排，64件小备份298302 B/72af4dbc已远端逐件及回读SHA通过，见[f0_veto/backup-pointer.json](f0_veto/backup-pointer.json)。
 
 3470训练及负例候选祖先确实排F0；本次无需重训。不要把F1 proposer48含F0误说成头训练泄漏，也不要把本次全量质量负解释成来源或工程失败。

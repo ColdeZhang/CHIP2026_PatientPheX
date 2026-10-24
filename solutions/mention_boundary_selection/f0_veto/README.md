@@ -7,3 +7,5 @@
 20 query、24 CPU、2202 infer小成员全部SHA回收；完整1085 raw/parsed和结果保外部，不写仓库。共同完整预测冻结351f651c先于唯一1v2/旧0。终态864c1e24不可覆写；小备份和后继独审用单独pointer补充，不改原件。
 
 [结果](result.json)、[固定协议](decision.json)、[推断计划](infer-plan.json)、[实验记录](../experiments/E-20261024-boundary-veto-F0.md)。外部目录：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1`。这是第二份开发集控制，不是盲测或官网结果。
+
+64件小备份298302 B/SHA72af4dbc已17:18:23.563548 UTC完成远端逐成员核验和完整同SHA回读；见[backup-pointer.json](backup-pointer.json)，原terminal/result字节均保持。
