@@ -61,3 +61,5 @@
 - PubMed原H5唯一GPU工程入口已准备（未部署/未GPU）：独立gpu_probe命名空间，plan186b82ff，真实首64/次64/tail36、freshAdam5e−6三更新，原softmax/共享Dense合同与差异先存、原unused pooler2例外，其余encoder/head梯度与Adam状态核；总240+TERM30。15项本地静态/已有数据检查通过，7件119502B包c1c06368；activation/job不存在，仍等官方accepted及root调度，不自动20步或held评分。[工程入口](public_h5_adaptation_readiness/gpu_probe/README.md)。
 
 - root已给PubMed短探针条件授权：收到真实官方accepted回执后，fresh空A100 GPU2可直接唯一240+30，无需再次批准；尚未收到回执/未建activation/未GPU。仍不自动20步或held质量。原plan186b82ff不改，另存[条件授权](public_h5_adaptation_readiness/gpu_probe/conditional-authorization.json)。
+
+- 07:54:13官方901 B已真实accepted（8d39aba4，额度5→4，不查询成绩）；按root授权恢复两独立工程probe。fresh A100 GPU2=0MiB、A800 GPU2=1MiB/noapps，盘余54.0GB/1.51GB。H5原240+30启动准备；head原420+30新增复用stress的controller，仅绑定真实accepted及收齐head统计，不改plan/数值门/模型源；均无正式训练或质量授权。
