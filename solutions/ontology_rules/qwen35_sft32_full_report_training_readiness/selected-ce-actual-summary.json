@@ -1,0 +1,140 @@
+{
+  "status": "PASS_ACTUAL_A800_TORCH271_CPU_SELECTED_CE_SYNTHETIC_CONTRACT_NO_MODEL",
+  "actual_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/contract-result.json",
+    "bytes": 88396,
+    "sha256": "3e10ab129436c77adacec072e93e0ddf0ba729daf559b1a9a16421ebca02afb1"
+  },
+  "actual_wrapper": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/CPU-complete.json",
+    "bytes": 416,
+    "sha256": "4b0e12a6a37fc64338af75b3861846889b2fd5174503e51f15ba20fd0d2cb163"
+  },
+  "actual_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/selected_cpu.py",
+    "bytes": 10361,
+    "sha256": "c11868cfa284e4b7fc756e3f2fc816429e08c50c48c13689f47dc4dc2f40fc86"
+  },
+  "actual_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/plan.json",
+    "bytes": 2443,
+    "sha256": "5a718f29346bf3eaa6868a0615c0fb54a5da79cf4e22cbd0f8250df496f5c138"
+  },
+  "seconds": 2.329900899901986,
+  "torch": "2.7.1+cu126",
+  "transformers": "5.20.2",
+  "actual_native_source_sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe",
+  "selected_source_sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9",
+  "base_cases": 288,
+  "full_head_gradient_cases": [
+    {
+      "dtype": "torch.float32",
+      "hidden_grad_max_abs_error": 0.0,
+      "head_grad_max_abs_error": 0.0,
+      "complete_same_shape_head_logits_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "hidden_grad_max_abs_error": 0.0,
+      "head_grad_max_abs_error": 0.0,
+      "complete_same_shape_head_logits_exact": true
+    }
+  ],
+  "accumulation_cases": [
+    {
+      "group_size": 1,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "group_size": 2,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "group_size": 4,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "group_size": 8,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    }
+  ],
+  "ignored_position_perturbations": [
+    {
+      "dtype": "torch.float32",
+      "implementation": "native",
+      "ignored_logits_perturbed": true,
+      "loss_exact": true,
+      "gradients_exact": true
+    },
+    {
+      "dtype": "torch.float32",
+      "implementation": "selected",
+      "ignored_logits_perturbed": true,
+      "loss_exact": true,
+      "gradients_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "implementation": "native",
+      "ignored_logits_perturbed": true,
+      "loss_exact": true,
+      "gradients_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "implementation": "selected",
+      "ignored_logits_perturbed": true,
+      "loss_exact": true,
+      "gradients_exact": true
+    }
+  ],
+  "custom_ignore": [
+    {
+      "dtype": "torch.float32",
+      "ignore_index": -7,
+      "shift_labels_supplied": false,
+      "loss_abs_error": 2.384185791015625e-07,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float32",
+      "ignore_index": -7,
+      "shift_labels_supplied": true,
+      "loss_abs_error": 2.384185791015625e-07,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "ignore_index": -7,
+      "shift_labels_supplied": false,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "ignore_index": -7,
+      "shift_labels_supplied": true,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    }
+  ],
+  "maximum_loss_absolute_error": 7.62939453125e-06,
+  "maximum_logit_gradient_absolute_error": 0.0,
+  "tolerances": {
+    "loss_rtol": 2e-06,
+    "loss_atol": 2e-06,
+    "gradient_rtol": 2e-05,
+    "gradient_atol": 2e-07
+  },
+  "loss_bitwise_equality_claimed": false,
+  "cuda_initialized": false,
+  "model_constructed": false,
+  "training_input_read": false,
+  "validation_gold_read": false,
+  "GPU_memory_or_training_success_claimed": false,
+  "limitations": "CPU tiny fixtures only; no model weights, task input/gold, GPU, optimizer or formal run. No claim of GPU bitwise equivalence or peak memory success."
+}
