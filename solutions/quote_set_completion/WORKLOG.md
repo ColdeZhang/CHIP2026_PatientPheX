@@ -39,3 +39,5 @@ Root已预排必要Sap在.100 GPU0（teacher16:07真实释放），全39后fresh
 39原完整终态已123.479秒rc0，16:10:33.615实际释放A800GPU2。92原件ca965d2e全SHA回收；普通G逐item合同39 EOS/0cap/0abstain，33合法空数组、其余共42精确anchors/40词面。固定strict准备仅需28个public查询，未读gold/质量。query plan1e59d2a7，原policy与所有quotes保持，按root预排.100GPU0/fresh门唯一180+30。
 
 F1唯一质量已完整：pred50bb61dc/141199B，freezebc8a9de1在先，唯一新v2/旧0 resultfb352642；Score .701325377212→.702224686258 (+.000899309)，新增2TP0FP，micro+.002391889/macro+.001205347，Task1不变。稳定entry a9044674/36466B已交统一终审，结果evidence/F1-result.json，细节唯一实验QSC-001。Root授权同cd977 F0全47/强B4 .728195628911/普通G32合法known，1800+30和必要Sap，负平关闭；新full64仍仅条件CPU，须F0严格正另预算。
+
+F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47/16纯输入296853tokens/max10262，低于实际F1max10854；train32/d52/cd977/normalizer完整祖先与F0文献互斥。新plan e3047615，同native greedy1600/1800+30/5min admission；唯一对照B4F0 .728195628911/343关系/947实体，固定并全completion，负平关闭。源/输入/基线绑定CPU通过，尚未F0 GPU/质量；不重旧probe。
