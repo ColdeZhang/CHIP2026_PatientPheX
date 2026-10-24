@@ -31,6 +31,8 @@ def verify_normalized(plan):
     assert norm['input_sha256'] == refs['F1_input']['sha256']
     ex_plan = read(checked(ex['plan'])); assert ex_plan['inputs']['F1_input'] == refs['F1_input']
     assert ex_plan['inputs']['prompts'] == refs['prompts']
+    for item in ex['sources'].values(): checked(item)
+    assert ex['sources'] == ex_plan['sources']
     collection = read(checked(refs['collection']))
     assert collection['inference_reported_success'] and collection['all_actual_SHA_verified']
     for item in collection['files'].values(): checked(item)
@@ -40,6 +42,7 @@ def verify_normalized(plan):
     complete = read(checked(collection['files']['output/complete.json']))
     assert complete['rows'] == 39
     assert complete['status'] == 'COMPLETE_FRESH39_RAW_GENERATION_NO_QUALITY'
+    assert complete['source']['sha256'] == ex['sources']['run.py']['sha256']
     assert ex['complete_original39'] and ex['documents'] == 16 and ex['patients'] == 39
     assert ex['EOS_rows'] == complete['EOS_rows'] and ex['cap_rows'] == complete['cap_rows']
     quotes = jsonl(checked(ex['quotes'])); decisions = read(checked(ex['decisions']))

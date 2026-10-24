@@ -36,6 +36,8 @@ def main():
  fingerprint=checkpoint['fingerprint'];configuration=fingerprint['configuration']
  assert fingerprint['schema']=='quote-set-completion-warm-oneepoch-indexed-CE-v2' and fingerprint['route']=='quote-set-completion-v2'
  assert (configuration['rows'],configuration['documents'],configuration['optimizer_calls'],configuration['warmup_steps'],configuration['tail_group_size'])==(261,32,33,2,5)
+ assert configuration['learning_rate']==1e-5 and configuration['seed']==20261023 and configuration['rank']==16
+ assert fingerprint['warm_adapter']['files']['adapter_model.safetensors']['sha256']=='d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba'
  assert fingerprint['train_sha256']=='72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623'
  assert fingerprint['indexed_head_sha256']=='0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb'
  ckpt=Path(p['checkpoint_directory']).resolve();root=Path(p['storage_parent']).resolve();out=Path(p['output_dir']).resolve();out.relative_to(root)
@@ -94,7 +96,7 @@ def main():
   text=tok.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=False)
   assert hashlib.sha256(text.encode()).hexdigest()==audit[row['row_id']]['rendered_prefix_sha256']
   actual_native=native_tok.encode(text,add_special_tokens=False).ids
-  actual_hf=tok.apply_chat_template(row['messages'],tokenize=True,add_generation_prompt=True,enable_thinking=False)
+  actual_hf=tok.apply_chat_template(row['messages'],tokenize=True,return_dict=False,add_generation_prompt=True,enable_thinking=False)
   assert actual_native==actual_hf==ids[row['row_id']], 'Full held IDs differ; no model loaded yet'
  publish_json(out/'actual-held-native-contract.json',dict(rows=39,documents=16,all_native_HF_local_IDs_exact=True,complete_inputs_no_truncation=True,known_source='originalG32accepted328',held_preparation=assets['held_preparation'],source=ref(__file__)),root)
  from transformers import LogitsProcessor,LogitsProcessorList
