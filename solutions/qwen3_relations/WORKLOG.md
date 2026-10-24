@@ -22,3 +22,5 @@
 - 终包892169B/338件，SHA46d568798e7c2d672d0363a7a065213266621a6a6993f2494a4800085b2d96d0，各件全SHA回收；整包read_file一次UNKNOWN后128KiB分块恢复，无重复train/infer。详见evidence/terminal-pointer.json和外部terminal-manifest.json；根共享记录由root收录。
 
 - 最终source/两质量终点补包108292B/48件，SHA92004344，已在同.100真实重开全SHA并联核原338件46d56879；evidence/quality-backup-ack.json。交validation只读终审；接下来仅CPU核F0原祖先/完整全文CID和可用runtime，未授权/未启动新GPU。
+
+- F0本地祖先/全58 append-only原输入已核：原124训练F2/F3，两train16候选生成器和训练32均排整个F0；F0候选层为train48（与F1层train32不同，明确披露），semantic/CRF实际manifest同trainSHA且排F0。完整58/16篇47患者/415concept保持，无F0gold/fit/GPU/评分。evidence/F0-ancestry.json 44493fcb；仅CPU原生分词脚本与plan4e1706b6已预写。
