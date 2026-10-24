@@ -1,0 +1,60 @@
+{
+  "status": "CONDITIONAL_FULL64_CPU_READY_NO_TRAINING_AUTHORIZATION",
+  "train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/full64-conditional/train519-v1/manifest.json",
+    "bytes": 5179,
+    "sha256": "ca2b45bcbc99078e53cd85070d1a7c88d779b739054d6e5199777cd947f07230"
+  },
+  "dev_input": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/full64-conditional/dev36-v1/manifest.json",
+    "bytes": 2156,
+    "sha256": "308c916c84d27ce23525454dac957ab259ec93ab42a023caf8d882fae3ddf74b"
+  },
+  "original_train32": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/manifest.json",
+    "bytes": 4736,
+    "sha256": "d078cb8ff1098e623b79790e384ee5023b9942ee370a15ba4051eedef47dc08c"
+  },
+  "view_constructor_original": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/prepare_v2_recovery.py",
+    "bytes": 8775,
+    "sha256": "fb358016bafe2f52e1161150a44a4c8afe2cbe44f0d437a65824ccc3f9c2bb3f"
+  },
+  "warm_parent": "e129d63445b79b26193870ee9d0f2590c36c4f2369638c94c1e9d599c2563852",
+  "configuration_proposal": {
+    "rows": 519,
+    "patients": 173,
+    "documents": 64,
+    "epochs": 1,
+    "optimizer_calls": 65,
+    "accumulation": 8,
+    "tail_group_size": 7,
+    "learning_rate": 1e-05,
+    "rank": 16,
+    "warmup_proposal": 4,
+    "warmup_reason": "same approximately6% warmup fraction2/33 ->4/65; not frozen formal authorization"
+  },
+  "coverage": {
+    "weak_quotes_once": 1678,
+    "full_known_stop": 173,
+    "empty_answers": 223,
+    "total_full_tokens": 2923722,
+    "max_full_tokens": 10734,
+    "supervised_tokens": 26035,
+    "max_supervised_tokens": 342,
+    "dev36_known_original_G64_prediction": 269,
+    "dev_input_max": 9068
+  },
+  "no_dev_gold_read": true,
+  "data_boundary": "Train64includesinternalF0/F1labels; not used by frozen train32 F0 weights/policy or quality. Originaldev16 excluded. No labels inserted into devknown.",
+  "cost_proxy_not_budget": {
+    "old_sameA800261_actual_seconds": 2464.4233795087785,
+    "old_total_full_tokens": 1380333,
+    "new_over_old_token_ratio": 2.118128016935044,
+    "linear_token_proxy_seconds": 5219.964205727289,
+    "linear_token_proxy_is_not_runtime_guarantee": true,
+    "would_add20percent_and300seconds_before_ACK": 6563.957046872746,
+    "fullstate_bytes_about": 519900000
+  },
+  "gate": "Only F0 strictly positive allows proposing newfull64 native/state/shape contract and explicit GPUbudget; no model call executed here."
+}
