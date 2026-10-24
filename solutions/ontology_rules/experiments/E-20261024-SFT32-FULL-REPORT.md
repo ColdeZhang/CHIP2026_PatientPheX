@@ -50,3 +50,5 @@ F0最长唯一工程作业实际05:50:24.976094启动：proc_50f66d5a-5dd0-4bb0-
 F0最长真实终点PASS：16245→130，generation含prefill9.632724秒，load6.465930秒，wrapper37.909523秒rc0；自然EOS/严格合法/无cap，峰allocated22,753,392,640/reserved24,157,093,888字节，05:51:02.874170实际GPU2释放。13终点已回收，zip6162B/de011a9c，summary8c65e554；满足事前≤30秒/allocated≤60GB及完整EOS条件，因此按原授权推进唯一完整58。
 
 完整58计划ed429817/源1100ee4c，idx30精确缓存1＋57fresh，input16384/gen1600、1200+TERM30，原旧48/base/runtime/greedy/strict政策不变。预定174逐行证据＋完整responses/canonical；不得补生成/改codec/删行。两端点评测control662aeccc/disabled template e48a97c1已绑定实际probe及正式源，主原947实体/全部非关系字节保持，共同freeze后各唯一v2、旧0，主Score严格升且macro不降。诊断alone亦报告对旧方向但不事后改F1主次。当前部署准备，尚无新F0质量或原dev迁移。
+
+F0唯一完整58实际05:53:31.239376启动：proc_76d0ce4c-6887-46cf-b88d-9af5a1874eed/PID20214，childPGID20224；TERM06:13:31.239376+30秒。source/disabled评测98d450b已push，13件6片实际SHA/compile/fsync通过，新增源+CPU+probe+正式入口统一增量审未见阻断。首inspect原driver/child存在，尚无终态；恢复仅inspect原目录。
