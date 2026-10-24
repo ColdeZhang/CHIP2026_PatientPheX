@@ -13,3 +13,5 @@
 - 第二控制实际CPU4.682秒PASS完整4组token/mapping，GPU源baf4d381，21件部署SHA通过；HTTP413按原ZIP分块恢复。首次inner0评分628窗9.343秒，14730/14763有效（33未对齐missing），13439个低于−2的分数完整留存。GPU0实际fresh4MiB/noapps，详见evidence/oof-runtime-pointer.json；该GPU作业已完成，禁止重启。
 
 - 第二控制F1增益来自mention TP+3/FP−18，实体1313→1298；两Task1分项提高、关系exact。模型/预测小包已实备份.3。完整证据evidence/oof-result.json；暂不原dev/官方。F0已有同参数LGB102列（勿写101），计划102→104，46733训练/3186阳性，1新fit/1新v2。
+
+- E003 F0同超参迁移已冻：旧102→104，46733/3186/15028；严格排F0，复用GP23，其余3新模型；同900+30。独立generic入口保留F1源码原SHA。当前CPU/部署准备，无新F0训练/score。
