@@ -1,0 +1,132 @@
+{
+  "schema": "SCST-A100-independent-loading-metadata-recovery-v1",
+  "at_utc": "2026-10-24T17:21:07.995779+00:00",
+  "reason": "Independent root-authorized fresh1800+30 after old69s0forward metadata serializer failure; only original G set serializer restored, no sampling/loss/input/gate change",
+  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/formal-v1/output/epoch-002/adapter",
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "runtime": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1"
+  },
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-set-risk-v1/pilot-A100-v3-loading-recovery-GPU1Sap",
+  "source_previous_host": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/f0/infer-plan.json",
+    "bytes": 16520,
+    "sha256": "4edd175ccafd6411b48cc2765db198121667709680a8617370f12b94158fb8ec"
+  },
+  "actual_CPU_inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/host-A100-v1/result.json",
+    "bytes": 1240,
+    "sha256": "335220e77cc7675c39d891380d5f6c18665758a1a237a6574bf7c4c279987a65"
+  },
+  "resource_gate": "Wait root and seed owner complete train+inference release; then fresh actual >=38000MiBfree/noapps and >=1GiB durable disk",
+  "old_formal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/training_complete.json",
+    "bytes": 1239,
+    "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+  },
+  "memory": {
+    "old_formal_allocated_bytes": 28177982464,
+    "old_formal_reserved_bytes": 31388073984,
+    "new_max_prefix_plus_sample": 10423,
+    "old_max_full": 9210,
+    "old_max_suffix": 610,
+    "new_max_suffix": 1600,
+    "conservative_proxy_bytes": 37000000000,
+    "interpretation": "Old31.39GBreserved + roughly2.5GBlonger selected-vocab CE tensors +1.4GBlonger-context activations +1.7GBmargin. Empirical proxy only, not measured10423 gradient coverage; actual new4x2 probe required, OOM retained and stops.",
+    "minimum_actual_free_MiB": 38000
+  },
+  "no_new_weights_download": true,
+  "no_GPU_started": true,
+  "previous_unexecuted_host": {
+    "path": "/workspace/patientphex-worktrees/research-patient-set-risk/solutions/patient_set_risk/host-A100.json",
+    "bytes": 2922,
+    "sha256": "792e9da1aba28be178af164b64c54c8b89f4ca29defdc8325f222b39be7efaee"
+  },
+  "recovery_authorization": {
+    "authority": "Root explicit17:13 and17:20 task messages: after narrow originalG JSON contract/source+planpush, independent fresh1800+30 allowed; old failed deadline not extended",
+    "original_execution": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/bound-A100-v4/execution.json",
+      "bytes": 4420,
+      "sha256": "776b98e0459afc68b1600d0b543ca8c10eb8bca4e8b4ee5123790c1bbbbd08dd"
+    },
+    "original_driver": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/failure-A100-v1-collected/payload/driver-complete.json",
+      "bytes": 259,
+      "sha256": "05b816a25fd8514f6835f9e868a24969421e669f2885cce7668a6015d91396e0"
+    },
+    "original_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/failure-A100-v1-collected/payload/terminal/result.json",
+      "bytes": 5765,
+      "sha256": "797680dc3955685af4fe8e76a831ddaea1cb22692b288dd7704dd2dfa13cae40"
+    },
+    "original_complete_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/failure-A100-v1-collected/complete.json",
+      "bytes": 1430,
+      "sha256": "0bf55a714e814fab4166d7d0613e0114f6f048dea40158fee86bf08ef2c6ac07"
+    },
+    "original_TERM_UTC": "2026-10-24T17:39:49.159593+00:00",
+    "original_KILL_UTC": "2026-10-24T17:40:19.159593+00:00",
+    "original_forward_calls": 0,
+    "original_generation_rows": 0,
+    "original_backwards": 0,
+    "original_Adam": 0,
+    "new_independent_seconds": 1800,
+    "new_grace_seconds": 30,
+    "reason_for_new_budget": "Original remaining window below1795 conservative complete-probe estimate; do not squeeze or silently extend old window",
+    "local_exact_original_serializer_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/loading-json-local-contract-v1/result.json",
+      "bytes": 659,
+      "sha256": "da3100dfacce6e13319913d270b6541d399f867b0f55567158b49df1457ff90d"
+    },
+    "local_nonempty_gate_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/loading-json-local-contract-v1/nonempty-result.json",
+      "bytes": 592,
+      "sha256": "c586c66db86f2cc5121e560a166951338c8dec186ec4950c5148980e5e4c19a8"
+    },
+    "actual5_CPU_unknown_intent": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/loading-metadata-CPU-v1-recovery/003-actual-interface-contract-intent.json",
+      "bytes": 1015,
+      "sha256": "eae4d632373c816a196b2f8e1941512f9a52c19c7faeb34aacf0395f8e440a59"
+    },
+    "actual5_CPU_unknown_response": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/loading-metadata-CPU-v1-recovery/003-actual-interface-contract-response.json",
+      "bytes": 136,
+      "sha256": "58be7e3a2c74f4c7dec110a639b7772c5ed03281a633a458d55ec43fceff697c"
+    },
+    "actual_CPU_is_not_an_additional_gate": "Root accepts exact originalG JSON AST and empty/nonempty/frozenset/unknown/NaN local contracts for known metadata bug; original tiny CPU remains UNKNOWN and must not be rerun",
+    "all_original_method_parameters_preserved": true,
+    "no_previous_probe_state_loaded": true
+  },
+  "Sap_resource_revision": {
+    "root_authorized": true,
+    "previous_unstarted_execution_SHA": "29c9b80a4741459f74b7c0f32470a381d7ec4c70ac5abd7cd8c96c7bf4c1ede2",
+    "old_gpu": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+    "new_gpu": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "samehost": true,
+    "all_weights_environment_query_policy_bank_identical": true,
+    "wait_for_actual_GP_release_before_admission": true,
+    "all_wait_in_shared_main1800": true,
+    "GP_latest_TERM_UTC": "2026-10-24T17:35:26Z",
+    "GP_latest_KILL_UTC": "2026-10-24T17:35:56Z",
+    "proxy_reason": "If main starts around17:25, GP remaining<=11min; max(actualgeneration, GPremaining) does not exceed prior1255s generation proxy, not a guarantee"
+  }
+}

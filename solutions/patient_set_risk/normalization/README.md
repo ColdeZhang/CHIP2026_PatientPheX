@@ -25,7 +25,7 @@
 
 这只写 `bound/deployment.zip`、`query-plan.json`、`package.json`，**不传输、不启动远端**。package 提供完整成员、SHA、argv、environment、mount 和完整收件名单。owner 应将12成员复制至该新根、逐SHA/fsync/reopen，再按 package 单次启动，UNKNOWN 恢复原 intent，不重新绑定延长时钟。共享 deadline 必须来自已运行主任务，不能用新的 `now+1800`。
 
-正常化源固定 `.100 GPU0` 的同一 public Sap/41099 bank；当前卡先由 sequence F0 占用，必须等其实际 release，再 fresh UUID/无进程/空卡/盘门，不能因为该源码已就绪就启动。`query_driver.py` prebound 5分钟 admission 与计算截止独立；TERM取自身start+180和主体原TERM较早者，KILL取局部TERM+30和主体原KILL较早者。入口和载模型前都核 admission，`driver-started.json` 排他创建，失败/UNKNOWN 不覆盖。动态代理20+.02秒/quote沿旧624实际15.347秒，是成本估算而非保证；剩余窗口不足直接停。
+正常化源现固定 `.100 GPU1` 的同一 public Sap/41099 bank；仅资源绑定改变，先等GP实际release，本地等待计入原主1800钟，确认后才创建Sap admission，必须等其实际 release，再 fresh UUID/无进程/空卡/盘门，不能因为该源码已就绪就启动。`query_driver.py` prebound 5分钟 admission 与计算截止独立；TERM取自身start+180和主体原TERM较早者，KILL取局部TERM+30和主体原KILL较早者。入口和载模型前都核 admission，`driver-started.json` 排他创建，失败/UNKNOWN 不覆盖。动态代理20+.02秒/quote沿旧624实际15.347秒，是成本估算而非保证；剩余窗口不足直接停。
 
 必须收齐 `package.collect_all` 所列文件，并核 `wrapper-complete.success`、真实 child absent、GPU释放。query产物保完整向量、token counts、scores、runtime、complete。随后：
 

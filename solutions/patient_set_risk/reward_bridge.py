@@ -25,7 +25,13 @@ def main():
     prepared=json.loads((prep/'preparation.json').read_text());query_args=[]
     if prepared['query_count']:
         assert a.sap_release,'Necessary new quotes require actual assigned Sap whole-chain release'
-        rel=json.loads(Path(a.sap_release).read_text());assert rel['whole_chain_released'] is True and rel['gpu_uuid']=='GPU-126293b9-6677-8464-cee7-01e693efbf29'
+        release_path=Path(a.sap_release);estimate=20+.02*prepared['query_count']
+        atomic(out/'waiting-for-Sap-owner.json',dict(expected_release=str(release_path),gpu_uuid='GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539',
+            query_count=prepared['query_count'],shared_TERM=request['TERM_unix'],admission_not_yet_created=True))
+        while not release_path.exists():
+            assert time.time()+estimate+5<request['TERM_unix'],'Original shared window insufficient while waiting for real GP release'
+            time.sleep(2)
+        rel=json.loads(release_path.read_text());assert rel['whole_chain_released'] is True and rel['gpu_uuid']=='GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539'
         qr=P/'research/patient-set-risk-v1/Sap100-v1';bound=out/'query-bound'
         command(['/usr/bin/python3',str(w/'normalization/bind_query.py'),'--preparation',str(prep/'preparation.json'),'--remote-root',str(qr),
                  '--shared-term',str(request['TERM_unix']),'--shared-kill',str(request['KILL_unix']),'--output',str(bound)],'bind-query')

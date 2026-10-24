@@ -15,7 +15,7 @@ def bind(preparation,remote_root,shared_term,shared_kill,output):
     env=dict(PYTHONPATH=str(remote)+':'+assets['pythonpath'],PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',
              HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',
              TOKENIZERS_PARALLELISM='false',CUDA_VISIBLE_DEVICES=assets['gpu_uuid'])
-    p=dict(schema='scst-train-only-public-queries-v1',authorized=True,authorization='Root fixed4x2 SCST pilot: all necessary public queries on .100 GPU0, within original1800 deadline',
+    p=dict(schema='scst-train-only-public-queries-v1',authorized=True,authorization='Root fixed4x2 SCST pilot: samehost .100 GPU1 only after actual GP release, within original1800 deadline; identical FP16 encoder/runtime/bank',
            budget_seconds=180,grace_seconds=30,issued_unix=issued,admission_expires_unix=issued+300,
            shared_TERM_unix=shared_term,shared_KILL_unix=shared_kill,query_count=prep['query_count'],complete_necessary_queries=True,
            cost_estimate_seconds=estimate,cost_basis='Prior624 actual15.347s; conservative20+.02*n, no promise of runtime',
