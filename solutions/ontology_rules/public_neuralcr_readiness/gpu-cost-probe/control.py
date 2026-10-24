@@ -4,7 +4,7 @@ import argparse,base64,datetime,hashlib,json,shlex,sys
 R=Path(__file__).resolve().parent;REMOTE='public-neuralcr-readiness/gpu-cost-probe';PROJECT='/home/zhangyuheng/projects/CHIP2026_PatientPheX';PYTHON=PROJECT+'/public-phenotagger-reuse/.venv/bin/python';MOUNT='476f81cf-09e7-445b-a7f0-d0e12b12e50f'
 sha=lambda b:hashlib.sha256(b).hexdigest();read=lambda p:json.loads(p.read_bytes())
 def save(n,o):(R/n).write_text(json.dumps(o,indent=2)+'\n')
-parser=argparse.ArgumentParser();parser.add_argument('action',choices=['deploy','inventory','recover-deploy','start','collect']);a=parser.parse_args();plan=read(R/'plan.json')
+parser=argparse.ArgumentParser();parser.add_argument('action',choices=['deploy','inventory','recover-deploy','recover-samehost','start','collect']);a=parser.parse_args();plan=read(R/'plan.json')
 expected={n:sha((R/n).read_bytes()) for n in ['probe.py','launch.py','plan.json','probe-inputs.json','cpu-reference.json']}
 assert all(expected[n]==digest for n,digest in plan['deployed_sources'].items())
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');from mcp_client import Client
@@ -52,8 +52,16 @@ if a.action=='deploy':
   state.update(status='complete',actual_remote=json.loads(result['stdout']),finished_at=datetime.datetime.now(datetime.timezone.utc).isoformat());save('deployment-state.json',state);print(json.dumps({'deployment':'complete','no_GPU_or_NN':True}));raise SystemExit()
  except Exception as e:
   state.update(status='failed_or_unknown_outcome_preserved',error=str(e));save('deployment-state.json',state);raise
+if a.action=='recover-samehost':
+ assert not(R/'deployment-samehost.json').exists() and not(R/'start-intent.json').exists()
+ refplan=read(R/'samehost-reference-recovery-plan.json');assert refplan['sha256']==expected['cpu-reference.json']
+ code="from pathlib import Path;import hashlib,json,os\nexpected="+repr(expected)+"\nrefplan="+repr(refplan)+"\noperation='reuse_existing_exact'\nfor n,h in expected.items():\n p=Path(n);assert not p.is_symlink()\n if p.exists():assert hashlib.sha256(p.read_bytes()).hexdigest()==h,n\n else:assert n=='cpu-reference.json',('Unexpected missing source',n)\np=Path('cpu-reference.json');source=Path(refplan['source']);assert source.stat().st_size==refplan['bytes'] and hashlib.sha256(source.read_bytes()).hexdigest()==refplan['sha256']\nif not p.exists():os.link(source,p);operation='hardlink_existing_exact_reference'\nactual={n:hashlib.sha256(Path(n).read_bytes()).hexdigest() for n in expected};assert actual==expected\nfor n in ['probe.py','launch.py']:compile(Path(n).read_text(),n,'exec')\nx=json.loads(Path('probe-inputs.json').read_text());assert len(x['batches'])==3 and all(len(b)==512 for b in x['batches'])\nprint(json.dumps({'source_sha256':actual,'python_version':__import__('sys').version,'batches':3,'queries':1536,'no_NN_or_GPU':True,'reference_operation':operation,'reference_sha256':refplan['sha256']}))"
+ request={'command':shlex.quote(PYTHON)+' -c '+shlex.quote(code),'cwd':REMOTE,'env':{'CUDA_VISIBLE_DEVICES':'','PYTHONPATH':''},'timeout_seconds':30}
+ save('samehost-reference-intent.json',{'request':request,'source_sha256':sha(Path(__file__).read_bytes()),'plan_sha256':expected['plan.json'],'recovery_plan_sha256':sha((R/'samehost-reference-recovery-plan.json').read_bytes()),'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+ result=call('run_command',request);save('samehost-reference-tool.json',result);assert result['exit_code']==0
+ ready={'status':'complete','plan_sha256':expected['plan.json'],'actual_remote':json.loads(result['stdout']),'samehost_reference_plan_sha256':sha((R/'samehost-reference-recovery-plan.json').read_bytes()),'finished_at':datetime.datetime.now(datetime.timezone.utc).isoformat()};save('deployment-samehost.json',ready);print(json.dumps(ready));raise SystemExit()
 if a.action=='start':
- receipt=read(R/('deployment-recovery.json' if (R/'deployment-recovery.json').exists() else 'deployment-state.json'));assert receipt['status']=='complete' and receipt['plan_sha256']==expected['plan.json']
+ receipt=read(R/('deployment-samehost.json' if (R/'deployment-samehost.json').exists() else 'deployment-recovery.json' if (R/'deployment-recovery.json').exists() else 'deployment-state.json'));assert receipt['status']=='complete' and receipt['plan_sha256']==expected['plan.json']
  assert not (R/'start-intent.json').exists() and not(R/'managed-job.json').exists()
  request={'command':shlex.quote(PYTHON)+' launch.py','cwd':REMOTE,'env':{'CUDA_VISIBLE_DEVICES':'','PYTHONPATH':'','PYTHONNOUSERSITE':'1','PYTHONDONTWRITEBYTECODE':'1','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','MKL_NUM_THREADS':'1'}}
  save('start-intent.json',{'request':request,'at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'plan_sha256':expected['plan.json'],'source_sha256':sha(Path(__file__).read_bytes())});job=call('start_process',request);save('managed-job.json',job);print(json.dumps(job));raise SystemExit()
