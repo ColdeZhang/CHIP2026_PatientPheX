@@ -1,0 +1,97 @@
+{
+  "enabled": false,
+  "experiment_id": "E-20261024-PATIENT-SWAP-DPO-001",
+  "formula": "B471 UNION at_least_two(G,S,Q_DPO,C)",
+  "source_files": {
+    "bind.py": "ae0b7cfd54c8dab2c58da7a1dc64d8334bfad56019a80ced7c9608d94e7faae1",
+    "codec.py": "f3553e67a0be4651f143152ccb0524ed2a1698ba306b04f1374837659b2579a5",
+    "common.py": "0584caedab9c9b98178a45f4715408d3fbbf8f610cba1136654477c374c66593",
+    "driver.py": "47c9886ae4fe9a4bb3fa3b3bc954586512cce706874521ae237ff46223b7af20",
+    "infer.py": "51cbbdfc2ae4a5feb6084d8a37b3be9db91b81793425d0af6da7bdd69927b03b",
+    "literal_helpers.py": "7d78ad46739ab47437e12540a2fac990c96b95b7e0491a210446544bd9942ba5",
+    "quality.py": "c371721ebeff5562b0337b7a8cac31303568f0309cdb98e5365e4eca137ac35a"
+  },
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "ancestry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/meta-ancestry/result.json",
+      "bytes": 17569,
+      "sha256": "b23d1354babcf5809027a78cac64b2251cc1661d6f8002985d6e3f2fbabf55e3"
+    },
+    "protected_base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+      "bytes": 155402,
+      "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "held_encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/collected/cpu/held.jsonl.gz",
+      "bytes": 456576,
+      "sha256": "d4ec43b01c8808ad7ce62482e3bfa04944da48fc4b7b186137d45b77d9cf834a"
+    }
+  },
+  "pure_sources": {
+    "G": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    },
+    "Q": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1/single.prediction.jsonl",
+      "bytes": 154632,
+      "sha256": "103cab0f1eae88356bc164ed5b8924272642c686a3e031652010e584f2d7a9c4"
+    },
+    "C": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/coded-alone/pred.jsonl",
+      "bytes": 154344,
+      "sha256": "a5a75d050029038703641e8242c0d6b9557a0e4ac8c69914b0d8859e5857517b"
+    }
+  },
+  "sampled_diagnostics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/assembled-v1/row-diagnostics.jsonl",
+    "bytes": 265037,
+    "sha256": "91ad644fa6d617a4e921f8a8414c8c620c504be12fff10d79fc2cbddc22b236f"
+  },
+  "completed_bindings": null,
+  "collected_native": null,
+  "output": null,
+  "quality_policy": "Complete source/raw/native identity and fullprediction freeze before single publicv2 all/text. Exact oldB4 inherited at zero semantic change. No Qalone, fullunion, subset, beta or epoch endpoints. Strict Score>.701325377212172; additions/deletions both disclosed."
+}

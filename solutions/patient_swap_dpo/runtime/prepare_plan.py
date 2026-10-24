@@ -27,7 +27,7 @@ def main(output):
     sources['../dpo_ops.py']=ref(S.parent/'dpo_ops.py')['sha256']
     p={k:old[k] for k in ['model_id','model_dir','model_files','native_forward_sha256','mount_id','gpu_uuid','python','environment','runtime']}
     p.update(id='E-20261024-PATIENT-SWAP-DPO-001',execution_authorized=False,gpu_index=0,
-             seed=20261024,run_root=remote+'/run',application=application,source_files=sources,
+             seed=20261024,run_root=remote+'/run',durability_root=remote,application=application,source_files=sources,
              parent_adapter_dir=old['adapter_dir'],parent_adapter_files={n:dict(path=old['adapter_dir']+'/'+n,**r) for n,r in old['adapter_files'].items()},
              inherited_assets=remote_ref(inherited,'inherited-assets.json'),
              pairs=remote_ref(D/'cpu-v1/pairs.jsonl.gz','pairs.jsonl.gz'),encoded=remote_ref(D/'cpu-v1/encoded-pairs.jsonl.gz','encoded-pairs.jsonl.gz'),

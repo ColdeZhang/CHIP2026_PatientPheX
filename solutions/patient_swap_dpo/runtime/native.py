@@ -132,10 +132,13 @@ def main(phase,path):
     refs=None
     if phase!='reference':
         done=json.loads((Path(plan['run_root'])/'reference/complete.json').read_text());assert done['status']=='COMPLETE_ALL148_FROZEN_REFERENCE_LOGPS'
+        assert done['plan']==ref(path) and done['encoded']==plan['encoded']
+        assert done['parent_adapter_files']==plan['parent_adapter_files']
         refs=json.loads(checked(done['reference']).read_text());assert len(refs)==74
         assert all(a['row_id']==b['row_id'] and a['finite'] for a,b in zip(refs,rows))
     if phase=='formal':
-        prior=json.loads((Path(plan['run_root'])/'probe/complete.json').read_text());assert prior['formal_budget_gate']
+        prior=json.loads((Path(plan['run_root'])/'probe/complete.json').read_text())
+        assert prior['plan']==ref(path) and prior['formal_budget_gate']
     torch,np,model,named,manifest=load_model(plan,out,adapter=plan['parent_adapter_dir'],trainable=phase!='reference')
     if phase=='reference':result=reference(plan,out,torch,model,rows)
     elif phase=='probe':result=probe(plan,out,torch,model,named,rows,refs,manifest)
