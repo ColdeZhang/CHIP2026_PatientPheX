@@ -1,0 +1,136 @@
+{
+  "status": "F1_NEGATIVE_FIXED_RECIPE_CLOSED",
+  "terminal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/terminal.json",
+    "bytes": 13143,
+    "sha256": "15896d47d89a41523e2e490c23488b39acd2af7ef25b0eecf13d89d097ddb615"
+  },
+  "complete_CPU_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/cpu-v1-collection.json",
+    "bytes": 8932,
+    "sha256": "2f957cf1cbefd893c7aa43bcb02747587ee9771e6bb3d2e4e5524cfbbb537167"
+  },
+  "complete_GPU_collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/gpu-v1-collection.json",
+    "bytes": 471643,
+    "sha256": "35111f9082f12c216e9e1e9d15983e8b82444cc1994a61954161fc0890c449fa"
+  },
+  "quality": {
+    "status": "TWO_COMPLETE_TASK1_ENDPOINTS_EVALUATED",
+    "baseline_metrics": {
+      "menF1": 0.7749437359339835,
+      "docF1": 0.8210526315789474,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.7286975364690524
+    },
+    "metrics": {
+      "strong-union": {
+        "menF1": 0.7577060931899642,
+        "docF1": 0.8108843537414966,
+        "micF1": 0.6595538312318138,
+        "macF1": 0.6592399471314652,
+        "Score": 0.7218460563236849
+      },
+      "new-only": {
+        "menF1": 0.7456472369417109,
+        "docF1": 0.7922636103151862,
+        "micF1": 0.6595538312318138,
+        "macF1": 0.6592399471314652,
+        "Score": 0.714176156405044
+      }
+    },
+    "deltas": {
+      "strong-union": {
+        "menF1": -0.017237642744019288,
+        "docF1": -0.010168277837450779,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.006851480145367517
+      },
+      "new-only": {
+        "menF1": -0.0292964989922726,
+        "docF1": -0.02878902126376115,
+        "micF1": 0.0,
+        "macF1": 0.0,
+        "Score": -0.014521380064008493
+      }
+    },
+    "added_atoms": 124,
+    "marginal_mention_tp": 24,
+    "marginal_mention_fp": 100,
+    "primary_strictly_better": false,
+    "either_endpoint_strictly_better": false,
+    "new_quality_calls": 2,
+    "old_quality_calls": 0,
+    "original_dev_calls": 0,
+    "official_submissions": 0,
+    "freeze_sha256": "f79f1d83d8c06a5c8992f9f07779de42d388f70637391a8de014dab200b14440",
+    "endpoints": {
+      "strong-union": {
+        "prediction": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/quality-v1/strong-union.pred.jsonl",
+        "sha256": "a80e3e137a45ca3c92915a9ef3585f5bc0548bcbe62947ff302a53beae6de8a9",
+        "bytes": 189367,
+        "documents": 16,
+        "patients": 39,
+        "entities": 1437
+      },
+      "new-only": {
+        "prediction": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/quality-v1/new-only.pred.jsonl",
+        "sha256": "1e2b0e10242335a95eebffddcc29310b00417c5c24d2a828c323ecfd19c06210",
+        "bytes": 170664,
+        "documents": 16,
+        "patients": 39,
+        "entities": 1289
+      }
+    }
+  },
+  "new_only_mention_counts": {
+    "tp": 985,
+    "fp": 304,
+    "fn": 368,
+    "precision": 0.7641582622187743,
+    "recall": 0.7280118255728012,
+    "f1": 0.7456472369417109
+  },
+  "inference_counts": {
+    "HPO": 1290,
+    "NIL": 0,
+    "NO": 123,
+    "BOUNDARY": 3,
+    "HPO_missing": 1,
+    "HPO_empty_OTHER": 1,
+    "rejected": 0,
+    "cap": 0
+  },
+  "accepted_atoms": 1289,
+  "comparison": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/comparison-fixed-head-family.json",
+    "bytes": 11185,
+    "sha256": "62e5cc1951f907b7cc3bc78ef9b84af7a6dfebb5668c7bb5779b188844b76d91"
+  },
+  "prior_Top8_deltas": {
+    "strong-union": {
+      "menF1": 0.0032449939751176826,
+      "docF1": 3.689611437796003e-05,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.0008204725223739384
+    },
+    "new-only": {
+      "menF1": 0.004319936790881274,
+      "docF1": -0.0003500260484501361,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.0009924776856077289
+    }
+  },
+  "limits": [
+    "Individual full-pipeline F1 result, not originaldev/global best or official.",
+    "F1 proposer48 includes F0; head32 excludes F0 and F1. Future F0 would require excludedF0 pool, but this fixed recipe failed its gate.",
+    "BOUNDARY denotes unsupported annotation boundary, not clinical NO; only3 decoded rows do not measure held-gold boundary recall.",
+    "539 targets plus sharedSYSTEM/fourth grammar jointly change; score delta is not a pure-data causal attribution.",
+    "Large states use original owner durable tensor-reopen receipts; not independent large downloads or demonstrated interrupted resume."
+  ],
+  "review_status": "Final incremental review requested; prior narrow-source review9fdf643a only covers its declared scope."
+}

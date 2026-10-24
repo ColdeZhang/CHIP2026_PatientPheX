@@ -21,3 +21,21 @@
 2026-10-24 16:28:54.633374 UTC完整fresh训练成功：3470×2=6940行、868更新、4,004,840输入tokens、75,668监督tokens。native training_seconds4009.018807，含模型load及最终保存的phase elapsed4015.542905，wrapper4016.458222秒rc0，均在7200预算内。epoch2 ACK16:28:54.585388，1784 B/SHAd87852b017accb585158040284b58fea4b2e2d5cae1d63e6555a14bbc9882120，504 adapter与504 Adam/1512 tensorentries、RNG回读exact。最终adapter174655536 B/SHAbeecfb84824764826ab8f207f4979db09da161dc6395e55b032b77a413bb0579，training_state349612141 B/SHA360544ce073c0b6008c97152ff01df48e621a6b8bf7bf2bf36b4a96a53535a28。保存记录seconds2.972009不作为最终ACK/父链收尾严格上界。
 
 16:28:55.624190原controller唯一启动完整1416推断，timeout PID2754394，独立1800+TERM30预算/deadline16:58:55，使用第二轮最终adapter；首7条仅吞吐观察，未看质量或调参。原formal/complete380452 B/SHA840f132de7b2469608c5bb2a4b27cc8b7c5f94bd2e0d67a4085e4586d249344a，当前小观察摘要移除868updates数组，仅保count，完整原件随终包回收。16:27只读状态一次UNKNOWN后按30秒退避恢复原任务，无重启或预算重置。
+
+## 全量推断与两端点结案
+
+1416/1416在16:45:42.935412 UTC完整成功，native1007.237241秒、wrapper1007.995771秒rc0；16:45:43.619895 GPU1=0MiB/noapps真实释放，原release SHA7f8a1a22。原managed proc98b3在16:48:03实际running=false，但API不返回wrapper退出码，不能把只读工具rc冒充原wrapper rc。完整原ZIP1726973 B/SHA6bfec309首次14块中5个UNKNOWN；保9块，30秒退避后仅恢复原缺块，未重pack/模型。最终2946小成员全部size/SHA核验，4大状态只通过原owner真实tensor回读与SHA证据，不声称重新下载。
+
+解码HPO1290（包含1个empty+missing）、NO123、BOUNDARY3、NIL0、reject0/cap0，1289接受实体原子。missing为解码器自声明，不能当held gold候选覆盖；3个BOUNDARY也不是边界召回率。
+
+两完整预测先共冻f79f1d83d8c06a5c8992f9f07779de42d388f70637391a8de014dab200b14440，再各一次固定publicv2/all/text（新2、旧0、原dev0、官方0）：
+
+|端点|Score|menF1|docF1|相对强B Score|
+|---|---:|---:|---:|---:|
+|强B|.728697536469|.774943735934|.821052631579|0|
+|strong-union|.721846056324|.757706093190|.810884353741|−.006851480145|
+|new-only|.714176156405|.745647236942|.792263610315|−.014521380064|
+
+关系mic/mac保持强B对象及分项完全相同。union保1313原实体、增加124=24TP/100FP（增量精度.193548），共1437；new-only1289=985TP/304FP，FN368，整体precision.764158/recall.728012，不能把增量低精度写成整体精度。较旧Top8 union净TP数不变、净FP减少12，Score+.000820473；new-only净TP+2/FP−12，Score+.000992478。仅有小幅进展，两个强门均未过，配方关闭无F0/dev扩展或cut调整。新增539监督、共享SYSTEM与第四语法状态共同变更；只输出3个BOUNDARY不足以把净变化归因为这一状态的直接删除，root独立预锁veto另行检验，本文不代跑、不改原输出。
+
+稳定外部terminal.json13143 B/SHA15896d47d89a41523e2e490c23488b39acd2af7ef25b0eecf13d89d097ddb615，之后只加独立备份/独审指针，不覆写该原件。全部既有head报告比较无新gold/evaluator调用，comparison SHA62e5cc19。
