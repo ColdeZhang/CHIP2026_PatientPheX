@@ -1,0 +1,71 @@
+{
+  "evaluator": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+    "bytes": 10539,
+    "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "validator": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+    "bytes": 12208,
+    "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+  },
+  "hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "bytes": 350409,
+    "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "strong_N": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 124231,
+    "sha256": "f87b2c9b8f871d24f7a2e089a45505114f36bdeb5f9dc8d4bbdcaf1bd09ace72"
+  },
+  "strong_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12837,
+    "sha256": "1e6ef50371ae9f03a22996185c494da202738d546d6637ecad51f18c8784d8e1"
+  },
+  "prompts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-readiness-v1/held.response-code.jsonl",
+    "bytes": 2092727,
+    "sha256": "ad7683f59cdcb46cd274bdfae481caa644bbd8e8b2cfc639d05ae68252f262ca"
+  },
+  "policy": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/f0/quality-policy.json",
+    "bytes": 896,
+    "sha256": "3f3d5477b5b7450a2db427a9753c8573ca7885613f958d93a067c742e35e7812"
+  },
+  "source_sha256": "46c4b85918708fe373ae5a9f1e68343f74fa4e5d95ae5c26833b032202817ad3",
+  "fixed_source_refs": [
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/f0/quality/common.py",
+      "bytes": 3629,
+      "sha256": "97e053672991c88ce3f9f9f57e26973730a074f4f869a1309fbaaa7c24c55f59"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/f0/quality/literal_union_helpers.py",
+      "bytes": 3599,
+      "sha256": "b0a5a0c4a466b8f7fca241aa6d6fbfc54a78536c53b5fee40fdc2cad842c633f"
+    }
+  ],
+  "new_quality_calls": 2,
+  "old_quality_calls": 0,
+  "final_epoch": 2,
+  "method": "coded-alone primary; N-union-coded diagnostic; whole-row abstention",
+  "selection": "highest fixed endpoint strictly above strongN; tie primary; macro report only; disclose both stronger existing comparisons",
+  "gold_reference_source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/fla_fulltext_F0_control/quality/bound-plan.json",
+    "bytes": 14233,
+    "sha256": "7883b940255bf533001b1973fdf56e3de4f2e17716ab4efbd623727e5bd1ec53"
+  },
+  "no_gold_content_read_before_freeze": true
+}

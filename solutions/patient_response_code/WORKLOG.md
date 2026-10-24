@@ -95,6 +95,10 @@ Original253-member collection71db687e complete, including one30s bounded pure-re
 
 F1 terminal.tar.gz1,694,368B/b8afef77,202members actual.100 allSHA/fsync/reopen at12:51:43.444715. Source/code, private train/held inputs, allraw predictions/metadata included; heldgold/capability/modelstate excluded. Both520MB completeepoch states separately durable. F1-final-handoff.json links immutable33293985reviewentry and actualbackup. Root separately authorized same2c777e88 train32 model on original fulltextF0 58, native1200+30, two fixed endpoints vs existing SFT48 N .696603974744; candidate ancestors may train onF1 but must excludeF0. It is an actual candidate comparison, not a single-variable encoding ablation or uniformtrain32 pipeline.
 
-### 2026-10-24 12:55 UTC — complete F0 candidate ancestry and fixed CPU source
+### 2026-10-24 12:53 UTC — complete F0 candidate ancestry and fixed CPU source
 
 F0 original58/16docs/47patients/415concepts/1166pairs are exact descendants of CRF+Sap+LR using train48 d87bf189, all48 disjoint held16 ec38c135. SamePT transform keeps fulloriginaluser, schema/order/clinicalIDs and pureinput. Codedhead32 is subset of train48; comparatorN usesold48, so actual candidate comparison rather than isolated encoding effect. One initial local identity-set check correctly failed because original -1 entity maps to literal text via original association_keys; source/error preserved and exact legacy function reused, no data change/model/quality. NativeCPU120+5 on A100 existingruntime prepared, noGPU/model load.
+
+### 2026-10-24 12:55 UTC — F0 CPU start unknown during explicit offline
+
+A100 CPU5members/10pieces verified deployment plan1d136fad; .100 original shortHTTP stoppedtrue. Unique CPU120+5 start request returned explicitLUNA, nojob returned; originalintent/error retained. Readonly recovery follows recovery-offline-boundary.json before any conditional action, no repeated CPU/model start. F0 GPU has not been requested. Same inference generate/loading/decode calls and entire raw-first sampling-loop AST exactly match F1; unchanged PT decoder. Only F0metadata/cap and required longest-formal-first scheduling differ.
