@@ -11,3 +11,5 @@
 历史未做原hard与逆序输出的一致性组合。如以后预先授权，一个固定正关系交集可只保留两次都支持的患者-HPO，但可能损失召回；当前只提案，未生成该臂或按F1结果选规则。原hard实体和所有非association字段必须保持。所有比较均是反复开发的训练内F1，不是盲泛化或原dev。
 
 [冻结计划](../evidence/round2/reverse-json-order-plan.json)、[实际CPU/源/所有产物SHA](../evidence/round2/reverse-json-order-readiness.json)。本方案源码 `reverse_json_order/prepare.py`，外部 `research/reverse-json-candidate-order/`。
+
+后续root已授权唯一同A800/SFT32逆序80推断600+30。最终预定义主臂为旧hard OR 逆序完整关系并集（改善候选内FN），逆序alone仅顺序依赖对照；不运行前述intersection提议。字面v2键：只有完整HPO compound拆原子，NIL、大小写、非HPO和含分号原文保持原字符串；旧关联列表/对象字段原样保留，仅append新集合差。合同覆盖compound/NIL/字面分号/重复/患者与非association边界。两个新fullpred统一freeze后各一次v2，keep=union Score严格升且macro不降，不改组合/门槛；已评原.660942基线仅复用。

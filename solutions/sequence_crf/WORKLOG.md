@@ -14,9 +14,9 @@
 
 ## 正在执行与恢复入口
 
-**后继仅CPU候选逆序准备完成，未授权GPU。** 原80/SFT32的固定逆序+CID/code_map同步，80完整双逆byteexact，587语义候选不变；78条变/2条不变，总250691/max5691token，无截断，old80耗时代理282.5秒。历史未做等价控制；仅提一次逆序及可选一致性交集机制，未生成预测/质量、不原dev。[计划与成本](experiments/reverse-json-order.md)。
+**固定候选逆序及old-or-reverse并集已获一次推断授权，准备启动。** 原80/SFT32的固定逆序+CID/code_map同步，80完整双逆byteexact，587语义候选不变；78条变/2条不变，总250691/max5691token，无截断，old80耗时代理282.5秒。历史未做等价控制；root最终预定义逆序alone诊断+old-or-reverse并集主臂，不运行intersection；两fullpred共同freeze后唯一F1，600+30秒，不原dev。[计划与成本](experiments/reverse-json-order.md)。
 
-**关系JSON单检索示例已负结案，新增终点独审进行中。** 唯一同A800/SFT32/80提示，CPU输入与实际token/模型/运行环境均通过；80完整响应、587候选全部有效，无fallback/tokenlimit，runner304.593秒/wrapper313.157秒，GPU已00:12:04释放。完整fullpred先freeze再唯一F1评：Score **.660942003→.645783102**，micro−.044148462/macro−.016487140，净−27TP/+5FP；实体完全不变、0错警。按预设keep失败关闭，不扫示例/提示、不原dev。传输与本地解析依赖失败均留档，同源环境恢复未增加推断；当前无活动GPU。[结果及全部恢复](evidence/round2/retrieved-json-example-results.json)、[过程](experiments/retrieved-json-example.md)。
+**关系JSON单检索示例已负结案，独立终审PASS（b1a178ca）。** 唯一同A800/SFT32/80提示，CPU输入与实际token/模型/运行环境均通过；80完整响应、587候选全部有效，无fallback/tokenlimit，runner304.593秒/wrapper313.157秒，GPU已00:12:04释放。完整fullpred先freeze再唯一F1评：Score **.660942003→.645783102**，micro−.044148462/macro−.016487140，净−27TP/+5FP；实体完全不变、0错警。按预设keep失败关闭，不扫示例/提示、不原dev。传输与本地解析依赖失败均留档，同源环境恢复未增加推断；当前无活动GPU。[结果及全部恢复](evidence/round2/retrieved-json-example-results.json)、[过程](experiments/retrieved-json-example.md)。
 
 **当前实体控制均已完成，无活动作业。** 同资源77 HGB固定.4基线独审3c7c12e5：Score.648061812；binary final.650311382仅+.002249570（men升/doc降）。唯一当前nested F1固定veto负：.728144787→.720623999，删除152=71TP81FP，men/doc都降，关系不变；按预设关闭，不扫cut/不迁原dev。95列/train48 base与附加binary32不同资源如实披露；新veto独审a842969e已PASS。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[veto结果/恢复](evidence/round2/entity-slot-selected-veto-results.json)。
 
