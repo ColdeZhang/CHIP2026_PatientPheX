@@ -7,3 +7,7 @@
 完整来源分析R/research/mention-hard-negative-readiness-20261024/REPORT.md SHA7e8fba82；census81d46d98。F1输入proposer仍含训练F0的强48模型；F0后继必须替换排F0强池，不能把head纯train32误称全pipeline纯train32。
 
 运行环境迁移：本线.3 Torch2.7.0cu128，原2353为.100 Torch2.7.1cu126；其余TF/tokenizer/PEFT及核心数值源全等，不能把跨机比较宣称数据唯一数值变量。同机13资产此前已全SHA，复用实际size/mtime/inode守卫；之前成功压力/完整训练只证明工程边界，不证明本线质量。
+
+- 新增拒绝监督使NO28→143并减少部分假阳性，仍未解决强基线之外自由名称供给的低精度：新增399只有14TP。不要把整个new-only精度.593与新增精度.035混为一谈。
+- 同一MCP连接断续会让完整结果回收失败；此次原GPU训练推断均rc0且已释放，只恢复冻结ZIP缺块，禁止据下载失败重复训练。
+- 旧9B entity-slot二元p<.5删除强B已有负终点（afcdca25）；后继NO-veto应承认该近邻，仅把新8B/OOF拒绝监督视为新供给。

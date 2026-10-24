@@ -23,3 +23,11 @@ root后续正式授权：空闲.3GPU0，固定4800+30两轮/734/尾3/warmup37，
 ## 完整推断与回收
 
 13:56:43全1416/16文献39患者完成，1273HPO/143NO，无NIL/cap/拒绝；804.881s，wrapper806.054s rc0。13:56:44.124964 .3GPU0真实4MiB/无该卡进程释放。原proc92 managed已running=false，但工具未给wrapper退出码，不能把只读command rc当作wrapper rc。服务器唯一终包5,587,542B/SHA965d4825；MCP间歇UNKNOWN/LUNA造成分块未齐，仅恢复同包缺块，不重训练/推断/打包。quality尚未启动，所有输出完整后再原两端点共冻2v2。
+
+## 完整双端点结果：负，关闭
+
+原唯一包43/43块恢复，2910成员全SHA通过；未重任何GPU作业。完整两预测共同freeze b3e3f313后各一次公共v2：强B .728697536469，union .682735038528（−.045962497941），new-only .617921909195（−.110775627274）。新增399=14TP385FP；new-only整体755TP518FP、precision .593087、recall .558019。关系对象与两关系分数全保持，原dev/官方0。
+
+旧2353对应union .674197659658/new-only .613794585011，本次略改善但未达到强B门；输出NO28→143，HPO1388→1273，不能把这点改善称新best或已达到目标。原固定配方关闭，不按held错误改负例比例或阈值。Torch迁移使其不是逐位纯数据消融。`comparison-original2353.json`只读取既有完整metrics，没有第三质量调用。
+
+唯一终态外存terminal.json 11641B/SHA99ca974bacda20a0c34c65bd5a31218a48ba691a5b9adb3f960b7dfbe899991a；完整pred ffd68142433c9d999c7392607765e0a74e2cb355956e131aaec6ceb30f061a5a / 4a2323d4346b391696a1923a5911ef0bcc11708dda4008595ab87bd443bf37aa。root独立NO-veto在14:03:04预锁、早于本次quality，是另一实验；本线源与原两个冻结预测不改。

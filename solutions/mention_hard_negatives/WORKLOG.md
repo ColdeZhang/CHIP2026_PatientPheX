@@ -1,18 +1,21 @@
 # 当前状态
 
-2026-10-24 13:59 UTC：完整训练与1416推断均已成功，.3GPU0已13:56:44实际释放，当前只恢复原ZIP缺块；24/43块已回收，尚未启动任何quality。实际1273HPO/143NO、无NIL/cap/拒绝；native推断804.881s/wrapper806.054s rc0。原controller e258098b/完整推断7a646f2a，evidence/inference-complete-observed.json保原件指纹。
+2026-10-24 14:04 UTC：固定 F1 两完整端点均负，配方关闭；原dev/官网均未调用。独立 branch explore/mention-hard-negatives，实际 GPU 源4fe445717d821c0ba6207597c4f139bff11c8690。原训练、推断完整成功，.3 GPU0 于13:56:44.124964真实释放。原proc92已running=false；managed工具未提供wrapper退出码，formal/infer child各rc0另有原件。
 
-2026-10-24 UTC；branch explore/mention-hard-negatives，base23b053e6。只改solutions/mention_hard_negatives。
+| 完整端点 | Score | menF1 | docF1 | 实体数 |
+|---|---:|---:|---:|---:|
+| 强B固定基线 | .728697536469 | .774943735934 | .821052631579 | 1313 |
+| B并集全部新实体 | .682735038528 | .683197389886 | .728948985864 | 1712 |
+| 新头全部实体替换 | .617921909195 | .575019040366 | .577874818049 | 1273 |
 
-- 真实目标：补足生成头拒绝误提取跨度的监督，判断是否带来强Task1增益；不把训练成功当质量改善。
-- 约束：训练/候选祖先仅F2F3，公开Qwen3-8B，沿既有三状态prompt/trie/原native训练器，完成共冻前不读heldgold；新增GPU只按root最新固定链授权。旧2353 run proc_d77已完整负结案；本实验数据和规则在其质量前固定，保持独立。
-- 固定样本：2353全部对象/顺序保留，按每文ceil(HPO+NIL/4)追加578；2931总行=2222HPO/44NIL/665NO，无不足配额。每个新增跨度重新核与全部正式注释零重叠、原quote/offset一致。
-- 两轮固定734updates/367每轮/尾3/warmup37；实际每epoch823233tokens/25797监督；新增max369/3，全数据仍383/28，Pareto与原三形状完全相同。完整F1仍固定1416跨度、强B并集/新头替换两端点；达到任一严格胜.728697536469才候选。
-- 源复用：reuse/mention全部原字节，manifest记录精确origin/SHA；只有prepare与CPU新增578行检查是新代码。已有2353编码、1416纯输入及processor/真实FB证据只引用，不重复验证。
-- 外存R/research/mention-hard-negatives-v1/prepared-v1/manifest.json；CPU proc_b044e900已12:35:48.589 rc0：实际7.410s、wrapper7.965s，CUDA未初始化；只新578行native/HF/掩码和1156答案prefix，旧编码/实际processor/FB证据复用。30原件ZIP40901579/1169122B全SHA回收。按原实测保守公式新总预算估4521.224秒；这是CPU准备历史估计，后续实际状态如下。
+两端点关系对象和micF1 .659553831232/macF1 .659239947131均保持。新增399原子仅14TP/385FP；整个new-only是755TP/518FP，precision .593087、recall .558019，两种分母必须区分。相比旧2353模型，union .674198→.682735、new-only .613795→.617922有改善，仍不胜强基线；NO从28增至143，HPO从1388减至1273。不据此扫描比例、阈值或重跑held。
 
-当前CPU已完整ready，源码722dbbcb已push核。root已分配实际空闲.3GPU0：fresh全2931两轮4800+30、两state ACK后全1416推断1200+30、两完整端点共冻→2v2。gpu-plan.json固定全部源/数据/预算。实际12:46:15.919277唯一proc_92c814d2/PID1209971已启动，源4fe44571 push/lsremote一致且freshGPU0/磁盘门通过；完整链4800+30→1200+30运行中，不重启。全部两轮已13:43:16.763233完整734updates，第二ACKa1e0bb45/1763B；5862行/1,646,466tokens/51,594监督，native3410.522s/完整3420.726s。两个504adapter/504Adam1512状态与RNG重开exact；finaladapter2a1a5a09/fullstate390ed7b6。13:43:18.070760原controller自动转全1416推断1200+30，child1213791，尚未质量。D/formal-latest-observation.json与evidence/formal-start.json为恢复入口。
+固定监督：保留原2353所有对象和顺序，追加578同train32纯OOF零注释重叠跨度，按每文ceil((HPO+NIL)/4)及prob/sim/offset/length排序；2931行=2222HPO/44NIL/665NO。负标签仅annotation-negative，有漏标风险。F3→F2/F2→F3候选祖先排F0/F1，head全F2F3；F1跨度proposer训练48含F0，整个管线不是pure train32。
 
-主机差异明确：.100 Torch2.7.1+cu126→.3 Torch2.7.0+cu128，TF4.51.3/tokenizers.21.2/PEFT.15.2及native/common/loss源码逐字一致。该对照含运行环境迁移，不能称纯数据逐位消融；.3同8B完整大形状6155/113、4992/116和68updates/64fresh已有真实证据，且新样本仍被原mention三形状覆盖，因此不另跑FB探针。CPU编码文件跨机复制逐SHA原字节，.3模型复用同机完整13asset SHA及fresh size/mtime/inode身份，不重复下载或整权重hash。
+实际完整：native新增578 CPU合同7.410s，30原件全SHA；2epochs/734updates/尾3/warmup37，全5862行、1646466tokens、51594监督，native3410.522s/含load3420.726s；两个完整504adapter/504Adam1512状态+scheduler/RNG ACK。全1416推断804.881s/wrapper806.054s，1273HPO/143NO/0NIL/0cap/0拒绝，最终adapter504逐值载入exact。正式无holdout/早停/挑epoch，探针旧形状证据复用，未新跑FB。
 
-.3连接曾UNKNOWN/LUNA间歇，只读原observer恢复实证训练继续，未重启。此前GPU0槽保留至完整infer真实release，现在原infer已完整释放。现有50s observer补读已完成raw的长度/耗时，66条预估701–734s＜1200（只作资源估计，不读语义质量）；原完整数据/配方不变。
+唯一终态：evidence/terminal.json（外存R/research/mention-hard-negatives-v1/terminal.json，SHA99ca974b，11641B）。完整回收2910原件ZIP965d4825/5587542B，collection9b84ec0d；MCP断连只补缺块，原始失败收据保留。共同freeze b3e3f313早于exact2v2/旧0；两个完整pred ffd68142、4a2323d4。原件在外存gpu-v1-collected；大adapter/fullstate仅远端精确locator及原owner全张量重开证据，不声称独立下载或实际resume测试。
+
+入口：README.md、experiments/中的本实验、plan.json/gpu-plan.json、prepare.py/cpu_delta.py、reuse-sources.json。独立增量审已在进行，小包备份待结果commit后完成。root另预锁明确NO删除strongB的独立控制；那是另实验，不修改本线2端点负结论。候选Top8新任务在另一分支独立进行。
+
+运行边界：.3 Torch2.7.0+cu128与旧2353的.100 Torch2.7.1+cu126不同，TF4.51.3/PEFT.15.2/tokenizers.21.2及native数学源相同；不能声称逐位纯数据消融。所有非entity对象逐项exact，重新序列化JSON不承诺原始字节exact。
