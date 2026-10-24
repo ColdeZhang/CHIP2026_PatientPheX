@@ -52,3 +52,5 @@
 - 组合组件终态：284件/1,076,977B/8d1283bf逐SHA回收；12:43:53.079831完整new-only冻结3d2e4ca3交root，265关系/466候选概念/0质量。完整训练和raw解析出处见 evidence/full64-component-terminal.json；独立旧F0负保留。
 
 - 最终持久备份：.3 terminal-component/component-source.zip 59309B/26件/bcca28c3，与run/small-terminal.zip 1076977B/284件/8d1283bf逐成员重开全SHA；两archive及父链fsync，backup ACK写入后父链再次fsync，见 evidence/full64-component-backup-ack.json。两个完整checkpoint留原.3路径，无额外GPU或质量。
+
+- 补充只读查重已关闭重复提案：旧retrieved-json-example真实train32 TF-IDF top1完整训练输入/答案→Qwen3.5 SFT32/F1全80，Score .660942→.645783（两关系F1均降）。旧query是局部证据而非文章全文，不能外推所有RAG无效，但不据此重复同机制；规则明确允许prompt/RAG并保持train/held隔离。本次0GPU/0fit/0新quality，见 evidence/retrieval-demonstration-duplicate.json 与外部4959B短报告22550ca8。
