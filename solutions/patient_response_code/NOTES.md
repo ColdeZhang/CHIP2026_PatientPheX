@@ -1,0 +1,3 @@
+# 记录边界
+
+原临床O/P标识含义保留，PT只是响应handle，不声称简单语义置换或编号偏置已证。CE公式相同但新token监督分布不同。遵循main H44/H48/H49/H51/H55/H58；唯一watch采用独立session/file-stdio/lock，健康远端任务不因本地失联重启。新的GPU工程失败只关闭该次工程，原raw与状态保存。

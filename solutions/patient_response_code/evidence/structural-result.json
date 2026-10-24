@@ -1,0 +1,103 @@
+{
+  "status": "PASS_RESPONSE_CODE_STRUCTURE_NOT_MODEL_QUALITY",
+  "groups": {
+    "train": {
+      "rows": 124,
+      "documents": 32,
+      "patients": 87,
+      "CID_values": 880,
+      "patient_concept_pairs": 2506,
+      "all_original_user_UTF8_preserved": true,
+      "all_original_PID_and_CID_metadata_exact": true,
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/original124.jsonl",
+        "bytes": 1723484,
+        "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/train.response-code.jsonl",
+        "bytes": 1876887,
+        "sha256": "f73cb24fa73bcb1342d7cbd35d0ca76ccd7d7ccc5a5afd9abf01a80e46c84e28"
+      },
+      "compressed_original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/train.original.jsonl.gz",
+        "bytes": 152898,
+        "sha256": "f9fc873a6e6c718ad28141728bd4bf8c37b43eee324a019f3f5a66121f41a911"
+      }
+    },
+    "held": {
+      "rows": 80,
+      "documents": 16,
+      "patients": 39,
+      "CID_values": 587,
+      "patient_concept_pairs": 1557,
+      "all_original_user_UTF8_preserved": true,
+      "all_original_PID_and_CID_metadata_exact": true,
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/expanded80.jsonl",
+        "bytes": 2796468,
+        "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+      },
+      "output": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/held.response-code.jsonl",
+        "bytes": 2893388,
+        "sha256": "54c8cb8c3e273dca62d6972cf24fc520d921fde091f35626931adf5de2676e9b"
+      },
+      "compressed_original": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/held.original.jsonl.gz",
+        "bytes": 415819,
+        "sha256": "3ce16f96364b70b8020129e7fa198737c2ab70af8615b7e6e695c4f79a623894"
+      }
+    }
+  },
+  "actual_identity_counts": {
+    "train": {
+      "identity_prefix_counts": {
+        "P": 41,
+        "O": 46
+      },
+      "multi_patient_docs": 17,
+      "max_patients": 14,
+      "rows_with_repeated_same_identity_marker": 123
+    },
+    "held": {
+      "identity_prefix_counts": {
+        "P": 17,
+        "O": 22
+      },
+      "multi_patient_docs": 9,
+      "max_patients": 7,
+      "rows_with_repeated_same_identity_marker": 80
+    }
+  },
+  "synthetic_same_mention_distinct_identity_and_repeated_mentions_PASS": true,
+  "negative_cases": [
+    "unknown",
+    "original_id_not_output",
+    "duplicate_patient",
+    "duplicate_CID",
+    "missing_CID",
+    "extra_CID",
+    "wrong_type",
+    "markdown",
+    "duplicate_original_ids",
+    "collision_with_PID",
+    "collision_in_evidence",
+    "collision_CID"
+  ],
+  "negative_count": 12,
+  "new_gold_access": false,
+  "old_renderer_called": false,
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/prepare.py",
+    "bytes": 5956,
+    "sha256": "caca4808c339b2b76a5c7d005ccf6a13346a713935c5789c2074e4c86fa5cdf2"
+  },
+  "codec": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/response_codec.py",
+    "bytes": 4878,
+    "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+  },
+  "seconds": 0.20016857600421645,
+  "scope": "old short train124; held old full-report80. Evidence byte preservation is whole existing user prefix, not a claim old renderer originally retained every mention. New system/table and output representation explicitly changed; original clinical IDs unchanged."
+}
