@@ -1,0 +1,266 @@
+{
+  "status": "PREPARED_HISTORY_BOUND_CPU_ONLY_NOT_EXECUTED",
+  "view": "patient-response-code-cyclic1-v1",
+  "CPU_only": true,
+  "GPU_authorized": false,
+  "training_authorized": false,
+  "quality_calls": 0,
+  "cap_seconds": 120,
+  "grace_seconds": 5,
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "base": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "expected_runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1"
+  },
+  "runtime_sha256": {
+    "qwen_modeling": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "generation_utils": "7944240ff1ee27a7b3acc16571b7a480cc14f16e7222aeb1a79d289ebc96e3ea"
+  },
+  "expected_tokenizer_class": "Qwen3_5Tokenizer",
+  "runtime_expectation_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-full64-20261024/gpu-plan.json",
+    "bytes": 13981,
+    "sha256": "e74b0e8997e7e1580008c6cb5024d09428c2296e527b636df667db316ea88e28"
+  },
+  "runtime_verified_in_this_task": false,
+  "tokenizer_files": {
+    "config.json": {
+      "bytes": 3126,
+      "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+    },
+    "tokenizer.json": {
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "tokenizer_config.json": {
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    "vocab.json": {
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    },
+    "merges.txt": {
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+    },
+    "chat_template.jinja": {
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    }
+  },
+  "tokenizer_asset_reference": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/native-terminal/native-result.json",
+    "bytes": 6549,
+    "sha256": "56d7ce92cfef78cdeb03835dc3520444c3341188c346d9059f37b5de709595b4"
+  },
+  "files": {
+    "original_response_codec.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/original_response_codec.py",
+      "bytes": 4878,
+      "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+    },
+    "cyclic1_codec.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/cyclic1_codec.py",
+      "bytes": 3311,
+      "sha256": "0130b7c927109d858ac940579d4f2abb9e78989af57f2b27c0cb51316053e980"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/native_cpu.py",
+      "bytes": 8345,
+      "sha256": "c107377d34e12179eb0d37bbcae15d1a32e0dedb88b3ce26c339ce1afdda62e5"
+    },
+    "native_driver.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/native_driver.py",
+      "bytes": 2222,
+      "sha256": "d17737e305a14511d5f4f2d02fdc82cf18dba0bae59bb807232773a46a6cc279"
+    },
+    "original-coded80.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/original-coded80.jsonl.gz",
+      "bytes": 448971,
+      "sha256": "448610633cac20513d0f18d179e15c1e7c860c680d548d53630cb4b431bd405d"
+    },
+    "cyclic1-coded80.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/cyclic1-coded80.jsonl.gz",
+      "bytes": 448997,
+      "sha256": "af6c294b047324ad0bfc7c75de7faedce5ee2fab5aa06e10137e8612768f3646"
+    },
+    "row-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/row-contract.json",
+      "bytes": 95510,
+      "sha256": "6bc824922e531cb45caeb522db9b394dbf702ad266ed432aba5a4e11aefd5e4b"
+    },
+    "original-held-native-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/native-preparation-v1/original-held-native-audit.json",
+      "bytes": 25153,
+      "sha256": "f61e16b03bfcc141d40c38776a648889d536a0be51f260d7de6eb457a54baf41"
+    }
+  },
+  "source_files": {
+    "original_response_codec.py": {
+      "path": "/workspace/patientphex-worktrees/explore-response-code-equivariance/solutions/response_code_equivariance/original_response_codec.py",
+      "bytes": 4878,
+      "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+    },
+    "cyclic1_codec.py": {
+      "path": "/workspace/patientphex-worktrees/explore-response-code-equivariance/solutions/response_code_equivariance/cyclic1_codec.py",
+      "bytes": 3311,
+      "sha256": "0130b7c927109d858ac940579d4f2abb9e78989af57f2b27c0cb51316053e980"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/explore-response-code-equivariance/solutions/response_code_equivariance/native_cpu.py",
+      "bytes": 8345,
+      "sha256": "c107377d34e12179eb0d37bbcae15d1a32e0dedb88b3ce26c339ce1afdda62e5"
+    },
+    "native_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-response-code-equivariance/solutions/response_code_equivariance/native_driver.py",
+      "bytes": 2222,
+      "sha256": "d17737e305a14511d5f4f2d02fdc82cf18dba0bae59bb807232773a46a6cc279"
+    },
+    "original-coded80.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/preparation-v1/original-coded80.jsonl.gz",
+      "bytes": 448971,
+      "sha256": "448610633cac20513d0f18d179e15c1e7c860c680d548d53630cb4b431bd405d"
+    },
+    "cyclic1-coded80.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/preparation-v1/cyclic1-coded80.jsonl.gz",
+      "bytes": 448997,
+      "sha256": "af6c294b047324ad0bfc7c75de7faedce5ee2fab5aa06e10137e8612768f3646"
+    },
+    "row-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/preparation-v1/row-contract.json",
+      "bytes": 95510,
+      "sha256": "6bc824922e531cb45caeb522db9b394dbf702ad266ed432aba5a4e11aefd5e4b"
+    },
+    "original-held-native-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/inference-preparation/row-audit.json",
+      "bytes": 25153,
+      "sha256": "f61e16b03bfcc141d40c38776a648889d536a0be51f260d7de6eb457a54baf41"
+    }
+  },
+  "original_coded_sha256": "54c8cb8c3e273dca62d6972cf24fc520d921fde091f35626931adf5de2676e9b",
+  "cyclic1_coded_sha256": "1c372b6e51e954903dc1c4dcd937d5521bb2557452e1355ad6862b4bff260f54",
+  "structural_result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/preparation-v1/structural-result.json",
+    "bytes": 4538,
+    "sha256": "9d181088c71f99c93f0c2dfe711c2d2d88db9017ae0f768270134502a701cdc9"
+  },
+  "rows": 80,
+  "new_NN_rows": 53,
+  "cache_rows": 27,
+  "original_cache_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+    13,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    78,
+    79
+  ],
+  "new_NN_indices": [
+    6,
+    7,
+    8,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77
+  ],
+  "old_original_full80_native_input_tokens": 685372,
+  "old_original_full80_native_max": 14570,
+  "new_native_tokens": null,
+  "new_native_max": null,
+  "new_input_cap_pending_actual_native": null,
+  "future_generation_limit": 1600,
+  "scope": "One native Auto/template/decoder census only. No model/adapter loading, GPU, generation, training, quality, sampling or FLA dispatch. Historical .100 runtime expectations must be verified by this new execution; no new actual runtime asserted.",
+  "command": [
+    "{historical_python}",
+    "-u",
+    "{deployed}/native_driver.py",
+    "--plan",
+    "{deployed}/native-plan.json",
+    "--output",
+    "{new-empty-terminal-dir}"
+  ]
+}

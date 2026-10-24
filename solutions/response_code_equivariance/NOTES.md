@@ -1,0 +1,8 @@
+# 研究与复用边界
+
+- [患者键可行性报告](../../docs/research/patient-key-equivariance-readiness-20261024/REPORT.md) 指出 O/P 临床编号不能当匿名字符串任意改写；历史 patient-first 没有独立代码层。现在响应 code 方案已新增明确 PT→原 PID 映射，因此本控制只改此输出层，原临床身份属性和证据完全不动。
+- `original_response_codec.py` 是原 `da6410ac…` 字节副本。新 decoder 复用其中 `parse_matrix`：完整且唯一 CID、患者值须为唯一已知 PT 字符串列表。只替换合法映射约束；不把重复值去重、不放宽缺键、不作 set decoder。
+- cyclic1 定义和方向在观察新 native/模型/质量前固定。候选 CID 及 HPO 顺序、原患者顺序和映射表 PT 键顺序全部保留。n=1 是恒等变换，原模型响应必须缓存；不重新生成并冒称相同。
+- 本地合同可证明表示/结构/逆映射，不能证明模型对输出代码等变。完整临床 user 字节不变也不代表提示 token 顺序不变；末尾表会变化，真实 token 成本需后继原生 CPU。
+- 旧 C32 在 A100 Torch2.6 运行；拟 .100 历史 native 环境是 Torch2.7.1。若后继 GPU 使用该环境，则结果包含映射与 host/runtime 差异，只是开发控制，不作纯映射因果或跨环境生成逐位等价声明。
+- B4 已强于原 C 单臂；主公式必须保留所有 B4 关系，新增只接受原/新 strict C 交集。比较固定 B4，不用较弱 N；新单臂仅诊断。其余排列、seed 和融合公式不在任务范围。
