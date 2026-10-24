@@ -103,9 +103,11 @@ def main():
     by = {str(d['pmc_id']): d for d in docs}
     old_meta = read(references['old_candidate_manifest']['path'])
     assert old_meta['input_sha256'] == references['input']['sha256']
-    assert old_meta['documents'] == 100 and old_meta['patients'] == 244
-    assert old_meta['prediction']['sha256'] == references['old_candidates']['sha256']
-    assert old_meta['prediction']['bytes'] == references['old_candidates']['bytes']
+    assert old_meta['fit_called'] is False and old_meta['train_or_gold_read'] is False
+    assert old_meta['policy']['relation_threshold'] == .55
+    assert old_meta['stats']['documents'] == 100 and old_meta['stats']['patients'] == 244
+    assert old_meta['outputs']['full-lr.jsonl']['sha256'] == references['old_candidates']['sha256']
+    assert old_meta['outputs']['full-lr.jsonl']['bytes'] == references['old_candidates']['bytes']
     old_rows = rows(references['old_candidates']['path'])
     old = {str(d['pmc_id']): d for d in old_rows}
     assert len(docs) == len(by) == len(old_rows) == len(old) == plan['documents']

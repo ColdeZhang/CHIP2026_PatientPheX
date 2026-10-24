@@ -70,8 +70,8 @@
   },
   "preparation_source": {
     "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/prepare.py",
-    "bytes": 14535,
-    "sha256": "c98a3872c32eaba2676089458c83d58173dc9ffe9daf5d690707704bc4fd4019"
+    "bytes": 14727,
+    "sha256": "ed6122ba266ac7a3d2f0f923cfd9ed93ad98aba54768675f17b986dd78a3108a"
   },
   "native_token_audit_source": {
     "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/token_audit.py",
@@ -81,7 +81,7 @@
   "plan_template": {
     "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/plan.template.json",
     "bytes": 2365,
-    "sha256": "eac9a8f6ab5e32e65cd30fbf3fe6dc21a22820f76bc376b87ea45095dc5ee29e"
+    "sha256": "d353154ed2ba9251f763599866e0ae0a1b440c5098c50bf9258a69cb8459588d"
   },
   "model": {
     "model": "Qwen/Qwen3.5-9B",
@@ -98,7 +98,7 @@
     "old_closed_candidates": "Original CRF/Sap train64 + GLiNER span48 full-lr entities/associations; not HGB/LGB. Relation LR fallback must remain exact and no new fit.",
     "normal": "Sorted original raw association_keys, chunks8 local CIDs, radius500/max4 evidence, original anchors/system, no demonstrations.",
     "reverse": "Within each original chunk reverse literal JSON objects and remap top-level local codes; reverse twice exact all fields and user bytes.",
-    "public_new": "Only fixed PubMed+Bioformer nativecanonical >.95. PubMed-first occurrence union; subtract all original old doc concepts using HPO alt-canonical typed keys, before inference or support gating. BioBERT not used for public-new Task2.",
+    "public_new": "Only fixed PubMed+Bioformer native hybrid canonical ALL rows; native neural policy>.95 is not a second row-score filter on dictionary results. PubMed-first occurrence union; subtract all old doc concepts using HPO alt-canonical typed keys before inference/support. BioBERT not used.",
     "generation": "Old1a703b BF16 text-only SDPA, greedy do_sample=false, cache=true, maxinput14000 rejection, maxnew1600, batch1, no thinking; original EOS union.",
     "parser": "Original parse_json; normal/reverse invalid/missing/capped CID falls back corresponding old full-lr association; public-new unresolved CID abstains. Do not replace with R1 codec."
   },
@@ -146,8 +146,8 @@
   },
   "static_check": {
     "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/static-check.json",
-    "bytes": 3040,
-    "sha256": "b080eed0888b6082b7c0bd7596fdc20da47a6d62d5f584d4894e875f02c9aab5"
+    "bytes": 3072,
+    "sha256": "dac04848ff00d0f5e8916bddfb8fed4a414fa7baf486998c4939ad3f0528d7fd"
   },
   "deployment_contract": {
     "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/deployment-contract.json",
