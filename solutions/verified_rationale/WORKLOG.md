@@ -17,3 +17,6 @@
 - .100 native15真实CPU全过，最长9400/总82445；已预锁单15pilot与证据验收，[计划](pilot-plan.json)。.12盘余量49.46GB可容一份16.39GB缓存；32MiB探针target上传遇离线，未启动任何服务/接收器。15:44之后只读在线退避，保留失败，无16GB复制/模型调用。
 - `cbce430a87ce4dbb3f38c816ad91b11ca46fe088`已推送，包含native15/固定机械及语义验收草案。随后本地对照发现AddedToken字典使草案字符摘要错误；原v2保留，修正后15渲染SHA与native全等、messages输入字节不变，没重CPU。成本亦按78fresh同scope纠正为103199/3431.089269，pilot预案2700+30，尚未执行。
 - 原native两件payload（100960B encoded+3871B audit）已实际全量回读逐SHA；无partial冒称完整。原16GB迁移仍未开始，网络小探针等15:44一次退避在线/盘/GPU库存。
+- 网络原回执UNKNOWN已只读完整恢复：32MiB2.737733s、11.69MiB/s，server实际关闭；16.39GB纯网络1337.16s>900门，root取消迁移，不扩大复制预算。
+- root已授权等待.100 Copy47+必要Sap全部释放后，原缓存同15/3072/2700+30唯一pilot。`host-revision.json`保原.12提案；36层真实KV/SDPA/logits_to_keep、旧19.50GB峰给出A30条件可行依据，freshfree必须实际比较，OOM首条即停。
+- 当前源码 `pilot.py` / `pilot_driver.py` 已实现并通过编译/静核；H69实际3类拒绝均无child；正做source-bound execution/deploy，无GPUstart。Copy owner承诺整链实际release再交接，不能在G47原模型结束时抢卡。

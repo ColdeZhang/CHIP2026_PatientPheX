@@ -68,3 +68,11 @@ root授权进一步供给准备后，.100 原 R1 runtime 无 CUDA 3.919 秒完�
 15:42 本地摘要修正：草案的字符级Jinja检查误将AddedToken字典作为BOS；该错误只污染此前字符计数/渲染SHA，真正上传的是不含该前缀的messages JSON。原生CPU一直使用content字符串，15条正确。机械修正后全部渲染SHA与原native精确相同，输入336107B/SHA932fde57逐字节不变；正确总字符326442、最长37086。保留v2旧摘要及[独立纠正证据](evidence/render-metadata-correction.json)，没有重做nativeCPU或改变pilot输入/预算。
 
 后续学习约束：15条均为已提示正关系，只验证证据供给，不验证教师判别力；全合法或全可解释也不意味着学生涨分。后续若蒸馏，必须明确错误患者、否定/假设与原完整JSON标签任务如何保留；可复用train32合法交换负对，但未标注不称临床绝对阴性。此约束不改固定15条，也不提前扩为814条教师调用。
+
+## 15:48 host修订与执行边界
+
+原32MiB实际2.737733秒、12,256,282.8B/s；MCP曾返回UNKNOWN，但只读找回原接收回执、donor/receiver SHA完全一致，server PID2751710已关闭且/proc不存在。16.3886GB纯网络代理1337.16秒，已超过root的900秒迁移门，所以**不迁移、不扩大复制预算**。[host修订](host-revision.json)改等.100 A30 GPU0原缓存，必须等Copy47及其必要Sap全部实际释放后，才fresh核GPU-126293b9；.12预备卡归还root。
+
+真实config36层/8KV头/128head_dim，最长12472的BF16 KV为1,839,071,232B，权重16,381,470,720B；旧真实5689输入+2197输出已完成、allocated峰19,495,760,896B。当前真实generation源码自动logits_to_keep=1，native forward只投末位置；维持SDPA/DynamicCache。经验估计23,366,319,357B，不是显存上界。相对旧观测free24164MiB约25.34GB仅剩约1.97GB，实际启动必须再读取真实free对比；不能只拿名义24GiB证明可行。根批准首次最长就是正式15条之一，OOM保留并停，不缩输入/改dtype/补答案。
+
+实际runner入口为 `pilot.py` + `pilot_driver.py`：H69预绑定5分钟admission与exclusive发布点，在子进程前及载模型前再次检查；2700+30计算时钟独立；每条先写原始IDs/raw/EOS/cap，再独立解析。3类真实CPU admission反例均在创建子进程前拒绝；不把这些CPU合同当GPU运行。源与绑定完整推送且copyowner整链release后才启动，学生训练/全814调用仍禁止。
