@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-10-24T06:45:42.850809+00:00",
+  "scope": "Prospective root-authorized retention-only amendment before formal training and all new quality; official B priority unchanged",
+  "prior_policy": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/formal-F1-endpoint-policy.json",
+    "sha256": "e9a7ddd2008f6e519b208056ace112798c99560a3d424ec760a91a406ed24cb1",
+    "bytes": 1437
+  },
+  "old_policy_preserved_immutable": true,
+  "training_and_generation_changes": false,
+  "training_budget_seconds": 8400,
+  "training_TERM_grace_seconds": 30,
+  "F1_inference_budget_seconds": 1200,
+  "F1_inference_TERM_grace_seconds": 30,
+  "baseline": {
+    "Score": 0.676546354662594,
+    "macro": 0.5959675129046342,
+    "identity": "Old short-trained SFT32 with complete allowed article at inference, alone strong baseline"
+  },
+  "endpoints": {
+    "primary": "new fulltext-trained SFT32 fulltext inference alone",
+    "diagnostic": "old short-input SFT32 union new fulltext-trained SFT32 fulltext inference"
+  },
+  "retention": {
+    "rule": "Endpoint Score strictly greater than same strong baseline; macro fully reported but has no additional non-decrease veto",
+    "if_both_pass": "Choose the endpoint with higher Score; preserve primary/diagnostic identities",
+    "if_equal_higher_score": "No winner claimed from equal Scores; report tie to root",
+    "retrospective_change": false
+  },
+  "held_out_protocol": "Both complete F1 predictions jointly freeze before exactly one v2 per new endpoint; existing baseline never re-evaluated",
+  "two_fold_verification_retained": true,
+  "automatic_F0_or_original_dev_migration": false,
+  "formal_execution_state": {
+    "campaign_exists": false,
+    "epoch_jobs_exist": false,
+    "GPU_started": false,
+    "official_B_acceptance_required_before_resume": true
+  },
+  "all_closed_prior_experiments_unchanged": true,
+  "authorization": "root explicit instruction 2026-10-24 while official best901 B active"
+}

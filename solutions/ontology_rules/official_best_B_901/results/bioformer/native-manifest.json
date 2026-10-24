@@ -1,0 +1,87 @@
+{
+  "status": "complete_predictions_frozen_before_quality_evaluation",
+  "plan_sha256": "25067b65358e8125677833b44884e4abe55ecbb6cc0cbbdbc5fac60c49af71a5",
+  "source_sha256": "9056efe86b8c81376add5bc8b26cf2ecb2ad6e342808ab5d65e258742bb7bb7f",
+  "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+  "model_weight_sha256": "867819ac932e11250c42ca13c49eba3711a7f24b170e24bfb31b65589d0024a1",
+  "model_parameters": 51380594,
+  "model_variables": 137,
+  "strict_native_CPU_load_sha256": "760892527e926330aff7a9b1573084ac29084e1e103ab1486dc945e7fad53f80",
+  "GPU_first_batch_validation_sha256": "19be8d9f6139c21ba7e33fa7b8e17cb1a9ed7306c5e40ab5fa804a00dd9e32ee",
+  "old_label_order_sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b",
+  "public_model_training_on_task": false,
+  "model_type": "bioformer",
+  "reused_other_model_logits": false,
+  "reused_forward_sha256": "f7ffc2c9b1422407748007924a9dc15aa7828e1d8069eabac2506565e3618ec7",
+  "reused_forward_parent_manifest_sha256": "142e3297aed7f6f866c6ce16e82c2f2401332efac85b230c3a14d200e1411ca0",
+  "new_forward_keys": 347634,
+  "reused_forward_keys": 15145,
+  "fixed_policy": {
+    "neural_top3_and_probability_format": "unchanged original ml_ner.output_result(probabilities,Top_N=3); round(np.float32,5), string, then float in decode_tsv",
+    "threshold_strictly_greater_than": 0.95,
+    "ngram_per_sentence_min": 2,
+    "ngram_per_sentence_max": 8,
+    "onlyLongest": false,
+    "abbrRecog": true,
+    "dictionary": "fixed original public2023 resources; original first-ID ambiguity policy",
+    "native_combine": "original combine_ml_dict; full pre-combine raw retained",
+    "ancestor_expansion": false,
+    "canonicalization": "after unchanged raw classification and native hybrid decode, official2026 current validbranch mapping; oldhead17266 remains unchanged",
+    "negbio": false,
+    "downstream": "existing fixed negation/nonoverlap policy; original relations and original base entities preserved",
+    "memoization": "identical lowercase pretokenized word tuples share exact same deterministic original representation input",
+    "batch_size": 128,
+    "maxlen": 32
+  },
+  "counts": {
+    "raw_neural_candidates": 446799,
+    "raw_dictionary_candidates": 6100,
+    "hybrid_pre_abbreviation": 8469,
+    "hybrid_after_abbreviation": 8730,
+    "canonical_kept": 8726,
+    "invalid_current_branch_dropped": 4
+  },
+  "inference_seconds": 174.02673291042447,
+  "elapsed_seconds": 259.0949905924499,
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "memory_growth": true,
+  "tf32_default_enabled": true,
+  "GPU_peak_memory": {
+    "current": 227654400,
+    "peak": 308960256
+  },
+  "outputs": {
+    "preparation.json": {
+      "sha256": "a95bfc5a25736366ede1054befd05df0174d0416ec1e5afeb8c064886af1ec68",
+      "bytes": 561
+    },
+    "new-forward-predictions.jsonl": {
+      "sha256": "a7eb994365777044d430056b32bc60d4738f686585f00879e2fefe65aef58684",
+      "bytes": 182831542
+    },
+    "GPU-first-batch.json": {
+      "sha256": "19be8d9f6139c21ba7e33fa7b8e17cb1a9ed7306c5e40ab5fa804a00dd9e32ee",
+      "bytes": 646
+    },
+    "unique-raw-predictions.jsonl": {
+      "sha256": "4cc9b6d777b01af89d8e019533c4255dba7b85607dca03848617bb29aa89ed99",
+      "bytes": 191242574
+    },
+    "raw-neural-candidates.jsonl": {
+      "sha256": "b084d6d5966073f6d51eaef5a05d27c77c3a2d32af011a59501d77c13ccdd4fa",
+      "bytes": 276955411
+    },
+    "raw-dictionary-candidates.jsonl": {
+      "sha256": "4540c8ed26eebcb73acd5d17a8c5deb00f9b168cf8ba19d1542ca3d1acda8ad4",
+      "bytes": 1419603
+    },
+    "native-hybrid-stages.jsonl": {
+      "sha256": "c7a0493052bff71f9137fdd350556d79b65cbf5c18814448e143ede127e0c42e",
+      "bytes": 1025681
+    },
+    "canonical-entities.jsonl": {
+      "sha256": "a38a4766760156226412af5a6a0c7829e82abc30f0e92743d667aa65f2b46a54",
+      "bytes": 2266444
+    }
+  }
+}
