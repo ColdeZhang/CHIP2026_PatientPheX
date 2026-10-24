@@ -418,3 +418,9 @@ GLiNER2.5原生`synthetic_entity_label_prob=.2`会将phenotype随机改成entity
 同一编码表在本地与远端分别生成gzip，长度同为743576字节但SHA不同；检查器在9B备用CPU合同末尾退出。两个已有对象解压后5091977字节完全相同（`aa047a34…`），87/39行的IDs、labels、字段顺序都相同；root另核压缩对象只在偏移9的gzip OS字段不同（03/ff）。该次未到达HF processor步骤，不能补称其已通过。
 
 **避免方法**：跨环境重建数据时，同时记录容器SHA和解压后实际输入身份，以实际IDs/labels及序列化内容判断模型输入是否改变；保留首个错误guard，先比较已有对象，不重跑tokenization或模型。传输同一个冻结压缩包仍必须逐字节SHA一致，不能据此放宽复制校验。证据见名称分支`solutions/canonical_names/evidence/qwen35-container-diagnosis.json`；首个正式候选已另行固定8B，此9B备用检查不影响其训练链。
+
+## H64：停止控制器不一定停止独立会话中的子进程
+
+Grounded full64检查点导出的HTTP子进程使用独立session。停止其MCP driver后，driver已退出，但子PID61705仍在、PPID变为4735；不能仅凭`stop_process`回执就称临时服务已关闭。
+
+**避免方法**：记录子进程PID、start_ticks、UID、argv、PGID/SID及原绝对截止，关闭后再核具体子进程。只处理已确认自有身份，不能按宽泛进程名杀进程。此次有界guardian在原parent退出后于12:50:58.246向该子组发TERM，.100秒后实际`/proc`不存在；没有KILL、重开HTTP或影响训练，第二轮另按同协议核。证据`research/grounded-generation-full64-v1/export-guardian-v1/observation-1792846276999439460.json`，实现源码`5504bac5…`；这是服务生命周期修复，不改变原6000秒训练预算或持久ACK要求。

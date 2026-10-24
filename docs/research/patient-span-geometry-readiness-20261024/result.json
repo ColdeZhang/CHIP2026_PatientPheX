@@ -1,0 +1,179 @@
+{
+  "status": "CPU_RESEARCH_ONE_GEOMETRY_RESIDUAL_CONTROL_RECOMMENDED_AFTER_FIXED24",
+  "at_utc": "2026-10-24T12:58:48.940602+00:00",
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/REPORT.md",
+    "bytes": 11240,
+    "sha256": "050e63457efbbc711eedd9d05fafdb13f88c05cdd960248a59cec152ecb18434"
+  },
+  "current_head_explicit_anchor_distance_or_paragraph_features": false,
+  "current_head_semantic_context_and_span_RoPE": true,
+  "old_learned_geometry_already_existed_in_LR_and_text_identity_bridge": true,
+  "same_all_anchor_geometry_plus_current_latent_span_bag_completed_control_found": false,
+  "novelty_scope": "Bounded inspected mechanisms only; joint latent span-bag placement is new combination, geometry and maxMIL individually old.",
+  "counts": {
+    "documents": 32,
+    "patients": 87,
+    "multi_patient_documents": 17,
+    "anchors": 255,
+    "distinct_source_anchors": 255,
+    "shared_anchor_locations": 0,
+    "identical_patient_anchor_sets": 0,
+    "patient_span_pairs": 6612,
+    "unique_bag_instance_spans": 2311,
+    "all_NER_candidates": 3197738,
+    "bags": 3194,
+    "masked_positive_bags": 1,
+    "anchor_span_events": 18775,
+    "patient_span_same_passage": 1356,
+    "patient_span_same_punctuation_segment": 278,
+    "span_unique_nearest_patient": 1502,
+    "span_tied_nearest_patients": 1,
+    "span_geometry_distinguishes_some_patient": 1421,
+    "span_all_patient_geometry_identical": 82
+  },
+  "bags": {
+    "0": {
+      "bags": 2381,
+      "multiple_instances": 786,
+      "instances": 4458,
+      "any_same_passage": 357,
+      "any_same_punctuation_segment": 22,
+      "no_same_passage": 2024,
+      "multi_patient_bags": 2182,
+      "any_target_tied_or_unique_nearest": 521,
+      "any_target_unique_nearest": 521,
+      "another_strictly_closer_for_every_instance": 1661
+    },
+    "1": {
+      "bags": 813,
+      "multiple_instances": 422,
+      "instances": 2194,
+      "any_same_passage": 720,
+      "any_same_punctuation_segment": 212,
+      "no_same_passage": 93,
+      "multi_patient_bags": 560,
+      "any_target_tied_or_unique_nearest": 421,
+      "any_target_unique_nearest": 421,
+      "another_strictly_closer_for_every_instance": 139
+    }
+  },
+  "proposal": {
+    "added_trainable_parameters": 50,
+    "features": "all-own-anchor mean of joint25 signedlog-token-gap buckets x2 original-passage same flag",
+    "initialization": "nn.Parameter(torch.zeros(25,2)) after all old-head initialization; no RNG consumption, old parameter order preserved",
+    "supervision": "unchanged max-instance BCE on current813positive/2381negative bags; no patient-span evidence labels",
+    "reference_control": "owner fixed24, same fresh24 duration and recipe if root later authorizes",
+    "changes_to_current_owner_source": 0,
+    "new_GPU_plan_created": false,
+    "new_GPU_started": false,
+    "original_encoder_and_heads_lr": 3e-05,
+    "new_geometry_only_lr": 0.01,
+    "both_weight_decay": 0.01,
+    "fixed_schedule": {
+      "updates": 768,
+      "warmup_steps": 76,
+      "kind": "same linear warmup and decay"
+    },
+    "lr_scope": "This fixed extra optimizer group is part of the geometry mechanism, not an identical-optimizer feature-only ablation; no sweep",
+    "table_index": "signed bucket -12..12 plus12; samepassage index0/1",
+    "micro_contracts_status": "PROPOSED_NOT_EXECUTED; no torch model or optimizer called"
+  },
+  "warning": "139/560 training positive multi-patient bags all have another closer patient is geometry, not error/evidence gold; old170 has different census scope.",
+  "new_held_gold_reads": 0,
+  "new_fit_calls": 0,
+  "new_model_calls": 0,
+  "new_quality_calls": 0,
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/census.py",
+      "bytes": 6591,
+      "sha256": "f14a49031305001460d82a09461f8cb883e42bcbb5cfe8975d65213edd893e75"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/train-geometry-census.json",
+      "bytes": 23873,
+      "sha256": "4fefcd392b04633f973f06821178b3ce49d20476a2094a8b958cc032443d91bb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/mature-source-refs-v2.json",
+      "bytes": 4069,
+      "sha256": "3a1043550632236c4816baf761f7ace98ca7de28f91771c65ccfbb83467fec8d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/collected/formal-source-v1/model.py",
+      "bytes": 5868,
+      "sha256": "83e6ba33ba2939c7417487eb4b7911ad9fb7919fa6a7598be465eff54a205b47"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/collected/formal-source-v1/prepare.py",
+      "bytes": 10389,
+      "sha256": "4dd4c885f747e6f86a0233bc2f00d287b11d7cf3744767345ce6e06a300dae90"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/collected/cpu-v1/encoded/preparation.json",
+      "bytes": 33678,
+      "sha256": "62fe1aba8b79eb5deec0a24b0e99467a0e1c16b7ff3f687fb833e8f918fc22ba"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/actual-training-head-shapes.json",
+      "bytes": 7308,
+      "sha256": "bee6741ae9ac611c33daeafb8cf8ff407f61bb77e6f59db2887ea7427188147c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/training-diagnosis.json",
+      "bytes": 4705,
+      "sha256": "fd556eacd7dc5646295604e7ea26a3c8e26b65020d6167b52024f5be86e75b1d"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run.py",
+      "bytes": 21153,
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/pair_document_feasibility/torch_head.py",
+      "bytes": 2588,
+      "sha256": "264a484135a8b8fa56573386da623e42384defdde893f5d84a1bf99c345a7393"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/run.py",
+      "bytes": 22676,
+      "sha256": "8d28527a3a4ad836914832d4859973711d9579b11dc84e0769688005e04f19ea"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/patient_identity_bridge/prepare.py",
+      "bytes": 20954,
+      "sha256": "6fa1cf3c3d21363cefb2d1a12d428280034a0b021597929f687433ecef5e728e"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/evidence/round2/patient-identity-bridge-paired-result.json",
+      "bytes": 9791,
+      "sha256": "45ad279e1ad74852f235a4420ecb37b36ac7c552d0e965331fb7a48bc8ba6fd7"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/train_relation_mil.py",
+      "bytes": 15430,
+      "sha256": "b47cd62ea1521a5d1ff8a2f876d07a8ec1f168b01f1deb42450e63eba1520f94"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-results.json",
+      "bytes": 6235,
+      "sha256": "a1f15719af6be735a49d352d12d31b5ec33561467264c4a9646122881ea6c3b0"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/model.py",
+      "bytes": 4926,
+      "sha256": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-attribution-completion-readiness-20261024/census.json",
+      "bytes": 9621,
+      "sha256": "91a9a6c5058c423d1ffcf11a939221707ca2c981a6b6788a05e38c4950f93b54"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/schedule-arithmetic.json",
+      "bytes": 853,
+      "sha256": "697ab68810aa05b22bbe30166e9fe78ca31b1d49963835e2bc32b3f2f208be03"
+    }
+  ]
+}
