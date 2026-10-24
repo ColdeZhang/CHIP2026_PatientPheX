@@ -18,3 +18,7 @@
 3. 两完整预测共冻后评分：主若变化1 v2、若与B4完全相同继承旧指标0 v2；诊断1 v2，旧0。未获新结论前不自动迁 F0/dev。
 
 详见 [实验](experiments/E-20261024-EQUIVARIANCE-001.md) 与 [研究笔记](NOTES.md)。
+
+## 2026-10-24 13:30 UTC：实际完整native CPU通过
+
+唯一.100proc156e646f/PID2742802，120+5，实际11.7197s rc0/native10.9888s，8件全SHA。53新/27原cache、685372total/max14570/guard14848，原证据/IDs及逆映射完整。实际runtime2.7与原A1002.6差异明确。见CPU-REPORT.md及evidence/native-CPU-result.json；GPU/quality未启动，等待root排卡，原full64优先。
