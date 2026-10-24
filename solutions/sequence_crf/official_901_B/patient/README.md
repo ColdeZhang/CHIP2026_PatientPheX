@@ -11,4 +11,4 @@
 3. `export_positive_keys.py`逐件SHA核完整收件清单、完整行覆盖、生成/raw/decision三方一致及原始token独立解码，再重放同一有限codec。只导出显式模型 `[pmc_id, patient_id, original_concept]` 正关系与完整原code_map空间，不加入任何baseline或回退。
 4. 与retrieval使用实际B和原canonical/alt-ID政策证明patient空间来自oldpool、public-new与其逐文献互斥。证明后才应用901的等价并集；有交集则按root决定恢复原counterfactual差集，不能临时删patient或猜。
 
-当前仅源已准备；具体B prompt/CPU census/冻结运行计划和实际终态随完成记录在路线WORKLOG及仓库外 `research/official-901-B/patient/`。root独占官方上传和最终统一审，禁止读取官方成绩。
+当前native CPU420全输入已完成，原A100唯一推断proc_7c9baef1于07:17:15Z启动。具体SHA/绝对预算和只读恢复入口见路线WORKLOG及仓库外 `research/official-901-B/patient/`；未完整收件前不称结果已完成。root独占官方上传和最终统一审，禁止读取官方成绩。

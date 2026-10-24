@@ -12,7 +12,9 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 患者B纯CPU原生token审计唯一proc_f1a4339f已07:05:38以12.573秒rc0完整结束：420行、1,240,743 tokens、最长6055，全部发布原生IDs/双decode一致；实际prompt9f94与独立转置字节相同，tokenauditccafddec、输入合同eabbfa5f。[CPU终态](evidence/official-901-B/patient-native-CPU-terminal.json)、[原生输入清单](evidence/official-901-B/patient-native-CPU.json)。唯一完整NN计划1e4e67c2已9f93bf9 push/远端exact：原f787、420fresh、3600+30；按旧原dev实耗/输入及候选对比例估1756秒，留2.05倍上界，不采样B NN。原infer5b899保持，driver46abb/exportcaf48仅补绝对deadline和目录项fsync。
 
-**当前仅部署阻塞、NN未启动**：07:08:20 A100小infer-plan部署返回LUNA_OFFLINE，infer-launch-intent不存在；[恢复指针](evidence/official-901-B/patient-infer-backoff.json)。最早07:11:25由本owner唯一只读盘点目标plan，确认实际落盘后同字节接续，禁止重复start。A100 GPU2已由ontology实际释放交接，但启动前仍要一次全卡UUID/进程/空间fresh检查；若其他卡真空闲再告root协调。CPU完成与原权重/输入不重做。首次B输入write UNKNOWN曾经库存证实仅part0，后续1–8同字节补齐成功，这是独立已关闭的传输恢复。
+**原A100唯一B NN已07:17:15.810647Z真实启动**：`proc_7c9baef1-5019-462b-960a-d5278f96971b` / driver PID229438，420fresh，3600+TERM30，近似TERM08:17:15/KILL08:17:45，以远端`control/infer/driver-started.json`绝对时间为准。[作业](evidence/official-901-B/patient-infer-job.json)、[部署](evidence/official-901-B/patient-infer-deployment.json)、[全卡fresh库存](evidence/official-901-B/patient-infer-fresh-all-GPU.json)。GPU2为0MiB/无进程，其他3卡均有foreign进程；不共享。原运行库实际Torch2.6.0+cu124/TF5.20.2保持，无环境迁移。
+
+07:08/07:11两次LUNA后，07:16库存确认infer-plan原未落，才同字节部署8324B/1e4e并fsync重开；此前未start，失败收据保留。root批准的.100备用只完成资产库存，派生入口尚未产生，原A100启动后已正式[取消于准备前](official_901_B/patient/cache_fallback/STATUS.md)，不能称有备用可执行源码。恢复只运行[只读监控](official_901_B/patient/monitor.py)：`python solutions/sequence_crf/official_901_B/patient/monitor.py --run-dir /workspace/patientphex-runs/round2-20261023/research/official-901-B/patient --client-dir /workspace/patientphex-tools`；本地flock单owner、≥180秒一次、只读已有control/raw，不重启remote。当前本地watch session70981；若会话断先核lock/PID/最新receipt，再接管监控。
 
 [独立实际B合法空间证明](evidence/official-901-B/patient-space-proof-summary.json)：420原schema逆变换/逐行code_map一致，100文献原HPO后代alt图与public-new实际code_maps canonical+literal交0；16个合法text概念保持。实际patient prompt9f94fffc/5403066B已与native产物相同字节。此时仅证明输入空间，实际positive成员/输出级互斥待完整raw后验证，不能称B结果已完成。后继研究只读一页[机制盘点](research_readonly/post901-relation-proposal.md)，不阻塞官方，不新NN/fit/评分。
 
@@ -79,6 +81,6 @@ Score **.754216969282→.754361398199（+.000144428917）**；men .792801107522/
 
 B CPU底座6件来源入口已完成，见[阶段摘要](official_901_B/old_pool_cpu/cpu-stage-summary.json)：旧dev55f完整字节回放；B CRF5229实体、rules5728，100/244；经root明确授权的纯计数恢复不新fit，Sap90303候选/65673 query、42575 labelbank精确。GLiNER最终排回原native .100GPU1，在R1释放后唯一100篇已06:41:29完成rc0/97.733秒；3885完整chunks/7048unique候选，GPU1已0MiB/无进程并交retrieval。9件原raw/候选/windows/日志已逐SHA/fsync收回，见[实际终态](evidence/official-901-B/gliner-terminal.json)、[收件清单](evidence/official-901-B/gliner-collection.json)。Sap query由子代理在.3 GPU0单owner依次执行；先原dev16缓存CPU合同，再B600+30，随后GLiNER片段的同模型链接。原模型/labelbank不重编码或fit。
 
-patient B参数化入口只改输入identity/count和artifact标签，f787三actual SHA、greedy14000/1600、原raw-before-codec与native BF16完全保持；源码[增量清单](official_901_B/patient/source-delta.json)。normal-B闭集prompt待完整oldpool，实际native所有IDs/decoder一致后才冻结预算并启动，尚无patient B NN。
+patient B参数化入口只改输入identity/count和artifact标签，f787三actual SHA、greedy14000/1600、原raw-before-codec与native BF16完全保持；源码[增量清单](official_901_B/patient/source-delta.json)。normal-B闭集prompt3a8e已绑定完整oldpool7732；native420全ID/decoder核过，唯一计划1e4e已真实启动，详见顶部当前状态。
 
-后继唯一N/R/P≥2票双fold控制由root授权仅先准备source/plan，根的最新保留门为两fold Score各自严格高于原tripleunion，macro只披露；官方901 accepted之前不得读gold/新评分，不迁原dev。与正在准备的B患者推断隔离。
+后继唯一N/R/P≥2票双fold控制源码/计划已c5f2455提交推送并lsremote exact；两完整预测共同冻结9650ab99，F1关系469→370、F0 317→276，其余字节保持，0.08785秒纯CPU。未读gold/评分，无keep结论；[待评分清单](research_readonly/majority_vote_control/pending-score.json)。根的保留门为两fold Score各自严格高于原tripleunion，macro只披露；必须等root真实官方accepted receipt释放后再各唯一v2/总30+1，不迁原dev。
