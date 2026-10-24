@@ -5,3 +5,8 @@
 根线程来源见main docs/research/multitask-relation-readiness-20261024。GLiNER2上游2.1.0通过AutoExtractor按boundary加载，旧GLiNER2类仅span，不能混装。公开loader按strict state_dict加载。max_len为word-token相关接口，真实wordpiece/文本覆盖须通过实际processor确认，不能据4096配置承诺完整报告。
 
 全候选与原分数外存；患者头必须映射原input明确mention坐标/身份，不能用训练或heldgold补病人。规范化固定strict/Sap政策，未知结果保持拒绝并计数。
+
+- ModelScope本次weight响应在524288000B结束，目标774366564B，必须核size/SHA并Range续传；HTTP请求结束不等于权重完整。证据R/stage8-schema-extraction/assets-failure-inspection.json。
+- 远端默认python命令不一定存在；使用已核的绝对解释器。.100通用ScratchVL解释器本身没有transformers；需显式已核私有PYTHONPATH，不能把另一路的私有包当全局已安装。
+- JointIE原生processor会为不以句末标点结束的窗口追加一个句点；审计记录这一步，caller映射只接受真实原字符。使用transform_record（不是旧transform_and_format）获取当前公共单记录合同。collate默认fallback改为error_policy=raise，防止静默dummy记录。
+- declarative relation description目前未被上游compiler写入model_schema；模型实际只见关系名称与head/tail槽位。不能用文档中的自然语言宣称模型具有未实现的硬性语义约束。

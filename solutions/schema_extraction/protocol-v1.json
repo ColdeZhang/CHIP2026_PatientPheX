@@ -1,0 +1,22 @@
+{
+  "experiment": "E-20261024-SCHEMA-001",
+  "design": "Frozen public GLiNER2.5 boundary and relation model, no fitting or held-gold threshold selection",
+  "schema": {
+    "entities": {
+      "patient": {"description": "A person in a clinical case report, including the patient's name, identifier, family role, or referring expression."},
+      "phenotype": {"description": "An observed abnormal clinical finding, sign, symptom, or phenotypic feature."}
+    },
+    "relations": {
+      "has_phenotype": {"head": ["patient"], "tail": ["phenotype"], "description": "The patient is reported to have the abnormal phenotype; excludes negated, absent, and hypothetical findings.", "directed": true, "allow_self": false}
+    }
+  },
+  "joint_config": {"optimizer": "beam", "beam_size": 32, "candidate_threshold": 0.05, "relation_role_threshold": 0.05, "top_k_entities": 32, "top_k_roles": 12, "count_top_k": 2, "batch_size": 1, "max_len": null, "include_confidence": true, "include_spans": true, "entity_threshold": null, "relation_pair_cap": 128, "max_edges_per_type": 256, "rescue_per_role": null, "entity_weight": 1.0, "role_weight": 1.0, "count_weight": 1.0},
+  "chunking": {"size": 384, "overlap": 64, "splitter": "native model word splitter", "cross_window_relations": false, "maximum_wordpieces_with_schema": 4096, "overflow": "fail before inference; no silent truncation"},
+  "patient_mapping": "Exact source coordinates; either predicted or supplied mention contains the other; accept exactly one given patient ID, reject ambiguous or unmatched; duplicated source passages map to the same physical coordinates",
+  "normalization": "Reuse strict.py 31d380f5 + frozen public-Sap conservative-v1 policy b59eb3f8; train32 F2+F3 only, public41099 bank only; no held-derived rules",
+  "prediction_endpoints": ["N-union-new relations", "new-alone relations"],
+  "fixed_nonrelation": "N f33a30f1: 1189 entities; preserve all other baseline fields",
+  "quality_budget": "Both complete16/39 predictions frozen before two public-v2 evaluations; zero original-dev or official evaluation; N and historical .686338981 readonly",
+  "save": "Every native CandidateScoreSet, exact text mapping, selected JointResult, raw logits/probabilities, native caps and mapped/rejected endpoint evidence",
+  "limits": "Native proposal budget192, max32 heads/tails per relation type; relation scores are conditional on native proposals, not an exhaustive span-pair search. Relation description appears in declarative schema but upstream compiler emits the relation name and empty head/tail slots only; it does not pass the relation description into model_schema."
+}
