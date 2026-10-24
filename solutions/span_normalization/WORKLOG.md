@@ -1,7 +1,7 @@
 # Span normalization 工作台账
 
 - 目标：原dev公开v2默认all/text Score≥.8。这里只运行train64内部文献分组验证，尚未打开原dev、未访问官方。
-- 当前：E004固定GP特征四折补全已源码/计划冻结，F2/F3两折旧103→105接口PASS，.3 CPU部署传输中；GPU尚未启动，DocRE30已10:29:54.550211真实释放。唯一GPU预算900+30从实际启动计。入口[实验](experiments/E-20261024-SPAN-004-fourfold.md)、[计划](oof-completion-plan.json)、[CPU证据](evidence/oof-fourfold-readiness.json)。
+- 当前：E004固定GP特征四折补全已源码/计划冻结，F2/F3两折旧103→105接口PASS，八组CPU映射8.775秒/33部署件SHA通过；GPU已10:32:46.912354唯一启动proc_0d494e26/PID1200398，TERM10:47:46.982215/KILL10:48:16.982215，fresh4MiB/noapps；见evidence/oof-completion-runtime-pointer.json。唯一GPU预算900+30从实际启动计。入口[实验](experiments/E-20261024-SPAN-004-fourfold.md)、[计划](oof-completion-plan.json)、[CPU证据](evidence/oof-fourfold-readiness.json)。
 - 决策门：已知F1 +.002115173201、F0 −.001065881294之后补另两折，明确研发而非盲测。训练/候选池/旧特征/160树/.3/nested/missing全部保持。两新全预测共冻后各唯一v2，再pooled64唯一v2；复用原F0/F1预测和指标，不逐折选模型。仅pooled严格升且≥3/4折非降才考虑原dev迁移，否则关闭该特征控制。
 - 计算：复用GP13/03/12/02，完整train32 bytes/IDs/config精确核；新GP01只训一次，另新GP01348/GP01248，共3训练/8全边界pass。新GP01两目标使用的训练文件bytes SHA也精确相同。所有原候选保留，包括低于−2分数；不能只存最终实体。
 - 源/备份：最近核远端`explore/span-normalization@c56227230bf40671ab6eb4b79b89928b4d415761`。新completion文件独立，F1/F0已审源SHA不变。外部主目录`/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/`；当前子目录`oof-fourfold-completion/`，服务器同名目录在项目根下。长作业须先查intent/started/terminal，不盲重启UNKNOWN。
