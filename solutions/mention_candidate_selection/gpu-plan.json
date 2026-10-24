@@ -1,0 +1,203 @@
+{
+  "model_id": "Qwen/Qwen3-8B",
+  "ModelScope_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+  "license": "Apache-2.0",
+  "model_files": {
+    "LICENSE": {
+      "size": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "config.json": {
+      "size": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "generation_config.json": {
+      "size": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "merges.txt": {
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "model-00001-of-00005.safetensors": {
+      "size": 3996250744,
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+    },
+    "model-00002-of-00005.safetensors": {
+      "size": 3993160032,
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+    },
+    "model-00003-of-00005.safetensors": {
+      "size": 3959604768,
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+    },
+    "model-00004-of-00005.safetensors": {
+      "size": 3187841392,
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+    },
+    "model-00005-of-00005.safetensors": {
+      "size": 1244659840,
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+    },
+    "model.safetensors.index.json": {
+      "size": 32878,
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+    },
+    "tokenizer.json": {
+      "size": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "size": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "size": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "native_forward_sha256": "f0ec853368a9b19d664bfa6099d14f6c0d96e9d06a8ca540b181157be8246069",
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "tokenizers": "0.21.2",
+    "accelerate": "1.6.0",
+    "safetensors": "0.5.3",
+    "huggingface_hub": "0.30.2"
+  },
+  "run_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1",
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "gpu_index": 1,
+  "durability_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "seed": 20261023,
+  "max_new_tokens": 128,
+  "budgets": {
+    "probe": 240,
+    "formal": 7200,
+    "infer": 1800,
+    "each_TERM_grace": 30
+  },
+  "cpu_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/complete.json",
+    "bytes": 4474,
+    "sha256": "f89e73c69e14db6d08a71eeb8e86faf9010dd7bc64fc670ac4a93c42ec01122b"
+  },
+  "train_source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/inputs/train.json",
+    "bytes": 8863537,
+    "sha256": "12b48f03a23eb27df708ce6e5d4ece2a776312cd43e0752b35e1ac49830de3f3"
+  },
+  "baseline": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/application/data/baseline.jsonl",
+    "bytes": 173758,
+    "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+  },
+  "recipe": {
+    "epochs": 2,
+    "rows": 2931,
+    "documents": 32,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "updates": 734,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_steps": 37,
+    "max_grad_norm": 1.0,
+    "loss": "standard shifted FP32 mean causal CE, indexed only at supervised prior-logit positions",
+    "quantization": false,
+    "packing": false,
+    "truncation": false,
+    "updates_per_epoch": 367,
+    "warmup_ratio": 0.05,
+    "last_batch_size": 3
+  },
+  "probe_pareto_shapes": [
+    [
+      572,
+      17
+    ],
+    [
+      684,
+      13
+    ]
+  ],
+  "source_files": {
+    "schema.py": "d9c31806c416a7bd7e2311e8e9f056c20e8888cc719751d7a12e847cafb5f417",
+    "prepare.py": "316444a9f039777e659df56a2f3fa9329b2661f06c76105c7a63dcb3211eb691",
+    "quality.py": "d52d0d558ee1a922b59a6890daf9d2a83f4a752fc2b034bacb62be86142d9f90",
+    "gpu_driver.py": "427e781851c0d15fd5b774414ccfa9deaea296c15e2d6eeb27f13572eebaeb24",
+    "cpu_contract.py": "344f43e6e4e137c9a630e83464b46a6a9345879121315039f986bf3cb213be8a",
+    "helpers.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "gpu_entry.py": "b71731d452d4975391ab4190890ad2aeecbf4fb282cfe36098d68f40805d3ced",
+    "reuse/native_tokenizer.py": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026",
+    "reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+    "query/driver.py": "34dc1cd650e1684a4fd4b6b04d15ce6c77e4b57f5787bd7fbcaf36b1adeaad3c",
+    "query/query.py": "a092329605abb020444fb056fea1db325bf5800069a4f1599a2c5f51ed9093b6",
+    "reuse/doc/common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "reuse/doc/loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "reuse/doc/literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "reuse/doc/native.py": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c",
+    "reuse/canonical/common.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "reuse/canonical/schema_contract.py": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+    "reuse/canonical/token_census.py": "f4316599a50d6f6ecd5d8d9bf56c63787d7a867a7e0bda245afd8412e1af1ad9",
+    "query/reuse/public_bank.py": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+    "query/reuse/semantic.py": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82",
+    "query/reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  },
+  "authorization": "Root unique240+30 native13FB/realAdam+4train input constrained mode probes; if prewritten actualcost<=7200, fresh2931x2/734 fixed fulltrain7200+30; two fullstateACK then all1416 fresh1800+30, both completejointfreeze->2v2/old0. No old adapter, no retry/earlystop/cut/context change.",
+  "fixed_cost_rule": "load+cold_first_FB+1.25*(3033240*max12_warm_FB_seconds_per_input_token+734*first_actual_Adam_seconds)+120_ACK_IO; gate<=7200. Preserve original native inclcold and worstrow repeated diagnostics, not gates. Empirical shape-based estimate, not proof of upper runtime.",
+  "state_policy": "Discard probe state; two complete checkpoint ACKs retained, finalepoch2only. No auto-resume claim.",
+  "phases": [
+    "probe",
+    "formal",
+    "infer"
+  ],
+  "CPU_source_and_collection": {
+    "collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/cpu-v1-collection.json",
+      "bytes": 8171,
+      "sha256": "022e542b808859c2ba5a13c965ec9bb2e665f653cad70a1d0e880289ea216243"
+    },
+    "complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/cpu-v1-collected/actual/complete.json",
+      "bytes": 4474,
+      "sha256": "f89e73c69e14db6d08a71eeb8e86faf9010dd7bc64fc670ac4a93c42ec01122b"
+    },
+    "native_source": {
+      "path": "solutions/mention_candidate_selection/reuse/doc/native.py",
+      "bytes": 16932,
+      "sha256": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c"
+    },
+    "grammar": {
+      "path": "solutions/mention_candidate_selection/schema.py",
+      "bytes": 3702,
+      "sha256": "d9c31806c416a7bd7e2311e8e9f056c20e8888cc719751d7a12e847cafb5f417"
+    }
+  },
+  "prior_actual_cost_proxy": {
+    "original2353_train_seconds": 2548.3024230250157,
+    "original_full_training_tokens": 1328556,
+    "new_full_training_tokens": 3033240,
+    "token_linear_proxy_seconds": 5818.0557248745245,
+    "not_new_GPU_measurement": true
+  },
+  "confounds_and_limits": "Candidate prompt/target plus578 annotation-negative rows; not pureprompt. All train ancestry F2F3; held proposer48 includesF0. Missing never becomesNIL or inventedID; root still requires independent controls before originaldev."
+}

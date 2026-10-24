@@ -1,0 +1,183 @@
+{
+  "status": "PASS_COMPLETE_CANDIDATE_SELECTION_NATIVE_HF_AND_FINITE_GRAMMAR_CPU_ONLY",
+  "plan": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/application/cpu-plan.json",
+    "bytes": 7918,
+    "sha256": "57c1a10f911df73d467802044a69b63b5a9c7b22e1a91d120ecb5faefbc5bcf4"
+  },
+  "source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/application/cpu_contract.py",
+    "bytes": 10399,
+    "sha256": "344f43e6e4e137c9a630e83464b46a6a9345879121315039f986bf3cb213be8a"
+  },
+  "counts": {
+    "train": {
+      "rows": 2931,
+      "tokens": 1516620,
+      "supervised_tokens": 33522,
+      "max_tokens": 684,
+      "max_supervised_tokens": 17,
+      "encoded": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/train.encoded.jsonl.gz",
+        "bytes": 929872,
+        "sha256": "c2418b597162282a41853df406161d7fa31c1d35d79d5a946af9e8e402c50d90"
+      },
+      "audit": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/train.audit.json",
+        "bytes": 1103255,
+        "sha256": "970b97d56b786596f10d86374f6abd63cc2a44434b5c2bab2e278d6b20b4b206"
+      }
+    },
+    "dev": {
+      "rows": 1416,
+      "tokens": 715952,
+      "supervised_tokens": 0,
+      "max_tokens": 621,
+      "max_supervised_tokens": 0,
+      "encoded": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/dev.encoded.jsonl.gz",
+        "bytes": 508815,
+        "sha256": "63e76208ce71e3cb9c11cddfc4c5d374ffaa66b726924c3b79dbdf9cdc7ac55e"
+      },
+      "audit": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/cpu-v1/actual/dev.audit.json",
+        "bytes": 442005,
+        "sha256": "f27f1ae145ae0ecfd71b13bd5a6044e3f4fb6169128a2651a56a3004ce360595"
+      }
+    }
+  },
+  "train_rows": 2931,
+  "held_rows": 1416,
+  "training_states": {
+    "HPO": 2222,
+    "NIL": 44,
+    "NO": 665
+  },
+  "all4347_native_HF_IDs_exact": true,
+  "all2931_masks_EOS_and_full_supervision_exact": true,
+  "grammar_train_prefixes_checked": 30591,
+  "all1416_public_candidate_maps_complete": true,
+  "actual_HF_processor_cases": [
+    {
+      "state": "HPO",
+      "prefix_length": 0,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "HPO",
+      "prefix_length": 1,
+      "allowed_tokens": 3
+    },
+    {
+      "state": "HPO",
+      "prefix_length": 7,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "HPO",
+      "prefix_length": 14,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "HPO",
+      "prefix_length": 15,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NIL",
+      "prefix_length": 0,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NIL",
+      "prefix_length": 1,
+      "allowed_tokens": 3
+    },
+    {
+      "state": "NIL",
+      "prefix_length": 2,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NIL",
+      "prefix_length": 4,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NIL",
+      "prefix_length": 5,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NO",
+      "prefix_length": 0,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NO",
+      "prefix_length": 1,
+      "allowed_tokens": 3
+    },
+    {
+      "state": "NO",
+      "prefix_length": 2,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NO",
+      "prefix_length": 4,
+      "allowed_tokens": 1
+    },
+    {
+      "state": "NO",
+      "prefix_length": 5,
+      "allowed_tokens": 1
+    }
+  ],
+  "all513_native_HF_grammar_outputs_exact": true,
+  "all513_prefix_count": 12293,
+  "all513_max_answer_tokens": 40,
+  "strict_rejections": 13,
+  "training_cap": 2048,
+  "inference_total_cap": 2176,
+  "max_new_tokens": 128,
+  "pareto_indices": [
+    1487,
+    364
+  ],
+  "pareto_shapes": [
+    [
+      572,
+      17
+    ],
+    [
+      684,
+      13
+    ]
+  ],
+  "stress_initial8": [
+    2496,
+    31,
+    171,
+    1687,
+    923,
+    1962,
+    2577,
+    924
+  ],
+  "stress_accumulated3": [
+    1039,
+    2470,
+    695
+  ],
+  "schedule": {
+    "epochs": 2,
+    "updates_per_epoch": 367,
+    "updates": 734,
+    "last_group_size": 3,
+    "warmup_steps": 37
+  },
+  "no_model_forward_generate_GPU_fit_quality": true,
+  "production_model_generate_untested": true,
+  "seconds": 27.214870194904506
+}
