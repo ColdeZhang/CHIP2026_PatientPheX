@@ -10,3 +10,5 @@
 - 任何失败原样保留，partial不可冒充完整；unknown start先核状态不可重复启动。无 gold/fit/质量/原dev/官方。新实体链须去除B候选+6列、fresh vectorizer/HGB；旧97列关系支持器仍保留，不能当全系统零依赖删除。
 
 入口 `control.py deploy → prepare-start → prepare-collect`；实际准备通过后冻结并push `bound-plan.json`，`publish-bound → start → collect`。所有阶段小源/plan和关键收据及时提交推送；完整资产与运行目录 `/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/full-train64-cache`；远端同名相对目录。
+
+实际唯一作业 `proc_816a57aa-0e43-4617-924a-95507eab0e36`，02:18:05.774Z 启动 wrapper；`control.py collect` 读取进度/终态，不能重复start。尚未宣称NN完成或GPU已释放。
