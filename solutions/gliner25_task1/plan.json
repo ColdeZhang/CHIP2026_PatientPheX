@@ -64,7 +64,8 @@
     "max_gold_per_query": 64,
     "max_gold_actual": 49,
     "max_wordpieces_actual": 698,
-    "targets": "All exactly representable non-NO spans incl NIL/compound, no HPO ID target, preserve nested. NO contextual negative; no forced NO candidate injection.38 unrepresentable inside-word positive annotations explicitly audited, unchanged native tokenizer."
+    "targets": "All exactly representable non-NO spans incl NIL/compound, no HPO ID target, preserve nested. NO contextual negative; no forced NO candidate injection.38 unrepresentable inside-word positive annotations explicitly audited, unchanged native tokenizer.",
+    "max_wordpieces_scope": "Prior CPU sampled schema census. Each actual native schema is independently encoded; query augmentation can change input length without changing phenotype targets."
   },
   "probe": {
     "indices": [
@@ -150,7 +151,23 @@
       "peak allocated/reserved and actual time"
     ],
     "discard_weights": true,
-    "new_quality_evaluations": 0
+    "new_quality_evaluations": 0,
+    "recovery": {
+      "supersedes_success_attempt_only": false,
+      "previous_status": "probe-v1 childrc1 before any neural forward;15.528493s; static IDs assumed identical random query schemas",
+      "previous_archive_sha256": "2169be4178552ebedb5358dc4dbcbd649b321503201d2a6c06a4cac48804dad0",
+      "namespace": "probe-recovery-v1",
+      "budget": "new independent180+TERM30 root-authorized; not continuation/reset of old deadline",
+      "change": "Observation only: keep native .2 query-name augmentation; actual schema/IDs/RNG saved before independent current-schema tokenizer/target checks",
+      "model_loss_data_unchanged": true,
+      "cpu_gate": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/gliner25-task1-v1/recovery-cpu-complete.json",
+        "sha256": "9cd4fc007f3f275f1d2c4d0be7499b166506e90c5c340cb173df4ba3915f9d11",
+        "elapsed_seconds": 4.969958052970469,
+        "observed_max_wordpieces": 699,
+        "old_698_scope": "previous stochastic schema census only; current actual query adds one token, no text truncation or size policy change"
+      }
+    }
   },
   "formal_if_scheduled": {
     "fresh_public_model": true,
@@ -176,7 +193,8 @@
     "native_loss": true,
     "dedupe_contained_entity_spans": false,
     "on_capacity_exceeded": "raise",
-    "failure_guard": "Native failed-batch evidence then immediate raise; observe raw loss before nan_to_num and reject nonfinite. No skip/fallback/target truncation."
+    "failure_guard": "Native failed-batch evidence then immediate raise; observe raw loss before nan_to_num and reject nonfinite. No skip/fallback/target truncation.",
+    "synthetic_entity_label_prob": 0.2
   },
   "inference": {
     "query": [

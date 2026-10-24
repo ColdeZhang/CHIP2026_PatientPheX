@@ -2,6 +2,8 @@
 import argparse
 from collections import Counter
 import functools
+import dataclasses
+import random
 import hashlib
 import inspect
 import json
@@ -28,6 +30,29 @@ def write(path, value):
     os.replace(temp, path)
 
 
+def observe_batch(batch, lookup, audits, processor, native, cache):
+    """Record current stochastic schemas and independently encode their actual tokens."""
+    observations=[]
+    for j,text in enumerate(batch.original_texts):
+        i=lookup[text];n=int(batch.attention_mask[j].sum());combined=[]
+        for seq in batch.schema_tokens_list[j]:combined.extend(seq);combined.append(processor.SEP_STRUCT)
+        if combined:combined.pop()
+        combined.append(processor.SEP_TEXT);combined.extend(batch.text_tokens[j]);expected=[]
+        for token in combined:
+            if token not in cache:cache[token]=native.encode(token,add_special_tokens=False).ids
+            expected.extend(cache[token])
+        actual=batch.targets.mention_pairs[j,0][batch.targets.mention_mask[j,0]].tolist()
+        sm={a:k for k,a in enumerate(batch.start_mappings[j])};em={b:k+1 for k,b in enumerate(batch.end_mappings[j])}
+        observations.append({'row_id':i,'actual_schema_tokens':batch.schema_tokens_list[j],
+            'query_layout':dataclasses.asdict(batch.query_layouts[j]),'logical_schema':batch.original_schemas[j],
+            'actual_input_ids':batch.input_ids[j,:n].tolist(),'independent_tokenizer_json_ids':expected,
+            'actual_positive_pairs':actual,'expected_positive_pairs':audits[i]['actual_target_pairs'],
+            'NO_token_pairs':[[sm[a],em[b]] for a,b in audits[i]['NO_chars']],
+            'input_ids':n,'query_mask':batch.query_marker_mask[j].tolist(),
+            'mention_mask':batch.targets.mention_mask[j].tolist()})
+    return observations
+
+
 def main():
     ap = argparse.ArgumentParser()
     for name in ('model', 'train', 'audit', 'plan', 'output'):
@@ -40,6 +65,7 @@ def main():
     try:
         import torch, transformers, gliner2
         from gliner2.joint_ie import JointIE
+        from tokenizers import Tokenizer
         from gliner2.training.trainer import ExtractorTrainer, TrainingConfig
         import gliner2.models.boundary.model as boundary_module
         torch.set_num_threads(4)
@@ -68,6 +94,9 @@ def main():
         state['phase'] = 'load'; write(out/'progress.json', state)
         engine = JointIE.from_pretrained(args.model, device='cpu', dtype='float32', local_files_only=True)
         model = engine.model
+        native_tokenizer=Tokenizer.from_file(str(Path(args.model)/'tokenizer.json'));token_cache={}
+        assert model.processor.sampling_config.synthetic_entity_label_prob==.2
+        assert model.processor.sampling_config.remove_entity_prob==model.processor.sampling_config.remove_entities_prob==0
         assert sum(p.numel() for p in model.parameters()) == 193581591
         assert len(model.state_dict()) == 334
         assert model.architecture == 'boundary'
@@ -77,6 +106,7 @@ def main():
                      'torch': torch.__version__, 'transformers': transformers.__version__,
                      'transformers_file': transformers.__file__, 'gliner2_file': gliner2.__file__,
                      'source_sha256': sha(__file__), 'plan_sha256': sha(args.plan),
+                     'sampling_config':dataclasses.asdict(model.processor.sampling_config),
                      'boundary_settings': model.boundary_settings.to_dict() if hasattr(model.boundary_settings, 'to_dict') else dict(vars(model.boundary_settings))}
         write(out/'inventory.json', inventory)
         ctx = {'step': None}
@@ -139,6 +169,12 @@ def main():
             def _create_dataloader(self, dataset, batch_size, shuffle=True, is_training=True):
                 loader = super()._create_dataloader(dataset, batch_size, shuffle, is_training)
                 assert len(loader) == 3 and loader.batch_size == 2 and loader.drop_last
+                original_collate=loader.collate_fn
+                def observed_collate(raw):
+                    before=random.getstate();batch=original_collate(raw);after=random.getstate()
+                    ctx['collation_rng']={'python_before':before,'python_after':after}
+                    return batch
+                loader.collate_fn=observed_collate
                 return loader
             def _record_failed_batch(self, batch, *, data_loader_step, error):
                 super()._record_failed_batch(batch, data_loader_step=data_loader_step, error=error)
@@ -154,14 +190,14 @@ def main():
                        'row_ids': row_ids, 'raw_loss_terms': [], 'pair_loss_calls': [], 'NO_token_pairs': [],
                        'optimizer_states_before': len(self.optimizer.state), 'input_ids_shape': list(batch.input_ids.shape)}
                 ctx['step'] = obs
-                for j, i in enumerate(row_ids):
-                    n = int(batch.attention_mask[j].sum())
-                    assert batch.input_ids[j, :n].tolist() == audits[i]['actual_input_ids']
-                    actual = batch.targets.mention_pairs[j, 0][batch.targets.mention_mask[j, 0]].tolist()
-                    assert sorted(actual) == sorted(audits[i]['actual_target_pairs'])
-                    sm = {a: k for k, a in enumerate(batch.start_mappings[j])}
-                    em = {b: k + 1 for k, b in enumerate(batch.end_mappings[j])}
-                    obs['NO_token_pairs'].append([[sm[a], em[b]] for a, b in audits[i]['NO_chars']])
+                raw=observe_batch(batch,lookup,audits,self.processor,native_tokenizer,token_cache)
+                write(out/f'batch-{obs["index"]:03d}-actual.json',{'rows':raw,'collation_rng':ctx['collation_rng']})
+                for record in raw:
+                    assert record['actual_input_ids']==record['independent_tokenizer_json_ids']
+                    assert sorted(record['actual_positive_pairs'])==sorted(record['expected_positive_pairs'])
+                    assert record['query_mask']==[True] and record['input_ids']<=4096
+                    obs['NO_token_pairs'].append(record['NO_token_pairs'])
+                obs['actual_input_lengths']=[r['input_ids'] for r in raw]
                 state['phase'] = 'backward'; state['active_step'] = obs; write(out/'progress.json', state)
                 loss = super()._backward_one(batch, step, use_amp, amp_dtype, is_last_micro=is_last_micro)
                 torch.cuda.synchronize()
@@ -224,7 +260,9 @@ def main():
         complete = {'status': 'NATIVE_FB_ADAM_PRESSURE_PROBE_PASS_WEIGHTS_DISCARDED', 'summary': summary,
                     'epochs': 2, 'optimizer_steps': 6, 'full_train_windows': 320, 'probe_windows': 6,
                     'all_selected_shapes_repeated_with_Adam_state': True, 'finite_all_raw_losses_and_gradients': True,
-                    'max_gold': 49, 'max_wordpieces': 698,
+                    'max_gold':49,'prior_uncontrolled_CPU_census_max_wordpieces':698,
+                    'actual_max_wordpieces':max(n for x in state['steps'] for n in x['actual_input_lengths']),
+                    'native_query_augmentation_probability':.2,
                     'step_seconds': [x['forward_backward_seconds'] + x['optimizer_seconds'] for x in state['steps']],
                     'peak_allocated_bytes': max(x['peak_allocated_bytes'] for x in state['steps']),
                     'peak_reserved_bytes': max(x['peak_reserved_bytes'] for x in state['steps']),

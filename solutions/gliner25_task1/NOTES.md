@@ -5,3 +5,5 @@
 原生trainer即使strict=True也会遇OOM后continue；本线在原生保存failed-batch后立即raise。原生loss内部nan_to_num会隐去非有限分项；透明观察wrapper先保存实际raw/finite，非finite停止，有限值继续同一原函数。原生训练计算、optimizer、loader与候选loss不替换。
 
 公开loss稀疏采样：所有NO不是强制pair负例，实际仅候选/硬负采样/query mask进入pair loss；probe记录每次实际indices/mask和NO覆盖。Dense目标CPU合同不能代替native loss/FB/Adam。
+
+原生 SamplingConfig 默认 synthetic_entity_label_prob=.2：同一逻辑phenotype目标会随机变成entity 1查询。先前CPU静态IDs来自各自一次随机schema，不能与新train批逐行硬比；不同不是已证tokenizer损坏。恢复保原native增强，先保存实际schema_tokens/query_layout、IDs、collate前后Python RNG，再独立编码当前schema与文本并核同gold目标。原probe首次未先存实际IDs而只留failed_batch/schema，此信息缺失无法补回；新CPU/恢复观测不能称恢复旧张量。
