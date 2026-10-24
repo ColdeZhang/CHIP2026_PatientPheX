@@ -1,6 +1,6 @@
 # public-new 缓存关系：双折 LGB 支持控制
 
-目标是验证现成 Task1 支持流程升级能否改善同一批 public-new 关系，不重新训练或推断神经模型。源、[计划](plan.json)和[来源合同](source-lineage.json)已准备；**负责人发布检查点后再执行，当前没有新预测或评分**。小型检查与精确产物入口见 [指针](entry-pointer.json)。此前仅 F0 的库存建议由本次明确的双折开发控制取代。
+目标是验证现成 Task1 支持流程升级能否改善同一批 public-new 关系，不重新训练或推断神经模型。源、[计划](plan.json)和[来源合同](source-lineage.json)先以79e2ef5发布，唯一0.316秒CPU控制已完成，**两折keep=true，独立终审pending**；见[结果](RESULT.md)。小型检查与精确产物入口见 [指针](entry-pointer.json)。此前仅 F0 的库存建议由本次明确的双折开发控制取代。
 
 ## 固定变量与主终点
 
@@ -22,6 +22,6 @@
 
 ## 执行与产物
 
-入口：`python solutions/case_retrieval/public_new_lgb_support/run_once.py --plan solutions/case_retrieval/public_new_lgb_support/plan.json`。仅在负责人发布通知后执行一次。子进程总上限30秒，TERM后1秒强制结束自有进程组；所有实际输出写计划中的仓库外 `actual-v1/`。目录已存在即停止，不重跑半成品评分。
+入口：`python solutions/case_retrieval/public_new_lgb_support/run_once.py --plan solutions/case_retrieval/public_new_lgb_support/plan.json`。已唯一执行完成，不重启。子进程总上限30秒，TERM后1秒强制结束自有进程组；所有实际输出写计划中的仓库外 `actual-v1/`。目录已存在即停止，不重跑半成品评分。
 
 预期只有两份完整新预测、共同冻结、两份完整指标与格式报告和一个 keep 结论；fit/model-predict/NN/GPU/原dev/官方调用均为0。首次失败保留日志和已有证据，无预算或方法重试。先运行的合成自检只验证字节保留、旧值保留、复合HPO支持、未知患者与重复字段拒绝，没有读真实预测或gold。
