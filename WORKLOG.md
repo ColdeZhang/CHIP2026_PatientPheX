@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：新增工作线覆盖跨度、文档关系、患者条件生成、训练长度、预训练联合抽取、原生Qwen3关系及主线程共识融合；各有独立分支/worktree和分层记录。负配方及时关闭，当前安排见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：full64三源二票将原dev从ee39的.755240提高至 **.769236**；相对原901新增4关系3TP1FP，macro .657186→.713196，实体不变。双采样旧最佳ee39和原901恢复入口保留。四来源在内部两折均正，现补full64编码组件；额外否定过滤与PCL校准未通过后继门，已关闭。
-- **实际运行/恢复**：新最佳三源已完成；标准response-code full64因A100连接阻断、正式尚未启动，现迁A800做实际探针后训练。Grounded开放quote双采样迁空A30 GPU0，只搬既有适配器；HPO Top8候选选择完成CPU并准备GPU1正式链。2931难负例组两轮/双ACK已完，.3全1416预测中。四流否定、文档支持过滤、PCL校准及PT循环映射控制均负关闭。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
+- **实际运行/恢复**：标准response-code full64已在A800正式训练；Grounded开放quote双采样在A30 GPU0完成78条推断中，HPO Top8候选选择在GPU1做734次更新。2931难负例组已完成两轮/双ACK/全1416预测并释放.3卡，正回收完整产物后评分。两epoch有效LoRA平均通过CPU数学准备，现实施实际合成/PEFT接口与单次完整控制。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
-- **证据备份**：258项/6296引用已增量核验发布；新241引用的增量包正在备份。旧217→224→234→242→249实际恢复链完整；新最佳05cfa90f的15内容预测/配方包、Grounded124内容补包已实际回读，旧ee39/901及官方B保留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@85611ab1`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **证据备份**：258项/6296引用已增量核验发布；新241引用＋12控制已上传并实际回读核验全部253成员。217→224→234→242→249→258恢复链完整；新最佳05cfa90f的15内容预测/配方包、Grounded124内容补包已实际回读，旧ee39/901及官方B保留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
+- **Git**：最近已核验`origin/main@68448a7f`；新最佳分支`explore/parallel-relation-fusion@aee2b17f`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
