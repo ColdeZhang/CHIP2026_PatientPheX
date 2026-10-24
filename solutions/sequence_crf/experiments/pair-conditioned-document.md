@@ -71,3 +71,6 @@ NumPy 13项合同通过：两臂两标签对全部98个小模型参数及输入�
 
 
 正式入口独审 `e5180c9b…` 通过，源码检查点 `c9043ad` 已推并核远端；01:07:33.525983Z fresh核 `.3` A30 GPU0 无compute PID后实际启动 `proc_e34bff71-98fe-44d4-983b-698751e431d7` / PID1164449。外层共享1800s+TERM30，主截止01:37:33.526Z/最晚01:38:03.526Z。远端仅 `sequence-round2/pair-document-formal-v1`，以原job读取输出恢复，不能重启；本地 `formal_operations.py collect --directory .../formal-v1` 运行中只报告状态，结束后才回收小文件/确认卡空。当前训练中，无验证结果。
+
+
+01:09正常查询在01:10返回 `UNKNOWN_OUTCOME`，对同proc一次有界只读复查返回 `LUNA_OFFLINE`。最后01:08:11确认running/空stderr，当前是否继续训练未知，不能视为模型失败或已结束；不启动第二份作业。原远端硬截止不变，恢复后读同job/已有progress及产物，连接事件见 `pair-document-connectivity-interruption.json`。正式源/数据/训练协议保持原冻结版本。
