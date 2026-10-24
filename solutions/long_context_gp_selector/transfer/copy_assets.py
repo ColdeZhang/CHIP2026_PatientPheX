@@ -1,5 +1,5 @@
 """Bounded allowlist-only private copy, streamed SHA/fsync/reopen; no model calls."""
-import argparse,hashlib,http.server,json,os,socketserver,tarfile,time,urllib.request
+import argparse,hashlib,http.server,json,os,socketserver,sys,tarfile,time,urllib.request
 from pathlib import Path
 
 def sha(p):
@@ -56,7 +56,7 @@ def main():
      for b in iter(lambda:h.read(1024*1024),b''):self.wfile.write(b)
   class Server(socketserver.ThreadingMixIn,http.server.HTTPServer):daemon_threads=True
   server=Server((p['source_ip'],0),H);server.timeout=1
-  save(root/'serve-ready.json',dict(pid=os.getpid(),port=server.server_port,manifest_sha256=sha(root/'source-manifest.json'),deadline_unix=time.time()+450))
+  save(root/'serve-ready.json',dict(pid=os.getpid(),start_ticks=Path('/proc/self/stat').read_text().split()[21],uid=os.getuid(),command=sys.argv,port=server.server_port,manifest_sha256=sha(root/'source-manifest.json'),deadline_unix=time.time()+450))
   try:
    while time.monotonic()<deadline:server.handle_request()
   finally:server.server_close();save(root/'serve-closed.json',dict(pid=os.getpid(),closed=time.time()))
