@@ -8,9 +8,9 @@ F1 固定联合控制已完整完成并通过原门：B4 **.701325377212172→.7
 
 真实CPU拼接/PEFT微型合同通过；A10039于14:32:24Z rc0/1409.885秒、35EOS/4cap，卡0MiB释放；174必要Sap在.100 CPU FP32/16线程14:41:29Z成功，仅7.034秒。查询FP16→FP32及device为额外联合实现，修订[normalization-amendment.json](normalization-amendment.json)在规范化与质量之前冻结，不把增益只归于权重平均。全部原GPU规范化方案未执行、无二选一。
 
-39原件恢复collection3d846e05覆盖88必要文件；78raw/ID从原responses按原complete逐SHA证明字节一致重建，未冒称远端目录/ZIP已冻结。CPU query完整包dd8b73f2/13件与原embedding持久SHA locator保留。正在统一小备份/终审；仓外 `R/research/grounded-weight-average-v1/F1/`，结果见[evidence/result.json](evidence/result.json)。
+39原件恢复collection3d846e05覆盖88必要文件；78raw/ID从原responses按原complete逐SHA证明字节一致重建，未冒称远端目录/ZIP已冻结。CPU query完整包dd8b73f2/13件与原embedding持久SHA locator保留。统一480685B小包已在.100写入并实际回读核验（db46d892）；完整终审已交validation，仓外 `R/research/grounded-weight-average-v1/F1/`，结果见[evidence/result.json](evidence/result.json)。
 
-Root已另批固定F047同权重、同联合CPU查询、3000+30；后继准备47实际native ID/完整祖先/唯一B4F0 .7281956289113009交集终点，尚未新F0 GPU。原39无需尾部，条件授权未使用。
+F0正在原A100 GPU2执行：47 native输入已8.513秒全PASS，14:54:40.106115Z唯一proc3d9e8637/driver271042/child271060；TERM15:44:40.327297Z、KILL15:45:10.327297Z。只读watcher185906每180秒查原intent，不重启。固定同ed184ecc权重、同CPU FP32查询与唯一B4 .7281956289113009交集终点；完整恢复顺序见 [f0/README.md](f0/README.md)。原39无需尾部，条件授权未使用。
 
 ## 准备阶段记录（授权前历史）
 
