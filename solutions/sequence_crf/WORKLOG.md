@@ -8,6 +8,10 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 [纯B输入清单](evidence/official-901-B/input-manifest.json)：100篇/244患者/3802passages/1,708,003字符，2,060,389B，SHA878fe248；与train64文献零重叠，未含entities/association。oldpool加载子代理`official_b_oldpool_cpu`只动official_901_B/old_pool_cpu，准备共同base/CRF/Sap供Task1与Task2，GLiNER48仅Task2。旧CLIs会重fit，必须薄加载已存coef/pickle/bank。patient final_infer baf06014只泛化新输入identity/count，保持f787、BF16/native/greedy14000/1600与raw-before-codec，不用devgold。
 
+当前B执行状态（06:49 UTC）：共同Sap CPU旧16缓存完整9.746秒通过，prob逐值相同、sim最大1.55e-6、.65/.92决策零差；B100/90303候选的唯一Sap推断已06:44:26以19.219秒rc0结束，GPU0 4MiB/无进程。当前仅传输阻塞：.3于06:48:25返回LUNA_OFFLINE，原完整zip3,948,353B已收2,097,152B；子代理唯一06:51:30后库存并续读，禁止重算这100篇。GLiNER→Sap后继原4671 query/180+30只部署首2块有ACK、后续inflight待库存，尚未NN，不能重复start。冻结入口[gliner plan](official_901_B/old_pool_cpu/gliner-sap-run-plan.json)，相关原收据在外部old-pool-cpu/actual-run与gliner-actual-run。
+
+患者B source/driver/export已cd615a9提交推送，7件相同源已A100持久部署并compile/fsync（仅CPU）；[部署收据](evidence/official-901-B/patient-source-deployment.json)。等待完整oldpool→normal-B prompt后，对转置后的真实输入做独立native IDs/decode核验及census，再冻结推断有界预算。A100 GPU2由ontology三public先用、实际释放后接手；不重复查询或占卡。最近完整远端检查点4aed0eb已push+lsremote exact。
+
 B最终合成还须按root规则核：patient合法HPO来自oldpool，public-new来自相对oldpool差集，在实际canonical/alt处理后逐doc空间及输出级严格互斥才允许等价全union；否则精确原counterfactual a179_B差集，不能猜或临时删patient。此证明与retrieval共同完成。
 
 恢复补线：患者173,200,462B四件第二副本已06:31:24实际完成（22.709秒rc0），两端fsync/SHA及目标祖先fsync全过，ACK c38a609b，源原完整state不变。此前LUNA只影响部署；实际两次空库存后同字节压缩部署成功，唯一HTTP06:31启动且完成后仅停止自身。零GPU。新最小901补包已持久并由root06:42实际下载验证35 content+members.json，zip65a1d0b5/120468B，manifest7d479a63；[补包指针](evidence/support-patient-synthesis/persistent-backup.json)；[复制终态](evidence/support-patient-synthesis/adapter-copy-terminal.json)。
