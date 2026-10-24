@@ -1,0 +1,238 @@
+{
+  "adapter_files": {
+    "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+    "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+  },
+  "versions": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1"
+  },
+  "seeds": [
+    20261024,
+    20261025
+  ],
+  "generation_kwargs": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "use_cache": true,
+    "num_return_sequences": 1,
+    "num_beams": 1,
+    "max_new_tokens": 1600
+  },
+  "presence_penalty": 0,
+  "presence_implementation": "No added processor, no unsupported presence kwarg. Original native structured-JSON behavior.",
+  "generation_limit": 1600,
+  "eos_ids": [
+    248044,
+    248046
+  ],
+  "pad_token_id": 248044,
+  "think_token_ids": [
+    248068,
+    248069
+  ],
+  "base_model_parameters": 8953803264,
+  "model_and_adapter_parameters": 8997081600,
+  "strict_parser": {
+    "path": "solutions/sampled_consensus/vendor/probe_runner.py",
+    "bytes": 8970,
+    "sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f"
+  },
+  "experiment_id": "E-20261024-SAMPLE-002",
+  "starting_commit": "0d9be9c3af8b533291e6ef2c824c879413fa20ac",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "GPU_physical_index": 1,
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/thinking-budget-final-v1/old32-adapter",
+  "source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/run-v1",
+  "cap_seconds": 2100,
+  "term_grace_seconds": 30,
+  "input_limit": 16384,
+  "expected_rows_per_seed": 58,
+  "fresh_rows": 116,
+  "cached_generation_rows": 0,
+  "input_tokens_each_pass": 505090,
+  "max_input_tokens": 16245,
+  "output_order": "longest index30 first within each seed, then remaining ascending(input_tokens,row_id); row_id keyed, no duplicate longest",
+  "assembly_contract": {
+    "schema": "sampled-consensus-F0-primary-v1",
+    "endpoint": "primary-B0-union-S1-intersect-S2",
+    "formula": "B0 union (S1 intersection S2)",
+    "seeds": [
+      20261024,
+      20261025
+    ],
+    "rows_per_seed": 58,
+    "sampled_fresh_rows": 116,
+    "cached_rows": 0,
+    "documents": 16,
+    "patients": 47,
+    "entities": 947,
+    "candidate_concepts": 415,
+    "candidate_patient_pairs": 1166,
+    "baseline_relations": 315,
+    "baseline_outside_candidate_pool": 39,
+    "input_limit": 16384,
+    "generation_limit": 1600,
+    "input_tokens_per_seed": 505090,
+    "maximum_input_tokens": 16245,
+    "generation_order": "longest_first_then_remaining_ascending_input_tokens_row_id",
+    "longest_original_index": 30,
+    "longest_row_id": "3563609:relations:0",
+    "generation_kwargs": {
+      "do_sample": true,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "repetition_penalty": 1.0,
+      "use_cache": true,
+      "num_return_sequences": 1,
+      "num_beams": 1,
+      "max_new_tokens": 1600
+    },
+    "eos_token_ids": [
+      248044,
+      248046
+    ],
+    "think_token_ids": [
+      248068,
+      248069
+    ],
+    "parser_source_sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f",
+    "f1_helpers_sha256": "80caec32d9a3c57ebb86d54a0c31c9b4b2b193bace80dd18aa5f6e0bf20c874d",
+    "invalid_response": "whole-row abstention; no JSON repair, missing-key fill, or fallback",
+    "preservation": "all B0 relations and every non-association UTF-8 byte",
+    "prediction_outputs": 1,
+    "greedy_streams": 0,
+    "single_seed_quality_calls": 0
+  },
+  "lineage": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/preparation-v2/complete.json",
+    "bytes": 266383,
+    "sha256": "8aeb63cf84a7df80fb0e94bd9ec23bd2a904e5b26b0bd571426acbe77e48f035"
+  },
+  "native100_inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/native100-inventory.json",
+    "bytes": 2018,
+    "sha256": "54702744adc2831aef698de74afcb799e62096bc280bfdf7c84191ac888fbc0a"
+  },
+  "hardware_disclosure": "Same native PyTorch/SDPA code and versions as F1; A30 instead of A800, no claim of device bitwise equivalence. Each seed longest row is part of the formal116, no extra probe/retry.",
+  "crossfold_disclosure": "F1 held candidate generators trained32; reused F0 held candidate generators trained48, all exclude F0. Same generation SFT32. This is a development crossfold recipe replication, not a pure equal-training-volume causal comparison.",
+  "runtime_sha256": {
+    "qwen_modeling": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "generation_utils": "7944240ff1ee27a7b3acc16571b7a480cc14f16e7222aeb1a79d289ebc96e3ea"
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "input_refs": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/expanded58.jsonl",
+      "bytes": 2021497,
+      "sha256": "d633225256dbf1cd5b64e94c74d7ce7f220b834cd748158082b306f12191fab2",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-fulltext-F0-20261024/full58-v1/normal-full58-prompts.jsonl"
+    },
+    "audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/row-audit.json",
+      "bytes": 57976,
+      "sha256": "2fa5c495f8341ba4bf5f6ea4f731f75128f159f28ecb6302abaf7ead67872d02",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-fulltext-F0-20261024/full58-v1/normal-row-audit.json"
+    },
+    "model_manifest": {
+      "path": "/workspace/patientphex-worktrees/explore-sampled-consensus/solutions/sampled_consensus/f0/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/model-source-manifest.json"
+    }
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/supported.pred.jsonl",
+    "bytes": 124485,
+    "sha256": "94504b974d5203fdde6b68ff10ca12bb67d24b0db235023023920b0ec595e1bc"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/metrics.json",
+    "bytes": 13023,
+    "sha256": "6334836994d9ab62efcddf0033a58f688261394e1e755664e2b58bbf81795a06"
+  },
+  "baseline_score": 0.7115075800266846,
+  "endpoints": [
+    "primary-B0-union-S1-intersect-S2"
+  ],
+  "adoption_gate": "Only fixed primary Score strictly above B0; micro/macro always report; no seed/cut/temperature choices. Keep all new literal relations for independently locked root2of3 even if this primary is negative.",
+  "quality_refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+      "bytes": 507921,
+      "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    }
+  },
+  "cost_basis": {
+    "F1_native160_actual_driver_seconds": 728.4633749560453,
+    "F1_input_tokens": 1340244,
+    "F0_input_tokens": 1010180,
+    "input_linear_A800_seconds_estimate": 549.0635526912247,
+    "A30_budget_allowance_multiple": 3.8,
+    "fixed_shared_seconds": 2100,
+    "grace_seconds": 30,
+    "not_a_throughput_guarantee": true,
+    "old_longest_A800_probe": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/probe-v1/terminal/summary.json",
+      "bytes": 870,
+      "sha256": "8c65e5543f4a2f7d3a48d78b412633b4238adbfabdd7390d41156cdfe57d6458"
+    },
+    "old_longest_allocated_bytes": 22753392640,
+    "old_longest_reserved_bytes": 24157093888,
+    "old_longest_generated_tokens": 130,
+    "memory_evidence_limit": "A800 actual longest allocation is auxiliary; A30 feasibility measured by first formal row. OOM or partial run is preserved, no half-set quality or blind restart."
+  },
+  "cpu_gate": null,
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/infer.py": "ca8137c393a0106c1d106ce0d9497d2dddb0c669ca1734255bd4b970706f22a3",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/cpu_gate.py": "8f453d18ade94c40a400be01e840e94a036a11512ded9ba4cd022aa87688e0ed",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/driver.py": "4f0ad920e3c6555a5568485f2f036b9be535e4f43381af500efdff0e5ff43a56",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/sampling.py": "334f560b2f94e48cf5088988aa1612837baf291d356d35945775bcc31c2c2ef1",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/vendor/probe_runner.py": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-F0-20261024/source/vendor/legacy_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+  },
+  "quality_source_note": "One complete primary freeze then exactly1 v2; oldB0=0, individualseed=0, originaldev=0, official=0; same approximation v2 all/text."
+}
