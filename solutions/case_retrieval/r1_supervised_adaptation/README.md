@@ -1,16 +1,18 @@
-# R1 闭集 JSON 监督适配：CPU 可行性准备
+# R1 闭集 JSON 监督适配：训练完成，质量暂停
+
+当前两轮正式训练已完成并终审82b68957通过，见[正式结果](FORMAL-RESULT.md)；原CPU、失败探针、数值诊断和H51压力测试的历史范围依次保留。新适配器尚无推断或质量，官方唯一901接收前暂停后继。最新事前保留判据见[小合同](quality-policy-addendum.json)：两个既定arm按同强Score严格升择高，macro必报但不再额外硬门，保留两折复验。原quality-contract.json不改写。
 
 真实目标：改善关系分项，检验同一已缓存R1基座经过任务监督后是否仍有价值。现有R1集合／元模型OOF已结案，本任务不重启它们，也不把微调提案当既成成绩。
 
 官方缓存 `overview.txt` §4.2只确认冠军使用Qwen3-8B、DeepSeek-R1-0528-Qwen3-8B预测、上下文/位置特征与LightGBM，并做五折OOF；**未披露这两个LLM是否SFT或LoRA、输入模板、训练长度/轮数、学习率或适配器目标层**。文中明确描述微调的是第二名Qwen3.5-9B，不能归到冠军。§3的±500字符、每批8候选、greedy与1800/2600输出上限属于官方零样本基线，也不能当冠军细节。
 
-尚未定位到实际R1 SFT运行。当前R1是公开固定基座，正确发布接口的原80输出无项目监督训练；旧Qwen3.5有严格F2+F3 train32的124条闭集JSON、2epoch LoRA。新变量因此是**对同一R1做监督适配**，而不是再换集合组合。
+研究启动时尚未定位到项目R1 SFT运行；当时R1是公开固定基座，正确发布接口的原80输出无项目监督训练；旧Qwen3.5有严格F2+F3 train32的124条闭集JSON、2epoch LoRA。新变量因此是**对同一R1做监督适配**，而不是再换集合组合。
 
 固定研究方向：保留原124训练提示/答案（候选F2→F3、F3→F2两个train16生成）、原80 F1纯输入、原CID与PID字面身份。R1原发布模板生成前缀为BOS＋system＋User＋正文＋Assistant，**不预先打开think**；CPU将核所有124完整编码的prefix边界、JSON＋原生EOS，以及80输入与既有发布合同相等。直接监督现成JSON答案；不添加思维链或空think，不静默改模板/parser/采样。
 
 CPU范围：只在`.100`已有R1缓存所在机器运行一次59＋kill1秒；CUDA隐藏，仅读配置/tokenizer/权重头形状，模型仅meta构造，无真实权重值载入或神经前向。检查LoRA r16/α32/dropout .05、Q/K/V/O及gate/up/down七投影的真实形状与参数；保留冻结head/embedding。通用selected-CE可作为内存候选，但只检查实际Qwen3 forward/loss挂载和CPU合成logits梯度，不能沿用Qwen3.5的GPU结论。
 
-源与CPU计划运行前提交；完整token IDs/labels留服务器自有外部目录，Git只留短合同。当前没有GPU训练/推断或下载新模型；实际CPU结果、A30 24GB可行性、最小真实Adam/累积探针与完整单折预算将在结果出来后另列，禁止把推断19.5GB峰当训练显存。
+源与CPU计划运行前提交；完整token IDs/labels留服务器自有外部目录，Git只留短合同。该初始阶段没有GPU训练/推断或下载新模型；实际CPU结果、A30 24GB可行性、最小真实Adam/累积探针与完整单折预算将在结果出来后另列，禁止把推断19.5GB峰当训练显存。
 
 ## CPU完成与唯一GPU工程探针
 
@@ -18,14 +20,14 @@ CPU13.434秒完成，见[CPU结果](CPU-RESULT.md)。原124监督共401291输入
 
 root已授权`.100 A30 GPU1`一次420秒+TERM30探针，源`gpu_probe.py`、固定`gpu-plan.json`。先最短570样本同参数/同dropout RNG比较原生与selected CE及真实LoRA梯度；随后8条累积完成非零lr Adam更新，再保留3条累积梯度处理最长5519。后者按H51覆盖已建Adam；仅诊断使用lr1e-4无warmup，不冒称重放正式训练顺序。基座BF16、LoRA FP32、252目标模块、fullhead不变，TF32关/SDPA/derived95fb原Yarn；无量化、截断或allocator暗改。
 
-执行前fresh核GPU UUID/空闲/进程/空间和全部9件模型SHA；探针状态随进程丢弃，不保存adapter或产出质量。完整训练尚未授权。工程输出与失败在外部`R/research/r1-supervised-adaptation-readiness-20261024/gpu-probe-v1`；单独原CPU冻结plan不改。
+执行前fresh核GPU UUID/空闲/进程/空间和全部9件模型SHA；探针状态随进程丢弃，不保存adapter或产出质量。该初始探针阶段完整训练尚未授权。工程输出与失败在外部`R/research/r1-supervised-adaptation-readiness-20261024/gpu-probe-v1`；单独原CPU冻结plan不改。
 
 唯一工程探针已在最短真grad比较停止，见[失败结案](GPU-PROBE.md)，未执行Adam/最长。新独立数值诊断仅180+TERM30：同最短nativeA/nativeB/selected三个真实梯度，先存loss、每504tensor统计和完整外部梯度，再判原容差；同一冻结actual logits另做CE梯度，区分模型路径与loss。无optimizer/参数更新/质量/门槛改动，约0.71GB有界tensor仅在.100自有外部目录。
 
-[数值诊断](NUMERICAL-RESULT.md)已完整36.693秒结束并终审55524bf2通过。root授权独立H51 `stress_probe.py`/`stress-plan.json`420+TERM30：沿同124原配方与旧12行诊断顺序，8条更新+3累积后最长；CE工程门沿已有同实际logits exact证明，旧跨backward allclose仅保留失败诊断、不改阈值。每步先存idx/loss/finite/stat再断言，CPU合成NaN验证先存证据路径。未授权正式训练。
+[数值诊断](NUMERICAL-RESULT.md)已完整36.693秒结束并终审55524bf2通过。root授权独立H51 `stress_probe.py`/`stress-plan.json`420+TERM30：沿同124原配方与旧12行诊断顺序，8条更新+3累积后最长；CE工程门沿已有同实际logits exact证明，旧跨backward allclose仅保留失败诊断、不改阈值。每步先存idx/loss/finite/stat再断言，CPU合成NaN验证先存证据路径。该压力探针授权本身不含正式训练；后续授权见下。
 
 ## Fresh正式124×2（新授权）
 
 统一工程审92fab5e1已通过；root授权原124×2/32optimizer calls、2warmup、seed20261023，1800+TERM30含每epoch完整LoRA+Adam/scheduler/全部RNG持久fsync及reopen逐tensor验证。源`formal_train.py`/`formal-plan.json`先发布后执行；必须fresh公开基座，不接probe状态。训练中无F1质量/原dev/F0标签。
 
-[两质量端点](quality-contract.json)在训练前冻结：primary R1-SFT alone，diagnostic oldSFT32∪R1-SFT，任一Score>.676546354662594且macro≥.5959675129046342才保留；两臂都过选Score较高者，身份不改。相对原R1适配收益另报，单独超过零样本不算胜出。formal终态后仅授权最长原F1 index73/5689一行240+TERM30格式/速度probe作为未来80中1缓存，不自动全80或评分。
+[旧两质量端点](quality-contract.json)在训练前冻结（下述macro硬门已被上方事前小合同替代，原文件保留）：primary R1-SFT alone，diagnostic oldSFT32∪R1-SFT，任一Score>.676546354662594且macro≥.5959675129046342才保留；两臂都过选Score较高者，身份不改。相对原R1适配收益另报，单独超过零样本不算胜出。formal终态后仅授权最长原F1 index73/5689一行240+TERM30格式/速度probe作为未来80中1缓存，不自动全80或评分。

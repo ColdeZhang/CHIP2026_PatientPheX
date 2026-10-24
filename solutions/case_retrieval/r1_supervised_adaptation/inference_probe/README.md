@@ -24,8 +24,8 @@ python bind_completed.py --template template.json \
 
 原`raw_first.py`确保完整生成IDs和EOS状态先fsync，原始解码文本再fsync，最后调用原full80的strict/sparse/normalized解析器。五个helper保持原字节，不扩大整数PID的既有可逆表面规则，也不补缺失CID答案；缺失为弃权，不视作负关系。正常JSON失败或token封顶也是保留原文的最终结果，不重试；异常/墙钟超时保留已完成证据。报告normalized/strict有效性、CID覆盖、EOS、速度及显存，格式通过本身不自动授权80条或质量评测。
 
-新检查点实际SHA尚未知，因此本模板不能直接运行。后续若另行授权完整80，这一条只能在相同末轮checkpoint、输入、tokenizer/config及采样合同下作为1条缓存复用。
+新检查点实际SHA已在[formal结果指针](../formal-result-pointer.json)记录（末轮2fbd4517／adapter20f15b26／statef49f32af），但本模板仍未绑定且调度暂停，不能直接运行。后续若另行授权完整80，这一条只能在相同末轮checkpoint、输入、tokenizer/config及采样合同下作为1条缓存复用。
 
 ## 当前调度暂停
 
-root为本次唯一官方901提交优先，已明确暂缓新R1 index73探针及质量，等待这份官方结果文件接收确认后再恢复。当前只保存CPU准备；不得因formal完成就自动绑定/启动。新R1不参与本次提交。原formal仍按1800+30完成完整state持久。
+root为本次唯一官方901提交优先，已明确暂缓新R1 index73探针及质量，等待这份官方结果文件接收确认后再恢复。当前只保存CPU准备；不得因formal完成就自动绑定/启动。新R1不参与本次提交。原formal已在718.379秒完整结束、两份状态持久并终审，不能重启。最新质量保留政策见[事前补充](../quality-policy-addendum.json)，不影响本工程探针的输入／采样／预算。
