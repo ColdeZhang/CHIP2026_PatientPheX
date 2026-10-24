@@ -5,3 +5,5 @@
 授权完整链：509必要Sap query≤180+TERM30；CUDA隐藏CPU完整native合同；GPU probe240+30；actualcost≤7200才fresh正式7200+30；两持久ACK后1416fresh1800+30；strongB并集/new-only两完整预测先共冻再2v2/old0。资源仅.100 GPU1，fresh核UUID/空闲/磁盘，不抢其他卡。当前未启动GPU。
 
 原生CPU实际35.22秒rc0，train3470/2,002,420tokens/37,834监督，held1416/800,912tokens；Pareto632/17与744/13。514状态/12,300prefix、20真实HFprocessor和17拒绝均过。原9.4MB包回收遇MCP LUNA，185s后只取小终态/原成员SHA，全native数组仍在服务器原SHA绑定，不重CPU。旧同hostTop8 token线性成本代理约4115秒，实际唯一probe再决定7200门；不据此缩数据。
+
+15:21:37.533682Z：源2b4c8553 / 部署f17fe898 / freshgate通过，唯一proc_98b3a99e-9316-409c-8e71-feaf7bf88516、PID2750059。13真实FB+Adam及5训练状态原生generate工程；probe状态丢弃，成本门固定7200，无质量观测。
