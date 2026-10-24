@@ -1,0 +1,44 @@
+{
+  "status": "AUTHORIZED_STATE_RELOCATION_COPY_BEFORE_REMOVE",
+  "authorization": "Root explicit A800 full disk recovery: preserve exact state on.100 fsync/reopen before removing only original copy; do not edit old frozen metadata",
+  "source_mount": "69b991ee-183f-4add-af1a-579af92479c9",
+  "target_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "source_preflight": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/A800-state-relocation/source-preflight.json",
+    "bytes": 22424,
+    "sha256": "1844b98b6ebc80df7443210ed340c362cfb44b8c99badcacf80bf0a3abc9556d"
+  },
+  "inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/A800-owned-large-file-inventory.json",
+    "bytes": 28640,
+    "sha256": "501b624c1b9304b9a717f428fb8325756902debcc666ce6ac03456bbab3fc6a0"
+  },
+  "server": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/storage_recovery/serve.py",
+    "bytes": 2348,
+    "sha256": "ef1e84a91971e50f356ba77d2f1d41226be5b36d2c55bbf3038f0a5be8e4f68b"
+  },
+  "receiver": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/storage_recovery/receive.py",
+    "bytes": 3445,
+    "sha256": "4e3283852b62ec948255305106e179d3a098bd257069a739335282ea54805254"
+  },
+  "server_private_host": "10.5.4.7",
+  "receiver_private_host": "10.5.2.100",
+  "network_port": 51963,
+  "server_seconds": 60,
+  "receiver_seconds": 60,
+  "generated_access_prefix": "Process environment only; boundedprivate endpoint allows only receiverIP and3 literal files, no listing",
+  "source_state": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/training_state.pt",
+  "target_state": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/storage-recovery-20261024/full64-epoch002-from-A800/training_state.pt",
+  "expected_state_sha256": "38b9877a280c7f300878f93d9f362803f75b011a6cb5fd26eb6bf78c3fd66c88",
+  "expected_state_bytes": 346667053,
+  "additional_metadata_files": [
+    "checkpoint.json",
+    "adapter/adapter_config.json"
+  ],
+  "target": "Free at least256MiB for officialB small outputs; full original state retained at explicit.100 locator",
+  "remove_rule": "After target all3 files independently reopened and SHA/fsynced, recheck source ownership/size/SHA/mtime; unlink only source training_state.pt, fsync sourceparent; checkpoint/config stay. Record actual before/after free and immutable migration receipt.",
+  "no_tensor_load_or_GPU": true,
+  "no_new_fit_or_quality": true
+}
