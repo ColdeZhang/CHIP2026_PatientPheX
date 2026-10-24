@@ -5,13 +5,14 @@ sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts')
 from mcp_client import Client
 M100='5a9955da-5240-41cc-9e52-05d3d8da8a3c';MA='476f81cf-09e7-445b-a7f0-d0e12b12e50f';REL='patient-response-code/source-bridge-v1';ROOT='/home/zhangyuheng/projects/CHIP2026_PatientPheX/'+REL
 SERVER='''from pathlib import Path
-import hashlib,json,os,time,subprocess
+import hashlib,hmac,json,os,time,subprocess
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
-p=Path(__file__).parent;m=json.loads((p/'identity.json').read_text());raw=(p/'deployment.tar.gz').read_bytes();assert len(raw)==m['bytes'] and hashlib.sha256(raw).hexdigest()==m['sha256'];assert not (p/'started.json').exists();start=time.time()
+p=Path(__file__).parent;m=json.loads((p/'identity.json').read_text());raw=(p/'deployment.tar.gz').read_bytes();token=(p/'access-token').read_text().strip();assert len(token)>=32;assert len(raw)==m['bytes'] and hashlib.sha256(raw).hexdigest()==m['sha256'];assert not (p/'started.json').exists();start=time.time()
 addresses=subprocess.check_output(['hostname','-I'],text=True).split();address=next(x for x in addresses if x.startswith('10.5.'))
 class H(BaseHTTPRequestHandler):
  def log_message(self,*a):pass
  def do_GET(self):
+  if not hmac.compare_digest(self.headers.get('Authorization',''),'Bearer '+token):self.send_error(401);return
   if self.path!='/deployment.tar.gz':self.send_error(404);return
   self.send_response(200);self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
 s=ThreadingHTTPServer((address,0),H);s.timeout=.5
@@ -27,11 +28,11 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 def save(p,x):
  with p.open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('action',choices=['stage','serve','ready','fetch']);ap.add_argument('--controller',type=Path,required=True);a=ap.parse_args();C=a.controller;B=C/'source-bridge';B.mkdir(exist_ok=True);m=json.loads((C/'deployment-manifest.json').read_text());data=Path(m['archive']['path']).read_bytes();assert sha(data)==m['archive']['sha256'];p=json.loads((C/'controller-plan.json').read_text());cl=Client();cl.initialize()
+ ap=argparse.ArgumentParser();ap.add_argument('action',choices=['stage','serve','ready','fetch']);ap.add_argument('--controller',type=Path,required=True);a=ap.parse_args();C=a.controller;B=C/'source-bridge';B.mkdir(exist_ok=True);os.chmod(B,0o700);m=json.loads((C/'deployment-manifest.json').read_text());data=Path(m['archive']['path']).read_bytes();assert sha(data)==m['archive']['sha256'];p=json.loads((C/'controller-plan.json').read_text());cl=Client();cl.initialize()
  def call(mount,n,args,label):
-  pref=B/(label+'-'+str(time.time_ns()));save(pref.with_suffix('.intent.json'),dict(tool=n,arguments={k:v for k,v in args.items() if k!='content'}));r=cl.request('tools/call',dict(name=n,arguments=dict(mount_id=mount,**args)));save(pref.with_suffix('.tool.json'),r);assert not r.get('isError'),str(r);return r.get('structuredContent') or json.loads(r['content'][0]['text'])
- def remote(mount,code,param,label):
-  r=call(mount,'run_command',dict(command='python3 -c '+shlex.quote('P='+repr(param)+'\n'+code),timeout_seconds=30),label);assert r['exit_code']==0;return json.loads(r['stdout'])
+  pref=B/(label+'-'+str(time.time_ns()));safe={k:v for k,v in args.items() if k!='content'};safe['env']={k:'[REDACTED]' if 'TOKEN' in k else v for k,v in safe.get('env',{}).items()};save(pref.with_suffix('.intent.json'),dict(tool=n,arguments=safe));r=cl.request('tools/call',dict(name=n,arguments=dict(mount_id=mount,**args)));save(pref.with_suffix('.tool.json'),r);assert not r.get('isError'),str(r);return r.get('structuredContent') or json.loads(r['content'][0]['text'])
+ def remote(mount,code,param,label,token=None):
+  r=call(mount,'run_command',dict(env={'PATIENTPHEX_SOURCE_BRIDGE_TOKEN':token} if token else {},command='python3 -c '+shlex.quote('P='+repr(param)+'\n'+code),timeout_seconds=30),label);assert r['exit_code']==0;return json.loads(r['stdout'])
  if a.action=='stage':
   code='''from pathlib import Path
 import os,json,hashlib
@@ -39,6 +40,13 @@ p=Path(P['root']);assert os.getuid()==1006;p.mkdir(parents=True,exist_ok=True,mo
 print(json.dumps({q.name:dict(bytes=q.stat().st_size,sha256=hashlib.sha256(q.read_bytes()).hexdigest()) for q in p.glob('part-*')}))
 '''
   inv=remote(M100,code,dict(root=ROOT),'inventory');parts=[]
+  token_path=B/'access-token'
+  if not token_path.exists():
+   import secrets
+   fd=os.open(str(token_path),os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+   with os.fdopen(fd,'w') as f:f.write(secrets.token_urlsafe(32));f.flush();os.fsync(f.fileno())
+  token=token_path.read_bytes()
+  call(M100,'write_file',dict(path=REL+'/access-token',content=base64.b64encode(token).decode(),encoding='base64',create_parents=False),'token-private-write')
   for i,offset in enumerate(range(0,len(data),32768)):
    raw=data[offset:offset+32768];name='part-%03d'%i;item=dict(bytes=len(raw),sha256=sha(raw));parts.append(dict(name=name,**item))
    if name in inv:assert inv[name]==item
@@ -46,7 +54,7 @@ print(json.dumps({q.name:dict(bytes=q.stat().st_size,sha256=hashlib.sha256(q.rea
     r=call(M100,'write_file',dict(path=REL+'/'+name,content=base64.b64encode(raw).decode(),encoding='base64',create_parents=False),name);assert r['size']==len(raw) and r['sha256']==sha(raw)
   code='''from pathlib import Path
 import json,hashlib,os
-p=Path(P['root'])
+p=Path(P['root']);os.chmod(p/'access-token',0o600)
 def put(n,b):
  q=p/n
  if q.exists():assert q.read_bytes()==b
@@ -66,7 +74,8 @@ b=b''.join((p/r['name']).read_bytes() for r in P['parts']);assert len(b)==P['ide
   code='''from pathlib import Path
 import hashlib,json,os,time,urllib.request
 p=Path(P['root']);assert not (p/'campaign.json').exists() and not (p/'control').exists();assert time.time()<P['deadline']
-with urllib.request.urlopen(P['url'],timeout=min(20,P['deadline']-time.time())) as r:b=r.read(P['bytes']+1)
+request=urllib.request.Request(P['url'],headers={'Authorization':'Bearer '+os.environ['PATIENTPHEX_SOURCE_BRIDGE_TOKEN']})
+with urllib.request.urlopen(request,timeout=min(20,P['deadline']-time.time())) as r:b=r.read(P['bytes']+1)
 assert len(b)==P['bytes'] and hashlib.sha256(b).hexdigest()==P['sha256'];reused=[];written=[]
 for i,start in enumerate(range(0,len(b),32768)):
  chunk=b[start:start+32768];q=p/('part-%03d'%i)
@@ -76,5 +85,5 @@ for i,start in enumerate(range(0,len(b),32768)):
   written.append(q.name)
 fd=os.open(str(p),os.O_RDONLY);os.fsync(fd);os.close(fd);print(json.dumps(dict(status='EXACT_ORIGINAL_DEPLOYMENT_PARTS_FILLED',archive_sha256=hashlib.sha256(b).hexdigest(),bytes=len(b),reused=reused,written=written,no_model=True)))
 '''
-  r=remote(MA,code,dict(root=p['remote_absolute'],url=url,deadline=ready['deadline_unix'],bytes=len(data),sha256=sha(data)),'fetch-original-pieces');save(B/'fetch-complete.json',r);print(json.dumps(r))
+  r=remote(MA,code,dict(root=p['remote_absolute'],url=url,deadline=ready['deadline_unix'],bytes=len(data),sha256=sha(data)),'fetch-original-pieces',token=(B/'access-token').read_text());save(B/'fetch-complete.json',r);print(json.dumps(r))
 if __name__=='__main__':main()
