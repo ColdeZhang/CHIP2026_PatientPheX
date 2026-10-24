@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；两轮32updates、两份完整.100 ACK全部闭合，campaign实际2768.492s<3600；F1唯一作业proc_a84ae36b/PID173877已12:33:05.102124接受，80fresh/1200+30；原driver精确时钟待只读确认。训练监控旧失败均保留、没有活跃训练/训练监控。只改本路线。
+当前：F1全部闭合且私有202件/1.694MB小包b8afef77已.100全SHA/fsync/reopen持久。primary coded-alone .686618943020胜强N，diagnostic .682275610224；2new/0old质量，选primary。无活跃GPU/监控。root已单独授权同32权重F0完整58复验，准备独立namespace，不修改F1任何原件。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -90,3 +90,11 @@ Unique full80 job actually ended12:44:29.153898 rc0/683.960027s, 80fresh/0cache,
 ### 2026-10-24 12:49 UTC — complete fixed quality, positive candidate
 
 Original253-member collection71db687e complete, including one30s bounded pure-read recovery; no remote repack/model repeat. Both full predictions froze at12:49:10.675487 before exactly2new/0old v2. Primary coded-alone Score.6866189430196797 (+.010072588357vsN;+.000279961748vs historicalfullsupport), diagnostic N-union-coded.6822756102237818 (+.005729255561vsN). Both pass; selectcoded-alone. Primary relation322TP73FP198FN/micro.703825136612/macro.627711699678. One duplicate-response-code whole-row abstention retained; no repair. All1189entities/nonrelationbytes preserved. Final review entry externalB/final-review-entry.json; no further GPU/quality/F0/dev/official. Private small backup pending.
+
+### 2026-10-24 12:52 UTC — F1 private backup closed; independent F0 authorized
+
+F1 terminal.tar.gz1,694,368B/b8afef77,202members actual.100 allSHA/fsync/reopen at12:51:43.444715. Source/code, private train/held inputs, allraw predictions/metadata included; heldgold/capability/modelstate excluded. Both520MB completeepoch states separately durable. F1-final-handoff.json links immutable33293985reviewentry and actualbackup. Root separately authorized same2c777e88 train32 model on original fulltextF0 58, native1200+30, two fixed endpoints vs existing SFT48 N .696603974744; candidate ancestors may train onF1 but must excludeF0. It is an actual candidate comparison, not a single-variable encoding ablation or uniformtrain32 pipeline.
+
+### 2026-10-24 12:55 UTC — complete F0 candidate ancestry and fixed CPU source
+
+F0 original58/16docs/47patients/415concepts/1166pairs are exact descendants of CRF+Sap+LR using train48 d87bf189, all48 disjoint held16 ec38c135. SamePT transform keeps fulloriginaluser, schema/order/clinicalIDs and pureinput. Codedhead32 is subset of train48; comparatorN usesold48, so actual candidate comparison rather than isolated encoding effect. One initial local identity-set check correctly failed because original -1 entity maps to literal text via original association_keys; source/error preserved and exact legacy function reused, no data change/model/quality. NativeCPU120+5 on A100 existingruntime prepared, noGPU/model load.

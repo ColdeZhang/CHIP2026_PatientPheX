@@ -1,6 +1,6 @@
 # 独立患者响应编码
 
-原normal短124训练＋全文80推断，保留所有原clinical PID、user证据/markers/CID，仅明确新增响应PT编码和可逆目标。CPU已通过；root授权先A100唯一240+30 H51，实测PASS且预算足够后fresh2ep/32call/完整两ACK3600+30，再全80fresh1200+30及固定双质量。详见[台账](WORKLOG.md)与[固定质量](quality-policy.json)。
+原normal短124训练＋全文80推断，保留所有原clinical PID、user证据/markers/CID，仅明确新增响应PT编码和可逆目标。F1已完整：coded-alone .686618943020，N∪coded .682275610224，两者胜强N；按事前规则选单模型候选。两轮训练/两完整ACK、80fresh和两固定质量均完成，202件小包已持久。root另授权同权重完整F0复验，现独立准备。详见[台账](WORKLOG.md)与[固定质量](quality-policy.json)。
 
 接手先读 [ready.json](ready.json) 的真实作业与监控指针，再读外部 controller 的原 intent、events、ACK；不得按源码重启已运行的模型。当前完整状态保存在私有 SHM，并按每轮约 520 MB 迁移到 `.100` 持久目录；原绝对时钟不重置。
 
