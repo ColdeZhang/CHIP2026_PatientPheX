@@ -1,0 +1,66 @@
+{
+  "argv": [
+    "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+    "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/predict_existing.py",
+    "--contract",
+    "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/pure-load-readiness/contract.json",
+    "--model",
+    "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/model-vectorizer.pkl",
+    "--input-pool",
+    "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predicted/input.pool.jsonl.gz",
+    "--input",
+    "/workspace/patientphex-data/day1/dev16.input.jsonl",
+    "--relation-template",
+    "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/assembled/union.jsonl",
+    "--hpo",
+    "/workspace/patientphex-data/hp.obo",
+    "--dependency-root",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_selector/dependencies",
+    "--runtime-root",
+    "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime",
+    "--output-dir",
+    "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/pure-load-readiness/actual-v1"
+  ],
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONPATH": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime"
+  },
+  "total_CPU_cap_seconds": 30,
+  "TERM_grace_seconds": 5,
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/pure-load-readiness/actual-v1",
+  "contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/pure-load-readiness/contract.json",
+    "bytes": 8774,
+    "sha256": "36c056fd5bee39a1940b1f2f8629d790178284cfbd5ddc18372b8e484a859a93"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/predict_existing.py",
+    "bytes": 9460,
+    "sha256": "0906e14496530c42570f70250c6836243118ef441aa3e740ca705f81cb946183"
+  },
+  "allowed_actions": [
+    "load existing model",
+    "transform frozen pure inputs",
+    "predict once per document",
+    "fixed .3 nested decode",
+    "compare complete prediction SHA"
+  ],
+  "forbidden_actions": [
+    "fit",
+    "gold read",
+    "evaluation",
+    "NN",
+    "test",
+    "official"
+  ],
+  "baseline_prediction_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/model-vectorizer.pkl",
+    "sha256": "803b646771d5d7701730ce2a7161275158e63b63ddec36fed9ce793b64e6f98d",
+    "bytes": 294691
+  },
+  "no_expected_prediction_body_read": true
+}
