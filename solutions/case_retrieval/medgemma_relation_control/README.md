@@ -29,3 +29,10 @@ root已条件授权：资产复制到A800独立SHM并核本机原生runtime差�
 .100完整模型：`research/medical-small-model-readiness/models/medgemma-1.5-4b-it-9bca96ca3e30`。原A100计划保留为superseded-unstarted；新A800权重/大状态只用自有`/dev/shm/patientphex-medgemma15-1045-20261024/`，项目只保存小源/日志。02:39:47只读实查A100项目剩58.139GB，现成Python3.10.21/Torch2.6.0+cu124/TF5.20.2/PEFT.21.2与Gemma源可用、CUDA未初始化。两个新完整epoch state按adapter＋两份AdamFP32约715MB，另有元数据；无需删除历史。
 
 .100→A800固定19资产一次私网HTTP复制授权600+TERM30，逐full SHA/Range断点/fsync；复用旧已通过transport handler与逐文件fetch loop的AST，仅改固定资产manifest/namespace。原A100源数据489KB包经MCP准备失败，未启动HTTPserver/fetch；保留可能落盘的自有upload chunk，当前不反复查离线机器。A80002:49:16实际只读剩247.529GB SHM、171MB项目盘，Py3.11.17，Torch2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1及Gemma源与.100原CPU一致。新SHM副本不是持久备份，.10019件完整原件保留。sequence已02:49:43完成最后fullstate导出解除带宽避让，GPU2仍保留给其最后80推断，收到实际最终release才使用。详情[新复制计划](transfer-a800/formal/run-plan.json)、[传输复用检查](transfer-a800/source-reuse-check.json)；8.64GB只走私网HTTP。
+
+
+## A800 复制中断与唯一恢复（2026-10-24）
+
+首600秒窗口因本地监控 MCP initialize HTTP503 中断；旧controller finally停止源server，fetch随后connection refused。两个原job均实际停止，10个小件完整、首权重2,091,970,488B断点保留。没有模型加载或质量结果。按实测剩余6.548GB和9.0–9.3MB/s，root在恢复启动前明确把原600恢复提案改为唯一900秒＋TERM30；原未启动600计划与首失败原样保留。
+
+恢复仅从冻结part续传，10个已完成文件依原full-SHA后atomic rename和不变stat继承，不宣称本窗口重读；其余逐文件full SHA。19原件仍持久在.100，A800 SHM仅临时副本。监控失联现在只保留known job，不再finally打断可能健康的传输；远端绝对超时继续有效。详见transfer-a800-recovery。尚未启动GPU诊断或正式训练。
