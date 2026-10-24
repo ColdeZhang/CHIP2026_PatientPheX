@@ -1,0 +1,72 @@
+{
+  "status": "frozen_one_selected_CE_memory_recovery_diagnostic_not_formal_or_quality",
+  "budget_seconds": 240,
+  "grace_seconds": 30,
+  "optimizer_steps": 1,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.01,
+  "clip_norm": 1.0,
+  "seed": 20261023,
+  "fresh_state_discarded": true,
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "modeling_source_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+  "native_loss_sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe",
+  "CPU_contract_source_sha256": "e6b1cc79b7d47d241987cbcbafba5251bc39ea77d1bfc9b45afc1b36ec82d3a0",
+  "local_driver_source": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_full64/memory_recovery/bounded_driver.py",
+  "remote_files": {
+    "probe.py": {
+      "bytes": 13206,
+      "sha256": "deb3de7f92ad4a6e15f861a52c4069de2d82a4ae8393fd630a63ecbfd65757d5"
+    },
+    "selected_loss.py": {
+      "bytes": 1101,
+      "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+    },
+    "bounded_driver.py": {
+      "bytes": 2815,
+      "sha256": "abd63f24b6e35c5924432239e9229bbd77e33b39eb1afa1176523ee28c564816"
+    },
+    "probe-encoded.json.gz": {
+      "bytes": 38497,
+      "sha256": "bd46bd4ebf0ab51fe5edd9baea47b8924cb5591035056db6d52f48ecd3ed8c81"
+    },
+    "CPU-result.json": {
+      "bytes": 86397,
+      "sha256": "8cf18f83ac87dc5173c5e38b31743415dcecf8e50d070dbbcd220b743b96677b"
+    },
+    "slot_model.py": {
+      "bytes": 4959,
+      "sha256": "e8baf724a8aaf31d7686e53586033fdf0b07290d5f92f43e5617e436d1473647"
+    },
+    "qwen35_runner.py": {
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "qwen35_relation_cost.py": {
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "qwen35_smoke.py": {
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    }
+  },
+  "actual_CPU": {
+    "bytes": 86397,
+    "sha256": "8cf18f83ac87dc5173c5e38b31743415dcecf8e50d070dbbcd220b743b96677b"
+  },
+  "probe_data": {
+    "bytes": 1856,
+    "sha256": "8a560cf7fcad9ec3ffc3b352f7af380baf6845ebd2684c88642800c24d710d1b"
+  },
+  "sequence": "8 original first-group microbatches then one Adam update nonzero lr; then first3 original group12 accumulated and its4th longest6166 backward; original perrow mean/8 all12",
+  "limitations": "Fresh diagnostic with one complete group state, not exact failed step replay or full varying-shape training guarantee; all weights discarded. No explicit gc/del/emptycache or allocator/precision change.",
+  "source_only_variable": "Full BF16 head unchanged; shifted supervised positions gathered before FP32 CE; native fixed CE and denominator preserved",
+  "estimated_cost": "Old full-head single6166 ~15s with load/hash ~66s; total44305 tokens/12 backward plus update estimated under240, actual unknown; hard stop at240+30, no retry"
+}

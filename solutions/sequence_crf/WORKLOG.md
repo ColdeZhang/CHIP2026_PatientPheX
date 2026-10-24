@@ -9,9 +9,12 @@
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 当前任务：患者优先 full64 正式训练 → 原 dev 唯一并集
+## 当前任务：full64 OOM 后单变量显存恢复
 
-**正在运行**：A100 GPU2 唯一 `proc_5b00069a-f26c-45c5-a559-c9aa3e7d1d64` / driver PID120406、child120423；04:42:33.455Z启动，fresh265×2/68calls/4warmup，4500+TERM30，近似TERM05:57:33/KILL05:58:03。最后成功观察04:48:59到epoch1 step5（loss有限/三族真实更新）；04:54正常读取返回LUNA_OFFLINE，当前终态未知，尚无完整epoch回收。不要再次start。外部F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-preparation`；只读`monitor_existing.py <新收据名>`，完整终点用`formal_operations.py collect --phase train`。
+**原训练已关闭**：A100 job `proc_5b00069a` 04:51:51 backward OOM，557.666s/rc1，最后记录completed step10，确切失败行/step/算子未知。无完整epoch/staging、不能exact续训；实际GPU已释放。独审f7668be7，详见[原终点](evidence/patient-first-full64/failure-terminal-manifest.json)。
+
+**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。仅GPU工程probe获授权，正式fresh重训须root统一决定；当前尚无新GPU start。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺smoke+plan调用UNKNOWN，先库存核实际是否落盘，不重复调用或启动。
+
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
 - [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当前未新devgold/未质量/未官方。

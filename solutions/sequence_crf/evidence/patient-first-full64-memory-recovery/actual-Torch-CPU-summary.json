@@ -1,0 +1,57 @@
+{
+  "status": "PASS_actual_Torch_CPU_fixed_full_logits_selected_CE_contract",
+  "at_utc": "2026-10-24T05:05:00.028911+00:00",
+  "seconds": 1.8437454551458359,
+  "torch": "2.6.0+cu124",
+  "cuda_initialized": false,
+  "source_sha256": "e6b1cc79b7d47d241987cbcbafba5251bc39ea77d1bfc9b45afc1b36ec82d3a0",
+  "actual_loss_source_sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe",
+  "cases": 288,
+  "full_head_gradient": [
+    {
+      "dtype": "torch.float32",
+      "hidden_grad_max_abs_error": 0.0,
+      "head_grad_max_abs_error": 0.0,
+      "complete_same_shape_head_logits_exact": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "hidden_grad_max_abs_error": 0.0,
+      "head_grad_max_abs_error": 0.0,
+      "complete_same_shape_head_logits_exact": true
+    }
+  ],
+  "accumulation": [
+    {
+      "group_size": 1,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "group_size": 2,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    },
+    {
+      "group_size": 8,
+      "loss_abs_error": 0.0,
+      "grad_max_abs_error": 0.0
+    }
+  ],
+  "limits": "CPU tiny fixtures only; no model weights, task input/gold, GPU, optimizer or formal run. No claim of GPU bitwise equivalence or peak memory success.",
+  "actual": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/CPU-result.json",
+    "bytes": 86397,
+    "sha256": "8cf18f83ac87dc5173c5e38b31743415dcecf8e50d070dbbcd220b743b96677b"
+  },
+  "transport_first_failure": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/CPU-execution.json",
+    "bytes": 65041,
+    "sha256": "37402ee856ac09d5a54cad7f4b058e0250b491e58b6c6da70c2cc0c5263a5b34"
+  },
+  "transport_recovery": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/CPU-recovery-execution.json",
+    "bytes": 231645,
+    "sha256": "f187586533056225fff8baa1d73e6416d13bbde076bc4f8a7107fc6add5a64ea"
+  }
+}

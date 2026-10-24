@@ -57,3 +57,9 @@
 真实 wrapper 557.666s/rc1，04:51:51 在 trainer 第573行 backward OOM，申请5.71GiB。stdout最后仅step10；未保存精确失败row/step或CUDA算子，不把它写成第10步失败或前向float失败。冻结顺序CPU推导最长6166位于第12组第4条，只是候选假设，不是观测身份。GPU实际释放，epoch/staging库存为空，无可exact续训的optimizer/RNG状态；无推断/新dev质量。原最长单步PASS不覆盖累积和Adam状态，见main H51。
 
 [统一失败清单](../evidence/patient-first-full64/failure-terminal-manifest.json)和独审f7668be7保留全部原件，完整trace/日志/zip外存。后继只改完整BF16 head之后的监督位置FP32 CE，目标Torch真实CPU先核loss与梯度，再240+30 fresh真实工程探针覆盖Adam状态＋已有累计梯度；不改数据、精度、attention、optimizer或每row mean/实际group分母，不同时改allocator。5.704GiB完整logit大小相近只是形状推断。完整fresh重训待root依据新证据统一决定。
+
+### 新选监督CE工程入口
+
+目标Torch2.6.0+cu124实测288例与完整tiny head H/W梯度、group1/2/8均通过，1.843745s；原生83db两loss函数沿用，源e6b1无改。第一次传输构造SyntaxError未执行，窄修后真实合同通过；另部署保护因CPU-result已存在而拒绝，库存确认9成员exact后仅补smoke依赖与plan，UNKNOWN结果先查库存。上述均无GPU。小收据见[CPU](../evidence/patient-first-full64-memory-recovery/actual-Torch-CPU-summary.json)。
+
+固定probe只变dfd0759f选监督CE；保留全BF16head与原临时输出生命周期，每rowmean/8，非零LR1e-4先完整第一组8条产生真实Adam状态，再原第12组前三条累积与第4条6166完整backward。诊断不重现已丢失的原失败row、不重放前11组或正式warmup，不存权重、不质量；12条44305tokens，硬240+30。逐行记录stage、内存，最长前实核已有grad与Adam库存，三族B变化、base无梯度。最长通过仍不保证完整两轮。
