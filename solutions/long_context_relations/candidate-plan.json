@@ -1,0 +1,127 @@
+{
+  "schema": "fullcontext-patient-concept-binary-candidate-v1",
+  "status": "ROOT_AUTHORIZED_SOURCE_AND_PROBE_ONLY_FORMAL_WAITING_COST",
+  "hypothesis": "Joint native full-context hidden states permit direct patient-anchor/phenotype-span interaction unavailable in old independent512 windows; binary task/pooling itself is not new.",
+  "base": {
+    "repo": "thomas-sounack/BioClinical-ModernBERT-base",
+    "revision": "c3648aa87af95837c809e6f0c5f85d08160db437",
+    "source": "fresh public MLM, not negative Task1 final encoder",
+    "encoder_parameters": 149014272,
+    "head_parameters": 401921,
+    "total_parameters": 149416193
+  },
+  "input": {
+    "existing_native_ids": "byte-exact to BioClinical GP input with no markers/queries/new tokens",
+    "train_docs": 32,
+    "held_docs": 16,
+    "held_patients": 39,
+    "train_windows": 32,
+    "held_windows": 17,
+    "train_pairs": 4495,
+    "positive_pairs": 727,
+    "negative_pairs": 3768,
+    "held_unlabelled_pairs": 2874,
+    "train32": [
+      "F2",
+      "F3"
+    ],
+    "candidates": "exact three fixed public PhenoTagger model candidate union from old DocRE; no new candidate cutoff or held-trained model",
+    "partial_subtoken_policy": "old DocRE overlap policy: retain four train physical mentions with endpoints inside subtoken; zero held partial endpoints; these are context mentions not new output entities",
+    "cross_window": "one owner per physical mention, maximal complete-span margin; shared document entities pool deduplicated mention representations; no invented across-window native attention"
+  },
+  "target": {
+    "type": "unweighted BCE per candidate patient\u00d7HP concept; mean all pairs within document then actual accum-group mean",
+    "positive": "literal v2 HP atom in train32 association; compound only split legal HP sequence",
+    "negative": "candidate HP absent from that patient train32 annotation; not clinical proof of absence",
+    "no_manual_evidence": true,
+    "unreachable_train_gold_pairs": 91
+  },
+  "model": {
+    "encoder": "native AutoModel SDPA with activation checkpointing, last_hidden_state only, no all-layer states/attention/MLM logits",
+    "mention_pool": "mean all overlapping lexical subtoken hidden vectors within one owner window",
+    "entity_pool": "logsumexp across unique physical mentions, as prior unmarked DocRE",
+    "pair_head": "two independent Linear768\u2192256+tanh; original block-bilinear32 outer-products\u21928192\u2192Linear1; dropout.1",
+    "no_localized_attention_context": true,
+    "context_reason": "Every selected endpoint hidden is already native full-context contextualized. Avoid native eager full-attention tensors just to recover ATLOP context. This head change is disclosed, not pure backbone causal ablation."
+  },
+  "optimization": {
+    "epochs": 30,
+    "documents_per_epoch": 32,
+    "accumulation": 4,
+    "optimizer_updates": 240,
+    "encoder_lr": 2e-05,
+    "head_lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_updates": 24,
+    "clip": 1.0,
+    "seed": 20261024,
+    "optimizer": "AdamW",
+    "precision": "FP32 parameters/Adam and pooled BCE; BF16 native encoder autocast",
+    "checkpoint": "only final epoch30, full model+Adam/scheduler/RNG+reopen ACK",
+    "frozen_legacy_schedule": true
+  },
+  "endpoint": {
+    "proposed_primary": "Protect complete currentB4 F1; add every candidate pair logit>0, preserving all other objects; no new-alone or replacement quality",
+    "baseline_score": 0.701325377212172,
+    "threshold": 0.0,
+    "all_candidate_logits_saved": true,
+    "new_v2_at_most": 1,
+    "old_v2": 0,
+    "continue_only_if_strict_score_greater": true,
+    "baseline_and_final_execution_need_root_lock": true,
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "quality_calls_before_prediction_freeze": 0,
+    "preserve_original_compound_order": true
+  },
+  "evidence": {
+    "census": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/relation-readiness/census.json",
+      "bytes": 5958,
+      "sha256": "74f9d063400cc5ef888d0131ce7ea0c071627edfd93a27b61324ebf9b1a3e676"
+    },
+    "old_model": {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/model.py",
+      "bytes": 4926,
+      "sha256": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b"
+    },
+    "old_train": {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/train.py",
+      "bytes": 13791,
+      "sha256": "8c6613b5274e5809a29021ed739ca9f1c6cccb3563a1619eed5536e7597a3e9b"
+    },
+    "old_marker_geometry": {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/evidence/marker-geometry.json",
+      "bytes": 1110,
+      "sha256": "33671a5af38c5176ce5078997fefcf71454dd7490fe3cdace714cc053a6889e1"
+    },
+    "old_results": {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/WORKLOG.md",
+      "bytes": 5988,
+      "sha256": "c7afee556a440d2aa1cfae202339897df486a1fabc5d0cc593f590048597d3fb"
+    },
+    "modern_native": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/formal/model.py",
+      "bytes": 2992,
+      "sha256": "636a0ac4fd4e0b28c4919c133cabf48d7e995110a0fc82110b6baa721a786d3a"
+    }
+  },
+  "cost": {
+    "actual_GP_proxy": "8ep256 updates plus17held and state169.973s, peak4.108GB; old probe peakresident3.986GB",
+    "estimated_30epoch_seconds": 650,
+    "estimate_not_measured": true,
+    "next_required": "bounded genuine head+encoder backward/residentAdam/maximuminput and pair shape probe; one fresh public parent and discard probe, no reread old loss/model downloads",
+    "suggested_probe_seconds": 180,
+    "formal_budget_to_lock_after_probe": 1200,
+    "new_parameter_bytes_FP32": 597664772
+  },
+  "readiness_parent": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/biomedical_long_context/relation_readiness/candidate-plan.json"
+}
