@@ -2,9 +2,9 @@
 
 2026-10-24 UTC，分支 `research/training-seed-ensemble`，起点 `main@ff7ad16777e3907ed3b4b4231794439017aa5bf8`。仅修改本方案目录。共享规则已读，后继启动尤其遵循 H49 原始响应先存、H68 按实际成本做最小工程检查、H69 启动有效期与运行预算分开。
 
-**当前：独立fresh训练已15:57:39真实启动，原A100 GPU2；两轮终点/质量未完成。**
+**当前：原fresh训练16:30:57完整成功，87×2/22更新及两完整持久ACK已在原watch终态核到；恢复收件后接39条F1，尚无新质量。**
 
-**暂时释槽交接**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
+**历史释槽交接（现已恢复）**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
 
 **唯一活跃入口**：`training/formal-entry-fresh-v1.json`，外存`training-seed-ensemble-v1/formal-fresh-v1`，远端proc89bc/child36557。只读watcher195513（start_ticks11011112）负责观察；不要再运行下方历史formal-v1/recovery_v2/v3/v4的start。新共享TERM16:47:38.444861。16:04:12已实见epoch1 step3，step2三LoRA家族B更新及native源SHA通过。 不更改任何其他 owner 的运行。15:42 根线程资源观察为 .7 GPU2 quote、.100 GPU0 Copy/GPU1 boundary、.12 teacher pilot、.3 Sap；本线没有另查卡或占用外部进程所在卡。观察仅为历史，不代表下一次可用。随后根线程15:44:04只读核到 .12 GPU2=0MiB/noapps，取消R1大模型迁移，允许本线提出在原缓存机排程；正式具体预算仍待根线程确认，本线未据此启动。
 
@@ -35,3 +35,7 @@ V4 CPU真实4.761801秒PASS，同87/32输入及实际import Torch2.6.0+cu124/TF5
 后继源已接收helper并在输出前修正：初始helper把合法数组内无效quote/duplicate变整行拒绝，偏离原G；已直接alias原interpret，保父版逐item拒绝，只有cap/nonEOS/整体JSON错整行弃答。混合有效/无效反例实际CPU6507f58d通过；原helper整份a37fcd3d快照外存inference-helper-initial-delivery保留。新manifest指明修正来源，无新推断/质量。绑定推断时必须显式传fresh_v1正式plan/目录；不能用README中的任何旧失败默认目录。必要Sap原.3当前别线占用，真正推断后再协调原cache/空卡，未声明已可用。
 
 已回收的具体版本差异更正：distribution Torch2.6.0、实际import Torch2.6.0+cu124，TF/PEFT/tokenizers完全相同；此前overlay只是环境背景，不能写成已证TF overlay冲突。原CPU第三次观测/首次真实三族更新/native来源小原件在evidence/first-update-runtime.json；0新质量。
+
+16:40原watch自行恢复并收到实际终态，两轮持久ACK分别16:14:52/16:30:56，controller2000.189秒，实际16:31:00 .12GPU2释放；非.100卡释放。训练源码与原3000时钟未变。完整终态观察见[evidence/training-complete-observed.json](evidence/training-complete-observed.json)。首collector inventory成功，freeze返回UNKNOWN，保原请求并只读原包恢复，不重训/不把缺收件称质量失败。SCST已直接通知仍需等待本39推断实际释放。
+
+原UNKNOWN freeze已实际完成；原25件metadata包全部逐SHA收回，collection196b22f6/17826B，两完整state仍远端持久且重新核SHA。已通过binder绑定真实finaladapter c3dc7de5及双ACK/22步；F1唯一39全fresh计划66bf2e69，1800+30与300秒launch TTL在绑定时锁，旧普通G generation/parser不变。原概率/标签未用于选择，无新质量。
