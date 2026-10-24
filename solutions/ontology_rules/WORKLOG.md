@@ -1,6 +1,7 @@
 # 本体规则工作台账
 
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
+- **BioBERT 原dev固定迁移（完成，独审中）**：四fold正后唯一full64 103列模型、native1379键并入旧池，Score **.737585917→.738493753（+.000907835）**，men+13TP17FP/doc+3TP1FP，368关系和所有nonentities原样/0错警。完整预测先冻后唯一v2，失败schema guard仅工程修复/总3.241s；native78.392s释放、同模型4655raw复用exact。模型/全部概率/预测外部保留，未官方/未达.8；[完整结果和恢复](evidence/round2/public-phenotagger-biobert-dev-results.json)。
 
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
 - **第三head固定四fold（正，统一终审PASS）**：BioBERT native缓存5903键；旧244794→246804行、6实际来源字段，HGB160/.3+原nested，pooled Score **.727975656→.730993616（+.003017961）**，men+.005649/doc+.006422、关系exact；3/4fold实体目标正、满足事前keep。4fit55.703秒/唯一终点2.973秒，实际102/101/103/103列，无cut扫描。root授权下一原dev开发迁移，先纯输入/全64链，NN等A100释放；尚未新dev质量。[完整结果](experiments/E-20261023-PUBLIC-PHENO-BIOBERT.md)。

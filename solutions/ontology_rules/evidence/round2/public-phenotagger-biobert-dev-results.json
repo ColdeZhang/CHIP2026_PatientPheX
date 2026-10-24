@@ -1,0 +1,207 @@
+{
+  "status": "completed_unique_development_endpoint_pending_independent_review",
+  "experiment": "E-20261023-PUBLIC-PHENO-BIOBERT",
+  "model_inventory": {
+    "current_pipeline_shared_once": 9475880164,
+    "new_independent_BioBERT": 121587826,
+    "total_shared_weights": 9597467990,
+    "adapters": "Actual adopted Qwen adapters recorded separately; no closed entity/binary modules added"
+  },
+  "baseline": {
+    "menF1": 0.7858472998137802,
+    "docF1": 0.8219944082013048,
+    "micF1": 0.7088915956151035,
+    "macF1": 0.633610365933178,
+    "Score": 0.7375859173908417
+  },
+  "biobert": {
+    "menF1": 0.7869605142332415,
+    "docF1": 0.8245125348189415,
+    "micF1": 0.7088915956151035,
+    "macF1": 0.633610365933178,
+    "Score": 0.7384937526501161
+  },
+  "deltas": {
+    "menF1": 0.001113214419461328,
+    "docF1": 0.002518126617636729,
+    "micF1": 0.0,
+    "macF1": 0.0,
+    "Score": 0.0009078352592744032
+  },
+  "counts_delta": {
+    "mention": {
+      "tp": 13,
+      "fp": 17,
+      "fn": -13
+    },
+    "document": {
+      "tp": 3,
+      "fp": 1,
+      "fn": -3
+    },
+    "relation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "relations_all_nonentities_exact": true,
+  "baseline_entity_count": 1042,
+  "new_entity_count": 1072,
+  "relationship_count": 368,
+  "full64_training_rows": 62281,
+  "full64_positive": 4196,
+  "full64_actual_feature_count": 103,
+  "dev_old_candidates": 13144,
+  "dev_new_candidates": 13246,
+  "budgets_actual": {
+    "native_GPU": {
+      "GPU_cap_seconds": 180,
+      "actual_native_child_seconds": 78.39211238920689,
+      "CPU_provenance_seconds": 0.9669519402086735,
+      "CPU_reuse_check_seconds": 8.6661973670125,
+      "pure_new_NN_seconds": 34.45183403044939,
+      "NN_new_unique_per_second": 1467.207811210411,
+      "first_batch_seconds_including_kernel": 1.284030009061098,
+      "stderr_bytes": 0
+    },
+    "full64_fit_internal_seconds": 14.7064227400042,
+    "full64_fit_outer_seconds": 15.083948537001561,
+    "predict_internal_seconds": 3.305442467004468,
+    "predict_outer_seconds": 3.5242156099993736,
+    "finalize_attempt1_seconds": 1.571742471998732,
+    "finalize_attempt2_internal_seconds": 1.5024361190007767,
+    "finalize_attempt2_outer_seconds": 1.6690922870038776,
+    "finalize_total_actual_seconds": 3.2408347590026096
+  },
+  "engineering_revision": "Only assertion about original prediction metadata subset; first attempt no prediction/gold/quality. Original failed source/plan retained; same model/scores/decoder, remaining28s within original30s total.",
+  "quality_scope": "Originaldev development, not blind; one endpoint; old metrics reused; no official action; below .8",
+  "artifacts": {
+    "fit-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fit-plan.json",
+      "sha256": "e66e75a5de976b2b69b9be72b0a2c738bcd5088d5196b8ae972f9c502b1b541b",
+      "bytes": 8064
+    },
+    "prepared-train/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/prepared-train/manifest.json",
+      "sha256": "4074c9099533c57efca704fe8ed87679d2e2b2ab086de620d9020b8cab1fd9f7",
+      "bytes": 10747
+    },
+    "fitted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fitted/manifest.json",
+      "sha256": "5dcd974800716b6bef80ccf26132f7f7655368e5bac232dea5ec79f5023497a4",
+      "bytes": 15114
+    },
+    "fitted/model-vectorizer.pkl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fitted/model-vectorizer.pkl",
+      "sha256": "42e941150d1974993ea403ad41af6bfbabe410fe334f1c90c50a895d0a44c9a7",
+      "bytes": 298059
+    },
+    "fit-job/state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fit-job/state.json",
+      "sha256": "2d8291663abbb2b77304cb487cd95106678c3de1f6604250c9e12fb1d11695ee",
+      "bytes": 806
+    },
+    "predict_dev-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predict_dev-plan.json",
+      "sha256": "8128b788e7554b7bf21b7933d521cdbe66cdb46e73093707af050c13d8e6c376",
+      "bytes": 9992
+    },
+    "predicted/manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predicted/manifest.json",
+      "sha256": "1c816bb656fca50c0607e2f07b6815fc3d0452ef56631bcf3173da35454b5142",
+      "bytes": 5593
+    },
+    "predicted/input.pool.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predicted/input.pool.jsonl.gz",
+      "sha256": "18ac347e1760d960d760de873fe16882525bcee937e2ceceb4a03b163c3c4ee9",
+      "bytes": 754726
+    },
+    "predicted/selector-scores.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predicted/selector-scores.jsonl",
+      "sha256": "3a38d1dbf8f8552eeccc0bd9ef1ff8a2461a2dc8c3ae48282912ff1c58995e09",
+      "bytes": 11447103
+    },
+    "predict_dev-job/state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/predict_dev-job/state.json",
+      "sha256": "65aa91063cccdde86f8b36e538227347e519901d5111922a6359e6c2bc65cd6c",
+      "bytes": 816
+    },
+    "finalize_dev-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize_dev-plan.json",
+      "sha256": "7939df05a7598aebbe021d5d1a29346eb5f6cc1f35dd5b25c1444f31312a615e",
+      "bytes": 9543
+    },
+    "finalize-attempt1/finalize_dev.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize-attempt1/finalize_dev.py",
+      "sha256": "b80b4044afbeb8ec9b5309743aa6687645123d3ee69a2d584d6db707fc1f159b",
+      "bytes": 4981
+    },
+    "finalize_dev-job/state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize_dev-job/state.json",
+      "sha256": "aea22beaf791dbe66cb0eb5f885b5b8e0e08460c60927f171f10df66e7824381",
+      "bytes": 826
+    },
+    "finalize-schema-revision.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize-schema-revision.json",
+      "sha256": "97aa8163ecd14db59570f2aa436153e006bf9d6db5c62c4aa428b451a2269b05",
+      "bytes": 1838
+    },
+    "finalize_dev-plan-attempt2.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize_dev-plan-attempt2.json",
+      "sha256": "ecebaef32119453321e5b63abe5be80c0970cc8c2a16dcf0ac01b6ada25e2d88",
+      "bytes": 10885
+    },
+    "finalize_dev-job-attempt2/state.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/finalize_dev-job-attempt2/state.json",
+      "sha256": "b77420730a4e237b9e8cd6badde08cd597bf9bda16a9c0fc1e8a0cabb5eefba2",
+      "bytes": 828
+    },
+    "terminal-attempt2/complete-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/complete-freeze.json",
+      "sha256": "a84d2ea8a603aa28baa53470981488e160ea7829a058d34cd609c87c1a53d389",
+      "bytes": 1415
+    },
+    "terminal-attempt2/evaluation-start.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/evaluation-start.json",
+      "sha256": "38e37665a803fcce490efb2d43e79a81c736e8cc712d327417b7f9bf7077c52f",
+      "bytes": 328
+    },
+    "terminal-attempt2/biobert.nested.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.nested.jsonl",
+      "sha256": "baac818637f757badf56123b7e5f8cb77153e18c2e710e35044154b7a05fad67",
+      "bytes": 141326
+    },
+    "terminal-attempt2/biobert.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.metrics.json",
+      "sha256": "629478cd858c73287f4d91c4fa3b474d6fb2023734311c3b196b2ad20ffe3422",
+      "bytes": 12902
+    },
+    "terminal-attempt2/biobert.validation.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.validation.json",
+      "sha256": "eb1b5a7939d66c1d26cba9d0d247c6fd705d45a4c54941afca5d59b3a938ca24",
+      "bytes": 425
+    },
+    "terminal-attempt2/results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/results.json",
+      "sha256": "3f5d2aa052cd1cb8ec157d986b7cb03950d72b06bf51e8893546e2b416232cbe",
+      "bytes": 3469
+    }
+  },
+  "native_completion": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-dev16-cache/completion.json",
+    "sha256": "41e7ae64e42f586fe25f5fa1c99a026e39cc9fb3d3886ab09946fcea92707839",
+    "bytes": 6647
+  },
+  "native_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-dev16-cache/terminal-input-contract-check.json",
+    "sha256": "bd2c2adb3efe5ccc7a0ce57d63014436daa34c29a0b447b0d62f753857d7c50e",
+    "bytes": 1941
+  },
+  "native_reuse": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-dev16-cache/reuse-check.json",
+    "sha256": "cb1aa0289b76e34ff16de4d58041d15229c0c139ba80cd9acb8f23887cca61a4",
+    "bytes": 997
+  },
+  "recovery": "Use immutable sources by each recorded phase commit/plan (predict 2c05f7f, first finalize302e607, fixed finalizeb2c04d9). Load saved full64 model/vectorizer to reproduce held probabilities; no new NN needed. Native raw/weights retain remote path in completion; prepared pools/model/fullpred external."
+}

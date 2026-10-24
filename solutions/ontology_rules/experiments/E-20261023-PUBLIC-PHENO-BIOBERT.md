@@ -37,3 +37,11 @@ pooled Score **.727975655663→.730993616492（+.003017960829）**；mention净+
 ### 固定原dev迁移（运行中）
 
 四fold统一独审2907fc55通过后，原4×48 OOF来源完整64篇训练池61,781→62,281（+500）逐原spec核验，唯一HGB160模型103实际列/4,196正例，内部14.706秒、含进程15.084秒；模型42e94115在新dev推断前冻结。复用旧full64来源，公共BioBERT六字段同训练侧，dev只使用c0fc四字段输入。固定.3/proper-nested、当前d531模板全部非entities/368关系原样；先新完整预测冻结再唯一v2，旧指标复用，不扫阈值/重算关系支持。源码与[固定协议](../public_phenotagger_biobert_dev_transfer/fixed-dev-protocol.json)已保存；native同模型4,655缓存复用+50,548新forward，独立GPU上限180+TERM30，尚无新dev质量。总共享权重库存9,597,467,990，实际采用adapter仍沿原库存另记；闭合实体/二元模型不计入生产链。
+
+#### 原dev唯一端点（完成，独审待回收）
+
+Score **0.737585917391→0.738493752650（+0.000907835259）**；mention +13TP/+17FP、doc +3TP/+1FP，mic/mac及368关系全部不变，0格式错警。1,379个native键并入旧13,144候选→13,246；同一个已冻full64 103列模型预测3.305秒（外3.524）。native78.392秒/纯新NN34.452秒，GPU已00:08:21.369131释放，来源CPU0.967秒；同BioBERT4,655复用全部原tuple/top3/native行/索引精确。
+
+首装配1.572秒在读取gold或输出预测前因错误的metadata整对象等式退出：旧提交schema没有patient/full_text。只改为现有公共字段一致检查，原源/计划保留，独立attempt2在剩余28秒内用时1.669秒，未改任何数学/分数/输入。完整新预测SHA `baac8186…` 冻结 `a84d2ea8…` 后唯一v2；结果 `3f5d2aa0…`。合计3.241秒<原30，不追加臂/阈值；当前best仍待root收独审。
+
+[结果与完整模型恢复索引](../evidence/round2/public-phenotagger-biobert-dev-results.json)保留真实pickle、全量候选/概率、预测与失败轨迹路径/SHA；大产物外置，不能只凭小summary重训练或重推NN。此为原dev开发正结果，尚未达0.8，不是官方分。
