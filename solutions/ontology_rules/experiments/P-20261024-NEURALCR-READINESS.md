@@ -122,3 +122,5 @@ root指定本owner为A100唯一恢复探测者，不看mount元数据；01:46:59
 01:52库存成功后，仅补cpu-reference.json的唯一write又LUNA_OFFLINE，立即停，未到CPU compile或GPU start；原失败state不改写。参考本来与同服务器postdownload/native-cpu-result.json逐字节同SHA，故后继已准备一次samehost run_command：复核现有5文件，只有reference缺失时从已验原件hardlink，所有SHA/CPU compile完成再start。该恢复不需任何再次上传，不覆盖异常不同字节，也不把离线错误解释成一定未落盘。新的同机恢复仅准备，未自动执行；source/plan/probe180秒与1536+41query完全不变。
 
 root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；已加samehost-reference-intent guard，在任何UNKNOWN结果后拒绝重发，只能后续只读核已执行状态。GPU source/plan/budget不变，sequence等待实际释放。
+
+同机run_command在全部SHA/compile通过后先落盘`samehost-reference-receipt.json`再返回；若MCP结果UNKNOWN，后续只读取此实际收据与目标状态，不重发动作。此小收据不含模型推断/训练。
