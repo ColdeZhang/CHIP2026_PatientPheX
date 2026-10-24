@@ -1,6 +1,6 @@
 # LongT5 患者集合工程准备
 
-唯一选定 `google/long-t5-tglobal-base`，原强G的87条quote答案语义不变。正式训练未启动；单base资产与有界工程已完成，`.100 GPU0` 在2026-10-24 17:05:05.631 UTC确认释放。选型、许可和数据限制见[REPORT](REPORT.md)，实际原件refs见[probe-results](evidence/probe-results.json)。
+唯一选定 `google/long-t5-tglobal-base`，原强G的87条quote答案语义不变。正式配方与1800+30预算已固定、尚未启动，入口见[formal/README](formal/README.md)；单base资产与有界工程已完成，`.100 GPU0` 在2026-10-24 17:05:05.631 UTC确认释放。选型、许可和数据限制见[REPORT](REPORT.md)，实际原件refs见[probe-results](evidence/probe-results.json)。
 
 仓外原件根：`/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/`。
 

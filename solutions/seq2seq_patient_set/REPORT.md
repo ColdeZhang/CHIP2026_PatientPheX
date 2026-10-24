@@ -2,7 +2,7 @@
 
 建议进入一次有界工程探针的候选是 **`google/long-t5-tglobal-base`**，不是再开一条Qwen目标/loss变体。它把完整报告与全部患者锚点放在双向长上下文encoder中，短decoder通过cross-attention产生目标患者的整个关系集合；当前Qwen是单个因果decoder按提示前缀自回归。既有DocRE/GP是判别式候选或跨度模型，SCST/DPO改变目标与优化，teacher/quote补全改变监督供给，都不等价于这一架构变化。
 
-静态检查后root已授权单base资产和600秒有界probe，正式训练仍未授权；当前实际状态只在WORKLOG维护。通用C4没有医学/指令专门先验，87样本少；**唯一目标改为原强G的完整87条quote答案语义**，以复用其可复制原文与固定公共规范化。纯ID方案保留为未选CPU对照，不能拿JSON往返证明HP编号长尾可学。
+静态阶段先授权单base资产和600秒有界probe；工程完成后root另固定唯一10epoch正式配方及1800+30训练预算，当前实际启动状态只在WORKLOG维护。通用C4没有医学/指令专门先验，87样本少；**唯一目标改为原强G的完整87条quote答案语义**，以复用其可复制原文与固定公共规范化。纯ID方案保留为未选CPU对照，不能拿JSON往返证明HP编号长尾可学。
 
 ## 原始资产及唯一选型
 
@@ -47,7 +47,7 @@ BioBART-large原配置`max_position_embeddings=1024`，不能直接覆盖本任�
 
 [probe.py](probe.py)已实际启动有界工程，原失败与恢复均保留，最终结果见WORKLOG：原厂base全参数、FP32权重+BF16 autocast、原生encoder/decoder非重入checkpoint、AdamW。先真实free UUID/无进程门和300秒启动有效期，再四个完整训练案例：5571×658最大目标、7733×213右补到8192、9907×3最长输入、同完整输入右补到16384。padding mask=0，不截文本、不增加临床内容。前两例各真实Adam一次，后两例在已有Adam状态下做FB；保存loss/梯度有限性、实际8k/16k FB秒数、峰allocated/reserved，再16-token训练例工程解码。所有probe状态弃掉，无checkpoint恢复声明。
 
-.100上单base资产/探针已由root授权，正式训练未授权。共享预算600秒+TERM30，排他输出目录、不自动重试；`.100 A30 GPU0`只是候选，root排程时SCST必要Sap优先，须真实空闲门。没有申请/启动正式87训练；需先取得每例实测与目标环境版本，再决定正式配方/预算。四形状实测不能直接当作完整epoch或完整held生成分钟数。入口、原件、精确将来命令见[README](README.md)；此probe不运行held推断或质量。
+本节工程探针预算600秒+TERM30已按原钟结束；独立正式计划现已固定，见[formal/README](formal/README.md)。正式资源尚等root协调及fresh门，不由工程通过自动推定已启动。四形状实测不能直接当作完整epoch或完整held生成分钟数。入口、原件、精确将来命令见[README](README.md)；此probe不运行held推断或质量。
 
 主要原始来源：[Google LongT5](https://github.com/google-research/longt5)、[NAACL论文](https://aclanthology.org/2022.findings-naacl.55/)、[base原始模型](https://huggingface.co/google/long-t5-tglobal-base/tree/aecb1376e5bd78db32ebc5c9deb257449b9e2b21)、[large原始模型](https://huggingface.co/google/long-t5-tglobal-large/tree/fb4ba84440d10e9b93fd626fb460683372329d4a)、[ModelScope base](https://modelscope.cn/models/google/long-t5-tglobal-base)。已核机制地图与当前route索引；这是架构条件生成控制，不称新的集合监督发明。
 
@@ -64,4 +64,4 @@ BioBART-large原配置`max_position_embeddings=1024`，不能直接覆盖本任�
 |9907×3 原最长输入|1.142|无更新|7.319 / 9.957|
 |16384×3 右padding|1.763|无更新|10.828 / 17.129|
 
-后两例已有Adam状态，16k行是9907原输入mask右补且decoder仅3；不是16k×658最坏联合形状，也不是所有87训练行的显存上界。短解码只是16-token训练例运行验证，不能据其token内容挑目标或评分。正式全87训练、39完整生成、模型checkpoint保存恢复尚未运行或授权；已有成本支持A30单base小规模后继工程，质量仍未知。
+后两例已有Adam状态，16k行是9907原输入mask右补且decoder仅3；不是16k×658最坏联合形状，也不是所有87训练行的显存上界。短解码只是16-token训练例运行验证，不能据其token内容挑目标或评分。正式全87训练与39完整生成尚未运行；唯一正式配方/1800+30预算已授权，GPU启动等待资源协调。新tiny CPU同writer保存恢复合同已通过，不冒称完整base训练状态已验证；已有成本支持A30后继工程，质量仍未知。
