@@ -1,0 +1,104 @@
+{
+  "experiment": "E-20261024-BOUNDARY-VETO-001",
+  "locked_utc": "2026-10-24T16:00:01.258014+00:00",
+  "base_main": "bc8084e756f6f24fb9e633cc4fd31f8395b43f30",
+  "status": "PRELOCKED_BEFORE_ANY_BOUNDARY_HELD_OUTPUT_OR_QUALITY",
+  "owner": "root; preparation only by boundary_veto_control",
+  "baseline_score": 0.7286975364690524,
+  "formula": "Delete every baseline entity iff its identical (pmc_id,offset,length,text) held row has complete EOS, uncapped, strict parsed BOUNDARY. Apply uniformly to all matching entity objects including compound identifiers. Retain all HPO/NO/NIL/parse failures/unmatched; no entity addition, identifier replacement, threshold, patient or HPO subset. Duplicate held row/span or inconsistent evidence is a full contract failure. Preserve every other object and remaining entity order.",
+  "complete_rows": 1416,
+  "baseline_entities": 1313,
+  "documents": 16,
+  "patients": 39,
+  "endpoints": 1,
+  "new_v2_max": 1,
+  "old_v2": 0,
+  "zero_change": "inherit exact baseline bytes and metrics; zero gold opens and zero v2",
+  "gate": "strict Score > strong baseline; any next fold or originaldev remains separate",
+  "separate_parent_endpoints": [
+    "strong-union",
+    "new-only"
+  ],
+  "new_variable": "2931 original targets preserved; add539 train32 strict crossing BOUNDARY targets, four distinct output modes; two full epochs868 updates finalepoch2 only",
+  "prohibited": [
+    "GPU",
+    "model forward",
+    "fit",
+    "quality during preparation",
+    "gold before full freeze",
+    "partial held endpoint",
+    "subsets chosen from parent quality"
+  ],
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+      "bytes": 13085,
+      "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "mentions": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/prepared-v1/held.jsonl",
+      "bytes": 4508082,
+      "sha256": "1fcca77993c539bbaed6e5de1283458c4acbd8b4d7e17f67d5d396fa59c22567"
+    },
+    "pool_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/prepared-v1/manifest.json",
+      "bytes": 2200,
+      "sha256": "64f18d359f56f9a86d521d2fd749d49a135343785d072dc80b149c47b673bbdb"
+    },
+    "encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/cpu-v1-collected/actual/dev.encoded.jsonl.gz",
+      "bytes": 517789,
+      "sha256": "ae04c22a41862435c693c6066078297a4b777554955f5a5e36e0feee52696507"
+    },
+    "cpu_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/cpu-v1-selected/actual/complete.json",
+      "bytes": 4954,
+      "sha256": "9cb5bffae1791a09188768f43669d64f1f204231cf8ec823aea09c8c1b3aa2cb"
+    },
+    "parent_schema": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/schema.py",
+      "bytes": 4170,
+      "sha256": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4"
+    },
+    "parent_infer_source": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/gpu_entry.py",
+      "bytes": 11058,
+      "sha256": "b5d5852dab675a3c4f60b0a7cd0e7f9b8c9ecfcac21fa9fd5ebcad2eee76b561"
+    },
+    "parent_gpu_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/gpu-plan.json",
+      "bytes": 9636,
+      "sha256": "9961d70d2a215bffcad3edc02bf33e1c535b500aea89c2e1a2b4d30e5f1d9d2f"
+    }
+  }
+}
