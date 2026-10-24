@@ -1,6 +1,6 @@
 # 文档级关系工作台账
 
-- **临时交棒：30轮已批准/全部CPU与独立部署完成，GPU未启动，匹配run intent为0。** 按root要求先释放代理槽恢复其他owner；待root收到GP F0真实释放后followup，直接按[evidence/long-resume.json](evidence/long-resume.json)唯一入口运行，不再审批、不重工程。
+- **当前：30轮已唯一正式启动**。`proc_3973bb9b-954c-4b6a-afff-3e71eb2f1baa` / PID1199462，.3 GPU0，10:19:15.037771 UTC启动，TERM10:34:15.037758、KILL+30；fresh4MiB/noapps、盘176.7GB，首epoch1/30、8Adam正常。恢复见[evidence/long-start.json](evidence/long-start.json)；旧long-resume是启动前交棒记录，不可据它重新start。
 - 起点：main `0c0672d`，分支 `explore/document-relations`，独立worktree同名；用户目标原固定dev≥.8。
 - 当前实验 `E-20261024-DOCRE-001`：复现ATLOP式多提及池化与局部attention交集，扩展为覆盖全文的重叠窗口，固定公共三模型提供HPO候选；不复用任务训练候选，避免新的留出泄漏。
 - 先完成F2+F3 train32→F1初版。正文全部编码；物理提及只归属一个完整窗口，跨窗重复不重复计权。患者/概念多提及logsumexp，ATLOP式pair context＋分块双线性头。首版不加额外实体图Transformer。
@@ -34,3 +34,5 @@ marker正式178.409秒rc0，8epoch/64Adam/16held全部完成，state1.319GB SHA1
 固定30epoch/240Adam后继现已获root批准唯一900+30，排GP F0真实释放后，fresh同marker/base，仍两完整共冻端点/各1v2旧0；若两臂仍不升强N则关闭本组。低成本CPU实际核过：只3行epoch参数/状态断言改变，其余与已完成marker源码逐字相同；960doc/134850pair passes、24warmup，held唯一loop在全部epochs之后。新独立source-long-v3保留原remote source不动。批准计划8ad76336…与CPU证据见evidence/long-formal-plan.json、long-cpu-contract.json；当前未GPU启动。
 
 比较标签补全：固定N .676546355是normal-fulltext强对照，并非历史F1整条流水线最高。已只读核历史public-new LGB支持组合 .686338981、mic .738647830/mac .591769159，16文献/39患者/同1189实体逐项相同，metrics SHA59242df4…。其支持gate train48排F1、含F0，资源条件不同；不改当前门、不新增端点。只胜N只能称待融合候选，不能称全流程新best，见evidence/historical-full-pipeline-reference.json。
+
+恢复后已唯一启动30轮，原启动意图在transport持久。下一步低频看原进程/进度，不依赖本地跨轮watcher；完整16F1完成再freeze两终点、各1v2。完成实际release交grounded Sap（owner sequence_recover_0518）。同时root临时分配同槽CPU只读GP F0增量审，独立写validation/span-oof-F0-final-review，不影响本训练。

@@ -1,0 +1,54 @@
+{
+  "driver-start.json": {
+    "started_at_utc": "2026-10-24T10:19:15.037771+00:00",
+    "driver_pid": 1199462,
+    "deadline_TERM_unix": 1792838055.0377579,
+    "deadline_KILL_unix": 1792838085.0377579,
+    "budget_seconds": 900,
+    "grace_seconds": 30,
+    "plan_sha256": "8ad763366678d86978e5fdc335ae3e6d3ca5aa447969210722c1018066fb70bb"
+  },
+  "fresh-gpu.json": {
+    "at_utc": "2026-10-24T10:19:15.684565+00:00",
+    "gpu": "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4, 24160, 24576",
+    "target_compute_rows": [],
+    "output_disk_free_bytes": 176706002944
+  },
+  "child-start.json": {
+    "pid": 1199470,
+    "command": [
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+      "-u",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/train.py",
+      "--encoded",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/marker-encoded-v2",
+      "--model",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
+      "--output",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/formal-marker-long-v3/native",
+      "--mode",
+      "formal",
+      "--epochs",
+      "30",
+      "--seed",
+      "20261024"
+    ],
+    "at_utc": "2026-10-24T10:19:15.687420+00:00"
+  },
+  "native/progress.json": {
+    "epoch": 1,
+    "global_step": 8,
+    "documents": 32,
+    "document_order_sha256": "509878cea3314385fc678045836e567884eb2fbdfa3394081bdde2b8944ab7d7",
+    "mean_document_loss": 0.652200611308217,
+    "seconds": 20.883892975747585,
+    "zero_context_pairs": 1441,
+    "pairs_seen": 4495,
+    "peak_allocated_bytes": 3059035136
+  },
+  "managed_process": {
+    "id": "proc_3973bb9b-954c-4b6a-afff-3e71eb2f1baa",
+    "pid": 1199462,
+    "started_at": "2026-10-24T10:19:14.968887992Z"
+  }
+}
