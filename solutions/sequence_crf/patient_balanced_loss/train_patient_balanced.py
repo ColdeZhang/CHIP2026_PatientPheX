@@ -61,7 +61,7 @@ WEIGHTS_PREPARATION_SHA='c713111b51c70c2c39a34917f06a5dab4fb162c0fb724e0689c2d09
 ROW_WEIGHTS_SHA='e1e4cc5ec55a01b198607f271c6e4d4d7c15824a50cfeb884c6dd876218d4429'
 EPOCH_GROUPS_SHA='6b80ef9d11f41811ec5d0e54a90189c359e267c18fec452cab242cf107640452'
 MIXED_LOSS_SHA='dc98bb97605419de568a5ba736607aa50d1907957f98daa618e12c87446fccd5'
-ROW_LOSS_SCOPE_SHA='97a0c5ce8784a6723640c84331a76f98e413197329866dc31986dccc22db468c'
+ROW_LOSS_SCOPE_SHA='7b9900fc4896f53b02f4edcbbd94799258c3bb8f91fec7c3b3768054d4690da8'
 NATIVE_LOSS_SHA='83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe'
 OBJECTIVE={'name':'patient-balanced-chunk-equal-mixed-alpha05-v1','alpha':.5,
     'patients':87,'groups_per_epoch':16,'original_outer_backward_divides_by_actual_group_size':True,
@@ -70,6 +70,8 @@ OBJECTIVE={'name':'patient-balanced-chunk-equal-mixed-alpha05-v1','alpha':.5,
     'new_component':'g*S/P * sum_p(meanCE(value_p)/n_p)',
     'original_F1_torch':'2.7.1','draft_target_torch':'2.6.0+cu124',
     'complete_native_BF16_head':True,'selected_FP32_CE_equivalent_old_half':True,
+    'hook_diagnostic_kwargs':'only output_attentions=None and output_hidden_states=None',
+    'actual_loss_call_observed_and_saved_before_parameter_guards':True,
     'old_objective_checkpoint_continuation_forbidden':True}
 sha256=helpers.sha
 write_json=helpers.write
@@ -83,14 +85,30 @@ def semantic_configuration(args):
 def load_objective_sources():
     """Load only the two exact sibling sources; no alternate loss implementation."""
     modules={}
-    for name,digest in [('mixed_loss',MIXED_LOSS_SHA),('row_loss_scope',ROW_LOSS_SCOPE_SHA)]:
-        path=Path(__file__).resolve().parent/(name+'.py')
+    for name,relative,digest in [('mixed_loss','mixed_loss.py',MIXED_LOSS_SHA),
+                               ('row_loss_scope_v2','interface_recovery/row_loss_scope_v2.py',ROW_LOSS_SCOPE_SHA)]:
+        path=Path(__file__).resolve().parent/relative
         if sha256(path)!=digest:raise ValueError('Frozen objective source differs: '+name)
         spec=importlib.util.spec_from_file_location('_patient_balanced_'+name,path)
         if spec is None or spec.loader is None:raise ValueError('Cannot load fixed objective source')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         modules[name]=module
-    return modules['mixed_loss'],modules['row_loss_scope'].RowLossScope
+    return modules['mixed_loss'],modules['row_loss_scope_v2'].RowLossScope
+
+
+def append_loss_call_observation(path,actual):
+    """Called inside the v2 hook before compatibility assertions or loss math."""
+    path=Path(path)
+    with path.open('a',encoding='utf-8') as handle:
+        handle.write(json.dumps(actual,ensure_ascii=False,sort_keys=True,allow_nan=False)+'\n')
+        handle.flush();os.fsync(handle.fileno())
+    parent=path.resolve().parent
+    while True:
+        descriptor=os.open(parent,os.O_RDONLY|os.O_DIRECTORY)
+        try:os.fsync(descriptor)
+        finally:os.close(descriptor)
+        if parent.parent==parent:break
+        parent=parent.parent
 
 
 def bind_row_weights(args,rows,encoded,output):
@@ -394,6 +412,105 @@ def collate(examples, pad_token_id, torch):
             "attention_mask": torch.tensor(masks, dtype=torch.long, device="cuda:0"),
             "labels": torch.tensor(labels, dtype=torch.long, device="cuda:0")}
 
+def durability_fsync_directory(path):
+    descriptor=os.open(str(path),os.O_RDONLY|os.O_DIRECTORY)
+    try:os.fsync(descriptor)
+    finally:os.close(descriptor)
+
+
+def durability_inventory(root):
+    members={}
+    for path in sorted(root.rglob('*')):
+        if path.is_symlink():raise ValueError('Checkpoint symlinks are forbidden')
+        if path.is_file():members[path.relative_to(root).as_posix()]=path
+        elif not path.is_dir():raise ValueError('Checkpoint has a nonregular member')
+    return members
+
+
+def durable_publish_checkpoint(output,staging,destination):
+    # No state deserialization, optimizer/RNG calls or training policy changes.
+    output=Path(output);staging=Path(staging);destination=Path(destination)
+    if not output.is_dir() or output.is_symlink():raise ValueError('Require own existing checkpoint output directory')
+    persistent_root=Path(os.environ['PATIENTPHEX_DURABILITY_ROOT']).resolve()
+    if not persistent_root.is_dir() or persistent_root==output.resolve():raise ValueError('Require explicit existing persistent ancestor root')
+    output.resolve().relative_to(persistent_root)
+
+    if staging.is_symlink() or destination.is_symlink():raise ValueError('Checkpoint paths must not be symlinks')
+    if staging.parent.resolve()!=output.resolve() or destination.parent.resolve()!=output.resolve():
+        raise ValueError('Checkpoint stage and destination must share the own output parent')
+    if destination.exists():raise ValueError('Checkpoint destination exists; no overwrite')
+    if not staging.is_dir():raise ValueError('Checkpoint staging directory is missing')
+    metadata_path=staging/'checkpoint.json'
+    if metadata_path.is_symlink():raise ValueError('Checkpoint metadata must not be a symlink')
+    metadata_raw=metadata_path.read_bytes();metadata=json.loads(metadata_raw)
+    completed=metadata['completed_epochs']
+    if type(completed) is not int or completed not in (1,2) or metadata['global_step']!=16*completed or metadata.get('smoke_only') is not False:
+        raise ValueError('Require original124 complete-epoch checkpoint accounting')
+    if destination.name!=f'epoch-{completed:03d}' or staging.name!=f'.epoch-{completed:03d}.incomplete':
+        raise ValueError('Checkpoint epoch/staging namespace differs')
+    receipt_path=output/f'durability-epoch-{completed:03d}.json'
+    if receipt_path.exists() or receipt_path.is_symlink():raise ValueError('Durability receipt exists; no overwrite')
+    source_sha=sha256(__file__)
+    if metadata['fingerprint']['source_sha256']!=source_sha:
+        raise ValueError('Checkpoint does not belong to this exact trainer source')
+    expected=metadata['files']
+    if not isinstance(expected,dict) or not expected:raise ValueError('Checkpoint member digest map is empty')
+    expected=dict(expected)
+    for name,digest in expected.items():
+        relative=Path(name)
+        if (not isinstance(name,str) or relative.is_absolute() or '..' in relative.parts
+            or relative.as_posix()!=name or name=='checkpoint.json'
+            or not isinstance(digest,str) or re.fullmatch(r'[0-9a-f]{64}',digest) is None):
+            raise ValueError('Unsafe or invalid checkpoint member digest')
+    if not {'training_state.pt','adapter/adapter_model.safetensors','adapter/adapter_config.json'}<=set(expected):
+        raise ValueError('Checkpoint lacks full training state or adapter members')
+    expected['checkpoint.json']=hashlib.sha256(metadata_raw).hexdigest()
+    members=durability_inventory(staging)
+    if set(members)!=set(expected):raise ValueError('Checkpoint member inventory differs before publish')
+    # Existing writers have closed their files. Flush every member, then all
+    # directories deepest-first (including the stage itself) before rename.
+    for path in members.values():
+        with path.open('rb') as handle:os.fsync(handle.fileno())
+    directories=[path for path in staging.rglob('*') if path.is_dir()]
+    for path in sorted(directories,key=lambda p:(-len(p.parts),str(p))):durability_fsync_directory(path)
+    durability_fsync_directory(staging)
+    if destination.exists() or receipt_path.exists():raise ValueError('Checkpoint destination/receipt appeared; refuse overwrite')
+    staging.replace(destination)
+    # Persist every newly-created ancestor directory entry through the explicit
+    # project filesystem root before acknowledging this complete epoch.
+    synced_ancestors=[];ancestor=output.resolve()
+    while True:
+        durability_fsync_directory(ancestor);synced_ancestors.append(str(ancestor))
+        if ancestor==persistent_root:break
+        ancestor=ancestor.parent
+    actual_members=durability_inventory(destination)
+    if set(actual_members)!=set(expected):raise ValueError('Checkpoint member inventory differs after publish')
+    reopened={}
+    for name,path in actual_members.items():
+        actual_sha=sha256(path)
+        if actual_sha!=expected[name]:raise ValueError('Reopened durable checkpoint SHA mismatch: '+name)
+        reopened[name]={'bytes':path.stat().st_size,'sha256':actual_sha}
+    # A failed post-rename hash leaves the checkpoint intact with NO success
+    # receipt. Recovery must preserve this failure, never relabel it passed.
+    receipt={'status':'PASS_file_and_directory_fsync_rename_and_reopened_SHA',
+        'completed_epochs':completed,'global_step':metadata['global_step'],
+        'checkpoint':str(destination),'source_sha256':source_sha,
+        'checkpoint_metadata_sha256':expected['checkpoint.json'],'files':reopened,
+        'file_directory_fsync':True,'reopened_SHA_all_exact':True,
+        'persistent_root':str(persistent_root),'ancestor_directories_fsynced':synced_ancestors,
+        'at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
+        'all_members_reopened_and_SHA_verified':True,'file_fsync_count':len(members),
+        'checkpoint_directory_fsync_count':len(directories)+1,
+        'parent_directory_fsync_after_rename':True,'receipt_parent_directory_fsync_required':True,
+        'no_state_deserialization':True,'no_rng_or_training_math_calls':True,
+        'completed_unix_seconds':time.time()}
+    with receipt_path.open('x',encoding='utf-8') as handle:
+        json.dump(receipt,handle,ensure_ascii=False,indent=2);handle.write('\n')
+        handle.flush();os.fsync(handle.fileno())
+    durability_fsync_directory(output)
+    return receipt
+
+
 def run(args):
     for key in ['OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','NUMEXPR_NUM_THREADS']:os.environ[key]='1'
     os.environ['TOKENIZERS_PARALLELISM']='false';os.environ['HF_HUB_OFFLINE']=os.environ['TRANSFORMERS_OFFLINE']='1'
@@ -476,10 +593,12 @@ def run(args):
         write_json(manifest_path,manifest)
         for name,source in [('train_patient_balanced.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),
             ('qwen35_relation_cost.py',inspect.getfile(protocol)),('patient_first.py',args.schema_helper),
-            ('mixed_loss.py',inspect.getfile(mixed_loss)),('row_loss_scope.py',Path(__file__).resolve().parent/'row_loss_scope.py'),
+            ('mixed_loss.py',inspect.getfile(mixed_loss)),
+            ('interface_recovery/row_loss_scope_v2.py',Path(__file__).resolve().parent/'interface_recovery/row_loss_scope_v2.py'),
             ('row-weights.jsonl',args.row_weights),('epoch-groups.json',args.epoch_groups),
             ('weights-preparation-manifest.json',args.weights_preparation_manifest)]:
-            (output/name).write_bytes(Path(source).read_bytes())
+            copied_source=output/name;copied_source.parent.mkdir(parents=True,exist_ok=True)
+            copied_source.write_bytes(Path(source).read_bytes())
         if args.mode=='cpu':
             status('meta_full_hybrid_coverage')
             with torch.device('meta'):
@@ -498,6 +617,8 @@ def run(args):
         if (output/'training_complete.json').exists():raise ValueError('Run is already marked complete; refusing train/resume')
         controls=output/'run_controls';controls.mkdir(exist_ok=True);control_path=controls/f'{time.time_ns()}-{os.getpid()}.json'
         scope_directory=output/'loss-scopes'/control_path.stem;scope_directory.mkdir(parents=True)
+        def observe_loss_call(actual):
+            append_loss_call_observation(scope_directory/'actual-loss-calls.jsonl',actual)
         control={'resume':args.resume,'stop_after_epoch':args.stop_after_epoch,'started_completed_epochs':resumed_epochs,
             'configured_epochs':2,'status':'running','started_unix_seconds':time.time(),'pid':os.getpid(),
             'loss_scope_directory':str(scope_directory)}
@@ -561,7 +682,7 @@ def run(args):
                     # One scope owns the original base instance through forward
                     # AND checkpoint backward. Core includes g; outer /g stays once.
                     with RowLossScope(base,metadata,len(group),87,16,mixed_loss.mixed_causal_loss,
-                                      native_loss.fixed_cross_entropy,original_loss,active_binding.copy()) as scope:
+                                      native_loss.fixed_cross_entropy,original_loss,active_binding.copy(),observe_loss_call) as scope:
                         with torch.autocast('cuda',dtype=torch.bfloat16):loss=model(**batch,use_cache=False).loss
                         if not bool(torch.isfinite(loss)):raise RuntimeError('Nonfinite training loss')
                         (loss/len(group)).backward();group_loss+=float(loss.detach())/len(group)
@@ -593,7 +714,7 @@ def run(args):
             torch.save(state,staging/'training_state.pt')
             files={str(p.relative_to(staging)):sha256(p) for p in sorted(staging.rglob('*')) if p.is_file()}
             write_json(staging/'checkpoint.json',{'fingerprint':fingerprint,'files':files,'completed_epochs':epoch+1,'global_step':global_step,'smoke_only':False,'new_resume_numerical_equivalence_tested':False})
-            staging.replace(destination)
+            durable_publish_checkpoint(output,staging,destination)
             write_json(output/'progress.json',{'completed_epochs':epoch+1,'global_step':global_step,'mean_accumulation_group_loss':loss_sum/len(groups),'epoch_seconds':time.time()-epoch_started,'checkpoint':str(destination),'training_only':True})
             outcome=epoch_outcome(epoch+1,2,args.stop_after_epoch);control.update(status=outcome,completed_epochs=epoch+1,global_step=global_step,checkpoint=str(destination),updated_unix_seconds=time.time());write_json(control_path,control)
             print(json.dumps({'status':outcome,'epoch':epoch+1,'global_step':global_step,'checkpoint':str(destination)}),flush=True)
