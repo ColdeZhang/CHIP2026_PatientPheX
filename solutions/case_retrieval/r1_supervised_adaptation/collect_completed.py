@@ -55,8 +55,15 @@ def main():
     receipt = directory / 'archive-freeze-receipt.json'
     if not args.existing:
         assert not receipt.exists()
-        result = client.request('tools/call', dict(name='run_command', arguments=dict(
-            mount_id=MOUNT, command='python3 -c ' + shlex.quote(FREEZE), timeout_seconds=30)))
+        save(directory / 'collection-intent.json', dict(source_sha256=digest(Path(__file__).read_bytes()),
+            remote_directory=REMOTE, one_archive_only=True, no_inference_or_quality=True))
+        try:
+            result = client.request('tools/call', dict(name='run_command', arguments=dict(
+                mount_id=MOUNT, command='python3 -c ' + shlex.quote(FREEZE), timeout_seconds=30)))
+        except Exception as error:
+            save(directory / 'archive-freeze-exception.json', dict(exception_type=type(error).__name__,
+                remote_state_unknown=True, action='Read-only inventory required; do not freeze again.'))
+            raise
         save(receipt, result)
     else:
         result = json.loads(receipt.read_bytes())
@@ -74,8 +81,13 @@ def main():
                 previous = json.loads(ack.read_bytes()); data = part.read_bytes()
                 assert previous['bytes'] == len(data) == count and previous['sha256'] == digest(data)
             else:
-                result = client.request('tools/call', dict(name='read_file', arguments=dict(
-                    mount_id=MOUNT, path=expected['path'], offset=offset, limit=count)))
+                try:
+                    result = client.request('tools/call', dict(name='read_file', arguments=dict(
+                        mount_id=MOUNT, path=expected['path'], offset=offset, limit=count)))
+                except Exception as error:
+                    save(chunks / ('exception-%s-%09d.json' % (kind, offset)),
+                        dict(exception_type=type(error).__name__, offset=offset, requested_bytes=count))
+                    raise
                 if result.get('isError'):
                     save(chunks / ('error-%s-%09d.json' % (kind, offset)), result)
                     raise RuntimeError('Original transfer error retained; no retry.')
