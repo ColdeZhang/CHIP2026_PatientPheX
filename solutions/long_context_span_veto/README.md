@@ -4,7 +4,7 @@
 
 生产接口已与 document owner 对齐，见 [interface.json](evidence/interface.json)。本代码沿已验 `boundary_veto` 的排他写入、装配、对象保护、byteexact零变更和单次v2入口，只替换判定/来源。只用标准库，源/结果独立；旧NO、9B和BOUNDARY删除控制已存在，本次变量是新长context GP状态，0为原二分类界。
 
-当前只完成 CPU 准备，没有读取真实模型输出、gold或运行质量。父完整终态/256更新ACK与全部17窗原件回收并经root核源后：
+**已按下列命令执行并负结案；不要重跑。** 结果见 [WORKLOG](WORKLOG.md) 和 [结果指针](evidence/result.json)。以下保留原复现入口；原目录中的排他intent不可覆盖。父完整终态/256更新ACK与全部17窗原件已由root核源：
 
 ```bash
 S=/workspace/patientphex-worktrees/explore-long-context-span-veto/solutions/long_context_span_veto
