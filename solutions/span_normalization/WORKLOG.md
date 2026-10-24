@@ -18,3 +18,7 @@
 
 - E003已GPU272.023s/CPU16.639s完整结束，F0小负，26加46删、mention TP−6/FP−14/doc TP−5；metadata见evidence/oof-f0-result.json，.3模型/预测备份31191e6a。docRE增量审并行。
 - 后继E004已授权四折研发补全（非盲测）：保留已知F0负/F1正原预测，补F2/F3同配方，旧103→105；只缺GP01和两个GP48，8全目标pass，预估338秒≤900+30，排DocRE30真实释放后；源/计划/CPU合同待准备。新F2/F3一起freeze后各1v2+唯一pooled，保留门严格pooled升且3/4折非降。
+
+## E004 固定四折补全（2026-10-24）
+
+已知F1小正/F0小负后，按主线程授权补齐F2/F3，真实103→105旧接口CPU检查中；3新GP+8全边界pass，预算900+30，排DocRE30实际释放。两新预测共冻后各1次v2，再唯一pooled；事前门pooled严格升且≥3/4折非降，否则关闭。见[实验记录](experiments/E-20261024-SPAN-004-fourfold.md)。F0终审a3f855a0完整PASS负终点已收；未原dev迁移。
