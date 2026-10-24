@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**固定候选逆序及old-or-reverse并集已获一次推断授权，准备启动。** 原80/SFT32的固定逆序+CID/code_map同步，80完整双逆byteexact，587语义候选不变；78条变/2条不变，总250691/max5691token，无截断，old80耗时代理282.5秒。历史未做等价控制；root最终预定义逆序alone诊断+old-or-reverse并集主臂，不运行intersection；两fullpred共同freeze后唯一F1，600+30秒，不原dev。[计划与成本](experiments/reverse-json-order.md)。
+**固定候选逆序唯一推断已在A800运行。** 原80/SFT32的固定逆序+CID/code_map同步，80完整双逆byteexact，587语义候选不变；78条变/2条不变，总250691/max5691token，无截断，old80耗时代理282.5秒。历史未做等价控制；root最终预定义逆序alone诊断+old-or-reverse并集主臂，不运行intersection；两fullpred共同freeze后唯一F1，600+30秒，不原dev。实际00:16:56.588Z启动 proc_f40cda16-1503-40ce-8094-72329c15ea69，主截止00:26:56.588Z；外部research/reverse-json-candidate-order/formal/job.json恢复，禁止重复启动。[计划与成本](experiments/reverse-json-order.md)。
 
 **关系JSON单检索示例已负结案，独立终审PASS（b1a178ca）。** 唯一同A800/SFT32/80提示，CPU输入与实际token/模型/运行环境均通过；80完整响应、587候选全部有效，无fallback/tokenlimit，runner304.593秒/wrapper313.157秒，GPU已00:12:04释放。完整fullpred先freeze再唯一F1评：Score **.660942003→.645783102**，micro−.044148462/macro−.016487140，净−27TP/+5FP；实体完全不变、0错警。按预设keep失败关闭，不扫示例/提示、不原dev。传输与本地解析依赖失败均留档，同源环境恢复未增加推断；当前无活动GPU。[结果及全部恢复](evidence/round2/retrieved-json-example-results.json)、[过程](experiments/retrieved-json-example.md)。
 
