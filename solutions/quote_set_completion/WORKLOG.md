@@ -1,6 +1,12 @@
 # 工作台账
 
-分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前261行warm-d52训练/39推断/固定规范化和唯一F1质量均完成，F1 .702224686/新增2TP0FP，保留同配方F0验证候选；F0尚未启动。实际身份/原时钟见文末和evidence/live-inference.json。前述174行/3600秒仅保留为已替代历史。
+分支 explore/quote-set-completion，仅维护 solutions/quote_set_completion。**已完成并关闭**：F1 .702224686较B4+.000899309，但F0 .724106276较B4−.004089353（新增1TP9FP），未过双折正门；禁止启动条件full64训练。所有GPU已释放，唯一F0评价完成1v2/旧0；稳定入口 `N/F0-complete-review-entry.json` SHA caa6ed94，详见实验QSC-001。当前只剩集中增量审及F0最小持久补包；F1已独审且root真实回下载。
+
+恢复：N为仓库外 research/quote-set-completion-v1。不得重复正式训练、F1/F0推断、规范化或评分；条件519/36 CPU产物只作未执行计划保留。最近源码/冻结检查点85655ff3已push，原dev最佳不变。
+
+## 阶段历史
+
+以下按发生顺序保留，当时的“尚未启动/授权”不代表当前状态。
 
 目标：检验给定已报告表型时的条件补全，是否比独立重新生成更能回收遗漏患者关系。当前原dev最佳 .769235669942；本线不读其gold、不宣称预计达标。先复用原train32的87患者弱quote目标，构造两个互补known/remaining视图；原真实关系标签不变，词面代表弱锚点而非人工患者证据。原双采样F1正/F0负已在旧分支关闭，不能重复其采样共识。
 
@@ -49,3 +55,5 @@ F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47
 - F0 A30实际16:28:43启动proc_bca573cc/driver2754362 child2754370；TERM16:58:43.887/KILL16:59:13.887，1800+30。只读watch见live-F0-A30。原47/known204/同cd977完整保持，备份/conditional519 CPU已分离；不得把full64标签用于本F0。
 
 - F0 A30原47完整：223.082秒/47EOS/0cap/峰21.066GB；16:32:27真实释放GPU0。108原件逐SHA回收e27cb54d，原固定解析53anchors/47词面、必要Sap27，完整规范化后唯一B4union质量。F1实际服务器恢复bf565已root完成；条件full64仍仅CPU。
+
+- F0最终固定端点已负：Score .724106275971，Δ−.004089352940；mic−.007296066/mac−.009061346，新增10=1TP9FP；全部947实体/47患者/343旧关系保持。原pred11622f97/freezefebf75c8后仅1v2/旧0，resulte51864d0。关闭QSC，不启full64，未重试格式失败或按错误删答案。
