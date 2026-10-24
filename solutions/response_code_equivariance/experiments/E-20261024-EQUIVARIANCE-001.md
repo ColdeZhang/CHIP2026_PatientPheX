@@ -17,3 +17,13 @@
 ## 唯一实际运行的事前冻结
 
 actual native CPU10.9888秒通过；新本地结构增量0.142047秒，81缓存SHA与原generate AST一致。推断 source/plan/quality入口分别见 `../inference/`、`../evidence/GPU-ready.json`、`../quality/final.py`。已授权53fresh1200+30、固定两quality。GPU启动与完整结果待实际回执，不将许可写成已执行。缓存canonical中的fresh字段保留历史原字节；本次summary逐index单列 `exact_original_C_single_patient_cache`，不会将27条计入新生成。
+
+## 实际终点与决定
+
+唯一模型13:36:35–13:43:57，442.208813秒rc0，53fresh＋27原缓存。80strictEOS/无cap弃答，253件终点含240shards，zip3adf1ecc/94139B。实际allocated22.283GB、reserved25.030GB（十进制），A30显存余量小；GPU释放有原回执。
+
+两完整预测先共冻251dfb1d，后各唯一v2、旧0，质量总0.754053秒。主Score .7012824986440518，比B4 .701325377212172低 .000042878568120；micro +.000242887771240、macro −.000414402043721。主新增关系2TP/3FP，关系集合的微小增量未改善总分。诊断alone .6217565062604539，比B4低 .079568870951718。
+
+全部1189实体、39患者和非关系字段原字节保持。工程完整并不意味着质量收益；主/诊断都失败，本固定cyclic1关闭。没有换主次、另一排列、seed、阈值或第三融合，也没有F0/dev/官方调用。原C在不同host/runtime，不能将诊断下降纯归因输出代码置换；已有原响应编码路线的有效结果保持。
+
+内容备份中13:47:07 offset622592单片write_file返回UNKNOWN，保持原e777a0e3包、实验与质量全部不动；恢复先读原namespace实际库存，再跳过已匹配片，只续缺片。最终持久ACK独立记录，不能以已上传多数片冒称完成。

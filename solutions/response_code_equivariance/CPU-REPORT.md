@@ -6,6 +6,6 @@
 
 实际Torch2.7.1+cu126、Transformers5.20.2、PEFT0.21.2、tokenizers0.23.1，Qwen3_5Tokenizer；实际Qwen源码b4b17及generation7944 SHA核过。后续如果使用.100 A30，原C32是A100Torch2.6，因此这是映射加host/runtime的开发控制，不能把差值纯归因编号。缓存仅复用已存在原输出，不声称跨runtime重新生成逐位等价。
 
-未来固定两端点仍主B4∪(原Cstrict∩新Cstrict)、诊断新Calone，完整共冻再各一次v2；主无增量继承原指标不重评。主严格胜B4才讨论同公式F0；诊断独自更高也如实报告root候选，保持身份且不自动迁移。没有第三臂、setdecoder修复或扫描。GPU/质量尚未授权或执行。
+未来固定两端点仍主B4∪(原Cstrict∩新Cstrict)、诊断新Calone，完整共冻再各一次v2；主无增量继承原指标不重评。主严格胜B4才讨论同公式F0；诊断独自更高也如实报告root候选，保持身份且不自动迁移。没有第三臂、setdecoder修复或扫描。以上为CPU终点时的范围；后续唯一GPU已获授权并启动，当前状态以WORKLOG为准。
 
 单一恢复入口外部CPU-ready.json；全部8件真实CPU终点zipdc65c79a已SHA回收，源、计划、实际收据均独立保留。

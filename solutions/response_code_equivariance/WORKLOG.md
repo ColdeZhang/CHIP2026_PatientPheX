@@ -4,18 +4,18 @@
 
 ## 当前状态
 
-- 目标：用唯一 cyclic1 PT 视图检验原 strict C 的关系稳定性，主端点 `B4 ∪ (原 strict C ∩ 新 strict C)` 必须严格超过 B4 Score `.701325377212172`，才支持讨论 F0。诊断端点为新 strict C 单臂，不能替代主门。
-- 本地准备已完成：80/16doc/39PID/587CID/1557pairs，53 行多患者新 NN、27 行单患者原字节缓存；结构合同 17 项 PASS，实际 0.290318 秒。未读取 gold、原模型答案或训练 target。
-- [结构结果](evidence/structural-result.json) `9d181088…`；新全量输入 `1c372b6e…` /2,893,388 B，留仓库外。原27行三类文件的81件 SHA 已核，只有引用，没有新解析/生成。
-- [native CPU 模板](evidence/native-plan.template.json) 绑定历史 .100 Torch2.7.1/TF5.20.2/tokenizers.23.1/PEFT.21.2，120+5；当前未运行，新 token 总量、max、输入 cap 均为 null。
-- 禁止额外排列/seed/训练/组合扫描；旧 strict parser 原字节复用。没有新模型、质量或官方提交。
-- 该分支现由本路线 owner 独占维护 Git；运行前及时提交推送，核远端后记录。
+- **固定 cyclic1 负结案**：主 `B4 ∪ (原C∩cyclic1C)` Score **.701282498644**，低于B4 **.701325377212**；诊断cyclic1单臂 **.621756506260**。主micro +.000242887771、macro −.000414402044；新增关系 2 TP / 3 FP。两臂都未过门，不迁F0/dev/官网，不扫其他排列/seed。
+- 唯一 .100 A30 GPU0 作业 `proc_d8c112f4-496a-43cd-874b-7c738d093e7d` / PID2743313 于13:36:35启动，13:43:57实际rc0，**442.208813秒**。53fresh+27原字节cache=80严格完整/0弃答；原1200+30预算内结束，GPU已释放。
+- 模型仍原C32，全部8,997,081,600参数<10B；实际14848/1600。allocated22,283,378,176 B / reserved25,029,509,120 B，A30 reserved余量很小，不能只用allocated推断后续可行性。
+- 253件终点/240shards、81缓存原字节全SHA；zip `3adf1ecc`/94,139B。双预测共同freeze `251dfb1d` 后新2v2/旧0，1189实体与非关系字节全保。当前完整证据位于仓库外 `research/response-code-equivariance-v1/gpu-v1`。
+- 此为映射＋host/runtime开发控制：原C A100/Torch2.6，本次 A30/Torch2.7。只关闭本次固定配置，不把负结果归因为纯映射，也不否定已有原响应编码模型。
+- 源/运行/工具检查点 `a1ee4f88` 已推送核验；完整质量与单一终审入口已落盘：`review-input.json` 4fd920ee；69件内容包 e777a0e3/745871B 已本地冻结。13:47:07备份offset622592写回UNKNOWN，正按原namespace库存SHA恢复；服务器ACK尚未取得，不称远端备份完成。
 
 ## 下一步
 
-1. 主线程完成源检查点后，唯一实际 native CPU；沿模板逐字节部署并核实际环境，不重复本地结构生成。
-2. 依据实际 token/max/context 定推断输入 cap 与工程运行；53 fresh＋27 原 raw 缓存覆盖80。任何新生成先落 IDs/raw，再 strict decode；异常整行弃答，不补答案。
-3. 两完整预测共冻后评分：主若变化1 v2、若与B4完全相同继承旧指标0 v2；诊断1 v2，旧0。未获新结论前不自动迁 F0/dev。
+1. 此固定实验不再启动模型、parser、质量或其他排列。
+2. 以仓库外 `review-input.json` 做一次增量终审；旧C和native证明沿用，勿重复运行。
+3. 完成唯一内容包远端SHA/fsync/reopen回执，提交推送最终摘要；后继研究由root结合其他路线另定。
 
 详见 [实验](experiments/E-20261024-EQUIVARIANCE-001.md) 与 [研究笔记](NOTES.md)。
 
