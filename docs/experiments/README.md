@@ -72,6 +72,8 @@
 | `training_seed_ensemble` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/training-seed-ensemble/solutions/training_seed_ensemble/WORKLOG.md) · `research/training-seed-ensemble` |
 | `adapted_quote_linking` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/adapted-quote-linking/solutions/adapted_quote_linking/WORKLOG.md) · `explore/adapted-quote-linking` |
 | `boundary_veto` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/boundary-veto/solutions/boundary_veto/WORKLOG.md) · `explore/boundary-veto` |
+| `patient_set_risk` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/patient-set-risk/solutions/patient_set_risk/WORKLOG.md) · `research/patient-set-risk` |
+| `biomedical_long_context` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/biomedical-long-context/solutions/biomedical_long_context/WORKLOG.md) · `research/biomedical-long-context` |
 
 机制查重先读[机制地图](../research/method-coverage-map-20261024/MAP.md)（明确为13:08历史快照），再读相应路线的最新记录；不把旧快照的待完成项当作重启指令。各链接目标已按本地对应worktree核实存在；不为目录整理访问官网、重评分或下载模型。
 
