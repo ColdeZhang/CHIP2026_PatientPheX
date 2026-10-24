@@ -51,3 +51,9 @@
 统一正式入口独审468a1f84 PASS：训练数学/来源/20件实际部署/CPU、完整状态祖先fsync、原dev单臂端点和后继收据绑定控制器均无具体阻断。两文件后继部署是逐文件原子，不冒称跨文件事务；UNKNOWN须原路径库存后接续。训练继续原proc/4500+30，不新增探针、早停或评分臂。
 
 04:48:59原作业实际epoch1 step5，loss .304094387、lr1e-4、当前峰allocated35,101,749,248B；step2首非零更新grad7.833115/三族B真变化。04:54下一常规只读返回LUNA_OFFLINE，当前终态未知。保持原proc5b00和remote4500+30，不把连接状态当模型失败，不重启/延长预算；退避后只读原目录恢复。
+
+## 原正式训练 OOM 与独立恢复（05:00 后）
+
+真实 wrapper 557.666s/rc1，04:51:51 在 trainer 第573行 backward OOM，申请5.71GiB。stdout最后仅step10；未保存精确失败row/step或CUDA算子，不把它写成第10步失败或前向float失败。冻结顺序CPU推导最长6166位于第12组第4条，只是候选假设，不是观测身份。GPU实际释放，epoch/staging库存为空，无可exact续训的optimizer/RNG状态；无推断/新dev质量。原最长单步PASS不覆盖累积和Adam状态，见main H51。
+
+[统一失败清单](../evidence/patient-first-full64/failure-terminal-manifest.json)和独审f7668be7保留全部原件，完整trace/日志/zip外存。后继只改完整BF16 head之后的监督位置FP32 CE，目标Torch真实CPU先核loss与梯度，再240+30 fresh真实工程探针覆盖Adam状态＋已有累计梯度；不改数据、精度、attention、optimizer或每row mean/实际group分母，不同时改allocator。5.704GiB完整logit大小相近只是形状推断。完整fresh重训待root依据新证据统一决定。
