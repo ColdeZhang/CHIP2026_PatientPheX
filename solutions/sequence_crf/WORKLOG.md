@@ -50,5 +50,5 @@
 ## 记录与接手
 
 - [实验索引 E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[原证据索引](evidence/round2/README.md)。大日志、raw、完整pred、权重均在R或已核持久locator，不进Git。
-- 最近实际推送核验：`25a6e074a6192cee7435809eb3450c9312b587b5`（v2薄接口PASS与新plan）；旧`dec93f4691ffeea985eeb8b6e1704a80ad65c8d5`，含新probe源/12编码事前计划/quality固定设计；`dd7f782`是原CPU执行前源冻结，`3a81ef4`保留首次UNKNOWN启动收据。后续结果按实际完成更新，不为台账自身hash循环提交。
+- 最近关键推送核验：`57bd62761c461f6095d00d19b9840d7e2a417230`（第一轮完成与端到端恢复入口）；`fc24e27`是正式训练执行前源/计划，`25a6e074`是v2薄接口PASS与恢复plan。09:11:55原job实际已epoch2/global_step20，PID19546/19564仍在。后续结果按实际完成更新，不为台账自身hash循环提交。
 - 所有既有train/infer/score终态均不可重启或重评。v2工程probe已完整终态，正式两轮唯一proc_afaf0b83运行中；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。

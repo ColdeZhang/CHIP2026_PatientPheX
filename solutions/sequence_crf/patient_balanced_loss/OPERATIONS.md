@@ -18,7 +18,7 @@
 
 最终 epoch2 完整持久确认后，只运行一次新模型 final80，预算600+TERM30。`final80/final_infer.py` 目前三 actual receipt SHA 为明确 UNBOUND；依真实 `training_complete.json`、`epoch-002/checkpoint.json`、`durability-epoch-002.json` 绑定常量，并更新 `final80/input-sources.json` 的相应 refs/source SHA。只做实际身份绑定，不改生成、strict parser 或原80输入。
 
-新 `final80-plan.json` 应绑定9件 payload、原服务器三件实际训练收据、当前 driver/operations/source SHA，输出是新 `final80-v1/prediction`。`infer_remote.py` 的 `payload_sources` / `expected_remote_files` 可构建文件映射；权重留在原正式 epoch2，不能复制旧模型输出。源/计划先 commit/push，再 pack/deploy/fresh GPU gate/唯一 start。使用同一现有 Qwen 基座、最终新 LoRA、原贪心/非思考/BF16-SDPA/14000与1600限制，严格完整 EOS/PID/CID；生成 IDs 和原文先持久，失败保留原件且停止，不引入 partial/abstain 修复。
+新 `final80-plan.json` 应绑定9件 payload、原服务器三件实际训练收据、当前 driver/operations/source SHA，输出是新 `final80-v1/prediction`。完整正式收件后可运行 `final80/bind_actual_plan.py --formal-directory "$R/formal-v1" --output-directory "$R/final80-binding-v1" --apply`；它核完整 collection/两ACK/四大件实际locator后只绑定三处常量和输入清单，并保存改前/改后与唯一绑定intent。默认不加`--apply`只生成不可部署预览；每次输出目录必须全新。`infer_remote.py` 的 `payload_sources` / `expected_remote_files` 会核文件映射；权重留在原正式 epoch2，不能复制旧模型输出。源/计划先 commit/push，再 pack/deploy/fresh GPU gate/唯一 start。使用同一现有 Qwen 基座、最终新 LoRA、原贪心/非思考/BF16-SDPA/14000与1600限制，严格完整 EOS/PID/CID；生成 IDs 和原文先持久，失败保留原件且停止，不引入 partial/abstain 修复。
 
 结束后 `infer_collect.py` 收原整个输出树；两次模型执行都不能因收件问题重跑。新 `quality/plan-template.json` 必须绑定真实完整 responses、manifest、wrapper 和已绑定 inference source，以及本地/远端 prediction 根；模板自身保持阻断。
 
