@@ -329,7 +329,7 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 患者full64的6166-token单次真实更新通过，峰allocated38.184GB；后续A100完整训练仍在首epoch的backward申请5.71GiB时OOM。原stdout最后记录step10，但没有精确失败行或CUDA算子，不能把这个进度值当故障位置，也不能仅据错误提示把根因归为碎片。已确认没有完整epoch或optimizer/RNG检查点，后继必须标明fresh重训。
 
-**避免方法**：短探针按实际训练状态设计，覆盖已有优化器状态、梯度累积及相关输入形状，而不只测长度最大值。显存优化先核实际loss/梯度语义，再用目标运行库和真实模型验证；不静默删样本、截输入、改监督或精度。保存首次失败、独立恢复入口与各自预算，单步工程通过和完整训练/质量终点分开记录。原失败统一终审`validation/patient-first-full64-formal-failure-review/review.json`，SHA`f7668be7…`；唯一恢复在准备，详见[序列方案full64记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-full64.md)。
+**避免方法**：短探针按实际训练状态设计，覆盖已有优化器状态、梯度累积及相关输入形状，而不只测长度最大值。显存优化先核实际loss/梯度语义，再用目标运行库和真实模型验证；不静默删样本、截输入、改监督或精度。保存首次失败、独立恢复入口与各自预算，单步工程通过和完整训练/质量终点分开记录。原失败统一终审`validation/patient-first-full64-formal-failure-review/review.json`，SHA`f7668be7…`；后继只在监督位置转FP32计算CE，目标Torch loss/梯度合同及已有Adam/累积梯度的12次真实前后向已通过，峰25.031GB，统一工程审`b46983ef…`；完整fresh训练另在进行，不提前宣布全程稳定。详见[序列方案full64记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-full64.md)。
 
 ## 更新方式
 
