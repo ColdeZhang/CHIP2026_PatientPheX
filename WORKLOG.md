@@ -11,7 +11,7 @@
 - **实际运行/恢复**：Qwen full64（.3 GPU0）、Grounded full64（A800 GPU2）、患者响应code epoch2（A100 GPU2）、患者标准名称8B（.100 GPU0）正式训练中；固定mention标准化完整CPU通过，.100 GPU1短探针及条件训练已授权。准确job、owner、预算与阶段见[当前运行入口](docs/campaigns/round2-current-work.json)，勿重跑已完任务。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
 - **证据备份**：242项/5860引用已增量核验发布；146成员新包已服务器实际下载核验（136新引用），旧5724引用沿217→224→234继承，完整恢复顺序217→224→234→242。新最佳ee39的96质量/411raw内容包亦已完整回读；旧901和官方B原留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@b3d651f9`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **Git**：最近已核验`origin/main@4fea1b09`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 

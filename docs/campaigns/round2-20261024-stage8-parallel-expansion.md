@@ -128,3 +128,11 @@ GLiNER2.5完整训练/实体两端点已负结案：strongunion .724624277992，
 ee39/.755239908536完整终审b391182f通过，root已接受并更新主台账，仍未达.8；旧901默认备份指针原字节另存，官方50ef不变。242项/5860refs增量审38001092通过，136新增安全引用与最小控制共146成员已从.100实际恢复；恢复须217→224→234→242。
 
 Qwen full64原作业首轮34步完整ACK、继续第二轮；Grounded full64在A800GPU2以共享6000+30正式推进；患者响应code第二轮仍原A100作业和截止，MCP离线只恢复观察。患者标准名称8B新形状探针通过后已12:17:08正式两轮，.100GPU0。mention三状态规范化14反向/Adam/真实约束generate全部通过，但保守成本3654秒超过原2400门，原控制器正常停止且没有质量结果；正式预算据实改4800+30，复用探针、不减数据或改变学习变量，后继唯一fresh正式仍须新空卡检查。
+
+### 12:40 接续与新增可证伪假设
+
+Qwen full64两轮68步/两ACK完整，64条原dev推断进行中，只供root原已冻两端点；患者response-code两轮闭合后80条F1进行中。标准名称39条已完成，27strict、12cap按原规则整行弃权；原生成grammar已禁重复名称，不能把唯一集合约束重新列为未试。其单次质量仍待回收，不修原响应。
+
+新[患者条件跨度](../research/patient-attribution-completion-readiness-20261024/README.md)独立分支以全文可微锚点和patient×concept max-MIL取代nearest强制证据；先CPU，globalNER辅助沿原GP logsumexp目标、patientbag BCE，固定双head>0。新[片段拒绝监督](../research/mention-hard-negative-readiness-20261024/README.md)仅追加578条固定train-only零重叠OOF负跨度，2931行native CPU通过，暂无新GPU。两个准备不改变原正在跑的2353行规范化实验。
+
+Root另于名称质量前预锁开放概念共识（explore/open-concept-consensus，decision982781b3/sourcef2368c5f）：完整保留F1当前三源二票.701087332488，再补名称与grounded全部literal交集；最多一完整v2，无增量则不重评分。与名称独立端点分开记录，严格提升才排同模型F0；不改当前full64三源融合协议。
