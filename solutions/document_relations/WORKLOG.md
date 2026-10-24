@@ -4,7 +4,8 @@
 - 当前实验 `E-20261024-DOCRE-001`：复现ATLOP式多提及池化与局部attention交集，扩展为覆盖全文的重叠窗口，固定公共三模型提供HPO候选；不复用任务训练候选，避免新的留出泄漏。
 - 先完成F2+F3 train32→F1初版。正文全部编码；物理提及只归属一个完整窗口，跨窗重复不重复计权。患者/概念多提及logsumexp，ATLOP式pair context＋分块双线性头。首版不加额外实体图Transformer。
 - 二元关联使用单logit BCE/零logit阈值；不把二元退化的ATLoss当新优势。正例和负例都按实际关系标签生成，无人工evidence标签。
-- **当前：首版完整负结案**。8ep/64Adam及全F1完成、GPU已09:54:09释放；两固定终点共冻后新2v2/旧0：union **.645655645**、candidate-replacement **.534242627**，均低强N **.676546355**。不扩F0/full64，不改当前best。完整[结果](evidence/quality-v1.json)、[诊断](evidence/diagnosis-v1.json)、[运行/恢复](evidence/formal-runtime.json)。
+- **当前后继：marker-v2正式运行中**，.3 GPU0 `proc_1670417f-df6b-43d4-a79c-f2fba0ef8503` / PID1198389，10:04:00.083760 UTC启动，TERM10:14:00.083747、KILL+30；actual fresh4MiB/noapps、182.0GB空闲。source/plan检查点98f9b6a已核远端，恢复看[marker start](evidence/marker-start.json)。
+- **首版已完整负结案**。8ep/64Adam及全F1完成、GPU已09:54:09释放；两固定终点共冻后新2v2/旧0：union **.645655645**、candidate-replacement **.534242627**，均低强N **.676546355**。不扩F0/full64，不改当前best。完整[结果](evidence/quality-v1.json)、[诊断](evidence/diagnosis-v1.json)、[运行/恢复](evidence/formal-runtime.json)。
 - 恢复：外部 `/workspace/patientphex-runs/round2-20261023/stage8-document-relations/`；源码入口本目录`prepare.py`。
 
 旧local pair CE、identity bridge、doc-HPO max-MIL都有真实负终点；本控制区别是完整文档的一次共享编码及实体全提及表示、pair共有attention，既不是局部独立片段分类，也不是取出现max分数。详见NOTES及实验协议。
@@ -22,3 +23,5 @@
 后继marker-v2已获root唯一600+30，排Sap→GP feature control之后。只改有原ATLOP依据的显式`*`边界和起始marker表示；原模型/全候选/loss/8ep64Adam/cut/两终点不变，fresh公开base。实际全48篇CPU剥marker重构原tokens精确、完整marked mention单owner/共享与相邻边界合同均通过；train319窗/held164窗（原300/156），发布词表`*`=14，无新参数。当前等待队列，未启动GPU；计划见evidence/marker-formal-plan.json。
 
 marker-v2部署已完成：4件source/encoded在.3 CUDA隐藏CPU写入/fsync/重开逐SHA通过，receipt09379831…；source/plan检查点ea482a4已push并远端核准，正式尚等span释放。另导出融合候选逐提及边界/原文/三public来源，1069概念2180提及/360052B，stable key与全部2874logits匹配，见evidence/fusion-support.json。
+
+marker改变输入长度，维持510窗上限的必要重映射已披露：训练正对attention支持交叠720→713/727、无交集7→14；held无标签交叠2172→2053/2874。所有原提及仍参与，无新增fallback或mask。不是完全同token窗的数值等价对照。
