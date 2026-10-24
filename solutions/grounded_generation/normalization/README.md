@@ -2,7 +2,17 @@
 
 目标是把生成器已经定位到原文的整段表型短语转换为官方 HPO 或有训练证据的 NIL。生成器输出患者的 `(unit_id, exact_quote, occurrence_index)`，不生成 HPO ID；本模块不替代患者归属判断，也不扫描全文生成旧候选。当前只完成 CPU 资产构建和接口检查，没有 held gold、质量评测、远端访问、新编码或新 fit。
 
-`strict.py` 已冻结为 `31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5`。父路线在完整 train32 目标 census 后决定唯一标准化政策；此处的严格政策是可运行初版，不能据此宣称生成器突破已有别名覆盖。
+`strict.py` 已冻结为 `31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5`。后继语义政策已在任何 Sap 查询分数或 held 模型输出前冻结为 [policy_v1.json](policy_v1.json)，SHA `b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20`；语义编码尚待批准队列中的唯一实际运行，当前不宣称新收益。
+
+## 完整固定初版与恢复入口
+
+[semantic.py](semantic.py) 的 `GroundedNormalizer(..., model_dir=..., bank_dir=..., device=...)` 提供 `normalize(quote)`、`normalize_many(quotes)` 与 `normalize_grounded(doc,quote,offset)`，严格别名之后只有 `reason="unmatched"` 可以调用公开 SapBERT。公共 bank 对所有 alias 按**概念 max cosine**聚合，要求 cosine ≥ .90 且第一、第二不同概念差 ≥ .03；这是一组事前保守工程边界，不称校准概率，也不做阈值搜索。已知歧义、NIL、大写短缩写、潜在并列复合、显式正常/否定、查询超过32 WordPiece，以及与赢家别名的方向/侧别/数字冲突均保持弃答。语义仅输出一个活跃 canonical HPO，不产生复合或 NIL。
+
+可用 [normalize_quotes.py](normalize_quotes.py) 从 input-only 文档及包含 `pmc_id,quote,offset` 的 JSONL 批量得到三态结果；所有精确坐标先核对，原文输入不能含标注字段。输出还保存语义候选/分数证据与政策 SHA。公共 bank 与公开模型必须逐 SHA 通过，缺少资产时显式失败，不默默降为 strict-only。
+
+[semantic-cpu-summary.json](evidence/semantic-cpu-summary.json) 实际检查全部87训练行、801目标词面（624 unique）：严格重代入为778 HPO、18 NIL、5歧义弃答；public-only 448接受/353弃答；逐文排除训练别名后488接受/313弃答。后两种各有2个公共映射与训练标注不一致，明确披露。语义守卫后 public-only 331次/283 unique、逐文排除289次/259 unique 可进入回退。它们是 train-only 控制，不能当F1泛化分数。12项新增语义反例合同通过，包括多个alias属于同概念、公共歧义同分、NIL不能被覆盖、无分数不能静默跳过。
+
+唯一查询包已准备，尚未部署或启动。精确源码、输入、公共权重、旧 bank 和120+15秒绝对预算见 [query-plan.json](evidence/query-plan.json)。完整接手命令和队列见 [WORKLOG.md](WORKLOG.md)。由父 `/root/sequence_recover_0518` 接管：DocRE实际释放 `.3` 后只运行624个train-only查询并切片公共bank；缺失旧bank直接退出，禁止盲目重编码。查询后立即向root和span负责人交实际释放证据。
 
 ## 接口与政策
 
@@ -66,4 +76,4 @@ python solutions/grounded_generation/normalization/public_bank.py encode \
   --device cuda --batch-size 128 --output-dir /persistent/new-public-bank
 ```
 
-`public_bank.py` 仅准备/证明编码资产；语义 cosine 门槛、第一第二**概念**差距和 fallback 政策待父路线用 train32 证据冻结，不继承旧 8B 全文 quote+Sap `.65/.92` 过滤的失败结论或阈值。公开 bank 没有 NIL；低相似度只可弃答。
+`public_bank.py` 仅准备/证明编码资产；后继 `policy_v1.json` 的唯一固定操作点与旧8B全文quote过滤器不同，不加载其 `.65/.92` detector。公开 bank 没有 NIL；低相似度只可弃答。

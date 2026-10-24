@@ -1,0 +1,108 @@
+{
+  "scope": "train32-only model-independent diagnostics; no held/dev gold, model load, fit or scores",
+  "policy": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+    "bytes": 1699,
+    "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+  },
+  "sources": {
+    "strict.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    },
+    "semantic.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/semantic.py",
+      "bytes": 14183,
+      "sha256": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82"
+    },
+    "diagnose.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/diagnose.py",
+      "bytes": 9010,
+      "sha256": "e131a3d961c7298cb37f45f58fae03987dceffe5eccb67398ba83c4ff8b49b8d"
+    }
+  },
+  "train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+    "bytes": 969963,
+    "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+  },
+  "targets": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/train.jsonl",
+    "bytes": 3629191,
+    "sha256": "bf0091ef057ddb67f9906d035fdaf0ac7b41ae645f77432f0e5a007078291d08"
+  },
+  "coverage": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/train-coverage.json",
+    "bytes": 606153,
+    "sha256": "5c3d654631bc543c99de193627476de00cbc75e8c38f0c84c220b57ddd974a54"
+  },
+  "documents": 32,
+  "target_rows": 87,
+  "target_quote_occurrences": 801,
+  "unique_quotes": 624,
+  "controls": {
+    "strict_resubstitution": {
+      "counts": {
+        "abstain": 5,
+        "reason:ambiguous_mapping": 5,
+        "nil": 18,
+        "reason:unanimous_whole_span_alias": 796,
+        "correct_accepted": 796,
+        "mapped": 778
+      },
+      "semantic_eligible_unique_quotes": 0,
+      "precheck_abstention_reasons": {}
+    },
+    "public_only": {
+      "counts": {
+        "mapped": 448,
+        "reason:unanimous_whole_span_alias": 448,
+        "correct_accepted": 446,
+        "abstain": 353,
+        "reason:unmatched": 353,
+        "semantic_eligible_occurrences": 331,
+        "incorrect_accepted": 2
+      },
+      "semantic_eligible_unique_quotes": 283,
+      "precheck_abstention_reasons": {
+        "semantic_insufficient_lexical_context": 2,
+        "semantic_unknown_abbreviation": 3,
+        "semantic_possible_compound_quote": 16,
+        "semantic_explicit_negative_or_normal_quote": 1
+      }
+    },
+    "leave_document_out": {
+      "counts": {
+        "abstain": 313,
+        "reason:ambiguous_mapping": 2,
+        "reason:unmatched": 311,
+        "semantic_eligible_occurrences": 289,
+        "mapped": 488,
+        "reason:unanimous_whole_span_alias": 488,
+        "correct_accepted": 486,
+        "incorrect_accepted": 2
+      },
+      "semantic_eligible_unique_quotes": 259,
+      "precheck_abstention_reasons": {
+        "semantic_insufficient_lexical_context": 2,
+        "semantic_unknown_abbreviation": 3,
+        "semantic_possible_compound_quote": 16,
+        "semantic_explicit_negative_or_normal_quote": 1
+      }
+    }
+  },
+  "max_quote_characters": 69,
+  "max_quote_words": 11,
+  "queries": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/normalization-v1/prepared/queries.json",
+    "bytes": 40859,
+    "sha256": "e1836f1158a5c5849c27b04658f89783a30ffffa0943834b6a95a4e846067ccf"
+  },
+  "cases": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/normalization-v1/prepared/training-cases.json",
+    "bytes": 253533,
+    "sha256": "770cf3af8abccc96eb628de71180e0450a2c4f1ce15e81a276ff0cde455eb5bf"
+  },
+  "leave_document_out_scope": "Excludes all supervised alias evidence from the current training document; public HPO unchanged. It is a train-only diagnostic, not independent held validation."
+}
