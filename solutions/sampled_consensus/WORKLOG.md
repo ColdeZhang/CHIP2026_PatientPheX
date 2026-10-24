@@ -3,10 +3,10 @@
 ## 当前状态
 
 - 固定主配方 `B ∪ (S1 ∩ S2)` 内部F1 **.686338981→.693653304**（+.007314）、内部F0 **.711507580→.721969518**（+.010462）均正；每折 micro/macro 同升，实体保持各自强B。原dev最佳901及官方成绩未更新。
-- F1完整160已终审PASS `e5437e12…`，原替换型多数诊断负保留。F0完整116已807.028秒rc0并于11:48:37.791245Z释放 .100 GPU1，全部EOS/strict，375成员原包完整恢复。F0唯一主端点冻结后仅1次v2，独立终审/小证据备份正在收尾。
+- F1完整160已终审PASS `e5437e12…`，原替换型多数诊断负保留。F0完整116已807.028秒rc0并于11:48:37.791245Z释放 .100 GPU1，全部EOS/strict，375成员原包完整恢复。F0唯一主端点冻结后仅1次v2；74内容质量包303654B/63a41eb1已远端fsync、逐成员核SHA并整包实际读回，终审入口已交独立validator。
 - F0预测`3ec75365…`保947实体/全部B315（池外39），固定新增21=9TP12FP，0删除；分项和可复现入口见[实验002](experiments/E-20261024-SAMPLE-002.md)。完整原始两seed已交root固定融合，不按逐项正确性选择。
 - 条件full64 CPU准备已完成[说明](full64_readiness/README.md)：原normal64短提示不能冒称全文，新完整64每轮512091 tokens/max13230，原full64适配器1a703b已实核，无需重训。仅CPU，无原devgold/NN/quality；是否运行由root后续决定。
-- 分支`explore/sampled-consensus`；最新已核远端`8f07116`（完整F0冻结、唯一评分前），后续结果提交正常续推。全量产物在`R/research/nonthinking-sampled-consensus-native-20261024/`及`R/research/nonthinking-sampled-consensus-F0-20261024/`，Git仅源码/短记录/manifest。
+- 分支`explore/sampled-consensus`；最新已核远端`5aefca4`（完整F0正结果/来源/台账），本次备份指针提交正常续推。全量产物在`R/research/nonthinking-sampled-consensus-native-20261024/`及`R/research/nonthinking-sampled-consensus-F0-20261024/`，Git仅源码/短记录/manifest。
 
 ## 执行与恢复
 
