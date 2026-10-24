@@ -1,6 +1,8 @@
 # 全文患者概念关系
 
-当前：唯一工程已真实21.528秒PASS并释放；root已授权fresh30轮240Adam/完整F1共享2400+30，已按root资源修订唯一实际启动，后续仅恢复此原作业。分支 explore/long-context-relations 起点9709b712，独立目录，只复用旧DocRE完整公共候选与已验证BioClinical原厂资产/原生IDs。Task1负方案保持关闭，不加载其训练权重。
+**负结案。** 原fresh30ep/240Adam及全部F1完整完成，唯一B4保护并集 .701325377212→.664715835189（−.036609542024），新增181=14TP167FP；micro/macro均降，Task1及全部旧关系保留。冻后1v2/旧0，关闭不F0/不扫cut/不加轮。已释放GPU，仅终态小包/审查交接。
+
+分支 explore/long-context-relations 起点9709b712，独立目录，只复用旧DocRE完整公共候选与已验证BioClinical原厂资产/原生IDs。Task1负方案保持关闭，没有加载其训练权重。完整结果见experiments/E-20261024-LCTX-REL-001.md；外部R/research/long-context-relations-v1。
 
 目的：检验完整文档内patient/phenotype token交互的实际价值。旧512窗已全覆盖文本；按任意旧窗start-marker几何，新增长上下文直接交互61训练正对+1994负对，不称此前错例。原4495对/727正/818可达性边界，F1纯输入2874对全部保留。旧10组同跨度概念歧义不掩盖。
 
@@ -23,3 +25,5 @@
 root资源修订：T5于17:05:05.631真实释放.100GPU0，seed必要Sap改该同缓存卡；本线不再等待seed的.3释放，可按原9a85正式计划/fresh门立即启动。只改资源队列，模型/数据/2400+30/唯一质量门不变；原等待计划及新resource-amendment分别保留。
 
 正式实际：proc_e18cb722/PID1227634、child1227642，17:06:48.691644 UTC start，原TERM17:46:48.691644/+30。首正常观察2/30轮、16Adam，每轮4495对，stderr空。没有加载probe或GP状态；完整epoch30与2874held前不质量、不早停。恢复入口formal_ops.py observe，唯一原intent已存在禁止再start。
+
+正式完整终态：17:15:06.020657 UTC rc0/497.329s，17:15:06.210255 GPU0=4MiB/noapps并交LongT5。final state63db2cca仅远端、563state ACK13eafe5b；2874完整分数290106B/e889877b已本地回收。9必要成员ZIP79375B/665c2265已实际全SHA/fsync/reopen。所有30轮/960次文献/每轮4495对完整，不是工程故障；原17:46:48硬截止不变且未触。
