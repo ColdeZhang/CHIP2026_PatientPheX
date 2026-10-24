@@ -1,5 +1,5 @@
 {
-  "status": "RUNNING_UNIQUE_OOF_GPU_WINDOW",
+  "status": "COMPLETE_GPU_AND_CPU_CONTROL_POSITIVE",
   "started": {
     "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run_oof_gpu.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/gpu-plan.json",
     "id": "proc_017ed228-fe6f-4dc0-8f3f-304f697ae226",
@@ -7,7 +7,7 @@
     "pid": 1198013,
     "port": 40427,
     "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
-    "running": true,
+    "running": false,
     "started_at": "2026-10-24T09:59:03.316367989Z"
   },
   "driver_started": {
@@ -44,23 +44,7 @@
       }
     ]
   },
-  "current_child": {
-    "name": "train-inner2",
-    "pid": 1198033,
-    "command": [
-      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
-      "-u",
-      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/train_infer.py",
-      "--model",
-      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
-      "--preparation",
-      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/prepared/inner2/preparation.json",
-      "--output",
-      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/inner2/model",
-      "--gpu-uuid",
-      "GPU-07726469-bf7a-b832-9dee-019dc276dc1d"
-    ]
-  },
+  "current_child": null,
   "cpu_complete": {
     "status": "COMPLETE_CPU_OOF_ENCODING",
     "jobs": [
@@ -265,5 +249,154 @@
   },
   "observation_command": "python /workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/observe_gpu.py",
   "collect_after_complete_command": "python /workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/collect_terminal.py",
-  "do_not_restart_active": true
+  "do_not_restart_active": false,
+  "do_not_relaunch_completed": true,
+  "terminal": {
+    "status": "COMPLETE",
+    "steps": [
+      {
+        "name": "score-inner0",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 9.343045229557902,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner0.stdout",
+          "bytes": 1676,
+          "sha256": "ebb2eea518caecd5aa303f40d7c93b5c0d449a218e809bdf24b4419f908a6f6a"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner0.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "train-inner2",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 71.63646375387907,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-inner2.stdout",
+          "bytes": 3598,
+          "sha256": "08acbcacb8e5e7c369fa03cac02fb8eb4df7f8c4050693dccb72663a5ffd63c2"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-inner2.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "score-inner2",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 9.042086895089597,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner2.stdout",
+          "bytes": 1682,
+          "sha256": "2eda65bef5ca20779d6fa2c655122ec3da2f9cc51ce3a5707da7eeac3ce57b06"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner2.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "train-inner3",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 70.88324448326603,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-inner3.stdout",
+          "bytes": 3592,
+          "sha256": "2b28d83f0e63533d7aa2665499d4ef54ecbc2c268d9afe2fe3b9eeed9b4a7eec"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-inner3.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "score-inner3",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 8.992505853064358,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner3.stdout",
+          "bytes": 1682,
+          "sha256": "58f4ffa4f2a0b88ae858f556c358b3fb3619a2a787f9f002bc911697d6500816"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-inner3.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "train-final48",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 98.01828788593411,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-final48.stdout",
+          "bytes": 3616,
+          "sha256": "1ce8f0890f51adce9e77a853f5cd1bc5a0e522db7b7ae74bd51804bbd53859bb"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/train-final48.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "score-final48",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 9.091659636702389,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-final48.stdout",
+          "bytes": 1686,
+          "sha256": "6afe645300a9209e1baac058d91a5e88ca8fe7bdc56c0e0ffe4e6657c094f17a"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control/run/score-final48.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      }
+    ],
+    "seconds": 277.21929350309074,
+    "finished_at_utc": "2026-10-24T10:03:40.602957+00:00"
+  },
+  "release_gpu": "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4\n1, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 1895\n2, GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 965\n",
+  "release_apps": "884964, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 940\n897066, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 940\n4190196, GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 956\n",
+  "handoff": "root and document_relations notified; no further GPU work in this control",
+  "cpu_terminal": {
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 16.959569810001994,
+    "finished_at_utc": "2026-10-24T10:05:48.427334+00:00"
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/collection.json",
+    "bytes": 445,
+    "sha256": "c08c8001ebf0f26f8685c8a35c4d2f9c2cb538de0b9b76678158beddf7bbbc8f"
+  },
+  "terminal_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/terminal-manifest.json",
+    "bytes": 26983,
+    "sha256": "6d54cc9a946352fc9591842b18d651bdf751cfa1ab52825a06316c0b4ded833b"
+  },
+  "quality_result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/quality/result.json",
+    "bytes": 1389,
+    "sha256": "ca4bbef9973f6c52d50f466a21bf6af17e4342d9d1f3cf9acefbecc797e5ddc6"
+  },
+  "quality_backup": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control/quality-backup-receipt.json",
+    "bytes": 846,
+    "sha256": "aa93f0ad427bcb71aac121bff0926bdf8f2d1b54756069e5a7943b5720d60419"
+  }
 }
