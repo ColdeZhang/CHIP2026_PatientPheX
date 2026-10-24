@@ -23,10 +23,11 @@ def main():
         results={}
         for arm in ['primary','diagnostic']:
             target=D/(arm+'.metrics.json'); before=json.loads(Path(p['old_metrics'][arm]['path']).read_text()); ph.checked(p['old_metrics'][arm])
+            assert time.time()<p['deadline_epoch'], 'Original campaign deadline expired before quality subprocess'
             argv=[p['python'],p['evaluator']['path'],'--gold',p['held_gold'],'--pred',freeze['predictions'][arm]['path'],'--body-scope','all','--no-id-doc','text','--output',str(target)]
             with (D/(arm+'.eval.stdout')).open('x') as out,(D/(arm+'.eval.stderr')).open('x') as err:
-                run=subprocess.run(argv,stdout=out,stderr=err,timeout=max(1,min(30,p['deadline_epoch']-time.time())),env=dict(os.environ,CUDA_VISIBLE_DEVICES=''))
-            assert run.returncode==0; new=json.loads(target.read_text()); assert new['gold_sha256']==before['gold_sha256'] and new['evaluator_version']==before['evaluator_version'] and new['configuration']==before['configuration']
+                run=subprocess.run(argv,stdout=out,stderr=err,timeout=min(30,p['deadline_epoch']-time.time()),env=dict(os.environ,CUDA_VISIBLE_DEVICES=''))
+            assert run.returncode==0; new=json.loads(target.read_text()); assert new['gold_sha256']==p['held_gold_sha256'] and before.get('gold_sha256',p['held_gold_sha256'])==p['held_gold_sha256'] and new['evaluator_version']==before['evaluator_version'] and new['configuration']==before['configuration']
             assert new['counts']['relation']==before['counts']['relation']
             results[arm]=dict(old_metrics=before['metrics'],metrics=new['metrics'],delta={k:new['metrics'][k]-before['metrics'][k] for k in new['metrics']},counts=new['counts'],metrics_ref=ref(target),Score_strictly_higher=new['metrics']['Score']>before['metrics']['Score'])
         save(D/'result.json',dict(status='COMPLETE_FIXED_ONE_EPOCH_TWO_ENDPOINT_CONTROL',arms=results,retain_primary=results['primary']['Score_strictly_higher'],diagnostic_does_not_replace_primary=True,quality_calls=2,old_quality_calls=0,seconds=time.monotonic()-start)); print(json.dumps(results)); return
