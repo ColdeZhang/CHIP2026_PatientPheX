@@ -1,0 +1,16 @@
+--- evaluate_f1.py
++++ evaluate_f1_old32.py
+@@ -15,11 +15,11 @@
+  r=subprocess.run(args,text=True,capture_output=True);save(p,dict(argv=args,returncode=r.returncode,stdout=r.stdout,stderr=r.stderr));assert r.returncode==0,r.stderr
+ 
+ def main():
+- p=argparse.ArgumentParser();p.add_argument('--directory',type=Path,required=True);a=p.parse_args();b=a.directory;start=time.monotonic();plan=read(b/'run-plan.json');r=plan['references'];assert sha(__file__)==plan['control_sha256']
++ p=argparse.ArgumentParser();p.add_argument('--directory',type=Path,required=True);a=p.parse_args();b=a.directory;start=time.monotonic();plan=read(b/'run-plan.json');r=plan['references'];repair=read(b/'evaluation-repair-plan.json');assert sha(__file__)==repair['new_control_sha256'] and sha(b/'run-plan.json')==repair['original_plan_sha256'] and repair['original_control_sha256']==plan['control_sha256']
+  for x in r.values():checked(x)
+  h=module('coref_tree',r['tree_helper']['path']);f=module('coref_fusion',r['fusion_helper']['path']);h.verify_parser(r['parser']['path'])
+  terminal=read(r['training_complete']['path']);cp=read(r['checkpoint']['path']);assert terminal['epochs']==2 and terminal['global_step']==32 and terminal['elapsed_seconds']<2100
+- assert cp['completed_epochs']==2 and cp['global_step']==32 and not cp['partial_not_for_inference']
++ assert cp['completed_epochs']==2 and cp['global_step']==32 and cp['smoke_only'] is False
+  rawfreeze=read(b/'responses-freeze.json');assert rawfreeze['plan_sha256']==sha(b/'run-plan.json') and rawfreeze['raw_sha256']==sha(b/'responses.jsonl') and rawfreeze['manifest_sha256']==sha(b/'responses.manifest.json')
+  prompts=rows(r['prompts']['path']);raw=rows(b/'responses.jsonl');f.verify_sft_response(h,read(b/'responses.manifest.json'),raw,b/'responses.jsonl',r['prompts']['path'],plan['adapter_files'],read(r['model_source']['path']))
+  pairs=h.pair_rows(prompts);assert len(prompts)==80 and len(pairs)==1557 and sum(len(x['code_map']) for x in prompts)==587
