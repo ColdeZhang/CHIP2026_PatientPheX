@@ -150,3 +150,8 @@ GPU attempt2实际部署/同机输入硬链接/编译通过。actualCPU 02:03:05
 实际02:03:45.356432→02:04:08.508108Z GPU子程序23.150384秒/rc0，程序22.078738秒、模型加载9.539771秒；加原失败9.198835合计32.349220<原180秒。10ensemble/60变量完整shape/dtype/finite/np.array_equal，491068890参数；TF2.12/NumPy1.23.5、FP32、TF32始终false。三批512原get_match0.607681/0.268270/0.267684秒，output全[512,14261]float32/GPU0，TF allocator峰1203339008B。4合成41query的原ID/order/阈值/坐标全同CPU，max分差4.768e-7。02:04:08.508145 release GPU2=0MiB/无进程，已交sequence/root。
 
 冻结公式得到全408272/798批计算223.491574–337.411633秒估计（非实测/置信区间，不包括不稳定MCP取回）；两暖态prefix样本局限保留。统一terminal-manifest绑定原失败/一行修复/actualCPU/源plan/完整结果/外存概率与GPU释放，交validator一次收口。root另授权后继900秒+TERM30全train64纯输入cache，source/compact格式/key/headSHA与实际重建核定后才启动；不授权fit/quality，本次未扩样本。
+
+
+## 全 train64 公共缓存（已授权，源/plan准备）
+
+GPU终审 ede8ddab PASS 后按实际成本固定900+TERM30预算。原408272输入键远端同AST重建后再冻结绑定，前三批1536原词串缓存逐项核后复用，795批新增NN，合计798批。紧凑列ID+原float32每行6B，原生cached annotate完整坐标/原HPO/score bits闭环；不声称任意不同batch shape bitwise同。仅input-only，无fit/金标/质量；当前HPO映射待后续。[源/计划/恢复](../public_neuralcr_readiness/full-train64-cache/README.md)。
