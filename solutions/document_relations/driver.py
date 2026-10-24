@@ -76,7 +76,7 @@ def main():
         env['CUDA_VISIBLE_DEVICES'] = plan['gpu_uuid']
         command = [plan['python'], '-u', str(Path(plan['source']) / 'train.py'),
                    '--encoded', plan['encoded'], '--model', plan['model'], '--output', str(output / 'native'),
-                   '--mode', plan['mode'], '--epochs', '8', '--seed', '20261024']
+                   '--mode', plan['mode'], '--epochs', str(plan.get('epochs', 8)), '--seed', '20261024']
         with (output / 'stdout.log').open('w') as stdout, (output / 'stderr.log').open('w') as stderr:
             child = subprocess.Popen(command, env=env, stdout=stdout, stderr=stderr, start_new_session=True)
             write(output / 'child-start.json', {'pid': child.pid, 'command': command, 'at_utc': datetime.now(timezone.utc).isoformat()})

@@ -200,7 +200,7 @@ def main():
         epochs.append(record)
         write(output / 'progress.json', record)
         print(json.dumps(record), flush=True)
-    assert global_step == total_steps == 64
+    assert global_step == total_steps == math.ceil(len(train) / 4) * args.epochs
     checkpoint_path = output / 'checkpoint.pt'
     state = {'model': model.state_dict(), 'optimizer': optimizer.state_dict(), 'scheduler': scheduler.state_dict(),
              'epoch': args.epochs, 'global_step': global_step, 'python_rng': random.getstate(),
@@ -216,7 +216,7 @@ def main():
     finally:
         os.close(fd)
     loaded = torch.load(checkpoint_path, map_location='cpu', weights_only=False)
-    assert loaded['global_step'] == 64 and loaded['epoch'] == 8
+    assert loaded['global_step'] == total_steps and loaded['epoch'] == args.epochs
     for name, value in model.state_dict().items():
         assert torch.equal(value.detach().cpu(), loaded['model'][name]), name
     checkpoint_ref = reference(checkpoint_path)
