@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-24T00:15:50.569860+00:00",
+  "generated_utc": "2026-10-24T00:53:34.448990+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -13450,17 +13450,359 @@
           "bytes": 10355
         }
       ]
+    },
+    {
+      "id": "reverse-JSON-order-F1-union-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-terminal-review/review.json",
+        "sha256": "baf7aec632415a304a273ec6bff7745a63fa16477683836ca6555f77b07a59b0",
+        "bytes": 7116
+      },
+      "source_report_path": "validation/reverse-json-candidate-order-terminal-review/review.json",
+      "completed_review_scope": "PASS_fixed_reverse_order_two_arm_terminal",
+      "scope": "本批新增独立终点审查；旧模型/源/数据链复用，无递归抓取大缓存或重训。",
+      "conclusion": "唯一80固定候选逆序，原32SFT同A800；reverse .650566370、预定old∪reverse .662472447，比原.660942003微升；+15TP36FP，micro降macro升，1189实体原留。实际native282.419秒、wrapper290.848秒；原报告runner字段误标由不可变timing clarification纠正，不改旧报告。无intersection/顺序扫描。",
+      "limitations": [
+        "F1 has been repeatedly used for training-side development; this is not untouched generalization or originaldev.",
+        "Exactly one reverse order and one prespecified literal relation union were tested; no intersection/order/threshold scan. The initial CPU intersection suggestion was superseded before GPU/quality by the frozen formal union policy.",
+        "No new fitting, NN replay, old baseline rescoring or official action."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-review/data-entry-review.json",
+          "sha256": "ffb89560dc3df4a2b95858f01b0e92e1e695f3d11a053d7ef0678dcf5a0e549d",
+          "bytes": 8754
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-terminal-review/timing-clarification.json",
+          "sha256": "9f5ccf9a8b3f136fb12daa20fe65b1bf743285bca882eddd87154ee7704002e3",
+          "bytes": 1187
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-review/audit_entry.py",
+          "sha256": "718beace351d0cd7b926e93da157836479f7170c38c5fcb04b1862298a3b2e27",
+          "bytes": 13799
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-terminal-review/audit.py",
+          "sha256": "b64fb73a456706ec4724067f05d9e2c353b7b1cfc3473ce2bcf5371c1d0d52fe",
+          "bytes": 10169
+        },
+        {
+          "path": "validation/index-next-20261024-0055/batch-manifest.json",
+          "sha256": "201929755a71fa98524281b91f23f70a55c04a3bf69839f5f32fabb173108102",
+          "bytes": 23913
+        }
+      ]
+    },
+    {
+      "id": "GLiNER-selected-supply-strong-F0-F1-negative",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/gliner-strong-pool-supply-review/review.json",
+        "sha256": "b6427b490885e8ba961f082d9b06bcee2f7dda94ddb1645796fc18692b62dfd2",
+        "bytes": 6388
+      },
+      "source_report_path": "validation/gliner-strong-pool-supply-review/review.json",
+      "completed_review_scope": "PASS_fixed_prior_GLiNER_supply_twofold_negative_closed",
+      "scope": "本批新增独立终点审查；旧模型/源/数据链复用，无递归抓取大缓存或重训。",
+      "conclusion": "只给强三public/propernested F0/F1补旧GLiNER已选非重叠差集3/20；旧实体/非实体全留，不补碰撞2/5。两fullpred先冻结，pooled32 .733753245→.732486528，实体目标−.002533434，两折均负，关闭。无新NN/fit/原dev。",
+      "limitations": [
+        "F0 GLiNER trained on 48 documents; F1 GLiNER trained on 32, while HGB used 48 for each. Two historical development folds are not equal-size fourfold replication.",
+        "Current baseline is the audited three-public-model plus propernested selector; no switch to an older/weaker base.",
+        "No new overlap/collision additions, threshold/ranking change, model inference, training, originaldev or official action.",
+        "Only actual artifact UTC is authoritative; full freeze was 00:22:50.520739Z, correcting the owner message approximate time.",
+        "Owner computed a previously unavailable pooled32 baseline once; this review reconstructs that pooled baseline from already audited fold counts rather than rescoring its predictions."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/gliner-strong-pool-supply-review/audit.py",
+          "sha256": "d84dd564a43dc7b0c19fade1a949ea51741b7ca35e24da22d459b1ffcdcee4d3",
+          "bytes": 8510
+        }
+      ]
+    },
+    {
+      "id": "reverse-JSON-order-F0-fixed-union-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-f0-review/review.json",
+        "sha256": "ac631bcd5cc3ed7e7af0f4f9775e37655482037bb0e63a1804d9fc4d043eeb9c",
+        "bytes": 6158
+      },
+      "source_report_path": "validation/reverse-json-candidate-order-f0-review/review.json",
+      "completed_review_scope": "PASS_fixed_F0_reverse_order_unique_union_terminal",
+      "scope": "本批新增独立终点审查；旧模型/源/数据链复用，无递归抓取大缓存或重训。",
+      "conclusion": "固定F0迁移58原提示/原SFT48，.100持久两adapter文件actualSHA复制own A800 SHM；同原runtime，native214.108/wrapper222.352秒。仅old∪reverse新v2 .695443948→.704687440，+12TP14FP，micro/macro均升，947实体和全部旧关联保持；reverse alone未评分。",
+      "limitations": [
+        "F0 is historical development, not untouched generalization or originaldev. This SFT48 migration follows an SFT32 F1 policy choice; training sizes differ.",
+        "Exactly one reverse order and one prespecified literal relation union were tested; only union evaluated. No reverse-alone quality, intersection/order/threshold scan, public new candidates or ICL.",
+        "No new fitting, NN replay, old baseline rescoring or official action."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-f0-review/entry-review.json",
+          "sha256": "980a458634edaa37db9d53c999a0a003f33ab52ff4e7d181f33e84dd5d1e985f",
+          "bytes": 6452
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-f0-review/audit_entry.py",
+          "sha256": "dd840d5d8fa40332850af80c09a4f1ff0d01f4c27921a386fb851b909bd7a776",
+          "bytes": 8523
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-f0-review/audit_terminal.py",
+          "sha256": "56c0ced2bdcfc2c28d99f7b3abfcad8e2f93860d6f52da266e1423b521dc6a05",
+          "bytes": 10455
+        }
+      ]
+    },
+    {
+      "id": "reverse-JSON-order-originaldev-current-union-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/review.json",
+        "sha256": "5a1063062c9258ff6c140d9b0b4d1cbe4edb6eab16cd4e3af282588a2e4f2e1f",
+        "bytes": 7146
+      },
+      "source_report_path": "validation/reverse-json-candidate-order-dev-review/review.json",
+      "completed_review_scope": "PASS_fixed_originaldev_reverse_order_unique_union_terminal",
+      "scope": "本批新增独立终点审查；旧模型/源/数据链复用，无递归抓取大缓存或重训。",
+      "conclusion": "固定原dev64/同full64 adapter逆序后只与当前baac全368关系并集，保留1072实体/35公开新增关系及metadata；原parser与完整union byteexact。唯一新v2 .738493753→.746081965，+15TP8FP，关系micro/macro均升，0错警；旧A30→新A800限制明示，仍未达.8/非盲测或官方。",
+      "limitations": [
+        "Originaldev is repeatedly used development, not blind generalization. Old original64 ran on A30; new reverse ran on A800, same versions/model/adapter but not same-machine bitwise control.",
+        "Exactly one reverse order and one prespecified literal relation union were tested; only union evaluated. No reverse-alone quality, intersection/order/threshold scan, public new candidates or ICL.",
+        "No new fitting, NN replay, old baseline rescoring or official action."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/entry-review.json",
+          "sha256": "ece9db59aba2132be114e5dbfeb7924887df05dc05c69d08285339c9c188d516",
+          "bytes": 5638
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/lineage-review.json",
+          "sha256": "0b9a71f344c0e3d32cc6dbc2ac4fd51db82f7b4458aa0aaedadaef613d8ac6cb",
+          "bytes": 8893
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/audit_entry.py",
+          "sha256": "205afd7d129b1ff26d06ed48e5f08019bdec13930105d426efd243d3afe321f2",
+          "bytes": 8176
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/audit_terminal.py",
+          "sha256": "6e5f693e482ba1911d6c7dc719d0b3f5bb7ac3773ab96ec3408005ceaf658bbf",
+          "bytes": 10489
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/reverse-json-candidate-order-dev-review/continue_quality.py",
+          "sha256": "9e1edfffdc60622a72d1351bf483e437ebecb4a01ba30037bd5ec9e0ed0e6d65",
+          "bytes": 6259
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/plan.json",
+          "sha256": "f47b408a8920b362882f9988b5b2711cab2d0c9be657b37e7177b73a76dab817",
+          "bytes": 9009
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/terminal/actual-preflight.json",
+          "sha256": "49aeee1a95aeacdd2b9011871dbb83b12ef77b8e62f55cb9cc8a3b3f3c1c7b8a",
+          "bytes": 5952
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/terminal/complete.json",
+          "sha256": "faa07d51b032bf94eba6d99a2757e52603edf47ebf449584610f059153ccbc81",
+          "bytes": 520
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/terminal/gpu-release.json",
+          "sha256": "d222260b76dd769d2cc2f6a76ed022974f9920624369ac2eb7f89b4c6e7b6583",
+          "bytes": 124
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/assembled/freeze.json",
+          "sha256": "7d80529e1d31e1f2abc035ca42fbe9f8d5d72998a6a1a7b1297fecffac812b23",
+          "bytes": 2019
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/evaluation/results.json",
+          "sha256": "be924bb7b68bb2c3eb9e50d3b52745bd6d5a5100f5bcf09933eafb62bd83b0d2",
+          "bytes": 1322
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/evaluation/union.metrics.json",
+          "sha256": "e0238759331537bb130583067b56d6646ae7936ade0350c620f804dee02db96f",
+          "bytes": 12965
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/evaluation/union.validation.json",
+          "sha256": "f38321f7caa621d68d6ee942458f2bed548e3d7545d2b7a6971757f4b8e9dcc8",
+          "bytes": 425
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/owner/reverse-dev/preservation-input-contract.json",
+          "sha256": "25754c0df8dab007160a0d0bc8cc4aca98aed3b142528abced58d702a47660d4",
+          "bytes": 3060
+        }
+      ]
+    },
+    {
+      "id": "JSON-value-weighted124-complete-training-F1-negative",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/review.json",
+        "sha256": "4319c3f99b347e132a1541d0b240e1931f00bb47961898b6983d6b72e5d5039b",
+        "bytes": 5883
+      },
+      "source_report_path": "validation/json-value-weighted-terminal-review/review.json",
+      "completed_review_scope": "PASS_audited_weighted124_JSON_control_negative_quality",
+      "scope": "本批新增独立终点审查；旧模型/源/数据链复用，无递归抓取大缓存或重训。",
+      "conclusion": "原124完整JSON仅value-overlap权重2，fresh2ep32/1485.777秒完整，actual adapter c5988519；固定原80 F1推断513.989秒，原parser全预测byteexact、1189实体保持。只新v2 .660942003→.660769446，301TP82FP219FN，micro降macro升、总分负，关闭不迁移。旧A800/新A100数值差异与BPE跨边标点已披露。",
+      "limitations": [
+        "F1 is repeatedly observed train-side development, not blind generalization or official score.",
+        "New weighted run uses A100 torch2.6.0/cu12.4; old unweighted comparator ran A800 torch2.7.1/cu12.6. Same source/recipe except objective is not a same-device numerical control.",
+        "Value-overlap BPE tokens include boundary punctuation as already disclosed; weighted loss is not pure semantic-value NLL.",
+        "One fixed weight2/end2/greedy1600 control only; no public62/support, extra order/threshold/epoch scan.",
+        "Remote model actual hashes/runtime receipts reused; no model reloading or NN replay by reviewer.",
+        "Training weighted loss cannot be read as pure value-token NLL contribution; losses are not directly comparable with unweighted historical losses.",
+        "Reviewer exact parser output was frozen before gold. Its first evaluator import missed the sibling scripts path and stopped before loading labels; fixed locally. Subsequent equality mismatch was solely CLI-added SHA metadata, independently recomputed to match all metric and validation fields. Owner outputs/source were not changed."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/training-review.json",
+          "sha256": "73fba9369fa5c3b2e7ffecc7a7a2dd3ca3809d64c715ffa63329166e36dbd282",
+          "bytes": 7330
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/quality-review.json",
+          "sha256": "92fe5557688dbbe0b181015297bc2877086e8d88f58311ed9e25e20d2fd5ef28",
+          "bytes": 7456
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/audit_quality.py",
+          "sha256": "8f783b1668b7832f9cffb7725421bf50fcf1fceb2c975f0af16a770b0d58a296",
+          "bytes": 8693
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/audit_training.py",
+          "sha256": "397dcde232528b3eb1ff6da7eb81756c05fe5a650a7ea2528ce7add9ce550f32",
+          "bytes": 7280
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/json-value-weighted-terminal-review/continue_quality.py",
+          "sha256": "c25026501afde7c48751fe701082ef1e35de00f81bf5bd7d1a8bc037d759b541",
+          "bytes": 5345
+        }
+      ]
+    },
+    {
+      "id": "public-readiness-and-next-step-source-snapshots",
+      "report": {
+        "path": "validation/index-next-20261024-0055/snapshots/source-only-context.json",
+        "sha256": "4c090ca23d6fede2b6e01648b3c51642cf2e212322b60e6cd282878964031be8",
+        "bytes": 5114
+      },
+      "source_report_path": "validation/index-next-20261024-0055/source-only-context.json",
+      "completed_review_scope": "FROZEN_SOURCE_ONLY_NOT_INDEPENDENTLY_REVIEWED",
+      "scope": "Only immutable owner research/readiness/input-only source snapshots. This record is not a model-native independent PASS, task quality experiment, or authorization.",
+      "conclusion": "NCR仅此前公开来源/部分binary参数库存；F-coref仅owner原生CPU合成与input-only48自检及备份清单，未独审、无质量。决策页仅baac时点只读假设。正在运行corefB/完整NCR/其他新研究不作为已完成实验。",
+      "limitations": [
+        "NCR source discovery/prefix inventory is not complete model loading, parameter compliance, or quality; current relay outputs are not represented as completed.",
+        "F-coref owner reports actual 90,526,466 parameters and finite outputs/offset contracts; these remain source receipts and self-checks, not an independent native or patient-attribution audit.",
+        "F-coref B prompt80/LLM stage is still pending and excluded; no ongoing files or mutable ordinary stdout/stderr are copied.",
+        "Only the listed small snapshots are included. Large caches/models/doc-level cluster outputs and transitive report dependencies are not recursively re-read or copied.",
+        "No additional experiment/quality result is created by this source group."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-phenotype-model-inventory-increment/report.json",
+          "sha256": "604e2dd0c1e4b4ef0417cc2b774c227697e9589e6c97ec850c5674d4a75fe861",
+          "bytes": 1327
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-phenotype-model-inventory-increment/review.md",
+          "sha256": "cc3d48c5cecbd3168c5c66f259cbe2db610e30b90ed01266d38ab66ec13ba631",
+          "bytes": 4924
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-phenotype-model-inventory-increment/parameter-prefix-inventory.json",
+          "sha256": "d6575a7c5b184cbc705dddd42842ae4168e7f1f1a1370384facf1e490ffecb4a",
+          "bytes": 2571
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-phenotype-model-inventory-increment/source-index.json",
+          "sha256": "e57c6d6deae68ef45d98ab1f1d59371aa573db95698a7669f68d68ef54ffc1cb",
+          "bytes": 26174
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/READINESS-REPORT.md",
+          "sha256": "7590958bfc12545cddd9eb05d555ef4b1dc0c4f8665e898ba2a0711f5367705c",
+          "bytes": 2724
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/attempt2/CPU-state.json",
+          "sha256": "775824c5080718a621cef37a89f16c99b019a31ef06c065d861058f45e14365d",
+          "bytes": 879
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/anchor-census.json",
+          "sha256": "e941779694732172f37b8633434bc4e5890908a57e1a937620a9bb21c33f67df",
+          "bytes": 12642
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/readiness-actual-backup-filelist.json",
+          "sha256": "951c8b7fc39557184545b9e09aa3ffcc5b7a168ef3483ff816d40ff3d7cb4a47",
+          "bytes": 3196
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/input-native-census/REPORT.md",
+          "sha256": "6e7eb0bfd783d18781ca68554cf0975a712a8a41113c61773697aa2102b7a4f5",
+          "bytes": 3118
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/input-native-census/SUMMARY.json",
+          "sha256": "dbcff0a63dfa50f3c23f7ec3a09381043dca57ca2ec47432034a551a7cacd399",
+          "bytes": 6199
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/input-native-census/gpu-terminal.json",
+          "sha256": "2f9b3a5bac0d8bed9349ebc821758e6ecf5d7bfe2b6d13f35b77314f46aee3fd",
+          "bytes": 763
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/research/public-coreference-readiness/input-native-census/full48-actual-backup-filelist.json",
+          "sha256": "eef3f7dd6cc9b856dc372488d57c48ca329ad740412f833f723896bc12c31066",
+          "bytes": 3319
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/validation/next-step-feasibility/report.md",
+          "sha256": "cb4b4c29fc13a7609414618431f2a5ac9438be2c8fd607de3562b5e51adb3b54",
+          "bytes": 5146
+        },
+        {
+          "path": "validation/index-next-20261024-0055/snapshots/source-only/validation/next-step-feasibility/evidence-index.json",
+          "sha256": "a1512a15eeb6eae8e1d11ed106a859b870b8994a96f9808be7e07f0ba8ef3067",
+          "bytes": 3289
+        }
+      ],
+      "independently_reviewed": false,
+      "quality_experiment": false
     }
   ],
   "pending_review": [
     {
-      "id": "JSON-value-weighted124-formal-and-fixed-F1-terminal",
-      "status": "root已授权旧124 JSON value权重2的fresh2ep32calls正式及后续固定F1；本批仅data/实际probe和已完成入口审查，正式质量未完成，不能计入成果。"
+      "id": "F-coref-B-original80-prompt-control",
+      "status": "本批截面尚在原生共指B提示/LLM推断阶段，未有完整质量终点，不能计为成功实验。"
+    },
+    {
+      "id": "NCR-complete-assets-native-readiness",
+      "status": "本批仅旧只读inventory；完整fastText续传/原生加载仍未完整，HP新assembly或import-only不冒充native PASS。"
+    },
+    {
+      "id": "pair-conditioned-document-mechanism",
+      "status": "仅CPU可行性准备或只读研究，未计正式训练/质量；FLA如有只读研究亦不当有效实验。"
     }
   ],
-  "previous_live_index_sha256": "9e0070e39bde9fc28a55ec03805733687595bd73dfda8cca665380a829b2338b",
+  "previous_live_index_sha256": "2487f20d5e386c5de60b5154f44665b0933299f1bd6df3612d91c5f12a645d74",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "本批保留旧139条/2109引用对象，新增77基线和实体veto、BioBERT缓存/四fold/唯一原dev、public212训练质量负、JSON value-weighted实际两probe及ICL完整终点。current最高新增baac8186/.738493753，旧d531整对象及原current完整快照保留；全部未达.8、无官方提交。",
+  "live_index_note": "保留旧146条/2168引用对象及出现顺序；新增5项完整独审（reverse F1/F0/dev、GLiNER供给负、weighted124训练/F1负）及1组明确未独审的只读公开来源/owner自检快照。最高a179/.746081965，旧baac整对象保留；两个H34历史来源例外原样，不声称全部历史原件已恢复；无官方提交。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
@@ -13666,12 +14008,55 @@
         "new_HGB_training": true,
         "new_public_model_parameters": 121587826,
         "note": "固定.3/propernested与既有全64关系组合；新1379公开BioBERT缓存/独立六字段，全64四fold OOF来源103列HGB。旧368关联和全部非entities原样，支持关系不重新筛选；实体精度下降召回上升，两实体F1微升。原dev是历史开发而非盲测或官方，仍未达.8。旧d531整对象保留。"
+      },
+      "public_BioBERT_nested_preserved_support_and_reverse_SFT_union": {
+        "Score": 0.7460819649861977,
+        "entry_id": "reverse-JSON-order-originaldev-current-union-terminal",
+        "review_sha256": "5a1063062c9258ff6c140d9b0b4d1cbe4edb6eab16cd4e3af282588a2e4f2e1f",
+        "previous_combination_Score": 0.7384937526501161,
+        "delta_vs_previous_combination": 0.007588212336081646,
+        "metrics": {
+          "menF1": 0.7869605142332415,
+          "docF1": 0.8245125348189415,
+          "micF1": 0.7251184834123223,
+          "macF1": 0.6477363274802855,
+          "Score": 0.7460819649861977
+        },
+        "prediction_sha256": "a179a5de5b7271979a0fba851afc269d63125248a56681674e7388d0c6728c39",
+        "prediction_bytes": 141648,
+        "prediction_source_path": "research/reverse-json-candidate-order-dev/formal/assembled/union.jsonl",
+        "relation_counts": {
+          "tp": 306,
+          "fp": 85,
+          "fn": 147,
+          "precision": 0.782608695652174,
+          "recall": 0.6754966887417219,
+          "f1": 0.7251184834123223
+        },
+        "added_relations": {
+          "added_tp": 15,
+          "added_fp": 8,
+          "removed_tp": 0,
+          "removed_fp": 0
+        },
+        "entities": 1072,
+        "old_associations_retained": 368,
+        "all35_publicnew_relations_retained": true,
+        "model_binding": {
+          "full64_adapter_model_sha256": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b",
+          "full64_adapter_config_sha256": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+          "same_adapter_original_and_reverse": true,
+          "entity_selector_sha256": "42e941150d1974993ea403ad41af6bfbabe410fe334f1c90c50a895d0a44c9a7",
+          "new_training": false,
+          "new_model_parameters": 0
+        },
+        "note": "仅一次固定逆序原64候选生成与当前baac literal并集；368旧关系/1072实体原样，不重算public支持，不评分reverse-alone。旧原生成A30、新A800同权重/runtime但非同机器数值对照。原dev历史开发，非盲测/官方，未达.8。旧baac完整对象和current整快照保留。"
       }
     },
     "highest_verified": {
-      "Score": 0.7384937526501161,
-      "entry_id": "public-biobert-originaldev-transfer-review",
-      "review_sha256": "7336b2804f7aefde7cf6f0504fa4e9194d5a88c0df3cc19b13774c548d6f06a6",
+      "Score": 0.7460819649861977,
+      "entry_id": "reverse-JSON-order-originaldev-current-union-terminal",
+      "review_sha256": "5a1063062c9258ff6c140d9b0b4d1cbe4edb6eab16cd4e3af282588a2e4f2e1f",
       "scope": "cross_route_combination_originaldev16_development",
       "acceptance_threshold": 0.8,
       "acceptance_threshold_met": false
@@ -13706,6 +14091,14 @@
         "path": "validation/index-next-20261024-0015/prior-current-verified-original-dev.json",
         "sha256": "29ba3a57b88bddf69f72008653274a5a7b62b3c165480e262a78e87b11188594",
         "bytes": 8688
+      }
+    },
+    "prior_146_state_snapshot": {
+      "base_index_sha256": "2487f20d5e386c5de60b5154f44665b0933299f1bd6df3612d91c5f12a645d74",
+      "snapshot": {
+        "path": "validation/index-next-20261024-0055/prior-current-verified-original-dev.json",
+        "sha256": "42d0cb48973f0990c7e7601bd08c1c28a00c3262e921a1178cbf9a62d92aeb9e",
+        "bytes": 10741
       }
     }
   },
