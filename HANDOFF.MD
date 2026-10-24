@@ -391,6 +391,8 @@ FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getso
 
 ## H59：先按实际候选、输入与学习目标查重，不能只按方法名称判断新旧
 
+新提案先查[已试机制总地图](docs/research/method-coverage-map-20261024/MAP.md)，再沿固定提交链接核具体条件；该图是带时点的目录，运行状态仍以当前台账为准。它也收录已实际完成的Qwen3.5 query-slot二分类与MedGemma 1.5全文微调，避免误当成新路线。
+
 新一轮把“上下文＋Sap Top-K＋cross-encoder”初判为未试，逐源码查重才发现旧路线已完整做过Sap Top8新增ID、±180字符上下文及监督CE，正式终点负；严格嵌套CE入树也已负完成。另“top3扩池”实际来自PhenoTagger/Bioformer分类头，不是Sap top3检索。
 
 **避免方法**：提出新实验前分别核候选供给、上下文、监督目标、保护规则、祖先划分和实际终点，区分当前源码与历史执行SHA。旧池单ID比例高不能否定新ID召回，弱池的负结果也不证明所有新池必负；但不能把已做过的机制换个名字重训。当前关闭宽泛重复提案，重开先需当前train-only固定跨度的可修复TopK供给证据。准确三组实验与13份来源见[只读查重报告](docs/research/context-normalization-gap-20261024/REPORT.md)，没有为查重重跑模型或读取gold。

@@ -10,8 +10,8 @@
 - **有效增量**：固定双采样原dev完整128条及唯一质量已复核，901→ee39，Score .754361→.755240，8新增关系3TP5FP；实体不变。主线程三源二票融合F1 .686339→.701087、F0 .711508→.724457均正，待full64两组件完整。全部并集及固定LR负配方关闭。
 - **实际运行/恢复**：Qwen full64组件已完成，Grounded进入第二轮，齐后做原dev预锁融合。response-code F1正（.686619），同权重58条F0已实际启动；患者条件跨度8/24轮均负，新固定几何残差已在.100 GPU0运行。2353片段规范化（.100 GPU1）与2931负例增补（.3 GPU0）并行训练。患者名称直接生成负，合法前缀共识零增量；患者编码去重控制亦负，均关闭。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
-- **证据备份**：242项/5860引用已增量核验发布；146成员新包已服务器实际下载核验（136新引用），旧5724引用沿217→224→234继承，完整恢复顺序217→224→234→242。新最佳ee39的96质量/411raw内容包亦已完整回读；旧901和官方B原留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@9527768e`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **证据备份**：249项/6055引用已增量核验发布；205成员新包已服务器实际下载核验（195新引用），旧5860引用沿217→224→234→242继承，完整恢复顺序217→224→234→242→249。新最佳ee39的96质量/411raw内容包亦已完整回读；旧901和官方B原留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
+- **Git**：最近已核验`origin/main@6418be86`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
@@ -34,7 +34,7 @@
 ## 接手后如何继续
 
 1. 先读 `HANDOFF.MD` 和当前状态；执行 `git status --short` 核实改动，按新任务确定目标与成功标准。
-2. 先看第二轮协调记录和分配路线台账；所有首日实现已并入主分支，原三路线与新增工作分支并行推进，不从归档恢复旧基线。
+2. 先看[已试机制地图](docs/research/method-coverage-map-20261024/MAP.md)、第二轮协调记录和分配路线台账；所有首日实现已并入主分支，原三路线与新增工作分支并行推进，不从归档恢复旧基线。
 3. 最高901的B100单次上传已完成，先读提交凭据防重复；继续第八阶段并行优化。其余上传暂停，不查询官方成绩；需要时恢复既有用户名账号会话。
 4. 新实验在 [实验索引](docs/experiments/README.md)登记。关键记录入 Git；全量运行产物使用持久目录，记录位置与版本。
 
