@@ -37,3 +37,5 @@
 正式源/计划661f60f4已准备；推断三个epoch2实际SHA保持pending，未伪造实际模型身份。probe独审02881279 PASS只覆盖工程单步，不当正式训练或质量证明。
 
 正式部署04:38:21原intent后唯一213363B上传块返回UNKNOWN_OUTCOME；mkdir先成功，未解包/未formalCPU/无GPU启动。04:39:24跨路线同A100只读也UNKNOWN，按共享退避到≥04:40:25只核原目录库存，若块已落只复用，不重mkdir/整包/start。这是连接观察失败，不是模型训练失败。
+
+恢复库存实际确认213363B原块未落，3个≤70KiB标准库小调用全部成功、组装原归档388e36不变，20成员全SHA和compile通过。正式CPU10.454秒rc0：265/64、6166 max、860405 full/9818监督，source9c794、manifest41659b1e，CUDA未初始化/无权重或forward。其excluded读取为dev16纯输入核ID，未读dev targets/gold；不混称完全未读dev数据。冻结实际入口清单后将fresh gate启动唯一4500+30训练。
