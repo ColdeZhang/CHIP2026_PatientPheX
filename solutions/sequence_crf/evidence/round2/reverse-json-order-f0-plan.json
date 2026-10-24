@@ -1,0 +1,219 @@
+{
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/plan.json",
+    "bytes": 8103,
+    "sha256": "54f05699c7848bf7d2aba196e8da2e4b08cd0b141b0f3f4a26d82f086c149c61"
+  },
+  "configuration": {
+    "frozen_at_utc": "2026-10-24T00:24:39.857991+00:00",
+    "schema": "fixed-reverse-candidate-order-F0-union-v1",
+    "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "remote": "sequence-round2/reverse-json-order-f0-v1",
+    "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "adapter": "/dev/shm/patientphex-sequence-sft48-reverse-f0-1045",
+    "adapter_files": {
+      "adapter_config.json": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+      "adapter_model.safetensors": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "cap_seconds": 600,
+    "term_grace_seconds": 30,
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "files": {
+      "launch.py": "8ba34e9df2b2e74a40223021c7c0834e0d1958b6ed37fa631e020bcaa65a5760",
+      "legacy/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+      "legacy/merge_pair_rag.py": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+      "legacy/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "prompts.jsonl": "49aef6f89af9bea32460feac746738ad49bb38565f13f8c27210b41798157a86",
+      "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "inverse-and-token-audit.json": "2d23bb717d68dce54c1a2ded10643478d9072a38a0ff02fb29d040a12060f202"
+    },
+    "control_sources": {
+      "operations.py": "285cb7d8105696f2007becbee62868b75da8c49a53848527fbfa2d0ec00c97c9",
+      "finish.py": "be7fafa9706154479e92d9e35d647c452677b54d33e468a807b4246839115ba5",
+      "transfer_adapter.py": "895dc6914d2e137e1273d8503d61b423a011763eafd869280bf4be8c6d7b79fa"
+    },
+    "local_references": {
+      "input": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+        "bytes": 350409,
+        "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+      },
+      "entities": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/lr.pred.jsonl",
+        "bytes": 126729,
+        "sha256": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a"
+      },
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+        "bytes": 123941,
+        "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.metrics.json",
+        "bytes": 13036,
+        "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218"
+      },
+      "old_response": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.responses.jsonl",
+        "bytes": 18266,
+        "sha256": "931fd05e58d745e23a215084008e5bdaed540d3e0a268a18795baa27b385a605"
+      },
+      "old_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.responses.manifest.json",
+        "bytes": 4150,
+        "sha256": "730149f569d138fefb2f99341c5af6c50c8d2b2695e0ea245312cacbc31bd5b1"
+      },
+      "training_checkpoint": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal2ep/epoch-002/checkpoint.json",
+        "bytes": 10175,
+        "sha256": "2276c88cea8382b8eaccdb42add16506aa121a4a3388f9e058a3f60dc23a8549"
+      },
+      "adapter_actual_hashes": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/checkpoint-actual-hashes.json",
+        "bytes": 901,
+        "sha256": "489c5c5af0aae8dbf978c87a7185d5f5fa37096bbc21366b088e7d7cd7d6ebd3"
+      },
+      "CPU_report": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/report.json",
+        "bytes": 1825,
+        "sha256": "f46ec03fdd557f8636bb00a49d0a85702f34e58f29e1097881e559df7b436ee1"
+      },
+      "persistent_adapter_locator": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/existing-adapter-backup-locators.json",
+        "bytes": 7066,
+        "sha256": "5053b0c94a33fd2ea0c9a5b04525c706aa8276034ae071c02a6405d0733526c5"
+      }
+    },
+    "prepare_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/plan.json",
+      "bytes": 1721,
+      "sha256": "d781b859cf167cbab2a74d3a9a8c7986c76cdc15eec929076662621de33686ce"
+    },
+    "expected": {
+      "rows": 58,
+      "input_tokens": 195356,
+      "max_input_tokens": 6040,
+      "base_Score": 0.6954439475814587
+    },
+    "assembly": "Unchanged parser yields unscored reverse-only; fixed old58 OR reverse58 literal-v2 union preserves all old relations and all nonassociation fields. Complete predictions freeze then only union gets new v2; old metrics reused.",
+    "keep": "Primary union Score strictly increases and macro does not decrease",
+    "no_new_fit": true,
+    "no_originaldev": true,
+    "minimum_free_bytes": 67108864,
+    "runtime_comparison": "Old baseline and reverse control both same A800 GPU-f516 torch2.7.1/TF5.20.2/PEFT0.21.2; actual preflight records versions.",
+    "resource_mode": "173MB oldSFT48 + config from verified .100 persistent original to own A800 SHM; no base copy, no optimizer, no new model. SHM temporary and recoverable from persistent locator.",
+    "disk_budget": "SHM requires adapter bytes+64MiB; uid1045 owned0700 new dir. Persistent output only small files require64MiB; do not write weights to 193MB disk.",
+    "purpose": "One authorized F0 fixed union transfer; no reverse-alone quality",
+    "comparison": {
+      "baseline_score": 0.6954439475814587,
+      "primary": "Literal-v2 union old58 OR reverse58",
+      "keep": "Union Score strictly increases and macro does not decrease",
+      "no_other_selection": true
+    },
+    "cpu_preparation": {
+      "plan": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/plan.json",
+        "bytes": 1721,
+        "sha256": "d781b859cf167cbab2a74d3a9a8c7986c76cdc15eec929076662621de33686ce"
+      },
+      "report": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/report.json",
+        "bytes": 1825,
+        "sha256": "f46ec03fdd557f8636bb00a49d0a85702f34e58f29e1097881e559df7b436ee1"
+      }
+    },
+    "created_at_utc": "2026-10-24T00:24:39.857991+00:00",
+    "scope": "Original58/F0 and old SFT48, no publicnewconcept, no ICL, no originaldev. Only union quality.",
+    "no_order_seed_threshold_or_combination_scan": true,
+    "adapter_transfer": {
+      "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "source_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/dev-relation-transfer/adapter-epoch002",
+      "host": "10.5.2.100",
+      "port": 41298,
+      "path_prefix": "fixed-sequence-reverse-f0-20261024",
+      "server_directory": "sequence-round2/reverse-f0-adapter-transfer-v1",
+      "cap_seconds": 180,
+      "grace_seconds": 5,
+      "persistent_original_preserved": true
+    },
+    "prior_F1_control": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/summary.json",
+      "bytes": 7023,
+      "sha256": "9c75221c2bb4fe76fcbbf150a225b8f1f4d650afa2d74f95177784f362c2233c"
+    }
+  },
+  "readiness": {
+    "scope": "Input-only readiness; no forward, new score, gold or training",
+    "completed_at_utc": "2026-10-24T00:24:06.021839+00:00",
+    "source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/reverse_json_order_f0/prepare.py",
+      "bytes": 7579,
+      "sha256": "c45df3b51dc32ba74167228cf95189610252ec1e0ac1d37af997f109c593c801"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/plan.json",
+      "bytes": 1721,
+      "sha256": "d781b859cf167cbab2a74d3a9a8c7986c76cdc15eec929076662621de33686ce"
+    },
+    "rows": 58,
+    "documents": 16,
+    "concepts": 415,
+    "changed_rows": 56,
+    "unchanged_rows": 2,
+    "all_roundtrip_byteexact": true,
+    "synthetic_contracts": 6,
+    "original_total_tokens": 195355,
+    "new_total_tokens": 195356,
+    "maximum_new_tokens": 6040,
+    "token_changed_rows": 13,
+    "maximum_with_1600_output": 7640,
+    "above14000": 0,
+    "truncated": 0,
+    "cost": {
+      "old58_actual_seconds": 225.733,
+      "ratio_with_old_output": 1.0000050321048288,
+      "proxy_seconds": 225.73413591211934,
+      "caveat": "Estimate only; reversed generation may change length. Same original SFT48 model; fixed migration budget600+30."
+    },
+    "artifacts": {
+      "prompts.jsonl": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/prompts.jsonl",
+        "bytes": 823917,
+        "sha256": "49aef6f89af9bea32460feac746738ad49bb38565f13f8c27210b41798157a86"
+      },
+      "inverse-and-token-audit.json": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/inverse-and-token-audit.json",
+        "bytes": 48452,
+        "sha256": "2d23bb717d68dce54c1a2ded10643478d9072a38a0ff02fb29d040a12060f202"
+      }
+    },
+    "cpu_seconds": 1.0093551140016643
+  },
+  "resource_preflight": {
+    "source100": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/source100-readonly.json",
+      "bytes": 1025,
+      "sha256": "62ff388f4f90f55085aed0e9ebdea916aa939432d66e29a8720b098cfffff4bc"
+    },
+    "target800": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/target800-readonly.json",
+      "bytes": 626,
+      "sha256": "9be167f38d1aa0057893c57076d05629fadcd4b1b1079188123d78e20b222d7b"
+    }
+  }
+}

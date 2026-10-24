@@ -32,3 +32,5 @@ Root 根据以上无标签供给授权只做 F0/F1 两折：保持三公开+prop
 计划/source检查点 `b7438c8` 已push并核远端后，先追加并共同freeze，再一次v2。F0的3条造成mention +2TP1FP、doc +0TP1FP，实体均值−.000006214；F1的20条造成mention +2TP18FP、doc +1TP10FP，实体均值−.004575967。合并32篇mention +4TP19FP、doc +1TP11FP，关系完全不变：Score .733753245→.732486528，实体目标均值−.002533434。按事前keep失败关闭，不迁dev、不训四fold、不修改过滤。两折均为开发控制且训练规模48/32不同。
 
 完整两预测freeze `c86d9adc…`，执行/终点与旧单fold指标引用见 `evidence/round2/gliner-strong-pool-control-results.json`。旧单fold未重评，旧pooled32在同次比较计算。独立小增量审排在逆序之后；不重旧模型/NN。
+
+独立终审PASS/负关闭：`validation/gliner-strong-pool-supply-review/review.json` SHA `b6427b490885e8ba961f082d9b06bcee2f7dda94ddb1645796fc18692b62dfd2`。实际freeze00:22:50.520739（此前聊天近似时刻不作证据），两pred/新v2/format精确；旧pooled由旧counts独立重构未重评。
