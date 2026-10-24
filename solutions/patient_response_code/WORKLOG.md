@@ -114,3 +114,7 @@ The scheduled single read12:58:27.406877 again returned explicitLUNA, not model/
 ### 2026-10-24 13:03 UTC — actual complete58 CPU PASS and final binding
 
 A100 CPU finished13:03:21.831548 rc0/13.125329s (native12.197954s), complete7-member zip08d51e09 recovered. Original505090tokens/max16245→coded516365/max16542 uniqueidx30, no truncation; all58 Auto/nativeIDs/template/decode exact, clinicalmap bijective. Native context262144≥18142. Explicit engineering inputguard rises14848→16896 (ceil512), greedy1600 unchanged. Bound sameadapter2c777e88, 58fresh/0cache, longest30 first as one formal row, then old ascending length order. Source/plan/quality immutable and pushed before GPU activation.
+
+### 2026-10-24 13:06 UTC — original unique F0 GPU start confirmed after UNKNOWN
+
+Archiveed66def0/364,005B fetchUNKNOWN resolved by read-only exact11member/12piece verification plusfsync; no retransmission. Original.100HTTPstoptrue. Unique start returnedUNKNOWN but actualdriver196256 began13:05:44.871579; child/PGID196277, TERM13:25:44.871579+30, plan8b6087cf. ManagedID unavailable, not fabricated. Originalinspect confirmedactualdriver0/58 duringloading; no secondstart. F1immutable independentreview187cfa0f passed allchain, pointer only added without rewriting202bundle.

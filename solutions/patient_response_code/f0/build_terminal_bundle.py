@@ -13,8 +13,9 @@ def main():
  for p in C.glob('recovery-*'):
   if p.is_file() and p.suffix=='.json':add('cpu/'+p.name,p)
  for p in (C/'preparation-history').glob('*'):add('cpu/preparation-history/'+p.name,p)
- for n in ['plan.json','entry.json','deployment-manifest.json','start-intent.json','job.json','terminal-manifest.json','terminal.zip','collect-intent.json','collect-manifest-tool.json']:
+ for n in ['plan.json','entry.json','deployment-manifest.json','start-intent.json','job.json','observed-job.json','start-tool.json','terminal-manifest.json','terminal.zip','collect-intent.json','collect-manifest-tool.json']:
   if (I/n).is_file():add('inference/'+n,I/n)
+ for p in I.glob('deployment-recovery-*.json'):add('inference/'+p.name,p)
  for folder in I.glob('collect-recovery-*'):
   for p in folder.glob('*.json'):
    if not p.name.startswith('part-'):add('inference/'+folder.name+'/'+p.name,p)
