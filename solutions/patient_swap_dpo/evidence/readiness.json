@@ -1,0 +1,100 @@
+{
+  "status": "CPU_READINESS_COMPLETE_ROOT_AUTHORIZED_BOUNDED_FIXED_GPU_CONTROL_NOT_STARTED",
+  "at_utc": "2026-10-24T14:12:54.682400+00:00",
+  "branch": "explore/patient-swap-dpo",
+  "base_commit": "979e9492",
+  "report": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-swap-dpo/solutions/patient_swap_dpo/REPORT.md",
+    "bytes": 6134,
+    "sha256": "7cdf9748c2f08ce29d43a928515dfae3fced6a9ec937c6a6606f916ada4f808b"
+  },
+  "candidate_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-swap-dpo/solutions/patient_swap_dpo/candidate-plan.json",
+    "bytes": 3543,
+    "sha256": "e9b54a25cc02ccae6d1c6bc36bd309ab9c4c1dd5ac46b496575894ccd006a63c"
+  },
+  "refs": {
+    "training_supply": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/cpu-v1/result.json",
+      "bytes": 3310,
+      "sha256": "c4341c9080f36938dae7ddc1ca08be142d51db6a8dacc786af906197f5643abc"
+    },
+    "encoded_pairs": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/cpu-v1/encoded-pairs.jsonl.gz",
+      "bytes": 122710,
+      "sha256": "952807c7cf2b330ec3bccdda96b9e623b44a223099ba7ecc764c81fb58ad4dd0"
+    },
+    "raw_pairs": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/cpu-v1/pairs.jsonl.gz",
+      "bytes": 96162,
+      "sha256": "b8da40a763e4a7929b7ff60c51ab9723ac3890d246422aa9881bc351b587ddef"
+    },
+    "numpy_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/math-contract.json",
+      "bytes": 699,
+      "sha256": "5de79495368664b4d721aa2887e2699a0be9dd7cc01319fb4cd956d401f5b1d4"
+    },
+    "actual_torch_contract": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/actual-cpu/result.json",
+      "bytes": 1161,
+      "sha256": "a52ea3d827cf292677c5e6a981f1adec5119c0f9b735e5cc933e84651b6ed533"
+    },
+    "actual_torch_observations": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/actual-cpu/observations.jsonl",
+      "bytes": 6058,
+      "sha256": "563b93d01d669c27b590ab6655ba86608413ab7153571dbd5e8efcc93f79897e"
+    },
+    "actual_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/actual-cpu/collection.json",
+      "bytes": 684,
+      "sha256": "6303440efb51ae0fddaf2433608160620acad550ef4d5277b1357671cbcad2bd"
+    },
+    "old_B4_formula": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/baseline-formula.json",
+      "bytes": 2845,
+      "sha256": "9615787315abc9b6ee8036c1860214d01dda5e837010852f210a3af4b46e5bef"
+    },
+    "public_sources": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-readiness-20261024/public/fetch.json",
+      "bytes": 1437,
+      "sha256": "60dd54fa2eef397f2f6a8056ed7e0307f6e3eab9275a8b4a949af0bcb03a387c"
+    },
+    "parent_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen3-fixed-relations-final-review/review.json",
+      "bytes": 13354,
+      "sha256": "7c9c7c45c5f82fb7d1182d53b9229ef68e78babd501b138169caaf6b3c00570a"
+    }
+  },
+  "fixed_model": "Qwen3-8B parent543c train32 originalclinical handles",
+  "fixed_primary": "B471 UNION atleast2(G,S,Q_DPO,C)",
+  "fixed_B4_score": 0.701325377212172,
+  "recipe": {
+    "pairs": 74,
+    "epochs": 1,
+    "updates": 10,
+    "gradient_accumulation": 8,
+    "tail": 2,
+    "beta": 0.1,
+    "lr": 1e-05,
+    "warmup": 1,
+    "dropout": 0
+  },
+  "authorized_budgets": {
+    "reference": 900,
+    "probe": 600,
+    "formal": 1800,
+    "infer": 1200,
+    "TERM_grace": 30
+  },
+  "remaining_engineering": [
+    "actual targetHF/tokenizers0.21 all148 IDs",
+    "actual BF16 fullmodel serial replay + 13pairs/26FB/1Adam/twoPareto, memory and cost<=1800",
+    "new fullstate durableACK before80infer"
+  ],
+  "numerical_source_note": "ActualCPU tested8ac3da04 dpo_ops. Subsequent only nonfinite observation serialization changed to null to preserve failures; same math/gradient calls. TargetCPU/source freeze will record current source; no GPU or fit occurred.",
+  "old_collection_first_read_guard": "Initial read guard AssertionError; no file downloaded/no model restart. Bounded pure-read recovery collected both original files SHA/fsync/reopen.",
+  "official_actions": false,
+  "held_gold_reads": 0,
+  "quality_calls": 0,
+  "bigmodel_runs": 0
+}

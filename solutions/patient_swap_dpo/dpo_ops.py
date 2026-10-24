@@ -53,7 +53,8 @@ def serial_dpo_backward(model, chosen_ids, rejected_ids, prompt_length,
         # no-grad/grad evaluation differs materially on this exact input.
         passed = finite and bool(torch.isclose(actual.detach(),expected,rtol=1e-5,atol=1e-5))
         observe(dict(kind='coefficient_forward_replay',side=name,finite=finite,
-                     no_grad_logp=float(expected),grad_logp=float(actual.detach()),
+                     no_grad_logp=float(expected) if bool(torch.isfinite(expected)) else None,
+                     grad_logp=float(actual.detach()) if bool(torch.isfinite(actual)) else None,
                      absolute_difference=float(difference) if finite else None,
                      passed=passed,rtol=1e-5,atol=1e-5))
         assert passed, 'Current weights no-grad/grad forward disagreement'

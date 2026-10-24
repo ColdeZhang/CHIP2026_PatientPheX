@@ -1,0 +1,57 @@
+--- qwen3/full64_component/common.py
++++ patient_swap_dpo/runtime/common.py
+@@ -100,7 +100,7 @@
+     return result
+ 
+ 
+-def load_model(plan, output, adapter=None):
++def load_model(plan, output, adapter=None, trainable=False):
+     """Frozen BF16 public base, FP32 rank16 adapters; no dtype fallback."""
+     import numpy as np
+     import torch
+@@ -148,18 +148,30 @@
+         model.config.use_cache = False
+         model.train()
+     else:
+-        model = PeftModel.from_pretrained(base, adapter, is_trainable=False, local_files_only=True)
++        model = PeftModel.from_pretrained(base, adapter, is_trainable=trainable, local_files_only=True)
+         from peft import get_peft_model_state_dict
+         from safetensors.torch import load_file
+         saved = load_file(str(Path(adapter) / 'adapter_model.safetensors'), device='cpu')
+         loaded = get_peft_model_state_dict(model)
+         assert set(saved) == set(loaded) and len(saved) == 504
+         assert all(torch.equal(v, loaded[k].detach().cpu()) for k, v in saved.items())
+-        assert not any(p.requires_grad for p in model.parameters())
+         del saved, loaded
+-        named = {}
+-        model.eval()
+-        model.config.use_cache = True
++        if trainable:
++            named = {name: p for name, p in model.named_parameters() if p.requires_grad}
++            assert len(named) == 504 and sum(p.numel() for p in named.values()) == 43646976
++            assert all(p.dtype == torch.float32 for p in named.values())
++            model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False})
++            model.enable_input_require_grads()
++            model.config.use_cache = False
++            model.train()
++        else:
++            assert not any(p.requires_grad for p in model.parameters())
++            named = {}
++            model.eval()
++            model.config.use_cache = False
++        from dpo_ops import disable_dropout
++        disabled_dropout_count = disable_dropout(model)
++        assert all(module.p == 0 for module in model.modules() if isinstance(module, torch.nn.Dropout))
+     assert sum(p.numel() for p in model.parameters()) == 8234382336 < 10000000000
+     assert not base.lm_head.weight.requires_grad and not base.get_input_embeddings().weight.requires_grad
+     manifest = {'at_utc': stamp(), 'base_parameters': 8190735360, 'lora_parameters': 43646976,
+@@ -169,7 +181,8 @@
+                 'runtime': {'torch': torch.__version__, 'transformers': transformers.__version__,
+                             'peft': peft.__version__, 'tokenizers': tokenizers.__version__},
+                 'load_seconds': time.monotonic() - started, 'TF32': False,
+-                'loaded_adapter_tensors_exact': 504 if adapter is not None else None}
++                'loaded_adapter_tensors_exact': 504 if adapter is not None else None,
++                'DPO_warmstart_trainable': trainable, 'disabled_dropout_modules': disabled_dropout_count}
+     save(Path(output) / 'model-manifest.json', manifest)
+     return torch, np, model, named, manifest
+ 

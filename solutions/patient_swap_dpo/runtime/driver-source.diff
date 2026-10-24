@@ -1,0 +1,33 @@
+--- qwen3_relations/driver.py
++++ patient_swap_dpo/runtime/driver.py
+@@ -21,13 +21,13 @@
+     root = Path(plan['run_root'])
+     root.mkdir(exist_ok=False)
+     save(root / 'driver-start.json', {'at_utc': stamp(), 'pid': os.getpid(), 'plan': ref(args.plan),
+-                                    'phase_budgets': {'probe': 420, 'formal': 2400, 'infer': 1200}, 'grace': 30})
++                                    'phase_budgets': {'reference': 900, 'probe': 600, 'formal': 1800}, 'grace': 30})
+     stages = []
+-    for phase, seconds in [('probe', 420), ('formal', 2400), ('infer', 1200)]:
++    for phase, seconds in [('reference', 900), ('probe', 600), ('formal', 1800)]:
+         if phase == 'formal':
+             previous = json.loads((root / 'probe/complete.json').read_text())
+             if not previous['formal_budget_gate']:
+-                save(root / 'closed-before-formal.json', {'reason': 'Measured estimate exceeds authorized2400', 'probe': previous})
++                save(root / 'closed-before-formal.json', {'reason': 'Measured estimate exceeds authorized1800', 'probe': previous})
+                 break
+         start = time.monotonic()
+         at = datetime.now(timezone.utc)
+@@ -74,11 +74,12 @@
+               'at_utc': stamp(), 'stages': stages, 'no_quality_calls': True}
+     save(root / 'driver-result.json', result)
+     files = {}
+-    for directory, prefix in [(root, 'run'), (Path(plan['cpu_dir']), 'cpu'), (Path(__file__).parent, 'source')]:
++    for directory, prefix in [(root, 'run'), (Path(plan['CPU_ready']['path']).parent, 'cpu'), (Path(__file__).parent, 'source')]:
+         for path in sorted(directory.rglob('*')):
+             if path.is_file() and path.suffix in {'.py', '.json', '.jsonl', '.gz', '.log'} and path.stat().st_size < 1048576:
+                 files[prefix + '/' + str(path.relative_to(directory))] = path
+     files['plan.json'] = Path(args.plan)
++    files['source/dpo_ops.py'] = Path(__file__).parent.parent / 'dpo_ops.py'
+     inventory = {name: ref(path) for name, path in files.items()}
+     save(root / 'small-terminal-inventory.json', inventory)
+     with zipfile.ZipFile(root / 'small-terminal.zip', 'x', zipfile.ZIP_DEFLATED) as archive:
