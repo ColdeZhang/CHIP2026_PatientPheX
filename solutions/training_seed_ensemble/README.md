@@ -1,6 +1,6 @@
 # 独立训练种子：CPU 准备
 
-**结论：在已检查的实际来源中未找到等价实跑，值得作为排队候选；本轮没有训练、GPU 或新质量。** 同一个 Grounded32 `d52` 的随机采样、epoch 权重平均，以及不同数据的 full64/quote-completion，均不等于同配方 fresh 训练第二个种子。
+**查重未发现等价实跑；固定新seed已获准并于15:57:39在A100开始fresh训练，尚无新质量。** 初始CPU准备及其禁用GPU提案保留；当前实际入口见WORKLOG和evidence/formal-running.json。 同一个 Grounded32 `d52` 的随机采样、epoch 权重平均，以及不同数据的 full64/quote-completion，均不等于同配方 fresh 训练第二个种子。
 
 唯一新训练 seed 固定为 `20261025`，原值 `20261023`。复用原 F2+F3 的 32 文献、87 患者行及全部既有编码/目标；标准 indexed CE、两轮、22 次更新、warmup2、r16、LR1e-4 均不变。生成 trainer 只有三处 seed 常量变化；[差异](evidence/seed-only.diff)和 [CPU/实际来源/成本](evidence/readiness.json)可直接核查。新权重及初始化张量尚未产生，不声称 CUDA 逐位可复现。
 

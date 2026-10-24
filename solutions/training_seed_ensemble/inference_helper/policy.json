@@ -1,0 +1,19 @@
+{
+  "schema": "grounded-generation-inference-v1",
+  "fold": "F2+F3 train32 -> complete F1 input16/39patients",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "enable_thinking": false,
+    "max_new_tokens": 1600,
+    "context_truncation": false,
+    "all_rows_fresh": true
+  },
+  "token_budget_basis": "Actual train targets max610 supervised tokens; fixed1600 leaves >2.6x room. Complete actual held input max10080; no length filtering or truncation.",
+  "raw_first": "Persist actual generated token IDs/end state before decode; persist published-native decoded text before parsing. Compare native decoder to actual HF decoder, do not fix output text.",
+  "response_policy": "Exact original G interpret: cap/non-EOS/invalid whole JSON framing abstains whole patient row; within a complete JSON array invalid quote/duplicate exact anchor is rejected itemwise and all other valid anchors retained. No repair or regeneration.",
+  "attribution_boundary": "Target patient is fixed by input row; copied lexical anchor is not human-labeled evidence. Model judges whole report association; mapper cannot override patient identity.",
+  "normalization": "Use separately frozen normalization/policy_v1.json: exact public/train32 first, eligible unmatched quote only public frozen Sap fallback; ambiguity and unknown are abstain, NIL only exact training evidence. No held-label calibration.",
+  "quality": "B4 UNION (G_new INTERSECT (G_old UNION S UNION Q UNION C)); complete F1 only; one new v2, old0, byteexact baseline0v2; F1 strict improvement gates F0.",
+  "selection_authorization": "Fixed independent training-seed ensemble protocol; no alternate endpoint or checkpoint selection."
+}

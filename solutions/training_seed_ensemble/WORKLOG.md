@@ -2,7 +2,7 @@
 
 2026-10-24 UTC，分支 `research/training-seed-ensemble`，起点 `main@ff7ad16777e3907ed3b4b4231794439017aa5bf8`。仅修改本方案目录。共享规则已读，后继启动尤其遵循 H49 原始响应先存、H68 按实际成本做最小工程检查、H69 启动有效期与运行预算分开。
 
-**当前：本地准备已43f8fe1c推送核验；根线程已授权正式链，独立控制器已冻结待部署；尚无作业。** 不更改任何其他 owner 的运行。15:42 根线程资源观察为 .7 GPU2 quote、.100 GPU0 Copy/GPU1 boundary、.12 teacher pilot、.3 Sap；本线没有另查卡或占用外部进程所在卡。观察仅为历史，不代表下一次可用。随后根线程15:44:04只读核到 .12 GPU2=0MiB/noapps，取消R1大模型迁移，允许本线提出在原缓存机排程；正式具体预算仍待根线程确认，本线未据此启动。
+**当前：独立fresh训练已15:57:39真实启动，原A100 GPU2；两轮终点/质量未完成。** 不更改任何其他 owner 的运行。15:42 根线程资源观察为 .7 GPU2 quote、.100 GPU0 Copy/GPU1 boundary、.12 teacher pilot、.3 Sap；本线没有另查卡或占用外部进程所在卡。观察仅为历史，不代表下一次可用。随后根线程15:44:04只读核到 .12 GPU2=0MiB/noapps，取消R1大模型迁移，允许本线提出在原缓存机排程；正式具体预算仍待根线程确认，本线未据此启动。
 
 - 查重：实际旧 G32 的 trainer 与 run manifest 对齐；仅 seed20261023。full64 同 seed 但不同数据；双采样的20261024/25是推断种子；平均源 `fresh_training=false`；quote261改目标并 warm-start。查重范围是已存在的来源/计划，不声称覆盖未记录实验。
 - CPU：初版 0.205 秒核 seed-only 来源、87行两轮分组和旧实际分组；G-only 提案未执行。root 在任何新模型/质量前改为四源固定支持并集。V2 0.184 秒重新核唯一公式与全部 refs，133/141 纯预测供给，不读 held gold，不重新分词/fit/v2。
@@ -25,3 +25,7 @@ V2 CPU调用返回UNKNOWN，30秒纯读及后继库存均没有结果/进程；�
 第二次CPU实际0.418秒：原verify_inputs完整返回87/32，随后新加distribution metadata版本guard失败。此guard不能反映PYTHONPATH overlay真实import版本，先前未在断言前存版本值，不能凭失败冒称差异细节。独立V4/attempt3改为实际import版本与distribution metadata先存、再核；仅CPU CUDA隐藏，不加载权重/forward，trainer/目标/预算不变。单入口training/formal-entry-v4.json，所有首失败和UNKNOWN/V3终态保留。
 
 V4 CPU真实4.761801秒PASS，同87/32输入及实际import Torch2.6.0+cu124/TF5.20.2/PEFT.21.2/tokenizers.23.1。V4 formal仅启动前只读库存UNKNOWN，尚无start-intent/claim/start_process；原剩余已不足2570.350门，原schema campaign明确0模型/0fit关闭，不再start，保16:39旧钟。root预授权此条件下独立fresh3000+30，新命名空间formal-fresh-v1；复用V4真实CPU回执/17资产/同训练源码，不再CPU或probe。当前唯一入口training/formal-entry-fresh-v1.json，新硬钟将在其唯一start-intent时固定，非旧job延期。
+
+实际fresh作业proc_89bc0c0d-a45a-423a-a371-d40eb5226ff1，driver36536/child36557；新TERM16:47:38.444861、KILL16:48:08.444861，3000共享两轮与ACK。实际入口training/formal-entry-fresh-v1.json；bf35498c已启动前推送。唯一只读daemon195513/start_ticks11011112已跨exec实核仍活，180秒原observations，路径外存formal-fresh-v1/watch-launch/receipt.json；不会start任何NN。未来恢复先核此PID/start_ticks/锁和现有observation，不另起并发watcher。小Git入口evidence/formal-running.json。
+
+后继源已接收helper并在输出前修正：初始helper把合法数组内无效quote/duplicate变整行拒绝，偏离原G；已直接alias原interpret，保父版逐item拒绝，只有cap/nonEOS/整体JSON错整行弃答。混合有效/无效反例实际CPU6507f58d通过；原helper整份a37fcd3d快照外存inference-helper-initial-delivery保留。新manifest指明修正来源，无新推断/质量。绑定推断时必须显式传fresh_v1正式plan/目录；不能用README中的任何旧失败默认目录。必要Sap原.3当前别线占用，真正推断后再协调原cache/空卡，未声明已可用。
