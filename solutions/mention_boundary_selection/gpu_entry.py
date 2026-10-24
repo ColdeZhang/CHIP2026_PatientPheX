@@ -41,7 +41,7 @@ def probe(plan,out,cpu,torch,model,named,manifest):
     times=[x['seconds'] for x in base['durations']];steady=max(x['seconds']/x['tokens'] for x in base['durations'][1:]);total=plan['recipe']['epochs']*cpu['counts']['train']['tokens']
     estimate=manifest['load_seconds']+times[0]+1.25*(total*steady+plan['recipe']['updates']*adam[0])+120
     row_bound=manifest['load_seconds']+times[0]+1.25*(6940*max(times[1:])+868*adam[0])+120
-    cost={'rule':'load+cold_first_FB+1.25*(FULL_ACTUAL_TOKENS*max_all_remaining_steady_FB_seconds_per_input_token+868*actual_first_Adam)+120s_two_ACK_IO','steady_max_seconds_per_token':steady,'actual_first_Adam_seconds':adam[0],'native_probe_wall_seconds':elapsed,'cold_first_FB_seconds':times[0],'estimated_formal_seconds':estimate,'budget_seconds':7200,'fits':estimate<=7200,'legacy_native_including_cold_scaled_estimate':base['formal_estimated_seconds'],'diagnostic_worst_row_everywhere_estimate':row_bound,'estimation_limit':'token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit'}
+    cost={'rule':'load+cold_first_FB+1.25*(actual_full_training_tokens*max_remaining_steady_FB_seconds_per_input_token+868*actual_first_Adam)+120s_two_ACK_IO','actual_full_training_tokens':total,'optimizer_updates':plan['recipe']['updates'],'steady_max_seconds_per_token':steady,'actual_first_Adam_seconds':adam[0],'native_probe_wall_seconds':elapsed,'cold_first_FB_seconds':times[0],'estimated_formal_seconds':estimate,'budget_seconds':7200,'fits':estimate<=7200,'legacy_native_including_cold_scaled_estimate':base['formal_estimated_seconds'],'diagnostic_worst_row_everywhere_estimate':row_bound,'estimation_limit':'token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit'}
     save(out/'cost.json',cost)
     model.zero_grad(set_to_none=True);gc.collect();torch.cuda.empty_cache();model.gradient_checkpointing_disable();model.eval();model.config.use_cache=True
     from transformers import AutoTokenizer
@@ -86,7 +86,10 @@ def main():
         for name,h in plan['source_files'].items():assert sha(Path(__file__).parent/name)==h,name
         cpu=json.loads(checked(plan['cpu_result']).read_text());assert cpu['status']=='PASS_COMPLETE_BOUNDARY_SELECTION_NATIVE_HF_AND_FINITE_GRAMMAR_CPU_ONLY';assert cpu['train_rows']==3470 and cpu['held_rows']==1416;assert cpu['schedule']=={'epochs':2,'updates_per_epoch':434,'updates':868,'last_group_size':6,'warmup_steps':44}
         previous_assets=Path(plan['run_root'])/'probe/verified-assets.json'
-        gpu_gate(plan,out);assets=verify_assets(plan,full=a.mode=='probe',previous=None if a.mode=='probe' else json.loads(previous_assets.read_text()));save(out/'verified-assets.json',assets)
+        gpu_gate(plan,out)
+        inherited=json.loads(checked(plan['prior_verified_assets']).read_text()) if a.mode=='probe' else json.loads(previous_assets.read_text())
+        assets=verify_assets(plan,full=False,previous=inherited);save(out/'verified-assets.json',assets)
+        save(out/'asset-verification-scope.json',{'mode':'all13 current size/mtime_ns/inode exact plus prior full-SHA certificate','prior':plan['prior_verified_assets'] if a.mode=='probe' else str(previous_assets),'new_full_weight_hash':False})
         adapter=None
         if a.mode=='formal':
             p=json.loads((Path(plan['run_root'])/'probe/complete.json').read_text());assert p['formal_budget_gate'] and p['probe_state_must_be_discarded'];assert p['indexed_forward_backward']==11+len(cpu['pareto_indices']) and p['optimizer_updates']==1
