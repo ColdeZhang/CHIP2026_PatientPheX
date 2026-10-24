@@ -1,8 +1,11 @@
 # 工作台账
 
-- 当前：来源核查通过，源码和唯一拟合计划待推送后执行。未 fit、未读 F1/F0 gold、无新质量。
-- 起点：main `a89f225d33a4facbd896e6c2d61dbef481d6c5ff`；独立分支 `explore/relation-calibration`。
-- 核查：train32/F2F3 两生成器、CRF/Sap候选、grounded训练与严格词典均排 F0；公共41099规范化 bank 不含训练别名。复用既有三个完整端点独审，实核相关小型来源元数据。见 `evidence/provenance.json`。
-- 纯输入预检：F1 16篇39患者；grounded282、sample交集383、Qwen3416，完整并集561；无 B1 行限制或特征。
-- 配方：sklearn1.8.0 LR，C1/lbfgs/默认L2/intercept/class_weight None/max_iter1000/random_state20261024；3binary、cut.5、唯一 fit。
-- 下一步：提交推送核验 → 唯一 CPU fit → 持久参数/模式统计 → 等三个F0纯输出 → 和主线程固定2of3共同冻结 → 各唯一v2。F0 gold在共同冻结通知前禁止读取或哈希。
+- 当前：**唯一 F1 元训练完成；等待 F0 三原始源完整，尚未读 F0 gold / 尚无 F0 评分。**
+- 起点：main `a89f225d33a4facbd896e6c2d61dbef481d6c5ff`；分支 `explore/relation-calibration`。
+- 来源：train32/F2F3 两生成器、CRF/Sap候选、grounded训练与严格词典均排 F0；公共41099规范化 bank 不含训练别名。实核小型元数据并引用三个已完独审，见 `evidence/ancestry.json`。
+- 执行：源码/计划 `4b6e732b9a57ad1fb8a811f760b603876ee1ae4c` 已先推送并核远端；11:42:59 UTC 唯一 fit 结束，外1.27154秒/拟合.003523秒/rc0，11迭代、无warning、重开pickle概率exact。
+- 输入：F1 16篇39患者；grounded282、sample交集383、Qwen3416，完整并集561；364正197负。特征共冻后才读F1训练标签，无 B1 限制/特征。
+- 参数：C1/lbfgs/默认L2、截距、class_weight None、max_iter1000、seed20261024。系数 `[1.2821716714, 2.4158995729, .9640994501]`，截距 `−2.1711055903`；cut固定.5。
+- 结果范围：这是元训练模式统计，无F1 v2/无held质量。固定模型接受sample交集存在，或grounded与Qwen同时存在；未据结果调整规则。八模式JSON应用与sklearn选择完全一致。
+- 证据：`evidence/fit-result.json`；可直接恢复的小参数在 `evidence/model.json`、模式统计在 `evidence/patterns.json`。全量标签/特征/pickle/日志在 `R/research/relation-calibration-20261024/`。
+- 下一步：按 `F0-plan.template.json` 绑定三完整F0输出及祖先 → 保B0全量装配 → root和固定2of3共同冻结 → 各唯一v2。F0 gold在共同冻结通知前禁止读取或哈希；必须严格胜B0和固定2of3。

@@ -1,0 +1,44 @@
+{
+  "status": "UNBOUND_WAIT_COMPLETE_F0_SOURCES",
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "bytes": 350409,
+    "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "documents": 16,
+  "patients": 47,
+  "sample_rows_per_seed": 58,
+  "features": [
+    "grounded",
+    "sampleintersection",
+    "qwen3"
+  ],
+  "cut": 0.5,
+  "model_state": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/fit-v1/model.json",
+    "bytes": 706,
+    "sha256": "0fc19cbed85fadc7be7e23e8365d1d734843d33e467c7f154ebe1f8eff51d1a2"
+  },
+  "raw_sources": {
+    "grounded": null,
+    "sampled_diagnostics": null,
+    "qwen3": null
+  },
+  "F0_ancestry": null,
+  "baseline": null,
+  "sources": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common.py",
+      "bytes": 7873,
+      "sha256": "37578e207d4f8be6f2faf880c99b7f0a1cf155a82075c806311f8f8c5c98a5a7"
+    },
+    "assemble_F0.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/assemble_F0.py",
+      "bytes": 2645,
+      "sha256": "417fbb323803078f959cd16477666b5a82877b856b31b2086d4a648d78dad04c"
+    }
+  },
+  "source_policy": "All three complete raw sources, all task training ancestors exclude F0; no baseline-derived feature or candidate selection.",
+  "next": "Bind actual refs, assemble complete prediction without gold, send freeze to root. Root jointfreezes with fixed2of3 before either v2.",
+  "success": "Strict Score increase over B0 .7115075800266846 and root fixed2of3; no scan/no fallback recipe."
+}
