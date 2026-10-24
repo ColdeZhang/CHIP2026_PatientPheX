@@ -2,6 +2,8 @@
 
 当前状态：**CPU 准备完成，未启动模型/GPU/质量**。建议主线程决定是否进行一次完整有界对照，见 [REPORT](REPORT.md)。最终证据 [readiness](evidence/readiness.json)，唯一未执行 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
+最近远端检查点：2026-10-24 14:47 UTC，`origin/explore/copy-grounded-decode` 的 `b00734176a5d8ec7d2eb372df628fdf38e26b7fc` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
 - 预先固定供给：既有 strong Task1 + GLiNER 1416 exact spans；按原文 offset 映射为 `[unit_id, exact_quote, occurrence_index]`，只去重同一三元组，不按患者距离挑 anchor、不补短语、不扩全子串库。候选不加入 prompt、不含预测 HPO ID。
