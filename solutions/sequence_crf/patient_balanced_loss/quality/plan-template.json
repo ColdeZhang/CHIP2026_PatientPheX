@@ -1,0 +1,173 @@
+{
+  "schema": "patient-balanced-F1-fixed-two-endpoint-v1",
+  "state": "TEMPLATE_UNBOUND_ACTUAL_INFERENCE",
+  "sources": {
+    "support.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/quality/support.py",
+      "bytes": 7827,
+      "sha256": "4aed90c7a3939bb07e5ffcade3febc4bc9344276a5dbd1774905fd61c5a9e30a"
+    },
+    "assemble.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/quality/assemble.py",
+      "bytes": 13739,
+      "sha256": "7b59e8d687917070254b43454bc94b20fb1ca14525375d8e0abd27094b4dbb2c"
+    },
+    "score.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/quality/score.py",
+      "bytes": 8564,
+      "sha256": "81b0e853e577502b5c1514f33907653d731e696bb20047039782d80f1b6de5f8"
+    }
+  },
+  "references": {
+    "normal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "reverse": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/reverse.jsonl",
+      "bytes": 154308,
+      "sha256": "bc9d1b26bde9a843b1a5ec95c78d46cafd8d8a30748365276942be5c744e29ba"
+    },
+    "old_patient": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/assembled/patient-first.jsonl",
+      "bytes": 153874,
+      "sha256": "2d73259b82d3c23ca82f56dd70207d963e5ef003cc4c58c25f60518df9bc7bcf"
+    },
+    "method_baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/F1.triple.jsonl",
+      "bytes": 155372,
+      "sha256": "ce7363ab213ccc92c59def957b2e832b459339cc52ee7ee7dd6c38c4465f2f0e"
+    },
+    "method_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/F1.metrics.json",
+      "bytes": 13132,
+      "sha256": "14b708b29e1152a2d692242d16d0d3914e64cb450aab9c0f0cc576a6627e110e"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "stronger_F1_reference": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+      "bytes": 12922,
+      "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+    },
+    "stronger_reference_summary": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_readiness/full80/quality-summary.json",
+      "bytes": 5521,
+      "sha256": "d2eddae4f9ff254f175a1f762a53a152e42d297f928b846d5982bd7ff76128ca"
+    },
+    "quality_design": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/quality-design.json",
+      "bytes": 4066,
+      "sha256": "7da4d8c92195ea6172176c75f174149f02df617d0372d183f6ea5b43295e14f4"
+    },
+    "majority_plan": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research_readonly/majority_vote_control/plan.json",
+      "bytes": 11816,
+      "sha256": "202345c4572810625cc87cbed6acbcf98b116152a713344e8d5ac4afbd4d3c63"
+    },
+    "byte_helper": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research_readonly/majority_vote_control/common.py",
+      "bytes": 10348,
+      "sha256": "c713d2f5d5b2768cfb80ce4c17f920c6228dc3abb833080c972255d6e34c6e06"
+    },
+    "native_finish_reference": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/finish.py",
+      "bytes": 8946,
+      "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1.input80.patient-first.jsonl",
+      "bytes": 1092467,
+      "sha256": "32b52a2d580024342f25a5d74388c61323f2cc3bbf2bdb0eea404b19a9d64b18"
+    },
+    "input_token_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1-input-token-audit.json",
+      "bytes": 59512,
+      "sha256": "7fc89abd9075705853071502f0131c4b50ec8fe025154926a778ef74f68de3be"
+    },
+    "schema": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/patient_first.py",
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "parser": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/final_parser.py",
+      "bytes": 1381,
+      "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+    },
+    "tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    }
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "alpha": 0.5,
+  "arms": [
+    "primary",
+    "newP-alone"
+  ],
+  "keep_rule": "primary Score strictly greater than original N/R/P triple; macro disclosed without veto",
+  "baseline_score": 0.6638418206599839,
+  "stronger_reference_score": 0.676546354662594,
+  "expected": {
+    "rows": 80,
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "candidates": 587,
+    "pairs": 1557,
+    "train_documents": 32,
+    "baseline_relations": 469
+  },
+  "score_budget_seconds": 30,
+  "term_grace_seconds": 1,
+  "new_evaluator_calls": 2,
+  "old_evaluator_calls": 0,
+  "lightweight_libraries": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/cpu-libs",
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/quality-v1",
+  "actual": null,
+  "actual_schema_to_bind": {
+    "responses": "exact local path/bytes/SHA ref",
+    "manifest": "exact local responses.manifest.json ref",
+    "terminal": "exact infer_driver wrapper ref; returncode0,timed_outFalse,complete_existsTrue,all80_fresh_strict_completeTrue",
+    "inference_source": "exact final_infer.py after three actual final receipt SHAs are bound",
+    "local_prediction_root": "local collected terminal/prediction absolute directory",
+    "remote_prediction_root": "original final80-v1/prediction absolute directory used in inference manifest refs"
+  },
+  "binding_instructions": "After exact source/template push and full actual80 collection, parent fills actual and changes state to BOUND_ACTUAL_STRICT80, freezes the bound plan, then explicitly runs assemble once; score is a separate explicit invocation after common-freeze.",
+  "gold_handling": "Metadata copied only from old majority F1 plan. No prepare/assemble gold stat/open/hash. Only score worker enables gold after both complete predictions and exact shared freeze.",
+  "candidate_accounting": "Original finish sum(len(code_map))=587 and sum(len(code_map)*len(patient_ids))=1557; unique pool size may be disclosed only as a diagnostic.",
+  "byte_preservation": "Use only AST-extracted field_span/array_spans/phenotype_spans/mask_values from audited common c713d2f5; no majority/vote function invoked.",
+  "primary_order": "N phenotype list order, R unseen values in R order, sorted newP unseen values",
+  "diagnostic_order": "sorted newP only",
+  "strict_raw_contract": "All80 EOS/schema/input audit/IDs decoded by original native tokenizer once; all generation/raw/complete decisions and exact 16 docs,39 patients,1189 entity skeleton.",
+  "partial_failure_policy": "Preserve first failure, raw/observations and any successful metric. Never retry an endpoint with call-start, never reevaluate an existing metric. No automatic recovery/rebudget.",
+  "quality_policy": "Only primary total Score controls retention. Diagnostic cannot replace primary. Macro disclosed without veto; both metrics compared to fixed old triple and stronger .676546354662594 without changing arm.",
+  "no_new_alpha_threshold_vote_epoch_or_order_scan": true,
+  "no_automatic_F0_originaldev_or_official_action": true,
+  "current_scope": "Sources and template only: no predictions assembled, no gold opened/hashed, no evaluator/native decoder/model/remote executed."
+}
