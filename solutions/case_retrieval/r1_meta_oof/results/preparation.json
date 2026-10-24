@@ -1,0 +1,140 @@
+{
+  "status": "COMPLETE_FIXED_F1_FEATURES_AND_LABELS_NO_FIT",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/screen.py",
+    "bytes": 27563,
+    "sha256": "00251da4a031a55489f35b0daee5bea9a0698ad9ee60264cd933d378a0df7156"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/plan.json",
+    "bytes": 14280,
+    "sha256": "133c4748ae20ca33e1d90f2f25cc068ed890d3395d00859e2134fc1b53a1fe7c"
+  },
+  "matrix": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/F1.matrix.jsonl",
+    "bytes": 441814,
+    "sha256": "b3d667ab0170f87d03b34f9869cfa432522797bb36435a7b30d5925e0fd5771b"
+  },
+  "heldout_document_groups": [
+    [
+      "12386172",
+      "4607013",
+      "5415817",
+      "5789735"
+    ],
+    [
+      "10313222",
+      "2964533",
+      "5425407",
+      "11906559"
+    ],
+    [
+      "9327653",
+      "11871647",
+      "6063015",
+      "5473715"
+    ],
+    [
+      "5538066",
+      "12455887",
+      "6048891",
+      "12891056"
+    ]
+  ],
+  "features": {
+    "without_r1": [
+      "old9B_selected",
+      "reverse_same_adapter_selected",
+      "binary32_probability",
+      "oldLR_probability_max_occurrence",
+      "rules_selected_mean_occurrence",
+      "pair_same_sentence_max",
+      "pair_log_dist_min",
+      "pair_closer_margin_max",
+      "negated_for_target_max",
+      "explicit_cohort_max",
+      "pair_patients_max"
+    ],
+    "with_r1": [
+      "old9B_selected",
+      "reverse_same_adapter_selected",
+      "binary32_probability",
+      "oldLR_probability_max_occurrence",
+      "rules_selected_mean_occurrence",
+      "pair_same_sentence_max",
+      "pair_log_dist_min",
+      "pair_closer_margin_max",
+      "negated_for_target_max",
+      "explicit_cohort_max",
+      "pair_patients_max",
+      "r1_observed",
+      "r1_selected",
+      "r1_selected_patient_fraction"
+    ]
+  },
+  "rows": 1557,
+  "positive_labels": 365,
+  "R1_coverage": {
+    "observed_not_selected": 822,
+    "selected": 453,
+    "missing_unknown": 50,
+    "invalid_unknown": 232
+  },
+  "base_train32": [
+    "11203018",
+    "11235872",
+    "11765409",
+    "12059664",
+    "12078887",
+    "12110755",
+    "12110769",
+    "12118522",
+    "12250201",
+    "12334843",
+    "12405443",
+    "12628480",
+    "12646972",
+    "12798528",
+    "12811285",
+    "12846941",
+    "2866573",
+    "4644339",
+    "5023785",
+    "5368377",
+    "5422868",
+    "5574094",
+    "5763540",
+    "5773845",
+    "5793168",
+    "5866036",
+    "5970456",
+    "6057141",
+    "6059678",
+    "6134758",
+    "6219255",
+    "6390251"
+  ],
+  "all_F1": [
+    "10313222",
+    "11871647",
+    "11906559",
+    "12386172",
+    "12455887",
+    "12891056",
+    "2964533",
+    "4607013",
+    "5415817",
+    "5425407",
+    "5473715",
+    "5538066",
+    "5789735",
+    "6048891",
+    "6063015",
+    "9327653"
+  ],
+  "no_base_model_fit_on_entire_F1": true,
+  "no_new_gold_file_read": true,
+  "F1_mixed_training_target_table_read": true,
+  "no_F0_read": true,
+  "disclosure": "Known F1 labels are meta-training targets. This is development OOF, not a new blind test."
+}

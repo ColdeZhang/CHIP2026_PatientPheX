@@ -1,5 +1,7 @@
 # R1 条件融合：固定文献四折元模型 OOF 筛查
 
+**已完成，未通过强对照门槛。** 无R1 OOF Score .643533208，有R1 .650270692（+.006737484）；后者仍低于同池最高 .664421522，macro .523299795也低于要求 .558536625。维持后备、不启动 F0，不改split／树／阈值。完整数值与四fold描述见 [结果](RESULT.md)。
+
 实验 `E-20261024-R1-META-OOF-01`；独立于 [F1→F0后备研究](../research/r1-meta-fusion-feasibility.md)，不改写旧 R1 F1 双负或 F0 full58 关闭决定。
 
 目标是用现有缓存低成本判断 R1 条件信号是否值得后续投入。只使用已知 F1：1557对、16文献、原字面标签365正例；所有候选、LR、SFT、binary等基础资源必须未训练过整个 F1。旧 HGB／五列LR的 F1回代概率不进入特征。
@@ -12,4 +14,4 @@
 
 结果仅是已知F1、方法选择后的开发CV，不是冠军五折复现。失败不证明后备16篇fit→F0方法已被证伪；通过也仅上报主线程决定，**不自动启动 F0／原dev／官方**。
 
-唯一执行入口：`execute_once.py --plan <外部plan.json>`。模型、全量矩阵、预测和日志在仓库外 `research/r1-meta-oof-screen-20261024/`；不要重复调用已存在execution-state的任务。运行前 source/plan/来源合同将提交推送；完成后本目录保存关键终点与审查指针。
+唯一执行入口：`execute_once.py --plan <外部plan.json>`。模型、全量矩阵、预测和日志在仓库外 `research/r1-meta-oof-screen-20261024/`；不要重复调用已存在execution-state的任务。运行前 source/plan/来源合同已随 `ca003df` 推送并核远端；唯一执行已完成，所有阶段rc0，state=complete。
