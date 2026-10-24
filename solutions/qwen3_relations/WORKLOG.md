@@ -26,3 +26,5 @@
 - F0本地祖先/全58 append-only原输入已核：原124训练F2/F3，两train16候选生成器和训练32均排整个F0；F0候选层为train48（与F1层train32不同，明确披露），semantic/CRF实际manifest同trainSHA且排F0。完整58/16篇47患者/415concept保持，无F0gold/fit/GPU/评分。evidence/F0-ancestry.json 44493fcb；仅CPU原生分词脚本与plan4e1706b6已预写。
 
 - F0真实CPU5.807805s PASS：完整58/16篇47患者415concept/1166pairs，503003tokens/max16142，拒绝cap16384/gen1600，原生/raw IDs与双解码全部exact。原两epoch文件/ACK及所有parent目录链已单独纯I/O fsync补证，旧产物不改。root已授权待目标资产/runtime/fresh门后纯58推断900+30，B0保护union唯一1v2/旧0、raw-new-alone仅供root融合。当前.3实际Qwen3同13基座缓存，Torch2.7.0cu128/TF4.50；需复制已核完整TF4.51.3私有runtime+PEFT与174MB原epoch2adapter，未GPU。
+
+- F0迁移完成：原182807574B/b357f150/2617件固定包，public tunnel约103s仅6MiB，已明确停止自己receiver/server并关闭tunnel、保留partial。改.100→.3私网单包bearer/180TTL/20MiB上限，小range身份核通过，16.043463s全SHA+fsync完成；服务已停止、secret删除。目标CPU8.819904s核实际Torch2.7.0cu128/TF4.51.3/PEFT.15.2/tokenizers.21.2等，58原生IDs/双解码与.100编码全exact、504adapter头43.646976M参数，未加载NN值/未CUDA。f0-plan.json与唯一union质量plan已固定，等待fresh GPU0门后唯一900+30。

@@ -9,6 +9,7 @@ from pathlib import Path
 import tarfile
 import time
 import urllib.request
+from urllib.parse import urlsplit, urlunsplit
 
 
 def sha(path):
@@ -39,7 +40,11 @@ def pack(plan):
         path = Path(info['path'])
         assert path.stat().st_size == info['bytes'] and sha(path) == info['sha256'], name
         files[name] = path
-    assert all('bitsandbytes' not in name and not name.endswith('training_state.pt') for name in files)
+    # Transformers legitimately ships an optional integration named
+    # integrations/bitsandbytes.py. Exclude the unused dependency package,
+    # not that unchanged source file inside the complete runtime.
+    assert all(not name.startswith(('runtime/bitsandbytes', 'training-runtime/bitsandbytes'))
+               and not name.endswith('training_state.pt') for name in files)
     inventory = {name: {'bytes': path.stat().st_size, 'sha256': sha(path)} for name, path in files.items()}
     save(output / 'inventory.json', inventory)
     archive = output / 'f0-assets.tar.gz'
@@ -62,7 +67,9 @@ def serve(plan):
     assert archive.stat().st_size == plan['bytes'] and sha(archive) == plan['sha256']
     secret = os.environ['QWEN_TRANSFER_AUTH']
     assert len(secret) >= 32
-    deadline = time.monotonic() + 300
+    ttl = plan.get('ttl_seconds', 300)
+    assert 0 < ttl <= 300
+    deadline = time.monotonic() + ttl
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_):
@@ -73,20 +80,31 @@ def serve(plan):
             if self.path != '/bundle' or not authorized or time.monotonic() >= deadline:
                 self.send_error(403)
                 return
-            self.send_response(200)
+            requested = self.headers.get('Range')
+            if requested and requested != 'bytes=0-4095':
+                self.send_error(416)
+                return
+            length = min(4096, archive.stat().st_size) if requested else archive.stat().st_size
+            self.send_response(206 if requested else 200)
             self.send_header('Content-Type', 'application/gzip')
-            self.send_header('Content-Length', str(archive.stat().st_size))
+            self.send_header('Content-Length', str(length))
+            if requested:
+                self.send_header('Content-Range', f'bytes 0-{length-1}/{archive.stat().st_size}')
             self.end_headers()
             self.connection.settimeout(30)
+            sent, tick = 0, time.monotonic()
             with archive.open('rb') as stream:
-                for block in iter(lambda: stream.read(1024**2), b''):
+                while sent < length:
+                    block = stream.read(min(1024**2, length - sent))
                     if time.monotonic() >= deadline:
                         break
                     self.wfile.write(block)
+                    sent += len(block)
+                    time.sleep(max(0, sent / (20 * 1024**2) - (time.monotonic() - tick)))
 
-    server = HTTPServer(('127.0.0.1', int(os.environ['PORT'])), Handler)
+    server = HTTPServer((plan.get('bind_host', '127.0.0.1'), int(os.environ['PORT'])), Handler)
     server.timeout = .5
-    print(json.dumps({'status': 'AUTHENTICATED_SINGLE_FILE_SERVER', 'TTL_seconds': 300,
+    print(json.dumps({'status': 'AUTHENTICATED_SINGLE_FILE_SERVER', 'TTL_seconds': ttl,
                       'only_path': '/bundle', 'secret_logged': False}), flush=True)
     while time.monotonic() < deadline:
         server.handle_request()
@@ -98,9 +116,12 @@ def receive(plan):
     out = Path(plan['receive_dir'])
     out.mkdir(parents=True, exist_ok=False)
     url, token = os.environ['QWEN_TRANSFER_URL'], os.environ['QWEN_TRANSFER_AUTH']
-    request = urllib.request.Request(url.rstrip('/') + '/bundle', headers={'Authorization': 'Bearer ' + token})
+    parts = urlsplit(url)
+    endpoint = urlunsplit((parts.scheme, parts.netloc, parts.path.rstrip('/') + '/bundle', parts.query, ''))
+    request = urllib.request.Request(endpoint, headers={'Authorization': 'Bearer ' + token})
     archive = out / 'assets.tar.gz'
-    with urllib.request.urlopen(request, timeout=90) as response, archive.open('xb') as stream:
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    with opener.open(request, timeout=90) as response, archive.open('xb') as stream:
         assert int(response.headers['Content-Length']) == plan['bytes']
         count = 0
         for block in iter(lambda: response.read(1024**2), b''):

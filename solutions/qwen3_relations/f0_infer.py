@@ -36,11 +36,16 @@ def main():
         a = subprocess.check_output(['nvidia-smi', '--query-compute-apps=gpu_uuid,pid,used_gpu_memory',
                                      '--format=csv,noheader,nounits'], text=True)
         row = [line.split(', ') for line in g.splitlines() if plan['gpu_uuid'] in line]
-        gate = {'at_utc': stamp(), 'target': row, 'target_apps': [x for x in a.splitlines() if plan['gpu_uuid'] in x],
+        gate = {'at_utc': stamp(), 'all_gpu': g, 'all_compute_apps': a,
+                'target': row, 'target_apps': [x for x in a.splitlines() if plan['gpu_uuid'] in x],
                 'free_disk': shutil.disk_usage(root).free}
         save(root / 'fresh-gate.json', gate)
         assert len(row) == 1 and row[0][0] == '0' and row[0][2] == 'NVIDIA A30'
         assert int(row[0][3]) >= 23500 and not gate['target_apps'] and gate['free_disk'] >= 1024**3
+        compatibility = json.loads(checked(plan['cpu_compatibility']).read_text())
+        assert compatibility['status'] == 'PASS_TARGET_PRIVATE_RUNTIME_ALL58_IDENTICAL_NATIVE_IDS'
+        assert compatibility['versions'] == plan['runtime']
+        assert compatibility['all58_native_raw_ids_roundtrip_same_as_source']
         assets = verify_assets(plan, full=True)
         save(root / 'verified-base-assets.json', assets)
         for name, item in plan['adapter_files'].items():
@@ -63,7 +68,8 @@ def main():
         import safetensors
         import huggingface_hub
         from transformers import AutoModelForCausalLM, AutoTokenizer
-        from peft import PeftModel
+        from peft import PeftModel, get_peft_model_state_dict
+        from safetensors.torch import load_file
         versions = {n: m.__version__ for n, m in [('torch', torch), ('transformers', transformers),
                     ('peft', peft), ('tokenizers', tokenizers), ('accelerate', accelerate),
                     ('safetensors', safetensors), ('huggingface_hub', huggingface_hub)]}
@@ -91,13 +97,19 @@ def main():
         lora = {n: p for n, p in model.named_parameters() if '.lora_A.' in n or '.lora_B.' in n}
         assert len(lora) == 504 and sum(p.numel() for p in lora.values()) == 43646976
         assert all(p.dtype == torch.float32 for p in lora.values())
+        saved = load_file(str(Path(plan['adapter_dir']) / 'adapter_model.safetensors'), device='cpu')
+        loaded = get_peft_model_state_dict(model)
+        assert set(saved) == set(loaded) and len(saved) == 504
+        assert all(torch.equal(value, loaded[name].detach().cpu()) for name, value in saved.items())
+        del saved, loaded
         model.eval()
         model.config.use_cache = True
         tokenizer = AutoTokenizer.from_pretrained(plan['model_dir'], local_files_only=True)
         save(root / 'model-manifest.json', {'runtime': versions, 'base_parameters': 8190735360,
              'adapter_parameters': 43646976, 'total_parameters': 8234382336, 'trainable_parameters': 0,
              'adapter_files': plan['adapter_files'], 'model_dir': plan['model_dir'],
-             'TF32': False, 'training_steps': 0, 'cross_host_difference': plan['cross_host_difference']})
+             'loaded_adapter_tensors_exact': 504, 'TF32': False, 'training_steps': 0,
+             'cross_host_difference': plan['cross_host_difference']})
         eos = model.generation_config.eos_token_id
         eos_ids = set(eos if isinstance(eos, list) else [eos]) | {tokenizer.eos_token_id}
         eos_ids.discard(None)
