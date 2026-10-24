@@ -1,0 +1,88 @@
+{
+  "schema": "long-context-relations-formal-v1",
+  "budget_seconds": 2400,
+  "term_grace_seconds": 30,
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "cpu_receipt": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/probe-v1/cpu-complete.json",
+  "remote_data_source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/probe-v1/data.json.gz",
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/probe-v1/data.json.gz",
+    "bytes": 375741,
+    "sha256": "23248ecfe3aa9d2604bf5020861603c39364aa2af5c0b85549dce5b62911e68c"
+  },
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/formal/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/formal/driver.py",
+      "bytes": 3236,
+      "sha256": "7eaf6b2fa7109ee833d8487fab553dcf4553d10b9e97d38bede35f10e7b8c8e1"
+    },
+    "model.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/formal/model.py",
+      "bytes": 2524,
+      "sha256": "1a2cedc0b3954cf3d04eebbe604d2524b30d10f77eb489caf2a472e354a8ba14"
+    },
+    "train_infer.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relations/solutions/long_context_relations/formal/train_infer.py",
+      "bytes": 7020,
+      "sha256": "03b81eb21cdd55bdebeaf4fce7a9e390f2777ab157a60da51494534864cb91f9"
+    }
+  },
+  "recipe": {
+    "epochs": 30,
+    "documents": 32,
+    "document_visits": 960,
+    "candidate_pairs_per_epoch": 4495,
+    "positive_pairs": 727,
+    "accumulation": 4,
+    "actual_Adam": 240,
+    "encoder_lr": 2e-05,
+    "head_lr": 0.0001,
+    "warmup": 24,
+    "seed": 20261024,
+    "cut": 0,
+    "primary": "B4_PROTECTED_UNION_ONLY",
+    "new_v2_max": 1,
+    "old_v2": 0
+  },
+  "fresh_parent_only": true,
+  "probe_state_reuse_forbidden": true,
+  "probe_proof": {
+    "observation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/probe-v1/observation-1792860858934360243.json",
+      "bytes": 4486,
+      "sha256": "65cdc6ece75369e5598f5f364271839ba3770d3ea323e5127fea9a8a1998df0f"
+    },
+    "checkpoint_discarded": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/probe-v1/probe-output/discarded-full-state.pt",
+      "bytes": 1793171033,
+      "sha256": "db5d273c7fc81db49ae1c62e440012d09a7df08eea67adeea4c57ff9a178b0bd"
+    },
+    "resident_peak": 3965363712,
+    "cost": {
+      "worst_all960_FB_seconds": 2226.6517677274533,
+      "linear_token_scaled_seconds": 1402.9937183422117,
+      "estimates_not_runtime_authorization": true
+    }
+  },
+  "admission": {
+    "H69_launch_TTL_seconds": 300,
+    "coordinator": "Wait ontology training-seed necessarySap realrelease, then freshGPU0gate; no formal start based on historical probe release"
+  },
+  "formal_budget_scope": "All30epochs+fullstateACK+all16docs17windows2874pairs share single2400 clock; no per-phase reset"
+}
