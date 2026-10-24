@@ -21,8 +21,10 @@
 - 原dev：`research/nonthinking-sampled-consensus-full64-20261024/terminal-manifest.json`（6236e9d8），完整actual命令/来源/quality/终态均绑定；两seed逐行诊断在`assembled-v1/row-diagnostics.jsonl`（b3830063）。
 - 原dev全文准备：`research/nonthinking-consensus-full64-readiness-20261024/readiness.json`（ce842e9e）。旧normal64短提示不可冒称全文，新完整64为512091 tokens/pass，max13230；CPU独审1c110220只覆盖先前准备，不覆盖本次128质量。
 
-三次GPU均已结束，禁止按旧start脚本重启。最后原devjob `proc_de171481-475e-41b2-806d-5ff33364cd8d` / PID2735800；原TERM12:31:20.925286Z/KILL12:31:50.925286Z保留，未延长。新GPU、额外原dev变体或官方动作需root新任务；本次已授权链只剩质量备份/集中审交接。
+三次GPU均已结束，禁止按旧start脚本重启。最后原devjob `proc_de171481-475e-41b2-806d-5ff33364cd8d` / PID2735800；原TERM12:31:20.925286Z/KILL12:31:50.925286Z保留，未延长。新GPU、额外原dev变体或官方动作需root新任务；本次已授权链已完整结案，仅待root集中增量审。
 
 ## 关键边界
 
 F1候选训练32、F0候选训练48，所有目标折祖先排除；前两控制生成适配器均F2+F3训练32。原dev改为现成train64适配器1a703b，全部任务拟合祖先排原dev，无新训练。F1 A800/F0及原devA30保持native源码/版本/采样规则，不声称跨硬件逐位等价。内部收益未等比例迁原dev，强B已覆盖交集281/289；原dev微升是真实但有限的研发结果。
+
+原dev质量备份已完成：96内容325226B/SHAb5b6dac5，远端fsync/逐SHA与整个实际readback完全一致。新best预测/metrics/recipe/source均在该包内，单独恢复入口`evidence/full64-recovery.json`及外部`best-recovery.json`；原128另包完整保留。原901/官方50ef未覆盖，未达.8不合并实现，branch最后持久化后释放任务槽。
