@@ -77,3 +77,10 @@ env CUDA_VISIBLE_DEVICES= TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
 ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目录部署。目录创建被controller观察为rc0；唯一254466B `upload.part000` 的write_file返回UNKNOWN_OUTCOME，随后只做一次该part实际SHA读取也返回UNKNOWN_OUTCOME。**不能记成part不存在或传输成功。** 没有解包、native runtime/data CPU命令、GPU start-intent或GPUjob；已停新MCP，等待root统一恢复。ontology的NCR也尚无GPU作业，不存在本方案占卡等待。
 
 源码53d485c已推；本地zip、18文件清单、intent及两次未知收据完整，见[精确分段状态](../evidence/round2/patient-first-probe-deployment-state.json)。恢复后只核已有part实际SHA；若与zip相同，解包既有字节并逐成员核验/compile，再执行尚未执行的CPU步骤，不重新上传或调用`deploy`从头创建目录。`deploy_cpu.py recover`仅用于三个CPU结果已经落盘后的回收，不能替代本次upload-part库存检查。
+
+
+### 原生 tokenizer 的 CPU 导入检查修复
+
+01:58 实际恢复后，原 part 被确证不存在且目录为空；仅补传原冻结 archive（cd50df2c，254466B），18成员 SHA 与实际 Python compile 通过。native runtime 首次实际通过：Torch 2.6.0+cu124、Transformers 5.20.2、PEFT 0.21.2、原生 GDN/无 FLA，CUDA隐藏且未初始化。
+
+首次 native data CPU 在构造 tokenizer 后、124行编码前因“禁止 Torch 出现在 sys.modules”过严 guard 退出（13.098秒 roundtrip，rc1，无产物目录），不能记为模型或数据失败。单独实际导入检查证明只有 Torch 被携带导入，`USE_TORCH=0`仍在，CUDA available/initialized均false，无权重或forward。窄修为导入前必须隐藏CUDA、后续实际未初始化、禁止其他后端；记录真实Torch导入，不再声称所有后端未导入或CUDA查询次数为0。六输入SHA、逐行token/label合同、最长5556、训练loss和GPU180+30全部不变。原源码/计划/失败保存在原archive及53d提交；远端新文件使用`data_contract_v2.py`与`data-plan-v2.json`，不覆盖首次失败入口。[修复与来源](../evidence/round2/patient-first-CPU-import-guard-repair.json)。

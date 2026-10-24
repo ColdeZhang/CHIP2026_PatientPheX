@@ -1,0 +1,40 @@
+{
+  "status": "CPU_import_guard_narrow_repair_ready_not_GPU",
+  "reason": "Actual TF5.20.2 AutoTokenizer imports Torch despite USE_TORCH=0; CUDA stays hidden/uninitialized and no weights/model forward",
+  "original_failure": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/actual-data-CPU-execution.json",
+    "bytes": 1630,
+    "sha256": "de9ef6db4de1de44a592db0c20b9ca52b56912f65546f0782b0a00a2f96ff21e"
+  },
+  "actual_import": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/tokenizer-import-diagnostic.json",
+    "bytes": 806,
+    "sha256": "f98d394fb2b4bbf0d6b0a6d082c36534affb53561f1531b740fe53bfe58d5533"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/data_contract.py",
+    "bytes": 17898,
+    "sha256": "5ba668a89f2fd3f894d08d99158a72e706f953ae0816dd4871b2cb9b6ae7c61f"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/data-plan-v2.json",
+    "bytes": 2079,
+    "sha256": "92089a0db45f1202268f735056f563de14ccf8aa1fe2d383b0acb40b07fe5633"
+  },
+  "original_source_retained_in": {
+    "archive": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-deployment.zip",
+      "bytes": 254466,
+      "sha256": "cd50df2ca57bd5193a9487693dbe174454e60d0688bc440439cedf18897e1795"
+    },
+    "git": "53d485c382876e3e3b68e76c8dfdbf8f7793425b"
+  },
+  "remote_new_names": [
+    "data_contract_v2.py",
+    "data-plan-v2.json"
+  ],
+  "remote_output": "cpu-native",
+  "same_six_input_refs": true,
+  "tokenization_data_and_loss_unchanged": true,
+  "no_GPU_started": true
+}

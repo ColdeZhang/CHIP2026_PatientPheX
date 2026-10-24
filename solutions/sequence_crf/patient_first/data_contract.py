@@ -6,7 +6,8 @@ PLAN has data_contract_sha256 and references with exactly these six keys:
 train, train_token_audit, summary, preparation_manifest, encode_helper, transform.
 Each reference has path, bytes, sha256; relative paths resolve beside PLAN.
 Optional model_files maps small filenames to {bytes, sha256}; these must match
-the hard bindings below. No F1 file, old train file, model weights, or CUDA is read.
+the hard bindings below. No F1 file, old train file, or model weights are read;
+CUDA stays hidden and uninitialized. Native TF5 tokenizer import may load Torch.
 The current helper.encode is called once per new row; old encode_all and old
 verify_sources_and_data are not called. Synthetic parser tests are not repeated.
 """
@@ -48,6 +49,17 @@ SELECTED_ROW_ID = '11235872:relations:8'
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+def cpu_backend_state():
+    require(os.environ.get('CUDA_VISIBLE_DEVICES') == '', 'CUDA must remain hidden')
+    loaded = [name for name in ('torch', 'tensorflow', 'jax', 'peft') if name in sys.modules]
+    require(not any(name in loaded for name in ('tensorflow', 'jax', 'peft')), 'Unexpected non-tokenizer backend imported')
+    torch = sys.modules.get('torch')
+    initialized = bool(torch.cuda.is_initialized()) if torch is not None else False
+    require(not initialized, 'Tokenizer process initialized CUDA')
+    return {'loaded_backends': loaded, 'torch_imported': torch is not None,
+            'cuda_initialized': initialized, 'cuda_visible_devices': os.environ['CUDA_VISIBLE_DEVICES']}
 
 
 def sha_bytes(value):
@@ -117,7 +129,8 @@ def main():
     require(os.environ.get('CUDA_VISIBLE_DEVICES') == '', 'Require explicit CUDA_VISIBLE_DEVICES empty')
     require(not any(x in sys.modules for x in ('torch', 'transformers', 'tensorflow', 'jax', 'peft')),
             'Run in a fresh CPU-only process')
-    # Disable all model backends before importing Transformers. Tokenization is native.
+    # Request backend disabling before native tokenization. TF5.20.2 still
+    # imports Torch through AutoTokenizer; actual no-CUDA state is checked.
     os.environ.update(USE_TORCH='0', USE_TF='0', USE_FLAX='0', HF_HUB_OFFLINE='1',
                       TRANSFORMERS_OFFLINE='1', TOKENIZERS_PARALLELISM='false')
     sys.dont_write_bytecode = True
@@ -193,7 +206,7 @@ def main():
     require(tokenizer.is_fast and tokenizer.eos_token_id == 248046, 'Unexpected native tokenizer/EOS')
     require(isinstance(tokenizer.chat_template, str)
             and sha_bytes(tokenizer.chat_template.encode()) == MODEL_SMALL['chat_template.jinja'][1], 'Active native chat template differs')
-    require(not any(x in sys.modules for x in ('torch', 'tensorflow', 'jax', 'peft')), 'Unexpected model backend imported')
+    cpu_backend_state()
 
     raw_rows = paths['train'].read_text(encoding='utf-8').splitlines()
     require(len(raw_rows) == 124 and all(raw_rows), 'Require exact 124 nonempty training rows')
@@ -233,7 +246,7 @@ def main():
     selected = longest[0]
     require(selected['prefix_tokens'] == 5421, 'Longest prefix length differs')
     selected_record = next(x for x in records if x['row_id'] == SELECTED_ROW_ID)
-    require(os.environ.get('CUDA_VISIBLE_DEVICES') == '' and not any(x in sys.modules for x in ('torch', 'tensorflow', 'jax', 'peft')), 'CPU-only isolation changed')
+    backend_state = cpu_backend_state()
     args.output.mkdir(parents=True, exist_ok=False)
     selected_path = args.output / 'selected-encoded.json'
     save_new(selected_path, selected)
@@ -246,8 +259,8 @@ def main():
                     'tokenizers': tokenizers.__version__, 'native_tokenizer_class': type(tokenizer).__name__,
                     'auto_tokenizer_source': ref(inspect.getsourcefile(AutoTokenizer)),
                     'tokenizer_class_source': ref(inspect.getsourcefile(type(tokenizer))),
-                    'cuda_visible_devices': os.environ['CUDA_VISIBLE_DEVICES'], 'model_backends_disabled': True,
-                    'torch_imported': 'torch' in sys.modules, 'CUDA_calls': 0},
+                    'backend_disable_environment_requested': {'USE_TORCH': '0', 'USE_TF': '0', 'USE_FLAX': '0'},
+                    **backend_state, 'CUDA_compute_or_allocation': False},
         'training_document_ids': train_docs, 'F1_document_ids_from_summary_only': f1_docs,
         'training_F1_overlap': 0, 'excluded_document_count': 32, 'rows': 124,
         'total_full_tokens': 400614, 'max_full_tokens': 5556, 'supervised_tokens': 4694,
