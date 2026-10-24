@@ -14,9 +14,9 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 **患者B唯一NN已完整完成**：原`proc_7c9baef1-5019-462b-960a-d5278f96971b` / driver229438由07:17:15运行至07:43:36.417754Z，**rc0/1580.513秒**，420fresh全complete、0partial/0abstain。07:43:36.552420 GPU2实际0MiB/no_process；07:45既定monitor确认两PID退出。原3600+30未超时；原Torch2.6.0+cu124/TF5.20.2、f787/codec未改。[原终态观测](evidence/official-901-B/patient-infer-terminal-observation.json)、[作业](evidence/official-901-B/patient-infer-job.json)。监控session70981已正常退出，不再启动模型或watch。
 
-**完整B患者终点已07:51:06交付**：原ZIP897210B/1df686ce、member-index643557e7和**1273原件**逐SHA/fsync通过；caf48一次CPU导出0.856秒，1769纯模型正关系/7147合法候选对，420原始ID独立decode/codec全exact，零遗漏患者、无baseline/fallback。8881实际空间包含证明0.205秒通过：420实际map/PID与原已证输入空间exact，所有positive属于7147 legal，canonical/raw与public-new交0。完整refs已直接发retrieval/validation/root，不等后续包装。[终点摘要](evidence/official-901-B/patient-terminal-summary.json)；统一B终审待回，未读取gold/评分/上传。
+**完整B患者终点已07:51:06交付**：原ZIP897210B/1df686ce、member-index643557e7和**1273原件**逐SHA/fsync通过；caf48一次CPU导出0.856秒，1769纯模型正关系/7147合法候选对，420原始ID独立decode/codec全exact，零遗漏患者、无baseline/fallback。8881实际空间包含证明0.205秒通过：420实际map/PID与原已证输入空间exact，所有positive属于7147 legal，canonical/raw与public-new交0。完整refs已直接发retrieval/validation/root，不等后续包装。[终点摘要](evidence/official-901-B/patient-terminal-summary.json)；统一最终B终审cd7a6040（8983B）已PASS，覆盖patient1273件/420→1769 exact/7147合法与最终50ef5daa；只记指针，无新解码、codec或阶段报告。未读取gold/评分/上传。
 
-原传输失败如实保留：前262144B成功后07:45:42第3个128KiB read UNKNOWN，07:46:10较小块前inventory也UNKNOWN，未实际读64KiB、非LUNA。child单owner确认A100原包/10.5.3.12后，唯一TTL180 HTTP proc_f4827a2a/PID251759仅供.100，2.064秒fetch同SHA/fsync；随后stop及/proc核实际退出，未声称优雅ended.json。临时认证已删除。原prefix保留，稳定.100续取同包后纯本地finish3d47完成全部校验，无重包/NN/策略变更。[桥接说明](official_901_B/patient/BRIDGE_RECOVERY.md)。原完整包同时保留A100与.100自有持久目录；child正在准备新CPU终点最小补包，不重复权重或原raw，不阻塞最终组合。
+原传输失败如实保留：前262144B成功后07:45:42第3个128KiB read UNKNOWN，07:46:10较小块前inventory也UNKNOWN，未实际读64KiB、非LUNA。child单owner确认A100原包/10.5.3.12后，唯一TTL180 HTTP proc_f4827a2a/PID251759仅供.100，2.064秒fetch同SHA/fsync；随后stop及/proc核实际退出，未声称优雅ended.json。临时认证已删除。原prefix保留，稳定.100续取同包后纯本地finish3d47完成全部校验，无重包/NN/策略变更。[桥接说明](official_901_B/patient/BRIDGE_RECOVERY.md)。原完整包同时保留A100与.100自有持久目录；新CPU终点补包已在.100持久完成：750944B/46c42f85、56成员逐SHA/fsync/reopen，原raw仅引用已有1df副本，不重复权重或原raw；独审cd7a只另加指针未重包。[补包终态](official_901_B/patient/endpoint-supplement-terminal.json)。
 
 
 原07:08/07:11 LUNA部署恢复历史保留：07:16先库存确认plan未落，同字节8324B/1e4e部署后才唯一start。.100备用从未生成可执行入口或运行，已[取消于准备前](official_901_B/patient/cache_fallback/STATUS.md)。所有原始控制/预测保存在A100 `sequence-round2/official-901-B/patient/` 与本地D同名目录，恢复仅处理原包和CPU终点。
@@ -88,4 +88,8 @@ B CPU底座6件来源入口已完成，见[阶段摘要](official_901_B/old_pool
 
 patient B参数化入口只改输入identity/count和artifact标签，f787三actual SHA、greedy14000/1600、原raw-before-codec与native BF16完全保持；源码[增量清单](official_901_B/patient/source-delta.json)。normal-B闭集prompt3a8e已绑定完整oldpool7732；native420全ID/decoder核过，唯一计划1e4e已真实启动，详见顶部当前状态。
 
-后继唯一N/R/P≥2票双fold控制源码/计划已c5f2455提交推送并lsremote exact；两完整预测共同冻结9650ab99，F1关系469→370、F0 317→276，其余字节保持，0.08785秒纯CPU。未读gold/评分，无keep结论；[待评分清单](research_readonly/majority_vote_control/pending-score.json)。根的保留门为两fold Score各自严格高于原tripleunion，macro只披露；必须等root真实官方accepted receipt释放后再各唯一v2/总30+1，不迁原dev。
+后继唯一N/R/P≥2票双fold控制源码/计划已c5f2455提交推送并lsremote exact；两完整预测共同冻结9650ab99，F1关系469→370、F0 317→276，其余字节保持，0.08785秒纯CPU。未读gold/评分，无keep结论；[待评分清单](research_readonly/majority_vote_control/pending-score.json)。根的保留门为两fold Score各自严格高于原tripleunion，macro只披露；root已07:54:13真实accepted一次901，5→4且未取分，gate919362af已释放。首次入口0.317秒已完成唯一F1 v2：.663437054811低旧.663841820660，随后gold诊断误用预测去重断言而退出；F1 metric/failure保留，F0从未call-start。root明确授权独立机械恢复，复用F1、只诊断gold采用set语义并执行唯一F0；29+1剩余CPU计划准备中，不重F1、不扫票数/迁原dev。两fold同增门已因F1负不能保留，仍完成原固定双fold终点。
+
+## 已授权后继准备（尚未开始）
+
+root要求先完成官方B交付及已冻majority两折控制，再与`biomed_model_review`对接少量train-only摘要，准备独立单变量patient-balanced mixed loss的源码和CPU数值合同，不新fit/GPU；GPU预算待root根据方案另定。已有仅train32 prepared-target系数普查为124行/32文献/87患者：1–4正原子患者37人（42.53%）仅占患者归属token系数19.86%、list-value14.59%，chunk-only仍23.85%。这是损失系数现象，不是实际梯度或因果结论；prepared空不能当真实无表型，不读取heldout gold。研究目标为总Score改善，macro完整披露；机制是跨患者归一权重，与已经负关闭的value×2不同，不能重开旧配置或提前拟合。
