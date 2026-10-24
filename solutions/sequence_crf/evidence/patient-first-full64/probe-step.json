@@ -1,0 +1,40 @@
+{
+  "status": "PASS_one_fresh_longest_patient_first_native_CE_update_not_quality",
+  "row_id": "3563609:relations:0",
+  "input_tokens": 6166,
+  "supervised_tokens": 122,
+  "loss": 0.25297603011131287,
+  "step_seconds": 15.166887570172548,
+  "gradient_norm_before_clip": 3.1054887771606445,
+  "family_gradient_squared_norms": {
+    "DeltaNet": 4.172943437140729,
+    "MLP": 2.813302367731662,
+    "full_attention": 2.6578155009230633
+  },
+  "changed_LoRA_B": {
+    "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+    "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+    "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+  },
+  "first_step_A_nonzero_gradient_tensors": 0,
+  "first_step_B_nonzero_gradient_tensors": 248,
+  "initial_all_B_zero": true,
+  "A_zero_first_gradient_permitted": true,
+  "only_adapter_in_optimizer": true,
+  "frozen_base_no_gradient": true,
+  "optimizer_state_dtypes": [
+    "torch.float32"
+  ],
+  "learning_rate": 0.0001,
+  "warmup_not_performed": true,
+  "native_full_logits_unweighted_CE": true,
+  "no_attention_or_loss_change": true,
+  "no_input_truncation": true,
+  "peak_allocated_bytes": 38183758336,
+  "peak_reserved_bytes": 39082524672,
+  "free_bytes": 2665807872,
+  "actual_steps": 1,
+  "no_checkpoint": true,
+  "no_inference_or_quality": true,
+  "diagnostic_state_discarded_on_process_exit": true
+}

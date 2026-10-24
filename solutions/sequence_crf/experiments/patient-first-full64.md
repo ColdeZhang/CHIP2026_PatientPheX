@@ -21,3 +21,11 @@
 隐藏 CUDA 的实际 TF5.20.2/PEFT.21.2/Torch2.6 CPU预检通过；两个 GDN binding 来自原 native 源 b4b17f，FLA不存在，allocator变量仍null。265条全部编码/labels及聚合SHA与CPU准备精确，实际 8.432秒；最长selected完整文件3beacc4e与原CPU精确。receipt8137d850，未读dev目标/单独dev输入文件或权重，CUDA未初始化。16件源码/数据部署与新receipt绑定后，将执行唯一240+30探针；完整训练仍待结果。
 
 04:33:22.332Z唯一GPU探针已启动 `proc_281ec4d2-bef3-490c-bdd7-4d60f43dccae` / PID113890，fresh GPU2核空、源与实际计划3481172已推送；近似TERM04:37:22/KILL04:37:52，以remote driver实际截止为准。只读回收 `patient_first_full64/operations.py collect --directory <外部probe目录>`，未知状态不得重复start。正式trainer仅绑actual native与既有full64配置，未生成正式可执行plan/未launch。
+
+## 最长行实际终点
+
+唯一探针81.873秒rc0，native80.700秒，前向/反向/真实更新15.167秒。loss .252976、梯度范数3.105489均有限；DeltaNet/full-attention/MLP三族B真更新，248个B梯度非零，A首零符合初始B全零。base无梯度/仅adapter优化，FP32优化器状态。allocated峰38,183,758,336 B，reserved峰39,082,524,672 B，结束测得free2,665,807,872 B；free不是峰值剩余，也不证明accum8和多形状全程。未变更allocator/attention/loss/精度/输入，未重试，未保存权重。
+
+真实04:34:44.426409释放GPU2，0/40960MiB且无进程。8小件逐SHA回收，step2d94cb44、wrapper700a210d；完整探针清单见evidence。第一次回收读取先见complete、未见wrapper；随后原文件回收证实实际成功终点，不重启作业。source与job已d313452推送。
+
+正式计划参考同A100 F0两轮2279.145秒，新token比1.309922，线性参考2985.501秒；拟4500+TERM30包括每epoch完整状态fsync/祖先链持久/原字SHA回读。原dev64另900+30，原max6400不截断，fresh两轮265条/68calls/4warmup。正式trainer已绑定actualnative但尚未运行，full64正式是否启动由root根据实测统一决定。纯推断草稿保留先原始IDs后raw再有限codec，三项epoch2真实收据仍pending。
