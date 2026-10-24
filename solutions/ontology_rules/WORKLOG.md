@@ -28,5 +28,5 @@
 
 - 强 BioBERT+NCR固定四fold **.730993616→.731229952**，仅2/4非降<事前3/4，关闭当前配方；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact、0错警，不迁原dev/扫cut。60.879秒/rc0，独审de325a2c。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)。
 - NCR全cache408272键、两工程错误与CPU-only恢复均原留；65件关键预测/metrics/小HGB/source在.100自有 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B，SHA bb9aa427，fsync/全成员通过，不含gold/大权重/大特征。
-- 最近已核远端 **441de59b86c5adb36a85916799bdfcfc82cad92e**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
+- 最近已核远端 **2c100f59ecc6da661f6d84c8355f335ba6638414**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
 - 完整过程：[截至03:36旧台账](worklog/WORKLOG-through-20261024-0336.md)、[截至04:08旧台账](worklog/WORKLOG-through-20261024-0408.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。

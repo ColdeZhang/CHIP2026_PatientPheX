@@ -1,0 +1,10 @@
+--- capacity-fixed-disabled-launcher
++++ conditional-successor-launcher
+@@ -25,6 +25,7 @@
+     ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);a=ap.parse_args();p=Path(a.plan).resolve();base=p.parent;plan=json.loads(p.read_text());statepath=base/'wrapper-result.json'
+     assert not statepath.exists() and not (base/'wrapper-started.json').exists(),'Original probe marker exists: reconcile; never launch twice'
+     assert os.getuid()==1045
++    assert plan['conditional_F1_gate']['status']=='PASS_F1_UNION_ORIGINAL_RETAIN_VERIFIED', 'F1 conditional successor gate pending or failed';gate_ref=plan['conditional_F1_gate']['evidence'];gate_path=Path(gate_ref['path']);assert gate_path.stat().st_size==gate_ref['bytes'] and sha(gate_path)==gate_ref['sha256'];gate=json.loads(gate_path.read_text());assert gate['status']=='PASS_F1_UNION_ORIGINAL_RETAIN_VERIFIED' and gate['union_original_retain'] is True and gate['F1_terminal_review_passed'] is True
+     validate_plan(plan)
+     assert all(sha(base/name)==digest for name,digest in plan['sources'].items())
+     assert plan['gpu_physical_index']==2 and plan['gpu_uuid']=='GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc'

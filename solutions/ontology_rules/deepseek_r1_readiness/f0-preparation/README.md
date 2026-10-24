@@ -33,3 +33,5 @@
 若后继完整58获授权，使用[full58-source-capacity-fix](full58-source-capacity-fix/NOTE.md)，其唯一生产修复同为total81920，其他6源逐字节原留，真实gate/6拒绝反例与边界及raw-first合成均过；manifest79088699。旧full58-source只作保留历史，后继预算/cache/完整授权仍null。
 
 05:01:02实际最长终点已PASS并释放，6028→3427，43.414tok/s，wrapper89.507秒/rc0、8/8 strict/normalized，0质量；见[终点与新增后继条件](LONGEST-RESULT.md)。新条件为F1完整old∪R1通过原retain才允许6000+30/1cache57fresh；当前未触发，不改旧F1历史。
+
+F0完整probe统一独审fb9edc97 PASS，新增条件正式准备见[final58-preparation](final58-preparation/README.md)：root后继96b30159独冻，pending e505ba5d、本地/远端纯输入合同通过，仍等待原F1完整union原retain+终点核验，不提前GPU。

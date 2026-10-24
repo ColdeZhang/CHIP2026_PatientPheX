@@ -1,0 +1,53 @@
+{
+  "status": "ROOT_SUCCESSOR_DECISION_FROZEN_BEFORE_F1_NEW_QUALITY",
+  "at_utc": "2026-10-24T05:05:10.087411+00:00",
+  "original_F1_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/plan.json",
+    "bytes": 11631,
+    "sha256": "4a88bd33caf5ccdeb9ef3d27646437ad58719b5eadd23aee37024e18856b8f06"
+  },
+  "original_F1_evaluation_template": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluation-template.json",
+    "bytes": 5854,
+    "sha256": "aefe8f2e3e5d6416c65f2861204cc01e4433e0fc0cca58707395aeab074fab10"
+  },
+  "original_F1_evaluator": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluate_full80.py",
+    "bytes": 35167,
+    "sha256": "4fbc58db78de352a4a8c473b7df384d4ce1a0324b15a2467e4c2dfe51a9ee522"
+  },
+  "original_policy_unchanged": "F1 primary R1-alone, only-secondary oldSFT32 union R1, both original retain advisories, original automatic_migration=false preserved",
+  "new_successor_gate": "Only complete and verified F1 oldSFT32_union_R1 endpoint satisfying original retain permits F0. Standalone result still reported under original primary name; no retroactive policy change.",
+  "exact_retain": "candidate.micF1 + candidate.macF1 > old.micF1 + old.macF1 AND candidate.macF1 >= old.macF1",
+  "old_nonrelation_bytes_fixed_equivalence": "With unchanged menF1/docF1 and nonrelation bytes, this is equivalent to Score strict increase and macro nondecrease.",
+  "F0_if_gate_pass": {
+    "main_seconds": 6000,
+    "TERM_seconds": 30,
+    "cached_indices": [
+      30
+    ],
+    "fresh_rows": 57,
+    "seed_every_fresh_row": 20261024,
+    "max_new_tokens": 4096,
+    "endpoints": [
+      "R1 standalone",
+      "oldSFT48 union R1"
+    ],
+    "two_complete_predictions_frozen_before_each_unique_v2": true
+  },
+  "if_gate_fails": "Close F0 full58 extension; retain longest format/cost, do not start GPU or run F0 quality",
+  "latest_F1_progress_at_freeze": {
+    "at": "2026-10-24T05:04:34.825594+00:00",
+    "rows": 71,
+    "terminal": false
+  },
+  "F1_quality_directory_existed_at_freeze": false,
+  "cost_evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/summary.json",
+    "bytes": 7666,
+    "sha256": "99bff8ecbe4dfae38eea94ee73e65de78b84759e14546f59fad26acc65d48d2a"
+  },
+  "estimated_max57_generation_seconds_from_single_probe": 5377.831366943903,
+  "cost_caveat": "Single longest throughput extrapolation only;6000+30 is fixed cap, not guaranteed completion.",
+  "independent_F1_terminal_review_required": true
+}

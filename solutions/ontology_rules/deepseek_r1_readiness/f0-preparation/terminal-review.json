@@ -1,0 +1,137 @@
+{
+  "status": "PASS_FIXED_F0_LONGEST_INPUT_FORMAT_COST_ONLY_NO_QUALITY",
+  "reviewed_at_utc": "2026-10-24T05:05:39.663278+00:00",
+  "scope": "Single incremental closure of earlier58-input CPU/source, actual9-asset private copy, original zero-NN launcher failure and total-field repair, one successful longest-row terminal. No model/tokenizer/parser/evaluator execution, gold read/hash, new GPU, remote/Git/live-index work by verifier.",
+  "evidence": {
+    "prior_source_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-F0-readiness-review/source-CPU-checks.json",
+      "bytes": 8354,
+      "sha256": "4612ef501bc1ddceeba9d8330bcb02c5a6a56757ab7f58840cc1a0fbaa44e6ac"
+    },
+    "prior_preparation_snapshots": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-F0-readiness-review/preparation-snapshot-manifest.json",
+      "bytes": 10289,
+      "sha256": "cdd9c7effc8ccb96f04cb357adc9fb61750bbdf2005aa3952e308766ea98bd37"
+    },
+    "actual_terminal_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-F0-readiness-review/terminal-checks.json",
+      "bytes": 27041,
+      "sha256": "c3194b991b0e73b5505683cd171cdc0be62d81408288b5929810c59e118cb929"
+    },
+    "owner_terminal_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/terminal-manifest.json",
+      "bytes": 7115,
+      "sha256": "58bf3f06597f8b49fb3fda41a3bc8df8cde9e4bc73b94cb2da9b6a4351a17569"
+    }
+  },
+  "copy": {
+    "files": 9,
+    "bytes": 16388603517,
+    "seconds": 1797.0017982050776,
+    "ACK": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/asset-copy/formal/asset-copy-ack.json",
+      "bytes": 2253,
+      "sha256": "87353c492bb4889d6b722b82e3150be8aeab5aece6133e29115b2ef5d30b498f"
+    },
+    "persistent_source_retained": true,
+    "target_SHM_persistent": false,
+    "fetch_terminal_source_stopped": true,
+    "actual_remote_file_SHA_receipt_matches_all_original_expected_metadata": true,
+    "no_asset_binary_reread_by_verifier": true
+  },
+  "original_launcher_failure": {
+    "receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe/recovered/wrapper-result.json",
+      "bytes": 1911,
+      "sha256": "98f0ed9bbf06f177a5ca7059c04c9ddb41dd878b975fbdba25018535ccb9229e"
+    },
+    "cause": "Compared memory.total to81156, which was actual free; observed total81920. Guard failed before main model spawn.",
+    "NN_calls": 0,
+    "CPU_repair": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/CPU-gate-fix.json",
+      "bytes": 1730,
+      "sha256": "c09d58d1176eacc7df58183fd5dbe9eda062a55029f3cd2ca958a532ebe3e3f4"
+    },
+    "only_source_change": "launcher total81156→81920; model/input/parsers/budget unchanged."
+  },
+  "actual_probe": {
+    "original_index": 30,
+    "row_id": "3563609:relations:0",
+    "input_tokens": 6028,
+    "generated_tokens": 3427,
+    "last_generated_token_id": 151645,
+    "generated_ID_SHA": "af35a6d5d23cbccbab4ac7bf941ddbad27c5e40f6f3baf73c29effc35c065625",
+    "natural_EOS": true,
+    "think_open_close": [
+      1,
+      1
+    ],
+    "all_three_existing_format_policies_valid": true,
+    "provided_CIDs": 8,
+    "abstained_CIDs": 0,
+    "fence_or_int_alias_transforms": 0,
+    "generation_seconds": 78.93806578312069,
+    "tokens_per_second_including_prefill": 43.413782260836626,
+    "native_program_seconds": 88.69005768466741,
+    "wrapper_seconds": 89.50698830001056,
+    "cap": 240,
+    "TERM_grace": 30,
+    "peak_allocated_bytes": 19495760896,
+    "peak_reserved_bytes": 19505610752,
+    "release": {
+      "at": "2026-10-24T05:01:02.963175+00:00",
+      "gpu": "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 1, 81156, 81920",
+      "compute_apps": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435"
+    },
+    "release_memory_used_MiB": 1,
+    "target_compute_processes": 0,
+    "runner_SHA": "0bc02bcf287f16daf359238650234a335074c63b2e5dcf9ae201d6eb2c6fae8a",
+    "plan_SHA": "a3745b9a362aadbf515edc6cd119af5db042dfa1d3e38b6eeaa7a33b0932abaa",
+    "actual_source_IDs_then_raw_before_parser": true
+  },
+  "runtime_scope": {
+    "model_parameters": 8190735360,
+    "actual399_shapes_dtypes_finite": true,
+    "full_value_comparison_to_weights": false,
+    "published_generic_tokenizer_and_scale1": true,
+    "same_device_rotary_relative_difference": 9.070477346995176e-08,
+    "predeclared_tolerance": 9.5367431640625e-07,
+    "fresh_seed20261024_original_prompt_no_old_KV_RNG": true,
+    "cross_hardware_F1_bitwise_equivalence_claimed": false
+  },
+  "format_evidence": {
+    "input_source": "OriginalF0 pure58, same correct published generic tokenizer; actualCPU58 raw/generic/template exact reused. Longest unique originalidx30,6028 tokens.",
+    "generation": "Fresh original prompt and seed20261024,temperature.6/top_p.95/top_k0/4096, derivedscale1.0 unchanged; no earlier KV/RNG continuation.",
+    "one_model_attempt": "Original wrapper failed before model spawn; repaired wrapper ran the sole model probe. Runner0bc and all3 parsers unchanged.",
+    "raw_before_parse": "Final IDs and independent raw artifact written with fsync before existing strict/sparse/normalized parsing. Actual separate IDs/raw/parsed files agree in complete3427 IDs and SHA.",
+    "result": "NaturalEOS, one think open/close, all8CID mapping, strict/sparse/normalized all valid, no abstention, no fence removal/int alias/semantic answer repair. This is format validity only."
+  },
+  "cost": {
+    "copy_seconds": 1797.0017982050776,
+    "original_failed_wrapper_seconds": 0.236604,
+    "model_load_seconds": 5.074515272863209,
+    "generation_including_prefill_seconds": 78.93806578312069,
+    "generated_tokens": 3427,
+    "tokens_per_second_including_prefill": 43.413782260836626,
+    "native_program_seconds": 88.69005768466741,
+    "wrapper_seconds": 89.50698830001056,
+    "main_cap_seconds": 240,
+    "TERM_grace_seconds": 30,
+    "peak_allocated_bytes": 19495760896,
+    "peak_reserved_bytes": 19505610752,
+    "release_at": "2026-10-24T05:01:02.963175+00:00",
+    "actual_release_used_MiB": 1,
+    "target_compute_processes": 0
+  },
+  "failure_and_repair_boundary": "Actual query was used1/free81156/total81920 MiB. Old launcher wrongly compared total to historical free81156; new source changes only that literal to81920. Five negative guards and actual positive row passed a0.008733s CPU fixture; not a second model or native tokenizer run. Original failed wrapper preserved.",
+  "quality_evaluated": false,
+  "full58_run_claimed": false,
+  "downstream_boundary": "Any future full58 requires explicit authorization and exact source/input/seed/cache contract; this probe does not authorize it. An exact same-configuration successor can reuse this one raw. No cross-device F1 bitwise identity or task-quality inference.",
+  "limitations": [
+    "All9 asset fullSHA/fsync verified via actual source-target receipt and exact expected metadata; verifier did not reread16.389GB or transfer models. SHM target remains nonpersistent with persistent .100 originals.",
+    "Actual399 parameter shape/dtype/finite and native rotary checks retained; no full weight-value comparison claimed.",
+    "Old58 CPU/schema and original asset/header provenance were already reviewed, not repeated.",
+    "Local verifier initially compared remote raw locator with relocated local path; corrected only path normalization while preserving exact SHA/bytes and original result raw reference. No owner or GPU rerun."
+  ],
+  "concrete_blockers": []
+}
