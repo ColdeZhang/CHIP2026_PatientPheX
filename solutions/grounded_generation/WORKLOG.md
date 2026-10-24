@@ -6,7 +6,7 @@
 
 - **F1完整且终审PASS**：原GG001 N∪grounded .681717659986（强N .676546354663），new-only .583496662244；独立GG002强支持B∪全部grounded .695950447742（B .686338981272），micro下降.013393436/macro上升.051839302。9B只复制原文词面、独立HPO规范化，quote是弱词面锚定而非人工归属span。完整终审0fcffd7b，F1补包184内容已root实际服务器恢复c48d3776；原dev最高.754361398和官网结果不变。
 - **F0完整固定复验正**：全47同d52 fresh/44EOS+3cap，2strictJSON弃答保原；342锚点经149必要Sap得到200mapped/4NIL/138abstain，全部173关系。强B0 .711507580027→.713748125847（+.002240545821），micro−.006662540360/mac+.015624723642；保947实体/47患者/315基底，+37=11TP26FP，唯一v2旧0。F1强Bunion同样总分正，两折均micro降/macro升；仍非原devbest。见[f0/result.json](f0/result.json)、[GG003](experiments/GG-20261024-003.md)。
-- **当前无GPU作业**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。待一次增量终审和小持久包；不自动新训。
+- **当前无GPU作业**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
 - **条件full64仅CPU已完成**：[full64_readiness/summary.json](full64_readiness/summary.json)，173患者全覆盖、1711有效关系可构建、1678弱quote，dev纯36；957793训练tokens、监督24997，max10637/646。两轮代理4242–4582秒、候选6000+30不是实测或授权，新形状需后续实际工程。train64含内部F0/F1监督，但这批独立未来资源绝未进入当前已冻结F0模型/别名。无原devgold、新fit、GPU或质量。
 - 当前分支检查点`bba8650`已核远端（后续台账提交可在其上）；所有大产物位于仓库外。资源由root调度，A100现给response-code，.3在DocRE QwenF0完成后才轮到本线必要Sap。
 
@@ -64,3 +64,5 @@ F0原47已11:38:58.166169唯一启动A8002 proc1a64fada / driver63172 / child631
 F0原106件完整回收32aec970；固定解析d4bdba97得到342 exact anchors/262独特词面，3cap+2strict JSON整行弃答，48项拒绝如实保留。固定train32/public政策准备d5b77b01产生149必要Sap查询；绑定DocRE QwenF0实际11:53:51释放817ab0ca，plan5a347250/a6d2b6b已先推，原180+30同现成bank/encoder，无新fit或质量。
 
 F0唯一增量终审64946550 PASS（168refs，原106+13实际、47完整含5弃答、固定b59、全部173与强B0字节重构）；复用旧审不重NN/评分。root已因两折独立/三源共同正明确授权full64原173两轮：先CPU209/共享状态接口、13步新形状420+30；通过后6000+30跨两epoch和完整持久ACK，后继原dev36/1200+30仅交纯源，最终两质量由root执行。当前source/CPU计划先推，未GPU。CPU首pack缺input_sources元数据在remote之前失败，原ZIP/plan留独立failure目录；补字段后新包3f7b6d30，方法无变。
+
+F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已.100逐SHA/fsync/reopen，清单03d79755/33292B，localreceipt ebdd0c41；已交root唯一actual restore。引用旧F1已恢复链，未重传大权重/银行，见persistence/F0-receipt.json。
