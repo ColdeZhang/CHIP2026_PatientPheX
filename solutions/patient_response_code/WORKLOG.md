@@ -56,3 +56,7 @@ A100原formal campaign/start均0，closure独立保存，不再bootstrap；其�
 ### 2026-10-24 13:54 UTC — unique formal actual start, monitor proved live
 
 1838f263已推核，标准deploy两机逐文件SHA/compile/fsync通过；原bootstrap515bd290唯一proc81366e65/PID49750于13:53:55.724846301启动。共享campaign从13:53:52.618929起，截止15:23:52.618929；driver49955于13:54:12.029481实际进入epoch1/source_and_data，旧A100完全未start。detached watcher178713实际PPID1/SID178713/start_ticks10267944，第二非阻塞flock实测被拒，首inspect13:54:15成功且stderr空。原源/计划/e124与5400时钟不变，监控与模型分别记录；未知状态先恢复，不重复训练。
+
+### 2026-10-24 14:04 UTC — unchanged campaign healthy through published step15
+
+原watcher178713持续存活，14:04:29原inspect读到epoch1 step15，loss.0794471512/LR8.4375e−5/allocated峰25.330GB，原5400时钟与68调度不变；无failure或新增远端手工轮询。全量两ACK/64推断均尚未完成，训练loss不是质量结论。收尾source只加私有umask，不改实际trainer/controller/plan。
