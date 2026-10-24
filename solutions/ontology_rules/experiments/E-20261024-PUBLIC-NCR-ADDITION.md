@@ -10,4 +10,4 @@
 
 比较预定：报告强B与NCR的pooled Score/menF1/docF1及逐fold差，pre-B仅辅助；保留方向需强B实体两F1均值严格改善且至少3/4fold非降。原dev≥.8仍是最终项目目标，不用内部控制冒充达标。
 
-状态：完整NCR缓存CPU最终核验通过（3553e219）；新源/计划准备中，无actual当前映射/新池/拟合/评分。回传连接异常不改变远端完整缓存事实；优先取raw spans与head，远端全量SHA/5341绑定证明支持输入准备，本地完整NPY不是额外门槛。原失败/恢复见 [缓存记录](../public_neuralcr_readiness/full-train64-cache-attempt2/README.md)。
+状态：完整NCR缓存CPU最终核验通过（3553e219）；02:52全部192972B rawspan已回收并核efdf3beb。仅实际1298原HPO ID用同公共map_label投影（1278same/16alt/4unresolved），5341span中45未映射、其余5296canonical无折叠；不声称本地完整head核验。实际八池11.973秒完成：246804→253204行（+6400），原B前缀与六字段逐值/类型/顺序全部保留。统一缓存/输入证据 [manifest](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/cache-input-terminal-manifest.json) SHA492aaa11；尚未fit/新评分。完整NPY本地partial保留、远端全量SHA/5341绑定有效，不追加MCP压力。原失败/恢复见 [缓存记录](../public_neuralcr_readiness/full-train64-cache-attempt2/README.md)。

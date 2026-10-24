@@ -1,0 +1,109 @@
+{
+  "status": "complete_formal_template_actual_prepared_bound_no_execution",
+  "updated_utc": "2026-10-24T02:57:40.973133+00:00",
+  "template": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-plan.template.json",
+    "sha256": "f1c2538f07b5bcb6c69c960efeb78de32a4d32ca48f84deb3f00a1d35a572310",
+    "bytes": 16492
+  },
+  "execution_ready": false,
+  "prepared_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/prepared/manifest.json",
+    "sha256": "a970c9a87309aad3dcb9c1fe94a84afb99bfa931bf356eeda4c7e6ca6ee52071",
+    "bytes": 41542
+  },
+  "original_strong_B_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-plan.json",
+    "sha256": "49a2ef2f259cbb4e11267143592896203010bc50413a2b6e650fa80e4c5452c3",
+    "bytes": 17536
+  },
+  "source_note": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/SOURCE-NOTE.md",
+    "sha256": "6ba071571626f990348183469437fa51c99705707d35e2c37f591d6996e855d8",
+    "bytes": 7116
+  },
+  "source_count": 21,
+  "byte_hash_scope": "All 21 planned source files and every existing plan artifact ref were checked against actual bytes; metadata refs that require exact dict equality retain their original field shape. Only this template and note were written.",
+  "source_AST_required_plan_keys": [
+    "TERM_grace_seconds",
+    "base_prepared_manifest",
+    "baseline_freeze",
+    "baseline_pooled_metrics",
+    "cut",
+    "evaluation_source",
+    "execution_ready",
+    "folds",
+    "formal_CPU_cap_seconds",
+    "hpo",
+    "nested_source",
+    "output_dir",
+    "preB_pooled_metrics",
+    "prepared_manifest",
+    "python",
+    "sources",
+    "train64_gold"
+  ],
+  "source_AST_required_fold_keys": [
+    "base_fit_manifest",
+    "baseline_metrics",
+    "baseline_prediction",
+    "baseline_validation",
+    "fold",
+    "preB_metrics",
+    "reference",
+    "train_gold"
+  ],
+  "all_source_AST_keys_present": true,
+  "prepared_actual": {
+    "status": "prepared_input_only_no_fit_or_quality",
+    "base_rows": 246804,
+    "new_rows": 253204,
+    "added_rows": 6400,
+    "matching_rows": 14784,
+    "canonical_unique_keys": 5296,
+    "source_rows_across_eight_pools": 21184,
+    "base_BioBERT_prefix_preserved": true,
+    "no_old_selector_posteriors": true,
+    "seconds": 11.972620469001413
+  },
+  "fold_counts": [
+    {
+      "fold": 0,
+      "base_train_rows": 46733,
+      "base_input_rows": 15028,
+      "new_train_rows": 47996,
+      "new_input_rows": 15358
+    },
+    {
+      "fold": 1,
+      "base_train_rows": 45403,
+      "base_input_rows": 16595,
+      "new_train_rows": 46522,
+      "new_input_rows": 17079
+    },
+    {
+      "fold": 2,
+      "base_train_rows": 45907,
+      "base_input_rows": 15309,
+      "new_train_rows": 47109,
+      "new_input_rows": 15699
+    },
+    {
+      "fold": 3,
+      "base_train_rows": 46480,
+      "base_input_rows": 15349,
+      "new_train_rows": 47707,
+      "new_input_rows": 15734
+    }
+  ],
+  "ref_equality": "Each fold reference retains the exact strong-B metadata dict (path/sha256 only). Each base_fit_manifest is freeze.new_manifest including bytes and matches actual prepared metadata; base_prepared_manifest also matches exactly.",
+  "gold_handling": "Five frozen gold refs were checked by streaming SHA only, without decoding, parsing, printing or inspecting labels or examples.",
+  "metric_handling": "Metric/validation files were byte-hashed only; no report values or prediction contents were inspected and no scoring ran.",
+  "static_checks": "Memory compilation; direct plan/fold key coverage; strong-B primary and preB secondary ref roles; actual new-pool manifest and base counts/refs. No helper main, model, subprocess, timer or evaluator executed.",
+  "sources_or_runtime_executed": false,
+  "MCP_or_Git_used": false,
+  "pending_actions": [
+    "Root must separately authorize fitting before execution_ready can be true and freeze a separate executable plan.",
+    "Check target CPU interpreter/runtime, all source/artifact SHAs, output directory uniqueness and any relocated absolute paths before the one formal window."
+  ]
+}
