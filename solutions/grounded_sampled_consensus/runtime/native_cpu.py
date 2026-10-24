@@ -1,0 +1,71 @@
+"""Full39 actual A800 native input replay; no model weights, gold or CUDA."""
+import argparse,gzip,hashlib,importlib.util,inspect,json,os,time
+from sampling import SEEDS,GENERATION,row_seed
+from pathlib import Path
+
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def ref(p):p=Path(p).resolve();return dict(path=str(p),bytes=p.stat().st_size,sha256=sha(p))
+def save(p,v):
+ p=Path(p);p.parent.mkdir(parents=True,exist_ok=True)
+ with p.open('x') as f:json.dump(v,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ p=p.resolve().parent
+ while True:
+  fd=os.open(p,os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+  if p==p.parent:break
+  p=p.parent
+
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);ap.add_argument('--output',required=True);a=ap.parse_args()
+ began=time.monotonic();p=json.loads(Path(a.plan).read_text());assert os.environ['CUDA_VISIBLE_DEVICES']==''
+ for name,item in p['files'].items():assert ref(name)==dict(path=name,**item)
+ out=Path(a.output);assert not out.exists();out.mkdir(parents=True)
+ import torch,transformers,peft,tokenizers
+ from transformers import AutoTokenizer
+ from tokenizers import Tokenizer
+ import transformers.models.qwen3_5.modeling_qwen3_5 as native
+ runtime=dict(torch=torch.__version__,transformers=transformers.__version__,peft=peft.__version__,tokenizers=tokenizers.__version__,modeling=ref(native.__file__),CUDA_VISIBLE_DEVICES=os.environ['CUDA_VISIBLE_DEVICES'],cuda_initialized=torch.cuda.is_initialized(),cuda_available=torch.cuda.is_available(),no_model_weights=True)
+ save(out/'runtime.json',runtime)
+ assert [runtime[k] for k in ['torch','transformers','peft','tokenizers']]==['2.7.1+cu126','5.20.2','0.21.2','0.23.1']
+ assert not runtime['cuda_initialized'] and not runtime['cuda_available'] and importlib.util.find_spec('fla') is None and importlib.util.find_spec('causal_conv1d') is None
+ assert runtime['modeling']['sha256']=='b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3'
+ model=Path(p['model']);source=json.loads(Path(p['model_source_manifest']).read_text());assert sha(p['model_source_manifest'])=='74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7'
+ assets={v['name']:v for v in source['files']};checked={}
+ for name in ['tokenizer.json','tokenizer_config.json','chat_template.jinja','config.json']:
+  actual=ref(model/name);assert actual['bytes']==assets[name]['size'] and actual['sha256']==assets[name]['sha256'];checked[name]=actual
+ save(out/'tokenizer-assets.json',checked)
+ tok=AutoTokenizer.from_pretrained(model,local_files_only=True);native_tok=Tokenizer.from_file(str(model/'tokenizer.json'))
+ rows=[json.loads(x) for x in Path(p['held_input']).read_text().splitlines()];audit={r['row_id']:r for r in json.loads(Path(p['held_audit']).read_text())};expected={r['row_id']:r['input_ids'] for r in json.loads(gzip.decompress(Path(p['held_local_ids']).read_bytes()))}
+ assert len(rows)==len(audit)==len(expected)==39 and len({r['pmc_id'] for r in rows})==16
+ assert {r['row_id'] for r in rows}==set(audit)==set(expected) and len({(r['pmc_id'],r['target_patient_id']) for r in rows})==39
+ observations=[]
+ for row in rows:
+  assert 'answer' not in row
+  text=tok.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=False)
+  ids=tok.encode(text,add_special_tokens=False);native_ids=native_tok.encode(text,add_special_tokens=False).ids;audit_row=audit[row['row_id']]
+  checks=dict(native_actual_local_IDs_equal=ids==native_ids==expected[row['row_id']],rendered_prefix_SHA_equal=hashlib.sha256(text.encode()).hexdigest()==audit_row['rendered_prefix_sha256'],all_IDs_SHA_equal=hashlib.sha256(json.dumps(ids).encode()).hexdigest()==audit_row['input_ids_sha256'],count_equal=len(ids)==audit_row['input_tokens'],native_actual_decode_equal=tok.decode(ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)==native_tok.decode(native_ids,skip_special_tokens=False))
+  observations.append(dict(row_id=row['row_id'],tokens=len(ids),checks=checks));assert all(checks.values()),row['row_id']
+
+ from transformers import GenerationConfig,LogitsProcessorList,Qwen3_5TextConfig
+ from transformers.generation.utils import GenerationMixin
+ class Interface(GenerationMixin):
+  config=Qwen3_5TextConfig.from_pretrained(p['model'],local_files_only=True)
+  device=torch.device('cpu')
+ d=Interface();gc=GenerationConfig(**GENERATION,eos_token_id=p['eos_ids'],pad_token_id=p['pad_token_id']);gc.validate();d._prepare_special_tokens(gc,device=torch.device('cpu'))
+ processors=d._get_logits_processor(generation_config=gc,input_ids_seq_length=7,encoder_input_ids=None,prefix_allowed_tokens_fn=None,logits_processor=LogitsProcessorList(),device=torch.device('cpu'),model_kwargs={})
+ names=[type(x).__name__ for x in processors];assert names==['TemperatureLogitsWarper','TopKLogitsWarper','TopPLogitsWarper','MinPLogitsWarper'],names
+ logits=torch.arange(32,dtype=torch.float32)[None,:]/8;sample_input=torch.tensor([[2,3,4,5,6,7,8]]);processed=processors(sample_input,logits.clone());probs=torch.softmax(processed,dim=-1);assert torch.isfinite(probs).all() and torch.count_nonzero(probs)<=20
+ seeds=[dict(seed=seed,row_id=r['row_id'],row_seed=row_seed(seed,r['row_id'])) for seed in SEEDS for r in rows];assert len({v['row_seed'] for v in seeds})==78
+ draws={}
+ for seed in SEEDS:
+  rs=row_seed(seed,rows[0]['row_id']);torch.manual_seed(rs);one=torch.multinomial(probs,32,replacement=True).tolist();torch.manual_seed(rs);assert one==torch.multinomial(probs,32,replacement=True).tolist();draws[str(seed)]=one
+ adapter={}
+ for name,item in p['adapter_files'].items():
+  actual=ref(Path(p['checkpoint_directory'])/name);assert actual['bytes']==item['bytes'] and actual['sha256']==item['sha256'];adapter[name]=actual
+ sampling=dict(seeds=seeds,generation_kwargs=GENERATION,presence_penalty=0,presence_processor_added=False,processors=names,same_seed_actual_draws_equal=True,draws=draws,interface=str(inspect.signature(d._get_logits_processor)),adapter_files=adapter,no_weights_loaded=True)
+ save(out/'sampling-interface.json',sampling)
+ assert not torch.cuda.is_initialized()
+ save(out/'observations.json',observations)
+ result=dict(status='PASS_NATIVE_COMPLETE39_QUOTE_SAMPLING_INPUT',plan=ref(a.plan),source=ref(__file__),runtime=ref(out/'runtime.json'),tokenizer_assets=ref(out/'tokenizer-assets.json'),observations=ref(out/'observations.json'),encoded=ref(p['held_local_ids']),rows=39,documents=16,all39_local_native_actual_IDs_rendering_decode_exact=True,input_tokens=sum(len(x) for x in expected.values()),max_input_tokens=max(map(len,expected.values())),no_weights_no_GPU_no_fit_no_quality=True,seconds=time.monotonic()-began,training_runtime_torch='2.6.0+cu124',inference_runtime_torch='2.7.1+cu126',same_native_backend_no_FLA=True)
+ result.update(sampling_interface=ref(out/'sampling-interface.json'),sampling_contract_passed=True,all78_distinct_row_seeds=True,presence_penalty=0)
+ save(out/'result.json',result);print(json.dumps(ref(out/'result.json')),flush=True)
+if __name__=='__main__':main()
