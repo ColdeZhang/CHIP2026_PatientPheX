@@ -1,0 +1,241 @@
+{
+  "status": "running_unique_originaldev_reverse_union",
+  "plan": {
+    "frozen_at_utc": "2026-10-24T00:35:19.580575+00:00",
+    "schema": "fixed-reverse-originaldev-currentbest-union-v1",
+    "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+    "remote": "sequence-round2/reverse-json-order-dev-v1",
+    "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+    "adapter": "/dev/shm/patientphex-sequence-full64-reverse-dev-1045",
+    "adapter_files": {
+      "adapter_config.json": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2",
+      "adapter_model.safetensors": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "cap_seconds": 600,
+    "term_grace_seconds": 30,
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "files": {
+      "launch.py": "fdebf3ff5e03976604159894cb47585b4ba32bc13a7874b52c000e750270f88a",
+      "legacy/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+      "legacy/merge_pair_rag.py": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
+      "legacy/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
+      "prompts.jsonl": "6535a2e0d4f89a7cc7bb52a1d8f7e16e68d38f920ef46342a04e76e7070fa85b",
+      "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "inverse-and-token-audit.json": "a16b8ee6180aa85b1fa82f5db47fe02935af1c2d8b814578462d4554a568693e"
+    },
+    "control_sources": {
+      "operations.py": "285cb7d8105696f2007becbee62868b75da8c49a53848527fbfa2d0ec00c97c9",
+      "finish.py": "39c3efe0dce6c68a7eb2ba23b43742a11c9401b094eed62fc5a7c668eb3024f5",
+      "transfer_adapter.py": "fee5057cf79f5cc91b91be612aeb0600383459815155926881532b70726e2ac9"
+    },
+    "local_references": {
+      "input": {
+        "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+        "bytes": 294884,
+        "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+      },
+      "entities": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+        "bytes": 128419,
+        "sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2"
+      },
+      "baseline": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.nested.jsonl",
+        "bytes": 141326,
+        "sha256": "baac818637f757badf56123b7e5f8cb77153e18c2e710e35044154b7a05fad67"
+      },
+      "baseline_metrics": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.metrics.json",
+        "bytes": 12902,
+        "sha256": "629478cd858c73287f4d91c4fa3b474d6fb2023734311c3b196b2ad20ffe3422"
+      },
+      "baseline_freeze": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/complete-freeze.json",
+        "bytes": 1415,
+        "sha256": "a84d2ea8a603aa28baa53470981488e160ea7829a058d34cd609c87c1a53d389"
+      },
+      "old_response": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.jsonl",
+        "bytes": 20480,
+        "sha256": "73392125335b52d203173b0b622ce096d6e6f1ca8f77e64d1eb3bbd7fbc396a6"
+      },
+      "old_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.manifest.json",
+        "bytes": 4212,
+        "sha256": "97b322255ac2872d2b8a375b0cee4baf6e0fc0afa7dc049674c625d7ff7663a0"
+      },
+      "training_checkpoint": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/checkpoint.json",
+        "bytes": 10774,
+        "sha256": "f217bdc5bd191fe4319c38c99b46ef7b8d1f505d5f89d8c4d2e21a9425511e87"
+      },
+      "adapter_actual_hashes": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/checkpoint-actual-hashes.json",
+        "bytes": 999,
+        "sha256": "2a02be458ba8971140502dd533c10aabfd5b29d71bd4252af5e0a83856239bfa"
+      },
+      "CPU_report": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/report.json",
+        "bytes": 1832,
+        "sha256": "a8692342572d2721778c70c72cd68433d68056b7ce4ace0f98e2a1d661fc6edb"
+      },
+      "persistent_adapter_locator": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/existing-adapter-backup-locators.json",
+        "bytes": 7066,
+        "sha256": "5053b0c94a33fd2ea0c9a5b04525c706aa8276034ae071c02a6405d0733526c5"
+      }
+    },
+    "prepare_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/plan.json",
+      "bytes": 1813,
+      "sha256": "7336de129d0a6e876aef3641ff3c416308a6391428a9270eac682081bc65017c"
+    },
+    "expected": {
+      "rows": 64,
+      "input_tokens": 202742,
+      "max_input_tokens": 5194,
+      "base_Score": 0.7384937526501161,
+      "entities": 1072,
+      "old_relations": 368,
+      "publicnew_relations_retained": 35
+    },
+    "assembly": "Unchanged original parser on original955 candidate pool with --final-entities baac1072. Reverse-only unscored, literal-v2 union with all baac368 relations; all nonassociation fields and old association metadata/order retained. No publicsupport recalculation. Fullpred freeze before unique union v2.",
+    "keep": "Primary union Score strictly increases and macro does not decrease",
+    "no_new_fit": true,
+    "minimum_free_bytes": 67108864,
+    "runtime_comparison": "Old full64 original64 inference was A30 torch2.7.1cu126/TF5.20.2/PEFT0.21.2/tokenizers0.23.1. New reverse is A800 with same versions/model/adapter/decoder; hardware differs, not bitwise-device control.",
+    "resource_mode": "Only old full64 adapter+config from .100 persistent originals to own new A800 SHM; no model/base/optimizer copy. Temporary cache recovered from persistent locator.",
+    "disk_budget": "SHM requires adapter bytes+64MiB; uid1045 owned0700 new dir. Persistent output only small files require64MiB; do not write weights to 193MB disk.",
+    "purpose": "One authorized originaldev migration; only union with current best evaluated.",
+    "comparison": {
+      "baseline_score": 0.7384937526501161,
+      "primary": "Literal-v2 union baac368 OR reverse-oldpool64",
+      "keep": "Union Score strictly increases and macro does not decrease",
+      "no_other_selection": true
+    },
+    "cpu_preparation": {
+      "plan": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/plan.json",
+        "bytes": 1813,
+        "sha256": "7336de129d0a6e876aef3641ff3c416308a6391428a9270eac682081bc65017c"
+      },
+      "report": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/report.json",
+        "bytes": 1832,
+        "sha256": "a8692342572d2721778c70c72cd68433d68056b7ce4ace0f98e2a1d661fc6edb"
+      }
+    },
+    "created_at_utc": "2026-10-24T00:35:19.580575+00:00",
+    "scope": "Originaldev development not blind; oldpool64/full64 adapter. Preserve all1072 entities/368 old relations including35 publicnew. No newfit/cut/filter/support.",
+    "no_order_seed_threshold_or_combination_scan": true,
+    "adapter_transfer": {
+      "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "source_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/full64-dev-transfer/adapter-epoch002",
+      "host": "10.5.2.100",
+      "port": 41299,
+      "path_prefix": "fixed-sequence-reverse-dev-20261024",
+      "server_directory": "sequence-round2/reverse-dev-adapter-transfer-v1",
+      "cap_seconds": 180,
+      "grace_seconds": 5,
+      "persistent_original_preserved": true
+    },
+    "prior_F1_control": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/summary.json",
+      "bytes": 7023,
+      "sha256": "9c75221c2bb4fe76fcbbf150a225b8f1f4d650afa2d74f95177784f362c2233c"
+    },
+    "originaldev_is_development_not_blind": true,
+    "prior_F0_control": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/summary.json",
+      "bytes": 7796,
+      "sha256": "56a937dd18d6c67f35340fb8a36458692705ea26d86dcbf4b3b98d44af3136e1"
+    }
+  },
+  "job": {
+    "arguments": {
+      "command": "timeout --signal=TERM --kill-after=30s 600s /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python launch.py",
+      "cwd": "sequence-round2/reverse-json-order-dev-v1",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+        "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "TOKENIZERS_PARALLELISM": "false",
+        "HF_HUB_OFFLINE": "1",
+        "TRANSFORMERS_OFFLINE": "1"
+      }
+    },
+    "result": {
+      "command": "timeout --signal=TERM --kill-after=30s 600s /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python launch.py",
+      "id": "proc_4ac27597-7072-4675-91ca-b20201b5b28c",
+      "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+      "pid": 21684,
+      "port": 46575,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-24T00:36:20.648903265Z"
+    },
+    "checkpoint": "ce4c6ce03bd06030a0c994c964e95d7fabd3f445",
+    "release_evidence": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/terminal/gpu-release.json",
+      "sha256": "10c9ba5291203aafc0f625607e9ffcb6352b280eff312e22a8e2c80aa9ca6b3e"
+    },
+    "cap": 600,
+    "grace": 30
+  },
+  "fresh_GPU": {
+    "exit_code": 0,
+    "stdout": "{\"time_utc\": \"2026-10-24T00:36:20.273277+00:00\", \"target_empty\": true, \"gpu\": \"GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, 1, 81920\", \"free_bytes\": 191438848}\n"
+  },
+  "transfer": {
+    "resource_mode": "Only old full64 adapter+config from .100 persistent originals to own new A800 SHM; no model/base/optimizer copy. Temporary cache recovered from persistent locator.",
+    "transfer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/adapter-transfer.json",
+      "sha256": "19e262b3283f3f937d12656ac9000d7e537adda4e23a09e5a775dab1ea976aee"
+    },
+    "actual_files": {
+      "completed_at_utc": "2026-10-24T00:36:07.084372+00:00",
+      "files": {
+        "adapter_config.json": {
+          "bytes": 1287,
+          "sha256": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 173181072,
+          "sha256": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+        }
+      },
+      "uid": 1045,
+      "target_owner": 1045,
+      "shm_free_after": 250649591808,
+      "seconds": 17.61648119566962
+    },
+    "persistent_source_preserved": true,
+    "temporary_shm": true,
+    "plan_sha256": "f47b408a8920b362882f9988b5b2711cab2d0c9be657b37e7177b73a76dab817"
+  },
+  "preservation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/preservation-input-contract.json",
+    "sha256": "25754c0df8dab007160a0d0bc8cc4aca98aed3b142528abced58d702a47660d4"
+  },
+  "runtime_note": "OlddevA30/newA800: development combination comparison, not isolated causal order effect.",
+  "recovery_directory": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal"
+}
