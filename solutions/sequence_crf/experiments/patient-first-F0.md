@@ -88,3 +88,8 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 04:06一次正常监控明确LUNA_OFFLINE，≥60秒后同小只读恢复，得真实完成终态；没有重启训练或把网络错误当模型失败。后续按冻结600+30计划只推断durable epoch2，完整58严格输出后才两预测共同freeze/唯一双评。终点汇集器已离线准备，仅核已有收据链、不读gold/权重、不执行评分，待真正终点后运行。
 
 运行环境如实不同：旧48正式为A800/Torch2.7.1+CUDA12.6/Python3.11.17，新48为A100/Torch2.6.0+CUDA12.4/Python3.10.21；TF5.20.2/PEFT.21.2/native modeling SHA相同。保持旧数值配方并不证明跨硬件逐位等价，不能把极小差值无条件归因schema。main H48已针对R1 tokenizer链独立纠正；检索侧对Qwen3.5原80文本已actual核Auto与发布JSON IDs/双decode一致，不改变或重跑本固定F0。
+
+
+## 固定原58推断启动
+
+完整训练终点af86985ad2ea已push/lsremote后，按原授权fresh核GPU2空卡、持久epoch2的adapter/config/checkpoint/training_complete实际SHA，唯一proc_22400ec4-e939-41a7-988e-bef7c87ddc23/PID93337于04:08:22.106526Z启动。固定原58、600+TERM30，approx TERM04:18:22.107/KILL04:18:52.107；实际以driver-started为准。无新采样/阈值/旧baseline评分，尚无新F0质量。训练camp仍保留GPU2至完整推断真正释放；不因训练释放收据提前移交。
