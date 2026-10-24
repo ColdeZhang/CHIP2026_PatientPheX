@@ -9,3 +9,9 @@
 真实CPU合同12:16:08唯一start proc818c7032，120+TERM5预算下18.695秒全部通过；TF4.51.3/tokenizers.21.2/Torch2.7.1cu126只读既有runtime，隐藏CUDA/线程1。2353训练664278tokens、24063监督，完整prefix/mask/EOS；1416held385719tokens，无labels。最大形状383/28与386，全部cap1024足够。21710目标prefix、所有held的精确NIL分支、三状态实际HF processor和8拒绝例通过；production model.generate未执行，不能冒称GPU解码正确或模型质量。原job actualrc0，CPU无GPU资源释放声明需求。
 
 root已授权条件GPU链：.100GPU1唯一180+30，native initial8→Adam→3accum→3Pareto=14真实FB，加训练行三状态constraint generate，各原生128tokens，raw先存，cap/弃答不修。透明同步计时原Adam.step不替换其算术；预写load+cold首FB+1.25×(4706×其余13步最大FB+590×首次Adam)+120s双ACK/I/O≤2400才fresh正式两轮，保存两完整state ACK；成功后1416全推断1200+30。无条件触发的后台重试，正式不复用probe权重；两端点共冻后各一新v2。
+
+## 真实探针与预算修正
+
+原180+30探针实际34.423s、wrapper35.195s rc0；14FB/1Adam、三原生训练状态约束输出EOS。steady FB max0.592576s、Adam0.059550s，预写公式3654.233s>2400，完整成本门关闭，未开展训练或质量。69原件完整回收SHA986ab81d，原job及release见evidence/probe-complete.json。
+
+root明确批准fresh正式预算4800+30，保持2353×2/590/warmup30及所有学习变量不变；新formal-plan.json只增加前次成功probe及asset绑定与formal-only入口。原gpu-v1及旧计划保历史。后继仍全部1416请求、固定双端点共冻后2v2，不因成本裁样。

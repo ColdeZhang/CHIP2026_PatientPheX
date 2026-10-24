@@ -81,10 +81,17 @@ def main():
     try:
         for name,h in plan['source_files'].items():assert sha(Path(__file__).parent/name)==h,name
         cpu=json.loads(checked(plan['cpu_result']).read_text());assert cpu['status']=='PASS_COMPLETE_MENTION_NATIVE_HF_INPUTS_AND_THREE_STATE_CONSTRAINT_CPU_ONLY';assert cpu['train_rows']==2353 and cpu['held_rows']==1416;assert cpu['schedule']=={'epochs':2,'updates_per_epoch':295,'updates':590,'last_group_size':1,'warmup_steps':30}
-        gpu_gate(plan,out);assets=verify_assets(plan,full=a.mode=='probe',previous=None if a.mode=='probe' else json.loads((Path(plan['run_root'])/'probe/verified-assets.json').read_text()));save(out/'verified-assets.json',assets)
+        previous_assets=checked(plan['prior_probe_assets']) if 'prior_probe_assets' in plan else Path(plan['run_root'])/'probe/verified-assets.json'
+        gpu_gate(plan,out);assets=verify_assets(plan,full=a.mode=='probe',previous=None if a.mode=='probe' else json.loads(previous_assets.read_text()));save(out/'verified-assets.json',assets)
         adapter=None
         if a.mode=='formal':
-            p=json.loads((Path(plan['run_root'])/'probe/complete.json').read_text());assert p['formal_budget_gate'] and p['probe_state_must_be_discarded']
+            if 'prior_probe_complete' in plan:
+                p=json.loads(checked(plan['prior_probe_complete']).read_text())
+                assert p['status']=='COMPLETE_MENTION_REAL_FB_ADAM_AND_THREE_STATE_GENERATE_PROBE' and p['indexed_forward_backward']==14 and p['optimizer_updates']==1
+                assert p['probe_state_must_be_discarded'] and p['cost']['estimated_formal_seconds']<=plan['budgets']['formal']
+                assert plan['phases']==['formal','infer'] and plan['budget_revision']['original_gate_closed'] is True
+            else:
+                p=json.loads((Path(plan['run_root'])/'probe/complete.json').read_text());assert p['formal_budget_gate'] and p['probe_state_must_be_discarded']
         if a.mode=='infer':
             f=json.loads((Path(plan['run_root'])/'formal/complete.json').read_text());assert f['global_step']==590 and len(f['acknowledgements'])==2
             for epoch in [1,2]:

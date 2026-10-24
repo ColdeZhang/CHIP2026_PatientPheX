@@ -7,7 +7,8 @@ from helpers import write
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);ap.add_argument('--python',required=True);a=ap.parse_args();plan=json.loads(Path(a.plan).read_text());root=Path(plan['run_root']);jobs=root/'jobs';jobs.mkdir(parents=True,exist_ok=True)
     write(jobs/'controller-start.json',{'unix':time.time(),'pid':os.getpid(),'plan':a.plan,'budgets':plan['budgets']})
-    for phase in ['probe','formal','infer']:
+    phases=plan.get('phases',['probe','formal','infer']);assert phases in [['probe','formal','infer'],['formal','infer']]
+    for phase in phases:
         job=jobs/phase;job.mkdir(exist_ok=False);start=time.monotonic();command=['timeout','--signal=TERM','--kill-after=30s',str(plan['budgets'][phase])+'s',a.python,'-u',str(Path(__file__).parent/'gpu_entry.py'),'--plan',a.plan,'--mode',phase];write(job/'start.json',{'at_unix':time.time(),'command':command,'budget_seconds':plan['budgets'][phase],'grace_seconds':30})
         with (job/'stdout.txt').open('x') as out,(job/'stderr.txt').open('x') as err:
             child=subprocess.Popen(command,stdout=out,stderr=err);write(job/'child.json',{'pid':child.pid});rc=child.wait()
@@ -16,6 +17,6 @@ def main():
         result=json.loads((root/phase/'complete.json').read_text())
         if phase=='probe' and not result['formal_budget_gate']:
             write(jobs/'controller-complete.json',{'status':'COMPLETE_PROBE_COST_GATE_CLOSED','cost':result['cost'],'new_quality':0});return
-    write(jobs/'controller-complete.json',{'status':'COMPLETE_ALL_THREE_GPU_PHASES','at_unix':time.time(),'no_quality_or_gold':True})
+    write(jobs/'controller-complete.json',{'status':'COMPLETE_ALL_THREE_GPU_PHASES' if len(phases)==3 else 'COMPLETE_FRESH_FORMAL_AND_INFERENCE','phases':phases,'at_unix':time.time(),'no_quality_or_gold':True})
 
 if __name__=='__main__':main()
