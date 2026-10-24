@@ -31,20 +31,25 @@ print(json.dumps(dict(at_unix=time.time(),observations=observations,all_exact_se
 
 def main():
  import argparse
- parser=argparse.ArgumentParser();parser.add_argument('--controller',type=Path,required=True);a=parser.parse_args();C=a.controller
+ parser=argparse.ArgumentParser();parser.add_argument('--controller',type=Path,required=True);parser.add_argument('--after-deadline',action='store_true');a=parser.parse_args();C=a.controller
+ prefix='export-service-final-closure' if a.after_deadline else 'export-service-closure'
+ if a.after_deadline:
+  assert not json.loads((C/'export-service-closure.json').read_text())['all_exact_servers_absent']
+  deadlines=[json.loads((C/f'epoch-{e:03d}-export-intent.json').read_text())['absolute_deadline_unix'] for e in (1,2)]
+  assert time.time()>max(deadlines)+30, 'Retain original TERM+30 service deadline; no earlier repeat read'
  plan=json.loads((C/'controller-plan.json').read_text());assert (C/'campaign-complete.json').exists()
  for e in (1,2):assert (C/f'epoch-{e:03d}-export-ack.json').exists()
  def save(name,value):
   with (C/name).open('x') as f:json.dump(value,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
  params=dict(root=plan['remote_absolute'],output=plan['output_dir'],managed={str(e):json.loads((C/f'epoch-{e:03d}-server-job.json').read_text())['pid'] for e in (1,2)})
- assert not (C/'export-service-closure-intent.json').exists()
- save('export-service-closure-intent.json',dict(at_unix=time.time(),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),params=params,remote_code_sha256=hashlib.sha256(REMOTE.encode()).hexdigest(),readonly=True))
+ assert not (C/(prefix+'-intent.json')).exists()
+ save(prefix+'-intent.json',dict(at_unix=time.time(),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),params=params,remote_code_sha256=hashlib.sha256(REMOTE.encode()).hexdigest(),readonly=True))
  client=Client();client.initialize()
  result=client.request('tools/call',dict(name='run_command',arguments=dict(mount_id='69b991ee-183f-4add-af1a-579af92479c9',command='python3 -c '+shlex.quote('PARAM='+repr(params)+'\n'+REMOTE),timeout_seconds=15)))
- save('export-service-closure-tool.json',result)
+ save(prefix+'-tool.json',result)
  if result.get('isError'):raise RuntimeError('Original read-only outcome unknown; retain receipt and recover only this read')
  actual=result.get('structuredContent') or json.loads(result['content'][0]['text']);assert actual['exit_code']==0
- data=json.loads(actual['stdout']);save('export-service-closure.json',data)
+ data=json.loads(actual['stdout']);save(prefix+'.json',data)
  assert data['all_exact_servers_absent'], 'Existing owned server requires explicit identity-checked cleanup; no signal sent here'
  print(json.dumps(data))
 if __name__=='__main__':main()

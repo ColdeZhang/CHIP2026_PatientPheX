@@ -64,7 +64,10 @@ def main():
     assert restore['status'] == 'PASS_EXACT_LOGICAL_FULL_STATE_RESTORE'
     assert restore['completed_epochs'] == 1 and restore['global_step'] == 34
     assert restore['restored_state_digest'] == restore['serialized_state_digest'] and restore['all_RNG_restored']
-    assert read(controller / 'export-service-closure.json')['all_exact_servers_absent']
+    closure = controller / 'export-service-final-closure.json'
+    if not closure.exists(): closure = controller / 'export-service-cleanup.json'
+    if not closure.exists(): closure = controller / 'export-service-closure.json'
+    assert read(closure)['all_exact_servers_absent']
     result = read(inference / 'terminal/summary.json')
     assert result['expected_rows'] == result['fresh_rows'] == 64 and result['cached_rows'] == 0
     assert result['strict_complete_rows'] + result['whole_row_abstentions'] == 64
@@ -115,6 +118,9 @@ def main():
                  'watch-lifecycle-observed.json', 'watch-lock-contract.json',
                  'export-service-closure-intent.json', 'export-service-closure-tool.json', 'export-service-closure.json'):
         add('controller/' + name, controller / name)
+    for name in ('export-service-cleanup-intent.json', 'export-service-cleanup-tool.json', 'export-service-cleanup.json',
+                 'export-service-final-closure-intent.json', 'export-service-final-closure-tool.json', 'export-service-final-closure.json'):
+        if (controller / name).exists(): add('controller/' + name, controller / name)
     for epoch in (1, 2):
         for suffix in ('job', 'state', 'export-ack', 'export-verification', 'source-ack-copy', 'server-ready'):
             name = f'epoch-{epoch:03d}-{suffix}.json'
