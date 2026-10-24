@@ -60,3 +60,5 @@
 - Query-token classifier查重结案：发现旧fixed-slot-binary已真实Qwen3.5 fresh LoRA、全部无答案CID×PID查询共享prefill/末hidden两类CE，train124/2506pairs/2ep32steps→完整F1 80/1557pairs。固定.5 Score .630248、expected-F1 .648033均低旧JSON .660942；另F1→F0二特征校准已完整仅+.001102。旧输入局部概念证据+global anchors，非全文；独立可训练head/8B/全文仍是变量但非核心机制未试，不改名BCE/YesNo重训。本次0新gold/fit/model/quality/tokenize/remote；见 evidence/query-token-classifier-duplicate.json。
 
 - MedGemma1.5-4B准确版本查重结案：MS9bca96ca/HF91850547、完整bundle+LoRA4.329882B已核，短/全文train32×2ep及各完整F1/并集均真实负（短.603702/.644663；全文.592419/.627967；旧.660942）。旧实际原生文本/模板/EOS/许可与19资产已有证据；全文原生CE峰约52GB，不能以4B名称推断24GB可训。仅复用终态，不新网络/remote/tokenize/fit/model/gold/quality，见 evidence/medgemma15-duplicate.json。
+
+- 新增15家族已实际机制/可重开条件总地图（外部MAP.md≤100行），只复用已核终态；Med1.5、LLM query-slot、Top8上下文规范化、RAG等真实完成的路线明确查重，单配方负不扩大为整族无效。2353/2931、geometry、response F0、groundedfull64、root四源F0列为本次快照待完成；源快照/SHA与pending记录见 evidence/method-coverage-map.json。0新gold/模型/fit/评分/remote；root可缓存MAP.md/refs.json到main。
