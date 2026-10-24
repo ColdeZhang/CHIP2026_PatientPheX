@@ -9,3 +9,5 @@
 15:21:37.533682Z：源2b4c8553 / 部署f17fe898 / freshgate通过，唯一proc_98b3a99e-9316-409c-8e71-feaf7bf88516、PID2750059。13真实FB+Adam及5训练状态原生generate工程；probe状态丢弃，成本门固定7200，无质量观测。
 
 实际probe20.4655秒/wrapper21.2574rc0，13FB/1Adam、峰17,648,261,632B，5类训练输入均生成合法HPO（仅工程，不称识别正确）。预锁warm-token成本5642.17≤7200；原含cold诊断9099.33与worst-row5764.30完整保留。15:21:59.012453 fresh正式已启动868steps，probe state丢弃。
+
+原CPU ZIP de55a04b / 9,438,522B已完整73块重组，56成员全部SHA核验；仅恢复原缺失range，没有重pack、重CPU或改模型。此前selected证明和传输错误记录保留。
