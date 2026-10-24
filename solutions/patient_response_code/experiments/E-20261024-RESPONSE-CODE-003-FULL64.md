@@ -25,3 +25,5 @@ A800正式原5400秒共享窗13:53:52.618929开始，两轮分别1324.141567/132
 纯组件pred8180851d/125140B，16篇/36患者/466CID/1006合法对/300关系；原955实体壳及所有非关系UTF8字节保持，仅交关系，root最终1061实体不变。manifest e5844856/2726B，见evidence/full64-pure-component.json。没有新模型调用、raw重复解析、gold读取或本线v2。是否改善完整方案由root唯一预锁融合评测决定，此终点不声称全局最高分。
 
 临时HTTP生命周期实测复现H64：managed stop后第二原server仍在其600秒绝对窗内；首次pidfd清理在系统Python缺os.pidfd_open、任何signal之前失败。保留原失败/只读证据，不重复未知mutation；server自带原绝对截止，待其TERM+30后仅只读核最终关闭。训练/推断与模型数据未改，未重开服务。
+
+14:51:52实际只读闭环：两个原driver/timeout/server均不存在，0新signal；保留初次观察与系统Python接口失败。最终129件878429B私有包736398da已在.100完成全SHA/fsync/reopen，review入口532129c1/6698B。完整恢复位置与原训练输入持久副本见evidence/full64-final-handoff.json。

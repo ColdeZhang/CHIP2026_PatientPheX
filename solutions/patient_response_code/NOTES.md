@@ -12,3 +12,5 @@ Probe evidence scope correction: the executed probe comment says “previously c
 
 - 原全量收件的UNKNOWN不是模型失败：先核原zip已存在并逐成员SHA，再只读续收，不能盲重建或重跑答案。纯读UNKNOWN可保原回执后30秒一次恢复；遇明确LUNA才按独立离线窗口处理。
 - PT响应code有一条重复输出，按事前整行弃答保留，未将后处理修复偷偷纳入这次正结果。固定coded-alone最好；两个端点之外未扫组合。
+
+Full64 A800实测复现H64：managed stop不是子HTTP关闭证明。服务内部原600秒绝对截止仍生效；一次精准清理在系统python缺os.pidfd_open处、任何signal前失败，不把训练venv/本机stdlib能力套到系统python。保原失败，不重复mutation；原截止+30后只读证实全部自有服务与timeout已退出。模型/优化器/推断均未受影响，完整证据见full64-final-handoff。
