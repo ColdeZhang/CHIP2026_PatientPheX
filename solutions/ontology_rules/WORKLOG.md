@@ -101,3 +101,5 @@
 - indexed两轮已完整32更新：epoch2 09:26:34 rc0/2315.703秒，最终65b53e36 adapter与完整state已09:28:25在.100共520,023,199 B全SHA/fsync/reopen；原watch09:28:38正常完成。新adapter F1全80fresh计划和仍disabled质量模板已实际绑定，保留14400输入/1600生成、1200+30及强.676546 Score-only双臂协议。[实际绑定](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/bound-entry.json)。
 
 - 新全文模型F1唯一全80fresh已09:30:18 proc_36a62965/PID22795启动，1200+30；训练28件真实小终态已一次完整收回（b88400b7 zip，30,047 B），包括完整state/RNG恢复、32步和两epoch保存。无旧adapter响应复用、尚无新质量；[原作业指针](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/actual-start.json)。
+
+- indexed全文train32固定F1负结案：新alone .675134214（对强.676546355 −.001412141）、旧短∪新 .672875653（−.003670702），Score-only均不保留；较弱短输入的提高单列、不偷换对照。80fresh/80strict/0弃答，374.785秒rc0/释放；两pred共冻→新2旧0，1189实体/nonrelation保持。[完整结论](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/RESULT.md)。等待一个现有线程空槽做唯一实际终审，先推送/一次私有补包，不扩F0/dev/epoch搜索。

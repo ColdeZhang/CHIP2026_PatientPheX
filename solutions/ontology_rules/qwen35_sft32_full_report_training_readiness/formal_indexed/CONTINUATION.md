@@ -1,11 +1,9 @@
-# 当前继续入口（2026-10-24 08:53 UTC）
+# 当前状态（2026-10-24 09:37 UTC）
 
-root同意owner暂转idle；本地watch及原远端训练继续，不停止或重启。当前第二轮原作业 `proc_e0b1196d-5c9f-4f40-aae4-728f03f48af8` / PID9466 已进入 formal_training，第一轮完整持久ACK已核。第二轮ACK尚未到，无推断或质量。
+原watch PID130118已经正常完成；两轮32步及两份.100完整持久ACK齐。原epoch2 proc_e0b1196d、后继唯一全80fresh proc_36a62965均正常终态，GPU已释放。不得重启watch/trainer/binder/推断/质量。
 
-- 本地watch PID130118、原exec session11114；源 `controller/watch_authorized_campaign.py`。08:53实际进程存在、failure不存在，最近08:52:06原inspect完成。它只管理原两轮/两ACK，完成后自行结束，不启动F1。
-- 外存根 `R=/workspace/patientphex-runs/round2-20261023`；原控制目录 `Q=R/research/qwen35-fulltext32-indexed-formal-v1/controller`。root可只读 `local-watch-events.jsonl`、`local-watch-failure.json`（正常应不存在）、`epoch-002-export-ack.json`、`campaign-complete.json`。若UNKNOWN/失败，先核原intent/job/真实状态，不重start、不重新计算、不要重启watch（其exclusive intent仍保留）。
-- 原绝对deadline1792837648.873858，8400+TERM30覆盖两轮与两次导出；不可改起点。第一轮里程碑见 `epoch1-milestone.json`，checkpoint/Adam/scheduler/RNG真实恢复，旧probe状态不用。
-- 两完整持久ACK与campaign-complete齐后，followup唤醒本owner。先运行 `f1_inference/bind_after_training.py`（无参数）把实际adapter绑定到 `R/research/qwen35-fulltext32-indexed-F1-full80-v1`，保存并push实际计划小指针；`evaluation_source/prepare_disabled.py`绑定仍禁执行模板。再按原 `operations.py deploy/start/inspect/collect --directory <该目录>`，fresh资源核后唯一全80fresh1200+TERM30，无旧adapter缓存。
-- 完整80终态后才用 `evaluation_source/bind_completed.py` 绑定 terminal 和 evaluation-template，接着原 evaluate_full80 一次。primary新alone、diagnostic旧短SFT32并集，共冻两完整pred→各1v2/旧0；强基线.676546354662594，Score严格升才留，macro报告。保留1189实体/所有非关系字节。没有自动F0/dev、额外GPU或官方提交授权。
+固定F1两端点已共同冻结后各1次v2，primary .675134214／diagnostic .672875653均低于强.676546355，按Score-only协议关闭，不扩F0／原dev。详见 [F1结果](f1_inference/RESULT.md)。
 
-2026-10-24 09:28状态更新：owner已接回，两轮32步及两ACK齐，原watch正常完成。实际F1绑定已写 `f1_inference/bound-entry.json`；后续沿该新adapter入口唯一全80fresh，勿再次运行旧watch或训练。
+外存根 R=/workspace/patientphex-runs/round2-20261023：训练 Q=R/research/qwen35-fulltext32-indexed-formal-v1/controller，含campaign-complete、两exportACK、training-terminal-manifest及28件小zip；F1 I=R/research/qwen35-fulltext32-indexed-F1-full80-v1，含terminal-manifest、terminal.zip、evaluation-plan及quality/summary.json、paired-predictions-freeze。原8400截止10:27:28.873858及F1独立1200+30均未超时。
+
+剩余仅一次完整私有证据补包与统一实际增量终审。root待现有有用子任务释放线程后唤醒原validator；引用结果不可变，后继审查只补新文件，不重模型/parse/v2。后续方法与GPU由root新任务安排，官方仍不查不传。
