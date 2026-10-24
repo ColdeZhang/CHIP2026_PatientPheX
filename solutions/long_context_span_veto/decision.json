@@ -1,0 +1,55 @@
+{
+  "experiment": "E-20261024-LONG-CONTEXT-SPAN-VETO-001",
+  "locked_utc": "2026-10-24T16:35:32.715290+00:00",
+  "base_main": "5fe444911758b16277ff4b8d9448467c33af78c9",
+  "status": "PRELOCKED_BEFORE_HELD_OUTPUTS",
+  "baseline_score": 0.7286975364690524,
+  "baseline_entities": 1313,
+  "documents": 16,
+  "patients": 39,
+  "held_windows": 17,
+  "formula": "Delete every original entity object iff exact(pmc_id,offset,length,text) is legally representable in at least one of the full17 GP windows and max(raw scores over every legal representation)<0. Keep unrepresented/uncovered spans and score exactly0. Reject full endpoint on NaN/Inf, duplicate/missing span or incomplete/inconsistent window evidence. Preserve remaining entity objects/order and every nonentity object. No additions/ID changes/patient-ID subsets/threshold search/new forwards.",
+  "parent_model": "new BioClinicalModernBERT149M encoder plus original GP span head, original complete17 held windows",
+  "new_variable": "New long-context GP state signal; zero is its fixed binary boundary, not a tuned veto threshold. Prior NO and9B veto negative and BOUNDARY control already exist.",
+  "new_v2_max": 1,
+  "old_v2": 0,
+  "zero_change": "byteexact original prediction; inherit old metrics; gold0/v2=0",
+  "gate": "strict Score>baseline; no automatic F0/originaldev/official extension",
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+      "bytes": 13085,
+      "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    }
+  }
+}
