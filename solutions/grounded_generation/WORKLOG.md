@@ -69,3 +69,5 @@ F0唯一增量终审64946550 PASS（168refs，原106+13实际、47完整含5弃�
 F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已.100逐SHA/fsync/reopen，清单03d79755/33292B，localreceipt ebdd0c41；已交root唯一actual restore。引用旧F1已恢复链，未重传大权重/银行，见persistence/F0-receipt.json。
 
 12:17后完整54件pressure9e0c83c8回收；真实13行反向175.294秒，完整两轮token代理3891.968秒，加25%与600秒加载/保存/导出余量合计5464.959秒，小于6000预算。真正trainer.verify_inputs纯metadata已通过，正式计划及controller b812929b准备，尚未启动；完整173×2/44/warmup4/尾5、SHM→.100双ACK，原绝对预算不扩。
+
+正式原epoch1已2026-10-24T12:19:01.086681378Z唯一启动 proc_771dc9c7-e0e9-4561-87fa-ab1142274913 / driver6669；campaign起点2026-10-24T12:18:59.890792+00:00，共享TERM2026-10-24T13:58:59.890792+00:00 / KILL2026-10-24T13:59:29.890792+00:00。真fresh卡2=1MiB/noapps，SHM217.946GB/.100401.983GB；完整44更新/双ACK不改。独立session watcher PID163752，实际SID/独占flock ready625c4585，按180秒原时钟接续两epoch/两ACK，未知mutation只停本地调度并恢复原intent。不能另起训练或第二owner。
