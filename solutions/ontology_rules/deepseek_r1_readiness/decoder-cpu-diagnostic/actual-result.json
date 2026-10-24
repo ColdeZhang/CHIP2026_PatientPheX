@@ -1,0 +1,209 @@
+{
+  "status": "COMPLETE_CPU_DECODER_CONTRACT_OBSERVATIONS_NO_MODEL",
+  "source_sha256": "15c591c4caee659862e786d52c0bfa3bb4a2e5a8d4eea57ef67d1b2b2296c6b2",
+  "plan_sha256": "5079827ac1f64a497d18162fd82c23f572f5eaab4c7f100023df36c66f280188",
+  "decoder_states": {
+    "published": {
+      "type": "ByteLevel",
+      "add_prefix_space": false,
+      "trim_offsets": false,
+      "use_regex": false
+    },
+    "direct_from_file": {
+      "type": "ByteLevel",
+      "add_prefix_space": false,
+      "trim_offsets": false,
+      "use_regex": false
+    },
+    "AutoTokenizer": {
+      "class": "LlamaTokenizer",
+      "decoder_class": "Sequence",
+      "state": {
+        "type": "Sequence",
+        "decoders": [
+          {
+            "type": "Replace",
+            "pattern": {
+              "String": "▁"
+            },
+            "content": " "
+          },
+          {
+            "type": "ByteFallback"
+          },
+          {
+            "type": "Fuse"
+          },
+          {
+            "type": "Strip",
+            "content": " ",
+            "start": 1,
+            "stop": 0
+          }
+        ]
+      }
+    },
+    "generic": {
+      "class": "TokenizersBackend",
+      "decoder_class": "ByteLevel",
+      "state": {
+        "type": "ByteLevel",
+        "add_prefix_space": false,
+        "trim_offsets": false,
+        "use_regex": false
+      }
+    },
+    "components": {
+      "normalizer": {
+        "auto_equal_published": false,
+        "generic_equal_published": true,
+        "published_SHA": "5628358406a1a2864e0f9e853618fc4d47d359acf10253558d0c18886de3f06e",
+        "auto_SHA": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "generic_SHA": "5628358406a1a2864e0f9e853618fc4d47d359acf10253558d0c18886de3f06e"
+      },
+      "pre_tokenizer": {
+        "auto_equal_published": false,
+        "generic_equal_published": true,
+        "published_SHA": "78d576476d401e55be4850cbdeeb3183809b5bb60da2d2e20872c6d43a2db99e",
+        "auto_SHA": "b4c794c2b7d99dfa6b4b3e9698654152779d624b25c7784454e35fd00d41cd98",
+        "generic_SHA": "78d576476d401e55be4850cbdeeb3183809b5bb60da2d2e20872c6d43a2db99e"
+      },
+      "post_processor": {
+        "auto_equal_published": true,
+        "generic_equal_published": true,
+        "published_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+        "auto_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+        "generic_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d"
+      },
+      "decoder": {
+        "auto_equal_published": false,
+        "generic_equal_published": true,
+        "published_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+        "auto_SHA": "ecd58d6e997344bfc4e0257d8355fcc5631db165ce5dcbf278ec0e0ec76fe51e",
+        "generic_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d"
+      },
+      "model": {
+        "auto_equal_published": false,
+        "generic_equal_published": false,
+        "published_SHA": "d792a3d65ca83dc767e0f46514da76b92aa2c0d062b1e20cd8581a094cea9b99",
+        "auto_SHA": "e9331faa5de6c8769b86a158c8b69fb84712c672f754b5956b863799d2da0cbd",
+        "generic_SHA": "19f1c196940e3774164637c8133178ccc284d1a6b6a5c761fd2b700c8fc5b07a"
+      },
+      "added_tokens": {
+        "auto_equal_published": true,
+        "generic_equal_published": true,
+        "published_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768",
+        "auto_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768",
+        "generic_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768"
+      }
+    },
+    "full_vocab_equal": true
+  },
+  "special_IDs": {
+    "<｜Assistant｜>": {
+      "auto": 151670,
+      "raw": 151670,
+      "generic": 151670
+    },
+    "<｜begin▁of▁sentence｜>": {
+      "auto": 151643,
+      "raw": 151643,
+      "generic": 151643
+    },
+    "<think>": {
+      "auto": 151667,
+      "raw": 151667,
+      "generic": 151667
+    },
+    "</think>": {
+      "auto": 151668,
+      "raw": 151668,
+      "generic": 151668
+    },
+    "<｜User｜>": {
+      "auto": 151669,
+      "raw": 151669,
+      "generic": 151669
+    },
+    "<｜end▁of▁sentence｜>": {
+      "auto": 151645,
+      "raw": 151645,
+      "generic": 151645
+    }
+  },
+  "all80": {
+    "generic_rendered_equal": 80,
+    "raw_ids_equal": 0,
+    "generic_ids_equal": 0,
+    "auto_roundtrip_exact": 0,
+    "raw_roundtrip_exact": 80,
+    "generic_roundtrip_exact": 80,
+    "add_special_tokens_prefix_all_exact": 0
+  },
+  "all80_rows": 80,
+  "fixtures": {
+    "auto": 0,
+    "raw": 6,
+    "generic": 6
+  },
+  "fixture_count": 6,
+  "generated_decodings_raw_equal_generic": true,
+  "generated_decodings_auto_equal_published": false,
+  "separate_strict_parser": {
+    "valid": false,
+    "reason": "incomplete_or_unknown_candidate_keys"
+  },
+  "separate_JSON": {
+    "valid_JSON_syntax": true,
+    "keys": [
+      "C003",
+      "C006"
+    ],
+    "expected_keys": [
+      "C000",
+      "C001",
+      "C002",
+      "C003",
+      "C004",
+      "C005",
+      "C006",
+      "C007"
+    ],
+    "exact_all_CID_keys": false
+  },
+  "CUDA_initialized": false,
+  "weights_model_install_new_prediction_quality": false,
+  "outputs": {
+    "actual-tokenizer-source.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/decoder-cpu-diagnostic/actual-tokenizer-source.json",
+      "bytes": 5136,
+      "sha256": "6517909e8e21e8be8ed9c9efc8e9b190e2705a368b70e964685ffdfdf21ef256"
+    },
+    "all80-roundtrip.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/decoder-cpu-diagnostic/all80-roundtrip.json",
+      "bytes": 33358,
+      "sha256": "a056067f5729a2de90557bd4d30ae115702965d21b567350f58099e240f713c6"
+    },
+    "fixture-roundtrip.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/decoder-cpu-diagnostic/fixture-roundtrip.json",
+      "bytes": 1933,
+      "sha256": "efabd471a35559615434ab0d0c2bdac192d5e9d92022cfaa2d14bd11f71ee604"
+    },
+    "generated-decode-comparison.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/decoder-cpu-diagnostic/generated-decode-comparison.json",
+      "bytes": 36633,
+      "sha256": "40248389f07f263400c7994e3dd850b160c45ac77b5c05c44a9e572d8a740be8"
+    },
+    "decoder-state.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/decoder-cpu-diagnostic/decoder-state.json",
+      "bytes": 3266,
+      "sha256": "1c6a38aeea3271525eb107cc99296a150b8d3fc75bb226995f9b06dab34b1040"
+    }
+  },
+  "runtime": {
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1",
+    "torch": "2.7.1+cu126"
+  },
+  "program_seconds": 11.833547216374427
+}

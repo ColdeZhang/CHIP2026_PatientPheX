@@ -1,5 +1,7 @@
 # DeepSeek-R1-0528-Qwen3-8B：原生资产、接口与成本
 
+**后续接口纠正：当前TF5 AutoTokenizer改写了发布ByteLevel编码，80条输入ID均不同。旧CPU/GPU事实原留，不能称准确发布输入验证；见[完整纠正与下一步](ERRATA-TOKENIZER-20261024.md)。**
+
 准备实验 `P-20261024-R1-0528-READINESS`。**准确模型资产及原生加载通过；1,024 token预算未产生完整最终答案。** 唯一GPU程序45.260秒、wrapper46.141秒/rc0，首条达到token上限后按事前规则停止余两条；无gold、全80推断或质量分，不据此否定R1提升比赛分数的可能性。完整[合一清单](terminal-manifest.json) SHA `d172a788…`，实际[小摘要](gpu-probe/terminal-summary.json) SHA `a1d3aea0…`；统一独立终审8fa2f637通过（validation/deepseek-r1-format-cost-review/review.json）；质量仍未知。
 
 ## 为什么研究这个准确模型
@@ -42,4 +44,4 @@ YaRN原配置保留，包括非标准attn_factor；实际TF5与HF4.51原生函�
 
 本地完整证据：`R/research/deepseek-r1-0528-qwen3-8b-feasibility`（R=`/workspace/patientphex-runs/round2-20261023`）。Git只保存小源/收据/索引，完整提示、生成IDs/text、权重保留外部；每件SHA见合一清单和collection manifest。不得重发已有start脚本。
 
-后继独立阶段已由主线程授权：同首条2171输入从原prompt重新生成，不拼接旧KV/RNG，max4096/总240+TERM30，225秒内部软停；只此一条，不运行余两条或80质量。新源/计划见gpu-probe-single4096，原1024终点不改写；尚未启动。
+后继独立阶段已由主线程授权：同首条2171输入从原prompt重新生成，不拼接旧KV/RNG，max4096/总240+TERM30，225秒内部软停；只此一条，不运行余两条或80质量。新源/计划见gpu-probe-single4096，原1024终点不改写。实际wrapper97.441秒/rc0、生成2644token/85.644秒，自然EOS与think闭合，非cap/wall；Auto decode的字面Ġ/Ċ导致原JSON失败。仅用发布decoder解已有IDs后JSON合法但缺6CID，仍未通过strict；03:44:55.871卡空释放。两种失败原因分列，不当准确发布输入质量。

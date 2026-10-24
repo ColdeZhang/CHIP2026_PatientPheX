@@ -1,0 +1,97 @@
+{
+  "published": {
+    "type": "ByteLevel",
+    "add_prefix_space": false,
+    "trim_offsets": false,
+    "use_regex": false
+  },
+  "direct_from_file": {
+    "type": "ByteLevel",
+    "add_prefix_space": false,
+    "trim_offsets": false,
+    "use_regex": false
+  },
+  "AutoTokenizer": {
+    "class": "LlamaTokenizer",
+    "decoder_class": "Sequence",
+    "state": {
+      "type": "Sequence",
+      "decoders": [
+        {
+          "type": "Replace",
+          "pattern": {
+            "String": "▁"
+          },
+          "content": " "
+        },
+        {
+          "type": "ByteFallback"
+        },
+        {
+          "type": "Fuse"
+        },
+        {
+          "type": "Strip",
+          "content": " ",
+          "start": 1,
+          "stop": 0
+        }
+      ]
+    }
+  },
+  "generic": {
+    "class": "TokenizersBackend",
+    "decoder_class": "ByteLevel",
+    "state": {
+      "type": "ByteLevel",
+      "add_prefix_space": false,
+      "trim_offsets": false,
+      "use_regex": false
+    }
+  },
+  "components": {
+    "normalizer": {
+      "auto_equal_published": false,
+      "generic_equal_published": true,
+      "published_SHA": "5628358406a1a2864e0f9e853618fc4d47d359acf10253558d0c18886de3f06e",
+      "auto_SHA": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "generic_SHA": "5628358406a1a2864e0f9e853618fc4d47d359acf10253558d0c18886de3f06e"
+    },
+    "pre_tokenizer": {
+      "auto_equal_published": false,
+      "generic_equal_published": true,
+      "published_SHA": "78d576476d401e55be4850cbdeeb3183809b5bb60da2d2e20872c6d43a2db99e",
+      "auto_SHA": "b4c794c2b7d99dfa6b4b3e9698654152779d624b25c7784454e35fd00d41cd98",
+      "generic_SHA": "78d576476d401e55be4850cbdeeb3183809b5bb60da2d2e20872c6d43a2db99e"
+    },
+    "post_processor": {
+      "auto_equal_published": true,
+      "generic_equal_published": true,
+      "published_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+      "auto_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+      "generic_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d"
+    },
+    "decoder": {
+      "auto_equal_published": false,
+      "generic_equal_published": true,
+      "published_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d",
+      "auto_SHA": "ecd58d6e997344bfc4e0257d8355fcc5631db165ce5dcbf278ec0e0ec76fe51e",
+      "generic_SHA": "4942970eeb62af80cf8c4eb5d864699b914996b14b6a5e083528e3eed7dfc44d"
+    },
+    "model": {
+      "auto_equal_published": false,
+      "generic_equal_published": false,
+      "published_SHA": "d792a3d65ca83dc767e0f46514da76b92aa2c0d062b1e20cd8581a094cea9b99",
+      "auto_SHA": "e9331faa5de6c8769b86a158c8b69fb84712c672f754b5956b863799d2da0cbd",
+      "generic_SHA": "19f1c196940e3774164637c8133178ccc284d1a6b6a5c761fd2b700c8fc5b07a"
+    },
+    "added_tokens": {
+      "auto_equal_published": true,
+      "generic_equal_published": true,
+      "published_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768",
+      "auto_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768",
+      "generic_SHA": "abacbc2ac62f34b4f7a45dd26c8b707cfca6a2bb836c127858b4ba58d0b3b768"
+    }
+  },
+  "full_vocab_equal": true
+}

@@ -196,3 +196,7 @@ FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcesso
 ### MCP写入结果不确定：恢复前核目标字节
 
 2026-10-24的NCR尾段12个片记录为MCP错误；实际全量SHA库存却发现其中5片已在服务器，因此只需补7片。失败/UNKNOWN_OUTCOME不能直接等同于未写入；先确认旧writer停止，按目标实际size/SHA复用正确片，不覆盖未知不同字节。之后连接再次LUNA_OFFLINE时采用单worker首明确离线全停，实际只完成1片并跳过剩余5个未发请求项。完整证据见NeuralCR实验与两轮recovery目录，不能把暂时接口故障写成模型质量失败。
+
+## R1与TF5：自洽的AutoTokenizer不等于发布编码（2026-10-24）
+
+实际LlamaTokenizer重建发布ByteLevel的normalizer/pretokenizer/decoder，造成80输入ID全异且Auto往返0/80。先核发布JSON backend与实际构造器、input ID及decode往返，不只比较同loader两条编码入口。旧GPU真实事实保留，不把其截断/格式失效泛化为模型质量；纠正和源/结果在[专门记录](deepseek_r1_readiness/ERRATA-TOKENIZER-20261024.md)。
