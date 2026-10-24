@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**patient-first正式fresh两轮已获完整执行授权，部署/实际CPU准备中，尚无GPU作业。** 单步及终审3f22cbfc通过；原23成员已部署A800，独立新HTTP/fsync合同ac4d5209实际通过。3控制器仅补启动intent/回执的file+dir fsync，新readiness d5dfa72f，训练a3ec17f5/推断d6055341/新schema数值与预算不变。检索已最终释放A800 GPU2（02:25:04.529Z，release856903f5），本路线做实际nativeCPU和fresh资源核后直接启动3900+30 fresh2ep32calls，最终完整state导出.100 180+10并实际SHA回读，再固定80推断600+30。只有完整raw/pred freeze后唯一F1；关系micro+macro之和严格升且macro不降才保留，否则关闭。无额外逐步审批/参数扫描/官方上传。[正式准备索引](evidence/round2/patient-first-formal-readiness.json)、[方法/恢复](experiments/patient-first-closed-set.md)。
+**patient-first正式fresh两轮正在A800 GPU2训练。** 唯一真实job `proc_d9d0823d-54a7-47a2-be01-87b5aca2ade0`、PID52420，02:29:03.366900Z启动；3900+30，近似TERM03:34:03/KILL03:34:33，actual以远端driver-started为准。source已推439ff981，F=`research/patient-first-closed-set/formal-preparation/`；`formal_operations.py collect --phase train --directory F`回收，禁止再次start。首start仅被MCP绝对cwd拒绝，实际核无driver/输出/GPU后只改为同目录相对cwd，原证据与独立恢复intent均保留。actual A800 CPU21.456s/124编码/15完整SHA/native无FLA通过；excluded32纯输入确实用于ID隔离（含F1），无targets/gold。完整epoch2持久导出180+10后固定80推断600+30；raw/pred先freeze再唯一F1，micro+macro之和严格升且macro不降才保留。未知质量，未官方上传。[启动/恢复](evidence/round2/patient-first-formal-launch.json)、[方法](experiments/patient-first-closed-set.md)。
 
 **完整80 thinking固定政策准备完成、明确暂缓。** 唯一思考2304/final512，原80输入实核587CID/1557pairs、max5689；最密compact合法JSON242tokens。旧trace全CID字面1479、七列表1721、C003肯定映射2214、全八列表3529，旧“前半八项全决定”已纠正，不把一条位置外推80充分性。A800预计约3小时，建议硬4h+30但未启动；root决定不降cap凑成本，优先更便宜patient-first。[固定政策/状态机/成本](experiments/thinking-budget-80-plan.md)、[冻结JSON](evidence/round2/thinking-budget-80-policy.json)。
 
