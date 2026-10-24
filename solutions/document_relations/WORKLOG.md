@@ -1,5 +1,6 @@
 # 文档级关系工作台账
 
+- **临时交棒：30轮已批准/全部CPU与独立部署完成，GPU未启动，匹配run intent为0。** 按root要求先释放代理槽恢复其他owner；待root收到GP F0真实释放后followup，直接按[evidence/long-resume.json](evidence/long-resume.json)唯一入口运行，不再审批、不重工程。
 - 起点：main `0c0672d`，分支 `explore/document-relations`，独立worktree同名；用户目标原固定dev≥.8。
 - 当前实验 `E-20261024-DOCRE-001`：复现ATLOP式多提及池化与局部attention交集，扩展为覆盖全文的重叠窗口，固定公共三模型提供HPO候选；不复用任务训练候选，避免新的留出泄漏。
 - 先完成F2+F3 train32→F1初版。正文全部编码；物理提及只归属一个完整窗口，跨窗重复不重复计权。患者/概念多提及logsumexp，ATLOP式pair context＋分块双线性头。首版不加额外实体图Transformer。

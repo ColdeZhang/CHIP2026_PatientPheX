@@ -6,3 +6,5 @@
 - 当前新路线只复用固定发布的PubMed/Bioformer/BioBERT canonical候选；它们未在本任务标签微调，train32/F1同口径。候选空间外关联仍不可预测，最终必须披露这一限制。
 
 - 后继查证：固定ATLOP prepro.py（SHA cc552fea…）在每个实体起止边界插入已有`*`，model.py取起始marker而非span均值。独立marker-v2据此做单一表示控制；仍不声称原论文多类ATLoss或完整长文模型已复现。全部原tokens精确保留，阈值/损失不变，质量须由完整控制决定。
+
+- 30轮之后若默认cut的直接并集/候选内替换仍负，只能关闭这组控制。较高AP仍可能作为新文档全提及marker分数用于学习融合；不同于旧303列HGB/5列LR的旧信号，未来必须另建严格train-only inner OOF校准/融合并固定到F1，不在现有F1扫cut后称泛化改善。当前不追加该实验。

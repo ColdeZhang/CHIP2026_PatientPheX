@@ -1,0 +1,24 @@
+{
+  "status": "AUTHORIZED_READY_NOT_STARTED_TEMPORARILY_RELEASE_AGENT_SLOT",
+  "start_issued": false,
+  "matching_run_intents": [],
+  "reason": "Root temporarily needs agent slot to recover an unrelated original job owner. Resume directly after root confirms GP F0 real GPU release; no new approval or probe required.",
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/long-formal-plan.json",
+    "sha256": "8ad763366678d86978e5fdc335ae3e6d3ca5aa447969210722c1018066fb70bb"
+  },
+  "source_commit_before_this_receipt": "becb070265cfebd51653f493db5126ca3edd990b",
+  "command_file": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/long-formal-command.sh",
+  "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/source-long-v3/driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/plans/formal-marker-long-v3.json",
+  "controller_command": "python solutions/document_relations/remote.py run --mcp-client-dir scripts --mount 1593f159-19bc-41ca-8b4c-2e7455f5db99 --local /workspace/patientphex-runs/round2-20261023/stage8-document-relations --remote research/stage8-document-relations --command-file /workspace/patientphex-runs/round2-20261023/stage8-document-relations/long-formal-command.sh",
+  "workdir": "/workspace/patientphex-worktrees/explore-document-relations",
+  "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "GPU_UUID": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "authorized_budget": "single fresh30epoch/240Adam and complete16F1/2874 logits,900+TERM30; original same driver fresh GPU/disk/source gate",
+  "waiting_for": "GP F0 proc_b616d04f, started10:13:23.020215Z, owner /root/span_normalization will send actual release",
+  "deployment_receipt": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/collected/long-deployment-receipt.json",
+    "sha256": "01a0b0a34bfe2be5079640c7e987ac33b374be68f9a4435c2952a075c16c87a2"
+  },
+  "quality_policy": "After all scores retrieved/verified, same evaluate.py with marker-encoded-v2 held and N baseline, output quality-marker-long-v3; both full predictions freeze then each one v2, old0. Use highest strictly above N (ties union), report union separately and historical .686338981 full pipeline. If both negative close this default-cut direct-fusion control series, not all future train-only OOF logit fusion."
+}
