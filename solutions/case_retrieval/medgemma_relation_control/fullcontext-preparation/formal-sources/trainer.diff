@@ -1,0 +1,128 @@
+--- original/train_medgemma32.py
++++ formal-sources/train_medgemma32_fullcontext.py
+@@ -1,12 +1,12 @@
+ #!/usr/bin/env python3
+-"""MedGemma1.5-4B relation control: same124 strict32 rows, native CE, fixed fresh2 epochs.
++"""MedGemma1.5-4B append-only full-context control: same124 targets, fresh2 epochs.
+ 
+ CPU mode verifies data/template/loss/meta without weights or CUDA. Training mode
+ requires an allocated empty GPU and exact official files. No validation labels,
+ inference, quantization, packing, smoke adapter or alternative task is supported.
+ Fresh base is required; only this exact meta32 run may resume complete epochs.
+ Resume state is saved/restored; numerical GPU resume equivalence is not claimed.
+-Length8192 is only a rejection cap: batches pad to their actual maximum, never to cap.
++Length14000 is a new full-context rejection cap; original trainer8192 remains unchanged: batches pad to their actual maximum, never to cap.
+ """
+ from __future__ import annotations
+ import argparse
+@@ -26,19 +26,21 @@
+ import qwen35_smoke as helpers
+ import qwen35_relation_cost as protocol
+ import medgemma_interface as interface
++import train_medgemma32 as original_training
++import fullcontext_training_contract as fullcontext
+ 
+ HELPER_SHA='9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3'
+ PROTOCOL_SHA='a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c'
+ OLD_TRAINER_SHA='2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423'
+ SOURCE_MANIFEST_SHA='690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1'
+ INTERFACE_SHA='aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be'
+-CONFIG={'max_seq_length':8192,'batch_size':1,'gradient_accumulation':8,'epochs':2,
++CONFIG={'max_seq_length':14000,'batch_size':1,'gradient_accumulation':8,'epochs':2,
+         'learning_rate':1e-4,'weight_decay':.01,'warmup_ratio':.05,'max_grad_norm':1.,
+         'rank':16,'alpha':32,'dropout':.05,'seed':20261023,'targets':interface.TARGETS,
+         'dtype':'bfloat16','attention':'sdpa','quantization':False,'packing':False,
+         'gradient_checkpointing':{'use_reentrant':False}}
+-INFERENCE_SHA='ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe'
+-TRAIN_SHA='cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8'
++INFERENCE_SHA=fullcontext.FULL_INFER_SHA
++TRAIN_SHA=fullcontext.proven.FULL_TRAIN_SHA
+ EXCLUDED_SHA='2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82'
+ PREPARATION_SHA='356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47'
+ COPIED_TRAINER_SHA='9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b'
+@@ -79,23 +81,7 @@
+ 
+ 
+ def verify_sources_and_data(args):
+-    if sha256(inspect.getfile(helpers))!=HELPER_SHA or sha256(inspect.getfile(protocol))!=PROTOCOL_SHA or sha256(inspect.getfile(interface))!=INTERFACE_SHA:
+-        raise ValueError('Frozen generic helper/loss protocol or Med interface differs')
+-    if sha256(args.train)!=TRAIN_SHA or sha256(args.excluded_input)!=EXCLUDED_SHA:
+-        raise ValueError('Require exact meta32 two16-to16 OOF124 train and stripped outer0+metaF1 input')
+-    if sha256(args.model_source_manifest)!=SOURCE_MANIFEST_SHA:
+-        raise ValueError('Fixed19-file Med asset manifest differs')
+-    rows,train_ids,excluded_ids=training_rows(args.train,args.excluded_input)
+-    if len(rows)!=124 or len(train_ids)!=32 or len(excluded_ids)!=32:
+-        raise ValueError('Require124 rows/32train documents/32excluded input documents')
+-    if sha256(args.data_manifest)!=PREPARATION_SHA:
+-        raise ValueError('Frozen meta32 candidate provenance differs')
+-    preparation=json.loads(Path(args.data_manifest).read_text())
+-    if (preparation['training_sha256']!=TRAIN_SHA or preparation['excluded_input_sha256']!=EXCLUDED_SHA
+-        or preparation['training_document_ids']!=train_ids or preparation['excluded_document_ids']!=excluded_ids
+-        or not preparation['all_target_documents_excluded_from_own_generators']):
+-        raise ValueError('Meta32 provenance identity/isolation differs')
+-    return rows,train_ids,excluded_ids
++    return fullcontext.verify_training_sources(args,original_training,interface)
+ 
+ 
+ def model_files(model_dir,source_manifest,require_weights):
+@@ -212,11 +198,12 @@
+         tokenizer=AutoTokenizer.from_pretrained(args.model,local_files_only=True,trust_remote_code=False,padding_side='right')
+         if tokenizer.pad_token_id is None:raise ValueError('Expected original tokenizer pad token')
+         status('token_mask_audit');encoded=encode_all(rows,tokenizer,output)
+-        if sha256(args.inference_prompts)!=INFERENCE_SHA:raise ValueError('Require original80 F1 input-only prompts')
++        if sha256(args.inference_prompts)!=INFERENCE_SHA:raise ValueError('Require fixed append-only full80 F1 input-only prompts')
+         infer_rows=helpers.rows(args.inference_prompts);infer_ids=[r['row_id'] for r in infer_rows]
+         if len(infer_rows)!=80 or len(set(infer_ids))!=80 or len({str(r['pmc_id']) for r in infer_rows})!=16:raise ValueError('Require unique80 F1 rows/16docs')
+         if any('answer' in r or 'entities' in r or 'association' in r or str(r['pmc_id']) not in excluded_ids for r in infer_rows):raise ValueError('Inference inputs must be label-free and excluded from training')
+         infer_encoded=[(r,interface.render_prefix(r,tokenizer)[1]) for r in infer_rows]
++        fullcontext.verify_actual_inference_encoding(args,infer_encoded)
+         if max(len(ids) for _,ids in infer_encoded)>14000:raise ValueError('No inference prompt truncation permitted')
+         write_json(output/'inference-input-audit.json',{'input_sha256':INFERENCE_SHA,'rows':80,'documents':16,
+             'total_tokens':sum(len(ids) for _,ids in infer_encoded),'max_tokens':max(len(ids) for _,ids in infer_encoded),
+@@ -236,12 +223,7 @@
+         text_config._attn_implementation='sdpa';text_config.text_config._attn_implementation='sdpa';text_config.text_config.use_cache=False
+         if text_config.text_config.use_bidirectional_attention or text_config.text_config.final_logit_softcapping is not None:raise ValueError('Unexpected native causal text/softcap config')
+         if args.mode=='train':
+-            if not args.cpu_reference:raise ValueError('Training requires completed exact-source CPU token/mask reference')
+-            cpu_path=Path(args.cpu_reference);cpu=json.loads(cpu_path.read_text());actual=json.loads((output/'token-mask-audit.json').read_text())
+-            completed=json.loads((cpu_path.parent/'cpu_complete.json').read_text())
+-            if completed['source_sha256']!=sha256(__file__) or completed['cuda_initialized'] or not completed['not_training'] or completed['manifest_sha256']!=sha256(cpu_path.parent/'run_manifest.json'):raise ValueError('Require completed same-source CPU/meta audit')
+-            for key in ['rows_count','total_full_tokens','max_full_tokens','supervised_tokens','encoded_sha256','source_sha256','interface_sha256','model_source_manifest_sha256','train_sha256']:
+-                if cpu[key]!=actual[key]:raise ValueError('CPU frozen token/mask/source reference differs: '+key)
++            fullcontext.verify_actual_training_encoding(args,encoded,output,helpers)
+         packages={}
+         for name in ['torch','transformers','peft','accelerate','numpy','tokenizers','huggingface-hub','safetensors','fla-core','flash-linear-attention','causal-conv1d']:
+             try:packages[name]=importlib.metadata.version(name)
+@@ -258,10 +240,11 @@
+             if not torch.cuda.is_available() or torch.cuda.device_count()!=1 or not torch.cuda.is_bf16_supported():raise RuntimeError('Require one BF16 CUDA device')
+             environment.update(gpu_name=torch.cuda.get_device_name(0),gpu_uuid=args.gpu_uuid,gpu_capability=list(torch.cuda.get_device_capability(0)))
+             torch.cuda.manual_seed_all(CONFIG['seed'])
+-        fingerprint={'schema':'patientphex-medgemma15-fullbundle-text-relation-lora-v1','configuration':semantic_configuration(args),
++        fingerprint={'schema':'patientphex-medgemma15-fullbundle-text-relation-fullcontext-lora-v1','configuration':semantic_configuration(args),
+             'source_sha256':sha256(__file__),'helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,'interface_sha256':INTERFACE_SHA,
+             'copied_epoch_loop_source_sha256':OLD_TRAINER_SHA,'copied204_trainer_sha256':COPIED_TRAINER_SHA,
+             'meta32_preparation_sha256':PREPARATION_SHA,'train_sha256':TRAIN_SHA,'inference_input_sha256':INFERENCE_SHA,
++            'append_only_provenance':fullcontext.provenance(),
+             'excluded_input_sha256':EXCLUDED_SHA,'training_document_ids':training_ids,'excluded_document_ids':excluded_ids,
+             'base_files':base_files,'environment':environment,'text_config':text_config.to_dict(),
+             'encoded_sha256':helpers.json_sha(encoded)}
+@@ -275,7 +258,7 @@
+             'resume_unit':'complete epoch only; partial epoch work must replay','new_gpu_resume_numerical_equivalence_tested':False,
+             'fresh_base_on_initial_run':True,'validation_labels_used':False}
+         write_json(manifest_path,manifest)
+-        for name,source in [('train_medgemma32.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('medgemma_interface.py',inspect.getfile(interface))]:
++        for name,source in [('train_medgemma32_fullcontext.py',__file__),('train_medgemma32.py',inspect.getfile(original_training)),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('medgemma_interface.py',inspect.getfile(interface))]+fullcontext.source_snapshot():
+             (output/name).write_bytes(Path(source).read_bytes())
+         if args.mode=='cpu':
+             status('meta_full_bundle_language_only_coverage')
+@@ -401,8 +384,8 @@
+ def main():
+     parser=argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--mode',choices=['cpu','train'],required=True)
+-    for name in ['train','excluded-input','data-manifest','model','model-source-manifest','output-dir','inference-prompts']:parser.add_argument('--'+name,required=True)
+-    parser.add_argument('--cpu-reference')
++    for name in ['train','original-train','train-input','excluded-input','data-manifest','fullcontext-manifest','model','model-source-manifest','output-dir','inference-prompts','original-inference-prompts','inference-input','cpu-row-audit']:parser.add_argument('--'+name,required=True)
++    parser.add_argument('--cpu-reference',required=True)
+     parser.add_argument('--gpu-uuid');parser.add_argument('--resume');parser.add_argument('--stop-after-epoch',type=int)
+     args=parser.parse_args()
+     validate_stop_epoch(args.stop_after_epoch,2)

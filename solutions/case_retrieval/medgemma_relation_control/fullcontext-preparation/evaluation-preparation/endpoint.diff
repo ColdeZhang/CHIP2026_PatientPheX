@@ -1,0 +1,164 @@
+--- short-input/evaluate_medgemma.py
++++ fullcontext/evaluate_medgemma.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Predeclared Med standalone and old-SFT32 union, frozen together before F1."""
++"""Predeclared full-context Med and old-SFT32 union, frozen together before F1."""
+ from pathlib import Path, PurePosixPath
+ import argparse
+ import copy
+@@ -9,15 +9,18 @@
+ import math
+ import os
+ import time
++import sys
++from types import SimpleNamespace
+ 
+ UTILITY = Path('/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired.py')
+ UTILITY_SHA = '563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d'
+-SCHEMA = 'patientphex-medgemma-primary-union-F1-v1'
+-ENDPOINTS = ('primary-medgemma', 'secondary-union')
++SCHEMA = 'patientphex-medgemma-fullcontext-primary-union-F1-v1'
++ENDPOINTS = ('primary-fullcontext-medgemma', 'secondary-union')
+ POLICY = {
+-    'primary': 'MedGemma native full-bundle text-only fresh strict32 two-epoch adapter; frozen original80 parser and baseline-rule fallback',
++    'primary': 'Full-context MedGemma fresh strict32 two-epoch adapter, append-only original124/80; frozen original80 parser and baseline-rule fallback',
+     'secondary': 'literal per-document per-patient set union of cached old-SFT32 and primary MedGemma relations',
+-    'selection_comparator': 'cached old-SFT32 baseline',
++    'selection_comparator': 'cached strong old-SFT32 baseline, historical Score0.660942; unchanged metrics reference',
++    'short_Med': 'historical short-input Med results remain cached context only; no reevaluation or selection against them',
+     'retention': 'relation micF1+macF1 strictly increases AND macF1 does not decrease',
+     'union_vs_medgemma': 'report differences only; no additional selection/combinations',
+     'evaluation': 'both complete predictions frozen first; each one unchanged v2 all/text call; old metrics cached',
+@@ -26,8 +29,19 @@
+     'F0_originaldev_official': False,
+ }
+ MED_SHA = {
+-    'med_runner': '87c187c889a8631b745bac1b05b8d6ea55b7ff9efacb0d4524142513c2e57a32',
+-    'med_trainer': '3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f',
++    'med_original_trainer': '3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f',
++    'med_contract': '5188b958e60744e2f9be261a4e871240e54c16d6425c5f4294451dbc3073f5ed',
++    'med_proven_contract': '9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5',
++    'med_constructor': 'b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44',
++    'med_legacy_constructor': 'ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb',
++    'med_original_provenance': '356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47',
++    'full_train': '9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e',
++    'full_prompts': '2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085',
++    'full_preparation': '811ef287e28735c859ec0547db3a820535ac30041ce1fde11ae332604539ac9b',
++    'full_cpu_summary': '5d295ec580cd0c862a0fa1ded99ccfe93bb68f92631aec8dbbc5eb94868d34d9',
++    'full_cpu_rows': '80f5bbce3f2f4d1537bfef9e9dbee5bd61c77d17bb7430c3810fc6bfbdedd1e0',
++    'med_runner': '36d8185fe85f540f64411d0538e343fe564aeb36f03889a6ac624a0587ccfb66',
++    'med_trainer': 'b486470e90176309ea968f25963cc319cf7dead09f00c4f504109c2d67351dcf',
+     'med_interface': 'aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be',
+     'med_model_source': '690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1',
+     'med_generation': '0c945640d895383814ec0662afe115c57c47fed332fff5b46b5e228b48531eaf',
+@@ -167,23 +181,46 @@
+     return records
+ 
+ 
++def fullcontext_lineage(plan, w, prompts):
++    common = plan['references']
++    sys.path.insert(0,str(Path(common['med_contract']['path']).resolve().parent))
++    contract = w.module('frozen_fullcontext_quality_contract',common['med_contract']['path'])
++    interface = w.module('frozen_fullcontext_native_interface',common['med_interface']['path'])
++    args = SimpleNamespace(cpu_reference=common['full_cpu_summary']['path'],
++                           cpu_row_audit=common['full_cpu_rows']['path'],
++                           fullcontext_manifest=common['full_preparation']['path'],
++                           inference_input=common['input']['path'])
++    full, token_audit = contract.verify_inference_sources(args,interface,common['full_prompts']['path'],
++                                                        common['prompts']['path'],common['med_model_source']['path'])
++    require([row['row_id'] for row in full] == [row['row_id'] for row in prompts], 'Full80/original80 identity ordering differs')
++    require(all({k:v for k,v in a.items() if k!='messages'} == {k:v for k,v in b.items() if k!='messages'}
++                for a,b in zip(full,prompts)), 'Full80 changed CID/PID/candidate fields')
++    return contract.provenance(), token_audit
++
++
+ def verify_endpoint(plan, w, h, prompts, pairs):
+     common, refs = plan['references'], plan['endpoint_references']
++    append_provenance, full_token_audit = fullcontext_lineage(plan,w,prompts)
+     cp, run, complete = (w.read(refs[name]['path']) for name in ('checkpoint', 'training_manifest', 'training_complete'))
+     fp = cp['fingerprint']
+     require(cp['completed_epochs'] == 2 and cp['global_step'] == 32 and cp['smoke_only'] is False, 'Incomplete Med epoch2')
+-    require(fp == run['fingerprint'] and fp['schema'] == 'patientphex-medgemma15-fullbundle-text-relation-lora-v1', 'Med fingerprint differs')
++    require(fp == run['fingerprint'] and fp['schema'] == 'patientphex-medgemma15-fullbundle-text-relation-fullcontext-lora-v1', 'Med fingerprint differs')
+     require(fp['source_sha256'] == complete['source_sha256'] == MED_SHA['med_trainer']
+             and fp['interface_sha256'] == MED_SHA['med_interface']
+-            and fp['train_sha256'] == w.TRAIN_SHA and fp['excluded_input_sha256'] == w.EXCLUDED_SHA
+-            and fp['inference_input_sha256'] == common['prompts']['sha256'], 'Med source/data lineage differs')
++            and fp['train_sha256'] == MED_SHA['full_train'] and fp['excluded_input_sha256'] == w.EXCLUDED_SHA
++            and fp['inference_input_sha256'] == MED_SHA['full_prompts']
++            and fp['meta32_preparation_sha256'] == MED_SHA['med_original_provenance']
++            and fp['append_only_provenance'] == append_provenance
++            and append_provenance['original_label_training_sha256'] == w.TRAIN_SHA, 'Med source/data lineage differs')
+     require(len(set(fp['training_document_ids'])) == 32 and len(set(fp['excluded_document_ids'])) == 32
+             and not set(fp['training_document_ids']) & set(fp['excluded_document_ids'])
+             and {str(row['pmc_id']) for row in prompts} <= set(fp['excluded_document_ids']), 'Strict32 isolation differs')
+     require(run['examples'] == 124 and run['steps_per_epoch'] == 16 and run['epochs'] == 2
+             and run['total_optimizer_steps'] == 32 and run['warmup_steps'] == 2
+             and run['fresh_base_on_initial_run'] is True and run['validation_labels_used'] is False
+-            and run['smoke_only'] is False, 'Require fresh124x2 Med stage')
++            and run['smoke_only'] is False and run['supervised_tokens'] == 7150
++            and run['total_tokens'] == 965436 and run['max_tokens'] == 12824
++            and fp['configuration']['fixed']['max_seq_length'] == 14000, 'Require fresh fullcontext124x2 Med stage')
+     require(complete['epochs'] == 2 and complete['global_step'] == 32 and complete['smoke_only'] is False
+             and complete['base_parameters'] == 4300079472 and complete['trainable_adapter_parameters'] == 29802496
+             and complete['total_parameters'] == 4329881968, 'Formal Med completion differs')
+@@ -192,19 +229,25 @@
+     destination = PurePosixPath(ack['persistent_directory'])
+     require(ack['status'] == 'persistent_checkpoint_verified' and ack['persistent_mount_id'] == w.MOUNT_ID
+             and ack['fsync_all_files'] is True and ack['completed_epochs'] == 2 and ack['global_step'] == 32
+-            and destination.parts == ('research', 'medgemma-relation-control', 'formal2ep', 'checkpoints', 'epoch-002')
++            and destination.parts == ('research', 'medgemma-relation-control', 'fullcontext-formal2ep', 'checkpoints', 'epoch-002')
+             and ack['checkpoint_sha256'] == refs['checkpoint']['sha256']
+             and ack['run_manifest_sha256'] == refs['training_manifest']['sha256'], 'Persistent final Med receipt differs')
+     required = {**cp['files'], 'checkpoint.json': refs['checkpoint']['sha256'],
+                 '_run/run_manifest.json': refs['training_manifest']['sha256'],
+-                '_run/train_medgemma32.py': MED_SHA['med_trainer'], '_run/medgemma_interface.py': MED_SHA['med_interface']}
++                '_run/train_medgemma32_fullcontext.py': MED_SHA['med_trainer'],
++                '_run/train_medgemma32.py': MED_SHA['med_original_trainer'], '_run/medgemma_interface.py': MED_SHA['med_interface'],
++                '_run/qwen35_smoke.py':fp['helper_sha256'], '_run/qwen35_relation_cost.py':fp['protocol_sha256'],
++                '_run/fullcontext_training_contract.py':MED_SHA['med_contract'], '_run/fullcontext_contract.py':MED_SHA['med_proven_contract'],
++                '_run/construct.py':MED_SHA['med_constructor'], '_run/legacy_full_context.py':MED_SHA['med_legacy_constructor'],
++                '_cpu/reference/summary.json':MED_SHA['full_cpu_summary'], '_cpu/reference/row-token-audit.json':MED_SHA['full_cpu_rows'],
++                '_cpu/preparation.json':MED_SHA['full_preparation']}
+     require({'training_state.pt', 'adapter/adapter_config.json', 'adapter/adapter_model.safetensors'} <= set(required), 'Incomplete saved Med state')
+     for name, digest in required.items():
+         require(ack['files'][name]['sha256'] == digest and ack['files'][name]['bytes'] > 0, 'Persistent file SHA differs: ' + name)
+     infer, frozen = (w.read(refs[name]['path']) for name in ('inference_plan', 'response_freeze'))
+     require(infer['checkpoint_sha256'] == refs['checkpoint']['sha256']
+             and infer['training_complete_sha256'] == refs['training_complete']['sha256']
+-            and infer['adapter_files'] == adapter and infer['prompts_sha256'] == common['prompts']['sha256']
++            and infer['adapter_files'] == adapter and infer['prompts_sha256'] == MED_SHA['full_prompts']
+             and infer['runner_sha256'] == MED_SHA['med_runner']
+             and infer['model_source_sha256'] == MED_SHA['med_model_source'], 'Med inference lineage differs')
+     require(frozen['plan_sha256'] == refs['inference_plan']['sha256'] and frozen['rows'] == 80
+@@ -219,7 +262,9 @@
+             and fp['base_files']['all19_files_verified'] is True, 'Actual full Med asset fingerprint differs')
+     require(actual['source_sha256'] == MED_SHA['med_runner'] and actual['interface_sha256'] == MED_SHA['med_interface']
+             and actual['source_manifest_sha256'] == MED_SHA['med_model_source']
+-            and actual['prompts_sha256'] == common['prompts']['sha256'] and actual['adapter_files'] == adapter
++            and actual['prompts_sha256'] == MED_SHA['full_prompts']
++            and actual['schema'] == 'patientphex-medgemma15-fullcontext80-inference-v1'
++            and actual['append_only_provenance'] == append_provenance and actual['adapter_files'] == adapter
+             and config['adapter'] == infer['adapter_directory'], 'Actual Med adapter/source differs')
+     require(actual['generation_configuration'] == w.read(common['med_generation']['path'])
+             and actual['batch_size'] == 1 and actual['thinking'] is False
+@@ -232,7 +277,8 @@
+     require(actual['runtime']['transformers'] == '5.20.2' and actual['runtime']['peft'] == '0.21.2', 'Native runtime differs')
+     for row in raw:
+         require(row['removed_demonstrations'] == 0 and isinstance(row['hit_token_limit'], bool)
+-                and 0 < row['input_tokens'] <= 14000 and 0 <= row['output_tokens'] <= 1600, 'Changed prompt/token policy')
++                and 0 < row['input_tokens'] <= 14000 and 0 <= row['output_tokens'] <= 1600
++                and row['input_tokens'] == full_token_audit[row['row_id']]['input_tokens'], 'Changed fullcontext prompt/token policy')
+     _, parse = h.llm_features(prompts, raw, pairs)
+     return adapter, parse
+ 
+@@ -319,7 +365,7 @@
+     w.checked(freeze_reference)
+     for value in frozen.values():
+         w.checked(value['prediction'])
+-    summary = {'status': 'complete_predeclared_Med_standalone_and_union_F1_development', 'policy': POLICY,
++    summary = {'status': 'complete_predeclared_fullcontext_Med_and_union_F1_development', 'policy': POLICY,
+                'scope': 'Known old baseline and repeatedly observed F1 development; no F0, originaldev, independent-generalization or official claim.',
+                'paired_freeze': freeze_reference, 'old_cached_metrics': common['old_baseline_metrics'], 'old_metrics': old['metrics'],
+                'endpoints': {name: {'metrics': metrics[name]['metrics'], 'counts': metrics[name]['counts'],

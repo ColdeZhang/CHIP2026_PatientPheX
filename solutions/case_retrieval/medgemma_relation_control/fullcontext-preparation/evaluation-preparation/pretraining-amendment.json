@@ -1,0 +1,64 @@
+{
+  "status": "fixed_before_fullcontext_formal_training",
+  "schema": "patientphex-medgemma-fullcontext-primary-union-F1-v1",
+  "endpoint_source_sha256": "264d46dc6ef29bf44b25b3f71cc16654419209247817b4cfb33fd76b96304bfe",
+  "policy": {
+    "primary": "Full-context MedGemma fresh strict32 two-epoch adapter, append-only original124/80; frozen original80 parser and baseline-rule fallback",
+    "secondary": "literal per-document per-patient set union of cached old-SFT32 and primary MedGemma relations",
+    "selection_comparator": "cached strong old-SFT32 baseline, historical Score0.660942; unchanged metrics reference",
+    "short_Med": "historical short-input Med results remain cached context only; no reevaluation or selection against them",
+    "retention": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "union_vs_medgemma": "report differences only; no additional selection/combinations",
+    "evaluation": "both complete predictions frozen first; each one unchanged v2 all/text call; old metrics cached",
+    "nonrelation": "original baseline bytes outside each top-level association value preserved exactly",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false,
+    "F0_originaldev_official": false
+  },
+  "training_sources_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/formal-sources/source-plan.json",
+    "bytes": 10611,
+    "sha256": "7106eae08ced810342a321c3d9dddf40068198e02bb97d89a7beb5f1ac636df8"
+  },
+  "baseline_cached_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+    "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+    "bytes": 13115
+  },
+  "baseline_cached_predictions": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+    "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379",
+    "bytes": 154176
+  },
+  "original_parser_prompts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/prompts.jsonl",
+    "bytes": 1090947,
+    "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+  },
+  "fullcontext_inference_prompts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/infer.fullcontext.jsonl",
+    "bytes": 2796468,
+    "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+  },
+  "fullcontext_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/preparation.json",
+    "bytes": 6180,
+    "sha256": "811ef287e28735c859ec0547db3a820535ac30041ce1fde11ae332604539ac9b"
+  },
+  "model_asset_inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medical-small-model-readiness/assets/expected-files.json",
+    "bytes": 7145,
+    "sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+  },
+  "quality_calls": {
+    "fullcontext_primary": 1,
+    "old_SFT32_union_secondary": 1,
+    "old_SFT32_baseline": 0,
+    "short_input_Med": 0
+  },
+  "first_gold_byte_access": "Only after both complete immutable full predictions and common paired freeze; gold is not a prechecked reference",
+  "retention_comparator": "Strong cached old SFT32 only; relation micro+macro strict increase and macro nondecrease, advisory only",
+  "union_vs_primary": "report-only delta; no additional selection or combination",
+  "scope": "Already known old/short-Med results and repeatedly observed F1 development; no independent-generalization, F0, originaldev or official claim",
+  "current_preparation": "No model/tokenizer/GPU/MCP/parser/validator/evaluator execution and no gold reads"
+}

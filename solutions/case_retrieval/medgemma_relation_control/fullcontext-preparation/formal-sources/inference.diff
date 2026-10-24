@@ -1,0 +1,54 @@
+--- original/infer_medgemma80.py
++++ formal-sources/infer_medgemma80_fullcontext.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Fixed MedGemma1.5 full-bundle text-only relation inference; no prompt removal or silent resume repair.
++"""Fixed MedGemma1.5 append-only full-context80 relation inference; no prompt removal or silent resume repair.
+ 
+ This entrypoint prepares the controlled comparison. It does not train, evaluate,
+ or choose examples using validation labels. Complete source bytes are checked for
+@@ -12,10 +12,11 @@
+ from pathlib import Path
+ import time
+ import medgemma_interface as interface
++import fullcontext_training_contract as fullcontext
+ 
+ 
+ TEXT_PARAMETERS = interface.BASE_PARAMETERS
+-INFERENCE_SHA = 'ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe'
++INFERENCE_SHA = fullcontext.FULL_INFER_SHA
+ 
+ 
+ def digest(path):
+@@ -84,6 +85,8 @@
+     parser.add_argument("--source-manifest", required=True)
+     parser.add_argument("--prompts", required=True)
+     parser.add_argument("--output", required=True)
++    for name in ["original-prompts","inference-input","fullcontext-manifest","cpu-reference","cpu-row-audit"]:
++        parser.add_argument("--"+name,required=True)
+     parser.add_argument("--adapter",required=True)
+     parser.add_argument("--max-input-tokens", type=int, default=14000)
+     parser.add_argument("--max-new-tokens", type=int, default=1600)
+@@ -107,10 +110,12 @@
+     if not torch.cuda.is_bf16_supported():
+         raise RuntimeError("BF16 support required")
+     started = time.time()
+-    rows = read_prompts(args.prompts)
+-    if digest(args.prompts)!=INFERENCE_SHA or len(rows)!=80:raise ValueError("Only fixed original80 input-only prompts")
++    rows, audited = fullcontext.verify_inference_sources(args,interface,args.prompts,args.original_prompts,args.source_manifest)
++    if digest(args.prompts)!=INFERENCE_SHA or len(rows)!=80:raise ValueError("Only fixed append-only full80 input-only prompts")
+     if args.max_input_tokens!=14000 or args.max_new_tokens!=1600:raise ValueError("Fixed original input/generation caps required")
+     fingerprint = {
++        "schema":"patientphex-medgemma15-fullcontext80-inference-v1",
++        "append_only_provenance":fullcontext.provenance(),
+         "configuration": vars(args), "batch_size": 1, "thinking": False,
+         "precision": "native_fullbundle_text_only_bfloat16_sdpa_no_quantization",
+         "interface_sha256":digest(interface.__file__), "generation_configuration":interface.greedy_config(transformers).to_dict(),
+@@ -137,6 +142,7 @@
+     prepared = []
+     for row in rows:
+         prompt,ids = interface.render_prefix(row,tokenizer)
++        fullcontext.verify_inference_encoding(row,ids,audited[row["row_id"]],prompt)
+         if len(ids) > args.max_input_tokens:
+             raise ValueError("Prompt exceeds budget; no truncation/removal: " + row["row_id"])
+         if row["row_id"] not in done:
