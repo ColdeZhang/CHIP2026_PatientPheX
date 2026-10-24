@@ -5,18 +5,16 @@
 ## 当前目标和状态
 
 - **F1完整且终审PASS**：原GG001 N∪grounded .681717659986（强N .676546354663），new-only .583496662244；独立GG002强支持B∪全部grounded .695950447742（B .686338981272），micro下降.013393436/macro上升.051839302。9B只复制原文词面、独立HPO规范化，quote是弱词面锚定而非人工归属span。完整终审0fcffd7b，F1补包184内容已root实际服务器恢复c48d3776；原dev最高.754361398和官网结果不变。
-- **F0原47已完整**：11:48:52.618 rc0，44 EOS/3 cap；native593.562秒/wrapper594.451/controller594.584、peak20.975GB，GPU2实际已释放、原watch退出。完整原包回收与固定normalizer待接，3 cap保原弃答不重试。原唯一身份：同d52模型的F0全文47，A800 GPU2 `proc_1a64fada-6c00-43a3-806e-b9ea4b755862`，driver63172/child63188；11:38:58.166起，TERM12:13:58.166、KILL12:14:28.166。原plan ed3c9297/f657e38已推。唯一只读watch session54389/PID157105每180秒；先核其实际存在，禁止重复start。准确入口[f0/actual-start.json](f0/actual-start.json)、[恢复步骤](f0/RECOVERY.md)。
-- **已完成F0工程**：47原生输入5.522秒全部ID/渲染/decode一致，289420/max9935；11件5bcd8c19。173MB d52推断缓存19.422秒完成四SHA/两端fsync/reopen，原fullstate和两ACK仍A100。A800 Torch2.7.1相对训练A1002.6.0如实披露，原native/greedy1600/b59阈值不变。原LUNA与2GiB保守容量门失败保留；按实际cache/raw上界768MiB copy/512MiB infer，未清其他资产。
-- **F0固定质量**：全47→原解析/固定train32别名与public41099/Sap→全部新关系。只强B0 .7115075800266846∪全新关系一v2、旧0，保947实体/全部原关系/非关系字节；new-only只输出不评分，完整供root固定2of3与校准。不得因独立F0负删source，不自动原dev/官网。
+- **F0完整固定复验正**：全47同d52 fresh/44EOS+3cap，2strictJSON弃答保原；342锚点经149必要Sap得到200mapped/4NIL/138abstain，全部173关系。强B0 .711507580027→.713748125847（+.002240545821），micro−.006662540360/mac+.015624723642；保947实体/47患者/315基底，+37=11TP26FP，唯一v2旧0。F1强Bunion同样总分正，两折均micro降/macro升；仍非原devbest。见[f0/result.json](f0/result.json)、[GG003](experiments/GG-20261024-003.md)。
+- **当前无GPU作业**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。待一次增量终审和小持久包；不自动新训。
 - **条件full64仅CPU已完成**：[full64_readiness/summary.json](full64_readiness/summary.json)，173患者全覆盖、1711有效关系可构建、1678弱quote，dev纯36；957793训练tokens、监督24997，max10637/646。两轮代理4242–4582秒、候选6000+30不是实测或授权，新形状需后续实际工程。train64含内部F0/F1监督，但这批独立未来资源绝未进入当前已冻结F0模型/别名。无原devgold、新fit、GPU或质量。
 - 当前分支检查点`bba8650`已核远端（后续台账提交可在其上）；所有大产物位于仓库外。资源由root调度，A100现给response-code，.3在DocRE QwenF0完成后才轮到本线必要Sap。
 
 ## 执行与下一步
 
-1. 原F0已完整且watch退出，沿唯一collector回收原不可变全包；所有EOS、cap、strict失败原样保留，不按质量重试。
-2. 固定parser/normalizer完整闭环，先给root/validation纯new关系完整产物，再完整强B0union冻结→唯一v2。逐项实际命令见f0/RECOVERY.md。
-3. 完整终点一次增量审，结果和原件最小持久包、及时push；不逐阶段重复审旧链。
-4. 仅当独立F0或root固定2of3通过，再由root决定full64工程/训练；当前readiness不能当执行许可。
+1. 统一终审沿 `F0-final-review-entry.json`，复用0fcffd/dac8，只查新47/runtime/cache/完整输出/冻结→唯一v2增量；不重NN、归一化或评分。
+2. 保存本轮最小持久补包并交root唯一实际恢复；引用F1旧包/大权重locator，不重复原训练和银行。
+3. 两折独立Score门已过；原full64依然仅条件CPUreadiness，下一工程/训练由root明确预算和资源，不把候选通过当自主训练许可。
 
 ## 历史阶段记录（准确原时点，非当前作业）
 
