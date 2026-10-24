@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**全局患者—表型聚合 CPU/真实短probe完成，正式双臂方案准备中。** 严格train32/F1旧2506/1557候选对不变，全文510/overlap128打包307/158窗、全部3444 occurrence精确覆盖；动态pad位置减34%但attention格数增加，未测吞吐不称加速。独立同344577参数uniform/pair头13项NumPy梯度/跨窗/重叠/边界合同通过，无F1gold/质量/GPU。原ATLOP局部乘积跨窗无支持且longseq只首尾1024，许可未找到，未复制代码。实际.3最长文档双fresh步全部梯度/更新PASS，含import约11.423秒、峰2.09GiB；卡已00:57:38释放，probe状态未保存。正式源/输入/8轮orders已冻结，增量输入与循环核验通过；等待同一审查收束endpoint/deploy后按已授权共享1800+30预算启动。尚未训练/新质量。[可行性和精确预算](experiments/pair-conditioned-document.md)、[证据](evidence/round2/pair-document-feasibility.json)。
+**全局患者—表型聚合 CPU/真实短probe完成，正式双臂方案准备中。** 严格train32/F1旧2506/1557候选对不变，全文510/overlap128打包307/158窗、全部3444 occurrence精确覆盖；动态pad位置减34%但attention格数增加，未测吞吐不称加速。独立同344577参数uniform/pair头13项NumPy梯度/跨窗/重叠/边界合同通过，无F1gold/质量/GPU。原ATLOP局部乘积跨窗无支持且longseq只首尾1024，许可未找到，未复制代码。实际.3最长文档双fresh步全部梯度/更新PASS，含import约11.423秒、峰2.09GiB；卡已00:57:38释放，probe状态未保存。正式源/输入/8轮orders已冻结，增量输入与循环核验通过；统一入口审查e5180c9b通过，按已授权共享1800+30预算准备fresh启动。尚未训练/新质量。[可行性和精确预算](experiments/pair-conditioned-document.md)、[证据](evidence/round2/pair-document-feasibility.json)。
 
 **原dev唯一逆序并集完整正，独审PASS（5a106306）。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
 

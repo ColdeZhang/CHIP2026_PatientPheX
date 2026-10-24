@@ -1,0 +1,140 @@
+{
+  "status": "PASS_MATCHED_DOCUMENT_PAIR_FORMAL_ENTRY_INCREMENTAL",
+  "at_utc": "2026-10-24T01:07:12.484786+00:00",
+  "scope": "Single consolidated incremental entry audit: new packaged train/F1 inputs, eight-epoch training loop, bounded launch and fixed two-arm endpoint. Reuses the completed actual CPU/GPU probe; no new NN, quality evaluation or F1 gold read.",
+  "formal_plan_sha256": "b26d6df54ca7952c7fd644cdf9ad158c8ffd20c36e720028c93f1696dfb6d27b",
+  "endpoint_plan_sha256": "a455dcbef8d84554a5020a8010dd6eaefb07c71d24f1351a47fbd561550f242d",
+  "data": {
+    "train_documents": 32,
+    "train_rows": 124,
+    "train_pairs": 2506,
+    "positive": 594,
+    "held_input_documents": 16,
+    "held_pairs": 1557,
+    "held_labels_absent": true,
+    "all48_inputs_rebuilt_exact": true,
+    "all_tokens_covered_and_endpoints_valid": true
+  },
+  "design": {
+    "arms": [
+      "uniform",
+      "pair"
+    ],
+    "fresh_public_encoder_each": true,
+    "identical_initial_encoder_and_head_hash_asserted": true,
+    "encoder_parameters": 108891648,
+    "head_parameters": 344577,
+    "same_eight_shuffled_document_orders": true,
+    "epochs": 8,
+    "optimizer_updates_each": 256,
+    "whole_document_class_weighted_BCE": true,
+    "FP32": true,
+    "nonreentrant_checkpoint": true,
+    "window_microbatch": 4,
+    "pairchunk": 32,
+    "all_encoder_and_head_trainable": true,
+    "only_attention_weight_formula_differs": true,
+    "final_epoch_only": true,
+    "probability_cut": 0.5
+  },
+  "endpoint": {
+    "all1557_unique_probability_keys_finite_and_exact": true,
+    "all1189_entities_and_nonassociation_fields_preserved": true,
+    "both_full_predictions_freeze_before_first_gold_read": true,
+    "one_full_default_v2_per_new_arm": true,
+    "no_baseline_rescoring": true,
+    "no_threshold_scan": true,
+    "keep": "pair Score strictly exceeds uniform/SFT32/rules and macro does not fall against any reference"
+  },
+  "baselines": {
+    "SFT32": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6866002214839424,
+      "macF1": 0.5422288533401712,
+      "Score": 0.6609420026531936
+    },
+    "rules": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6161515453639083,
+      "macF1": 0.5479558936740699,
+      "Score": 0.6447615937066596
+    },
+    "same_gold_and_evaluator": true
+  },
+  "resources": {
+    "server": "10.5.2.3",
+    "GPU": "A30 GPU0",
+    "UUID": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "shared_GPU_cap_seconds": 1800,
+    "TERM_grace_seconds": 30,
+    "CPU_endpoint_cap_seconds": 30,
+    "only_one_managed_job": true,
+    "fresh_empty_GPU_check_required_by_launcher": true,
+    "partial_checkpoint_not_for_inference": true,
+    "actual_source_push_and_launch_receipt_still_required": true
+  },
+  "limitations": [
+    "This is entry readiness, not eight-epoch completion, numerical quality or a claim of Score >= .8.",
+    "Longest-document probe contained only five negative pairs; full-data runtime remains empirical.",
+    "Same-pool old SFT/rules are comparators on F1; originaldev is not accessed."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-formal-review/inputs-and-loop.json",
+      "bytes": 3281,
+      "sha256": "1b0e606869a20a356e78554330b038bef9646a421d2e293db428ad3cf2ee76ae"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-formal-review/audit_inputs.py",
+      "bytes": 7039,
+      "sha256": "973f57af87ecb1e0cc8446a610d0f9097f10b0a6f4461bcf8ca5f601c6b3b052"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/formal-plan.json",
+      "bytes": 6934,
+      "sha256": "b26d6df54ca7952c7fd644cdf9ad158c8ffd20c36e720028c93f1696dfb6d27b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/endpoint-plan.json",
+      "bytes": 3143,
+      "sha256": "a455dcbef8d84554a5020a8010dd6eaefb07c71d24f1351a47fbd561550f242d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/train_pair_document.py",
+      "bytes": 10444,
+      "sha256": "66c290aef40eee4b554e1f191dd71f60f8fdd8efbff7aa58a2195a921e4e12ef"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/finish_pair_document.py",
+      "bytes": 5805,
+      "sha256": "c0506ccacad8fd8eb405bfa5d31f5d410df935282f5ecf452bef8547e3d34dad"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/formal_operations.py",
+      "bytes": 7037,
+      "sha256": "47cffdb8ee0d664ef1b7be2818a160cf26058e8187841b5509189c1441d6be3b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/resource.json",
+      "bytes": 777,
+      "sha256": "869c0840d38bb0879b5260c09190c1e27489963720270502de217f76b6936def"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/pair-conditioned-document-feasibility/formal-v1/source-checkpoint.json",
+      "bytes": 4017,
+      "sha256": "77bb6e124ab38b474f7f7f126cd1317a60d842de5e8166066e894ddc32bb2198"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-probe-review/review.json",
+      "bytes": 5767,
+      "sha256": "8ed0b35ff50c6cd4b052ed1df9ab68df92ba262f92c3270671bffd04189a0002"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/pair-conditioned-document-formal-review/audit_entry.py",
+      "bytes": 7063,
+      "sha256": "8399552a85fd62df28038aacdcfc61c489db53a914b26b3b8c36e5da10944a5d"
+    }
+  ]
+}
