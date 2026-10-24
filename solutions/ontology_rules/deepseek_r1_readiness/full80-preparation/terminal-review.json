@@ -1,0 +1,275 @@
+{
+  "status": "PASS_COMPLETE_FIXED_R1_F1_BOTH_NEGATIVE_F0_FULL58_CLOSED",
+  "prior_entry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-entry-review/review.json",
+    "sha256": "b3670a8829c4d401651fa908b09be185d6596fe5b5fd71f6a2cca3bdafa73cd0"
+  },
+  "actual_runtime": {
+    "start": "2026-10-24T04:12:06.254031+00:00",
+    "finish": "2026-10-24T05:09:32.774844+00:00",
+    "seconds": 3446.5207747011445,
+    "native_seconds": 3445.4676397279836,
+    "returncode": 0,
+    "cap": 10800,
+    "grace": 30,
+    "release": {
+      "at": "2026-10-24T05:09:32.952446+00:00",
+      "gpu": "1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, NVIDIA A30, 0, 24164, 24576",
+      "compute_apps": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2678595"
+    },
+    "peak_memory": {
+      "allocated": 19495760896,
+      "reserved": 19505610752
+    }
+  },
+  "actual_runtime_contract": {
+    "parameters": 8190735360,
+    "tensors": 399,
+    "full_actual_shapes_BF16_finite": true,
+    "no_new_full16GB_hash_claim": true,
+    "scale": 1.0,
+    "correct_published_generic_tokenizer": true,
+    "seed_policy": "Reset torch.manual_seed and torch.cuda.manual_seed_all(20261024) before each fresh row; cache0/73 are separately seeded first generation. Not continuous RNG equivalence.",
+    "generation_arguments": {
+      "do_sample": true,
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "top_k": 0,
+      "repetition_penalty": 1.0,
+      "max_new_tokens": 4096,
+      "num_return_sequences": 1,
+      "use_cache": true,
+      "eos_token_id": 151645,
+      "pad_token_id": 151645,
+      "return_dict_in_generate": true,
+      "output_scores": false
+    }
+  },
+  "coverage": {
+    "cap": 2,
+    "fresh": 78,
+    "valid": 70,
+    "provided_CIDs": 478,
+    "missing_CIDs": 29,
+    "explicit_empty_CIDs": 152,
+    "invalid": 10,
+    "invalid_CIDs": 80
+  },
+  "invalid_reasons": {
+    "unknown_patient_string": 8,
+    "truncated_or_no_native_EOS": 2
+  },
+  "no_semantic_repair_or_missing_CID_negative_fill": true,
+  "prediction_integrity": {
+    "documents": 16,
+    "entities": 1189,
+    "nonassociation_UTF8_literal_exact": true,
+    "primary_exact_union_of_stored_allowed_normalized_evidence": true,
+    "secondary_literal_old_union_primary": true,
+    "counts": {
+      "old": 383,
+      "r1": 453,
+      "intersection": 292,
+      "union": 544
+    }
+  },
+  "freeze": {
+    "at": "2026-10-24T05:10:42.838530+00:00",
+    "gold_marker_actual_filesystem_mtime": "2026-10-24T05:10:42.840726+00:00",
+    "marker_has_no_embedded_timestamp": true,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "complete80_and_both_fullpred_SHA_bound": true
+  },
+  "quality": {
+    "old": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6866002214839424,
+      "macF1": 0.5422288533401712,
+      "Score": 0.6609420026531936
+    },
+    "old_relation_counts": {
+      "tp": 310,
+      "fp": 73,
+      "fn": 210,
+      "precision": 0.8093994778067886,
+      "recall": 0.5961538461538461,
+      "f1": 0.6866002214839424
+    },
+    "endpoints": {
+      "primary-r1": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.5508735868448099,
+          "macF1": 0.45505142100440427,
+          "Score": 0.6052159859094687
+        },
+        "counts": {
+          "tp": 268,
+          "fp": 185,
+          "fn": 252,
+          "precision": 0.5916114790286976,
+          "recall": 0.5153846153846153,
+          "f1": 0.5508735868448099
+        },
+        "delta": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.13572663463913248,
+          "macF1": -0.08717743233576697,
+          "Score": -0.055726016743724904
+        },
+        "retain": false
+      },
+      "secondary-union": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6221804511278195,
+          "macF1": 0.5004922409811866,
+          "Score": 0.6344029069744166
+        },
+        "counts": {
+          "tp": 331,
+          "fp": 213,
+          "fn": 189,
+          "precision": 0.6084558823529411,
+          "recall": 0.6365384615384615,
+          "f1": 0.6221804511278195
+        },
+        "delta": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.0644197703561229,
+          "macF1": -0.041736612358984626,
+          "Score": -0.02653909567877699
+        },
+        "retain": false
+      }
+    },
+    "elapsed_CPU_seconds": 0.30430884700035676
+  },
+  "F0_condition": {
+    "prequality_frozen_at": "2026-10-24T05:05:10.087411+00:00",
+    "condition_ref": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/final58-preparation/conditional-decision.json",
+      "bytes": 2768,
+      "sha256": "96b30159a0217ba9bd1e2e6d56bf0e9122b0b912521368d70c1295d786b86e54"
+    },
+    "closed_ref": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/final58-preparation/closed-before-start.json",
+      "bytes": 2361,
+      "sha256": "8cbc5a126e0d476469d53e0968d669bbe16d38f0a4680161c61105ad64ed0bbd"
+    },
+    "full58_started": false,
+    "new_quality_calls": 0,
+    "reason": "Original union retain failed; longest engineering evidence retained; no F0 expansion."
+  },
+  "limitations": [
+    "Recorded normalized-parser outputs were structurally checked and mapped to final predictions; no tokenizer/strict/sparse/normalizer/evaluator rerun.",
+    "Original source H49 unexpected-parser-tail risk remains a source limitation; actual complete80 result has all IDs and canonical receipts, no such unexpected failure observed.",
+    "Two cached rows came from separately seeded first generations, not continuous RNG continuation.",
+    "No quality causal claim between historical tokenizer/YaRN variants; only this exact fixed interface/policy evaluated.",
+    "No gold/training pool/weights/model files read or hashed; no Git/MCP/live-index operation."
+  ],
+  "at_utc": "2026-10-24T05:16:01.775026+00:00",
+  "response_binding": {
+    "gzip_sha": "e4f34661deb1199678a941ae1f598a00f8be184aa0051fa70f42bce04f39597d",
+    "uncompressed_sha": "bb5f05274912a79f9325cf04ea1b8a5059b1eaac82abed5a9c2e0ddba8cbe31a",
+    "canonical80_all_exact": true,
+    "individual_original_row_files_not_claimed_downloaded": true,
+    "cached_indices": [
+      0,
+      73
+    ],
+    "cached_ID_text_cost_EOS_fields_exact": true,
+    "new_generations": 78
+  },
+  "terminal_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/terminal-checks.json",
+    "bytes": 55270,
+    "sha256": "5de5a0625ae7df5a8b1367fa3d595611261dce6a8306e09bf5ea4327ce3c6aa0"
+  },
+  "checker": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/check_terminal.py",
+    "bytes": 14155,
+    "sha256": "f8e8eb5eb160d50b4075feff878475271784dbff7c8836ddbc4a231bb1bf9a73"
+  },
+  "important_refs": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/terminal-manifest.json",
+      "bytes": 10680,
+      "sha256": "d8e5a992c84c7b3455ace88c8cf6dfc62bebd9881edd81b530e2fc131762b575",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/d8e5a992c84c--terminal-manifest.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluation-plan.json",
+      "bytes": 6661,
+      "sha256": "4d5ee4bdcc68f2c35c43146bc063df513ab112653ab382c27a9879a883702550",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/4d5ee4bdcc68--evaluation-plan.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/summary.json",
+      "bytes": 5549,
+      "sha256": "738f20d9c6e4e80b5906bd6f91c9a0a6dcfa4ce5159dcaff9e7e7bc39c6ca897",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/738f20d9c6e4--summary.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/paired-predictions-freeze.json",
+      "bytes": 4692,
+      "sha256": "0bed3eb6e34c76446e02f3f50fad151ec96b61bbc30165995a982a799631af89",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/0bed3eb6e34c--paired-predictions-freeze.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/evaluation-started.json",
+      "bytes": 340,
+      "sha256": "8c627c5d72cd6f286c83b98cf8df023dde49ea325ed158d6bbbd49c59f66c140",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/8c627c5d72cd--evaluation-started.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluation-plan.json",
+      "bytes": 6661,
+      "sha256": "4d5ee4bdcc68f2c35c43146bc063df513ab112653ab382c27a9879a883702550",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/4d5ee4bdcc68--evaluation-plan.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/paired-predictions-freeze.json",
+      "bytes": 4692,
+      "sha256": "0bed3eb6e34c76446e02f3f50fad151ec96b61bbc30165995a982a799631af89",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/0bed3eb6e34c--paired-predictions-freeze.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/evaluation-started.json",
+      "bytes": 340,
+      "sha256": "8c627c5d72cd6f286c83b98cf8df023dde49ea325ed158d6bbbd49c59f66c140",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/8c627c5d72cd--evaluation-started.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/summary.json",
+      "bytes": 5549,
+      "sha256": "738f20d9c6e4e80b5906bd6f91c9a0a6dcfa4ce5159dcaff9e7e7bc39c6ca897",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/738f20d9c6e4--summary.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/final58-preparation/conditional-decision.json",
+      "bytes": 2768,
+      "sha256": "96b30159a0217ba9bd1e2e6d56bf0e9122b0b912521368d70c1295d786b86e54",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/96b30159a021--conditional-decision.json"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/final58-preparation/closed-before-start.json",
+      "bytes": 2361,
+      "sha256": "8cbc5a126e0d476469d53e0968d669bbe16d38f0a4680161c61105ad64ed0bbd",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/deepseek-r1-full80-terminal-review/snapshots/8cbc5a126e0d--closed-before-start.json"
+    }
+  ],
+  "analysis": {
+    "old_relations": 383,
+    "union_additional_true_positives": 21,
+    "union_additional_false_positives": 140,
+    "closed_reason": "Standalone and union both reduce relation micro/macro versus fixed old baseline; adding161 literal relations yields21 newTP and140 newFP. Fixed successor gate fails; full58 not run.",
+    "engineering_result": "Complete80 with lawful predefined abstention is a complete experiment, not partial job failure;10 rejected rows retain original raw/IDs and rejection reasons."
+  }
+}

@@ -11,7 +11,7 @@
 ## 当前：R1 F1完整负结案，F0扩展不启动
 
 - 准确公开R1固定F1的80行已完成，78新+2精确缓存；**旧 .660942003 → R1单独 .605215986 / 唯一并集 .634402907**。两臂均未满足事前关系micro+macro升且macro不降；不迁原dev、不扩codec/预算。实体及非关联字节完全保持。[实验与分项](experiments/E-20261024-R1-F1.md)、[完整清单](deepseek_r1_readiness/full80-preparation/terminal-manifest.json) d8e5a992。
-- 70行合法、10整行弃答（含2触顶），478/587 CID有答案；缺CID仅弃答。3446.521秒/rc0，05:09:32.952 A30 GPU1空卡；原monitor及唯一finish controller均结束，无本路线运行中GPU/训练/传输。完整终点独审进行中，不重模型/评分。
+- 70行合法、10整行弃答（含2触顶），478/587 CID有答案；缺CID仅弃答。3446.521秒/rc0，05:09:32.952 A30 GPU1空卡；原monitor及唯一finish controller均结束，无本路线运行中GPU/训练/传输。完整终点独审05d60bdb通过；65内容项＋members.json共66归档成员，405598字节包0873a63e已在.100全SHA/成员核验并fsync，不重模型/评分。
 - F0已完成58真实编码、九资产私网copy及6028→3427最长工程（89.507秒，strict/normalized均8/8），统一独审fb9edc97。后继条件在F1质量前冻结；因union负而[关闭完整58](deepseek_r1_readiness/f0-preparation/final58-preparation/closed-before-start.json)，pending仍禁用，无F0质量。A800 GPU2预留已解除。
 
 ## 持久资源与接手
@@ -19,7 +19,7 @@
 - `R=/workspace/patientphex-runs/round2-20261023`；完整R1源码/响应/预测在 `R/research/deepseek-r1-0528-qwen3-8b-feasibility/`，大文件不入Git。
 - .100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，自有root `/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness`；完整模型9文件16,388,603,517B在 `models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6`，全SHA/header/399 tensors/8.19073536B通过。原full80-v1响应仍持久保留。
 - A800副本 `/dev/shm/patientphex-r1-f0-1045-20261024/` 是易失缓存，不能替代.100持久源。所有原源/失败/接口纠正保留；旧AutoTokenizer GPU记录不能冒称发布输入质量。
-- 下一步：完成当前统一终审与小终点持久备份，由主线程安排新机制；不重启已负F0计划，不重跑两个v2终点，不默认做新质量。
+- 当前新机制：已有SFT32原80提示只追加完整允许article，CPU11.767秒通过，max14390；主线程已授权input cap14400/gen1600与A800最长idx19单探针240+30，须先查上下文≥15990、真实缓存SHA/空卡。完整80尚未授权，无新质量；详情见新全文准备目录。环境重连后先查原intent/job，不能重复start。
 
 ## 最近结案与索引
 

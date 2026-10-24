@@ -1,0 +1,233 @@
+{
+  "status": "POSTHOC_DESCRIPTIVE_EXISTING_F1_ENDPOINTS_ONLY_NO_NEW_QUALITY",
+  "at_utc": "2026-10-24T05:13:08.284012+00:00",
+  "refs": {
+    "summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/summary.json",
+      "bytes": 5549,
+      "sha256": "738f20d9c6e4e80b5906bd6f91c9a0a6dcfa4ce5159dcaff9e7e7bc39c6ca897"
+    },
+    "paired_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/paired-predictions-freeze.json",
+      "bytes": 4692,
+      "sha256": "0bed3eb6e34c76446e02f3f50fad151ec96b61bbc30165995a982a799631af89"
+    },
+    "old_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "old_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "r1_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/primary-r1/metrics.json",
+      "bytes": 12977,
+      "sha256": "c966b3ed5cce09a3fe451d1996a4e5107b945cabff6ebeff6d7e201cf3b9807a"
+    },
+    "r1_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/primary-r1/pred.jsonl",
+      "bytes": 155146,
+      "sha256": "485b79bda850e75ab05cf0608d955fc60dfc9a0dd581c45fbe0bdae6c2e21f61"
+    },
+    "r1_validation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/primary-r1/validation.json",
+      "bytes": 425,
+      "sha256": "5d0b6acfa3734677d65e8c2fa399ff40402933a798fd02756dcbc5b997755f4c"
+    },
+    "union_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/secondary-union/metrics.json",
+      "bytes": 13030,
+      "sha256": "77af7c9b414afb5c0f295d1dd456177bcb8145f417f59850472ac5f61c95c1c9"
+    },
+    "union_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/secondary-union/pred.jsonl",
+      "bytes": 156420,
+      "sha256": "cb12d0ebeaa69c33e8162d635d7d6d0a49b7ff8d0b288ebe49d098768c29552e"
+    },
+    "union_validation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/secondary-union/validation.json",
+      "bytes": 425,
+      "sha256": "b258011e39d28aaca3b3cce5aee76284d939342e95efc17f69d487593903fb54"
+    }
+  },
+  "scope": {
+    "read_gold": false,
+    "read_models": false,
+    "evaluation_or_scoring_calls": 0,
+    "prediction_modified": false,
+    "subset_selection_or_parameter_tuning": false,
+    "old_metrics_reused": true,
+    "whole_fixed_F1_only": true,
+    "independent_validation_claim": false
+  },
+  "method": "Read SHA-bound completed metrics and full frozen prediction sets; count exact (pmc_id, patient_id, phenotype literal) keys. Check the saved evaluator compound-splitting configuration on predictions only. TP/FP differences are algebra on existing metrics, with no gold or evaluator import.",
+  "configuration": {
+    "body_scope": "all",
+    "unlinked_document_mode": "text",
+    "unlinked_gold_mention": "span-only one-to-one after exact HPO matches",
+    "duplicate_entities": "deduplicated by span and split HPO ID",
+    "compound_relations": "split only full HP:[0-9]{7}(;HP:[0-9]{7})+ strings; deduplicate per patient",
+    "empty_patient_f1": 1.0
+  },
+  "collection_checks": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "literal_union_equality": true,
+    "configured_relation_key_union_equality": true,
+    "all_old_relations_retained": true,
+    "nonassociation_objects_equal_rechecked": true,
+    "nonassociation_byte_identity_reused_from_paired_freeze": true,
+    "normalization": {
+      "old": {
+        "literal_occurrences": 383,
+        "literal_unique": 383,
+        "full_HPO_compound_occurrences": 0,
+        "configured_split_unique": 383
+      },
+      "r1": {
+        "literal_occurrences": 453,
+        "literal_unique": 453,
+        "full_HPO_compound_occurrences": 0,
+        "configured_split_unique": 453
+      },
+      "union": {
+        "literal_occurrences": 544,
+        "literal_unique": 544,
+        "full_HPO_compound_occurrences": 0,
+        "configured_split_unique": 544
+      }
+    }
+  },
+  "literal_counts": {
+    "old": 383,
+    "r1": 453,
+    "intersection": 292,
+    "union": 544
+  },
+  "metrics_and_counts": {
+    "old": {
+      "predicted_relations": 383,
+      "relation_counts": {
+        "tp": 310,
+        "fp": 73,
+        "fn": 210,
+        "precision": 0.8093994778067886,
+        "recall": 0.5961538461538461,
+        "f1": 0.6866002214839424
+      },
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6866002214839424,
+        "macF1": 0.5422288533401712,
+        "Score": 0.6609420026531936
+      }
+    },
+    "r1": {
+      "predicted_relations": 453,
+      "relation_counts": {
+        "tp": 268,
+        "fp": 185,
+        "fn": 252,
+        "precision": 0.5916114790286976,
+        "recall": 0.5153846153846153,
+        "f1": 0.5508735868448099
+      },
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.5508735868448099,
+        "macF1": 0.45505142100440427,
+        "Score": 0.6052159859094687
+      }
+    },
+    "union": {
+      "predicted_relations": 544,
+      "relation_counts": {
+        "tp": 331,
+        "fp": 213,
+        "fn": 189,
+        "precision": 0.6084558823529411,
+        "recall": 0.6365384615384615,
+        "f1": 0.6221804511278195
+      },
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6221804511278195,
+        "macF1": 0.5004922409811866,
+        "Score": 0.6344029069744166
+      }
+    }
+  },
+  "set_regions_from_frozen_metric_algebra": {
+    "intersection": {
+      "count": 292,
+      "tp": 247,
+      "fp": 45
+    },
+    "r1_only_added_to_old": {
+      "count": 161,
+      "tp": 21,
+      "fp": 140,
+      "precision": 0.13043478260869565
+    },
+    "old_only_missing_from_r1": {
+      "count": 91,
+      "tp": 63,
+      "fp": 28
+    },
+    "removed_old_relations": 0
+  },
+  "union_minus_old": {
+    "tp": 21,
+    "fp": 140,
+    "fn": -21,
+    "relation_precision": -0.20094359545384743,
+    "relation_recall": 0.04038461538461535,
+    "micF1": -0.0644197703561229,
+    "macF1": -0.041736612358984626,
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "Score": -0.02653909567877699
+  },
+  "coverage_from_completed_freeze": {
+    "rows": 80,
+    "new_generations": 78,
+    "reused_generations": 2,
+    "valid_rows": 70,
+    "abstained_invalid_rows": 10,
+    "token_capped_rows": 2,
+    "provided_CIDs": 478,
+    "missing_CIDs_are_negative": false,
+    "invalid_rows_have_no_fallback": true
+  },
+  "parse_from_completed_freeze": {
+    "valid_rows": 70,
+    "abstained_missing_CIDs": 29,
+    "provided_CIDs": 478,
+    "explicit_empty_provided_CIDs": 152,
+    "invalid_rows": 10,
+    "abstained_invalid_row_CIDs": 80
+  },
+  "failure_summary_limits": [
+    "10 invalid rows abstained in full; 2 rows reached token cap. The saved summary does not establish disjointness or detailed parser-error reasons, so these counts are not added or relabeled.",
+    "Invalid whole rows and missing CIDs have no fallback and no fabricated negative answers. We do not attribute exact TP/FP losses to these causes without additional analysis.",
+    "Both prediction files passed format validation with zero errors and warnings; parsing abstention is distinct from invalid final submission format."
+  ],
+  "interpretation": [
+    "The union retains every old relation; the negative result is not caused by deleting old positives.",
+    "R1 contributes 161 new literal relations: only 21 additional TP versus 140 additional FP (13.0435% precision). Recall gains are outweighed by the precision loss.",
+    "Relation micro-F1 and macro-F1 both fall versus the cached old-SFT32 baseline, so the predeclared retention rule fails. Entities/document predictions and their metric values stay fixed.",
+    "The union is better than standalone R1 but worse than old-SFT32. This describes these completed F1 development endpoints only, not an independent generalization or other-budget conclusion."
+  ],
+  "retention_predeclared": {
+    "policy": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "r1_retained": false,
+    "union_retained": false
+  }
+}
