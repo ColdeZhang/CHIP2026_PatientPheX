@@ -1,6 +1,6 @@
 # Copy-grounded decode 台账
 
-当前状态：**F1独立弃答v2严格正完成：.704349598608，Δ+.003024221396；原V1仍rc1/0quality。F0同GLiNER必要提议172窗已完整rc0，待原件回收/accepted过滤→完整47受限解码；暂无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**F1独立弃答v2严格正；原V1仍失败/0quality。排F0同资源池1149与真实CPU47已过，.100 GPU0完整47原job正在运行；无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
 最近远端检查点：2026-10-24 15:24 UTC，`origin/explore/copy-grounded-decode` 的 `e8a6de06a792691b9ffd23df7e30346270c23c35` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
@@ -35,3 +35,5 @@
 
 - 同GLiNER accepted736 manifest a1242b31已到；与strong1085按exact anchor去重为1149 triples/629 docquotes，候选233a7f00。proposer v3必要296Sap实9.799秒rc0，15:38:12.046755真实释放GPU0；原启动UNKNOWN仅transport事件，fence599e2e7f成功后新admission v3完成。原大raw在server持久，local后台只读续收且有15:55:51截止guardian，不阻塞G47。
 - 真实CPU47原289420 tokens/max9935及全池正反native拼接/processor已10.098秒rc0（15:40:38.508558），实际result a60e82eb，完整10件collection b5cf35de。固定47 infer-plan已绑定，admission绝对截止 2026-10-24T15:51:27.626540+00:00，2400+30实际运行预算不变；尚未GPU启动。
+
+- 15:42:28.195456 UTC原47唯一正式child启动：proc_abf6b0ac-541b-4d8f-943d-9786a2f03bc1，driver2751534/child2751542；实际plan633d7749，启动前f8d42dea已push核远端。TERM16:22:28.192639/KILL16:22:58.192639，admission15:51:27.626540不重置。恢复只用 `f0/remote.py observe --directory .../F0-v1/infer`，禁止再start；完整47后 `f0/collect.py`→`f0_postprocess/README.md`固定链，尚无任何F0质量。见f0/actual-start.json。
