@@ -31,3 +31,7 @@ CPU 实际 9.114 秒成功（proc89b08812，2026-10-24 14:04:34Z），两父 ada
 14:08:54.063619Z 原 A100 恢复后唯一实际推断启动：proc06596b00/PID239977、child239995；fresh门通过，TERM14:38:54.278290Z/KILL14:39:24.278290Z。原185秒退避和失败均保留，未重CPU或换卡。源码57ea4c74/plan580974f1；回执见 `evidence/inference-start.json`。原 output wrapper 为唯一终态，未知响应只读恢复，不再次start。
 
 Root另准CPU准备既有 `.100 GPU0` Sap包装：原.3已给DPO，不迁大生成模型；只有本39完整且sequence78+Sap实际释放后，可fresh门唯一180+30。保持原public41099 bank/六件Sap/strict train32 aliases/b59 policy/query与driver字节，披露Torch2.7.0/TF4.50→2.7.1/4.51.3非逐位等价。入口 `normalization100/`；尚无新query/plan/GPU意图。此前 `normalization/` 的.3未执行准备保留，无两卡重复。
+
+原39于14:32:24.163154Z成功，1409.885秒；GPU2同次0MiB/noapps真实释放，未触发尾部。35EOS/4cap，四cap整行弃答。目录collector两次UNKNOWN原收据保留，改按原complete41c4和原responses6f5直接读回；78单行按原序列化重建并逐原SHA证明字节相同，明确非逐文件下载、非远端ZIP冻结。88必要文件collection3d846e05完整，源码74f93df9保留收件范围差异，完整字段/身份/原raw验证沿原合同。
+
+原严格解析得到402锚点、308不同词面、180无效条目被拒、4行cap弃答；174必要Sap查询，精确query plan在 `normalization_cpu/held-query-plan.json`，CUDA隐藏、FP32/16线程/300+30，预写后唯一执行。无新gold/质量/拟合；原4cap不重采样。
