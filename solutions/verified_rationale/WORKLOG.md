@@ -1,6 +1,6 @@
 # 患者归属理由蒸馏：只读与 CPU 供给准备
 
-状态：进行中；本线只读取既有实际源码、公开方法及 F2/F3 train32，不运行模型、拟合、held gold 或质量评测。
+状态：15条教师供给已获条件授权；源码/CPU合同/12件远端部署已完成，等待Copy47及必要Sap整链释放。当前仍为0模型/0held gold/0fit/0质量；学生训练和全814教师调用未授权。
 
 目标：判断训练标签约束的教师理由是否提供直接 JSON 标签、弱 quote 与 DPO 之外的新监督，先检验可定位证据和患者歧义的真实供给。
 
@@ -20,3 +20,5 @@
 - 网络原回执UNKNOWN已只读完整恢复：32MiB2.737733s、11.69MiB/s，server实际关闭；16.39GB纯网络1337.16s>900门，root取消迁移，不扩大复制预算。
 - root已授权等待.100 Copy47+必要Sap全部释放后，原缓存同15/3072/2700+30唯一pilot。`host-revision.json`保原.12提案；36层真实KV/SDPA/logits_to_keep、旧19.50GB峰给出A30条件可行依据，freshfree必须实际比较，OOM首条即停。
 - 当前源码 `pilot.py` / `pilot_driver.py` 已实现并通过编译/静核；H69实际3类拒绝均无child；正做source-bound execution/deploy，无GPUstart。Copy owner承诺整链实际release再交接，不能在G47原模型结束时抢卡。
+
+- 12件小payload已在.100原模型host逐SHA核验部署，[入口](evidence/deployed.json)。当前未创建admission/启动意图；唯一启动器要求上游整链release凭据，先freshGPU门再生成5分钟SHA绑定admission；UNKNOWN只查原作业，不自动重发。
