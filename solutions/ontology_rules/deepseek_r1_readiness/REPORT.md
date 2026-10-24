@@ -11,3 +11,5 @@ BF16权重约15.256GiB，理论batch1 KV为每token147456B，8192总token约1.12
 最小对照复用F1纯input80条/16篇/587CID（ddba03ff）及旧strict32 Qwen3.5-9B完整回答，不新增候选或看gold选难例。未来先exact tokenizer长度审计，再固定first/median/longest三条自然输出格式/成本探针：单180秒+TERM30、每条最多1024新token、seed20261024、temperature.6/top_p.95，无强制闭思维/重试；不完整或无合法final记缺失证据。失败不自动扩思考预算。只有成本可用且后续授权才做一次全部80条同池控制，先冻结DeepSeek-alone与预定old∪new再唯一评测。学习式融合需另备严格OOF训练侧特征，不能拿F1标签训练后又评F1；详细候选协议和原资源refs见feasibility-plan.json。
 
 下一已获根线程授权仅资产准备：.100持久自有目录缓存优先，单2100秒+TERM30固定下载窗口、完整SHA/真实头核；不装环境、不加载模型、不GPU/新gold/评分。原metadata和当前源码先入Git，未知启动/监控先核原intent/job，partial保留，不重复下载。
+
+资产唯一作业已于2026-10-24T03:05:56.359Z启动：`proc_1c596785-307e-4471-8541-c982943da8bb`，.100 mount5a9955da；绝对截止2026-10-24T03:40:49.472593+00:00+TERM30。原intent/job与远端启动标记是恢复依据；Git源07b46dc两次401尚未推送，但已完成远端3源SHA核与Python3.10实际编译，后续有界重试Git。恢复入口`assets/poll_original.py`，不要重发start。
