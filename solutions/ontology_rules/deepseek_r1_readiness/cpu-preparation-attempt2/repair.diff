@@ -1,0 +1,11 @@
+--- original
++++ attempt2
+@@ -39,7 +39,7 @@
+             expected=str(tok.bos_token)+row['messages'][0]['content']+'<｜User｜>'+row['messages'][1]['content']+'<｜Assistant｜>'
+             assert rendered==expected
+             assert rendered==tok.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=False)==tok.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=True)
+-            ids=tok.encode(rendered,add_special_tokens=False);native=tok.apply_chat_template(row['messages'],tokenize=True,add_generation_prompt=True)
++            ids=tok.encode(rendered,add_special_tokens=False);native=tok.apply_chat_template(row['messages'],tokenize=True,add_generation_prompt=True,return_dict=False)
+             assert ids==native and ids[0]==tok.bos_token_id and ids[-1]==special['<｜Assistant｜>']['token_id'] and all(0<=x<config['vocab_size'] for x in ids)
+             old=tok.apply_chat_template(row['messages'],chat_template=old_template,tokenize=False,add_generation_prompt=True,enable_thinking=False)
+             assert all(m['content'] in old for m in row['messages']) and old.endswith('<|im_start|>assistant\n<think>\n\n</think>\n\n')

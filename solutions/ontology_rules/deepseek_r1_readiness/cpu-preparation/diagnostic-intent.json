@@ -1,0 +1,16 @@
+{
+  "at": 1792811765.5526776,
+  "arguments": {
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "command": "timeout --signal=TERM --kill-after=5s 30s /home/zhangyuheng/projects/ScratchVL/.venv/bin/python -c 'from pathlib import Path\nimport json,gzip,torch\nfrom transformers import AutoTokenizer\np=Path('\"'\"'/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/cpu-preparation-v1'\"'\"');row=json.loads(gzip.decompress((p/'\"'\"'prompts.jsonl.gz'\"'\"').read_bytes()).decode().splitlines()[0]);t=AutoTokenizer.from_pretrained('\"'\"'/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6'\"'\"',local_files_only=True,trust_remote_code=False);s=t.apply_chat_template(row['\"'\"'messages'\"'\"'],tokenize=False,add_generation_prompt=True);a=t.encode(s,add_special_tokens=False);b=t.apply_chat_template(row['\"'\"'messages'\"'\"'],tokenize=True,add_generation_prompt=True);n=b['\"'\"'input_ids'\"'\"'] if hasattr(b,'\"'\"'keys'\"'\"') and '\"'\"'input_ids'\"'\"' in b else b\nprint(json.dumps({'\"'\"'native_type'\"'\"':str(type(b)),'\"'\"'native_keys'\"'\"':list(b.keys()) if hasattr(b,'\"'\"'keys'\"'\"') else None,'\"'\"'a_len'\"'\"':len(a),'\"'\"'native_input_ids_type'\"'\"':str(type(n)),'\"'\"'n_len'\"'\"':len(n),'\"'\"'a_head'\"'\"':a[:3],'\"'\"'a_tail'\"'\"':a[-3:],'\"'\"'n_head'\"'\"':n[:3],'\"'\"'n_tail'\"'\"':n[-3:],'\"'\"'bos'\"'\"':t.bos_token_id,'\"'\"'assistant'\"'\"':t.convert_tokens_to_ids('\"'\"'<\uff5cAssistant\uff5c>'\"'\"'),'\"'\"'ids_equal_after_container_access'\"'\"':a==n,'\"'\"'explicit_return_dict_false_type'\"'\"':str(type(t.apply_chat_template(row['\"'\"'messages'\"'\"'],tokenize=True,add_generation_prompt=True,return_dict=False))),'\"'\"'cuda_initialized'\"'\"':torch.cuda.is_initialized()}))\n'",
+    "cwd": "research/deepseek-r1-0528-qwen3-8b-readiness/cpu-preparation-v1",
+    "timeout_seconds": 40,
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  }
+}
