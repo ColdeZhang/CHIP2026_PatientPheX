@@ -66,7 +66,7 @@ class WindowDocRE(nn.Module):
         positions = torch.cat(indices)
         values = torch.cat(states)
         sequence = values.new_zeros((total, values.shape[-1])).index_add(0, positions, values)
-        counts = values.new_zeros(total).index_add(0, positions, values.new_ones(positions.shape[0]))
+        counts = values.new_zeros((total,)).index_add(0, positions, values.new_ones((positions.shape[0],)))
         assert bool((counts > 0).all()), 'Uncovered original token'
         sequence = sequence / counts[:, None]
         for i, entity in enumerate(document['entities']):
@@ -75,7 +75,7 @@ class WindowDocRE(nn.Module):
         entity_attention = torch.stack([torch.stack(rows).mean(0) for rows in mention_attention])
         pairs = torch.tensor(document['pairs'], dtype=torch.long, device=device)
         if pairs.numel() == 0:
-            return sequence.new_empty(0), {'zero_context_pairs': 0, 'pairs': 0}
+            return sequence.new_empty((0,)), {'zero_context_pairs': 0, 'pairs': 0}
         first, second = pairs[:, 0], pairs[:, 1]
         shared = (entity_attention[first] * entity_attention[second]).mean(1)
         mass = shared.sum(1, keepdim=True)

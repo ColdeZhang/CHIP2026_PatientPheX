@@ -124,11 +124,33 @@ def main():
         torch.cuda.synchronize()
         deltas = {name: float((dict(model.named_parameters())[name].detach() - value).abs().max()) for name, value in before.items()}
         assert all(value > 0 for value in deltas.values())
+        first_update_seconds = time.monotonic() - begin
+        del before
+        # Match the formal memory state: an existing Adam state and an earlier
+        # document's accumulated gradients when the largest document runs.
+        optimizer.zero_grad(set_to_none=True)
+        stress = []
+        shortest = min(train, key=lambda x: (len(x['windows']), x['token_length']))
+        for index, item in enumerate([shortest, document]):
+            step_started = time.monotonic()
+            with torch.autocast('cuda', dtype=torch.bfloat16):
+                stress_logits, stress_diagnostic = model(item)
+                stress_labels = torch.tensor(item['labels'], dtype=torch.float32, device='cuda')
+                stress_loss = torch.nn.functional.binary_cross_entropy_with_logits(stress_logits.float(), stress_labels)
+            (stress_loss / 4).backward()
+            assert all(bool(torch.isfinite(p.grad).all()) for p in model.parameters() if p.grad is not None)
+            torch.cuda.synchronize()
+            stress.append({'pmc_id': item['pmc_id'], 'windows': len(item['windows']),
+                           'loss': float(stress_loss.detach()), 'seconds': time.monotonic() - step_started,
+                           'existing_Adam': True, 'previous_document_gradients': index > 0,
+                           'diagnostic': stress_diagnostic})
         result = {'status': 'complete_engineering_probe_no_quality_no_checkpoint', 'document': document['pmc_id'],
             'tokens': document['token_length'], 'windows': len(document['windows']), 'pairs': len(document['pairs']),
             'loss': float(loss), 'gradient_norm_before_clip': norm, 'gradient_tensors': len(gradients),
             'all_gradients_finite': True, 'actual_parameter_changes': deltas, 'diagnostic': diagnostic,
-            'step_seconds': time.monotonic() - begin, 'elapsed_seconds': time.monotonic() - started,
+            'actual_forward_backward_calls': 3, 'actual_Adam_steps': 1, 'stress_with_existing_state': stress,
+            'first_longest_update_seconds': first_update_seconds,
+            'three_pass_training_seconds': time.monotonic() - begin, 'elapsed_seconds': time.monotonic() - started,
             'peak_allocated_bytes': torch.cuda.max_memory_allocated(), 'peak_reserved_bytes': torch.cuda.max_memory_reserved()}
         write(output / 'probe.json', result)
         print(json.dumps(result), flush=True)

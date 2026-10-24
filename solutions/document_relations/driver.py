@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import time
 
@@ -64,7 +65,10 @@ def main():
             assert sha(path) == expected, path
         for path, expected in plan['model_assets'].items():
             assert sha(path) == expected, path
+        free_bytes = shutil.disk_usage(output).free
+        assert free_bytes >= 4 * 1024 ** 3, 'Insufficient output disk space'
         fresh = gpu_state(plan['gpu_uuid'])
+        fresh['output_disk_free_bytes'] = free_bytes
         write(output / 'fresh-gpu.json', fresh)
         assert not fresh['target_compute_rows'] and int(fresh['gpu'].split(',')[2].strip()) <= 100
         env = os.environ.copy()
