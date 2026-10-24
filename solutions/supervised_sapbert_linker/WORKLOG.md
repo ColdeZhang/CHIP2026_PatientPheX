@@ -1,6 +1,6 @@
 # 监督式 SapBERT 链接器
 
-状态：**已获唯一 300+30 GPU 工程授权，源码已准备；正式训练/质量尚未授权。**
+状态：**真实工程通过；正式600+30与唯一完整F1端点已授权，源已冻结，尚未start。**
 
 目标是检验真实 train32 词面监督是否改善共享 Sap 编码器的概念距离，固定旧强实体跨度，仅替换非精确匹配的 ID。原 F1 强基线 Score `.7286975364690524`；成功门是完整同口径 Score 严格提高，不能用训练检索召回替代。
 
@@ -15,3 +15,5 @@
 2026-10-24：旧 Gmean F1 正/F0 负结案与本线独立。最终旧 F0 终审 `R/validation/grounded-weight-average-F0-final-review/review.json`，SHA `eb46a4ee532db0caa24baf1431259b7d35125e0c9025686174b92cbf5c037b6b`。不因此复活旧配方。
 
 CPU v1 在0模型/0CUDA阶段拒绝合法整数buffer：199个F16权重＋`embeddings.position_ids` I64[1,512]。只读真实header核过，修正仅接受该已知buffer及其合法loader unexpected；原v1包/rc1保留，独立v2部署，未消耗GPU窗口。ops层原返回0而内层rc1分开记录，现保留结果后assert内层exit。
+
+15:48:39.262891→15:48:58.366413唯一GPU工程完整19.104秒，4FB/2Adam/197非pooler全部更新，793state张量实比，峰5.218GB；GPU0真实4MiB/noapps释放。完整native1160/41099/303为6.319秒，0截断。必要6小metadata已收，1.309GBprobe state仅远端保留且禁止续训。正式按已授权fresh3ep219/4bank/finalACK/303，同源核心AST一致；成本273.263代理、600+30共享时钟，动态候选增长披露。实际入口 `formal/ops.py deploy|start|observe|collect`，完整后 `formal/quality.py formal/quality-plan.json`，无原dev/官网。质量gold只定位已有正确文件名/SHA，冻结前不读取。

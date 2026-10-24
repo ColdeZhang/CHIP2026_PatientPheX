@@ -59,7 +59,7 @@ def main():
     quality=dict(schema='supervised-sapbert-only-complete-F1-endpoint-v1',collected=str(D/'collected'),output=str(D/'quality-v1'),
         refs=dict(baseline=refs['strong_baseline'],baseline_metrics=ref(R/'research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json'),
             input=refs['F1_input'],eligible=ref(B/'owner-v1/F1-eligible.json'),
-            gold=dict(path='/workspace/patientphex-data/round2-inner4/fold-1/validation16.jsonl',sha256='665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3')),
+            gold=dict(path='/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl',sha256='665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3')),
         evaluator_dir='/workspace/CHIP2026_PatientPheX/scripts',hpo='/workspace/patientphex-data/hp.obo',
         source=ref(S/'quality.py'),baseline_score=.7286975364690524,planned_new_v2=1,old_v2=0,zero_changes='byteexact prediction/0newv2',
         formula='Only422 eligible IDs replace with final Sap fullbank top1; protected891 and all spans/text/order/relations retained',
