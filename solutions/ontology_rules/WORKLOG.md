@@ -93,3 +93,5 @@
 - H5严格OOF有限盘点：两方向train16 Sap/rules原池齐（50489f7a/e38d03b2），三公共固定缓存齐；train16 CRF和匹配train32 LGB基线尚未找到，旧a465为train48。准备代码需每train16重建保护/冲突，不能切既有1252行。没有实现新pipeline/fit/NN/v2；[缺口摘要](public_h5_adaptation_readiness/formal_train/OOF_ASSET_GAPS.md)。
 
 - indexed第一轮08:45:59 rc0，16更新/2308.345秒；520,022,588 B完整模型/Adam/scheduler/RNG及源码已08:47:46在.100逐文件SHA+fsync+重新打开核实，导出59.364秒。原watch08:47:58唯一启动epoch2 proc_e0b1196d/PID9466，继续原绝对deadline，不重置warmup/预算；尚无新质量。[里程碑](qwen35_sft32_full_report_training_readiness/formal_indexed/epoch1-milestone.json)。
+
+- 08:53按root安排暂转idle释放采样线程，原localwatch PID130118与epoch2远端训练继续。root读取原事件/两ACK后followup本owner执行已授权F1；恢复与故障边界见[继续入口](qwen35_sft32_full_report_training_readiness/formal_indexed/CONTINUATION.md)。没有停止watch或新启动任务。
