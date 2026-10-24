@@ -1,0 +1,90 @@
+{
+  "schema": "patientphex-final-R1-SFT-fixed-F1-pair-v1",
+  "source_sha256": "5b81f375ae5c6fca3ec1a4b7a4addf35eb8e18787e0c30eebbac839d998eddbc",
+  "execution_ready": false,
+  "endpoints": [
+    "primary-r1-sft",
+    "diagnostic-oldSFT32-union-r1-sft"
+  ],
+  "new_v2_calls": 2,
+  "old_v2_calls": 0,
+  "quality_contract": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_supervised_adaptation/quality-contract.json",
+    "bytes": 3026,
+    "sha256": "7699fa7467e81bc17645982bd45421c85ec8f5757d3afb561a9d7db25ce4208b"
+  },
+  "quality_addendum": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_supervised_adaptation/quality-policy-addendum.json",
+    "bytes": 2054,
+    "sha256": "fcea128888e8a7761bd6db32931f3f84b855af6e54230871d11651cf1eeaa22b"
+  },
+  "legacy_helpers": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluate_full80.py",
+    "bytes": 35167,
+    "sha256": "4fbc58db78de352a4a8c473b7df384d4ce1a0324b15a2467e4c2dfe51a9ee522"
+  },
+  "references": {
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379",
+      "bytes": 154176
+    },
+    "old_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+      "bytes": 13115
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "normalized_final": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/normalized_final.py",
+      "bytes": 4465,
+      "sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe"
+    },
+    "strict_final": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/strict_final.py",
+      "bytes": 2169,
+      "sha256": "20943d8681b4cf81aee0465b0f217d3491460a311be00f3bbc2818b721013fad"
+    },
+    "input_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/published-interface-v1/cpu/recovered/all80-input-audit.json",
+      "bytes": 47614,
+      "sha256": "36003a4e5464fbf75325a1af8fca4370d1363f2671dd10dc9a5757cdaa557229"
+    }
+  },
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+  "historical_F1_gold_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/full80-v1/quality",
+  "endpoint_references": null,
+  "cpu_seconds": 60,
+  "grace_seconds": 5,
+  "scope": "After complete79fresh+newadaptercache73. Complete two predictions frozen before first gold byte. Fixed Score-only comparator. No F0/dev/official."
+}
