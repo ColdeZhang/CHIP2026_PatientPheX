@@ -18,3 +18,11 @@
 ### 2026-10-24 11:27 UTC — unique actual probe started
 
 A100 recovered; all 13 package members SHA/fsync/reopen passed. A subsequent start inventory UNKNOWN was before local intent/remote claim; same inventory recovered once, no repeated model start. Actual job proc_6e7979ca-c61e-4cb0-9807-ce042f7fbfe3 / PID 129094 at 2026-10-24T11:27:21.190874469Z. Driver original TERM 2026-10-24T11:31:21.388561+00:00, KILL 2026-10-24T11:31:51.388561+00:00. Full proof in evidence/probe-start.json; no formal/quality yet.
+
+### 2026-10-24 11:32 UTC — actual H51 PASS, fixed formal bound
+
+Original probe ended 11:29:55.022 UTC, rc0 /153.633742 s; 12 forward/backward +1 real group8 Adam, 496 states, all grads finite/frozen base empty, three LoRA families changed. Max5910 and128 supervision covered. Peak allocated24,774,604,800/reserved26,724,007,936 B; actual GPU2 released. Two late observations UNKNOWN did not change this original endpoint. Exact small raw SHA refs saved; full evidence collection may follow without repeating probe.
+
+Measured pressure82.430726 s, other native overhead69.915781 s. Frozen cost formula max(row/token projection)×1.15 +twice overhead +600s combined export/control allowance =2698.935144 s, below shared3600. A800 historical520MB exports56–60s are a proxy, not A100 network measurement; budget remains a hard cap, not a guarantee. Bound fresh2epoch controller entry9183521c; no checkpoint from probe.
+
+A100 CPU/HTTP read window briefly handed to sequence owner while this local binding/source is pushed. Same-card GPU remains reserved for this route; fresh gate precedes formal start. Reliable exact-piece deployment inventories original bytes after UNKNOWN; source/target identity and all hashes preserved, no automatic model retry.

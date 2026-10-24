@@ -32,6 +32,6 @@ def main():
   for n in allfiles:t.add(B/n,arcname=n,recursive=False)
  save(B/'deployment-manifest.json',dict(archive=ref(B/'deployment.tar.gz'),files=m,controller_plan=ref(B/'controller-plan.json'),raw_inputs_verified_after_decompression=decompress))
  save(B/'GPU-AUTHORIZATION.json',dict(authorized=True,controller_plan_sha256=ref(B/'controller-plan.json')['sha256'],budget_seconds=3600,grace_seconds=30,source='root conditional authorization now backed by actual pressure PASS and measured cost estimate',no_fresh_probe_state=True))
- save(B/'entry.json',dict(plan=ref(B/'controller-plan.json'),operations=ref(C/'operations.py'),launcher=ref(C/'launch_watch.py'),watcher=ref(C/'watch_authorized_campaign.py'),deployment=ref(B/'deployment-manifest.json'),authorization=ref(B/'GPU-AUTHORIZATION.json'),unknown='Inspect original intent/job; never blindly repeat model start',budget_seconds=3600))
+ save(B/'entry.json',dict(plan=ref(B/'controller-plan.json'),operations=ref(C/'operations.py'),deployment_operation=ref(C/'deploy.py'),launcher=ref(C/'launch_watch.py'),watcher=ref(C/'watch_authorized_campaign.py'),deployment=ref(B/'deployment-manifest.json'),authorization=ref(B/'GPU-AUTHORIZATION.json'),unknown='Inspect original intent/job; never blindly repeat model start',budget_seconds=3600))
  print(json.dumps(ref(B/'entry.json')))
 if __name__=='__main__':main()

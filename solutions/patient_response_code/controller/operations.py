@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,base64,hashlib,io,json,os,shlex,sys,time,tarfile
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts')
 from mcp_client import Client
-ap=argparse.ArgumentParser();ap.add_argument('action',choices=['deploy','preflight','start-epoch','inspect','start-server','start-fetch','collect-export']);ap.add_argument('--directory',type=Path,required=True);ap.add_argument('--epoch',type=int,choices=[1,2],default=1);a=ap.parse_args();B=a.directory;plan=json.loads((B/'controller-plan.json').read_text());epoch=a.epoch
+ap=argparse.ArgumentParser();ap.add_argument('action',choices=['preflight','start-epoch','inspect','start-server','start-fetch','collect-export']);ap.add_argument('--directory',type=Path,required=True);ap.add_argument('--epoch',type=int,choices=[1,2],default=1);a=ap.parse_args();B=a.directory;plan=json.loads((B/'controller-plan.json').read_text());epoch=a.epoch
 sha=lambda b:hashlib.sha256(b).hexdigest();plan_sha=sha((B/'controller-plan.json').read_bytes());source=plan['mount_id'];target=plan['persistent_mount_id'];root=plan['remote_absolute'];dest=plan['persistent_remote_absolute'];client=Client();client.initialize()
 def save(name,x):
  with (B/name).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
@@ -32,56 +32,7 @@ print(json.dumps(dict(path=str(p),bytes=len(b),sha256=hashlib.sha256(b).hexdiges
 def load_campaign():
  d=json.loads((B/'campaign.json').read_text());assert d['plan_sha256']==plan_sha and d['absolute_deadline_unix']==d['started_unix']+3600
  return d
-if a.action=='deploy':
- assert not (B/'deployment-intent.json').exists()
- manifest=json.loads((B/'deployment-manifest.json').read_text());payload=Path(manifest['archive']['path']).read_bytes();assert sha(payload)==manifest['archive']['sha256'];parts=[payload[i:i+65536] for i in range(0,len(payload),65536)];save('deployment-intent.json',dict(manifest=manifest,at_epoch=time.time(),no_model=True))
- refs=[]
- for i,data in enumerate(parts):
-  name='part-%03d'%i;refs.append(dict(name=name,bytes=len(data),sha256=sha(data)));write(source,plan['remote_relative']+'/'+name,data,'deploy-part-%03d-tool.json'%i)
- code='''from pathlib import Path
-import os,hashlib,json,tarfile
-p=Path(PARAM['root']);assert __import__('pwd').getpwuid(os.getuid()).pw_name=='zhangyuheng' and p.stat().st_uid==os.getuid();os.chmod(p,0o700);m=PARAM['manifest'];parts=PARAM['parts']
-assert not (p/'campaign.json').exists()
-for r in parts:
- b=(p/r['name']).read_bytes();assert len(b)==r['bytes'] and hashlib.sha256(b).hexdigest()==r['sha256']
-archive=p/'deployment.tar.gz'
-with archive.open('xb') as f:
- for r in parts:f.write((p/r['name']).read_bytes())
- f.flush();os.fsync(f.fileno())
-assert hashlib.sha256(archive.read_bytes()).hexdigest()==m['archive']['sha256']
-with tarfile.open(archive) as t:
- assert len(t.getnames())==len(m['files']) and set(t.getnames())==set(m['files'])
- for item in t.getmembers():
-  assert item.isfile() and item.name==Path(item.name).name;b=t.extractfile(item).read();r=m['files'][item.name];assert len(b)==r['bytes'] and hashlib.sha256(b).hexdigest()==r['sha256']
-  path=p/item.name
-  with path.open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())
-  os.chmod(path,0o600)
-  if path.suffix=='.py':compile(path.read_text(),item.name,'exec')
-# Decompress only verified private training inputs; never truncate or mutate source.
-import gzip
-for gzname,item in PARAM['decompress'].items():
- b=gzip.decompress((p/gzname).read_bytes());assert len(b)==item['bytes'] and hashlib.sha256(b).hexdigest()==item['sha256']
- with (p/item['name']).open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())
-shm=Path(PARAM['shm']);assert not shm.exists();shm.mkdir(mode=0o700)
-fd=os.open(str(p),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
-print(json.dumps(dict(status='ACTUAL_SOURCE_DATA_SHA_COMPILE_FSYNC_DEPLOYED',plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),files=len(m['files']),private_shm=str(shm))))
-'''
- actual=remote(source,code,dict(root=root,manifest=manifest,parts=refs,decompress=plan['decompress'],shm=str(Path(plan['output_dir']).parent)),'source-deploy-tool.json',60);save('source-deployment.json',actual)
- # Only executable CPU fetch/controller and public config copied to persistent host.
- for name in ['fetch_checkpoint.py','io_driver.py','controller-plan.json']:
-  raw=(B/name).read_bytes();write(target,plan['persistent_remote_relative']+'/'+name,raw,'target-deploy-'+name+'.json')
- code='''from pathlib import Path
-import hashlib,json,os,shutil
-p=Path(PARAM['root']);assert os.getuid()==1006 and p.stat().st_uid==1006;os.chmod(p,0o700);assert shutil.disk_usage(p).free>=2*1024**3
-for n,r in PARAM['files'].items():
- f=p/n;assert f.stat().st_size==r['bytes'] and hashlib.sha256(f.read_bytes()).hexdigest()==r['sha256']
- with f.open('rb') as h:os.fsync(h.fileno())
- if f.suffix=='.py':compile(f.read_text(),n,'exec')
-fd=os.open(str(p),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
-print(json.dumps(dict(status='ACTUAL_PERSISTENT_FETCH_SOURCE_FSYNC',free=shutil.disk_usage(p).free)))
-'''
- files={n:dict(bytes=(B/n).stat().st_size,sha256=sha((B/n).read_bytes())) for n in ['fetch_checkpoint.py','io_driver.py','controller-plan.json']};actual=remote(target,code,dict(root=dest,files=files),'target-deploy-verify.json');save('target-deployment.json',actual);print(json.dumps(actual))
-elif a.action=='preflight':
+if a.action=='preflight':
  assert not (B/'preflight-intent.json').exists();save('preflight-intent.json',dict(at_epoch=time.time(),no_model=True,plan_sha256=plan_sha))
  code='''from pathlib import Path
 import hashlib,json,os,subprocess,time
