@@ -1,0 +1,209 @@
+{
+  "model_id": "Qwen/Qwen3-8B",
+  "ModelScope_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+  "license": "Apache-2.0",
+  "model_files": {
+    "LICENSE": {
+      "size": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "config.json": {
+      "size": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "generation_config.json": {
+      "size": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "merges.txt": {
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "model-00001-of-00005.safetensors": {
+      "size": 3996250744,
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+    },
+    "model-00002-of-00005.safetensors": {
+      "size": 3993160032,
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+    },
+    "model-00003-of-00005.safetensors": {
+      "size": 3959604768,
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+    },
+    "model-00004-of-00005.safetensors": {
+      "size": 3187841392,
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+    },
+    "model-00005-of-00005.safetensors": {
+      "size": 1244659840,
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+    },
+    "model.safetensors.index.json": {
+      "size": 32878,
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+    },
+    "tokenizer.json": {
+      "size": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "size": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "size": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "native_forward_sha256": "f0ec853368a9b19d664bfa6099d14f6c0d96e9d06a8ca540b181157be8246069",
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "tokenizers": "0.21.2",
+    "accelerate": "1.6.0",
+    "safetensors": "0.5.3",
+    "huggingface_hub": "0.30.2"
+  },
+  "run_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1",
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "gpu_index": 1,
+  "durability_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "seed": 20261023,
+  "max_new_tokens": 128,
+  "budgets": {
+    "probe": 240,
+    "formal": 7200,
+    "infer": 1800,
+    "each_TERM_grace": 30
+  },
+  "cpu_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/cpu-v1/actual/complete.json",
+    "bytes": 4954,
+    "sha256": "9cb5bffae1791a09188768f43669d64f1f204231cf8ec823aea09c8c1b3aa2cb"
+  },
+  "train_source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/cpu-v1/actual/inputs/train.json",
+    "bytes": 11359108,
+    "sha256": "42af5964516dcc0f921b7e34de1e1423bc982f7a0c0b948a130f8b678c2d9877"
+  },
+  "baseline": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/application/data/baseline.jsonl",
+    "bytes": 173758,
+    "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+  },
+  "recipe": {
+    "epochs": 2,
+    "rows": 3470,
+    "documents": 32,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "updates": 868,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_steps": 44,
+    "max_grad_norm": 1.0,
+    "loss": "standard shifted FP32 mean causal CE, indexed only at supervised prior-logit positions",
+    "quantization": false,
+    "packing": false,
+    "truncation": false,
+    "updates_per_epoch": 434,
+    "warmup_ratio": 0.05,
+    "last_batch_size": 6
+  },
+  "probe_pareto_shapes": [
+    [
+      632,
+      17
+    ],
+    [
+      744,
+      13
+    ]
+  ],
+  "source_files": {
+    "schema.py": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4",
+    "prepare.py": "b1e66c5a5f9a8b9ed73718433084219bdf22c96a2ea3b2da65f74b49c10a3708",
+    "quality.py": "d52d0d558ee1a922b59a6890daf9d2a83f4a752fc2b034bacb62be86142d9f90",
+    "gpu_driver.py": "427e781851c0d15fd5b774414ccfa9deaea296c15e2d6eeb27f13572eebaeb24",
+    "cpu_contract.py": "cbc5f744adf3d7f17e2f9e0572a16de0635df535b5258bb70a2bc230be26a333",
+    "helpers.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "gpu_entry.py": "b5d5852dab675a3c4f60b0a7cd0e7f9b8c9ecfcac21fa9fd5ebcad2eee76b561",
+    "reuse/native_tokenizer.py": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026",
+    "reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+    "query/driver.py": "34dc1cd650e1684a4fd4b6b04d15ce6c77e4b57f5787bd7fbcaf36b1adeaad3c",
+    "query/query.py": "4d91be8a4427671ef4a99eed27a90b414b74798a87d1f1a9cc7b2441f336c53d",
+    "reuse/doc/common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "reuse/doc/loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "reuse/doc/literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "reuse/doc/native.py": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c",
+    "reuse/canonical/common.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "reuse/canonical/schema_contract.py": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+    "reuse/canonical/token_census.py": "f4316599a50d6f6ecd5d8d9bf56c63787d7a867a7e0bda245afd8412e1af1ad9",
+    "query/reuse/public_bank.py": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+    "query/reuse/semantic.py": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82",
+    "query/reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  },
+  "authorization": "root fixed539 BOUNDARY+all2931; unique native Pareto FB/realAdam+5training states grammar probe240+30; if empirical cost<=7200 fresh3470x2/868 finalepochonly; two persistent state ACK then all1416fresh1800+30; jointfreeze2v2/old0. No cut/context/target changes.",
+  "fixed_cost_rule": "load+cold_first_FB+1.25*(2*actual_CPU_training_tokens*max_remaining_warm_FB_seconds_per_input_token+868*first_actual_Adam_seconds)+120_ACK_IO; gate<=7200; inherited native cold-scaled/worst-row estimates diagnostic only.",
+  "state_policy": "Discard probe state; two complete checkpoint ACKs retained, finalepoch2only. No auto-resume claim.",
+  "phases": [
+    "probe",
+    "formal",
+    "infer"
+  ],
+  "CPU_source_and_collection": {
+    "collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/cpu-v1-selected-collection.json",
+      "bytes": 10155,
+      "sha256": "9abe53479470770723c9cc47d7068608758695f4ae1a7b66e52fd484e937c1fb"
+    },
+    "complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/cpu-v1-selected/actual/complete.json",
+      "bytes": 4954,
+      "sha256": "9cb5bffae1791a09188768f43669d64f1f204231cf8ec823aea09c8c1b3aa2cb"
+    },
+    "grammar": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/schema.py",
+      "bytes": 4170,
+      "sha256": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4"
+    },
+    "native_source": {
+      "path": "/workspace/patientphex-worktrees/explore-mention-boundary-selection/solutions/mention_boundary_selection/reuse/doc/native.py",
+      "bytes": 16932,
+      "sha256": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c"
+    },
+    "source_scope": "Selected terminal/runtime/complete+all original member hashes recovered; all encoded bytes remain SHA-bound on server. Full9.4MB originalZIP local range recovery is separate, not claimed complete. CPU deployment binds pre-cost-metadata glue; schema/CPU/native math unchanged since actual CPU."
+  },
+  "prior_actual_cost_proxy": {
+    "same_host_originalTop8_full_training_seconds": 3116.6259820898995,
+    "same_host_originalTop8_full_training_tokens": 3033240,
+    "new_full_training_tokens": 4004840,
+    "token_linear_proxy_seconds": 4114.935975429875,
+    "not_new_GPU_measurement": true
+  },
+  "confounds_and_limits": "Additional539 strict crossing annotation-negative BOUNDARY labels plus sharedSYSTEM/finitegrammar state. Original2931targets/options/usercontexts retained, no puredata causal claim. Same Torch/runtime asTop8. Old9B454overlapnegative actual training remained negative. Newhead/OOFtrainF2F3, F1proposer48includesF0. Clinical NO unchanged; BOUNDARY is exact-span rejection only.",
+  "prior_verified_assets": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-candidate-selection-v1/gpu-v1/probe/verified-assets.json",
+    "bytes": 2575,
+    "sha256": "20a78adee99445927eaf76b6ae062a08b39a6826973637e4c924b7abcbcd5143"
+  }
+}
