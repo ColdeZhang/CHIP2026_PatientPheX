@@ -1,0 +1,98 @@
+{
+  "status": "CPU_READINESS_ONLY_TEACHER_FAITHFULNESS_UNKNOWN_NO_GPU_NO_QUALITY",
+  "at_utc": "2026-10-24T15:35:10.391349+00:00",
+  "base_commit": "ff7ad16777e3907ed3b4b4231794439017aa5bf8",
+  "branch": "research/verified-rationale",
+  "sources": {
+    "census.py": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/census.py",
+      "bytes": 6304,
+      "sha256": "abb68f08d10f04c68afe33ecad743197a0c2fce7f65c70fc3e321fccdce9aa44"
+    },
+    "prepare_probe.py": {
+      "path": "/workspace/patientphex-worktrees/research-verified-rationale/solutions/verified_rationale/prepare_probe.py",
+      "bytes": 4422,
+      "sha256": "a122994b08498506025bcc3e8ffb9441693e6cbd98d58dc4a3195a2c5e4f1fbf"
+    }
+  },
+  "references": {
+    "train_census": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/train-census/result.json",
+      "bytes": 3198,
+      "sha256": "b55ca997bba3a90af21fb049c1497b2ec1fcd572314728212c3107bf84347e97"
+    },
+    "proposed_inputs_v2": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/proposed-inputs-v2/input-census.json",
+      "bytes": 4612,
+      "sha256": "c5bf0790fbde2b89419e1d3374398a2b4cce84a2cd3e6501e1037a660bd8e2eb"
+    },
+    "public_fetch": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/public/fetch.json",
+      "bytes": 657,
+      "sha256": "3db5ee20bb883325ddc107df431385d0b1f305e1268eb507a3005fd69784839e"
+    },
+    "public_code": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/public/step-code.json",
+      "bytes": 1034,
+      "sha256": "a12415115b469f7748bd5fb1e988c7e820a4f12b08786315b1ffb44f68cc101b"
+    },
+    "R1_SFT_source": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_supervised_adaptation/cpu_contract.py",
+      "bytes": 16576,
+      "sha256": "6bf6df7ece82c144fe01ee970080d05105048a67f02dc3e79e1fcb551cce0df5"
+    },
+    "G_target_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/prepare.py",
+      "bytes": 9417,
+      "sha256": "51d7d1514b6e565a4574b968001e9c8fd35e48d2f72d9f6cd6eb05764b2afd42"
+    },
+    "G_prompt_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "RAG_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/retrieved_json_example/prepare.py",
+      "bytes": 14658,
+      "sha256": "44b7084f75df6902b86de54e75a3753f693e4b639096ebf890ca8df57fb0a6e5"
+    },
+    "DPO_source": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-swap-dpo/solutions/patient_swap_dpo/prepare.py",
+      "bytes": 8625,
+      "sha256": "b2674007a343dc1a3a8748f79491522c52bdbf53efd82460b1c4e29d9ceb2730"
+    },
+    "public_R1_reasoning_audit": {
+      "path": "/workspace/patientphex-worktrees/research-public-reasoning-gap/solutions/public_reasoning_gap/evidence/audit.json",
+      "bytes": 15050,
+      "sha256": "c5668d158b3513dda814aa17ae0494d65c2dbaac6d92334c5631f4cb73f90b20"
+    }
+  },
+  "train_counts": {
+    "patients": 87,
+    "atomic_positive_relations": 814,
+    "locatable": 814,
+    "multiple_mentions": 426,
+    "any_same_sentence_target": 218,
+    "any_target_only_sentence": 186,
+    "any_same_unit_target": 721,
+    "all_mentions_nearer_foreign": 145,
+    "multi_patient_positive_relations": 561
+  },
+  "proposed_teacher": "public R1-0528-Qwen3-8B MS5ee5fa48; one15train-only supply probe, not authorized or launched",
+  "novelty": "teacher citation-bearing attribution explanation as auxiliary supervision, absent in inspected actual G/R1-SFT/RAG/DPO pathways",
+  "limits": [
+    "No human relation-specific evidence gold",
+    "exactcopy+correctlabel insufficient for faithful rationale",
+    "no exact native inputtoken counts or actual new GPU cost",
+    "bounded historical scope, not exhaustive absence proof"
+  ],
+  "model_calls": 0,
+  "fit_calls": 0,
+  "held_gold_reads": 0,
+  "quality_calls": 0,
+  "official_actions": false,
+  "commands": [
+    "python solutions/verified_rationale/census.py --old-plan /workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/evidence/preparation-plan-v2.json --output /workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/train-census",
+    "python solutions/verified_rationale/prepare_probe.py --census /workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/train-census/result.json --r1-plan /workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/plan.json --tokenizer-config /workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/metadata/tokenizer_config.json --output /workspace/patientphex-runs/round2-20261023/research/verified-rationale-readiness-v1/proposed-inputs-v2"
+  ]
+}
