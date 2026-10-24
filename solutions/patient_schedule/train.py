@@ -7,7 +7,7 @@ inference, quantization, packing, smoke adapter or alternative task is supported
 Fresh base is required; only this exact patient-first run may resume complete epochs.
 Native CPU receipt binds the transposition; no parser retest or validation scoring.
 On OOM/failure stop and preserve complete epoch checkpoints; never auto-retry.
-Resume state is saved/restored; numerical GPU resume equivalence is not claimed.
+Full logical state restoration is SHA checked; numerical GPU equivalence is not claimed.
 Length6144 is only a rejection cap: batches pad to their actual maximum, never to cap.
 """
 from __future__ import annotations
@@ -345,7 +345,7 @@ def run(args):
             environment.update(gpu_name=torch.cuda.get_device_name(0),gpu_uuid=args.gpu_uuid,gpu_capability=list(torch.cuda.get_device_capability(0)))
             torch.cuda.manual_seed_all(CONFIG['seed'])
         fingerprint={'schema':'patientphex-qwen35-meta32-patient-first-four-epoch-v1','configuration':semantic_configuration(args),
-            'source_sha256':sha256(__file__),'helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
+            'source_sha256':sha256(__file__),'runtime_contract_sha256':sha256(contract.__file__),'helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
             'copied_epoch_loop_source_sha256':OLD_TRAINER_SHA,'copied204_trainer_sha256':COPIED_TRAINER_SHA,
             'meta32_preparation_sha256':PREPARATION_SHA,'original_CID_to_PID_train_sha256':OLD_TRAIN_SHA,'train_sha256':TRAIN_SHA,
             'parent_meta32_trainer_sha256':PARENT_TRAINER_SHA,'transposition_manifest_sha256':TRANSPOSITION_SHA,
@@ -364,7 +364,7 @@ def run(args):
             'resume_unit':'only complete acknowledged own epoch; never automatic replay','new_gpu_resume_numerical_equivalence_tested':False,
             'fresh_base_on_initial_run':True,'validation_labels_used':False}
         write_json(manifest_path,manifest)
-        for name,source in [('train_patient_first.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('patient_first.py',args.schema_helper),('runtime_contract.py',contract.__file__)]:
+        for name,source in [('train.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('patient_first.py',args.schema_helper),('runtime_contract.py',contract.__file__)]:
             (output/name).write_bytes(Path(source).read_bytes())
         if args.mode=='cpu':
             status('meta_full_hybrid_coverage')
@@ -459,7 +459,7 @@ def run(args):
                 optimizer.step();scheduler.step();global_step+=1
                 if probes:
                     if set(probes)!={'DeltaNet','full_attention','MLP'} or any(torch.equal(before,p.detach()) for _,p,before in probes.values()):raise RuntimeError('First nonzero-LR step did not change all three B-family probes')
-                    write_json(output/'first-nonzero-update.json',{'step':global_step,'learning_rate':learning_rate,
+                    write_json(output/f'first-nonzero-update-epoch-{resumed_epochs+1:03d}.json',{'step':global_step,'learning_rate':learning_rate,
                         'gradient_norm_before_clip':float(grad_norm),'changed_B_probes':{k:v[0] for k,v in probes.items()},'fresh_run':not bool(checkpoint)})
                     first_update_checked=True
                 loss_sum+=group_loss

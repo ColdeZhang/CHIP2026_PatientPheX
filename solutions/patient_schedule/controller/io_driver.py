@@ -9,7 +9,7 @@ def save(p,x):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--plan',type=Path,required=True);ap.add_argument('--campaign',type=Path,required=True);ap.add_argument('--entry',type=Path,required=True);a=ap.parse_args()
  plan=json.loads(a.plan.read_text());campaign=json.loads(a.campaign.read_text());entry=json.loads(a.entry.read_text());phase=entry['phase'];epoch=entry['epoch']
- assert phase in ['server','fetch'] and epoch in [1,2] and entry['plan_sha256']==sha(a.plan)
+ assert phase in ['server','fetch'] and epoch in [1,2,3,4] and entry['plan_sha256']==sha(a.plan)
  assert campaign['plan_sha256']==sha(a.plan) and campaign['cap_seconds']==5400 and campaign['grace_seconds']==30
  deadline=entry['absolute_deadline_unix'];assert deadline<=campaign['absolute_deadline_unix'] and deadline<=entry['started_unix']+600 and time.time()<deadline
  assert not os.environ.get('CUDA_VISIBLE_DEVICES')

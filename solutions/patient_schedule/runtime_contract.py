@@ -22,10 +22,13 @@ def validate_state_structure(state,completed,names):
     if state['optimizer_parameter_names']!=list(names):raise ValueError('Optimizer parameter ordering differs')
     if state['scheduler']['last_epoch']!=16*completed or state['scheduler']['_step_count']!=16*completed+1:raise ValueError('Full scheduler/warmup state differs')
     optimizer=state['optimizer']
+    expected_lr=1e-4*(64-16*completed)/60
+    if abs(optimizer['param_groups'][0]['lr']-expected_lr)>1e-14:raise ValueError('Restored LR is not the unified4/64 schedule')
     if len(optimizer['state'])!=len(names) or len(optimizer['param_groups'])!=1:raise ValueError('Complete Adam state inventory differs')
     if optimizer['param_groups'][0]['params']!=list(range(len(names))):raise ValueError('Adam parameter IDs differ')
     if not isinstance(state['cuda_rng'],list) or len(state['cuda_rng'])!=1:raise ValueError('One original CUDA RNG state required')
     for item in optimizer['state'].values():
+        if float(item['step'])!=16*completed:raise ValueError('Adam per-parameter step differs')
         if set(item)!={'step','exp_avg','exp_avg_sq'}:raise ValueError('Incomplete Adam step/moments')
     return True
 
@@ -53,7 +56,7 @@ def validate_export_ack(path,output,checkpoint,metadata,trainer_sha):
     if completed not in (1,2,3):raise ValueError('Only own incomplete four-epoch run can resume')
     expected_name=f'export-ack-epoch-{completed:03d}.json'
     if Path(path).resolve()!= (output/expected_name).resolve():raise ValueError('ACK must use own output root non-checkpoint basename')
-    if ack.get('status')!='persistent_checkpoint_verified' or ack.get('completed_epochs')!=completed or ack.get('global_step')!=16*completed:raise ValueError('Persistent first-epoch ACK required')
+    if ack.get('status')!='persistent_checkpoint_verified' or ack.get('completed_epochs')!=completed or ack.get('global_step')!=16*completed:raise ValueError('Persistent prior-epoch ACK required')
     if ack.get('trainer_sha256')!=trainer_sha or ack.get('source_checkpoint_directory')!=str(checkpoint):raise ValueError('ACK source identity differs')
     if ack.get('checkpoint_sha256')!=sha(checkpoint/'checkpoint.json'):raise ValueError('ACK checkpoint SHA differs')
     if ack.get('persistent_mount_id')!='5a9955da-5240-41cc-9e52-05d3d8da8a3c':raise ValueError('ACK is not on expected persistent mount')

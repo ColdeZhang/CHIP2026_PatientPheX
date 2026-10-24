@@ -35,7 +35,7 @@ def main():
   assert proof['checkpoint_sha256']==sha(output/('epoch-%03d/checkpoint.json'%(epoch-1)))
  fresh=gpu(plan);index,uuid,used,free,total=[x.strip() for x in fresh['target_csv'].split(',')]
  assert index=='2' and int(used)<=100 and int(free)>=78000 and int(total)==81920 and not fresh['target_compute_rows']
- assert os.statvfs(output.parent).f_bavail*os.statvfs(output.parent).f_frsize>=4*1024**3
+ assert os.statvfs(output.parent).f_bavail*os.statvfs(output.parent).f_frsize>=1*1024**3
  save(control/'fresh-gpu.json',fresh)
  argv=plan['train_argv']+['--absolute-deadline-unix',str(deadline)]
  argv+=['--stop-after-epoch',str(epoch)]

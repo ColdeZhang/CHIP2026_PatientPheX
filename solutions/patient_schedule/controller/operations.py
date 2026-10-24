@@ -93,7 +93,7 @@ for item in manifest['files']:
  assert f.stat().st_size==item['size'] and h.hexdigest()==item['sha256'];actual.append(dict(name=item['name'],bytes=item['size'],sha256=item['sha256']))
 gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,memory.free,memory.total','--format=csv,noheader,nounits'],text=True);apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_gpu_memory','--format=csv,noheader,nounits'],text=True)
 row=[s for s in gpu.splitlines() if s.split(',')[1].strip()==plan['gpu_uuid']];assert len(row)==1;idx,uuid,used,free,total=[x.strip() for x in row[0].split(',')];assert idx=='2' and int(used)<=100 and int(free)>=78000 and int(total)==81920 and uuid not in apps
-shm=Path(plan['output_dir']).parent;assert shm.stat().st_uid==1045 and not Path(plan['output_dir']).exists();assert os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize>=4*1024**3
+shm=Path(plan['output_dir']).parent;assert shm.stat().st_uid==1045 and not Path(plan['output_dir']).exists();assert os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize>=6*1024**3
 print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize)))
 '''
  d=remote(source,code,dict(root=root),'preflight-tool.json',60);save('preflight.json',d);print(json.dumps({k:v for k,v in d.items() if k!='files'}))
