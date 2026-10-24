@@ -11,3 +11,6 @@ Task2旧full64 Qwen1a703b正序/逆序提示来自独立CRF/Sap/LR64+GLiNER48 fu
 资源由root调度：R1原formal完成并持久后暂缓其index73新模型探针，.100GPU1先GLiNER48、再旧normalB；A800安排reverse/public-new；sequence负责patient f787与GLiNER48和共同oldpool。所有B模型、候选、预测、原始响应与manifest留外部`R/official-b-901`，Git只源/合同/摘要。
 
 固定Task1 B应用已完整15.40675秒完成：93710候选→6816实体，100文献／244患者，空关系阶段pred b29651ee…；见[B实体结果指针](B-task1-result-pointer.json)。后续关系只读这些实体作public支持。06:59:55实际A800仅GPU2空闲、项目盘可用0B；[历史状态持久迁移](storage_recovery/README.md)已于07:10:59释放338,419,712B，随后reverse实际07:11:43启动（proc_f314a9a9，2820+30）。normal已07:04:55在.100 GPU1启动（proc_af58ba33，4080+30）；public-new原286条/1800+30已完整部署，等同A800 GPU2释放再启动。共享盘后台仅迁自有已完成state增加余量，不改推断。患者actual推断由sequence单独协调；若A100持续离线，预留normal终态释放后的.100 GPU1，R1新模型仍暂停。
+
+
+最新实际端点见 `B-inference-status.json`：正序07:36:57完成420条（1915.672秒、外1921.832秒），逆序07:34:02完成420条（1333.649秒、外1339.092秒），两路均rc0/不超时，分别438个原归档成员已完整回收逐SHA。正序response37073d81、逆序e76812fb；.100 GPU1已0MiB/noapps释放，仍等待官方接收后才继续新R1。public-new原286条于07:34:34唯一接续A800 GPU2，原1800+30预算。逆序初次500k传输返回工具错误，旧controller未留错误正文，不能推断具体根因；原包60cb28aa及mtime经只读库存未变，用 `recover_existing_archive.py` 逐200k片fsync/ACK完成原包恢复，未重新归档或NN。正序先独立冻结原包f798d8a9，再同样恢复；新 `freeze_archive_only.py`复用原7a归档主体，只将元数据回收与大块传输分离。
