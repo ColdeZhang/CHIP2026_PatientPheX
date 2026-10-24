@@ -1,1 +1,1 @@
-第一次入口在读取gold前的纯输入schema断言退出（.0295秒，0gold/0统计）。我将原实际字段误写为title/passages；只读实际纯输入后确认字段是pmc_id/pmid/patient/full_text，原21条schema逻辑之外无方法变化。原源a747/plan5fa4与失败47dd原样保存unique-v1；修订只改字段名称，在新独占输出执行唯一有效统计，不重fit/predict/v2，不读其他gold。
+第一次入口在读取gold前的纯输入schema断言退出（.0295秒，0gold/0统计）。我将原实际字段误写为title/passages；只读实际纯输入后确认字段是pmc_id/pmid/patient/full_text，修订仅涉及上述schema字段，方法不变。原源a747/plan5fa4与失败47dd原样保存unique-v1；修订只改字段名称，在新独占输出执行唯一有效统计，不重fit/predict/v2，不读其他gold。
