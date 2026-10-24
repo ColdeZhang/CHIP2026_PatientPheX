@@ -1,0 +1,97 @@
+{
+  "status": "PREPARED_CPU_ONLY_NOT_EXECUTED_NO_TRAINING_AUTHORIZATION",
+  "model": "Qwen/Qwen3.5-9B",
+  "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "files": {
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/native_cpu.py",
+      "bytes": 7949,
+      "sha256": "54d32fe3644120456e473cd0299746bf52384c53401b35eff544781d9c1425b7"
+    },
+    "qwen35_smoke.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/qwen35_smoke.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "original124.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/original124.jsonl.gz",
+      "bytes": 152898,
+      "sha256": "f9fc873a6e6c718ad28141728bd4bf8c37b43eee324a019f3f5a66121f41a911"
+    },
+    "expanded124.jsonl.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/expanded124.jsonl.gz",
+      "bytes": 557372,
+      "sha256": "96bff1ca644c32d6aa49e8f5c9112de0a54fb99bad82538ac240b9122c356a30"
+    }
+  },
+  "tokenizer_files": {
+    "config.json": {
+      "bytes": 3126,
+      "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+    },
+    "tokenizer.json": {
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "tokenizer_config.json": {
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    "vocab.json": {
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    },
+    "merges.txt": {
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+    },
+    "chat_template.jinja": {
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    }
+  },
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1"
+  },
+  "original_train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/original124.jsonl",
+    "bytes": 1723484,
+    "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+  },
+  "expanded_train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/expanded124.jsonl",
+    "bytes": 4145866,
+    "sha256": "9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e"
+  },
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/preparation.json",
+    "bytes": 4263,
+    "sha256": "c489a9eeb2bc17462e26b23e7e7cf18950c8d0b66ba125bb2da0cfb1deefd14b"
+  },
+  "original_encoded_sha256": "7fa9ef2b46a5600497887b594d44474d27aaa4165056650958626b454641bcb3",
+  "append_prefix": "\n\nFull supplied report, original passage order:\n",
+  "rows": 124,
+  "training_documents": 32,
+  "training_folds": [
+    2,
+    3
+  ],
+  "validation_gold_access": false,
+  "original_full_tokens": 402594,
+  "original_max_full_tokens": 5523,
+  "supervised_tokens_expected": 7170,
+  "CPU_budget_proposal_seconds": 60,
+  "TERM_grace_seconds": 5,
+  "CPU_execution_started": false,
+  "training_authorized": false,
+  "expected_invocation": "CUDA_VISIBLE_DEVICES= timeout --signal=TERM --kill-after=5 60 <existing exact qwen-venv>/bin/python native_cpu.py --plan cpu-plan.json --base <verified Qwen3.5 c202236 cache>",
+  "no_reexecution_after_unknown_intent": true,
+  "model_weights_or_adapter_needed": false,
+  "output_files": [
+    "native-CPU-intent.json",
+    "native-row-audit.json",
+    "native-result.json"
+  ]
+}

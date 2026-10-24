@@ -1,0 +1,77 @@
+{
+  "status": "PREPARED_TARGET_TORCH271_SYNTHETIC_CPU_CONTRACT_NOT_EXECUTED",
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2"
+  },
+  "files": {
+    "selected_cpu.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/selected_cpu.py",
+      "bytes": 10361,
+      "sha256": "c11868cfa284e4b7fc756e3f2fc816429e08c50c48c13689f47dc4dc2f40fc86"
+    },
+    "selected_loss.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/selected_loss.py",
+      "bytes": 1101,
+      "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+    },
+    "baseline_loss_utils.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/selected-ce-cpu/baseline_loss_utils.py",
+      "bytes": 8540,
+      "sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe"
+    }
+  },
+  "reference_fixture": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_full64/memory_recovery/torch_cpu_contract.py",
+    "bytes": 8094,
+    "sha256": "e6b1cc79b7d47d241987cbcbafba5251bc39ea77d1bfc9b45afc1b36ec82d3a0"
+  },
+  "native_loss_source_sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe",
+  "CPU_seconds": 60,
+  "term_grace_seconds": 5,
+  "model_or_GPU_or_training_or_gold": false,
+  "case_policy": {
+    "seed": 20261024,
+    "dtypes": [
+      "float32",
+      "bfloat16"
+    ],
+    "scales": [
+      0.0001,
+      1,
+      50,
+      10000
+    ],
+    "denominators": [
+      "mean",
+      "int23",
+      "tensor23"
+    ],
+    "shift_supplied": [
+      false,
+      true
+    ],
+    "mask_types": [
+      "right_padding",
+      "left_padding_interior",
+      "one_supervised_last",
+      "all_labeled_t0_not_predicted",
+      "all_ignore",
+      "only_t0_ignored_after_shift"
+    ],
+    "accumulation_groups": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "full_head_gradients": true,
+    "ignored_logit_perturbations": true,
+    "custom_ignore_index": -7,
+    "loss_rtol": 2e-06,
+    "loss_atol": 2e-06,
+    "gradient_rtol": 2e-05,
+    "gradient_atol": 2e-07
+  },
+  "limits": "Tiny CPU fixture only, actual source/runtime verified at execution; not actual model/GPU memory or full-training numerical equivalence."
+}

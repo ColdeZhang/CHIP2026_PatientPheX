@@ -1,0 +1,245 @@
+{
+  "status": "READ_ONLY_HISTORY_AND_CPU_PREPARATION_COMPLETE_EXACT_QWEN_NATIVE_COST_PENDING",
+  "at_utc": "2026-10-24T05:57:31.852108+00:00",
+  "conclusion": "No actual exact Qwen3.5 strict F2+F3 124-row append-full-report training found in finite local manifest inventory; current Qwen full-report experiments are inference with existing local-evidence adapters. Med full-report training is actual but is not this control.",
+  "actual_original_Qwen_SFT32": {
+    "rows": 124,
+    "documents": 32,
+    "folds": [
+      2,
+      3
+    ],
+    "epochs": 2,
+    "optimizer_steps": 32,
+    "warmup_steps": 2,
+    "full_tokens_per_epoch": 402594,
+    "supervised_tokens_per_epoch": 7170,
+    "max_full_tokens": 5523,
+    "elapsed_seconds": 1149.460371017456,
+    "elapsed_includes": "source/tokenizer/model-load/training/local epoch-save within trainer; not external durable export",
+    "max_gpu_allocated_bytes": 36633378816,
+    "max_gpu_reserved_bytes": 81109450752,
+    "device": "NVIDIA A800 80GB PCIe",
+    "adapter_sha256": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff",
+    "train_sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+  },
+  "prepared_control": {
+    "change": "Only append complete allowed article to final user content; keep original answer and all other row fields.",
+    "rows": 124,
+    "documents": 32,
+    "patients": 87,
+    "candidates": 880,
+    "pairs": 2506,
+    "passages": 1122,
+    "given_mentions": 255,
+    "inserted_markers": 254,
+    "overlap_skipped": 1,
+    "all_patients_marked": true,
+    "all_text_reconstructed": true,
+    "source_shape": "messages=[system,user], separate answer; frozen encoder adds assistant only when rendering full training sequence",
+    "answer_UTF8_preserved": true,
+    "expanded_train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/expanded124.jsonl",
+      "bytes": 4145866,
+      "sha256": "9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e"
+    },
+    "original_characters": {
+      "total_user_characters": 1476209,
+      "max_user_characters": 21730,
+      "longest_character_indices": [
+        113
+      ]
+    },
+    "expanded_characters": {
+      "total_user_characters": 3884700,
+      "max_user_characters": 53767,
+      "longest_character_indices": [
+        55
+      ]
+    },
+    "native_tokens": null,
+    "native_cost_status": "not executed: exact runtime packages not installed locally",
+    "native_mask_supervision_status": "source prepared to compare all124 original vs expanded supervised IDs, exact EOS and assistant mask; actual measurement pending"
+  },
+  "selected_CE": {
+    "source_sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9",
+    "mechanism": "Unchanged full BF16 head output; gather shifted non-ignore supervised logits before casting selected logits to FP32; native fixed CE reduction/denominator.",
+    "actual_CPU_torch": "2.6.0+cu124",
+    "new_A800_target_torch": "2.7.1+cu126",
+    "actual_probe": {
+      "seconds": 147.29535913467407,
+      "context": {
+        "actual_updates": 1,
+        "forwards": 12,
+        "backwards": 12,
+        "tokens": 44305,
+        "longest_tokens": 6166,
+        "longest_supervised": 122,
+        "Adam_parameter_states": 496,
+        "Adam_tensor_bytes": 346228672,
+        "gradient_bytes_before_longest": 173113344,
+        "three_LoRA_B_families_changed": true,
+        "base_frozen": true,
+        "numerics_finite": true
+      },
+      "memory": {
+        "allocated_bytes": 18719874560,
+        "reserved_bytes": 29976690688,
+        "peak_allocated_bytes": 25031000576,
+        "peak_reserved_bytes": 29976690688,
+        "free_bytes": 11769544704
+      }
+    },
+    "actual_full64_state_as_of": "05:55:28 owner observation: original formal job still running, epoch2 step55; stored first complete epoch34calls1456.660s durable. Not full2epoch terminal.",
+    "reuse": "Same Qwen3.5 architecture and loss function make it a direct candidate; use instance hook plus exact source binding and actual numerical checks, not reuse entire patient-transposed data/trainer identity.",
+    "limits": [
+      "CPU contract used Torch2.6.0+cu124; target A800 old SFT32 used2.7.1+cu126; do not claim cross-runtime numerical equivalence.",
+      "Longest existing probe6166 does not prove appended full-report train max or memory fit.",
+      "Full BF16 head tensor still scales with length*vocab248320; selected FP32 CE does not remove hidden activations, full logits, attention/backward or accumulated gradients.",
+      "No fused attention, logits_to_keep, quantization, reduced precision, altered supervision/weighting or silent truncation is part of this prepared control."
+    ]
+  },
+  "two_epoch_budget": {
+    "status": "SCENARIO_ONLY_NOT_AUTHORIZED_NOT_A_MEASURED_FORECAST",
+    "exposures": 248,
+    "optimizer_steps": 32,
+    "warmup_steps": 2,
+    "per_row_batch": 1,
+    "accumulation": 8,
+    "tail_group_divisor": 4,
+    "total_native_tokens": null,
+    "formula": "T_coarse = 1149.460371 * (actual full-report total training tokens / 402594); entire-old-run linear proxy includes fixed overhead and is not a timing guarantee.",
+    "scenarios": [
+      {
+        "assumed_token_ratio": 2.5,
+        "coarse_two_epoch_seconds": 2873.65092754364,
+        "assumed_two_epoch_tokens": 2012970.0
+      },
+      {
+        "assumed_token_ratio": 3.0,
+        "coarse_two_epoch_seconds": 3448.381113052368,
+        "assumed_two_epoch_tokens": 2415564.0
+      }
+    ],
+    "character_ratio_proxy_only": 2.631537946185127,
+    "Med_token_ratio_different_tokenizer_reference_only": 2.527319371727749,
+    "reviewable_conditional_budget_proposal": {
+      "seconds": 4500,
+      "TERM_grace_seconds": 30,
+      "authorized": false,
+      "conditions": [
+        "actual124 native census and assistant mask PASS with no truncation, max <=32768",
+        "future separately authorized actual selected-CE numerical and optimizer/accumulation/longest backward engineering probe PASS",
+        "fresh base/control identities, no prior adapter continuation, immutable data/seed/batchplan, exact checkpoint/durability and bounded stop plan frozen",
+        "if actual ratio or probe timing makes4500 unjustified, report concrete new estimate before any training start; do not autoextend"
+      ]
+    },
+    "caveats": "Long full-attention and backward can be nonlinear; selected CE memory/time gains on this data unmeasured; A100 patient265 throughput and Med4B throughput cannot be substituted; checkpoint persistent transfer cost requires its own budget."
+  },
+  "new_runtime_actions": {
+    "validation_gold_read": false,
+    "quality_calls": 0,
+    "remote_calls": 0,
+    "model_loaded": false,
+    "GPU_started": false,
+    "training_started": false,
+    "Git_modified_by_agent": false
+  },
+  "references": {
+    "original_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/run_manifest.json",
+      "bytes": 10310,
+      "sha256": "5535d33a34859c00da1f4e99d6847e1fc87200ca167e503b4ef255f54b58be8c"
+    },
+    "original_completion": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "d52918ed293c83e20f40faee2825cc7fc2eb5b0484cc94972d8bccdc5dcff20b"
+    },
+    "original_epoch2": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10435,
+      "sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120"
+    },
+    "original_token_mask": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/token-mask-audit.json",
+      "bytes": 17505,
+      "sha256": "d97f3438a4bab5996caada009b2bb659a1e679e93ae657893f05fcd1e206a86c"
+    },
+    "original_trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train_qwen35_meta32.py",
+      "bytes": 28818,
+      "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+    },
+    "original_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "Med_full_report_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/formal-preparation/formal/epoch-002/run_manifest.json",
+      "bytes": 15398,
+      "sha256": "5967c86f8870992734780cba1617839ca72f91f9dc01efae8d8ce4f62e1a50bd"
+    },
+    "Med_full_report_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/formal-preparation/formal/training-campaign-complete.json",
+      "bytes": 296,
+      "sha256": "c8e9c17042eda0828fae7b583044bdffbba91743126d9bb6b6a55b756ce94a3f"
+    },
+    "Med_native_cost": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/actual-cpu/summary.json",
+      "bytes": 5755,
+      "sha256": "5d295ec580cd0c862a0fa1ded99ccfe93bb68f92631aec8dbbc5eb94868d34d9"
+    },
+    "selected_loss": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_full64/memory_recovery/selected_loss.py",
+      "bytes": 1101,
+      "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+    },
+    "selected_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/CPU-result.json",
+      "bytes": 86397,
+      "sha256": "8cf18f83ac87dc5173c5e38b31743415dcecf8e50d070dbbcd220b743b96677b"
+    },
+    "selected_probe": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/terminal-manifest.json",
+      "bytes": 5241,
+      "sha256": "c85fa31cf14155215daec416edc26cd418d68ea0da7509f3768d59badba3d28b"
+    },
+    "selected_training_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/train-plan.json",
+      "bytes": 8194,
+      "sha256": "efa97e9a111c959170a914a4c01b1ffc6e89fea981fa591677630b4789bb08ea"
+    },
+    "selected_epoch1": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/evidence/patient-first-full64-memory-recovery/formal-epoch1-milestone.json",
+      "bytes": 3640,
+      "sha256": "a6a0220f66347a9113cc3ed7ab4d64da2118ced4f19e2cfb5a491c02a7ec3ba1"
+    },
+    "selected_source_diff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal-source-draft.json",
+      "bytes": 723,
+      "sha256": "6823192e68783ad2e1ebfa1645dd507c835437281a8e6a581a2a8ddec5fc8212"
+    },
+    "construction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/preparation.json",
+      "bytes": 4263,
+      "sha256": "c489a9eeb2bc17462e26b23e7e7cf18950c8d0b66ba125bb2da0cfb1deefd14b"
+    },
+    "history": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/history-inventory.json",
+      "bytes": 9368,
+      "sha256": "6977379a465128be2b2c0149211906c4eb0219b8075d06ecb95b33619c186834"
+    },
+    "CPU_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/cpu-plan.json",
+      "bytes": 3922,
+      "sha256": "a85cc2698c28b26db8069c5e1f7a30b4a154c64202ddfe3f27996f6e44a9ca04"
+    },
+    "CPU_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-training-readiness/native_cpu.py",
+      "bytes": 7949,
+      "sha256": "54d32fe3644120456e473cd0299746bf52384c53401b35eff544781d9c1425b7"
+    }
+  }
+}
