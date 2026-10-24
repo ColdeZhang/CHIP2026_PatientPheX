@@ -1,0 +1,195 @@
+{
+  "status": "COMPLETE_AGGREGATE_FN_PARTITION",
+  "at_utc": "2026-10-24T07:09:59.947682+00:00",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/relation_candidate_space_followup/fn_partition/count_fn.py",
+    "bytes": 6511,
+    "sha256": "bbf14b74ce7126bf18a94de39ec541417179ee05e6420aacf7f5913c37516c00"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/relation_candidate_space_followup/fn_partition/plan.json",
+    "bytes": 3063,
+    "sha256": "14ff7e6dcc2e20cc1b031919062a110cf806a0ed8349b944535e198d1d4381fe"
+  },
+  "prelabel_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-candidate-space-followup/fn-partition-v1/prelabel-freeze.json",
+    "bytes": 1539,
+    "sha256": "cb25484f9b0079ad8c3684d2600db4296d2e864e52d31efd0ed9e64d280e224f"
+  },
+  "seconds": 0.055596434001927264,
+  "folds": [
+    {
+      "fold": 0,
+      "baseline_relation_counts_crosscheck": {
+        "tp": 252,
+        "fp": 63,
+        "fn": 127
+      },
+      "partition": {
+        "legal_but_no_existing_positive_output": {
+          "count": 55,
+          "share_of_reference_FN": 0.4330708661417323,
+          "documents": 16,
+          "mean_per_document": 3.4375,
+          "macro_share_within_document_FN": 0.48517766955266955
+        },
+        "no_literal_HPO_legal_candidate": {
+          "count": 47,
+          "share_of_reference_FN": 0.3700787401574803,
+          "documents": 14,
+          "mean_per_document": 2.9375,
+          "macro_share_within_document_FN": 0.35516774891774894
+        },
+        "nonHPO_or_text_no_literal_legal_match": {
+          "count": 16,
+          "share_of_reference_FN": 0.12598425196850394,
+          "documents": 7,
+          "mean_per_document": 1.0,
+          "macro_share_within_document_FN": 0.09777462121212122
+        },
+        "public_raw_positive_rejected_by_fixed_LGB_support": {
+          "count": 9,
+          "share_of_reference_FN": 0.07086614173228346,
+          "documents": 6,
+          "mean_per_document": 0.5625,
+          "macro_share_within_document_FN": 0.06187996031746031
+        }
+      },
+      "by_type": [
+        {
+          "category": "legal_but_no_existing_positive_output",
+          "kind": "literal_HPO",
+          "count": 55
+        },
+        {
+          "category": "no_literal_HPO_legal_candidate",
+          "kind": "literal_HPO",
+          "count": 47
+        },
+        {
+          "category": "nonHPO_or_text_no_literal_legal_match",
+          "kind": "nonHPO_or_text",
+          "count": 16
+        },
+        {
+          "category": "public_raw_positive_rejected_by_fixed_LGB_support",
+          "kind": "literal_HPO",
+          "count": 9
+        }
+      ],
+      "legal_without_positive_space": {
+        "old_only": 40,
+        "public_only": 15
+      },
+      "unexplained_count": 0,
+      "nonHPO_or_text_separate": 16
+    },
+    {
+      "fold": 1,
+      "baseline_relation_counts_crosscheck": {
+        "tp": 366,
+        "fp": 105,
+        "fn": 154
+      },
+      "partition": {
+        "legal_but_no_existing_positive_output": {
+          "count": 86,
+          "share_of_reference_FN": 0.5584415584415584,
+          "documents": 15,
+          "mean_per_document": 5.375,
+          "macro_share_within_document_FN": 0.47198084826035674
+        },
+        "no_literal_HPO_legal_candidate": {
+          "count": 45,
+          "share_of_reference_FN": 0.2922077922077922,
+          "documents": 15,
+          "mean_per_document": 2.8125,
+          "macro_share_within_document_FN": 0.3379261782464182
+        },
+        "nonHPO_or_text_no_literal_legal_match": {
+          "count": 7,
+          "share_of_reference_FN": 0.045454545454545456,
+          "documents": 5,
+          "mean_per_document": 0.4375,
+          "macro_share_within_document_FN": 0.03977486329460014
+        },
+        "public_raw_positive_rejected_by_fixed_LGB_support": {
+          "count": 16,
+          "share_of_reference_FN": 0.1038961038961039,
+          "documents": 7,
+          "mean_per_document": 1.0,
+          "macro_share_within_document_FN": 0.08781811019862491
+        }
+      },
+      "by_type": [
+        {
+          "category": "legal_but_no_existing_positive_output",
+          "kind": "literal_HPO",
+          "count": 86
+        },
+        {
+          "category": "no_literal_HPO_legal_candidate",
+          "kind": "literal_HPO",
+          "count": 45
+        },
+        {
+          "category": "nonHPO_or_text_no_literal_legal_match",
+          "kind": "nonHPO_or_text",
+          "count": 7
+        },
+        {
+          "category": "public_raw_positive_rejected_by_fixed_LGB_support",
+          "kind": "literal_HPO",
+          "count": 16
+        }
+      ],
+      "legal_without_positive_space": {
+        "public_only": 31,
+        "old_only": 55
+      },
+      "unexplained_count": 0,
+      "nonHPO_or_text_separate": 7
+    }
+  ],
+  "input_counts": [
+    {
+      "fold": 0,
+      "old_positive": 276,
+      "public_raw_positive": 112,
+      "public_gate_retained": 39,
+      "public_gate_rejected": 73,
+      "final_positive": 315,
+      "old_legal_pairs": 1166,
+      "public_legal_pairs": 876,
+      "combined_legal_pairs": 2042,
+      "old_positive_outside_legal": 0,
+      "public_raw_outside_public_legal": 0,
+      "final_identity_and_existing_gate_exact": true
+    },
+    {
+      "fold": 1,
+      "old_positive": 383,
+      "public_raw_positive": 193,
+      "public_gate_retained": 88,
+      "public_gate_rejected": 105,
+      "final_positive": 471,
+      "old_legal_pairs": 1557,
+      "public_legal_pairs": 1251,
+      "combined_legal_pairs": 2808,
+      "old_positive_outside_legal": 0,
+      "public_raw_outside_public_legal": 0,
+      "final_identity_and_existing_gate_exact": true
+    }
+  ],
+  "new_v2_calls": 0,
+  "new_model_calls": 0,
+  "new_fit_calls": 0,
+  "original_dev_gold_read": false,
+  "limitations": [
+    "Posthoc training-side diagnosis of the fixed public-new LGB support references, not complete901 or independent quality.",
+    "No existing positive means absent from saved positive outputs; it does not distinguish semantic NO, parse rejection, caps or evidence limits.",
+    "Unlinked/non-HPO literal missing-space items reported separately, not claimed as HPO candidate failures.",
+    "The support gate applies only public raw additions, not the inherited old baseline.",
+    "No gold-driven candidate changes, fit, NN, v2 or original-dev labels."
+  ]
+}

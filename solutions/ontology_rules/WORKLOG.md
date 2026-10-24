@@ -49,3 +49,5 @@
 - head_index_probe独立18件ready2026d27e已SHA核齐：新probe143c2a3c/planbf7170e2，CPU0.156748秒的9训练+9同hidden局部+11拒绝检查通过，source41项通过；无部署/GPU，原formal不变。root事前后继边界：官方accepted后仅一个420+30工程控制；未过保留失败、不放宽数值门/连开诊断，继续原已验证formal；通过才另冻新正式版本与绑定，不能把理论head FLOPs节省称全训练实际提速。
 
 - 训练内关系候选空间审计唯一0.716438秒rc0：Task1缺口F0仅1个doc-HPO/6对/覆盖0FN，F1仅2个/9对/覆盖2FN；三者均BioBERT-only原生供给但同时有semantic候选，非独立贡献。old/public2实际提示空间等价全过、原关系252/63/127与366/105/154精确复核，新评分/模型0。建议不专门开GPU扩展；完整输入先冻、literal与canonical分列。[结案建议](relation_candidate_space_followup/RESULT.md)。
+
+- 后继参考FN分解一次0.055596秒rc0：F0 55合法无已解析正例＋47无HPO空间＋16非HPO/文本＋9支持拒；F1 86＋45＋7＋16；集合未解释0，原FN127/154不变。支持优先既有关系训练、另审候选识别适配，不据25正确被gate拒就放宽gate。[小诊断](relation_candidate_space_followup/fn_partition/RESULT.md)。
