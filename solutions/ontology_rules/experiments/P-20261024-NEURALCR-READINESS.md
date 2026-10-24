@@ -110,3 +110,7 @@ GPU成本探针源审PASS `684fe02d…b33261`。部署第4文件probe-inputs.jso
 ### 01:47 唯一实际恢复只读尝试失败，GPU探针仍未启动
 
 root指定本owner为A100唯一恢复探测者，不看mount元数据；01:46:59.726477Z开始一次90秒+TERM5外限的5文件SHA只读run_command，01:47:03.705133Z以rc1结束、实际3.978655秒，MCP返回UNKNOWN_OUTCOME。未收到实际SHA库存结果，未补传/未发GPU启动，无start-intent/managedjob。原错误/完整stderr仓外摘要已冻`inventory-attempt1-terminal.json`，停止新增MCP，等待统一实际恢复安排；不能把未拿到报告当作远端没有执行或文件未落盘。CPU原生准备终点和独审PASS保持，GPU吞吐/全缓存质量均仍未知。
+
+### 连接间隔内的纯静态后继准备
+
+原native tokenkey top1缓存、float32标量类型、严格>.8和原生重叠顺序、先raw解码后官方HPO映射、全部683438位置/408272键完整性已写contract。没有读取gold逐例、NN/fit/质量。独立本地依赖分析定位无B旧8池244794行、B独有追加2010行及六列，full64新增500/dev新增102来自既有冻结元数据；新管线从无B池重建、fresh vectorizer/HGB，不以biobert_present删除共享键，也不重用旧103列概率/模型。实际新维度由新训练字段确定，不虚称97+2固定。后续关系/support若消费旧B实体须由owner追踪，当前只核实体链，10B替换投影仍有条件。静态结果入口cache-replacement-static/manifest.json；全缓存预算必须等已授权GPU探针实测，未凭CPU小batch外推。

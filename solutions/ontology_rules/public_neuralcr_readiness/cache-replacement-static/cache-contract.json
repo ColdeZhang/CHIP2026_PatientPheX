@@ -1,0 +1,64 @@
+{
+  "status": "static_only_no_NN_fit_or_quality",
+  "fixed_public_model_parameters": 491068890,
+  "dictionary_words": 666817,
+  "raw_occurrences": 683438,
+  "unique_token_keys": 408272,
+  "full_batches": 797,
+  "last_batch_rows": 208,
+  "native_batch_size": 512,
+  "total_batches": 798,
+  "source_semantics": {
+    "cache_key": "tuple(upstream tokenize(query)[:49]); all actual native1..7 generated queries have unique joined key roundtrip",
+    "scores": "unrounded raw float32 top1 probability; keep raw column/HPO and float32 bit pattern; never use PhenoTagger 5dp score or any other model logits",
+    "threshold": "original annotate_text strict score>.8, exclude original root and None before overlap; preserve full upstream decoder with cached get_match",
+    "mapping_order": "raw original native output/overlap first, then official current HPO ID mapping; no head pruning or renormalization before argmax",
+    "coordinates": "Python codepoint local[start,end), original text exact; global offset=passage.offset+local_start, length=end-start",
+    "empty_boundary": "train64 census has0 zero-candidate passages; upstream empty unsupported, do not silently introduce a different generator/decoder"
+  },
+  "cache_invariants": [
+    "All 408272 exact keys before complete status; no default None/zero for missing keys",
+    "Each of683438 original candidate positions maps to one present key without gold selection",
+    "Only prior NCR probe rows may be reused if successful, exact prefix keys/model/runtime/FP32/TF32 and output SHA are identical; other models reusable predictions=0",
+    "Runtime batch changes may cause floating point differences; fixed512 order/runtime is part of new cache definition, not claimed bitwise original per-passage batch equivalence",
+    "No gold/supervised resource in public NN cache; fold projection by pmc_id only after complete cache",
+    "Use original get_match top1 tie rule; do not silently replace np.argpartition-based selection with argmax",
+    "Restore cache score to np.float32 for unchanged native annotate_text, not Python float. Pin the actual NumPy runtime; scalar-vs-array promotion near .8 may differ by dtype/version. Convert to Python float only after native decoding for JSON."
+  ],
+  "HPO_mapping_policy": [
+    "Build fresh mapping for NCR original14260concepts+None sentinel from frozen public onto.json and current hp.obo",
+    "Current allowed HP:0000118 descendants excluding obsolete; same valid ID, official alt_id, then unique official replaced_by if valid; unresolved/outside current branch excluded with reason",
+    "Preserve raw HPO and full column order including root/None; existing17266-label PhenoTagger mapping is policy reference, not NCR label universe",
+    "Apply mapping after original native threshold and overlap; canonical duplicates combine only identical global key with raw provenance kept"
+  ],
+  "pending_mapping_fact": "NCR public onto.json actual remote size/SHA already in verified-assets, but no full local copy exists. No NCR-current mapping counts computed in this static step.",
+  "training_dependency_rule": "Rebuild from explicitly pre-BioBERT old pools, remove six BioBERT fields and its exclusive candidates/model/cached probabilities; fit fresh HGB/vectorizer per original fold, never reuse old103-column estimator. New NCR fields need explicit truthful provenance, not renamed BioBERT score or fake dictionary/abbreviation flags.",
+  "budget": "Wait actual fixedGPU probe before setting full-cache cap; no estimate from CPU small batches or input census",
+  "references": {
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel-upstream.py": {
+      "bytes": 8114,
+      "sha256": "7d196049361dd19d9e88601c2e91c21c055b63ce3f29afa17d8bdb85259e9aef"
+    },
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/input-only-census/census.py": {
+      "bytes": 7051,
+      "sha256": "e9779e084da6fe220ee92f6e799ef79e0c6046aa05b2dabd396483507b1ee29b"
+    },
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/input-only-census/report.json": {
+      "bytes": 15117,
+      "sha256": "648b57488c323fc18eb6207a362ef0092d9e81308d8c17974e28fc5cd1b14c74"
+    },
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/input-preparation/result.json": {
+      "bytes": 5459,
+      "sha256": "d5a624381dcaa145d7f551faf5798e702a2f7ee70b929142a41d4acc58079e09"
+    },
+    "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/build_label_map.py": {
+      "bytes": 2740,
+      "sha256": "1b4a60a8a965a4704a3a78e52fa56e628fc855cf0781ec7b9c32b5cb3cd57e03"
+    },
+    "/workspace/patientphex-data/hp.obo": {
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "whole_pipeline_open_dependency": "This static inventory covers entity candidate/features/HGB chain only. Later LLM relation/support caches that consume BioBERT-conditioned entity lists must be traced by their owner; no claim that the whole executable dependency closure is already BioBERT-free."
+}
