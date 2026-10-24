@@ -426,3 +426,9 @@ GLiNER2.5原生`synthetic_entity_label_prob=.2`会将phenotype随机改成entity
 Grounded full64检查点导出的HTTP子进程使用独立session。停止其MCP driver后，driver已退出，但子PID61705仍在、PPID变为4735；不能仅凭`stop_process`回执就称临时服务已关闭。
 
 **避免方法**：记录子进程PID、start_ticks、UID、argv、PGID/SID及原绝对截止，关闭后再核具体子进程。只处理已确认自有身份，不能按宽泛进程名杀进程。此次有界guardian在原parent退出后于12:50:58.246向该子组发TERM，.100秒后实际`/proc`不存在；没有KILL、重开HTTP或影响训练，第二轮另按同协议核。证据`research/grounded-generation-full64-v1/export-guardian-v1/observation-1792846276999439460.json`，实现源码`5504bac5…`；这是服务生命周期修复，不改变原6000秒训练预算或持久ACK要求。
+
+## H65：同一 autocast 缓存内混用无梯度和训练前向，可能破坏梯度及检查点重算
+
+串行DPO先无梯度计算两答案概率，再反传对应加权概率。首个真实GPU probe虽然chosen的两次logp完全相同，却在首次backward报非重入checkpoint重算张量shape/dtype不一致，12.449秒退出，正式训练未开始。目标Torch2.7.0的微型BF16/checkpoint CPU复现中，cache=True同样通过数值重放却未过梯度门；cache=False则28/28非零有限梯度、Adam状态及参数变化全部通过。CPU没有复现完全相同的CUDA异常，不能夸大为所有backend的根因证明。
+
+**避免方法**：此类无梯度系数计算与训练交替的入口，要同时检查真实梯度和checkpoint重算，不能只凭logp相等。当前只关闭该DPO入口的autocast cast缓存，保BF16、目标、数据及1e−5重放门；原148序列reference保留原source/plan/parent/encoded绑定，不重算或删除身份门。独立恢复在原probe绝对截止内完成13对/26反向、真实Adam1次和504梯度/1512状态张量有限，才丢弃probe状态从原父权重fresh正式训练。CPU证据`research/patient-swap-dpo-v1/deployment-v2/autocast-cpu/result.json`（27cc632b）；[原失败与修复](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/55589a63/solutions/patient_swap_dpo/evidence/probe-failure-recovery.json)，[真实恢复门](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/6e1801e3/solutions/patient_swap_dpo/evidence/probe-pass-formal-start.json)（88cc4d15）。工程门已通过，完整训练/质量另行记录。
