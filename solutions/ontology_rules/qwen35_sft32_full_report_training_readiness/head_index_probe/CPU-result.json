@@ -1,0 +1,1176 @@
+{
+  "status": "PASS_INDEXED_HEAD_HELPER_CPU_AND_NEGATIVE_CONTRACT_NO_GPU",
+  "torch": "2.7.1+cu126",
+  "CUDA_initialized": false,
+  "seconds": 0.15674809413030744,
+  "training_cases": 9,
+  "head_cases": 9,
+  "negative_checks": [
+    "empty",
+    "batch2",
+    "wrong_dtype",
+    "rank1",
+    "unknown_key",
+    "shape_mismatch",
+    "model_ignored_indices",
+    "native_short_logits_full_labels",
+    "trainable_head",
+    "hidden_shape",
+    "NaN_record_before_failure"
+  ],
+  "causal_shift_index_check": true,
+  "NaN_record_before_assert": true,
+  "measurements": [
+    {
+      "dtype": "torch.float64",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float64",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float64",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "78469038d3613696400759d16525b4f3e3bdfb2f1b355f16aefb33cc93ff99a8",
+        "selected_positions": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "targets_sha256": "54ebd7f94ce3f93453430ac9e68e03726e6f2e63608376c8b9d2b5bb3ad7d4bf",
+        "tolerance": {
+          "rtol": 1e-09,
+          "atol": 1e-10,
+          "relative_l2": 1e-08,
+          "loss_atol": 1e-06
+        },
+        "native_A": {
+          "loss": 4.031835556030273,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 4.031835556030273,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 4.031835556030273,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.float64",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float64",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float64",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "f1f40769f4dbe8dbf02a10dd5551486a5701aec42dfd30bc78d946a84fbc0b6f",
+        "selected_positions": [
+          0,
+          2,
+          4
+        ],
+        "targets_sha256": "24fd211d2946270205b5f74d0c6112b30a9e1125037f0ed28f5d08f8781c022b",
+        "tolerance": {
+          "rtol": 1e-09,
+          "atol": 1e-10,
+          "relative_l2": 1e-08,
+          "loss_atol": 1e-06
+        },
+        "native_A": {
+          "loss": 4.129112720489502,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 4.129112720489502,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 4.129112720489502,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 8.881784197001252e-16,
+              "relative_l2": 1.6757592638392928e-16,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.float64",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float64",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float64",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "638e059fe0d809f09c1fb5a750c1945bd974f7e2b317dbafe1206a24366da17d",
+        "selected_positions": [
+          5
+        ],
+        "targets_sha256": "cbbd5f990c53684d7ae650b40fcb5656e02261b53da5f6a7d8c819c92f2828f8",
+        "tolerance": {
+          "rtol": 1e-09,
+          "atol": 1e-10,
+          "relative_l2": 1e-08,
+          "loss_atol": 1e-06
+        },
+        "native_A": {
+          "loss": 5.657398700714111,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 5.657398700714111,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 5.657398700714111,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 8.881784197001252e-16,
+              "relative_l2": 1.5204843833262105e-16,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float32",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "147788ce9e3835cd72dc88d827ec1613358b6de3ac621f3e3ed48bd68cfa6a82",
+        "selected_positions": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "targets_sha256": "54ebd7f94ce3f93453430ac9e68e03726e6f2e63608376c8b9d2b5bb3ad7d4bf",
+        "tolerance": {
+          "rtol": 1e-05,
+          "atol": 1e-06,
+          "relative_l2": 1e-05,
+          "loss_atol": 1e-05
+        },
+        "native_A": {
+          "loss": 3.911761999130249,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 3.911761999130249,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 3.911761999130249,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float32",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "5f711416e19fbdaf5f9323178857d1e94aebea562e1e8c970f152874a9111514",
+        "selected_positions": [
+          0,
+          2,
+          4
+        ],
+        "targets_sha256": "24fd211d2946270205b5f74d0c6112b30a9e1125037f0ed28f5d08f8781c022b",
+        "tolerance": {
+          "rtol": 1e-05,
+          "atol": 1e-06,
+          "relative_l2": 1e-05,
+          "loss_atol": 1e-05
+        },
+        "native_A": {
+          "loss": 5.226708889007568,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 5.226708889007568,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 5.226708889007568,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0000000000000002,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 5.479782339001815e-08,
+      "finite": true
+    },
+    {
+      "dtype": "torch.float32",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.float32",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "3e31be550f068712c93ab1a485451ad63095b5fe574ad66ba2ec404deeae4632",
+        "selected_positions": [
+          5
+        ],
+        "targets_sha256": "cbbd5f990c53684d7ae650b40fcb5656e02261b53da5f6a7d8c819c92f2828f8",
+        "tolerance": {
+          "rtol": 1e-05,
+          "atol": 1e-06,
+          "relative_l2": 1e-05,
+          "loss_atol": 1e-05
+        },
+        "native_A": {
+          "loss": 2.9319005012512207,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 2.9319005012512207,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 2.9319005012512207,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 4.76837158203125e-07,
+              "relative_l2": 7.400226247091468e-08,
+              "cosine": 0.9999999999999971,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 2.2351741790771484e-08,
+              "relative_l2": 5.780832456712614e-08,
+              "cosine": 0.9999999999999983,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.bfloat16",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "f3f0bc72b403982e3cbe754475693af6f7128bf2ff795465329937034b9bcefb",
+        "selected_positions": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "targets_sha256": "54ebd7f94ce3f93453430ac9e68e03726e6f2e63608376c8b9d2b5bb3ad7d4bf",
+        "tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002,
+          "relative_l2": 0.005,
+          "loss_atol": 0.001
+        },
+        "native_A": {
+          "loss": 7.773871421813965,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 7.773871421813965,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 7.773871421813965,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 0.9999999999999998,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.bfloat16",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "accbbbdf33ff1a1d22febbee4eb73f8bfc398613992e4e1586d4987043b51d91",
+        "selected_positions": [
+          0,
+          2,
+          4
+        ],
+        "targets_sha256": "24fd211d2946270205b5f74d0c6112b30a9e1125037f0ed28f5d08f8781c022b",
+        "tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002,
+          "relative_l2": 0.005,
+          "loss_atol": 0.001
+        },
+        "native_A": {
+          "loss": 3.9189393520355225,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 3.9189393520355225,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 3.9189393520355225,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "training_path",
+      "loss_abs_diff": 0.0,
+      "upstream_gradient_max_abs_diff": 0.0,
+      "finite": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "case": "frozen_head_contract",
+      "observations": {
+        "scope": "same_real_or_synthetic_hidden_and_frozen_head_only",
+        "dtype": "torch.bfloat16",
+        "hidden_shape": [
+          1,
+          7,
+          11
+        ],
+        "hidden_sha256": "5ff31f98f2f14cce0d1edee78fda3a9af940ca72cb3f9a45d67a31da370d0cf6",
+        "selected_positions": [
+          5
+        ],
+        "targets_sha256": "cbbd5f990c53684d7ae650b40fcb5656e02261b53da5f6a7d8c819c92f2828f8",
+        "tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002,
+          "relative_l2": 0.005,
+          "loss_atol": 0.001
+        },
+        "native_A": {
+          "loss": 3.704407215118408,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "native_B": {
+          "loss": 3.704407215118408,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "indexed_C": {
+          "loss": 3.704407215118408,
+          "loss_nonfinite_repr": null,
+          "loss_finite": true,
+          "logits": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "hidden_gradient": {
+            "finite": true,
+            "nan_count": 0,
+            "inf_count": 0
+          },
+          "ignored_boundary_gradient_zero": true
+        },
+        "comparisons": {
+          "native_repeat": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          },
+          "indexed_vs_native": {
+            "logits": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "hidden_gradient": {
+              "finite": true,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "cosine": 1.0,
+              "allclose": true,
+              "passes": true
+            },
+            "loss_abs_diff": 0.0,
+            "loss_passes": true
+          }
+        },
+        "head_RNG_unchanged": true,
+        "head_no_parameter_gradient": true,
+        "passes": true,
+        "full_backbone_equivalence_claimed": false
+      }
+    }
+  ],
+  "scope": "Actual new helper; native forward body with synthetic backbone and frozen head. Real PEFT/decorators/GPU/RNG-restore capture not executed.",
+  "source_files": {
+    "indexed_head.py": {
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "cpu_checks.py": {
+      "bytes": 9432,
+      "sha256": "a87915827abbf0f30f4484d55bdbd6d225f47361d46bc32d4117dfdcb4228d1e"
+    }
+  }
+}

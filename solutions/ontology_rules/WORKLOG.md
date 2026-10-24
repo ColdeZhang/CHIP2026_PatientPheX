@@ -45,3 +45,5 @@
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
 
 - 后继待办（官方B关键依赖已交后执行）：root新授权F0/F1训练内纯覆盖审计，比较当前LGB Task1文档HPO与oldpool∪public2合法关系提示空间；先查等价历史，只聚合来源/≤.95/真实关系FN供给，不读原dev gold、不新NN/fit、不改本次B。549低分/534边界FP分组后置。head_index_probe由head_projection_feasibility helper独立准备仅CPU/源码，owner明确清单统一Git，不碰旧formal、不GPU；工程probe须官方接收后root另决。
+
+- head_index_probe独立18件ready2026d27e已SHA核齐：新probe143c2a3c/planbf7170e2，CPU0.156748秒的9训练+9同hidden局部+11拒绝检查通过，source41项通过；无部署/GPU，原formal不变。root事前后继边界：官方accepted后仅一个420+30工程控制；未过保留失败、不放宽数值门/连开诊断，继续原已验证formal；通过才另冻新正式版本与绑定，不能把理论head FLOPs节省称全训练实际提速。
