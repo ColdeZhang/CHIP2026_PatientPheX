@@ -40,3 +40,9 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 [实际主文件终点](../public_neuralcr_readiness/local-relay-attempt3/HP.tar.gz.assembly.json)已完成：583,483,718 字节，SHA `08e48710399ce8aa321367d6dafdef87a464048b85437552edc728e0e129668b`；938 个既有/新片段全部按位置和SHA核验再拼接。安全提取只包含 H5、onto.json、config，archive 没有单独许可文件；保留仓库 MIT 与权重未单列许可的区别。内部拼接/提取/shape 9.088 秒，[实际外层job](../public_neuralcr_readiness/local-relay-attempt3/HP.tar.gz.segments.json.job.json)另列。
 
 实际 H5 630,900,616 字节/SHA `9a43dd5a237f7ad630ca26bed729aee07a8cc6c5cac9c90916be4ded9520d807`，**60 个唯一数组，157,705,490 参数**；10 ensemble，每个 width1 Conv1D 100→1024、Dense 1024、层级 head 14261，其中14260 ontology概念（含root），额外一列为原代码的 `None`。加两fastText矩阵的保守header投影为 **491,068,890**；直接追加 **10,088,536,880** 超10B，替换BioBERT为 **9,966,949,054**（余33,050,946）。fastText全文件shape仍未完成，不能把投影说成完整库存；原冻结门允许继续补词向量，当前不进行NN/质量。
+
+### fastText 条件性接口兼容准备
+
+固定 NCR README 要求 fastText≥0.9.1，所关联0.9.1序列化源码 `Dictionary::save/load` 都先写/读 int64 `pruneidx_size` 再逐词记录。先前官方prefix的首词 `the\0` 在84、`prune=-1` 在88，顺序与标准不合；现只准备[单次窄修源](../public_neuralcr_readiness/postdownload-readiness/header-repair-preparation.json)，未执行。必须先完整原件 SHA/大小、666817词条、两个矩阵和精确EOF证明此布局，才在独立派生副本交换这12字节，保持原件、词序/计数/类型、所有数值矩阵及[0:84]/[96:EOF]逐字节相同。不将未知格式交C++，不截断、重建词表或裁参。
+
+当前授权仍仅下载/库存/180秒四合成native；将来若考虑替换BioBERT，必须从真正旧双head候选池重建、移除其来源及6字段并fresh HGB，不能保留依赖BioBERT的103列旧模型或缓存却扣除其参数。尚未开展这个质量控制。
