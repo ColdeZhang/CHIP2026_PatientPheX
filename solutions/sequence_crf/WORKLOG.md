@@ -4,7 +4,7 @@
 
 ## 当前优先：患者均衡混合损失 α=.5 的 CPU 数值合同
 
-官方唯一901已07:54:13真实accepted（5→4），不查询分数；固定两折多数票均负并已独审关闭。新α=.5训练侧位置准备2.717秒通过（c713111b）：124行/32文献/87患者、原IDs/labels/audit exact、尾4正确且每患者新增1/87→1/174。源码checkpoint `9fa0603` 已推送核验。现冻结原A100 Torch2.6.0+cu124的一次60+TERM5纯CPU数值合同；CUDA隐藏、线程1、小词表合成数据，无模型/fit/heldout质量。GPU probe及训练待root预算；[当前协议与源](patient_balanced_loss/README.md)。
+官方唯一901已07:54:13真实accepted（5→4），不查询分数；固定两折多数票均负并已独审关闭。新α=.5训练侧位置准备2.717秒通过（c713111b）：124行/32文献/87患者、原IDs/labels/audit exact、尾4正确且每患者新增1/87→1/174。源码checkpoint `9fa0603` 已推送核验。已 `dd7f782` 推送核验，7件A100部署SHA/fsync通过；唯一启动请求08:10:37返回UNKNOWN，不能声称任务已运行或失败。ontology统一A100退避至08:13:06后库存原actual；不重复start，见[实际启动状态](patient_balanced_loss/cpu-start-observation.json)。冻结原A100 Torch2.6.0+cu124的一次60+TERM5纯CPU数值合同；CUDA隐藏、线程1、小词表合成数据，无模型/fit/heldout质量。GPU probe及训练待root预算；[当前协议与源](patient_balanced_loss/README.md)。
 
 ## 已完成：唯一901方法官方B真实推断
 
