@@ -19,6 +19,8 @@
 
 独立 attempt2 的[正式计划](../public_neuralcr_readiness/resume-preparation/resume-plan.json)绑定这两个 prefix 的真实 SHA/原 ETag，只下载剩余 **1,751,739,725** 字节；4 路总并发、1800 秒+TERM30，完整输出写入 `public-neuralcr-readiness/resume-attempt2/downloads`。计划和源码推送后才启动，原文件只读；没有自动第三轮授权。
 
+`a672245` 推送/远端 exact 后，[attempt2 作业](../public_neuralcr_readiness/resume-preparation/managed-job.json)于 **00:31:54.858401Z** 启动，`proc_65a836bc-bd90-41ad-bede-7ff673224f54`。wrapper 实际时刻 **00:31:54.919701Z**，1800 秒截止 **01:01:54.919701Z**、TERM30 到 **01:02:24.919701Z**；[首次运行证据](../public_neuralcr_readiness/resume-preparation/initial-progress.json)显示已开始下载独立缺口块，未完整。检查远端 `resume-job-state.json` 的实际 rc/时间及 `downloads/complete.json`，不得重复启动或覆盖其目录。
+
 [已冻结 CPU 计划](../public_neuralcr_readiness/cpu-preparation-plan.json)仅安全提取 `HP/ncr_weights.h5`、`HP/config.json`、`HP/onto.json`，拒绝链接与目录逃逸，不反序列化 pickle、不提取外部标注。核 H5 唯一对象和完整 fastText 字典/两个矩阵至精确 EOF；异常头结构先保留证据，不能把未确认布局直接交 C++ 或私自修改。
 
 原生加载另限总 180 秒，四个事前固定非空合成文本，保持 10 ensemble、原 `.8`、1–7 gram、原 overlap 政策。预先允许的一行兼容改动仅 `tensorflow` → `tensorflow.compat.v1`；数学不变。检查实际权重恢复、概率有限、返回字符坐标与真实打分词串/原文的对应。不把接口通过当质量增益。首次故障保留，必要时仅一次有证据的接口修复；未完整下载/库存不足时不进入赛事质量。
