@@ -1,4 +1,4 @@
-"""Prepared but NOT RUN: fixed 4 shape FB / 2 Adam plus tiny train-only decode."""
+"""Fixed 4 shape FB / 2 Adam plus tiny train-only decode; no formal training."""
 import argparse
 import datetime
 import gzip
@@ -20,6 +20,31 @@ def ref(p):
 def put(path,value):
     with Path(path).open('x') as f:
         json.dump(value,f,indent=2,allow_nan=False);f.write('\n');f.flush();os.fsync(f.fileno())
+
+
+def restore_shared_input_identity(model, out):
+    """Restore original input sharing broken by assign-loading; never tie LM head."""
+    def inventory():
+        return {n:dict(object_id=id(p),storage=p.untyped_storage().data_ptr(),shape=list(p.shape))
+                for n,p in model.named_parameters(remove_duplicate=False)}
+    before=inventory();count=sum(p.numel() for p in model.parameters())
+    put(out/'parameter-before.json',dict(parameters=count,tie_word_embeddings=model.config.tie_word_embeddings,named=before))
+    assert not model.config.tie_word_embeddings
+    names=('shared.weight','encoder.embed_tokens.weight','decoder.embed_tokens.weight')
+    assert all(before[n]['shape']==[32128,768] for n in names)
+    assert len({before[n]['storage'] for n in names})==1
+    assert before['lm_head.weight']['storage']!=before[names[0]]['storage']
+    assert count in (247587456,296936064)
+    hashes={n:hashlib.sha256(p.detach().numpy().tobytes()).hexdigest() for n,p in model.state_dict().items()}
+    model.set_input_embeddings(model.shared)
+    after=inventory();same_bytes=hashes=={n:hashlib.sha256(p.detach().numpy().tobytes()).hexdigest() for n,p in model.state_dict().items()}
+    unchanged_other=all(after[n]==value for n,value in before.items() if n not in names)
+    result=dict(parameters=sum(p.numel() for p in model.parameters()),named=after,
+                all_state_bytes_unchanged=same_bytes,other_parameter_identities_unchanged=unchanged_other)
+    put(out/'parameter-after.json',result)
+    assert same_bytes and unchanged_other and result['parameters']==247587456
+    assert model.shared.weight is model.encoder.embed_tokens.weight is model.decoder.embed_tokens.weight
+    assert model.lm_head.weight is not model.shared.weight
 
 
 def main(a):
@@ -58,6 +83,7 @@ def main(a):
             torch_dtype=torch.float32,output_loading_info=True)
         put(out/'loading.json',loading)
         assert not any(loading.get(k) for k in ('missing_keys','unexpected_keys','mismatched_keys','error_msgs'))
+        restore_shared_input_identity(model,out)
         assert sum(p.numel() for p in model.parameters())==247587456
         assert model.config.is_encoder_decoder and not model.config.tie_word_embeddings
         assert model.config.pad_token_id==0 and model.config.eos_token_id==1 and model.config.decoder_start_token_id==0

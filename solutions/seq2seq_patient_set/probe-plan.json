@@ -29,8 +29,8 @@
   },
   "probe_source": {
     "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/probe.py",
-    "bytes": 7702,
-    "sha256": "e4f116fdd48da4b9b3157c1b46400a4f8b227d6e30ae661abb88f3b7cbba7a55"
+    "bytes": 9510,
+    "sha256": "838103a4668a11543e1b6398878a840e19af7ab6c8597e498f0c3eeb175d586e"
   },
   "runtime": {
     "transformers": "4.50.0",
@@ -105,5 +105,12 @@
     "sha256": "0f79f297bdf46b0e25ea1e15d0415c0abd31d70403914a3435cacca9e461f132"
   },
   "target_semantics": "original G 87 answers unchanged;801 weak quote targets,814canonical keys;4incomplete patients explicitly retained",
-  "target_transport": "only two less-than native-UNK positions use existing extra_id_0; no new tokens; all87 restored original bytes and parsed JSON exactly"
+  "target_transport": "only two less-than native-UNK positions use existing extra_id_0; no new tokens; all87 restored original bytes and parsed JSON exactly",
+  "recovery": {
+    "original_failure": "probe-v1 load: 3 distinct input embedding Parameters share storage",
+    "change": "native set_input_embeddings restores original shared Parameter, untied LM head unchanged; before/after all state bytes and other identities guarded",
+    "original_term_deadline_unix": 1792861959.3071957,
+    "original_kill_deadline_unix": 1792861989.3071957,
+    "no_budget_reset": true
+  }
 }
