@@ -8,7 +8,7 @@
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前执行（2026-10-24 08:21 UTC）
+## 当前执行（2026-10-24 08:39 UTC）
 
 - 官方最高901的B预测已07:54:13真实accepted（回执8d39aba4，额度5→4），不查询成绩；现恢复本地冲0.8，其他上传暂停。
 - **A800 indexed全文正式运行中**：08:07:31唯一 `proc_93f50e85`/PID65024，epoch1；原124×2/32updates/7170监督，整体8400+30，绝对截止 `1792837648.873858`。每epoch必须完整state跨机.100持久ACK后继续；恢复入口 `research/qwen35-fulltext32-indexed-formal-v1/controller`，源[formal_indexed](qwen35_sft32_full_report_training_readiness/formal_indexed/README.md)。原fullhead正式版从未启动，独立保留。
@@ -85,3 +85,5 @@
 - 08:17 A100再次明确LUNA_OFFLINE，H5正式依旧无start/job/600时钟，下一唯一库存≥08:20:08.743648；单条原包恢复入口已准备，只校验/补缺且不触模型。Qwen原93f50仍formal_training。已准备新adapter F1全80fresh入口，复用原加载/generate/parser AST，14400/1600不变；实际2epoch持久ACK绑定前模板不能执行，旧idx19缓存完全移除。[入口](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/README.md)。
 
 - H5现成候选诊断.383495秒：池16595→16499，public1769→1550；固定selector54删/12增，全部仍可由旧/新共同池供给，53删和12增仅public字段变。确有feature shift，但无持久化a465逐候选概率，不能证明校准失准或重fit获益；原固定配方关闭，只保留严格OOF后继可行性。[诊断](public_h5_adaptation_readiness/formal_train/CANDIDATE_SHIFT.md)。
+
+- head工程与H5固定配方96内容+members共97件、1,917,451B/ebd7e396已08:39:15在.100私有目录逐成员SHA+archiveSHA/fsync核实；完整H5/Adam继续原A100持久盘，外部数据不入Git。H5统一终审683e479e通过，原失败/机械恢复/两质量与时序保留。[持久指针](public_h5_adaptation_readiness/formal_train/persistent-terminal-receipt.json)。Qwen原watch PID130118仍仅管理原8400绝对窗与两epochACK，无新任务/评分。
