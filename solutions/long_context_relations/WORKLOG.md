@@ -17,3 +17,5 @@
 正式首次纯I/O source.zip上传16:56明确LUNA_OFFLINE，无deployment ACK、无formal start intent/GPU。原probe终态有效，暂停.3调用；恢复先核原源文件，不重复模型。root静核正式与单质量源码无阻断，并指出prediction文件需先fsync再freeze：已以排他完整写/flush/fsync/父目录同步修正，配方不变、未发生质量调用。
 
 传输恢复：16:59:29唯一纯读在线且原8247B包不存在；同包write_file再次UNKNOWN，后一次纯读也UNKNOWN。sequence17:00:43明确.3离线，统一退避至17:03:48由本owner单次恢复。root允许若原包未落、run_command已恢复时，用独立source-transfer-v2.zip写同原SHA字节并fsync/reopen，再原成员解包；旧UNKNOWN记录不覆盖、不重打包，0GPU意图。该fallback目前仅源码准备。
+
+17:04:25原路径纯读恢复8247B/SHA4f6a9f94，证实UNKNOWN上传实际已落；直接原包extract五成员和原probe data SHA23248ecf成功，未重传、fallback副本未使用。仍0formal start，等seed Sap。后继launch-ticket改用已恢复run_command排他写/fsync/读回，同300秒H69/原driver/实际启动预算不变；若该写未知仍先恢复原ticket，不重发start。

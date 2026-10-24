@@ -53,7 +53,14 @@ print(json.dumps({'status':'FORMAL_SOURCE_AND_PRIOR_EXACT_DATA_DEPLOYED','member
         ticket={'created_unix':time.time(),'launch_not_after_unix':time.time()+300,
                 'plan':{'path':remote+'/formal-plan.json','bytes':pkg['plan']['bytes'],'sha256':pkg['plan']['sha256']}}
         with (D/'start.intent.json').open('x') as f:json.dump(ticket,f,indent=2)
-        call(D,'write_file',{'mount_id':mount,'path':rel+'/launch-ticket.json','content':json.dumps(ticket),'encoding':'utf-8','create_parents':False},'launch-ticket')
+        code='''import pathlib,json,os,hashlib
+p=pathlib.Path(%r);ticket=%r
+with p.open('x') as f:json.dump(ticket,f);f.flush();os.fsync(f.fileno())
+fd=os.open(p.parent,os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+assert json.loads(p.read_text())==ticket
+print(json.dumps({'status':'BOUND_ORIGINAL_LAUNCH_TICKET','bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'ticket':ticket}))
+'''%(remote+'/launch-ticket.json',ticket)
+        run(code,'launch-ticket-exclusive-fsync',timeout=30)
         v=call(D,'start_process',{'mount_id':mount,'cwd':rel,'command':shlex.join([plan['python'],'-u',remote+'/driver.py']),'env':plan['environment']},'start')
         (D/'started.json').write_text(json.dumps(v,indent=2));print(json.dumps(v))
     else:
