@@ -265,6 +265,8 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 
 FLA独立A后继曾再次用普通writer保存真实loading info，32.688秒wrapper在任何forward前失败；原件保留。机械恢复逐字复用既有serializer，空/非空set、frozenset及未知类型检查通过，随后85.423秒wrapper在原绝对截止内完成数值采集。该入口错误已修复；所得跨backend数值差异是另外的实验结论，不能合并成同一个失败原因。终审`validation/fla-A-final-review/review.json`（`8959740a…`）通过；仅远端保留的大tensor校验范围仍明确披露。
 
+GLiNER2.5无验证集训练的原生摘要含`best_metric=inf`哨兵；六次真实更新与有限loss/梯度已保存，最终严格JSON写入仍使wrapper退出1。恢复只把没有计算的指标明确记为null及`not_computed_no_eval`，保留原退出码/失败和部分摘要，不重跑已完成的GPU步骤；真实loss非有限仍须报错，不能通用清洗所有inf。CPU恢复终态`research/gliner25-task1-v1/metadata-recovery-v2/complete.json`（`458768a1…`）与六步原件共同证明工程结果，不能把wrapper rc1直接等同训练数值失败。
+
 ## H40：逐文OOF资源不自动满足新验证划分的隔离
 
 准备train32（F2+F3）→F1的新实体判别时，旧四fold HGB给F2/F3的概率、旧outer0内层候选都对各自目标文献隔离，但其训练资源均包含新F1的16篇。直接拿它们筛选或构造新训练样本，会让本应留出的F1信息进入下游；“是OOF”不能替代完整资源依赖核查。
@@ -404,3 +406,9 @@ FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getso
 Grounded首个质量入口假设旧N的metrics含`prediction_sha256/gold_sha256`，实际文件只含指标与评测配置，因KeyError在新预测、freeze、gold和v2之前退出。训练、39条响应及规范化仍有效。
 
 **避免方法**：复用基线先读其真实元数据结构，沿已有summary→paired freeze→evaluation bound核预测、metrics与gold的实际身份；不要删掉身份检查来让入口运行，也不要为了接口错误重训或重生成。原源/计划/错误保留，独立机械恢复目录中的两个完整端点先共冻后仅2次新v2，旧0；集中终审`0fcffd7b`核验通过。见生成分支`solutions/grounded_generation/quality/`及外部`research/grounded-generation-v1/quality-F1-metadata-recovery-v1/`。
+
+## H62：随机查询增强使同一训练行的输入IDs随采样改变
+
+GLiNER2.5原生`synthetic_entity_label_prob=.2`会将phenotype随机改成entity1等schema查询。探针把一次CPU采样缓存的IDs当作固定行身份，遇到另一合法采样时在首个forward前断言失败；这是检查器的错误前提，不能据此关闭增强或宣称模型分词错误。首次实际IDs未在断言前保存，这部分证据无法补回。
+
+**避免方法**：保留原生学习变量，用本次实际schema tokens、query layout、input IDs、目标和RNG状态共同核验，在断言前落盘；固定数据目标与随机增强实例分开记录。机械修复保留.2，六个真实更新全部通过、encoder和boundary权重均变化，原失败保持；CPU修复证据`research/gliner25-task1-v1/recovery-cpu-complete.json`（`9cd4fc00…`），真实结果见同路线`metadata-recovery-v2/complete.json`（`458768a1…`）。该探针不替代完整训练和质量终点。
