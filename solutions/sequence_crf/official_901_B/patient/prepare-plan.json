@@ -1,0 +1,133 @@
+{
+  "phase": "prepare",
+  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "project": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "remote_preparation": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation",
+  "cap_seconds": 180,
+  "grace_seconds": 30,
+  "control": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/control/prepare",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared",
+  "argv": [
+    "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/prepare.py",
+    "--normal-prompts",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/normal-prompts.jsonl",
+    "--normal-prompts-sha256",
+    "3a8e0a211797cd1136e5b36b606ad20fc89c83f8598a24779466d1ae9f9c0a31",
+    "--pure-B",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-biobert/B901-census/B.input.jsonl",
+    "--old-pool",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/old-pool.jsonl",
+    "--old-pool-sha256",
+    "77322710caeb8d87beada5695b73d8c4c7a6f0512a7ad399b220482a6002a184",
+    "--model",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "--output",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/prepared"
+  ],
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/patient_first.py": {
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/raw_store.py": {
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/prepare.py": {
+      "bytes": 4889,
+      "sha256": "0f77fbfe86ebe2e31b7f3bbd53119c22ea32f8aca258f998ab9038a9e5da5b95"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/driver.py": {
+      "bytes": 5374,
+      "sha256": "46abb83540b93c83a704e0aeaa921ec3157b0d159cbd014f9d5b8e083b2d8c0e"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/export_positive_keys.py": {
+      "bytes": 7510,
+      "sha256": "caf48c8d14c1496141cc79b6b4af21518ce04267c718e4f0e46499044f235e02"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/limited_codec.py": {
+      "bytes": 4601,
+      "sha256": "60731e1297930415afd8bb8c2a979814d7c8cb9a8c132c6c6debbd85d50cb289"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/infer.py": {
+      "bytes": 21397,
+      "sha256": "5b899375fd82121ca8119d85aa5f62a3c0f3c725544a6bbb73516928f77946c7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/LICENSE": {
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/README.md": {
+      "bytes": 77643,
+      "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/chat_template.jinja": {
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/config.json": {
+      "bytes": 3126,
+      "sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/merges.txt": {
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/model.safetensors.index.json": {
+      "bytes": 79657,
+      "sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/preprocessor_config.json": {
+      "bytes": 390,
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/tokenizer.json": {
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/tokenizer_config.json": {
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/video_preprocessor_config.json": {
+      "bytes": 385,
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B/vocab.json": {
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/normal-prompts.jsonl": {
+      "bytes": 5395086,
+      "sha256": "3a8e0a211797cd1136e5b36b606ad20fc89c83f8598a24779466d1ae9f9c0a31"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/patient/preparation/old-pool.jsonl": {
+      "bytes": 817521,
+      "sha256": "77322710caeb8d87beada5695b73d8c4c7a6f0512a7ad399b220482a6002a184"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-biobert/B901-census/B.input.jsonl": {
+      "bytes": 2060389,
+      "sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
+    }
+  },
+  "source_commit": "3c7c505908aa215ddc36f5f4dfd41b6a17d8bc0f",
+  "only_tokenizer_no_weights": true,
+  "no_GPU": true,
+  "no_fit": true,
+  "no_score": true
+}
