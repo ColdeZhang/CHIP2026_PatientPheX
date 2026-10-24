@@ -3,7 +3,7 @@
 - **当前状态：三组直接零阈值控制及一次固定低容量meta-OOF筛查均负结案，无新方案上线。** [E002](experiments/E-20261024-DOCRE-002.md)实际1.189秒/8个LR fit/2次v2，+DocRE **.674068552245** 低于完整历史/base-only **.686338981272**，micro/macro均降；不扩F0/full64/dev，不扫描阈值。明确使用F1其他12文献的标签训练每个meta模型，不称盲测。
 - 分支 `explore/document-relations`，worktree `/workspace/patientphex-worktrees/explore-document-relations`，起点 main `0c0672d`；只维护本方案目录。用户原固定dev≥.8的总目标未改变，本线未达到。
 - 当前无GPU作业。最后唯一job `proc_3973bb9b-954c-4b6a-afff-3e71eb2f1baa` / PID1199462，30ep/240Adam+全部F1完成，639.318447秒rc0；10:29:54.550211实际GPU0回4MiB/noapps。root已将下一顺位交span四折补全，其后grounded必要Sap查询。
-- 最近已核远端检查点 `54da0627607e0941804b807f0db362f5818ef710`；本次完整负结果继续push。原 `evidence/long-resume.json` 是启动前历史记录，不能据它再start。
+- 最近已核远端检查点 `37b671c0957fdab3d42134530694e87d0f1bc0dd`；最终备份回执/笔记继续push。原 `evidence/long-resume.json` 是启动前历史记录，不能据它再start。
 
 ## 结果与决定
 
@@ -27,7 +27,7 @@
 - 外部根 **D**=`/workspace/patientphex-runs/round2-20261023/stage8-document-relations`。核心结果：D/quality-v1-entry-recovery、quality-marker-v2、quality-marker-long-v3；原始全部2874分数分别D/collected/formal-v1、formal-marker-v2、formal-marker-long-v3/native/held-scores.jsonl。
 - 30轮分数SHA `2933713266fcbaa433397a3f30350ca1e0473aa1d4c85f252a241e9c1b86520f`；完整checkpoint1,318,873,119B/SHA `67317bdd67d5fae26846806844edf59c5dc3ea4f2478f9a137fd9c8d1abe3142` 在`.3 research/stage8-document-relations/formal-marker-long-v3/native/checkpoint.pt`。模型/optimizer/scheduler/RNG持久；205模型张量重开精确，未逐tensor复核optimizer。完整12件回收身份见[long-runtime](evidence/long-runtime.json)。
 - 融合候选支持：D/fusion-support/held-candidate-support.jsonl，1069概念/2180原提及，含原边界/text/三public来源，与logit stable key直接join；SHA f59270c6…。原输入patient元数据提供全部患者/提及。
-- 两早期run的95件源码/预测/证据已从服务器实际回读逐SHA，见[two-control-backup](evidence/two-control-backup.json)。30轮补包另存，不覆盖旧包；大权重留远端，不进Git。
+- 两早期run的95件源码/预测/证据已从服务器实际回读逐SHA，见[two-control-backup](evidence/two-control-backup.json)。30轮+meta补包123件/322792B/SHA`c6cdadc93adea0cf189d48c151409243d7c31bbdbb38af506f8502dd44592439`已从`.100`实际回读、所有成员核准，见[long-and-meta-backup](evidence/long-and-meta-backup.json)。首次`.3 write_file`明确LUNA_OFFLINE，无成功upload回执且未重试；按root授权改用`.100 research/document-relations/terminal-20261024/long-and-meta-terminal.zip`，旧失败保留。三大权重仍`.3`原处、不搬迁、不进Git；新包含8个CPU meta模型及完整预测/概率。
 
 ## 已处理的入口问题
 
