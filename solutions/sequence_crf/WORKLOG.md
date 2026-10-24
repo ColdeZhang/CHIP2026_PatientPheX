@@ -8,9 +8,11 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 [纯B输入清单](evidence/official-901-B/input-manifest.json)：100篇/244患者/3802passages/1,708,003字符，2,060,389B，SHA878fe248；与train64文献零重叠，未含entities/association。oldpool加载子代理`official_b_oldpool_cpu`只动official_901_B/old_pool_cpu，准备共同base/CRF/Sap供Task1与Task2，GLiNER48仅Task2。旧CLIs会重fit，必须薄加载已存coef/pickle/bank。patient final_infer baf06014只泛化新输入identity/count，保持f787、BF16/native/greedy14000/1600与raw-before-codec，不用devgold。
 
-当前B执行状态（06:49 UTC）：共同Sap CPU旧16缓存完整9.746秒通过，prob逐值相同、sim最大1.55e-6、.65/.92决策零差；B100/90303候选的唯一Sap推断已06:44:26以19.219秒rc0结束，GPU0 4MiB/无进程。当前仅传输阻塞：.3于06:48:25返回LUNA_OFFLINE，原完整zip3,948,353B已收2,097,152B；子代理唯一06:51:30后库存并续读，禁止重算这100篇。GLiNER→Sap后继原4671 query/180+30只部署首2块有ACK、后续inflight待库存，尚未NN，不能重复start。冻结入口[gliner plan](official_901_B/old_pool_cpu/gliner-sap-run-plan.json)，相关原收据在外部old-pool-cpu/actual-run与gliner-actual-run。
+当前B执行状态（07:05 UTC）：共同Sap B100/90303已19.219秒rc0完整结束，GLiNER链接B100/7048已10.100秒rc0完整结束，均为一次fresh、无fit，.3 GPU0已释放。传输LUNA/UNKNOWN仅影响取回原包，私网原zip桥接.100成功，全253/211成员及每doc原raw SHA核过，自有HTTP已停；不重跑NN。完整full-LR B 77322710已交retrieval：100/244、6101实体/3415原LR回退关系，GLiNER新增230实体。原5871实体逐对象和3324关联保留（按原排序策略，不称prefix）；继承18个identifier=-1实体及13条text fallback未擅改。所有入口与实际收据见[旧池终态摘要](official_901_B/old_pool_cpu/terminal-summary.json)。
 
-患者B source/driver/export已cd615a9提交推送，7件相同源已A100持久部署并compile/fsync（仅CPU）；[部署收据](evidence/official-901-B/patient-source-deployment.json)。等待完整oldpool→normal-B prompt后，对转置后的真实输入做独立native IDs/decode核验及census，再冻结推断有界预算。A100 GPU2由ontology三public先用、实际释放后接手；不重复查询或占卡。最近完整远端检查点4aed0eb已push+lsremote exact。
+患者B已接normal420行/3003概念/7147候选对；纯CPU原生token审计唯一proc_f1a4339f/PID221322于07:05:25启动180+30，近似TERM07:08:25/KILL07:08:55、以远端driver为准。[实际job](evidence/official-901-B/patient-prepare-job.json)；源及具体prepare计划76fb581b已916899b push/远端exact。A100 GPU2由ontology三public实际释放后交本任务，当前CPU不占卡；后继根据全量native token统计冻结唯一B推断时间预算，并一次全卡UUID/进程/空间fresh gate。原infer5b899不变；driver46abb/exportcaf48仅补绝对deadline及目录项fsync，已3c7c505 push并重新部署留旧SHA副本。A100首次数据write UNKNOWN经库存确实仅part0，随后同字节1–8小命令补齐/原包全SHA解包，未重复start。
+
+[独立实际B合法空间证明](evidence/official-901-B/patient-space-proof-summary.json)：420原schema逆变换/逐行code_map一致，100文献原HPO后代alt图与public-new实际code_maps canonical+literal交0；16个合法text概念保持。预期patient prompt9f94fffc/5403066B，待native产物再核相同字节。此时仅证明输入空间，实际positive成员/输出级互斥待完整raw后验证，不能称B结果已完成。后继研究只读一页[机制盘点](research_readonly/post901-relation-proposal.md)，不阻塞官方，不新NN/fit/评分。
 
 B最终合成还须按root规则核：patient合法HPO来自oldpool，public-new来自相对oldpool差集，在实际canonical/alt处理后逐doc空间及输出级严格互斥才允许等价全union；否则精确原counterfactual a179_B差集，不能猜或临时删patient。此证明与retrieval共同完成。
 
