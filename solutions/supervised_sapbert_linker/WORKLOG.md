@@ -17,3 +17,5 @@
 CPU v1 在0模型/0CUDA阶段拒绝合法整数buffer：199个F16权重＋`embeddings.position_ids` I64[1,512]。只读真实header核过，修正仅接受该已知buffer及其合法loader unexpected；原v1包/rc1保留，独立v2部署，未消耗GPU窗口。ops层原返回0而内层rc1分开记录，现保留结果后assert内层exit。
 
 15:48:39.262891→15:48:58.366413唯一GPU工程完整19.104秒，4FB/2Adam/197非pooler全部更新，793state张量实比，峰5.218GB；GPU0真实4MiB/noapps释放。完整native1160/41099/303为6.319秒，0截断。必要6小metadata已收，1.309GBprobe state仅远端保留且禁止续训。正式按已授权fresh3ep219/4bank/finalACK/303，同源核心AST一致；成本273.263代理、600+30共享时钟，动态候选增长披露。实际入口 `formal/ops.py deploy|start|observe|collect`，完整后 `formal/quality.py formal/quality-plan.json`，无原dev/官网。质量gold只定位已有正确文件名/SHA，冻结前不读取。
+
+正式v1 15:54:09.943514→15:54:42.500011实际32.556秒rc1，epoch1完整73/1160/9.235s、epoch2候选已建，后续batch的AMP梯度非有限；前向loss有限，final state尚未产生。原GPU已释放，原source/namespace保留。root授权独立fresh数值恢复：仅GradScaler初值65536→4096及失败前批次/finite诊断，FP16/目标/seed/LR/3epoch219均不改，仍原16:04:09.943514 TERM/+30绝对时钟，不默默跳批或复用失败Adam。源码 `formal_recovery/`；成功也不声称证明原具体根因。数值非有限实际实现为整链拒绝，区别于旧提案“单条保留旧ID”；全finite输出时替换公式不变。

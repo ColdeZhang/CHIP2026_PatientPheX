@@ -1,0 +1,97 @@
+{
+  "schema": "supervised-sapbert-fresh-formal-recovery-v1",
+  "authorization": "Root approved single600+TERM30 full3epoch219+4bank+final durablestate+303; sole F1 quality after full freeze",
+  "candidate_plan": {
+    "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/candidate-plan.json",
+    "bytes": 9860,
+    "sha256": "e6b1a3ce42b3662c5c98ba6fd1851257962567f86ca2d6896b694f96a0b4bfd6"
+  },
+  "budget_seconds": 600,
+  "term_grace_seconds": 30,
+  "absolute_term_deadline_unix": 1792857849.943514,
+  "numerical_amendment": {
+    "init_scale_from": 65536,
+    "init_scale_to": 4096,
+    "only_other_change": "Before-batch identity and finite-gradient fault metadata; no silent skipped Adam",
+    "failed_formal": "formal-v1:73 completeupdates+partialepoch2; no resumable checkpoint",
+    "root_authorized": true
+  },
+  "launch": {
+    "prebound_validity_seconds": 300,
+    "check_at": [
+      "entry",
+      "before_Popen"
+    ],
+    "exclusive": "job/exclusive-launch.json"
+  },
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+  "model_files": {
+    "config.json": "c0fa35def52bf7d81865d23dba0417fdbb67d416fdde70cae5c7beab476b584e",
+    "tokenizer_config.json": "76eb84b4b5b0d1bdba02906d7fae249be541c41d72e2024094aea513f98f2be7",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "model.safetensors": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+    "manifest.json": "0f4f8a8c16d0d7f978ab544c80d117b930666de2793276797991175ea52a81d8"
+  },
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "native_plan_sha256": "85b4e61f789a4b475d4de4ec753732b22d42b348cf2b7437fd94b26830cc6604",
+  "data_sha256": "36b6e77d979c5d8637a8d0696d2f238d12a1a60a7f817548236d27f82d84e47f",
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/formal_recovery/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "train.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/formal_recovery/train.py",
+      "bytes": 12507,
+      "sha256": "f1ff4d21c6b26726e8bbe5a66042004159e635ea1686ea01c93ad621c4be4392"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/formal_recovery/driver.py",
+      "bytes": 3640,
+      "sha256": "ba607a7572ec6e5b41e3f7d8d16d4b5090fd48fc91fabb60043e41760612c6f7"
+    }
+  },
+  "epochs": 3,
+  "updates": 219,
+  "batch": 16,
+  "tail": 8,
+  "warmup": 11,
+  "seed": 20261024,
+  "lr": 1e-05,
+  "temperature": 0.05,
+  "decoder": "Final fullpublicbank argmax first row on exact numerical tie; ambiguous alias retained old ID; no threshold",
+  "fresh_from_public_base": true,
+  "probe_state_forbidden": true,
+  "checkpoint": "Only finalepoch3 fullmodel/optimizer/schedule/scaler/RNG ACK; no epoch choice",
+  "growth_limit": {
+    "max_candidates": 46,
+    "max_native_length": 27,
+    "observed_probe_peak_bytes": 5217807872,
+    "measured_cost_estimate_seconds": 273.2633330533281,
+    "formal_budget_seconds": 600
+  },
+  "exact_native_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/probe-v2/collected/cpu-complete.json",
+    "bytes": 3831,
+    "sha256": "9fc24d46998d0354428b6742f15bfa988b36a14ce90bd8872878b922c9a5f6d7"
+  },
+  "source_contract": {
+    "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/formal_recovery/source-contract.json",
+    "bytes": 956,
+    "sha256": "db9ed2934c0a8a0ef404f46a12a0964117ee03c7c059e79f5e1edb3e301162e9"
+  }
+}
