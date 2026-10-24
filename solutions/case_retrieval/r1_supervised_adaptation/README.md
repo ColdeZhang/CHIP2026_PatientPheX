@@ -19,3 +19,5 @@ CPU13.434秒完成，见[CPU结果](CPU-RESULT.md)。原124监督共401291输入
 root已授权`.100 A30 GPU1`一次420秒+TERM30探针，源`gpu_probe.py`、固定`gpu-plan.json`。先最短570样本同参数/同dropout RNG比较原生与selected CE及真实LoRA梯度；随后8条累积完成非零lr Adam更新，再保留3条累积梯度处理最长5519。后者按H51覆盖已建Adam；仅诊断使用lr1e-4无warmup，不冒称重放正式训练顺序。基座BF16、LoRA FP32、252目标模块、fullhead不变，TF32关/SDPA/derived95fb原Yarn；无量化、截断或allocator暗改。
 
 执行前fresh核GPU UUID/空闲/进程/空间和全部9件模型SHA；探针状态随进程丢弃，不保存adapter或产出质量。完整训练尚未授权。工程输出与失败在外部`R/research/r1-supervised-adaptation-readiness-20261024/gpu-probe-v1`；单独原CPU冻结plan不改。
+
+唯一工程探针已在最短真grad比较停止，见[失败结案](GPU-PROBE.md)，未执行Adam/最长。新独立数值诊断仅180+TERM30：同最短nativeA/nativeB/selected三个真实梯度，先存loss、每504tensor统计和完整外部梯度，再判原容差；同一冻结actual logits另做CE梯度，区分模型路径与loss。无optimizer/参数更新/质量/门槛改动，约0.71GB有界tensor仅在.100自有外部目录。
