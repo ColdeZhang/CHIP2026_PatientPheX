@@ -106,3 +106,7 @@ native从01:38:41.619290Z到01:39:09.611785Z实际27.992051秒/rc0，程序27.04
 GPU成本探针源审PASS `684fe02d…b33261`。部署第4文件probe-inputs.json(44193B)出现UNKNOWN_OUTCOME，原state逐请求已记；前三份SHA已确认，未发GPU启动。按H32只读核5份实际文件，缺件才补，源/plan/固定1536+41query与180秒预算不变，不能把此部署错误称作模型失败。原controller及失败state保留；恢复controller独立收据后才start。
 
 随后sequence owner实际A100只读LUNA_OFFLINE并报root；本owner尚未发新的恢复库存请求，因此暂停新增MCP，保持原失败/3份已证源/未知input文件。没有GPU start-intent/managedjob，未占GPU。恢复后先实际五文件SHA，再补真缺件、CPU compile及原唯一probe；不从离线推断模型或吞吐失败。
+
+### 01:47 唯一实际恢复只读尝试失败，GPU探针仍未启动
+
+root指定本owner为A100唯一恢复探测者，不看mount元数据；01:46:59.726477Z开始一次90秒+TERM5外限的5文件SHA只读run_command，01:47:03.705133Z以rc1结束、实际3.978655秒，MCP返回UNKNOWN_OUTCOME。未收到实际SHA库存结果，未补传/未发GPU启动，无start-intent/managedjob。原错误/完整stderr仓外摘要已冻`inventory-attempt1-terminal.json`，停止新增MCP，等待统一实际恢复安排；不能把未拿到报告当作远端没有执行或文件未落盘。CPU原生准备终点和独审PASS保持，GPU吞吐/全缓存质量均仍未知。

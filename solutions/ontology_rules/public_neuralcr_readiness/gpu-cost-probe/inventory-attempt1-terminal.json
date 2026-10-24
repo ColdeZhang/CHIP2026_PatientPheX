@@ -1,0 +1,28 @@
+{
+  "started_at": "2026-10-24T01:46:59.726477+00:00",
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "90s",
+    "python",
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/control.py",
+    "inventory"
+  ],
+  "purpose": "single actual read-only A100 SHA inventory and shared recovery check",
+  "returncode": 1,
+  "elapsed_seconds": 3.978655330000038,
+  "finished_at": "2026-10-24T01:47:03.705133+00:00",
+  "no_GPU_NN_write": true,
+  "actual_error": "UNKNOWN_OUTCOME: request outcome is unknown",
+  "no_inventory_result_received": true,
+  "start_intent_exists": false,
+  "managed_job_exists": false,
+  "stderr": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/gpu-cost-probe/inventory-attempt1.stderr.log",
+    "bytes": 984,
+    "sha256": "cfb18c4f74701cb95e9356389a0ea79934069ee176386d86d41f111a0bda2761"
+  },
+  "controller_sha256": "d6491bdeba05f989434cacc6874ffbab5c5b973fd79d46e81a297bdb7a36dc90",
+  "next": "Stop new MCP calls; shared recovery must be actually confirmed before re-inventory. Never infer unknown write did not land or repeat a start."
+}
