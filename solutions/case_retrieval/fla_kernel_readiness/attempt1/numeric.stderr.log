@@ -1,0 +1,10 @@
+Current Python version 3.10 is below the recommended 3.11 version. It is recommended to upgrade to Python 3.11 or higher for the best experience.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+Traceback (most recent call last):
+  File "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/gpu_probe.py", line 168, in <module>
+    if __name__=='__main__':main()
+  File "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/gpu_probe.py", line 91, in main
+    cache=DynamicCache(config=cfg);prefill=block(hidden,cache_params=cache);snapshots=[states(cache,torch)];tokens=[]
+  File "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/gpu_probe.py", line 37, in states
+    if t is not None:out[f'{i}/{kind}/{j}']=t.detach().cpu().clone()
+AttributeError: 'int' object has no attribute 'detach'

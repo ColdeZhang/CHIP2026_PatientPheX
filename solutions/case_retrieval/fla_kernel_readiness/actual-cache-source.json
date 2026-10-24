@@ -1,0 +1,13 @@
+{
+  "cache_source_sha256": "17b4aff340ca287cd248d179819db77e775f857678f17088528f1e14227773c2",
+  "snippets": [
+    {
+      "line": 933,
+      "text": "    def __init__(self, number_of_states: int = 1, **kwargs):\n        self.number_of_states = number_of_states\n        # We allow to have an arbitrary number of cached states inside a single layer\n        self.conv_states: dict[int, torch.Tensor | None] = dict.fromkeys(range(number_of_states))\n        self.recurrent_states: dict[int, torch.Tensor | None] = dict.fromkeys(range(number_of_states))\n        self.is_conv_states_initialized = dict.fromkeys(range(number_of_states), False)\n        self.is_recurrent_states_initialized = dict.fromkeys(range(number_of_states), False)\n        self.has_previous_state = dict.fromkeys(range(number_of_states), False)"
+    },
+    {
+      "line": 934,
+      "text": "        self.number_of_states = number_of_states\n        # We allow to have an arbitrary number of cached states inside a single layer\n        self.conv_states: dict[int, torch.Tensor | None] = dict.fromkeys(range(number_of_states))\n        self.recurrent_states: dict[int, torch.Tensor | None] = dict.fromkeys(range(number_of_states))\n        self.is_conv_states_initialized = dict.fromkeys(range(number_of_states), False)\n        self.is_recurrent_states_initialized = dict.fromkeys(range(number_of_states), False)\n        self.has_previous_state = dict.fromkeys(range(number_of_states), False)\n        self.conv_kernel_size = dict.fromkeys(range(number_of_states))"
+    }
+  ]
+}
