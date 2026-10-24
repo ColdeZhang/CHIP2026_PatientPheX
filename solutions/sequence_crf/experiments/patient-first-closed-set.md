@@ -157,3 +157,20 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 主线程根据已核官方“每个单模型≤10B”规则纠正，明确授权增加一个secondary＝旧SFT32∪新patient-first关联，原primary与keep不变。02:50:16.219Z amendment f43f6f60冻结，此时没有读取任何新patient-first raw或质量。时间限定如实保留：固定80推断已02:49:53.527启动，早于此amendment约23秒，因此这是pre-quality，不称pre-inference；训练、推断、预算完全未变。原primary endpoint bb375/finish8fd源与计划快照保留。
 
 新增secondary_union.py只做同1189实体/1557候选对上的集合并集，不增加阈值或其他组合，不改变任意非关联/患者元数据；原primary fullpred和此secondary共同freeze后才分别唯一v2，旧指标复用不重评，两臂各按delta(micro+macro)>0且macro不降判断。新增CPU合成检查覆盖共享/新增/空集合、输入未被修改及实体变更/患者元数据变更/池外关系/重复关系拒绝；未读取实际新输出或gold，不重复旧schema/CPU/GPU合同。相关source与amendment先push再执行端点。
+
+
+### 完整固定终点：单独方案负，并集小幅正
+
+最终epoch2全状态12件519,972,522B在.100持久目录导出成功，实际60.149753s；02:49:40.997 ACK965458b8，随后独立重开全部成员SHA，file+dir fsync均通过，源server只停本job。实际adapter SHA8b73876c、optimizer/RNG state SHA9c98f3a0，完整清单见[persistent export](../evidence/round2/patient-first-formal-persistent-export.json)。最终80 job proc_a5b7016d在02:49:53.527Z启动，native194.801s/wrapper199.624519s、rc0，80条真实EOS/全PID闭集解析通过，无fallback/截断。峰allocated19,772,130,304B。02:53:13.364416Z目标GPU1MiB无process，已明确交检索后续Med，本camp无GPU后继。9件推断终点全SHA回收，raw f64dda1b、manifest2eb52ac0。
+
+原primary组装0.734s、union共同冻结0.043s；共同freeze a98b223c于02:54:46.042，早于02:54:48起的gold marker/评分。primary fullpred2d73259b、secondary3749215c，全1189实体与患者非关联字段原样；固定587CID/1557候选对，primary362关联，union430＝原383+新增47。两臂各唯一v2/default all/text，旧SFT32指标7e36dd93直接复用，没有重新评基线；统一CPU评估包装0.486s。
+
+| 内层F1方案 | Score | micro-F1 | macro-F1 | 事前keep |
+|---|---:|---:|---:|---|
+| 旧SFT32（复用） | .660942003 | .686600221 | .542228853 | 基线 |
+| patient-first单独 | .645531861 | .634920635 | .532267874 | false |
+| oldSFT32∪patient-first | .664421522 | .684210526 | .558536625 | true |
+
+两臂men=.667191188/doc=.747747748完全不变，均格式0错警。primary新增15TP32FP，却移除旧45TP23FP，Score−.015410142，单独替换失败。union完整保留旧383关联，仅加15TP32FP，Score+.003479519；micro−.002389695、macro+.016307771，满足预先固定关系两F1之和升且macro不降。新47项中只有15项为真，不能把这个小幅macro收益当作普遍改善或.8达标。保留原primary负结论，secondary仅是本次已授权的pre-quality单一并集；尚未试F0/原dev/三方组合，不事后加臂或扫cut。
+
+入口71d71097与并集增量4eafc8f2均通过，完整77项终点已交独审；此处终审仍待返回。按主线程后续决定是否用独立F0验证并集，不直接迁原dev。原PATH_OUTSIDE_MOUNT/CPU读入范围澄清/所有旧协议快照均保留，既没有重训也没有重复quality。[完整结果](../evidence/round2/patient-first-formal-results.json)、[终点清单](../evidence/round2/patient-first-formal-terminal-manifest.json)、[共同freeze](../evidence/round2/patient-first-formal-common-freeze.json)。

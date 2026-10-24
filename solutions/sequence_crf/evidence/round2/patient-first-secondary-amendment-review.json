@@ -1,0 +1,69 @@
+{
+  "status": "PASS_PRE_QUALITY_FIXED_SECONDARY_STATIC_INCREMENT",
+  "created_utc": "2026-10-24T02:52:02.796959+00:00",
+  "scope": "Only new pre-quality amendment, fixed union source, saved synthetic CPU receipt and lineage. No real predictions/gold/tokenizer/evaluator/model read or execution. Actual endpoint remains pending.",
+  "checks": {
+    "pre_quality_not_pre_inference": true,
+    "owner_asserted_new_raw_and_quality_not_read_at_amendment": true,
+    "inference_start_precedes_amendment_explicit": true,
+    "original_primary_source_and_plan_exact_preserved": true,
+    "same_1189_entities_all_nonassociation_fields_and_patient_metadata_enforced": true,
+    "same_closed_1557_pairs_enforced": true,
+    "pure_literal_set_union_no_threshold_or_other_arms": true,
+    "duplicates_and_out_of_pool_rejected": true,
+    "common_fullpred_freeze_before_first_new_gold_read_enforced": true,
+    "exactly_primary_once_plus_secondary_once_v2_old_metrics_reused": true,
+    "original_primary_keep_rule_unchanged": true,
+    "secondary_keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+    "saved_5_synthetic_boundaries_reused_not_rerun": true
+  },
+  "timing": {
+    "amendment_at": "2026-10-24T02:50:16.219700+00:00",
+    "CPU_contract_at": "2026-10-24T02:51:37.575309+00:00",
+    "new_prediction_or_quality_files_read_by_verifier": false
+  },
+  "pending_actual_checks": [
+    "complete80/strict PID-to-CID EOS/real final checkpoint provenance",
+    "actual primary plus secondary common freeze and first-gold marker sequence",
+    "actual same1189/nonassociation/1557closedpool/literal union and exactly2new v2 output metrics",
+    "full training/export/inference budgets and GPU release"
+  ],
+  "refs": {
+    "pre-quality-amendment.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union-amendment/amendment.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/pre-quality-amendment.json",
+      "bytes": 1394,
+      "sha256": "f43f6f60ff39ee9883ca83e64f23dda81913d9cdfc454e1a627bd0c7c43c959f"
+    },
+    "secondary_union.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union-amendment/secondary_union.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/secondary_union.py",
+      "bytes": 8634,
+      "sha256": "05fe6b4271a8c9ab028ab686be1dd93460ebca9d85f417529d9ddeada12519e9"
+    },
+    "secondary-CPU-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union-amendment/CPU-contract.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/secondary-CPU-contract.json",
+      "bytes": 847,
+      "sha256": "4caeead74c74427f26dfd91a5e9d3f84daad813bec18d9d78e365b3adf461edc"
+    },
+    "original-primary-endpoint-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union-amendment/original-primary-endpoint-plan.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/original-primary-endpoint-plan.json",
+      "bytes": 3447,
+      "sha256": "bb375d9cc6aafe2528a0b6f0619b2a987e27447e816803e64f685cee6cf890c6"
+    },
+    "original-finish.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/finish.py",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/original-finish.py",
+      "bytes": 8946,
+      "sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5"
+    },
+    "infer-job-at-amendment-review.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/infer-job.json",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-formal-terminal-review/snapshots/infer-job-at-amendment-review.json",
+      "bytes": 1692,
+      "sha256": "b08980e8b2145013c19d37c73f2ac11d36fddaa924b90cb89c5c02103cf6e0b3"
+    }
+  }
+}
