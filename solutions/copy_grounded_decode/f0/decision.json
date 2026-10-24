@@ -1,0 +1,112 @@
+{
+  "schema": "copy-grounded-F0-fixed-after-positive-F1-v2",
+  "F1_result": {
+    "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/evidence/F1-fallback-v2-result.json",
+    "bytes": 7582,
+    "sha256": "24db8e70456b13a8a829b8396bd91158d49a52080e09a447f9190527cbf0e114"
+  },
+  "F1_abstention_policy": {
+    "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/fallback_v2/decision.json",
+    "bytes": 4203,
+    "sha256": "d4f6146f4c6fa51c4779b2c9c60a22b3243cc426ad3f42e338da87e42956443a"
+  },
+  "formula": "B4_F0 UNION (constrained_G_valid_rows INTERSECT (original_pure_G UNION S UNION Q UNION C))",
+  "model_adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "use_cache": true,
+    "max_new_tokens": 1600
+  },
+  "rows": 47,
+  "documents": 16,
+  "entities": 947,
+  "baseline_relations": 343,
+  "baseline_score": 0.7281956289113009,
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/prediction.jsonl",
+    "bytes": 112937,
+    "sha256": "0c37ee543876f957bbb04049d0be51a905565d6219559ebab5d66abd43bc3ac3"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/metrics.json",
+    "bytes": 13104,
+    "sha256": "58760aded0d12a1cc46a5addb712c59b52ca54c2be2eb6d7a7c4d056f66350bf"
+  },
+  "baseline_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/freeze.json",
+    "bytes": 1906,
+    "sha256": "c1aeca229984e84575fd0270f5e0d8f575a473bd15c7d119ca29b4290fbbab2f"
+  },
+  "sources": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "strong": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold0/lightgbm.nested.jsonl",
+      "bytes": 143086,
+      "sha256": "79d3568e60de2ab9424c0ece5e3d6b1f95bb1a32da388bdc76ca29ec78d222d5"
+    },
+    "gliner_accepted": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-proposer-v1/accepted/entities.json",
+      "bytes": 125343,
+      "sha256": "40b12fccde4656454e5c49be48ee26b1d6ac5f5252a5dbee3ac046d296fa5c33"
+    },
+    "gliner_proposer_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-proposer-v1/accepted/manifest.json",
+      "bytes": 2965,
+      "sha256": "a1242b31c29ff8bd35ff4cb3c5104cb62f8a744d28fbf76a1508c2d0b497a874"
+    },
+    "proposer_lineage": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0_proposer/lineage.json",
+      "bytes": 6518,
+      "sha256": "4b724ab47a3e34c9554af35a8155e51fee8ba7a660526775db38f6f44ca3bc0d"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-preparation-v1/F0.input47.jsonl",
+      "bytes": 2256937,
+      "sha256": "1bf40537f16fdc2692b2180fe66554aaa0cd5a6d4b37d118a0e6285a9e859243"
+    },
+    "encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-preparation-v1/held-local-ids.json.gz",
+      "bytes": 241973,
+      "sha256": "1cdb8faa10849fb2eb8b9ec63dabae850260abd4fed0377db7620487c8591a7e"
+    },
+    "audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-preparation-v1/F0-input-audit.json",
+      "bytes": 13555,
+      "sha256": "6b77263cb508499c49b6a9fcbbbe886be9bac22e26ba1e6fb4cc8fd5dd3c9d5b"
+    },
+    "pool": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-v1/prepared/candidates.jsonl",
+      "bytes": 130871,
+      "sha256": "233a7f00761773b9e14574b8f18fdf66ae05da2383443ad3e35e17b74d9ccc75"
+    }
+  },
+  "pool_counts": {
+    "strong": 1085,
+    "gliner": 736,
+    "union_exact_triples": 1149,
+    "document_unique_quotes": 629
+  },
+  "F0_all_pool_ancestors_must_exclude_F0": true,
+  "whole_row_abstention_on_cap_or_nonEOS_or_original_strict_failure": true,
+  "no_prefix_salvage": true,
+  "all_raw_before_parse": true,
+  "full47_required": true,
+  "inference_budget_seconds": 2400,
+  "grace_seconds": 30,
+  "cost_proxy_seconds": 1727.97970620238,
+  "no_GPU_probe": true,
+  "CPU_budget_seconds": 120,
+  "CPU_grace_seconds": 5,
+  "necessary_FP16_Sap_budget_seconds": 180,
+  "Sap_grace_seconds": 30,
+  "new_v2_max": 1,
+  "old_v2": 0,
+  "byteexact_inherit_zero": true,
+  "no_single_arm_or_valid_subset": true,
+  "no_gold_opened": true
+}
