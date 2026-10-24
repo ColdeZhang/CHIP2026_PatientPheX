@@ -1,0 +1,207 @@
+{
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "adapter": "/dev/shm/patientphex-sequence-sft48-reverse-f0-1045",
+  "adapter_files": {
+    "adapter_config.json": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+    "adapter_model.safetensors": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513"
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "generation": {
+    "do_sample": false,
+    "use_cache": true,
+    "thinking": false,
+    "precision": "BF16_text_only_native_SDPA_no_quantization",
+    "eos": "same legacy generation-config union tokenizer EOS"
+  },
+  "baseline_old_SFT48_reference": {
+    "original_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "bytes": 823917,
+      "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    },
+    "input16": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+      "bytes": 123941,
+      "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.metrics.json",
+      "bytes": 13036,
+      "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218"
+    },
+    "old_prediction_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.manifest.json",
+      "bytes": 1244,
+      "sha256": "a5fa34a8122b02ef603107964dbaed5ad7980688f915cf197d8b01d4500b4177"
+    },
+    "old_responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.responses.jsonl",
+      "bytes": 18266,
+      "sha256": "931fd05e58d745e23a215084008e5bdaed540d3e0a268a18795baa27b385a605"
+    },
+    "old_response_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.responses.manifest.json",
+      "bytes": 4150,
+      "sha256": "730149f569d138fefb2f99341c5af6c50c8d2b2695e0ea245312cacbc31bd5b1"
+    },
+    "old_inference_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58-plan.json",
+      "bytes": 2854,
+      "sha256": "6857cf481fe81c04a57446173f1efe8c9241d240c69125d12aa4c4891a74932f"
+    },
+    "training_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10175,
+      "sha256": "2276c88cea8382b8eaccdb42add16506aa121a4a3388f9e058a3f60dc23a8549"
+    },
+    "training_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/formal2ep/run_manifest.json",
+      "bytes": 10051,
+      "sha256": "02762b30b993a8741efb9ba826769f68ea3e82ea760f45bbd3ea682d24d7ce30"
+    },
+    "adapter_hash_receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-training-preparation/checkpoint-actual-hashes.json",
+      "bytes": 901,
+      "sha256": "489c5c5af0aae8dbf978c87a7185d5f5fa37096bbc21366b088e7d7cd7d6ebd3"
+    },
+    "persistent_adapter_locator": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/existing-adapter-backup-locators.json",
+      "bytes": 7066,
+      "sha256": "5053b0c94a33fd2ea0c9a5b04525c706aa8276034ae071c02a6405d0733526c5"
+    },
+    "construct": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/construct.py",
+      "bytes": 2818,
+      "sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44"
+    },
+    "legacy_full_context": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/legacy_full_context.py",
+      "bytes": 12751,
+      "sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb"
+    }
+  },
+  "actual_CPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/result.json",
+    "bytes": 2813,
+    "sha256": "ccdcd461fdb8dc7119bc0755ed7c253bcee64c5ae7738c0c53a0259a30517116"
+  },
+  "frozen_at_utc": "2026-10-24T05:52:03.819689+00:00",
+  "schema": "qwen35-original-SFT48-F0-append-full-report-full58-v1",
+  "remote": "ontology-round2/qwen35-sft48-full-report-f0-full58-v1",
+  "cap_seconds": 1200,
+  "term_grace_seconds": 30,
+  "input_limit": 16384,
+  "generation_limit": 1600,
+  "cached_original_indices": [
+    30
+  ],
+  "cached_probe_index": 30,
+  "fresh_rows": 57,
+  "expected_rows": 58,
+  "expected_input_tokens": 505090,
+  "expected_input_max": 16245,
+  "output_order": "ascending(input_tokens,row_id)",
+  "cached_probe_runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1",
+    "actual_tokenizer_class": "Qwen3_5Tokenizer",
+    "matmul_TF32": false,
+    "cudnn_TF32": true
+  },
+  "probe_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/probe-v1/plan.json",
+    "bytes": 8718,
+    "sha256": "b21fb7f92e1621926ac51eae2497f6b0c519df155081dbf744090ca7e20d1734"
+  },
+  "probe_terminal_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/probe-v1/terminal-manifest.json",
+    "bytes": 2396,
+    "sha256": "2581cc747b5d5de12d8a0d2300ba787f8bde7820a45d2d960419a43d0ff35194"
+  },
+  "probe_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/probe-v1/terminal/summary.json",
+    "bytes": 870,
+    "sha256": "8c65e5543f4a2f7d3a48d78b412633b4238adbfabdd7390d41156cdfe57d6458"
+  },
+  "CPU_row_audit": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/row-audit.json",
+    "bytes": 57976,
+    "sha256": "2fa5c495f8341ba4bf5f6ea4f731f75128f159f28ecb6302abaf7ead67872d02"
+  },
+  "decision": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/decision.json",
+    "bytes": 3297,
+    "sha256": "123611dcd44e102049baf1d481d97bf338559a8fe3389b875204c4b81bc04a91"
+  },
+  "files": {
+    "infer_full58.py": {
+      "bytes": 12875,
+      "sha256": "1100ee4c630b88ac1848714495b0ea26b337d274565a6b363c695dd230a83fe8"
+    },
+    "launch.py": {
+      "bytes": 3759,
+      "sha256": "f1d127d731b9fbcccdba81cbb90e656f43a5489a4b78e9f621645493f162da04"
+    },
+    "probe_runner.py": {
+      "bytes": 9128,
+      "sha256": "241722620e86eea30e4778d7d79c8bc5811ae04d1e1dad70d55f8e16e8c451ab"
+    },
+    "legacy_runner.py": {
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "expanded58.jsonl": {
+      "bytes": 2021497,
+      "sha256": "d633225256dbf1cd5b64e94c74d7ce7f220b834cd748158082b306f12191fab2"
+    },
+    "row-audit.json": {
+      "bytes": 57976,
+      "sha256": "2fa5c495f8341ba4bf5f6ea4f731f75128f159f28ecb6302abaf7ead67872d02"
+    },
+    "cache-probe-raw.json": {
+      "bytes": 505,
+      "sha256": "a8eb140f6ae050d38f7344a16eb79afa8f1ebc1015afe31c944f6b6b6afcfd4d"
+    },
+    "cache-probe-ids.json": {
+      "bytes": 1420,
+      "sha256": "3761c548f5b3762c61f33459dbfedbe6ef2d7c94a7c8a970cedc8f723f5ea7f1"
+    },
+    "cache-probe-format.json": {
+      "bytes": 527,
+      "sha256": "fcfa82603517596a72edae03da22494341269bc9983d663ab64e3a84b794b022"
+    },
+    "cache-probe-summary.json": {
+      "bytes": 870,
+      "sha256": "8c65e5543f4a2f7d3a48d78b412633b4238adbfabdd7390d41156cdfe57d6458"
+    },
+    "decision.json": {
+      "bytes": 3297,
+      "sha256": "123611dcd44e102049baf1d481d97bf338559a8fe3389b875204c4b81bc04a91"
+    }
+  }
+}
