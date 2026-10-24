@@ -128,3 +128,5 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 | 旧SFT48∪patient | .705527893 | .710719530 | .658715151 | Score+.010083945；加16TP10FP/不删旧关系，micro和macro升，keep=true |
 
 两份格式均0错误/0警告，实体两指标不变。仍低同池rules .711353522；相较既有old∪reverse .704687440总分略高但macro较低，不据此直接迁dev或擅增三方。root另行授权双折三方literal union固定CPU控制，明确在看到两个增量后新提出，原初政策不改写。owner终点5d75fcea已交同validator，待一份增量终审；完整raw/fullpred/state留外部。
+
+恢复统一终审22325a29/14017B PASS，绑定162件/23exact+35fresh/57complete1partial、先raw后codec、双共冻与唯一两评；原a09 strict失败独立保留，不重新训练/评测。root另授权full64 CPU准备，04:25:52只读A100项目持久盘free57,087,725,568B、4模型分片尺寸齐全；此次仅inventory，完整权重SHA沿本次已完成推断fingerprint，不重新hash19GB或声称已通过full64 GPU。

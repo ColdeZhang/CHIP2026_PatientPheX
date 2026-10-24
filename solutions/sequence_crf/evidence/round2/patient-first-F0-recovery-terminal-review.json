@@ -1,0 +1,310 @@
+{
+  "status": "PASS_complete_recovery_primary_negative_secondary_passes_prespecified_oldSFT48_comparator",
+  "at_utc": "2026-10-24T04:24:40.314780+00:00",
+  "scope": "沿原F0正式入口bcaf与训练成功/strict失败a09，仅核本次23缓存+35新生成、有限患者子集弃答、保存顺序和完整双终点；不重训练/旧CPU/评分。",
+  "owner_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/owner-terminal-manifest.json",
+    "bytes": 18412,
+    "sha256": "5d75fceac7f20af0a02246df7d01f268df535f774e5500f00197b85819ea9af9"
+  },
+  "prior_training_and_original_failure": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-formal-terminal-review/initial-failure-review.json",
+    "bytes": 10155,
+    "sha256": "a09c0e2cf311e9a3677636ac33ba2f85a3c7426e3706164f1e7e6967b250c38e"
+  },
+  "checks": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/source-entry-checks.json",
+      "bytes": 2581,
+      "sha256": "938332f15bf5e3505ea91cdf666754f49dbd9d611ee9e25e1634904f96332c4b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/endpoint-source-checks.json",
+      "bytes": 2205,
+      "sha256": "70ce6791733f3e33c806c674310eb00aaf56ad71d44c12187510e810d13f3860"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/terminal-checks.json",
+      "bytes": 2123,
+      "sha256": "1535553abcc311e104ecc23f02c5e6ae7137e89b5145d774450438d181334a52"
+    }
+  ],
+  "snapshots": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/source-snapshot-manifest.json",
+      "bytes": 7859,
+      "sha256": "36a4ca4d6a10dc1af8f737327bdd0af28f2a1a515b94af07cb69d211a41ccc2c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/CPU-snapshot-manifest.json",
+      "bytes": 3482,
+      "sha256": "1c67326eadc5debdd1723c915259cfca0c77c76936f0d87da6fcc850f1a1ffb5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/actual-entry-snapshot-manifest.json",
+      "bytes": 3016,
+      "sha256": "4eaca598abbcd92ef5227bb644454bcc3abe6a973cf654f648995ca7bacc7e7d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/endpoint-snapshot-manifest.json",
+      "bytes": 4459,
+      "sha256": "e40bdbb66f9fdbe03f6ef636425c936a457bdb6b051a9683e02978bcf44914ff"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-abstention-recovery-review/terminal-snapshot-manifest.json",
+      "bytes": 13027,
+      "sha256": "a624bf1ef5b696c567ffae0a33d0bc5a3cc6c4e857f61023527f5b4848b4a03a"
+    }
+  ],
+  "source_and_entry": {
+    "runner": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_f0/recovery/recover_infer.py",
+      "bytes": 20482,
+      "sha256": "52c9ccac256984aa543de1c7fa32c267c1369d473ae7d84df9767586fe2fe6f8"
+    },
+    "original_runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-F0-formal-review/final-snapshots/319ab5594704--infer.py",
+      "bytes": 15608,
+      "sha256": "319ab559470436e22713139e581b35ea5761b1f9af4a0a053d39cbea82db07fb"
+    },
+    "infer_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/infer-plan.json",
+      "bytes": 5784,
+      "sha256": "f0f3aa4d880ec6112301150005a52d986a8f7296b2ba97041c8668ab89dc2f2e"
+    },
+    "native_load_adapter_EOS_same_block": {
+      "bytes": 1736,
+      "sha256": "cacd96598ed6b6c98e70afded815f546fabc8c1a7ec55653f2bac811fd8ac88e"
+    },
+    "four_load_calls_AST_same": true,
+    "generate_AST_only_new_finite_logits_guard": true,
+    "finite_guard": "Returns original scores unchanged; hard nonfinite stop, no retry, no allocator/precision/attention change.",
+    "greedy": "do_sample=False, no manual seed in original/recovery. Fresh35 uses fresh model/KV, no bitwise replay claim.",
+    "actual_deployment12_SHA_compile": true,
+    "actual_hidden_CPU_import_noTorch": true,
+    "actual_CPU_roundtrip_seconds": 0.4988378179987194,
+    "actual_new_codec_CPU": "23 original caches +27 synthetic boundaries cf41; raw-store3.52ms bab3 file+ancestor fsync, duplicate rejection, raw survives codec error. Existing actual evidence inspected, not rerun.",
+    "final_adapter_SHA": "51f8c7a4eddb74c0a36bce4afd9601e9bf3065cedbd1989fd51b07486c03b18a",
+    "original_completed_training": "Same train48/204 two epochs52 optimizer calls, both durable full states, sourcecc707; previous a09 verification reused."
+  },
+  "protocol": {
+    "protocol": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/protocol.json",
+      "bytes": 2614,
+      "sha256": "4a6fd226aaac05d835da5eb600c7955a98415e491349e558c063d37078c2ecb4"
+    },
+    "policy": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/policy.json",
+      "bytes": 3766,
+      "sha256": "8bd22643d1193a0641ac169bc986d304e8c695215d6ad891b3b752ca93c1ea1d"
+    },
+    "pre_new_quality": true,
+    "raw_save_order": "New completed generation IDs/EOS/cap/time durable before decode; full raw durable before limited codec. Exclusive file link/readback/file+ancestor fsync; duplicate write fails.",
+    "codec": "Exact permitted PID subset and unique permitted string CID lists. Missing PID abstains. Unknown/duplicate/invalid/nonobject/noEOS/cap whole row abstains. No invented answer[], coercion or primary baseline fallback.",
+    "arms": [
+      "primary explicit patient facts",
+      "literal oldSFT48 union primary"
+    ],
+    "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+    "no_other_combination": true
+  },
+  "actual_inference": {
+    "job": {
+      "command": "python3 -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-F0-abstain-recovery-v1/preparation/driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-F0-abstain-recovery-v1/preparation/infer-plan.json",
+      "id": "proc_d19bf1ac-96f4-49a4-b65c-56aec88322c2",
+      "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+      "pid": 100444,
+      "port": 42578,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-24T04:18:08.457144876Z"
+    },
+    "cap_seconds": 600,
+    "grace_seconds": 30,
+    "wrapper_returncode": 0,
+    "wrapper_seconds": 240.1775667667389,
+    "native_seconds": 234.234,
+    "peak_allocated_bytes": 19874135552,
+    "release": {
+      "at_utc": "2026-10-24T04:22:08.853670+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "target_has_no_process": true,
+      "target_memory": [
+        "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+      ]
+    },
+    "collected_members": 162,
+    "collected_bytes": 214965,
+    "all_SHA_sizes_exact": true,
+    "raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/inference-terminal/responses.jsonl",
+      "bytes": 27552,
+      "sha256": "f8e449b6559906590aa0df25fbed28a7f6e0428d120cdc091a10c3fe576d2e6e"
+    },
+    "cached23_literal_byte_prefix": true,
+    "new35_generation_receipts_then_raw_and_decision_bound": true,
+    "all58_EOS_no_cap": true,
+    "codec_counts": {
+      "complete": 57,
+      "partial": 1,
+      "abstain": 0
+    },
+    "partial": {
+      "row_id": "3563609:relations:8",
+      "omitted_patient_keys": [
+        "O7P"
+      ],
+      "abstained_candidate_pairs": 8,
+      "observed_key_subset": [
+        "O1P1",
+        "O1P2",
+        "O1P3",
+        "O2P",
+        "O3P",
+        "O4P",
+        "O5P",
+        "O6P"
+      ],
+      "selected_pairs": [
+        [
+          "O1P1",
+          "C004"
+        ],
+        [
+          "O1P2",
+          "C004"
+        ]
+      ],
+      "output_tokens": 53,
+      "actual_EOS_ID": 248046,
+      "hit_token_limit": false,
+      "origin": "new generation under recovery; not recovered original failed raw"
+    },
+    "scope": "该53-token新输出缺O7P的8候选对，仅对新生成可核。原第24条失败raw确实未保存，不能把此文本/缺键/EOS归给旧失败。"
+  },
+  "assembly": {
+    "complete58_16docs_47patients_947entities_415concepts_1166pairs": true,
+    "primary_positive_relations": 277,
+    "old_relations": 276,
+    "secondary_relations": 302,
+    "added26_removed0": true,
+    "missing_patient_slots": 1,
+    "abstained_candidate_pairs": 8,
+    "explicit_empty_patient_slots": 72,
+    "predictions": {
+      "primary": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/primary.jsonl",
+        "bytes": 123963,
+        "sha256": "8d88a3ade9769e9e20bb2c6000650f7654684996f761106fc2a2df08810bf01d"
+      },
+      "secondary": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/secondary.jsonl",
+        "bytes": 124303,
+        "sha256": "ef038a471436986b49aef94a4835ffa8c6876070b576a055255edb84fc57b165"
+      }
+    },
+    "all_nonassociation_literal_bytes_exact": true,
+    "masked_sha256": "40e43b1be0bf069903eafd98374de27c8e5f7e4f03a47a03b77eb1f4a5011deb",
+    "patient_metadata_exact": true,
+    "owner_full_ID_decode_and_codec_replay_receipt": true,
+    "verifier": "Independently checked saved decisions/replay, raw-record equality, EOS/counts, observed-key/pair universe, primary set and exact union. Did not repeat body parser/tokenizer decode."
+  },
+  "freeze_quality": {
+    "endpoint_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_f0/recovery/endpoint.py",
+      "bytes": 23032,
+      "sha256": "6ee51d6655d2c42c28202c1f5a2c4f683090e5284238c4d9e8ec798c10e9321d"
+    },
+    "endpoint_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-plan.json",
+      "bytes": 9116,
+      "sha256": "b719834e2af634a2b7be80359b080d815a297a44b7de5742aabd85d02739d6ee"
+    },
+    "common_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/common-freeze.json",
+      "bytes": 80042,
+      "sha256": "be17f7b46d59200ee84fda6596a3f0d8e0f1c5d15f8087a445ae68bf21510518"
+    },
+    "frozen_at_utc": "2026-10-24T04:22:35.727707+00:00",
+    "before_gold": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/evaluation/before-gold.json",
+      "bytes": 1231,
+      "sha256": "e1a9bae054a794a6627732d37c8da692c2e797aa74fca8e99e0826b83c5a048c"
+    },
+    "before_gold_at": "2026-10-24T04:22:41.838635+00:00",
+    "assemble_seconds": 0.6479506350005977,
+    "evaluate_both_seconds": 0.2388151810009731,
+    "new_v2_calls": 2,
+    "baseline_calls": 0,
+    "format_errors": 0,
+    "format_warnings": 0,
+    "commonfreeze_before_gold": true,
+    "canonical_sibling_import_path_correct": true
+  },
+  "results": {
+    "primary": {
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6920731707317073,
+        "macF1": 0.5926188650428229,
+        "Score": 0.6843422314348889
+      },
+      "baseline": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6900763358778625,
+        "macF1": 0.6390225644829467,
+        "Score": 0.6954439475814587
+      },
+      "delta": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.00199683485384472,
+        "macF1": -0.04640369944012379,
+        "Score": -0.01110171614656974
+      },
+      "changes": {
+        "added_tp": 16,
+        "added_fp": 10,
+        "removed_tp": 15,
+        "removed_fp": 10
+      },
+      "keep": false,
+      "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0"
+    },
+    "secondary": {
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.71071953010279,
+        "macF1": 0.6587151511838352,
+        "Score": 0.7055278928129127
+      },
+      "baseline": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6900763358778625,
+        "macF1": 0.6390225644829467,
+        "Score": 0.6954439475814587
+      },
+      "delta": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.02064319422492744,
+        "macF1": 0.01969258670088847,
+        "Score": 0.010083945231454061
+      },
+      "changes": {
+        "added_tp": 16,
+        "added_fp": 10,
+        "removed_tp": 0,
+        "removed_fp": 0
+      },
+      "keep": true,
+      "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0"
+    }
+  },
+  "decision": "主臂Score.684342231退步，关闭主臂替换。预定oldSFT48并集Score.705527892813，相对old.695443947581升.010083945，关系micro+.020643194、macro+.019692587，16TP+10FP/无移除，符合此控制的keep。仅已研究F0的局部对照收益，不是原dev达0.8，也不更改a179当前生产。",
+  "limits": "原strict失败保持未评分；新有限弃答政策在新F0质量前固定。TP/FP为保存的唯一v2结果，未读取gold复算。独审没有模型/新生成/CPU合同/owner parser/evaluator执行，没有Git/remote/官方上传。"
+}

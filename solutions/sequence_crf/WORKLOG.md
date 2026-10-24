@@ -15,7 +15,7 @@
 
 - 原两轮52calls训练成功/完整state已持久；原strict推断第24行格式失败、无分数，23raw保存。独立恢复23精确缓存＋35新生成，于04:22:08 rc0/240.178秒完整终止，GPU2实际0MiB/无进程，本路线无活动GPU或后继。
 - 完整58中57complete/1partial/0整row弃答；新3563609:relations:8只缺O7P，弃8候选对，53tokens/真实EOS248046。这是新生成实际内容，不能冒称找回旧失败raw。162小件逐SHA、全部ID独立decode/codec一致；两fullpred共冻be17f7b4后才两次v2，旧metric不重评。
-- [完整记录](experiments/patient-first-F0.md)、[结果](evidence/round2/patient-first-F0-recovery-results.json)、[终点清单](evidence/round2/patient-first-F0-recovery-terminal-manifest.json)。外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`，B=P/abstain-recovery。source/完整raw/state/原失败均冻结，禁止重启已完作业或重评。终点同validator集中复核中。
+- [完整记录](experiments/patient-first-F0.md)、[结果](evidence/round2/patient-first-F0-recovery-results.json)、[终点清单](evidence/round2/patient-first-F0-recovery-terminal-manifest.json)。外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`，B=P/abstain-recovery。source/完整raw/state/原失败均冻结，禁止重启已完作业或重评。统一终点独审22325a29 PASS；未重训练、parser测试或评测。
 - root随后新授权一个事后提出但事前固定的CPU控制：F1/F0 literal union(oldSFT,reverse,patient)，两折预测共冻后各唯一v2；门槛两折Score均严格高于各自old∪reverse且macro均不降。无扫描/第四臂，≤60秒；helper执行，不属于原初预注册。
 - 并行仅CPU准备原full64/265训练提示与原dev纯64转置、来源/实际tokens/空间，禁止读取新devgold或启动正式GPU。三方控制若不过则不迁dev；若过再据最长行实成本准备probe/full64，由root统筹。
 
@@ -34,5 +34,5 @@
 ## 记录与备份
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
-- 截至本页整理前，已push并lsremote确认 `8946555a80c6c5711449b8460a4fabf9ad0942e8`，包含首轮持久收据；本次完整训练终点即刻备份。不要为记录台账自身SHA递归提交。
+- 截至本页整理前，已push并lsremote确认 `0def94519a4a198b4623bd353932b5c6b07581c4`，包含完整恢复双质量；终审与新CPU资源本次跟进备份。不要为记录台账自身SHA递归提交。
 - 下一里程碑是F0恢复统一终审、三方固定CPU控制及full64 input-only准备；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
