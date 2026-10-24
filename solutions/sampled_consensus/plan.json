@@ -1,0 +1,248 @@
+{
+  "experiment_id": "E-20261024-SAMPLE-001",
+  "starting_commit": "cd4086b83e5bc5dec99dc88aa64017b7cabee6cd",
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/adapter",
+  "adapter_files": {
+    "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+    "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "versions": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1"
+  },
+  "source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/run-v1",
+  "cap_seconds": 1800,
+  "term_grace_seconds": 30,
+  "seeds": [
+    20261024,
+    20261025
+  ],
+  "generation_kwargs": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "use_cache": true,
+    "num_return_sequences": 1,
+    "num_beams": 1,
+    "max_new_tokens": 1600
+  },
+  "presence_penalty": 0,
+  "presence_implementation": "No added processor, no unsupported presence kwarg. Original native structured-JSON behavior.",
+  "input_limit": 14400,
+  "generation_limit": 1600,
+  "expected_rows_per_seed": 80,
+  "fresh_rows": 160,
+  "cached_generation_rows": 0,
+  "input_refs": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/expanded80.jsonl"
+    },
+    "audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/row-audit.json",
+      "bytes": 79950,
+      "sha256": "35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/row-audit.json"
+    },
+    "greedy_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/responses.jsonl",
+      "bytes": 28171,
+      "sha256": "fbc6f5bee29591a4308325c5e19d65fb23d09d1950a328e416ec290fbbc8201f",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/responses.jsonl"
+    },
+    "greedy_canonical": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/canonical.jsonl",
+      "bytes": 21006,
+      "sha256": "8442a1258422a79a226d5867d3995253356a4fc02372de430da4d58c70b492a1",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/canonical.jsonl"
+    },
+    "greedy_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/summary.json",
+      "bytes": 982,
+      "sha256": "9982af3528a501e44f25b69e8483dffc314c66308bb1be9c289e87897f2ee2d3",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/summary.json"
+    },
+    "model_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/model-source-manifest.json"
+    }
+  },
+  "greedy_ids_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-sft32-full-report-full80-v1/generated-ids",
+  "greedy_ids_sha256": {
+    "000.json": "4cc0fe22227986e4618de4c049f80d4d873c9d3c6047e538567054fc2af04642",
+    "001.json": "0fc2713ba29c9b287f8b2a3cea40819082e0d30a72d11b927ff9c12614a6185d",
+    "002.json": "fb027e699ba2782aeee22576eb27e4ca8d952f8a8505465a2d96a0fe713bee13",
+    "003.json": "350cca54e07fda61bdc60cf0b3f1a638b3a22149471cb02d8b3b890084f570a0",
+    "004.json": "d78cb1131d438fc54fbb8eeb0ebf82f870d6e9e47a954c7e02484a37833e6613",
+    "005.json": "6cedd3e5346468bb6230c3ab43dad6d4dcbf7ead30bdea330aaa8d0d63d1729b",
+    "006.json": "d7389f73a793885089313d96b7cba84ce610edd30b862cf2cca22e0ad44b6f38",
+    "007.json": "5b6773ee961c83b7de2dd5436b4ab3e8dad0816b3123b32256654974dceceb0a",
+    "008.json": "f4ee07514c91effeafba769b51dd9c371dae4beb6020c81047befc3781252def",
+    "009.json": "22e6c113fc0e663b07f7e653184b6885a16be7f2512cac19dd2f6cf995865260",
+    "010.json": "9bb5df6dfbb728723719b4b970e688a44f562781165c99c889a55a6bccb174a4",
+    "011.json": "8f98ae550f4cbb03bc07f4e25b31b158356ccb4e75fef5be8d210f4e19010bd1",
+    "012.json": "ad1e8e40445d896435eed38d79d2f2de89d74bf2774296f4bad3e528a0792510",
+    "013.json": "c2ab3ce5895ff1507c0c9ee72870d61c358282e76af482141d11597e9e9de0dc",
+    "014.json": "0024f8c7c4c16b9a9c2ae9d65394c4c81797428df843cd8f2a3d212d0d526f0a",
+    "015.json": "1f2fc786b46ac3622f70bae9f4cf82cf38cf78399082b336bbd37028ea4986af",
+    "016.json": "9a25913ef83ab96c8ec325382e78ea781e45438c4f503e5aa8be48e2a3c19e37",
+    "017.json": "7af44123d20fe4cd1ac750c734d75120c0e4b49dacf3743aec2508ab12cea1a8",
+    "018.json": "9eec244e4af86ff174fb76ce9d33b62cb282691609e0dfff29a6b12e7adbaee7",
+    "019.json": "571acae79df36553cf6d813527e2a4c69036146d1b3aed366b8bd2a2e8bfa199",
+    "020.json": "501b0daeb63620fa42a1f963e975d2bacbc759d349258fc657b2e5669ddfa758",
+    "021.json": "01788cb050bc60a2c4869ae024b1516b8fdbac97d7cb4d4239d3cade12790560",
+    "022.json": "b6472085dc266eb4b31bfdf74e5fcfd6ded5472607bc5683f8217fca39ce2c06",
+    "023.json": "0bfc0119f97a1f4561f08ac7b5566893987fdd72af6191d3231bc904eb057a37",
+    "024.json": "001f3c3a9202bc1ef1bf6fbb53ec9ef1dc52381800dbffe0822da8bde9ba24a5",
+    "025.json": "7a0ae603cf59ef0d4f899316017f308911533eb039419f79e1aafc160331ebc9",
+    "026.json": "8196d07e4d6a9f5dca21fdf2b392e9faf5197a132abca1694278286ace0178a0",
+    "027.json": "22f5b4537985f5ad896bfca278b0a4ed295cc45a90bbf415c173c66bb53ef428",
+    "028.json": "342cf30caa958dd72750d495415677f026c5babf8ab6afdb981c9a0e8cefeedf",
+    "029.json": "9792a1518b9ea1cd1174011f169b21ac65e3a8e857402a01fd245b4c58289107",
+    "030.json": "c33689227262f1f7c697eb5b5cfc190a249840953cb6f531d3ac2099cd5157c1",
+    "031.json": "c16bb4106b88ff7145b8bf4ac740bd4d6a8b24fd8b0ae5582d55c74ba5613d1a",
+    "032.json": "c1550049c74d2bd890742ee710da9bf660071a26a4215ca1fdb2c8098909aef0",
+    "033.json": "fafffbb3060435bde548e17056db6da65415f8fb060013bc7970d9baa3e7b8f6",
+    "034.json": "73534e39074f82ae3de39c296f93fe0c78cc8d81a15202f776120c47dab4670e",
+    "035.json": "a802e6c1b109f6b6b437a10d99015a956636c4e72340c4c6440a4e3038f5bb80",
+    "036.json": "08107a79b73fe2bf2e979ec0bc6e814f8c4db7f7bd4189c9bcad897ade83bee3",
+    "037.json": "5f606ebee5d650d149351584afa048bd853958a2f1e7d46b447f6dd33ed61e29",
+    "038.json": "75b05c619e47e4c649d54b093962429f2f26cf81985b057ff76b2818da2a0556",
+    "039.json": "27554c75d39dec6c8879526e2fd01d8a1077856415194b53481b67a33f30e3df",
+    "040.json": "fd2abb74a1b2e6ded3907e502d39041497fa9d11ad2b54a3fbf9bd615829b97c",
+    "041.json": "3a458db36407e7ceee36e3f7196824ea149fa28d75f800da4035195c25470222",
+    "042.json": "86104c2ebe58a53f5f9a122a407fc055a8c5340c17ddf8be5cbda3f9cc5c1a40",
+    "043.json": "168849ce0ab3bd11eb83bbc473e4c2aa74e594dc0d13156f2621ee0e5c312f54",
+    "044.json": "d77670408a109a79977abc430d141c86bb453e5a697087fb80d0b9796428cc87",
+    "045.json": "3a2f90ae9bc3e39bc415585df26e463498273a82e4694e6cb7faa73a72ebbdc3",
+    "046.json": "047601997164aeb51c56126062f5fff7f3c59f5b6faeee41f6ecc58a6d7c7fbd",
+    "047.json": "2f35432f2b9295ab45e75ab3ed50676f5f1cc6c61b0b6d1e8bd8ade4be463aea",
+    "048.json": "7eb3ffd6fa7785e48634c15afb24ce2795ae8c1ad9781a2a1f7d4cafe86debfc",
+    "049.json": "057fc6c2bbe53897836de6febc44d956693a766bc701e9cb1fb0a75b61b4097f",
+    "050.json": "89de97c9f018daece619bf5cd10a200a267adb942fd343084af34787faf4c25a",
+    "051.json": "c5542e8663652e78cb42b8c15d43bef4f76aa308661800e0e253dc4bea59c6b9",
+    "052.json": "202df7dbff7420d3807ffc924898dc3b617970089bd8d7756f633f7e6a170e80",
+    "053.json": "91c803041fc1d30bb5cd500f427f8092957b2005499d205771627c2ff6e30298",
+    "054.json": "53976cd7e582d1b78b7f2a327079d33e9d269d29cc2166a4fd16fdc81dba32c0",
+    "055.json": "db6959ceb6b11e7aedd3283150cf3c1ffce7d6273a5c39fc59c20f25d6d8197e",
+    "056.json": "8630cb13b33cbbab8d4bcdf310a18370120cce46f8f85ef417319f811d405397",
+    "057.json": "0d01a200453232a127011e184f294a0d5fb25da77d2d7eabecee3d15b2abcecb",
+    "058.json": "106aa43c5f7e420a8851fb2c561c9cf38eb343a9622b93e66de4a6c2ff7b7c92",
+    "059.json": "402912e9fed4f186d45895b64e98a288244bbd8e28ad6344c5467438c68cf756",
+    "060.json": "a27043a5c3749ab423a9d503fc13f321e1527613a70bbdcea7e957909776091a",
+    "061.json": "75b059e263a61c174f7d0cba2dd2101948e9bf5668a0398ff191616e34d7f263",
+    "062.json": "4d4575f396316778d7083d63a480751b1fe76997c59c84f23f40d5fa8e53ab48",
+    "063.json": "710eec250c6c8f13f5d6ea807a483a0b36b6c0fe539a1055be1927959604f076",
+    "064.json": "f5adda7ee4f24010c8b2c65dd17e6b0278b9f3639307ed9cd638dfa16a73c6f3",
+    "065.json": "a44d093f3e8be26ca65e188e9364396b85ba5988c9a3b36ddf0614a502487b64",
+    "066.json": "5b5aecfb20e5818dcbade1eadad6cf11b4396267c6c25209bee7a4ae3f238dae",
+    "067.json": "4bef5cdcb21ef3a5626cb3a85a3dd2c0805ce6091577c6c19d56e140d48f5549",
+    "068.json": "63033748ca50debabeb4a953de876d8d90d2dd950f7c46481816f5c9686a38d0",
+    "069.json": "b71fb0539a93a8fa6200d964bf4a9e4dbb6a0f31a23a78523a27a53de19ce21e",
+    "070.json": "f28e511b265816f5c50706313ff7bb8203683170b914c6066c5609c3de23be01",
+    "071.json": "de16b8e46ab7bbd447fdbeb9b913419b3fdf516b6131f75b8bfbe5ccabd86157",
+    "072.json": "9d063ad626cd9d67234fc6c1bf833f445097091e15812ce384feda05dd83f665",
+    "073.json": "fbe5b3c770c6564b41c1681c5aa5917d62ce0ecb4f2238c7a2b363223b5e80dd",
+    "074.json": "366b94c4e6da784d9eba641ca34baf60f00dd388ce0cbf7a5422b4dd72f5836b",
+    "075.json": "337fa8db34601d203bbee3b8f99fbe8b4285b4899027489d990995bf10156823",
+    "076.json": "ec8bd99e35891fe2d4e5cdbb4dcce61fac6640a9bf0d76cfec6b641c02045269",
+    "077.json": "d50b1e82bc423a3e17862022102007119786b6177f623e7dec416396084241d8",
+    "078.json": "072b40591f07dcd4b07d035ce388c9e6e555186b7bed43a1ae02753b3ce4bee8",
+    "079.json": "0b0556a3f3e36d161e5e1b23b864256b789e9e9540bd033a9bb4ffdf41ac4c53"
+  },
+  "eos_ids": [
+    248044,
+    248046
+  ],
+  "pad_token_id": 248044,
+  "think_token_ids": [
+    248068,
+    248069
+  ],
+  "input_tokens_each_pass": 670122,
+  "max_input_tokens": 14390,
+  "output_order": "seed20261024 then20261025; each ascending(input_tokens,row_id), fixed original index",
+  "base_model_parameters": 8953803264,
+  "model_and_adapter_parameters": 8997081600,
+  "strict_parser": {
+    "path": "solutions/sampled_consensus/vendor/probe_runner.py",
+    "bytes": 8970,
+    "sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f"
+  },
+  "old_native_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/plan.json",
+    "bytes": 7636,
+    "sha256": "73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d"
+  },
+  "old_native_runner": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/infer_full80.py",
+    "bytes": 12484,
+    "sha256": "9bb2b32291cd61767da3149bdcbb9c8546dd83df637c5307c7c4a2542301e002"
+  },
+  "old_full_G": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/responses.jsonl",
+    "bytes": 28171,
+    "sha256": "fbc6f5bee29591a4308325c5e19d65fb23d09d1950a328e416ec290fbbc8201f"
+  },
+  "research_report_original": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-consensus-readiness-20261024/REPORT.md",
+    "bytes": 7876,
+    "sha256": "84f79f6217f864c177666c7be43cb162d9e97784ab7e1934399fd8ace10797ca"
+  },
+  "research_report_correction": "Historical R1 model S27 is DeepSeek-R1-0528-Qwen3-8B (not Distill-Qwen7B). Root separately corrected main report; unrelated to this native Qwen3.5 control.",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+    "bytes": 155402,
+    "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+    "bytes": 13187,
+    "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+  },
+  "baseline_score": 0.6863389812716092,
+  "endpoints": {
+    "primary": "B union (S1 intersection S2), all B relations preserved including88 outside sampler candidate space; entities1189 and nonrelations B exact",
+    "diagnostic": "M2of3(G,S1,S2) only relations, B1189 entities and nonrelation fields unchanged"
+  },
+  "adoption_gate": "Both prewritten complete endpoints jointly frozen after160 terminal rows; exactly2v2,0old,0single-seed. Highest endpoint strictly above B can be candidate; primary success separately reported. Always disclose micro/macro. If neither improves, close no seed/temperature sweep. InternalF1 only, not originaldev or official.",
+  "cost_basis": {
+    "old_native_G_80_actual_generation_seconds": 353.62960237357765,
+    "two_native_greedy_proxy_seconds": 707.2592047471553,
+    "two_input_tokens": 1340244,
+    "two_output_token_proxy": 9454,
+    "estimate_native_sampling_seconds": [
+      750,
+      1100
+    ],
+    "not_actual_sampling_measurement": true,
+    "hard_cap_seconds": 1800,
+    "all160_terminal_required": true
+  }
+}
