@@ -1,0 +1,132 @@
+{
+  "experiment": "E-20261024-DOC-SUPPORT-FILTER-001",
+  "at_utc": "2026-10-24T13:43:53.661943+00:00",
+  "fold": 1,
+  "formula": "B4 INTERSECT (Task1_document_support UNION at_least_two_pure_G_S_Q_C)",
+  "positive_source_count": 2,
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "task1": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/decision.json",
+      "bytes": 1568,
+      "sha256": "843d3cda816ef42e958e8b5eb8238d12a12c2d6065d69794769e7f79829e706e"
+    }
+  },
+  "pure_sources": {
+    "G": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    },
+    "Q": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1/single.prediction.jsonl",
+      "bytes": 154632,
+      "sha256": "103cab0f1eae88356bc164ed5b8924272642c686a3e031652010e584f2d7a9c4"
+    },
+    "C": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/coded-alone/pred.jsonl",
+      "bytes": 154344,
+      "sha256": "a5a75d050029038703641e8242c0d6b9557a0e4ac8c69914b0d8859e5857517b"
+    }
+  },
+  "sampled_diagnostics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/assembled-v1/row-diagnostics.jsonl",
+    "bytes": 265037,
+    "sha256": "91ad644fa6d617a4e921f8a8414c8c620c504be12fff10d79fc2cbddc22b236f"
+  },
+  "sample_rows_per_seed": 80,
+  "baseline_relations": 524,
+  "baseline_score": 0.701325377212172,
+  "entities": 1189,
+  "patients": 39,
+  "source_files": {
+    "contracts.py": {
+      "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/contracts.py",
+      "bytes": 4600,
+      "sha256": "4635dd2dc1d5b4abd10dadcd74feac5270d9a9461dd942fd6ba440202213fae8"
+    },
+    "literal_helpers.py": {
+      "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/literal_helpers.py",
+      "bytes": 4690,
+      "sha256": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828"
+    },
+    "prepare_plan.py": {
+      "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/prepare_plan.py",
+      "bytes": 5012,
+      "sha256": "e26c74f64b1a8191586131ce52ca5e4d387c23692899b4729427e9b593668618"
+    },
+    "run.py": {
+      "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/run.py",
+      "bytes": 8545,
+      "sha256": "0808c280efef7ce1f1865ea2970d09645753a07bf333112ce5e23843a6294220"
+    }
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/document-supported-relation-filter-20261024/F1-v1",
+  "history": {
+    "path": "/workspace/patientphex-worktrees/explore-document-supported-relation-filter/solutions/document_supported_relation_filter/evidence/history.json",
+    "bytes": 2318,
+    "sha256": "8d2ad4c3a51273bf7c541f2bdd6913e8f048167c256468b82488cae26acf7dd6"
+  },
+  "ancestry_refs": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/preparation-v1/ancestry.json",
+      "bytes": 5901,
+      "sha256": "54394c3e35a6799b549031a9c0c77d64f533b5638017f1b0758e1d5d83b67f76"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/lightgbm-selector-review/review.json",
+      "bytes": 7532,
+      "sha256": "1d6ed9fda12b68e40b7677e2024e246de684bac2ca52e8dfe2bb3e4e53a17421"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/fitted/manifest.json",
+      "bytes": 8953,
+      "sha256": "4ee0fdb63b74bf5e3094e0cd8c693a860b506539a9add503e8e374a8a113ad8e"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-four-source-fusion/solutions/four_source_fusion/plan-F1.json",
+      "bytes": 3762,
+      "sha256": "8f0a8ef955e72a95f1b5923c8404eb38e98e10ef84a148611203db80a20afcb3"
+    }
+  ],
+  "ancestry": "Inherited actual all sources excludeF1; Task1 LGB uses train48 while three generative backbones train32; no new learning. S canonical relations inherited from full80 row diagnostics, C strict whole-row abstention unchanged."
+}

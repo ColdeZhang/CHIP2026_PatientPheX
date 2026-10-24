@@ -1,0 +1,41 @@
+{
+  "status": "NO_IDENTICAL_COMPLETED_FORMULA_FOUND_IN_BOUNDED_SOURCE_CHECK",
+  "at_utc": "2026-10-24T13:43:53.635641+00:00",
+  "sources": {
+    "span_support_add_only": {
+      "path": "/workspace/patientphex-worktrees/explore-span-document-support/solutions/span_document_support/run.py",
+      "bytes": 11762,
+      "sha256": "df0269e80abaf0b84067d061e6acaa8482d52b6ceacc5d814ab75577c53a4564"
+    },
+    "unanimous_explicit_negative": {
+      "path": "/workspace/patientphex-worktrees/explore-unanimous-relation-veto/solutions/unanimous_relation_veto/run.py",
+      "bytes": 9754,
+      "sha256": "acbb0f2e93805332c909d4ebc2c3a60c5509cd188af6afb0daa8f59907990510"
+    },
+    "old_SFT_rule_intersection": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/sft_rule_intersection/F1_run.py",
+      "bytes": 8736,
+      "sha256": "6dce7d0bbaf704b1020b91e4a53dc1a9bf93dd50d89d101d32b44ba698fdd6e9"
+    },
+    "old_public_new_support_only": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/public_relation_outer/f1_support.py",
+      "bytes": 4136,
+      "sha256": "10019839fad0442106525ed3977819d3cdfd4a3742f4f3d51328f3af44c7d719"
+    },
+    "learned_document_bag_filter": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/filter_relation_bags.py",
+      "bytes": 2991,
+      "sha256": "229ecec1cede8376352de0c9e077e91612c75a8de2ed6142b981798edefe529a"
+    }
+  },
+  "distinctions": {
+    "span_support_add_only": "B union supported geometry; never deletes B",
+    "unanimous_explicit_negative": "Requires four explicit negative streams; F1positive/F0negative closed",
+    "old_SFT_rule_intersection": "Filters old SFT by patient-level rules while preserves all public65 additions",
+    "old_public_new_support_only": "Only newly generated relations filtered; all old B protected",
+    "learned_document_bag_filter": "Learned doc-HPO probability .5, NIL protected; no four pure positive override"
+  },
+  "scope": "Main method map/stage6/stage7 plus five actual adjacent sources; not exhaustive proof of all filesystem history",
+  "new_formula": "B4 INTERSECT (Task1_document_support UNION at_least_two_pure_G_S_Q_C)",
+  "real_delete_counts_not_read": true
+}
