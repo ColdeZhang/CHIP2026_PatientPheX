@@ -16,6 +16,6 @@
 
 唯一终态：evidence/terminal.json（外存R/research/mention-hard-negatives-v1/terminal.json，SHA99ca974b，11641B）。完整回收2910原件ZIP965d4825/5587542B，collection9b84ec0d；MCP断连只补缺块，原始失败收据保留。共同freeze b3e3f313早于exact2v2/旧0；两个完整pred ffd68142、4a2323d4。原件在外存gpu-v1-collected；大adapter/fullstate仅远端精确locator及原owner全张量重开证据，不声称独立下载或实际resume测试。
 
-入口：README.md、experiments/中的本实验、plan.json/gpu-plan.json、prepare.py/cpu_delta.py、reuse-sources.json。独立增量审已在进行，小包备份待结果commit后完成。root另预锁明确NO删除strongB的独立控制；那是另实验，不修改本线2端点负结论。候选Top8新任务在另一分支独立进行。
+入口：README.md、experiments/中的本实验、plan.json/gpu-plan.json、prepare.py/cpu_delta.py、reuse-sources.json。独立增量审核心校验已通过，报告待归档。77件/331088B小包于14:05:57.936676完成服务器逐成员核验及完整回读，SHA1c961562；独立receipt evidence/terminal-backup.json（42ed52a7），绑定结果commit9e67e472。原UNKNOWN write实际成功，恢复只读确认同SHA存在后0补写/0重打包；唯一terminal99ca974b不变。root另预锁明确NO删除strongB的独立控制；那是另实验，不修改本线2端点负结论。候选Top8新任务在另一分支独立进行。
 
 运行边界：.3 Torch2.7.0+cu128与旧2353的.100 Torch2.7.1+cu126不同，TF4.51.3/PEFT.15.2/tokenizers.21.2及native数学源相同；不能声称逐位纯数据消融。所有非entity对象逐项exact，重新序列化JSON不承诺原始字节exact。
