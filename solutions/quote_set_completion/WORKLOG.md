@@ -1,8 +1,8 @@
 # 工作台账
 
-分支 explore/quote-set-completion，仅维护 solutions/quote_set_completion。**已完成并关闭**：F1 .702224686较B4+.000899309，但F0 .724106276较B4−.004089353（新增1TP9FP），未过双折正门；禁止启动条件full64训练。所有GPU已释放，唯一F0评价完成1v2/旧0；稳定入口 `N/F0-complete-review-entry.json` SHA caa6ed94，详见实验QSC-001。当前只剩集中增量审及F0最小持久补包；F1已独审且root真实回下载。
+分支 explore/quote-set-completion，仅维护 solutions/quote_set_completion。**已完成并关闭**：F1 .702224686较B4+.000899309，但F0 .724106276较B4−.004089353（新增1TP9FP），未过双折正门；禁止启动条件full64训练。所有GPU已释放，唯一F0评价完成1v2/旧0；稳定入口 `N/F0-complete-review-entry.json` SHA caa6ed94，详见实验QSC-001。F0最小持久补包已82+1实际服务器核验，receipt33ca4ca5；当前只剩集中增量审与root唯一下载恢复。F1已独审且root真实回下载。
 
-恢复：N为仓库外 research/quote-set-completion-v1。不得重复正式训练、F1/F0推断、规范化或评分；条件519/36 CPU产物只作未执行计划保留。最近源码/冻结检查点85655ff3已push，原dev最佳不变。
+恢复：N为仓库外 research/quote-set-completion-v1。不得重复正式训练、F1/F0推断、规范化或评分；条件519/36 CPU产物只作未执行计划保留。最近源码/包装检查点2563dc2a已push，原dev最佳不变。
 
 ## 阶段历史
 
@@ -57,3 +57,5 @@ F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47
 - F0 A30原47完整：223.082秒/47EOS/0cap/峰21.066GB；16:32:27真实释放GPU0。108原件逐SHA回收e27cb54d，原固定解析53anchors/47词面、必要Sap27，完整规范化后唯一B4union质量。F1实际服务器恢复bf565已root完成；条件full64仍仅CPU。
 
 - F0最终固定端点已负：Score .724106275971，Δ−.004089352940；mic−.007296066/mac−.009061346，新增10=1TP9FP；全部947实体/47患者/343旧关系保持。原pred11622f97/freezefebf75c8后仅1v2/旧0，resulte51864d0。关闭QSC，不启full64，未重试格式失败或按错误删答案。
+
+- F0唯一最小补包975394B/b1c95a2c已15分块完整持久，82内容+1内嵌manifest逐SHA/fsync/reopen，receipt33ca4ca5/30181B；未重复F1或weights。包准确标注F0独审待root集中安排，根客户端下载另待；稳定入口caa6ed94保持。
