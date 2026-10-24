@@ -1,0 +1,212 @@
+{
+  "status": "authorized_single_longest_diagnostic_owner_launch_pending",
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "model": "/dev/shm/patientphex-medgemma15-1045-20261024/models/medgemma-1.5-4b-it-9bca96ca3e30",
+  "namespace": "research/medgemma-relation-control/fullcontext-probe-a800-v1",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/medgemma-relation-control/a800-preparation:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1"
+  },
+  "cwd": ".",
+  "probe_argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/probe-source/probe_fullcontext_longest.py",
+    "--train",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train.fullcontext.jsonl",
+    "--original-train",
+    "research/medgemma-relation-control/a800-preparation/train.jsonl",
+    "--train-input",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train32.input.jsonl",
+    "--excluded-input",
+    "research/medgemma-relation-control/a800-preparation/excluded.input.jsonl",
+    "--data-manifest",
+    "research/medgemma-relation-control/a800-preparation/preparation-manifest.json",
+    "--fullcontext-manifest",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/preparation.json",
+    "--model",
+    "/dev/shm/patientphex-medgemma15-1045-20261024/models/medgemma-1.5-4b-it-9bca96ca3e30",
+    "--model-source-manifest",
+    "research/medgemma-relation-control/a800-preparation/expected-files.json",
+    "--cpu-reference",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/summary.json",
+    "--cpu-row-audit",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/row-token-audit.json",
+    "--output-dir",
+    "/dev/shm/patientphex-medgemma15-1045-20261024/fullcontext-probe-longest-once",
+    "--gpu-uuid",
+    "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc"
+  ],
+  "timeout_argv": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=30",
+    "180",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/probe-source/probe_fullcontext_longest.py",
+    "--train",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train.fullcontext.jsonl",
+    "--original-train",
+    "research/medgemma-relation-control/a800-preparation/train.jsonl",
+    "--train-input",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train32.input.jsonl",
+    "--excluded-input",
+    "research/medgemma-relation-control/a800-preparation/excluded.input.jsonl",
+    "--data-manifest",
+    "research/medgemma-relation-control/a800-preparation/preparation-manifest.json",
+    "--fullcontext-manifest",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/preparation.json",
+    "--model",
+    "/dev/shm/patientphex-medgemma15-1045-20261024/models/medgemma-1.5-4b-it-9bca96ca3e30",
+    "--model-source-manifest",
+    "research/medgemma-relation-control/a800-preparation/expected-files.json",
+    "--cpu-reference",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/summary.json",
+    "--cpu-row-audit",
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/row-token-audit.json",
+    "--output-dir",
+    "/dev/shm/patientphex-medgemma15-1045-20261024/fullcontext-probe-longest-once",
+    "--gpu-uuid",
+    "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc"
+  ],
+  "timeout_command": "/usr/bin/timeout --signal=TERM --kill-after=30 180 /home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python -u research/medgemma-relation-control/fullcontext-probe-a800-v1/probe-source/probe_fullcontext_longest.py --train research/medgemma-relation-control/fullcontext-probe-a800-v1/train.fullcontext.jsonl --original-train research/medgemma-relation-control/a800-preparation/train.jsonl --train-input research/medgemma-relation-control/fullcontext-probe-a800-v1/train32.input.jsonl --excluded-input research/medgemma-relation-control/a800-preparation/excluded.input.jsonl --data-manifest research/medgemma-relation-control/a800-preparation/preparation-manifest.json --fullcontext-manifest research/medgemma-relation-control/fullcontext-probe-a800-v1/preparation.json --model /dev/shm/patientphex-medgemma15-1045-20261024/models/medgemma-1.5-4b-it-9bca96ca3e30 --model-source-manifest research/medgemma-relation-control/a800-preparation/expected-files.json --cpu-reference research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/summary.json --cpu-row-audit research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/row-token-audit.json --output-dir /dev/shm/patientphex-medgemma15-1045-20261024/fullcontext-probe-longest-once --gpu-uuid GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "probe_output": "/dev/shm/patientphex-medgemma15-1045-20261024/fullcontext-probe-longest-once",
+  "remote_source_files": {
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/probe-source/probe_fullcontext_longest.py": {
+      "bytes": 10047,
+      "sha256": "9c0e87a2134f846676bff8c690eb3a100aa8a31819ab77d76ef439be1c0ca2f8"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/probe-source/fullcontext_contract.py": {
+      "bytes": 5978,
+      "sha256": "9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/construct.py": {
+      "bytes": 2818,
+      "sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/legacy_full_context.py": {
+      "bytes": 12751,
+      "sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train.fullcontext.jsonl": {
+      "bytes": 4145866,
+      "sha256": "9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/train32.input.jsonl": {
+      "bytes": 657954,
+      "sha256": "a2c2baecb86ca425ae978688014073b69a415dbc9d3526d24be96f82b89e3e6d"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/preparation.json": {
+      "bytes": 6180,
+      "sha256": "811ef287e28735c859ec0547db3a820535ac30041ce1fde11ae332604539ac9b"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/summary.json": {
+      "bytes": 5755,
+      "sha256": "5d295ec580cd0c862a0fa1ded99ccfe93bb68f92631aec8dbbc5eb94868d34d9"
+    },
+    "research/medgemma-relation-control/fullcontext-probe-a800-v1/reference/row-token-audit.json": {
+      "bytes": 108287,
+      "sha256": "80f5bbce3f2f4d1537bfef9e9dbee5bd61c77d17bb7430c3810fc6bfbdedd1e0"
+    }
+  },
+  "reused_source_files": {
+    "research/medgemma-relation-control/a800-preparation/train_medgemma32.py": {
+      "bytes": 33132,
+      "sha256": "3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f"
+    },
+    "research/medgemma-relation-control/a800-preparation/medgemma_interface.py": {
+      "bytes": 7685,
+      "sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be"
+    },
+    "research/medgemma-relation-control/a800-preparation/qwen35_smoke.py": {
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "research/medgemma-relation-control/a800-preparation/qwen35_relation_cost.py": {
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "research/medgemma-relation-control/a800-preparation/train.jsonl": {
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "research/medgemma-relation-control/a800-preparation/excluded.input.jsonl": {
+      "bytes": 693112,
+      "sha256": "2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82"
+    },
+    "research/medgemma-relation-control/a800-preparation/preparation-manifest.json": {
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "research/medgemma-relation-control/a800-preparation/expected-files.json": {
+      "bytes": 7145,
+      "sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+    }
+  },
+  "source_bundle_sha256": "42958431816b1bff4e1d3b9dde81622d4d33b4c240b3c6a5a9c2e962d1403c58",
+  "source_only_plan_sha256": "a0eff81c4e663d9095643c0ff21510b001c4e1fe6d9aab578467f8b9b60c2f42",
+  "original_training_cap_unchanged": 8192,
+  "explicit_new_diagnostic_cap": 14000,
+  "expected_selection": {
+    "row_id": "12628480:relations:8",
+    "full_tokens": 12824,
+    "prefix_tokens": 12754,
+    "supervised_tokens": 70
+  },
+  "GPU_budget_seconds": 180,
+  "TERM_grace_seconds": 30,
+  "absolute_deadline_UTC": null,
+  "fresh_empty_GPU_required": true,
+  "owner_must_fresh_check_GPU_before_launch": true,
+  "CPU_delta_not_to_run": true,
+  "fresh_base_no_adapter_resume": true,
+  "no_diagnostic_checkpoint_saved": true,
+  "no_formal_training_no_quality": true,
+  "stop_policy": "First OOM/nonfinite/deadline stops; no retry or short-row fallback. UNKNOWN preserves known intent/job, never launches another.",
+  "probe_source_sha256": "9c0e87a2134f846676bff8c690eb3a100aa8a31819ab77d76ef439be1c0ca2f8",
+  "input_contract_sha256": "9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5",
+  "preparation_source_sha256": "4bdf5457474ec955813be96d0b5ecda3cdad501b873b5eeb4d3ceacf3f803b32",
+  "asset_inventory_and_existing_copy_ack_reused": true,
+  "native_probe_retains_original_asset_load_guard": true,
+  "current_deployment_does_not_hash_or_copy_model_weights": true,
+  "launcher_sha256": "aa0db88339827477d04e912d8a017020dc7becc7d1d0b51878146e7d123ec7e3",
+  "prior_controller_source_sha256": "9afc2dc07fe5fe9b044c4dce6eaec9fbb69bd089af238ff34930bddf99a427f5",
+  "local_references": {
+    "deployment": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-a800-deployment/deployment-complete.json",
+      "bytes": 1953,
+      "sha256": "7b1adbb72e958e9df3d69922eaadd48da9530c38be97301de44f1f5d5908004b"
+    },
+    "CPU_source_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/review.json",
+      "bytes": 9484,
+      "sha256": "4a6544d27ca74c5b9dc9ffea11856f8f091869a8bdc4867150aca7455b5a29ef"
+    },
+    "CPU_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/actual-cpu/summary.json",
+      "bytes": 5755,
+      "sha256": "5d295ec580cd0c862a0fa1ded99ccfe93bb68f92631aec8dbbc5eb94868d34d9"
+    },
+    "native_source_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/source-plan.json",
+      "bytes": 7108,
+      "sha256": "a0eff81c4e663d9095643c0ff21510b001c4e1fe6d9aab578467f8b9b60c2f42"
+    },
+    "short_GPU_release": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/inference-gpu-release.json",
+      "bytes": 274,
+      "sha256": "465a0de95e1af29131d8a946d3d8164730e1ce8dae08f1c714632c0b657ef4a5"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "status": "PASS_fullcontext_append_only_native_CPU_terminal_and_static_probe_preparation",
+  "reviewed_at_utc": "2026-10-24T03:40:06.204747+00:00",
+  "scope": "Incremental source/immutable data/actual CPU receipts only. No owner code, tokenizer, model, GPU, remote, evaluator or gold access in this review; no old contracts rerun. No quality or formal-training claim.",
+  "references": {
+    "owner_small_filelist": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/backup-filelist.json",
+      "bytes": 3236,
+      "sha256": "21a375df705f92b91c7e1e397df1cf791b0d406761c1a8bec6cfa7711bd2d94e"
+    },
+    "actual_summary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/actual-cpu/summary.json",
+      "bytes": 5755,
+      "sha256": "5d295ec580cd0c862a0fa1ded99ccfe93bb68f92631aec8dbbc5eb94868d34d9"
+    },
+    "actual_row_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/actual-cpu/row-token-audit.json",
+      "bytes": 108287,
+      "sha256": "80f5bbce3f2f4d1537bfef9e9dbee5bd61c77d17bb7430c3810fc6bfbdedd1e0"
+    },
+    "data_and_terminal_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/actual-data-checks.json",
+      "bytes": 9230,
+      "sha256": "92a69f2ec8faae4f26c993bd40e649a7f75cf5202e1aa77b628798979e043a43"
+    },
+    "source_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/delegated-source/checks.json",
+      "bytes": 4315,
+      "sha256": "28b90427d224f3877babecf8ec7612cd08564ea1a273a142afc166ebfa6f0b8a"
+    },
+    "source_snapshots": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/delegated-source/snapshot-manifest.json",
+      "bytes": 5935,
+      "sha256": "84bee2c1b7bcd1f60e8bc4879cb0a7dd8852722b2371d11a733a8c54ab8887e6"
+    },
+    "initial_snapshots": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshot-manifest.json",
+      "bytes": 8367,
+      "sha256": "aa82b30902b394f0b517af916e20587a87ac110c4518fed40d562e3d213b6ef3"
+    },
+    "probe_filelist": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/backup-filelist.json",
+      "bytes": 1260,
+      "sha256": "74ecbdc36517ff5cf23ed70e60dda875bc9d51f96edd38377b4aceac48ece852"
+    }
+  },
+  "data_integrity": {
+    "train_rows": 124,
+    "train_documents": 32,
+    "infer_rows": 80,
+    "infer_documents": 16,
+    "disjoint": true,
+    "full_original_rows_exactly_restored_after_removing_only_appended_user_suffix": true,
+    "original_answers_CID_PID_candidates_and_prior_messages_exact": true,
+    "pure_input_subsets_exact_frozen_input64": true,
+    "all_supervised_token_counts_per_row_equal_original": true,
+    "supervised_tokens": 7150,
+    "coordinate_marker_contract": "Inherited frozen ae7f5853; source guarantees text reconstruction and patient positions. Existing document audits checked and appended report SHA exact; no marker rerun."
+  },
+  "actual_CPU": {
+    "job_id": "proc_ce41d827-6997-40c8-91a9-2308d4c81b3c",
+    "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "started_utc": "2026-10-24T03:34:01.546856973Z",
+    "native_seconds": 13.458181628026068,
+    "managed_observed_seconds": 17.591527429998678,
+    "budget": "timeout --signal=KILL 60; no grace",
+    "managed_running": false,
+    "remote_exit_code_available": false,
+    "native_runtime": "Python3.10.12/Transformers5.20.2/Torch2.7.1+cu126/tokenizers0.23.1; GemmaTokenizer",
+    "eight_tokenizer_assets_exact_expected_690e": true,
+    "CUDA_hidden_and_uninitialized": true,
+    "weights_or_forward": false,
+    "prediction_or_quality": false
+  },
+  "measured_tokens": {
+    "train_full_total": 965436,
+    "train_full_max": 12824,
+    "train_longest_id": "12628480:relations:8",
+    "longest_prefix": 12754,
+    "longest_supervised": 70,
+    "train_over_unchanged8192_cap": 51,
+    "infer_input_total": 645000,
+    "infer_input_max": 13805,
+    "infer_longest_id": "12455887:relations:40",
+    "infer_over_input14000_cap": 0,
+    "infer_plus_fixed1600_max": 15405,
+    "fullcontext_to_original_training_token_ratio": 2.527319371727749,
+    "no_truncation": true
+  },
+  "cost_interpretation": {
+    "two_epoch_linear_token_proxy_seconds": 800.5101630709484,
+    "measured_fullcontext_training_seconds": null,
+    "not_guaranteed": "Attention, memory allocator and length are nonlinear; proxy excludes load/checkpoint/export/inference, and export cost must not be token-scaled."
+  },
+  "static_probe_preparation": {
+    "owner_plan_sha256": "a0eff81c4e663d9095643c0ff21510b001c4e1fe6d9aab578467f8b9b60c2f42",
+    "entry_sha256": "9c0e87a2134f846676bff8c690eb3a100aa8a31819ab77d76ef439be1c0ca2f8",
+    "contract_sha256": "9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5",
+    "actual_CPU_fixture_checks": 13,
+    "fixture_rerun_by_reviewer": false,
+    "native_load_update_cache_body_byte_exact_old0a": {
+      "bytes": 5562,
+      "sha256": "aea45fdd7cb14625d6ed424da45ea2384bec50a05d7840f0d2d3702b8631e4ac"
+    },
+    "new_cap14000_is_probe_only_old_trainer8192_unchanged": true,
+    "explicit_source_only_no_GPU_launch_or_runtime_plan": true,
+    "snapshots": [
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/README.md",
+          "bytes": 2387,
+          "sha256": "48a46c852d0b5136b96aea9caf80045cc17764e5f675b3a75265a05de66e450b"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/README.md",
+          "bytes": 2387,
+          "sha256": "48a46c852d0b5136b96aea9caf80045cc17764e5f675b3a75265a05de66e450b"
+        }
+      },
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/probe_fullcontext_longest.py",
+          "bytes": 10047,
+          "sha256": "9c0e87a2134f846676bff8c690eb3a100aa8a31819ab77d76ef439be1c0ca2f8"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/probe_fullcontext_longest.py",
+          "bytes": 10047,
+          "sha256": "9c0e87a2134f846676bff8c690eb3a100aa8a31819ab77d76ef439be1c0ca2f8"
+        }
+      },
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/fullcontext_contract.py",
+          "bytes": 5978,
+          "sha256": "9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/fullcontext_contract.py",
+          "bytes": 5978,
+          "sha256": "9b4d7505224240b8408ada3d7c8e92a40981985a71215bbe5d848f85f92b54b5"
+        }
+      },
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/cpu_contract.py",
+          "bytes": 6706,
+          "sha256": "d5d62e173a7d365100ccf23b17ff42c4d41d2fea792c783c17c7da137d44f050"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/cpu_contract.py",
+          "bytes": 6706,
+          "sha256": "d5d62e173a7d365100ccf23b17ff42c4d41d2fea792c783c17c7da137d44f050"
+        }
+      },
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/cpu-contract.json",
+          "bytes": 1544,
+          "sha256": "db40b38a740c9a05e82a59e7a40253442a66f7b88eb4c96b7fa5c9dd36c100ff"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/cpu-contract.json",
+          "bytes": 1544,
+          "sha256": "db40b38a740c9a05e82a59e7a40253442a66f7b88eb4c96b7fa5c9dd36c100ff"
+        }
+      },
+      {
+        "original": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/probe-source/source-plan.json",
+          "bytes": 7108,
+          "sha256": "a0eff81c4e663d9095643c0ff21510b001c4e1fe6d9aab578467f8b9b60c2f42"
+        },
+        "snapshot": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-fullcontext-CPU-review/snapshots/probe-source/source-plan.json",
+          "bytes": 7108,
+          "sha256": "a0eff81c4e663d9095643c0ff21510b001c4e1fe6d9aab578467f8b9b60c2f42"
+        }
+      }
+    ]
+  },
+  "decision": "CPU preparation and static diagnostic source have no concrete blocker. Current Med formal experiment is independent. Actual longest-row memory/latency, any new train cap and a bounded runtime plan remain unmeasured/unissued here; this report is not a GPU launch authorization or a quality result."
+}

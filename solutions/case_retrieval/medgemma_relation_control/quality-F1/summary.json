@@ -1,0 +1,150 @@
+{
+  "status": "complete_predeclared_Med_standalone_and_union_F1_development",
+  "policy": {
+    "primary": "MedGemma native full-bundle text-only fresh strict32 two-epoch adapter; frozen original80 parser and baseline-rule fallback",
+    "secondary": "literal per-document per-patient set union of cached old-SFT32 and primary MedGemma relations",
+    "selection_comparator": "cached old-SFT32 baseline",
+    "retention": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "union_vs_medgemma": "report differences only; no additional selection/combinations",
+    "evaluation": "both complete predictions frozen first; each one unchanged v2 all/text call; old metrics cached",
+    "nonrelation": "original baseline bytes outside each top-level association value preserved exactly",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false,
+    "F0_originaldev_official": false
+  },
+  "scope": "Known old baseline and repeatedly observed F1 development; no F0, originaldev, independent-generalization or official claim.",
+  "paired_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/paired-predictions-freeze.json",
+    "bytes": 2673,
+    "sha256": "d7a52409fa704a1c26fd9f8e5ad0f959abe7a262cb1c887f9824db813f5d8f1a"
+  },
+  "old_cached_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+    "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+    "bytes": 13115
+  },
+  "old_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6866002214839424,
+    "macF1": 0.5422288533401712,
+    "Score": 0.6609420026531936
+  },
+  "endpoints": {
+    "primary-medgemma": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.55,
+        "macF1": 0.4498672602544154,
+        "Score": 0.603701549010769
+      },
+      "counts": {
+        "mention": {
+          "tp": 848,
+          "fp": 341,
+          "fn": 505,
+          "precision": 0.7132043734230445,
+          "recall": 0.6267553584626755,
+          "f1": 0.6671911880409127
+        },
+        "document": {
+          "tp": 498,
+          "fp": 89,
+          "fn": 247,
+          "precision": 0.848381601362862,
+          "recall": 0.6684563758389261,
+          "f1": 0.7477477477477478
+        },
+        "relation": {
+          "tp": 253,
+          "fp": 147,
+          "fn": 267,
+          "precision": 0.6325,
+          "recall": 0.48653846153846153,
+          "f1": 0.55
+        }
+      },
+      "metrics_file": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/primary-medgemma/metrics.json",
+        "bytes": 13066,
+        "sha256": "120e3fc9041539d5ad749603876e95d100ad3de471388954dd5a4acc1b1ca569"
+      },
+      "format_file": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/primary-medgemma/validation.json",
+        "bytes": 686,
+        "sha256": "a374f627455494ca96c6e0ea13015c20f3c5632078b655a72cb3f8c09cfb4e5c"
+      },
+      "delta_vs_old": {
+        "Score": -0.05724045364242458,
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.13660022148394235,
+        "macF1": -0.09236159308575581
+      },
+      "retain_vs_old_advisory": false
+    },
+    "secondary-union": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6379647749510763,
+        "macF1": 0.5257500111671995,
+        "Score": 0.644663430476734
+      },
+      "counts": {
+        "mention": {
+          "tp": 848,
+          "fp": 341,
+          "fn": 505,
+          "precision": 0.7132043734230445,
+          "recall": 0.6267553584626755,
+          "f1": 0.6671911880409127
+        },
+        "document": {
+          "tp": 498,
+          "fp": 89,
+          "fn": 247,
+          "precision": 0.848381601362862,
+          "recall": 0.6684563758389261,
+          "f1": 0.7477477477477478
+        },
+        "relation": {
+          "tp": 326,
+          "fp": 176,
+          "fn": 194,
+          "precision": 0.649402390438247,
+          "recall": 0.6269230769230769,
+          "f1": 0.6379647749510763
+        }
+      },
+      "metrics_file": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/secondary-union/metrics.json",
+        "bytes": 13182,
+        "sha256": "2614450c918bfbe95dc1c9cc7536d66c6bad576eedecf9cd0b78f7692b2db721"
+      },
+      "format_file": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/secondary-union/validation.json",
+        "bytes": 686,
+        "sha256": "4337b252e3ab8c713e1941be96d0b2fc83b97868b18034053897bb4594a1b34a"
+      },
+      "delta_vs_old": {
+        "Score": -0.01627857217645956,
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.04863544653286611,
+        "macF1": -0.016478842172971686
+      },
+      "retain_vs_old_advisory": false
+    }
+  },
+  "union_minus_med_report_only": {
+    "Score": 0.04096188146596502,
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": 0.08796477495107624,
+    "macF1": 0.07588275091278412
+  },
+  "automatic_migration": false,
+  "elapsed_CPU_seconds": 4.380693039987818
+}
