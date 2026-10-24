@@ -1,0 +1,57 @@
+{
+  "schema": "patient-balanced-alpha05-fixed-prospective-quality-v1",
+  "status": "pre-GPU-method-design_no_training_or_inference_or_quality_execution_authorized_here",
+  "alpha": 0.5,
+  "objective": "Improve total Score under fixed evaluator v2 all/text; macro disclosed without extra hard gate",
+  "training": "Original train32 124 patient-first rows, two fresh epochs/32 optimizer calls/warmup2; formal budget and actual checkpoint remain to be decided after one engineering probe",
+  "primary": "Literal N union R union newP replacing the old P component; N and R fixed as original cached predictions. Do not preserve oldP-only relations or append newP to old triple baseline.",
+  "diagnostic": "newP-alone with the same 1189 entities,39 patients,16 documents and all nonrelation bytes; this is descriptive, never substituted post-hoc for primary",
+  "method_baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/F1.triple.jsonl",
+    "bytes": 155372,
+    "sha256": "ce7363ab213ccc92c59def957b2e832b459339cc52ee7ee7dd6c38c4465f2f0e"
+  },
+  "method_baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/F1.metrics.json",
+    "bytes": 13132,
+    "sha256": "14b708b29e1152a2d692242d16d0d3914e64cb450aab9c0f0cc576a6627e110e"
+  },
+  "normal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+    "bytes": 154176,
+    "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+  },
+  "reverse": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/reverse.jsonl",
+    "bytes": 154308,
+    "sha256": "bc9d1b26bde9a843b1a5ec95c78d46cafd8d8a30748365276942be5c744e29ba"
+  },
+  "old_patient": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/assembled/patient-first.jsonl",
+    "bytes": 153874,
+    "sha256": "2d73259b82d3c23ca82f56dd70207d963e5ef003cc4c58c25f60518df9bc7bcf"
+  },
+  "F1_input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "bytes": 342703,
+    "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+  },
+  "baseline_score": 0.6638418206599839,
+  "stronger_F1_reference": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12922,
+    "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+  },
+  "stronger_F1_reference_score": 0.676546354662594,
+  "stronger_reference_summary": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_readiness/full80/quality-summary.json",
+    "bytes": 5521,
+    "sha256": "d2eddae4f9ff254f175a1f762a53a152e42d297f928b846d5982bd7ff76128ca"
+  },
+  "decision": "Primary total Score must strictly exceed its original N/R/P baseline to retain this fixed method control. Both arms also report delta vs stronger .676546354662594. Below that reference is not a global F1 best; originaldev .8 remains unchanged. No automatic F0/originaldev migration.",
+  "freeze": "Both complete predictions freeze together before first heldout gold read or evaluation. Exactly one v2 per new endpoint; zero baseline reevaluations.",
+  "fixed_parameters": "No alpha/threshold/vote/permutation/merge/epoch scan; no target or candidate mutation; final epoch2 only after complete durable fullstate",
+  "scope": "F1 known development; no blind-generalization claim. Preserve all past results and real runtime differences. No official upload.",
+  "formal_or_quality_budget_authorized": false,
+  "probe_scope": "Only root-authorized 240+TERM30 engineering probe, state discarded, no quality. Future formal and inference budgets separate."
+}

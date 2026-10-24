@@ -1,6 +1,6 @@
 # 未来 trainer 集成边界（仅源码设计）
 
-当前只有准备产物和 loss core；**没有混合目标训练入口，也没有 GPU/fit 授权**。本页依据原 train32 trainer `a3ec17f5…`、selected-CE hook `dfd0759f…`、其 full64 安装位置 `1203139e…:540` 及当前 `mixed_loss.py` `dc98bb97…`。只复用 full64 的实例 hook 方式，不迁入其265行、68步或warmup4配置。
+本页是原接线设计；当前已新增probe专用入口并获唯一240+TERM30工程授权，尚未执行；**仍没有混合目标正式训练入口或formal fit授权**。本页依据原 train32 trainer `a3ec17f5…`、selected-CE hook `dfd0759f…`、其 full64 安装位置 `1203139e…:540` 及当前 `mixed_loss.py` `dc98bb97…`。只复用 full64 的实例 hook 方式，不迁入其265行、68步或warmup4配置。
 
 1. **先绑定原行。** 在原 `encode_all` 完全通过后，以原 index、row_id、native IDs/labels/rendered 四SHA、长度绑定已冻结 `row-weights`。原 batch1、labels、attention mask、右侧 padding、124行顺序和6144上下文保持；运行时再次核 `labels != -100` 的完整位置恰为 metadata 的q。P=87、S=16、n_p来自实际准备产物，不从预测或正例数推导。
 

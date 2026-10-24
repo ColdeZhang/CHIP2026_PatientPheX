@@ -1,3 +1,9 @@
+## 新授权与待运行探针
+
+root已授权在原CPU全部原件核验后、H5正式600控制实际释放GPU2之后，沿原A100环境唯一240+TERM30工程probe。8微批非零Adam→3累积→最长5556，共12次反向，状态弃掉；不是formal训练，没有评分。`probe_prepare.py`只重新编码这12行并对原native四SHA，既有全124位置/Fraction合同不重跑；probe源检查点先推送。
+
+`probe.py`保留全BF16 LM head后selected FP32 CE，通过`row_loss_scope.py`为每行捕获不可变metadata与真实g，在forward至backward重算结束保持绑定并try/finally恢复；实际生命周期、梯度/optimizer state有限性、三族B变化、base冻结和显存必须由一次真实probe证明。`probe_driver.py`绝对240+30且fresh UUID/process/空间gate，非零Adam只是工程诊断，正式原warmup2不改。未来质量预定在[quality-design.json](quality-design.json)：主N∪R∪newP替旧P；诊断newP-alone；保1189实体/39患者/非关系，双完整pred共冻→各1v2。旧N/R/P .663841820660及强全文 .676546354662594均列，不把低于强参考的分数称全局best；formal/质量预算尚未给。
+
 ## 实际进度（2026-10-24）
 
 原生位置与权重准备已唯一执行成功，2.716751秒，manifest `c713111b…`；全部原124行IDs/labels/audit exact、两轮每患者新份额1/87及混合1/174精确成立，跨两个患者值的token为0，prepared空列表106处保留。见 [小型实际清单](preparation-actual.json)。
