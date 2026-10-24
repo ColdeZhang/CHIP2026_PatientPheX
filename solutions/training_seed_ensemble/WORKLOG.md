@@ -2,7 +2,7 @@
 
 2026-10-24 UTC，分支 `research/training-seed-ensemble`，起点 `main@ff7ad16777e3907ed3b4b4231794439017aa5bf8`。仅修改本方案目录。共享规则已读，后继启动尤其遵循 H49 原始响应先存、H68 按实际成本做最小工程检查、H69 启动有效期与运行预算分开。
 
-**当前：原fresh训练16:30:57完整成功，87×2/22更新及两完整持久ACK已在原watch终态核到；终态收件全核后39条F1已16:42:47唯一真实启动，尚无新质量。**
+**当前：固定F1组合正，Score .701325377212→.704663449915（+ .003338072703），8新增=6TP2FP；原单端点1v2/旧0。按预锁条件准备F0，同权重/同公式，不新增训练或单臂评测。**
 
 **历史释槽交接（现已恢复）**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
 
@@ -45,3 +45,5 @@ F1 actual proc803b4f9d/driver67252/child67270，.12GPU2，16:42:47.217启动，�
 资源后继修订：root改排必要Sap至.100 GPU0/126293b9，避免.3长关系空等；新源码normalization_A30及host-contract d92953d3核原10资产SHA全同，继承QSC真实同host encoder运行，仅实际runtime从2.7.0/4.50到2.7.1/4.51.3明确披露。query/driver/admission字节保持、无bank重编码/fit/新query结果。原.3helper保持未执行，原F1NN/source/硬钟不改，quality仍唯一固定组合。
 
 F1原39已17:04:46完整rc0/1319.293s并真实释放，17:07:33原watch恢复终态（非运行耗时）；90成员collection b0160497已逐SHA完整收回。保原cap/逐item解析、extract7e7f7219与必要query preparation6fb3a772完成，无gold/质量。Sap真实全部206条，.100GPU0唯一plan已绑定，180+30/300秒TTL，源先push再fresh门启动。 .12卡已直接交root/SCST，不等本后处理。
+
+完整F1结果与唯一入口 [evidence/F1-result.json](evidence/F1-result.json)。35EOS/4cap原样，原itemwise坏quote105/duplicate1不补答。206必要Sap实际8.990秒、17:09:44.596978 .100GPU0真释放；.12已17:04:46.618734真释放并交SCST。root重新安排F0卡前只CPU/source；同host39耗时1319.293×47/39≈1589.917为预算代理，非F0保证。主微宏皆升，尚非原dev分数。
