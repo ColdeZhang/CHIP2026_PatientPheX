@@ -83,7 +83,7 @@ SFT完整终审原件`d655bcb6…`及其所有snapshots保持；后继元数据�
 
 据F1主正结果授权F0相同政策：原58/415CID/47患者/947实体，旧SFT48 exact adapter（已在A800核完整缓存），先核全文纯输入和max，不截断；max≤32768时工程cap向上取整512，唯一最长240+30。若自然EOS/合法、生成含prefill≤30秒且peak allocated≤60GB，可按同配置完整58一次1200+30（缓存1＋57fresh）。两端点身份保持、共同freeze后新各1v2/旧0，旧.695443947581；主Score严格升且macro不降才通过。alone作为后继选择的诊断也完整报告，原dev迁移另由主线程结合两fold决定。
 
-F0 native CPU实际7.478秒通过，58条发布原生/Auto/template IDs及双解码一致；195355→505090 tokens，最长idx30为16245，工程cap明确向上取512为16384，不截断。唯一最长实际16245→130，含prefill生成9.633秒，峰allocated22.753GB，wrapper37.910秒rc0；strict/EOS且未触cap，05:51:02.874170实际卡释放。满足原条件后，05:53:31启动唯一完整58作业`proc_76d0ce4c-6887-46cf-b88d-9af5a1874eed`，driver20214，1200+TERM30，1精确缓存＋57fresh；尚未产生完整第二折质量。
+F0 native CPU实际7.478秒通过，58条发布原生/Auto/template IDs及双解码一致；195355→505090 tokens，最长idx30为16245，工程cap明确向上取512为16384，不截断。唯一最长实际16245→130，含prefill生成9.633秒，峰allocated22.753GB，wrapper37.910秒rc0；strict/EOS且未触cap，05:51:02.874170实际卡释放。满足原条件后，05:53:31启动唯一完整58作业`proc_76d0ce4c-6887-46cf-b88d-9af5a1874eed`，driver20214，1200+TERM30，1精确缓存＋57fresh；随后277.262秒完整结束，两个端点Score弱正、主micro下降，独审760cc08d通过，详细数值和后继控制转至[第六阶段](round2-20261024-stage6-decisions.md)。
 
 ## R1学习融合的低成本开发筛查
 
