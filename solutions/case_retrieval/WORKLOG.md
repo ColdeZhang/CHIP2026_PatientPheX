@@ -1,5 +1,7 @@
 # 病例检索路线：当前工作索引
 
+- **进行中：[F0 全文 FLA](fla_fulltext_F0_control/README.md)**：原排F0旧SFT48/58全文和native终点已核，直接复用 .696603974744，不重NN/旧评分；新58fresh/900+30、idx30最长16245先工程门。源/计划冻结，待唯一fresh空卡启动；F1双正 .678896254/.678549648 已收口等待统一增量审。
+
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
 ## 当前：FLA独立全文F1双正，选择单独端点；待增量复核
