@@ -1,15 +1,15 @@
 {
-  "updated_at_utc": "2026-10-24T09:26:00Z",
+  "updated_at_utc": "2026-10-24T09:32:00Z",
   "purpose": "Current recovery pointers. Read immutable job and latest owner state before acting; milestones below are not a fresh remote inventory.",
   "current_original_dev_score": 0.7543613981990362,
   "current_prediction_sha256": "9016863cb3bff53da5dfde25fce634bd60882f057d0c14501be7cb4937e71c67",
-  "official_submission": "Accepted 2026-10-24 07:54:13 UTC; one-time authorization consumed; no score queries or further uploads.",
+  "official_submission": "Accepted07:54:13 UTC; user later reported score .6922/rank5 (leader .7389). No website score query or further upload; separate user-result record in docs/submissions.",
   "jobs": [
     {
       "route": "ontology_rules",
       "branch": "round2/ontology-rules",
       "owner": "/root/ontology_recover_0518",
-      "status": "epoch 1 durable on .100; epoch 2 started",
+      "status": "Two formal epochs complete,32calls; both .100 durable ACKs complete09:28:38. Original watcher ended normally4869.772s. New80fresh quality started09:30:18.",
       "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
       "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
       "job": {
@@ -31,13 +31,22 @@
       "deadline_utc": "2026-10-24T10:27:28.873858Z",
       "budget": "Original shared 8400 seconds + TERM 30, not reset for epoch 2",
       "recovery_command": "python /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/operations.py inspect --directory /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller --epoch 2",
-      "next": "Use the existing watcher for original epoch-2 export and durable ACK, then already authorized fresh F1 full80/1200+30 and paired quality. Do not start another trainer or watcher."
+      "next": "Use the existing watcher for original epoch-2 export and durable ACK, then already authorized fresh F1 full80/1200+30 and paired quality. Do not start another trainer or watcher.",
+      "quality_job": {
+        "process_id": "proc_36a62965-457f-49bb-8dab-13b4b34d1b5f",
+        "driver_pid": 22795,
+        "started_at_utc": "2026-10-24T09:30:18.689Z",
+        "budget": "1200+30 new quality clock",
+        "plan_sha256_prefix": "30c1e427",
+        "adapter_sha256_prefix": "65b53e36",
+        "all80_fresh": true
+      }
     },
     {
       "route": "sequence_crf",
       "branch": "round2/sequence-crf",
       "owner": "/root/sequence_recover_0518",
-      "status": "Original formal complete and69-file collection verified; fresh F1 full80 started09:20:17 UTC.",
+      "status": "COMPLETE_NEGATIVE: formal1466.506s,80fresh372.050s,primary .661496611109 below .663841820660; alone .636714244169. Keepfalse; incremental terminal review in progress. Owner will transfer to new grounded-generation worktree.",
       "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
       "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
       "job": {
@@ -72,7 +81,7 @@
       "route": "case_retrieval",
       "branch": "round2/case-retrieval",
       "owner": "/root/retrieval_recover_0518",
-      "status": "Independent FLA normal80 quality inference uniquely started; no new model training",
+      "status": "First attempt failed before0forward due extra inspectsource wrapper ownership gate; original contract mechanically restored, original deadline unchanged. Original recovery active19/80 at09:30:40.",
       "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
       "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
       "process_id": "proc_99477f17-f631-4ca9-b349-1eff59cb3e6e",
@@ -83,7 +92,16 @@
       "source_checkpoint": "43571da",
       "infer_sha256_prefix": "3e1e8e9d",
       "plan_sha256_prefix": "3f5335d6",
-      "next": "Owner recovers original full80 raw, then frozen FLA-alone and N union FLA paired quality versus .676546354662594; no native cache, no training B/C or F0/dev automatically."
+      "next": "Owner recovers original full80 raw, then frozen FLA-alone and N union FLA paired quality versus .676546354662594; no native cache, no training B/C or F0/dev automatically.",
+      "recovery": {
+        "process_id": "proc_1bf02d93-8450-421d-bd9c-bd834a79cd5f",
+        "driver_pid": 2714693,
+        "started_at_utc": "2026-10-24T09:28:05.464Z",
+        "original_deadline_utc": "2026-10-24T09:45:09.929177Z",
+        "source_checkpoint": "f3b0701",
+        "plan_sha256_prefix": "307f7ccb",
+        "inference_source_unchanged": true
+      }
     }
   ],
   "completed_since_official_acceptance": {
@@ -93,5 +111,31 @@
     "fulltext_reverse": "Both endpoints below normal .676546354663; closed",
     "fla_backend_A": "Engineering review8959740a completed, real long-input differences. New independent FLA task-quality control explicitly allocated09:19; no transparent replacement or training B/C; outside217."
   },
-  "review_and_backup": "Index217/5010 refs published; all5028 archived members actually restored from .100 and SHA verified09:11:25. Prior206/4770-member actual restore retained. FLA A outside this batch."
+  "review_and_backup": "Index217/5010 refs published; all5028 archived members actually restored from .100 and SHA verified09:11:25. Prior206/4770-member actual restore retained. FLA A outside this batch.",
+  "new_parallel_worktrees": [
+    {
+      "route": "span_normalization",
+      "branch": "explore/span-normalization",
+      "worktree": "/workspace/patientphex-worktrees/explore-span-normalization",
+      "owner": "/root/span_normalization",
+      "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
+      "status": "Agent active: explicit span detector and independent HPO normalization; CPU/research first."
+    },
+    {
+      "route": "document_relations",
+      "branch": "explore/document-relations",
+      "worktree": "/workspace/patientphex-worktrees/explore-document-relations",
+      "owner": "/root/document_relations",
+      "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
+      "status": "Agent active: mature document-level relation modeling; CPU/research first."
+    },
+    {
+      "route": "grounded_generation",
+      "branch": "explore/grounded-generation",
+      "worktree": "/workspace/patientphex-worktrees/explore-grounded-generation",
+      "owner": "/root/sequence_recover_0518",
+      "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
+      "status": "Assigned; finish old alpha negative closure then transfer to new worktree. Evidence-grounded generation and independent normalization."
+    }
+  ]
 }
