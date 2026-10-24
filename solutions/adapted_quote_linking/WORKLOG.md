@@ -1,6 +1,6 @@
 # Adapted quote linking 台账
 
-状态：root已授权.3 GPU0唯一254查询180+30；254完整查询已rc0并释放GPU，唯一全量预测已freeze，正在先push后一次质量。0新增训练/9B推断/GPU/held gold/质量。旧Copy完整负结果保留，不在本线续试。
+状态：已关闭，完整F1预测与B4逐字节相同、0新增/0删除、0新v2/未读gold，不进入F0。GPU已释放，正在完成小备份与终审。旧Copy完整负结果保留，不在本线续试。
 
 目标：检验同train32监督适配Sap能否改善普通Grounded原合法引文的映射，唯一primary为 `B4 ∪ [Gadapted ∩ (S∪Q∪C)]`，明确不含旧G自证。最终验收仍为原train64/dev16 v2≥.8；内部F1只决定是否进入固定F0。
 
@@ -20,3 +20,5 @@
 
 - 原254 child1223598在16:11:42.086147完整rc0/no-timeout，13.909秒（native12.731），actualrelease16:11:42.095268 GPU0=4MiB/noapps，已交root/sequence。必要全scores/254实际nativeIDs/终态完整收件；原0.78MBqueryvectors在server同SHA18994851持久，未冒称本地已下载。
 - 完整573anchors已按新fab55644 policy归一化，无原始响应改动；唯一16/39/1189/B524预测freeze403a67ea，新增0、删0，纯新G249仅无分审计，byteexact=True。先push此freeze再独立score入口最多1新v2/旧0。
+
+- freeze403a67ea/预测5ad5cfe3在d63d8119已push后执行score入口，判byteexact：继承B4 .701325377212172，0newv2/0oldv2/未读gold。严格正条件未满足，不进入F0、不改cut或加入旧G自证。统一终审 `research/adapted-quote-linking-v1/final-review-entry.json`，仓内evidence/F1-result.json同字节。

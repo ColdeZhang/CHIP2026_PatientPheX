@@ -1,0 +1,205 @@
+{
+  "schema": "adapted-quote-F1-final-review-v1",
+  "status": "CLOSED_BYTEEXACT_B4_ZERO_INCREMENT_NO_F0",
+  "at_utc": "2026-10-24T16:13:51.732310+00:00",
+  "experiment": "E-20261024-ADAPTED-QUOTE-001",
+  "formula": "B4 UNION (G_adapted_normalizer INTERSECT (S UNION Q UNION C))",
+  "old_G_excluded": true,
+  "prelocked_before_new_Sap_quality": true,
+  "full": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "original_G_raw_rows": 39,
+    "original_accepted_anchors": 573,
+    "necessary_queries": 254,
+    "original_itemwise_rejection_unchanged": true,
+    "new_G_unscored_relations": 249,
+    "baseline_relations": 524,
+    "added": 0,
+    "removed": 0
+  },
+  "normalization": {
+    "abstain": 279,
+    "mapped": 294
+  },
+  "metrics_inherited_without_gold": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.7490421455938697,
+    "macF1": 0.641320427466158,
+    "Score": 0.701325377212172
+  },
+  "new_v2": 0,
+  "old_v2": 0,
+  "gold_opened": false,
+  "byteexact_to_baseline": true,
+  "prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/prediction.jsonl",
+    "bytes": 141149,
+    "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+    "bytes": 141149,
+    "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+  },
+  "raw_query": {
+    "proc": "proc_dd549ce6-c862-4f5d-a143-af1ecb79d2f9",
+    "driver": 1223586,
+    "child": 1223598,
+    "started_utc": "2026-10-24T16:11:28.179715+00:00",
+    "returncode": 0,
+    "timed_out": false,
+    "wrapper_seconds": 13.90879437001422,
+    "native_seconds": 12.730785391759127,
+    "budget_seconds": 180,
+    "grace_seconds": 30,
+    "complete254": true,
+    "all254_actual_HF_IDs_equal_independent_native": true,
+    "parameters": 109482240,
+    "parameter_dtype": "float32",
+    "forward_autocast": "float16",
+    "pooling": "CLS_float32_torch_L2",
+    "task_adapted": true,
+    "no_task_fit": false,
+    "checkpoint": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/supervised-sapbert-linker/formal-recovery-v1/formal-output/final-epoch3-state.pt",
+      "bytes": 1309305869,
+      "sha256": "b0482af6b273f02c15bd1e466f716b050f7f64f0a9932ba79466e5e3fd5f6b70"
+    },
+    "bank": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/supervised-sapbert-linker/formal-recovery-v1/formal-output/final-public-bank.npy",
+      "bytes": 126256256,
+      "sha256": "fa312ba7d0625b7822f9b2c247b7b8522a6cef3a06206bbc0d3198c6b97c132a"
+    },
+    "necessary14_actual_files_locally_verified": true,
+    "vectors_remote_durable_only": {
+      "bytes": 780416,
+      "sha256": "1899485133834f4dd6aac1b56f8ad8c350de2bb553ee3ce1fe6f7f0a51da2ee1",
+      "original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/adapted-quote-linking-v1/F1-query-v1/output/query-vectors.npy",
+      "not_downloaded": true,
+      "actual_fsynced_and_reopened_SHA": true
+    },
+    "gpu_release": {
+      "at_utc": "2026-10-24T16:11:42.095268+00:00",
+      "gpu": "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4, 24160, 24576\n1, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 1895, 22269, 24576\n2, GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 965, 23199, 24576\n",
+      "processes": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 884964, 940\nGPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 897066, 940\nGPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 4190196, 956\n",
+      "disk_free_bytes": 163767431168
+    }
+  },
+  "limitations": [
+    "This is internal F1, not original dev16 .8 success",
+    "Fixed .90/.03 on newly adapted encoder is an uncalibrated joint control",
+    "Unchanged final output proves zero gain for this fixed primary; it does not establish all supervised Sap variants fail",
+    "No pure-new arm, threshold scan, old-G self-support or matched-zero-step control executed"
+  ],
+  "next": "Close fixed route, no F0/full64/new GPU/official upload; await independent root tasks",
+  "artifacts": {
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/decision.json",
+      "bytes": 2521,
+      "sha256": "c61228b301224cf2f9712afe7e06218adcdcdef8bf2d50b3951eaeff3fb10f72"
+    },
+    "preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-prepared-v1/manifest.json",
+      "bytes": 10323,
+      "sha256": "7a3a53146771b77b5de3e5c473886420cf0630e62dba17e1dba398f12770f07e"
+    },
+    "CPU_contract": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/evidence/contracts.json",
+      "bytes": 1288,
+      "sha256": "b90b3c122281ef2bf0e9d1101feba296c4f8c1209ce84de8494cbda5230a6ab6"
+    },
+    "controller_contract": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/evidence/controller-contract.json",
+      "bytes": 834,
+      "sha256": "d87918dfff4d3c6935035691e665acef13cb774d1a6604586c602ff9f063864e"
+    },
+    "execution_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/execution-plan.json",
+      "bytes": 16435,
+      "sha256": "ffb0b2bd093acba7f61ddf8fe1ab85c2752117e8f35ff32cd1ba3a47d438359b"
+    },
+    "model_certificate_binding": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/evidence/model-binding.json",
+      "bytes": 616,
+      "sha256": "cd9b62eb8573a3b52223b522b9be576513255c8b075a2e20918790d0ee3eaa1a"
+    },
+    "policy": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/policy_v1.json",
+      "bytes": 1857,
+      "sha256": "fab5564497a4258280ed14a93905c2c2af666c19b10b7c87e652deee54496b2f"
+    },
+    "bank_manifest": {
+      "path": "/workspace/patientphex-worktrees/explore-adapted-quote-linking/solutions/adapted_quote_linking/bank-manifest.json",
+      "bytes": 2704,
+      "sha256": "5f201bd80bd1ae1277537dfac7435f120f43830e1ed4b7a4631dea7180dc90f2"
+    },
+    "query_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/collection.json",
+      "bytes": 8230,
+      "sha256": "84a88e48d948587ab908a987931e1fef740d07d26ec258a824920c622e29c9df"
+    },
+    "query_wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/terminal/wrapper-complete.json",
+      "bytes": 944,
+      "sha256": "164af6faa56e809044f18400e5053b438143c63a929333108172b0d0a9b4a4be"
+    },
+    "query_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/terminal/output/complete.json",
+      "bytes": 2857,
+      "sha256": "0a3481120fd3c4260e7e300c66ab66012ef79b6b413c7c912747f96e8d5e82b8"
+    },
+    "query_scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/terminal/output/query-scores.json",
+      "bytes": 236944,
+      "sha256": "1d3d7927e25d013b4275e47abdae743bd62abd661a4acfb78b67152d3573180a"
+    },
+    "actual_tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/terminal/output/actual-native-tokenization.json",
+      "bytes": 20703,
+      "sha256": "e0897e27e46cb7839b05eed5633d59b02e5f6ca26edf93e45cd9e9eeae8de182"
+    },
+    "encoder_runtime": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-query-v1/terminal/output/encoder-runtime.json",
+      "bytes": 916,
+      "sha256": "576edecb4cd1a890daa295e7e426b48a48b18c2ed22573bfefd8c0106f2f7bf3"
+    },
+    "normalization": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-normalized-v1/manifest.json",
+      "bytes": 2717,
+      "sha256": "14b66fe814108d5ac5694324db9e739e1ff9e2141b682361f859be0355966031"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/freeze.json",
+      "bytes": 3416,
+      "sha256": "403a67ea1b2b7ce007495a6ce6f0b5f93c760d6a9584263fa684d0af7ebcafa7"
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "pure_unscored": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/adapted-G-unscored.jsonl",
+      "bytes": 152304,
+      "sha256": "b35b22aad6e3deace02229bdf4f9abfbdc397c351f108b12c34dc3bf9a3350dc"
+    },
+    "format": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/format.json",
+      "bytes": 425,
+      "sha256": "12858e37d7834ab063908f18db671449b7d46a21ef67e629f68563126d9be9ef"
+    },
+    "zero_call_intent": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/evaluation-intent.json",
+      "bytes": 793,
+      "sha256": "2ac2a99ad83bae89c802fb2c549a58ff0c541292b32eeb8ed6ab28ba5a2370ad"
+    },
+    "result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/adapted-quote-linking-v1/F1-quality-v1/result.json",
+      "bytes": 299,
+      "sha256": "f1b73af676969096e68f739e28b9d81a58ab2f55f117c2a342c326b0fdea5933"
+    }
+  }
+}

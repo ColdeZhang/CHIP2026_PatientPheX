@@ -8,3 +8,5 @@
 
 - S的真实继承B来自`public-new-lgb-support-control/.../supported.pred.jsonl`（471），不能拿实体池的`lightgbm.nested.jsonl`冒充；准备guard在读gold/模型前阻止错误引用，已改用实际既有manifest。
 - 默认本地python没有tokenizers，CPU准备固定复用semantic-neural venv（tokenizers0.22.1），254 Rust BERT IDs完整保存；target0.21.4的HF全IDs一致性仍是正式任务门，不凭版本名假定相同。
+
+- 实际新encoder查询全254通过，但固定关系终点新增0且byteexact B4。无需为了确认已相同的预测再读gold/评分；应保留0调用路径和完整新原件。零增量只关闭本公式与旧固定阈值的联合控制，不推出整个encoder家族无效。
