@@ -1,0 +1,131 @@
+{
+  "schema": "patientphex-r1-full58-standalone-union-F0-v1",
+  "control_sha256": "3a91a3436b09bc8dbba5fdef464450a52aae4b8697963f4131eeaf70b9dd053f",
+  "execution_ready": false,
+  "full_inference_authorization": null,
+  "policy": {
+    "primary": "R1 normalized-only provided relations; invalid whole rows and missing CIDs abstain without fallback.",
+    "secondary": "Only literal per-document per-patient set union of old-SFT48 and primary R1 relations.",
+    "normalizer_sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe",
+    "selection_comparator": "Cached old-SFT48 baseline; no old reevaluation.",
+    "retention": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "evaluation": "Both complete predictions frozen first; each exactly one unchanged v2 all/text call.",
+    "nonrelation": "Old baseline bytes outside each top-level association value remain exactly unchanged.",
+    "scope": "Known F0 development only; no originaldev/official or independent-generalization claim.",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false
+  },
+  "references": {
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "normalized_final": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/normalized_final.py",
+      "bytes": 4465,
+      "sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe"
+    },
+    "strict_final": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/strict_final.py",
+      "bytes": 2169,
+      "sha256": "20943d8681b4cf81aee0465b0f217d3491460a311be00f3bbc2818b721013fad"
+    },
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+      "bytes": 123941,
+      "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.metrics.json",
+      "bytes": 13036,
+      "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "bytes": 823917,
+      "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+      "bytes": 350409
+    },
+    "input_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/cpu/recovered/all58-input-audit.json",
+      "bytes": 38241,
+      "sha256": "7649cfc300ef0fbd116c43a6c71db4839674ca64192e345934c127dc70f1052d"
+    },
+    "published_CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/cpu/actual-result.json",
+      "bytes": 8399,
+      "sha256": "e97b2ba4232bf4f4ff826d8740ef5c086e6747efce35dc0d3fd71b26a95459de"
+    },
+    "mature_evaluation_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/evaluate_full80.py",
+      "bytes": 35167,
+      "sha256": "4fbc58db78de352a4a8c473b7df384d4ce1a0324b15a2467e4c2dfe51a9ee522"
+    },
+    "baseline_provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/cpu/f0-baseline-references.json",
+      "bytes": 4549,
+      "sha256": "66131bee14370a7247b9e30a8a6df6a9ca9d63e2d35a3a45a0a40a0ce9ac0b8c"
+    }
+  },
+  "endpoint_references": {
+    "responses": null,
+    "inference_result": null,
+    "inference_source": null,
+    "inference_launcher": null,
+    "inference_plan": null,
+    "wrapper_result": null
+  },
+  "cached_rows": null,
+  "inference_contract": null,
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+  "historical_F0_gold_sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48",
+  "gold_ref_metadata_only": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "gold_metadata_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-plan.json",
+    "bytes": 9116,
+    "sha256": "b719834e2af634a2b7be80359b080d815a297a44b7de5742aabd85d02739d6ee"
+  },
+  "fixed_input_scope": {
+    "rows": 58,
+    "documents": 16,
+    "patients": 47,
+    "entities": 947,
+    "doc_concepts": 415,
+    "possible_pairs": 1166,
+    "published_input_tokens": 195157,
+    "longest_index": 30,
+    "longest_tokens": 6028
+  },
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/quality",
+  "source_preparation_only": true,
+  "pending_contract_fields": [
+    "complete_status",
+    "process_budget_seconds",
+    "TERM_grace_seconds",
+    "cached_indices",
+    "inference_source_basename",
+    "inference_launcher_basename",
+    "wrapper_coverage_flag",
+    "result_target_count_field"
+  ],
+  "future_binding": "All58 actual raw bundle and every canonical row ref; complete/exit0/release/no global wall; explicit future authorization plus pre-frozen source/plan/cache split required. No full58 GPU budget or execution is authorized by this template."
+}
