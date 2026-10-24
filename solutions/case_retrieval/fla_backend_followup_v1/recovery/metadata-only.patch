@@ -1,0 +1,22 @@
+--- original/evidence.py
++++ recovery/evidence.py
+@@ -37,11 +37,18 @@
+         directory=directory.parent
+ 
+ 
++def json_default(value):
++    # Preserve actual TF5 loading-info keys while serializing sets deterministically.
++    if isinstance(value, (set, frozenset)):
++        return sorted(value, key=repr)
++    raise TypeError("Unsupported evidence value type: " + type(value).__name__)
++
++
+ def save(path,value,replace=False):
+     path=Path(path);assert replace or not path.exists()
+     tmp=path.with_suffix(path.suffix+'.tmp')
+     with tmp.open('x') as handle:
+-        json.dump(value,handle,ensure_ascii=False,indent=2,allow_nan=False)
++        json.dump(value,handle,ensure_ascii=False,indent=2,default=json_default,allow_nan=False)
+         handle.write('\n');handle.flush();os.fsync(handle.fileno())
+     os.replace(tmp,path);fsync_chain(path.parent,path.parent)
+ 
