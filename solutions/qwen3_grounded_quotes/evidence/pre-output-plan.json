@@ -1,0 +1,88 @@
+{
+  "schema": "qwen3-grounded-quotes-pre-output-v1",
+  "base_commit": "f960ae41",
+  "scope": "CPU_SOURCE_PREPARATION_ONLY_NO_GPU_ADMISSION",
+  "model": "Qwen/Qwen3-8B",
+  "HF_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "MS_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+  "license": "Apache-2.0",
+  "parameters": {
+    "base": 8190735360,
+    "lora": 43646976,
+    "total": 8234382336
+  },
+  "data": {
+    "train_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/manifest.json",
+      "bytes": 5047,
+      "sha256": "85979cdcafb37ddc3eef6b8adac864d0a50608c5ed2c917ac22db4be4643d095"
+    },
+    "train_rows": 87,
+    "held_rows": 39,
+    "train_documents": 32,
+    "held_documents": 16,
+    "original_quotes_anchors": 801,
+    "canonical_atoms": 814,
+    "original_v2_gold_atoms": 818,
+    "unrepresented_gold_atoms": 4,
+    "original_true_empty_patients": 5
+  },
+  "training": {
+    "epochs": 2,
+    "optimizer_updates": 22,
+    "warmup": 2,
+    "seed": 20261023,
+    "batch_size": 1,
+    "accumulation": 8,
+    "tail_group_size": 7,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": "nonreentrant",
+    "packing": false,
+    "quantization": false,
+    "truncation": false,
+    "loss": "unchanged per-row assistant-only mean causal CE / actual accumulation group size"
+  },
+  "inference": {
+    "complete_held_rows": 39,
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 1600,
+    "thinking": false,
+    "cap_or_nonEOS": "whole row abstain",
+    "parser": "exact original G: invalid JSON whole-row; valid array itemwise validity; no response repair",
+    "normalizer_policy_sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+  },
+  "quality": {
+    "formula": "B4 union [G_Q3 intersection (G_old union S union Q union C)]",
+    "F1_baseline_score": 0.701325377212172,
+    "F1_baseline_sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e",
+    "quality_calls": 1,
+    "old_quality_calls": 0,
+    "preserve_all_nonrelations": true,
+    "preserve_B4_old_relations": true,
+    "single_head_quality": false,
+    "strict_positive_before_F0": true,
+    "no_threshold_epoch_prompt_scan": true
+  },
+  "runtime_budget": {
+    "probe": null,
+    "formal": null,
+    "inference": null,
+    "grace_seconds": 30,
+    "formal_candidate_seconds": 2400,
+    "not_authorized_for_GPU": true
+  },
+  "difference": "Same original grounded targets and recipe; new Qwen3 base+native tokenizer/template; not first dense-attention attempt",
+  "risks": [
+    "Qwen3 closed CID standalone F0 union negative",
+    "Qwen3 canonical87 added52 allFP",
+    "new quote targets longer than old canonical supervision; old memory proof does not establish new-shape fit"
+  ]
+}
