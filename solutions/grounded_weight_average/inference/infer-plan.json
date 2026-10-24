@@ -1,0 +1,323 @@
+{
+  "schema": "grounded-meanweights-held39-inference-v1",
+  "phase": "infer",
+  "inference_authorized": true,
+  "authorization": "root fixed two-epoch effective-delta average, complete39, only B4 union mean/original intersection",
+  "budget_seconds": 1800,
+  "authorized_budget_seconds": 1800,
+  "grace_seconds": 30,
+  "expected_rows": 39,
+  "all_rows_fresh": true,
+  "max_new_tokens": 1600,
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "storage_parent": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/output",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/cpu-v1/output/adapter",
+  "argv": [
+    "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/run.py",
+    "--plan",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/infer-plan.json"
+  ],
+  "operations_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/inference/remote.py",
+    "bytes": 19280,
+    "sha256": "1a9531d5f5db517344c672b87e91569ec81aa07268ea6b4c670903095add813a"
+  },
+  "collection_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/inference/collect.py",
+    "bytes": 15352,
+    "sha256": "57948aebe0e9040056e48c951c575921c1a2048104cd29d56d411c1d32aa7810"
+  },
+  "input_sources": {
+    "old_input_sources": {
+      "formal_collection": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/collection.json",
+        "bytes": 17477,
+        "sha256": "433659a2ca7a605aa2470ee4eea83f5625f7b766ae9901e33f9e2d66e8b1231f"
+      },
+      "native_CPU_collection": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/collection.json",
+        "bytes": 7648,
+        "sha256": "237aaa656c6691e49f70895aa5f7997b0b36c7cbacd298040076ae372c21238c"
+      },
+      "train_target": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/manifest.json",
+        "bytes": 5047,
+        "sha256": "85979cdcafb37ddc3eef6b8adac864d0a50608c5ed2c917ac22db4be4643d095"
+      },
+      "normalizer_policy": {
+        "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+        "bytes": 1699,
+        "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+      },
+      "normalizer_sources": {
+        "strict.py": {
+          "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+          "bytes": 13619,
+          "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+        },
+        "semantic.py": {
+          "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/semantic.py",
+          "bytes": 14183,
+          "sha256": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82"
+        },
+        "public_bank.py": {
+          "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/public_bank.py",
+          "bytes": 11566,
+          "sha256": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061"
+        }
+      }
+    },
+    "synthesis_observation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-weight-average-v1/F1/cpu-v1/observation-1792850693588311136.json",
+      "bytes": 46632,
+      "sha256": "3c130f8b06342f78aab1f1b813e49422395d4e81d185341dc121a73f13a92ee0"
+    },
+    "CPU_source_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/cpu-plan.json",
+      "bytes": 39636,
+      "sha256": "5587cfed80bcf6125bb8795233ec1d74425da14d4b54b7bd0f46a6a60c1d362f"
+    },
+    "execution_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/execution-plan.json",
+      "bytes": 4490,
+      "sha256": "d0fb405c76fd654da9deac7d216373a11a64d3b0294bc8ad3bbc7c9a2f88c239"
+    }
+  },
+  "binding_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/inference/bind.py",
+    "bytes": 3623,
+    "sha256": "e0b2a0e42c6b8a477477f79d1365549d2b834742061a7dd07e9d1115d50e14fe"
+  },
+  "assets": {
+    "raw_store": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "prompts": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-prompts.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "held_ids": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-actual-ids.json.gz",
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "held_audit": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-audit.json",
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "model_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "normalization_policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/normalization-policy.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "native_cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/native-CPU-result.json",
+      "bytes": 3529,
+      "sha256": "629c2c1663d1d7defc75e4095bdc4be39826c4db39731cb0b8bfe348fcddaed9"
+    },
+    "runner": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/run.py",
+      "bytes": 9859,
+      "sha256": "57ea4c74fc7ee7f1cd675db1ea913f5d23f5b5fd82755c7850d47722cadb0793"
+    },
+    "synthesis": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/synthesis-complete.json",
+      "bytes": 39769,
+      "sha256": "21f03ca3fb7be286e799e87882a0340316f761910f295518d543653d1292ccde"
+    }
+  },
+  "payload_sources": {
+    "raw_store.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "held-prompts.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/F1.input.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "held-actual-ids.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/inference-preparation/held-actual-ids.json.gz",
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "held-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/token-census-v1/F1-input-audit.json",
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "model-source-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "policy.json": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "normalization-policy.json": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "native-CPU-result.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/terminal/actual/result.json",
+      "bytes": 3529,
+      "sha256": "629c2c1663d1d7defc75e4095bdc4be39826c4db39731cb0b8bfe348fcddaed9"
+    },
+    "run.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/inference/run.py",
+      "bytes": 9859,
+      "sha256": "57ea4c74fc7ee7f1cd675db1ea913f5d23f5b5fd82755c7850d47722cadb0793"
+    },
+    "synthesis-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-weight-average-v1/F1/cpu-v1/metadata/complete.json",
+      "bytes": 39769,
+      "sha256": "21f03ca3fb7be286e799e87882a0340316f761910f295518d543653d1292ccde"
+    },
+    "infer_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/inference/infer_driver.py",
+      "bytes": 4556,
+      "sha256": "168132e76383ed30e47623050cb23e6e9d362a04ebf46c431dc394fcab1051c3"
+    }
+  },
+  "reuse_actual_artifacts": {
+    "raw_store.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "raw_store.py"
+    },
+    "held-prompts.jsonl": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/held-prompts.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "held-prompts.jsonl"
+    },
+    "held-actual-ids.json.gz": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/held-actual-ids.json.gz",
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "held-actual-ids.json.gz"
+    },
+    "held-audit.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/held-audit.json",
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "held-audit.json"
+    },
+    "model-source-manifest.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "model-source-manifest.json"
+    },
+    "policy.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "policy.json"
+    },
+    "normalization-policy.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/normalization-policy.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "normalization-policy.json"
+    },
+    "native-CPU-result.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1/native-CPU-result.json",
+      "bytes": 3529,
+      "sha256": "629c2c1663d1d7defc75e4095bdc4be39826c4db39731cb0b8bfe348fcddaed9",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/infer-F1-v1",
+      "original_member": "native-CPU-result.json"
+    }
+  },
+  "reuse_packages": [],
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/raw_store.py": {
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-prompts.jsonl": {
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-actual-ids.json.gz": {
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/held-audit.json": {
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/policy.json": {
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/normalization-policy.json": {
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/native-CPU-result.json": {
+      "bytes": 3529,
+      "sha256": "629c2c1663d1d7defc75e4095bdc4be39826c4db39731cb0b8bfe348fcddaed9"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/run.py": {
+      "bytes": 9859,
+      "sha256": "57ea4c74fc7ee7f1cd675db1ea913f5d23f5b5fd82755c7850d47722cadb0793"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/synthesis-complete.json": {
+      "bytes": 39769,
+      "sha256": "21f03ca3fb7be286e799e87882a0340316f761910f295518d543653d1292ccde"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-weight-average-v1/F1/infer-v1/infer_driver.py": {
+      "bytes": 4556,
+      "sha256": "168132e76383ed30e47623050cb23e6e9d362a04ebf46c431dc394fcab1051c3"
+    }
+  }
+}
