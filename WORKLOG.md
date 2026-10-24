@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：新增工作线覆盖跨度、文档关系、患者条件生成、训练长度、预训练联合抽取、原生Qwen3关系及主线程共识融合；各有独立分支/worktree和分层记录。负配方及时关闭，当前安排见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：固定双采样原dev完整128条及唯一质量已复核，901→ee39，Score .754361→.755240，8新增关系3TP5FP；实体不变。主线程三源二票融合F1 .686339→.701087、F0 .711508→.724457均正，待full64两组件完整。全部并集及固定LR负配方关闭。
-- **实际运行/恢复**：Qwen full64（.3 GPU0）、Grounded full64（A800 GPU2）、患者响应code epoch2（A100 GPU2）、患者标准名称8B（.100 GPU0）正式训练中；固定mention标准化完整CPU通过，.100 GPU1短探针及条件训练已授权。准确job、owner、预算与阶段见[当前运行入口](docs/campaigns/round2-current-work.json)，勿重跑已完任务。
+- **实际运行/恢复**：Qwen full64组件已完成，等A800 Grounded全链后做原dev预锁融合；response-code与新patient-conditioned-spans完整推断已结束，正在回收/固定质量。2353片段规范化（.100 GPU1）与2931负例增补（.3 GPU0）并行训练。患者名称直接生成负结案，其原输出的合法前缀对照另设CPU线。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
 - **证据备份**：242项/5860引用已增量核验发布；146成员新包已服务器实际下载核验（136新引用），旧5724引用沿217→224→234继承，完整恢复顺序217→224→234→242。新最佳ee39的96质量/411raw内容包亦已完整回读；旧901和官方B原留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@4fea1b09`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **Git**：最近已核验`origin/main@f3a86fd2`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 

@@ -1,0 +1,121 @@
+{
+  "status": "CLOSED_DUPLICATE_RETRIEVED_TRAIN_DEMONSTRATION_ALREADY_ACTUALLY_TESTED",
+  "at_utc": "2026-10-24T12:46:31.626856+00:00",
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/retrieval-demonstration-readiness-20261024/REPORT.md",
+    "bytes": 4959,
+    "sha256": "22550ca842edaf43f550720e6d383d55cedfe8695ead83ef7cae549361d877fc"
+  },
+  "conclusion": "Existing train32 top1 retrieved input/answer demonstration on Qwen3.5 SFT32 completed fullF1 and decreased both relation F1s. Close generic untried-RAG proposal.",
+  "old_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6866002214839424,
+    "macF1": 0.5422288533401712,
+    "Score": 0.6609420026531936
+  },
+  "new_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6424517593643587,
+    "macF1": 0.5257417131102982,
+    "Score": 0.6457831020658293
+  },
+  "deltas": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.044148462119583676,
+    "macF1": -0.016487140229873076,
+    "Score": -0.015158900587364244
+  },
+  "actual_budget": {
+    "prompts": 80,
+    "strict_JSON_rows": 80,
+    "valid_CID_decisions": 587,
+    "patient_concept_pairs": 1557,
+    "fallbacks": 0,
+    "truncations": 0,
+    "prefix_tokens": 389316,
+    "max_prefix_tokens": 7581,
+    "same_A800_same_base_adapter_runtime": true,
+    "actual_seconds": 313.1565789747983,
+    "hard_cap": 600,
+    "TERM_grace": 30,
+    "runner_subprocess_returncode": 0,
+    "release_utc": "2026-10-24T00:12:04.547450+00:00",
+    "gpu_empty": true
+  },
+  "important_limit": "Old query is local candidate evidence plus patient anchors, not full article; original short query unchanged is not proof of fulltext retention. Does not rule out all RAG or establish canonical-name demonstration endpoint.",
+  "empty_answer_counts_semantics": "13 of80 selections use all-empty training answer; not all13 distinct selected examples empty.",
+  "allowed_methods_quote": "Methods such as prompt learning, supervised fine-tuning, and retrieval-augmented generation (RAG) were also permitted.",
+  "rules_source": "Cached organizer overview section3.1, https://arxiv.org/pdf/2610.29606",
+  "new_held_gold_reads": 0,
+  "new_model_calls": 0,
+  "new_fits": 0,
+  "new_quality_calls": 0,
+  "new_tokenization_calls": 0,
+  "new_GPU_plan": false,
+  "weight_downloads": 0,
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/retrieved-json-example-terminal-review/review.json",
+      "bytes": 7469,
+      "sha256": "b1a178ca5e1ea937d04b335fe59ddbfc1846e7fa26717aaac55bf3a343638242"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/retrieved-json-example-review/data-entry-review.json",
+      "bytes": 10470,
+      "sha256": "54c163264bfcf55335fd5ea0844b87dabe2ff4f98323e7a7b2fbad43abc495e0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/retrieved-json-example-review/prepare.snapshot.py",
+      "bytes": 14658,
+      "sha256": "44b7084f75df6902b86de54e75a3753f693e4b639096ebf890ca8df57fb0a6e5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/report.json",
+      "bytes": 6622,
+      "sha256": "81a771eab7387e8ccbc3cbd08cd4c16399bf653b51c049f949e6844065fa1410"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/readiness-addendum.json",
+      "bytes": 2046,
+      "sha256": "407886b57ef94d96c43efa8f601086e9b0bf08a6a4c5777dc34f9c0603d84c4f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/formal-a800/plan.json",
+      "bytes": 7035,
+      "sha256": "038caf525e812487432d4f2e4718fe240b586fb1ac119b98dd67706fcb148325"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/formal-a800/terminal/responses.manifest.json",
+      "bytes": 4180,
+      "sha256": "482a10b45f6858f9f4abbc0436cac57c015d22ad3aa35a7a12f43e13927196db"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/formal-a800/evaluation/results.json",
+      "bytes": 1043,
+      "sha256": "0fc473680de573df5c111b915dd3210531215c8d1f9b5b2ab0d0c5a233ec16cd"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/prepare_pair_rag.py",
+      "bytes": 6846,
+      "sha256": "16345e096b462ae9ba2fc974bb60d14ff15333b09009b4add1f0a0e1bb23ed97"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/overview.txt",
+      "bytes": 45381,
+      "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+    },
+    {
+      "path": "/workspace/CHIP2026_PatientPheX/docs/competition/sources/2026-10-23/tianchi-introduction.md",
+      "bytes": 8772,
+      "sha256": "05f8d5ff4e3a33b2e5bbe6afa92374acdf716714c119c745420c7eed7d2f56db"
+    }
+  ]
+}
