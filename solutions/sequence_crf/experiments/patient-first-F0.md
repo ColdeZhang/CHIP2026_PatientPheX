@@ -21,3 +21,8 @@ helper纯CPU6.715304s已通过，来源/矩阵/旧native全编码逐字核验。
 旧204正式为A80080GiB，1855.103s/52calls/3warmup，peakallocated37.476GB/reserved78.498GB；A100仅其CPU准备，不能视为A100训练已通过。当前新5769比本路线已有A1005556单步更长213，按主线程条件授权需要一次新最长行native full CE更新180+30。同原rank/seed/模型/原生GDN/BF16/SDPA、非零lr1e-4一步；真实数值段从fresh load到optimizer update逐字不变，状态丢弃，不保存adapter、不推断/质量。只新增长度/来源绑定与失败时显存记录；首OOM/数值/预算失败停，不改loss/allocator或截断重试。
 
 独立S0=`patient_first_f0/`，D0外部`research/patient-first-closed-set-F0/probe-preparation/`；native CPU新6输入硬绑定和逐204token/hash/来源核验源1d85789a、probe e72abdc4、policy ebdcc3ab、16件payload已冻结，实际nativeCPU尚待部署。ontology确认GPU2无后继，真正start仍fresh核UUID/空卡；MCP若未知只按intent恢复，不重复上传/start。当前没有新GPUjob或正式2轮源/预算启动。
+
+
+## 实际A100部署中断（未运行CPU/GPU）
+
+原source/计划已push并核02435386。首次实际run_command仅尝试创建自有`sequence-round2/patient-first-F0-longest-probe-v1`及检查磁盘，返回UNKNOWN_OUTCOME；没有进入任何write_file、native CPU或GPU启动。目录可能已建立，不能把未知当“未执行”重调deploy。D0保留完整cpu-deployment.zip/intent与16成员SHA，已通知root并暂停新增MCP。待统一恢复，先只读同目录库存；不存在再建、已空则原位复用，只续接原冻结数据，禁止重启不存在的GPU任务。此连接故障不构成模型质量或显存失败。[状态](../evidence/round2/patient-first-F0-deployment-unknown.json)。
