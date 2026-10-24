@@ -1,0 +1,309 @@
+{
+  "status": "COMPLETE_BOUNDED_ENGINEERING_AND_RELEASED_NO_FORMAL",
+  "frozen_runtime_commit": "9eec22c349be6662bad4428798ca2f7687300fec",
+  "original_probe_failure": {
+    "stage": "load",
+    "seconds": 5.5432245740666986,
+    "traceback": "Traceback (most recent call last):\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-v1/probe-v1/application/probe.py\", line 61, in main\n    assert sum(p.numel() for p in model.parameters())==247587456\nAssertionError\n"
+  },
+  "complete": {
+    "status": "COMPLETE_FOUR_SHAPE_TWO_ADAM_SEQ2SEQ_ENGINEERING",
+    "records": [
+      {
+        "case": {
+          "name": "max_target_native",
+          "index": 83,
+          "pad_to": null,
+          "row_id": "6134758:P1:grounded",
+          "source_tokens": 5571,
+          "target_tokens": 658
+        },
+        "padded_encoder": 5571,
+        "decoder": 658,
+        "FB_seconds": 1.0974947419017553,
+        "Adam_seconds": 0.05721720773726702,
+        "peak_allocated": 5280526336,
+        "peak_reserved": 5559549952
+      },
+      {
+        "case": {
+          "name": "8k_padded",
+          "index": 35,
+          "pad_to": 8192,
+          "row_id": "12250201:P1:grounded",
+          "source_tokens": 7733,
+          "target_tokens": 213
+        },
+        "padded_encoder": 8192,
+        "decoder": 213,
+        "FB_seconds": 0.7462943429127336,
+        "Adam_seconds": 0.02666825894266367,
+        "peak_allocated": 7189547008,
+        "peak_reserved": 8761901056
+      },
+      {
+        "case": {
+          "name": "max_input_native",
+          "index": 76,
+          "pad_to": null,
+          "row_id": "5793168:P1:grounded",
+          "source_tokens": 9907,
+          "target_tokens": 3
+        },
+        "padded_encoder": 9907,
+        "decoder": 3,
+        "FB_seconds": 1.1424980317242444,
+        "Adam_seconds": null,
+        "peak_allocated": 7858852352,
+        "peak_reserved": 10691280896
+      },
+      {
+        "case": {
+          "name": "16k_padded",
+          "index": 76,
+          "pad_to": 16384,
+          "row_id": "5793168:P1:grounded",
+          "source_tokens": 9907,
+          "target_tokens": 3
+        },
+        "padded_encoder": 16384,
+        "decoder": 3,
+        "FB_seconds": 1.7628729501739144,
+        "Adam_seconds": null,
+        "peak_allocated": 11626334208,
+        "peak_reserved": 18392023040
+      }
+    ],
+    "seconds": 13.154909851029515,
+    "parameters": 247587456,
+    "source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-v1/probe-v2/application/probe.py",
+      "bytes": 9510,
+      "sha256": "838103a4668a11543e1b6398878a840e19af7ab6c8597e498f0c3eeb175d586e"
+    },
+    "plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-v1/probe-v2/application/probe-plan.json",
+      "bytes": 4531,
+      "sha256": "907b0d4ce52ef995a05a17763ebf1ea5cef351f94d45052608e0e9aba82f3350"
+    },
+    "supply": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-v1/probe-v1/supply/manifest.json",
+      "bytes": 4257,
+      "sha256": "641403ea7c923edfde2bbf3b2f0d28a22113e5062b84634c1c59320a4d4d8ec1"
+    },
+    "torch": "2.7.1+cu126",
+    "transformers": "4.50.0",
+    "probe_state_discarded": true,
+    "checkpoint_saved": false,
+    "formal_training": false,
+    "held_model_calls": 0,
+    "quality_calls": 0
+  },
+  "terminal": {
+    "exit_code": 0,
+    "seconds": 14.028341054916382,
+    "finished_unix": 1792861505.6307406,
+    "gpu_apps": {
+      "rc": 0,
+      "stdout": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 2756586, 16568\n",
+      "stderr": ""
+    },
+    "gpu_memory": {
+      "rc": 0,
+      "stdout": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 0, 24164\nGPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 16577, 7587\n",
+      "stderr": ""
+    },
+    "selected_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+    "selected_uuid_has_no_compute_app": true,
+    "probe_complete": true,
+    "probe_failure": false
+  },
+  "collected_refs": {
+    "assets-base/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/assets-base/complete.json",
+      "bytes": 1466,
+      "sha256": "14d0daffb9a8d1c4c7c59ead4e6a3d1a08a2d08afab0a69e15755ff4c3973d1b"
+    },
+    "cpu-setup/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/cpu-setup/complete.json",
+      "bytes": 1324,
+      "sha256": "48ccb0508de5bd6f2a2d30180f2d73f43e08185659a0e809eca7605dcaf4933b"
+    },
+    "cpu-setup/load-diagnosis.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/cpu-setup/load-diagnosis.json",
+      "bytes": 54246,
+      "sha256": "742d5cb021ed7b6ba0764be9e50890e0e02bfb64a0fd83d60377c528de4bf67d"
+    },
+    "cpu-setup/runtime.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/cpu-setup/runtime.json",
+      "bytes": 407,
+      "sha256": "a0c86649778a8d3b3b375b85ff0a8b51dc1f254e29b3b5eee94c745b99b343fa"
+    },
+    "cpu-setup/shared-identity-repair.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/cpu-setup/shared-identity-repair.json",
+      "bytes": 276392,
+      "sha256": "f0eb0fb2057f6ad66f37b37306ba80fd856b2d4a8b551aed7c6e31fbdb2735f8"
+    },
+    "probe-v1/driver/started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/driver/started.json",
+      "bytes": 1248,
+      "sha256": "5e8e79ab8df39679f7ebc859c6900209c960d980f9c2c6f4aaccb2a1eafc9992"
+    },
+    "probe-v1/driver/stderr": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/driver/stderr",
+      "bytes": 476,
+      "sha256": "2dd5740339aff3deb5ca3f53c2a5aaaeeb3cb50ff9bb9c05ba731040323a3d2c"
+    },
+    "probe-v1/driver/stdout": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/driver/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-v1/driver/terminal.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/driver/terminal.json",
+      "bytes": 494,
+      "sha256": "7fbbb1533903db8a65ff5fbce30d346a4b5340975756456b098b08c5e66d1248"
+    },
+    "probe-v1/output/failure.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/output/failure.json",
+      "bytes": 332,
+      "sha256": "5f3ad8c556b2ac35852540f858bbe5f6a00d3430833311655a47d5c5b413e842"
+    },
+    "probe-v1/output/gpu-admission.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/output/gpu-admission.json",
+      "bytes": 192,
+      "sha256": "68ab9c26d0cca66dc449272f72ddfc5f012bc9ff7d3bc6316197bea744993d88"
+    },
+    "probe-v1/output/intent.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/output/intent.json",
+      "bytes": 1115,
+      "sha256": "dab2d65db1c86e382695f77c633eb941e98a53a4ad5114ff883fd2193830a725"
+    },
+    "probe-v1/output/loading.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v1/output/loading.json",
+      "bytes": 95,
+      "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85"
+    },
+    "probe-v2/driver/started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/driver/started.json",
+      "bytes": 1263,
+      "sha256": "5296aea1ecf41eaa6237905d5b5138e762533d29a3a88c1c754fd1161ffe6317"
+    },
+    "probe-v2/driver/stderr": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/driver/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-v2/driver/stdout": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/driver/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-v2/driver/terminal.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/driver/terminal.json",
+      "bytes": 557,
+      "sha256": "fb5642198ed6ca29047ac33f3f16b883387f087631a4a1438da5f82191bed19c"
+    },
+    "probe-v2/output/0-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/0-complete.json",
+      "bytes": 361,
+      "sha256": "c5ce87cf1fe879e15a59b8dacc11ffec1da52cc41ef26ca9a4767aa63c4fa2ea"
+    },
+    "probe-v2/output/0-forward.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/0-forward.json",
+      "bytes": 227,
+      "sha256": "6f018b28e16401d18c4144387d48ef9390b72e40a80cae57b9fa12c6bab8cb52"
+    },
+    "probe-v2/output/0-gradient.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/0-gradient.json",
+      "bytes": 43,
+      "sha256": "74f7d1602cecb47bb8c0596a2270647e88093c70b2795edb770af8a3c452e669"
+    },
+    "probe-v2/output/1-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/1-complete.json",
+      "bytes": 354,
+      "sha256": "d44684899fcd06048cb7d83a2e41d9a977a7a84e3ba097636208ef297244341d"
+    },
+    "probe-v2/output/1-forward.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/1-forward.json",
+      "bytes": 220,
+      "sha256": "5dea839dae2fc29074575d469decfdd58aebad59575916e95a9e788266c593e8"
+    },
+    "probe-v2/output/1-gradient.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/1-gradient.json",
+      "bytes": 43,
+      "sha256": "74f7d1602cecb47bb8c0596a2270647e88093c70b2795edb770af8a3c452e669"
+    },
+    "probe-v2/output/2-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/2-complete.json",
+      "bytes": 342,
+      "sha256": "49641dc84600d456f8be8f58d0adde740bde90e01ec43e5d61b37249573dbf98"
+    },
+    "probe-v2/output/2-forward.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/2-forward.json",
+      "bytes": 224,
+      "sha256": "0b89eccc6229f598e321d2b36231158ec2deb697f4b0f0ec62ceaf9c1ed95fdc"
+    },
+    "probe-v2/output/2-gradient.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/2-gradient.json",
+      "bytes": 43,
+      "sha256": "74f7d1602cecb47bb8c0596a2270647e88093c70b2795edb770af8a3c452e669"
+    },
+    "probe-v2/output/3-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/3-complete.json",
+      "bytes": 339,
+      "sha256": "a4621e79f4504083f63a871d8b7b32e37aa701b28f889a2d2f7a3d233dd019c0"
+    },
+    "probe-v2/output/3-forward.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/3-forward.json",
+      "bytes": 218,
+      "sha256": "43c8673343d8b5a743d145ed6db9b513538bf44f7bf6ce80918c7892a82a09ac"
+    },
+    "probe-v2/output/3-gradient.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/3-gradient.json",
+      "bytes": 43,
+      "sha256": "74f7d1602cecb47bb8c0596a2270647e88093c70b2795edb770af8a3c452e669"
+    },
+    "probe-v2/output/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/complete.json",
+      "bytes": 2730,
+      "sha256": "60711a0c7ec00d6aab9a4c00ffd62642917cf673688da8370189ebe682f8a409"
+    },
+    "probe-v2/output/gpu-admission.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/gpu-admission.json",
+      "bytes": 242,
+      "sha256": "9dd2cb4076edd46d01faacdde30339f69c84a779e0f7422bee6b409fae99a22e"
+    },
+    "probe-v2/output/intent.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/intent.json",
+      "bytes": 1115,
+      "sha256": "47681566da0be991e6766bd606c2eb87daac0373239be8c49191dbff1d3153c3"
+    },
+    "probe-v2/output/loading.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/loading.json",
+      "bytes": 95,
+      "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85"
+    },
+    "probe-v2/output/parameter-after.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/parameter-after.json",
+      "bytes": 54813,
+      "sha256": "e5e0cdc83d54ffa954f07929049e38c63b802acc4d9bbb8d26e400c1045569d9"
+    },
+    "probe-v2/output/parameter-before.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/parameter-before.json",
+      "bytes": 54760,
+      "sha256": "ee957e5ed26a619b09625ab7bea6f30f0f170607dfb8cbccd3acaf40300e333d"
+    },
+    "probe-v2/output/tiny-train-raw.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/probe-v2/output/tiny-train-raw.json",
+      "bytes": 319,
+      "sha256": "8315b2996fa631f1e4b640b669c6f73a0e7f845f13ef44bf2e3939679b284ebb"
+    }
+  },
+  "limits": [
+    "Four selected real shapes, not every pair of encoder and decoder maxima",
+    "16k case target length3 and masked source padding; no 16k x658 training claim",
+    "No checkpoint saved/restored; no formal training; no held model call; no quality",
+    "No automatic rerun; original absolute deadline retained through recovery"
+  ]
+}

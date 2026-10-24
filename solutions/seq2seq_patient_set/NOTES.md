@@ -2,6 +2,6 @@
 
 原始来源和所有小文件摘要见[evidence/sources.json](evidence/sources.json)。HF模型card由HF团队撰写，Google原论文§4.1独立提供C4-only无监督预训练依据。并未声称网络预训练数据绝不包含任何临床文本；这里只使用原始通用预训练权重，不引入外部phenotype人工标注数据集或任务微调checkpoint。
 
-base优先是可核资产与低成本新架构信号的选择，非“越小越高分”。large应在缺头原因/原Flax恢复闭环后才重新讨论，当前不得以random head或改tie配置继续。真实参数库存还需后续加载验证；静态计数和发布LFS身份不是实际下载/模型运行证据。
+base优先是可核资产与低成本新架构信号的选择，非“越小越高分”。large应在缺头原因/原Flax恢复闭环后才重新讨论，当前不得以random head或改tie配置继续。实际单base完整SHA已核；原checkpoint独立参数247587456。TF4.50/Torch2.7载入破坏三处输入Parameter共享身份，原probe在GPU前拦下；原生set_input_embeddings恢复共享后所有state字节、其他Parameter身份不变、LM head独立，CPU原件已留。
 
-818目标区别于旧grounded的814canonical/801quote和canonical-name的796子集；保全部原关系是任务忠实性要求，目标表述变化必须与架构变化一起披露，不能宣称完全单变量对照。原nativeSP保留当前UNK行为，raw source完整不代表token化无损。
+未选direct-ID版本818原子，不作为当前训练供给。选定目标逐条继承原G的87答案、814canonical/801quote和原4个incomplete患者，不能宣称补齐818。仅两个不可表示的目标小于号用已有sentinel可逆传输，87答案原字节完全恢复；目标token序列变化必须与架构变化一起披露。输入原nativeSP保留当前UNK行为，raw source完整不代表token化无损。
