@@ -11,4 +11,4 @@
 
 入口：`cpu_remote.py`/`cpu_collect.py`；`copy_remote.py`只原字节传输；`bind.py`在actual完成后绑定不可变`infer-plan.json`；`remote.py` pack/deploy/start/observe；`watch.py`只读180秒；`collect.py`完整原raw回收。后继`extract_quotes.py`/`held_prepare.py`/固定Sap/`held_finalize.py`，`actual.py`原F1链机械47适配，`quality_control.py`固定唯一强union。
 
-当前CPU实际PASS、推断尚未启动；copy源11:32:23.677 LUNA，最早11:35:28.677与ontology单owner恢复。不能把代码准备写成模型完成。
+当前：CPU47与四件缓存完整PASS，原47唯一11:38:58.166 A800启动proc1a64fada，TERM12:13:58/KILL12:14:28；actual-start.json提供真实metadata与只读watcher入口，不能重复start。此前LUNA与初始2GiB保守盘门失败保留，已按实际173MB/cache＋raw预算调整768MiB/512MiB并经root确认。
