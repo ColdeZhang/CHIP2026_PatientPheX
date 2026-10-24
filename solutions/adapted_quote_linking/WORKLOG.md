@@ -1,6 +1,6 @@
 # Adapted quote linking 台账
 
-状态：已关闭，完整F1预测与B4逐字节相同、0新增/0删除、0新v2/未读gold，不进入F0。GPU已释放，正在完成小备份与终审。旧Copy完整负结果保留，不在本线续试。
+状态：已关闭，完整F1预测与B4逐字节相同、0新增/0删除、0新v2/未读gold，不进入F0。GPU已释放，统一终审入口和小备份已全部完成回读。旧Copy完整负结果保留，不在本线续试。
 
 目标：检验同train32监督适配Sap能否改善普通Grounded原合法引文的映射，唯一primary为 `B4 ∪ [Gadapted ∩ (S∪Q∪C)]`，明确不含旧G自证。最终验收仍为原train64/dev16 v2≥.8；内部F1只决定是否进入固定F0。
 
@@ -22,3 +22,5 @@
 - 完整573anchors已按新fab55644 policy归一化，无原始响应改动；唯一16/39/1189/B524预测freeze403a67ea，新增0、删0，纯新G249仅无分审计，byteexact=True。先push此freeze再独立score入口最多1新v2/旧0。
 
 - freeze403a67ea/预测5ad5cfe3在d63d8119已push后执行score入口，判byteexact：继承B4 .701325377212172，0newv2/0oldv2/未读gold。严格正条件未满足，不进入F0、不改cut或加入旧G自证。统一终审 `research/adapted-quote-linking-v1/final-review-entry.json`，仓内evidence/F1-result.json同字节。
+
+- 最小持久包28成员/227091B，SHAc3205f40，已写.3 `research/adapted-quote-linking-v1/backups/F1-artifacts.zip`，文件/祖先fsync、全包实际回读和每成员SHA通过。统一入口 `completion-entry.json` 引用原final-review与备份receipt；原query-vectors仍准确标远端持久/未本地回读。当前无自有GPU/collector任务、无质量或训练后继。最近已核远端a3a5f865，此台账自身提交可领先一步。
