@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-24T09:32:00Z",
+  "updated_at_utc": "2026-10-24T09:40:00.707696+00:00",
   "purpose": "Current recovery pointers. Read immutable job and latest owner state before acting; milestones below are not a fresh remote inventory.",
   "current_original_dev_score": 0.7543613981990362,
   "current_prediction_sha256": "9016863cb3bff53da5dfde25fce634bd60882f057d0c14501be7cb4937e71c67",
@@ -9,7 +9,7 @@
       "route": "ontology_rules",
       "branch": "round2/ontology-rules",
       "owner": "/root/ontology_recover_0518",
-      "status": "Two formal epochs complete,32calls; both .100 durable ACKs complete09:28:38. Original watcher ended normally4869.772s. New80fresh quality started09:30:18.",
+      "status": "COMPLETE_NEGATIVE_PENDING_INCREMENTAL_REVIEW: two epochs and dual ACK complete;80fresh374.785s; new fulltext-alone .675134213557 and old-short union new .672875653155 both below .676546354663. Original A800 GPU2 released09:36:33.668.",
       "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
       "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
       "job": {
@@ -40,13 +40,18 @@
         "plan_sha256_prefix": "30c1e427",
         "adapter_sha256_prefix": "65b53e36",
         "all80_fresh": true
+      },
+      "quality_result": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-F1-full80-v1/quality/summary.json",
+        "bytes": 6840,
+        "sha256": "04c740532d8309a1f5685424a3cdd855f5b9edd16f9bb70fe757433799d5efe2"
       }
     },
     {
       "route": "sequence_crf",
       "branch": "round2/sequence-crf",
       "owner": "/root/sequence_recover_0518",
-      "status": "COMPLETE_NEGATIVE: formal1466.506s,80fresh372.050s,primary .661496611109 below .663841820660; alone .636714244169. Keepfalse; incremental terminal review in progress. Owner will transfer to new grounded-generation worktree.",
+      "status": "COMPLETE_NEGATIVE_REVIEWED10bc9846; source branch f0785f7d pushed and endpoint supplement durable on A100, no transfer in flight. Owner now developing grounded-generation.",
       "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
       "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
       "job": {
@@ -81,7 +86,7 @@
       "route": "case_retrieval",
       "branch": "round2/case-retrieval",
       "owner": "/root/retrieval_recover_0518",
-      "status": "First attempt failed before0forward due extra inspectsource wrapper ownership gate; original contract mechanically restored, original deadline unchanged. Original recovery active19/80 at09:30:40.",
+      "status": "FLA recovery80 completed09:37:26 rc0,560.353s program/562.642s outer,80fresh/80strict/80EOS,original deadline met. GPU released; original collection and fixed paired quality pending.",
       "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
       "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
       "process_id": "proc_99477f17-f631-4ca9-b349-1eff59cb3e6e",
@@ -119,7 +124,16 @@
       "worktree": "/workspace/patientphex-worktrees/explore-span-normalization",
       "owner": "/root/span_normalization",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "Agent active: explicit span detector and independent HPO normalization; CPU/research first."
+      "status": "Unique GP32/F1 training+complete inference started09:39:09.637056 UTC on .3 GPU0,600+30 total; source73abacc. CPU prepared1148train/588held windows and real loss/gradient contract passed.",
+      "job": {
+        "process_id": "proc_03655e70-29ef-4447-9413-84f06e920184",
+        "pid": 1196540,
+        "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+        "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+        "remote_directory": "stage8-span-normalization/gp32-f1-v1",
+        "local_started": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/gpu-started.json",
+        "budget": "600+TERM30 includes discarded probe, fresh8epochs, held588 windows and declared-pool Sap normalization"
+      }
     },
     {
       "route": "document_relations",
@@ -127,7 +141,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-document-relations",
       "owner": "/root/document_relations",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "Agent active: mature document-level relation modeling; CPU/research first."
+      "status": "Source b15002c pushed; CPU document/window/token contracts under preparation, recovering original CPU dispatch TIMEOUT without restart. .3 GPU0 after span release; no NN yet."
     },
     {
       "route": "grounded_generation",
@@ -135,7 +149,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-grounded-generation",
       "owner": "/root/sequence_recover_0518",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "Assigned; finish old alpha negative closure then transfer to new worktree. Evidence-grounded generation and independent normalization."
+      "status": "Source6cc2509; patient-target passage-ID+exact quote copying and independent normalization. True relation labels separated from weak quote selection; CPU coverage/token census in preparation. A100 GPU2 available after fresh gate, A800 fallback coordinated if40GB insufficient."
     }
   ]
 }
