@@ -25,3 +25,5 @@ F1候选祖先训练32、F0复用候选训练48，均排目标折；生成模型
 ## 已授权原dev迁移（SAMPLE-003）
 
 root根据F1/F0主配方均正，已授权同native normal full64、128fresh、单2100+30及唯一B901保护主端点。CPU装配/范围已核：1061实体/416旧关系（池外54）全保；完整输入和所有拟合祖先沿readiness。源/计划准备中，尚未GPU或原dev新质量。见[实验003](experiments/E-20261024-SAMPLE-003.md)。
+
+原dev迁移native CPU门4.384秒已通过：复用原已核基座证书并逐inode/mtime/size精确一致，新1a703b适配器SHA完整重核，128行seed/四samplerprocessor合同通过，无新tokenization/GPU。F0+full64准备独审`1c110220…`已PASS，范围不含新的128运行。最终plan/receipt冻结后即唯一启动。
