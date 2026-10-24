@@ -14,7 +14,7 @@
 - **资产已完整通过**：.100 mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，原managed `proc_1c596785-307e-4471-8541-c982943da8bb` 03:36:58结束，1862.200秒、9/9全SHA、16,388,603,517B、399实际头/EOF通过；running=false。未重试/延期，原03:40:49+TERM30预算保留。[完整收据](deepseek_r1_readiness/assets/complete.json)。
 - 外部目录 `R/research/deepseek-r1-0528-qwen3-8b-feasibility`，其中 `R=/workspace/patientphex-runs/round2-20261023`。恢复先核 `assets/intent.json`、`download-job.json`、`monitor-state.json`；只读入口 `assets/poll_original.py`。UNKNOWN先核原job/实际文件，不能再发start。
 - 原生80纯输入CPU完成，三固定row输入2171/3425/6002 token；首BatchEncoding错误与修复原留。YaRN CPU对HF4.51参考64值bitexact，配置不改。[完整CPU清单](deepseek_r1_readiness/cpu-terminal-manifest.json)。
-- 唯一GPU探针尚未启动。完整资产+CPU通过后，已授权fresh .100 GPU1/UUID `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`，最多3固定输入、每条≤1024新token、总180+TERM30，首截断或无效final停。只测格式/成本，无gold/80条质量；截断不否定R1质量机制。
+- 唯一GPU探针已于03:38:17.500启动：`proc_2eb8109a-602c-4714-956c-1aa4db401a35`，主deadline03:41:17.500+TERM30；实际fresh .100 GPU1为0MiB used/free24164、目标无计算进程，UUID `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`，最多3固定输入、每条≤1024新token、总180+TERM30，首截断或无效final停。只测格式/成本，无gold/80条质量；截断不否定R1质量机制。
 - 原生FP32 rotary同device比较及CPU/GPU 8eps容差在启动前冻结，原CPU证据保留；source实际SHA/compile通过。执行恢复入口为外部 `gpu-probe/{plan.json,start-intent.json,job.json}` 与 `gpu-probe/recovered/wrapper-result.json`，实际生成结果在 `recovered/`；只有真实产生后才作为已运行证据。[研究/过程/边界](deepseek_r1_readiness/REPORT.md)。
 
 ## 最近结案
@@ -25,7 +25,7 @@
 
 ## 下一步与备份
 
-1. 资产已完成；执行plan `dc3ba5f1` 已绑定真实资产/CPU/YaRN与新源，先checkpoint再唯一GPU启动。
+1. 资产已完成；执行plan `dc3ba5f1` 已绑定真实资产/CPU/YaRN与新源，原唯一GPU已经启动，沿其job/marker监控，勿重复start。
 2. 运行既有授权唯一短探针，记录完整生成IDs/真实耗时/内存/释放；工程错误与预算截断分开，完整清单交统一增量复核。
 3. 由主线程据真实成本决定是否另做更大预算/80条同池质量；当前没有此授权。
 
