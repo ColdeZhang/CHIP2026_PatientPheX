@@ -1,0 +1,28 @@
+--- verified_medgemma_assets_downloader
++++ fixed_R1_Qwen3_assets_downloader
+@@ -54,9 +54,14 @@
+  for key,e in expected_shapes.items():
+   if got[key]['shape']!=e['shape_derived_from_config_and_native_source'] or got[key]['numel']!=e['numel']:raise ValueError('actual shape differs from frozen formula')
+   counts[e['group']]=counts.get(e['group'],0)+got[key]['numel']
+- if counts!={'text':3880263168,'projector':2950272,'vision':416866032}:raise ValueError('parameter count mismatch')
+- if len(got)!=883 or any('lm_head' in k for k in got):raise ValueError('shared head count mismatch')
+- return {'status':'ACTUAL_SAFETENSORS_HEADERS_MATCH_FROZEN_883_KEY_FORMULA','tensor_keys':len(got),'dtype':'BF16','counts':counts,'full_bundle_parameters':sum(counts.values()),'text_embedding_and_output_tied_counted_once':True,'separate_lm_head_weight_stored':False,'files':files,'tensor_values_not_decoded':True,'model_not_loaded':True}
++ if counts!={'text':8190735360}:raise ValueError('parameter count mismatch')
++ if len(got)!=399 or 'lm_head.weight' not in got:raise ValueError('untied head/key count mismatch')
++ cfg=json.loads((root/'config.json').read_text())
++ if cfg['model_type']!='qwen3' or cfg['architectures']!=['Qwen3ForCausalLM'] or cfg['tie_word_embeddings'] is not False:raise ValueError('wrong native architecture')
++ actual_bytes=sum(x['payload_bytes'] for x in files)
++ if actual_bytes!=16381470720 or json.loads((root/'model.safetensors.index.json').read_text())['metadata']['total_size']!=actual_bytes:raise ValueError('index payload mismatch')
++ return {'status':'ACTUAL_SAFETENSORS_HEADERS_MATCH_FROZEN_399_KEY_QWEN3_FORMULA','tensor_keys':len(got),'dtype':'BF16','counts':counts,'full_bundle_parameters':sum(counts.values()),'text_embedding_and_output_tied_counted_once':False,'separate_lm_head_weight_stored':True,'files':files,'tensor_values_not_decoded':True,'model_not_loaded':True}
++
+ def main():
+  ap=argparse.ArgumentParser();ap.add_argument('--intent',required=True);a=ap.parse_args();intentpath=Path(a.intent).resolve();base=intentpath.parent;intent=json.loads(intentpath.read_text());deadline=intent['absolute_deadline_epoch'];root=Path(intent['model_dir']);root.mkdir(parents=True,exist_ok=True)
+  if os.getuid()!=intent['expected_uid'] or root.stat().st_uid!=os.getuid():raise ValueError('owner mismatch')
+@@ -65,6 +70,7 @@
+  started=time.time();atomic(base/'started.json',{'pid':os.getpid(),'ppid':os.getppid(),'started_epoch':started,'absolute_deadline_epoch':deadline,'remaining_budget_seconds':deadline-started,'uid':os.getuid(),'python':sys.version,'source_sha256':digest(__file__)})
+  signal.signal(signal.SIGTERM,lambda s,f:STOP.set());signal.signal(signal.SIGINT,lambda s,f:STOP.set())
+  if deadline-started<=0:raise ValueError('deadline already expired')
++ assert digest(base/'expected-files.json')==intent['expected_files_sha256'] and digest(__file__)==intent['download_script_sha256'] and digest(base/'derived-tensor-shapes.json')==intent['derived_shapes_sha256'], 'frozen asset source/plan changed'
+  plan=json.loads((base/'expected-files.json').read_text());records={};recordlock=threading.Lock()
+  def save(name,data):
+   with recordlock:records[name]=data
