@@ -1,0 +1,31 @@
+{
+  "scope": "Local CPU input-only enumeration, no NN/fit/labels/dev/quality",
+  "native_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/postdownload-readiness/ncrmodel-upstream.py",
+    "bytes": 8114,
+    "sha256": "7d196049361dd19d9e88601c2e91c21c055b63ce3f29afa17d8bdb85259e9aef"
+  },
+  "input": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/train64.input.jsonl",
+    "bytes": 1351066,
+    "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+  },
+  "old_public_canonical": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/canonical-entities.jsonl",
+      "bytes": 1580994,
+      "sha256": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-train64-cache/terminal/native-train64-final-cache/canonical-entities.jsonl",
+      "bytes": 1528556,
+      "sha256": "046bc82df77c413b633f05c360fe99a2b6b922f51005483756f1ddd91a4103fb"
+    }
+  ],
+  "extraction": "Copy exact annotate_text AST statements preceding matches=get_match; no TensorFlow import/model construction",
+  "policy": "Per original full_text passage; fixed 1..7 native candidates, original normalization/coordinates. No predicate or list chosen from gold/FNs. No downstream threshold/overlap filtering without actual NN scores.",
+  "CPU_cap_seconds": 120,
+  "TERM_grace_seconds": 10,
+  "source_sha256": "e4f279a8823fa36fef8366806c71b6fe8375ed0939d30594b8bebf5952cdc8c9",
+  "old_other_model_score_reuse": false
+}

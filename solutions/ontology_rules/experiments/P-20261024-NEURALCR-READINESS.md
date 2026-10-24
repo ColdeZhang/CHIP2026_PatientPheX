@@ -54,3 +54,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 01:12实际新只读roundtrip已恢复，原attempt3自然结束为 `incomplete_fragments_preserved`（1681.128秒/12片共6,291,456B失败；非预算耗尽），原writer80372已无、timeout壳无命令字节。主线程授权仍在原01:44:22.681Z截止内的[独立MCP恢复](../public_neuralcr_readiness/relay-recovery-0113/recovery-plan.json)：先全2280个FT片/旧prefix实际SHA库存，仅缺失片用本地原字节写新目录，至多8worker/每片3次、≤512KiB；不重下公网，不重复HP。原失败state/receipt原留，后继完整资产manifest分别引用原HP与恢复FT，不篡改原attempt3终态。源/输入清单本检查点仅准备，尚未传输补缺。
 
 恢复前完整远端库存实际3.546秒/rc0：2280段中2273段、1,341,795,335字节实核正确，只有7片共3,670,016字节缺失；部分原失败RPC实际已落盘，故不能直接按12个失败请求全量重写。报告首取回`UNKNOWN_OUTCOME`，仅再次读取同一已有报告成功，未重跑库存。实际[补缺计划](../public_neuralcr_readiness/relay-recovery-0113/recovery-bound-plan.json)只写这7片新目录；对未来managed start先落intent，若响应不确定先核原进程，禁止盲目重启（H32）。
+
+已冻结7缺片补缺启动后，连接再次离线：110.265秒/21次实际LUNA_OFFLINE/0补写成功，无assembly，原state与本地range保留；不把失败请求视为未落盘，恢复时仍须重新库存。主线程统一确认连接前不再启动writer/native。并行[纯输入候选普查](../public_neuralcr_readiness/input-only-census/plan.json)从原生源AST逐字句提取NN前枚举，6合成坐标合同通过；首跑仅因24个已有passage含title元数据被过严allowlist拒绝，失败源/plan保留，只放行该元数据后重跑CPU，不改枚举/输入/门槛。

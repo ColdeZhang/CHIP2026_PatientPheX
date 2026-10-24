@@ -34,7 +34,7 @@ unique=set();raw_unique=set();ngram=collections.Counter();per_doc=[];overlap=set
 for doc in docs:
     count=0;doc_unique=set();empty=0
     for pi,p in enumerate(doc['full_text']):
-        assert set(p)<= {'section_type','type','offset','text'} and isinstance(p['offset'],int)
+        assert set(p)<= {'section_type','type','offset','text','title'} and isinstance(p['offset'],int)
         text=p['text'];characters+=len(text);all_passages+=1
         queries,spans=enumerate_native(None,text);assert len(queries)==len(spans)
         assert len(set((a,b) for a,b,c in spans))==len(spans)
