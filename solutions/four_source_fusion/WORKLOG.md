@@ -19,3 +19,5 @@ F0新12内容（完整pred+固定recipe/质量）小包27452B已.100实际2次re
 完整 C 已到：64 fresh 全 strict、300纯关系，final-handoff78615a55；原临时服务/GPU已实际释放。已绑定[唯一原dev计划](plan-originaldev.json)，四源新增供给分别{'grounded': 28, 'sampled': 8, 'qwen3': 23, 'coded': 14}；当前best为05cfa90f/.769235669942。先推送源码/计划，再全预测冻结与最多1次新v2；保留全部901实体与关系，不做C单臂或子集扫描。
 
 原dev唯一完整端点完成：**.768400942542**，低于当前三源best .769235669942（−.000834727400）；相对三源新增5=1TP4FP，micro .740319、macro .711806，Task1完全不变。94a47f68先推送，freeze62f0dcc6后1新v2/旧0。内部双折改善未迁移为原dev改善；保留原best、不入main实现，不再扫来源/阈值。[统一入口](evidence/originaldev-entry.json)，完整产物及私有最小备份在仓库外。
+
+本端点13内容小包33126B已持久保存并实际2次read_file回读，全部成员SHA/fsync/reopen通过，回执[f0423ce5](evidence/originaldev-backup.json)。C full64/其它源完整模型与raw沿原终态包继承，不重复传输。
