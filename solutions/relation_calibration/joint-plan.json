@@ -1,0 +1,99 @@
+{
+  "stage": "JOINT_F0_FIXED_TWO_OF_THREE_AND_FROZEN_LR",
+  "joint_output": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/joint-freeze-v1",
+  "lr_quality_output": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/F0-quality-v1",
+  "two_of_three_result_path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/result.json",
+  "two_of_three": {
+    "plan": {
+      "path": "/workspace/patientphex-worktrees/explore-parallel-relation-fusion/solutions/parallel_relation_fusion/plan-F0.json",
+      "bytes": 3464,
+      "sha256": "195b700638b039618142a5f788dfbd67d017de9236a7f5c78f2328d89cae0202"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/freeze.json",
+      "bytes": 2510,
+      "sha256": "a7aec55c6ce8dcbb8a5c935a734fe05a30a5452db9c57e99e3e3f621f928263f"
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/two_of_three.prediction.jsonl",
+      "bytes": 112769,
+      "sha256": "311aee8c6d586fd843713a5d4219cc800b135bdfd00b36f5f41cadd96c192921"
+    }
+  },
+  "logistic_regression": {
+    "plan": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/F0-plan.json",
+      "bytes": 3178,
+      "sha256": "08a415e61fe156fb9d4b523e10d7f92b29144148c14286c4a6df0ed8a010546a"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/F0-assembly-v1/freeze.json",
+      "bytes": 2443,
+      "sha256": "f1bf362819f66a61900d8ef93428458ee2f8e819389e9b81976972572ba014f4"
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/F0-assembly-v1/prediction.jsonl",
+      "bytes": 124359,
+      "sha256": "b10eac5859bbc859f97023cfe7ddb38c819f558f866dd7c1f27dbbb4c57ddd05"
+    }
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/supported.pred.jsonl",
+    "bytes": 124485,
+    "sha256": "94504b974d5203fdde6b68ff10ca12bb67d24b0db235023023920b0ec595e1bc"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/metrics.json",
+    "bytes": 13023,
+    "sha256": "6334836994d9ab62efcddf0033a58f688261394e1e755664e2b58bbf81795a06"
+  },
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "bytes": 350409,
+    "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "evaluator": {
+    "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+    "bytes": 10539,
+    "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "validator": {
+    "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+    "bytes": 12208,
+    "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+  },
+  "sources": {
+    "joint_quality.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/joint_quality.py",
+      "bytes": 6094,
+      "sha256": "7e850a88047b82ca8d3efef16e4e38d553a6867910cff43c50077ffc3306a604"
+    },
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common.py",
+      "bytes": 7873,
+      "sha256": "37578e207d4f8be6f2faf880c99b7f0a1cf155a82075c806311f8f8c5c98a5a7"
+    },
+    "common_f0.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common_f0.py",
+      "bytes": 3218,
+      "sha256": "66121dadba6dfa0022b83163cd9565734025cef8aede38b8cc11172be0296334"
+    }
+  },
+  "original_fixed_gates": {
+    "two_of_three": "Score > .7115075800266846",
+    "LR": "Score > .7115075800266846 AND Score > fixed2of3"
+  },
+  "existing_independent_sampled_F0_score_for_context_only": 0.7219695183875896,
+  "source_selection_by_individual_quality": false,
+  "no_refit_or_scan": true
+}
