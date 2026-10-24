@@ -89,3 +89,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 13:37完整交付：固定453记录→269mapped/0NIL/184abstain，严格217+semantic52，全部250 new-only关系；16文献/36患者/1061实体及901非关系bytes全部保持，validator8b594ee6有效。纯pred fc267414、共冻3873c442、完整quote d77065bb、集中终审entry620347ae已交root；未读原devgold/评分。根负责固定两端点，当前仅结案与等待集中终审后最小补包。源73b9f5db已推，所有GPU真实释放。
 
 完整full64→原dev供给及root两质量统一终审58141a6f PASS；root三源Score .769235669942、独立Gunion .768214，总分实际由root唯一v2产生。原full64模型/所有freeze不改，旧ee39仍保留。现仅打包原raw/规范化/纯供给/source/review，完整state引用既有.100双ACK、不重复权重。
+
+2026-10-24 full64补包已闭环：统一终审58141a6f；124内容＋1内嵌manifest，ZIP aac3acd8/2029760B、manifest228ee8aa/52397B已在.100逐SHA/fsync/reopen，原receipt056917a5。root于13:49:42 UTC完成5个实际下载分块的恢复，124内容及精确内嵌manifest全部SHA/fsync/reopen，receipt aabaeacf；最初容器条目数guard仅本地机械修复，复用已下载字节，无包损坏、重传或模型重跑。两完整训练state及公共资产仍引用既有持久locator、不复制权重。精确服务器位置和恢复证据见[persistence/full64-receipt.json](persistence/full64-receipt.json)。本次仅小指针/台账收尾，不影响独立双采样路线。
