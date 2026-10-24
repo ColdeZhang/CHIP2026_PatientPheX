@@ -87,9 +87,28 @@
       "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/probe-start-intent.json",
       "bytes": 1146,
       "sha256": "21c9f58dd72c6464a3ff788f6d203570d03589935abe44d4f1cc8185590e599c"
+    },
+    "actual_same_encoder_on_target": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/duration24-v1/run/normalization/complete.json",
+      "bytes": 13113,
+      "sha256": "c177302072c8784e4eda33c3e5d605f47272c1e81de2d5b2db57ca53ae8aeb0e"
     }
   },
-  "scope": "Reuse only public model/HPO/bank/runtime evidence; peer train32 aliases and model outputs are not consumed; own aliases remain fixedtrain64. DifferentTorch/TF disclosed, no claim of cross-runtime bitwise equivalence.",
+  "scope": "Reuse only public model/HPO/bank/runtime evidence; peer train32 aliases and model outputs are not consumed; own aliases remain fixedtrain64. DifferentTorch/TF disclosed, no claim of cross-runtime bitwise equivalence. Peer actual encoder loading/runtime only is additionally bound; peer predictions and query vectors are not reused.",
   "stage": "Ready assets; no held queries generated or GPU reserved/started; release/fresh gate still required",
-  "authorization": "Root approved necessary fixed-policy dev36 normalization on .100 after original GPU queue, unchanged180+30."
+  "authorization": "Root approved necessary fixed-policy dev36 normalization on .100 after original GPU queue, unchanged180+30.",
+  "actual_same_encoder_on_target": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "parameters": 109482240,
+    "pooling": "CLS_L2",
+    "max_length": 32,
+    "training": false,
+    "loading": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    }
+  }
 }

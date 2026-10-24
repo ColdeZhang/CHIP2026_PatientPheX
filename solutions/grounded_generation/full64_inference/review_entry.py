@@ -33,7 +33,11 @@ def main():
         assert ref(value['archive']['path']) == value['archive']
         collections[phase] = dict(collection=ref(path), original_archive=value['archive'],
                                  member_count=len(value['files']))
-    assert H.read(formal / 'collection.json')['formal_reported_success']
+    formal_collection = H.read(formal / 'collection.json')
+    assert formal_collection['formal_reported_success']
+    epoch_wrappers = formal_collection['wrapper']['epochs']
+    training_complete = H.read(formal / 'terminal/output/training_complete.json')
+    epoch_native = {str(e): H.read(formal / ('terminal/output/summary-epoch-%03d.json' % e))['epoch_seconds'] for e in (1, 2)}
     assert H.read(B / 'infer-dev36-v1/collection.json')['inference_reported_success']
     acks = {}
     for epoch in (1, 2):
@@ -58,7 +62,18 @@ def main():
         formal_plan=ref(formal / 'formal-plan.json'), controller_plan=ref(formal / 'controller-plan.json'),
         original_campaign=ref(formal / 'campaign.json'), completed_campaign=ref(formal / 'campaign-complete.json'),
         complete_epoch_ACKs=acks, collections=collections,
-        actual_full_checkpoint_locators=H.read(formal / 'collection.json')['actual_external_checkpoints'],
+        actual_full_checkpoint_locators=formal_collection['actual_external_checkpoints'],
+        export_guardian_terminal=ref(B / 'export-guardian-v1/terminal-collection.json'),
+        cost=dict(epoch_wrapper_seconds={k: v['elapsed_seconds'] for k, v in epoch_wrappers.items()},
+                  both_training_wrapper_seconds=sum(v['elapsed_seconds'] for v in epoch_wrappers.values()),
+                  epoch_native_loop_and_save_seconds=epoch_native,
+                  whole_campaign_elapsed_seconds=campaign['at_epoch']-campaign['campaign']['started_unix'],
+                  export_seconds={str(e): H.read(formal / ('epoch-%03d-export-ack.json' % e))['seconds'] for e in (1, 2)},
+                  training_complete_elapsed_scope='Second resumed process only; never report as both epochs total',
+                  training_complete_elapsed_seconds=training_complete['elapsed_seconds'],
+                  training_complete_peak_scope='Second resumed process only; first-process full training peak not separately captured',
+                  resumed_process_peak_allocated_bytes=training_complete['max_gpu_allocated_bytes'],
+                  resumed_process_peak_reserved_bytes=training_complete['max_gpu_reserved_bytes']),
         inference_plan=ref(S / 'infer-plan.json'), full36_terminal=ref(B / 'infer-dev36-v1/terminal/output/complete.json'),
         extraction_plan=ref(S / 'extraction-plan.json'), extraction=ref(B / 'dev36-quotes-v1/manifest.json'),
         normalization_preparation=ref(B / 'dev36-normalization-preparation/manifest.json'),
