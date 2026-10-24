@@ -9,3 +9,7 @@ F1预设old∪reverse主臂小增且macro不降，经独审baf7aec6通过；root
 先source/plan push，再传输/部署并fresh核GPU f516空闲启动。原baseline .695443948指标直接复用；reverse原始响应与两完整pred保存并共同freeze，只有union做一次F0 v2。keep仍Score严格升且macro不降。原始训练48/旧204严格OOF来源只读复用，不重训。无额外quality臂。
 
 恢复：外部 `research/reverse-json-candidate-order-f0/formal/` 的plan/job/transfer/terminal/assembled/evaluation；源码 `reverse_json_order_f0/`。计划 `54f05699c7848bf7d2aba196e8da2e4b08cd0b141b0f3f4a26d82f086c149c61`，小索引 `evidence/round2/reverse-json-order-f0-plan.json`。
+
+## 实际启动
+
+两文件传输17.7059秒、重新读取完整SHA相同、源临时服务已停（connect_ex111）；A800 SHM余250.823GB，owner1045。03b2dcd已push并核远端后fresh核空启动 `proc_9c8a131a-560a-4a62-972d-18bfcbc33aca`，00:26:07.633Z/600+30秒。原模型/适配器方法不变；新路径只为恢复已删A800冗余weight，.100原件保留。当前未读新质量。

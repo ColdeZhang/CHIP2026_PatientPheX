@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**固定逆序并集F0迁移准备中。** root根据F1预设keep授权唯一旧58/SFT48，不含public新概念；双逆与真实token通过，195356/max6040。只把.100持久旧adapter两文件复制A800自有SHM，完整SHA核验；600+30推断后只评old∪reverse，不重评reverse-alone、不原dev。当前尚无新GPUjob。[固定计划/恢复](experiments/reverse-json-order-f0.md)。
+**固定逆序并集F0唯一推断运行中。** 原58/SFT48，不含public新概念；双逆与195356/max6040 tokens通过。同A800 fresh核空，00:26:07.633Z启动 `proc_9c8a131a-560a-4a62-972d-18bfcbc33aca`，600+30截止00:36:37.633。旧48 adapter从.100持久副本仅173MB两文件传至ownSHM，17.706秒/完整SHA与uid1045通过，HTTP已停；原base/持久源未动。只评old∪reverse，不重评reverse-alone、不原dev。恢复已有job，禁止重复启动。[作业/恢复](evidence/round2/reverse-json-order-f0-job.json)、[固定计划](experiments/reverse-json-order-f0.md)。
 
 **固定候选逆序两臂完成，独审PASS（baf7aec6），GPU已释放。** 同旧80/SFT32原位A800，80/587有效、无fallback，290.848秒。双完整预测先freeze再唯一F1：reverse alone .650566370（负）；预设old∪reverse **.662472447**，较旧.660942003+.001530444，新增15TP36FP，micro−.005258502/macro+.011380279。满足事前Score升且macro不降，但precision仅29.4%，不直接迁dev；原1189实体保持、0错警。没有intersection/扫描。原job proc_f40cda16已结束，00:22:02Z GPU2核空；禁止重推。[结果与恢复](evidence/round2/reverse-json-order-results.json)、[方法](experiments/reverse-json-order.md)。
 
