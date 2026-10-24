@@ -35,3 +35,7 @@
 实际读取[GenIE](https://arxiv.org/abs/2112.08340)与[UIE](https://arxiv.org/abs/2203.12277)原始摘要，元数据/摘要校验在`evidence/methodology-primaryrefs.json`与仓库外缓存。GenIE以生成式triples配合两级约束保证知识库schema合法，说明生成结构与规范化约束应分层；其closed-IE结果不能直接当本比赛患者归属效果。本轮是生成后精确定位检查，并没有实现论文的解码时约束，不能把两者混称。
 
 UIE将异构抽取统一为带schema提示的结构生成，与本轮把患者归属和可复制词面明确分工相符；仅借任务表达思想，没有导入其模型或训练集，也不能据其13数据集结果预测只有32篇监督下本任务收益。若本轮后续真实输出显示格式/不可定位项主导，解码约束可以作为另一个明确单变量假设；现在不加新arm、不改greedy1600或解码策略，先由完整F1裁决。
+
+### 已确认的接口坑：旧指标文件不一定内嵌身份字段
+
+公开v2标准metrics可只有metrics/config/counts，pred/gold SHA在原pairedfreeze/evaluation-bound/summary。消费旧基线时先核实际schema，再沿冻结链绑定，不能猜prediction_sha256字段。GG首组装已在任何新pred/gold/v2之前发现并保留；独立恢复只改metadata绑定，未改变科研端点。对应根H39的真实返回对象/manifest合同问题，不凭字段缺失重评旧基线。

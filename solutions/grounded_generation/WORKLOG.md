@@ -4,7 +4,7 @@
 
 ## 当前目标和状态
 
-- 目标：9B原文证据复制＋独立HPO规范化，补充强全文N的患者关系；保持Task1骨架，固定总Score主门。N .676546只是normal全文强对照，历史完整public支持F1 .686338981只读参考；胜N先称方法候选，不称历史或原dev全流程best。原dev最佳.754361398，官方.6922为用户回传；本路线尚无新分数。
+- 目标：9B原文证据复制＋独立HPO规范化，补充强全文N的患者关系；保持Task1骨架，固定总Score主门。N .676546只是normal全文强对照，历史完整public支持F1 .686338981只读参考；胜N先称方法候选，不称历史或原dev全流程best。原dev最佳.754361398，官方.6922为用户回传；本路线首F1方法候选N∪grounded .681717660（较强N +.005171305），new-only .583496662；独审/第二折待定，原dev无新分数。
 - 原32金标38c353ea/969963B和356109e9谱系已核：F2+F3、32文献87患者；F1输入16文献39患者，与训练不交。held/原dev gold没有读取或哈希。
 - 历史边界已核：旧8B窗口抽取/SFT直接并集两折不稳；旧患者HP+quote自由编号严重失败。新机制改变为患者条件证据复制、禁止HP生成、独立规范化，不能只把换9B当创新。
 - 真实schema已核：association只有patient_id→phenotype；实体独立含offset与identifier。目标quote只是按关系选出的弱证据，不能称人工归属证据。用原passage单位ID保全原始offset，避免按gold切句。
@@ -50,3 +50,5 @@
 254必要Sap唯一proc9f6935a7已11:15:44.484 rc0，wrapper11.603秒/controller11.779秒，实际GPU释放11:15:44.491。13小件f1720f1c完整逐SHA回收，原queryvectors留持久locator；无重bank/fit。实际finalize计划已绑定原全573 anchors与254 scores，固定policy不变，随后只CPU normalize/双冻结/两v2。
 
 固定normalize完整267cd326：573记录mapped328/NIL0/abstain245，strict244+semantic84；所有原doc/PID/unit/occurrence/offset/length/quote与拒绝理由保留，normalizations786cc560已交root作独立后继供给，本线不改1189实体。双端点质量计划03c88a3f已绑定完整8refs，先push再共同freeze→各唯一v2/旧0。
+
+11:18:08完整双质量收口：主臂 .681717659986 > N .676546354663（+.005171305324），micro +.001808409 / macro +.018876813，Task1不变；new-only .583496662244。新增98=35TP63FP，候选外34=17TP17FP。共同freeze a8591946，两个唯一v2/旧0，.342秒；metadata接口机械恢复保留，模型/规范化/政策未重跑。见[F1-result](evidence/F1-result.json)与完整实验；候选待独审、原devbest与官网不变。
