@@ -1,0 +1,90 @@
+{
+  "status": "PASS_FINAL_CPU_INDEXED_HEAD_NATIVE_QWEN3_AND_PEFT",
+  "commit": "eff26121debc1720445acc7bb8b777e04279d1d3",
+  "pushed": false,
+  "reason_not_pushed": "Parent owns shared branch push; only two assigned source files committed.",
+  "result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/collected/actual-v4/result.json",
+    "bytes": 2073,
+    "sha256": "e19d28582ea839a34971f5147a8edc306c754f17b5d39d3805eb89745d834b7c"
+  },
+  "observations": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/collected/actual-v4/observations.jsonl",
+    "bytes": 23356,
+    "sha256": "1f539ee7b45e4a334bee91d040e5cc3908b9dce326cf5ebd9f3068f9a1e43ed1"
+  },
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/final-cpu_loss_contract.py",
+    "bytes": 15408,
+    "sha256": "40bbc9cfa986f8a90dbaa12751ec0800d6a117786f0b8a1737c89367ec411807"
+  },
+  "loss_ops": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/final-loss_ops.py",
+    "bytes": 3893,
+    "sha256": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc"
+  },
+  "versions": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]"
+  },
+  "final_native_seconds": 1.8428231189027429,
+  "numerical_comparisons": 104,
+  "largest_max_abs_error": 0.0,
+  "fixed_tolerance": {
+    "rtol": 1e-06,
+    "atol": 1e-07
+  },
+  "peft_gradient_coverage": {
+    "name": "PEFT_gradient_coverage",
+    "trainable_tensors_compared": 28,
+    "nonzero_adapter_gradients": 28,
+    "frozen_base_gradients_absent": true
+  },
+  "stages": [
+    {
+      "name": "actual-v1",
+      "status": "complete initial native/no-PEFT PASS,1.965s;one extra prefix claim in second fixture later corrected; production loss unchanged",
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/first-pass-source.py",
+        "bytes": 11445,
+        "sha256": "4bdc2f2bc52ba42df1a884726444eabad4cf05bcc909586d5a58ff2fde27b052"
+      }
+    },
+    {
+      "name": "corrected upload UNKNOWN",
+      "status": "actual remote bytes a52cd017 recovered; no duplicate upload and no run dispatched then"
+    },
+    {
+      "name": "actual-v2",
+      "status": "import peft missing, zero tensor contracts; preserved stderr"
+    },
+    {
+      "name": "actual-v3",
+      "status": "existing training-runtime resolved import; native/head/tiny contracts passed, PEFT two forwards completed, observer module prehook bypassed by direct forward, raised KeyError after saving observation; no final PASS",
+      "source": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/attempt2-3-source.py",
+        "bytes": 15033,
+        "sha256": "ef67eb800935bbe8d48471ac15b0da1a94a8402868492b855a27ec9378ff9312"
+      },
+      "observations": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen3-dense-attention-readiness-20261024/cpu-loss/collected/actual-v3/observations.jsonl",
+        "bytes": 16005,
+        "sha256": "bb1a509384773b6baa5f06646e44edba4645c0b5460b3c41bfe8fd23c0d0fc75"
+      }
+    },
+    {
+      "name": "actual-v4",
+      "status": "transparent observer proxy to same native bound forward fixed instrumentation; complete native+PEFT loss and all gradient comparisons PASS"
+    }
+  ],
+  "budget": {
+    "CPU_total_budget_seconds": 60,
+    "local_request_wall_brackets_seconds": 23.047870541,
+    "measurement": "sum local intent-write to response-write brackets, includes RPC overhead; bounds native invocation time, not total elapsed research wall time",
+    "all_GPU_hidden": true
+  },
+  "limit": "Synthetic CPU mathematics/interface proof only; no8B/model weights/taskdata/GPU/quality, no production GPU memory/throughput or crosskernel equivalence claim.",
+  "raw_warning": "Preexisting bitsandbytes CPU build warning; no quantization/bnb optimizer invoked or installed."
+}

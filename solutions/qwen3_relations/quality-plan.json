@@ -1,0 +1,69 @@
+{
+  "experiment_id": "E-20261024-QWEN3-001",
+  "source_sha256": "78ca9bf57738cf830347cb6a9e916d95d53f713f17fc55eccc5ba915b47a7120",
+  "refs": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+      "bytes": 155402,
+      "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+      "bytes": 13187,
+      "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+    },
+    "normal_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+      "bytes": 12922,
+      "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "literal_helper": {
+      "path": "/workspace/patientphex-worktrees/explore-qwen3-relations/solutions/qwen3_relations/literal_helpers.py",
+      "bytes": 4690,
+      "sha256": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828"
+    },
+    "ancestry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/meta-ancestry/result.json",
+      "bytes": 17569,
+      "sha256": "b23d1354babcf5809027a78cac64b2251cc1661d6f8002985d6e3f2fbabf55e3"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    }
+  },
+  "collected": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/collected",
+  "output": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1",
+  "endpoints": [
+    "single",
+    "fullsupport_union"
+  ],
+  "retention": "At least one endpoint Score strictly > historical fullsupport .6863389812716092; macro reported unconditionally, select highestScore tie single. Neither wins→close. No cut/epoch search. No originaldev/official action.",
+  "freeze": "Both complete16/39/1189 predictions fsync and hash before canonicalF1gold firstread and eachonev2; old0."
+}
