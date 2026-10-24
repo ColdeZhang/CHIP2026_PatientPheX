@@ -13,3 +13,7 @@ PubMed小包7df8a846/383539B本地逐成员SHA通过；全部raw预测仍在A100
 Bioformer小包bb230a70/372908B全部成员核，final manifest4d1ea0d/canonicala38a4766已交关系提示线程；Task2两公共源已齐。
 
 三源整体970.229908秒rc0，06:50:47.914198 GPU2实际0MiB/40339MiB free/noapp，已交sequence patient。BioBERT包e62052d9/374043B全成员SHA，manifest6e920d5f/canonicalf66e1f45。原runtime目录终点后只读metadata确认为TensorFlow2.12.0/Keras2.12.0/Transformers4.30.1，未导入模型。Sap原完整包续传后再构建Task1池；不把半包视为可用数据。
+
+## Task1 B池完成
+
+Sap完整b0013d9f及manifestb4e2f2a6恢复后，metadata-only binder冻结B-plan360bfdc7；原f806 pure builder唯一11.792190秒（外层12.007089）rc0。100doc，候选90714→PubMed92382→Bioformer93055→BioBERT93710；final gzip4838f658/5263866B，Bioformer中间53998556/4979230B，manifest3f158274/9439B。完整池及所有阶段留外部B-prepared目录，已经交retrieval固定LGB803b/103vec/.3；本owner无fit/predict/quality/提交动作。

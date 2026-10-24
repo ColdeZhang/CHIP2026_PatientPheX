@@ -13,7 +13,7 @@
 - 用户最新明确授权只提交当前最高分方法，覆盖此前“暂不上传”的阶段约束；root统一协调提交与回执，不查询官方成绩。
 - 冻结方法901原dev Score .754361398199；B输入878fe248/2060389B，100文献/244患者/3802段，公共合同2c169066。Task1沿train64规则/Sap64/CRF、三public和固定103特征/LGB803b，不fit、不调阈值、不混day1 train80。
 - 原dev纯重建18ac gzip及内容byteexact（1.862476s），Bioformer中间候选值/类型/字段顺序也exact；Task1沿原crf_confidence:null，不加入confidence。源码f80669fb。
-- 本owner只追加三public原native候选及103特征pool；sequence提供共同底座，retrieval固定LGB .3与关系组装。原公共H5/TF2.12环境在A100 mount476f完整，06:28 fresh GPU2空；root安排先三public后patient。唯一CPU census57.819秒完成，100doc/3794有效段/446799候选/362779unique/347634fresh、6100dictionary；CPU42d9。已冻三模型顺序总2400+30/单绝对deadline，源plan6fc113a8；唯一proc_f3f4ef06/PID199194于06:34:37.589启动，原native与threshold不变。PubMed已338.457+5.186秒rc0，100doc/8929canonical，manifest5ef5e971/canonicalfbcadc36已交retrieval；Bioformer也271.310+5.384秒rc0、100doc/8726，manifest4d1ea0d/canonicala38a4766已交retrieval；BioBERT也334.467+5.384秒rc0、100doc/8723，manifest6e920d5f/canonicalf66e1f45。三源整体970.229908秒rc0、06:50:47.914198 GPU2实际释放并已交sequence；Task1待Sap完整包。
+- 本owner只追加三public原native候选及103特征pool；sequence提供共同底座，retrieval固定LGB .3与关系组装。原公共H5/TF2.12环境在A100 mount476f完整，06:28 fresh GPU2空；root安排先三public后patient。唯一CPU census57.819秒完成，100doc/3794有效段/446799候选/362779unique/347634fresh、6100dictionary；CPU42d9。已冻三模型顺序总2400+30/单绝对deadline，源plan6fc113a8；唯一proc_f3f4ef06/PID199194于06:34:37.589启动，原native与threshold不变。PubMed已338.457+5.186秒rc0，100doc/8929canonical，manifest5ef5e971/canonicalfbcadc36已交retrieval；Bioformer也271.310+5.384秒rc0、100doc/8726，manifest4d1ea0d/canonicala38a4766已交retrieval；BioBERT也334.467+5.384秒rc0、100doc/8723，manifest6e920d5f/canonicalf66e1f45。三源整体970.229908秒rc0、06:50:47.914198 GPU2实际释放并已交sequence；Sap完整b0013d9f已恢复；Task1 pure池11.792190秒rc0、100doc/93710候选，final4838f658/5263866B、Bioformer中间53998556均已交retrieval固定803b预测；manifest3f158274。
 - 全文formal8400训练已完成源码部署，但无campaign、无epoch job、无GPU启动；因官方优先暂停，保留私有目录与源码，仅在root确认本次提交接收后恢复。事前Score-only附录0714ffe3另存，旧policy e9a7不改：同强基线.6765463547，保留只按Score严格升，macro完整报告不加额外硬门，双升取Score高者；两fold复验保留，旧结案不重开。[暂停收据](qwen35_sft32_full_report_training_readiness/formal_train/controller/paused-before-GPU-official-priority.json)。
 
 ## 当前：两折全文输入对照结案；更强缓存对照与训练CPU可行性准备
@@ -43,3 +43,5 @@
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
 - 最近已核Git远端 **b4539bf40d004f99470620d06e04146766754a2a**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
+
+- 后继待办（官方B关键依赖已交后执行）：root新授权F0/F1训练内纯覆盖审计，比较当前LGB Task1文档HPO与oldpool∪public2合法关系提示空间；先查等价历史，只聚合来源/≤.95/真实关系FN供给，不读原dev gold、不新NN/fit、不改本次B。549低分/534边界FP分组后置。head_index_probe由head_projection_feasibility helper独立准备仅CPU/源码，owner明确清单统一Git，不碰旧formal、不GPU；工程probe须官方接收后root另决。
