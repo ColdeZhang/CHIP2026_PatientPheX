@@ -2,7 +2,7 @@
 
 - 目标：固定strict F2+F3 train32原124行normal关系监督，原生Qwen/Qwen3-8B非thinking两轮，完整F1全文80推断；新单臂与fullsupport整体并集两端点中至少一个Score严格高于.686338981才考虑F0。原dev.8总目标未达；本线F1固定并集已过内部继续门，另一折F0进行中。
 - 来源：`explore/qwen3-relations`，base `ff676a01615cce944b95ea8032e8d9bcd056cfdf`。只维护本目录。DocRE另线四组负结案保持。
-- 当前：F1完整正候选为固定fullsupport并集 .689312034492（强对照 .686338981272）；单臂负。F0同训练32 epoch2原权重全58纯推断正在.3 GPU0原900+30窗口，无重训。完成后仅B0保护并集1v2/旧0，raw新单臂不评分供root固定融合。条件full64原265/纯dev64 CPU已过，尚无full64 GPU或原dev质量授权；详见下方最新项和独立实验记录。
+- 当前：独立固定并集两折不稳，已负结案：F1 .686338981272→.689312034492，F0 .711507580027→.688186671128。F0新增117=18TP99FP，微/宏均降；不调阈值、不追加epoch、独立full64迁移关闭。全58 raw完整且未单独评分，仍交root预锁融合；该组合若后续通过属于另一决定。本线full64仅CPU准备，不启动。详见 experiments/E-20261024-QWEN3-002-F0.md。
 - 原生标准模型与R1-0528-Qwen3-8B为不同发布权重；两者都是全注意力，不称首次attention或冠军复现。历史Qwen3 Task1 train48→F1已做过，strict32关系SFT＋fullF1未见现有终点。
 - 固定HF b968826d9c46dd6066d109eabc6255188de91218，ModelScope26028140be3ee69b82b1d1450179ab71bb1121b9，Apache2.0。基座8,190,735,360＋r16七线性LoRA43,646,976=8,234,382,336，每模型<10B。
 - CPU11.979837s已核204原生/raw IDs及解码exact：train124/32总403151/max5534/监督7170；F1 full80/16总666591/max14322。源cb7f67e1与2a95bad1不变；no new gold/quality。
@@ -36,3 +36,7 @@
 - F0全58实际终态成功：428.808083s、rc0/no-timeout，11:53:51.051205 UTC GPU0回4MiB/noapps，已交生成线Sap；evidence/F0-release.json。收包/冻结质量仍在CPU进行。
 
 - 纯I/O暂阻：terminal.zip 464451B/202件/SHA2549e153，收2/4块后read_file返回LUNA_OFFLINE；完整GPU成功与11:53:51 release有效，不重start。当前.3由生成线Sap owner优先恢复，我暂停重复poll；恢复后运行R/stage8-qwen3-relations/collect_f0.py复用已存块，仅补缺块。尚无F0 gold读取/新质量。
+
+- F0最终：202件464451B/2549e153全SHA恢复，58/58 complete、0弃答/0cap。11:56:03.617963两pred共冻bda8a219后唯一union1v2/旧0，Score−.023320908898，micro−.060380147610、macro−.032903487983。raw75dbdc65已交root/validation，独立负不剔root预锁来源。见 evidence/F0-terminal-pointer.json 与 F0-result.json。
+
+- 最终持久备份：同.3 quality-source.zip 76286B/29件/SHA1ddde88e，与原terminal202件2549e153逐件重开全SHA通过，两个archive和父链fsync、ACK写入后父目录再次fsync；evidence/F0-backup-ack.json。本线独立full64已按F0门关闭，raw继续供root预锁融合，GPU和I/O均无在途任务。
