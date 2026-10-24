@@ -44,3 +44,7 @@ Read-only recovery succeeded11:48:47.771 UTC: original epoch1 driverPID141673 st
 ### 2026-10-24 11:58 UTC — original epoch1 progress and terminal backup preparation
 
 Original read-only inspect11:56:14 succeeded: epoch1 step10/loss .07682358, peak allocated24,166,990,336 B; no completed epoch/ACK yet. Small independent read-only review found no concrete post-training inference/quality interface blocker, without running parser/model/quality. Prepared one private terminal bundle entry and reused prior .100 CPU-only fsync/SHA storage helper under this route namespace; not executed yet. Capability/transport intents, model tensors and held gold are excluded; actual private clinical output remains outside Git.
+
+### 2026-10-24 12:02 UTC — first epoch complete, export-publication recovery
+
+First epoch actually ended11:59:58.919894 rc0/840.611566s/16updates; GPU2 released12:00:00.368811. Full checkpoint exists in private SHM; persistent ACK pending. At12:00:32.536 explicit LUNA occurred while publishing the export entry, before any server start_process call. Original monitor158832 exitedZ and all receipts remain. Original entry7cd0dfda phase deadline12:10:32.215268 and overall12:45:04.713781 remain fixed. Single A100 cooldown until12:03:37.536. Prepared a unique managed CPU publication recovery that checks/reuses identical entry bytes and execs unchanged io_driver; no repeated model or export server, no new phase clock.
