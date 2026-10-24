@@ -24,3 +24,6 @@
 - 有限合法token树保证每一步合法，不保证在max1600前选EOS；本次2/39cap。完整raw先落盘，V1原全行成功门因此失败。独立v2是看过无标签失败后的新整行弃答政策，不能改写V1历史。
 - 末尾进度不是全量统计：最初只见最后一条cap误推总数1，完整39的EOS37/cap2/strict37为准。以后先核complete+逐行audit再汇报总计。
 - v2全体cap/nonEOS及原strict失败在JSON解析前贡献空集合；保留其患者和B4，不能只评分37成功行。完整F1微分下降、宏分上升；9TP/23FP不支持“所有项都更准确”的结论。
+
+- MCP `start_process` 的UNKNOWN不等于失败/已执行。F0必要Sap首请求只有claim、无managed或/proc匹配，而原driver没有请求有效期；先沿实际进程/源码核事实。root批准exclusive tombstone占原fresh-resource-gate后，迟到旧driver会在其Popen前的os.link失败；不覆盖真实gate、不抹旧UNKNOWN。独立v3再绑定5分钟admission并在request/driver/模型前核，唯一执行成功。后继47也增加10分钟启动有效期，运行预算保持独立不延长。详见f0_proposer README与fence/actual receipts。
+- 完整生成证据和本地全诊断回读不是同一门：原172窗口selected/windows/inventory全部按冻结ZIP manifest核SHA后可推进，不拿部分窗口构池；大raw仍在server持久，pending明确记录。最终701原件全部本地回读，旧accepted manifest不改，补独立完成sidecar。

@@ -53,3 +53,5 @@ python "$S/finalize_essential_v2.py"
 实际 v3 15:38:02.249605 启动，15:38:12.045424 完整 rc0；15:38:12.046755 GPU0=0/noapps。全13件规范化原件已 SHA 回收（collection 6e52e3fa）；accepted manifest a1242b31、entities 40b12fcc。原 GLiNER 大 raw ZIP 本地回收仍 pending，不影响完整必要输入和规范化终点；将沿原冻结包续读，不重启模型。
 
 原 full ZIP 断点续读由既有只读 collector PID193481/startticks10899276 继续；本地 guardian PID193616（ready 见仓外 infer-v1/readback-guardian-ready.json）限时15分钟，只能对该核验身份发TERM，不创建/重启collector，不调用远端。它完成后另写 infer-v1/full-raw-collection-status.json；该 sidecar 可改变 pending 状态，已绑定 accepted/manifest.json 不修改。
+
+全raw回收后补记：原701成员已15:41:51.615933 UTC完整本地SHA回读，见[完成指针](full-readback-ref.json)；原accepted a1242b31保持不变，早先pending状态仅代表其生成时点。无新模型或质量调用。

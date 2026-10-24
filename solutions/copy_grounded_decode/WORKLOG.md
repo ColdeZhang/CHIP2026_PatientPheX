@@ -37,3 +37,5 @@
 - 真实CPU47原289420 tokens/max9935及全池正反native拼接/processor已10.098秒rc0（15:40:38.508558），实际result a60e82eb，完整10件collection b5cf35de。固定47 infer-plan已绑定，admission绝对截止 2026-10-24T15:51:27.626540+00:00，2400+30实际运行预算不变；尚未GPU启动。
 
 - 15:42:28.195456 UTC原47唯一正式child启动：proc_abf6b0ac-541b-4d8f-943d-9786a2f03bc1，driver2751534/child2751542；实际plan633d7749，启动前f8d42dea已push核远端。TERM16:22:28.192639/KILL16:22:58.192639，admission15:51:27.626540不重置。恢复只用 `f0/remote.py observe --directory .../F0-v1/infer`，禁止再start；完整47后 `f0/collect.py`→`f0_postprocess/README.md`固定链，尚无任何F0质量。见f0/actual-start.json。
+
+- 原GLiNER大包后台回收已15:41:51.615933完整结束：701原件collection998f08bd、ZIP3355845B/cb201713全部实际本地SHA吻合；sidecar `F0-proposer-v1/infer-v1/full-raw-collection-status.json`，accepted a1242b31保持原字节。见f0_proposer/full-readback-ref.json。47原job继续，暂无F0评分。
