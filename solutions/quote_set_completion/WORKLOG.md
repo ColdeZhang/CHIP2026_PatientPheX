@@ -35,3 +35,5 @@ Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30�
 39唯一推断已16:08:29.878 start proc_4ac60fcc-feb9-4000-baec-d052cea8547a/driver36169/child36205，实际原TERM16:38:30.114/KILL16:39:00.114；admission截止16:13:28.846，全部39 HF/native输入核过、模型加载正常。只读watch沿已核full64入口仅36→39，下一次沿现有observe+180秒，不重复启动或加频。窄读helper仅核新后继schema无阻断即结束，未造新审查或重跑旧sample。
 
 Root已预排必要Sap在.100 GPU0（teacher16:07真实释放），全39后fresh门直接唯一180+30；不占.3的adapted query或GPU1 BOUNDARY。H69只新增启动有效期，原Sap查询/driver剥离admission插入后AST逐同、12边界检查2152eeac通过，固定FP16/41099bank/全部query/policy不变；实际plan仍待完整queries绑定。
+
+39原完整终态已123.479秒rc0，16:10:33.615实际释放A800GPU2。92原件ca965d2e全SHA回收；普通G逐item合同39 EOS/0cap/0abstain，33合法空数组、其余共42精确anchors/40词面。固定strict准备仅需28个public查询，未读gold/质量。query plan1e59d2a7，原policy与所有quotes保持，按root预排.100GPU0/fresh门唯一180+30。
