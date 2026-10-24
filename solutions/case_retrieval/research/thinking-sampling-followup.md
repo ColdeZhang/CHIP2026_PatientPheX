@@ -2,7 +2,7 @@
 
 **实际终点：格式失败，已关闭，不扩大。** 原SFT32/固定首条true2030token，官方采样加真实generated-only presence，唯一生成4096token/186.896秒、全native209.493秒，触顶无EOS、未闭think、没有合法final；peak18.725GB，01:03:39.439Z A800空释放。presence实际调用4096次，9个CPU反例先通过。完整freeze后只调用strict-final，不读targets/Score/拟合；独审 `e5f68aef…` 通过的是执行及失败结论，不是质量。环境恢复后只续接已存在job的日志cursor和原采集合同，没有重启NN；小证据见[结果](../evidence/round2/thinking-sampling-result.json)及[独审](../thinking_sampling_followup/independent-review.json)。
 
-只读通读完整输出：仍围绕P1与8CID，前半已经给出各项中间判断，后半反复讨论C003语义/亲属归属/是否足够明确。最后200token又复核否定项和C006，再问C003能否排除，停在“Sometimes”；没有进入最终JSON。不是无关话题或逐字固定循环，而是任务内重复复核；不能据此推断增加少量预算必能成功。原输出不改、无标签裁决，[诊断](../thinking_sampling_followup/behavior-diagnostic.json)。
+只读通读完整输出：仍围绕P1与8CID，旧定性摘要对“前半各项中间判断”的表述过强：真实generated-ID重放确认，7项明确Result列表结束于token1721，C003首次肯定映射结束于2214、首次明确列表结束于3529，全8连续复核结束于3704；后段继续讨论C003语义/亲属归属/是否足够明确。最后200token又复核否定项和C006，再问C003能否排除，停在“Sometimes”；没有进入最终JSON。不是无关话题或逐字固定循环，而是任务内重复复核；不能据此推断增加少量预算必能成功。原输出和旧诊断冻结不改、无标签正确性裁决；[旧诊断](../thinking_sampling_followup/behavior-diagnostic.json)的事件覆盖表述以[逐token只读更正](../thinking_sampling_followup/coverage-correction/REPORT.md)为准。
 
 
 **以下为运行前只读提案，后继终点见本节。** 已完成的 thinking 控制不是空白：full64 epoch2、原有限 CID/患者提示、greedy、1600 输出上限，第一条实际 72.048 秒后触顶，未闭合 `</think>`、无合法 final；只完成 1/12 并早停，不读 targets、不报拟合。独审 `67b49e51` 保留。尚未做官方建议 sampling 或更长输出上限的真实探针；本提案不能把旧失败改写成成功。
