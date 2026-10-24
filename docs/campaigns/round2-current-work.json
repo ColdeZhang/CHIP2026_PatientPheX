@@ -1,0 +1,67 @@
+{
+  "updated_at_utc": "2026-10-24T08:53:00Z",
+  "purpose": "Current recovery pointers. Read immutable job and latest owner state before acting; milestones below are not a fresh remote inventory.",
+  "current_original_dev_score": 0.7543613981990362,
+  "current_prediction_sha256": "9016863cb3bff53da5dfde25fce634bd60882f057d0c14501be7cb4937e71c67",
+  "official_submission": "Accepted 2026-10-24 07:54:13 UTC; one-time authorization consumed; no score queries or further uploads.",
+  "jobs": [
+    {
+      "route": "ontology_rules",
+      "branch": "round2/ontology-rules",
+      "owner": "/root/ontology_recover_0518",
+      "status": "epoch 1 durable on .100; epoch 2 started",
+      "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+      "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "job": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/epoch-002-job.json",
+        "bytes": 750,
+        "sha256": "cd66b35b678433ea0306d6afc6196f06f6dc78f84656159ae168911a7c2826f2"
+      },
+      "campaign_entry": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/entry.json",
+        "bytes": 2365,
+        "sha256": "a54b58c280725f890b1cd4eb8f4d03cf8c47104249a8c497c3374ab2714cfc27"
+      },
+      "watcher": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/local-watch-intent.json",
+        "bytes": 466,
+        "sha256": "8511890077f7606132bbc7ef5040406f33dcdbf90b517a049f06130129f4b485"
+      },
+      "local_watcher_pid": 130118,
+      "deadline_utc": "2026-10-24T10:27:28.873858Z",
+      "budget": "Original shared 8400 seconds + TERM 30, not reset for epoch 2",
+      "recovery_command": "python /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/operations.py inspect --directory /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller --epoch 2",
+      "next": "Use the existing watcher for original epoch-2 export and durable ACK, then already authorized fresh F1 full80/1200+30 and paired quality. Do not start another trainer or watcher."
+    },
+    {
+      "route": "sequence_crf",
+      "branch": "round2/sequence-crf",
+      "owner": "/root/sequence_recover_0518",
+      "status": "fresh alpha=.5 train32 two-epoch formal training started",
+      "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+      "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "job": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/started.json",
+        "bytes": 348,
+        "sha256": "1e337872d22a8dcfe2ec085f979f421be26930d66713be7a4e0576606c93bd38"
+      },
+      "start_intent": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/start-intent.json",
+        "bytes": 7653,
+        "sha256": "f25b1d2e40ac01d13b0b672774cf673b8cc40706637138040588290556004e10"
+      },
+      "budget": "2400 seconds + TERM 30; approximately 09:32:35/09:33:05 UTC; driver deadline is authoritative",
+      "recovery_command": "python /workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal_remote.py observe --directory /workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1",
+      "next": "Require both complete epoch durable ACKs. Then fresh F1 full80/600+30 and the fixed two predictions frozen before unique evaluation. No automatic F0/dev.",
+      "connection_policy": "UNKNOWN is not failure; recover original intent/result. A100 LUNA_OFFLINE: owner-only bounded backoff; do not duplicate start."
+    }
+  ],
+  "completed_since_official_acceptance": {
+    "r1_adaptation": "Negative vs strong fulltext; closed",
+    "majority_vote": "Negative on both folds; closed",
+    "public_h5_adaptation": "Primary .727938862709 below .728697536469; closed",
+    "fulltext_reverse": "Both endpoints below normal .676546354663; closed",
+    "fla_backend_A": "Numerical/cost diagnostic complete; genuine long-input differences; no backend replacement, B/C or quality authorized"
+  },
+  "review_and_backup": "Index 217 candidate is being built from stable endpoints; published index 206 and actual restore remain valid until new publication. FLA A is outside this batch."
+}

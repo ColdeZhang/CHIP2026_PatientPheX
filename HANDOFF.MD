@@ -356,3 +356,9 @@ A800项目盘06:38尚有约119MB，06:59已为0；显卡空闲不代表能安全
 公开PubMed模型完成固定20步训练，新`adapted.weights.h5`经原生`model.load_weights`成功加载，但held入口随后手工遍历旧格式`root.attrs['layer_names']`，触发KeyError；失败在首个forward和raw建立之前。训练及完整状态有效，不能误判为新权重损坏、质量下降或重新训练。
 
 **避免方法**：检查实际保存与加载格式，不因同为H5就复用内部结构假设。优先依赖对应版本的原生恢复接口，再对已保存完整checkpoint的模型变量按位置、shape、dtype和内容核验；模型/优化器/RNG的恢复范围分别说明。此次机械恢复保留原失败与同一H5，先保存加载后201变量摘要，再用同训练checkpoint匹配现有模型对象并逐位核对；未使用的optimizer项明确排除于该推断检查，训练阶段的399项Adam恢复另有证据。唯一65,406条held推断已89.109秒成功，质量终点另记。错误证据为外部`research/public-h5-train32-formal-v1/terminal/held-native.stderr`（`abc174f2…`），恢复源码提交`c5f9cf8`、入口`native-format-recovery/`；未更改模型、输入或阈值，也未重训。
+
+## H55：纯loss合同不覆盖框架实际透传的诊断参数
+
+患者均衡loss的数学/梯度CPU合同通过后，首个真实Qwen forward仍在hook的`not kwargs`断言退出。实际PEFT默认传入`output_attentions=None`和`output_hidden_states=None`，Transformers将它们继续透传给loss；两者不改变该loss目标。原失败72.035秒、0反向/Adam更新，不能作为方法质量负结论。
+
+**避免方法**：除了纯函数数值合同，检查实际安装版本的完整调用链与默认参数；不假定`**kwargs`必为空，也不一概忽略所有额外参数。此次只白名单已证的两个None值，未知键/非None仍拒绝，并先持久保存调用字段再断言。27项薄接口合同通过，原317核心数值合同复用；独立恢复完整12反向/真实Adam/最长5556成功159.844秒，独审`7a010be3…`。正式trainer同步绑定同一修复hook，避免只修probe；原失败和原预算保留，新恢复预算独立记录。细节见序列分支`patient_balanced_loss/interface_recovery/`和外部`validation/patient-balanced-alpha05-engineering-review/`。
