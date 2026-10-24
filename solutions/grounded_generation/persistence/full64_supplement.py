@@ -81,6 +81,7 @@ def pack(out, review_path, review_sha):
     for name in ['targets-v2/manifest.json', 'targets-v2/normalizer-train64-manifest.json',
                  'token-census-v1/manifest.json']:
         entries['readiness/' + name] = READY / name
+    entries['runs/dev36-final-review-entry.json'] = B / 'dev36-final-review-entry.json'
     entries['review/review.json'] = review_path
     for name in ['snapshot-manifest.json', 'evidence-manifest.json']:
         path = review_path.parent / name
