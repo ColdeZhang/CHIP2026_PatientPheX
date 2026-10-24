@@ -32,3 +32,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 主线程另授权 attempt3 **3600 秒+TERM30**：[新计划](../public_neuralcr_readiness/local-relay-attempt3/plan.json)只补实际缺口，本机官方固定 ETag Range 8 MiB → MCP ≤512 KiB 写回 A100，单一总线程池 8；每片至多 3 次，保留所有成功片和本地 partial，单片失败不丢弃整批。HP 缺 485,966,150 字节优先补完，实际完整 SHA、安全提取与 H5 唯一 shape/count 后，只有替换 BioBERT 的完整参数投影可行才继续 fastText 1,194,470,407 字节缺口。保守仍计 input/output 两矩阵。两大完整文件到齐后才进行原定 180 秒合成原生检查。
 
 [网络普查](../public_neuralcr_readiness/network-census/summary.json)中本机同官方 1 MiB GET 约 .41 秒，4×512 KiB MCP 写 3.846 秒、含服务器 SHA 共 5.207 秒；吞吐投影不是保证，不增加探针或公网 tunnel。[无网络传输 fixture](../public_neuralcr_readiness/local-relay-attempt3/transport-check.json)通过中断只补余字节、单片重试、512 KiB 限制与 HP 参数门阻止 fastText；源/计划先提交推送后才启动 bulk。
+
+`00fa820` 已推送/远端核验后，attempt3 于 **00:44:22.681751Z** 启动，PID80371，截止 **01:44:22.681751Z**、TERM30 至01:44:52；[实际启动记录](../public_neuralcr_readiness/local-relay-attempt3/initial-job.json)。完整文件后的[CPU源准备](../public_neuralcr_readiness/postdownload-readiness/preparation.json)复用原完整fastText矩阵解析与原生检查，当前未启动模型加载。
