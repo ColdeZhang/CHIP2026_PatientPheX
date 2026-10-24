@@ -1,0 +1,342 @@
+{
+  "experiment_id": "E-20261024-R1-META-OOF-01",
+  "status": "FROZEN_INDEPENDENT_FIXED_DOCUMENT_META_OOF_BEFORE_NEW_LABEL_TABLE_ACCESS",
+  "at_utc": "2026-10-24T05:40:36.020029+00:00",
+  "execution_ready": true,
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/screen.py",
+    "bytes": 27563,
+    "sha256": "00251da4a031a55489f35b0daee5bea9a0698ad9ee60264cd933d378a0df7156"
+  },
+  "controller": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/execute_once.py",
+    "bytes": 2891,
+    "sha256": "bf44cdf0c0f3125a0a28695c253b897a64d149edad447b8e84bddbcb815f14f7"
+  },
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024",
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime"
+  },
+  "features": {
+    "without_r1": [
+      "old9B_selected",
+      "reverse_same_adapter_selected",
+      "binary32_probability",
+      "oldLR_probability_max_occurrence",
+      "rules_selected_mean_occurrence",
+      "pair_same_sentence_max",
+      "pair_log_dist_min",
+      "pair_closer_margin_max",
+      "negated_for_target_max",
+      "explicit_cohort_max",
+      "pair_patients_max"
+    ],
+    "with_r1": [
+      "old9B_selected",
+      "reverse_same_adapter_selected",
+      "binary32_probability",
+      "oldLR_probability_max_occurrence",
+      "rules_selected_mean_occurrence",
+      "pair_same_sentence_max",
+      "pair_log_dist_min",
+      "pair_closer_margin_max",
+      "negated_for_target_max",
+      "explicit_cohort_max",
+      "pair_patients_max",
+      "r1_observed",
+      "r1_selected",
+      "r1_selected_patient_fraction"
+    ]
+  },
+  "parameters": {
+    "boosting_type": "gbdt",
+    "objective": "binary",
+    "n_estimators": 100,
+    "max_depth": 3,
+    "num_leaves": 7,
+    "min_child_samples": 35,
+    "learning_rate": 0.05,
+    "reg_lambda": 10.0,
+    "reg_alpha": 0.0,
+    "max_bin": 255,
+    "min_data_in_bin": 3,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "boost_from_average": true,
+    "subsample_for_bin": 200000,
+    "subsample": 1.0,
+    "subsample_freq": 0,
+    "colsample_bytree": 1.0,
+    "feature_fraction_bynode": 1.0,
+    "class_weight": null,
+    "is_unbalance": false,
+    "scale_pos_weight": 1.0,
+    "use_missing": true,
+    "zero_as_missing": false,
+    "feature_pre_filter": true,
+    "enable_bundle": true,
+    "random_state": 20261024,
+    "data_random_seed": 20261024,
+    "feature_fraction_seed": 20261024,
+    "bagging_seed": 20261024,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 1,
+    "device_type": "cpu",
+    "verbosity": -1
+  },
+  "threshold": 0.5,
+  "split_policy": "sort (SHA256 UTF8 of \"20261024:\"+pmc_id, pmc_id), round robin index mod4; no label-stratification or adaptation",
+  "heldout_document_groups": [
+    [
+      "12386172",
+      "4607013",
+      "5415817",
+      "5789735"
+    ],
+    [
+      "10313222",
+      "2964533",
+      "5425407",
+      "11906559"
+    ],
+    [
+      "9327653",
+      "11871647",
+      "6063015",
+      "5473715"
+    ],
+    [
+      "5538066",
+      "12455887",
+      "6048891",
+      "12891056"
+    ]
+  ],
+  "refs": {
+    "base_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/preparation.json",
+      "bytes": 9090,
+      "sha256": "e64af5c476d54c6201945dd17da588b451f67fd302dd01fff99defaa7d9e7d20"
+    },
+    "F1_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "F1_old": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "F1_reverse": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/reverse.jsonl",
+      "bytes": 154308,
+      "sha256": "bc9d1b26bde9a843b1a5ec95c78d46cafd8d8a30748365276942be5c744e29ba"
+    },
+    "F1_binary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/adapter.probabilities.jsonl",
+      "bytes": 100919,
+      "sha256": "b14ef30bda31e70e7e3861eaf183634b85fa9ab10ba6a1eb959554aefa0f9c71"
+    },
+    "F1_continuous": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/meta_F1.rows.jsonl",
+      "bytes": 11239402,
+      "sha256": "f055b5322e67b43b8e81145aab9e6585f4920e2beacef0d551781cbc855d332f"
+    },
+    "F1_rule": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/strict-meta-calibration-run/meta-rows.jsonl",
+      "bytes": 11027662,
+      "sha256": "217c380f0a20d30ad1138e1b9091ed8845fce0ebd46db74a66f655c7df8e2290"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "source_inventory": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/source-inventory.json",
+      "bytes": 45186,
+      "sha256": "6e2b7247e3d0bc0ebc1a78276a725338ab072f91e2b096859dfff5e601f6a5ed"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "R1_raw": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/recovered/terminal/responses.raw.jsonl.gz",
+      "bytes": 241553,
+      "sha256": "e4f34661deb1199678a941ae1f598a00f8be184aa0051fa70f42bce04f39597d"
+    },
+    "R1_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/recovered/terminal/result.json",
+      "bytes": 69123,
+      "sha256": "d7fe7386b86c84777c4207fc207280267f4f2debc53126f749ebf4eed95b665b"
+    },
+    "runtime_contract": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/runtime-contract.json",
+      "bytes": 6018,
+      "sha256": "5dcc5b819b3469fe6a554b5e74dcfe7934029f3f6eac1bc0f76993124c633bc7"
+    },
+    "runtime_file_00": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/VERSION.txt",
+      "sha256": "656cd3a27fe3b73475a1fc9becaf4a4d06d25b482904d8dab14429787a23657d",
+      "bytes": 6
+    },
+    "runtime_file_01": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/__init__.py",
+      "sha256": "c7c0f7b3d82778b4b88337ad921bfa91d92f68a362e223e3b4877759a40d8c0c",
+      "bytes": 1567
+    },
+    "runtime_file_02": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/basic.py",
+      "sha256": "b8ccce4724edd38ff32a947b628a8718d314f5f5811be9c078b13b3d82d260bd",
+      "bytes": 204937
+    },
+    "runtime_file_03": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/callback.py",
+      "sha256": "63b8ebfd530fd258200e811e09229666945ca1795987616602c44b603cbba463",
+      "bytes": 20354
+    },
+    "runtime_file_04": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/compat.py",
+      "sha256": "4b3dfeb7d4f1d254acbb217b7a010b3240936cea015d4554340b76429176ed12",
+      "bytes": 11963
+    },
+    "runtime_file_05": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/dask.py",
+      "sha256": "69aa081a0ba8014dc53291722d383c3d6ecce305a2b2f2ee8aa77edd1864589b",
+      "bytes": 67016
+    },
+    "runtime_file_06": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/engine.py",
+      "sha256": "c5010abf6bef08f407b64d4b1585bd18875213d594a7f068d9ddfc8bf3b47753",
+      "bytes": 35494
+    },
+    "runtime_file_07": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/lib/lib_lightgbm.so",
+      "sha256": "6a12e1a7b13824d14c252d2a4d2e36af467383331a114eb0e7448eecbf02d7b1",
+      "bytes": 10116688
+    },
+    "runtime_file_08": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/libpath.py",
+      "sha256": "ee52bd73ce3a7730761b94c84d554818913e70aae1b8d03d83a770ad8b4e3890",
+      "bytes": 1510
+    },
+    "runtime_file_09": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/plotting.py",
+      "sha256": "c69f2e312cf1c3367e98166b6407546b85c2f77f581e1fd4ad82bbd92566db4c",
+      "bytes": 32561
+    },
+    "runtime_file_10": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "runtime_file_11": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/sklearn.py",
+      "sha256": "9a7dc662c18746b943423ca63768597930e02ed91eeba8a63ef35f16270d6e9f",
+      "bytes": 80000
+    }
+  },
+  "comparators": {
+    "old_union_patient": {
+      "ref": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union/evaluation/metrics.json",
+        "bytes": 12968,
+        "sha256": "37f52dbf8ff85b0617d50e10307f39203b106250451508b8359c90743256fd99"
+      },
+      "metric_path": [
+        "metrics"
+      ]
+    },
+    "old_reverse_patient_triple": {
+      "ref": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/results.json",
+        "bytes": 4343,
+        "sha256": "946d17e89800cece6a3dac2b7ebc066337fc14a003598c73a326425e244d9253"
+      },
+      "metric_path": [
+        "folds",
+        "F1",
+        "metrics"
+      ]
+    },
+    "reverse_union": {
+      "ref": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/summary.json",
+        "bytes": 7023,
+        "sha256": "9c75221c2bb4fe76fcbbf150a225b8f1f4d650afa2d74f95177784f362c2233c"
+      },
+      "metric_path": [
+        "result",
+        "arms",
+        "union",
+        "metrics"
+      ]
+    },
+    "same_pool_rules": {
+      "ref": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/results.json",
+        "bytes": 4343,
+        "sha256": "946d17e89800cece6a3dac2b7ebc066337fc14a003598c73a326425e244d9253"
+      },
+      "metric_path": [
+        "folds",
+        "F1",
+        "rules"
+      ]
+    },
+    "oldSFT32": {
+      "ref": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/secondary-union/results.json",
+        "bytes": 2975,
+        "sha256": "4b5d0fda98375332f6af98595fe72aaa1f3d3448c1968fafb70320be730596b8"
+      },
+      "metric_path": [
+        "secondary",
+        "baseline"
+      ]
+    }
+  },
+  "strongest_comparator": "old_union_patient",
+  "required_strong_score": 0.664421521724852,
+  "required_strong_macro": 0.5585366247949581,
+  "F1_gold_after_complete_freeze": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "limits": {
+    "prepare_seconds": 60,
+    "eight_fit_predict_actual_reload_seconds": 60,
+    "assemble_two_complete_predictions_freeze_two_v2_seconds": 30,
+    "new_fits": 8,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "F0_GPU_NN_calls": 0
+  },
+  "label_contract": "Explicit known F1 meta-training labels from original mixed table f055b532,1557pairs/365 literal positives; no canonical366 relabeling. Each OOF model fits only12pmc, predictsheld4. FullgoldF1 file used only after both predictions freeze, not a claim labels previously unseen.",
+  "retention": "with_R1 Score > max(without_R1 OOF, highestScore samepool old benchmark) and with_R1 macro >= that same highestScore old benchmark macro. Not max macro across old controls.",
+  "scope": "Posthoc developmentCV on knownF1 after R1 failures; no training-resubstitution quality, no champion fivefold reproduction, no F0/dev/official, no automatic successor. A12docfit negative does not refute separate16docfit F1-to-F0 proposal.",
+  "root_authorization": "2026-10-24 /root new independent CPU screen task; complete source/provenance freeze and push before unique execution; source review parallel, no additional step approval."
+}

@@ -4,6 +4,7 @@
 
 ## 当前：原dev .748583440；纯加载缓存复现通过
 
+- [独立R1元模型OOF筛查](r1_meta_oof/README.md)正在冻结：仅已知F1 1557对，16文献SHA分4组、各12篇fit／4篇OOF，原11列±3R1，同固定树共8fit≤60秒，双完整预测共冻后各唯一v2≤30秒。基础资源需排除整个F1；不读F0、不用GPU、不自动重开原后备。来源／source／plan先推送，实际终点另记。
 - 用户目标仍是原train64/dev16公共v2 Score≥.8；原dev已审候选当前**.748583440**（旧a179 .746081965）。内部F1、train64四fold均是多次研发使用的开发结果，不冒称原dev、盲测或官方。用户通知前禁止官方上传。
 - [固定LightGBM](lightgbm_selector_control/REPORT.md)：同强BioBERT八池/原feature/label、160轮/15叶/min35/lr.06/L2=5，.3/nested不变；仅将sklearn HGB替成LightGBM4.6.0，分箱/生长数值不宣称等价。实际维数102/101/103/103；4fit/predict/回载59.389秒<180，finalize2.933秒<30，全部160轮、原生正列与保存回载exact。
 - pooled **.730993616492→.731545429370**（+.000551812878）；F0/F1/F2正，F3−.000405716，达到事前pooled严格升且≥3/4fold不降。44篇49加55删，非entity/关系literal bytes不变；完整四pred共冻e31cfa67先于eval marker，新5v2/旧0。结果6fc2c9e7、终点087572cf；入口审084923ce通过，完整终审1d6ed9fd已PASS/keeptrue。
