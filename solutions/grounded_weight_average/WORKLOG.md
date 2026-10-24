@@ -37,3 +37,5 @@ Root另准CPU准备既有 `.100 GPU0` Sap包装：原.3已给DPO，不迁大生�
 原39于14:32:24.163154Z成功，1409.885秒；GPU2同次0MiB/noapps真实释放，未触发尾部。35EOS/4cap，四cap整行弃答。目录collector两次UNKNOWN原收据保留，改按原complete41c4和原responses6f5直接读回；78单行按原序列化重建并逐原SHA证明字节相同，明确非逐文件下载、非远端ZIP冻结。88必要文件collection3d846e05完整，源码74f93df9保留收件范围差异，完整字段/身份/原raw验证沿原合同。
 
 原严格解析得到402锚点、308不同词面、180无效条目被拒、4行cap弃答；174必要Sap查询，精确query plan在 `normalization_cpu/held-query-plan.json`，CUDA隐藏、FP32/16线程/300+30，预写后唯一执行。无新gold/质量/拟合；原4cap不重采样。
+
+- F0 固定复验已授权：同 r32 合成权重、47 完整输入、同 CPU FP32 查询策略；289420 tokens / max9935，成本预估2685.36s < 3000+30。原生ID CPU合同先行；不读F0 gold、不新训。双父train32逐document排F0见 evidence/F0-ancestry.json。
