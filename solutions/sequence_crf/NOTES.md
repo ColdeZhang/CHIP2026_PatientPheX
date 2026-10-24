@@ -190,3 +190,5 @@ ATLOP原局部乘积需要两端attention支持相交；独立passage编码下�
 - 2026-10-24，s1的最大思考预算机制是人工插入结束思考/答案阶段边界，`Wait`则延长思考。当前Qwen真实边界是248069 `</think>`（added token但special=false），不是s1的`<|im_start|>answer`。原生成IDs与输入SHA使当前4096输出可exact拼接，但重新prefill、RNG未存和人为边界必须显式披露；人工闭合不回改原失败。后续只能解析新suffix完整JSON，不能挖中间思考或吞掉非法特殊token后宣称格式成功。[CPU研究与独立提案](experiments/thinking-budget-forcing-readiness.md)。
 
 - 人工边界单条实际验证：保留4096旧思考后，仅54新增tokens产生合法完整8CID JSON/EOS，A30额外wrapper39.465秒，说明一个终稿出口可用；不表示原思考自然闭合、答案正确或比赛分数改善。运行前source/plan已push，结束后完整raw freeze与严格new-suffix检查；后续预算方案必须另行预设并保留自然闭合状态分支。
+
+- 4096旧thinking行为摘要已校正：8CID字面出现1479token、7个明确列表1721、C003肯定映射2214、最后明确列表3529。不能把CID被提到、肯定判断和完整列表输出混为一谈，也不能以Refining标题认定循环起点。唯一80政策2304/512约3小时，主线程暂缓，不因成本再扫短cap。[预算结案](experiments/thinking-budget-80-plan.md)。

@@ -14,6 +14,10 @@
 
 ## 正在执行与恢复入口
 
+**下一步：patient-first闭集矩阵转置，仅准备最长行更新探针。** helper已在外部`research/patient-first-closed-set/`完成旧train32 124行/新F1纯input80转置、实际分词、25项schema反例；源码/小证据待本路线接管，未训练/推断/读F1 labels。新最长5556tokens，旧最长5523；监督token减少不等于质量改善。先绑定旧资源与新manifest，报告A100最长行单次更新实际预算；GPU2先给本体NCR短成本探针，待其释放再协调，不抢A800 warm卡。
+
+**完整80 thinking固定政策准备完成、明确暂缓。** 唯一思考2304/final512，原80输入实核587CID/1557pairs、max5689；最密compact合法JSON242tokens。旧trace全CID字面1479、七列表1721、C003肯定映射2214、全八列表3529，旧“前半八项全决定”已纠正，不把一条位置外推80充分性。A800预计约3小时，建议硬4h+30但未启动；root决定不降cap凑成本，优先更便宜patient-first。[固定政策/状态机/成本](experiments/thinking-budget-80-plan.md)、[冻结JSON](evidence/round2/thinking-budget-80-policy.json)。
+
 **thinking 人工边界单条格式诊断完成，终审220b3cb7 PASS，仅限可用性。** 原2030+4096+人工3token组成6129，旧自然闭合失败保留；同old32/native GDN由A800移A30，真实新final54tokens、EOS248046、完整8CID/合法P1 JSON通过。生成含prefill6.213秒、native38.552/wrapper39.465秒，真实rc0；峰allocated19.886GB/reserved20.487GB，01:35:58.384Z fresh核fc5d卡0MiB/无进程，单次180+30内完成。旧32两文件fullSHA、15新增presence位置反例、入口独审7c70e5c1均通过；旧14/replay沿用。完整11产物/30成员清单已回收，raw8cf737d8；无gold/targets/质量、不扩80/F1。旧RNG/KV未存、人工边界、新seed与A800→A30差异保留；39.465秒不含旧4096思考沉没成本。[方法与过程](experiments/thinking-budget-forcing-readiness.md)、[结果](evidence/round2/thinking-budget-final-results.json)、[终点清单](evidence/round2/thinking-budget-final-terminal-manifest.json)。
 
 **全局患者—表型聚合：完整负结案，统一终审5ea352fb通过。** 严格train32/F1同2506/1557对、同全文窗口/encoder/344577头，双fresh各8ep256步，总351.677秒、峰2.443GB；模型actual SHA已核，GPU释放。两完整预测共同freeze后唯一固定.5 F1：uniform **.542015995**，pair **.557825484**，虽两臂间+.01580949，仍低同池SFT32 **.660942003**与rules **.644761594**；pair232TP/261FP/288FN，较SFT少78TP多188FP。1189实体/nonassociation exact，双格式0错警，keep=false关闭，不加轮次/扫cut/F0/原dev。MCP离线只影响回收，root已补回最后2文件，全9成员SHA闭合；未知小tar不作已验证备份声明。[完整协议与过程](experiments/pair-conditioned-document.md)、[固定终点](evidence/round2/pair-document-formal-results.json)、[回收证据](evidence/round2/pair-document-final-collection.json)。

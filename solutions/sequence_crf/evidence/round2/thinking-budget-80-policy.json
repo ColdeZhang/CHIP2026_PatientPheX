@@ -1,0 +1,154 @@
+{
+  "status": "CPU_prepared_single_policy_DEFERRED_by_root_no_GPU_or_quality",
+  "at_utc": "2026-10-24T01:41:52.599778+00:00",
+  "policy_id": "E-20261023-009-thinking-budget-forcing-80-fixed2304",
+  "scope": "same strict-train32 old adapter, F1 old80 pure inputs; no extra training/entities/candidates",
+  "thinking_cap": 2304,
+  "final_cap": 512,
+  "rows": 80,
+  "concepts": 587,
+  "pairs": 1557,
+  "cap_choice": "round2214 first explicit C003 mapping endorsement in the one saved trace upward to2304, leaving90tokens; NOT proof all80 finish or eight list decisions complete",
+  "candidate_caps_scanned": false,
+  "quality_used_to_select_cap": false,
+  "original_trace_is_one_F1_input_observed_for_format_and_cost_not_blind_budget_selection": true,
+  "model": {
+    "base": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "old32_adapter_sha256": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff",
+    "parameters": 8997081600,
+    "native_GDN": true,
+    "FLA": false,
+    "new_or_additional_adapter": false
+  },
+  "input_census": {
+    "status": "CPU_input_only_80_census_no_targets_or_NN",
+    "source_path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+    "source_sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe",
+    "source_code_sha256": "52f99919aebafdbb1d098c1b5896b99e9fd8bb5ff3ee2a81b80f2015311e6908",
+    "rows": 80,
+    "documents": 16,
+    "concepts": 587,
+    "pairs": 1557,
+    "input_min": 791,
+    "input_median": 3140.0,
+    "input_mean": 3131.7,
+    "input_max": 5689,
+    "input_total": 250536,
+    "max_patients": 7,
+    "max_concepts": 8,
+    "compact_full_patient_final_max": 242,
+    "no_targets": true,
+    "no_model_weights": true
+  },
+  "maximum_replayed_prefix_tokens": 7996,
+  "maximum_context_with_final": 8508,
+  "token_milestones": {
+    "all_CID_literal": 1479,
+    "seven_explicit_lists": 1721,
+    "C003_first_affirmative_mapping": 2214,
+    "C003_first_explicit_list": 3529,
+    "continuous_eight_item_review_complete": 3704
+  },
+  "sampler": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "presence": 1.5,
+    "do_sample": true,
+    "per_row_seed": "20261024 + frozen_original_row_index; seed once before stageA, preserve live RNG into stageB",
+    "batch_size": 1
+  },
+  "state_machine": [
+    {
+      "state": "stageA",
+      "policy": "enable_thinking True; stop at first token248069 or EOS248044/248046, or2304 token limit; record true IDs and termination cause"
+    },
+    {
+      "state": "natural_think_close",
+      "policy": "Keep actual248069 in generated history. No manual close/newline added. StageB takes original prompt+all stageA IDs, allowing model to generate final whitespace; max512"
+    },
+    {
+      "state": "natural_EOS_before_close",
+      "policy": "Row terminal invalid missing_think_close; no added boundary, no generation retry, no mining reasoning JSON"
+    },
+    {
+      "state": "budget_exhausted_without_close_or_EOS",
+      "policy": "Keep all2304IDs, append operator-only [198,248069,271], run stageB max512; never global-blacklist those IDs from presence"
+    },
+    {
+      "state": "close_or_EOS_at_exact_cap",
+      "policy": "Terminal token kind takes precedence over length; naturalclose never gets duplicate artificial boundary; EOS invalid branch never gets continuation"
+    },
+    {
+      "state": "unexpected_intermediate_stop_or_extra_role",
+      "policy": "Explicit protocol failure, no silent retemplate or boundary repair"
+    },
+    {
+      "state": "stageB",
+      "policy": "stop only true EOS248044/248046; presence union(stageA model IDs,new stageB IDs), exclude original prompt/operator positions; decode only new suffix minus terminalEOS with special tokens retained"
+    },
+    {
+      "state": "terminal",
+      "policy": "Strict exact per-row CID set and legal PID lists; duplicate/missing/extra keys, invalid PID/duplicates, unfinished JSON, markdown/new think/role, noEOS rejected. Never parse stageA as final"
+    }
+  ],
+  "failure_policy": "first OOM/nonfinite/runtime/globaltimeout stops whole run; malformed row recorded invalid/empty without baseline fallback; only complete80 endpoint may be frozen/evaluated; no retry or cap change",
+  "future_cost": {
+    "preferred_resource": "one A800 after current warm job releases; no current reservation or launch",
+    "new_tokens_upper_contract": 225280,
+    "A800_old_measured_tokens": 4096,
+    "A800_old_measured_seconds": 186.896,
+    "decode_proxy_seconds": 10279.279999999999,
+    "additional_prefill_and_load_proxy_seconds": 529.3925320846029,
+    "combined_proxy_seconds": 10808.672532084602,
+    "combined_proxy_hours": 3.002409036690167,
+    "hard_total_seconds_including_load_all80_two_stages": 14400,
+    "termination_grace_seconds": 30,
+    "actual_future_memory_and_seconds": "unmeasured",
+    "limitations": [
+      "oldA800 rate from one2030prefix/4096output, not full80 speed",
+      "A30 54token/6.213s includes6129prefill; no sustainedA30 thinking throughput established",
+      "extra prefills/longer contexts and rare slow examples may exceed proxy; hard limit stops without partial quality",
+      "earlier natural closes may reduce actual work but no assumption of that saving"
+    ]
+  },
+  "comparison_if_later_selected": {
+    "baseline": "same old nonthinking80/SFT32 F1 .6609420026531936",
+    "entity_and_candidate_pool_unchanged": true,
+    "policy": "replacement-only relation output, no union",
+    "full_predictions_freeze_before_gold": true,
+    "single_v2_F1_only_after_all80": true,
+    "keep": "Score above matched old baseline and relation macro not lower",
+    "no_original_dev_or_official": true
+  },
+  "decision": "Root explicitly deferred full80 because expected~3hours; do not shrink cap or start to fit cost; prioritize patient-first preparation",
+  "references": {
+    "census": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-80-plan/input-census-frozen.json",
+      "bytes": 28479,
+      "sha256": "44e98601a9e0d5a532bf3aecdfa3551181fbdbacf90945a2fd8ad62f8cd7dbed"
+    },
+    "coverage": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-80-plan/token-coverage/evidence.json",
+      "bytes": 22503,
+      "sha256": "8a34668866a56f4a373a397167094882dd43ef649e5582c23c49ef512df7981f"
+    },
+    "coverage_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-80-plan/token-coverage/REPORT.md",
+      "bytes": 2251,
+      "sha256": "d99f083967291e5463d3cc4d06f313506044c6979c2f181e3d3725a79524cdf3"
+    },
+    "coverage_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-80-plan/token-coverage/analyze.py",
+      "bytes": 12006,
+      "sha256": "92cf64aa90a721a5010e9f9f1b57026ec201066c83aa6d6809feadae5c702144"
+    },
+    "single_final_results": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/results.json",
+      "bytes": 2635,
+      "sha256": "9be449d60c462dee165bb6807c6fe3a4908926f69c0815f775652675878325e4"
+    }
+  }
+}

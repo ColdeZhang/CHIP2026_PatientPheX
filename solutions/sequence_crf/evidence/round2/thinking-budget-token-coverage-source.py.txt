@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Read-only frozen generated-ID coverage, with explicitly defined text events.
+
+No tokenizer retokenization, models, competition targets, or quality scoring.
+Only this directory's evidence.json/REPORT.md are written.
+"""
+from bisect import bisect_left
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import re
+
+ROOT = Path('/workspace/patientphex-runs/round2-20261023')
+B = ROOT / 'case_retrieval/qwen35-preparation/thinking-sampling-followup'
+TOKENIZER = ROOT / 'case_retrieval/qwen35-preparation/verified-small/tokenizer.json'
+OUT = Path(__file__).resolve().parent
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def source(path):
+    data = path.read_bytes()
+    return {'path': str(path), 'bytes': len(data), 'sha256': sha(data)}
+
+
+raw = (B / 'responses.jsonl').read_bytes()
+assert sha(raw) == '5ebdd137e01e6b22bfb5b08d3303b54334df9abf2c4b73d3f7f896be09ddfee9'
+rows = [json.loads(line) for line in raw.splitlines()]
+assert len(rows) == 1
+row = rows[0]
+ids = row['generated_token_ids']
+text = row['response']
+assert len(ids) == row['output_tokens'] == 4096
+tok_bytes = TOKENIZER.read_bytes()
+assert sha(tok_bytes) == '5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42'
+tok = json.loads(tok_bytes)
+assert tok['decoder']['type'] == 'ByteLevel'
+
+# GPT-2/HF ByteLevel reversible bytes_to_unicode table, not tokenization.
+bs = list(range(ord('!'), ord('~') + 1)) + list(range(0xA1, 0xAC + 1)) + list(range(0xAE, 0xFF + 1))
+cs = bs[:]
+n = 0
+for b in range(256):
+    if b not in bs:
+        bs.append(b)
+        cs.append(256 + n)
+        n += 1
+inv = {chr(c): b for b, c in zip(bs, cs)}
+vocab = {v: k for k, v in tok['model']['vocab'].items()}
+added = {x['id']: x for x in tok['added_tokens']}
+pieces = []
+special_ids = []
+for token_id in ids:
+    if token_id in added:
+        pieces.append(added[token_id]['content'].encode('utf-8'))
+        special_ids.append(token_id)
+    else:
+        pieces.append(bytes(inv[c] for c in vocab[token_id]))
+decoded = b''.join(pieces)
+assert decoded.decode('utf-8') == text
+assert decoded == text.encode('utf-8')
+
+ends = []
+total = 0
+for piece in pieces:
+    total += len(piece)
+    ends.append(total)
+char_bytes = [0]
+for char in text:
+    char_bytes.append(char_bytes[-1] + len(char.encode('utf-8')))
+boundary_to_char = {byte: c for c, byte in enumerate(char_bytes)}
+
+
+def endpoint(char_end):
+    """Earliest complete generated-token prefix containing text[:char_end]."""
+    byte_end = char_bytes[char_end]
+    idx = bisect_left(ends, byte_end)
+    token_start = 0 if idx == 0 else ends[idx - 1]
+    return {
+        'event_end_char_exclusive_0based': char_end,
+        'event_end_byte_exclusive_0based': byte_end,
+        'prefix_generated_tokens_1based': idx + 1,
+        'boundary_token_id': ids[idx],
+        'boundary_token_byte_interval_0based_halfopen': [token_start, ends[idx]],
+        'boundary_token_char_interval_if_utf8_aligned': [boundary_to_char.get(token_start), boundary_to_char.get(ends[idx])],
+        'bytes_of_token_after_event_end': ends[idx] - byte_end,
+    }
+
+
+def event(start, end, meaning):
+    return {
+        'definition': meaning,
+        'event_start_char_0based': start,
+        'literal_evidence': text[start:end],
+        **endpoint(end),
+    }
+
+
+def unique_line(needle, meaning):
+    matches = [m for m in re.finditer(r'[^\n]+', text) if needle in m.group()]
+    assert len(matches) == 1, (needle, len(matches))
+    m = matches[0]
+    return event(m.start(), m.end(), meaning)
+
+
+cids = [f'C{i:03d}' for i in range(8)]
+mentions = {}
+for cid in cids:
+    pos = text.index(cid)
+    mentions[cid] = event(pos, pos + len(cid), 'First exact literal occurrence anywhere; ranges/examples count, not a decision.')
+
+headings = list(re.finditer(r'^    \*   \*\*Candidate (C\d{3}) \([^\n]*\):\*\*$', text, flags=re.M))
+assert [m.group(1) for m in headings] == cids
+refine_start = text.index('3.  **Refining C003')
+initial = {}
+strict = {}
+for i, heading in enumerate(headings):
+    start = heading.end()
+    end = headings[i + 1].start() if i + 1 < len(headings) else refine_start
+    m = re.search(r'^        \*   Result: (?:Empty list \[\]|\["P1"\])\.$', text[start:end], flags=re.M)
+    if m:
+        ev = event(start + m.start(), start + m.end(), 'First completed explicit list-valued Result line under this candidate heading; no correctness judgment.')
+        ev['scope_heading'] = heading.group()
+        initial[heading.group(1)] = ev
+        strict[heading.group(1)] = ev
+
+assert set(initial) == set(cids) - {'C003'}
+strict['C003'] = unique_line('So C003 should be ["P1"].', 'First completed literal C003-to-list decision line; earlier reasoning/endorsement is distinguished.')
+endorsement = unique_line('Is it safe to map C003 to P1? Yes,', 'Earlier explicit affirmative C003/P1 mapping statement, not a list-valued decision.')
+first_round = event(headings[0].start(), 7266, 'Initial candidate-by-candidate section ends; seven explicit Result lists; no explicit C003 list-valued decision has appeared in text.')
+# Keep the section evidence compact instead of copying its complete reasoning.
+first_round.pop('literal_evidence')
+first_round['literal_evidence_sha256'] = sha(text[headings[0].start():7266].encode('utf-8'))
+recap_begin = text.index('    *   Wait, check C000, C001, C002.')
+recap_end = unique_line('*   C003: "diabetes" / "monogenic diabetes". P1 has this. ["P1"].', 'Final line of first compact contiguous all-eight decision recap.')['event_end_char_exclusive_0based']
+recap = event(recap_begin, recap_end, 'First compact contiguous recap covering all eight candidates with explicit [] or ["P1"] decisions; still intermediate thinking, not final JSON.')
+
+strict_end = max(x['event_end_char_exclusive_0based'] for x in strict.values())
+mapping_end = max(endorsement['event_end_char_exclusive_0based'], *(x['event_end_char_exclusive_0based'] for x in initial.values()))
+literal_end = max(x['event_end_char_exclusive_0based'] for x in mentions.values())
+mapping_bytes = json.dumps([[i + 1, token_id, 0 if i == 0 else ends[i - 1], ends[i]] for i, token_id in enumerate(ids)], separators=(',', ':')).encode()
+
+evidence = {
+    'schema': 'frozen-generated-token-coverage/v1',
+    'created_at_utc': datetime.now(timezone.utc).isoformat(),
+    'scope': 'single frozen response descriptive coverage only; no targets, correctness assessment, model calls, or token retokenization',
+    'sources': [source(B / 'responses.jsonl'), source(TOKENIZER), source(B / 'behavior-diagnostic.json'), source(Path(__file__))],
+    'row_id': row['row_id'],
+    'generated_tokens': len(ids),
+    'response_unicode_characters': len(text),
+    'response_utf8_bytes': len(decoded),
+    'decode_exact_native_response': True,
+    'generated_added_token_ids': special_ids,
+    'boundary_definition': 'chars=Python Unicode codepoints; byte offsets=UTF-8; all spans zero-based half-open. Prefix token count k is the least k whose concatenated fixed-vocab ByteLevel-decoded token bytes contain the complete event through exclusive end. No retokenization of truncated text. A boundary may occur inside a token; token byte interval and overrun bytes are recorded.',
+    'full_token_byte_map_serialization': 'JSON compact array of [one-based-generated-token-index, actual-id, byte-start-inclusive, byte-end-exclusive], UTF-8; reproducible from script+frozen IDs+tokenizer; full table not duplicated.',
+    'full_token_byte_map_sha256': sha(mapping_bytes),
+    'first_literal_CID_occurrences': mentions,
+    'all8_literal_coverage': endpoint(literal_end),
+    'initial_explicit_list_decisions': initial,
+    'initial_candidate_section_end': first_round,
+    'refining_C003_section_starts': {'char_0based': refine_start, **endpoint(refine_start)},
+    'C003_first_explicit_affirmative_mapping': endorsement,
+    'all8_mapping_endorsement_or_list_coverage': endpoint(mapping_end),
+    'first_explicit_list_decision_by_candidate': {cid: strict[cid] for cid in cids},
+    'all8_strict_list_decision_coverage': endpoint(strict_end),
+    'first_contiguous_all8_list_recap': recap,
+    'old_behavior_claim_correction': 'The old diagnostic all8_candidates_have_explicit_intermediate_decisions_before_refinement=true is too strong under an auditable list-valued-decision definition. Before char7268 only seven candidates have explicit Result lists; C003 has analysis but no list-valued decision. First clear affirmative C003/P1 mapping appears later; first explicit C003 list appears later still. No claim is made about correctness or a model-internal decision.',
+}
+(OUT / 'evidence.json').write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
+
+lines = [
+    '# 冻结 4096 tokens 的覆盖位置',
+    '',
+    '只核原生成文本的覆盖/结构，不判断任何候选答案是否正确。原 raw、IDs、tokenizer 未改；无模型、gold、重分词或重试。',
+    '',
+    '| CID | 首次 literal 完整出现的生成 token | 首次明确列表决定行结束 token |',
+    '|---|---:|---:|',
+]
+for cid in cids:
+    lines.append(f"| {cid} | {mentions[cid]['prefix_generated_tokens_1based']} | {strict[cid]['prefix_generated_tokens_1based']} |")
+lines += [
+    '',
+    f"全部 CID literal 覆盖到 token **{endpoint(literal_end)['prefix_generated_tokens_1based']}**。C000/C007 在开头范围表达中出现，literal 覆盖不是逐项作出决定。",
+    '',
+    f"初轮逐候选段落结束在 char7266，对应 token **{first_round['prefix_generated_tokens_1based']}**；此时只有7项明确 Result 列表。C003在初轮仍反复讨论；旧 behavior-diagnostic 所谓8项在refining之前已有明确决定过强，应更正。char7268 是编号3 refining小节起点，亦不能据此称是重复首次开始。",
+    '',
+    f"C003 首次清楚肯定映射的完整句（‘Is it safe to map C003 to P1? Yes…’）结束于 char9304/token **{endorsement['prefix_generated_tokens_1based']}**。若接受这种自然语言映射作为决定，全8项到此覆盖；它仍不是列表/JSON。",
+    '',
+    f"C003 首次明确列表行（‘So C003 should be [\\\"P1\\\"].’）结束于 char14627/token **{strict['C003']['prefix_generated_tokens_1based']}**，至此首次全8项均出现明确列表决定。首次连续、紧凑的全8项列表复核结束于 char15069/token **{recap['prefix_generated_tokens_1based']}**。这仍是思考文本，后续继续复核，没有自然闭合或最终JSON。",
+    '',
+    '计数定义：token编号从1开始；字符位置是Python Unicode字符的0-based半开边界，字节位置是UTF-8的0-based半开边界。用固定tokenizer vocab作ByteLevel逆码，每个实际generated ID对应一段字节，累计到完整事件末尾取最早token前缀；若事件末尾落在token中间，完整token可能包含少量后续字节。证据保存每个端点的实际ID、byte/char区间、越过事件末尾的字节数。全部4096 IDs逆码与原response逐字节一致。',
+    '',
+    '可据此描述这一条原输出的行为，不能推出80条的新预算已足够、质量有效或应在某一个token强制结束；单条覆盖事实不代替固定80预算合同。完整来源SHA、可复现算法与三种不同覆盖定义见 evidence.json 和 analyze.py。',
+]
+(OUT / 'REPORT.md').write_text('\n'.join(lines) + '\n')
+print(json.dumps({
+    'literal_by_CID': {cid: mentions[cid]['prefix_generated_tokens_1based'] for cid in cids},
+    'list_decision_by_CID': {cid: strict[cid]['prefix_generated_tokens_1based'] for cid in cids},
+    'initial7_end': first_round['prefix_generated_tokens_1based'],
+    'C003_first_affirmative_mapping': endorsement['prefix_generated_tokens_1based'],
+    'all8_first_explicit_list': endpoint(strict_end)['prefix_generated_tokens_1based'],
+    'contiguous_all8_recap_end': recap['prefix_generated_tokens_1based'],
+    'artifacts': [source(OUT / n) for n in ['analyze.py', 'evidence.json', 'REPORT.md']],
+}, ensure_ascii=False, indent=2))
