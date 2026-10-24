@@ -1,0 +1,50 @@
+{
+  "status": "FROZEN_F0_CPU_FIT_AND_ONE_EVALUATION_INTENT_BEFORE_GPU_COMPLETE",
+  "at_utc": "2026-10-24T10:15:24.253243+00:00",
+  "command": [
+    "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+    "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/fit_oof_fold.py",
+    "--plan",
+    "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/oof-f0-plan.json",
+    "--actual",
+    "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/actual",
+    "--output",
+    "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/quality",
+    "--hpo",
+    "/workspace/patientphex-data/hp.obo",
+    "--gold",
+    "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl"
+  ],
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/fit_oof_fold.py",
+    "bytes": 10100,
+    "sha256": "2ac37893706d3ee19248849dd4f25076caed304f72704cc9eb689faa5a3d15e6"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/oof-f0-plan.json",
+    "bytes": 15836,
+    "sha256": "6e81d533e314c8eba9604828b7ab6109e5e712e7aae8380217d68a8ccec2630f"
+  },
+  "expected_hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "expected_F0_gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "gold_ref_origin": "Existing old F1 fit training-origin manifest; only stat bytes, no new gold contents opened",
+  "budget_seconds": 120,
+  "new_fits": 1,
+  "new_v2_calls": 1,
+  "old_v2_calls": 0
+}

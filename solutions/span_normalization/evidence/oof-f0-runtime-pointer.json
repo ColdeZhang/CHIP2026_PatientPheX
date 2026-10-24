@@ -1,0 +1,117 @@
+{
+  "status": "RUNNING_UNIQUE_F0_GP_WINDOW",
+  "started": {
+    "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run_oof_gpu.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/gpu-plan.json",
+    "id": "proc_b616d04f-eba4-43f2-8f39-e497979240c9",
+    "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+    "pid": 1199035,
+    "port": 38535,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-24T10:13:23.020214671Z"
+  },
+  "driver_started": {
+    "at_utc": "2026-10-24T10:13:23.293353+00:00",
+    "pid": 1199035,
+    "plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/gpu-plan.json",
+      "bytes": 9856,
+      "sha256": "a1d32359a24079e3a72bf658d542bfdc9b1aca00955d0cdfe87627c03906062e"
+    },
+    "deadline_TERM_unix": 1792837703.0885224,
+    "deadline_KILL_unix": 1792837733.0885224,
+    "fresh_gpu": "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4, 24576\n1, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 1895, 24576\n2, GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 965, 24576\n",
+    "fresh_apps": "884964, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 940\n897066, GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b, 940\n4190196, GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9, 956\n",
+    "free_bytes": 180644622336
+  },
+  "latest_steps": [
+    {
+      "name": "score-inner1",
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 9.142846398986876,
+      "stdout": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/score-inner1.stdout",
+        "bytes": 1687,
+        "sha256": "1867f1e6ed5694a5b0fe2fe03591c4a3c9607a5a69a21fd5a9fe74c83f43b2ff"
+      },
+      "stderr": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/score-inner1.stderr",
+        "bytes": 226,
+        "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+      }
+    },
+    {
+      "name": "train-inner2",
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 70.1212734230794,
+      "stdout": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/train-inner2.stdout",
+        "bytes": 3617,
+        "sha256": "e286d513885f5716ae28b5b9b2063e69811d95d0e5f198649e627cd78525d81e"
+      },
+      "stderr": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/train-inner2.stderr",
+        "bytes": 226,
+        "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+      }
+    },
+    {
+      "name": "score-inner2",
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 8.73831702908501,
+      "stdout": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/score-inner2.stdout",
+        "bytes": 1697,
+        "sha256": "5a3c0ec768fd98a891ffc0ee3af75eff95c68a785cd7a02a6c529785a448d6de"
+      },
+      "stderr": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/score-inner2.stderr",
+        "bytes": 226,
+        "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+      }
+    }
+  ],
+  "current_child": {
+    "name": "train-inner3",
+    "pid": 1199166,
+    "command": [
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+      "-u",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/train_infer.py",
+      "--model",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
+      "--preparation",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/prepared/inner3/preparation.json",
+      "--output",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/oof-feature-control-f0/run/inner3/model",
+      "--gpu-uuid",
+      "GPU-07726469-bf7a-b832-9dee-019dc276dc1d"
+    ]
+  },
+  "cpu_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/cpu-complete.json",
+    "bytes": 5947,
+    "sha256": "b60a6a1d2df8836571f541382b83933b9d48e3c6f25a23a20e4d97e541ac99df"
+  },
+  "gpu_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/gpu-plan.json",
+    "bytes": 9856,
+    "sha256": "a1d32359a24079e3a72bf658d542bfdc9b1aca00955d0cdfe87627c03906062e"
+  },
+  "cpu_entry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/cpu-entry.json",
+    "bytes": 2190,
+    "sha256": "60efb6c72cb2c949d41480be3569193541ab554f7492b220e5172ca377b8d14e"
+  },
+  "interface": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/interface.json",
+    "bytes": 929,
+    "sha256": "30997cdf98aa2415d68bbeb1b7866cd7e6489b4650ea515183d8980d07467411"
+  },
+  "observation_command": "python /workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/observe_gpu.py",
+  "collection_command": "python /workspace/patientphex-runs/round2-20261023/stage8-span-normalization/oof-feature-control-f0/collect_terminal.py",
+  "do_not_restart_active": true
+}
