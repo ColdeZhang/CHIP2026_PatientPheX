@@ -91,3 +91,5 @@
 - 候选诊断元数据更正：实际核得历史 F1 fitted/selector-scores.jsonl 已存（14,344,663 B，645a252b），先前“无逐候选概率”过宽；新适配应用仍缺成对概率输出，没有重 predict/质量。独立更正见[诊断指针](public_h5_adaptation_readiness/formal_train/candidate-shift-pointer.json)，原结果与私有包不可变，feature shift 及负结案结论不变。
 
 - H5严格OOF有限盘点：两方向train16 Sap/rules原池齐（50489f7a/e38d03b2），三公共固定缓存齐；train16 CRF和匹配train32 LGB基线尚未找到，旧a465为train48。准备代码需每train16重建保护/冲突，不能切既有1252行。没有实现新pipeline/fit/NN/v2；[缺口摘要](public_h5_adaptation_readiness/formal_train/OOF_ASSET_GAPS.md)。
+
+- indexed第一轮08:45:59 rc0，16更新/2308.345秒；520,022,588 B完整模型/Adam/scheduler/RNG及源码已08:47:46在.100逐文件SHA+fsync+重新打开核实，导出59.364秒。原watch08:47:58唯一启动epoch2 proc_e0b1196d/PID9466，继续原绝对deadline，不重置warmup/预算；尚无新质量。[里程碑](qwen35_sft32_full_report_training_readiness/formal_indexed/epoch1-milestone.json)。
