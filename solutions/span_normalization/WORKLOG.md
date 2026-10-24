@@ -1,7 +1,7 @@
 # Span normalization 工作台账
 
 - 目标：为强实体系统提供新的高质量精确跨度及HPO候选；最终仍按原dev Score≥.8验收，不把弱单路提高当完成。
-- 当前：E-20261024-SPAN-001源码与事前计划完成，CPU编码与数学合同已通过，尚未GPU训练。主协调统一首个32(F2+F3)→F1，原48→F0草案在任何执行前替代。
+- 当前：E-20261024-SPAN-001源码与事前计划完成，CPU编码与数学合同已通过，首GPU入口6.766秒在0forward前失败，正在同原硬截止机械恢复；尚未正式训练。主协调统一首个32(F2+F3)→F1，原48→F0草案在任何执行前替代。
 - 方法：BiomedBERT+GlobalPointer显式start/end、RoPE64、multi-label categorical CE；保留嵌套。原成熟Sap/fold-local aliases负责规范化，暂不同时加联合概念loss。
 - 固定：8epochs、3e-5、batch16、384/stride64、BF16 encoder/FP32head+loss；原始池logit≥−2，预测>0，不扫描cut。完整预定义池留外部，便于以后学习融合。
 - 对照：强F1 .728697536469，训练规模不同，仅作部署基线；GP-only诊断和固定强基线追加臂共冻后各1v2。细节见[计划](plan.json)。

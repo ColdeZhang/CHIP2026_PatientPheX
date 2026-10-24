@@ -16,7 +16,11 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--plan', required=True); a = ap.parse_args()
     plan = json.loads(Path(a.plan).read_text()); out = Path(plan['output']); out.mkdir(parents=True, exist_ok=True)
     assert not (out/'driver-started.json').exists(), 'Already started; recover original process'
-    started = time.monotonic(); wall = time.time(); deadline = started + 600
+    started = time.monotonic(); wall = time.time()
+    absolute_deadline = plan.get('absolute_deadline_unix', wall + 600)
+    remaining = absolute_deadline - wall
+    assert 0 < remaining <= 600, 'Expired or extended budget'
+    deadline = started + remaining
     gpu = subprocess.check_output(['nvidia-smi', '--query-gpu=index,uuid,memory.used,memory.total', '--format=csv,noheader,nounits'], text=True)
     apps = subprocess.check_output(['nvidia-smi', '--query-compute-apps=pid,gpu_uuid,used_memory', '--format=csv,noheader,nounits'], text=True)
     line = [x for x in gpu.splitlines() if plan['gpu_uuid'] in x]; assert len(line) == 1
@@ -24,7 +28,7 @@ def main():
     assert not any(plan['gpu_uuid'] in x for x in apps.splitlines())
     disk = shutil.disk_usage(out); assert disk.free >= 5*1024**3
     write_json(out/'driver-started.json', {'at_utc': datetime.now(timezone.utc).isoformat(), 'driver_pid': os.getpid(),
-              'plan': ref(a.plan), 'deadline_TERM_unix': wall+600, 'deadline_KILL_unix': wall+630,
+              'plan': ref(a.plan), 'deadline_TERM_unix': absolute_deadline, 'deadline_KILL_unix': absolute_deadline+30,
               'budget_seconds': 600, 'includes_probe': True, 'fresh_gpu': gpu, 'fresh_apps': apps,
               'free_bytes': disk.free, 'no_automatic_retry': True})
     results = []; status = 'COMPLETE'; child = None

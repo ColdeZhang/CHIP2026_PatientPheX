@@ -47,7 +47,10 @@ def load_model(path, out):
                                             add_pooling_layer=False, output_loading_info=True)
     write_json(out, info)
     assert not info.get('missing_keys') and not info.get('mismatched_keys') and not info.get('error_msgs')
-    assert all(k.startswith('cls.') for k in info.get('unexpected_keys', [])), info.get('unexpected_keys')
+    # The published masked-LM checkpoint also has a pooler; our encoder
+    # explicitly disables it because GP uses last_hidden_state only.
+    unused_pooler = {'pooler.dense.weight', 'pooler.dense.bias'}
+    assert all(k.startswith('cls.') or k in unused_pooler for k in info.get('unexpected_keys', [])), info.get('unexpected_keys')
     return GlobalPointer(encoder).cuda()
 
 
