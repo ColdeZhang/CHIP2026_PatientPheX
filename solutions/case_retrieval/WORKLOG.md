@@ -12,7 +12,7 @@
 - 两个CPU控制均complete且rc0，无运行作业；full64外部 `research/lightgbm-selector-readiness/full64-dev-control/execution-state.json` 为complete，禁止重启。[同一持久包](lightgbm_selector_control/full64-results/persistent-backup.json)288622b9/3.83MB/58成员已服务器逐成员SHA+fsync，manifest168b0c39；root已完成唯一server→local restore及58成员SHA复核。sequence独立患者关系仍使用原a179，不偷偷合成。[固定误差/历史查重](lightgbm_selector_control/research/next-entity-history.md)已完成；原dev只是事后方法选择依据，不用于新控制fit或手工补规则。
 - [相对候选18列](relative_candidate_evidence/README.md)完整负：原LGB pooled.731545429370→.730783429343（−.000762000027），仅F1正/1of4，keepfalse；43篇54加40删，关系不变。实际4fit61.879秒+端点2.647秒，全部160树/120,119,121,121列，先共冻再5newv2/old0；result295c2def/terminal6b67cbea。session57662已rc0/state complete，完整终审3f767632通过，不扫子集/cut、不迁dev。
 - [固定HGB/LGB均值](hgb_lightgbm_average/README.md)完整负：.731545429370→.731417753008（−.000127676362），仅F3正/1of4，29篇22加22删；关系/非entity bytes不变。唯一4.622秒、0fit/0新模型预测，先共冻5newv2/old0；审908fbc8c，session15356/state complete。固定关闭，不扫权重/cut/迁dev。
-- [纯加载缓存复现](lightgbm_selector_control/PURE-LOAD.md)已唯一完成：入口3.272秒/外层3.463秒rc0，16篇13,246候选，完整输出与0e2c逐字节同SHA，391关系及非entity字节保持；0fit/gold/v2/GPU。源0906e144/合同36c056fd/终点9725d919，独立增量审和缺失依赖补包进行中。它固定当前16篇合同，尚非任意新文献或原文端到端入口；上游候选/关系仍来自冻结缓存。现无运行CPU/GPU；不跑赛测集/官方或重做旧NN。
+- [纯加载缓存复现](lightgbm_selector_control/PURE-LOAD.md)已唯一完成：入口3.272秒/外层3.463秒rc0，16篇13,246候选，完整输出与0e2c逐字节同SHA，391关系及非entity字节保持；0fit/gold/v2/GPU。源0906e144/合同36c056fd/终点9725d919，独立终审53a91d2f通过；16件2.91MB补包6aa98c35已服务器全SHA/fsync，manifestb897bfbd，root负责另做实际恢复。它固定当前16篇合同，尚非任意新文献或原文端到端入口；上游候选/关系仍来自冻结缓存。现无运行CPU/GPU；不跑赛测集/官方或重做旧NN。
 
 ## 已关闭或保留的关键控制
 
@@ -25,7 +25,7 @@
 ## 资产、资源与恢复边界
 
 - `R=/workspace/patientphex-runs/round2-20261023`。Git只留源、关键结果与SHA；模型、全量概率/预测、正常日志在外部目录。固定LightGBM wheel cb19b5af/3,569,831B仅安装到 `R/research/lightgbm-selector-readiness/deps/runtime`；原生库6a12e1a7/接口1.163秒通过。未修改global/shared依赖，无新模型下载。
-- 本路线无运行GPU。A800 GPU2 f516在Med最终04:21:32.942实际释放，已交ontology的R1F0；不得凭旧空卡收据占用。A100 GPU2归sequence full64、.100 GPU1归R1F1。最近[一次四机快照](evidence/round2/gpu-survey-20261024-043924.json)04:39:24未发现新增≥40GiB空卡；A8000仍foreign56706/594MiB，.3 GPU0 24GiB/4MiB/no compute仅小任务候选，未来用前fresh核。A100当次UNKNOWN不等于其训练失败，不重试风暴。
+- 本路线无运行GPU。GPU资源由root协调，本路线不占卡；A100由sequence新full64使用，R1原F1已完整结束，A800新全文输入控制由ontology接管准备。不得凭旧空卡收据占用。最近[一次四机快照](evidence/round2/gpu-survey-20261024-043924.json)04:39:24未发现新增≥40GiB空卡；A8000仍foreign56706/594MiB，.3 GPU0 24GiB/4MiB/no compute仅小任务候选，未来用前fresh核。A100当次UNKNOWN不等于其训练失败，不重试风暴。
 - Med原件19件8.64GB在.100持久 `research/medical-small-model-readiness/models/medgemma-1.5-4b-it-9bca96ca3e30`；SHA已核，勿重复下载。A800 `/dev/shm/patientphex-medgemma15-1045-20261024`仅临时副本，项目盘不足1GB，不放权重。
 - 全文两份完整state在.100 `research/medgemma-relation-control/fullcontext-formal2ep/checkpoints/epoch-001,002`；final checkpoint c4044dac/adapter47798260/Adam-RNG0bfa4203，两ACK后均独立回读。raw与双pred另持久归档07b2ca5a/33项638317B；短Med独立归档b66fd723，不混模型或状态。
 - 原Qwen/Med参考TF5.20.2/PEFT.21.2，不换FLA/量化。官方限制**每个独立模型≤10B**，不是组合总和；Med完整bundle+LoRA4,329,881,968，未用视觉模块仍计数。[H48实际文本80审查](medgemma_relation_control/tokenizer-family-audit/REPORT.md)只证Med/Qwen本80输入ID与decode一致，不泛化全词表/音频。

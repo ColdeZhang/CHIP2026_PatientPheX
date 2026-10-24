@@ -65,3 +65,8 @@ Qwen3.5-9B镜像来源须逐文件核验：固定MS commit权重/配置可等于
 - Thinking后继：原full64 greedy1600首条未闭think是已完成负记录；随后旧SFT32首条官方sampling4096也触顶未闭think，已独审关闭。实际HF5.20.2无原生presence penalty，自定义需只减生成suffix已出现token一次、与multiplicative repetition分开；先固定单条格式/成本探针，不算质量。源码/预算边界见[一页提案](research/thinking-sampling-followup.md)。
 
 - 等曝光不等于等optimizer调用：124样本/accum8每epoch16calls；直接翻倍248样本只31calls。顺序增强以四124逻辑epoch/O-O-O-O对O-R-O-R，原ID顺序与每轮短尾flush固定，496曝光/64calls。先CPU重放实际分组/LR，再谈等预算训练；不能把新四轮历史对比写成只改变排列。
+
+
+### 2026-10-24：复现入口与资产链的实际边界
+
+当前LightGBM103/nested不能沿用旧HGB97/greedy加载器，原full64脚本又含fit/eval。新增纯加载入口已3.272秒精确重建0e2c，但它固定16篇合同并从候选缓存和旧关系模板开始，不等于原文端到端。58件best包已含a179模板；纯input c0fc在上游72件包，不能只查最新包就认定丢失。此次仅补18ac候选pool、HPOa509和新源/合同/审查，旧模型/预测/轮子不重打。完整证据见[纯加载说明](lightgbm_selector_control/PURE-LOAD.md)。
