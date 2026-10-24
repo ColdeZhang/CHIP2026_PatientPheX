@@ -198,7 +198,7 @@ def deploy_infer(directory, remote):
         intent = out / f'upload-{index:02d}-intent.json'; receipt = out / f'upload-{index:02d}-receipt.json'
         if receipt.exists():
             previous=json.loads(receipt.read_text())
-            assert previous['item']==item and previous['remote_byteexact'] is True
+            assert previous['item']==item and (previous.get('remote_byteexact') is True or previous.get('remote_SHA_verified') is True)
             # Local content was checked by deployment_items; the final remote
             # SHA+fsync command rechecks every file, including inherited receipts.
             continue
@@ -232,8 +232,11 @@ print(json.dumps({'status':'ALL_DEPLOYMENT_SHA_FSYNC_PARENT_CHAIN_PASS','files':
 '''.replace('ITEMS',repr(items)).replace('STOP',repr(core_plan(directory)['application'].rsplit('/',1)[0]))
         result=remote.call('run_command',command=shlex.join([core_plan(directory)['python'],'-c',code]),cwd='',timeout_seconds=30)
         assert result['exit_code']==0;record(durable,result)
+    receipts=[json.loads((out/f'upload-{i:02d}-receipt.json').read_text()) for i in range(len(items))]
     record(out / 'deployed.json', {'files': {str(i): item['local'] for i, item in enumerate(items)},
-                                  'deployment': ref(out / 'deployment.json'), 'all_remote_byteexact': True,
+                                  'deployment': ref(out / 'deployment.json'),
+                                  'all_remote_byteexact':all(x.get('remote_byteexact') is True for x in receipts),
+                                  'all_remote_bytes_and_SHAs_rechecked':True,
                                   'durability':ref(durable)})
 
 

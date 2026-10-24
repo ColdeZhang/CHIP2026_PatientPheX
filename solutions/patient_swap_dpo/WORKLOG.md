@@ -28,3 +28,5 @@
 - 推断首次start前补H64：旧driver只由控制器限时，现加native自身GNU timeout1200+30；旧68b69118只到部分源部署，MCP只读失败已退出，实际未发送infer start。保旧intent/source/plan，切deployment-infer-v2及远端downstream-bounded-v2。新计划2e17afa5，模型/80输入/生成/codec/quality.py/主端点不变。
 
 - 部署原07写接口失败后先读同路径取得NOT_FOUND，才进行一次有记录的同内容重试；456576B完整回读一致，原intent/失败/恢复receipt均保留。其余已核receipt由最终远端全SHA+fsync统一再次复核，避免恢复时重复所有读取。sole watcher已扩展infer模式，仍不触发任何start。
+
+- 08写结果未知后严格只读恢复：原read_file返回UNKNOWN_OUTCOME，30s后同路径纯CPU读取全部415819B并核3ce16f96成功，原文件已经存在，未重写；该receipt明确SHA验证而非全量字节回传。全部10件最终远端bytes/SHA/fsync及父目录链通过，plan2e17afa5就绪，模型计算仍0次infer。
