@@ -13,8 +13,8 @@
 - F1旧 **.660942003 → 全文单独 .676546355 / 事前主臂旧∪全文 .669554799**；主micro与macro均增，新增19TP26FP。80strict/0弃答，376.475652秒rc0；独审原d655/metadata8d19，303内容成员包190297B/d7cb2131与两个小审查附录已在.100完整SHA/fsync。
 - F0旧 **.695443948 → 全文单独 .696603975 / 主旧∪全文 .695988393**，按事前Score升且macro不降门都true；但主micro **.690076336→.682352941** 下降、macro **.639022564→.648923742** 上升，仅新增6TP19FP，Score只+.000544446。58strict/0弃答，277.261910秒rc0；05:58:08.483853 GPU2实际释放。统一独审760cc08d通过，240内容+members共241成员包170467B/0e14e398已在.100逐SHA/fsync。原模型/评分不重跑。
 - 各折原1189/947实体、全部非关系UTF8字节保持；各折两个完整预测共冻后新2v2/旧0。这里只是已知F1/F0开发对照，不能称原dev改善或.8达标；全文alone仍保留事前诊断身份。[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)、[F1指针](qwen35_sft32_full_report_readiness/full80/result-pointer.json)、[F0指针](qwen35_sft32_full_report_readiness/f0/full58/result-pointer.json)。
-- root新授权纯CPU四源控制：取sequence准确old∪reverse∪patient基线F1 .663841820660/F0 .709556743085，预定primary三方∪全文、diagnostic reverse∪patient∪全文（去old）。两折四完整pred共冻后各1v2，旧三方不重评；每臂须两折Score严格升且macro不降，若都过按两折合计增量选择。已知全文结果后的开发性质，不自动迁原dev，未来35条public-new支持不得丢失。精确handoff c1ecab45已收到，source准备中。
-- Qwen35原124/F2+F3/32doc全文训练仅盘点/CPU可行性准备：未找到该exact实际训练终点；旧SFT32局部两轮1149.460秒，原402594 tokens/max5523/监督7170。新124完整输入只改user证据、答案/其他字段保留，原文完整，255markers中254插入+1按固定重叠政策skip；native实际22.406947秒PASS：1009181总tokens/max13549唯一idx98，token比2.506697、平方长度比6.047086，工程cap13824；原encoded7fa9与全部7170监督IDs不变。同Torch selectedCE实际2.329901秒PASS，loss按声明容差、梯度最大差0；两轮2881.348秒只线性代理，GPU训练仍未授权。独立CPU增量审进行中。[实际CPU](qwen35_sft32_full_report_training_readiness/ACTUAL_CPU.md)。
+- root新授权纯CPU四源控制：取sequence准确old∪reverse∪patient基线F1 .663841820660/F0 .709556743085，预定primary三方∪全文、diagnostic reverse∪patient∪全文（去old）。两折四完整pred共冻后各1v2，旧三方不重评；每臂须两折Score严格升且macro不降，若都过按两折合计增量选择。已知全文结果后的开发性质，不自动迁原dev，未来35条public-new支持不得丢失。精确handoff c1ecab45已收到；source08fdcb37/plan3a869a10/entrycf891c76已冻，22项合成/顺序检查通过，待唯一CPU60入口（四pred共冻→新4v2/旧0）。
+- Qwen35原124/F2+F3/32doc全文训练仅盘点/CPU可行性准备：未找到该exact实际训练终点；旧SFT32局部两轮1149.460秒，原402594 tokens/max5523/监督7170。新124完整输入只改user证据、答案/其他字段保留，原文完整，255markers中254插入+1按固定重叠政策skip；native实际22.406947秒PASS：1009181总tokens/max13549唯一idx98，token比2.506697、平方长度比6.047086，工程cap13824；原encoded7fa9与全部7170监督IDs不变。同Torch selectedCE实际2.329901秒PASS，loss按声明容差、梯度最大差0；两轮2881.348秒只线性代理，正式GPU训练仍未授权。root现已授权唯一A800 GPU2训练压力探针420+TERM30，fresh base原r16与selected CE，先8微批非零LR诊断更新建Adam，再3累积+最长idx98；沿H51压力口径不重放warmup，状态退出即弃，不视为正式训练。独立CPU增量审进行中。[实际CPU](qwen35_sft32_full_report_training_readiness/ACTUAL_CPU.md)。
 
 ## 最近：R1 F1完整负结案，F0扩展不启动
 
@@ -33,5 +33,5 @@
 
 - 强BioBERT+NCR四fold **.730993616→.731229952**，仅2/4非降<事前3/4而关闭；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)，独审de325a2c。
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
-- 最近已核Git远端 **117ba8a12e11514a904d0568a7b80f2b9bb437fd**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
+- 最近已核Git远端 **ecf2d3c5b314633f15ba67bad7f72bf6194d343f**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
