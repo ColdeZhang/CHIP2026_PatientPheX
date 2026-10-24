@@ -35,7 +35,7 @@
     }
   },
   "review_and_backup": "273/6639refs published after root e155e922. New92refs+11controls103members ZIP4440e71d actual7read_file/fullmemberSHA/fsync/reopen PASS589306ac. Chain217→224→234→242→249→258→263→268→273. QuoteF1 separate203content+1manifest actualreadbackbf565 included as rootcontrol. No oldclinical/model library recopied in this indexdelta.",
-  "updated_at_utc": "2026-10-24T16:42:06.182348+00:00",
+  "updated_at_utc": "2026-10-24T16:50:49.932919+00:00",
   "purpose": "Thin live recovery index. Milestones are observations, not fresh remote inventory. First inspect original local watcher/owner state; never restart a job solely from an old snapshot.",
   "history": {
     "commit": "bc8084e756f6f24fb9e633cc4fd31f8395b43f30",
@@ -44,29 +44,6 @@
     "note": "Previous complete40-route history and historical backup pointers preserved byte-for-byte in this Git version; route branches/artifacts remain. Live index compacted to prevent repeated stale-state recovery."
   },
   "active_jobs": [
-    {
-      "route": "mention_boundary_selection",
-      "branch": "explore/mention-boundary-selection",
-      "owner": "/root/schema_extraction",
-      "status": "TRAINING_COMPLETE_1416_INFERENCE_RUNNING",
-      "worktree": "/workspace/patientphex-worktrees/explore-mention-boundary-selection",
-      "recovery": "solutions/mention_boundary_selection/WORKLOG.md",
-      "artifact_root": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1",
-      "host": "10.5.2.100 GPU1",
-      "process": "proc_98b3a99e-9316-409c-8e71-feaf7bf88516",
-      "driver": 2750059,
-      "child": 2754394,
-      "started_utc": "2026-10-24T15:21:59.012453+00:00",
-      "TERM_utc": "2026-10-24T16:58:55+00:00",
-      "grace_seconds": 30,
-      "latest_milestone": "3470x2/868updates complete16:28:54.633; finaladapterbeecfb84/state360544ce/ACKd87852b0. Original complete1416 inference progressing (838 observed16:38:51), no partial quality.",
-      "watcher": {
-        "pid": 190725,
-        "finalizer_pid": 191014,
-        "note": "Sole observer/finalizer. Read their original local records, do not start another observer."
-      },
-      "next": "Collect complete1416/raw/parsed and final state metadata; originalunion/newonly2v2; root separate prelockedBOUNDARYveto1v2 afterfull originals."
-    },
     {
       "route": "training_seed_ensemble",
       "branch": "research/training-seed-ensemble",
@@ -83,16 +60,17 @@
       "TERM_utc": "2026-10-24T16:47:38.444861+00:00",
       "KILL_utc": "2026-10-24T16:48:08.444861+00:00",
       "watcher": {
-        "pid": 195513,
-        "start_ticks": 11011112,
-        "interval_seconds": 180
+        "pid": 201543,
+        "start_ticks": 11282195,
+        "interval_seconds": 180,
+        "source": "inference_helper/watch_inference.py"
       },
       "latest_milestone": "Originalsolewatch recovered16:40; actualtrainingrc0 at16:30:57/controller2000.189s,87x2/22updates, bothfullACKs,adapterc3dc7de5. Actualtrainingrelease16:31:00. Originalcollector25metadata members196b22f6. Same .12GPU2 reserved for full39, not yet SCST release.",
       "formula": "B4 union [G_new intersection (G_old union S union Q union C)]",
       "next": "Originalclock counts98seconds deployment before actualstart; full39deadline17:11:09 retained. NecessarypublicSap .3GPU0 afterdocumentowneractualrelease; SCST waits actualA100inference release.",
       "parser": "Ordinary G: nonEOS/invalidJSON whole-row abstain; otherwise reject invalid literal anchors per item, retaining valid items. Helper corrected before inference.",
-      "owner_status": "Owner active, recovered originalterminal without restart; F1 plan66bf2e69/sourceeefe4418 pushed.",
-      "wake_on": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-v1/formal-fresh-v1/watch/terminal-observed.json",
+      "owner_status": "Active owner, soleoriginalinferencewatch; latest observations transportfailure, not model failure. No duplicate model/query.",
+      "wake_on": "/workspace/patientphex-runs/round2-20261023/research/training-seed-ensemble-v1/infer-F1-v1/watch/terminal-observed.json",
       "inference_plan": {
         "sha256_prefix": "66bf2e69",
         "clock_start_utc": "2026-10-24T16:41:09+00:00",
@@ -102,22 +80,50 @@
         "actual_started_utc": "2026-10-24T16:42:47.217496+00:00",
         "managed_job": "proc_803b4f9d-6be0-421e-a4ef-0f115a25126d",
         "driver": 67252
-      }
+      },
+      "checkpoint": "93e3b55d"
     },
     {
       "route": "boundary_veto",
       "branch": "explore/boundary-veto",
       "owner": "/root",
-      "status": "READY_WAITING_COMPLETE_PARENT1416",
+      "status": "COMPLETE_F1_POSITIVE_TRANSFER_READINESS",
       "worktree": "/workspace/patientphex-worktrees/explore-boundary-veto",
       "recovery": "solutions/boundary_veto/README.md",
-      "checkpoint": "43bb73e8",
+      "checkpoint": "1a893035",
       "source_review": "/workspace/patientphex-runs/round2-20261023/validation/boundary-veto-source-review/review.json",
       "formula": "Delete only exact-span entities whose complete strict parent output is BOUNDARY; preserve NO/NIL/parse failures and all remaining objects.",
-      "next": "Root verify two training ACKs and full collection then plan/assemble/freeze/onev2; byteexact nochange0v2. Independent of parent two endpoints."
+      "next": "Schema owner CPUchecks true trainingcandidate ancestry and excludedF0 proposer readiness; originaldev1061 alternative cost only, no newinference/qualityyet. F1 inferenceproposer includesF0 but this doesnot establish trainingcandidates includeF0.",
+      "result": ".7286975364690524→.729204283038573;3deleted0TP3FP;men+.000873012/doc+.001153974,relations exact. Full1416 before freeze;1newv2/old0/noNN.",
+      "entry": "/workspace/patientphex-worktrees/explore-boundary-veto/solutions/boundary_veto/evidence/result.json"
     }
   ],
   "recent_closed": [
+    {
+      "route": "biomedical_long_context",
+      "branch": "research/biomedical-long-context",
+      "owner": "/root/document_relations",
+      "status": "CLOSED_FIXED_UNION_NEGATIVE",
+      "candidate": "BioClinical-ModernBERT-base149655232parameters/HF revc3648aa87/8192/MIT, originalMLM not downstream phenotype model. ModelScope searched: only different embedding derivative, so exactHFfallback.",
+      "next": "Single minimumbackup and incremental review; newrelationresearch separatebranch/protocol.",
+      "checkpoint": "5b7247a2",
+      "evidence": "Same oldGP admission gives2266span targets, ModernBERT2265 aligned vsold2263. Raw2274 difference8 invalid HPO IDs explained before GPU. Train32max7492; F1max8371 requires17 windows with8190content+2special and512overlap,15/16docs whole.",
+      "engineering": "149112704modelparams,4FB/2Adam secondnonzero,136finiteupdatedtensors,547state tensorroundtrips,peak3.9855GB,discardstatecc522af2;983.559s conservativeformal estimate.",
+      "actual_formal": ".3GPU0 proc105eb184 driver1225370/child1225378,16:37:07.419540→16:39:57.392305/169.973s; actualrelease16:39:57.523624 4MiB/noapps. Finalstate1.7895GB/15798e36,fullACK0cc2c5b5/547tensors,raw1816/45f15834; all1313baseline scores675644B/fe9e07cb. Collect originals, do not rerun training.",
+      "result": "Protectedunion.728697536469→.713455325552;210new37TP173FP,relations unchanged.1newv2/old0; noF0/cut. Independentrootspanvetoalso negative.",
+      "entry": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/final-review-entry.json",
+      "entry_sha256": "18407118"
+    },
+    {
+      "route": "mention_boundary_selection",
+      "branch": "explore/mention-boundary-selection",
+      "checkpoint": "f5fbb841",
+      "result": "All1416complete16:45:42.935. Parent union.721846056324/newonly.714176156405 belowstrong.728697536469;124new24TP100FP.2newv2/old0; noF0/dev.",
+      "entry": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/terminal.json",
+      "entry_sha256": "15896d47d89a41523e2e490c23488b39acd2af7ef25b0eecf13d89d097ddb615",
+      "release": ".100GPU1 actual16:45:43.619895 zero/noapps; formal/inferchildrc0, managedrunningfalse but wrapperexitcode notexposed.",
+      "backup": "95member smallpackage360584B/7771597d actualreadback owner16:49:29; large4state files remote durable ACK only."
+    },
     {
       "route": "long_context_span_veto",
       "branch": "explore/long-context-span-veto",
@@ -221,9 +227,10 @@
     }
   ],
   "pending_review_batch": [
-    "273 fivegroups published and actually restored. Next completed-only batch: quotecompletionF0; SCSTsource483db; GPveto source2982. Activequality endpoints excluded until complete."
+    "Validation owner reviewing completed-only fivegroups: QSCF0, BioClinicalGPunion, GPspanveto, BOUNDARYparent, BOUNDARYveto. SCSTsource483db+b370 closed. Do not restart 273 backup.",
+    "QSCF0 actual83container restorebb6482a2 complete after two preserved read_file failures, reused6x128KiB and readremainingvia32KiBpurebase64run_command."
   ],
-  "resource_rule": "Fresh freeUUID/process gates required. A80016:29 allcardsforeign. .100GPU1 BOUNDARY1416active;GPU0 quoteF0Sap actualreleased16:36:26, reserved only for requiredSCSTnormalizer after A100 start. .12GPU2 seedtraining terminal recovered, full39next;do not startSCST before actualinference release. .3GPU0 BioClinicalformal complete16:39:57,necessarynormalizer next. No foreign processes changed.",
+  "resource_rule": "A80016:29 allcardsforeign (not freshly reobserved). .100GPU0+1 actualfree16:45:43; GPU0 potentialLongT5 boundedprobe must yieldto SCSTnecessarySap, GPU1 candidateBOUNDARYtransfernotyetstarted. .12GPU2 seed39active actual16:42:47/TERM17:11:09; SCSTpreparedidleawaitrelease. .3GPU0 BioClinicalSap released16:41:34.790; newrelation180+30probe mayuse, seedSapshortneedspriorityaround17:01. No foreign processchanged.",
   "operational_notes": [
     "Admission expiry does not terminate an already admitted job; runtime deadlines above are separate.",
     "Transient MCP UNKNOWN reads recover original objects; do not rerun model to replace lost transport.",
@@ -231,18 +238,6 @@
     "No unqualified implementation merged. Main holds shared rules and accurate coordination only."
   ],
   "CPU_research": [
-    {
-      "route": "biomedical_long_context",
-      "branch": "research/biomedical-long-context",
-      "owner": "/root/document_relations",
-      "status": "COMPLETE_FRESH8EP256_AND_ALL17_HELD; necessary normalization and quality pending",
-      "candidate": "BioClinical-ModernBERT-base149655232parameters/HF revc3648aa87/8192/MIT, originalMLM not downstream phenotype model. ModelScope searched: only different embedding derivative, so exactHFfallback.",
-      "next": "Owner necessaryoldGPnormalizer180+30 and unique protectedunion1v2. Root independent prelockedspanveto after fulloriginals. Finalstate remote durable; no1.8GBdownload needed for CPU endpoint.",
-      "checkpoint": "48e1e131",
-      "evidence": "Same oldGP admission gives2266span targets, ModernBERT2265 aligned vsold2263. Raw2274 difference8 invalid HPO IDs explained before GPU. Train32max7492; F1max8371 requires17 windows with8190content+2special and512overlap,15/16docs whole.",
-      "engineering": "149112704modelparams,4FB/2Adam secondnonzero,136finiteupdatedtensors,547state tensorroundtrips,peak3.9855GB,discardstatecc522af2;983.559s conservativeformal estimate.",
-      "actual_formal": ".3GPU0 proc105eb184 driver1225370/child1225378,16:37:07.419540→16:39:57.392305/169.973s; actualrelease16:39:57.523624 4MiB/noapps. Finalstate1.7895GB/15798e36,fullACK0cc2c5b5/547tensors,raw1816/45f15834; all1313baseline scores675644B/fe9e07cb. Collect originals, do not rerun training."
-    },
     {
       "route": "patient_set_self_critical_training",
       "owner": "/root/next_method_readiness",
@@ -252,9 +247,44 @@
       "branch": "research/patient-set-risk",
       "worktree": "/workspace/patientphex-worktrees/research-patient-set-risk",
       "proposal_sha256": "f423d7478cd5075227ef407d25280383e375cfebe342d168292905024ef9d442",
-      "checkpoint": "e7cbad92",
+      "checkpoint": "cdb77c7e",
       "preoutput_amendment": "At least2 nonzero actual advantages, one nonempty-gold pair both valid and distinct concept F1; second may be actual validity difference. Original stricter proposal preserved. No patient/seed/cap replacement.",
-      "generation_config_delta": "ActualTF5.20.2 inheritedmin_p reproduced thenreset underlyingspecialIDs-onlydefaults; root narrowreviewb3700255, no newmath/gates/budget. Finalsourcef7c9f813/bound776b98e0,10filesactualdeployed."
+      "generation_config_delta": "ActualTF5.20.2 inheritedmin_p reproduced thenreset underlyingspecialIDs-onlydefaults; root narrowreviewb3700255, no newmath/gates/budget. Finalsourcef7c9f813/bound776b98e0,10filesactualdeployed.",
+      "owner_status": "Agent released slot, prepared only; noadmission/noGPU. Rootwake afterseed39actualrelease.",
+      "recovery": "/workspace/patientphex-worktrees/research-patient-set-risk/solutions/patient_set_risk/EXECUTION_HANDOFF.md"
+    },
+    {
+      "route": "long_context_relations",
+      "owner": "/root/document_relations",
+      "status": "CPU_SUPPLY_COMPLETE_ENGINEERING_PREPARATION",
+      "branch": "explore/long-context-relations (being created)",
+      "method": "FreshpublicBioClinical149M; wholeencoder context, spanmean→oldlogsumexpmentions→projectedblock32bilinear, no fullattention tensor extraction. All4495trainpairs727positive and87patients; nativewholecontext adds61positive/1994negative directinteractions comparedwith actualold512windows.",
+      "proposal": "30epochs/accum4=240Adam, encoder2e-5/head1e-4,warmup24,allpairs,no negative sampling, fixedcut0, B4 protectedunion唯一1v2; oldDocREnegative and jointarchitecturechange disclosed.",
+      "next": "Bounded180+30 realengineering .3GPU0,coordinate shortseedSap around17:01; formal cost gate notyetrun."
+    },
+    {
+      "route": "seq2seq_patient_set",
+      "owner": "/root/boundary_veto_control",
+      "status": "CPU_MODEL_AND_NATIVE_SP_READINESS",
+      "branch": "research/seq2seq-patient-set",
+      "candidate": "Originalgoogle/long-t5-tglobal-base247587456params/C4unsupervised/Apache2; fixedauthoritativeSentencePiece. Train87max9712/F139max10754 fits16k, all818targetatoms/5empty andtargetmax298 roundtrip.",
+      "limitations": "Publishedfast/SP33of126 IDs differ, not manually repaired;227nativeUNK(< or ~) ininputs disclosed,targets0UNK. Large originalconfig false-tied requires783175168 butpublishedsafetensorsheader750276096/missinglmhead, assetblockpending notloaded.",
+      "next": "Onebase model verifiedassets/probe plan; no weights/GPU/qualityyet. .100GPU0 available subjectSCSTnecessarySap priority."
+    },
+    {
+      "route": "quote_output_order",
+      "owner": "/root/sequence_recover_0518",
+      "status": "CPU_ONLY_SHUFFLE_CE_DEPRIORITIZED",
+      "branch": "research/quote-output-order",
+      "result": "67of87 multi-quote/801total. Twofixed permutations preserve451672input/11884targettokens, but originalnaturalorder87small samples and Vinyals2016 randomorder negative evidence; randomCE not true permutationinvariant objective. Oldinput/CIDjointreverse alreadynegative; no newGPU.",
+      "next": "Close boundedreadiness and inspect strictOOF newGPfeature possibility separately."
+    },
+    {
+      "route": "biomedical_gp_features",
+      "owner": "/root/sequence_recover_0518",
+      "status": "ANCESTRY_AND_COST_READINESS_ONLY",
+      "method": "OldBiomedGPfeatures alreadyF1positive/F0negative/4foldpoolednegative. NewBioClinicalencoder signal distinct; faithfulstrongLGB usestrain48 withtrain32 lowerOOF, notwholetrain32. Need fullcandidate scores notonlyold1313selected.",
+      "next": "Lock exact comparableF1 3x32OOF+1x48 targetcost and current23modelreuse before any fit. NoF1goldcutfitting or newGPU."
     }
   ]
 }

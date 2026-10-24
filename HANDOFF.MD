@@ -469,3 +469,9 @@ F0必要Sap的启动请求返回UNKNOWN；原namespace仅有启动意图，manag
 独立训练种子G首次入口把实验名写进原trainer要求的schema，0.121秒在载模型前失败。修正schema后，额外版本检查又把distribution的Torch `2.6.0` 与实际import的 `2.6.0+cu124` 当作不一致；真实TF/PEFT/tokenizers版本相同，不能把此例写成已证实的overlay冲突。
 
 **避免方法**：复用入口时保留其既定schema，以独立route_id标识实验；核实际import的模块路径/版本和既有环境证据，解释发行版本后缀，不凭新加的字符串相等门推断环境变更。断言前先保存观察值。两次工程失败均未训练；原无模型campaign关闭后，在真实CPU通过且旧剩余预算不足时另行事前固定新3000秒窗口，未延长运行中的训练。首个有效更新已核三族权重变化，完整质量尚待。来源见训练种子分支`solutions/training_seed_ensemble/evidence/first-update-runtime.json`及其原件169b8c6d。
+
+## H72：新建 GenerationConfig 仍可能继承模型的非默认采样参数
+
+**触发与影响**：实际 Transformers 5.20.2 `_prepare_generation_config` 会把调用方 config 中的 `None` 从 `model.generation_config` 补入；只新建 config 并设置 T=1/top_k=0/top_p=1，仍可能继承 `min_p`，不等于完整原始 categorical。SCST准备阶段用实际API与合成祖先min_p=.3复现，未加载模型/GPU，未发生真实错误采样。
+
+**避免与状态**：先保存原模型默认配置，再把underlying默认重置为仅原EOS/pad/bos的fresh config；记录并核实际prepared配置与processor列表。不要盲传该版本已不存在的`use_model_defaults=False`。本次f7c9f813修补及CPU API8b3a1fc4、root窄审b3700255通过；真实9B探针仍待运行，结论不外推其他版本。见[源码与接手入口](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/cdb77c7e/solutions/patient_set_risk/EXECUTION_HANDOFF.md)。
