@@ -1,0 +1,214 @@
+{
+  "schema": "supervised-sapbert-linker-candidate-readiness-v1",
+  "state": "UNEXECUTED_CANDIDATE_NO_GPU_AUTHORIZATION",
+  "created_utc": "2026-10-24T15:39:34.680551+00:00",
+  "base_commit": "ff7ad16777e3907ed3b4b4231794439017aa5bf8",
+  "scope": "No model/fit/new held gold/quality/remote/download. Full application only after explicit root execution authorization.",
+  "method": "Task-supervised shared SapBERT set-valued synonym marginal likelihood with refreshed public bank",
+  "model": {
+    "repo": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+    "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+    "parameters": 109482240,
+    "initializer_sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814",
+    "initializer_dtype": "FP16 released derivative values loaded FP32 for optimization",
+    "model_license": "Apache-2.0 per frozen publication metadata; code MIT",
+    "unused": "pooler unused in CLS output"
+  },
+  "train": {
+    "documents": 32,
+    "folds": [
+      "F2",
+      "F3"
+    ],
+    "unique_surface_queries": 1160,
+    "epochs": 3,
+    "batch_size": 16,
+    "updates_per_epoch": 73,
+    "total_updates": 219,
+    "tail_queries_per_epoch": 8,
+    "seed": 20261024,
+    "lr": 1e-05,
+    "weight_decay": 0.01,
+    "optimizer": "AdamW",
+    "warmup_updates": 11,
+    "schedule": "linear",
+    "clip_norm": 1.0,
+    "amp": "FP16 forward/FP32 parameters+GradScaler",
+    "temperature": 0.05,
+    "max_length": 32,
+    "objective_source": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/objective_contract.py",
+      "bytes": 2291,
+      "sha256": "4870ebf70233acb5dcd7b85d0148afde9f6d4ac3bbfe4633850dc5cb528e12f2"
+    },
+    "sampling": "Each unique normalized train surface once/epoch; aggregate all observed target IDs; average target losses, then query losses. NIL/NO excluded, not sampled as HPO negatives."
+  },
+  "candidates": {
+    "public_rows": 41099,
+    "concepts": 19119,
+    "pooling": "CLS_L2",
+    "training_aliases_in_public_bank": false,
+    "refresh": "before each of3 epochs and final application",
+    "train_retrieve_rows": 20,
+    "force_all_target_public_aliases": true,
+    "max_positive_aliases_observed": 26,
+    "negative_rule": "Candidate public ID set must be disjoint from all observed train IDs and same-word public IDs; other targets masked, never negatives."
+  },
+  "application": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.metrics.json",
+      "bytes": 13085,
+      "sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+    },
+    "baseline_score": 0.7286975364690524,
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "entities": 1313,
+    "eligible": 422,
+    "unique_query_surfaces": 303,
+    "protections": [
+      "NIL",
+      "compound old ID",
+      "unique public/train exact",
+      "ambiguous public/train exact"
+    ],
+    "change": "Only eligible single identifier value; keep all span/text/order/nonentity fields/relations; no new entity. Top1 full public bank; ambiguous row/nonfinite/same-span duplicate collision retains old identifier.",
+    "quality": "One complete frozen F1 prediction then1v2/old0; strict Score improvement required, all4 metrics+changed TP/FP disclosed; no standalone/linker-only scoring or threshold scan."
+  },
+  "cost": {
+    "native_tokenizer_pending": true,
+    "pure_wordpiece_shape_estimates": {
+      "train_queries": {
+        "count": 1160,
+        "tokens": 6158,
+        "maximum": 21,
+        "over32": 0
+      },
+      "public_bank": {
+        "count": 41099,
+        "tokens": 303446,
+        "maximum": 27,
+        "over32": 0
+      },
+      "eligible_queries": {
+        "count": 303,
+        "tokens": 1751,
+        "maximum": 13,
+        "over32": 0
+      }
+    },
+    "bank_refresh_forward_tokens": 1213784,
+    "max_training_sequences_per_batch": 752,
+    "parameter_gradient_adam_bytes_lower_bound": 1751715840,
+    "activation_memory": "UNMEASURED; longest candidates+existing Adam actual test required",
+    "new_persistent_free_bytes_min": 3000000000,
+    "training_seconds": "UNMEASURED; no fresh-GPU test authorized",
+    "historical_proxy": "Frozen entire dev workflow with42575 ontology/train labels15.077s, not a training time"
+  },
+  "resources": {
+    "train_rows": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-hard-negatives-v1/prepared-v1/train.jsonl",
+      "bytes": 4234306,
+      "sha256": "2d50135bafee44e833dced33a1d76ebe90d9380dc8571a96d05fba12f0dae01e"
+    },
+    "train32": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "public_names": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/prepared-v1/public-names.json",
+      "bytes": 968797,
+      "sha256": "f7a4052f2bf89511ec5d509b778aba687d22d90c9374b2b726680c35f12f7142"
+    },
+    "old_public_top8": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-public-top8-readiness-20261024/query-v1-collected/actual/results.json",
+      "bytes": 1885908,
+      "sha256": "277b65f6cc8ec4669d9ccf36e5402ded1ac4af3b9fcffb8ccdbd9a6b7936308b"
+    },
+    "strong_baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "vocab": {
+      "path": "/workspace/patientphex-runs/day1-20261023/semantic-neural/sapbert-fp16/vocab.txt",
+      "bytes": 226150,
+      "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    },
+    "strict_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    },
+    "public_bank_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/public_bank.py",
+      "bytes": 11566,
+      "sha256": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061"
+    },
+    "source": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/readiness.py",
+      "bytes": 7899,
+      "sha256": "72fc5d02db38950ae00e38df9d6e97a6be109d5533c35df113132b3c60514f56"
+    }
+  },
+  "ancestry": "New encoder/train aliases: F2+F3 only. Fixed baseline candidate/selector ancestors are train48 excluding entire F1; includes F0. Not a pure train32 pipeline and not F0-ready.",
+  "evidence": {
+    "supply": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/owner-v1/supply.json",
+      "bytes": 5257,
+      "sha256": "fae7bc7315411e1deccbb3d3bdc152a0e5b0052f97a46e0eb43aaa8f46130de1"
+    },
+    "history": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/owner-v1/history.json",
+      "bytes": 2361,
+      "sha256": "db8eac5766cefb46da7205f869bde4ffc4f629741ca45444b63f81ef0a46d0ea"
+    },
+    "math": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/owner-v1/objective-contract.json",
+      "bytes": 219,
+      "sha256": "c2de1c9ef60b84091c6d9b31499ebf33d3748b2b15e722340da7232b454b68e6"
+    }
+  },
+  "sources": {
+    "biosyn-readme.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/biosyn-readme.txt",
+      "bytes": 9409,
+      "sha256": "f072e14492f0f17a10e8af8e7af0fb3a31222ed8b87dab75e294808be1e8dcf0"
+    },
+    "sapbert-readme.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/sapbert-readme.txt",
+      "bytes": 6077,
+      "sha256": "2e038c6aab96bd242dc672783bb5f0b701aa759a5db1d53836370164b3b7028e"
+    },
+    "biosyn-paper.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/biosyn-paper.txt",
+      "bytes": 41724,
+      "sha256": "87c00915ab4c017ebe069dab5647aa0df519ff8cd774f4d30a929ed946682433"
+    },
+    "public-source-fetch.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/public-source-fetch.json",
+      "bytes": 1089,
+      "sha256": "7758ba65773a3663c825557800fe5b8fbfb5045187142e04999b74029ed87dcc"
+    }
+  },
+  "source_scope": "biosyn-paper.txt is cached ACL landing HTML+abstract, not full paper. Custom dense set-positive extension; not claimed exact BioSyn replication."
+}
