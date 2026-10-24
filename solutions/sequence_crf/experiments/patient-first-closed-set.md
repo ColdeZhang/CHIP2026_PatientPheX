@@ -128,3 +128,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 主线程已授权完整fresh2ep→持久epoch2→固定80→唯一F1，不再等待逐步许可。原23件正式payload已实际部署/逐SHA+compile通过，原archive92834857及deployment-intent原样保存。独立新HTTP/fsync合成合同ac4d5209实际0.466s完成11件输运、目标fsync/回读SHA/ACK及4类拒绝，沿用该证据不重复旧Range检查。按审查建议只为3控制器save补flush/file fsync/dir fsync与必要os import，实际函数落盘/拒绝覆盖通过；原源码/计划快照位于formal-preparation/before-controller-fsync，数值训练/推断/数据不变，新readiness d5dfa72f。远端只窄补3源+2plan，不重部署原数据。
 
 检索已给最终GPU释放：02:25:04.529616Z A800 GPU2 f516无进程/81156MiB，release856903f5，原camp无后继。尚未运行本路线实际A800 CPU/GPU；接下来CPU隐藏CUDA核124编码/原生后端、fresh资源与模型SHA后直接按既定3900+30启动，不把收到释放消息当本次GPU检查。
+
+
+02:27:12.289Z actual A800 CPU完成21.456s：TF5.20.2/PEFT0.21.2/Torch2.7.1+cu126，native modeling b4b17fe0及两个GDN binding原生、无FLA；hiddenCUDA未初始化、无权重load/forward。真实正式trainer.verify_sources_and_data/encode_all对124行400614/4694/max5556及combined8d69e592完全匹配；15个只读SHM模型文件均完整SHA。没有读F1数据/答案，两allocator env实际null。3源+2plan窄补后两计划全部21成员SHA精确，旧件远端独立快照；.100 fetcher部署完成SHA/compile。详见[实际入口](../evidence/round2/patient-first-formal-actual-entry.json)。下一操作是原授权fresh GPU核验与唯一训练start，不重复CPU或改变配方。
