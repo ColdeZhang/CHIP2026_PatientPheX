@@ -45,3 +45,5 @@ F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47
 - F0 唯一启动16:22:33在载模型前资源门失败：GPU2新PID46312/484MiB（target493MiB）；driver14768明确退出，无child/forward。原N/inference-F0-v1与H69意图保留，未重start/未碰外部PID；待root资源协调。F1补包203+1原成员正在.100持久部署。
 
 - F0资源恢复预锁：原A8000forward明确终态保留；同cd977持久ACK改.100GPU0，f0_a30/source-contract记录全部机械差异。CopyF0实际max9935/峰20.98GB，新10262多327tokens，root明确允许按余量做完整47有界尝试，不冒称exactshape覆盖；1800+30/启动300秒不变。F1最小补包已203+1实际服务器SHA/fsync/reopen，根唯一下载另记。
+
+- F0 A30实际16:28:43启动proc_bca573cc/driver2754362 child2754370；TERM16:58:43.887/KILL16:59:13.887，1800+30。只读watch见live-F0-A30。原47/known204/同cd977完整保持，备份/conditional519 CPU已分离；不得把full64标签用于本F0。
