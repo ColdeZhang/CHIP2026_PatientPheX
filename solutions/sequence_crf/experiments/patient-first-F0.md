@@ -109,3 +109,5 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 新数据保存顺序为generation IDs/真实末EOS/cap/耗时先file+目录链fsync、原子排他发布，随后decode完整文本并持久raw，再调用有限codec；异常不会丢已取得的唯一生成IDs/raw。codec60731e12在原23缓存全部与strict正集合/observed exact，27项新边界通过；合法非空PID子集partial，{}或任何非法row整体abstain，不补遗漏键。纯CPU0.00572秒，无gold/新模型/旧25或14/15重跑。原子保存新小fixture0.00352秒实际fsync后模拟codec异常，raw保留、重复写拒绝；隐藏CUDA导入新module仅Python，不导入Torch/加载模型。原strict失败独审a09c0e2c PASS，保持无分数。恢复endpoint另源准备，两完整pred先共冻再唯一双v2政策已在质量前freeze；此处尚未启动新GPU。
 
 恢复12件自有部署已actual SHA/compile通过（archive aad9d871），原prompt/audit/model-manifest与23缓存/fingerprint均同机copy逐SHA；04:17:46 A100真实Python3.10.21隐藏CUDA导入新runner/codec/raw_store通过，Torch未导入、无权重或forward，源52c9ccac；实际roundtrip .499秒。不重新跑旧tokenizer或训练合同。
+
+恢复source/实际CPU已push+lsremote a74ef8a39c2e。fresh空卡与同epoch2身份后，唯一proc_d19bf1ac-96f4-49a4-b65c-56aec88322c2/PID100444于04:18:08.457145Z启动35新生成，独立600+30，approx TERM04:28:08.457/KILL04:28:38.457；以driver实际为准。23旧raw精确复用，尚未新F0评分，原strict判断不改写。
