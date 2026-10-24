@@ -1,0 +1,195 @@
+{
+  "schema": "quote-set-completion261-native-and-state-CPU-v2",
+  "phase": "cpu",
+  "cpu_authorized": true,
+  "authorization": "Root fixed261 stop-view nativeCPU120+5 before warm d52 actual pressure",
+  "budget_seconds": 120,
+  "grace_seconds": 5,
+  "train_rows": 261,
+  "held_rows": 0,
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual",
+  "storage_parent": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "model_source_manifest": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/model-source-manifest.json",
+  "train": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train.jsonl",
+  "held_input": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/held.input.jsonl",
+  "train_audit": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train-audit.json",
+  "held_audit": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/held-audit.json",
+  "argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/native_cpu.py",
+    "--plan",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/cpu-plan.json",
+    "--output",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/actual"
+  ],
+  "old_indexed_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/grounded-engineering-formal-source-review/review.json",
+    "bytes": 17904,
+    "sha256": "9e6a683f2cb6a45707b9f4f1126b27949bdaf8c462026dea0daaca8ad83c01e8"
+  },
+  "local_actual_targets": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/train-completion.jsonl",
+    "bytes": 11150937,
+    "sha256": "72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623"
+  },
+  "local_token_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/manifest.json",
+    "bytes": 4736,
+    "sha256": "d078cb8ff1098e623b79790e384ee5023b9942ee370a15ba4051eedef47dc08c"
+  },
+  "reuse_packages": [],
+  "runtime_difference": "Same A800Torch2.7.1 native; originald52 trained A1002.6.0, no cross-host bitwise claim",
+  "mathematical_loss_contract_reexecuted": false,
+  "pretrained_model_loaded": false,
+  "actual_CUDA_state_restore_exercised": false,
+  "payload_sources": {
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/native_cpu.py",
+      "bytes": 10089,
+      "sha256": "07ed4e29bd17f395bec07d3809c36c9f6db4295c54732d3d7bb9e8e1746f6090"
+    },
+    "cpu_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/cpu_driver.py",
+      "bytes": 3978,
+      "sha256": "dfe5d135aa0df826addf462447a44e247e97eaf45b9b81072d19b9693bea64a5"
+    },
+    "runtime_contract.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/runtime_contract.py",
+      "bytes": 7482,
+      "sha256": "9b01f386f8ab4c7acecdc3c968fbd307db8eb48fa5d1e32deb55c8f88ce0d8ef"
+    },
+    "cpu_state_interface.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/cpu_state_interface.py",
+      "bytes": 4437,
+      "sha256": "d66789843361e8640d531bd12685d343f2bb68cb970995a5827fd1d58b56bf96"
+    },
+    "native_tokenizer.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/native_tokenizer.py",
+      "bytes": 3831,
+      "sha256": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026"
+    },
+    "schema.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "indexed_head.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/runtime/indexed_head.py",
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "model-source-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "train.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/train-completion.jsonl",
+      "bytes": 11150937,
+      "sha256": "72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623"
+    },
+    "held.input.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/runtime-preparation-v2/held.input.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "train-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/runtime-preparation-v2/train-audit.json",
+      "bytes": 198290,
+      "sha256": "60734a781454d70076b2d73bfc5ace01ba0abf48e85c04a62027c6b189a98453"
+    },
+    "held-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/runtime-preparation-v2/held-audit.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/native_cpu.py": {
+      "bytes": 10089,
+      "sha256": "07ed4e29bd17f395bec07d3809c36c9f6db4295c54732d3d7bb9e8e1746f6090"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/cpu_driver.py": {
+      "bytes": 3978,
+      "sha256": "dfe5d135aa0df826addf462447a44e247e97eaf45b9b81072d19b9693bea64a5"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/runtime_contract.py": {
+      "bytes": 7482,
+      "sha256": "9b01f386f8ab4c7acecdc3c968fbd307db8eb48fa5d1e32deb55c8f88ce0d8ef"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/cpu_state_interface.py": {
+      "bytes": 4437,
+      "sha256": "d66789843361e8640d531bd12685d343f2bb68cb970995a5827fd1d58b56bf96"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/native_tokenizer.py": {
+      "bytes": 3831,
+      "sha256": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/schema.py": {
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/indexed_head.py": {
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train.jsonl": {
+      "bytes": 11150937,
+      "sha256": "72cb2aca0be7ff77468bcf872b170d507c5be65e93c693df0e63e86d53336623"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/held.input.jsonl": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/train-audit.json": {
+      "bytes": 198290,
+      "sha256": "60734a781454d70076b2d73bfc5ace01ba0abf48e85c04a62027c6b189a98453"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/quote-set-completion-v2/native-cpu-v1/held-audit.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "operations_source": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/cpu_remote.py",
+    "bytes": 18779,
+    "sha256": "3cbf64cfefade0d8a62bec316755c480fe9a79a37bd86f3194ffb69b9ce6c98c"
+  },
+  "collection_source": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/runtime_cpu/cpu_collect.py",
+    "bytes": 15323,
+    "sha256": "62ff7c8009f24d712e9fad5d4be1483e517651dd63136ee03908028bce80e7da"
+  },
+  "input_sources": {
+    "local_token_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/manifest.json",
+      "bytes": 4736,
+      "sha256": "d078cb8ff1098e623b79790e384ee5023b9942ee370a15ba4051eedef47dc08c"
+    },
+    "old_indexed_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/grounded-engineering-formal-source-review/review.json",
+      "bytes": 17904,
+      "sha256": "9e6a683f2cb6a45707b9f4f1126b27949bdaf8c462026dea0daaca8ad83c01e8"
+    }
+  }
+}
