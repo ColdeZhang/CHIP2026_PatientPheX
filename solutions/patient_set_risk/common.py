@@ -12,10 +12,14 @@ def ref(path):
     p=Path(path).resolve();return dict(path=str(p),bytes=p.stat().st_size,sha256=sha(p))
 def checked(item):
     p=Path(item['path']);assert p.stat().st_size==item['bytes'] and sha(p)==item['sha256'],str(p);return p
+def json_default(value):
+    # Exact policy of the verified original G raw_store.json_default (d52bb0c1).
+    if isinstance(value,(set,frozenset)):return sorted(value,key=repr)
+    raise TypeError('Unsupported evidence type: '+type(value).__name__)
 def atomic(path,value):
     p=Path(path);tmp=p.with_suffix(p.suffix+'.tmp')
     with tmp.open('w') as f:
-        json.dump(value,f,ensure_ascii=False,indent=2,allow_nan=False);f.write('\n');f.flush();os.fsync(f.fileno())
+        json.dump(value,f,ensure_ascii=False,indent=2,allow_nan=False,default=json_default);f.write('\n');f.flush();os.fsync(f.fileno())
     os.replace(tmp,p);fd=os.open(p.parent,os.O_RDONLY);os.fsync(fd);os.close(fd);return ref(p)
 def exclusive(path,value):
     p=Path(path)

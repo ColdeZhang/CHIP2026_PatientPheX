@@ -25,7 +25,8 @@ def main():
         adapter_config=dict(path=str(Path(h['adapter'])/'adapter_config.json'),bytes=1341,sha256='a9e753c405c1a0b0f3811d54224437455629c9cd96d647cfe5f6cf8222dfd307'),
         fixed=dict(indices=[76,44,83,19],max_new_tokens=1600,seed=20261024,shared_seconds=1800,CE_weight=1.,RL_weight=1.,C=11884/87),
         original_native_encoded=native,original_train87=train,no_held_material_in_payload=True,no_formal_or_quality_authorized=True,
-        normalizer_manifest_sha256=ref(w/'normalization-source-manifest.json')['sha256'],orchestration_source=ref(w/'remote.py'),reward_bridge_source=ref(w/'reward_bridge.py'))
+        normalizer_manifest_sha256=ref(w/'normalization-source-manifest.json')['sha256'],orchestration_source=ref(w/'remote.py'),reward_bridge_source=ref(w/'reward_bridge.py'),
+        recovery_authorization=h.get('recovery_authorization'))
     atomic(out/'execution.json',plan)
     members={p.name:ref(p) for p in out.iterdir() if p.is_file()}
     with zipfile.ZipFile(out/'deployment.zip','x',compression=zipfile.ZIP_DEFLATED) as z:

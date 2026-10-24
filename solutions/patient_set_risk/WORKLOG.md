@@ -62,3 +62,11 @@ v4新namespace的10件部署完整fsync/reopen通过，原v3部署完全保留�
 root唤醒后沿776b/f7c9同计划恢复。先核ontology seed39实际17:04:46.618734释放.12GPU2（ec7da058），再fresh资源门；唯一proc_cc308f8f、driver85653/child85669于17:09:49.159650启动。原硬TERM **17:39:49.159593 UTC**，KILL **17:40:19.159593 UTC**，不重置。
 
 当前没有formal/held/quality。首观察尚在CPU/加载；精确源/意图/时钟见 `evidence/actual-start.json`。必要Sap前序更新为ontology206实际17:09:44.596978释放的fee6ee8f，使用外部 `Sap100-seed-prior-release.json`；原sequence receipt保留，不覆盖。后续reward_bridge应传这个最新release路径。
+
+## 2026-10-24 17:10 首次工程失败及窄恢复
+
+原driver17:10:58.188 rc1/69.028669秒，actual peak17.91GB基座已装载；`pilot.py:66 -> common.py:18` 在保存loading-info中的set时JSON TypeError，尚未载父LoRA、0forward/0生成/0FB/0Adam。原G raw_store有集合JSON支持，我迁移小写入器时漏了该策略。完整21容器/20payload已roundtrip全SHA，原partial loading.json.tmp及trace保留。
+
+只复用原G `json_default`（set/frozenset→sorted(key=repr)，未知类型仍TypeError），local AST逐节点等同原G；allow_nan=False和原missing/mismatch门不变。本地类型/拒绝合同通过。actual5.20.2 tiny随机CPU checkpoint类型合同0forward/无预训练下载，第一次源码write UNKNOWN已完整SHA只读恢复；后续50+5 CPU命令和一次只读目录均UNKNOWN，不重执行，约17:19统一原路径只读恢复。
+
+root明确原剩余窗不足1795保守代理，禁止硬挤或延长运行中旧窗；批准CPU+源/计划push后，在**独立新namespace新1800+30**恢复。原任务真实终态和17:39:49旧截止不改，四患者/seed/采样/供给门/损失均不变。此刻新GPU未启动，`evidence/loading-metadata-failure.json`给不可变原证据。
