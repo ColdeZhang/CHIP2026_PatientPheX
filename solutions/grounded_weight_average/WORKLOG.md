@@ -15,7 +15,7 @@
 
 F1 39原输入1409.885秒、35EOS/4cap；174 CPU查询7.034秒。独审3a53a536已通过，480685B小包实际服务器写入与回读核验db46d892，入口 `evidence/terminal-pointer.json`。F0 47原输入1220.816秒、42EOS/5cap，15:15:01Z真实释放GPU2；同89 CPU查询7.037秒；完整16doc/47patient/947实体/B343保护。F0收件104必要文件、94raw/ID字节等价重建；离线后只读CPU分块取回原responses（64dbbb31），未重新生成。
 
-结果 `evidence/F0-result.json`；F0 freeze26c1d92a、预测9c3aa01b已13dbab90先推送再唯一评分。当前仅收尾统一小备份/终审，仓外 `R/research/grounded-weight-average-v1/{F1,F0}`。原有GPU规范化提议和未使用尾部授权保持未执行；无其他质量臂或官方操作。
+结果 `evidence/F0-result.json`；F0 freeze26c1d92a、预测9c3aa01b已13dbab90先推送再唯一评分。F0 332412B增量包已.100实际写入/fsync/重开并3次读取恢复全部97成员（74cd3088），完整统一入口见 `evidence/F0-terminal-pointer.json`，已交主线程与validation集中增量审；本线无运行作业，仓外 `R/research/grounded-weight-average-v1/{F1,F0}`。原有GPU规范化提议和未使用尾部授权保持未执行；无其他质量臂或官方操作。
 
 ## 准备阶段记录（授权前历史）
 
