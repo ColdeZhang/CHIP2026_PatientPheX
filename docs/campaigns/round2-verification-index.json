@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-24T03:53:37.936437+00:00",
+  "generated_utc": "2026-10-24T04:31:33.481333+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -20713,25 +20713,2055 @@
       "includes_preexisting_quality_terminal": false,
       "new_quality_computed_in_index_build": false,
       "historical_related_entry_ids": []
+    },
+    {
+      "id": "R1-correct-published-first-and-fixed-codec-longest-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/review.json",
+        "bytes": 9286,
+        "sha256": "09612e0f7c0b4f04c234b87ecbce6108c734c69eea29d790bae80a1612fd982a"
+      },
+      "source_report_path": "validation/deepseek-r1-codec-longest-review/review.json",
+      "completed_review_scope": "PASS_FIXED_CODEC_CPU_AND_ACTUAL_LONGEST_FORMAT_COST_NOT_TASK_QUALITY",
+      "scope": "正确发布raw/generic及scale1首条原strict格式失败，后继有限codec缓存首条与唯一fresh最长工程终点合一；保留前后策略和原始输出。",
+      "conclusion": "正确发布首条746tokens自然EOS但原strict/sparse因JSON fence失败，36.812秒且按原政策未跑最长；新有限codec仅整层fence与精确整型P-ID别名，缓存首条8CID完整。新最长5689输入→2197输出，原strict/sparse/normalized均通过，wrapper92.494秒、真实8190735360/399参数与scale1核验并释放。两固定样本格式/成本成立，无赛事质量。",
+      "limitations": [
+        "原strict失败与旧AutoLlama接口记录不改写；缓存重解析不是重新生成。",
+        "不得推断全部80可靠性或关系正确率，F1质量另pending。",
+        "实际GPU rotary对同设备参考为容差内相等，不冒称GPU/CPU或跨引擎字节/完整logit等价。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/actual-terminal-checks.json",
+          "bytes": 1028,
+          "sha256": "648d2aff324eb46581770299f7bd2d9a3d98f3c74952d72a5cd641ed437921fc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/checks.json",
+          "bytes": 6413,
+          "sha256": "b0ba437828f5c30d9c7b6a9c704e4263edf300995e5993e9cc1408e23536254d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshot-manifest.json",
+          "bytes": 9074,
+          "sha256": "55e1bfa32414145ac08fc1e62c6aa24efe2555ce33a0e2e6b5879046e9916c9e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/actual-cpu-result.json",
+          "bytes": 1832,
+          "sha256": "9251c88609cf77fbda687d484905bb7a8962a011917e2290f58fe6f79cff6eeb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/check_existing_first_cpu.py",
+          "bytes": 2435,
+          "sha256": "eb530b5dbce00694c1c4918c26acacc1a7b6c5a6bc233ddb391f00ed973050f4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/codec-plan.json",
+          "bytes": 1491,
+          "sha256": "4d4ece9e325260e5321d2c52ea344cdc35fc8e37212cc1b18dd413330d77aa10"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/cpu-execution-intent.json",
+          "bytes": 1166,
+          "sha256": "ef263b63e17b9ea452affad3174b203f98be7560b898db4ab4c1a76c05b109d8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/cpu-intent.json",
+          "bytes": 493,
+          "sha256": "7a7325cddf21cc45a56ae564e61f3a44db5bf35fe4fbb7cc9229b3032e46f4b1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/cpu-tool.json",
+          "bytes": 3749,
+          "sha256": "31f3584e97ce9ff629a0d37f889b149645259f7790faf9dcb196ccf7e9f3f996"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/actual-prestart-check.json",
+          "bytes": 557,
+          "sha256": "8b68b172b5c8293004bf101a92f87151ea4b2d2d2989529ce2c92a4c876e93f3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/launch_probe.diff",
+          "bytes": 1417,
+          "sha256": "fee33a4edca50da57a0c5ef241f201b4090d11b2ee540bb7d4ef355272bb9dd1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/launch_probe.py",
+          "bytes": 4117,
+          "sha256": "00e3a2583f61d459bcd1bfa162ad52ec5a56ee617b1f230e617a0bf0c1564834"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/normalized_final.py",
+          "bytes": 4465,
+          "sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/plan.json",
+          "bytes": 6524,
+          "sha256": "d6f6bc5e3b84fc41c73d060f3e9dca8df01959e9ffabad51ba870cbede3c3604"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/run_probe.diff",
+          "bytes": 6761,
+          "sha256": "bf551718ab8832a5f12e3fae76719a94b27ef8e573c7829674f7cd61cac760bb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/run_probe.py",
+          "bytes": 18805,
+          "sha256": "a737f47e818a3eff8e5b9eea26eb3f13538cc0077b8319b1c12fc21e1b827d67"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/source-check.json",
+          "bytes": 768,
+          "sha256": "82a3a8a7456d905f47c0b2af4160e84176a7382eef3a001bde61c485715cf1bb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/source-deploy-check.json",
+          "bytes": 1353,
+          "sha256": "7a1f3a17d2ccf1a27147424e63234812e2ada527ade672c66be0cc06dc339264"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/sparse_final.py",
+          "bytes": 2372,
+          "sha256": "caf079e471450a5d873c7a2409ff457bf8f1c01f08e44867d7d10291898552d5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/start_once.py",
+          "bytes": 3187,
+          "sha256": "bcad2c666c1de9e419c315716874ed4c85c1b6737e806756487fb31b340237f2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/run_cpu_once.py",
+          "bytes": 2437,
+          "sha256": "98d76314971ac2be8e908c8a834cbd96144ced673b5318973d59eb7d00f8a6ba"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshot-manifest.json",
+          "bytes": 14673,
+          "sha256": "138ec2aaa1d4674d9806547637d59cef5797f257eb128dc0318d1db9f65a8e64"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/job.json",
+          "bytes": 860,
+          "sha256": "4b6f21f262e014f14357078eceda839573ff3d07b81f272140457fc0fc56bae4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/collection-manifest.json",
+          "bytes": 1481,
+          "sha256": "4d46d97df9302fc86a392b90a0e8b66003f5dee246851f831681697cd9a9a291"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/fresh-GPU1.json",
+          "bytes": 203,
+          "sha256": "3efc3a6d7e846bdd121c24d34162a9095a0b23e48ef4a4e87fce63a8dbd84bee"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/terminal/progress.json",
+          "bytes": 7080,
+          "sha256": "f39c080f87268436c10e6b10af36eb5719e3d0133dc4be60f617e82af8491ff2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/terminal/result.json",
+          "bytes": 7579,
+          "sha256": "2b39ceaeb30b5009f5924019d084da6c04dc68a89724b352533ef4c5ae3e7635"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/wrapper-result.json",
+          "bytes": 1871,
+          "sha256": "616b13407a37772d758da3a1c6e8900bec7259ce6cfdbdc8571a6c79444063bf"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/wrapper-running.json",
+          "bytes": 1212,
+          "sha256": "abed13c899c6fdc4b5523b7475f1f7b738df2db9a2eec965701f00e6093d473f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/recovered/wrapper-started.json",
+          "bytes": 376,
+          "sha256": "9350b05543df35209399f0be15d2eed75720ee02be09f818c6efd18cc3fa64a1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/start-intent.json",
+          "bytes": 937,
+          "sha256": "2985a973d13f443727aca515f8fe2f8b24cd622b286450c7d1cdafe419afa5a6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/summarize_terminal.py",
+          "bytes": 7389,
+          "sha256": "e502db303ee563769337c3b205b5bc9fe10d9198d86a29cc6f173280a400d02e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/gpu/terminal-summary.json",
+          "bytes": 7177,
+          "sha256": "459f5c7ccdf4a344b36a4a68cee7112dce99015c35cc889b604b7a532a0ae2fb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/terminal-snapshots/terminal-manifest.json",
+          "bytes": 10948,
+          "sha256": "02986fde63eeafeb430105779ddf57782ec4b2843945b58008a62865c33d3b23"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/CPU-checks.json",
+          "bytes": 2966,
+          "sha256": "cc35732bb37d6c8b9f4764756695253cbdc5466e81ed67b28e9ab0693908fe25"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshot-manifest.json",
+          "bytes": 6055,
+          "sha256": "4cf64ac1313b4f240dd8342437bb64c4727105c25e9fe4c36d7eeee9b39fe8d6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/actual-result.json",
+          "bytes": 6854,
+          "sha256": "d0aace8e9af032550dff4129ca256602f400a16a68aee8a8dfc414126970668d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/actual-tool.json",
+          "bytes": 974,
+          "sha256": "d64c1424a4c9696039ba4beaf81fb6f7bc1971284f29975e6088a3dee7c1407d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/execution-intent.json",
+          "bytes": 1501,
+          "sha256": "009b8c8e6c420de0747005fe79e685fe2419f4fc6f0125122a4bc2c4a9cd314b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/intent.json",
+          "bytes": 313,
+          "sha256": "6969906988ba5b8f9c5f28837b90d43e7167ff9dcc51c24eef53375bc8507e32"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/plan.json",
+          "bytes": 2349,
+          "sha256": "a1d3e7bf5f9b4472c4a32a2b2cab2feb3308b294df19421c27df4af718887680"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/plan.json.upload.json",
+          "bytes": 490,
+          "sha256": "934ea1cd9b4b25f657df397080b4fde604cedaf802ef7f14f88699d10fead19e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/prepare_cpu.py",
+          "bytes": 9610,
+          "sha256": "c6314de1a90ebd804214db8c173ba15f2240e0fe0e386e34fc02a91defac3345"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/prepare_cpu.py.upload.json",
+          "bytes": 500,
+          "sha256": "a8aecee1aa13d601d987491e4ff91e79082b67e29916827848228fd09b41bc6e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/recovered/all80-input-audit.json",
+          "bytes": 47614,
+          "sha256": "36003a4e5464fbf75325a1af8fca4370d1363f2671dd10dc9a5757cdaa557229"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/recovered/derived-config.json",
+          "bytes": 889,
+          "sha256": "95fb72c1f55c9e23c94b961087f468a445b4474b7473bf242b79a9e6480b284c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/recovered/effective-config.json",
+          "bytes": 2185,
+          "sha256": "903e6c3592d511c1f324b9d1511f3ef9c43c28552caaaae25d86ad065fa05b2c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/cpu-snapshots/run_remote_once.py",
+          "bytes": 3192,
+          "sha256": "faa2db6b64db5b83033f27265aedf880e5d2c38d9f3d3cdb8ca11b7ad2537a9e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/checks.json",
+          "bytes": 6563,
+          "sha256": "02ea5e2753be987d00a78b4e9c7b678e9a762bfe2f98034bbb5822b6f9505eff"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshot-manifest.json",
+          "bytes": 6330,
+          "sha256": "181da53e0c9b6ff1ddbd354e76e5d9ecc2c27cc28f5f6ec7a55eb6fa75561dbc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/actual-prestart-check.json",
+          "bytes": 557,
+          "sha256": "cce8ebe3e52eb252b72b37faafcf7c8e93c704205a11846a02829217e3a6f497"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/launch_probe.diff",
+          "bytes": 1394,
+          "sha256": "ce6f5bd02edc4cabf29738098d3c7a4b5ace6a865472163e03e2bc1a1e9dece8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/launch_probe.py",
+          "bytes": 4117,
+          "sha256": "e69cb60343c459def09bdf09a754da473bed2ff7adfb131d2014a3eae5b15506"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/plan.json",
+          "bytes": 5872,
+          "sha256": "cf88943c8421a9b7d4b0f3085f56a694f59f7e81ff1daa2a5a767b63d48a2c40"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/run_probe.diff",
+          "bytes": 10248,
+          "sha256": "6f5456f7268c949a1cb8e63762c739975181ead76a6768113bcd9da71ddf9b3d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/run_probe.py",
+          "bytes": 17715,
+          "sha256": "37304f262f0c4d1c8e9b3638ddb2f6ce2c54d846a913a3fc94efbbfad028589c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/source-check.json",
+          "bytes": 698,
+          "sha256": "88594d2f8a6f32ce270f9d32650b955d7763c8cf991ef593095800599553d59a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/source-deploy-check.json",
+          "bytes": 1147,
+          "sha256": "7e07017afab52e353f58cd2ad91298c345e75b228d8f6f8a5491df0c23bdcbb4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/snapshots/start_once.py",
+          "bytes": 3151,
+          "sha256": "dd2853272979a567167feae1b12f31cf5d779275d0eaf5a7b5481abe2f726e09"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-checks.json",
+          "bytes": 5482,
+          "sha256": "b9e680e971c066370aa01d0f80b90446b559cd6cd687ef4fb187c35402f41999"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshot-manifest.json",
+          "bytes": 7254,
+          "sha256": "7a43f921607554bc96a3f20b909e5d5eb4b2ecac2aa24550ecc39a74c67554c6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/job.json",
+          "bytes": 860,
+          "sha256": "6e4cd1d5f9e8a0e7d14f3d8c087c48fbb42f4078e6f2f066b31a5bc00a93d0f0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/collection-manifest.json",
+          "bytes": 1480,
+          "sha256": "2148017ad5aefca209d853c35b06a0688d6a3114cb558b9543e15cc25be08455"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/fresh-GPU1.json",
+          "bytes": 203,
+          "sha256": "ac01930431677d234ccae08e6f07b4c9566bb96f9018613ce1a65d97eb187b0a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/terminal/progress.json",
+          "bytes": 6837,
+          "sha256": "876e4ea1e2ecd06ce7e09f46c0a58a7ec4d0a2136f39d5d18c3a68ef9c01866d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/terminal/result.json",
+          "bytes": 7393,
+          "sha256": "d53e997b50d5532f53bd8c9c66deeede902489e56d2cd9b905b31f2e8d0636c5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/wrapper-result.json",
+          "bytes": 1832,
+          "sha256": "2c10ff1fc693b604905f692666440f524722cd6a89db292a02d170835b381517"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/wrapper-running.json",
+          "bytes": 1178,
+          "sha256": "672fb4953e2c32d6ff440419a6052c089a885bf53d48e2cfbd31b7da1f7e4b39"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/recovered/wrapper-started.json",
+          "bytes": 376,
+          "sha256": "7fa6edfa3365fe35858f665761d06da4bfac422a3753af92c0e6df25376940ad"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/start-intent.json",
+          "bytes": 920,
+          "sha256": "5feb971e6684301bfccdb6ad0e98f6e07492328c7266fb4e8e7d12864273fb35"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/summarize_terminal.py",
+          "bytes": 5920,
+          "sha256": "a73095a7ccc68e260b15f23c98ca02d0ae7a53f19b9a670e94b7c94c4f13c176"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/gpu/terminal-summary.json",
+          "bytes": 6100,
+          "sha256": "335049a747ee7115fec2f4bd08e357ed499fe499f445715ca26077bcc4a2c4d5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/delegated-gpu-entry/terminal-snapshots/terminal-manifest.json",
+          "bytes": 11849,
+          "sha256": "9201f194818ac3201b87f9f9a209f87c852efe4c38bef6d3aeff071889661f71"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-published-interface-review/review.json",
+          "bytes": 10284,
+          "sha256": "6c8e929380a19ddebbcdb3fd37f41a4b6617ba73af4db31b23bd570a1cf070ac"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/batch-manifest.json",
+          "bytes": 207656,
+          "sha256": "309249d0c12896c520ca45c777f56a4b68a13c4323a7c12bab82a352e2a3ed83"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/source-aliases.json",
+          "bytes": 225999,
+          "sha256": "fb11511d470a72bbd16cb005f7238fe3b70ab7f74a52c63552cd4932a0529e1a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/excluded-artifacts.json",
+          "bytes": 8772,
+          "sha256": "3c2374fea8efeab6ec9ba51847d918283bf163888e55623c680a40825f615424"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": [
+        "R1-assets-native-format-cost-and-tokenizer-interface-scope-correction"
+      ]
+    },
+    {
+      "id": "R1-fixed-full80-two-cache-seventyeight-fresh-entry",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/review.json",
+        "bytes": 10727,
+        "sha256": "b3670a8829c4d401651fa908b09be185d6596fe5b5fd71f6a2cca3bdafa73cd0"
+      },
+      "source_report_path": "validation/deepseek-r1-full80-entry-review/review.json",
+      "completed_review_scope": "PASS_INCREMENTAL_FULL80_ENTRY_AND_FIXED_TWO_ENDPOINT_SOURCE_NOT_TERMINAL_QUALITY",
+      "scope": "原80消息/587doc-concepts/1557pairs输入、2缓存+78逐行freshseed、10800+TERM30与固定R1/oldSFT32并集双终点源码入口；尚非完整质量终点。",
+      "conclusion": "CPU输入合同0.084秒绑定249937publishedtokens与两个原缓存，患者及3个非HP7 literal概念原样。完整80、逐rowcanonical/源/结束状态/释放核齐后，两预测共同freeze才各一次v2；旧指标复用。当前只索引入口与H50 canonical validator导入窄修，不宣称80已完成或分数。",
+      "limitations": [
+        "健康原作业先parse后保存的未知异常缺口已披露并保留原源码；若实际异常则工程partial，不评不完整80。",
+        "fixed4096单行截断/invalid整行弃答，缺CID不补答案；无新fallback/扫描。",
+        "实际F1质量及F0后继不在本入口内。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshot-manifest.json",
+          "bytes": 9615,
+          "sha256": "2968c85b5e9fa3021dd105cb218b2747613bf3d8cef7c387d96b68b3fc4a1cd1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/actual-input-contract-tool.json",
+          "bytes": 1873,
+          "sha256": "463a4fea5c74db0bce6a5539ae73958de276e78c598d65d399b3e44e7b0f754f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/actual-input-contract.json",
+          "bytes": 1150,
+          "sha256": "6cabd12ae3049b37a686713ee4cbb9e4358840e26d10702f399342c7421e5a0b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/actual-prestart-check.json",
+          "bytes": 527,
+          "sha256": "a94fea29c4229754dbf4fbd73f6943c10419f41c67c9857e4efcc85efbc1899f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/bind_completed_evaluation.py",
+          "bytes": 1420,
+          "sha256": "814aae51a6f08265291c59f9b83e702176318d54acaa650baa7bf8ef5400b949"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/collect_terminal.py",
+          "bytes": 3818,
+          "sha256": "7588f9e6e6812ab927dc4d08a99e76bb955ed93f0f3763a970d2c7da19ce6eef"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/deployment-source-check.json",
+          "bytes": 1795,
+          "sha256": "bb70f30b70c9da9854b095f9d071fe20637c9eb339c9a0246731f34e3398b3b4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/entry-manifest.json",
+          "bytes": 7520,
+          "sha256": "f58d73777ad056e84248170972ac2bf75e8863298bccbc6b88d34cac48155b82"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/evaluate_full80.py",
+          "bytes": 35167,
+          "sha256": "4fbc58db78de352a4a8c473b7df384d4ce1a0324b15a2467e4c2dfe51a9ee522"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/evaluation-import-revision.json",
+          "bytes": 866,
+          "sha256": "fb5d0b3b9cf3203f3760cec5be9b5b994e81f8483a519494859ba9d838eefbcb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/evaluation-synthetic-check.json",
+          "bytes": 612,
+          "sha256": "655cdf75727a3df594ebe019f123acf55c8c5ff6ddafe5de22fac194cc1d0284"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/evaluation-template.json",
+          "bytes": 5854,
+          "sha256": "aefe8f2e3e5d6416c65f2861204cc01e4433e0fc0cca58707395aeab074fab10"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/full80_contract.py",
+          "bytes": 6433,
+          "sha256": "faecb8b91ba925eb656fd6c025b0b14971c4723aa476c4a67ff2bbb213e90107"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/infer_full80.py",
+          "bytes": 19179,
+          "sha256": "f1c57dd75833d8df278a4d3da3e75d27bea3184e4e28dbd77f1f23073d5e4828"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/input-census-independent.json",
+          "bytes": 37292,
+          "sha256": "c95fe48b5e79ccb8ad31ab418c0a95c61f3e3741658c8561b25f66ef63ef6a6d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/job.json",
+          "bytes": 862,
+          "sha256": "3e5d44dc2c96df04b3543ea0838aa6510da075969503864191ea741b19da0e5d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/launch_full80.py",
+          "bytes": 4240,
+          "sha256": "911fad0a138132d3bb4f1675c73f835c8aa7f934c9e2755618a350872ac7e32e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/monitor-latest/fresh-GPU1.json",
+          "bytes": 203,
+          "sha256": "a71073b268220a78b8cbbf4c8a3a335f139b795c0551c1de8b6771866e62c823"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/monitor-latest/wrapper-running.json",
+          "bytes": 1177,
+          "sha256": "0ea6e27187d8da4b07f2e7612bc036032298b9eea8f5dc816d527254d1b97f20"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/monitor_original.py",
+          "bytes": 365,
+          "sha256": "8fbed6546e395483fcef542a3eb30101e034d573648385f696ec3de2a2db4d17"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/normalized_final.py",
+          "bytes": 4465,
+          "sha256": "9c7cd604cae230f8a77bf0be3fd7edf2a3893e35c584de38edf8724c11c43efe"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/plan.json",
+          "bytes": 11631,
+          "sha256": "4a88bd33caf5ccdeb9ef3d27646437ad58719b5eadd23aee37024e18856b8f06"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/poll_original.py",
+          "bytes": 3148,
+          "sha256": "7797a9843f1a876182e5e02d89b1c9044e40dbd5212429711658180d7346eb28"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-codec-longest-review/delegated-source/snapshots/gpu/sparse_final.py",
+          "bytes": 2372,
+          "sha256": "caf079e471450a5d873c7a2409ff457bf8f1c01f08e44867d7d10291898552d5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/final-snapshots/start-intent.json",
+          "bytes": 872,
+          "sha256": "ac32aa777f6b5783e8f312abebfbe3687abb7c963a6cd08e320c33c2b0da83ae"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/initial-snapshot-manifest.json",
+          "bytes": 5215,
+          "sha256": "298f52d17545fa5f488b3c1ed62f56143d96501f4fb545f77b37f81db0b7b572"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/initial-snapshots/infer_full80.diff",
+          "bytes": 17647,
+          "sha256": "64566f152a1fa02dc585f8a92eac4d02b5df150ded541374f2ead7cad27d06b4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/initial-snapshots/start_once.py",
+          "bytes": 2754,
+          "sha256": "d5cb2ae1f9873a026f4273d997efe327dc0ef2b1f2963571e5118bf9a86cf37a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/deepseek-r1-full80-entry-review/source-input-checks.json",
+          "bytes": 2872,
+          "sha256": "9e0e4060a9c3e811bb81bfc0cfdb556adc68dda1c9265abf6e341ddfd52e5a06"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": false,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": [
+        "R1-assets-native-format-cost-and-tokenizer-interface-scope-correction"
+      ]
+    },
+    {
+      "id": "patient-first-F0-training-strict-failure-and-abstention-recovery-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/review.json",
+        "bytes": 14017,
+        "sha256": "22325a294b9b275d170d05f839e86d5a8e4732fe3c60a0d1815ba368e5c125ae"
+      },
+      "source_report_path": "validation/patient-first-F0-abstention-recovery-review/review.json",
+      "completed_review_scope": "PASS_complete_recovery_primary_negative_secondary_passes_prespecified_oldSFT48_comparator",
+      "scope": "F0实际两轮持久训练、原第24条strict中断及独立23缓存+35新生成完整恢复；有限患者子集弃答、raw先保存、双预测共同freeze后固定两臂质量。",
+      "conclusion": "原训练成功但strict中断无质量且丢失失败条raw，完整保留；恢复不是找回旧响应。主臂.684342231负；预定oldSFT48并集.705527892813较old.695443947581升.010083945，关系micro/macro均升、16TP+10FP/无移除，满足该控制keep。只支持后继验证，不更改原dev生产。",
+      "limitations": [
+        "F0已多次研究，不是盲泛化验证；不冒称胜同池rules.711353522或原dev达到0.8。",
+        "原strict失败与新有限弃答策略分列，23复用和35新生成身份明确。",
+        "full64 CPU/探针/正式训练及原dev后继另pending，不作已运行声明。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/CPU-snapshot-manifest.json",
+          "bytes": 3482,
+          "sha256": "1c67326eadc5debdd1723c915259cfca0c77c76936f0d87da6fcc850f1a1ffb5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/actual-entry-snapshot-manifest.json",
+          "bytes": 3016,
+          "sha256": "4eaca598abbcd92ef5227bb644454bcc3abe6a973cf654f648995ca7bacc7e7d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/check-entry-first-assertion.py",
+          "bytes": 4690,
+          "sha256": "75e00ee13e63f985264b954cb4297abcc3d21655c620baaaee97511bd1cc901c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/check_entry.py",
+          "bytes": 4787,
+          "sha256": "afb2c04c01b2847191ab23bb5e38d82ca81eb5a71de8732a70f2904f9a8b45e0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/check_terminal.py",
+          "bytes": 9541,
+          "sha256": "f084af40998c207eeb5685e43c46cf9de365d22e350c184c11f7f7d26889464e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/endpoint-snapshot-manifest.json",
+          "bytes": 4459,
+          "sha256": "e40bdbb66f9fdbe03f6ef636425c936a457bdb6b051a9683e02978bcf44914ff"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/endpoint-source-checks.json",
+          "bytes": 2205,
+          "sha256": "70ce6791733f3e33c806c674310eb00aaf56ad71d44c12187510e810d13f3860"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/local-check-scope-correction.json",
+          "bytes": 374,
+          "sha256": "c39278a8832692cfbf4e719c91e02e24c3874a6a35d60c901567acfa438d21bf"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-entry-checks.json",
+          "bytes": 2581,
+          "sha256": "938332f15bf5e3505ea91cdf666754f49dbd9d611ee9e25e1634904f96332c4b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshot-manifest.json",
+          "bytes": 7859,
+          "sha256": "36a4ca4d6a10dc1af8f737327bdd0af28f2a1a515b94af07cb69d211a41ccc2c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/01d77dd0a073--deployment-intent.json",
+          "bytes": 1942,
+          "sha256": "01d77dd0a0734a44fb6288103cc582d6136e7e8dea7725fb0176ec9eab30dd3e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/0905ee3338ba--deployment.json",
+          "bytes": 189,
+          "sha256": "0905ee3338bad779eef1993157f9d91cf7f13f00c01436e4dfc5d53ddfaf0dca"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/0fc2e82f6e81--README.md",
+          "bytes": 3737,
+          "sha256": "0fc2e82f6e81e22ba532556a8432ab025d02748b12f78c6ff5e44c260bd37ba5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/0fd182ef0902--diagnostic.json",
+          "bytes": 11976,
+          "sha256": "0fd182ef0902caab59360ebcde0c203a45274da9b88259b69aeb77ea031ea062"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/10ff80c05e93--snapshot-manifest.json",
+          "bytes": 11530,
+          "sha256": "10ff80c05e9394775f6c6c3ce6f3685f1108771a8c0c1af943dea6bc3b3dd76f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/116d04212d98--results.json",
+          "bytes": 4738,
+          "sha256": "116d04212d9829be7c94bc7357221e7faf48184ceef5214133d2cfddb9521362"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/23c80cdaebb6--manifest.json",
+          "bytes": 3026,
+          "sha256": "23c80cdaebb64c79790cf583acd284ff8d0e1970bdf3c8513d08812571639490"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/27dc08830af0--readiness.json",
+          "bytes": 2431,
+          "sha256": "27dc08830af0638c92d937c644b3af24d6f3599b010d121f2ca7c288a4e4b965"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/3bfca876c9b8--inference-collection.json",
+          "bytes": 32846,
+          "sha256": "3bfca876c9b8d4c97c5607af00c1444ef41624eeae70b1171467b26f8e047e07"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/3f3c79bb4cf8--driver-started.json",
+          "bytes": 2141,
+          "sha256": "3f3c79bb4cf80d261c97432e56bd9f498432eb3df29107930c031673f6817082"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/4573f6174308--manifest.json",
+          "bytes": 3668,
+          "sha256": "4573f61743085465962c8158b92f424648f74326d7c600328face4c39d8a9ad0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/477862bc79a5--driver.py",
+          "bytes": 6955,
+          "sha256": "477862bc79a59ff0f15e351313e63cbb86118a5fb2069ef0f87e49f9b922536b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/4a6fd226aaac--protocol.json",
+          "bytes": 2614,
+          "sha256": "4a6fd226aaac05d835da5eb600c7955a98415e491349e558c063d37078c2ecb4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/5073dacfa57c--actual-CPU-import.json",
+          "bytes": 972,
+          "sha256": "5073dacfa57ce9447a7d91a6d498b58fd7b1c8432a405f88c5304dc15c0c804e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/52c9ccac2569--recover_infer.py",
+          "bytes": 20482,
+          "sha256": "52c9ccac256984aa543de1c7fa32c267c1369d473ae7d84df9767586fe2fe6f8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/5a193d6de2ad--check_codec.py",
+          "bytes": 6627,
+          "sha256": "5a193d6de2ad6923cb815de504d058e6793e1d34bdcb13cdb4b33d8a0fcf55af"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/5d75fceac7f2--owner-terminal-manifest.json",
+          "bytes": 18412,
+          "sha256": "5d75fceac7f20af0a02246df7d01f268df535f774e5500f00197b85819ea9af9"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/60731e129793--limited_codec.py",
+          "bytes": 4601,
+          "sha256": "60731e1297930415afd8bb8c2a979814d7c8cb9a8c132c6c6debbd85d50cb289"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/662687ecf242--responses.checkpoint.json",
+          "bytes": 4775,
+          "sha256": "662687ecf24256a77be223cbdd8362f69b4da1e3c4d6f3cb938d982af1c2d31c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/6ee51d6655d2--endpoint.py",
+          "bytes": 23032,
+          "sha256": "6ee51d6655d2c42c28202c1f5a2c4f683090e5284238c4d9e8ec798c10e9321d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/6ef504841b6d--primary.metrics.json",
+          "bytes": 12859,
+          "sha256": "6ef504841b6d3a67fce337578563ad545f20aad05081f5fa81852af9217c6b71"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/760845422a97--complete.json",
+          "bytes": 516,
+          "sha256": "760845422a97a52b2a41952627514a26bc4d4a927d84012d23922701ab57a82e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/77061367a64a--payload.json",
+          "bytes": 3230,
+          "sha256": "77061367a64ad7acc0673d667d671c2c1b401d3aa2f7954e98210bb3e95b876f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/7b7a8090181f--plan.json",
+          "bytes": 1909,
+          "sha256": "7b7a8090181f8adf05aed7fcb556fb41563f39645a7d0a6b93f7000491d63bd2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/85fd57f6e9da--infer-launch-intent.json",
+          "bytes": 1246,
+          "sha256": "85fd57f6e9da410efb0972589ff674559b74884ce5b00ee6fd3425981b456569"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/864146a71362--operations.py",
+          "bytes": 11809,
+          "sha256": "864146a7136239234d57148b9e2b2fda3e940854f93f6ee0c73d4ef4827c091f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/8739c052d1f1--CPU-import.json",
+          "bytes": 1932,
+          "sha256": "8739c052d1f11e6a8f0dc628f32bdad260fdfc413c4aed7583673eae3b276376"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/8b0cf767d79f--responses.manifest.json",
+          "bytes": 7296,
+          "sha256": "8b0cf767d79ff04c5960e2a2e99033246d53d01cc20742e1566f1203dbfc50ac"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/8bd22643d119--policy.json",
+          "bytes": 3766,
+          "sha256": "8bd22643d1193a0641ac169bc986d304e8c695215d6ad891b3b752ca93c1ea1d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/97634da35acc--infer-fresh-resource.json",
+          "bytes": 312,
+          "sha256": "97634da35accb57051ef756c8e8641c270f27ed1a66c97a663d77daa2bb8b1a3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/9ef423ceac95--references-for-plan.json",
+          "bytes": 6932,
+          "sha256": "9ef423ceac9563e84259ff8401d04640e2962bdc57384907957a7ee1c2632e78"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/a09c0e2cf311--initial-failure-review.json",
+          "bytes": 10155,
+          "sha256": "a09c0e2cf311e9a3677636ac33ba2f85a3c7426e3706164f1e7e6967b250c38e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/ad87bff1fd99--verify_static.py",
+          "bytes": 6324,
+          "sha256": "ad87bff1fd99f87a9d9e54888ff23208257ba174bd109c99e4b326d4f5b39d91"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/b04e5e494780--secondary.metrics.json",
+          "bytes": 12869,
+          "sha256": "b04e5e494780f999318ea1eaf982f15f6f4a2e7d7ca8de679958673f72795353"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/b719834e2af6--endpoint-plan.json",
+          "bytes": 9116,
+          "sha256": "b719834e2af634a2b7be80359b080d815a297a44b7de5742aabd85d02739d6ee"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/b9693ce946df--training-collection.json",
+          "bytes": 8854,
+          "sha256": "b9693ce946dff82ffdc7cbd2a1ed817b979c9c5428315e6c8c00a145554b6af5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/bab3679dd631--raw-store-CPU.json",
+          "bytes": 1255,
+          "sha256": "bab3679dd63115469cdf04d30461cc008e5819a6739502f4c7cb5a64ce0bf22c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/bb5a905244bb--static-receipt.json",
+          "bytes": 2720,
+          "sha256": "bb5a905244bbecec07dcde7a2a0b9aea8a9c73d7e6475e22d533ce42c7fcc73f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/be17f7b46d59--common-freeze.json",
+          "bytes": 80042,
+          "sha256": "be17f7b46d59200ee84fda6596a3f0d8e0f1c5d15f8087a445ae68bf21510518"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/c21b03858f70--source-plan.json",
+          "bytes": 1342,
+          "sha256": "c21b03858f70e84ea4874a982560d46e5780a3f1896db67c6ed90c137af1cd42"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/c3cdfe8e9a24--assembly-report.json",
+          "bytes": 1020,
+          "sha256": "c3cdfe8e9a241a72580e1fa9e806e4bb1edb052d3f4098d714053327bd1828dc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/cb4dfee1cae4--resource.json",
+          "bytes": 2835,
+          "sha256": "cb4dfee1cae4b51ec6c7931e6d692ec0ab58d02a4c73f5056d9eb735455e6b27"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/cc60acb6d82b--primary.validation.json",
+          "bytes": 424,
+          "sha256": "cc60acb6d82b9f12703deb604f4314c42ae1b5fede96f5b628ab2914e1439693"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/cf41f4349bb8--receipt.json",
+          "bytes": 11472,
+          "sha256": "cf41f4349bb81ff2fb979cdfc42c88042696bd8633c162bca0f6ad2c9f6caa14"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/d09512b25a80--secondary.validation.json",
+          "bytes": 424,
+          "sha256": "d09512b25a80e56b8b791aa88da1277f2026c03475df305d95c8ecff72fd06c3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/d3d4420134fe--README.md",
+          "bytes": 3168,
+          "sha256": "d3d4420134fe77b22a989a30e4d5e3801561a48c7620d46ae3d7ef150a09251d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/d52bb0c186d2--raw_store.py",
+          "bytes": 1657,
+          "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/e04d786a531b--infer-job.json",
+          "bytes": 1832,
+          "sha256": "e04d786a531bc3454110fd0401313dc4562868aa42368cb65594f5f47cf9137f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/e1a9bae054a7--before-gold.json",
+          "bytes": 1231,
+          "sha256": "e1a9bae054a794a6627732d37c8da692c2e797aa74fca8e99e0826b83c5a048c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/ed677a958a77--wrapper-complete.json",
+          "bytes": 681,
+          "sha256": "ed677a958a773e44a94874a67f9af72dfaf3c632ba84028b7ec1f9337a07935c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/source-snapshots/f0f3aa4d880e--infer-plan.json",
+          "bytes": 5784,
+          "sha256": "f0f3aa4d880ec6112301150005a52d986a8f7296b2ba97041c8668ab89dc2f2e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/terminal-checks.json",
+          "bytes": 2123,
+          "sha256": "1535553abcc311e104ecc23f02c5e6ae7137e89b5145d774450438d181334a52"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-abstention-recovery-review/terminal-snapshot-manifest.json",
+          "bytes": 13027,
+          "sha256": "a624bf1ef5b696c567ffae0a33d0bc5a3cc6c4e857f61023527f5b4848b4a03a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshot-manifest.json",
+          "bytes": 12709,
+          "sha256": "feb8d06db09ff5d1d8c4740b08cd4ee864fabda71d9875ee8f41e3236ed435e8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/inference-collection.json",
+          "bytes": 1712,
+          "sha256": "dcb3a94c17be14ac302c5a459f071842ce93f24b2e3508d963fa7aad041234ee"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/inference-terminal/driver-started.json",
+          "bytes": 1742,
+          "sha256": "7947e45548fdbf7f61d679acc18087dc5ae6e24e909be5f5a1948362c6b6e4fc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/inference-terminal/wrapper-complete.json",
+          "bytes": 572,
+          "sha256": "f0848fd3559344524030df7432cf0230863f7ce8162d7e8bb88cf0dd42d3f98f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/strict-failure/diagnose.py",
+          "bytes": 4058,
+          "sha256": "6d63e236383af2731bffb5f8c1df60d419e96b144eb22af1c747e3431bfc90dd"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/driver-started.json",
+          "bytes": 2151,
+          "sha256": "7bdd0d6e30e0f7b12c4a4e9765970be3ce9bffd2b2a61778c4fe5d41b46701f4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/durability-epoch-001.json",
+          "bytes": 2171,
+          "sha256": "22591ba49ec90ebfe879181565a672002cf9bd081571a0b08fa998fed06aea48"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/durability-epoch-002.json",
+          "bytes": 2171,
+          "sha256": "23eff58b82d458296e9d2347b73e4f45dc08489ffcb85869fdcf1060516f6ebe"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/epoch-001/checkpoint.json",
+          "bytes": 12175,
+          "sha256": "9e44eb4abb3fb92623401dcb4a08a0745f80adaf8fb837a84e7a24b0222ab56f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/epoch-002/checkpoint.json",
+          "bytes": 12175,
+          "sha256": "6a0b99062d1efd3f6da91ba12fa0ec2daa04a4682b7acccf42244005445b3fc1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/first-nonzero-update.json",
+          "bytes": 430,
+          "sha256": "6ddffe38cebdcf0c2dd993b2d83f81974b87beaa458992faee6eea387c8ca3a6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/gpu-preflight.json",
+          "bytes": 196,
+          "sha256": "8f4dfc8dd52ff0e5b11638a5edd3c24a873925fa985b673b1d2efac96a3966a9"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/progress.json",
+          "bytes": 302,
+          "sha256": "dd88d2590f79f465b5011e0d168704ef68655395edfbb33f05c9f3bb09a37691"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/run_manifest.json",
+          "bytes": 12050,
+          "sha256": "5e582c90482ab5314dfbdb6274d345f4656b0245bbcf4da6fdd9fdc40dee59b1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/training_complete.json",
+          "bytes": 527,
+          "sha256": "e98de1dd8c1b0cb1eaa09316345535e19d2aef3af7a3ba0e0d1aee2db5f3e011"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-snapshots/training-terminal/wrapper-complete.json",
+          "bytes": 6205,
+          "sha256": "6d2b4f805cbc88a394309108e220620f68cbd1ce47ae35db5111981998b080c3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/patient-first-F0-formal-terminal-review/initial-terminal-checks.json",
+          "bytes": 1474,
+          "sha256": "7f0028903968adcade89fb4b7a4e99409d1f043db5f11743040034fe5eb030ad"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": true,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": [
+        "patient-first-F1-complete-primary-and-fixed-union-terminal",
+        "patient-first-F0-native-longest-probe-and-durable-formal-entry"
+      ]
+    },
+    {
+      "id": "MedGemma-fullcontext-formal-entry-and-complete-twoarm-negative-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/review.json",
+        "bytes": 14410,
+        "sha256": "f7e5df86ee4e28a026ddaed12902f6d56ca701175e2bca1a52b7c4524aabbf61"
+      },
+      "source_report_path": "validation/medgemma-fullcontext-formal-terminal-review/review.json",
+      "completed_review_scope": "PASS_complete_fullcontext_Med_primary_and_union_negative_closed",
+      "scope": "全文124训练/原80推断正式入口与32call两轮持久fullstate、完整80、双共冻唯一F1终点合一；既有H48实际文本核对范围保留。",
+      "conclusion": "旧SFT32.660942002653→全文Med.592418620627、old∪Med.627966888754，两臂关系micro/macro均负并关闭。并集新增193=28TP+165FP；16文献39患者1189实体及非association原字节不变。未扫描/迁F0/dev。",
+      "limitations": [
+        "H48核对覆盖旧Med/Qwen各80实际文本；不扩大成所有全文字符串/音频或backend序列化字节等价。",
+        "只索引现有唯一双评测，不重复训练或评分。",
+        "正式中间running状态已闭合，历史工程记录保留。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshot-manifest.json",
+          "bytes": 3796,
+          "sha256": "e0ebcd510450928c3930c1869e1ba8f12ab00ce456fefb0a5ea6e221ef6e7e67"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/README.md",
+          "bytes": 2992,
+          "sha256": "e57ccdc2b8079cccd4695939c0cf6a0f4069ba7cabbe788e554c1daf84768894"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/cpu-contract.json",
+          "bytes": 1257,
+          "sha256": "d9e9bec98d75266320b546e047f60afabe4956343923a9a853e7b14fddf54c7f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/cpu_contract.py",
+          "bytes": 7132,
+          "sha256": "e753f09a0fe5b35ffe4f16930932a8b2e1f5afcf1978285053dd6824c2f4dc41"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/endpoint.diff",
+          "bytes": 13179,
+          "sha256": "c8ee6ca9dde5d7af5c2886ed07dfda2763471ac4db75df5aba62520ee175ef73"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/evaluate_medgemma.py",
+          "bytes": 25914,
+          "sha256": "264d46dc6ef29bf44b25b3f71cc16654419209247817b4cfb33fd76b96304bfe"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/evaluation-template.json",
+          "bytes": 9923,
+          "sha256": "52f1ace0e2552fd932712855e7e587eb0d9dad3bdb8854846022db6de11ea9d7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-snapshots/pretraining-amendment.json",
+          "bytes": 4033,
+          "sha256": "a82b5e85f1d302907327eb8b2c529b59f05dd6801f43fd9ee1877fc86c37ce92"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/endpoint-source-checks.json",
+          "bytes": 1356,
+          "sha256": "408f11c7ae5daedb3406413a51e444b9bd90a56bc34207cf137e4ca3c28f1b69"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshot-manifest.json",
+          "bytes": 23544,
+          "sha256": "e4db9bf9173dc6ac372033a12212eb1b31b0e96e12381e2cc6de4170c9890b34"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/07289ccbefaf--intent.json",
+          "bytes": 305,
+          "sha256": "07289ccbefaf73b07a2e452339e2e1be80475dc230822d4ad5d9ca897272cd2f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/0b282f7b311f--run_once.py",
+          "bytes": 3853,
+          "sha256": "0b282f7b311f799039bebeecb2cb1369e9ba78b79b87848179278a93a1703303"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/135ec561a85b--pretraining-amendment.md",
+          "bytes": 2133,
+          "sha256": "135ec561a85b5326f15ce7c17a5c30c920c4fc6d41a88e41435874d97b69bf34"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/1716237cbdb7--cpu_contract.py",
+          "bytes": 9973,
+          "sha256": "1716237cbdb79d41ff1f1f8ad1cbc6b21434ad6b21496abb5bbe69b7b173d8b2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/1bb6691e6ef4--deploy_once.py",
+          "bytes": 6892,
+          "sha256": "1bb6691e6ef496e239b34f2fdd4c80c05eaf99a1aaf9d4cc757b81e62c6434bc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/1e0aff12cb7b--cpu-contract.json",
+          "bytes": 5491,
+          "sha256": "1e0aff12cb7b20e173842fd4561c6a47ce6f7a4ec06b82751566b0251e1b02ad"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/1e60cf1f4d5b--remote-preflight.json",
+          "bytes": 315,
+          "sha256": "1e60cf1f4d5b13222754dd0040aa8cd7b67a16e7113d5e24a6efac2553864138"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/2fff36c2f8ee--backup-filelist.json",
+          "bytes": 2201,
+          "sha256": "2fff36c2f8eeb9f96826b3568b503ea14a40ece3a7edf08df15805c46f4a9476"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/332180f55566--upload-receipts.json",
+          "bytes": 1405,
+          "sha256": "332180f55566b1b2a06bd9f386ef72ae1a5415c7428949018332bf6eaa76a199"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/3537114181bc--remote-deployment-verification.json",
+          "bytes": 1578,
+          "sha256": "3537114181bc1142004374a3eebeab8948aaf88d82092816ab9617e9c04513db"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/36d8185fe85f--infer_medgemma80_fullcontext.py",
+          "bytes": 10498,
+          "sha256": "36d8185fe85f540f64411d0538e343fe564aeb36f03889a6ac624a0587ccfb66"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/38438300947d--plan.json",
+          "bytes": 1277,
+          "sha256": "38438300947d72f78559df260e2d1c97ba25edcff29c0bc0b2985fe4be2f12cd"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/387ba356068f--fetch_checkpoint.py",
+          "bytes": 4515,
+          "sha256": "387ba356068fb653a2260a3ce1c6f4f3391e940010d86d7f05d9e57362dc938b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/3c47ed571a70--prepare_plan.py",
+          "bytes": 5695,
+          "sha256": "3c47ed571a704031be0de7055c1d847b8042514fbf44ccaf4cbeef2e5e35525f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/416745c80f06--controller_contract_check.py",
+          "bytes": 4038,
+          "sha256": "416745c80f06c1d3ffcaf4d4ee31c3cf7f937dec5dabc2d55b2fa0d700ccfb18"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/475ae296045a--source-bundle.json",
+          "bytes": 3014,
+          "sha256": "475ae296045aa589191f9efb27ac73de97a1ddf477f4d504be5e389ca0cdc331"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/4e72e66ec159--REPORT.md",
+          "bytes": 1320,
+          "sha256": "4e72e66ec159e5b8b54d9a38475925982aab9f06bd557eb9819bfc92d07bd53d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/4ece3486d545--narrow-source-delta.json",
+          "bytes": 640,
+          "sha256": "4ece3486d545882383d922e704079bbbc4b7525c9cad52a83806f348dfb4ef24"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/501614f03f7d--backup-filelist.json",
+          "bytes": 1555,
+          "sha256": "501614f03f7d71fb17494c24cf650f5f71c077f565bec67ac68f75dfd7c5a2c7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/5188b958e607--fullcontext_training_contract.py",
+          "bytes": 7589,
+          "sha256": "5188b958e60744e2f9be261a4e871240e54c16d6425c5f4294451dbc3073f5ed"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/5935dda518cd--README.md",
+          "bytes": 3918,
+          "sha256": "5935dda518cd1cb8db10a00b2d80911dc288ce8d8d86732ac73a9f5e6d6c92a4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/5fb34287364b--summary.json",
+          "bytes": 8458,
+          "sha256": "5fb34287364bff253dd5c0ca71f202db236f536a46ba21261c043569651372f9"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/60eb799ffdfe--run-plan.json",
+          "bytes": 19437,
+          "sha256": "60eb799ffdfea9e736a79dc80364b5e6b903ed408e477b6b5bb3f5bbd53b7787"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/6229fd7b8a05--deployment-complete.json",
+          "bytes": 1964,
+          "sha256": "6229fd7b8a05a84a53c3c2e5b78632b143be9e4300d9eff3ffc5b59ee52d1dad"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/691b81a03f42--README.md",
+          "bytes": 2342,
+          "sha256": "691b81a03f426b4f43050e7b94042fd9f5de1243ae92dc42c015d38a3f8155dc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/6e2d61b01963--controller-contract-check.json",
+          "bytes": 747,
+          "sha256": "6e2d61b01963ad82914126f03b6b5efa80f36439e2172f8cbf9c175399bbc43b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/6fa8ee70acec--process-terminal.json",
+          "bytes": 546,
+          "sha256": "6fa8ee70acec60f4be39af7c133abb16ac58a49e2e02e2ec15d45789a3da63d0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/7106eae08ced--source-plan.json",
+          "bytes": 10611,
+          "sha256": "7106eae08ced810342a321c3d9dddf40068198e02bb97d89a7beb5f1ac636df8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/80bde462300d--audit.py",
+          "bytes": 5458,
+          "sha256": "80bde462300dee1bc6d4437106dc4264a426168628da6cce9fd85fdc7cd80512"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/88fc966b396c--job.json",
+          "bytes": 447,
+          "sha256": "88fc966b396cb48bee429a559371927a8df7fef04577960725cf222fe382ca8f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/89ae76035847--inference.diff",
+          "bytes": 2934,
+          "sha256": "89ae760358474ba8ef4a461fdf10cc3be429fffbffdb08f141d90353ee532c79"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/a2d181d3a38b--deployment-intent.json",
+          "bytes": 405,
+          "sha256": "a2d181d3a38bd052b0d0babf0a73299538227cf58e41eed366944dc144d72e8d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/b1c85af2d98a--deploy_persistent_fetcher.py",
+          "bytes": 1637,
+          "sha256": "b1c85af2d98a6f316b7b6c16d4482895a5cdd5f8317dc39c9b4f6de3c409fb0b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/b486470e9017--train_medgemma32_fullcontext.py",
+          "bytes": 31428,
+          "sha256": "b486470e90176309ea968f25963cc319cf7dead09f00c4f504109c2d67351dcf"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/bffa66d9039e--trainer.diff",
+          "bytes": 10796,
+          "sha256": "bffa66d9039ed6e630e06b47b11ec9f95c26f9c2f863bf60c014e3f10be382b0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/c2062d3ba672--export_checkpoint_server.py",
+          "bytes": 4316,
+          "sha256": "c2062d3ba672573d7250145ccf6d79fa540a3177c083c0f46828fca5da5ec153"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/c4610680f191--run_formal.py",
+          "bytes": 11485,
+          "sha256": "c4610680f19195c8583bbf60afe8f004dd71764a0b64ca14ea2e85412a0940dc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/c621f9a684f0--prepare_deployment.py",
+          "bytes": 2239,
+          "sha256": "c621f9a684f09b99f3215f9b6a77b01c709766a9efff43a870f20e4576cf6182"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/cec5bdd61a7e--fetcher-deployment-complete.json",
+          "bytes": 339,
+          "sha256": "cec5bdd61a7e88a7350ada8b59c75033ad2b7416c808be272165b725eec01581"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/de0dd2a56020--fetcher-deployment-intent.json",
+          "bytes": 302,
+          "sha256": "de0dd2a5602092813c0272ca3d939d20ea298000079805c9813f962ae328084e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/dff032fb5410--run-plan.json",
+          "bytes": 6038,
+          "sha256": "dff032fb54107969da0b4aaf5cfc495f36a778551083ac5cbf9afd61e20d4d4d"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/entry-snapshots/entry-manifest.json",
+          "bytes": 14657,
+          "sha256": "6c87fee02f384c765b0ce74554f565fe580fb4be869bb5cffd53eb07ffdb4ef4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/final-binding-checks.json",
+          "bytes": 2183,
+          "sha256": "2f96d9b4c4e359fac943f3c27523c63a2ed2f4ee4b2f2417358a3b93021d4a2e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/review.json",
+          "bytes": 11434,
+          "sha256": "41e512694e0adede339fee4a116ae08429022077b02d4f9eddb7f57207fea946"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/source-snapshot-manifest.json",
+          "bytes": 5647,
+          "sha256": "a5a2bfce28274103975bc16ead6f13209ff798f49219bd6b7b5b0944c093422f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-entry-review/training-source-checks.json",
+          "bytes": 1166,
+          "sha256": "f845f027e22a173187b142a9fe8e14cccca4bbf0329f63875319d70c8d21657e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/actual-checks.json",
+          "bytes": 2477,
+          "sha256": "2692bf8d9de682f625786e2aafdc601b4770f4a1138f03d6002b7fe6c0d8b64a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/check_terminal.py",
+          "bytes": 11374,
+          "sha256": "ec02410f94be5319d09ecce8f0538af5ea3dbced80aa85f7c1214de9e3adac5e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshot-manifest.json",
+          "bytes": 37926,
+          "sha256": "8a6d68dcbdc6770758d46187ca1f1d7659f77145c4f256c8cc29c4e00ebe79c1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/027f000d84ee--close_terminal.py",
+          "bytes": 3221,
+          "sha256": "027f000d84ee6df52834f24e262a0b1d5a8fb95a7e8701d39209611d874c6b81"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/038b034479f8--evaluation-started.json",
+          "bytes": 378,
+          "sha256": "038b034479f8d5ffaac4b9acbba7e4220c6deb292c16bf0585ddf9aa0796237e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/07143e09d96d--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "07143e09d96dfa82c6aec0ea2cdec52f5ee113952abbae341fef73945b7f32e2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/0718be8ebfed--RESULT-fullcontext-frozen.md",
+          "bytes": 3854,
+          "sha256": "0718be8ebfed7807e7b680322a45b0c96a69ab406df8106335d30e305db085ed"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/1145ea92c218--server-stopped.json",
+          "bytes": 83,
+          "sha256": "1145ea92c218df9a6ac307ae2a9d63e04e7ad04ff258e2009409df628afdbabe"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/14e1939bd3ee--inference-job.json",
+          "bytes": 5368,
+          "sha256": "14e1939bd3ee4ba503f673a971f6e86b5f2a17bd25a43286114782106a5a8d63"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/15094a0e931d--progress.json",
+          "bytes": 264,
+          "sha256": "15094a0e931db9be12ae13dae28cc14697bfa4483937f4ab8add16d192547ae0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/18e3e38c4235--terminal-manifest.json",
+          "bytes": 25188,
+          "sha256": "18e3e38c4235a238dec9d3f252f0335d95bbff2e48472dbad1a4d9e9de10ed06"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/198f13fbc631--inference-gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "198f13fbc6313d1c0e95c1ef57d10539d4bc2edc86652c7b2a1cbdba593cbaa3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/1ebf22c20c56--validation.json",
+          "bytes": 686,
+          "sha256": "1ebf22c20c560037409d6fa8b063ade3a6a04eb2d301d47658a62522d781ea45"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/1f0a73d9b7e0--gpu-release.json",
+          "bytes": 274,
+          "sha256": "1f0a73d9b7e0d944f0085b86020a0139c005f4055920e3c99ac34494b2d99243"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/1f4b1c170beb--responses-freeze.json",
+          "bytes": 323,
+          "sha256": "1f4b1c170beb305b25575b2770ad2d7fb03463bd82193d26057160ef2fa99782"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/206f49c713f2--execution-state-before-training-complete.json",
+          "bytes": 307,
+          "sha256": "206f49c713f262e788043d6380d91167644fd012eb4decae68480ab61a4ddd8e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/22da25242c38--job.json",
+          "bytes": 6815,
+          "sha256": "22da25242c3870a7c5c40d5acb773f90f37dc4112690894df2c8f1065794374b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/23aee59a867d--metrics.json",
+          "bytes": 13212,
+          "sha256": "23aee59a867d898677f29e7f50a2179147d5d2b1193545d0315b5859e136ba23"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/24490e5ca169--inference-plan.json",
+          "bytes": 938,
+          "sha256": "24490e5ca1695a253fd61382b61976d72a6a731fe3a33ab8d5eb7aeb9f7c77e3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/255139a7e937--execution-state-before-terminal.json",
+          "bytes": 924,
+          "sha256": "255139a7e937b183839b4bd8ea4cad5f8ab53d63a15cba47a23eb598759ba1ac"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/26d2969b3d18--process-terminal.json",
+          "bytes": 1224,
+          "sha256": "26d2969b3d1849c01388f00c8bf8b38f156bbc67a57e87120d90b0ffee3768c1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/28660fbf10e0--process-terminal.json",
+          "bytes": 2362,
+          "sha256": "28660fbf10e0bbed7cb74f02d865bbf3914bd013b4448c7fdc280b50dc4699ba"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/28f5d4beca9d--paired-predictions-freeze.json",
+          "bytes": 2842,
+          "sha256": "28f5d4beca9d2afca7c45e7b86d60e596fddf049e41f9c43d7127f5bd4215ca8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/3183491e9ba8--job.json",
+          "bytes": 7126,
+          "sha256": "3183491e9ba8541a9f84dd54b0cb4c25f8510150616fbefd8fd0e9082b7ff362"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/32889e0f38f1--fetch-job.json",
+          "bytes": 2273,
+          "sha256": "32889e0f38f1e4a4ed6df45dff1c34316226ad462ee746f5f4db1af8ed97f818"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/3402dcfdb1b6--inference-job.intent.json",
+          "bytes": 3874,
+          "sha256": "3402dcfdb1b60537e6f8a46399398f867283267caf88c4538a81c216c4d38bf3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/34240b776f9a--persistent-storage-preflight.json",
+          "bytes": 74,
+          "sha256": "34240b776f9aca2f040e66eb02e965ede48b7b014a3256070d62705e91596de8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/39b706b6e4aa--fetch-job.intent.json",
+          "bytes": 1331,
+          "sha256": "39b706b6e4aaff13ed9a69b4706272c28b2f8ef1584bb35b31a31668da2e0dab"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/4012c72fa50a--source-resume-actual.json",
+          "bytes": 195,
+          "sha256": "4012c72fa50afea6c13b522eb2445f14bd44b9166d364003477f0918883ed2ec"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/4355b4e43e84--process-terminal.json",
+          "bytes": 2910,
+          "sha256": "4355b4e43e849f61a0d004826a34d3f2f273e91455b78a7fc9bad762fd51685e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/4383a193f370--job.intent.json",
+          "bytes": 4772,
+          "sha256": "4383a193f370a3a06601324428bbf2a5c305919cd44e1338501fd814cc12dddb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/45a130dcedcb--server-ready.json",
+          "bytes": 4736,
+          "sha256": "45a130dcedcbcc7b44c66a5c8a512ee43c0813d4866326020121b962bff641b1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/5967c86f8870--run_manifest.json",
+          "bytes": 15398,
+          "sha256": "5967c86f8870992734780cba1617839ca72f91f9dc01efae8d8ce4f62e1a50bd"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/5fb5e8248a2e--persistent-actual-readback.json",
+          "bytes": 4486,
+          "sha256": "5fb5e8248a2e1e00596204260d2f95fa38357d1c1cbabdeb442e060e0c77e535"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/603c15d9def0--source-and-storage-preflight.json",
+          "bytes": 96,
+          "sha256": "603c15d9def0009034781ba48f88633bff7abdff32828b32ccd6b67e170d3ab2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/619e07f1cb8d--process-terminal.json",
+          "bytes": 1225,
+          "sha256": "619e07f1cb8d7a21e7e3a275897e00956288ccb2a990bbd8a80ae5a44c08c3b0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/6aef50e24054--progress.json",
+          "bytes": 264,
+          "sha256": "6aef50e2405405fedb78f90e67bbeb0ec41fe2445bd74e4bafc45d3eb2cd81d4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/6e87a4dee804--inference-complete.json",
+          "bytes": 169,
+          "sha256": "6e87a4dee80408b8c4abd611938aace1039c8610b06cc060e2beb282b8cd5bb1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/70e9c2da22c2--server-stopped.json",
+          "bytes": 83,
+          "sha256": "70e9c2da22c22b6e27db022c5a44cd4b2a3cdac7a94fe114858ab5eab8bb011a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/7232ff23eb3b--evaluation-reservation.json",
+          "bytes": 340,
+          "sha256": "7232ff23eb3bb12b917720223f65f126ba7f5307a505207f9488ee3affb19ee8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/75c6d6069eff--server-job.json",
+          "bytes": 1714,
+          "sha256": "75c6d6069effc0da5c72c627f8923646eb81a5f695973dcc318444b5db30ffa5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/7606e37aa080--med-parsed.pred.manifest.json",
+          "bytes": 1355,
+          "sha256": "7606e37aa08076c0d37bc443628e4ac01e280c05bb9a81c6f9a435fd5688b507"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/76fb38dcdf30--validation-command.json",
+          "bytes": 1479,
+          "sha256": "76fb38dcdf302ebc2cf738e27fbccebea11415748a00a1d89a5119eb18ae460a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/78c7e49f1ddf--evaluation-command.json",
+          "bytes": 1032,
+          "sha256": "78c7e49f1ddf3472beed89cecd8ee57575e08ea2dafdd5699b50ddaa3da1e8e6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/78e1143a0bbb--validation-command.json",
+          "bytes": 1505,
+          "sha256": "78e1143a0bbb592836199344790ded799e0ad6c2863e8ce1a5c75c24693456fd"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/79cbc10306d7--server-job.intent.json",
+          "bytes": 1001,
+          "sha256": "79cbc10306d7c05d9f5cf960139732223a20fc9ec4c208887dae2d5ee4991653"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/7fbcbdf958bb--paused.json",
+          "bytes": 371,
+          "sha256": "7fbcbdf958bba3de7dea38453b5bf10879a82ef1abf6bc7a370fa86c7644b1df"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/871788889905--backup_result_once.py",
+          "bytes": 3774,
+          "sha256": "871788889905b3b07d208df7ec7d873c6bd4db7399cf99bde634bd5d810586bc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/88718dfb50d5--metrics.json",
+          "bytes": 13243,
+          "sha256": "88718dfb50d50c98bb9a8f4b0e532054a860fe7e5b669d3859bf83a44736ca8f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/895cfeb4607d--server-job.json",
+          "bytes": 1716,
+          "sha256": "895cfeb4607d46856af6bb80146d4a088ffabfd61d75f8bcc9c30fc508e86d64"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/8ac1c6ad8959--fetch-job.intent.json",
+          "bytes": 1331,
+          "sha256": "8ac1c6ad8959f5addf788d21da8a201b39cebbe3bf709577701ce60aae95923f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/9443432de235--inference-gpu-release.json",
+          "bytes": 274,
+          "sha256": "9443432de235c1d98d86ddf6ff8a3e215ebb0369cde35c34ce91c91530da6312"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/949640bda831--run-plan.json",
+          "bytes": 12979,
+          "sha256": "949640bda8316fd0575c74e635adb190867ac138bf224cc34387d5e2cdbe8dcb"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/96c5be510a0c--fetch-job.json",
+          "bytes": 2273,
+          "sha256": "96c5be510a0c517fb1814848c2ff419ad2622b76a3549a1567bfd968552f56d6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/9f45fba3d948--evaluation-command.json",
+          "bytes": 1059,
+          "sha256": "9f45fba3d94836b31d7af9287a2382fedc2a973a5730b8f0339caae8b54fc20e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/9f8571aa113f--export-ack.json",
+          "bytes": 4816,
+          "sha256": "9f8571aa113ffda0d636c5c827bc5a5eef91369d4bc0aba4f653d4f6ecfab09a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/a914097f19b6--responses.checkpoint.json",
+          "bytes": 8501,
+          "sha256": "a914097f19b67cc05c4b15ec7df880f0be179763e4f4ebe0e5494035c2e900e2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/a93aa8b6e0b4--assembly-command.json",
+          "bytes": 2377,
+          "sha256": "a93aa8b6e0b41e04905683404a0b544c3df8abc56b721ba6f47797693216bbed"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/b03a5076d473--execution-state.json",
+          "bytes": 2226,
+          "sha256": "b03a5076d473ee9478410d36699f590ce1afb82ba382501e3a4ebd243c678f2c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/c1adcabb1d1a--gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "c1adcabb1d1a1dcc63219163541bcddb5453d717af389e5634e542b448632c65"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/c4044dace76e--checkpoint.json",
+          "bytes": 15939,
+          "sha256": "c4044dace76e7135da0cf35f21678a4e3ac32d6c5552f3ed213d90671a6242ae"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/c6899cce9cd4--server-ready.json",
+          "bytes": 4736,
+          "sha256": "c6899cce9cd453fedcd5ad9df228af3b7cae91ea463ff7578354c2f64370ab15"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/c789eb845850--inference-execution-state-before-terminal.json",
+          "bytes": 206,
+          "sha256": "c789eb8458503f6f751d296101bdbc34663df2bfe686575b8804a28357a462c6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/c8e9c17042ed--training-campaign-complete.json",
+          "bytes": 296,
+          "sha256": "c8e9c17042eda0828fae7b583044bdffbba91743126d9bb6b6a55b756ce94a3f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/cb8f5c1538d0--job.intent.json",
+          "bytes": 4966,
+          "sha256": "cb8f5c1538d0fd631dae8334648ef399b6686bf74ed1ad1eb4aef2f13df2d216"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/cf69328ec23d--summary.json",
+          "bytes": 5820,
+          "sha256": "cf69328ec23d7c20daf6cc07646d5c484c5a6103a0b83a8b374c890c3f04ef07"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/d5a9f241c00a--validation.json",
+          "bytes": 686,
+          "sha256": "d5a9f241c00a2ce4c0d4879e7c90ac927189386a17bddc2c819904389a2b5163"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/d80b137e978f--inference-execution-state.json",
+          "bytes": 1536,
+          "sha256": "d80b137e978f6e81d1e4e5206c2fd9d2a0d5d93b4b830e2c26f3813ca0308783"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/d8d56c0cc4fa--gpu-release.json",
+          "bytes": 273,
+          "sha256": "d8d56c0cc4fab93a1349e062d183ff42edbcaf65c190a37d51e81852b172a238"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/d9f9bf5d9733--training_complete.json",
+          "bytes": 526,
+          "sha256": "d9f9bf5d97336397634cd9f6f3782001d6eab8dc7be0c32fe28472094420f42a"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/dabe27dfcc2b--responses.manifest.json",
+          "bytes": 9421,
+          "sha256": "dabe27dfcc2bfa903798eaf939acceb86417c2635304828b5b78aa5c2cc170aa"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/dbe73550c19b--server-job.intent.json",
+          "bytes": 1001,
+          "sha256": "dbe73550c19b7a1bc4cfc344d0fb24e4f6d664b38ade3d58b3687b2728290076"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/dee677c3afc3--export-ack.json",
+          "bytes": 4816,
+          "sha256": "dee677c3afc3019824320fd2e710970bde8a6655aec84fa8f68353c97100645e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/e0599260f6d4--H49-raw-first-note.md",
+          "bytes": 949,
+          "sha256": "e0599260f6d48e7b8f2fff250568615d358c036ba14cca6d8a25d0d9717a4d61"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/ea079126ce6f--process-terminal.json",
+          "bytes": 3028,
+          "sha256": "ea079126ce6fc76c6e928299ba03b8d8938cf283e1b2404a487b1e212d5050d3"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/f28e7ffbe141--quality-result.json",
+          "bytes": 4815,
+          "sha256": "f28e7ffbe1410b5dae1a955cc2af8e68b7db1609cf2694072500a4a634f8b6c7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/f9ac6ea7fda1--checkpoint.json",
+          "bytes": 15939,
+          "sha256": "f9ac6ea7fda1603598236e4473582092c4237c3da363431c572605444ceecde6"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/fed78d67b3b3--persistent-actual-readback.json",
+          "bytes": 4486,
+          "sha256": "fed78d67b3b3b291e93b9496174b989d9d3ae122d968a1755b6d4bac158dfb07"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/medgemma-fullcontext-formal-terminal-review/snapshots/feefbf924251--initial-gpu-preflight.json",
+          "bytes": 274,
+          "sha256": "feefbf924251f05a9b78f32f80fb11accaba97653f0accdb57a431cef39b91c2"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": true,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": [
+        "MedGemma-short-context-complete-training-fixed-twoarm-F1-negative",
+        "MedGemma-fullcontext-append-only-CPU-and-longest-update-terminal"
+      ]
+    },
+    {
+      "id": "relation-fixed-five-original-signal-logistic-control-negative-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/review.json",
+        "bytes": 9011,
+        "sha256": "0652c3b10544f12efb70f5269527c7353db533899987e9e71a75ec6769125934"
+      },
+      "source_report_path": "validation/relation-stacking-five-feature-review/review.json",
+      "completed_review_scope": "PASS_complete_fixed_control_negative_against_prespecified_strong_baselines",
+      "scope": "固定old9B/reverse/binary32/LRmax/rulemean五原值、单一L2 LR(C1/lbfgs/tol1e-8)及p>=.5；F1元训练1557和F0完整1166固定质量。",
+      "conclusion": "一次fit19iterations/6学习数值，F0 Score.697656524607、micro.695252680、macro.642696529；低于old∪reverse.704687440和rules.711353522，未满足预定最强三对照门槛，关闭。原import工程失败发生于gold/评分前；独立恢复复用同模型/预测，仅一次成功v2，无重fit/predict。",
+      "limitations": [
+        "F1原365标签明确已读作元训练，不称纯无标签或OOF元验证；binary两折均train32。",
+        "不是首次stacking：旧303列HGB及2列LR已有负结果。",
+        "无调阈值/配置扫描/dev迁移，F0为已研究开发对照。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/actual-checks.json",
+          "bytes": 1412,
+          "sha256": "6f3b2d559cec57fe7d3a42a69f70b40c79bf83821fb64af3005a64224f14f06b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/additional-snapshot-manifest.json",
+          "bytes": 4315,
+          "sha256": "683399187ac04ee2f1a605924d14d13cb84e80cce93d56ad9d54bf3cc2b1bc3c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/check_actual.py",
+          "bytes": 7983,
+          "sha256": "c3995a9afbb7a2dfed73f36a206a817c3dd42e9f5ba4c3e2cb69e6e812ed750e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshot-manifest.json",
+          "bytes": 5912,
+          "sha256": "9138e59ef7910b2804bba2742a74077e0178fea995e7f3f1d2a320cbb77cbddc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/007a6c02c577--preparation.json",
+          "bytes": 4869,
+          "sha256": "007a6c02c5774fd2af74e955c5078b765a9dfce9ea12cc022d5dd89bda74a997"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/133de792df5a--execution-receipts.json",
+          "bytes": 3723,
+          "sha256": "133de792df5a804e2b8aefa7d63474acfe898a274bfcb9e32bb042b41222a326"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/315b3426d319--plan.json",
+          "bytes": 2101,
+          "sha256": "315b3426d319991d5d7956b44a5a49ac70cee8a3a5f536ae1fe516c77aac95d4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/356c33a5ed43--README.md",
+          "bytes": 3480,
+          "sha256": "356c33a5ed4322e557a03ff842d6ad38a36ad48595f0b9f02a3f2b6967786c2c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/400a29355875--aggregate_relation.py",
+          "bytes": 13164,
+          "sha256": "400a293558756a792640fc91c2f101a4d8427e1e13aff00fadb332fd336d2f3e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/439e19141e8a--F0-freeze.json",
+          "bytes": 1547,
+          "sha256": "439e19141e8ad99f47498f99e84115bb181f9422e2cb14595549234b2237aee1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/4af6c224f8a4--source-check.json",
+          "bytes": 5540,
+          "sha256": "4af6c224f8a401abcfa679a91ce7e410a2dc1f6b061753a70b6d1dfb8bb39170"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/56a937dd18d6--summary.json",
+          "bytes": 7796,
+          "sha256": "56a937dd18d6c67f35340fb8a36458692705ea26d86dcbf4b3b98d44af3136e1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/5a0f7c10470b--plan.json",
+          "bytes": 11326,
+          "sha256": "5a0f7c10470b7b1c55087057aaa3f8de34a65ceb8c89b0e13d4b8e4b79991f1c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/5ec4be6ba842--control.py",
+          "bytes": 19790,
+          "sha256": "5ec4be6ba8426c192db969598c1733873092d40c4e3d8eb9ba2276316da7d4d7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/6cc6e74a391a--inventory.json",
+          "bytes": 14998,
+          "sha256": "6cc6e74a391a859166e37f41a012d8d25dd86415c31e074b9ab5273991ac46dd"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/788a5985ac27--traceback.txt",
+          "bytes": 1604,
+          "sha256": "788a5985ac27e1d6d08aef8c94afdde85b479072f50c4bd0e8c63350575a229c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/7efcc7ea06dd--receipt.json",
+          "bytes": 2280,
+          "sha256": "7efcc7ea06dd9a5ad56aeeab0604ab268e00582f0f26351fb703d4a3f4f29cb0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/8a22761facd8--validation.json",
+          "bytes": 424,
+          "sha256": "8a22761facd8b52bf3954ddf8039767ce9de6f6d4b050cf5072b9c9be881c314"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/8c2e6a214138--metrics.json",
+          "bytes": 12838,
+          "sha256": "8c2e6a214138c760e97f2336601771f0fb499d11fde8478e71e189744c0013c1"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/8ffc46608498--results.json",
+          "bytes": 4246,
+          "sha256": "8ffc4660849896f8eb4a5eb4daf44ea9038f582b23d868b7a2eaa7cf0d4449d0"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/9c3c13571581--manifest.json",
+          "bytes": 7723,
+          "sha256": "9c3c13571581c647fd99fb49ea0dd6035ffccb44e98c41b9e4e86ed013f69b54"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/a36928a32d39--evaluate_recovered.py",
+          "bytes": 4743,
+          "sha256": "a36928a32d39d93afa60ff28c7666922ef92b7d90e398dd9f40ac00df55cf001"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/a3c30420f12d--evaluation-started.json",
+          "bytes": 343,
+          "sha256": "a3c30420f12defa5dbdc7407c81450d2db93daf2349f2353fba74cf098e78189"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/a44d43b84aad--fit-state.json",
+          "bytes": 3219,
+          "sha256": "a44d43b84aadb2fba185257702fa1c9b89a802231d66d4f80d62988875bb8764"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-stacking-five-feature-review/snapshots/c4ea3bf64b62--evaluation-started.json",
+          "bytes": 623,
+          "sha256": "c4ea3bf64b62518f3b51d9322a8a52b0013cea90dec9fb0380c53b0e78bc189c"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": true,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": []
+    },
+    {
+      "id": "relation-posthoc-fixed-literal-triple-union-twofold-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/review.json",
+        "bytes": 9990,
+        "sha256": "3444fe0ad815fb2c0b961155aa05e16418c2c24c33a8b2ce284654ff879f525d"
+      },
+      "source_report_path": "validation/relation-triple-union-review/review.json",
+      "completed_review_scope": "PASS_posthoc_fixed_triple_union_twofold_gate_no_dev",
+      "scope": "已见单臂/两方结果后的posthoc唯一oldSFT OR same-adapter reverse OR patient-first字面正关系三方并集，F1/F0各完整预测及唯一评价。",
+      "conclusion": "F1 .663841820660较old∪reverse升.001369374（macro升、micro降）；F0 .709556743085升.004869303，双折均过本次预定门槛，但F0仍低rules.711353522。原列表排序guard在预测/gold前失败，窄改为真实literal集合等价后恢复，合计0.479秒，无训练/第四成员/扫描。",
+      "limitations": [
+        "明确posthoc，不是原预注册或盲泛化验证。",
+        "F0比rules低.001796779，不能称胜所有基线。",
+        "原dev a179与.7460819649861977不变，无0.8或官方成绩声明。"
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/actual-checks.json",
+          "bytes": 4132,
+          "sha256": "7b5d9d9047e781c413fa2c958525f7ed9599645a692f6c5fa108be8859fd5ba2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/additional-snapshot-manifest.json",
+          "bytes": 2652,
+          "sha256": "46d9774e798f188f7c4639103fa70bae8e5ac26c2f5c3d7cde881dc3845cb65c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/check_actual.py",
+          "bytes": 6755,
+          "sha256": "894560e1a38aec6df3ea6fd4aa73a02c9b7cf74eea9168637220c764ccb88610"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshot-manifest.json",
+          "bytes": 10636,
+          "sha256": "79569e6d587e9323638856594bc5b004898899816d42f6fe4e901a9395767cde"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/0055d051a769--contract.json",
+          "bytes": 2236,
+          "sha256": "0055d051a76919270bc0b65dd4f20c0ca6cb956738d7e7d07e67cb929fe888fc"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/0296b4c3cb02--source.diff",
+          "bytes": 964,
+          "sha256": "0296b4c3cb02808afdbb9bc91f1340b8ab5841a0dfbcda59bc39a89e5fb7a565"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/11f4eb489404--union.metrics.json",
+          "bytes": 12879,
+          "sha256": "11f4eb48940460239b80b123b1adb506582eab1c9aa664c0d1e74fb2ab394ac7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/14b708b29e11--F1.metrics.json",
+          "bytes": 13132,
+          "sha256": "14b708b29e1152a2d692242d16d0d3914e64cb450aab9c0f0cc576a6627e110e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/198c955c57df--source-plan-freeze.json",
+          "bytes": 1387,
+          "sha256": "198c955c57df3e095df640a06fe8d93c8fe8544e814752e8e3903d1edf462dd8"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/2c15823dc82b--common-freeze.json",
+          "bytes": 1797,
+          "sha256": "2c15823dc82b31ef9c6bfcb70b94bb1cc4ef6625c6ce3420060cbd3ae9520699"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/310ba6d80de7--plan.json",
+          "bytes": 12940,
+          "sha256": "310ba6d80de70c122d7d161e051343c27ce0abad387fd40f308b19ab0b577251"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/371874d59e13--snapshots.json",
+          "bytes": 9970,
+          "sha256": "371874d59e1320a3a7fa2ad8769e005a9c2f27dbd0a9a125aa83c6e618dc3aac"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/3c037002e519--manifest.json",
+          "bytes": 11497,
+          "sha256": "3c037002e519b25b7d6ac127a3725acdc025c5cc3e6327271d2840518929dd3b"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/6f82e892f06e--started.json",
+          "bytes": 831,
+          "sha256": "6f82e892f06e5af07f3a831df1b454690c8b99efbcb4d2131128ee2d6c9b8e3e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/734aef13cc89--control.py",
+          "bytes": 12387,
+          "sha256": "734aef13cc899583395b257817641c662fb99c3f027fe18efa7beeaf8065480e"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/74cc8203a833--control.py",
+          "bytes": 12188,
+          "sha256": "74cc8203a833140a4ed56f0498cf1ba424b6f0018ebc0242bed9d4e6c806ddb7"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/780573cd8b4b--started.json",
+          "bytes": 768,
+          "sha256": "780573cd8b4b880b529dfd9794db129ed35e4d370b9d95d06a1d20cf4705b73f"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/8e5a85e29bb7--source-plan-freeze.json",
+          "bytes": 1385,
+          "sha256": "8e5a85e29bb7add2c395ac14fd76267dd6abe3bb21d891fa9df47bb8db9d8ee2"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/946d17e89800--results.json",
+          "bytes": 4343,
+          "sha256": "946d17e89800cece6a3dac2b7ebc066337fc14a003598c73a326425e244d9253"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/9de5ece5801e--before-gold.json",
+          "bytes": 1040,
+          "sha256": "9de5ece5801e9c11161e7cb8178a296a8a247d0c4a94845b4a487002b7c2b498"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/aa5c0801d307--plan.json",
+          "bytes": 14446,
+          "sha256": "aa5c0801d307671ceb940bf3ea6314414dcf47f02d5be9bfe39eb1c139cbf180"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/b92dbbb1efee--F0.metrics.json",
+          "bytes": 13055,
+          "sha256": "b92dbbb1efeea7eb72ee4113bbe72832496c79c9c44d9e2950541aa707ec5c57"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/c080127ab5c0--wrapper.json",
+          "bytes": 250,
+          "sha256": "c080127ab5c05a15a2943e45b885d66cea2740daff46b7ff72cd77976c323bc4"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/d0feb81d6a03--diagnostic.json",
+          "bytes": 609,
+          "sha256": "d0feb81d6a035064a8b52715081063560a0bc8d551ca7994b8e76f56af875f50"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/d2b049ee5320--F0.validation.json",
+          "bytes": 424,
+          "sha256": "d2b049ee5320ebb14b2fd64d64af6a84450d6ad3f3243dc3605a75674a8d2f28"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/d5f97e4a3f6a--static-receipt.json",
+          "bytes": 694,
+          "sha256": "d5f97e4a3f6a443c0e772aaed133a6e7f2fc66e73ac7a3ddb3fa0f1c85febb25"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/d8e6cb1ea346--union.metrics.json",
+          "bytes": 12969,
+          "sha256": "d8e6cb1ea34626aaf1054ad1436af69acd201621bc801b520f6ef81dac971646"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/ddaa2b07ce65--README.md",
+          "bytes": 2820,
+          "sha256": "ddaa2b07ce651094d80461ec2adcd11e44ff9e0c12e8ae1b70699eb095ced1c5"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/efa17ad8bac2--wrapper.json",
+          "bytes": 293,
+          "sha256": "efa17ad8bac276dddd7bb9001262374a14cc09151a5ec9db465ef2b5ef10d29c"
+        },
+        {
+          "path": "validation/index-next-20261024-0430/snapshots/validation/relation-triple-union-review/snapshots/f77fa222849f--F1.validation.json",
+          "bytes": 425,
+          "sha256": "f77fa222849fdb121ff0107d93ecd166d3d95d9cab84eca90ed0fdc8e32a6721"
+        }
+      ],
+      "quality_experiment": false,
+      "includes_preexisting_quality_terminal": true,
+      "new_quality_computed_in_index_build": false,
+      "historical_related_entry_ids": [
+        "patient-first-F1-complete-primary-and-fixed-union-terminal"
+      ]
     }
   ],
   "pending_review": [
     {
-      "id": "patient-first-F0-formal-training-inference-quality",
-      "status": "本批仅新204/nativeCPU/5769单步与持久正式入口；正式训练、58推断及固定双臂F0质量待完整终审。"
+      "id": "R1-F1-full80-quality",
+      "status": "仅已收正确发布接口/有限codec最长及固定80正式入口；实际完整80质量与终点尚待独立收口，不把正在运行当完成。"
     },
     {
-      "id": "MedGemma-fullcontext-fresh2ep-and80-quality-terminal",
-      "status": "全文124/80 CPU及12824最长单更新已完成；新fresh2ep2700+TERM30、最终80推断900+TERM30及质量尚未纳入本批。"
+      "id": "R1-F0-CPU-copy-longest-successor",
+      "status": "原58纯输入CPU、九资产复制与实际最长单例后继待完整证据和独审；本批不声明已运行或已有质量。"
     },
     {
-      "id": "R1-correct-published-tokenizer-derivedscale-pilot",
-      "status": "旧AutoLlama编码和解码失配已纠正其解释范围；新发布raw/generic逐rowID绑定+derivedattention_factor1.0、first+新最长≤2×4096/480+TERM30尚pending，不将旧输入输出充当正确发布接口表现。"
+      "id": "patient-full64-CPU-probe-formal-and-originaldev",
+      "status": "三方posthoc在F1/F0通过有限门槛，仅支持后继准备；full64 CPU/探针/正式训练及原dev质量另待完整验证，本批不声明已运行。"
     }
   ],
-  "previous_live_index_sha256": "b0dfd28ee6ea47088c4457c0615788aeb0ff343a7165debc4e51abd948790e45",
+  "previous_live_index_sha256": "c417f4506fe3193d336264b197b6104eed940504cde53ff42305621b543a4728",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "旧169条全部entry/ref对象及出现顺序、current预测指标/evaluation/modelpolicy原样；新增7组共176。F1患者固定并集小正但F0质量待审；NCR未满足fold稳定标准、短Med/旧8B9B并集负；R1旧AutoLlama输入与decoder失配明确scope纠正；Med全文最长工程通过。原dev最高a179/.7460819649861977不变，无官方上传/新评测。新Med全文正式、患者F0正式及R1正确接口pilot留pending；新candidate尚未服务器备份。",
+  "live_index_note": "旧176条完整entry/ref对象及出现顺序、current/evaluation/modelpolicy和所有parameter库存/followup原样；仅追加指定6组共182。正确发布R1首条与有限codec最长合一为格式/成本，fixed80仅入口；患者F0原失败与23缓存+35新生成双臂恢复合一，主臂负/old并集相对既定old对照正；Med全文入口与双臂终点合一且负，5维固定融合负，三方并集明确posthoc且F0仍低同池rules。原dev最高a179/.7460819649861977不变，无官方上传或本次新模型/评分。仅R1 F1质量、R1 F0 CPU/copy/probe后继、患者full64 CPU/probe/正式训练+dev留pending；候选尚未发布或新服务器备份。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
