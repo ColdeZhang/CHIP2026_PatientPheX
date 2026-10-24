@@ -1,0 +1,10 @@
+{
+  "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python -c 'from pathlib import Path;import hashlib,json\nexpected={'\"'\"'run_cache.py'\"'\"': '\"'\"'7a0fbcba0b4ebed627b3455a2cb82636012835e617fd513f4641e5c1df1e6550'\"'\"', '\"'\"'launch.py'\"'\"': '\"'\"'d81cc0929f4dc40d6a2ab4b57da49305bb8f1c90b153bf7df7a860903b866ecc'\"'\"', '\"'\"'prepare_inputs.py'\"'\"': '\"'\"'2b4db23c225b2ccc366e920dc21a33446fce8eabab0fd1b0000a9b86e8448e22'\"'\"', '\"'\"'prepare_launch.py'\"'\"': '\"'\"'aa3da583dfff1584804946d8501fea9c898d4a12d5b028058146d0d1627d56d7'\"'\"', '\"'\"'plan.json'\"'\"': '\"'\"'a8addd083eb3384cf9b1d4683d21df7e48525ebb8084476cbea92d7e8314c8a4'\"'\"'}\nactual={n:hashlib.sha256(Path(n).read_bytes()).hexdigest() for n in expected};assert actual==expected\nfor n in expected:\n if n.endswith('\"'\"'.py'\"'\"'):compile(Path(n).read_text(),n,'\"'\"'exec'\"'\"')\nreceipt={'\"'\"'status'\"'\"':'\"'\"'all_sources_actual_sha_and_compile'\"'\"','\"'\"'source_sha256'\"'\"':actual};Path('\"'\"'deployment-receipt.json'\"'\"').write_text(json.dumps(receipt));print(json.dumps(receipt))'",
+  "cwd": "public-neuralcr-readiness/full-train64-cache",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "timeout_seconds": 30
+}
