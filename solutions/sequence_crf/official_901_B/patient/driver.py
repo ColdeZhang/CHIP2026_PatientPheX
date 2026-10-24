@@ -25,6 +25,12 @@ def main():
     plan=json.loads(Path(a.plan).read_text());phase=plan['phase'];assert phase in ('prepare','infer')
     cap=plan['cap_seconds'];grace=plan['grace_seconds'];assert isinstance(cap,int) and 0<cap<=7200 and grace==30
     control=Path(plan['control']);control.mkdir(parents=True,exist_ok=False)
+    current=control
+    while True:
+        fd=os.open(str(current),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+        if current==Path(plan['project']):break
+        assert current!=current.parent, 'control must be below own persistent project'
+        current=current.parent
     start=time.time();save(control/'driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),pid=os.getpid(),plan_sha256=sha(a.plan),TERM_unix=start+cap,KILL_unix=start+cap+grace,once_only=True))
     for name,item in plan['files'].items():assert Path(name).stat().st_size==item['bytes'] and sha(name)==item['sha256'],name
     output=Path(plan['output']);assert not output.exists()
@@ -40,7 +46,7 @@ def main():
         child=subprocess.Popen(plan['argv'],stdout=out,stderr=err,start_new_session=True)
         save(control/'child-started.json',dict(pid=child.pid,process_group=child.pid,TERM_unix=start+cap,KILL_unix=start+cap+grace))
         timed_out=False;killed=False
-        try:rc=child.wait(timeout=remaining)
+        try:rc=child.wait(timeout=max(0., start+cap-time.time()))
         except subprocess.TimeoutExpired:
             timed_out=True;os.killpg(child.pid,signal.SIGTERM)
             try:rc=child.wait(timeout=grace)

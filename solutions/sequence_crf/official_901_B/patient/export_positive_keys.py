@@ -70,7 +70,8 @@ def main():
         chosen={(str(r['pmc_id']),pid,r['code_map'][cid]) for pid,cid in decision['selected_pairs']};assert chosen<=candidates;positives|=chosen
         space.append(dict(row_id=r['row_id'],pmc_id=str(r['pmc_id']),patient_ids=r['patient_ids'],code_map=r['code_map']))
     assert {k:stats[k] for k in ['complete','partial','abstain']}==manifest['codec_status_counts']
-    out=Path(plan['output']);out.mkdir(parents=True,exist_ok=False)
+    out=Path(plan['output']);assert out.parent.is_dir();out.mkdir(exist_ok=False)
+    fd=os.open(str(out.parent),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
     positive_ref=save(out/'positive-keys.json',sorted(positives));space_ref=save(out/'legal-spaces.json',space)
     report=dict(at_utc=datetime.now(timezone.utc).isoformat(),source=ref(__file__),plan=ref(a.plan),references=refs,rows=N,documents=100,patients=244,positive_keys=positive_ref,legal_spaces=space_ref,legal_pairs=len(legal),positive_pairs=len(positives),codec=dict(stats),all_complete_raw_ID_decode=True,raw_first_all_rows=True,codec_replay_exact=True,no_baseline_fallback=True,only_explicit_patient_model_positives=True,canonical_normalization='none: retain original code_map meanings; joint public/old-pool canonical proof is separate',no_fit=True,no_gold=True,no_score=True)
     save(out/'manifest.json',report);fd=os.open(str(out),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd);print(json.dumps(dict(manifest=ref(out/'manifest.json'),positive_pairs=len(positives),rows=N)))
