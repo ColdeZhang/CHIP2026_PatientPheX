@@ -13,3 +13,5 @@
 - 实际 .3 初库存15:41:49 UTC：GPU0 4MiB/24160MiB空闲、无应用，项目盘166.65GB；GPU1/2他人进程不碰。来源外部 probe-v1/initial-inventory.response.json。start前另fresh门，旧库存不替代。
 
 2026-10-24：旧 Gmean F1 正/F0 负结案与本线独立。最终旧 F0 终审 `R/validation/grounded-weight-average-F0-final-review/review.json`，SHA `eb46a4ee532db0caa24baf1431259b7d35125e0c9025686174b92cbf5c037b6b`。不因此复活旧配方。
+
+CPU v1 在0模型/0CUDA阶段拒绝合法整数buffer：199个F16权重＋`embeddings.position_ids` I64[1,512]。只读真实header核过，修正仅接受该已知buffer及其合法loader unexpected；原v1包/rc1保留，独立v2部署，未消耗GPU窗口。ops层原返回0而内层rc1分开记录，现保留结果后assert内层exit。

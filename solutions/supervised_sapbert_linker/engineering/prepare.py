@@ -8,7 +8,7 @@ import zipfile
 
 ROOT=Path(__file__).resolve().parent
 R=Path('/workspace/patientphex-runs/round2-20261023')
-D=R/'research/supervised-linker-readiness-20261024/probe-v1'
+D=R/'research/supervised-linker-readiness-20261024/probe-v2'
 READY=R/'research/supervised-linker-readiness-20261024/owner-v1'
 P='/home/zhangyuheng/projects/CHIP2026_PatientPheX'
 
@@ -47,7 +47,7 @@ def main():
         for name,value in members.items():z.writestr(name,value)
     (D/'package.zip').write_bytes(buf.getvalue())
     manifest=dict(archive=ref(D/'package.zip'),members={k:dict(bytes=len(v),sha256=hashlib.sha256(v).hexdigest()) for k,v in members.items()},
-        mount='1593f159-19bc-41ca-8b4c-2e7455f5db99',relative='research/supervised-sapbert-linker/probe-v1',remote=P+'/research/supervised-sapbert-linker/probe-v1',plan=ref(ROOT/'execution-plan.json'))
+        mount='1593f159-19bc-41ca-8b4c-2e7455f5db99',relative='research/supervised-sapbert-linker/probe-v2',remote=P+'/research/supervised-sapbert-linker/probe-v2',plan=ref(ROOT/'execution-plan.json'))
     (D/'package.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print(json.dumps(dict(package=manifest['archive'],data_bytes=len(payload),members=len(members))))
 

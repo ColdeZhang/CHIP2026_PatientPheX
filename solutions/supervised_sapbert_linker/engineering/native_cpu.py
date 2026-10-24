@@ -26,7 +26,9 @@ def main():
         header=json.loads(f.read(int.from_bytes(f.read(8),'little')))
     from collections import Counter
     dtypes=Counter(v['dtype'] for k,v in header.items() if k!='__metadata__')
-    assert set(dtypes)=={'F16'},dtypes
+    nonfloating={k:v for k,v in header.items() if k!='__metadata__' and v['dtype']!='F16'}
+    assert set(nonfloating)=={'embeddings.position_ids'} and nonfloating['embeddings.position_ids']['dtype']=='I64'
+    assert nonfloating['embeddings.position_ids']['shape']==[1,512]
     data=json.loads(gzip.decompress((root/'data.json.gz').read_bytes()))
     tok=AutoTokenizer.from_pretrained(cfg['model'],local_files_only=True,use_fast=True)
     groups={}
@@ -45,7 +47,7 @@ def main():
     save(root/'cpu-complete.json',dict(status='PASS_ALL_NATIVE_IDS_NO_MODEL_OR_CUDA',elapsed_seconds=time.monotonic()-t,
         groups=groups,assets=actual,python=__import__('sys').version,torch=torch.__version__,transformers=transformers.__version__,
         tokenizers=tokenizers.__version__,tokenizer_class=type(tok).__name__,tokenizer_specials=tok.special_tokens_map,
-        checkpoint_header_dtypes=dict(dtypes),
+        checkpoint_header_dtypes=dict(dtypes),nonfloating_buffer=nonfloating,
         data=ref(root/'data.json.gz'),plan=ref(root/'execution-plan.json')))
 
 

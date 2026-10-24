@@ -30,7 +30,7 @@ def main():
     model,loading=AutoModel.from_pretrained(cfg['model'],local_files_only=True,torch_dtype=torch.float32,output_loading_info=True)
     save(out/'loading.json',loading)
     assert not loading['missing_keys'] and not loading['mismatched_keys'] and not loading['error_msgs']
-    assert all(k.startswith('cls.') for k in loading['unexpected_keys'])
+    assert all(k.startswith('cls.') or k=='embeddings.position_ids' for k in loading['unexpected_keys'])
     assert sum(p.numel() for p in model.parameters())==109482240
     model.cuda();model.eval()
     params=[p for name,p in model.named_parameters() if not name.startswith('pooler.')]

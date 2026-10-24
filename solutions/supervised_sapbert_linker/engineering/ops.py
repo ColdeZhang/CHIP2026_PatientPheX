@@ -9,7 +9,7 @@ import sys
 import time
 
 R=Path('/workspace/patientphex-runs/round2-20261023')
-D=R/'research/supervised-linker-readiness-20261024/probe-v1'
+D=R/'research/supervised-linker-readiness-20261024/probe-v2'
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts')
 from mcp_client import Client
 
@@ -59,7 +59,7 @@ print(json.dumps({'status':'EXTRACTED_ALL_MEMBERS','members':len(members),'archi
     elif args.action=='cpu':
         cmd=shlex.join(['env','CUDA_VISIBLE_DEVICES=']+[k+'='+v for k,v in plan['environment'].items()]+[plan['python'],'-u',remote+'/native_cpu.py'])
         v=call('run_command',dict(mount_id=mount,cwd=rel,command=cmd,timeout_seconds=50),'cpu')
-        (D/'cpu-response.json').write_text(json.dumps(v,indent=2)+'\n');print(json.dumps(v))
+        (D/'cpu-response.json').write_text(json.dumps(v,indent=2)+'\n');print(json.dumps(v));assert v.get('exit_code',0)==0,v
     elif args.action=='start':
         marker=D/'start.intent.json'
         ticket=dict(created_unix=time.time(),launch_not_after_unix=time.time()+300,
