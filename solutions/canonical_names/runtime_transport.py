@@ -57,12 +57,14 @@ def main():
         write(out/(tag+'.response.json'),meta);return v
     rel=remote[len(P)+1:];chunks=[]
     # Each chunk is immutable in this unique run directory; ambiguous write stops.
-    for offset in range(0,len(archive),32768):
+    for offset in ([] if dep.get('reuse_payload_root') else range(0,len(archive),32768)):
         block=archive[offset:offset+32768];name=f'package-{offset:09d}.chunk'
         call('write_file',dict(mount_id=dep['mount'],path=rel+'/'+name,content=base64.b64encode(block).decode(),encoding='base64',create_parents=True))
         chunks.append(dict(name=name,**identity(block)))
     spec=dict(root=remote,chunks=chunks,archive_sha256=hashlib.sha256(archive).hexdigest(),files=manifest,
         python=dep['python'],pythonpath=dep['pythonpath'],budget=30,grace=5)
+    if dep.get('reuse_payload_root'):
+        spec.update(reuse_root=dep['reuse_payload_root'],new_plan_b64=base64.b64encode(payload['cpu-plan.json']).decode())
     code='SPEC='+repr(spec)+'\n'+REMOTE
     # External timeout remains effective if the caller loses connectivity.
     value=call('run_command',dict(mount_id=dep['mount'],cwd='.',command='python3 -c '+shlex.quote(code),timeout_seconds=45))
@@ -88,7 +90,7 @@ def main():
     print(json.dumps(write(out/'collection.json',final)),flush=True)
 
 REMOTE=r'''
-import os,json,time,hashlib,zipfile,io,subprocess
+import os,json,time,hashlib,zipfile,io,subprocess,base64
 from pathlib import Path,PurePosixPath
 root=Path(SPEC['root'])
 def identity(b):return dict(bytes=len(b),sha256=hashlib.sha256(b).hexdigest())
@@ -98,16 +100,20 @@ def put(p,b):
  fd=os.open(p.parent,os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
 def save(p,v):put(p,(json.dumps(v,indent=2)+'\n').encode())
 assert not (root/'launch-intent.json').exists() and not (root/'actual').exists()
-data=b''
-for chunk in SPEC['chunks']:
- b=(root/chunk['name']).read_bytes();assert identity(b)=={k:chunk[k] for k in ['bytes','sha256']};data+=b
-assert hashlib.sha256(data).hexdigest()==SPEC['archive_sha256']
-with zipfile.ZipFile(io.BytesIO(data)) as z:
- assert set(z.namelist())==set(SPEC['files']) and len(z.namelist())==len(set(z.namelist()))
- for name,item in SPEC['files'].items():
-  part=PurePosixPath(name);assert not part.is_absolute() and '..' not in part.parts
-  b=z.read(name);assert identity(b)==item;put(root/name,b);assert identity((root/name).read_bytes())==item
-env=dict(os.environ);env.update(CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false',PYTHONPATH=SPEC['pythonpath']+':'+str(root))
+if SPEC.get('reuse_root'):
+ prior=Path(SPEC['reuse_root']);members={n:(base64.b64decode(SPEC['new_plan_b64']) if n=='cpu-plan.json' else (prior/n).read_bytes()) for n in SPEC['files']}
+else:
+ data=b''
+ for chunk in SPEC['chunks']:
+  b=(root/chunk['name']).read_bytes();assert identity(b)=={k:chunk[k] for k in ['bytes','sha256']};data+=b
+ assert hashlib.sha256(data).hexdigest()==SPEC['archive_sha256']
+ with zipfile.ZipFile(io.BytesIO(data)) as z:
+  assert set(z.namelist())==set(SPEC['files']) and len(z.namelist())==len(set(z.namelist()))
+  members={n:z.read(n) for n in SPEC['files']}
+for name,item in SPEC['files'].items():
+ part=PurePosixPath(name);assert not part.is_absolute() and '..' not in part.parts
+ b=members[name];assert identity(b)==item;put(root/name,b);assert identity((root/name).read_bytes())==item
+env=dict(os.environ);env.update(CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false',PYTHONDONTWRITEBYTECODE='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',PYTHONPATH=SPEC['pythonpath']+':'+str(root))
 started=time.time();save(root/'launch-intent.json',dict(at_unix=started,TERM_unix=started+30,KILL_unix=started+35,budget_seconds=30,grace_seconds=5,CUDA_VISIBLE_DEVICES='',no_model_GPU_quality=True))
 with (root/'stdout.log').open('xb') as out,(root/'stderr.log').open('xb') as err:
  child=subprocess.Popen(['timeout','--signal=TERM','--kill-after=5s','30s',SPEC['python'],str(root/'runtime_cpu.py'),'--plan',str(root/'cpu-plan.json')],env=env,cwd=root,stdout=out,stderr=err)
@@ -115,7 +121,7 @@ with (root/'stdout.log').open('xb') as out,(root/'stderr.log').open('xb') as err
  rc=child.wait()
  for h in [out,err]:h.flush();os.fsync(h.fileno())
 save(root/'wrapper-complete.json',dict(returncode=rc,seconds=time.time()-started,pid=child.pid,no_automatic_retry=True))
-files={p.relative_to(root).as_posix():identity(p.read_bytes()) for p in root.rglob('*') if p.is_file() and (p.relative_to(root).parts[0]=='actual' or p.name in ['stdout.log','stderr.log','wrapper-complete.json','launch-intent.json','child-started.json'])}
+files={p.relative_to(root).as_posix():identity(p.read_bytes()) for p in root.rglob('*') if p.is_file() and (p.relative_to(root).parts[0]=='actual' or p.name in ['stdout.log','stderr.log','wrapper-complete.json','launch-intent.json','child-started.json']) and 'inputs' not in p.relative_to(root).parts and '__pycache__' not in p.relative_to(root).parts}
 print(json.dumps(dict(returncode=rc,files=files)))
 '''
 
