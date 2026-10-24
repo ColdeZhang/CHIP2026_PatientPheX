@@ -84,7 +84,7 @@ print(json.dumps(dict(status='ACTUAL_PERSISTENT_FETCH_SOURCE_FSYNC',free=shutil.
 elif a.action=='preflight':
  assert not (B/'preflight-intent.json').exists();save('preflight-intent.json',dict(at_epoch=time.time(),no_model=True,plan_sha256=plan_sha))
  code='''from pathlib import Path
-import hashlib,json,os,subprocess,time
+import hashlib,json,os,subprocess,time,shutil
 p=Path(PARAM['root']);plan=json.loads((p/'controller-plan.json').read_text());model=Path(plan['model']);manifest=json.loads((p/'model-source-manifest.json').read_text());actual=[]
 for item in manifest['files']:
  f=model/item['name'];h=hashlib.sha256()
@@ -93,8 +93,9 @@ for item in manifest['files']:
  assert f.stat().st_size==item['size'] and h.hexdigest()==item['sha256'];actual.append(dict(name=item['name'],bytes=item['size'],sha256=item['sha256']))
 gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,memory.free,memory.total','--format=csv,noheader,nounits'],text=True);apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_gpu_memory','--format=csv,noheader,nounits'],text=True)
 row=[s for s in gpu.splitlines() if s.split(',')[1].strip()==plan['gpu_uuid']];assert len(row)==1;idx,uuid,used,free,total=[x.strip() for x in row[0].split(',')];assert idx=='2' and int(used)<=100 and int(free)>=78000 and int(total)==81920 and uuid not in apps
+project_free=shutil.disk_usage(p).free;assert project_free>=128*1024**2
 shm=Path(plan['output_dir']).parent;assert shm.stat().st_uid==1045 and not Path(plan['output_dir']).exists();assert os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize>=6*1024**3
-print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize)))
+print(json.dumps(dict(status='ACTUAL_FRESH_GPU_BASE_SHA_SHM',at_epoch=time.time(),files=actual,gpu=row[0],no_process=True,plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),shm_free=os.statvfs(shm).f_bavail*os.statvfs(shm).f_frsize,project_free_bytes=project_free)))
 '''
  d=remote(source,code,dict(root=root),'preflight-tool.json',60);save('preflight.json',d);print(json.dumps({k:v for k,v in d.items() if k!='files'}))
 elif a.action=='start-epoch':
@@ -106,7 +107,7 @@ elif a.action=='start-epoch':
   publish_json(source,root+'/campaign.json',campaign,'source-campaign.json');publish_json(target,dest+'/campaign.json',campaign,'target-campaign.json')
  else:
   campaign=load_campaign();ack=json.loads((B/('epoch-%03d-export-ack.json'%(epoch-1))).read_text());assert ack['status']=='persistent_checkpoint_verified' and ack['completed_epochs']==epoch-1 and ack['global_step']==16*(epoch-1) and (B/('epoch-%03d-source-ack-copy.json'%(epoch-1))).exists()
- assert time.time()<campaign['absolute_deadline_unix'];save('epoch-%03d-start-intent.json'%epoch,dict(at_epoch=time.time(),plan_sha256=plan_sha,campaign=campaign,epoch=epoch))
+ assert time.time()<campaign['absolute_deadline_unix'];save('epoch-%03d-start-intent.json'%epoch,dict(at_epoch=time.time(),plan_sha256=plan_sha,campaign=campaign,epoch=epoch,operations_sha256=sha(Path(__file__).read_bytes())))
  argv=[plan['python'],'-u',root+'/epoch_driver.py','--plan',root+'/controller-plan.json','--campaign',root+'/campaign.json','--epoch',str(epoch)]
  d=call(source,'start_process',dict(command=shlex.join(argv),cwd=plan['remote_relative'],env=plan['env']),'epoch-%03d-start-tool.json'%epoch);save('epoch-%03d-job.json'%epoch,d);print(json.dumps(d))
 elif a.action=='inspect':
