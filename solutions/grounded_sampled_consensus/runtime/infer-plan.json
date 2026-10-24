@@ -1,0 +1,399 @@
+{
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "storage_parent": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "checkpoint_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/F0-inference-cache/epoch-002",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/F0-inference-cache/epoch-002/adapter",
+  "original_training_checkpoint": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/formal-v1/output/epoch-002",
+  "training_runtime": "Torch2.6.0+cu124",
+  "inference_runtime": "Torch2.7.1+cu126; native TF5.20.2,no FLA",
+  "schema": "grounded-sample78-inference-v1",
+  "phase": "infer",
+  "inference_authorized": true,
+  "authorization": "Root explicit fixed two complete F1 quote streams2400+TERM30; no training, checkpoint choice, selective retries or official actions",
+  "budget_seconds": 2400,
+  "authorized_budget_seconds": 2400,
+  "grace_seconds": 30,
+  "expected_rows": 78,
+  "patients_per_seed": 39,
+  "all_rows_fresh": true,
+  "max_new_tokens": 1600,
+  "seeds": [
+    20261024,
+    20261025
+  ],
+  "generation": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "use_cache": true,
+    "num_return_sequences": 1,
+    "num_beams": 1,
+    "max_new_tokens": 1600
+  },
+  "presence_penalty": 0,
+  "assets": {
+    "runner": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/run.py",
+      "bytes": 13905,
+      "sha256": "4216fe530aea60b4d82fb9fc69a525d0e1ffa2c861ae4bd063f4b7f302e4bb87"
+    },
+    "raw_store": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "trainer": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/train.py",
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "checkpoint": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/checkpoint.json",
+      "bytes": 9706,
+      "sha256": "ddb14b092933f1805b11ba97db9bc60ba8c6bdaf1dd05b3bbd59f5b7b5cf5ab0"
+    },
+    "durability": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/durability-epoch-002.json",
+      "bytes": 2031,
+      "sha256": "5f8ca5fc2d09f74c7f5951dc1405a87551fe050ef4694200f1292c373fb9338f"
+    },
+    "training_complete": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/training_complete.json",
+      "bytes": 1239,
+      "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+    },
+    "training_wrapper": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/training-wrapper-complete.json",
+      "bytes": 6367,
+      "sha256": "d1d20d175b7b951f8814d1e1dda5a76f20c1ccc5fc5575ed69498579ed5c65cd"
+    },
+    "prompts": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-prompts.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "held_ids": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-actual-ids.json.gz",
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "held_audit": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-audit.json",
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "model_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "normalization_policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/normalization-policy.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "native_cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/native-CPU-result.json",
+      "bytes": 2283,
+      "sha256": "2f729e761c7f582244e324f0e6ed452835c33a779509a315c22567357a1bd1e7"
+    },
+    "inference_cache_binding": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/inference-cache-binding.json",
+      "bytes": 2155,
+      "sha256": "7a3982d31546a090dbf10fd4b2d17869f6dc53a3e5ed83198190ee4cb074bfef"
+    },
+    "sampling": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/sampling.py",
+      "bytes": 695,
+      "sha256": "334f560b2f94e48cf5088988aa1612837baf291d356d35945775bcc31c2c2ef1"
+    }
+  },
+  "payload_sources": {
+    "run.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/run.py",
+      "bytes": 13905,
+      "sha256": "4216fe530aea60b4d82fb9fc69a525d0e1ffa2c861ae4bd063f4b7f302e4bb87"
+    },
+    "raw_store.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "train.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/train.py",
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "checkpoint.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/epoch-002/checkpoint.json",
+      "bytes": 9706,
+      "sha256": "ddb14b092933f1805b11ba97db9bc60ba8c6bdaf1dd05b3bbd59f5b7b5cf5ab0"
+    },
+    "durability-epoch-002.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/durability-epoch-002.json",
+      "bytes": 2031,
+      "sha256": "5f8ca5fc2d09f74c7f5951dc1405a87551fe050ef4694200f1292c373fb9338f"
+    },
+    "training_complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/training_complete.json",
+      "bytes": 1239,
+      "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+    },
+    "training-wrapper-complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/wrapper-complete.json",
+      "bytes": 6367,
+      "sha256": "d1d20d175b7b951f8814d1e1dda5a76f20c1ccc5fc5575ed69498579ed5c65cd"
+    },
+    "held-prompts.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/F1.input.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "held-actual-ids.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/inference-preparation/held-actual-ids.json.gz",
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "held-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/token-census-v1/F1-input-audit.json",
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "model-source-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "policy.json": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "normalization-policy.json": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "native-CPU-result.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/native-cpu-v1/terminal/actual/result.json",
+      "bytes": 2283,
+      "sha256": "2f729e761c7f582244e324f0e6ed452835c33a779509a315c22567357a1bd1e7"
+    },
+    "inference-cache-binding.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-copy-v1/copy-complete.json",
+      "bytes": 2155,
+      "sha256": "7a3982d31546a090dbf10fd4b2d17869f6dc53a3e5ed83198190ee4cb074bfef"
+    },
+    "infer_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/infer_driver.py",
+      "bytes": 4642,
+      "sha256": "4c62531ce6d80e0d66f60c0d1c7958a79dc3cdac4b9bebcff557359f3d00a134"
+    },
+    "sampling.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/sampling.py",
+      "bytes": 695,
+      "sha256": "334f560b2f94e48cf5088988aa1612837baf291d356d35945775bcc31c2c2ef1"
+    }
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/run.py": {
+      "bytes": 13905,
+      "sha256": "4216fe530aea60b4d82fb9fc69a525d0e1ffa2c861ae4bd063f4b7f302e4bb87"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/raw_store.py": {
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/train.py": {
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/checkpoint.json": {
+      "bytes": 9706,
+      "sha256": "ddb14b092933f1805b11ba97db9bc60ba8c6bdaf1dd05b3bbd59f5b7b5cf5ab0"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/durability-epoch-002.json": {
+      "bytes": 2031,
+      "sha256": "5f8ca5fc2d09f74c7f5951dc1405a87551fe050ef4694200f1292c373fb9338f"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/training_complete.json": {
+      "bytes": 1239,
+      "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/training-wrapper-complete.json": {
+      "bytes": 6367,
+      "sha256": "d1d20d175b7b951f8814d1e1dda5a76f20c1ccc5fc5575ed69498579ed5c65cd"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-prompts.jsonl": {
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-actual-ids.json.gz": {
+      "bytes": 171131,
+      "sha256": "ee08ca3ff7c39cb2990515aa47b2a39abcbae8c81b671668a0935297896aefd7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/held-audit.json": {
+      "bytes": 11213,
+      "sha256": "51613c9c7329a13a36801bbb8fb382d434330c18e39575862b20de76ff7cad3b"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/policy.json": {
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/normalization-policy.json": {
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/native-CPU-result.json": {
+      "bytes": 2283,
+      "sha256": "2f729e761c7f582244e324f0e6ed452835c33a779509a315c22567357a1bd1e7"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/inference-cache-binding.json": {
+      "bytes": 2155,
+      "sha256": "7a3982d31546a090dbf10fd4b2d17869f6dc53a3e5ed83198190ee4cb074bfef"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/infer_driver.py": {
+      "bytes": 4642,
+      "sha256": "4c62531ce6d80e0d66f60c0d1c7958a79dc3cdac4b9bebcff557359f3d00a134"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/sampling.py": {
+      "bytes": 695,
+      "sha256": "334f560b2f94e48cf5088988aa1612837baf291d356d35945775bcc31c2c2ef1"
+    }
+  },
+  "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/output",
+  "argv": [
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/run.py",
+    "--plan",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-v1/infer-plan.json"
+  ],
+  "operations_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/remote.py",
+    "bytes": 19124,
+    "sha256": "47f298954292ecaca41c5ae12627d85b530b251546a865d5dcbfeb60deefa109"
+  },
+  "collection_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/runtime/collect.py",
+    "bytes": 15367,
+    "sha256": "75a8dd05622eebc888cf77cd4087a48a4747eb4ab3f9e2aba7002498b82e9a18"
+  },
+  "binding_source": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/bind.py",
+    "bytes": 3802,
+    "sha256": "a7b6bb682195d2cb8ce28a0cb009c9734b2b572318fa32f6979af54c8df72fce"
+  },
+  "input_sources": {
+    "preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/preparation.json",
+      "bytes": 4554,
+      "sha256": "8f2865166beca317bb80d1df8e1664410bea790c302effb7c7b45c9f8ac41b20"
+    },
+    "native_CPU_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/native-cpu-v1/collection.json",
+      "bytes": 5998,
+      "sha256": "3882542a96b091f8ecd38ed9ce728a7ced6ac1b2ee5570aacd11499e874f53f7"
+    },
+    "original_F1_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/infer-plan.json",
+      "bytes": 18976,
+      "sha256": "7c9c3026ac34efe10f8793c86c507f4a2a715a9541d65ba40c15fefc6b464058"
+    },
+    "original_same_cache_F0_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/f0/infer-plan.json",
+      "bytes": 18370,
+      "sha256": "ed3c9297684c445d86541a6481e56f2142bd602579c99569b86f4e6945101f75"
+    },
+    "formal_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/collection.json",
+      "bytes": 17477,
+      "sha256": "433659a2ca7a605aa2470ee4eea83f5625f7b766ae9901e33f9e2d66e8b1231f"
+    },
+    "train_target": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/manifest.json",
+      "bytes": 5047,
+      "sha256": "85979cdcafb37ddc3eef6b8adac864d0a50608c5ed2c917ac22db4be4643d095"
+    },
+    "copy_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-copy-v1/copy-complete.json",
+      "bytes": 2155,
+      "sha256": "7a3982d31546a090dbf10fd4b2d17869f6dc53a3e5ed83198190ee4cb074bfef"
+    },
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/decision.json",
+      "bytes": 1738,
+      "sha256": "1d049ad0bfbf9bb62aeffad4501282ea019612ae463529ae6b485c9234285fb1"
+    },
+    "budget_revision": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/decision-budget-v2.json",
+      "bytes": 857,
+      "sha256": "70cd04db392b6910c95bed213eecb97369ae7601f31ff88e1aa869697e67b999"
+    }
+  },
+  "reuse_packages": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/native-cpu-v1/package.json",
+      "bytes": 6856,
+      "sha256": "3f8f7da139a34a7c09cac804ce3662a1302ca326b186e1f21d174cdf3dce8acc"
+    }
+  ],
+  "reuse_actual_artifacts": {
+    "native-CPU-result.json": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/native-cpu-v1/actual/result.json",
+      "original_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/native-cpu-v1",
+      "original_member": "actual/result.json",
+      "bytes": 2283,
+      "sha256": "2f729e761c7f582244e324f0e6ed452835c33a779509a315c22567357a1bd1e7",
+      "actual_collection": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/native-cpu-v1/collection.json",
+        "bytes": 5998,
+        "sha256": "3882542a96b091f8ecd38ed9ce728a7ced6ac1b2ee5570aacd11499e874f53f7"
+      }
+    }
+  },
+  "budget_basis": {
+    "previous_same_d52_A800_F0_native_seconds": 593.5622359896079,
+    "previous_output_tokens": 11081,
+    "original_F1_greedy_output_tokens": 10513,
+    "two_stream_token_proxy": 1126.2737635518,
+    "conservative_1point5_plus90": 1779.4106453277,
+    "cap_seconds": 2400,
+    "grace_seconds": 30,
+    "not_a_guarantee": "Sampling may generate more or reach1600. Original shared absolute1800 remains fixed, incomplete means no quality/no selective retries.",
+    "original_cap_seconds": 1800,
+    "prelaunch_revision": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus/solutions/grounded_sampled_consensus/decision-budget-v2.json",
+      "bytes": 857,
+      "sha256": "70cd04db392b6910c95bed213eecb97369ae7601f31ff88e1aa869697e67b999"
+    }
+  },
+  "quality_policy": "Only B4 UNION(normalized sample1 INTERSECT normalized sample2); no single-seed v2; zero addition means exact base/zero v2; strict total Score gain"
+}
