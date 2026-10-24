@@ -1,11 +1,9 @@
-# 固定 F0 BOUNDARY veto
+# 固定 F0 BOUNDARY veto：负结案
 
-同 final epoch2 头作用于强 F0 全部 1085 个精确跨度，只删除完整、严格解析的 BOUNDARY；其余状态保留原实体。基线 .740572140440，原 F1 主头两负与独立 veto 小正均保持。
+同head/同公共Top8/同解码规则的1085跨度已完整结束。Score **.740572140440 → .740492025895**，下降 .000080114546；删4=1TP+3FP。menF1 +.000487901，但docF1 −.000808359，两关系指标完全相同。未通过预设严格正门，**不迁原dev、不改cut、不追加子集或官方提交**。F1独立veto小正与原主头union/new-only两负结论均保留。
 
-373 条缺失公共 Sap Top8 查询已完整通过（11.010 秒，无截断），16:57:09.811953 UTC 实际释放。165 缓存＋373 新查询覆盖全部538词面，未插 gold 候选、训练别名或 exact override。
+373必要Sap查询11.010秒；1085 nativeCPU6.673秒/616583tokens/max698，完全无截断；原514状态语法与已审veto公式复用。训练3470与负例祖先排F0，本次没有重训。原epoch2 adapter504 tensors逐值exact，同Torch2.7.1/TF4.51.3，推断770.098秒，17:15:54.981426 UTC实际释放GPU1（0MiB/noapps，child rc0）。完整解码991HPO/90NO/4BOUNDARY，无NIL/拒绝/cap。
 
-新1085 native CPU 已6.673秒完整通过：616583 tokens，最长698，每条原文/模板/ID与原生HF一致，无截断；原514状态语法沿旧实际合同复用。24 CPU成员全部SHA回收。训练3470/负例祖先都排F0，当前不重训。
+20 query、24 CPU、2202 infer小成员全部SHA回收；完整1085 raw/parsed和结果保外部，不写仓库。共同完整预测冻结351f651c先于唯一1v2/旧0。终态864c1e24不可覆写；小备份和后继独审用单独pointer补充，不改原件。
 
-[固定推断计划](infer-plan.json)绑定原头 beecfb84、同Torch/runtime/greedy/128、独立1800+TERM30与过期独占启动。GPU1按root就绪优先安排，启动前fresh核。[唯一veto协议](decision.json)沿已审root公式，完整冻结后至多1v2（零删除时原基线字节与指标继承0v2）。不运行新headunion、原dev、阈值扫描或官方。
-
-外部目录：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1`。完整原始输出待推断；本目录不把准备合同当质量结果。
+[结果](result.json)、[固定协议](decision.json)、[推断计划](infer-plan.json)、[实验记录](../experiments/E-20261024-boundary-veto-F0.md)。外部目录：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1`。这是第二份开发集控制，不是盲测或官网结果。

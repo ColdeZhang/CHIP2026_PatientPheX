@@ -11,3 +11,11 @@
 17:03:03.946223763 UTC唯一推断开始，proc_9320b6db/PID2756581，.100 GPU1 UUID fc5d0525；源da63ebb2已push并核远端。独立1800+TERM30，过期入场与exclusiveclaim阻重复。按root就绪优先，经sequence确认无GPUstart后接卡，完成即交其GP链。
 
 运行证据见 ../evidence/F0-running.json；外部目录 `/workspace/patientphex-runs/round2-20261023/research/mention-boundary-F0-veto-v1`。当前没有F0质量结果，未原dev/官网。不可将CPU合同或预测状态数称为得分。
+
+## 完整终态
+
+17:15:54.185579全部1085完成，770.097980秒，原wrapper770.969564秒/child rc0；17:15:54.981426释放GPU1=0MiB/noapps，已交sequence下一条GP链。991HPO/90NO/4BOUNDARY，0拒绝/cap。实际同final adapter504逐值exact。
+
+所有2202推断小成员SHA完整回收，ZIP1184973B/160a1178；与20查询/24CPU原件形成完整证据。17:17:21先冻完整veto预测351f651c，再唯一v2/旧0：Score .7404920258945116，基线 .7405721404401228，delta −.000080114545611。删4=1TP+3FP；menF1 +.000487900766、docF1 −.000808358948，mic/mac逐值不变。原预测/阈值/所有4例同一规则，没有个别删选。
+
+因此固定F0正门失败。F1小正不能代表稳定收益，本头以错误边界拒绝换取少量FP减少时仍可误删正确实体。绝不把3/4删除精度直接替代最终指标，也不因微小下降额外换cut或挑文献。源及同模型工程正常，不是超时/缺失输出造成的负结论。稳定terminal864c1e24不修改，后继backup/review只补pointer。
