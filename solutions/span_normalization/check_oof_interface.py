@@ -10,7 +10,7 @@ import sys
 import time
 for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'): os.environ.setdefault(k,'1')
 from common import write_json, read_jsonl, ref, sha
-from fit_oof_features import module, checked
+from fit_oof_features import module, checked, load_decoder
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
     assert len(ys)==45403 and sum(ys)==2978
     scores={x['pmc_id']:x['candidates'] for x in read_jsonl(checked(m['outputs']['selector-scores.jsonl']))}
     base={x['pmc_id']:x for x in read_jsonl(checked(plan['strong_baseline']))}
-    sys.path.insert(0,p['nested_source']);import decode_nested_selector as decoder
+    decoder=load_decoder(p)
     _,allowed,_,_=decoder.prior.base.parse_hpo(a.hpo);allowed.discard('HP:0000118')
     for row in held:
         c=scores[row['pmc_id']];expected=np.array([x['selector_probability'] for x in c])

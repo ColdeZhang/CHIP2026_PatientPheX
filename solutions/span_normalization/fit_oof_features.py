@@ -3,6 +3,7 @@ import argparse
 import copy
 from datetime import datetime, timezone
 import gzip
+import importlib
 import importlib.util
 import json
 import os
@@ -25,6 +26,17 @@ def checked(r):
 
 
 def key(doc, c): return (str(doc), int(c['offset']), int(c['length']))
+
+
+def load_decoder(plan):
+    # Both old packages name a module "run"; isolate lookup, retain actual refs.
+    names=('run','combine','append_nested_spans','decode_weighted_intervals','decode_nested_selector')
+    prior={n:sys.modules.pop(n) for n in names if n in sys.modules}
+    sys.path.insert(0,plan['nested_source'])
+    decoder=importlib.import_module('decode_nested_selector')
+    assert Path(decoder.prior.base.__file__).resolve()==Path(plan['nested_source'])/'run.py'
+    sys.modules.update(prior)
+    return decoder
 
 
 def main():
@@ -102,7 +114,7 @@ def main():
         assert np.array_equal(p,reloaded['model'].predict_proba(reloaded['vectorizer'].transform(fs))[:,1])
         scored.append({'pmc_id':row['pmc_id'],'candidates':[dict(c,**{n:scores[key(row['pmc_id'],c)][n] for n in plan['new_features']},selector_probability=float(v)) for c,v in zip(row['candidates'],p)]})
     write_jsonl(out/'selector-scores.jsonl',scored)
-    sys.path.insert(0,oldplan['nested_source']);import decode_nested_selector as decoder
+    decoder=load_decoder(oldplan)
     _,allowed,_,_=decoder.prior.base.parse_hpo(a.hpo);allowed.discard('HP:0000118')
     base={x['pmc_id']:x for x in read_jsonl(checked(plan['strong_baseline']))};new=[]
     for row,s in zip(pools['input'],scored):
