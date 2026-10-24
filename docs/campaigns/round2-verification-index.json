@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-24T00:53:34.448990+00:00",
+  "generated_utc": "2026-10-24T01:24:08.017868+00:00",
   "artifact_root": "/workspace/patientphex-runs/round2-20261023",
   "path_semantics": "所有path均相对artifact_root；SHA为生成索引时实际文件内容。外部原件不随Git索引自动归档。",
   "scope_note": "独立审查结果索引；不替代原报告，不把oracle/纯span/训练诊断当任务Score。历史best条目保留，当前原dev路线与跨路线组合分列于current_verified_original_dev。",
@@ -13784,25 +13784,764 @@
       ],
       "independently_reviewed": false,
       "quality_experiment": false
+    },
+    {
+      "id": "coreference-B-original80-fixed-prompt-negative-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0120/snapshots/validation/coreference-B-prompt-terminal-review/review.json",
+        "bytes": 5543,
+        "sha256": "34959cc4eb06cc8e548336790e46a15f873841593a2febd7606d90659d76a7f3"
+      },
+      "source_report_path": "validation/coreference-B-prompt-terminal-review/review.json",
+      "completed_review_scope": "PASS_complete_incremental_review_REJECT_fixed_B_control",
+      "scope": "完整质量负终点；复用原32SFT、80输入/候选与1189实体，仅预先固定B共指提示。",
+      "conclusion": "B提示唯一F1 .660942003→.660756991，301TP82FP219FN，总分微降；native282.153秒，1189实体/非关联保留，关闭不并集或迁移。初始schema guard在预测和gold前失败后窄修，原始完整响应未重跑。",
+      "limitations": [
+        "Repeatedly observed train-side F1 development, not blind generalization or official score.",
+        "Wrong-patient counts mean disagreement with supplied evaluator labels; not independent clinical adjudication or proof that native clusters are wrong.",
+        "Only fixed B markers + fixed system sentence, original evidence order and given anchors unchanged; no union/intersection/extra quality search.",
+        "Remote weights/runtime verified through frozen actual receipts, not reloaded by reviewer.",
+        "Native coreference identities are model suggestions; anchor consistency and provenance do not establish clinical correctness.",
+        "Old native CPU/census receipts were owner self-checks, not retroactive independent weight/NN verification."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/coreference-B-prompt-terminal-review/audit_quality.py",
+          "bytes": 11037,
+          "sha256": "a835391a2d92eaa81e471c17bd33fb0e99f4cb112a17413f54bc3a181a106dcf"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/coreference-B-prompt-terminal-review/audit_input.py",
+          "bytes": 8131,
+          "sha256": "845cbba536f01893e7fd50326eced3199207a117466d2be3be3f8ec812659935"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/coreference-B-prompt-terminal-review/input-review.json",
+          "bytes": 2389,
+          "sha256": "4c4e35e6e47cfb474372875eb1d29ebba405ccce966a75ff7e422e1d5ce1ad41"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/coreference-B-prompt-terminal-review/quality-review.json",
+          "bytes": 8012,
+          "sha256": "460919be1da25127ebc7105dd6064cd65f9424ca0cd280050f03c0a15e695322"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/public-coreference-readiness/prompt-control-b/complete-artifact-manifest.json",
+          "bytes": 9231,
+          "sha256": "220969fde8b90050950ebabb831f7bd5aebe8d75aa376c5d4817e719acf8f4a5"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/public-coreference-readiness/prompt-control-b/actual-owner-backup-filelist.json",
+          "bytes": 6397,
+          "sha256": "399d124ea490415fe97bdcbe6e869434c96099781a0c1d46d57f90ff1a9a17da"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/public-coreference-readiness/prompt-control-b/REPORT.md",
+          "bytes": 4003,
+          "sha256": "692f3bdbe6be73ae9fdb8bfaca3e37be1c34bc02195c0a30cb258360447fdbb7"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/batch-manifest.json",
+          "bytes": 62440,
+          "sha256": "7100a2ff5d2ba325500a2fab4d7a8c526284b2480956a5393d89ac2b68f7bdb1"
+        }
+      ],
+      "quality_experiment": true
+    },
+    {
+      "id": "sampled-thinking4096-single-input-format-negative-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0120/snapshots/validation/thinking-sampling-terminal-review/review.json",
+        "bytes": 6745,
+        "sha256": "e5f68aefaa47689998ec228c8c58b45176e94f983738263ced70783cdf6c880c"
+      },
+      "source_report_path": "validation/thinking-sampling-terminal-review/review.json",
+      "completed_review_scope": "PASS_SINGLE_SAMPLED_THINKING_FORMAT_DIAGNOSTIC_INVALID_FINAL_NO_QUALITY",
+      "scope": "完整单输入格式/成本诊断，不是任务质量分数。",
+      "conclusion": "固定原80首输入/原32SFT adapter，公开采样配置与generated-only presence1.5；2030输入/4096输出，4096处理器调用，触顶无EOS/未闭think，strictfinal无效。生成186.896秒/native209.493秒，GPU已释放；不外推所有thinking配置。",
+      "limitations": [
+        "Single predetermined input and multiple differences from previous full64/greedy1600 attempt; no causal or quality comparison.",
+        "Reaching 4096 without a closing think/final invalidates this bounded inference recipe, not every thinking model or larger budget.",
+        "Presence runtime math is checked from frozen source and actual CPU receipts; no second generation or numeric GPU rerun.",
+        "MCP returns running=false but no inference exit code. The rc0 in GPU-release.json belongs only to the resource check."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/thinking-sampling-terminal-review/audit.py",
+          "bytes": 8990,
+          "sha256": "0fb1464e52e5207256509cae89668354316626114c8d91059bd0c23d3e12bae0"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/run-plan.json",
+          "bytes": 6763,
+          "sha256": "84d785833f232fcfd05827065684632ee385f85528aa99b452e64fe771ddf952"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/cpu-result.json",
+          "bytes": 1324,
+          "sha256": "c0ba70548c69342b29a6301c6d159cacc8892223d5cb5ee30efec274bf538406"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/cpu-execution.json",
+          "bytes": 2100,
+          "sha256": "1a90e5101125d10c6383979fa416d78a116a582ddc9cbb4c00936a0e617fc7ec"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/runner.py",
+          "bytes": 12514,
+          "sha256": "71a60738ceb5ed3da0577706530250c22e8d42f9959d23f8c47ff78d1343162a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/presence.py",
+          "bytes": 1194,
+          "sha256": "3a0fce715ff44837f5d61f132543a59dfc2e9869b3369a900b3902321b443d04"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/cpu_contract.py",
+          "bytes": 3698,
+          "sha256": "7771f365d233cc56312ee85d5ab76d84dff95b465603c22eafb1d5d2e2f871c4"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/source-snapshots/finalize.py",
+          "bytes": 3679,
+          "sha256": "aff4a2fc80730d4249885e961abf4a0b31e16e0b8df3e52ca8c08984cd7e7584"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/runner-source.diff",
+          "bytes": 4571,
+          "sha256": "85e9635851d8a613b7c45abe088dca6a39a902f7885fe7a0e51cea9d80c128a3"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses-freeze.json",
+          "bytes": 519,
+          "sha256": "2dfb94f6431a08102620a0af77813d578876286cc6bd0e444383b105afce1821"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/responses.manifest.json",
+          "bytes": 4640,
+          "sha256": "92d932111b7c702b195d1c68dda4088bdf19226d9b751044d50314cfb917f686"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/summary.json",
+          "bytes": 2463,
+          "sha256": "31b753727a8b4e2a6e6a1cf0f208aaadd765e030ceca0584af5fec8aa1c0db06"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/gpu-release.json",
+          "bytes": 441,
+          "sha256": "6d5d7e99f915ecb4fc3662e02deccd38181c247bab582fad0d658fef5e5941a3"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/monitor.json",
+          "bytes": 182,
+          "sha256": "3a8725379e9561bc49c6e338b7cb18779853913874c4e95d8f74a8bf3ababa5d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/job.json",
+          "bytes": 1165,
+          "sha256": "c46975f5092e30e5dc4c6336b2bfabe18169e2a9c47ca891aeea3996f6f1d404"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/recovery-plan.json",
+          "bytes": 822,
+          "sha256": "6a998d73cef16ac59c2243e7d85b1465c3e7e7cf29915b87ca77ab3d4ae792f1"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/case_retrieval/qwen35-preparation/thinking-sampling-followup/recover_existing.py",
+          "bytes": 4448,
+          "sha256": "93b1f7125d392dc1d8b0a31f796f242e7837b36972115161e6858c373fdf44dd"
+        }
+      ],
+      "quality_experiment": false
+    },
+    {
+      "id": "FLA-synthetic-full-model-numeric-contract-negative-terminal",
+      "report": {
+        "path": "validation/index-next-20261024-0120/snapshots/validation/fla-kernel-terminal-review/review.json",
+        "bytes": 8333,
+        "sha256": "b78eec326865b71ac2c41e96b3ae8b7f2423928d3139e95716ae0a4f948ba2c1"
+      },
+      "source_report_path": "validation/fla-kernel-terminal-review/review.json",
+      "completed_review_scope": "PASS_AUDIT_OF_FAILED_FLA_FULL_MODEL_NUMERIC_CONTRACT_NO_EXPANSION",
+      "scope": "完整工程负终点；公开合成数值合同，无任务gold或质量。",
+      "conclusion": "首次cache抓取仅instrumentation失败，窄修后single256 GDN前向/8decode/9参数梯度及cache通过。full9B首128 raw logits relL2 .090575/maxabs13.03125均超合同，meanKL .0004124通过不能覆盖失败。后续长度/greedy比较/LoRA未完成，保留reference运行时，不再retry。",
+      "limitations": [
+        "Verified saved numerical receipts and frozen code; raw large tensors were not retained and no reviewer NN rerun was performed.",
+        "Mean KL passing does not override the predeclared combined logit contract. No causal attribution to constant shifts or task-quality degradation.",
+        "The first infer call executed additional teacherforced/greedy paths internally but failed before saving/comparing them, so they are not counted as passed."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/fla-kernel-terminal-review/audit.py",
+          "bytes": 9653,
+          "sha256": "87c175d907297350df04e88219ffb05b48400da98eeb84e446ae1ff7fc6c2d21"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/probe-plan.json",
+          "bytes": 2833,
+          "sha256": "f16cc09a5cfc8b0dddd8555e93e39a1ce56dd8538f3b51b6ca2c99f1c83267d8"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/probe-source-manifest.json",
+          "bytes": 1449,
+          "sha256": "8776dea603cb8a1adb59cb3269db40dda9d5c357b6d5af6c1828a8e989a0e893"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/gpu_probe.py",
+          "bytes": 14588,
+          "sha256": "b8aca0d289e70623d57e537e23751017c2b6cd260a6ab2cba6a740997bf1e01e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/gpu-import-gate.json",
+          "bytes": 3915,
+          "sha256": "43bec591443d8151c4c2016ecf5eac49968da2bfc557e5f27e1bee055a62244e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2-repair-manifest.json",
+          "bytes": 975,
+          "sha256": "c8dd4836d0e18d81f63923d89f8dbb935cbf7688e075e609cf6e0047a16537f3"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/cache_snapshot_attempt2.py",
+          "bytes": 2466,
+          "sha256": "258010cf372357c1e99194b5c96f24542a668cc58ba22f6bbcbbc6ae2ac7dad8"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/gpu_probe_attempt2.py",
+          "bytes": 617,
+          "sha256": "c6351a4910c0c70549d0e13fa748e5ef51d1ecaf8576324484e328359d4ce5c1"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2-cache-cpu-contract.json",
+          "bytes": 592,
+          "sha256": "f5ccbbd379dd03f3aee2b8738e31cb06907250204e3c3ff8dd9ccf1035ec7505"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt1/process-terminal.json",
+          "bytes": 446,
+          "sha256": "07368ad0d6eca60560dae0ae101fb97d66c5a63e61b83ddc7ce8080148efdf6f"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt1/numeric.stderr.log",
+          "bytes": 1067,
+          "sha256": "1c905a2da1da3a12b1fa075dda7be6261c9263be381f79145bda14f692b49fc4"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt1/gpu-numeric-v1/timings.json",
+          "bytes": 59,
+          "sha256": "638cf40085ce137b01a29d3273e24339af3bfa786d37fd0ef2d90ff92d3c116b"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/terminal.json",
+          "bytes": 2394,
+          "sha256": "6ec5062691d7e2e56ea181365bf582a0f45d1a96d568b68988af29d1cc585e5d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/metrics.json",
+          "bytes": 9927,
+          "sha256": "efaf1868a12d4d9138ff0ea6b5d3268f6d3204f7282b9f23ec2c98304a7f2365"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/timings.json",
+          "bytes": 604,
+          "sha256": "296d845d017d94127d902e55e839b8af0de14076817018cf8fc7e32b7d54de78"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/actual-bindings.json",
+          "bytes": 4298,
+          "sha256": "dd7f6e17057887d1b96bb24bcdbde5c8f0c090dd5d6f5efac5d8a7f9bb68fc13"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/loading-info.json",
+          "bytes": 95,
+          "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/failure-traceback.txt",
+          "bytes": 748,
+          "sha256": "f5d495f1cc1a45c6e9fd59d0c1e241b60f42c233d70605a12e45c1c39803e171"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/collection.json",
+          "bytes": 1706,
+          "sha256": "ddb579e107754812448470a0524b05e8724cd7345b23766a919a68beaa79fa75"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/attempt2-launch-record.json",
+          "bytes": 742,
+          "sha256": "033813887200119979125dce1bec8a827ccb2cd98bcfb43a2b12262fa059b450"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/process-terminal.json",
+          "bytes": 433,
+          "sha256": "ab464f66d941bef07bed0254b19505ab3f507d93de2c2a20d4a923fe31106348"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/attempt2/gpu-release.json",
+          "bytes": 466,
+          "sha256": "83c0d60b09073b44659bd177f4439d4d51fd1762d2f39ec399ed338edf569992"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/fla-kernel-readiness/GPU_RESULT.md",
+          "bytes": 3386,
+          "sha256": "a392310f2cc0fe6e7d488cf75c031d2289e85597286692b2d89b903583e57aac"
+        }
+      ],
+      "quality_experiment": false
+    },
+    {
+      "id": "matched-global-document-pair-probe-entry-complete-F1-negative",
+      "report": {
+        "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-terminal-review/review.json",
+        "bytes": 11521,
+        "sha256": "5ea352fb1dde9e3ee2ea52ecb294100a63362072f11aab268e34b697c8eab9f4"
+      },
+      "source_report_path": "validation/pair-conditioned-document-terminal-review/review.json",
+      "completed_review_scope": "PASS_MATCHED_DOCUMENT_PAIR_COMPLETE_TERMINAL_NEGATIVE_VS_SFT_AND_RULES",
+      "scope": "一个完整组：原生probe、正式入口与双8epoch终点；无独立单臂质量选择。",
+      "conclusion": "same-capacity uniform/pair均train32F2F3、8ep256步，同初始化/顺序，351.677秒，实际final状态SHA与7模块更新均核。1557最终概率固定.5，双fullpred共冻后首次F1；uniform .542015995、pair .557825484，pair对uniform+.015809490但低于同池SFT .660942003及rules .644761594，关闭。两预测独立逐字节复现/39患者macro算数相同，1189实体保留。中断仅传输，最后2文件只读恢复，无重训；未知tar未冒称备份。",
+      "limitations": [
+        "F1 is repeatedly observed development, not blind generalization or official score.",
+        "Only this fixed8epoch/.5 recipe is rejected; no conclusion about every global-document architecture.",
+        "The controlled comparison is pair versus same-capacity uniform. Historical SFT and rules have different architectures/training objectives.",
+        "GPU/model/update facts are verified source-bound actual receipts; reviewer did not rerun NN or deserialize remote final states.",
+        "MCP supplies no remote training exit code. Confirmed empty GPU/PID absence and complete artifacts establish the observed endpoint, not an invented rc0.",
+        "Unknown small-tar creation was not used or claimed as verified backup."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-terminal-review/audit.py",
+          "bytes": 13334,
+          "sha256": "8e1976d3081e9b7a44679a9543f366cbd94514e50a94bf5cd21788b284068e19"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-formal-review/review.json",
+          "bytes": 5906,
+          "sha256": "e5180c9b82acd6a451909eb55f4dba10fd798091cf2aef5e5ce24645d2630537"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-probe-review/review.json",
+          "bytes": 5767,
+          "sha256": "8ed0b35ff50c6cd4b052ed1df9ab68df92ba262f92c3270671bffd04189a0002"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/terminal-artifact-manifest.json",
+          "bytes": 14650,
+          "sha256": "48124fca1c26aa9db42f14826a22619b67c8e719b0dbebfe248e1e8e27927301"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/formal-plan.json",
+          "bytes": 6934,
+          "sha256": "b26d6df54ca7952c7fd644cdf9ad158c8ffd20c36e720028c93f1696dfb6d27b"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/endpoint-plan.json",
+          "bytes": 3143,
+          "sha256": "a455dcbef8d84554a5020a8010dd6eaefb07c71d24f1351a47fbd561550f242d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/finish_pair_document.py",
+          "bytes": 5805,
+          "sha256": "c0506ccacad8fd8eb405bfa5d31f5d410df935282f5ecf452bef8547e3d34dad"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/train_pair_document.py",
+          "bytes": 10444,
+          "sha256": "66c290aef40eee4b554e1f191dd71f60f8fdd8efbff7aa58a2195a921e4e12ef"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/job.json",
+          "bytes": 1258,
+          "sha256": "9e860ff52c4c4b2d6195a2baf261f25bc2a7a343c5b1b6214ccc2babdd817357"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/terminal/training-complete.json",
+          "bytes": 9960,
+          "sha256": "7ac9f29e917159c9a1ddc9439a9fed1aef41c85142c1623119265926324c5cef"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/terminal/artifact-actual-hashes.json",
+          "bytes": 752,
+          "sha256": "57a68e1b877f3409f54b61a847af08e0e0509b180b4af4296b57035761531bf5"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/terminal/gpu-release.json",
+          "bytes": 209,
+          "sha256": "483944df9754c2af0e6b3aeff6d0812957a0d24d8b36a643944e3ae6e8c15ec4"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/collection.json",
+          "bytes": 3303,
+          "sha256": "396c73bd6156f029ece5f6238a353d7f38b051aa1d2f09ff7c70116a09dd59ee"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/root-read-recovery-0120.json",
+          "bytes": 402,
+          "sha256": "341d6e05dc639009e3b605b8e36b5bdc8d24524486e083b9ce25612a9ab9ef8f"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/prediction-freeze.json",
+          "bytes": 817,
+          "sha256": "ff34eb9ef6a8f0c296823c55cf62a04fe25d3c4569231170256e3c73f7dc5a3f"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/evaluation-started.json",
+          "bytes": 337,
+          "sha256": "359620d60f38bfc22aabdc2cf6ad6625d215b74f5227478c1bb2ffbbeda6a4bd"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/results.json",
+          "bytes": 4420,
+          "sha256": "597c35377d072b6d310e2938a93e028b9e65389f1092b4e69e2d7903bca04374"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/pair.metrics.json",
+          "bytes": 13159,
+          "sha256": "49352ec4b96636b60ad4077812415b69c3f30e9c43b74ce16991eee74f89546c"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/uniform.metrics.json",
+          "bytes": 13177,
+          "sha256": "988eb12614fb7bf71af1efe4a36029db684785e009f1f7b5af78e925ae1d5f8e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/pair.format.json",
+          "bytes": 425,
+          "sha256": "4a9122ff34bcb4d18ca3bb30e98cb7497dd941aea5c2f5807c25eff010c26747"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/uniform.format.json",
+          "bytes": 425,
+          "sha256": "d2d4f4e8f7e3777f268e750d5e04088bca929a66cd264a44ace6895281cd7d0a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-probe-review/audit.py",
+          "bytes": 9307,
+          "sha256": "21edbed73a0f45f3183a06b8a8028b8798a655a8b524b04b3c883da62825bc54"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/probe-plan.json",
+          "bytes": 5413,
+          "sha256": "d1a1370d4624f27fdb952550f3010e26dd16a7ebdc795635789d1d057a4e1523"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/preparation.json",
+          "bytes": 3644,
+          "sha256": "029666943843f7fcafeb2b6806891d186e4bba751277346c6f626633b40ac11a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/cpu-result.json",
+          "bytes": 1712,
+          "sha256": "fb39a4e98ee0c32e1068f8a14352f31c2ca9070cf4f1e321bffbf1bf0707736e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/terminal/probe-result.json",
+          "bytes": 8025,
+          "sha256": "ba96adaca1a47177bf19d8055fef626ab173ba197ff053380b8e161cec7afcd6"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/terminal/gpu-release.json",
+          "bytes": 124,
+          "sha256": "4e0020da99e464481df63c4d8b7acfa3b52c4f2896dab1aaeb936cca664de5af"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/collection.json",
+          "bytes": 645,
+          "sha256": "dc1b4f9bafd5a0dc3c750e8d97c1d2228d2e1644fe036ecf86314488c7a81bd6"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/job.json",
+          "bytes": 1133,
+          "sha256": "40ec3d98aa9ffe99297277031e64d3dd22a466ff052d632015a5f9b142de4799"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/process-terminal.json",
+          "bytes": 5528,
+          "sha256": "a7206f297e2761d733dbc46803963b787eb3a4cf95edfe374d68f4ba75ce3aee"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/torch_head.py",
+          "bytes": 2588,
+          "sha256": "264a484135a8b8fa56573386da623e42384defdde893f5d84a1bf99c345a7393"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/probe.py",
+          "bytes": 8129,
+          "sha256": "723fe6e8aead1a650e002209029460b311af96f0e7937be51dab53566a956182"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/probe-v1/torch_contracts.py",
+          "bytes": 5117,
+          "sha256": "48eddd1090ef7d75a50b7730bb9cff1775af37e46e47f86e50786d1c8e95599b"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-formal-review/audit_entry.py",
+          "bytes": 7063,
+          "sha256": "8399552a85fd62df28038aacdcfc61c489db53a914b26b3b8c36e5da10944a5d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-formal-review/audit_inputs.py",
+          "bytes": 7039,
+          "sha256": "973f57af87ecb1e0cc8446a610d0f9097f10b0a6f4461bcf8ca5f601c6b3b052"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/pair-conditioned-document-formal-review/inputs-and-loop.json",
+          "bytes": 3281,
+          "sha256": "1b0e606869a20a356e78554330b038bef9646a421d2e293db428ad3cf2ee76ae"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/formal_operations.py",
+          "bytes": 7037,
+          "sha256": "47cffdb8ee0d664ef1b7be2818a160cf26058e8187841b5509189c1441d6be3b"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/resource.json",
+          "bytes": 777,
+          "sha256": "869c0840d38bb0879b5260c09190c1e27489963720270502de217f76b6936def"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/pair-conditioned-document-feasibility/formal-v1/source-checkpoint.json",
+          "bytes": 4017,
+          "sha256": "77bb6e124ab38b474f7f7f126cd1317a60d842de5e8166066e894ddc32bb2198"
+        }
+      ],
+      "quality_experiment": true
+    },
+    {
+      "id": "matched-candidate-order-warmstart-stage-final-entry",
+      "report": {
+        "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/final-boundary-addendum.json",
+        "bytes": 10245,
+        "sha256": "39ad321210c94c9139ee66ce6d0b9eadf4474223a833ab0e07df3411a315a713"
+      },
+      "source_report_path": "validation/candidate-order-warmstart-entry-review/final-boundary-addendum.json",
+      "completed_review_scope": "PASS_MATCHED_WARMSTART_FINAL_ENTRY_WITH_DURABLE_INTENT_AND_ABSOLUTE_SERVER_DEADLINE",
+      "scope": "完整源/数据/CPU/持久导出/共同评分入口；正式训练与质量并未由入口审证明。",
+      "conclusion": "同旧32SFT epoch2 adapter只取参数，fresh新Adam/RNG两轮O/O对R/O，各32calls/248examples，train32与R124监督语义独立核。实际CPU7.0066秒/无CUDA，9B文本+43.28M LoRA计数正确。每epoch完整状态到.100实SHA/fsync ack后续训，3900+TERM30包括4训练段/4导出/2原80推断。最终controller先写持久intent，服务端按同绝对deadline算timeout；独立5边界及最终32合成端点合同通过。trainer93301f60/eval563da3a1未变，plan3d0acfe8/controller586620a3。旧说明文档后续补充已显式版本说明，不冒称旧字节恢复；无入口质量或服务器备份完成声明。",
+      "limitations": [
+        "Entry readiness is not a completed training result, validated durable production export, or Score >= .8.",
+        "Root paused new MCP actions after global outage; tiny .100 fetcher deployment, fresh GPU/storage preflight, source push/backup and all new-stage execution remain pending.",
+        "Known F1 is repeatedly observed development; comparison to old also changes optimization stage and training amount. O/O vs R/O is the matched order contrast.",
+        "Old preparation fresh-base/forbid-continuation flags describe the historical baseline; the explicitly selected new stage reuses its data provenance and adapter values, with fresh optimizer/RNG.",
+        "Same initial seed does not imply identical later dropout masks with changed token lengths.",
+        "Runtime/token/meta and owner transport fixtures were verified from source-bound actual receipts, not rerun by reviewer; full warm-model forward and complete-checkpoint restore are not asserted.",
+        "Global execution budget includes training/export/inference. Current-invocation trainer timings must not be mistaken for full-stage elapsed.",
+        "No server backup is claimed while MCP is unavailable.",
+        "Earlier explanatory interface prose changed after initial review. This addendum explicitly supersedes that document reference; it does not rewrite the initial report or treat changed prose as old bytes."
+      ],
+      "support": [
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/audit_entry.py",
+          "bytes": 13010,
+          "sha256": "a203bbbfac954352126c9cc004399a379678358cbc3b99d1d62141083cb5f080"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/audit_trainer.py",
+          "bytes": 8980,
+          "sha256": "cc7be3a119c2c2ed6b2255bdf0dd5085bb9ae247d8bf48889e8a1724f26ef307"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/audit_data.py",
+          "bytes": 7411,
+          "sha256": "00ceac68383da565d23dcc0cf96eb8a52943cbb97f5f971c79ff70694e7d2e6e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/audit_final_boundary.py",
+          "bytes": 8786,
+          "sha256": "5f0f29e93b1f0705ba969b06e5c03ae4a0fbc0664b106cdc18dd3378b0c1abad"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/review.json",
+          "bytes": 10327,
+          "sha256": "71b9c9b2cef3c0d3219e24ffc4ce667ae206dd423b25b101b584024f918a2046"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/data-and-schedule.json",
+          "bytes": 3325,
+          "sha256": "7a90442a043f8748664b54544740067be970f38c34f37dd0be6adaebc962aa48"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/validation/candidate-order-warmstart-entry-review/trainer-and-ack-source.json",
+          "bytes": 5103,
+          "sha256": "6b207eee0c58c735e2f163ab012d5377724299bfb6e283c9498535c66ecab17a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/before-intent-persistence/run_paired.py",
+          "bytes": 14901,
+          "sha256": "b78468eefab32a7067ae8c04a3fb6eb50d594373ecc238a609e16afa775d4acb"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/before-intent-persistence/formal/run-plan.json",
+          "bytes": 14544,
+          "sha256": "2dadd63a7e771e1a5a107b94424a656cbf1158669ef318fa7e690ed300790c31"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/before-intent-persistence/entry-source-manifest.json",
+          "bytes": 2201,
+          "sha256": "02b7f41533aa1572e02fb916029f8c55385b3b765db276f97cb6bad58b96f96a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/run_paired.py",
+          "bytes": 15660,
+          "sha256": "586620a36721d138f29e9432474eb0a2af0e2510c0d37d277fc83feff9a208c5"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/formal/run-plan.json",
+          "bytes": 14911,
+          "sha256": "3d0acfe84d09dc897efd1d96966ab294fbeec4fbaec46a22d711bb960e3af727"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/entry-source-manifest.json",
+          "bytes": 2299,
+          "sha256": "6cf3071b34275c620a670142a621872b66c09fd93a4a794b9d9ab49082a20fd8"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/test_start_boundary.py",
+          "bytes": 2603,
+          "sha256": "50149fcf24c9f07c2cbac236fd4a4d30b71116927c091b2556578a37b13182c4"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/start-boundary-cpu-contract.json",
+          "bytes": 546,
+          "sha256": "665dec14b33474516065447d0f08e0f8623c4b9d254a562b28d9925682839fcf"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/paired_evaluation_cpu_contract.py",
+          "bytes": 16531,
+          "sha256": "c9c6d4882c92a6d417190f37ba927749bb64226b7d08c60bb9568a819044030a"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/paired-evaluation-cpu-contract.json",
+          "bytes": 1797,
+          "sha256": "5459b2d46d9128a6f31a9860474a85ae695c34adf0bc6a6c0c72027ecf45d6e8"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/evaluate_paired_interface.md",
+          "bytes": 9900,
+          "sha256": "6f615c7b4088ce3045b3a3b89bc73b8864cb939e79119ece395f16b7bf235fe7"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/evaluate_paired.py",
+          "bytes": 20575,
+          "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/prepare_run.py",
+          "bytes": 5646,
+          "sha256": "64e522d894afa799910d495297eb2872b5bcac75b14647b67d0e6c22e06c214c"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/freeze_evaluation_plan.py",
+          "bytes": 1600,
+          "sha256": "442de08b2db933558845bb016e15b563c57b8870319c45e5c7964a66acb26274"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/deploy_fetcher.py",
+          "bytes": 1418,
+          "sha256": "fdf9bdc03539df0a3939fd74644dd39ea02f80eb8d29863e72a2cd233f26945e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/deploy_cpu.py",
+          "bytes": 4908,
+          "sha256": "449374994c577d8d2a54f759e086e478940ec1cca433dfac8595421a79f654fb"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/train_order_warmstart.py",
+          "bytes": 38314,
+          "sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/export_checkpoint_server.py",
+          "bytes": 3771,
+          "sha256": "e6d32ef491791ea46498f741a1502027bc0d46f215ae3779dce84bcd71d271ae"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/fetch_checkpoint.py",
+          "bytes": 3933,
+          "sha256": "24e92491c7657ab6409bcc08e200a043b3b0a418759beaccf9fc2e14a7860085"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/evaluation-template.json",
+          "bytes": 4229,
+          "sha256": "56a43ae28552fabfbcc8ad49bb4dc1fccf72abec782e17022be929e758217498"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/cpu-runtime-complete.json",
+          "bytes": 983,
+          "sha256": "0393f0efb3726b777d393af189be95ace52e72360109675a6eb31722cb37bdd9"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/cpu_complete.json",
+          "bytes": 517,
+          "sha256": "da7d1b760266c90806023ecfcf7f6848579573c43799994ba939b082c1e46486"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/export-cpu-contract.json",
+          "bytes": 1014,
+          "sha256": "0091a4aaa4095e16d89c17422d893dfb64097031c7eaf0b604069befa5e3e3fd"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/trainer-source-manifest.json",
+          "bytes": 1561,
+          "sha256": "1b9c22f6915188a6f9d7f602fc864a16365d30842e64b8b75620838fb0692784"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/test_export_contract.py",
+          "bytes": 8136,
+          "sha256": "8cd1655e72a9c0cc4ee0d23231a470a7fdb14097e37a8314c748141e702bf14d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/cpu-source-contract.json",
+          "bytes": 5763,
+          "sha256": "a6e14e82bc46c2792a3abac93443bee8004cd91cfae33896015678d9ea2f7a9d"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/matched-32-call-schedule.json",
+          "bytes": 17981,
+          "sha256": "3d76f9409ed0539feed802f1eaec10bfd53a53606ba186d618fbfacfd597c205"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/run_manifest.json",
+          "bytes": 10880,
+          "sha256": "f8e48487d95beedfb3f54d3ec801171d8582fe3317730d3cb70d110bfd88b7b6"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/causal-loss-cpu-check.json",
+          "bytes": 403,
+          "sha256": "ce688b381e4ec90140e585a2222864bc143757726b6344048feefff837d41c2e"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/token-mask-audit-O.json",
+          "bytes": 17505,
+          "sha256": "d97f3438a4bab5996caada009b2bb659a1e679e93ae657893f05fcd1e206a86c"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/meta-coverage.json",
+          "bytes": 50275,
+          "sha256": "fe36ce32a505bedaf2221feff333cc9d4794694c1a3acae2e7a374274eed1644"
+        },
+        {
+          "path": "validation/index-next-20261024-0120/snapshots/research/candidate-order-warmstart-entry/actual-cpu/token-mask-audit-R.json",
+          "bytes": 19861,
+          "sha256": "3b2d9590499ef28175633390c64eda44a2235202acdc342fc4ac6ee1d7effed0"
+        }
+      ],
+      "quality_experiment": false
     }
   ],
   "pending_review": [
     {
-      "id": "F-coref-B-original80-prompt-control",
-      "status": "本批截面尚在原生共指B提示/LLM推断阶段，未有完整质量终点，不能计为成功实验。"
+      "id": "candidate-order-warmstart-stage-formal-terminal",
+      "status": "最终入口已独审；正式launch/四个完整checkpoint持久ack/双原80推断/共同freeze后F1，须以实际终点另审，不由入口审宣称完成。"
     },
     {
       "id": "NCR-complete-assets-native-readiness",
-      "status": "本批仅旧只读inventory；完整fastText续传/原生加载仍未完整，HP新assembly或import-only不冒充native PASS。"
-    },
-    {
-      "id": "pair-conditioned-document-mechanism",
-      "status": "仅CPU可行性准备或只读研究，未计正式训练/质量；FLA如有只读研究亦不当有效实验。"
+      "status": "完整公开fastText资产/结构解析及合成native加载仍等待完整冻结；input-only census和import-only不计模型/质量通过。"
     }
   ],
-  "previous_live_index_sha256": "2487f20d5e386c5de60b5154f44665b0933299f1bd6df3612d91c5f12a645d74",
+  "previous_live_index_sha256": "1a98e4ecb9812776e512407604aeb5b7ada555e3f23f479d327cd19f7ac56822",
   "archived_first12_sha256": "adbad7f3fa7d624119ea82db39ebc16a4423a7d147eff75a828ce5aaf96d6f06",
-  "live_index_note": "保留旧146条/2168引用对象及出现顺序；新增5项完整独审（reverse F1/F0/dev、GLiNER供给负、weighted124训练/F1负）及1组明确未独审的只读公开来源/owner自检快照。最高a179/.746081965，旧baac整对象保留；两个H34历史来源例外原样，不声称全部历史原件已恢复；无官方提交。",
+  "live_index_note": "旧152条/2217引用对象、出现顺序和current完整对象保持。新增5组：corefB负质量、thinking单输入格式负、FLA数值合同负、pair probe+入口+完整双臂F1负、warm新stage完整入口；warm未将准备冒作训练/质量。最高仍a179/.746081965，未达.8，无官方提交。两个H34旧背景来源例外原样；warm旧说明文档版本变更显式披露，不冒称旧字节恢复。候选冻结时服务器归档恢复待实际收据。",
   "archived_first17_sha256": "46ac17c0205cccee3cc16b75d3e2b59dde70b6a414421c90a9f77a8cf03da0b4",
   "archived_first22_sha256": "138f1788ef8b98335fc959e0014d899be334e5d682115e171de74f49de143e9a",
   "archived_first29_sha256": "4d71e4ce13f2ba2ecd35ba1c1f66c2841f8ba53bcbfc0bd5e093fd088fbcb4a9",
