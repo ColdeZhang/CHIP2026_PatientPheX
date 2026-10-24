@@ -63,6 +63,6 @@ FLA A已在原截止内完成，新8次N/F/N/F及40原dtype张量333,805,160B留
 
 217项索引已独立增量复核后一次发布：SHA e248daae、1,660,396B、5,010个唯一引用，旧206对象/4,755引用/原顺序和当前901整对象保持。新增11组/255引用、248内容快照2,436,473B；root实际核新全部引用及271来源别名。官方B状态仅更正为已接收且未取分；FLA A和当前两项训练保持pending。总审fbcb35e1；新备份/实际恢复另行完成前不冒称已保护，旧206实际恢复链保留。
 
-后备规模输入普查已完成，不扩大当前训练：旧SFT48的204行/48篇纯prompt共1,678,769 tokens、最长14,390；full64的265行/64篇共2,197,146、最长16,245。分别1/2行已超当前训练cap13,824，full64还有1行超当前推断cap14,400；这些仅是没有assistant目标的输入长度下界，不可直接套旧cap或按比例承诺耗时。候选/患者/原字段保持、native/Auto/template IDs及decode精确，CPU23.248秒。原2.067秒版本断言失败源于漏private PYTHONPATH，独立恢复只补完整已验env、无CUDA/模型；结果d538d126，详见本体分支`formal_indexed/FUTURE_SCALE_INPUT_READINESS.md`。
+后备规模输入普查已完成，不扩大当前训练：旧SFT48的204行/48篇纯prompt共1,678,769 tokens、最长14,390；full64的265行/64篇共2,197,146、最长16,245。分别1/2行已超当前训练cap13,824，full64还有1行超当前推断cap14,400；这些仅是没有assistant目标的输入长度下界，不可直接套旧cap或按比例承诺耗时。候选/患者/原字段保持、native/Auto/template IDs及decode精确，CPU23.248秒。原2.067秒版本断言失败源于漏private PYTHONPATH，独立恢复只补完整已验env、无CUDA/模型；结果d538d126，详见本体分支`qwen35_sft32_full_report_training_readiness/FUTURE_SCALE_INPUT_READINESS.md`。
 
 两项后备研究不立项：[same-span两阶段排序](../research/two-stage-entity-ranking-readiness-20261024/REPORT.md)先核a465的54项nested来源排除F1，再作一次train48组普查.414秒；44,865组中98.81%单候选、仅116正负竞争组，241缺span与207缺支持ID无法靠固定池排序修复。检测/链接分离仍是不同机制，但当前没有新增支持证据。[患者键置换](../research/patient-key-equivariance-readiness-20261024/REPORT.md)发现模型使用原始patient_id，O编号含原文临床语义，没有独立内部code；直接循环交换可能错配临床身份，重渲染还影响anchor截断/marker排序。因此没有改写数据、fit、NN或质量，不把二者记成已跑出的负分数。
