@@ -19,4 +19,4 @@
 
 主臂Score下降 .002345209551，新增1TP/12FP、移除1TP/7FP，TP净变化0、FP净增5；micro和macro同时下降。预定总Score保留门未通过，不能以工程成功或诊断子指标代替涨分。此结论限于固定α=.5和当前训练配方，不证明所有患者重加权机制无效。两质量总控制器 .392346秒，无后验新臂、阈值或质量重跑。
 
-完整指针见 [单份终态](quality/terminal-summary.json)、[训练终态](formal-terminal-summary.json)、[推断终态](final80/terminal-summary.json)。全量预测、原始响应与检查点留仓库外，统一终审另附稳定指针。
+完整指针见 [单份终态](quality/terminal-summary.json)、[训练终态](formal-terminal-summary.json)、[推断终态](final80/terminal-summary.json)。全量预测、原始响应与检查点留仓库外，统一终审10bc9846已PASS，见[稳定指针](quality/final-review.json)；不把完整性PASS当质量正收益。

@@ -4,7 +4,7 @@
 
 ## 当前状态：患者均衡混合损失 α=.5 已完整负关闭
 
-- **结论**：完整2ep→80fresh→双pred共冻→两次唯一v2已结束。主臂N/R/newP `.661496611109` 低原N/R/P `.663841820660`（−.002345209551），micro/macro均降；单臂 `.636714244169`，强旧全文 `.676546354663`。主臂TP净0、FP净增5，按既定总Score门关闭α=.5，不扫α、不扩F0/原dev。[完整报告](patient_balanced_loss/RESULT.md)、[终态](patient_balanced_loss/quality/terminal-summary.json)。统一终审进行中，不影响负结论。
+- **结论**：完整2ep→80fresh→双pred共冻→两次唯一v2已结束。主臂N/R/newP `.661496611109` 低原N/R/P `.663841820660`（−.002345209551），micro/macro均降；单臂 `.636714244169`，强旧全文 `.676546354663`。主臂TP净0、FP净增5，按既定总Score门关闭α=.5，不扫α、不扩F0/原dev。[完整报告](patient_balanced_loss/RESULT.md)、[终态](patient_balanced_loss/quality/terminal-summary.json)。统一终审10bc9846/18367B完整PASS，原69+256/双ACK/248calls/80fresh/共冻双v2均核；仅证明负结案可信。[稳定审查](patient_balanced_loss/quality/final-review.json)。
 - **目标/边界**：固定总Score目标，单变量跨患者归一混合loss，与已负value×2不同。CPU与真实工程已完整通过；root授权唯一fresh两轮2400+TERM30，最终epoch2完整durable后另80fresh/600+TERM30；主臂N∪R∪newP替换旧P、诊断newP-alone双pred共冻，各唯一v2。旧指标复用，macro完整披露，无新官方上传。当前原dev best仍 `.754361398199`，未达.8。
 - **固定机制**：原 train32 patient-first 124行/32文献/87患者、原两轮顺序；保留一半原 token CE，新增一半患者及患者内 chunk 等权 list-value CE。每epoch P87/S16；row内新系数含真实group size，保留外层 `/len(group)`，包括尾4。原格式/key/EOS/换行由旧半项保留；不按 prepared 正例数加权，prepared空不等于真实gold空。
 - **训练侧准备已完整通过**：唯一2.716751秒，manifest `c713111b…`；原全部124行IDs/labels/rendered/audit exact，400614 tokens/4694监督/max5556。精确 Fraction 证明两轮每患者新增份额1/87、混合1/174，跨两个患者value token为0，106处空列表保留。此系数不等于实际梯度、Adam更新或质量因果。[协议/源](patient_balanced_loss/README.md)、[实际清单](patient_balanced_loss/preparation-actual.json)。
