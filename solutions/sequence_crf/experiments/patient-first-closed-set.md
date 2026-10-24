@@ -143,3 +143,10 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 02:40:44实际监控确认epoch1完整，16/32 optimizer calls，epoch557.7481575s、平均accumulation-group训练loss .2666083614；epoch-001已完整保存，继续同一进程第二轮。step15峰allocated36.7366GB，nvidia-smi缓存/进程占用69559/81920MiB，原80GiB仍有余量，无OOM/数值异常。首非零step2/lr5e-5、norm6.57372、三族B真变化如原warmup；未评epoch1，且此时仅SHM检查点，尚无持久导出声明。[首轮进度](../evidence/round2/patient-first-formal-epoch1-progress.json)。
+
+
+### 完整两轮实际终点与持久导出
+
+02:48:06完整训练结束：2epochs/32calls，native1141.720450s/wrapper1142.721851s，rc0；epoch2 556.414091s、平均group训练loss .1188598782，原source a3ec17f5、总参数8,997,081,600。峰allocated36,737,212,416B、reserved80,752,934,912B；虽然缓存占用较高，完整两轮确实通过，未改allocator/loss/序列长度。14个终点原件已完整回收SHA；complete e327ce9d、最终checkpoint metadata d85779c4。02:48:06.295实际卡1MiB无process，仍留给本camp最终80，未移交。
+
+原CPU导出server proc_8f851455-e691-4bd4-940f-a58d1142c333在02:48:34.520Z启动、fetch proc_8cb892f7-d77a-43d2-9cf1-1c25996b4fe7在02:48:40.711Z启动；共享绝对deadline1792810293.624+TERM10。来源仅自有epoch2，目的.100持久目录，其他8.64GB复制已协调避让。此时尚未取得持久ACK，不提前声称备份成功，也未开始80推断或读取gold。[完整训练结果](../evidence/round2/patient-first-formal-training-results.json)。

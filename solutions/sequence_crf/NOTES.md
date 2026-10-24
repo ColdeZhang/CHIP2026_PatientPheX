@@ -197,3 +197,8 @@ ATLOP原局部乘积需要两端attention支持相交；独立passage编码下�
 
 
 - patient-first正式准备：只转置闭集矩阵方向，不增加患者/候选/知识。二元标签同一不代表token级CE等同；监督token7170→4694只是序列化成本。实际最长5556 native更新通过但A100后续Adam/多形状余量未证；正式等A800独立资源。同旧非thinking greedy上限1600避免再引入预算选择。详见[方法与唯一终点政策](experiments/patient-first-closed-set.md)。
+
+
+## 2026-10-24 官方单模型参数限制纠正
+
+重新核对官方overview外部文本`research/overview.txt`（SHA256 `475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861`）：§3.1原文“Each individual model was limited to 10 billion parameters”；§4.2冠军明确融合Qwen3-8B与DeepSeek-R1-0528-Qwen3-8B，亚军也组合Qwen3.5-9B不同任务/推理策略。因此此前把全链所有模型参数相加≤10B的限制过严，今后按单个模型核算、技术报告披露完整组合。历史因总和排除多个LoRA/NCR等仅是当时资源选择，不能继续当官方禁令。当前正在运行的patient-first单adapter/fresh2ep/原80唯一F1及keep条件完全不变；规则纠正不授权事后加入新组合或挑选质量臂，后续组合仍需预先固定并隔离验证。主线程负责主分支规则与正式来源索引。
