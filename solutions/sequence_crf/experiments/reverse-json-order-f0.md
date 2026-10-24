@@ -13,3 +13,11 @@ F1预设old∪reverse主臂小增且macro不降，经独审baf7aec6通过；root
 ## 实际启动
 
 两文件传输17.7059秒、重新读取完整SHA相同、源临时服务已停（connect_ex111）；A800 SHM余250.823GB，owner1045。03b2dcd已push并核远端后fresh核空启动 `proc_9c8a131a-560a-4a62-972d-18bfcbc33aca`，00:26:07.633Z/600+30秒。原模型/适配器方法不变；新路径只为恢复已删A800冗余weight，.100原件保留。当前未读新质量。
+
+## 固定唯一 union 终点
+
+58条完整响应/415概念有效，无fallback；runner214.108秒、wrapper222.352秒、峰19.871GB。00:29:56.055Z核空释放GPU，00:30:05.846Z两fullpred共同freeze，然后只对union做一次F0 v2。
+
+旧Score **.6954439476→.7046874401**（+.0092434925），micro **.6900763359→.6989720999**（+.0088957640），macro **.6390225645→.6671007704**（+.0280782059）。新增12TP14FP，无删旧关系；947实体及其他非association字段原样，格式0错警。达到事前Score升/macro不降keep。逆序alone留存未评分，未原dev/其他组合。
+
+F1预设同union也是Score/macro微升，但micro下降；两组只是有限开发证据，不代表当前强实体/全部公开新概念关系体系已提升。后继需root决定，不能自动迁移dev。实际模型/临时副本/输入/完整freeze与结果路径见 `evidence/round2/reverse-json-order-f0-results.json`；唯一终点独审正在进行。源与预算未改，现无本路线活动GPU。
