@@ -68,4 +68,4 @@ F0唯一增量终审64946550 PASS（168refs，原106+13实际、47完整含5弃�
 
 F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已.100逐SHA/fsync/reopen，清单03d79755/33292B，localreceipt ebdd0c41；已交root唯一actual restore。引用旧F1已恢复链，未重传大权重/银行，见persistence/F0-receipt.json。
 
-12:17后完整54件pressure9e0c83c8回收；真实13行反向173.664秒，完整两轮token代理3855.766秒，加25%与600秒加载/保存/导出余量合计5419.707秒，小于6000预算。真正trainer.verify_inputs纯metadata已通过，正式计划及controller b812929b准备，尚未启动；完整173×2/44/warmup4/尾5、SHM→.100双ACK，原绝对预算不扩。
+12:17后完整54件pressure9e0c83c8回收；真实13行反向175.294秒，完整两轮token代理3891.968秒，加25%与600秒加载/保存/导出余量合计5464.959秒，小于6000预算。真正trainer.verify_inputs纯metadata已通过，正式计划及controller b812929b准备，尚未启动；完整173×2/44/warmup4/尾5、SHM→.100双ACK，原绝对预算不扩。
