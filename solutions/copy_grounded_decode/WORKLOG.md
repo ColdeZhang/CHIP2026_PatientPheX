@@ -2,7 +2,7 @@
 
 当前状态：**固定方案已关闭：F1后设v2 +.003024221396，独立F0 −.012344213304；不进入full64。完整证据已冻结，GPU全链已释放，暂无官方提交**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
-最近远端检查点：2026-10-24 15:24 UTC，`origin/explore/copy-grounded-decode` 的 `e8a6de06a792691b9ffd23df7e30346270c23c35` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+最近远端检查点：2026-10-24 16:00 UTC，`origin/explore/copy-grounded-decode` 的 `fe146e35c66edb468aa5f1452baf42300920568b` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
@@ -45,3 +45,5 @@
 - 必要126Sap proc_08f195ea、driver2752408/child2752416在15:56:38.365865完整rc0，8.041秒；真实释放15:56:38.370788、GPU0=0/noapps，wrapper1573499d，已交next_method。原FP16/b59/41099固定链完整收件后，全16/47/947 primary保343旧关系、新增32/删0，pure373仅审计不评分；freeze515123f9先push再唯一1newv2/old0，非关系字节/旧字面前缀全部保护，无cap救回或单臂。
 
 - 全量freeze515123f9、预测ba9fcf77在fe85c433已push核远端后，仅一次F0v2：Score .728195628911→.715851415607（Δ−.012344213304），新增32=5TP/27FP，men/doc不变，micro和macro均下降。两折未共同正，关闭此固定视图，不追加full64/单臂/阈值或seed扫描。终审入口 `F0-v1/final-review-entry.json` b1c00bb7（仓内evidence/F0-result.json同字节）；全raw/IDs、归一化、冻结和metrics仓外持久。
+
+- F0终审小包18成员/183611B、SHA2ee1cdd5已写.100 `copy-grounded-decode-v1/backups/F0-artifacts.zip`，文件与祖先fsync且全包实际回读/每成员SHA通过，receipt fbeab6e2。稳定统一入口 `F0-v1/completion-entry.json` 引用原终审b1c00bb7及备份，无未收件项；见evidence/F0-minimal-backup.json。此阶段停止，不自行启动任何新模型/归一化臂。
