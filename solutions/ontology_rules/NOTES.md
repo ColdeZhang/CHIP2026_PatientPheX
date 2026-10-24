@@ -200,3 +200,7 @@ FLERT 风格上下文不能直接拼入 GLiNER tokenized_text：原 SpanProcesso
 ## R1与TF5：自洽的AutoTokenizer不等于发布编码（2026-10-24）
 
 实际LlamaTokenizer重建发布ByteLevel的normalizer/pretokenizer/decoder，造成80输入ID全异且Auto往返0/80。先核发布JSON backend与实际构造器、input ID及decode往返，不只比较同loader两条编码入口。旧GPU真实事实保留，不把其截断/格式失效泛化为模型质量；纠正和源/结果在[专门记录](deepseek_r1_readiness/ERRATA-TOKENIZER-20261024.md)。
+
+## 2026-10-24：后继性能候选，当前未执行
+
+root提出：若原生Qwen forward支持Tensor `logits_to_keep`，可研究在LM head之前只选择causal监督位置，保持完整backbone/目标/归一，减少ignored位置的巨量head输出。必须先核实际API、同冻结hidden下loss/head梯度及数值差异，再独立工程试验；当前只有假设，未证等价或提速，也未授权修改本轮formal。当前已授全文训练继续使用已核完整BF16 head+CE前选择监督位置实现。
