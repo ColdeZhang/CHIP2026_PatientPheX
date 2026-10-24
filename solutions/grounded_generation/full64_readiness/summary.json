@@ -1,0 +1,191 @@
+{
+  "schema": "grounded-conditional-full64-readiness-summary-v1",
+  "target_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-readiness-v1/targets-v2/manifest.json",
+    "bytes": 6582,
+    "sha256": "0106fb66ed59b64d98fc3487951f006d91e0bbd3b0b51f2cc2d7edbce179310f"
+  },
+  "token_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-readiness-v1/token-census-v1/manifest.json",
+    "bytes": 8124,
+    "sha256": "c062ae631d1c96d6c20b52a0f00262e7af9052a96cef3e99ad96aed236e8d68d"
+  },
+  "normalizer_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-full64-readiness-v1/targets-v2/normalizer-train64-manifest.json",
+    "bytes": 5744,
+    "sha256": "c4477f252dd7aea41559d6c503ed102cd674bd64c3d27ac9c351ed73486b497a"
+  },
+  "sources": {
+    "target": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/full64_readiness/prepare64.py",
+      "bytes": 5517,
+      "sha256": "baa2cfb61b00ca70e770fb7236b37c77bd3827b53f66a1a7ed28882a8aee790c"
+    },
+    "token": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/full64_readiness/token_census64.py",
+      "bytes": 6720,
+      "sha256": "09d0ff59d56fde7c6956572af261ddf0fffa87afcc97ff74259aadfe1e80e87d"
+    },
+    "original_construct": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/prepare.py",
+      "bytes": 9417,
+      "sha256": "51d7d1514b6e565a4574b968001e9c8fd35e48d2f72d9f6cd6eb05764b2afd42"
+    },
+    "schema": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "policy": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    }
+  },
+  "scope": {
+    "conditional_only": true,
+    "new_GPU_calls": 0,
+    "new_fit_calls": 0,
+    "new_quality_calls": 0,
+    "training_authorized": false,
+    "original_dev_gold_not_opened": true,
+    "train64_contains_internal_F0_F1_labels": true,
+    "train64_data_never_used_by_running_F0_model_or_normalizer": true,
+    "readiness_preparation_after_current_F0_source_plan_freeze": true,
+    "held_means_original_dev16_in_this_readiness": true
+  },
+  "coverage": {
+    "train_documents": 64,
+    "train_patients": 173,
+    "train_rows": 173,
+    "dev_documents": 16,
+    "dev_patients": 36,
+    "weak_targets": {
+      "original_relation_literals": 1827,
+      "valid_atomic_relation_keys": 1711,
+      "supported_atomic_keys": 1711,
+      "distinct_evidence_targets": 1678,
+      "original_gold_empty": 12,
+      "included_in_SFT": 173,
+      "incomplete_positive_target": 6,
+      "unsupported_atomic_keys": 0,
+      "invalid_relation_labels": 6,
+      "nearer_other_patient": 378,
+      "equally_near_other_patient": 2,
+      "multi_candidate_relation_keys": 888,
+      "chosen_entity_has_other_gold_atoms": 1
+    }
+  },
+  "token_statistics": {
+    "full_training_tokens": {
+      "sum": 957793,
+      "minimum": 1701,
+      "maximum": 10637,
+      "median": 5141,
+      "mean": 5536.375722543353
+    },
+    "prefix_training_tokens": {
+      "sum": 932796,
+      "minimum": 1583,
+      "maximum": 10080,
+      "median": 4922,
+      "mean": 5391.884393063584
+    },
+    "supervised_tokens": {
+      "sum": 24997,
+      "minimum": 3,
+      "maximum": 646,
+      "median": 113,
+      "mean": 144.49132947976878
+    },
+    "held_input_tokens": {
+      "sum": 163925,
+      "minimum": 1755,
+      "maximum": 8858,
+      "median": 4279.0,
+      "mean": 4553.472222222223
+    }
+  },
+  "frontier": [
+    {
+      "index": 144,
+      "row_id": "12455887:OP1:grounded",
+      "full_tokens": 10637,
+      "prefix_tokens": 10080,
+      "supervised_tokens": 557
+    },
+    {
+      "index": 149,
+      "row_id": "5538066:O1:grounded",
+      "full_tokens": 6346,
+      "prefix_tokens": 5700,
+      "supervised_tokens": 646
+    }
+  ],
+  "same_recipe_proposal": {
+    "epochs": 2,
+    "gradient_accumulation": 8,
+    "steps_per_epoch": 22,
+    "optimizer_calls": 44,
+    "tail_group_size": 5,
+    "warmup_steps_proposal": 4,
+    "warmup_rationale": "Preserve original2/22=4/44 warmup fraction; exact formal config still needs parent activation",
+    "fresh_public_base_and_fresh_adapter": true,
+    "old_probe_or_train32_state_continuation": false
+  },
+  "memory": {
+    "old_actual_A100_peak_allocated": 28177982464,
+    "old_actual_A100_peak_reserved": 31388073984,
+    "old_max_input": 9210,
+    "old_max_supervised": 610,
+    "new_max_input": 10637,
+    "new_max_supervised": 646,
+    "old_probe_not_covering_new_frontier": true,
+    "no_claim_new_peak_is_measured": true,
+    "native209_and_new_frontier_engineering_required_before_training": true
+  },
+  "time_estimate": {
+    "old_A100_complete_program_seconds": 2037.6513610109687,
+    "old_two_epoch_seconds": [
+      982.8310416899621,
+      984.119349796325
+    ],
+    "old_loading_and_other_overhead_seconds": 70.70096952468157,
+    "linear_token_ratio": 2.120549868045839,
+    "squared_length_proxy_ratio": 2.2936589634527227,
+    "supervised_ratio": 2.1034163581285763,
+    "proxy_total_range_seconds": [
+      4241.717362643639,
+      4582.214365624046
+    ],
+    "candidate_A100_budget_seconds": 6000,
+    "candidate_TERM_grace_seconds": 30,
+    "not_authorized_not_actual_measurement": true,
+    "not_A800_speed_prediction": true,
+    "new_probe_needed_for_device_specific_estimate": true,
+    "old_epoch_seconds_include_checkpoint_publication_and_reopened_SHA": true
+  },
+  "disk_estimate": {
+    "old_complete_epoch_bytes": 519904753,
+    "two_complete_model_optimizer_scheduler_RNG_epochs_bytes": 1039809506,
+    "staged_directory_rename_not_double_full_copy": true,
+    "proposed_minimum_free_before_formal_bytes": 1610612736,
+    "A800_current_free_after_inference_cache_about_bytes": 1300000000,
+    "A800_training_not_claimed_ready": true,
+    "no_asset_cleanup_authorized_or_performed": true
+  },
+  "normalization": {
+    "training_source": "Only originaltrain64 cb45 (future method); currentF0 stays38c3 train32",
+    "policy_sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20",
+    "public_bank_rows": 41099,
+    "bank_reencoded": false,
+    "encoder_fit": false,
+    "exact_keys": 43496,
+    "folded_keys": 42621,
+    "exact_alias_content_sha256": "0edfb41b46501590f8ff0c33bef6f323b3bd259d7aaefad5370a46b1e94b8d2e"
+  },
+  "CPU_actual_seconds": {
+    "targets": 1.5154856100125471,
+    "token_census": 5.9541419859888265
+  }
+}
