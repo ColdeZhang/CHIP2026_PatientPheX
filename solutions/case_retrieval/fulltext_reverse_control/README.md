@@ -11,8 +11,8 @@ python prepare_cpu.py --plan contract.json --base <已核Qwen3.5-9B>
   --input-dir <三份原文件的暂存目录> --output-dir <新的CPU目录>
 ```
 
-三份原文件 basename 为 `meta.prompts.jsonl`、`expanded80.jsonl`、`row-audit.json`；暂存路径可变，原大小/SHA 不变。未来最长 GPU 探针由父线程另外绑定并启动，240＋TERM30，原 BF16/native SDPA/greedy1600；这里没有 GPU launcher。
+三份原文件 basename 为 `meta.prompts.jsonl`、`expanded80.jsonl`、`row-audit.json`；暂存路径可变，原大小/SHA 不变。实际CPU、最长probe与完整80均已完成；运行源分别见probe/和full80/，原 BF16/native SDPA/greedy1600。
 
 预定 primary 为正序全文∪新全文逆序，diagnostic 为新全文逆序 alone。两份完整预测共同冻结后分别唯一 v2，旧基线 `.676546354662594` 复用，不重评分；Score 严格升才支持保留，macro 和全部分项照实报告，不更换臂身份。原 1189 实体及非关系字节保持。该 F1 已用于多轮开发，不称盲测；缓存正序运行在 A800，新逆序计划在 A30，设备/后端数值差异是明确限制，不称完美单变量数值对照。
 
-当前仅完成两份源码 compile、三个旧逆序函数源码相等与合同准备；没有运行 tokenizer、远端、GPU 或质量。
+实际双质量已完整负结案：N∪R .667933002、R-alone .664751423，均低原全文正序 .676546355。见 [完整结果](QUALITY-RESULT.md)；保留最初冻结合同、全部原件和失败范围，不继续F0/dev/官方。
