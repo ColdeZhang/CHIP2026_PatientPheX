@@ -106,6 +106,9 @@ def verify_inputs(plan):
     assert identity(cpu['runtime'])==identity(assets['cpu_runtime'])
     assert identity(cpu['plan'])==identity(assets['cpu_plan'])
     assert identity(cpu['source'])==identity(assets['native_cpu_source'])
+    assert identity(cpu['state_interface'])==identity(assets['state_cpu_result'])
+    state_cpu=read(assets['state_cpu_result']['path']);assert state_cpu['status']=='PASS_PARAMETERIZED_COMPLETE_STATE_CPU_INTERFACE'
+    assert state_cpu['actual_CUDA_RNG_roundtrip_exercised'] is False
     assert runtime['torch']=='2.7.1+cu126' and runtime['transformers']=='5.20.2'
     assert runtime['peft']=='0.21.2' and runtime['tokenizers']=='0.23.1'
     assert runtime['modeling']['sha256']==MODEL_SOURCE_SHA and runtime['indexed_head']['sha256']==INDEXED_SHA
