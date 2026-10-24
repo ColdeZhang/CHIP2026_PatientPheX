@@ -23,3 +23,9 @@ root已授权`.100 A30 GPU1`一次420秒+TERM30探针，源`gpu_probe.py`、固�
 唯一工程探针已在最短真grad比较停止，见[失败结案](GPU-PROBE.md)，未执行Adam/最长。新独立数值诊断仅180+TERM30：同最短nativeA/nativeB/selected三个真实梯度，先存loss、每504tensor统计和完整外部梯度，再判原容差；同一冻结actual logits另做CE梯度，区分模型路径与loss。无optimizer/参数更新/质量/门槛改动，约0.71GB有界tensor仅在.100自有外部目录。
 
 [数值诊断](NUMERICAL-RESULT.md)已完整36.693秒结束并终审55524bf2通过。root授权独立H51 `stress_probe.py`/`stress-plan.json`420+TERM30：沿同124原配方与旧12行诊断顺序，8条更新+3累积后最长；CE工程门沿已有同实际logits exact证明，旧跨backward allclose仅保留失败诊断、不改阈值。每步先存idx/loss/finite/stat再断言，CPU合成NaN验证先存证据路径。未授权正式训练。
+
+## Fresh正式124×2（新授权）
+
+统一工程审92fab5e1已通过；root授权原124×2/32optimizer calls、2warmup、seed20261023，1800+TERM30含每epoch完整LoRA+Adam/scheduler/全部RNG持久fsync及reopen逐tensor验证。源`formal_train.py`/`formal-plan.json`先发布后执行；必须fresh公开基座，不接probe状态。训练中无F1质量/原dev/F0标签。
+
+[两质量端点](quality-contract.json)在训练前冻结：primary R1-SFT alone，diagnostic oldSFT32∪R1-SFT，任一Score>.676546354662594且macro≥.5959675129046342才保留；两臂都过选Score较高者，身份不改。相对原R1适配收益另报，单独超过零样本不算胜出。formal终态后仅授权最长原F1 index73/5689一行240+TERM30格式/速度probe作为未来80中1缓存，不自动全80或评分。

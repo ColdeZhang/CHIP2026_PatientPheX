@@ -1,0 +1,73 @@
+{
+  "status": "FROZEN_TWO_ENDPOINTS_BEFORE_TRAINING_NO_QUALITY_EXECUTION_AUTHORIZED_YET",
+  "primary": "new_R1_SFT_standalone",
+  "diagnostic": "oldSFT32_union_new_R1_SFT",
+  "benchmarks": {
+    "R1_before_primary": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/primary-r1/metrics.json",
+      "bytes": 12977,
+      "sha256": "c966b3ed5cce09a3fe451d1996a4e5107b945cabff6ebeff6d7e201cf3b9807a",
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.5508735868448099,
+        "macF1": 0.45505142100440427,
+        "Score": 0.6052159859094687
+      }
+    },
+    "R1_before_diagnostic_union": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/full80-preparation/quality/secondary-union/metrics.json",
+      "bytes": 13030,
+      "sha256": "77af7c9b414afb5c0f295d1dd456177bcb8145f417f59850472ac5f61c95c1c9",
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6221804511278195,
+        "macF1": 0.5004922409811866,
+        "Score": 0.6344029069744166
+      }
+    },
+    "same_pool_strong_Qwen_SFT32_fulltext": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+      "bytes": 12922,
+      "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86",
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6952789699570815,
+        "macF1": 0.5959675129046342,
+        "Score": 0.676546354662594
+      }
+    }
+  },
+  "keep_rule": {
+    "each_arm_Score_strictly_greater_than": 0.676546354662594,
+    "each_arm_macro_at_least": 0.5959675129046342,
+    "either_arm_passing_suffices": true,
+    "if_both_pass_choose_higher_Score": true,
+    "exact_tie_choose_primary": true,
+    "arm_identities_never_relabelled": true
+  },
+  "fixed_F1": {
+    "rows": 80,
+    "documents": 16,
+    "entities": 1189,
+    "patients": 39,
+    "old_candidates_only": true
+  },
+  "generation": {
+    "seed_each_row": 20261024,
+    "do_sample": true,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_new_tokens": 4096,
+    "repetition_penalty": 1.0,
+    "native_tokenizer_and_RoPE_unchanged": true,
+    "raw_ids_and_EOS_saved_before_original_parser": true,
+    "no_alias_policy_change": true
+  },
+  "reporting": "Report R1before/after standalone and same-oldSFT union adaptation deltas separately from resource competitiveness vs stronger Qwen fulltext. Beating only rawR1 is not keep.",
+  "authorization": "Formal complete then only original80 longest input index73/5689 once240+TERM30 with exact final checkpoint+adapter+trainingstate SHA and config via manifest, as one row cache; no automatic full80/quality/F0/dev/official.",
+  "old_negative_union_OOF_decisions_unchanged": true
+}
