@@ -1,6 +1,6 @@
 # 病例检索路线：当前工作索引
 
-- **新授权准备：[901原配方FLA](fla_best901_control/README.md)**：四流normal64/reverse64/public42/patient64，共234，715548旧实际tokens；仅改backend、全部fresh。CPU234 native核3.957秒通过（c5a132f1），全部715548输入tokens/原顺序exact；旧raw复装源已冻待唯一CPU，未启动新GPU/质量；所有非Qwen组件固定，预期总1800+30共享时钟。
+- **新授权准备：[901原配方FLA](fla_best901_control/README.md)**：四流normal64/reverse64/public42/patient64，共234，715548旧实际tokens；仅改backend、全部fresh。CPU234 native核3.957秒通过（c5a132f1），全部715548输入tokens/原顺序exact；原四raw唯一CPU复装0.109740秒byteexact901（dff40c6f），0gold/v2；新GPU源449cb790/计划178ae0ec已冻，待fresh卡/盘唯一234fresh启动，最终单pred冻结后1newv2/旧0；所有非Qwen组件固定，预期总1800+30共享时钟。
 
 - **[F0 全文 FLA完整质量](fla_fulltext_F0_control/QUALITY-RESULT.md)**：旧native .696603974744→主/诊断同 **.697299773647**（+.000695799），新增1TP/0FP，同分选primary；仍低同骨架强triple .709556743085，不是globalbest。原58fresh/最长16245门通过，387.541秒rc0/实际GPU释放；321原件全SHA恢复，双pred共冻8c201d5e后2newv2/旧0、CPU.306秒，summaryc7f32fb8。F1已审8ca5be23也主正+.002349900；两折局部正不自动迁原dev/组合/官方。F0统一增量终审4fbaeaf1通过，31件103KB质量小补包53edbb0a/manifestc09f39f0已服务器SHA/fsync/reopen，root独立恢复待办；无活动GPU或待评分。
 
