@@ -99,3 +99,5 @@
 - 未来全文48/64纯输入CPU23.248秒通过：204行/48篇1,678,769tokens max14,390；265行/64篇2,197,146 max16,245，分别1/2行超原训练cap13824。候选/PID/原文保持，native接口全同；不含答案，不能当完整训练预算。首次漏PYTHONPATH在分词前失败，独立同源env修复及原失败保留；无新GPU/模型/评分。[单份readiness摘要](qwen35_sft32_full_report_training_readiness/FUTURE_SCALE_INPUT_READINESS.md)。
 
 - indexed两轮已完整32更新：epoch2 09:26:34 rc0/2315.703秒，最终65b53e36 adapter与完整state已09:28:25在.100共520,023,199 B全SHA/fsync/reopen；原watch09:28:38正常完成。新adapter F1全80fresh计划和仍disabled质量模板已实际绑定，保留14400输入/1600生成、1200+30及强.676546 Score-only双臂协议。[实际绑定](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/bound-entry.json)。
+
+- 新全文模型F1唯一全80fresh已09:30:18 proc_36a62965/PID22795启动，1200+30；训练28件真实小终态已一次完整收回（b88400b7 zip，30,047 B），包括完整state/RNG恢复、32步和两epoch保存。无旧adapter响应复用、尚无新质量；[原作业指针](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/actual-start.json)。
