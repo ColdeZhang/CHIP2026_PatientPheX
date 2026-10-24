@@ -15,7 +15,7 @@
 - 外部目录 `R/research/deepseek-r1-0528-qwen3-8b-feasibility`，其中 `R=/workspace/patientphex-runs/round2-20261023`。恢复先核 `assets/intent.json`、`download-job.json`、`monitor-state.json`；只读入口 `assets/poll_original.py`。UNKNOWN先核原job/实际文件，不能再发start。
 - 原生80纯输入CPU完成，三固定row输入2171/3425/6002 token；首BatchEncoding错误与修复原留。YaRN CPU对HF4.51参考64值bitexact，配置不改。[完整CPU清单](deepseek_r1_readiness/cpu-terminal-manifest.json)。
 - **唯一GPU探针已结束并释放**：.100 GPU1，managed `proc_2eb8109a-602c-4714-956c-1aa4db401a35`；wrapper46.141秒/rc0，加载6.714秒/399实际参数完整。first2171输入→1024新token，33.219秒/30.826 token/s，无EOS，首token cap停止余2条；峰allocated19.496GB。03:39:03.804目标卡0MiB且无进程。仅当前预算不够，无gold/80质量，不关闭模型质量方向。[实际摘要](deepseek_r1_readiness/gpu-probe/terminal-summary.json)。
-- **后继单条4096诊断准备完成，尚未start**：主线程据原30.826 token/s授权同first/index0/2171输入fresh生成，max4096、总240+TERM30（225s软停），不续旧KV/RNG、不余2条/全80/gold。独立新源9c6020a2、plan918da954，.100实际SHA/Python3.10compile通过；再次cap/wall即止。[冻结计划](deepseek_r1_readiness/gpu-probe-single4096/plan.json)。
+- **后继单条4096诊断正在运行**：主线程据原30.826 token/s授权同first/index0/2171输入fresh生成，max4096、总240+TERM30（225s软停），不续旧KV/RNG、不余2条/全80/gold。独立新源9c6020a2、plan918da954；proc_3150d10e-0826-45f1-adfe-557563152adb于03:43:18.247启动，主截止03:47:18.247+TERM30，freshGPU1为0MiB/free24164；再次cap/wall即止。[冻结计划](deepseek_r1_readiness/gpu-probe-single4096/plan.json)。
 - 原生FP32 rotary同device比较及CPU/GPU 8eps容差在启动前冻结，原CPU证据保留；source实际SHA/compile通过。执行恢复入口为外部 `gpu-probe/{plan.json,start-intent.json,job.json}` 与 `gpu-probe/recovered/wrapper-result.json`，实际生成结果在 `recovered/`；只有真实产生后才作为已运行证据。[研究/过程/边界](deepseek_r1_readiness/REPORT.md)。
 
 ## 最近结案
@@ -26,7 +26,7 @@
 
 ## 下一步与备份
 
-1. 已冻结完整资产/CPU/GPU合一清单 `d172a788`，交统一增量复核；无本路线GPU或下载作业仍运行。
+1. 已冻结完整资产/CPU/GPU合一清单 `d172a788`，统一增量复核8fa2f637通过；下载已完，当前GPU仅后继4096单条原job。
 2. 按主线程新授权执行唯一首条4096诊断；已有1024阶段已独审8fa2f637通过。完整80质量仍未授权。
 3. 完整原始生成IDs及资产位于.100持久自有namespace，文件SHA/恢复见[路线报告](deepseek_r1_readiness/REPORT.md)和[合一清单](deepseek_r1_readiness/terminal-manifest.json)。
 
