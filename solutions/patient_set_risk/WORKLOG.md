@@ -44,3 +44,11 @@ normalizer helper完成8raw→必要公共query→完整奖励接口及CPU合同
 A100小文件部署完成：首rows.gz write_file返回UNKNOWN，原路径只读完整SHA确认实际已写86,878B/1c78f25a，不重写原未知路径，只补其它9件；随后10件全体fsync/reopen/fullSHA闭合。未生成admission或start。`evidence/deployed-A100.json`指向完整恢复链和源独审483db3ba。
 
 sequence的F047+必要27Sap链已于16:36:26.770621释放.100GPU0，原wrapper338ce0e1/child2754896，保真实release pointer；Sap真正启动仍须fresh gate。A100主体继续等前序seed完整训练/推断链，不能把其它卡释放当作本卡可用。
+
+## 2026-10-24 实际生成配置默认继承修补
+
+等待资源时只读 actual TF5.20.2 `generation/utils.py` 7944240f：`_prepare_generation_config` 会把None字段从 `model.generation_config` 合入，即使传fresh config；这个版本不提供可盲传的 `use_model_defaults=False` 显式参数。原processor门会拒隐藏warper，但实现“不继承”还应显式清空模型侧默认。
+
+无模型CPU针对性实际API合同复现：synthetic祖先min_p=.3在caller min_p=None时被继承；把underlying默认重置为仅原EOS/pad/bos的fresh config后，min_p=None，固定T1/topk0/top_p1原值不变。CUDA未初始化，未实例化/下载模型。`pilot.py`现保存原model config与每条actual prepared config，核有效参数和唯一不改logits的observer；根线程认可机械修补，不改采样配方、预算或门。小证据 `evidence/generation-default-contract.json`。
+
+原91b6执行绑定与已部署v1 namespace完全保留、未admit/start。新增v4绑定使用pilot-A100-v2新namespace，原fixed4 inputs相同。没有重跑旧loss/normalizer数学或另做整套源审。

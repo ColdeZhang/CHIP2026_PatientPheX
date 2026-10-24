@@ -89,7 +89,16 @@ def main():
                     raise FloatingPointError('nonfinite original logits')
                 self.previous=scores.detach().clone();return scores
         underlying=model.get_base_model();original_processor=underlying._get_logits_processor;processor_audits=[]
+        assert sha(inspect.getsourcefile(original_processor))=='7944240ff1ee27a7b3acc16571b7a480cc14f16e7222aeb1a79d289ebc96e3ea'
+        # Actual TF5.20.2 fills None fields from model.generation_config even
+        # when a fresh config is supplied. Remove that implicit ancestry too.
+        atomic(out/'original-model-generation-config.json',underlying.generation_config.to_dict())
+        underlying.generation_config=GenerationConfig(eos_token_id=sorted(eos),pad_token_id=tok.pad_token_id,bos_token_id=tok.bos_token_id)
         def audited_processors(self,*args,**kwargs):
+            effective=kwargs.get('generation_config') or args[0]
+            atomic(out/(stem+'.prepared-generation-config.json'),effective.to_dict())
+            assert effective.temperature==1. and effective.top_k==0 and effective.top_p==1. and effective.min_p is None
+            assert effective.repetition_penalty==1. and effective.num_beams==1 and effective.do_sample==(arm=='sample')
             processors=original_processor(*args,**kwargs)
             names=[type(p).__name__ for p in processors];processor_audits.append(names)
             assert len(processors)==1 and isinstance(processors[0],Observe),('hidden generation processors',names)
