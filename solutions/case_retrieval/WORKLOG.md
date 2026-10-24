@@ -4,7 +4,7 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **当前MedGemma诊断通过、正式对照准备**：唯一native21.588秒，最长5380更新3.023秒，allocated29.518GB/reserved30.839GB，完整加载/CE/梯度/真实2token cache均过；03:16:08Z GPU2实际释放。统一审1dc8c37b；[结果与训练前修订](medgemma_relation_control/RESULT.md)。root据实际授权固定fresh124×2ep共享1200+30与每epoch持久ACK，后原80另600+30；预先primary Med、唯一secondary oldSFT32∪Med，双完整freeze后各唯一v2，完整正式源/plan已冻，原trainer/infer不改，controller6d32/export34ada/fetch07ba；预先双endpoint22aec、共享freeze门禁，待fresh资源核后启动，无新质量。
+- **当前MedGemma诊断通过、正式对照准备**：唯一native21.588秒，最长5380更新3.023秒，allocated29.518GB/reserved30.839GB，完整加载/CE/梯度/真实2token cache均过；03:16:08Z GPU2实际释放。统一审1dc8c37b；[结果与训练前修订](medgemma_relation_control/RESULT.md)。root据实际授权固定fresh124×2ep共享1200+30与每epoch持久ACK，后原80另600+30；预先primary Med、唯一secondary oldSFT32∪Med，双完整freeze后各唯一v2，完整正式源/plan已冻，原trainer/infer不改，controller6d32/export34ada/fetch07ba；预先双endpoint22aec、共享freeze门禁，fresh资源已核；实际03:23:07Z控制意图起，共享绝对03:43:07Z+TERM30，epoch1 proc_1850f7de/PID64409/watch40635，恢复先读formal known jobs不重复。无新质量。
 
 - **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking4096采样单条也已完整格式失败并结案，见下。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
