@@ -2,6 +2,8 @@
 
 实验 `E-20261023-009-thinking-budget-forcing-readiness`，2026-10-24 UTC。**仅完成 CPU、源码和计划；未启动 GPU、未生成新答案、未读 gold/targets、没有质量分。**
 
+**后续单条诊断已由主线程选择，正在完成部署与备份。** 实际目标改为 .100 A30 GPU1，复用原生 TF5.20.2/PEFT.21.2；CPU 实核 FLA 不可导入、两GDN绑定均原生。实际 generation helper L2935–2936本已自动置`logits_to_keep=1`，新入口显式1沿用语义。15项新增presence位置反例均在真实HF CPU通过，未重做原14项或token重放。A30只读库存未找到旧32 adapter，已用独立两文件HTTP从A800复制：173181072B权重4f4815b6、1287B配置96564441均full SHA，19.224秒，不涉及warm新权重或GPU。实际[运行计划](../evidence/round2/thinking-budget-final-run-plan.json)、[CPU接口](../evidence/round2/thinking-budget-final-presence-cpu.json)、[运行环境](../evidence/round2/thinking-budget-final-runtime-preflight.json)、[传输收据](../evidence/round2/thinking-budget-final-adapter-transfer.json)。源在`thinking_budget_forcing/runner.py`，独立wrapper写真实returncode与资源释放，launch前保存唯一intent以防MCP unknown后重复启动。第一次只读runtime检查因内嵌换行转义SyntaxError在import前退出，失败source/收据保留在外部final-v1；修正后CPU通过，不是模型失败。
+
 结论：原 4096-token 思考可以逐 token 保留，拼接当前模型真实的人工结束边界后进行有限续写。原来的“触顶且未自然闭合”失败保持原样。可精确恢复的是 token 前缀，旧 RNG 与 KV 状态未保存，不能叫同一随机流或原缓存的精确续跑，更不能把人工边界记成模型生成。
 
 ## 目标、约束与完成标准

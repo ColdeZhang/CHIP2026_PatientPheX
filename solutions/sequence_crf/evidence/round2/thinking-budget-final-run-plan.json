@@ -1,0 +1,162 @@
+{
+  "status": "frozen_root_authorized_single_new_final_format_cost_no_targets",
+  "frozen_utc": "2026-10-24T01:34:21.487308+00:00",
+  "experiment_id": "E-20261023-009-thinking-budget-forcing-readiness/final-v1",
+  "authorization": "Root selected one fixed-ID final diagnostic on A30 GPU1, source/plan push then run once 180+TERM30; review incremental and parallel, halt on concrete blocker",
+  "budget_seconds": 180,
+  "grace_seconds": 30,
+  "max_new_tokens": 512,
+  "max_input_tokens": 14000,
+  "seed": 20261024,
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "old32-adapter",
+  "adapter_sha256": {
+    "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+    "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+  },
+  "remote_files": {
+    "runner.py": {
+      "bytes": 10413,
+      "sha256": "cebcbab26d459bce85e6f966d1ead3dbabc67d9d83e73a5f526ac1326b340213"
+    },
+    "strict_final.py": {
+      "bytes": 4021,
+      "sha256": "48536ef610a8ca7dee27fd7645441f649bf610773bb15b8bacd665333ffadada"
+    },
+    "presence_history.py": {
+      "bytes": 4453,
+      "sha256": "f5356c826729987dd9b16a2c606dc5cc57b74999beb074b351c4dd4b9bf728f4"
+    },
+    "transfer_adapter.py": {
+      "bytes": 4446,
+      "sha256": "b95c742440bf85851e433e71957671af92bb01c2d4eb4e33403dd4255e1843b8"
+    },
+    "replay-input.json": {
+      "bytes": 56404,
+      "sha256": "f90fd19f3c7b6361dd320ddb07d12b8b6d0094b49ea4e5325b7fd56ac0308ad8"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "bounded_driver.py": {
+      "bytes": 2536,
+      "sha256": "16402974ef0970462032991fdf5eaf069264e49ea39f0833b5b2c2cef0bc02f6"
+    }
+  },
+  "local_driver_source": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/bounded_driver.py",
+  "runtime_sha256": {
+    "qwen_modeling": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "generation_utils": "7944240ff1ee27a7b3acc16571b7a480cc14f16e7222aeb1a79d289ebc96e3ea"
+  },
+  "native_GDN": true,
+  "FLA": false,
+  "logits_to_keep": 1,
+  "replay_ids_sha256": "e1876ed36ea7db983b90fc6afd81d317867a39a2f40132d22346e163644289a4",
+  "input_tokens": 6129,
+  "original_input_tokens": 2030,
+  "saved_generated_tokens": 4096,
+  "artificial_boundary_ids": [
+    198,
+    248069,
+    271
+  ],
+  "boundary_source": "operator_inserted_posthoc_not_model_generated",
+  "original_failure_preserved": true,
+  "sampler": {
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "presence": 1.5,
+    "presence_source_positions": "saved generated4096 plus new suffix; excludes original prompt/artificial positions but never globally removes same IDs"
+  },
+  "old_rng_restored": false,
+  "old_KV_restored": false,
+  "prefix_prefill_required": true,
+  "final_stop_ids": [
+    248044,
+    248046
+  ],
+  "strict_final": "Only new suffix IDs after prefixexact; require EOS and complete JSON all C000..C007/onlyP1. No thought mining, stripping extra roles, repair, fallback, target or score",
+  "failure_policy": "first OOM/nonfinite/timeout/schema outcome stops; no retry/extra budget/80rows/F1/originaldev",
+  "resource_difference": "original A800 BF16/native GDN -> A30 same verified source/base/old32 adapter; actual memory/time unknown",
+  "references": {
+    "runtime_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/runtime-preflight.json",
+      "bytes": 5901,
+      "sha256": "5507efa9b2724ecd807da242864a1dc2db78db965cc98b2795cd0a9c1a24654d"
+    },
+    "presence_actual_CPU": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/presence-cpu.json",
+      "bytes": 938,
+      "sha256": "18f01f1dbbf099343d349acac528499dca3eaf37cba92911ce6405a9be1cff69"
+    },
+    "adapter_full_SHA_transfer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/adapter-transfer.json",
+      "bytes": 640,
+      "sha256": "587192c7fff34112744ffc75d21eb3d0c768646fb7981512970a0ed774dc37cc"
+    },
+    "source_deployment": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/deployment-mcp.json",
+      "bytes": 257,
+      "sha256": "5de4449286a7fd767c05dc044aa76e06aa001ee8a1b34cbe2543e00bb9cc92ab"
+    }
+  },
+  "prior_CPU_replay": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/replay/replay-readiness.json",
+    "bytes": 4792,
+    "sha256": "da4bb9a5b0cd80fd6e6e731328a7d22266156830f394e8751a540befb572d61d"
+  },
+  "prior_schema_check": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/format-contract-checks.json",
+    "bytes": 683,
+    "sha256": "e35ac79bf538e9ad9ca817d8e24f96960801acc0903d31c19181bb12731e7c4d"
+  },
+  "prior_proposal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/proposal.json",
+    "bytes": 6647,
+    "sha256": "a015e1bc7ed5816f1ee19b862486779fae7ee30b0f3ffdadc5206e2afe958001"
+  },
+  "local_source": {
+    "presence_history.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/presence_history.py",
+      "bytes": 4453,
+      "sha256": "f5356c826729987dd9b16a2c606dc5cc57b74999beb074b351c4dd4b9bf728f4"
+    },
+    "operations.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/operations.py",
+      "bytes": 7193,
+      "sha256": "4a425dd8d41d91dda8b25f90e3f8dfe064f822e17b2ab2bbcddc389dcd5ffef2"
+    },
+    "runner.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/runner.py",
+      "bytes": 10413,
+      "sha256": "cebcbab26d459bce85e6f966d1ead3dbabc67d9d83e73a5f526ac1326b340213"
+    },
+    "strict_final.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/strict_final.py",
+      "bytes": 4021,
+      "sha256": "48536ef610a8ca7dee27fd7645441f649bf610773bb15b8bacd665333ffadada"
+    },
+    "transfer_adapter.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/transfer_adapter.py",
+      "bytes": 4446,
+      "sha256": "b95c742440bf85851e433e71957671af92bb01c2d4eb4e33403dd4255e1843b8"
+    },
+    "prepare_replay.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/prepare_replay.py",
+      "bytes": 8835,
+      "sha256": "4b82630a1a5938f2c9e37b3d591c19031ad252e22da580e3474474a817ae0fb9"
+    },
+    "bounded_driver.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/thinking_budget_forcing/bounded_driver.py",
+      "bytes": 2536,
+      "sha256": "16402974ef0970462032991fdf5eaf069264e49ea39f0833b5b2c2cef0bc02f6"
+    }
+  }
+}

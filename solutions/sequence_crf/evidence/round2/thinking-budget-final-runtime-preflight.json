@@ -1,0 +1,129 @@
+{
+  "status": "CPU_native_runtime_and_adapter_inventory",
+  "torch": "2.7.1+cu126",
+  "transformers": "5.20.2",
+  "peft": "0.21.2",
+  "module_file": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/transformers/models/qwen3_5/modeling_qwen3_5.py",
+  "module_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+  "generation_file": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime/transformers/generation/utils.py",
+  "generation_sha256": "7944240ff1ee27a7b3acc16571b7a480cc14f16e7222aeb1a79d289ebc96e3ea",
+  "generation_hits": [
+    {
+      "line": 2328,
+      "text": "            model_kwargs[cache_name].activate_past_recording()\n\n    def _supports_logits_to_keep(self: \"GenerativePreTrainedModel\") -> bool:\n        \"\"\"\n        Return True if the current model supports the keyword argument `logits_to_keep` in forward()\n        to save memory. Checking it in this way allows to avoid using a new model attribute."
+    },
+    {
+      "line": 2330,
+      "text": "    def _supports_logits_to_keep(self: \"GenerativePreTrainedModel\") -> bool:\n        \"\"\"\n        Return True if the current model supports the keyword argument `logits_to_keep` in forward()\n        to save memory. Checking it in this way allows to avoid using a new model attribute.\n        \"\"\"\n        return \"logits_to_keep\" in set(inspect.signature(self.forward).parameters.keys())"
+    },
+    {
+      "line": 2333,
+      "text": "        to save memory. Checking it in this way allows to avoid using a new model attribute.\n        \"\"\"\n        return \"logits_to_keep\" in set(inspect.signature(self.forward).parameters.keys())\n\n    def _supports_mm_encoder_outputs(self: \"GenerativePreTrainedModel\") -> bool:\n        \"\"\""
+    },
+    {
+      "line": 2932,
+      "text": "        )\n\n        # If the model supports `logits_to_keep` in forward(), set it to 1 to avoid computing the whole\n        # logit matrix. This can save a lot of memory during the first forward pass. Note that assisted decoding\n        # dynamically overrides this value as it can need more than the last token logits\n        if self._supports_logits_to_keep() and \"logits_to_keep\" not in model_kwargs:"
+    },
+    {
+      "line": 2935,
+      "text": "        # logit matrix. This can save a lot of memory during the first forward pass. Note that assisted decoding\n        # dynamically overrides this value as it can need more than the last token logits\n        if self._supports_logits_to_keep() and \"logits_to_keep\" not in model_kwargs:\n            model_kwargs[\"logits_to_keep\"] = 1\n\n        self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)"
+    },
+    {
+      "line": 2936,
+      "text": "        # dynamically overrides this value as it can need more than the last token logits\n        if self._supports_logits_to_keep() and \"logits_to_keep\" not in model_kwargs:\n            model_kwargs[\"logits_to_keep\"] = 1\n\n        self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)\n"
+    },
+    {
+      "line": 4061,
+      "text": "            )\n\n            if \"logits_to_keep\" in model_inputs:\n                model_inputs[\"logits_to_keep\"] = candidate_length + 1\n\n            # We usually need to force returning hidden_states and some others if the candidate_generator requires the model's outputs"
+    },
+    {
+      "line": 4062,
+      "text": "\n            if \"logits_to_keep\" in model_inputs:\n                model_inputs[\"logits_to_keep\"] = candidate_length + 1\n\n            # We usually need to force returning hidden_states and some others if the candidate_generator requires the model's outputs\n            if candidate_generator.requires_model_outputs:"
+    }
+  ],
+  "bindings": {
+    "torch_chunk_gated_delta_rule": {
+      "module": "transformers.models.qwen3_5.modeling_qwen3_5",
+      "unwrapped": "transformers.models.qwen3_5.modeling_qwen3_5"
+    },
+    "torch_recurrent_gated_delta_rule": {
+      "module": "transformers.models.qwen3_5.modeling_qwen3_5",
+      "unwrapped": "transformers.models.qwen3_5.modeling_qwen3_5"
+    }
+  },
+  "FLA_installed": false,
+  "cuda_initialized": false,
+  "matching_adapters": [],
+  "model_files": [
+    {
+      "name": "vocab.json",
+      "bytes": 6722759
+    },
+    {
+      "name": "transfer-complete.json",
+      "bytes": 4635
+    },
+    {
+      "name": "model.safetensors-00002-of-00004.safetensors",
+      "bytes": 5335161512
+    },
+    {
+      "name": "preprocessor_config.json",
+      "bytes": 390
+    },
+    {
+      "name": "chat_template.jinja",
+      "bytes": 7756
+    },
+    {
+      "name": "merges.txt",
+      "bytes": 3353259
+    },
+    {
+      "name": "video_preprocessor_config.json",
+      "bytes": 385
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "bytes": 79657
+    },
+    {
+      "name": "LICENSE",
+      "bytes": 11544
+    },
+    {
+      "name": "model.safetensors-00004-of-00004.safetensors",
+      "bytes": 3325995712
+    },
+    {
+      "name": "config.json",
+      "bytes": 3126
+    },
+    {
+      "name": "range-transfer-state.json",
+      "bytes": 68662
+    },
+    {
+      "name": "model.safetensors-00003-of-00004.safetensors",
+      "bytes": 5368717440
+    },
+    {
+      "name": "tokenizer.json",
+      "bytes": 12807982
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 16710
+    },
+    {
+      "name": "model.safetensors-00001-of-00004.safetensors",
+      "bytes": 5276436216
+    },
+    {
+      "name": "README.md",
+      "bytes": 77643
+    }
+  ],
+  "gpu": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 3783, 24576\nGPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 0, 24576\n",
+  "apps": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 2595276, 3774\n"
+}

@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**thinking 人工边界续写 CPU 研究已完成，无新推断/质量。** 原4096生成 IDs完整保存，实际tokenizers0.23.1+原Jinja重建True/False输入/渲染 SHA全部exact；原2030+4096不动，人工`\n</think>\n\n`=[198,248069,271]组成6129tokens，prefix SHA e1876ed3。s1原论文/官方固定源码确有shortening机制，但s1的answer边界不能套到Qwen；本合同明确人工边界、旧自然闭合失败保留。14项合成严格final反例通过。提案仅新final≤512、同旧SFT32/native GDN、单job180+TERM30；尚未实现/启动GPU入口，未读targets或评分。旧RNG/KV未存，token exact不等于相同随机流或浮点缓存。[方法与成本限制](experiments/thinking-budget-forcing-readiness.md)、[CPU证据](evidence/round2/thinking-budget-replay-readiness.json)、[独立提案](evidence/round2/thinking-budget-proposal.json)。
+**thinking 人工边界单条诊断已获准，完成源/实际计划准备；尚未推断。** 原2030+4096+人工3token组成6129，prefix SHA e1876ed3；原自然闭合失败保留。根选择final≤512/180+TERM30，改用.100 A30 GPU1 fc5d，原生TF5.20.2/PEFT.21.2/无FLA CPU实核。旧32 adapter在A30不存在，已从A800只读传输两件19.224秒、4f48/9656 fullSHA；不碰warm任务。真实HF新增15项presence反例通过，排除来源位置而非全局ID，原14parser/replay沿用。实际plan9e96e594，源含固定ID runner/严格新suffix输出/有界driver/单次launchintent；先push再唯一运行，未读targets/评分。旧RNG/KV未存，token exact不等于同随机流/浮点缓存。[方法与过程](experiments/thinking-budget-forcing-readiness.md)、[CPU replay](evidence/round2/thinking-budget-replay-readiness.json)、[实际计划](evidence/round2/thinking-budget-final-run-plan.json)。
 
 **全局患者—表型聚合：完整负结案，统一终审5ea352fb通过。** 严格train32/F1同2506/1557对、同全文窗口/encoder/344577头，双fresh各8ep256步，总351.677秒、峰2.443GB；模型actual SHA已核，GPU释放。两完整预测共同freeze后唯一固定.5 F1：uniform **.542015995**，pair **.557825484**，虽两臂间+.01580949，仍低同池SFT32 **.660942003**与rules **.644761594**；pair232TP/261FP/288FN，较SFT少78TP多188FP。1189实体/nonassociation exact，双格式0错警，keep=false关闭，不加轮次/扫cut/F0/原dev。MCP离线只影响回收，root已补回最后2文件，全9成员SHA闭合；未知小tar不作已验证备份声明。[完整协议与过程](experiments/pair-conditioned-document.md)、[固定终点](evidence/round2/pair-document-formal-results.json)、[回收证据](evidence/round2/pair-document-final-collection.json)。
 
