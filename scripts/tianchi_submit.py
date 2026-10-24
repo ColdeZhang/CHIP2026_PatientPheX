@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Submit one frozen day-one artifact; record acceptance, never collect scores.
+"""Submit one frozen artifact; record acceptance, never collect scores.
 
 Requires an already authenticated Chromium CDP session and Playwright.
 The entry JSON supplies file, filename, sha256, bytes, season_id and provenance.
@@ -9,6 +9,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import time
@@ -16,6 +17,23 @@ import time
 
 def now():
     return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+
+def save_receipt(path, receipt):
+    """Persist the upload intent before selecting a file in the browser."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f'.{path.name}.{os.getpid()}.tmp')
+    with temporary.open('x') as handle:
+        json.dump(receipt, handle, ensure_ascii=False, indent=2)
+        handle.write('\n')
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
+    descriptor = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
 
 
 def main():
@@ -36,8 +54,7 @@ def main():
     receipt = dict(entry, status='preflight', official_score_collected=False)
 
     def save():
-        args.receipt.parent.mkdir(parents=True, exist_ok=True)
-        args.receipt.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
+        save_receipt(args.receipt, receipt)
 
     from playwright.sync_api import sync_playwright
     with sync_playwright() as playwright:
