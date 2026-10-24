@@ -126,3 +126,7 @@ root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；�
 同机run_command在全部SHA/compile通过后先落盘`samehost-reference-receipt.json`再返回；若MCP结果UNKNOWN，后续只读取此实际收据与目标状态，不重发动作。此小收据不含模型推断/训练。
 
 关系间接依赖统一独审a09d7978 PASS：冻结public-new提示/支持来自前两公开源，d531→baac原association逐文原始字节不变，a179只增old466概念池23条；可复用既有a179 association投影，无需重NN。不得复用其实体/旧103列HGB，参数投影仍须未来实际NCR替换实体链后才成立。审查及static contract已加入cache-replacement-static/manifest.json。
+
+### 01:57 同机参考恢复完成，GPU入口就绪
+
+01:57:02.924372→01:57:08.576435Z实际5.652060秒/rc0；参考目标当时缺失，已从同机既有完整native-cpu-result硬链接，0再次上传。全部5文件size/SHA通过、actual Python3.10.21 compile与3×512结构检查通过，远端samehost-reference-receipt先落盘。原probe/launch/plan/source/预算不变；实际入口收据先checkpoint后发唯一GPU start，旧传输/部署/恢复失败全留。
