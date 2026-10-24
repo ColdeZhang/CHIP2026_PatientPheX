@@ -15,3 +15,5 @@ F2/F3 实际旧列均 103→105，训练行 45907/46480、正例3180/3207、held
 大产物外置 `round2-20261023/stage8-span-normalization/oof-fourfold-completion/`。sources与全部来源SHA在计划；旧F1/F0源码保持原字节。既有F1独审bcb53dba、F0独审a3f855a0已通过，不将独审变成逐步骤审批。
 
 CPU实际12.247/12.887秒，103旧列投影完全一致，15309/15349全部旧概率及16篇旧nested实体精确一致，零新fit/零v2。见`evidence/oof-fourfold-readiness.json`。
+
+计划说明勘误（运行前）：F2/F3子计划的非执行字段`training_count_change`沿用了E003的“F1→F0”文字；真实`outer_fold`、全部32/48 IDs、train/input SHA、jobs及本记录均为本次F2/F3。保原冻结SHA与上传intent，解释字段不参与执行；不得按该旧文字误读划分。
