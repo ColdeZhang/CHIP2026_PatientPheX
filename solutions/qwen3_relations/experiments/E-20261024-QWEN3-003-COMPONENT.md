@@ -23,4 +23,4 @@ root预锁三源2of3在F1/F0均正，F0 .724457355332高于固定双采样 .7219
 
 ## 实际状态
 
-源与CPU合同已准备，尚未GPU；后续按实际job、绝对截止、两个ACK和完整raw补记。
+源f69d88d0已push。首次小ZIP上传LUNA_OFFLINE，三次间隔只读恢复后明确NOT_FOUND；没有旧GPU/start。v2源已实际解包/完整data与schedule合同通过，freshGPU0 4MiB/noapps/盘169.31GB。唯一控制器proc_e5d04680/PID1207543于12:08:35.986798Z启动；精确probe子进程和截止见evidence/full64-component-start.json。后续按两个完整ACK及全部64raw补记。
