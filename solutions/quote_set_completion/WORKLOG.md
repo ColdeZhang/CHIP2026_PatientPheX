@@ -27,3 +27,5 @@ Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30�
 唯一formal实际15:20:44.761823 start proc_ad68dbeb-c7e6-453a-821a-b0fac0d57ab9/driver13674，freshGPU2空、SHM215.866GB/.100393.918GB；4200共享campaign起15:20:43.644688、模型TERM16:28:43.644688，持久ACK最迟16:30:43.644688。detached/flock watcher PID/SID190459（ready0593adbf）唯一每180秒原inspect，健康时不另查。恢复入口training/controller/operations.py inspect --directory N/formal-v1；不可重复start。关键坑精确源见evidence/handoff-pointers.json。
 
 后继完整39推断/必要Sap/唯一B4union源已准备：只有正式完整ACK后bind实际权重；原始生成IDs→raw→strict解析→固定train32/public41099规范化，所有合法新关系统一并入B4，不评单臂、不筛新增。all39 HF/native IDs在模型加载前核；后继1800+30、Sap180+30和唯一v2 30+1分别独立，实际计划等待前驱全量终点绑定。固定参考postprocess/fixed-references.json已锁，当前无held输出或质量。
+
+15:28阶段交接：root明确要求保留原formal/watch并释放代理槽，root只读已有本地观察，完整ACK或实际故障后followup恢复本线。精确恢复协议见RESUME.md/evidence/live-formal.json；后继源已远端be0ab79d，全部GPU/NN/质量实际绑定仍待原训练终点，不停止或重启任何原作业。
