@@ -1,0 +1,95 @@
+{
+  "schema": "long-context-relation-consensus-F0-inference-v1",
+  "budget_seconds": 120,
+  "term_grace_seconds": 30,
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "parent_cpu": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/probe-v1/cpu-complete.json",
+    "bytes": 3261,
+    "sha256": "2341d4d1fb878bdf3398773a1b7bd792769f58b3243232d3fff451f2c064d00e"
+  },
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F0-v1/cpu/data.json.gz",
+    "bytes": 337261,
+    "sha256": "46c139584642ea2f04b8f16a68f21ee21bf55eaa3628b54ee625b78bbfe080dc"
+  },
+  "checkpoint": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/formal-v1/output/final-epoch30-full-state.pt",
+    "bytes": 1793176537,
+    "sha256": "63db2cca3913ca77b2d29a3ea38faf459b81846ae1e287aec7e6e55a32b58bd0"
+  },
+  "parent_ACK": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/long-context-relations/formal-v1/output/final-state-ACK.json",
+    "bytes": 482,
+    "sha256": "13eafe5b10365639b7c5f4cc7a698807339dac201a969656ad7cc8a0a4df2773"
+  },
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "model.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/model.py",
+      "bytes": 2524,
+      "sha256": "1a2cedc0b3954cf3d04eebbe604d2524b30d10f77eb489caf2a472e354a8ba14"
+    },
+    "native_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/native_cpu.py",
+      "bytes": 2886,
+      "sha256": "7589457e487380bd7e0b8fd86a07ae6445491dee6d04a0e5c75e602ddc0dfa0c"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/driver.py",
+      "bytes": 3210,
+      "sha256": "5286a0933a7e8a574cef59f76ffa7f93220d39d518347e6f9b691adc6b677134"
+    },
+    "infer.py": {
+      "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/infer.py",
+      "bytes": 3099,
+      "sha256": "a0db8b2e8c4ed66c674450e84f060aa6ee7e91c078307e5d435de29f87c6eaaf"
+    }
+  },
+  "expected": {
+    "documents": 16,
+    "patients": 47,
+    "pairs": 2195,
+    "windows": 16,
+    "max_tokens": 7539,
+    "max_pairs": 423,
+    "parameters": 149416193
+  },
+  "cut": 0,
+  "no_fit": true,
+  "old_native_math_reused": true,
+  "H69_launch_TTL_seconds": 300,
+  "cost_basis": {
+    "F1_actual_inference_seconds": 2.443349016830325,
+    "F1_windows": 17,
+    "F0_windows": 16,
+    "F0_max7539_less_than_seen8192": true,
+    "F0_pairs2195_less_than2874": true,
+    "full_weight_load_hash_budget_included_seconds": 120
+  },
+  "local_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F0-v1/cpu/preparation.json",
+    "bytes": 4420,
+    "sha256": "d5f307ee6ce6a4250219ef1bed0ebc9dcd61a274904c6496c5b5d8229c3ff551"
+  },
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F0-v1/cpu/ancestry.json",
+    "bytes": 1479,
+    "sha256": "4f0cec30fe8dbcd2a963a5dfe67a469894300105dea1d884bd80db2a2c12e527"
+  }
+}

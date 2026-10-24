@@ -9,3 +9,8 @@
 - 完整出处：[final-entry](evidence/final-entry.json)、[冻结计划](plan-F1.json)、[实验](experiments/E-20261024-LCTX-REL-CONSENSUS-001.md)。
 - 分支 explore/long-context-relation-consensus，基点main f960ae41；源码先推并核origin821983b9，结案提交另见git。
 - 该假设在父负结果后提出，F1为研发；总分正仅是事前门，不表示macro增益抵消大量FP已稳健。不得扫cut或挑患者。
+
+## F0授权后的准备
+
+同head63db2cca、无fit/新probe。原全2195候选/47患者/1904提及，native16整文窗、最长7539/最多423pairs，全部原tokens/提及/患者保留；train32标签/keys逐一等同原训练payload且排F0。固定同公式/原B4 .728195628911；计划先推、.3原state不搬迁，120+TERM30含SHA/load/完整推断。
+本地默认python缺tokenizers在任何产物前失败，改用已缓存0.23.1 CPU模块路径后1次完整通过；未下载/改数据。远端native4.50接口还须核全IDs和offsets。

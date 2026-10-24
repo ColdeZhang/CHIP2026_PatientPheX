@@ -1,0 +1,125 @@
+{
+  "id": "E-20261024-LCTX-REL-CONSENSUS-001",
+  "status": "FROZEN_F0_SOURCE_PROTOCOL_BEFORE_MODEL",
+  "base_commit": "f960ae41e76655302b08399a9ade7d52bfb67f7c",
+  "parent_commit": "b63af4dc5581565651d5667ae3eaaff0916f7513",
+  "formula": "B4 UNION (L_logit_gt_0 INTERSECT (G_old UNION S1_intersect_S2 UNION Q_native UNION C_strict))",
+  "cut": 0,
+  "fold": 0,
+  "baseline_score": 0.7281956289113009,
+  "expected": {
+    "documents": 16,
+    "patients": 47,
+    "entities": 947,
+    "baseline_relations": 343,
+    "complete_L_pairs": 2195
+  },
+  "refs": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/prediction.jsonl",
+      "bytes": 112937,
+      "sha256": "0c37ee543876f957bbb04049d0be51a905565d6219559ebab5d66abd43bc3ac3"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F0-v1/metrics.json",
+      "bytes": 13104,
+      "sha256": "58760aded0d12a1cc46a5addb712c59b52ca54c2be2eb6d7a7c4d056f66350bf"
+    },
+    "held_geometry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F0-v1/cpu/geometry.json.gz",
+      "bytes": 127675,
+      "sha256": "e2a38553dd9ac222240f0955ddff652e377bebb870c93da1cf01556a7290a8db"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "G": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/F0-pure-relations-v1/new-only.jsonl",
+      "bytes": 122519,
+      "sha256": "d1f712cacf7da83807797429d0a153408a1b6ce2ae8a61be5f861b3d90b56206"
+    },
+    "S": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-F0-20261024/assembled-v1/primary-B0-union-S1-intersect-S2.pred.jsonl",
+      "bytes": 124775,
+      "sha256": "3ec75365ebcf1e0ae386faadb3b5791e7a2a47ea7e37d3d7bf0872d08d9e9ae1"
+    },
+    "Q": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/f0-v1/quality/protected-union.prediction.jsonl",
+      "bytes": 126117,
+      "sha256": "1cca1391c9d836a0775001d5b69d74354d9ea5a192d3f8110313b2875c468399"
+    },
+    "C": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F0-full58-v1/quality/coded-alone/pred.jsonl",
+      "bytes": 124301,
+      "sha256": "9e6b58402a64c16e720091fa49274eee6155bb94afebda3922c3e3ea188bcc8f"
+    },
+    "inherited_baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold0/supported.pred.jsonl",
+      "bytes": 124485,
+      "sha256": "94504b974d5203fdde6b68ff10ca12bb67d24b0db235023023920b0ec595e1bc"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "byte_support": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/support.py",
+      "bytes": 8690,
+      "sha256": "da33d347655f62cc9b1652562bb39c8f3429ff6e9277d3e77c4fff18987d93d2"
+    },
+    "byte_helper": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research_readonly/majority_vote_control/common.py",
+      "bytes": 10348,
+      "sha256": "c713d2f5d5b2768cfb80ce4c17f920c6228dc3abb833080c972255d6e34c6e06"
+    },
+    "support_provenance": {
+      "path": "/workspace/patientphex-worktrees/research-training-seed-ensemble/solutions/training_seed_ensemble/evidence/support-inputs.json",
+      "bytes": 3784,
+      "sha256": "0e1da56c6b700647ead02886bf139e5245edc4fb493428f25703fa719611d582"
+    },
+    "parent_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/final-review-entry.json",
+      "bytes": 13650,
+      "sha256": "a6abb440987f6419d462d1d66a726a958b4b4ca49f32c41318950bf8928a2aca"
+    }
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/f0/run.py",
+    "bytes": 12365,
+    "sha256": "b2600be42c1fcb0ddc002c677b2b109320d83d73c9a3da924129deb8e627800c"
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F0-v1/quality-v1",
+  "cpu_budget_seconds": 120,
+  "new_evaluate_max": 1,
+  "old_evaluate": 0,
+  "evaluate_report_forbidden": true,
+  "zero_increment": "byteexact baseline; 0gold/0evaluate",
+  "positive_gate": "strict Score > B4; otherwise closed; F0 only separately discussed",
+  "not_blind": true,
+  "hypothesis_timing": "F1 fixed consensus small Score gain; independently held F0 same head/cut/formula",
+  "ancestry": "L/G/S/Q/C models train32 F2F3; inherited strongB/candidate ancestry may train48 but excludes entireF1. All frozen prior full16/39 outputs; no fitting here.",
+  "sampled_equivalence": "Stored S=B_old union (S1 intersection S2). Verify B_old subset B4 and subset storedS; subtract B_old before support. This may omit true S positives already in B4 but cannot change protected endpoint. Never count inheritedB as an independent support vote outside B4. F0 Q is also protected-union stored; subtract inherited B from both S and Q, which cannot affect protected endpoint.",
+  "literal_policy": "Use pinned v2 associations: split only full HP compounds; preserve literal NIL/semicolon/mixed strings; NO excluded. L original pool contains single HP IDs. No ontology canonicalization/substrings/ancestor expansion.",
+  "preservation": "all baseline nonphenotype bytes, all original phenotype list prefixes/order/compounds/NIL; no deletion",
+  "training": 0,
+  "model_calls": 0,
+  "remote_calls": 0
+}
