@@ -138,6 +138,7 @@ def main():
     add('original-A100/closure.json', old_controller / 'A100-unexecuted-closure.json')
     add('original-A100/HTTP-closure.json', old_controller / 'source-bridge/closure.json')
     add('original-A100/probe.zip', old / 'probe-v1/package/collection-transfer/probe-output.zip')
+    add('source-history/verify_export_closure-original.py', root / 'preparation-history/verify_export_closure-original.py')
     members = {name: {key: value for key, value in ref(path).items() if key != 'path'} for name, path in files.items()}
     archive = destination / 'terminal.tar.gz'
     with tarfile.open(archive, 'x:gz') as output:
