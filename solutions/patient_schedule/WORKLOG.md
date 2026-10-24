@@ -1,6 +1,6 @@
 # 患者四轮统一时程台账
 
-当前：**四轮训练及四份完整持久ACK已完成；最终epoch4绑定完成，准备唯一全部80条F1推断。** 分支`explore/patient-schedule`，单一入口[evidence/ready.json](evidence/ready.json)。训练/监控已正常终态，不重启。
+当前：**四轮训练及四份完整持久ACK已完成；最终epoch4绑定完成，全部80条F1唯一推断已启动。** 分支`explore/patient-schedule`，单一入口[evidence/ready.json](evidence/ready.json)。训练/监控已正常终态，不重启。
 
 ## 目标与固定方案
 
@@ -28,4 +28,6 @@ Git：上一个已核远端源码检查点`c3c5991`；最终prepared检查点将
 
 10:21接续已实际闭环：epoch1 rc0/590.267秒/16updates；.100完整520024097B于10:21:37取得SHA/fsync/reopen ACK（58.451秒），source ACK副本6220ce84；原daemon10:21:55唯一启动epoch2 proc_8bfcfd40/PID52010，仍原11:38:41.825555截止。此时仅start已确认，模型内部完整state恢复以其后续原收据为准。见evidence/epoch1-durable-epoch2-start.json。
 
-11:01恢复确认：四轮wrapper均rc0，耗时590.267/590.081/591.626/593.164秒；第四轮10:55:01结束、.100 ACK实际10:56:43，原5400时钟内。watch145075已有正常complete且进程Z，非活跃监控。绑定最终adapter7c97bbdc、F1 plan64df17bb，四ACK/64step/原source全部匹配；单独1200+30全80fresh按既定双端点执行。精确恢复数值收据后继回收，不把模型启动回执代替state恢复证据。
+本次恢复确认：四轮wrapper均rc0，耗时590.267/590.081/591.626/593.164秒；第四轮10:55:01结束、.100 ACK实际10:56:43，原5400时钟内。watch145075已有正常complete且进程Z，非活跃监控。绑定最终adapter7c97bbdc、F1 plan64df17bb，四ACK/64step/原source全部匹配；单独1200+30全80fresh按既定双端点执行。精确恢复数值收据后继回收，不把模型启动回执代替state恢复证据。
+
+11:00:29原F1 proc_72d3c2d0/PID57237启动，driver硬TERM11:20:29.8544035/+30；source/绑定已9c23f66推送。原训练28件小终态全SHA回收，三个恢复边界实际496 Adam状态/scheduler/RNG与LoRA逻辑digest均通过；未复跑训练或CPU合同。见evidence/F1-start.json。
