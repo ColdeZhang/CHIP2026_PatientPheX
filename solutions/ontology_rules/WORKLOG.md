@@ -41,6 +41,6 @@
 - **审计**：3542ec3 的 fold0 多来源/置信度三控制独立重放全部字节一致；3个train32真实模型导分、outer0导分、3455候选独立BIO/TFIDF复算通过。见外部 validation/calibrate-multi-review.json，SHA77da3227…。
 - **资源/恢复**：context全部GPU结束，20:55:27Z fresh核.3GPU0（UUID07726469…）无PID/free24160MiB并释放；最终模型/恢复状态实际保留，作业/恢复见[evidence](evidence/round2/ner-context-control-job.json)；NER全阶段结束，19:29:12Z fresh核.100GPU1空/free24164MiB并明确交retrieval。CE proc_215c275d已退出，.3GPU0 fresh核空后明确交sequence（其large48已接卡）。ce-oof-control/已回收51份源池/训练/分数SHA，三模型权重只保留远端同目录；progress/complete/collection与双freeze可恢复。MIL/A800之前已归还，父模型和全部负结果保持原位。
 - **恢复入口**：NER增强真实终点与恢复见 `ontology_rules/ner-augmentation-control/results.json` 和本路线结果证据；旧树外部 `/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer{1,2,3}/evaluate_controls.py` 与各 controls-results.json；全量预测/模型/日志不入Git。小证据见[evidence索引](evidence/round2/README.md)，研究与踩坑见[NOTES](NOTES.md)。
-- **最近已核验远端**：`e0629f0`（私网只读恢复源/计划与原去B固定控制器）；当前全train64纯输入缓存源/plan检查点准备保存，GPU尚未启动，不fit/质量/官方。全缓存恢复见[入口](public_neuralcr_readiness/full-train64-cache/README.md)。
+- **最近已核验远端**：`e0629f0`（私网只读恢复源/计划与原去B固定控制器）；NCR神经计算已结束并CPU核完整缓存，现仅回收小rawspan/准备强B+NCR输入；无freshfit/质量/官方。全缓存恢复见[入口](public_neuralcr_readiness/full-train64-cache/README.md)。
 
 来源澄清：冻结首轮Sap候选生成器为016bb77/0084d33的 gpu_candidates.py（SHA dc5cc0…）；0673f85是后续装配证据检查点。原LR没有序列化；检索路线已按同数据/顺序/源码做明确标记的CPU精确重建；原14,480池p完全相同、阈值与原ID策略0差异。本路线只读系数，不重复重建；旧原ID含词典优先，不能冒充纯nearest ID。
