@@ -61,9 +61,17 @@ def main():
     save(out/'final-state-ACK.json',{'status':'FULL_STATE_FSYNC_REOPEN_RESTORE_PASS','checkpoint':ref(cp),'matched_tensors':matched,
          'actual_adam_updates':256,'every_optimizer_step':256,'seconds':time.monotonic()-checkpoint_start,'resume_equivalence_claimed':False})
     del state,saved;model.eval();pool={};seen=[];infer_start=time.monotonic()
+    # Root prelocked independent veto supply: read existing matrices only.
+    targets=json.loads((root/'baseline-targets.json').read_text())
+    assert sha(root/'baseline-targets.json')==cfg['baseline_targets']['sha256']
+    target_scores={x['target_id']:[] for x in targets['records']}
     with torch.inference_mode():
         for row in data['held']:
             with torch.autocast('cuda',dtype=torch.bfloat16):scores=model.scores(row)
+            for t in targets['window_targets'][row['row_id']]:
+                v=float(scores[t['block_index']][t['i'],t['j']].float().cpu())
+                assert __import__('math').isfinite(v)
+                target_scores[t['target_id']].append({'row_id':row['row_id'],'block_index':t['block_index'],'i':t['i'],'j':t['j'],'score':v})
             for b,score in zip(row['blocks'],scores):
                 assert torch.isfinite(score).all()
                 valid=torch.ones_like(score,dtype=torch.bool).triu();ij=torch.nonzero(valid&(score>=-2.)).cpu().tolist();values=score.float().cpu()
@@ -80,10 +88,22 @@ def main():
         for r in spans:f.write(json.dumps(r,separators=(',',':'))+'\n')
         f.flush();os.fsync(f.fileno())
     fsync_dir(out)
+    records=[]
+    for original in targets['records']:
+        row={**original,'window_scores':target_scores[original['target_id']]}
+        assert row['representable']==bool(row['window_scores'])
+        row['max_score']=max(x['score'] for x in row['window_scores']) if row['window_scores'] else None
+        records.append(row)
+    scorefile=out/'baseline-span-scores.json'
+    save(scorefile,{'schema':'bioclinical-baseline-span-scores-v1','status':'COMPLETE_ALL_BASELINE_TARGET_SCORES',
+        'source_baseline':targets['source_baseline'],'target_map':ref(root/'baseline-targets.json'),'model_checkpoint':ref(cp),
+        'records':records,'total':1313,'held_windows':17,'max_rule':'maximum over all representable windows',
+        'additional_forward_calls':0,'gold_reads':0,'quality_runs':0})
     save(out/'complete.json',{'status':'COMPLETE_FRESH8EP256_AND_ALL17_HELD_RAW','epochs':log,'actual_adam_updates':256,
        'train_docs':32,'train_visits':256,'held_docs':16,'held_patients':39,'held_windows':17,'held_window_ids':seen,
        'span_pool':ref(path),'raw_candidates':len(spans),'raw_floor':-2.,'duplicate_span_merge':'max raw GP logit across all windows',
        'normalization_not_run':True,'held_gold_reads':0,'quality_runs':0,'checkpoint':ref(cp),'state_ACK':ref(out/'final-state-ACK.json'),
+       'baseline_span_scores':ref(scorefile),
        'seconds':time.monotonic()-start,'inference_seconds':time.monotonic()-infer_start,'peak_allocated_bytes':torch.cuda.max_memory_allocated(),
        'peak_reserved_bytes':torch.cuda.max_memory_reserved(),'torch':torch.__version__,'transformers':transformers.__version__})
 
