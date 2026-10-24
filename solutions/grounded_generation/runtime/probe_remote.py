@@ -19,7 +19,7 @@ MOUNT='476f81cf-09e7-445b-a7f0-d0e12b12e50f'
 PROJECT='/home/zhangyuheng/projects/CHIP2026_PatientPheX'
 REL='grounded-generation-v1/probe-v1'
 ROOT=PROJECT+'/'+REL
-REUSE_ROOTS={PROJECT+'/sequence-round2/patient-balanced-alpha05/formal-v1',PROJECT+'/grounded-generation-v1/native-cpu-v1'}
+REUSE_ROOTS={PROJECT+'/sequence-round2/patient-balanced-alpha05/formal-v1',PROJECT+'/grounded-generation-v1/native-cpu-v2'}
 START_MARKERS={'start-intent.json','driver-started.json','child-started.json','wrapper-complete.json',
     'fresh-resource-gate.json','stdout.log','stderr.log'}
 

@@ -18,7 +18,7 @@
 3. 与root协调一次有界真实最难工程检查，fresh正式训练与完整F1推断；不从工程状态续训。
 4. 两完整预测共同冻结后各唯一v2、旧分数复用。主臂N∪new、诊断new-only，Task1/患者/非关系字节保持；另一内部折有益后再full64/原dev验收。
 
-大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前原生CPU机械恢复v2唯一proc_8bd3ffbe-7def-4cf3-a6a6-a4436f59ba7f / driver60715，09:52:34.434Z启动120+5；collector只回收原件，目录B/native-cpu-v2。GPU尚未启动；未知状态先查原intent，禁止重复启动。
+大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前native CPU v2已原proc8bd3ffbe完整rc0/16.244秒，18件全部SHA回收237aaa65；87/39全输入与6数值PASS。GPU14步source/plan已绑定，准备唯一420+30 fresh门启动；未知状态先查原intent，禁止重复启动。
 
 
 2026-10-24 GPU前澄清：全文先判目标患者的概念，复制quote只作概念词面锚定，不把该处出现当患者归属证据；最近mention只是确定训练代表词面的弱选取规则。首CPU产物targets-v1与源c3b69eb保留，v2仅修正prompt语义，目标/身份/全文不变并逐项对照。170/814处其他患者更近已如实披露。
