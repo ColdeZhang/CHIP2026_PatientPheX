@@ -1,17 +1,25 @@
 # 当前状态
 
-2026-10-24 14:44 UTC：独立 explore/mention-candidate-selection，实际 GPU 源 f47a8bcb。唯一 controller proc_791d296d-367e-4dd6-9e63-209793d50c3e / PID2744284 在 .100 GPU1；真实压力探针全部通过，已于13:51:04.487677自动 fresh 开始正式两轮。两轮已14:43:07.960933完整734更新并保存两个ACK；原controller已14:43:08.911899接全1416推断1800+TERM30，child2747622。尚无完整验证预测或质量结果。
+2026-10-24 UTC：固定F1配方负结案；不扩F0或原dev，不改阈值。独立 explore/mention-candidate-selection，实际GPU源 f47a8bcb43dc9fd65d4bd0a81aee44ab8af8687b；唯一proc791完整probe→fresh两轮→1416推断结束。
 
-固定2931训练行（原2353+578 annotation-negative）、1416纯跨度、±256字符上下文；公开Sap Top8不插gold/exact/训练别名。生成互斥 selected+missing、NIL、NO；empty+missing=false非法，missing不发明HPO或变NIL。新Qwen3-8B/r16/lr1e-4/seed20261023，2epochs/734updates/尾3/warmup37；保原生训练循环，无holdout、早停或挑epoch。正式7200+TERM30，两个完整状态ACK；随后全1416推断1800+TERM30，两个完整端点共冻再2v2/旧0。任一严格胜强B .728697536469才是候选；不涉及原dev/官网。
+| 完整端点 | Score | menF1 | docF1 | 实体数 |
+|---|---:|---:|---:|---:|
+| 强B固定基线 | 0.728697536469 | 0.774943735934 | 0.821052631579 | 1313 |
+| B并集全部接受实体 | 0.721025583801 | 0.754461099215 | 0.810847457627 | 1449 |
+| 新头全部实体替换 | 0.713183678719 | 0.741327300151 | 0.792613636364 | 1299 |
 
-完整训练：5862行参与、3033240tokens/67044监督，native3116.626s/含load3123.402s/wrapper3124.309s rc0，原complete322547B/ad7adea5。第二ACK1790B/883952ec，finaladapter732e99ba/174655536B、fullstatecdd8e4cf/349612141B，504adapter/504Adam1512张量与scheduler/RNG均重开exact。evidence/formal-complete-observed.json索引原件身份；推断完成前GPU1仍本线占用。
+新增136原子=24TP/112FP；new-only整体983TP/316FP，precision 0.756736、recall 0.726534。这两种精度分母不同。两端点非entity对象保持，关系micF1/macF1全等原B。
 
-第一轮ACK原件1789B/da53e406，504adapter/504Adam1512张量及全部RNG重开exact；adapter174655536B/4a440385、fullstate349612141B/997d5f45，证据evidence/epoch1-ack-observed.json。仅恢复，不挑epoch；两轮预算和固定终点不改。
+全1416输出模式：HPO 1299（其中empty OTHER 0；预测missing总0），NIL 0，NO 117，reject 0，cap 0；接受1299原子。模式统计不是正确率，missing不是heldgold召回测量；OTHER不转NO或NIL。
 
-实际探针：13FB/1Adam，最大572/17与684/13；四类训练输入受限generate均EOS、未cap/拒绝，只证明运行合法，不代表语义正确。native34.164秒、wrapper34.947秒rc0，峰17.607GB。事前token成本门估4530.200秒≤7200，冷步旧估6885.573秒；不是耗时上界证明。探针状态丢弃，正式从公开权重重新加载。evidence/probe-and-fresh-formal.json保原始收据指纹。
+完整两轮734更新、5862行参与、3033240输入tokens/67044监督，native 3116.626s/含load 3123.402s，两个504adapter/504Adam1512状态+scheduler/RNG ACK；只用epoch2，无eval/holdout/早停或择轮。完整infer 984.377s。probe13真实FB/1Adam与固定成本门通过后丢弃；正式从同公开基座fresh训练。
 
-数据与CPU：新增1034查询完整19.589秒；全部4347行native/HF输入与训练mask核验27.215秒，513合法grammar/12293prefix；每epoch1516620输入tokens、33522监督tokens，训练max684/17、held max621；全部51原件SHA回收。122HPO训练行missing（117empty OTHER+5partial），6多选、44NIL、665NO全保留。入口evidence/data-ready.json、evidence/native-cpu-complete.json及experiments/E-20261024-CANDIDATE-SELECTION-001.md。
+固定来源：原2353全部保留+578纯F3→F2/F2→F3零注释重叠annotation-negative，2931=2222HPO/44NIL/665NO；负标签有漏标风险。候选纯publicSap41099银行Top8当前合法唯一HPO，旧1284+新增1034词面逐同SHA复用，无gold/exact强插或训练别名。1416纯F1跨度=强B∪GLiNER已接受886对应跨度，±256上下文原样。head训练F2F3，F1 proposer训练48含F0，整个管线不是pure train32。
 
-恢复入口：R/research/mention-candidate-selection-v1/gpu-start-intent.json、gpu-started.json、gpu-latest-observation.json；唯一50秒只读watch与唯一finish_gpu_once在本地运行。先恢复原job，不因MCP UNKNOWN另起训练。完整大产物在外存，仓库仅源码、方案和小证据。
+原生完整CPU51件已回收且独立静读PASS：4347 native/HF输入、2931全mask/EOS、513完整grammar/12293prefix、15实际HFprocessor/13拒绝；122missing训练行含117OTHER+5partial，6multi-positive、44NIL和665NO均保留。训练max684/17，held max621，无截断。
 
-归因：原2353自由名称和旧Biomed Top8逐pair CE负结论保留。本路线候选输入/目标与578监督共同变化，不称纯prompt因果；F1 proposer训练48含F0、head训练F2F3，不能称整个管线pure train32。另一条原2931自由名称在.3按原job独立完成，不受本线结果影响。
+唯一终态：evidence/terminal.json，对应外存R/research/mention-candidate-selection-v1/terminal.json SHA4933cceab5e040c7bd84c7f0a74364e5eb5ba3d68130c6fb4fca9d5eebfd69d9；共冻095a0ea12c56718f450539cbfc013ed364179f1629d9f4c6a0d9f2f386d37b80→exact2v2/旧0，原dev/official0。完整原件gpu-v1-collected，入口gpu-v1-collection.json；大模型状态保留远端精确locator，owner完整张量重开，不声称独立下载或实际中断resume测试。
+
+归因：相对原2353，public候选提示/多选目标和578负例共同改变；相对2931自由名称，候选任务和Torch主机版本也不同，不能称纯prompt逐位消融。旧自由名称/旧Biomed CE/旧9B veto负结论保留。新收益或失败只属于本固定配方；不因本F1改候选、模式或阈值。
+
+下一步：完整终态已交root，完成同一集中增量审和唯一小包备份。root后继授权有界只读DeBERTa-v3-large查重/成熟span实现/公开资产与成本计划；不新GPU、不大下载、不改本线冻结终点。
