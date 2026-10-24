@@ -52,3 +52,5 @@
 固定normalize完整267cd326：573记录mapped328/NIL0/abstain245，strict244+semantic84；所有原doc/PID/unit/occurrence/offset/length/quote与拒绝理由保留，normalizations786cc560已交root作独立后继供给，本线不改1189实体。双端点质量计划03c88a3f已绑定完整8refs，先push再共同freeze→各唯一v2/旧0。
 
 11:18:08完整双质量收口：主臂 .681717659986 > N .676546354663（+.005171305324），micro +.001808409 / macro +.018876813，Task1不变；new-only .583496662244。新增98=35TP63FP，候选外34=17TP17FP。共同freeze a8591946，两个唯一v2/旧0，.342秒；metadata接口机械恢复保留，模型/规范化/政策未重跑。见[F1-result](evidence/F1-result.json)与完整实验；候选待独审、原devbest与官网不变。
+
+GG-002父线程新授权固定强B2a65056f（.686338981272）∪全部282grounded，源plan baee5ec先push；完整pred ef93ce2d/156658B、freeze31648074→唯一v2/旧0。总分 .695950447742（+.009611466471），micro−.013393436395/macro+.051839302277，Task1不变；+90=26TP64FP，保全部471基底。此为已知首结果后的独立固定CPU控制，无TP筛选。当前准备同权重/normalizer全祖先排F0和47患者全文原生输入合同，预计A8002调度，仍不自动GPU；[strong_support_union/result.json](strong_support_union/result.json)。
