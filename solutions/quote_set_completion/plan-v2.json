@@ -1,0 +1,67 @@
+{
+  "schema": "quote-set-completion-train-only-readiness-v2",
+  "status": "CPU_ONLY_NO_GPU_AUTHORIZATION",
+  "cpu_budget_seconds": 120,
+  "base_main_commit": "08a12023",
+  "references": {
+    "target_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/manifest.json",
+      "bytes": 5047,
+      "sha256": "85979cdcafb37ddc3eef6b8adac864d0a50608c5ed2c917ac22db4be4643d095"
+    },
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/train.jsonl",
+      "bytes": 3629191,
+      "sha256": "bf0091ef057ddb67f9906d035fdaf0ac7b41ae645f77432f0e5a007078291d08"
+    },
+    "tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "template": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    }
+  },
+  "inherited_sources": {
+    "native_tokenizer.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/native_tokenizer.py",
+      "bytes": 3831,
+      "sha256": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026"
+    },
+    "schema.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "prepare.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/prepare.py",
+      "bytes": 9417,
+      "sha256": "51d7d1514b6e565a4574b968001e9c8fd35e48d2f72d9f6cd6eb05764b2afd42"
+    }
+  },
+  "lightweight_libraries": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/cpu-libs",
+  "output": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2",
+  "hypothesis": "Conditioned residual-set denoising may recover patient phenotypes omitted by an independent first pass; two independent sample agreement failed F0 and is not repeated",
+  "known_set_policy": "For each original train32 patient target list, deterministically sort targets by SHA256(row_id|canonical JSON triple), partition alternating entries. Produce two complementary known/remaining views preserving original target order. Every original quote is supervised exactly once across two views, all87 patients remain. V2 adds a third full-known original list -> [] stop view for all87 patients, including original empty/singletons; no other labels changed.",
+  "clinical_boundary": "Original relation labels are known; representative quote patient ownership remains weak nearest selection, not human evidence. Four inherited incomplete/invalid-label patient targets remain explicitly partial.",
+  "mask_seed": 20261024,
+  "no_fit": true,
+  "no_GPU": true,
+  "no_held_input_or_gold": true,
+  "no_original_dev": true,
+  "no_quality": true,
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/prepare_v2.py",
+    "bytes": 8904,
+    "sha256": "33fcdcd504bed139b59d435e670c3bfc9ad4e9508034ab426cf8c4846a4d20f2"
+  },
+  "parent_authorization": "Root required fixed third stop view before any GPU; CPU120+5 then A800 two-Pareto240+30; formal only after measured cost/source-bound plan.",
+  "prior_v1_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/plan.json",
+    "bytes": 3390,
+    "sha256": "016d74622be30a5158832e7886268978d85aac0ea0fc6603f58fd9088a1ebcdd"
+  }
+}
