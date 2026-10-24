@@ -1,33 +1,26 @@
 # 患者四轮统一时程台账
 
-当前：**四轮训练及四份完整持久ACK已完成；最终epoch4绑定完成，全部80条F1唯一推断已启动。** 分支`explore/patient-schedule`，单一入口[evidence/ready.json](evidence/ready.json)。训练/监控已正常终态，不重启。
+当前：**PS4-20261024-v1 完整负结案**。分支`explore/patient-schedule`，只修改本路线。恢复入口：[evidence/ready.json](evidence/ready.json)；终点审查入口为其中`final_review_entry`。训练/监控/F1均已结束，禁止重启或重评分。尚待本批私有终态包及集中独审收口。
 
-## 目标与固定方案
+## 结果与决定
 
-原F2+F3 patient-first32：124行/87患者，保持原标准native CE/输入/目标/候选、9B/r16/seed/AdamW1e-4，只改fresh4epoch/64call/warmup4。四轮完整SHM状态逐轮导出.100并全SHA/fsync/重开ACK，原统一时钟不重置。最终epoch4唯一完整F1，两完整预测共冻后各1v2。
+| 完整F1端点 | Score | 相对强N | macro |
+|---|---:|---:|---:|
+| 固定强全文N | .676546354663 | 0 | .595967512905 |
+| 匹配强N∪旧P2 | .671703122962 | −.004843232 | .582642786831 |
+| 主N∪新P4 | .662072367414 | −.014473987 | .551625687870 |
+| 诊断新P4-alone | .644254142624 | −.032292212 | .518425073459 |
 
-主臂强全文N∪P4同时对比强N .676546354663及匹配N∪旧P2 .671703122962；诊断P4-alone也可凭超强N进入候选。按超过强基线的最高Score选、平分主臂，macro披露。不得用旧weak triple小升冒称globalbest，不扩F0/dev/官网。见[固定实验](experiments/PS4-20261024-v1.md)。
+主臂较匹配两轮组合−.009630756；P4-alone较原P2 .645531861109下降.001277718。单模型micro略升但macro下降，总Score仍负。两固定臂均未超过强N，`keep=false/selected=null`，不扩F0/dev/官方，不扫描新epoch/LR/融合。历史完整public支持F1 .686338981272还高于本次两端点；强N只是本控制比较对象，非全局最高。[完整指标与差值](evidence/final-result.json)。
 
-## 本轮已完成
+## 方法和真实执行
 
-- 事前源码/plan先推`6942dc2`；唯一授权匹配baseline CPU0.282s/rc0，pred `64bd69d8…`、metrics`97d5f3a3…`，Score .671703122962，比强N−.004843232。先freeze后1次v2，旧臂0；不重模型。
-- trainer/controller/完整F1推断/固定双质量均有可执行源码和完整prepared22件payload。10核心数据/批次函数与原训练AST相同；原infer loader/generate AST、严格parser SHA相同；改动仅4/64时程、完整持久恢复及raw-first保护。
-- CPU增量0.090s：10项+37负向/变异检查，4个tail4/64call/3恢复边界/全部原数据身份通过；额外UTF8非关系字节、compound字面集合、缺患者拒绝和4项候选选择合同通过。无新native分词/模型/GPU，真实旧审查复用，不夸成新GPU恢复证明。
-- 建议训练含4导出5400+30、F1独立1200+30、CPU双评120s。依据同patient A800旧2ep1141.720s和既有59.36s/520MB导出代理；新4ep未实测。旧reserved80.753GB须整80GB卡，4state约2.1GB入SHM/.100，项目盘不写state。
-- 大输入/完整预测/deployment均在外部`R/research/patient-schedule-fresh4-v1/`；Git只小证据/源码。初始未运行准备历史另存，不覆盖既有实际结果。
+- 原F2+F3 train32，124行/87患者，标准native CE/输入/目标/9B/r16/seed/AdamW不变；fresh4epochs/64call/warmup4，每轮15组8+尾4。源/端点先推后执行，仅最终epoch4质量。
+- 10:08:43原epoch1启动；四轮均rc0，进程合计2365.138秒，含四持久ACK及观察间隙campaign2897.846秒，保持原5400+30时钟。最后训练10:55:01，最后ACK实际10:56:43，监控10:56:59正常收口。
+- 四份model/Adam/scheduler/RNG约2.08GB均.100逐SHA/fsync/reopen；三次实际恢复均496optimizer状态及完整逻辑digest相同。未声称GPU逐位训练轨迹等价。第四进程峰allocated36.725GB/reserved81.061GB，需要整80GB卡。
+- 原本地watch143721中途消失但远端训练持续；根因未知。独立恢复watch145075使用单owner锁/独立日志/原deadline接续成功，最终正常退出；不是第二次训练。
+- 唯一F1 proc72d3c2d0/PID57237于11:00:29启动，204.117秒rc0/80fresh完整，11:03:54 A800 GPU2真实释放。原171件终态全SHA回收；两pred共同freeze64557f3a后各1v2/旧0，CPU0.530秒，1189实体与全部非关系UTF8字节保持。
 
-## 下一步及停止边界
+## 持久化与后续
 
-root已收到新生成A100显存PASS并将A800 GPU2分配本路线；授权已另存evidence/GPU-AUTHORIZATION.json，原false模板保留；已唯一proc_975a3621/PID27842，原watcher PID143721（exec73046）已无进程/会话；现独立恢复watcher PID145075（PPID1/SID145075）。原campaign TERM截止11:38:41.825555Z/+30，训练及四导出共5400秒，禁止重启或重置时钟。若获相同预算与资源授权，沿RUNBOOK一次部署/fresh核/唯一epoch1，后续4ACK再绑定最终80。工程失败保原raw/状态，不盲重启、不自动扫epoch。完整质量再做一次实际增量终审；本轮无新patient4质量结论。
-
-Git：上一个已核远端源码检查点`c3c5991`；最终prepared检查点将在本页完成后同批commit/push，最终hash以Git与交接消息为准，不为记录自身hash追加循环提交。
-
-实际启动：fresh全部15资产SHA、GPU1MiB无apps、SHM220.026GB、项目1.485GB、.100411.545GB；首watch inspect已过token audit/GPU门，在加载base。51成员688033B准备包`7e6b2b1b…`已.100真实fsync/reopen全SHA，包含私有输入/预测，不能进公共review-index。current pointers与原start意图见ready，原训练state与大raw继续外存。
-
-10:18本地监控恢复：原PID/exec已失、无failure/complete，根因未知；原远端epoch1训练仍健康，root最新发布step10/loss.19727。新增独立恢复目录watch-recovery-1，锁定单owner、脱离短工具launcher，复用旧watch/operations且保原deadline；首次查询等root原inspect+120秒，不立即重复。训练本身从未重启。
-
-10:21接续已实际闭环：epoch1 rc0/590.267秒/16updates；.100完整520024097B于10:21:37取得SHA/fsync/reopen ACK（58.451秒），source ACK副本6220ce84；原daemon10:21:55唯一启动epoch2 proc_8bfcfd40/PID52010，仍原11:38:41.825555截止。此时仅start已确认，模型内部完整state恢复以其后续原收据为准。见evidence/epoch1-durable-epoch2-start.json。
-
-本次恢复确认：四轮wrapper均rc0，耗时590.267/590.081/591.626/593.164秒；第四轮10:55:01结束、.100 ACK实际10:56:43，原5400时钟内。watch145075已有正常complete且进程Z，非活跃监控。绑定最终adapter7c97bbdc、F1 plan64df17bb，四ACK/64step/原source全部匹配；单独1200+30全80fresh按既定双端点执行。精确恢复数值收据后继回收，不把模型启动回执代替state恢复证据。
-
-11:00:29原F1 proc_72d3c2d0/PID57237启动，driver硬TERM11:20:29.8544035/+30；source/绑定已9c23f66推送。原训练28件小终态全SHA回收，三个恢复边界实际496 Adam状态/scheduler/RNG与LoRA逻辑digest均通过；未复跑训练或CPU合同。见evidence/F1-start.json。
+原准备包51件688033B/7e6b2b1b已.100完整持久；模型四检查点另存同机，不放项目小盘。终态包正在本批一次性收尾，含私有预测/原始响应，不能进入safe review-index正文。集中独审仅增量，不重NN/parser/v2。上次已核远端`58ec958`，本次最终提交以Git与交接回执为准。

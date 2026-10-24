@@ -1,9 +1,9 @@
 # 患者优先四轮统一时程
 
-这是一个已在 A800 GPU2 唯一启动的固定四轮控制，完整质量尚未产生。恢复入口为 [evidence/ready.json](evidence/ready.json)，状态见 [WORKLOG.md](WORKLOG.md)，固定方法见 [实验记录](experiments/PS4-20261024-v1.md)。
+固定四轮控制已完整结束，两个 F1 端点均负，关闭本配方。主 N∪P4 **0.662072367414**，患者 P4-alone **0.644254142624**，均低于强全文 N **0.676546354663**；没有 F0、原开发集或官方迁移。
 
-目标是检验原 patient-first 标准 CE 在 fresh 四轮统一学习率时程下，能否提高完整 F1 总 Score。训练数据、目标、候选、tokenizer、基座和 LoRA 保持；只改变总曝光与配套 LR horizon/warmup。不会从旧 LR=0 checkpoint 接两轮，也不看中途 held 分数挑 epoch。
+[结果](evidence/final-result.json)保存分项、差值与实际成本；[台账](WORKLOG.md)给当前交接，[实验记录](experiments/PS4-20261024-v1.md)保留事前假设/固定端点和完整关键过程。[ready.json](evidence/ready.json)是唯一恢复入口；训练、监控、推断和评分都已完成，不重复启动。
 
-[training-plan.json](training-plan.json) 固定 124 行×4、64 次 optimizer call、4 次 warmup；[quality-plan.json](quality-plan.json) 固定主臂强全文 N∪P4、诊断 P4-alone。主机制需同时超过 N-alone 和匹配 N∪P2；任一预先固定臂超过强 N 都可作为候选，最高 Score 胜出、平分主臂。macro 全报告，不额外否决。
+本控制用原 F2+F3 的124行/87患者，保持标准 native CE、输入/目标、候选、tokenizer、9B/r16/seed/AdamW，只把 fresh 统一时程设为4epochs/64calls/warmup4。中途仅作完整状态恢复，唯一第四轮质量，没有按 held 分数选 epoch。
 
-CPU/source先推后，root依据生成线显存结果分配A800；10:08:43已实际启动，原唯一watcher自动推进四轮完整持久ACK。源码及小摘要入 Git；训练行、完整预测、日志和 deployment 均在外部 run 目录。授权的唯一匹配旧模型 baseline 已完成，无旧臂重评。
+四份完整检查点已逐轮存入 .100，最终80条均 fresh、严格EOS、先原始响应和IDs后解析；两完整预测共同冻结后各一次v2、旧分数复用。源码/小摘要进Git，模型、私有输入及完整输出外存。

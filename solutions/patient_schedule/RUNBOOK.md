@@ -1,6 +1,6 @@
 # 恢复与执行入口
 
-当前**四轮及四份持久ACK已完整，watch145075正常退出，epoch4 7c97bbdc已绑定F1 plan64df17bb**。不得重复部署、训练或watch；步骤6已唯一proc_72d3c2d0实际启动，仅inspect/collect，终态后步骤7；禁止重复start。单一状态入口[evidence/ready.json](evidence/ready.json)。
+当前**四轮、四完整ACK、80fresh和双质量全部完成；两端点均负关闭**。只做持久终态包/集中独审收尾；以下所有训练、推断、评分命令仅历史复现接口，本次不得再次执行。准确状态及审查入口见[ready.json](evidence/ready.json)。
 
 外部B=`/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1`，C=`$B/controller`；源码S为本目录。root已明确训练/完整F1授权，已按实际决定将 `GPU-AUTHORIZATION.template.json`另存为`GPU-AUTHORIZATION.json`，填写已给出的授权，原模板保持。实际authorization/plan已SHA绑定并推送。controller检查plan SHA及固定预算。若改卡/路径/预算，应另冻结独立plan与部署，不覆盖原冻结件。
 
