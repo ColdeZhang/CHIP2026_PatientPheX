@@ -1,0 +1,184 @@
+{
+  "schema": "grounded-formal87-source-interface-v1",
+  "status": "DRAFT_SOURCE_ONLY_NOT_A_FORMAL_PLAN",
+  "trainer": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/train.py",
+    "bytes": 27697,
+    "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+  },
+  "configuration": {
+    "rows": 87,
+    "epochs": 2,
+    "steps_per_epoch": 11,
+    "optimizer_calls": 22,
+    "warmup_steps": 2,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "tail_group_size": 7,
+    "seed": 20261023,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    },
+    "packing": false,
+    "quantization": false,
+    "loss": "standard per-row mean causal CE; divide each row by actual group size",
+    "full_training_tokens": 451672,
+    "supervised_tokens": 11884,
+    "maximum_full_tokens": 9210
+  },
+  "entrypoint_fields": [
+    "--plan ABSOLUTE_FROZEN_FORMAL_PLAN",
+    "--absolute-deadline-unix ORIGINAL_CONTROLLER_DEADLINE"
+  ],
+  "future_formal_plan_fields": {
+    "schema": "grounded-whole-report-formal87-v1",
+    "formal_training_authorized": false,
+    "budget_seconds": null,
+    "grace_seconds": 30,
+    "configuration": "exact configuration object above",
+    "assets": "all 17 named refs below, rewritten to actual deployed absolute path/bytes/SHA; no null values accepted",
+    "model": "existing exact Qwen3.5-9B path",
+    "output_dir": "fresh own absolute output, must not exist",
+    "storage_parent": "explicit existing persistent ancestor",
+    "gpu_uuid": "sole allocated fresh UUID"
+  },
+  "asset_bindings_or_unbound_actual_slots": {
+    "trainer": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/training/train.py",
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "indexed_head": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/runtime/indexed_head.py",
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "slot_model": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/slot_model.py",
+      "bytes": 4959,
+      "sha256": "e8baf724a8aaf31d7686e53586033fdf0b07290d5f92f43e5617e436d1473647"
+    },
+    "qwen35_runner": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_runner.py",
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "qwen35_relation_cost": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_relation_cost.py",
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "qwen35_smoke": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_smoke.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "train_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/token-census-v1/train-audit.json",
+      "bytes": 67877,
+      "sha256": "765316d8a22f554d7b590e9bc25de4efa10dee3cd0212bc3b530ce995ec3789f"
+    },
+    "target_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/manifest.json",
+      "bytes": 5047,
+      "sha256": "85979cdcafb37ddc3eef6b8adac864d0a50608c5ed2c917ac22db4be4643d095"
+    },
+    "model_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/terminal/actual/encoded.json.gz",
+      "bytes": 809334,
+      "sha256": "4b503cd295ddf84af902efdbcb0df2337ea24ab0bff42c272424ceabbcc7cb06"
+    },
+    "cpu_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/terminal/actual/result.json",
+      "bytes": 3529,
+      "sha256": "629c2c1663d1d7defc75e4095bdc4be39826c4db39731cb0b8bfe348fcddaed9"
+    },
+    "cpu_runtime": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/terminal/actual/runtime.json",
+      "bytes": 734,
+      "sha256": "6c87c466662fd14d276c0c961fcb28da67971d8a31a328f85614f68a1a2b92a5"
+    },
+    "cpu_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/runtime/cpu-plan-v2.json",
+      "bytes": 10081,
+      "sha256": "60b5ebcc9caad6c7b5d1e72bfbc5bda3c8d531695e2072cd17b01b5f6de424ea"
+    },
+    "native_cpu_source": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/runtime/native_cpu_v2.py",
+      "bytes": 9365,
+      "sha256": "a1e2d5723f8d1180077bfe9457612351e9f43c28094508317ad722c00c6c076b"
+    },
+    "probe_complete": null,
+    "probe_step": null,
+    "probe_manifest": null
+  },
+  "actual_slots_policy": "Native CPU v2 refs below are real and byte-checked. Bind remaining probe_complete/probe_step/probe_manifest only after the original new-route probe completes; formal budget/authorization still unbound. Parent controller separately binds complete CPU/probe collections and rc0. Do not substitute old local-census compressed bytes for original native encoded4b503cd2.",
+  "parent_controller_responsibility": [
+    "source and plan push before launch",
+    "real budget after new probe",
+    "full CPU/probe wrapper rc0 and complete collection binding",
+    "fresh GPU and disk gate",
+    "absolute timeout plus TERM/KILL without automatic retry",
+    "both final durable ACK and fullstate collection"
+  ],
+  "source_provenance": {
+    "ontology_indexed_training_reference": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_training_readiness/formal_indexed/train.py",
+      "bytes": 35950,
+      "sha256": "3de5ed915a2b01a2abe36bd214ebffc6227774994b369abf4d850292bc45148f"
+    },
+    "sequence_durable_writer_reference": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/train_patient_balanced.py",
+      "bytes": 56051,
+      "sha256": "3eab37084ad45a7e0acde7ce1d1c32fd3023825490f0d87aa76aa4187c1c965a"
+    },
+    "durability_function_static_diff": {
+      "durability_fsync_directory": {
+        "identical_to_original": true,
+        "exact_after_only_declared_scale_substitution": true
+      },
+      "durability_inventory": {
+        "identical_to_original": true,
+        "exact_after_only_declared_scale_substitution": true
+      },
+      "durable_publish_checkpoint": {
+        "identical_to_original": false,
+        "exact_after_only_declared_scale_substitution": true
+      }
+    },
+    "only_durable_edits": [
+      "16*completed -> 11*completed",
+      "error message original124 -> grounded87"
+    ]
+  },
+  "verification_performed": "Read-only exact source comparison and AST syntax compilation only; no source import, training/tokenizer/CPU numeric/model/remote/gold/quality execution",
+  "current_no_actual_training_claim": true,
+  "formal_budget_unbound": true,
+  "no_automatic_resume": true,
+  "native_CPU_actual": {
+    "collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/native-cpu-v2/collection.json",
+      "bytes": 7648,
+      "sha256": "237aaa656c6691e49f70895aa5f7997b0b36c7cbacd298040076ae372c21238c"
+    },
+    "CPU_reported_success": true,
+    "status": "PASS_NATIVE_FULL_INPUT_AND_INDEXED_POSITION_CPU",
+    "train_rows": 87,
+    "held_rows": 39,
+    "encoded_arrays_comparison_repeated_here": false,
+    "local_parent_bind_probe_objectwise_proof_reused": true
+  }
+}
