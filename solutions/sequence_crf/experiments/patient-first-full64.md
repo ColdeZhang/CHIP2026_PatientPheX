@@ -89,3 +89,7 @@ root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由
 原proc7f51实际2991.911448秒rc0，完整265×2/68calls，原4500+30未耗尽；allocated峰25,029,427,712B、reserved峰34,907,095,040B。epoch1/2均5成员519,867,104B，fsync祖先链及每成员重开SHA全通过。最终adapter f787f18d、state689580a6、checkpoint0f8cb039；training_complete9c9c7d35、durabilitybd174b1f。06:03:05.457264Z GPU2实际0/40960MiB且无进程，所有训练状态位于持久盘，无SHM或待导出。
 
 17原小文件一次72,709B压缩回收，archive e4cf11b4/collection b5164026；没有下载或反序列化大状态。[终态摘要](../evidence/patient-first-full64-memory-recovery/formal-training-terminal-summary.json)。06:05:47仅将真实三SHA及模块说明写入原冻结推断模板，实际runner baf06014/plan eec66884；训练数据、原64输入、native greedy参数与codec不变。绑定[小收据](../evidence/patient-first-full64-memory-recovery/actual-final-inference-binding.json)。下一步按持续授权部署两小件、fresh gate后一次900+30；当前无新devgold/质量，不把训练成功当成效果提升。
+
+### 原dev64唯一推断已启动（06:07:59）
+
+两小件实际部署rc0且SHA精确。已推d3954589c4908ec372f45636f949314b4c3502d1后fresh GPU UUID/空卡/持久空间与实际adapter/checkpoint三SHA门槛通过，唯一proc_05ce4894-3a78-49c7-8c9b-60191eac14d4 / driver180748，06:07:59.129686558Z启动900+TERM30（近似TERM06:22:59/KILL06:23:29，remote driver为权威）。一次原64全fresh、零缓存；完整终态前无质量。endpoint-plan已绑定实际job/runner/plan与原a179 policy，只读watch每180秒、连接错误只恢复观察，不再次start。[恢复证据](../evidence/patient-first-full64-memory-recovery/final-infer-job.json)。
