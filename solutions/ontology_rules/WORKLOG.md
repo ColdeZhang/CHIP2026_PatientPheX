@@ -87,3 +87,7 @@
 - H5现成候选诊断.383495秒：池16595→16499，public1769→1550；固定selector54删/12增，全部仍可由旧/新共同池供给，53删和12增仅public字段变。确有feature shift，但无持久化a465逐候选概率，不能证明校准失准或重fit获益；原固定配方关闭，只保留严格OOF后继可行性。[诊断](public_h5_adaptation_readiness/formal_train/CANDIDATE_SHIFT.md)。
 
 - head工程与H5固定配方96内容+members共97件、1,917,451B/ebd7e396已08:39:15在.100私有目录逐成员SHA+archiveSHA/fsync核实；完整H5/Adam继续原A100持久盘，外部数据不入Git。H5统一终审683e479e通过，原失败/机械恢复/两质量与时序保留。[持久指针](public_h5_adaptation_readiness/formal_train/persistent-terminal-receipt.json)。Qwen原watch PID130118仍仅管理原8400绝对窗与两epochACK，无新任务/评分。
+
+- 候选诊断元数据更正：实际核得历史 F1 fitted/selector-scores.jsonl 已存（14,344,663 B，645a252b），先前“无逐候选概率”过宽；新适配应用仍缺成对概率输出，没有重 predict/质量。独立更正见[诊断指针](public_h5_adaptation_readiness/formal_train/candidate-shift-pointer.json)，原结果与私有包不可变，feature shift 及负结案结论不变。
+
+- H5严格OOF有限盘点：两方向train16 Sap/rules原池齐（50489f7a/e38d03b2），三公共固定缓存齐；train16 CRF和匹配train32 LGB基线尚未找到，旧a465为train48。准备代码需每train16重建保护/冲突，不能切既有1252行。没有实现新pipeline/fit/NN/v2；[缺口摘要](public_h5_adaptation_readiness/formal_train/OOF_ASSET_GAPS.md)。
