@@ -1,0 +1,238 @@
+{
+  "status": "PASS_posthoc_fixed_triple_union_twofold_gate_no_dev",
+  "reviewed_at_utc": "2026-10-24T04:27:20.648931+00:00",
+  "owner_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/manifest.json",
+    "bytes": 11497,
+    "sha256": "3c037002e519b25b7d6ac127a3725acdc025c5cc3e6327271d2840518929dd3b"
+  },
+  "actual_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/relation-triple-union-review/actual-checks.json",
+    "bytes": 4132,
+    "sha256": "7b5d9d9047e781c413fa2c958525f7ed9599645a692f6c5fa108be8859fd5ba2"
+  },
+  "snapshot_manifests": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/relation-triple-union-review/snapshot-manifest.json",
+      "bytes": 10636,
+      "sha256": "79569e6d587e9323638856594bc5b004898899816d42f6fe4e901a9395767cde"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/relation-triple-union-review/additional-snapshot-manifest.json",
+      "bytes": 2652,
+      "sha256": "46d9774e798f188f7c4639103fa70bae8e5ac26c2f5c3d7cde881dc3845cb65c"
+    }
+  ],
+  "scope": "一次oldSFT OR same-adapter reverse OR patient-first纯literal三方正关系并集，F1/F0各一完整预测。已看过单臂/两方结果后新提出，明确posthoc；不是原预注册或盲泛化验证，不训练/扫阈值/加第四成员。",
+  "sources": {
+    "original": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/control.py",
+      "bytes": 12188,
+      "sha256": "74cc8203a833140a4ed56f0498cf1ba424b6f0018ebc0242bed9d4e6c806ddb7"
+    },
+    "original_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/plan.json",
+      "bytes": 12940,
+      "sha256": "310ba6d80de70c122d7d161e051343c27ce0abad387fd40f308b19ab0b577251"
+    },
+    "recovery": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/control.py",
+      "bytes": 12387,
+      "sha256": "734aef13cc899583395b257817641c662fb99c3f027fe18efa7beeaf8065480e"
+    },
+    "recovery_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/plan.json",
+      "bytes": 14446,
+      "sha256": "aa5c0801d307671ceb940bf3ea6314414dcf47f02d5be9bfe39eb1c139cbf180"
+    },
+    "diff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/source.diff",
+      "bytes": 964,
+      "sha256": "0296b4c3cb02808afdbb9bc91f1340b8ab5841a0dfbcda59bc39a89e5fb7a565"
+    }
+  },
+  "source_review": "三方通过两次同原build_union做literal集合并；实体/患者非phenotype字段保持。新脚本整体source先freeze，两个fold预测共同freeze后才gold。keep两折Score都严格胜cached old∪reverse且两macro均不降，rules仅报告。没有最大化事后挑fold/阈值。",
+  "repair": {
+    "original_failure": {
+      "returncode": 1,
+      "seconds": 0.11459654200007208,
+      "new_predictions": 0,
+      "new_gold_reads": 0,
+      "new_evaluations": 0
+    },
+    "original_stderr": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/stderr.log",
+      "bytes": 560,
+      "sha256": "354f81b90394da86a956ce44d32b7e742974987da5428184379f1b5c758c8010"
+    },
+    "original_wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/wrapper.json",
+      "bytes": 250,
+      "sha256": "c080127ab5c05a15a2943e45b885d66cea2740daff46b7ff72cd77976c323bc4"
+    },
+    "diagnostic": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/diagnostic.json",
+      "bytes": 609,
+      "sha256": "d0feb81d6a035064a8b52715081063560a0bc8d551ca7994b8e76f56af875f50"
+    },
+    "one_guard_change_only": true,
+    "actual_discrepancy": "F1旧union20/F0旧union11个phenotype列表排序不同；两fold literal关系集合差0。原完整对象== guard在首F1写预测前失败，assembled空/evaluation无。仅改set等价校验，所有其他源码、原foldrefs/keep不变。",
+    "semantic_bound": "独审实际按原literal关系集合核old∪reverse==old_union；不是仅相信helper的COMPOUND归一等价。旧文件和排序原留。",
+    "actual_recovery_wrapper_rc": 0,
+    "actual_recovery_seconds": 0.3648518400004832,
+    "combined_wrapper_seconds": 0.4794483820005553,
+    "overall_budget_seconds": 60
+  },
+  "actual_contract": {
+    "F1": {
+      "old": 383,
+      "reverse": 393,
+      "patient": 362,
+      "old_union": 434,
+      "triple": 469,
+      "new": 35,
+      "removed": 0,
+      "old_union_unsorted_lists": 20,
+      "masked_nonrelation_bytes_exact": true
+    },
+    "F0": {
+      "old": 276,
+      "reverse": 285,
+      "patient": 277,
+      "old_union": 302,
+      "triple": 317,
+      "new": 15,
+      "removed": 0,
+      "old_union_unsorted_lists": 11,
+      "masked_nonrelation_bytes_exact": true
+    }
+  },
+  "isolation": "复用各模型来源旧独审，只核新patient summary实际train32→F1/48→F0文献不交、同pool1557/1166。F0 patient来自a09失败后22325已审有限弃答恢复57complete/1partial；仅显式正关系入并集，原strict未评分保持。",
+  "freeze": {
+    "common": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/common-freeze.json",
+      "bytes": 1797,
+      "sha256": "2c15823dc82b31ef9c6bfcb70b94bb1cc4ef6625c6ce3420060cbd3ae9520699"
+    },
+    "frozen_at_utc": "2026-10-24T04:26:02.032073+00:00",
+    "firstgoldmarker": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/before-gold.json",
+      "bytes": 1040,
+      "sha256": "9de5ece5801e9c11161e7cb8178a296a8a247d0c4a94845b4a487002b7c2b498"
+    },
+    "marker_at_utc": "2026-10-24T04:26:02.033828+00:00",
+    "both_fold_complete_before_gold": true,
+    "predictions": {
+      "F1": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/F1.triple.jsonl",
+        "bytes": 155372,
+        "sha256": "ce7363ab213ccc92c59def957b2e832b459339cc52ee7ee7dd6c38c4465f2f0e"
+      },
+      "F0": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/F0.triple.jsonl",
+        "bytes": 124507,
+        "sha256": "c46f4662e4c5bc6d9342f91b79eee1570e057300d23721df74d8989a3e706cf7"
+      }
+    },
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "format_errors": 0,
+    "format_warnings": 0,
+    "nonassociation_literal_bytes_independently_exact": true
+  },
+  "results": {
+    "F1": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.673407482305359,
+        "macF1": 0.5670208645459162,
+        "Score": 0.6638418206599839
+      },
+      "old_union": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6813417190775681,
+        "macF1": 0.5536091323886038,
+        "Score": 0.6624724468137081
+      },
+      "rules": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6161515453639083,
+        "macF1": 0.5479558936740699,
+        "Score": 0.6447615937066596
+      },
+      "delta_vs_old_union": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.007934236772209169,
+        "macF1": 0.013411732157312395,
+        "Score": 0.0013693738462757787
+      },
+      "delta_vs_rules": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.0572559369414507,
+        "macF1": 0.01906497087184622,
+        "Score": 0.01908022695332423
+      },
+      "changes_vs_old_union": {
+        "added_tp": 8,
+        "added_fp": 27,
+        "removed_tp": 0,
+        "removed_fp": 0
+      },
+      "fold_keep": true,
+      "old_metrics_reused_not_rescored": true
+    },
+    "F0": {
+      "metrics": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.7040229885057471,
+        "macF1": 0.6815270938686453,
+        "Score": 0.7095567430848545
+      },
+      "old_union": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.6989720998531571,
+        "macF1": 0.6671007704187774,
+        "Score": 0.70468744005924
+      },
+      "rules": {
+        "menF1": 0.724105461393597,
+        "docF1": 0.7285714285714285,
+        "micF1": 0.7044198895027625,
+        "macF1": 0.6883173080126084,
+        "Score": 0.711353521870099
+      },
+      "delta_vs_old_union": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.005050888652589958,
+        "macF1": 0.01442632344986794,
+        "Score": 0.004869303025614502
+      },
+      "delta_vs_rules": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.0003969009970153925,
+        "macF1": -0.00679021414396308,
+        "Score": -0.001796778785244535
+      },
+      "changes_vs_old_union": {
+        "added_tp": 7,
+        "added_fp": 8,
+        "removed_tp": 0,
+        "removed_fp": 0
+      },
+      "fold_keep": true,
+      "old_metrics_reused_not_rescored": true
+    }
+  },
+  "keep": true,
+  "interpretation": "两折均通过本次固定门槛。F1 Score.663841821较old∪reverse升.001369374，macro升.013411732但micro降.007934237；F0 Score.709556743升.004869303、macro升.014426323。F0仍低rules.711353522，不能称胜全部基线；本报告不授权/宣称原dev改善或0.8达标。",
+  "verifier_boundary": "仅stdlib源码/冻结SHA/已有预测literal集合和非关系字节/metadata/保存metrics算术；未执行owner程序、parser、evaluator、模型、gold读/哈希或新训练预测。无Git/MCP/GPU/官方操作。"
+}

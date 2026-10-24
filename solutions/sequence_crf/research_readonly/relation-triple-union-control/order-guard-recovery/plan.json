@@ -1,0 +1,276 @@
+{
+  "schema": "fixed-old-reverse-patient-triple-union-v1",
+  "created_at_utc": "2026-10-24T04:26:01.639687+00:00",
+  "authorization": "Root via sequence owner: one literal oldSFT OR reverse OR patient-first control on F1 and F0; no other arms, GPU, fitting or dev migration",
+  "hypothesis": "The two previously observed incremental hard-prediction sets may retain complementary positive associations when combined; a fixed twofold gate tests this without training.",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/control.py",
+    "bytes": 12387,
+    "sha256": "734aef13cc899583395b257817641c662fb99c3f027fe18efa7beeaf8065480e"
+  },
+  "fold_order": [
+    "F1",
+    "F0"
+  ],
+  "cpu_cap_seconds": 60,
+  "folds": {
+    "F1": {
+      "expected": {
+        "rows": 80,
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "candidates": 587,
+        "pairs": 1557,
+        "train_documents": 32
+      },
+      "references": {
+        "old": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+          "bytes": 154176,
+          "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+        },
+        "reverse": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/reverse.jsonl",
+          "bytes": 154308,
+          "sha256": "bc9d1b26bde9a843b1a5ec95c78d46cafd8d8a30748365276942be5c744e29ba"
+        },
+        "patient": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/assembled/patient-first.jsonl",
+          "bytes": 153874,
+          "sha256": "2d73259b82d3c23ca82f56dd70207d963e5ef003cc4c58c25f60518df9bc7bcf"
+        },
+        "old_union": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/union.jsonl",
+          "bytes": 154882,
+          "sha256": "cf71b57d1bd2142ec8248cb80628e176d32b24b2197b3e80b46a126cabfcdefd"
+        },
+        "old_union_metrics": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/evaluation/union.metrics.json",
+          "bytes": 12969,
+          "sha256": "d8e6cb1ea34626aaf1054ad1436af69acd201621bc801b520f6ef81dac971646"
+        },
+        "rules": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+          "bytes": 155574,
+          "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+        },
+        "rules_metrics": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.metrics.json",
+          "bytes": 13170,
+          "sha256": "cf70f6d920840754253edf3e1191285a2e0e636dd347b8bac3c67f65fe8b7c35"
+        },
+        "input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "bytes": 342703,
+          "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+        },
+        "prompts": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1.input80.patient-first.jsonl",
+          "bytes": 1092467,
+          "sha256": "32b52a2d580024342f25a5d74388c61323f2cc3bbf2bdb0eea404b19a9d64b18"
+        },
+        "patient_endpoint_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/endpoint-plan.json",
+          "bytes": 3447,
+          "sha256": "bb375d9cc6aafe2528a0b6f0619b2a987e27447e816803e64f685cee6cf890c6"
+        },
+        "patient_freeze": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/assembled/freeze.json",
+          "bytes": 1578,
+          "sha256": "379835181994275c33a8427fc70a3e2ebc75eacc190ace2d5c43c300b12c111e"
+        },
+        "patient_data_summary": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/summary.json",
+          "bytes": 10469,
+          "sha256": "68d28bafb7b463b68857f44957d7cf33d05116ff2e49872183f7e363458cb254"
+        },
+        "reverse_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/plan.json",
+          "bytes": 7339,
+          "sha256": "aac0c682926aaf6816159054f0eeefa8b7d621e373f463444415f094d39a192c"
+        },
+        "reverse_summary": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/summary.json",
+          "bytes": 7023,
+          "sha256": "9c75221c2bb4fe76fcbbf150a225b8f1f4d650afa2d74f95177784f362c2233c"
+        }
+      },
+      "gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+        "bytes": 525710,
+        "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+      }
+    },
+    "F0": {
+      "expected": {
+        "rows": 58,
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "candidates": 415,
+        "pairs": 1166,
+        "train_documents": 48
+      },
+      "references": {
+        "old": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+          "bytes": 123941,
+          "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+        },
+        "reverse": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/assembled/reverse.jsonl",
+          "bytes": 124065,
+          "sha256": "0c5cea7e6bf934d9efdc978f7b79d346cd3ddc0f97067878ce67b45b314e68f7"
+        },
+        "patient": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/primary.jsonl",
+          "bytes": 123963,
+          "sha256": "8d88a3ade9769e9e20bb2c6000650f7654684996f761106fc2a2df08810bf01d"
+        },
+        "old_union": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/assembled/union.jsonl",
+          "bytes": 124299,
+          "sha256": "c4165240a5be26895ea4507e6202ce66dc52018681b63ff71380347d9581beb9"
+        },
+        "old_union_metrics": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/evaluation/union.metrics.json",
+          "bytes": 12879,
+          "sha256": "11f4eb48940460239b80b123b1adb506582eab1c9aa664c0d1e74fb2ab394ac7"
+        },
+        "rules": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+          "bytes": 124903,
+          "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145"
+        },
+        "rules_metrics": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.metrics.json",
+          "bytes": 13071,
+          "sha256": "a22261c246552c6c55f4395433fe7cb3855a345ceaa76ad3c7adf92a29780272"
+        },
+        "input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "bytes": 350409,
+          "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+        },
+        "prompts": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/F0.input58.patient-first.jsonl",
+          "bytes": 825019,
+          "sha256": "dae9b5d8eeade4c61ec693af28bbdc3993b3864135b1b6260b769b79c35e960b"
+        },
+        "patient_endpoint_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-plan.json",
+          "bytes": 9116,
+          "sha256": "b719834e2af634a2b7be80359b080d815a297a44b7de5742aabd85d02739d6ee"
+        },
+        "patient_freeze": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/common-freeze.json",
+          "bytes": 80042,
+          "sha256": "be17f7b46d59200ee84fda6596a3f0d8e0f1c5d15f8087a445ae68bf21510518"
+        },
+        "patient_data_summary": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/summary.json",
+          "bytes": 14864,
+          "sha256": "cf0729e519bf457b618c1d9dfed8b8a2b87c6f424e5d3a590a39de5909ac67f8"
+        },
+        "reverse_plan": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/plan.json",
+          "bytes": 8103,
+          "sha256": "54f05699c7848bf7d2aba196e8da2e4b08cd0b141b0f3f4a26d82f086c149c61"
+        },
+        "reverse_summary": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/summary.json",
+          "bytes": 7796,
+          "sha256": "56a937dd18d6c67f35340fb8a36458692705ea26d86dcbf4b3b98d44af3136e1"
+        },
+        "patient_abstention_report": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/assembled/assembly-report.json",
+          "bytes": 1020,
+          "sha256": "c3cdfe8e9a241a72580e1fa9e806e4bb1edb052d3f4098d714053327bd1828dc"
+        }
+      },
+      "gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+        "bytes": 507921,
+        "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+      }
+    }
+  },
+  "common_references": {
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "inventory": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-inventory/inventory.json",
+      "bytes": 14998,
+      "sha256": "6cc6e74a391a859166e37f41a012d8d25dd86415c31e074b9ab5273991ac46dd"
+    },
+    "isolation_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/binary-complement-design/source-check.json",
+      "bytes": 5540,
+      "sha256": "4af6c224f8a401abcfa679a91ce7e410a2dc1f6b061753a70b6d1dfb8bb39170"
+    },
+    "union_source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_f0/formal/secondary_union.py",
+      "bytes": 8508,
+      "sha256": "df82af61510af3699114802549c7063e6b0c94099d34059e6388eecc80000252"
+    }
+  },
+  "keep_rule": "both folds Score > old_union Score and both folds macF1 >= old_union macF1",
+  "posthoc_after_existing_component_results": true,
+  "original_prequality_registration": false,
+  "new_triple_quality_read": false,
+  "posthoc_disclosure": "This exact three-member combination was proposed after observing the previously completed reverse-union and patient-union results. It is a new posthoc control, not part of the initial prequality registrations; no independent unseen-fold superiority claim.",
+  "patient_F0_disclosure": "Original strict F0 failed and remained unscored. The separate limited-codec recovery reused exact23 cached rows and generated35 new rows; complete57/partial1, one missing patient key (8 candidate pairs) abstained. Only explicit positive patient-first pairs participate; no fabricated missing-key answers.",
+  "exactly_two_new_evaluator_calls": true,
+  "all_twofold_fullpred_before_gold": true,
+  "all_old_metrics_reused": true,
+  "no_relation_removal": true,
+  "no_entity_or_patient_metadata_change": true,
+  "no_new_training_or_GPU": true,
+  "no_threshold_or_subset_scan": true,
+  "no_fourth_member": true,
+  "no_dev_migration": true,
+  "isolation": "F1 strict32 excludes F1/F0; F0 strict48 excludes F0. Reuse reviewed generator provenance; verify each patient-data summary document IDs and current input IDs, no new train labels opened.",
+  "execution": "python3 control.py --directory /workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control",
+  "recovery": {
+    "original_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/plan.json",
+      "bytes": 12940,
+      "sha256": "310ba6d80de70c122d7d161e051343c27ce0abad387fd40f308b19ab0b577251"
+    },
+    "original_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/control.py",
+      "bytes": 12188,
+      "sha256": "74cc8203a833140a4ed56f0498cf1ba424b6f0018ebc0242bed9d4e6c806ddb7"
+    },
+    "original_wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/wrapper.json",
+      "bytes": 250,
+      "sha256": "c080127ab5c05a15a2943e45b885d66cea2740daff46b7ff72cd77976c323bc4"
+    },
+    "original_error": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/stderr.log",
+      "bytes": 560,
+      "sha256": "354f81b90394da86a956ce44d32b7e742974987da5428184379f1b5c758c8010"
+    },
+    "scope": "Only compare existing baseline relation sets rather than phenotype array order; all nonassociation/patient metadata still exact; no output/input/keep/evaluator changes",
+    "original_new_predictions": 0,
+    "original_gold_reads": 0,
+    "original_evaluator_calls": 0,
+    "CPU_remaining_wrapper_cap_seconds": 59,
+    "remaining_bound": "Original wrapper0.114597+recovery59<overall60 seconds; source own60 alarm retained and tighter wrapper bounds this attempt"
+  }
+}

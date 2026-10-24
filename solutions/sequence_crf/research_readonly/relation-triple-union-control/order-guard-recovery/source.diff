@@ -1,0 +1,11 @@
+--- frozen-control74cc.py
++++ order-guard-recovery/control.py
+@@ -115,7 +115,7 @@
+    pairs={(str(d['pmc_id']),str(a['patient_id']),h) for d in value for a in d['association'] for h in a['phenotype']}
+    assert pairs<=pool
+   oldreverse,first=build_union(docs['old'],docs['reverse'],prompts)
+-  assert oldreverse==docs['old_union'], 'Existing baseline must equal exact first two members'
++  assert all({pid:values for pid,values in relations(a).items()}=={pid:values for pid,values in relations(b).items()} for a,b in zip(oldreverse,docs['old_union'])), 'Existing baseline relation sets must equal exact first two members; historical list order is preserved only in its frozen file'
+   triple,second=build_union(oldreverse,docs['patient'],prompts)
+   assert second['removed_from_old']==0 and second['pool_pairs']==expected['pairs']
+   path=b/'assembled'/(fold+'.triple.jsonl');publish(path,''.join(json.dumps(d,ensure_ascii=False)+'\n' for d in triple).encode())
