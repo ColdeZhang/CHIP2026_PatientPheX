@@ -1,0 +1,91 @@
+{
+  "status": "frozen_before_any_new_union_prediction_or_quality",
+  "frozen_at_utc": "2026-10-24T03:26:40.489984+00:00",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-fixed-union/run_union.py",
+    "bytes": 10186,
+    "sha256": "aa0854c5523cc3bfefeedbcd2e73bdcb6b0b5319c1498141014336b354375244"
+  },
+  "references": {
+    "old8B_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/adapter58.pred.jsonl",
+      "bytes": 124233,
+      "sha256": "c31574728477fbe0490e7198a826e18920f9316224396f5ff803e444840ea23f"
+    },
+    "old9B_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+      "bytes": 123941,
+      "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+    },
+    "old9B_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.metrics.json",
+      "bytes": 13036,
+      "sha256": "e16ff5b0d593ca431ef20ca68afc1ddf8051374da077428553fcd436d35b8218"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "bytes": 823917,
+      "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+      "bytes": 350409,
+      "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.gold.jsonl",
+    "bytes": 507921,
+    "sha256": "630c9e39511439a4379dc6b35f4734189d0db9448562411895460892be0dae48"
+  },
+  "gold_locator_source": "Existing frozen old9B metrics / prior F0 plan; not opened, statted or hashed during this preparation.",
+  "union_policy": "literal old9B prediction union old8B prediction; no other relations",
+  "keep_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+  "CPU_total_cap_seconds": 60,
+  "new_evaluator_calls": 1,
+  "baseline_evaluator_calls": 0,
+  "new_control_quality_read": false,
+  "contract": {
+    "documents": 16,
+    "patients": 47,
+    "entities": 947,
+    "rows": 58,
+    "candidates": 415,
+    "pairs": 1166,
+    "union_relations": 330,
+    "added_over_old9B": 54
+  },
+  "old8B_one_existing_LR_fallback_preserved": true,
+  "evaluator": "patientphex-public-approx-v2/all/text",
+  "no_scan_training_NN_GPU_patient_first_or_originaldev": true,
+  "on_failure": "Preserve evidence and stop; no automatic repeat or alternate arm.",
+  "on_keep": "Candidate only; wait for F1 robustness authorization; no original dev migration.",
+  "on_no_keep": "Close negative, no parameter or source scan.",
+  "history": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-union-history/report.json",
+    "bytes": 18079,
+    "sha256": "1bd35d9e42cc9c59d0fca00e218af09d5c0106fecaa0a2fcde70af65fa609a32"
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-u",
+    "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-fixed-union/run_union.py",
+    "--plan",
+    "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-fixed-union/plan.json"
+  ]
+}
