@@ -2,9 +2,9 @@
 
 目标是检验两折均有小幅互补的患者优先关联能否迁到原 train64/dev16。三方并集已通过固定双折门槛，但 F1 micro 下降，F0 仍低于 rules；不能预期必然提高原 dev。
 
-## 当前边界
+## 当前状态与边界
 
-只授权 CPU 数据与单次 A100 最长行更新，240 秒加 TERM30；正式训练尚未授权。后续若运行，用 fresh 两轮 265 行/68 次 optimizer calls/4 warmup，拟 4500+30 含两完整持久状态；dev 原64输入拟另900+30。最终必须在当前 a179 全预测上保留全部旧实体、关系、public-new支持，仅检验新增患者关联，不重新计算或删除旧候选。当前未读 devgold、未评分、未官方上传。
+旧完整logit-CE正式训练已OOM，新仅监督位置FP32 CE的fresh完整265×2/68calls已06:03:05成功，两个epoch状态完整持久。已获持续授权的后继为真实epoch2原dev64推断900+30，然后a179全预测literal union唯一v2；1072实体/391旧关系/35public-new不变。以下按实际顺序保留历史准备、失败及恢复，不把早期“尚未授权/待运行”当作当前阻断。最新入口与终态见文末和[台账](../WORKLOG.md)。未官方上传。
 
 ## 实际 CPU 数据
 
@@ -83,3 +83,9 @@ root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由
 ### 首轮完整状态已实际持久（05:38:41）
 
 原fresh作业首epoch完成34calls，实际loop1456.659908秒；5成员519,867,104B，checkpoint元数据f1338b1a、adapter2c0aa93b、optimizer/RNG state ea51443a。生产端文件/目录/祖先fsync与全部成员重开SHA通过，05:40:05只读观察已进入epoch2 step35，峰allocated25.029GB。仅回收生产端小收据正文，没有下载或反序列化大状态；该正文快照不冒称远端receipt文件的原始字节SHA，正式结尾由压缩回收绑定原文件。完整两轮与唯一dev评分仍待完成；[关键收据](../evidence/patient-first-full64-memory-recovery/formal-epoch1-milestone.json)。
+
+### 完整两轮成功与实际 final 绑定（06:03–06:05）
+
+原proc7f51实际2991.911448秒rc0，完整265×2/68calls，原4500+30未耗尽；allocated峰25,029,427,712B、reserved峰34,907,095,040B。epoch1/2均5成员519,867,104B，fsync祖先链及每成员重开SHA全通过。最终adapter f787f18d、state689580a6、checkpoint0f8cb039；training_complete9c9c7d35、durabilitybd174b1f。06:03:05.457264Z GPU2实际0/40960MiB且无进程，所有训练状态位于持久盘，无SHM或待导出。
+
+17原小文件一次72,709B压缩回收，archive e4cf11b4/collection b5164026；没有下载或反序列化大状态。[终态摘要](../evidence/patient-first-full64-memory-recovery/formal-training-terminal-summary.json)。06:05:47仅将真实三SHA及模块说明写入原冻结推断模板，实际runner baf06014/plan eec66884；训练数据、原64输入、native greedy参数与codec不变。绑定[小收据](../evidence/patient-first-full64-memory-recovery/actual-final-inference-binding.json)。下一步按持续授权部署两小件、fresh gate后一次900+30；当前无新devgold/质量，不把训练成功当成效果提升。

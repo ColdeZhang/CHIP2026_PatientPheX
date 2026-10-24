@@ -1,0 +1,159 @@
+{
+  "status": "PASS_complete_durable_full64_training_no_dev_quality_yet",
+  "recorded_at_utc": "2026-10-24T06:07:26.247528+00:00",
+  "job": {
+    "result": {
+      "command": "python3 -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/formal_driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/train-plan.json",
+      "id": "proc_7f51657c-95c7-4118-9d9d-68377242d294",
+      "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+      "pid": 141616,
+      "port": 41687,
+      "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+      "running": true,
+      "started_at": "2026-10-24T05:13:13.317154957Z"
+    },
+    "arguments": {
+      "command": "python3 -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/formal_driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/preparation/train-plan.json",
+      "cwd": "sequence-round2/patient-first-full64-selected-CE-formal-v1/control/train",
+      "env": {
+        "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "HF_HUB_OFFLINE": "1",
+        "TRANSFORMERS_OFFLINE": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "TOKENIZERS_PARALLELISM": "false",
+        "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+        "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+      }
+    },
+    "checkpoint": "dcf7a61090a188008c48828515b23bedd8fe728d",
+    "cap_seconds": 4500,
+    "grace_seconds": 30,
+    "approximate_TERM_deadline": "2026-10-24T06:28:13.317154+00:00",
+    "approximate_KILL_deadline": "2026-10-24T06:28:43.317154+00:00",
+    "actual_deadline": "remote driver-started.json"
+  },
+  "wrapper": {
+    "at_utc": "2026-10-24T06:03:05.341812+00:00",
+    "phase": "train",
+    "returncode": 0,
+    "elapsed_seconds": 2991.9114484786987,
+    "cap_seconds": 4500,
+    "grace_seconds": 30,
+    "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep",
+    "no_retry": true,
+    "training_complete_sha256": "9c9c7d356d373f10d81f1ad987eb04ac4b9ab4fb3d22c7240e9ae810383376a3",
+    "final_checkpoint_metadata_sha256": "0f8cb039da6db2552eb8ef6693e087c4dc53b6b083ecb535896d131fff7f954d",
+    "final_checkpoint": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002",
+    "all_epochs_persistent_and_readback_verified": true,
+    "no_SHM_or_pending_export": true,
+    "gpu_release": {
+      "at_utc": "2026-10-24T06:03:05.457264+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "target_has_no_process": true,
+      "target_memory": [
+        "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+      ]
+    }
+  },
+  "training_complete": {
+    "smoke_only": false,
+    "epochs": 2,
+    "global_step": 68,
+    "base_parameters": 8953803264,
+    "trainable_adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "elapsed_seconds": 2990.5293514728546,
+    "max_gpu_allocated_bytes": 25029427712,
+    "max_gpu_reserved_bytes": 34907095040,
+    "device": "NVIDIA A100-SXM4-40GB",
+    "source_sha256": "1203139eabbbb501d4e532ea9080773b9f662a8aae9638f4519b0f58a24109f7",
+    "result_type": "training_only_no_evaluation_score",
+    "new_resume_numerical_equivalence_tested": false
+  },
+  "epochs": {
+    "1": {
+      "receipt_sha256": "c47b059bed05f41485c715031d4e111b2d2a49ca60aaf2c7c5a39fd124c9b1fe",
+      "checkpoint": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-001",
+      "completed_epochs": 1,
+      "global_step": 34,
+      "files": {
+        "adapter/README.md": {
+          "bytes": 5352,
+          "sha256": "bd7363c9041c455304d35f564fd75126a6bf31a4b8661ea33006050aba917e93"
+        },
+        "adapter/adapter_config.json": {
+          "bytes": 1341,
+          "sha256": "1ddab7dd3f78669538f8087fa4b1d03e62d1e4501d377ac5581b5fb28686b2ae"
+        },
+        "adapter/adapter_model.safetensors": {
+          "bytes": 173181072,
+          "sha256": "2c0aa93b2d23376eabd5d4f596bf3e902c96f4db78ad2b44eeb1e8417fc3663b"
+        },
+        "checkpoint.json": {
+          "bytes": 12697,
+          "sha256": "f1338b1a93c36e0a266b6fe266a39bbf6a2c69e6a33ca60588fbe2028f4ec25b"
+        },
+        "training_state.pt": {
+          "bytes": 346666642,
+          "sha256": "ea51443a8e9b514d5503d9de5bc1781dd279bd3ce274376ff2239053c59d1588"
+        }
+      },
+      "file_directory_fsync": true,
+      "reopened_SHA_all_exact": true,
+      "at_utc": "2026-10-24T05:38:41Z"
+    },
+    "2": {
+      "receipt_sha256": "bd174b1fd07bb77b5494c8f6ade1627ebf010b71de3a2a3f710e5e20ab5cd8be",
+      "checkpoint": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002",
+      "completed_epochs": 2,
+      "global_step": 68,
+      "files": {
+        "adapter/README.md": {
+          "bytes": 5352,
+          "sha256": "bd7363c9041c455304d35f564fd75126a6bf31a4b8661ea33006050aba917e93"
+        },
+        "adapter/adapter_config.json": {
+          "bytes": 1341,
+          "sha256": "1ddab7dd3f78669538f8087fa4b1d03e62d1e4501d377ac5581b5fb28686b2ae"
+        },
+        "adapter/adapter_model.safetensors": {
+          "bytes": 173181072,
+          "sha256": "f787f18de7843f4af092e0a36ab5df05e9109081c1d6df81b7c3d9cb864065b7"
+        },
+        "checkpoint.json": {
+          "bytes": 12697,
+          "sha256": "0f8cb039da6db2552eb8ef6693e087c4dc53b6b083ecb535896d131fff7f954d"
+        },
+        "training_state.pt": {
+          "bytes": 346666642,
+          "sha256": "689580a6125762b52df925cdb85431919f148e901429566b0aa5ca57671426b6"
+        }
+      },
+      "file_directory_fsync": true,
+      "reopened_SHA_all_exact": true,
+      "at_utc": "2026-10-24T06:03:04Z"
+    }
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/training-collection.json",
+    "bytes": 9312,
+    "sha256": "b51640265e944a298ab192accd1bd4aa160f9397780a85a58ec9d086fb651ff1"
+  },
+  "archive": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/train-terminal.zip",
+    "bytes": 72709,
+    "sha256": "e4cf11b4f4a3ff13f239cb731f3acd37584055f97f7746dd0732477c93d5d6bf"
+  },
+  "members": 17,
+  "actual_inference_binding": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/actual-final-inference-binding.json",
+    "bytes": 2118,
+    "sha256": "c7a4143014b8a08317487237a8b14649f0abf1c22d052c785c63d725fec39282"
+  },
+  "large_weights_not_downloaded_or_deserialized": true,
+  "no_new_quality": true
+}
