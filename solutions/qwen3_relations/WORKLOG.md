@@ -54,3 +54,5 @@
 - 最终持久备份：.3 terminal-component/component-source.zip 59309B/26件/bcca28c3，与run/small-terminal.zip 1076977B/284件/8d1283bf逐成员重开全SHA；两archive及父链fsync，backup ACK写入后父链再次fsync，见 evidence/full64-component-backup-ack.json。两个完整checkpoint留原.3路径，无额外GPU或质量。
 
 - 补充只读查重已关闭重复提案：旧retrieved-json-example真实train32 TF-IDF top1完整训练输入/答案→Qwen3.5 SFT32/F1全80，Score .660942→.645783（两关系F1均降）。旧query是局部证据而非文章全文，不能外推所有RAG无效，但不据此重复同机制；规则明确允许prompt/RAG并保持train/held隔离。本次0GPU/0fit/0新quality，见 evidence/retrieval-demonstration-duplicate.json 与外部4959B短报告22550ca8。
+
+- 患者跨度几何只读研究：当前PCS仅anchor语义池化+span RoPE，未显式输入锚点距离/同段；旧LR与identity bridge已用可学习几何，旧maxMIL亦完成，不能泛称项目从未尝试。现成train32 32篇/87患者/255锚点，1421/1503多患者实例的全锚点几何可区分患者，720/813正袋同段、另139/560多患者正袋所有实例有更近的其他患者（不是错误计数）。仅建议当前fresh24完成后，一个50参数全锚点距离×同段残差；零Parameter不耗RNG，旧LR3e-5/新表固定1e-2及同schedule，不扫描。外部报告与纯schedule算术见 evidence/patient-span-geometry-readiness.json；0新gold/fit/model/quality，未改owner源码/未启动新GPU。

@@ -1,0 +1,50 @@
+{
+  "status": "CPU_RESEARCH_ONE_GEOMETRY_RESIDUAL_CONTROL_RECOMMENDED_AFTER_FIXED24",
+  "report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/REPORT.md",
+    "bytes": 11240,
+    "sha256": "050e63457efbbc711eedd9d05fafdb13f88c05cdd960248a59cec152ecb18434"
+  },
+  "result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/result.json",
+    "bytes": 8190,
+    "sha256": "c0bda15bd55571d61f81c3f2e9ef3b6b453d9b184465b0ee2db4edbc1d492c47"
+  },
+  "train_geometry_census": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/train-geometry-census.json",
+    "bytes": 23873,
+    "sha256": "4fefcd392b04633f973f06821178b3ce49d20476a2094a8b958cc032443d91bb"
+  },
+  "schedule_arithmetic": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-readiness-20261024/schedule-arithmetic.json",
+    "bytes": 853,
+    "sha256": "697ab68810aa05b22bbe30166e9fe78ca31b1d49963835e2bc32b3f2f208be03"
+  },
+  "conclusion": "Current PCS has implicit semantic context and span RoPE but no explicit anchor geometry. Old learned geometry and max-MIL exist separately; one bounded all-anchor geometry residual plus current latent span-bag control remains worth considering only after unchanged fresh24 result.",
+  "proposal": {
+    "added_trainable_parameters": 50,
+    "features": "all-own-anchor mean of joint25 signedlog-token-gap buckets x2 original-passage same flag",
+    "initialization": "nn.Parameter(torch.zeros(25,2)) after all old-head initialization; no RNG consumption, old parameter order preserved",
+    "supervision": "unchanged max-instance BCE on current813positive/2381negative bags; no patient-span evidence labels",
+    "reference_control": "owner fixed24, same fresh24 duration and recipe if root later authorizes",
+    "changes_to_current_owner_source": 0,
+    "new_GPU_plan_created": false,
+    "new_GPU_started": false,
+    "original_encoder_and_heads_lr": 3e-05,
+    "new_geometry_only_lr": 0.01,
+    "both_weight_decay": 0.01,
+    "fixed_schedule": {
+      "updates": 768,
+      "warmup_steps": 76,
+      "kind": "same linear warmup and decay"
+    },
+    "lr_scope": "This fixed extra optimizer group is part of the geometry mechanism, not an identical-optimizer feature-only ablation; no sweep",
+    "table_index": "signed bucket -12..12 plus12; samepassage index0/1",
+    "micro_contracts_status": "PROPOSED_NOT_EXECUTED; no torch model or optimizer called"
+  },
+  "new_held_gold_reads": 0,
+  "new_fit_calls": 0,
+  "new_model_calls": 0,
+  "new_quality_calls": 0,
+  "current_owner_source_modified": false
+}
