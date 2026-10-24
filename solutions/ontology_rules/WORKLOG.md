@@ -103,3 +103,5 @@
 - 新全文模型F1唯一全80fresh已09:30:18 proc_36a62965/PID22795启动，1200+30；训练28件真实小终态已一次完整收回（b88400b7 zip，30,047 B），包括完整state/RNG恢复、32步和两epoch保存。无旧adapter响应复用、尚无新质量；[原作业指针](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/actual-start.json)。
 
 - indexed全文train32固定F1负结案：新alone .675134214（对强.676546355 −.001412141）、旧短∪新 .672875653（−.003670702），Score-only均不保留；较弱短输入的提高单列、不偷换对照。80fresh/80strict/0弃答，374.785秒rc0/释放；两pred共冻→新2旧0，1189实体/nonrelation保持。[完整结论](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/RESULT.md)。等待一个现有线程空槽做唯一实际终审，先推送/一次私有补包，不扩F0/dev/epoch搜索。
+
+- indexed终态65内容＋members共66件私有补包已09:40:55在.100逐成员SHA/fsync/重开核实（670679 B，141db4c6）；完整两个约520MB checkpoint另有独立持久ACK。原raw/preds不入Git/review-index；统一终审待root调度，一次新报告另附、不重包。[回执](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/persistent-evidence-receipt.json)。

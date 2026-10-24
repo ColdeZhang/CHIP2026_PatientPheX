@@ -6,4 +6,4 @@
 
 外存根 R=/workspace/patientphex-runs/round2-20261023：训练 Q=R/research/qwen35-fulltext32-indexed-formal-v1/controller，含campaign-complete、两exportACK、training-terminal-manifest及28件小zip；F1 I=R/research/qwen35-fulltext32-indexed-F1-full80-v1，含terminal-manifest、terminal.zip、evaluation-plan及quality/summary.json、paired-predictions-freeze。原8400截止10:27:28.873858及F1独立1200+30均未超时。
 
-剩余仅一次完整私有证据补包与统一实际增量终审。root待现有有用子任务释放线程后唤醒原validator；引用结果不可变，后继审查只补新文件，不重模型/parse/v2。后续方法与GPU由root新任务安排，官方仍不查不传。
+私有证据补包已.100实际完整保存（141db4c6，65内容＋members）；剩余仅统一实际增量终审。root待现有有用子任务释放线程后唤醒原validator；引用结果不可变，后继审查只补新文件，不重模型/parse/v2。后续方法与GPU由root新任务安排，官方仍不查不传。

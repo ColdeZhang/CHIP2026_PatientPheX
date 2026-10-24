@@ -15,3 +15,5 @@ primary比强基线少11 TP／19 FP，未获得净Score改善；diagnostic的mic
 新adapter65b53e36的全部80条推断均fresh，374.784937秒rc0、80严格完整／0弃答，raw IDs先存、raw先于parse；09:36:33 A800 GPU2实际释放。推断峰allocated22.228GB／reserved76.359GB，未来卡准入不能只看allocated。253成员/240逐行shards及zip已完整核SHA。两完整预测共同freeze后各一次v2，旧指标0次重算，CPU .321637秒；16文献的1189实体及所有非关系字段原字节保留。
 
 完整训练28件小收件、两ACK、80推断原包、冻结及质量引用见 [result-pointer.json](result-pointer.json)。结果和源先保存并推送；统一独立终审因7线程占用暂待一次唤醒，不重复任何模型／解析／评分。新正式训练、F0、原dev和官方操作均不自动扩展。
+
+私有补包已09:40:55在.100完整落盘：65内容＋members共66件，670679 B／141db4c6，archive和每成员SHA／fsync／重开核验均通过；见 [持久回执](persistent-evidence-receipt.json)。最终独立终审另补不可变小报告，不改本包，也不把私有raw／关系列表纳入review-index。
