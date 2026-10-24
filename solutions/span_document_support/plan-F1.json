@@ -1,0 +1,107 @@
+{
+  "id": "E-20261024-SPAN-DOC-SUPPORT-001",
+  "at_utc": "2026-10-24T13:17:44.196278+00:00",
+  "fold": 1,
+  "formula": "baseline UNION document_supported(geometry, task1)",
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "baseline_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/freeze.json",
+      "bytes": 2176,
+      "sha256": "6712ea2f09b30abdcfe1a25fdce4d2e12813422c43c167cf7a766ab390d31dea"
+    },
+    "geometry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-v1/assembled-v1/diagnostic-new-only.pred.jsonl",
+      "bytes": 151496,
+      "sha256": "c50f93123bc1a80d14b984af4b2ab151ae37333cc8d4b295edf27c66700e431d"
+    },
+    "task1": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "bytes": 173758,
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-span-document-support/solutions/span_document_support/decision.json",
+      "bytes": 1991,
+      "sha256": "20fec9ad0c86e3f0f0e7a2b8841997f93939f9361963cfe67272b446bc3503a4"
+    },
+    "source": {
+      "path": "/workspace/patientphex-worktrees/explore-span-document-support/solutions/span_document_support/run.py",
+      "bytes": 11762,
+      "sha256": "df0269e80abaf0b84067d061e6acaa8482d52b6ceacc5d814ab75577c53a4564"
+    }
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/span-document-support-20261024/F1-v1",
+  "baseline_score": 0.701325377212172,
+  "baseline_relations": 524,
+  "geometry_relations": 190,
+  "entities": 1189,
+  "patients": 39,
+  "ancestry": "Reuse immutable completed trainF2F3->F1 geometry/PCS and strict nested LGB source reviews; no fitting or label-derived support. B4 lineage in original frozen plan/entry.",
+  "ancestry_refs": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-span-geometry-v1/terminal-manifest.json",
+      "bytes": 9388,
+      "sha256": "5a06c11588c28ea0be4600b870831ebbba9fe81a1f80d493f8e5cb174c3d0ce6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-conditioned-spans-final-review/review.json",
+      "bytes": 15753,
+      "sha256": "f74ef7e3800438fb7f123c92555470271a856e9c584c245d749d59bf1d018b41"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-conditioned-spans-duration24-final-review/review.json",
+      "bytes": 4108,
+      "sha256": "6929a048d7fb6b1cf77696a6967f7318941d65d269c5009006d020217ba5da55"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/lightgbm-selector-review/review.json",
+      "bytes": 7532,
+      "sha256": "1d6ed9fda12b68e40b7677e2024e246de684bac2ca52e8dfe2bb3e4e53a17421"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/fitted/manifest.json",
+      "bytes": 8953,
+      "sha256": "4ee0fdb63b74bf5e3094e0cd8c693a860b506539a9add503e8e374a8a113ad8e"
+    }
+  ],
+  "commands": [
+    "python solutions/span_document_support/run.py --plan solutions/span_document_support/plan-F1.json contracts",
+    "python solutions/span_document_support/run.py --plan solutions/span_document_support/plan-F1.json assemble",
+    "python solutions/span_document_support/run.py --plan solutions/span_document_support/plan-F1.json evaluate"
+  ]
+}
