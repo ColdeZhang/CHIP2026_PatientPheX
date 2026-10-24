@@ -279,6 +279,8 @@ FLA 数值探针将实际 Transformers 5.20.2 的缓存 `dict[int, Tensor | None
 
 **避免方法**：按实际版本的容器结构取值，保留层号、键、shape 和 dtype；未知类型、漏键或意外空状态应明确失败，不能简单跳过非 Tensor 项而假通过。修复先在 CPU 用实际容器和混合 dict/list/tuple/Tensor/None 检查，再在原绝对预算剩余时间内恢复独立 attempt。此次只替换缓存采样与结构比较，原 probe、计划、输入和数值门槛未改；后续单块合同通过，全模型另因原始 logits 超容差停止，两个原因分列。统一终审 `validation/fla-kernel-terminal-review/review.json` SHA `b78eec326865b71ac2c41e96b3ae8b7f2423928d3139e95716ae0a4f948ba2c1`，源码与完整结果见检索分支 `solutions/case_retrieval/fla_kernel_readiness/`。
 
+同类tokenizer实例：Transformers 5.20的`apply_chat_template(tokenize=True)`实际默认返回BatchEncoding；R1准备脚本将其当list，4.791秒在CPU断言退出。实际`input_ids`与显式encode原本完全相同，明确`return_dict=False`后，80行原生token契约5.582秒通过。原失败保留，模型/模板/输入不变；接口容器假设不能被写成模型不兼容。证据为`research/deepseek-r1-0528-qwen3-8b-feasibility/cpu-preparation/`与统一终审`8fa2f637…`。
+
 ## H44：检查点通配符会误收同前缀的备份回执
 
 顺序增强第一轮完成并持久导出后，controller将回执命名为`epoch-001-export-ack.json`。旧trainer用`glob('epoch-*')`判断最新检查点，该普通文件被误认为最新epoch，导致第二轮在模型加载前退出；第一轮权重、优化器和RNG完整有效。这是恢复入口故障，不是训练数值或质量失败。

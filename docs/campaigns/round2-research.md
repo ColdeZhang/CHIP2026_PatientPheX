@@ -141,3 +141,11 @@ Bioformer原生CPU随后已实测通过：固定公开h5全SHA，137变量逐一
 未找到原Qwen9B JSON SFT同候选的训练例检索终点；旧8B抽取/检索和公开9B全文追加不是本控制。固定严格train32的124原训练行，仅按example user≤2048token筛得22例/19文献，train-only词1–2gram TFIDF取一个完整示例；答案不进筛选或相似度，空答案保留。EX命名空间双向还原字节一致、与query IDs不相交；原system/query/code_map/patient_ids保持，完整多轮chat，不截断示例或query。
 
 80条输入均top1可容纳，0fallback，token250696→389316、max7581；CPU3.704秒，独立数据/入口审 `54c16326…` 通过。旧80实际282.502秒，435.9秒只是线性成本代理；唯一GPU600s+30、原SFT32和原解析，对比旧 .660942003，完整预测先freeze后唯一F1 v2，保留标准为关系micro+macro和增且macro不降。尚无本控制的实际GPU/质量，详见序列分支；不扩第二个全文臂或示例数扫描。
+
+## R1配置在不同运行器中的数学解释（10月24日03:45 UTC）
+
+固定魔搭R1-0528-Qwen3-8B的原config有`attn_factor=0.8782488562869419`。实际Transformers5.20与其标注的HF4.51均忽略该非标准键，YaRN attention_scaling为1.1386294361；此前CPU两者64频率逐位相同的证明仍成立，但不等于所有运行器相同。
+
+主线程实际读取固定[vLLM v0.9.1旋转实现](https://github.com/vllm-project/vllm/blob/v0.9.1/vllm/model_executor/layers/rotary_embedding.py)与[Qwen3调用链](https://github.com/vllm-project/vllm/blob/v0.9.1/vllm/model_executor/models/qwen3.py)：yarn入口透传该键，mscale=(1+0.1 ln4)×attn_factor=1.0。仅这个系数在未缩放旋转相同的前提下，会使HF的QK点积项约多乘1.296477；尚未运行vLLM或做logits/质量比较，不能将1024截断归因它，也不能由源码断言哪种得分更高。实际源码SHA和算术在外部`research/r1-serving-config-review/report.json`（`c0f36cc0…`），原配置不修改。
+
+当前4096单例继续原HF计划。后继先用隐藏CUDA的纯CPU核固定vLLM原函数与按其公式派生的HF识别字段，明确64频率与缩放口径；不安装新框架、不读权重、不新增GPU或质量。任何未来完整质量运行先冻结所采用语义，不事后挑配置。其他研究条目的历史“待运行”状态以当前总台账和阶段结案为准。
