@@ -1,0 +1,164 @@
+{
+  "status": "COMPLETE_FIXED_FOUR_SOURCE_POSTHOC_TWO_FOLD_CONTROL",
+  "at_utc": "2026-10-24T06:07:58.966108+00:00",
+  "folds": {
+    "F1": {
+      "primary-four-source": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6738703339882122,
+          "macF1": 0.5722871853653863,
+          "Score": 0.6652741137855647
+        },
+        "baseline_triple": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.673407482305359,
+          "macF1": 0.5670208645459162,
+          "Score": 0.6638418206599839
+        },
+        "delta_vs_triple": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": 0.00046285168285320477,
+          "macF1": 0.005266320819470094,
+          "Score": 0.001432293125580797
+        },
+        "fold_pass": true,
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/evaluation/F1.primary-four-source.metrics.json",
+          "bytes": 13188,
+          "sha256": "d854999893aee68d73f0a3b48f22eefa380be3c4dd40479b3073fdeec0273d4d"
+        }
+      },
+      "diagnostic-without-old": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.6739345887016849,
+          "macF1": 0.577080121048447,
+          "Score": 0.666488411384698
+        },
+        "baseline_triple": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.673407482305359,
+          "macF1": 0.5670208645459162,
+          "Score": 0.6638418206599839
+        },
+        "delta_vs_triple": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": 0.0005271063963259159,
+          "macF1": 0.010059256502530811,
+          "Score": 0.0026465907247141818
+        },
+        "fold_pass": true,
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/evaluation/F1.diagnostic-without-old.metrics.json",
+          "bytes": 13170,
+          "sha256": "d275d563741bfd986de2467859aba0e7603cf539bfda06dd62ca9eafa14a89f4"
+        }
+      }
+    },
+    "F0": {
+      "primary-four-source": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6890756302521008,
+          "macF1": 0.6652360409462769,
+          "Score": 0.7017471402908508
+        },
+        "baseline_triple": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.7040229885057471,
+          "macF1": 0.6815270938686453,
+          "Score": 0.7095567430848545
+        },
+        "delta_vs_triple": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.014947358253646237,
+          "macF1": -0.016291052922368432,
+          "Score": -0.007809602794003667
+        },
+        "fold_pass": false,
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/evaluation/F0.primary-four-source.metrics.json",
+          "bytes": 13015,
+          "sha256": "d8b1e24b257e5f6b50446c680d2d17cd3d41aa650e8257b442d2e2cf09b425a8"
+        }
+      },
+      "diagnostic-without-old": {
+        "metrics": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6900420757363254,
+          "macF1": 0.6659728927469585,
+          "Score": 0.7021729646120773
+        },
+        "baseline_triple": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.7040229885057471,
+          "macF1": 0.6815270938686453,
+          "Score": 0.7095567430848545
+        },
+        "delta_vs_triple": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": -0.013980912769421705,
+          "macF1": -0.015554201121686817,
+          "Score": -0.007383778472777158
+        },
+        "fold_pass": false,
+        "metrics_file": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/evaluation/F0.diagnostic-without-old.metrics.json",
+          "bytes": 13013,
+          "sha256": "e6fee4ed1f0375cf09a8ab8fe93955dc762b6f7f3e83658536a56f18706ca82e"
+        }
+      }
+    }
+  },
+  "selection": {
+    "pass_both_folds": {
+      "primary-four-source": false,
+      "diagnostic-without-old": false
+    },
+    "summed_twofold_Score_delta": {
+      "primary-four-source": -0.00637730966842287,
+      "diagnostic-without-old": -0.0047371877480629765
+    },
+    "selected_candidate": null,
+    "exact_tie_policy": "primary-four-source",
+    "automatic_migration": false
+  },
+  "keep_rule": "Each arm: both folds Score strictly above triple AND macF1 nondecreasing; among passing arms maximize summed two-fold Score delta; exact tie primary.",
+  "common_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/assembled/common-freeze.json",
+    "bytes": 2335,
+    "sha256": "21c1e4a5977b59d6152b0488069ec0f9377151067ddcf31fb82bd511f08291cb"
+  },
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/control.py",
+    "bytes": 17990,
+    "sha256": "08fdcb37ea78a694324bc55ef83790e5bb678f6300af07f5b015ee21e1eb6e10"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fulltext-control/plan.json",
+    "bytes": 17470,
+    "sha256": "3a869a101f61dc43c43b770fa5f87c2a6b0b3c05f04bb6c69faad045704a50aa"
+  },
+  "new_evaluator_calls": 4,
+  "old_evaluator_calls": 0,
+  "posthoc_development_control": true,
+  "original_prequality_registration": false,
+  "automatic_dev_migration": false,
+  "future_migration_must_preserve_35_public_new": true,
+  "new_training_GPU_or_official": false,
+  "patient_F0_disclosure": "Original strict F0 failed and remained unscored. The separate limited-codec recovery reused exact23 cached rows and generated35 new rows; complete57/partial1, one missing patient key (8 candidate pairs) abstained. Only explicit positive patient-first pairs participate; no fabricated missing-key answers.",
+  "elapsed_seconds": 0.42394048599817324
+}
