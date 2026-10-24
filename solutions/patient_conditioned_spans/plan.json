@@ -81,5 +81,55 @@
   "cpu_complete": {
     "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/cpu-complete.json",
     "sha256": "6f5c0f66d4525c4a0ff805f6d805345f4552e2a94f902ea2d35171eb159b3344"
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+    "bytes": 155402,
+    "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+    "bytes": 13187,
+    "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+  },
+  "quality_refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    }
+  },
+  "quality_reference_note": "Copied frozen refs without opening held gold; quality reads only after full16 normalization/common freeze/format and exclusive evaluation intent.",
+  "normalization": {
+    "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT",
+    "bank": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank",
+    "input": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/held.jsonl",
+    "train": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/train.jsonl",
+    "hpo": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/hp.obo",
+    "public_bank_sha256": "bc4ea231f10cab61db652900f59e5f1eab75bc2dad840a47d5b6669e4a227a59",
+    "policy": "grounded-public-sap-conservative-v1",
+    "minimum_cosine": 0.9,
+    "minimum_distinct_concept_margin": 0.03,
+    "all_other_policy_rules_unchanged": true
   }
 }
