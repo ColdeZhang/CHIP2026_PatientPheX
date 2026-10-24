@@ -1,0 +1,140 @@
+{
+  "id": "E-20261024-LCTX-REL-CONSENSUS-001",
+  "status": "FROZEN_BEFORE_FIRST_INTERSECTION_AND_NEW_QUALITY",
+  "base_commit": "f960ae41e76655302b08399a9ade7d52bfb67f7c",
+  "parent_commit": "b63af4dc5581565651d5667ae3eaaff0916f7513",
+  "formula": "B4 UNION (L_logit_gt_0 INTERSECT (G_old UNION S1_intersect_S2 UNION Q_native UNION C_strict))",
+  "cut": 0,
+  "fold": 1,
+  "baseline_score": 0.701325377212172,
+  "expected": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "baseline_relations": 524,
+    "complete_L_pairs": 2874
+  },
+  "refs": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "held_geometry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/relation-readiness/held-geometry.json.gz",
+      "bytes": 133424,
+      "sha256": "5b96dfa241fd4d4686f780a074d5c00befc5c3ba8c174359d475e134954296f5"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "G": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    },
+    "S": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/assembled-v1/primary-B-union-S1-intersect-S2.pred.jsonl",
+      "bytes": 155876,
+      "sha256": "31d090f0cd0bfec43b61243a68e425eac224e785df32a2f1be76ce4d6ff6497e"
+    },
+    "Q": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1/single.prediction.jsonl",
+      "bytes": 154632,
+      "sha256": "103cab0f1eae88356bc164ed5b8924272642c686a3e031652010e584f2d7a9c4"
+    },
+    "C": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/coded-alone/pred.jsonl",
+      "bytes": 154344,
+      "sha256": "a5a75d050029038703641e8242c0d6b9557a0e4ac8c69914b0d8859e5857517b"
+    },
+    "inherited_baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+      "bytes": 155402,
+      "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "byte_support": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/support.py",
+      "bytes": 8690,
+      "sha256": "da33d347655f62cc9b1652562bb39c8f3429ff6e9277d3e77c4fff18987d93d2"
+    },
+    "byte_helper": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research_readonly/majority_vote_control/common.py",
+      "bytes": 10348,
+      "sha256": "c713d2f5d5b2768cfb80ce4c17f920c6228dc3abb833080c972255d6e34c6e06"
+    },
+    "support_provenance": {
+      "path": "/workspace/patientphex-worktrees/research-training-seed-ensemble/solutions/training_seed_ensemble/evidence/support-inputs.json",
+      "bytes": 3784,
+      "sha256": "0e1da56c6b700647ead02886bf139e5245edc4fb493428f25703fa719611d582"
+    },
+    "parent_entry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/final-review-entry.json",
+      "bytes": 13650,
+      "sha256": "a6abb440987f6419d462d1d66a726a958b4b4ca49f32c41318950bf8928a2aca"
+    },
+    "L_scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/formal-v1/collected/output/held-scores.jsonl",
+      "bytes": 290106,
+      "sha256": "e889877be9f2edb6b5f310c87a4f9ebc13795d5628408ba52f115a8698610415"
+    },
+    "parent_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/formal-v1/collected/output/complete.json",
+      "bytes": 19509,
+      "sha256": "bb872668ad25ceac83a37edc473e133dbc4b310562aa631b56bf2a6ae0683fa0"
+    },
+    "parent_ended": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1/formal-v1/collected/job/ended.json",
+      "bytes": 816,
+      "sha256": "2e0da9b48771d33ef9924c9dddd11b620810fefaa4fff65309e2ecbfec2cf2c7"
+    }
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-long-context-relation-consensus/solutions/long_context_relation_consensus/run.py",
+    "bytes": 12270,
+    "sha256": "79b714163d564fd8b8eda5da5272777c38a88a0d3c9f1ec8abd1c2d4eacb9148"
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/long-context-relation-consensus-v1/F1-v1",
+  "cpu_budget_seconds": 120,
+  "new_evaluate_max": 1,
+  "old_evaluate": 0,
+  "evaluate_report_forbidden": true,
+  "zero_increment": "byteexact baseline; 0gold/0evaluate",
+  "positive_gate": "strict Score > B4; otherwise closed; F0 only separately discussed",
+  "not_blind": true,
+  "hypothesis_timing": "Proposed by root after observing parent unfiltered union negative; all F1 used for research",
+  "ancestry": "L/G/S/Q/C models train32 F2F3; inherited strongB/candidate ancestry may train48 but excludes entireF1. All frozen prior full16/39 outputs; no fitting here.",
+  "sampled_equivalence": "Stored S=B_old union (S1 intersection S2). Verify B_old subset B4 and subset storedS; subtract B_old before support. This may omit true S positives already in B4 but cannot change protected endpoint. Never count inheritedB as an independent support vote outside B4.",
+  "literal_policy": "Use pinned v2 associations: split only full HP compounds; preserve literal NIL/semicolon/mixed strings; NO excluded. L original pool contains single HP IDs. No ontology canonicalization/substrings/ancestor expansion.",
+  "preservation": "all baseline nonphenotype bytes, all original phenotype list prefixes/order/compounds/NIL; no deletion",
+  "training": 0,
+  "model_calls": 0,
+  "remote_calls": 0
+}
