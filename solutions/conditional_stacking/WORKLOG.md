@@ -2,11 +2,11 @@
 
 2026-10-24 UTC；分支 `research/conditional-stacking`，起点 main `da0f7992`。
 
-- **当前**：只读准备及无gold合同完成，尚未 fit/读 gold/评分/GPU；[固定计划](plan.json)已明确强B4 F0 `.7281956289113009` 唯一门槛，原prepared计划保持executionfalse；root已另行授权并冻结[execution.json](execution.json)，按一fit/唯一F0执行。现有最高分不变。
+- **当前**：固定CPU控制完整结束，F0 `.7281956289113009 → .7283349399548672`（+.000139311044），严格门形式通过但仅改变两个FP的患者分布，未增加TP；[终态入口](evidence/final-entry.json)。原dev/GPU/官方均未执行，备份收尾。
 - **关键结论**：旧 G/S∩/Q raw union561 中有31条被交集隐去的单采样支持，跨11文献、三个旧bit模式内都有变化。成熟条件化 simplex 权重可表示此差异，建议固定6参数、向等权2of3收缩的唯一低成本 CPU 控制；覆盖不等于涨分证据。
 - **隔离**：实际 S 适配器4f4815→32文献checkpoint→F2/F3双向候选祖先已绑定；F1候选32，F0候选48排F0。禁止 B1/含F0的train48 gate或其概率进入 F1 特征。
 - **交接入口**：[短报告](REPORT.md)、[来源/祖先](evidence/ancestry-and-source.json)、[无标签计数](evidence/signal-coverage.json)、[公开成熟实现](evidence/public-sources.json)、[无gold合同](evidence/contract.json)。只有一个配方；目标/梯度纯函数已实现，无拟合调用或新预测。
-- **下一步**：已授权执行固定 CPU 控制；按driver独占输出目录顺序fit→冻结参数→F0装配冻结→至多一次v2。当前固定公式 `B0∪gateθ(G,S∩,Q)∪[C∩(G∪S∩∪Q)]`，theta=0精确回到原B4。
+- **下一步**：完成持久包与回读；后继由root根据极小收益和范围外推风险决定，不自动原dev。当前固定公式 `B0∪gateθ(G,S∩,Q)∪[C∩(G∪S∩∪Q)]`，theta=0精确回到原B4。
 
 ## 本次边界
 
@@ -19,3 +19,5 @@
 ## CPU实施
 
 15:18：运行器目标接口已无gold通过F1全561/F0全431（分歧31/44）；零参数仍等于原多数。原plan SHA7d53ce36保留，新execution绑定实际源/NumPy2.3.5/SciPy1.17.0。fit原生timeout60+5；后续装配/质量各120+5作工程上界；每阶段独立exclusive产物，失败不自动重试。精确命令在execution；结果目录 `/workspace/patientphex-runs/round2-20261023/research/conditional-stacking-v1/`。全部GPU调用0。
+
+15:18:28.810645→15:18:29.812980整个CPU控制完整退出。fit实际.012403s、9迭代/11函数梯度、目标8.647475→8.424862，按原relative-reduction终止门success；不是gtol收敛。六系数/真实梯度均保留。15:18:29.289611参数先冻结，.627035完整F0冻结，随后唯一v2。新增1FP/删1FP、TP不变、macro+.000557244；两个变化均9患者且分歧0，不能归因新分歧信号。source14fca616启动前已push并核远端，原prepared7d53ce36未改。
