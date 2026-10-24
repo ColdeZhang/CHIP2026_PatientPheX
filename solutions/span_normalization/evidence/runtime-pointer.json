@@ -1,5 +1,5 @@
 {
-  "status": "RECOVERY_RUNNING_SAME_ORIGINAL_DEADLINE",
+  "status": "COMPLETE_FIXED_PRIMARY_NEGATIVE_GPU_RELEASED",
   "original_job": {
     "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/gpu-plan.json",
     "id": "proc_03655e70-29ef-4447-9413-84f06e920184",
@@ -7,7 +7,7 @@
     "pid": 1196540,
     "port": 36727,
     "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
-    "running": true,
+    "running": false,
     "started_at": "2026-10-24T09:39:09.637055982Z"
   },
   "recovery_job": {
@@ -17,7 +17,7 @@
     "pid": 1196954,
     "port": 43755,
     "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
-    "running": true,
+    "running": false,
     "started_at": "2026-10-24T09:45:05.190878425Z"
   },
   "original_deadline_TERM_unix": 1792835349.7055676,
@@ -55,8 +55,84 @@
       "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/attempt2-started.json",
       "bytes": 585,
       "sha256": "78128d97f24757e73fb863998bbab75f8eb93462607121d18bcea37929aa5a13"
+    },
+    "collection.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/collection.json",
+      "bytes": 415,
+      "sha256": "7cf9751af40d4dd8dca57912bb437bcc0686bce82029815cf8a0b9e96086e5b8"
+    },
+    "terminal-pointer.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/terminal-pointer.json",
+      "bytes": 673,
+      "sha256": "d9ce8b5cce664538518ae0bcf21df8ee982523ab6531ce5fda3dd5490384dbe6"
+    },
+    "actual/run-attempt2/model/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/actual/run-attempt2/model/complete.json",
+      "bytes": 3373,
+      "sha256": "b2ebb5bbc84dab1b49fc6b3f7c74642ea7487af458dae964a2f712b4df4aa66a"
+    },
+    "actual/run-attempt2/linked/complete.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/actual/run-attempt2/linked/complete.json",
+      "bytes": 2826,
+      "sha256": "784d3e54957be9d1f0b4ab2575a52a79d28c09e3727513e4be9c4958e9f34bc5"
+    },
+    "quality/paired-freeze.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/quality/paired-freeze.json",
+      "bytes": 2291,
+      "sha256": "b1bad0bc6a4d6bf2b6551c2e2b87dd8c69558fec4770938de9a9c3b53a3ca7f9"
+    },
+    "quality/result.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/quality/result.json",
+      "bytes": 1463,
+      "sha256": "09b5cbb90ade091b63a2f47a64478a53afaea6d019cb6763892196da066d9aff"
+    },
+    "supply-corrected/supply.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/supply-corrected/supply.json",
+      "bytes": 5766,
+      "sha256": "e4e29fe7029d55f6572ac18392cc7620e8ee8c17e321c74153a5111f566b96d5"
     }
   },
-  "recovery_command": "python /workspace/patientphex-runs/round2-20261023/stage8-span-normalization/observe_attempt2.py",
-  "do_not_restart_active": true
+  "do_not_restart_active": false,
+  "recovery_terminal": {
+    "status": "COMPLETE",
+    "seconds": 95.52009164914489,
+    "steps": [
+      {
+        "name": "train-infer",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 68.92783607682213,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/run-attempt2/train-infer.stdout",
+          "bytes": 3557,
+          "sha256": "c868caeed71f80aac6be0e969459148f20fe108906bbf828315b4fd173d851b2"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/run-attempt2/train-infer.stderr",
+          "bytes": 226,
+          "sha256": "16f9c85449bd57c034af0ef882fb30d9fd0c2841e25d5df756b7e52c4224888a"
+        }
+      },
+      {
+        "name": "link",
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 26.44178158696741,
+        "stdout": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/run-attempt2/link.stdout",
+          "bytes": 2723,
+          "sha256": "068e53f7824c43e3c30f2e0efa17fdafdce55714ba9f9c95eba8273367507406"
+        },
+        "stderr": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/stage8-span-normalization/gp32-f1-v1/run-attempt2/link.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "finished_at_utc": "2026-10-24T09:46:40.782904+00:00"
+  },
+  "recovery_finished_utc": "2026-10-24T09:46:40.782904+00:00",
+  "gpu_release": "GPU0 back to 4MiB; reported to root/document_relations after complete; no fresh600 budget used",
+  "do_not_relaunch_completed_experiment": true
 }

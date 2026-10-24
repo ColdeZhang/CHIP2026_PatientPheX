@@ -1,12 +1,11 @@
 # Span normalization 工作台账
 
-- 目标：为强实体系统提供新的高质量精确跨度及HPO候选；最终仍按原dev Score≥.8验收，不把弱单路提高当完成。
-- 当前：E-20261024-SPAN-001源码与事前计划完成，CPU编码与数学合同已通过，首GPU入口6.766秒在0forward前失败，正在同原硬截止机械恢复；尚未正式训练。主协调统一首个32(F2+F3)→F1，原48→F0草案在任何执行前替代。
-- 方法：BiomedBERT+GlobalPointer显式start/end、RoPE64、multi-label categorical CE；保留嵌套。原成熟Sap/fold-local aliases负责规范化，暂不同时加联合概念loss。
-- 固定：8epochs、3e-5、batch16、384/stride64、BF16 encoder/FP32head+loss；原始池logit≥−2，预测>0，不扫描cut。完整预定义池留外部，便于以后学习融合。
-- 对照：强F1 .728697536469，训练规模不同，仅作部署基线；GP-only诊断和固定强基线追加臂共冻后各1v2。细节见[计划](plan.json)。
-- 资源：.3 GPU0由root排在document_relations之前，≤600+TERM30含一次丢弃probe/8epoch/fullheld/linking；先CPU≤120秒实际编码/数学合同。真实start及释放随后记录，不以旧空卡快照替代新门。
-- 数据/权重：仓库外R/stage8-span-normalization，.3现有Biomed/Sap公开权重只读；任何监督词库仅从新train32重建，排F0/F1。
-- 最近验证：实际CPU编码1.324秒，train32 1148窗/117170 tokens/2266独立跨度，2263可精确token对齐、3不可表示；嵌套10个，不能把嵌套缺口夸成主因。held16纯输入588窗/60850 tokens。实际Torch2.7.0 CPU合同.098秒PASS，loss/梯度方向/padding零梯度/RoPE标量对照均通过；CUDA未初始化。尚无本路线新分数。
-
-- 当前作业：.3 GPU0原恢复proc_f83b21dd/PID1196954，09:45:05.190878Z，保原09:49:09.705568+30截止，未启新时钟。来源/恢复见evidence/runtime-pointer.json。09:41短暂LUNA离线，已单owner退避恢复，原失败ZIP197a1fb5。
+- 目标：原dev公开v2 Score≥.8。只对强系统的实际收益作结论；本路线原dev未打开、官方未访问。
+- 当前：E-20261024-SPAN-001已完整训练/推断/规范化/双端点评价，固定追加负结果，不采用。准备下一轮严格OOF学习GP特征筛选的复用链，尚未启动新训练。
+- 方法：BiomedBERT+GlobalPointer整体start/end、RoPE64、多标签CE；8epoch/3e-5/batch16/384stride64，BF16encoder/FP32head+loss；原Sap与train32 exact aliases规范化。固定原始池logit≥−2、预测>0，不扫cut。
+- 数据：32(F2+F3)→F1 16篇；原48→F0草案在任何执行前改为主协调统一端点。强F1是train48，故本比较是部署增益而非纯架构因果对照。
+- 结果：强.728697536469→追加.701293121901（−.027404414568），GP-only .663575801621；关系底座完全相同。共2次新v2/0旧重评，完整预测先共冻；两格式均0错误/0警告。
+- 供给：全池2133条/2134拆ID单元，强池外447中仅12精确HPO TP+3 NIL通配；最终追加360条/361单元，51精确TP+6 NIL通配、304 FP（错HPO27/边界假阳277）。不能把简单追加失败等同否定学习融合，但独立边界供给弱，不能盲扩同坏池。
+- 资源：.3 GPU0原入口6.766秒0forward失败，pooler机械修复后保持原09:49:09.705568+30截止。恢复proc_f83b21dd/PID1196954于09:45:05启动，95.520秒完成，09:46:40.782904释放并通知root/docRE；未使用新的600预算。
+- 训练完整：1148train窗，2263/2266可表示跨度、3token端点不可表示、10嵌套；held588窗/16篇全覆盖，576优化步。模型108990080参数；峰值allocated4.119GB/reserved4.526GB。CPU实际编码/数学合同通过。
+- 证据入口：[结果](evidence/result.json)、[运行指针](evidence/runtime-pointer.json)、[实验](experiments/E-20261024-SPAN-001.md)、[方法](NOTES.md)。全部2133候选/分数及28件实际远端回收证据存仓库外R/stage8-span-normalization；Git只存源和紧凑索引。

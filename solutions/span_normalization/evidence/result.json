@@ -1,0 +1,233 @@
+{
+  "status": "COMPLETE_FIXED_PRIMARY_NEGATIVE",
+  "quality": {
+    "status": "COMPLETE_FIXED_TWO_ENDPOINTS",
+    "primary": {
+      "menF1": 0.7201850016518004,
+      "docF1": 0.7661937075879087,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.701293121900747
+    },
+    "diagnostic": {
+      "menF1": 0.6393323657474601,
+      "docF1": 0.6961770623742455,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.6635758016212461
+    },
+    "baseline": {
+      "menF1": 0.7749437359339835,
+      "docF1": 0.8210526315789474,
+      "micF1": 0.6595538312318138,
+      "macF1": 0.6592399471314652,
+      "Score": 0.7286975364690524
+    },
+    "delta": {
+      "menF1": -0.05475873428218303,
+      "docF1": -0.054858923991038644,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": -0.027404414568305446
+    },
+    "retain_primary": false,
+    "additional_entities": 360,
+    "primary_entities": 1673,
+    "diagnostic_entities": 1402,
+    "relation_objects_exact": true,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "seconds": 0.08755551899957936,
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/quality/paired-freeze.json",
+      "bytes": 2291,
+      "sha256": "b1bad0bc6a4d6bf2b6551c2e2b87dd8c69558fec4770938de9a9c3b53a3ca7f9"
+    },
+    "interpretation": "GP trained32 versus existing strong selector trained48; not a matched pure architecture causal comparison. F1 development only, not original dev. Fixed union failure would not alone refute OOF learned source integration."
+  },
+  "supply": {
+    "status": "COMPLETE_FROZEN_SUPPLY_ANALYSIS",
+    "source": {
+      "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/analyze_supply.py",
+      "bytes": 5774,
+      "sha256": "6741d9efe7adb6287a2cbb7012b5352274bd8ee4e6b0aa92d825a15481ecdcb5"
+    },
+    "sources": {
+      "gp_pool": {
+        "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/actual/run-attempt2/linked/normalized-pool.jsonl",
+        "bytes": 951873,
+        "sha256": "b63813b2c40136006f40d4878870cd5caa4b28d06d12aec0b7c5964d571480e4"
+      },
+      "gold": {
+        "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+        "bytes": 525710,
+        "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+      },
+      "strong_manifest": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/manifest.json",
+        "bytes": 16846,
+        "sha256": "0ba8dffdf4fd69d32765cd2de4878c64f6d9e95e20ab7d910d15239bd66206ce"
+      },
+      "strong_pool": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/prepared/fold1/input.pool.jsonl.gz",
+        "sha256": "de95dbedb6fbe71e428208755fa848106c785363b25816bce6e5d35c85069854",
+        "bytes": 934763
+      },
+      "paired_freeze": {
+        "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/quality/paired-freeze.json",
+        "bytes": 2291,
+        "sha256": "b1bad0bc6a4d6bf2b6551c2e2b87dd8c69558fec4770938de9a9c3b53a3ca7f9"
+      }
+    },
+    "scope": "All passages, positive gold entities only, split compound IDs; exact units use pmc/offset/length/HPO. NIL wildcard reported separately, not counted as exact HPO supply.",
+    "gold_units": 1353,
+    "strong_pool_units": 16615,
+    "strong_selected_units": 1313,
+    "gp_full_pool": {
+      "units": 2134,
+      "categories": {
+        "boundary_correct_wrong_hpo": 79,
+        "exact_hpo": 985,
+        "nil_wildcard_only": 10,
+        "no_positive_gold_boundary": 1060
+      },
+      "strict_hpo_precision": 0.46157450796626054,
+      "same_unit_in_strong_pool": 1687,
+      "same_unit_in_strong_selected": 1053,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 34
+    },
+    "gp_native_selected": {
+      "units": 1403,
+      "categories": {
+        "boundary_correct_wrong_hpo": 63,
+        "exact_hpo": 874,
+        "nil_wildcard_only": 7,
+        "no_positive_gold_boundary": 459
+      },
+      "strict_hpo_precision": 0.6229508196721312,
+      "same_unit_in_strong_pool": 1284,
+      "same_unit_in_strong_selected": 924,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 32
+    },
+    "gp_pool_outside_strong_pool": {
+      "units": 447,
+      "categories": {
+        "boundary_correct_wrong_hpo": 22,
+        "exact_hpo": 12,
+        "nil_wildcard_only": 3,
+        "no_positive_gold_boundary": 410
+      },
+      "strict_hpo_precision": 0.026845637583892617,
+      "same_unit_in_strong_pool": 0,
+      "same_unit_in_strong_selected": 0,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 8
+    },
+    "gp_selected_outside_strong_pool": {
+      "units": 119,
+      "categories": {
+        "boundary_correct_wrong_hpo": 13,
+        "exact_hpo": 7,
+        "nil_wildcard_only": 2,
+        "no_positive_gold_boundary": 97
+      },
+      "strict_hpo_precision": 0.058823529411764705,
+      "same_unit_in_strong_pool": 0,
+      "same_unit_in_strong_selected": 0,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 7
+    },
+    "primary_added": {
+      "units": 361,
+      "categories": {
+        "boundary_correct_wrong_hpo": 27,
+        "exact_hpo": 51,
+        "nil_wildcard_only": 6,
+        "no_positive_gold_boundary": 277
+      },
+      "strict_hpo_precision": 0.14127423822714683,
+      "same_unit_in_strong_pool": 279,
+      "same_unit_in_strong_selected": 0,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 3
+    },
+    "primary_added_outside_strong_pool": {
+      "units": 82,
+      "categories": {
+        "boundary_correct_wrong_hpo": 5,
+        "exact_hpo": 4,
+        "nil_wildcard_only": 2,
+        "no_positive_gold_boundary": 71
+      },
+      "strict_hpo_precision": 0.04878048780487805,
+      "same_unit_in_strong_pool": 0,
+      "same_unit_in_strong_selected": 0,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 0
+    },
+    "gp_selected_in_strong_pool": {
+      "units": 1284,
+      "categories": {
+        "boundary_correct_wrong_hpo": 50,
+        "exact_hpo": 867,
+        "nil_wildcard_only": 5,
+        "no_positive_gold_boundary": 362
+      },
+      "strict_hpo_precision": 0.6752336448598131,
+      "same_unit_in_strong_pool": 1284,
+      "same_unit_in_strong_selected": 924,
+      "gold_boundary_correct_wrong_hpo_but_strong_has_correct_unit": 25
+    },
+    "primary_exact_hpo_gain_outside_strong_selected": 51,
+    "gp_raw_boundary_supply": {
+      "unique_spans": 2133,
+      "gold_boundary_spans": 1074,
+      "gold_boundary_spans_absent_strong_pool": 24
+    },
+    "actual_metric_count_delta_reusing_existing_metrics": {
+      "mention": {
+        "tp": 57,
+        "fp": 304,
+        "fn": -57
+      },
+      "document": {
+        "tp": 36,
+        "fp": 160,
+        "fn": -36
+      },
+      "relation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "gold_read_for_diagnostic_only_after_existing_paired_freeze": true,
+    "new_v2_calls": 0,
+    "fits": 0,
+    "new_predictions": 0,
+    "threshold_scan": false,
+    "limits": "This decomposition does not optimize a selector and cannot refute learned fusion. GP train32 and strong selector train48 differ. Original dev untouched.",
+    "classified_pool": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/supply-corrected/classified-pool.jsonl",
+      "bytes": 1320058,
+      "sha256": "9a85d540b0bbd4f18d1806881043b8a979da8bdd41f04086e45e3bcf8b246c74"
+    }
+  },
+  "runtime": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/actual/run-attempt2/terminal.json",
+    "bytes": 1444,
+    "sha256": "94a740dfa50076c0d60ed7a530d9a3137f68e5a0f0481ed55a4a3d9df97eb952"
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/collection.json",
+    "bytes": 415,
+    "sha256": "7cf9751af40d4dd8dca57912bb437bcc0686bce82029815cf8a0b9e96086e5b8"
+  },
+  "original_failure_archive": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/actual/original-failure.zip",
+    "bytes": 16034,
+    "sha256": "197a1fb5710144bc6c0bd61a7486a3a732b9f97c6c09781b1bd3f01ad025215c"
+  },
+  "invalid_initial_diagnostic": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/supply/supply.json",
+    "reason": "defaultdict query inserted absent boundaries; incorrect boundary categories only. Corrected supply-corrected replaces it; predictions and both v2 results unchanged."
+  },
+  "original_dev_reads": 0,
+  "official_calls": 0
+}

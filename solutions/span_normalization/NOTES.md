@@ -7,3 +7,8 @@ Global Pointer（Su et al., arXiv:2208.03054）将每个起止位置对作为整
 历史已有BioMed/BioLink-large BIO、五标签、GLiNER及focal、上下文CE、HPO top-k的完整负结果，不重跑同名配置。新变量是整体边界打分+多标签跨度目标，不只是换encoder。旧BioLink保存候选仅补强池1个正确ID，不能拿其弱单路更换当新贡献。GP是否有独立高质量跨度由本次完整固定控制回答。
 
 vendor/legacy_linker.py与semantic_encoder.py复用项目非archive现行源；二者训练派生资源按本次train32重新构建，Sap公开encoder未做本赛训练。原Sap最大32 token的规范化截断规则照实保留并计数，不能称任意长度规范化无截断。
+
+
+已知坑：AutoModel(add_pooling_layer=False)加载公开MaskedLM资产时，pooler.dense.weight/bias是预期未使用键；应精确允许这两项而非允许所有未知参数，仍拒绝missing/mismatch。MCP返回可为非JSON LUNA_OFFLINE，先保存原响应再解析；UNKNOWN时查原对象，不能盲重训。误差诊断不要用defaultdict下标测试不存在键，会污染边界全集。
+
+首轮证据改变了优先级：全池新增正确HPO仅12，弱边界假阳远多于规范化错；下一步如继续应检验严格OOF学分数过滤，不能把union负结果包装成联合规范化已经验证失败。

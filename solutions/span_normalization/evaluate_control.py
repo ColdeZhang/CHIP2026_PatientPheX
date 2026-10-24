@@ -31,6 +31,11 @@ def main():
         ap.add_argument('--' + name, required=True)
     a = ap.parse_args(); started = time.monotonic(); out = Path(a.output)
     assert not (out/'paired-freeze.json').exists(), 'Already frozen; recover without repeating scores'
+    terminal = json.loads(Path(a.runtime_complete).read_text())
+    assert terminal['status'] == 'COMPLETE' and all(x['returncode'] == 0 and not x['timed_out'] for x in terminal['steps'])
+    linked = json.loads(Path(a.entities).with_name('complete.json').read_text())
+    assert linked['entities']['sha256'] == sha(a.entities) and linked['normalized_pool']['sha256'] == sha(a.pool)
+    assert linked['sources']['input']['sha256'] == sha(a.input) and not linked['held_gold_read']
     plan = json.loads(Path(a.plan).read_text())
     for k in ('strong_baseline', 'strong_metrics'):
         assert sha(plan[k]['path']) == plan[k]['sha256']
@@ -63,7 +68,7 @@ def main():
         assert report['valid'], report['errors']
         write_jsonl(out/(name+'.jsonl'), rows)
     write_jsonl(out/'added-entities.jsonl', added)
-    freeze = {'at_utc': datetime.now(timezone.utc).isoformat(), 'plan': ref(a.plan), 'runtime_complete': ref(a.runtime_complete),
+    freeze = {'at_utc': datetime.now(timezone.utc).isoformat(), 'plan': ref(a.plan), 'quality_source': ref(__file__), 'runtime_complete': ref(a.runtime_complete),
               'inputs': {k: ref(getattr(a, k)) for k in ('input', 'entities', 'pool', 'evaluator')},
               'primary': ref(out/'primary.jsonl'), 'diagnostic': ref(out/'diagnostic.jsonl'),
               'gold_opened_before_freeze': False, 'baseline_reused_without_reevaluation': True}
