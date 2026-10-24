@@ -64,14 +64,22 @@ for folder,names in [(F,['manifest.json','canonical-entities.jsonl','source-prov
 for n in ['run_B.py','make_provenance.py','plan.json','input-contract.json','native.stdout','native.stderr','provenance.stdout','provenance.stderr']:
  p=root/'B901-cache'/n;paths.append((str(p.relative_to(root)),p))
 manifest={n:dict(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for n,p in paths}
-zpath=D/(MODEL+'-terminal.zip');assert not zpath.exists()
-with zipfile.ZipFile(zpath,'x',zipfile.ZIP_DEFLATED) as z:
- for n,p in paths:z.write(p,n)
- z.writestr('members.json',json.dumps(manifest,indent=2)+'\\n')
+zpath=D/(MODEL+'-terminal.zip')
+if zpath.exists():
+ with zipfile.ZipFile(zpath) as z:
+  assert json.loads(z.read('members.json'))==manifest
+  for n,ref in manifest.items():assert hashlib.sha256(z.read(n)).hexdigest()==ref['sha256']
+else:
+ with zipfile.ZipFile(zpath,'x',zipfile.ZIP_DEFLATED) as z:
+  for n,p in paths:z.write(p,n)
+  z.writestr('members.json',json.dumps(manifest,indent=2)+chr(10))
 with zpath.open('rb') as f:os.fsync(f.fileno())
 print(json.dumps(dict(remote_path=str(zpath),bytes=zpath.stat().st_size,sha256=hashlib.sha256(zpath.read_bytes()).hexdigest(),members=manifest,full_native_outputs_reopened_sha_verified=True,raw_full_predictions_remain_persistent_at=str(N))))
 """.replace('ROOT',repr(root)).replace('MODEL',repr(model))
- receipt=command(code,120);dump('collection-'+model+'-remote.json',receipt);parts=[]
+ receipt_path=D/('collection-'+model+'-remote.json')
+ receipt=json.loads(receipt_path.read_text()) if receipt_path.exists() else command(code,120)
+ if not receipt_path.exists():dump(receipt_path.name,receipt)
+ parts=[]
  for off in range(0,receipt['bytes'],196608):
   v=command("from pathlib import Path;import json,base64;p=Path("+repr(receipt['remote_path'])+");f=p.open('rb');f.seek("+str(off)+");b=f.read(196608);print(json.dumps(dict(content=base64.b64encode(b).decode())))")
   parts.append(base64.b64decode(v['content']))
