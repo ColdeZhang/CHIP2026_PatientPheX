@@ -21,7 +21,7 @@ def positive_support(inp,normdir,rawdir):
     k=(p,pid,literal);source={'candidate_index':s['candidate_index'],'offset':s['offset'],'length':s['length'],'NER_logit':r['NER_logit'],'patient_logit':z,'normalization_status':s['normalization_status'],'normalization_reason':s['normalization_reason']}
     if k not in entries:entries[k]={'key':list(k),'max_logit':z,'positive_sources':[]}
     entries[k]['max_logit']=max(entries[k]['max_logit'],z);entries[k]['positive_sources'].append(source)
- assert seen==expected;assert len(entries)==complete['mapped_pairs'];return [entries[k] for k in sorted(entries)]
+ assert seen==expected;assert len(entries)==complete['mapped_pairs'];original=json.loads((N/'relations.json').read_text());assert set(entries)=={(pmc,str(pid),literal) for pmc,patients in original.items() for pid,concepts in patients.items() for literal in concepts};return [entries[k] for k in sorted(entries)]
 
 def select(table,threshold):
  t=math.inf if threshold=='inf' else float(threshold);assert t>=0
