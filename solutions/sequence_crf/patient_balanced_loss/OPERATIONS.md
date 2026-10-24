@@ -1,3 +1,7 @@
+# 已结案：固定α=.5负结果
+
+正式2ep/80fresh/两个质量终点均已完整，不运行下面保留的历史启动或绑定命令。主臂 .661496611109 < .663841820660，keep=false；[完整报告](RESULT.md)和[终态指针](quality/terminal-summary.json)。不扫描α、不迁原dev。
+
 # 当前运行与恢复
 
 先读 main 的 AGENTS/HANDOFF/WORKLOG 和本路线台账，再核真实文件。这里不替代实际收据；相同任务不得重启。
@@ -16,9 +20,9 @@
 
 原始 probe 失败72秒和独立修复成功159.844秒分别留在 `probe-v1`、`probe-interface-recovery-v2`，都禁止重跑。工程统一审7a010已通过；这不代表质量达标。
 
-## 最终80（唯一运行中）
+## 最终80（已完整结束）
 
-proc_94a0d130-8025-49e7-9d6f-a8f8ed8c531f，driver38684/child38703，09:20:17.308975启动，TERM09:30:17.308971/KILL09:30:47.308971。本地 `$R/final80-v1`，远端 `sequence-round2/patient-balanced-alpha05/final80-v1`。只运行 `final80/infer_remote.py observe --directory "$R/final80-v1"`；原终态后 `final80/infer_collect.py --directory "$R/final80-v1"`。任何UNKNOWN仅库存/续原包，不重start。
+proc_94a0d130-8025-49e7-9d6f-a8f8ed8c531f，driver38684/child38703，09:20:17.308975启动，TERM09:30:17.308971/KILL09:30:47.308971。09:26:29.359已rc0/372.050377秒，256原件完整收回collection0947f842。以下恢复说明仅供原证据追溯，不再执行。 本地 `$R/final80-v1`，远端 `sequence-round2/patient-balanced-alpha05/final80-v1`。只运行 `final80/infer_remote.py observe --directory "$R/final80-v1"`；原终态后 `final80/infer_collect.py --directory "$R/final80-v1"`。任何UNKNOWN仅库存/续原包，不重start。
 
 ## 已授权的后继
 
