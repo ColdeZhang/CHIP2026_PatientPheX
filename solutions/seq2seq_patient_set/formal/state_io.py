@@ -38,10 +38,13 @@ def save_reopen_restore(model, optimizer, scheduler, output, metadata):
     tensor_compare(scheduler.state_dict(),saved['scheduler']);tensor_compare(rng_state(),saved['rng'])
     assert model.shared.weight is model.encoder.embed_tokens.weight is model.decoder.embed_tokens.weight
     assert model.lm_head.weight is not model.shared.weight
+    parameters=[p for group in optimizer.param_groups for p in group['params']]
+    assert len(parameters)==len({id(p) for p in parameters})==len(list(model.parameters()))
+    assert {id(p) for p in parameters}=={id(p) for p in model.parameters()}=={id(p) for p in optimizer.state}
     result={'status':'FULL_STATE_FSYNC_REOPEN_RESTORE_PASS','checkpoint':ref(cp),'matched_tensors':matched,
             'actual_adam_updates':metadata['actual_adam_updates'],
             'every_optimizer_step':sorted({int(s['step'].item()) for s in optimizer.state.values()}),
-            'shared_input_identity_preserved':True,'independent_lm_head':True,
+            'shared_input_identity_preserved':True,'independent_lm_head':True,'unique_optimizer_parameters':len(parameters),
             'seconds':time.monotonic()-tick,'resume_equivalence_claimed':False}
     save(out/'final-state-ACK.json',result)
     return result

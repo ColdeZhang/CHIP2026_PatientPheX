@@ -61,7 +61,9 @@ def main(a):
     save(out/'complete.json',{'status':'PASS_TARGET_NATIVE_BASE_SP126_AND_TINY_FULL_STATE_CPU','counts':counts,'native_base_parameters':247587456,
         'group_sizes':group_sizes,'state_ACK':ref(out/'final-state-ACK.json'),'fresh_model_reload_exact':True,
         'all87_target_byte_roundtrip':True,'actual_GPU_calls':0,'formal_training_calls':0,'seconds':time.monotonic()-start,
-        'runtime':ref(out/'runtime.json'),'source':ref(__file__)})
+        'runtime':ref(out/'runtime.json'),'source':ref(__file__),
+        'assets':{n:ref(Path(a.model)/n) for n in ('config.json','pytorch_model.bin','spiece.model','tokenizer.json')},
+        'supply':{n:ref(Path(a.supply)/n) for n in ('manifest.json','train.jsonl.gz','held_input.jsonl.gz')}})
 
 
 if __name__=='__main__':

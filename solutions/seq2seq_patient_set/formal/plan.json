@@ -1,6 +1,6 @@
 {
   "schema": "longt5-patient-set-formal-v1",
-  "status": "CPU_PREPARATION_NOT_AUTHORIZED_TO_LAUNCH",
+  "status": "FROZEN_SOURCE_PENDING_ACTUAL_TARGET_CPU_AND_ROOT_RESOURCE_BINDING",
   "route_id": "seq2seq-patient-set",
   "model": {
     "config.json": {
@@ -67,7 +67,8 @@
       "invalid strict JSON or not-array"
     ],
     "itemwise_gates": "original G interpret; reject invalid anchor/duplicate item, retain other exact anchors",
-    "exact_final_epoch_only": 10
+    "exact_final_epoch_only": 10,
+    "generated_transport": "native SP pieces including genuine UNK surface; fixed32099 restores<; undefined extra/padded ID rejects transport; original G itemwise parser unchanged"
   },
   "supply": {
     "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/quote-prepared-v2/manifest.json",
@@ -131,18 +132,71 @@
     "binding_required": true,
     "root_authorized_train_after_target_CPU_source_freeze_fresh_gate": true
   },
-  "resource_binding": "Pending actual .3 GPU0 release and target CPU receipt; .100 reserved to SCST normalizer",
-  "formal_launch_authorized": false,
+  "resource_binding": "Root17:21: .100 GPU0 pending next scheduling message, no launch yet; .3 offline transfer closed with0 assets",
+  "formal_launch_authorized": true,
   "normalization_policy": {
     "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
     "bytes": 1699,
     "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
   },
-  "source_refs_pending": true,
+  "source_refs_pending": false,
   "runtime_target": {
-    "torch": "2.7.0+cu128",
+    "torch": "2.7.1+cu126",
     "transformers": "4.50.0",
-    "previous_probe_torch": "2.7.1+cu126",
-    "native_target_CPU_contract_required": true
+    "same_as_engineering_probe": true,
+    "native_full_state_CPU_contract_required": true
+  },
+  "sources": {
+    "probe.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/probe.py",
+      "bytes": 9510,
+      "sha256": "838103a4668a11543e1b6398878a840e19af7ab6c8597e498f0c3eeb175d586e"
+    },
+    "quote_codec.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/quote_codec.py",
+      "bytes": 1130,
+      "sha256": "0f79f297bdf46b0e25ea1e15d0415c0abd31d70403914a3435cacca9e461f132"
+    },
+    "formal/common.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "formal/state_io.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/state_io.py",
+      "bytes": 2839,
+      "sha256": "c7090f437c8610b7f641e4587c7845bfdce9a77eb93969b4607590714ef8421e"
+    },
+    "formal/runtime.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/runtime.py",
+      "bytes": 2464,
+      "sha256": "b3b808ca7c37c352b04b74779384fe1c0df64c524598269e0f74ccd55dff7412"
+    },
+    "formal/train.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/train.py",
+      "bytes": 6202,
+      "sha256": "7f06f974c9365d3e036b35d807661a03dbf9c46be250a695e01bf500e4fd44df"
+    },
+    "formal/infer.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/infer.py",
+      "bytes": 7070,
+      "sha256": "1284c3034d50e5a6d3d0b26bb68349deceb86b7d0ddfbe2b8732f811ea79bf8e"
+    },
+    "formal/driver.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/driver.py",
+      "bytes": 3189,
+      "sha256": "6aee266f88135786e60bec8409388c6dad1ae2a404216b58c956f670fc01e9e0"
+    },
+    "formal/transport.py": {
+      "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/transport.py",
+      "bytes": 442,
+      "sha256": "47ce68045da0c6af83549cbaaf407721e9d3269cf0048875f5e31323306aadd5"
+    }
+  },
+  "data_order_sha256": "c5ed4fc35b9003c35df7508830b51a7ddb67718a5d5315a082e3cdf0767fb67c",
+  "cpu_contract": {
+    "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/cpu_contract.py",
+    "bytes": 4943,
+    "sha256": "0aa8acf5294a7527a162223a3692d410eb2df987bbcaa8319a0756d1740f5218"
   }
 }

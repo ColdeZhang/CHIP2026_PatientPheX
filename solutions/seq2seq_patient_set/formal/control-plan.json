@@ -1,0 +1,114 @@
+{
+  "schema": "longt5-fixed-support-control-v1",
+  "formula": "B4 UNION (T5 INTERSECT (G_old UNION S UNION Q UNION C))",
+  "F1_baseline": {
+    "base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "old_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "Score": 0.701325377212172,
+    "documents": 16,
+    "patients": 39,
+    "baseline_relations": 524,
+    "support_union_outside_baseline": 133
+  },
+  "support_ref": {
+    "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/formal/support-inputs.json",
+    "bytes": 3647,
+    "sha256": "edcfbafd023aa2eb1adf53839b2a123730fe2b53f1b705e01b46417bf27a33ff"
+  },
+  "references": {
+    "F1_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "schema": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/schema.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    },
+    "decode": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/decode.py",
+      "bytes": 2439,
+      "sha256": "8e98f9ef2c1e123e9d071dc83f525a92ba90f26fffcca89532bcd78ac2b61305"
+    },
+    "held_prepare": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/held_prepare.py",
+      "bytes": 4035,
+      "sha256": "77cc9dc6ae8d9136acc0a9d16e203126b673a1752994ef4ac5064475dc1a8e22"
+    },
+    "held_finalize": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/held_finalize.py",
+      "bytes": 4331,
+      "sha256": "834b2fec711264ad411ae04f3a47d102dd9186c16c25da82fddea283e9a02591"
+    },
+    "strict": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    },
+    "semantic": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/semantic.py",
+      "bytes": 14183,
+      "sha256": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82"
+    },
+    "public_bank": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/public_bank.py",
+      "bytes": 11566,
+      "sha256": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061"
+    },
+    "normalization_policy": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "byte_helper": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research_readonly/majority_vote_control/common.py",
+      "bytes": 10348,
+      "sha256": "c713d2f5d5b2768cfb80ce4c17f920c6228dc3abb833080c972255d6e34c6e06"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    }
+  },
+  "gold_metadata_only": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "policy": "literal original G itemwise parser and unchanged b59 public normalization",
+  "transport_invalid": "Native UNK decoded by original SP then itemwise validator; only undefined extra/padded IDs reject transport; raw IDs/native diagnostic retained",
+  "quality": {
+    "new_v2_max_per_fold": 1,
+    "old_v2": 0,
+    "identity_new_v2": 0,
+    "first_F1_strict_Score_positive_before_F0": true,
+    "both_folds_strict_positive_before_full64_proposal": true,
+    "no_pure_T5_score": true,
+    "no_checkpoint_threshold_or_seed_sweep": true,
+    "no_gold_for_training_or_source": true
+  },
+  "normalization_source_root": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization",
+  "quality_source_root": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality",
+  "grounded_worktree": "/workspace/patientphex-worktrees/explore-grounded-generation",
+  "future_actual": null
+}
