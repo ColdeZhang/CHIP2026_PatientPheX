@@ -35,7 +35,7 @@ def put(path, value):
         os.fsync(f.fileno())
 
 
-def run(planpath, mode):
+def run(planpath, mode, joint_freeze=None):
     started = time.monotonic()
     p = json.loads(Path(planpath).read_text())
     r, out = p['refs'], Path(p['output'])
@@ -108,7 +108,17 @@ def run(planpath, mode):
         assert frozen['plan'] == ref(planpath)
         for row in frozen['predictions'].values():
             checked(row['prediction'])
-        put(out/'evaluation-intent.json', dict(at_utc=now(), freeze=ref(out/'freeze.json')))
+        assert joint_freeze is not None, 'Both complete predictions must be jointly frozen before evaluation'
+        joint = json.loads(Path(joint_freeze).read_text())
+        assert joint['status'] == 'TWO_COMPLETE_F0_PREDICTIONS_FROZEN_NO_GOLD'
+        assert joint['two_of_three']['plan'] == ref(planpath)
+        assert joint['two_of_three']['freeze'] == ref(out/'freeze.json')
+        assert joint['two_of_three']['prediction'] == frozen['predictions']['two_of_three']['prediction']
+        for arm in ('two_of_three', 'logistic_regression'):
+            checked(joint[arm]['prediction'])
+            checked(joint[arm]['freeze'])
+            checked(joint[arm]['plan'])
+        put(out/'evaluation-intent.json', dict(at_utc=now(), freeze=ref(out/'freeze.json'), joint_freeze=ref(joint_freeze)))
         gold = va.load_jsonl(checked(r['gold']))
         old = json.loads(checked(r['baseline_metrics']).read_text())['metrics']
         assert old['Score'] == p['baseline_score']
@@ -137,5 +147,6 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--plan', required=True)
     ap.add_argument('mode', choices=['assemble', 'evaluate'])
+    ap.add_argument('--joint-freeze')
     a = ap.parse_args()
-    run(a.plan, a.mode)
+    run(a.plan, a.mode, a.joint_freeze)
