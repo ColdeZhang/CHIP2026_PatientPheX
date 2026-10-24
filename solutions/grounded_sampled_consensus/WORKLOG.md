@@ -4,6 +4,8 @@
 
 ## 当前任务
 
+**运行中**：`.100 GPU0` 唯一 `proc_fc21328c-407a-4e75-b93f-e5c5da10c8c5`，driver2744449/child2744457，13:52:22.231 UTC 启动；固定 TERM14:52:22.231 / KILL14:52:52.231。实际入口 `a30/infer-plan.json` d5c60e9a，外部 `infer-F1-A30-v1`。只读 watcher 178370 已独立session/flock ready8d4c5f83，180秒观察；恢复先核原PID/intent，不重复start。完整78之前不做quality。
+
 原 train32 grounded 模型 d52、原 F1 16篇/39患者全文输入；固定 seed20261024/25、native nonthinking sampling T.7/p.8/k20/minp0/repetition1/max1600。两完整39经原严格 quote parser 与相同 train32 alias/public41099/b59政策后，唯一主端点 B4(524关系/.701325377212) UNION 两seed literal关系交集。新关系为零则原基底byteexact且0v2；否则完整freeze后1v2/旧0。严格Score正才F0；双折正才full64。
 
 初提presence1.5在任何源冻结/模型/质量前由root撤回；最终presence0，无新customprocessor，避免惩罚合法重复quote。旧闭集CID双采样是候选限定的患者集合生成，本路线检验开放quote及独立规范化后的共识；不能按新名字重做旧任务。
@@ -25,3 +27,5 @@
 本机真实同9B native116/128行分别805.858/851.003秒；按输出tokens代理新78约2369秒，1.45余量+150约3585秒，因此root在任何GPUstart前明确唯一共享3600+TERM30，decision-host-budget-v3记录原1800→2400→3600且旧源保留。每seed正式最长10080输入先行、原每行随机种子使排序独立，1600 cap和全部78不改；每行保存实际峰值显存，禁止临时截断/量化/KV变更。
 
 13:51:33四件173197471B已完整私网复制20.214秒，source/destination SHA+fsync/reopen及祖先目录通过；原源保留，0 optimizer/NN。A30最终plan d5c60e9a、package0e8dbe24绑定19件和原CPU3882542a，不跨host假复用部署文件。独立源HTTP180+10原TTL待核关闭；准备源checkpoint后唯一正式GPU启动。
+
+新78实际入口已经完整绑定；A30计划/源检查点f599620f已远端核。必要Sap按root新队列固定使用同GPU0在9B真实释放后一次180+30，复用原publicbank与train32政策，不等待GPU1、不共驻9B。
