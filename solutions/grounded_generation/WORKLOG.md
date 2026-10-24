@@ -44,3 +44,5 @@
 固定normalizer原未覆盖的独审增量已在schema路线统一完成，稳定报告dac8bde8的normalization_increment节核四固定源/624查询/41099银行来源；本路线复用该同字节来源审，不误指9e6a，不重编码。自己的39输出与新normalize实际链仍等最终增量审，见[evidence/normalization-review.json](evidence/normalization-review.json)。
 
 11:13:10.349原39在原窗完整rc0，无补跑；native1103.215秒/wrapper1104.592/controller1104.730，39EOS/cap0/peak21.015GB，GPU释放11:13:10.376。90件完整回收5c32d2f8，全raw/token/end状态SHA核过，extraction实际计划已绑定，尚无质量；见[evidence/inference-terminal.json](evidence/inference-terminal.json)。
+
+完整39一次解析acfbb8a6：573 exact anchors/434 unique quote，126项拒绝，0整行JSON弃答但1行全item被拒，39EOS/cap0。同32/public固定strict准备759e42b8产生254必要query；0f97c594计划绑定最新schema F0实际release，180+30，估25.08秒，既有41099 bank不重编码/不fit。先push再fresh门唯一启动，未使用held gold或评分。
