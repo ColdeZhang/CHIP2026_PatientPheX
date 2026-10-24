@@ -31,5 +31,5 @@
 
 - [顺序增强](order_warmstart_stage/RESULT.md)：旧.660942003→O/O .658421563、R/O .645528610，四全状态持久/审d253f625，固定负；不否定此前reverse测试时并集的原dev正结果。[共指B](public_coreference_readiness/prompt-control-b/REPORT.md)、公开212、value2等已闭负控制不重跑。
 - [thinking4096](research/thinking-sampling-followup.md)是未闭think/无strict final的格式终点；后继budget forcing归sequence。FLA raw-logit合同失败见[fused结果](fla_kernel_readiness/GPU_RESULT.md)，不等于任务质量负。旧零样本全文、开放HPO全文SFT与本次闭集全文SFT分别记录，不能混称同一实验。
-- 本阶段持久备份与最终统一审已完成。root下一项仅授权有限只读研究：查强103列公共HGB cut.3/nested的实际冲突解码与有限历史；如未测，统计已冻四fold无标签候选/概率的冲突组件规模，不读gold/拟合/评分/改预测。无新模型下载或GPU授权。
+- 本阶段持久备份与最终统一审已完成；后继[全局兼容解码只读核查](global_compatible_decoder/REPORT.md)也已完成：旧WIS是Bioformer/严格非重叠零变化；当前强B仍greedy后保锚点追加。3.194秒无标签census：4,633合资格候选、70冲突边、66非平凡组件最大3节点，全部子集配置上界280；允许异ID包含241对不能误禁。没有求解最优集合/新pred/gold/fit/score；仅提出一次固定控制的计算可行性，等待root决定是否执行。无新GPU或下载。
 - 仅改本路线目录，主总台账/HANDOFF由root维护。关键阶段及时commit/push并核ls-remote，正常逐step日志不入Git；旧完整台账原字节见[历史](history/WORKLOG-through-20261024-0339.md)，SHA`ddb89cb9…`，不能作为当前启动依据。
