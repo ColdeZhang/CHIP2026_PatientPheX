@@ -48,3 +48,5 @@
 完整39一次解析acfbb8a6：573 exact anchors/434 unique quote，126项拒绝，0整行JSON弃答但1行全item被拒，39EOS/cap0。同32/public固定strict准备759e42b8产生254必要query；0f97c594计划绑定最新schema F0实际release，180+30，估25.08秒，既有41099 bank不重编码/不fit。先push再fresh门唯一启动，未使用held gold或评分。
 
 254必要Sap唯一proc9f6935a7已11:15:44.484 rc0，wrapper11.603秒/controller11.779秒，实际GPU释放11:15:44.491。13小件f1720f1c完整逐SHA回收，原queryvectors留持久locator；无重bank/fit。实际finalize计划已绑定原全573 anchors与254 scores，固定policy不变，随后只CPU normalize/双冻结/两v2。
+
+固定normalize完整267cd326：573记录mapped328/NIL0/abstain245，strict244+semantic84；所有原doc/PID/unit/occurrence/offset/length/quote与拒绝理由保留，normalizations786cc560已交root作独立后继供给，本线不改1189实体。双端点质量计划03c88a3f已绑定完整8refs，先push再共同freeze→各唯一v2/旧0。
