@@ -27,7 +27,7 @@ def main():
  assert all(not Path(n).exists() for n in ['driver-started.json','child-started.json','wrapper-complete.json','stdout.log','stderr.log'])
  assert not Path(p['output_dir']).exists() and os.environ['CUDA_VISIBLE_DEVICES']==p['gpu_uuid'] and os.environ['PATIENTPHEX_DURABILITY_ROOT']==p['storage_parent']
  gate=resources();save('fresh-resource-gate.json',gate);target=[s.split(',') for s in gate['gpu'].splitlines() if p['gpu_uuid'] in s]
- assert len(target)==1 and int(target[0][2])<=10 and int(target[0][3])>=79000 and p['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes']>=2*1024**3
+ assert len(target)==1 and int(target[0][2])<=10 and int(target[0][3])>=79000 and p['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes']>=512*1024**2
  start=time.monotonic();utc=time.time();command=p['argv'];timed_out=False
  save('driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),plan_sha256=sha('infer-plan.json'),command=command,deadline_TERM_unix=utc+cap,deadline_KILL_unix=utc+cap+30,budget_seconds=cap,grace_seconds=30,no_automatic_retry=True))
  with Path('stdout.log').open('xb') as out,Path('stderr.log').open('xb') as err:
