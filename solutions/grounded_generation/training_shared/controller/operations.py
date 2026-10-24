@@ -128,7 +128,7 @@ print(json.dumps(out))
   if wrapper and release and not path.exists():save(path.name,dict(wrapper=wrapper,release=release))
  print(json.dumps(d))
 elif a.action=='start-server':
- campaign=load_campaign();state=json.loads((B/('epoch-%03d-state.json'%epoch)).read_text());assert state['wrapper']['returncode']==0 and 'endpoint_error' not in state['wrapper'] and not state['release']['target_compute_rows']
+ campaign=load_campaign();state=json.loads((B/('epoch-%03d-state.json'%epoch)).read_text());assert state['wrapper']['returncode']==0 and not state['wrapper'].get('timed_out') and 'endpoint_error' not in state['wrapper'] and not state['release']['target_compute_rows']
  name='epoch-%03d-export-intent.json'%epoch;assert not (B/name).exists();started=time.time();deadline=min(started+600,campaign['absolute_deadline_unix']);assert deadline>started
  entry=dict(phase='server',epoch=epoch,plan_sha256=plan_sha,started_unix=started,absolute_deadline_unix=deadline);save(name,entry);publish_json(source,root+'/'+name,entry,'epoch-%03d-server-entry-copy.json'%epoch)
  argv=[plan['python'],'-u',root+'/io_driver.py','--plan',root+'/controller-plan.json','--campaign',root+'/campaign.json','--entry',root+'/'+name]
@@ -156,7 +156,7 @@ import hashlib,json,os
 root=Path(PARAM['root']);control=root/'control'/('export-fetch-epoch-%03d'%PARAM['epoch']);wrapper=control/'wrapper-complete.json'
 if not wrapper.exists():print(json.dumps(dict(complete=False)))
 else:
- w=json.loads(wrapper.read_text());assert w['returncode']==0
+ w=json.loads(wrapper.read_text());assert w['returncode']==0 and not w.get('timed_out')
  cp=Path(PARAM['checkpoint']);p=cp/('export-ack-epoch-%03d.json'%PARAM['epoch']);raw=p.read_bytes();ack=json.loads(raw)
  assert ack['status']=='persistent_checkpoint_verified' and ack['fsync_all_files'] and ack['reopened_final_filename_SHA_all_files'] and ack['destination_directories_fsynced']
  for n,item in ack['files'].items():

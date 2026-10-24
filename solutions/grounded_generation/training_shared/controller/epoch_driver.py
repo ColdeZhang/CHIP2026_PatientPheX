@@ -1,7 +1,7 @@
 """Exactly one declared epoch stage under the original absolute campaign deadline."""
 from pathlib import Path
 from datetime import datetime,timezone
-import argparse,hashlib,json,os,subprocess,time
+import argparse,hashlib,json,os,signal,subprocess,time
 
 def sha(p):
  h=hashlib.sha256()
@@ -47,13 +47,19 @@ def main():
  if epoch==1:argv+=['--stop-after-epoch','1']
  else:argv+=['--resume',str(output/'epoch-001'),'--resume-export-ack',str(output/'export-ack-epoch-001.json')]
  remaining=int(deadline-time.time());assert remaining>0
- command=['/usr/bin/timeout','--signal=TERM','--kill-after=30s',str(remaining)+'s']+argv
+ command=argv
  started=time.time();save(control/'driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),pid=os.getpid(),epoch=epoch,command=command,plan_sha256=sha(a.plan),campaign_sha256=sha(a.campaign),absolute_deadline_unix=deadline,remaining_seconds=remaining,once_only=True))
  with (control/'stdout.log').open('xb') as out,(control/'stderr.log').open('xb') as err:
   process=subprocess.Popen(command,stdout=out,stderr=err,start_new_session=True)
-  save(control/'child-started.json',dict(pid=process.pid,pgid=process.pid));rc=process.wait()
- report=dict(epoch=epoch,returncode=rc,elapsed_seconds=time.time()-started,absolute_deadline_unix=deadline,no_budget_reset=True,at_utc=datetime.now(timezone.utc).isoformat())
- if rc==0:
+  save(control/'child-started.json',dict(pid=process.pid,pgid=process.pid))
+  timed_out=False
+  try:rc=process.wait(timeout=max(.001,deadline-time.time()))
+  except subprocess.TimeoutExpired:
+   timed_out=True;os.killpg(process.pid,signal.SIGTERM)
+   try:rc=process.wait(timeout=max(.001,deadline+30-time.time()))
+   except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);rc=process.wait()
+ report=dict(epoch=epoch,returncode=rc,timed_out=timed_out,elapsed_seconds=time.time()-started,absolute_deadline_unix=deadline,no_budget_reset=True,at_utc=datetime.now(timezone.utc).isoformat())
+ if rc==0 and not timed_out:
   try:
    cp=output/('epoch-%03d'%epoch);meta=json.loads((cp/'checkpoint.json').read_text());assert meta['completed_epochs']==epoch and meta['global_step']==plan['configuration']['steps_per_epoch']*epoch and not meta['smoke_only']
    assert meta['fingerprint']['source_sha256']==plan['trainer_sha256']
@@ -68,5 +74,5 @@ def main():
   except Exception as e:report['endpoint_error']=dict(type=type(e).__name__,message=str(e))
  save(control/'wrapper-complete.json',report)
  release=gpu(plan);save(control/'gpu-release.json',release)
- print(json.dumps(report),flush=True);raise SystemExit(rc or int('endpoint_error' in report))
+ print(json.dumps(report),flush=True);raise SystemExit(rc or int(timed_out or 'endpoint_error' in report))
 if __name__=='__main__':main()

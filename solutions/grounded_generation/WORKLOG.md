@@ -7,14 +7,15 @@
 - **F1完整且终审PASS**：原GG001 N∪grounded .681717659986（强N .676546354663），new-only .583496662244；独立GG002强支持B∪全部grounded .695950447742（B .686338981272），micro下降.013393436/macro上升.051839302。9B只复制原文词面、独立HPO规范化，quote是弱词面锚定而非人工归属span。完整终审0fcffd7b，F1补包184内容已root实际服务器恢复c48d3776；原dev最高.754361398和官网结果不变。
 - **F0完整固定复验正**：全47同d52 fresh/44EOS+3cap，2strictJSON弃答保原；342锚点经149必要Sap得到200mapped/4NIL/138abstain，全部173关系。强B0 .711507580027→.713748125847（+.002240545821），micro−.006662540360/mac+.015624723642；保947实体/47患者/315基底，+37=11TP26FP，唯一v2旧0。F1强Bunion同样总分正，两折均micro降/macro升；仍非原devbest。见[f0/result.json](f0/result.json)、[GG003](experiments/GG-20261024-003.md)。
 - **当前无GPU作业**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
-- **条件full64仅CPU已完成**：[full64_readiness/summary.json](full64_readiness/summary.json)，173患者全覆盖、1711有效关系可构建、1678弱quote，dev纯36；957793训练tokens、监督24997，max10637/646。两轮代理4242–4582秒、候选6000+30不是实测或授权，新形状需后续实际工程。train64含内部F0/F1监督，但这批独立未来资源绝未进入当前已冻结F0模型/别名。无原devgold、新fit、GPU或质量。
-- 当前分支检查点`bba8650`已核远端（后续台账提交可在其上）；所有大产物位于仓库外。资源由root调度，A100现给response-code，.3在DocRE QwenF0完成后才轮到本线必要Sap。
+- **full64已授权、CPU完整**：原173train/36纯dev实际209回放16.104秒通过，14件collection a77eaa7b；tinyCPU Adam/scheduler/Python/NumPy/Torch状态恢复通过，CUDA只结构未冒称实测。下一唯一13反向420+30覆盖10637/557与6346/646新Pareto，已有Adam/累积梯度，状态丢弃；A800 GPU2由root分配。
+- **正式后继持续授权**：probe成功且实耗可容纳后，fresh173×2/44updates/warmup4/尾5/原LR1e-4，单6000+30共享两epoch与SHM→.100完整ACK；后继原dev纯36/1200+30与必要Sap180+30。只交new-only和完整quote，最终两个原dev质量由root执行，本线不读dev gold/评分。
+- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点444e17fe，后继源/计划先推送再启动。
 
 ## 执行与下一步
 
-1. 统一终审沿 `F0-final-review-entry.json`，复用0fcffd/dac8，只查新47/runtime/cache/完整输出/冻结→唯一v2增量；不重NN、归一化或评分。
-2. 保存本轮最小持久补包并交root唯一实际恢复；引用F1旧包/大权重locator，不重复原训练和银行。
-3. 两折独立Score门已过；原full64依然仅条件CPUreadiness，下一工程/训练由root明确预算和资源，不把候选通过当自主训练许可。
+1. 原CPU proc07b171cc已完整；collector95847已14件全SHA收齐。无原CPU/GPU重复启动。
+2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；fresh门一次带全A800卡库存。原未知状态仅恢复原intent。
+3. 同一参数化训练器/已验indexed两轮持久桥准备，绝对deadline不重置；真实probe终点后绑定正式实际证据并启动。模型/大产物保持仓库外。
 
 ## 历史阶段记录（准确原时点，非当前作业）
 

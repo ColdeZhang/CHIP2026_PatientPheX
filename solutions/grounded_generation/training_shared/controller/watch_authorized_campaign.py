@@ -41,7 +41,7 @@ try:
   while not (D/(tag+'-state.json')).exists():
    run('inspect',epoch)
    if not (D/(tag+'-state.json')).exists():nap(180)
-  state=json.loads((D/(tag+'-state.json')).read_text());assert state['wrapper']['returncode']==0 and not state['release']['target_compute_rows']
+  state=json.loads((D/(tag+'-state.json')).read_text());assert state['wrapper']['returncode']==0 and not state['wrapper'].get('timed_out') and not state['release']['target_compute_rows']
   log('epoch_finished',epoch=epoch,wrapper_seconds=state['wrapper'].get('seconds',state['wrapper'].get('wrapper_seconds')))
   if (D/(tag+'-export-ack.json')).exists():
    assert (D/(tag+'-source-ack-copy.json')).exists(),'Incomplete original ACK publication; do not retry'

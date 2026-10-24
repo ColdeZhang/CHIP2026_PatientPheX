@@ -345,7 +345,7 @@ def main():
             assert inventory['deployment_receipt']['package_sha256']==ref(out/'package.json')['sha256']
             env=plan['environment'];assert not {'MCP_TOKEN','MCP_URL'}&set(env)
             assert env['CUDA_VISIBLE_DEVICES']==plan['gpu_uuid'] and env['PATIENTPHEX_DURABILITY_ROOT']==plan['storage_parent']
-            executable=plan.get('python',plan['argv'][0]);launch=shlex.join([executable,'-u','probe_driver.py'])
+            executable=plan['python'];launch=shlex.join([executable,'-u','probe_driver.py'])
             intent=dict(command=launch,cwd=REL,environment=env,package=ref(out/'package.json'),plan=cfg['plan'],
                 source=ref(__file__),inventory=inventory,no_retry=True,fresh_GPU_gate_inside_driver=True)
             save(out/'start-intent.json',intent)
