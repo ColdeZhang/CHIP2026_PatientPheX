@@ -18,8 +18,8 @@ def syncdir(p):
 
 def main():
  spec=json.loads(os.environ['RECOVERY_SPEC']);root=Path(spec['source_directory']);out=Path(spec['target_directory']);files=spec['files']
- assert root.is_relative_to(PROJECT/'case-retrieval/qwen35-preparation')
- assert out.is_relative_to(PROJECT/'research/storage-recovery-20261024')
+ assert PROJECT/'case-retrieval/qwen35-preparation' in root.parents
+ assert PROJECT/'research/storage-recovery-20261024' in out.parents
  assert sorted(files)==['adapter/adapter_config.json','checkpoint.json','training_state.pt']
  prefix='/'+os.environ['RECOVERY_PREFIX']+'/'
  if sys.argv[1]=='serve':
