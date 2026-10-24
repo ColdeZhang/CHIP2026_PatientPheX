@@ -74,3 +74,5 @@ root明确原剩余窗不足1795保守代理，禁止硬挤或延长运行中旧
 17:19只读原CPU result仍UNKNOWN，未重跑。root明确已知metadata bug用原G json_default exact AST及本地empty/nonempty set/frozenset/未知类型/NaN合同即可，不再把远端tiny结果扩成新工程门；未知原调用保留。已补本地nonempty字段完整保留、原missing检查仍拒绝的证据，准备独立新namespace `pilot-A100-v3-loading-recovery`，执行绑定含原失败、原截止、新独立1800授权和原因，所有方法参数不变。当前未部署/admission/start；17:22:45单次恢复源部署，若仍离线退避。
 
 17:23 root资源修订：必要Sap从同host .100GPU0移至GPU1（fc5d0525），让GPU0供T5正式；全部encoder权重/env/FP16/query/policy/bank不变。必须等GP真实release（其原TERM17:35:26/KILL17:35:56），bridge在CPU固定8raw准备后若有query只等待本地真实release receipt，等待计入主1800，届时才创建Sap admission；0query直接finalize。新最坏generation1255s代理未加长，仅资源绑定，不改方法。旧29c9包未部署/启动，改冻 `bound-A100-loading-recovery-v2`；本次.12恢复已只读原common成功，准备部署新包。原未知tinyCPU不重跑且不作门。
+
+新ef62910件部署闭合：最后pilot-plan write UNKNOWN，由原路径全部fsync/reopen/SHA恢复，未重写。首次恢复start控制器只到readonly fresh-resource RPC就UNKNOWN，未创建admission/unique-start-intent、未调用start_process，不能记为新GPU失败或开始新预算。下次统一恢复窗17:30:45；同时协调ontology的.12 CPU HTTP源服务不得并发重试，给其后续CPU窗口不碰卡。当前部署/阻断事实见 `evidence/loading-recovery-deployed.json`。

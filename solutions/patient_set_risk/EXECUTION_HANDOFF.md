@@ -1,6 +1,6 @@
 # SCST 固定4×2探针：单一接手入口
 
-**2026-10-24 17:21 状态更新（优先于以下准备期历史）**：原776b已在17:09唯一启动，69秒后因loading-info set JSON记录失败，0forward/0生成/0FB/0Adam，完整原21容器证据已收。下方776b启动命令现在仅为历史，严禁重启。根批准窄metadata修复后的独立fresh1800+30，旧17:39:49截止不变。最新准备入口为 `evidence/loading-recovery-binding.json` 和外部 `bound-A100-loading-recovery-v1/binding.json`；尚未部署/admission/start。实际5.20.2 tiny CPU调用UNKNOWN不重执行，root已明确原G serializer exact AST及本地类型合同足够闭合此已知bug，未知调用如实保留。等17:22:45恢复窗口及root的.100 Sap资源排程，才继续新namespace。
+**2026-10-24 17:21 状态更新（优先于以下准备期历史）**：原776b已在17:09唯一启动，69秒后因loading-info set JSON记录失败，0forward/0生成/0FB/0Adam，完整原21容器证据已收。下方776b启动命令现在仅为历史，严禁重启。根批准窄metadata修复后的独立fresh1800+30，旧17:39:49截止不变。最新入口为 `evidence/loading-recovery-binding.json`、`evidence/loading-recovery-deployed.json` 和外部 `bound-A100-loading-recovery-v2/binding.json`（ef629830，Sap已资源修订至同hostGPU1）；10件已部署全SHA，第一次仅readonly fresh查询UNKNOWN，尚无admission/start。实际5.20.2 tiny CPU调用UNKNOWN不重执行，root已明确原G serializer exact AST及本地类型合同足够闭合此已知bug，未知调用如实保留。下一统一恢复窗17:30:45，只读fresh成功后才发唯一新start；必要Sap等GP真实release，本地等待计入主钟。
 
 2026-10-24：**源码、CPU合同、部署和增量源审已完成；没有admission、start、SCST GPU输出或正式训练。** 根线程要求暂时释放agent槽；收到 ontology_recover_0518 的seed39实际释放后唤醒本owner继续同一方案，无需另问逐步许可。
 
