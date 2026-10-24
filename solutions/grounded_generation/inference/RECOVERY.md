@@ -12,3 +12,5 @@
 6. `inference/bind_flow.py quality` 只绑定八件真实完整ref，推送后 `quality/assemble.py --plan .../quality/plan.json`，两完整预测共同冻结。最后 `quality/score.py --plan .../quality/plan.json` 独立30+TERM1、两个唯一v2、旧0，主/诊断最高且严格超过N才候选；不自动F0/原dev/官网。
 
 以上`...`须采用本方案目录的实际路径，`B/`是本文标记、不能原样传shell。所有阶段遇UNKNOWN先库存原件、续原包；保留原时钟和失败，不借新namespace静默重模型。各阶段partial结果不冒充完整结果。
+
+当前39推断已唯一启动，真实PID/时钟见`../evidence/inference-started.json`；先查该记录和外部`infer-F1-v1/watch/`，现有watcher活着时不要再起。若已明确watcher退出且原模型未终态，`python inference/watch.py --directory B/infer-F1-v1`只接管读取，永不start模型；remote driver和1200秒时钟独立于本地watch。

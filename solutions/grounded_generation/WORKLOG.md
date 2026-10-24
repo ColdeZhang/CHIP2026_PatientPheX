@@ -38,3 +38,5 @@
 10:53:29原watch恢复发现正式已10:47:48 rc0完整完成，wrapper2039.028秒/controller2041.959秒，两ACK d51df102/5f8ca5fc，epoch2 adapter d52e2e6c/fullstate47ae7027，GPU实际10:47:51释放；原watch正常退出。唯一完整collector首inventory返回UNKNOWN（只读，未冻结/启动），保留错误后沿原namespace库存恢复，不重训。准确终态与两ACK在[formal-terminal](evidence/formal-terminal.json)；完整本地collection及后继39尚待，不冒称新质量。
 
 原collector已恢复并完整回收25件433659a2，原四个大checkpoint全SHA/fsync核验且留A100持久locator；无新模型。39fresh实际计划7c9c3026已绑定两ACK/epoch2/原39native IDs/固定b59eb规范化，预算1200+TERM30、greedy1600；当前源/计划先推送，实际start后补唯一ID。
+
+10:54:45.757原39fresh唯一proc_e603593d/driver105509/child105533已启动，固定1200+30，TERM11:14:45.757/KILL11:15:15.757；首次观察两PID健康、加载中无响应，未读gold或评分。16件部署80bcdf85已SHA/fsync；本地readonly watcher 150076 / session30679每180秒，准确来源和恢复见[evidence/inference-started.json](evidence/inference-started.json)。原start-intent存在绝不重start；已授权后继fixed-normalization与双质量，无须新阶段审批。
