@@ -1,0 +1,135 @@
+{
+  "entry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/F0-complete-review-entry.json",
+    "bytes": 19446,
+    "sha256": "1d23783bf7f02e254615a67751207118c0c8a8620aa766a55233dc1d58e75bc8"
+  },
+  "result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/F0/quality-F0-v1/result.json",
+    "bytes": 1110,
+    "sha256": "0e3eb2ba83b19874b7147e20a3a08b30fbc40cb3b6e928a8ab9d4307a5cfe5a3"
+  },
+  "prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/F0/quality-F0-v1/prediction.jsonl",
+    "bytes": 113181,
+    "sha256": "fe0aabe9da5600dee373d9f683a2d2c88abe27f6571c586c151355f6ed16cffc"
+  },
+  "freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-sampled-consensus-v1/F0/quality-F0-v1/freeze.json",
+    "bytes": 5966,
+    "sha256": "b26048a886b04ee022056b48e986484733a7fece307042bb85e3523d661c035d"
+  },
+  "metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.726530612244898,
+    "macF1": 0.7213232310900947,
+    "Score": 0.7251326833250046
+  },
+  "baseline": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.7340720221606648,
+    "macF1": 0.726033603519513,
+    "Score": 0.7281956289113009
+  },
+  "delta": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.007541409915766795,
+    "macF1": -0.004710372429418297,
+    "Score": -0.003062945586296273
+  },
+  "added": 13,
+  "added_TP": 2,
+  "added_FP": 11,
+  "keep_F0_candidate": false,
+  "keep_cross_fold_candidate": false,
+  "independent_review": "pending",
+  "decision": "Close fixed two-sample recipe: F1 positive, F0 negative; no full64/originaldev expansion or seed scan",
+  "actual_generation": {
+    "rows": 94,
+    "documents": 16,
+    "patients_per_seed": 47,
+    "EOS": 89,
+    "cap": 5,
+    "whole_cap_row_abstained": true,
+    "per_seed": {
+      "20261024": {
+        "rows": 47,
+        "EOS": 43,
+        "cap": 4,
+        "output_tokens": 11208,
+        "native_seconds": 787.1401167409495
+      },
+      "20261025": {
+        "rows": 47,
+        "EOS": 46,
+        "cap": 1,
+        "output_tokens": 7416,
+        "native_seconds": 556.6281157881021
+      }
+    },
+    "wrapper_seconds": 1374.3960234359838,
+    "native_seconds": 1373.4675289141014,
+    "max_allocated_bytes": 20977520128,
+    "max_reserved_bytes": 21867003904,
+    "output_tokens": 18624,
+    "raw_and_parsing_reexecuted": false
+  },
+  "normalization": {
+    "necessary_queries": 195,
+    "wrapper_seconds": 8.436617229133844,
+    "native_seconds": 7.646634940057993,
+    "query_executed": true,
+    "per_seed": {
+      "20261024": {
+        "records": 279,
+        "status_counts": {
+          "mapped": 146,
+          "abstain": 130,
+          "nil": 3
+        },
+        "reasons": {
+          "unanimous_whole_span_alias": 120,
+          "semantic_cosine_below_fixed_boundary": 118,
+          "public_sap_cosine_and_concept_margin": 29,
+          "semantic_possible_compound_quote": 5,
+          "semantic_insufficient_lexical_context": 4,
+          "semantic_distinct_concept_margin_too_small": 1,
+          "semantic_direction_conflict": 1,
+          "semantic_explicit_negative_or_normal_quote": 1
+        },
+        "accepted_sources": {
+          "case_whitespace": 62,
+          "literal": 58,
+          "public_semantic": 29
+        }
+      },
+      "20261025": {
+        "records": 313,
+        "status_counts": {
+          "abstain": 124,
+          "nil": 4,
+          "mapped": 185
+        },
+        "reasons": {
+          "semantic_cosine_below_fixed_boundary": 114,
+          "unanimous_whole_span_alias": 146,
+          "public_sap_cosine_and_concept_margin": 43,
+          "semantic_distinct_concept_margin_too_small": 2,
+          "semantic_possible_compound_quote": 5,
+          "semantic_insufficient_lexical_context": 2,
+          "ambiguous_mapping": 1
+        },
+        "accepted_sources": {
+          "literal": 80,
+          "case_whitespace": 66,
+          "public_semantic": 43
+        }
+      }
+    }
+  },
+  "originaldev_best_unchanged": true,
+  "no_official_action": true
+}

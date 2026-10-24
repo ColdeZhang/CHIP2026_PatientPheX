@@ -4,7 +4,7 @@
 
 ## 当前任务
 
-**F0全94运行中**：`.100 GPU0` 唯一proc637bae55/driver2746607/child2746615，14:26:45.788 UTC启动，TERM15:26:45.788/KILL15:27:15.788。原same d52/两seed/政策，47 native实际CPU7.5455s/collectione4d68072通过，plan6fbd1274。只读watcher182710独立session/flock readydd00e8ae，180s观察，恢复只接原intent不重start。F1固定.705226已独审c548通过，小包7bc54091服务器128+1成员全核，root实际下载721cd7d7已完整通过。F0严格超过原B4 .728195628911才保跨折候选；尚无F0质量/原dev/官网动作。
+**固定双采样已负结案，等待一次增量终审与最小补包**：F1 Score .701325377212→.705226083109（14新9TP5FP），F0 .728195628911→.725132683325（13新2TP11FP），F0 micro/mac均降，故不满足预定双折都正，不迁full64/原dev、不扫seed。F0完整94原205件collectionab5781b7，1374.396秒；89EOS/5cap整行弃答，全部47患者保留。592合法anchors→195公共Sap8.4366秒/13原件b6c4→完整freeze b26048a8 后唯一1v2/旧0。统一入口1d23783b，结果0e3eb2ba，见evidence/F0-result.json。全部GPU14:52:39.579562真实释放并交copy_decode，当前仅本地结案/持久小包。F1 root实际restore721cd7d7已核。
 
 原 train32 grounded 模型 d52、原 F1 16篇/39患者全文输入；固定 seed20261024/25、native nonthinking sampling T.7/p.8/k20/minp0/repetition1/max1600。两完整39经原严格 quote parser 与相同 train32 alias/public41099/b59政策后，唯一主端点 B4(524关系/.701325377212) UNION 两seed literal关系交集。新关系为零则原基底byteexact且0v2；否则完整freeze后1v2/旧0。严格Score正才F0；双折正才full64。
 
@@ -37,3 +37,5 @@ F1收口：collection19b81037原173件，1411.159s，alloc21.012GB/reserved21.92
 F1正式独审：c54828bd/12959B，41safe snapshots/manifestddd801e5稳定；入口9bd386cc保原pending时点不改，另evidence/F1-final-review.json追加接受与persistence指针。F0源机械迁移在首次GPU前静读修正指标名称F1不随fold改名、完整94字段，未产生预测或质量；同接口/阈值/模型不变。native47仅新输入身份与94seed去重，原sampler toy/processor复用。
 
 root已唯一实际读回F1补包，3 read_file，128内容+1embedded全部SHA/fsync/reopen，manifest字节exact；恢复721cd7d7/17273B见evidence/F1-actual-restore.json。未改9bd386cc入口/1527f730质量freeze，未复制旧权重或重模型。
+
+F0完整收口没有模型或质量重试；future f0_entry原写入器首次即通过，完整源/实际plan逐阶段预推。原94与195查询各唯一作业，严格弃答保持，不根据已知质量修正。末段独审followup曾因全局7槽满未启动，root协调后续；该资源约束不改变已经完整的负结论。
