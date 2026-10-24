@@ -32,8 +32,8 @@
       "sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
     },
     "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/driver.py": {
-      "bytes": 4531,
-      "sha256": "1d0c4732d5ae4c8181c4f9f521bb8aafa8805323c9d2a1c60fe2daaa9831dbaf"
+      "bytes": 4849,
+      "sha256": "d1e6206db722a7c49279058902e16045289d424af871bc75be9ae5e65481c54a"
     }
   },
   "argv": [
@@ -72,5 +72,18 @@
   },
   "policy": "Original phenotype strict>.5;maxwidth12,window384,12wordoverlap,nested noncrossing decoder; later same Sap64 .65/.92 and old-pool overlap. No fit/no other checkpoint or model.",
   "resource_order": "After confirmed original R1 terminal and actual GPU1 release; complete then hand GPU1 to retrieval oldQwen normalB",
-  "no_new_fit_or_quality": true
+  "no_new_fit_or_quality": true,
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "exact_native_runtime_env_reused": true
 }

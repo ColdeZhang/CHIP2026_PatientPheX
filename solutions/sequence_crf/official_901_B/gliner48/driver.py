@@ -41,6 +41,9 @@ def main():
     assert all('entities' not in x and 'association' not in x for x in docs)
     assert not Path(plan['output']).exists()
     assert shutil.disk_usage(plan['project']).free >= 2*1024**3
+    version_code = 'import importlib.metadata as m,json;print(json.dumps({n:m.version(n) for n in '+repr(list(plan['original_native_versions']))+'}))'
+    versions = json.loads(subprocess.check_output([plan['argv'][0], '-c', version_code], text=True))
+    assert versions == plan['original_native_versions'], versions
     gpus = subprocess.check_output(['nvidia-smi','--query-gpu=uuid,memory.used','--format=csv,noheader,nounits'], text=True)
     processes = subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid','--format=csv,noheader,nounits'], text=True)
     target = [x for x in gpus.splitlines() if x.split(',')[0].strip() == plan['gpu_uuid']]
