@@ -23,3 +23,5 @@
 迁机前置修订：原A800完整部署但从未GPU intent/start；卡交本体full64C。root改为.100 A30 GPU0，原native39 CPU receipt复用。actual249dad20核Torch2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1及两runtime SHA同一，base15件stat仍同旧全SHA证书，tokenizer/config四件新SHA通过，两卡空闲/盘396GB；3个准确目录均无d52。仅四件173197471B私网同字节复制，原完整训练state不迁移。
 
 本机真实同9B native116/128行分别805.858/851.003秒；按输出tokens代理新78约2369秒，1.45余量+150约3585秒，因此root在任何GPUstart前明确唯一共享3600+TERM30，decision-host-budget-v3记录原1800→2400→3600且旧源保留。每seed正式最长10080输入先行、原每行随机种子使排序独立，1600 cap和全部78不改；每行保存实际峰值显存，禁止临时截断/量化/KV变更。
+
+13:51:33四件173197471B已完整私网复制20.214秒，source/destination SHA+fsync/reopen及祖先目录通过；原源保留，0 optimizer/NN。A30最终plan d5c60e9a、package0e8dbe24绑定19件和原CPU3882542a，不跨host假复用部署文件。独立源HTTP180+10原TTL待核关闭；准备源checkpoint后唯一正式GPU启动。
