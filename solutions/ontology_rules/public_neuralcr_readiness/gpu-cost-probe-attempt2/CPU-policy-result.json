@@ -1,0 +1,83 @@
+{
+  "status": "pass_actual_CPU_policy_and_compat_layer_dtypes_no_forward",
+  "source_sha256": "8963faddd0af045e1810ec093f0d14058c580576ed3ed2092eba7d5bc828159d",
+  "plan_sha256": "126ae2db4335ec16596a8681fc3b9ae37a1a7c24021eb52e47a22976596fe6dd",
+  "GPU_hidden": true,
+  "NCR_model_weights_loaded": false,
+  "model_forward_calls": 0,
+  "competition_samples_read": false,
+  "tensorflow": "2.12.0",
+  "tensorflow_file": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/tf-gpu-overlay/tensorflow/__init__.py",
+  "numpy": "1.23.5",
+  "global_policy": "float32",
+  "TF32_enabled": false,
+  "original_native_source_sha256": "e46754e922f3c8aee4ae4bd1788d1b60643c74340c7b8bc366352fe363329e26",
+  "actual_layers": [
+    {
+      "name": "original_compat_Conv1D",
+      "class": "keras.layers.convolutional.conv1d.Conv1D",
+      "compute_dtype": "float32",
+      "variable_dtype": "float32",
+      "weights": [
+        {
+          "shape": [
+            1,
+            100,
+            2
+          ],
+          "dtype": "float32"
+        },
+        {
+          "shape": [
+            2
+          ],
+          "dtype": "float32"
+        }
+      ]
+    },
+    {
+      "name": "original_compat_Dense",
+      "class": "keras.layers.core.dense.Dense",
+      "compute_dtype": "float32",
+      "variable_dtype": "float32",
+      "weights": [
+        {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "float32"
+        },
+        {
+          "shape": [
+            2
+          ],
+          "dtype": "float32"
+        }
+      ]
+    },
+    {
+      "name": "original_HierarchicalAggregate",
+      "class": "ncrmodel.HierarchicalAggregate",
+      "compute_dtype": "float32",
+      "variable_dtype": "float32",
+      "weights": [
+        {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "float32"
+        },
+        {
+          "shape": [
+            2
+          ],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 2.39941680803895,
+  "finished_at": "2026-10-24T02:03:07.439663+00:00"
+}

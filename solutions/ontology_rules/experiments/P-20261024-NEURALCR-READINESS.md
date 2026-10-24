@@ -140,3 +140,5 @@ root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；�
 ### GPU attempt2最小修复准备（未运行）
 
 独立`gpu-cost-probe-attempt2`只将探针harness的`import tensorflow.compat.v1 as tf`改为顶层`import tensorflow as tf`；原ncrmodel.py仍原compat.v1、所有数学/权重/输入不变。先同实际GPU overlay且CUDA隐藏检查global_policy=float32、TF32=false，并实际构建原compat Conv1D/Dense与原HierarchicalAggregate的少量变量核compute/variable dtype；0 forward/0模型权重。GPU子程序cap改170秒+TERM30，原9.198835+新主cap=179.198835≤180。现成输入与CPU参考同机hardlink，避免重复传输；仅新小源码/plan上传。源/plan先push，actualCPU通过并且sequence真实释放后才唯一GPU修复版；新具体失败再停。
+
+GPU attempt2实际部署/同机输入硬链接/编译通过。actualCPU 02:03:05.007840→02:03:07.888770Z，2.880931秒/rc0；TF2.12实际GPU overlay、CUDA隐藏、global_policy=float32、TF32=false，原compat Conv1D/Dense/HierarchicalAggregate compute及全部小变量dtype=float32，0forward/0NCR模型权重。sequence 02:02:19.724010 actual release GPU2无进程/0MiB、收据SHA baf707e6已核；先checkpoint再由NCR自己的fresh UUID/空卡门进入唯一170+30修复版。
