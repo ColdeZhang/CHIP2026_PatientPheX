@@ -10,7 +10,7 @@ F1 固定联合控制已完整完成并通过原门：B4 **.701325377212172→.7
 
 39原件恢复collection3d846e05覆盖88必要文件；78raw/ID从原responses按原complete逐SHA证明字节一致重建，未冒称远端目录/ZIP已冻结。CPU query完整包dd8b73f2/13件与原embedding持久SHA locator保留。统一480685B小包已在.100写入并实际回读核验（db46d892）；完整终审已交validation，仓外 `R/research/grounded-weight-average-v1/F1/`，结果见[evidence/result.json](evidence/result.json)。
 
-F0正在原A100 GPU2执行：47 native输入已8.513秒全PASS，14:54:40.106115Z唯一proc3d9e8637/driver271042/child271060；TERM15:44:40.327297Z、KILL15:45:10.327297Z。只读watcher185906每180秒查原intent，不重启。固定同ed184ecc权重、同CPU FP32查询与唯一B4 .7281956289113009交集终点；完整恢复顺序见 [f0/README.md](f0/README.md)。原39无需尾部，条件授权未使用。
+F0完整47已15:15:01.143707Z rc0成功，1220.816秒；同次GPU2=0MiB/noapps真实释放。原proc3d9e8637无重启或尾部，原3000+30期限未触及。只读watcher已终态退出，当前仅回收原raw与同CPU规范化，尚无F0质量。固定同ed184ecc权重、同CPU FP32查询与唯一B4 .7281956289113009交集终点；完整恢复顺序见 [f0/README.md](f0/README.md)。原39无需尾部，条件授权未使用。
 
 ## 准备阶段记录（授权前历史）
 
