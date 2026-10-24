@@ -1,0 +1,75 @@
+{
+  "execution_ready": false,
+  "mode": "official_B",
+  "source_sha256": "f80669fb7e75305462ae3a15f8153812c82c6ba4ebf5e97d49aa526e9cade39b",
+  "documents": 100,
+  "fixed_source_root": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_selector",
+  "input": {
+    "path": "/workspace/patientphex-data/day1/B.input.jsonl",
+    "bytes": 2060389,
+    "sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
+  },
+  "base": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/rules-table/B.base.jsonl",
+    "bytes": 747311,
+    "sha256": "b15bf7c465367eccd5f3153d611b1dab953268719be74a0a62df6dbafaa7672b"
+  },
+  "sap_candidates": null,
+  "crf": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/B-crf/crf.pred.jsonl",
+    "bytes": 699356,
+    "sha256": "f2cf44cb4f645b3c95c852a9cf4f1647554756357b1371adf539ccf8cce7eafe"
+  },
+  "crf_confidence_policy": "none_original_reference51c5",
+  "hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "train64_origin": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/dev16-multi/source/pred.manifest.json",
+    "bytes": 4979,
+    "sha256": "51c5b7199917aba56b893d45a04d7878e6df8454de0a1acb620372bc3a142813"
+  },
+  "caches": {
+    "pubmed": {
+      "manifest": null,
+      "canonical": null,
+      "provenance": null
+    },
+    "bioformer": {
+      "manifest": null,
+      "canonical": null,
+      "provenance": null
+    },
+    "biobert": {
+      "manifest": null,
+      "canonical": null,
+      "provenance": null
+    }
+  },
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/research/official-best-B-20261024/ontology-three-public/pool/B-prepared",
+  "input_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-highest-901-B-20261024/input-contract.json",
+    "bytes": 1940,
+    "sha256": "2c1690660c58337235e9e11d96633109ac3ac3ffd62fa5e0600980c4b8a2ba21"
+  },
+  "additional_sources": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/rules-table/manifest.json",
+      "bytes": 3925,
+      "sha256": "065df7f022c0b4a8390bbd05d908eb54d0b07bde3ce6a20dacca2df60eea9a92"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/official-901-B/old-pool-cpu/B-crf/manifest.json",
+      "bytes": 3811,
+      "sha256": "beb9191a50a92b9fc04baeaa3c30cca0ce35153c18a28086bb00943c87fefcf2"
+    }
+  ],
+  "binding_notes": [
+    "Fill exact completed B Sap scored-candidate ref and corresponding lineage manifest; do not substitute raw-candidate count records.",
+    "Fill each native B final manifest/canonical/provenance refs; all bind root B input SHA and actual H5 source.",
+    "Verify all three base/Sap/CRF source assets originate from original train64 model; do not add confidence columns.",
+    "Set execution_ready only after all refs and lineage checked; this template cannot run."
+  ]
+}

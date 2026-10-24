@@ -1,0 +1,54 @@
+--- /workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-dev16-cache/run_dev16.py
++++ run_B.py
+@@ -2,7 +2,7 @@
+ import os,sys,time,json,hashlib,io
+ from pathlib import Path
+ R=Path.cwd();SHARED=R.parent/'public-phenotagger-reuse';start=time.monotonic();prepare_only='--prepare-only' in sys.argv
+-OUT=R/('native-dev16-cache-cpu-preparation' if prepare_only else 'native-dev16-cache');OUT.mkdir(exist_ok=False)
++OUT=R/('native-B901-cache-cpu-preparation' if prepare_only else 'native-B901-cache');OUT.mkdir(exist_ok=False)
+ assert os.environ.get('CUDA_VISIBLE_DEVICES')==('' if prepare_only else 'GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1')
+ sys.path[:0]=[str(R),str(SHARED/'native-pipeline/src')]
+ def sha(p):
+@@ -12,9 +12,9 @@
+  return h.hexdigest()
+ def dump(name,obj):
+  (OUT/name).write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+-plan=json.loads((R/'dev16-cache/plan.json').read_text())
++plan=json.loads((R/'B901-cache/plan.json').read_text())
+ for n,digest in plan['remote_source_sha256'].items():assert sha(R/n)==digest,(n,'source SHA mismatch')
+-assert sha(R/'dev16-cache/dev16.input.jsonl')=='c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e'
++assert sha(R/'B901-cache/B.input.jsonl')=='878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4'
+ assert sha(R/'biobert_PT_v1.2.h5')=='1c4d799c667bef5ee0d7daef66ec30fca01f791bce91854566b10630815d7573'
+ import nltk
+ nltk.data.path=[str(SHARED/'nltk_data')]
+@@ -27,7 +27,7 @@
+ import ml_ner
+ ns=dict(ml_ner.__dict__);exec(compile((SHARED/'native-pipeline/fixed_candidate_function.py').read_text(),'fixed_candidate_function','exec'),ns);build=ns['build_ngram_testset_filted']
+ dic=dic_ont({'dic_file':str(SHARED/'native-pipeline/dict/noabb_lemma.dic'),'word_hpo_file':str(SHARED/'native-pipeline/dict/word_id_map.json'),'hpo_word_file':str(SHARED/'native-pipeline/dict/id_word_map.json')})
+-docs=[json.loads(x) for x in (R/'dev16-cache/dev16.input.jsonl').read_text().splitlines()];assert len(docs)==16
++docs=[json.loads(x) for x in (R/'B901-cache/B.input.jsonl').read_text().splitlines()];assert len(docs)==100
+ unique=[];uid={};passages=[];n_candidates=n_tokens=0
+ for doc in docs:
+  assert set(doc)== {'pmc_id','pmid','patient','full_text'}
+@@ -75,10 +75,12 @@
+  else:cache.append(None);missing_indices.append(i)
+ assert len(cache)==len(unique)
+ expected_dictionary=sum(sum(max(0,len(s.splitlines())-1) for s in p['dictionary_tsv'].strip().split('\n\n')) for p in passages)
+-prep={'documents':16,'passages':len(passages),'verified_token_offsets':n_tokens,'candidates':n_candidates,'unique_lower_token_inputs':len(unique),'reused_forward_keys':len(unique)-len(missing_indices),'new_forward_keys':len(missing_indices),'reused_forward_sha256':sha(old_cache_path),'reused_forward_parent_manifest_sha256':sha(parent_manifest_path),'dictionary_candidates':expected_dictionary,'seconds':time.monotonic()-start,'input_sha256':sha(R/'dev16-cache/dev16.input.jsonl')}
++prep={'documents':100,'passages':len(passages),'verified_token_offsets':n_tokens,'candidates':n_candidates,'unique_lower_token_inputs':len(unique),'reused_forward_keys':len(unique)-len(missing_indices),'new_forward_keys':len(missing_indices),'reused_forward_sha256':sha(old_cache_path),'reused_forward_parent_manifest_sha256':sha(parent_manifest_path),'dictionary_candidates':expected_dictionary,'seconds':time.monotonic()-start,'input_sha256':sha(R/'B901-cache/B.input.jsonl')}
+ for key,value in plan['expected_input_only_counts'].items():assert prep[key]==value,(key,prep[key],value)
+ if not prepare_only:
+- prior=json.loads((R/'native-dev16-cache-cpu-preparation/preparation.json').read_text())
++ common_preparation_path=R.parent/'public-phenotagger-biobert/native-B901-census-cpu-preparation/preparation.json'
++ assert sha(common_preparation_path)==plan['shared_CPU_census_sha256']
++ prior=json.loads(common_preparation_path.read_text())
+  for key in ['documents','passages','verified_token_offsets','candidates','unique_lower_token_inputs','reused_forward_keys','new_forward_keys','dictionary_candidates','input_sha256']:assert prep[key]==prior[key],key
+ dump('preparation.json',prep)
+ if prepare_only:
+@@ -152,5 +154,5 @@
+    row={k:p[k] for k in ['pmc_id','passage_index','passage_offset','passage_type']};row.update(local_start=left,local_end=right,offset=p['passage_offset']+left,length=right-left,text=text[left:right],raw_hpo_id=x[2],hpo_id=target,score=float(x[3]));final.write(json.dumps(row,ensure_ascii=False)+'\n');counts['canonical_kept']+=1
+ assert counts['raw_neural_candidates']==n_candidates and counts['raw_dictionary_candidates']==expected_dictionary
+ outputs={p.name:{'sha256':sha(p),'bytes':p.stat().st_size} for p in OUT.iterdir() if p.is_file()}
+-manifest={'status':'complete_predictions_frozen_before_quality_evaluation','plan_sha256':sha(R/'dev16-cache/plan.json'),'source_sha256':sha(__file__),'input_sha256':sha(R/'dev16-cache/dev16.input.jsonl'),'model_weight_sha256':sha(R/'biobert_PT_v1.2.h5'),'model_parameters':model.count_params(),'model_variables':len(model.weights),'strict_native_CPU_load_sha256':sha(R/'../public-phenotagger-biobert-attempt2/native-h5-result.json'),'GPU_first_batch_validation_sha256':sha(OUT/'GPU-first-batch.json'),'old_label_order_sha256':sha(R/'lable.vocab'),'public_model_training_on_task':False,'model_type':'biobert','reused_other_model_logits':False,'reused_forward_sha256':sha(old_cache_path),'reused_forward_parent_manifest_sha256':sha(parent_manifest_path),'new_forward_keys':len(missing_indices),'reused_forward_keys':len(unique)-len(missing_indices),'fixed_policy':plan['policy'],'counts':counts,'inference_seconds':infer_seconds,'elapsed_seconds':time.monotonic()-start,'gpu_uuid':os.environ['CUDA_VISIBLE_DEVICES'],'memory_growth':True,'tf32_default_enabled':tf.config.experimental.tensor_float_32_execution_enabled(),'GPU_peak_memory':tf.config.experimental.get_memory_info('GPU:0'),'outputs':outputs}
++manifest={'status':'complete_predictions_frozen_before_quality_evaluation','plan_sha256':sha(R/'B901-cache/plan.json'),'source_sha256':sha(__file__),'input_sha256':sha(R/'B901-cache/B.input.jsonl'),'model_weight_sha256':sha(R/'biobert_PT_v1.2.h5'),'model_parameters':model.count_params(),'model_variables':len(model.weights),'strict_native_CPU_load_sha256':sha(R/'../public-phenotagger-biobert-attempt2/native-h5-result.json'),'GPU_first_batch_validation_sha256':sha(OUT/'GPU-first-batch.json'),'old_label_order_sha256':sha(R/'lable.vocab'),'public_model_training_on_task':False,'model_type':'biobert','reused_other_model_logits':False,'reused_forward_sha256':sha(old_cache_path),'reused_forward_parent_manifest_sha256':sha(parent_manifest_path),'new_forward_keys':len(missing_indices),'reused_forward_keys':len(unique)-len(missing_indices),'fixed_policy':plan['policy'],'counts':counts,'inference_seconds':infer_seconds,'elapsed_seconds':time.monotonic()-start,'gpu_uuid':os.environ['CUDA_VISIBLE_DEVICES'],'memory_growth':True,'tf32_default_enabled':tf.config.experimental.tensor_float_32_execution_enabled(),'GPU_peak_memory':tf.config.experimental.get_memory_info('GPU:0'),'outputs':outputs}
+ dump('manifest.json',manifest);print(json.dumps(manifest),flush=True)

@@ -1,0 +1,71 @@
+{
+  "scope": "Only accepted highest901 official B fixed threepublic candidate inference, one run; no fitting/threshold choice/gold/quality/upload",
+  "created_at": "2026-10-24T06:34:10.162684+00:00",
+  "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "driver_sha256": "349c0ec408ad7259655f895ba2ad2320db800352dd0b014c630b42ae308ea06d",
+  "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+  "input_contract_sha256": "2c1690660c58337235e9e11d96633109ac3ac3ffd62fa5e0600980c4b8a2ba21",
+  "shared_cpu_census_sha256": "42d9f4dbc554cda918b58ab5ff6b9d8e4b269a574339599374ba64ec2c0854df",
+  "total_cap_seconds": 2400,
+  "TERM_grace_seconds": 30,
+  "models": [
+    {
+      "model": "pubmedbert",
+      "remote_root": "public-phenotagger-reuse",
+      "plan_sha256": "df959495915550ed8300ea293523cfa872ed7c71ebfd704c1e4864f62b5b5766",
+      "weight_file": "pubmedbert_PT_v1.2.h5"
+    },
+    {
+      "model": "bioformer",
+      "remote_root": "public-phenotagger-bioformer",
+      "plan_sha256": "25067b65358e8125677833b44884e4abe55ecbb6cc0cbbdbc5fac60c49af71a5",
+      "weight_file": "bioformer_PT_v1.2.h5"
+    },
+    {
+      "model": "biobert",
+      "remote_root": "public-phenotagger-biobert",
+      "plan_sha256": "a850623343523c0a38fdc76dce6e7ac3dae965e659249af41078fa164462132e",
+      "weight_file": "biobert_PT_v1.2.h5"
+    }
+  ],
+  "order": [
+    "pubmedbert",
+    "bioformer",
+    "biobert"
+  ],
+  "actual_CPU_seconds": 57.819076128304005,
+  "actual_counts": {
+    "documents": 100,
+    "passages": 3794,
+    "verified_token_offsets": 309951,
+    "candidates": 446799,
+    "unique_lower_token_inputs": 362779,
+    "reused_forward_keys": 15145,
+    "new_forward_keys": 347634,
+    "reused_forward_sha256": "6b41083473cc49016671b24d29b9b556899bda667c6ca0d04490455bfdc49139",
+    "reused_forward_parent_manifest_sha256": "26ca138da95bf6dc1610ad2bb942c442556cf7ac770e066016bc0a022da6f695",
+    "dictionary_candidates": 6100,
+    "seconds": 57.819076128304005,
+    "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
+  },
+  "estimate_only": {
+    "prior_dev_new_keys": 50548,
+    "new_keys": 347634,
+    "key_ratio": 6.877304740049063,
+    "projected_pure_NN_seconds": {
+      "pubmedbert": 244.85584422014716,
+      "bioformer": 178.31248091212314,
+      "biobert": 236.93576127158343
+    },
+    "limitations": "Projection only, native preprocessing57.819s each plus actual model loads/decode/provenance and I/O; total2400 budget chosen before any B NN, no reset between phases."
+  },
+  "fixed_policies_preserved": [
+    "original native tokenizer/lowercase/ngram2-8/top3/5decimal strict>.95",
+    "model-specific train64 exact tuple memoization only",
+    "same native per-document dictionary/abbreviation/currentHPO mapping and row order",
+    "original TensorFlow runtime and full native H5 head",
+    "independent raw predictions saved before native hybrid canonicalization"
+  ],
+  "not_started_at_freeze": true
+}

@@ -26,7 +26,7 @@ elif mode=='start':
  job=call('start_process',dict(command=command,cwd=cwd,env=env));dump('job.json',dict(at=now(),command=command,env=env,result=job));print(json.dumps(job))
 elif mode=='inspect':
  j=json.loads((D/'job.json').read_text())['result'];ident=j.get('process_id') or j.get('id');assert ident,j
- r=call('get_process',dict(process_id=ident));dump('latest-process.json',r);print(json.dumps(r))
+ r={stream:call('read_process_output',dict(process_id=ident,stream=stream,cursor=0,limit=32768)) for stream in ['stdout','stderr']};dump('latest-process.json',r);print(json.dumps(r))
 elif mode=='collect':
  code="from pathlib import Path;import json,hashlib; p=Path('native-B901-census-cpu-preparation/preparation.json');b=p.read_bytes();print(json.dumps(dict(preparation=json.loads(b),sha256=hashlib.sha256(b).hexdigest(),bytes=len(b))))"
  r=call('run_command',dict(command='python3 -c '+shlex.quote(code),cwd=cwd,timeout_seconds=20));assert r['exit_code']==0,r;v=json.loads(r['stdout']);dump('collection.json',v);print(json.dumps(v))
