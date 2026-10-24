@@ -1,0 +1,41 @@
+{
+  "stage": "PROSPECTIVE_ORIGINALDEV_FIXED_FULL64_ENDPOINTS",
+  "created_at_utc": "2026-10-24T12:03:15.311219+00:00",
+  "status": "CONFIGURATION_FROZEN_BEFORE_NEW_COMPONENT_TRAINING_AND_QUALITY;source_refs_bound_when_all_complete",
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/support-plus-patient-six-delta/prediction.jsonl",
+    "bytes": 140578,
+    "sha256": "9016863cb3bff53da5dfde25fce634bd60882f057d0c14501be7cb4937e71c67",
+    "Score": 0.7543613981990362,
+    "documents": 16,
+    "patients": 36,
+    "entities": 1061,
+    "relations": 416
+  },
+  "sources": {
+    "grounded": "All exact accepted full64 normalized quote relations, including literal NIL; no confidence/quality selection",
+    "sampled": "Literal full intersection of the two prespecified full64 samples20261024/20261025; same single stream pair already running, no regeneration",
+    "qwen3": "All strict originaldev fulltext outputs of fresh full64 Qwen3-8B 2epochs; component supplies raw, no independent quality"
+  },
+  "endpoints": {
+    "primary_two_of_three": "Preserve all B901; add each literal association present in at least2 of3 complete source sets",
+    "grounded_independent_control": "Preserve all B901; add every grounded full64 source association"
+  },
+  "order": "Complete all16docs/36patients and both predictions; jointfreeze both before either new gold read; evaluate each once with frozen v2 all/text",
+  "evaluator_calls": {
+    "new": 2,
+    "old": 0,
+    "qwen_alone": 0,
+    "component_subsets": 0
+  },
+  "comparison": "Report both against fixed901 and latest actuallycompleted originaldevbest; preserve only strictly higher usable Score. Do not change source selection or algorithm from other ongoing originaldev result.",
+  "no_LR_revival": "F1-trained fixedLR lost its predeclared F0 gate; no LR originaldev endpoint or retraining",
+  "originaldev_is_development_not_blind": true,
+  "no_official_action": true,
+  "model_limit": "Each individual model <=10B, ensemble allowed; full64 fitted ancestors exclude originaldev16.",
+  "root_F0_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/fixed-fusion-and-calibration-F0-root-review/review.json",
+    "bytes": 6611,
+    "sha256": "99e5a6d8b044c20856caa91592f8ed4203a45dadbe720918cbe82f0e8e796a9f"
+  }
+}
