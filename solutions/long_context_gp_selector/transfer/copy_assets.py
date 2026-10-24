@@ -16,6 +16,16 @@ def save(p,v):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('action',choices=['prepare','serve','fetch']);ap.add_argument('--plan',required=True);ap.add_argument('--port',type=int);ap.add_argument('--manifest-sha');ap.add_argument('--admit-before',type=float);a=ap.parse_args();p=json.load(open(a.plan));root=Path(a.plan).resolve().parent
  if a.action=='prepare':
+  import torch
+  from safetensors.torch import save_file,load_file
+  statepath=Path(p['GP23_parent']['path']);assert statepath.stat().st_size==p['GP23_parent']['bytes'] and sha(statepath)==p['GP23_parent']['sha256']
+  assert sha(p['GP23_parent_ACK']['path'])==p['GP23_parent_ACK']['sha256']
+  state=torch.load(statepath,map_location='cpu',weights_only=False);assert state['epochs']==8 and state['actual_adam_updates']==256 and len(state['visits'])==256
+  model={k:v.detach().contiguous() for k,v in state['model'].items()};dest=root/'GP23-model.safetensors';assert not dest.exists();save_file(model,str(dest))
+  with dest.open('rb') as f:os.fsync(f.fileno())
+  reopened=load_file(str(dest));assert model.keys()==reopened.keys() and all(torch.equal(v,reopened[k]) for k,v in model.items())
+  save(root/'GP23-model-manifest.json',dict(status='MODEL_ONLY_FROM_COMPLETE_GP23_STATE_TENSOR_EXACT',parent=p['GP23_parent'],parent_ACK=p['GP23_parent_ACK'],epochs=8,actual_adam_updates=256,visits=state['visits'],tensors=len(model),file=dict(bytes=dest.stat().st_size,sha256=sha(dest)),not_resumable_checkpoint=True))
+  del state,model,reopened
   rt=root/'runtime.tar.gz';assert not rt.exists();members=[]
   with tarfile.open(rt,'w:gz',compresslevel=1) as tar:
    for n in p['runtime_names']:
@@ -24,7 +34,7 @@ def main():
      if f.is_file() and '__pycache__' not in f.parts and not f.name.endswith('.pyc'):
       name=str(f.relative_to(q.parent));assert not f.is_symlink();tar.add(f,arcname=name,recursive=False);members.append(dict(name=name,bytes=f.stat().st_size,sha256=sha(f)))
   with rt.open('rb') as f:os.fsync(f.fileno())
-  files={**p['source_files'],'runtime.tar.gz':str(rt)};manifest={}
+  files={**p['source_files'],'runtime.tar.gz':str(rt),'GP23-model.safetensors':str(root/'GP23-model.safetensors'),'GP23-model-manifest.json':str(root/'GP23-model-manifest.json')};manifest={}
   for name,path in files.items():
    q=Path(path);manifest[name]=dict(bytes=q.stat().st_size,sha256=sha(q))
    if name in p['expected']:assert manifest[name]==p['expected'][name]

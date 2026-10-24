@@ -23,9 +23,10 @@ def main():
   model=load_model(cfg['model'],dest/'loading.json');optimizer=None;scheduler=None;logs=[];steps=0;visits=[]
   if job['reuse']:
    assert name=='inner0';cp=Path(cfg['GP23_checkpoint']['path']);assert ref(cp)==cfg['GP23_checkpoint']
-   state=torch.load(cp,map_location='cpu',weights_only=False);assert state['epochs']==8 and state['actual_adam_updates']==256
+   from safetensors.torch import load_file
+   state=json.load(open(cfg['GP23_model_manifest']['path']));assert ref(cfg['GP23_model_manifest']['path'])==cfg['GP23_model_manifest'];assert state['epochs']==8 and state['actual_adam_updates']==256
    assert set(state['visits'])=={r['row_id'] for r in train} and len(state['visits'])==256
-   model.load_state_dict(state['model'],strict=True);del state
+   model.load_state_dict(load_file(str(cp)),strict=True);del state
    save(dest/'reuse.json',dict(status='READ_ONLY_GP23_MODEL_STATE_REUSE_NO_OPTIMIZER_FIT',checkpoint=ref(cp),train_ids=job['train_ids']))
   else:
    assert name in ('inner2','inner3','final48');optimizer=torch.optim.AdamW(model.parameters(),lr=3e-5,weight_decay=.01)

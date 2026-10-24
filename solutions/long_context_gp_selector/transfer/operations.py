@@ -13,7 +13,7 @@ def main():
    v=call(D,'write_file',dict(mount_id=mount,path=rel+'/'+n,content=(S/n).read_text(),encoding='utf-8',create_parents=True),'deploy-'+a.action+'-'+n)
   save(D/(a.action+'.json'),dict(completed=time.time()))
  elif a.action=='prepare':
-  save(D/'prepare.intent.json',dict(at=time.time(),no_retry=True));v=call(D,'run_command',dict(mount_id=mount,cwd=rel,command='python3 copy_assets.py prepare --plan copy-plan.json',env={'CUDA_VISIBLE_DEVICES':''},timeout_seconds=120),'prepare-assets');save(D/'prepared.json',v);assert v['exit_code']==0;print(v['stdout'])
+  save(D/'prepare.intent.json',dict(at=time.time(),no_retry=True));v=call(D,'run_command',dict(mount_id=mount,cwd=rel,command=shlex.join([p['source_python'],'copy_assets.py','prepare','--plan','copy-plan.json']),env={'CUDA_VISIBLE_DEVICES':''},timeout_seconds=120),'prepare-assets');save(D/'prepared.json',v);assert v['exit_code']==0;print(v['stdout'])
  elif a.action in ('serve','fetch'):
   admit=time.time()+180;argv=['timeout','--signal=TERM','--kill-after=10',str(450 if source else 300),'python3','-u','copy_assets.py',a.action,'--plan','copy-plan.json','--admit-before',str(admit)]
   if not source:
