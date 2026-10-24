@@ -1,7 +1,11 @@
 # 工作台账
 
-2026-10-24：从实际main20fa611b独立建explore/patient-competition-loss。旧geometry已经有效负结案；47新增FP中31为概念属于其他患者，驱动本次同概念跨患者目标控制。
+2026-10-24：同文同概念患者MLCCE固定控制完整负结案。主 **.675529387933** < 强B **.686338981272**；89新增14TP75FP。独立new-only **.564954220539**，虽比geometry .507641提高.057313，仍低B；按原门关闭，不扫分组/权重/epoch/cut，不迁原dev/官方。
 
-当前：完整源码与配置已准备，CUDA隐藏CPU合同全部通过：1174组/93多正组，原3194袋/813正/1masked正不变；实际13:19:13.270747 UTC唯一proc9a3f/driver2741397已启动，截止13:34:13.270747+TERM30，768step/16/39/规范化共享900；首8步有限，3.77GB。尚未质量。只替换患者bag BCE为grouped MLCCE，原数据/模型/geometry/optimizer全部继承。源和CPU证据先push后唯一完整900+30。
+从main20fa611b独立建分支，实际源a7535827、作业指针099e59a8均核推。原geometry模型/参数/RNG/baglogits/NER完整继承，只换患者loss与自然尺度。1174概念组/93多正组，原3194袋813正1masked正不变，无新tokenize或NNprobe。
 
-原metadata、原8/24/geometry结果不改写。本线完整raw/模型/日志在仓库外新namespace。已知F1开发背景，非盲测。完整终点后统一增量审。
+完整24×32/768、16篇39患者推断+固定规范化264.241秒，13:23:37.510430实际释放.100GPU0。109187763参数，206末权重CPU逐值重开，文件+两指定父目录fsync，非optimizer/RNG full-resume。
+
+主相比geometry−.001265（micro降/macro升），比无几何24+.006344；弱端点改善不能替代强目标。原B471关系/1189实体及非关联对象全保，两预测共冻→唯一2v2/old0。62原包成员313600B/7a0560c4已全SHA回收，质量43内容118714B/ba6b01c8亦远端文件+父目录fsync及全回读；终态manifest636e43ca已单件fsync/readback。集中增量审入口已交付。
+
+恢复入口：仓库外 `/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/` 的quality-v1/result.json、assembled-v1/joint-freeze.json、collection-receipt.json；无在途GPU/新质量意图。
