@@ -1,0 +1,9 @@
+{
+  "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "command": "python3 -c 'import subprocess,json;cmds=[['\"'\"'hostname'\"'\"','\"'\"'-I'\"'\"'],['\"'\"'ip'\"'\"','\"'\"'-4'\"'\"','\"'\"'addr'\"'\"','\"'\"'show'\"'\"'],['\"'\"'ip'\"'\"','\"'\"'-4'\"'\"','\"'\"'route'\"'\"','\"'\"'get'\"'\"','\"'\"'10.5.2.100'\"'\"']];out=[]\nfor cmd in cmds:\n p=subprocess.run(cmd,text=True,capture_output=True);out.append({'\"'\"'command'\"'\"':cmd,'\"'\"'returncode'\"'\"':p.returncode,'\"'\"'stdout'\"'\"':p.stdout,'\"'\"'stderr'\"'\"':p.stderr})\nprint(json.dumps(out))'",
+  "cwd": ".",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "timeout_seconds": 15
+}
