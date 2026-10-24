@@ -29,3 +29,7 @@
 - 固定 .100 GPU0 UUID `GPU-126293b9-6677-8464-cee7-01e693efbf29`，首次实际只读24164MiB空闲；启动器再核fresh无进程，GPU1不使用。原C32 adapter `2c777e88`，53 fresh/27历史三类文件原字节cache，14848/1600，唯一1200+TERM30。
 - 入口见 evidence/GPU-ready.json，外部 `research/response-code-equivariance-v1/gpu-v1`；plan `a20c972a`，quality plan `e140395e`。本段为事前准备，尚无GPU job/新质量。
 - 两完整端点共冻后主变化1v2（若B4字节exact则继承0）、诊断1v2、旧0。仍为mapping+host/runtime开发实验，无自动F0/dev/官网；诊断单臂若独胜B4也上报root。
+
+## 13:36:35 UTC：唯一模型作业已启动
+
+`proc_d8c112f4-496a-43cd-874b-7c738d093e7d` / PID2743313，91部署成员逐SHA/fsync/compile完成；源检查点 `876b02b8` 已推送且ls-remote核验。模型终点尚未到，检查原namespace见 `evidence/GPU-job.json`，禁止unknownstart重复。额外合成固定交集/非关系字节合同0.000642秒通过，无真实gold/评测。
