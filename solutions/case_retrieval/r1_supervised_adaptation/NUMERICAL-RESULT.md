@@ -16,3 +16,5 @@
 23份小文件已从server恢复逐大小/SHA，3份完整LoRA梯度、actual logits、2份监督梯度共702,371,164B留在.100自有外部目录并有SHA/fsync；Git只留指针。实际GPU1释放0MiB/free24164MiB，原GPU0作业未触碰。源仍有非有限分支先检查再保存的观察缺口，本次所有梯度finite通过，未触发该分支；后继需要先存失败可观察性，不能宣布该分支已验证。
 
 下一H51压力探针应单独冻结：可依据相同actual logits的CE合同，加有限值、真实Adam更新、base冻结等工程门；旧跨完整backward allclose保留诊断。该替代需明确原证据边界，不把旧失败改成成功。本次没有自动启动Adam/累积最长或正式训练。
+
+统一独立终审`55524bf2…`已核上述输入/RNG/logits、全部finite、实际终点与释放；原`615e4193…`失败结案保持。root另授权独立H51 stress v2 420+TERM30，源`stress_probe.py`/`stress-plan.json`先发布后执行；不再重复native三次，不修改原allclose数值或结果。

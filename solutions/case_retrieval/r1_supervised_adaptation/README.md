@@ -21,3 +21,5 @@ root已授权`.100 A30 GPU1`一次420秒+TERM30探针，源`gpu_probe.py`、固�
 执行前fresh核GPU UUID/空闲/进程/空间和全部9件模型SHA；探针状态随进程丢弃，不保存adapter或产出质量。完整训练尚未授权。工程输出与失败在外部`R/research/r1-supervised-adaptation-readiness-20261024/gpu-probe-v1`；单独原CPU冻结plan不改。
 
 唯一工程探针已在最短真grad比较停止，见[失败结案](GPU-PROBE.md)，未执行Adam/最长。新独立数值诊断仅180+TERM30：同最短nativeA/nativeB/selected三个真实梯度，先存loss、每504tensor统计和完整外部梯度，再判原容差；同一冻结actual logits另做CE梯度，区分模型路径与loss。无optimizer/参数更新/质量/门槛改动，约0.71GB有界tensor仅在.100自有外部目录。
+
+[数值诊断](NUMERICAL-RESULT.md)已完整36.693秒结束并终审55524bf2通过。root授权独立H51 `stress_probe.py`/`stress-plan.json`420+TERM30：沿同124原配方与旧12行诊断顺序，8条更新+3累积后最长；CE工程门沿已有同实际logits exact证明，旧跨backward allclose仅保留失败诊断、不改阈值。每步先存idx/loss/finite/stat再断言，CPU合成NaN验证先存证据路径。未授权正式训练。
