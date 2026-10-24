@@ -183,3 +183,6 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 ### 局部注意力乘积不能自动变成全文证据
 
 ATLOP原局部乘积需要两端attention支持相交；独立passage编码下本train32有1616/2506候选对不满足，不能只把“所有窗口都编码了”称为跨段条件聚合。原longseq仅首/尾512，prepro默认截1022；新全文510/overlap128映射覆盖全部occurrence，但仍1065候选对不共窗，需独立的全局pair query。公开公式可独立实现，未找到许可的官方代码不复制。打包减少固定pad位置，却增加实际token和动态pad attention格数，先测真实吞吐再定预算。详见[本次CPU可行性](experiments/pair-conditioned-document.md)。
+
+
+- 2026-10-24，全局pair-conditioned聚合与uniform同容量/同全文窗口的正式8轮对照：pair在固定F1比uniform高.01581，但仍比同池旧SFT低.10312，误报显著增加；两臂训练正常/损失下降不构成替换依据。当前配置关闭，不能把该控制记作未尝试，也不能由一次独立实现推成所有ATLOP类模型无效。协议与完整负结论见[文档聚合记录](experiments/pair-conditioned-document.md)。
