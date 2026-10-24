@@ -1,0 +1,86 @@
+{
+  "policy": "fixed_old1a703b_official901_B_arm_v1",
+  "arm": "normal",
+  "project_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "launcher_sha256": "4cad4674c60555ddaedbeecc6aac6f7724507fe29f8c083c13de77f2e3e93995",
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/full64-dev-transfer/adapter-epoch002",
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "local_files": {
+    "qwen35_runner_raw_first.py": {
+      "bytes": 17112,
+      "sha256": "fe98e76d3692401df9207f67ace24cef57249944ef846b08bc45f8675e0e1333"
+    },
+    "launch_arm.py": {
+      "bytes": 5422,
+      "sha256": "4cad4674c60555ddaedbeecc6aac6f7724507fe29f8c083c13de77f2e3e93995"
+    },
+    "prompts.jsonl": {
+      "bytes": 5395086,
+      "sha256": "3a8e0a211797cd1136e5b36b606ad20fc89c83f8598a24779466d1ae9f9c0a31"
+    },
+    "native-audit.json": {
+      "bytes": 212920,
+      "sha256": "8c2f448842ff855cad31e1ff185a1ed623fada4ef3ea48324ce43806a0afc3ea"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "rows": 420,
+  "input_tokens": 1239063,
+  "maximum_input_tokens": 6051,
+  "cap_seconds": 4080,
+  "term_grace_seconds": 30,
+  "minimum_disk_free_bytes": 77377024,
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/relations-preparation/actual-v1/preparation.json",
+    "bytes": 6592,
+    "sha256": "4f6f06a547772b920c452fde71c21d38554b5abf207c682ae59d0f6cfaa9d931"
+  },
+  "native_audit": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/relations-preparation/actual-v1/normal.native-audit.json",
+    "bytes": 212920,
+    "sha256": "8c2f448842ff855cad31e1ff185a1ed623fada4ef3ea48324ce43806a0afc3ea"
+  },
+  "input_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-highest-901-B-20261024/input-contract.json",
+    "bytes": 1940,
+    "sha256": "2c1690660c58337235e9e11d96633109ac3ac3ffd62fa5e0600980c4b8a2ba21"
+  },
+  "budget": {
+    "prior_responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/full64-adapter.responses.jsonl",
+      "bytes": 20480,
+      "sha256": "73392125335b52d203173b0b622ce096d6e6f1ca8f77e64d1eb3bbd7fbc396a6"
+    },
+    "prior_rows": 64,
+    "prior_input_tokens": 202743,
+    "prior_output_tokens": 3845,
+    "prior_full_seconds": 341.386,
+    "ratio": 6.5625,
+    "predicted_seconds": 2240.3456250000004,
+    "formula": "ceil60(1.75*priorSeconds*max(newRows/oldRows,newInputTokens/oldInputTokens)+120), min600",
+    "limitation": "Cost estimate, not guaranteed completion; hard deadline retains all partial evidence without silent repeat."
+  },
+  "generation": "Unchanged oldgreedy14000/1600, fixed1a703b BF16SDPA, batch1, originalEOS and original decoding; no newfit.",
+  "resource_source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/deployment-contract.json",
+    "bytes": 10619,
+    "sha256": "8aa301e8639c5d7a22221a2ce087fb0e6d94b4183a84acb7a58e1d6b78d504da"
+  },
+  "actual_adapter_presence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/normal_A30-asset-readonly-0640.json",
+    "bytes": 3728,
+    "sha256": "4bd8cccc11a4b54601f96e28948f1417e7e6ca1a1fbc83aeb58dfb719bdb92e3"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/bind_arms.py",
+    "bytes": 6600,
+    "sha256": "db66d5bd30a8fa3d678eb45de567a01866c4bcd3efbd6f1400279003b5cf9111"
+  },
+  "no_quality": true,
+  "no_upload": true
+}

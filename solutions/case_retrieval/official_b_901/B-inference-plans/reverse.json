@@ -1,0 +1,86 @@
+{
+  "policy": "fixed_old1a703b_official901_B_arm_v1",
+  "arm": "reverse",
+  "project_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "launcher_sha256": "4cad4674c60555ddaedbeecc6aac6f7724507fe29f8c083c13de77f2e3e93995",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "adapter": "/dev/shm/patientphex-sequence-full64-reverse-dev-1045",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "local_files": {
+    "qwen35_runner_raw_first.py": {
+      "bytes": 17112,
+      "sha256": "fe98e76d3692401df9207f67ace24cef57249944ef846b08bc45f8675e0e1333"
+    },
+    "launch_arm.py": {
+      "bytes": 5422,
+      "sha256": "4cad4674c60555ddaedbeecc6aac6f7724507fe29f8c083c13de77f2e3e93995"
+    },
+    "prompts.jsonl": {
+      "bytes": 5395086,
+      "sha256": "88cc53a2750e46f55ecc3b25a291c999d48c2df8b08ba6e253ac449f5abc782c"
+    },
+    "native-audit.json": {
+      "bytes": 212921,
+      "sha256": "2b31cca2c378ce6e1db91ac8e4637af4bebf902dec7ca4d9d996d58b4733a442"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "rows": 420,
+  "input_tokens": 1239052,
+  "maximum_input_tokens": 6051,
+  "cap_seconds": 2820,
+  "term_grace_seconds": 30,
+  "minimum_disk_free_bytes": 77377024,
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/relations-preparation/actual-v1/preparation.json",
+    "bytes": 6592,
+    "sha256": "4f6f06a547772b920c452fde71c21d38554b5abf207c682ae59d0f6cfaa9d931"
+  },
+  "native_audit": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/relations-preparation/actual-v1/reverse.native-audit.json",
+    "bytes": 212921,
+    "sha256": "2b31cca2c378ce6e1db91ac8e4637af4bebf902dec7ca4d9d996d58b4733a442"
+  },
+  "input_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-highest-901-B-20261024/input-contract.json",
+    "bytes": 1940,
+    "sha256": "2c1690660c58337235e9e11d96633109ac3ac3ffd62fa5e0600980c4b8a2ba21"
+  },
+  "budget": {
+    "prior_responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/terminal/responses.jsonl",
+      "bytes": 20214,
+      "sha256": "d92793666464fb9c6e8f2d723d8fcdc2b516bfa5cdac14d185a85fc4ee03ab59"
+    },
+    "prior_rows": 64,
+    "prior_input_tokens": 202742,
+    "prior_output_tokens": 3729,
+    "prior_full_seconds": 230.897,
+    "ratio": 6.5625,
+    "predicted_seconds": 1515.2615624999999,
+    "formula": "ceil60(1.75*priorSeconds*max(newRows/oldRows,newInputTokens/oldInputTokens)+120), min600",
+    "limitation": "Cost estimate, not guaranteed completion; hard deadline retains all partial evidence without silent repeat."
+  },
+  "generation": "Unchanged oldgreedy14000/1600, fixed1a703b BF16SDPA, batch1, originalEOS and original decoding; no newfit.",
+  "resource_source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/deployment-contract.json",
+    "bytes": 10619,
+    "sha256": "8aa301e8639c5d7a22221a2ce087fb0e6d94b4183a84acb7a58e1d6b78d504da"
+  },
+  "actual_adapter_presence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-b-901/reverse_and_public_A800-asset-readonly-0640.json",
+    "bytes": 4148,
+    "sha256": "34d9b2a735c6eef387d0bc1a0b9b3760d68be9da0fef65837e5d8854111d6d82"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/bind_arms.py",
+    "bytes": 6600,
+    "sha256": "db66d5bd30a8fa3d678eb45de567a01866c4bcd3efbd6f1400279003b5cf9111"
+  },
+  "no_quality": true,
+  "no_upload": true
+}
