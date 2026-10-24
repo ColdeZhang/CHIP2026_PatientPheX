@@ -13,3 +13,7 @@
 **预锁质量。** primary = `B4 ∪ (原 strict C ∩ cyclic1 strict C)`；diagnostic = cyclic1 strict C 单臂。二者保全B4的实体/患者/非关系字段，完整80装配为16doc后共同freeze；主变化则1 v2，不变则继承B4且0 v2，诊断1 v2，旧0。主 Score 严格大于 `.701325377212172` 才支持讨论F0；报告micro/macro，不以诊断替主、不自动迁原dev或官方。
 
 **限制与决策。** 没有新token成本、GPU或质量结果。原C与未来新视图如host/runtime不同，只能称联合开发控制；不声称纯因果。此次源和本地结果交主线程提交推送，原证明/模型/缓存不变。
+
+## 唯一实际运行的事前冻结
+
+actual native CPU10.9888秒通过；新本地结构增量0.142047秒，81缓存SHA与原generate AST一致。推断 source/plan/quality入口分别见 `../inference/`、`../evidence/GPU-ready.json`、`../quality/final.py`。已授权53fresh1200+30、固定两quality。GPU启动与完整结果待实际回执，不将许可写成已执行。缓存canonical中的fresh字段保留历史原字节；本次summary逐index单列 `exact_original_C_single_patient_cache`，不会将27条计入新生成。

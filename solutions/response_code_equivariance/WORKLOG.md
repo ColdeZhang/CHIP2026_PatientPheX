@@ -9,7 +9,7 @@
 - [结构结果](evidence/structural-result.json) `9d181088…`；新全量输入 `1c372b6e…` /2,893,388 B，留仓库外。原27行三类文件的81件 SHA 已核，只有引用，没有新解析/生成。
 - [native CPU 模板](evidence/native-plan.template.json) 绑定历史 .100 Torch2.7.1/TF5.20.2/tokenizers.23.1/PEFT.21.2，120+5；当前未运行，新 token 总量、max、输入 cap 均为 null。
 - 禁止额外排列/seed/训练/组合扫描；旧 strict parser 原字节复用。没有新模型、质量或官方提交。
-- 本子任务未 Git；主线程统一审阅、commit/push。不得把当前工作树文件存在称为远端已备份。
+- 该分支现由本路线 owner 独占维护 Git；运行前及时提交推送，核远端后记录。
 
 ## 下一步
 
@@ -22,3 +22,10 @@
 ## 2026-10-24 13:30 UTC：实际完整native CPU通过
 
 唯一.100proc156e646f/PID2742802，120+5，实际11.7197s rc0/native10.9888s，8件全SHA。53新/27原cache、685372total/max14570/guard14848，原证据/IDs及逆映射完整。实际runtime2.7与原A1002.6差异明确。见CPU-REPORT.md及evidence/native-CPU-result.json；GPU/quality未启动，等待root排卡，原full64优先。
+
+## 2026-10-24：获准唯一 GPU / 两固定质量，源已冻结
+
+- 原 actual native 完整80已过；新增本地0.142047秒缓存/严格逆映射/生成AST合同通过，见 evidence/GPU-source-CPU-contract.json。没有重tokenizer、模型或质量。
+- 固定 .100 GPU0 UUID `GPU-126293b9-6677-8464-cee7-01e693efbf29`，首次实际只读24164MiB空闲；启动器再核fresh无进程，GPU1不使用。原C32 adapter `2c777e88`，53 fresh/27历史三类文件原字节cache，14848/1600，唯一1200+TERM30。
+- 入口见 evidence/GPU-ready.json，外部 `research/response-code-equivariance-v1/gpu-v1`；plan `a20c972a`，quality plan `e140395e`。本段为事前准备，尚无GPU job/新质量。
+- 两完整端点共冻后主变化1v2（若B4字节exact则继承0）、诊断1v2、旧0。仍为mapping+host/runtime开发实验，无自动F0/dev/官网；诊断单臂若独胜B4也上报root。
