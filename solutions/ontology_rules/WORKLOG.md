@@ -12,7 +12,8 @@
 
 - 用户最新明确授权只提交当前最高分方法，覆盖此前“暂不上传”的阶段约束；root统一协调提交与回执，不查询官方成绩。
 - 冻结方法901原dev Score .754361398199；B输入878fe248/2060389B，100文献/244患者/3802段，公共合同2c169066。Task1沿train64规则/Sap64/CRF、三public和固定103特征/LGB803b，不fit、不调阈值、不混day1 train80。
-- 本owner只追加三public原native候选及103特征pool；sequence提供共同底座，retrieval固定LGB .3与关系组装。原公共H5/TF2.12环境在A100 mount476f完整，06:28 fresh GPU2空；root安排先三public后patient。先唯一CPU census600+5，实际计数后冻结顺序GPU总预算。
+- 原dev纯重建18ac gzip及内容byteexact（1.862476s），Bioformer中间候选值/类型/字段顺序也exact；Task1沿原crf_confidence:null，不加入confidence。源码f80669fb。
+- 本owner只追加三public原native候选及103特征pool；sequence提供共同底座，retrieval固定LGB .3与关系组装。原公共H5/TF2.12环境在A100 mount476f完整，06:28 fresh GPU2空；root安排先三public后patient。唯一CPU census57.819秒完成，100doc/3794有效段/446799候选/362779unique/347634fresh、6100dictionary；CPU42d9。已冻三模型顺序总2400+30/单绝对deadline，源plan6fc113a8；唯一proc_f3f4ef06/PID199194于06:34:37.589启动，原native与threshold不变。
 - 全文formal8400训练已完成源码部署，但无campaign、无epoch job、无GPU启动；因官方优先暂停，保留私有目录与源码，仅在root确认本次提交接收后恢复。[暂停收据](qwen35_sft32_full_report_training_readiness/formal_train/controller/paused-before-GPU-official-priority.json)。
 
 ## 当前：两折全文输入对照结案；更强缓存对照与训练CPU可行性准备
