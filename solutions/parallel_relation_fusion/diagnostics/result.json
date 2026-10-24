@@ -1,0 +1,100 @@
+{
+  "at_utc": "2026-10-24T13:41:26.337774+00:00",
+  "prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-20261024/originaldev-v1/two_of_three.prediction.jsonl",
+    "bytes": 127289,
+    "sha256": "05cfa90fdcba16371ddc6fb06aabdabfbcfd1cf631fc30101d98b3e40dd0d5ba"
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/day1/dev16.gold.jsonl",
+    "bytes": 443056,
+    "sha256": "c1f0f24a58b62bb898eb672550dc58247ddb9a0e8768c6f899812cfc327cc050"
+  },
+  "evaluator": {
+    "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+    "bytes": 10539,
+    "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/explore-parallel-relation-fusion/solutions/parallel_relation_fusion/diagnostics/best_error_buckets.py",
+    "bytes": 4276,
+    "sha256": "a9450920e8fffcfe1713d316a1f5a09bc9e3326a559b466e78086af9216a39f8"
+  },
+  "counts": {
+    "patients": 36,
+    "tp": 324,
+    "fp": 96,
+    "fn": 129,
+    "zero_patient_f1": 1,
+    "perfect_patient_f1": 2,
+    "no_predicted_relations": 1,
+    "FN_Task1_document_supported": 63,
+    "FN_Task1_document_missing": 66,
+    "FP_other_gold_patient_same_concept": 28,
+    "FP_no_gold_relation_or_entity": 52,
+    "FP_no_gold_relation_but_gold_entity": 16
+  },
+  "groups": {
+    "gold_relations_6-15": {
+      "patients": 21,
+      "tp": 166,
+      "fp": 44,
+      "fn": 53,
+      "gold_relations": 219,
+      "predicted_relations": 210,
+      "patient_macro_f1": 0.7714559575843222
+    },
+    "multi_patient_doc": {
+      "patients": 29,
+      "tp": 240,
+      "fp": 71,
+      "fn": 96,
+      "gold_relations": 336,
+      "predicted_relations": 311,
+      "patient_macro_f1": 0.7120464833643595
+    },
+    "single_patient_doc": {
+      "patients": 7,
+      "tp": 84,
+      "fp": 25,
+      "fn": 33,
+      "gold_relations": 117,
+      "predicted_relations": 109,
+      "patient_macro_f1": 0.7179566948730711
+    },
+    "gold_relations_1-2": {
+      "patients": 4,
+      "tp": 4,
+      "fp": 4,
+      "fn": 1,
+      "gold_relations": 5,
+      "predicted_relations": 8,
+      "patient_macro_f1": 0.725
+    },
+    "gold_relations_3-5": {
+      "patients": 4,
+      "tp": 7,
+      "fp": 7,
+      "fn": 8,
+      "gold_relations": 15,
+      "predicted_relations": 14,
+      "patient_macro_f1": 0.38809523809523805
+    },
+    "gold_relations_16+": {
+      "patients": 7,
+      "tp": 147,
+      "fp": 41,
+      "fn": 67,
+      "gold_relations": 214,
+      "predicted_relations": 188,
+      "patient_macro_f1": 0.7174412600037431
+    }
+  },
+  "relation_macro": 0.7131956911577199,
+  "new_v2": 0,
+  "new_predictions": 0,
+  "fit_calls": 0,
+  "model_calls": 0,
+  "development_gold_diagnosis": true,
+  "causality": "Descriptive partitions only; gold-entity support does not prove predicted mention boundaries, no per-patient rule or label-derived resource created."
+}
