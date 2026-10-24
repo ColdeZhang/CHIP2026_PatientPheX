@@ -1,0 +1,55 @@
+{
+  "status": "fixed_dev_inference_and_unique_quality_protocol_before_new_dev_NN",
+  "source_sha256": {
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_dev_transfer/predict_dev.py": "94df40e0d61ab66b81358022c632c40a9d207425ab54f58439e47ded70c88c13",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_dev_transfer/finalize_dev.py": "b80b4044afbeb8ec9b5309743aa6687645123d3ee69a2d584d6db707fc1f159b",
+    "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_phenotagger_biobert_dev_transfer/run_phase.py": "9e2691609573c450a5785647cb9e3f0dc0be49ef916e83a4baf067b78a1be271"
+  },
+  "model_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fitted/manifest.json",
+    "sha256": "5dcd974800716b6bef80ccf26132f7f7655368e5bac232dea5ec79f5023497a4",
+    "bytes": 15114
+  },
+  "fit_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/fit-plan.json",
+    "sha256": "e66e75a5de976b2b69b9be72b0a2c738bcd5088d5196b8ae972f9c502b1b541b",
+    "bytes": 8064
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.jsonl",
+    "sha256": "d531f2ee098d56dc7a40551eca147c046eb548469f8bff11947555afff557440",
+    "bytes": 137435
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.metrics.json",
+    "sha256": "271dbdf0fe447f8a186fae16a7b6d35aec0e72cd6ba9b7cb43efdd161625314d",
+    "bytes": 12877
+  },
+  "baseline_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/complete-freeze.json",
+    "sha256": "f1d7e752641d0e7e3fa72383fc21c11e60dfab2f17dc0fb4632898c63d67a501",
+    "bytes": 1145
+  },
+  "input": {
+    "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+    "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "bytes": 294884
+  },
+  "cut": 0.3,
+  "selector": "one frozen HGB160; same six independent BioBERT source features and current proper-nesting decoder",
+  "predict_CPU_cap_seconds": 30,
+  "finalize_CPU_cap_seconds": 30,
+  "nonentities": "Current d531 template all nonentity objects and 368 relationships unchanged; no support rerouting",
+  "new_cache": "Only fixed 2-8gram/5dp top1>.95/nativehybrid same BioBERT dev16; expected 4655 same-model reuse/50548 new forward; actual complete hashes will bind before prediction",
+  "parameters": {
+    "current_pipeline_shared_once": 9475880164,
+    "new_independent_BioBERT": 121587826,
+    "total_shared_weights": 9597467990,
+    "adapters": "Actual adopted Qwen adapters recorded separately; no closed entity/binary modules added"
+  },
+  "limitations": [
+    "Originaldev development, not blind",
+    "No cut sweep or extra arm",
+    "Model/input scores freeze then complete prediction freeze then one v2 evaluation; baseline metrics reused"
+  ]
+}
