@@ -29,3 +29,6 @@
 
 - F1最小包186758B/a5e63746原write回执UNKNOWN；只读确认原目标已同SHA后fsync文件和祖先、六个≤32768B块实际回读全部成员吻合，无重传。回执ec20bb53见 [备份](evidence/F1-minimal-backup.json)。
 - root批准同后设整行弃答协议转F0：全47/16/947，原B4 343/.728195628911；相同GLiNER2.5 task1 final10缺F0输出，现成54a88544权重，真实172窗62940 word tokens，先唯一次600+30与原accepted归一化必要Sap180+30，再完整47 trie2400+30。strong fold0现成79d3568e且全部训练祖先排F0，GLiNER/alias32=F2F3。F0 source/pool准备中，暂无新GPU；仅复用stage8相同输入17f9607e，不复用其异模型预测。
+
+- F0同GLiNER172窗原唯一job proc_a87b4ea4、child2750169实际15:22:28.700565启动，原600+30；15:22:55.337158完整rc0、26.639秒，GPU0 15:22:55.352522真实0/noapps，GPU1他线不碰。1207 selected，原ZIP3355845B/cb201713回读中，尚未accepted pool。
+- document_relations交F0后处理源码与两个合成合同，source-manifest ae6cb6dd。本线只读实核原315继承B⊆B4/S/Q、16/47/947与343B4；旧G/S/Q/C支持union在B4外141，见f0/old-support-contract.json。无F0新质量。
