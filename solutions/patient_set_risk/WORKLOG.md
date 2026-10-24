@@ -52,3 +52,5 @@ sequence的F047+必要27Sap链已于16:36:26.770621释放.100GPU0，原wrapper33
 无模型CPU针对性实际API合同复现：synthetic祖先min_p=.3在caller min_p=None时被继承；把underlying默认重置为仅原EOS/pad/bos的fresh config后，min_p=None，固定T1/topk0/top_p1原值不变。CUDA未初始化，未实例化/下载模型。`pilot.py`现保存原model config与每条actual prepared config，核有效参数和唯一不改logits的observer；根线程认可机械修补，不改采样配方、预算或门。小证据 `evidence/generation-default-contract.json`。
 
 原91b6执行绑定与已部署v1 namespace完全保留、未admit/start。新增v4绑定使用pilot-A100-v2新namespace，原fixed4 inputs相同。没有重跑旧loss/normalizer数学或另做整套源审。
+
+v4新namespace的10件部署完整fsync/reopen通过，原v3部署完全保留。新inputs仍为86,878B/1c78f25a，无输入变化。`evidence/deployed-A100-generation-reset.json`是当前部署入口；没有admission/start。准确前序owner为ontology_recover_0518，须等待其seed39真实释放.12GPU2，schema_extraction只管另一台.100GPU1，不能混用释放信息。
