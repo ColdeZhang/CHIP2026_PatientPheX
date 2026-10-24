@@ -66,3 +66,7 @@ FLA A已在原截止内完成，新8次N/F/N/F及40原dtype张量333,805,160B留
 后备规模输入普查已完成，不扩大当前训练：旧SFT48的204行/48篇纯prompt共1,678,769 tokens、最长14,390；full64的265行/64篇共2,197,146、最长16,245。分别1/2行已超当前训练cap13,824，full64还有1行超当前推断cap14,400；这些仅是没有assistant目标的输入长度下界，不可直接套旧cap或按比例承诺耗时。候选/患者/原字段保持、native/Auto/template IDs及decode精确，CPU23.248秒。原2.067秒版本断言失败源于漏private PYTHONPATH，独立恢复只补完整已验env、无CUDA/模型；结果d538d126，详见本体分支`qwen35_sft32_full_report_training_readiness/FUTURE_SCALE_INPUT_READINESS.md`。
 
 两项后备研究不立项：[same-span两阶段排序](../research/two-stage-entity-ranking-readiness-20261024/REPORT.md)先核a465的54项nested来源排除F1，再作一次train48组普查.414秒；44,865组中98.81%单候选、仅116正负竞争组，241缺span与207缺支持ID无法靠固定池排序修复。检测/链接分离仍是不同机制，但当前没有新增支持证据。[患者键置换](../research/patient-key-equivariance-readiness-20261024/REPORT.md)发现模型使用原始patient_id，O编号含原文临床语义，没有独立内部code；直接循环交换可能错配临床身份，重渲染还影响anchor截断/marker排序。因此没有改写数据、fit、NN或质量，不把二者记成已跑出的负分数。
+
+09:19后继决定：患者α原正式已09:17:01完整rc0，1466.506秒/32calls，两epoch durable readback均true；owner正在原collector核实际完整状态，再按已冻结80fresh/600+30进入质量。全文原epoch2继续。检索另接旧BioLinkNER相对强public池的单次训练内F0供给统计（≤60秒CPU、先核排除F0、无新fit/v2），只有独立正确候选供给才考虑以后拟合。
+
+FLA A的新证据支持一次**独立推断变体**质量控制：自重复exact，但跨backend长输入存在真实差异，仍不称透明替换；原门和失败不改。固定旧4f48、F1全文normal80完整输入、greedy1600，全部fresh，单独1200+30；primary为FLA-alone、diagnostic为N∪FLA，对N .676546354663，完整共同freeze后新各1v2/旧0、macro披露。复用已验raw-first与写入器，唯一空卡门后启动；当前两个native模型不改变，不附带FLA训练B/C或F0/dev。这是root明确新增的质量实验决定，取代此前仅A后等待的边界，不推断一定提速或涨分。
