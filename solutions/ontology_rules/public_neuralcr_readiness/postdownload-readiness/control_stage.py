@@ -20,9 +20,10 @@ ref = lambda p: {'path': str(p), 'bytes': p.stat().st_size, 'sha256': sha(p.read
 parser = argparse.ArgumentParser()
 parser.add_argument('action', choices=['prepare','start','collect'])
 parser.add_argument('stage', choices=STAGES)
+parser.add_argument('--assets-state', type=Path, default=BASE/'state.json')
 a = parser.parse_args()
 planfile, resultfile = STAGES[a.stage]
-state = read(BASE/'state.json')
+state = read(a.assets_state)
 assert state['status'] == 'complete_two_official_assets_verified_native_not_run'
 hp, ft = state['assets']
 assert hp['filename'] == 'HP.tar.gz' and ft['filename'] == 'pmc_model_new.bin'
@@ -62,6 +63,7 @@ if a.action == 'prepare':
               'sources':{'check_native.py':ref(R/'check_native.py')},
               'fixed_synthetic_texts':read(R/'preparation.json')['fixed_synthetic_texts'],
               'scope':'Only four synthetic CPU interface cases; no task inputs, quality or GPU'}
+    plan['verified_assets_manifest'] = ref(a.assets_state)
     write(R/planfile,plan)
     print(json.dumps({'prepared':planfile,'sha256':sha((R/planfile).read_bytes())}))
     raise SystemExit()

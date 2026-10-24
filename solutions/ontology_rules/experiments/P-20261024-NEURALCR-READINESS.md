@@ -48,3 +48,7 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 当前授权仍仅下载/库存/180秒四合成native；将来若考虑替换BioBERT，必须从真正旧双head候选池重建、移除其来源及6字段并fresh HGB，不能保留依赖BioBERT的103列旧模型或缓存却扣除其参数。尚未开展这个质量控制。
 
 01:03环境恢复后已核原PID80371/80372继续执行，同一截止与0失败收据不变，未重复中转；顶部台账已纠正过期attempt2描述。[CPU执行包装](../public_neuralcr_readiness/postdownload-readiness/execution-preparation.json)只准备逐阶段入口：完整库存120秒、条件性窄修120秒、原生四合成180秒，另各15秒TERM清理；实际stage plan须绑定完整资产SHA后先推送。shape/native复用同私有目录硬链接，不再下载或复制大模型；当前未启动任何阶段。
+
+尾段传输遇到共享MCP故障，新只读请求实际返回 `LUNA_OFFLINE`；不是公网资产缺失。已逐SHA核全部203个已计划公网缺口range共1,680,436,557字节在本地完整，另外248,512,512字节旧prefix/片仍在原服务器。原relay按既定逐片3次/3600秒收尾，不自动重开；失败片与原参数来源均保留。[离线状态](../public_neuralcr_readiness/local-relay-attempt3/provider-outage-0111.json)和[本地完整range清单](../public_neuralcr_readiness/local-relay-attempt3/all-local-network-ranges.json)是恢复入口，不能冒称远端fastText完整或native已运行。
+
+01:12实际新只读roundtrip已恢复，原attempt3自然结束为 `incomplete_fragments_preserved`（1681.128秒/12片共6,291,456B失败；非预算耗尽），原writer80372已无、timeout壳无命令字节。主线程授权仍在原01:44:22.681Z截止内的[独立MCP恢复](../public_neuralcr_readiness/relay-recovery-0113/recovery-plan.json)：先全2280个FT片/旧prefix实际SHA库存，仅缺失片用本地原字节写新目录，至多8worker/每片3次、≤512KiB；不重下公网，不重复HP。原失败state/receipt原留，后继完整资产manifest分别引用原HP与恢复FT，不篡改原attempt3终态。源/输入清单本检查点仅准备，尚未传输补缺。
