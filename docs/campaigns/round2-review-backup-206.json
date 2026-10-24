@@ -1,0 +1,65 @@
+{
+  "created_at_utc": "2026-10-24T07:34:57.984912+00:00",
+  "status": "UPLOADED_DURABLE_AND_ACTUALLY_RESTORED_206",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "server": "10.5.2.100",
+  "remote_directory": "day1/coordinator-backup/git",
+  "remote_manifest": "day1/coordinator-backup/git/round2-review-records-206-20261024T072644Z.manifest.json",
+  "files": [
+    {
+      "filename": "round2-review-records-206-20261024T072644Z.tar.gz",
+      "remote_path": "day1/coordinator-backup/git/round2-review-records-206-20261024T072644Z.tar.gz",
+      "bytes": 10375410,
+      "sha256": "4ffe061480e2eac6b551673f506b03a2fe2d550ab20688c323947e7513769bba",
+      "action": "uploaded_verified_and_durable",
+      "kind": "independent_review_records",
+      "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-206-20261024T072644Z.tar.gz"
+    }
+  ],
+  "index_sha256": "78b0c8840ff87a7eeff27869027f54b3ce61b0c12749a0a3d183a7c4638d239f",
+  "index_entries": 206,
+  "member_count": 4770,
+  "indexed_reference_count": 4755,
+  "additional_member_count": 14,
+  "scope": "Exact 206-entry index, 4755 unique indexed references, and14 auxiliary provenance records. Excludes full predictions, training inputs/labels, large raw logs and weights; preserves inherited fixed vocabulary/configuration mappings and short diagnostics. Not a self-contained model environment.",
+  "full_manifest": {
+    "local_path": "/workspace/patientphex-runs/round2-20261023/review-backups/round2-review-records-206-20261024T072644Z.manifest.json",
+    "remote_path": "day1/coordinator-backup/git/round2-review-records-206-20261024T072644Z.manifest.json",
+    "bytes": 1154594,
+    "sha256": "00a018b313d33f079ec1ff30397dccee051b950e58d08a42181960a89620b39e"
+  },
+  "upload_receipt": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/index-next-20261024-0620/staging-candidate-01/local-backup-206/upload-receipt.json",
+    "bytes": 1776,
+    "sha256": "bee2e69b98dfb5514203ae76b541f0be603e8d75afd234df71b71fcb024f37d8"
+  },
+  "verification_record": {
+    "path": "/workspace/patientphex-runs/round2-20261023/review-restore-check-206-20261024T073927Z/verification.json",
+    "bytes": 930,
+    "sha256": "a1ca3ea29b82e22ea5ca6d06a26721e333422fb49ff32aa582139de67f3831b0"
+  },
+  "restore_completion": {
+    "path": "/workspace/patientphex-runs/round2-20261023/review-restore-check-206-20261024T073927Z/restore-complete.json",
+    "bytes": 2740,
+    "sha256": "fafe7c243a9c732d56c30e1f378c91fbc91497d86b036eb621509002a75e3058"
+  },
+  "actual_restore_verification": {
+    "at_utc": "2026-10-24T07:46:38.324084+00:00",
+    "status": "actual_remote_restore_all_unique_regular_members_SHA_pass",
+    "members": 4770,
+    "manifest": "/workspace/patientphex-runs/round2-20261023/review-restore-check-206-20261024T073927Z/round2-review-records-206-20261024T072644Z.manifest.json",
+    "manifest_sha256": "00a018b313d33f079ec1ff30397dccee051b950e58d08a42181960a89620b39e",
+    "archive_sha256": "4ffe061480e2eac6b551673f506b03a2fe2d550ab20688c323947e7513769bba",
+    "archive_bytes": 10375410,
+    "required_member_sha256": [
+      "78b0c8840ff87a7eeff27869027f54b3ce61b0c12749a0a3d183a7c4638d239f",
+      "8793abf5551eb95fcfe5faa8bd95bd0019c7f77cef60a52dafa58ede38584aa5"
+    ],
+    "verifier_sha256": "cca570df6ca8adcdd3bf635d905a49eb2abab97b840c903bcdf01f1913bd05a8",
+    "scope": "Actual remotely downloaded archive; unique regular members, sizes and SHA checked. No model loading, inference, gold read or quality rerun."
+  },
+  "previous_verified_backup_pointer": "docs/campaigns/round2-review-backup-191.json",
+  "base191_snapshot_duplicated_in_current_archive": false,
+  "restore_command": "python scripts/backup_submissions.py restore --manifest docs/campaigns/round2-review-backup.json --destination /workspace/patientphex-restored/reviews206",
+  "restore_note": "Fetch the external full manifest by its remote locator for per-member verification; base191 full index can be recovered from the retained191 archive chain."
+}
