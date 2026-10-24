@@ -6,7 +6,7 @@
 - **关键结论**：旧 G/S∩/Q raw union561 中有31条被交集隐去的单采样支持，跨11文献、三个旧bit模式内都有变化。成熟条件化 simplex 权重可表示此差异，建议固定6参数、向等权2of3收缩的唯一低成本 CPU 控制；覆盖不等于涨分证据。
 - **隔离**：实际 S 适配器4f4815→32文献checkpoint→F2/F3双向候选祖先已绑定；F1候选32，F0候选48排F0。禁止 B1/含F0的train48 gate或其概率进入 F1 特征。
 - **交接入口**：[短报告](REPORT.md)、[来源/祖先](evidence/ancestry-and-source.json)、[无标签计数](evidence/signal-coverage.json)、[公开成熟实现](evidence/public-sources.json)、[无gold合同](evidence/contract.json)。只有一个配方；目标/梯度纯函数已实现，无拟合调用或新预测。
-- **下一步**：完成原dev最小包与实际回读后交回root；没有排队实验/fit/GPU/质量。保留现best，不凭F0微正晋升。
+- **下一步**：原dev50成员/81351B包cb8d837f已服务器落盘/完整实际回读；[备份](evidence/originaldev-backup.json)，receipt aca57b9e。已交回root，没有排队实验/fit/GPU/质量。保留现best，不凭F0微正晋升。
 
 ## 本次边界
 
@@ -25,3 +25,5 @@
 15:22:07 F0持久包完成：首次仅CPU元数据校验命令因字符串占位替换SyntaxError，尚未文件操作；保留原错误、原上传，只读恢复后实际全包回读58成员SHA一致，receipt bc6fa22c。15:23原dev计划另行绑定实际full64 G/S1/S2/Q/C与原B901；原prepared/execution和F0所有结果均不覆盖，暂无额外fit/质量。
 
 15:23:23原dev完整闭合：实际G250/S289/Q265/C300，379 rawunion、30采样分歧；S纯集与原protected源减去B901语义完全核对，零theta重构B4。已学习theta全输出仍425关系=旧B4，直接继承旧bff390f3原文件、旧分.768400942542，0新gold/0v2。所有416 B901关系、1061实体、36患者及对象/原关联前缀保护。原dev另有1篇8患者文献超F1最大7，范围外推限制继续保留。
+
+最终远端检查点8ae43b9e已核origin同SHA。原dev包原件一次上传，首read_file UNKNOWN原错误保留；随后仅对原文件CPU分块完整回读和fsync/reopen，50成员全部SHA一致。无重生成/重传或质量重跑。
