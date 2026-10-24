@@ -60,8 +60,9 @@ def probe(plan, output, cpu, torch, model, named, model_manifest):
     model.train()
     optimizer = torch.optim.AdamW(list(named.values()), lr=1e-4, weight_decay=.01)
     sequence = cpu['stress_initial8'] + cpu['stress_accumulated3'] + cpu['pareto_indices']
-    assert len(sequence) == 13 and cpu['pareto_shapes'] == [[4992, 116], [6155, 113]]
-    assert len(rows) == 265
+    assert len(sequence) == 11 + len(cpu['pareto_indices'])
+    assert cpu['pareto_shapes'] == plan['probe_pareto_shapes']
+    assert len(rows) == plan['recipe']['rows']
     first_B = next(p for name, p in named.items() if '.lora_B.' in name)
     before = first_B.detach().clone()
     durations = []
@@ -95,9 +96,9 @@ def probe(plan, output, cpu, torch, model, named, model_manifest):
     final = inventory(torch, model, named, optimizer)
     assert final['optimizer_states'] == final['gradient_tensors'] == 504
     worst = max(item['seconds'] / item['tokens'] for item in durations)
-    estimate = 1.25 * worst * (2 * cpu['counts']['train']['tokens']) + model_manifest['load_seconds'] + 120
+    estimate = 1.25 * worst * (plan['recipe']['epochs'] * cpu['counts']['train']['tokens']) + model_manifest['load_seconds'] + 120
     return {'status': 'PASS_NEW_FULL64_PARETO_REAL_ADAM_PRESSURE',
-            'native_forward_backward': 0, 'indexed_forward_backward': 13, 'optimizer_updates': 1,
+            'native_forward_backward': 0, 'indexed_forward_backward': len(sequence), 'optimizer_updates': 1,
             'pareto_indices': cpu['pareto_indices'], 'pareto_shapes': cpu['pareto_shapes'],
             'durations': durations, 'final_inventory': final, 'formal_estimated_seconds': estimate,
             'formal_budget_gate': estimate <= plan['budgets']['formal'],
@@ -109,7 +110,7 @@ def epoch_groups(plan, epoch):
     order = list(range(plan['recipe']['rows']))
     random.Random(plan['seed'] + epoch).shuffle(order)
     groups = [order[k:k + 8] for k in range(0, plan['recipe']['rows'], 8)]
-    assert len(groups) == plan['recipe']['updates_per_epoch'] and len(groups[-1]) == 1
+    assert len(groups) == plan['recipe']['updates_per_epoch'] and len(groups[-1]) == plan['recipe']['last_batch_size']
     return order, groups
 
 
@@ -124,7 +125,7 @@ def train(plan, output, cpu, torch, np, model, named):
     receipts, updates = [], []
     first_update_verified = False
     started = time.monotonic()
-    for epoch in range(2):
+    for epoch in range(plan['recipe']['epochs']):
         order, groups = epoch_groups(plan, epoch)
         save(output / f'epoch-{epoch + 1:03d}-order.json', {'order': order, 'groups': groups, 'seed': plan['seed'] + epoch})
         for group in groups:
@@ -167,7 +168,9 @@ def train(plan, output, cpu, torch, np, model, named):
         assert global_step == plan['recipe']['updates_per_epoch'] * (epoch + 1)
         receipts.append(checkpoint(torch, np, model, optimizer, scheduler, output,
                                    epoch + 1, global_step, dict(counts), plan))
-    assert counts == {'rows': 530, 'tokens': 1732990, 'supervised': 30820}
+    assert counts == {'rows': plan['recipe']['epochs'] * plan['recipe']['rows'],
+                      'tokens': plan['recipe']['epochs'] * cpu['counts']['train']['tokens'],
+                      'supervised': plan['recipe']['epochs'] * cpu['counts']['train']['supervised_tokens']}
     assert first_update_verified
     return {'status': 'COMPLETE_FRESH_TWO_EPOCHS_WITH_TWO_DURABLE_ACKS', 'global_step': global_step,
             'counts': counts, 'updates': updates, 'acknowledgements': receipts,
