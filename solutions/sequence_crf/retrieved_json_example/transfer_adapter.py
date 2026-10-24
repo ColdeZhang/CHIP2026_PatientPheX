@@ -13,7 +13,7 @@ def main():
         return r['structuredContent']
     def save(name,x):
         with (b/name).open('x') as f:json.dump(x,f,indent=2);f.write('\n')
-    src=p['adapter_transfer'];server_root='sequence-round2/retrieved-json-example-transfer'
+    src=p['adapter_transfer'];server_root='sequence-round2/retrieved-json-example-transfer-v2'
     # The existing adapter is read-only; server scripts/logs use this own directory.
     server='''from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
@@ -23,7 +23,8 @@ for n,h in ALLOW.items():assert hashlib.sha256((ROOT/n).read_bytes()).hexdigest(
 class Handler(BaseHTTPRequestHandler):
  def log_message(self,*args):pass
  def do_GET(self):
-  name=self.path.removeprefix('/'+PREFIX+'/')
+  prefix='/'+PREFIX+'/'
+  name=self.path[len(prefix):] if self.path.startswith(prefix) else ''
   if self.path!='/'+PREFIX+'/'+name or name not in ALLOW:self.send_error(404);return
   path=ROOT/name;self.send_response(200);self.send_header('Content-Length',str(path.stat().st_size));self.end_headers()
   with path.open('rb') as f:
@@ -46,7 +47,9 @@ ThreadingHTTPServer(('0.0.0.0',PORT),Handler).serve_forever()
     else:raise RuntimeError('Allowlist server not ready')
     downloader='''from pathlib import Path
 import urllib.request,hashlib,json,time,datetime
-started=time.monotonic();target=Path(TARGET);target.mkdir(parents=True,exist_ok=False);allow=ALLOWED;items={}
+started=time.monotonic();target=Path(TARGET)
+assert not target.exists() or (target.is_dir() and not list(target.iterdir()))
+target.mkdir(parents=True,exist_ok=True);allow=ALLOWED;items={}
 for name,digest in allow.items():
  path=target/name;h=hashlib.sha256();size=0
  with urllib.request.urlopen(BASE_URL+name,timeout=25) as response,path.open('xb') as f:
@@ -57,7 +60,7 @@ for name,digest in allow.items():
  assert h.hexdigest()==digest
  items[name]=dict(bytes=size,sha256=digest)
 out=dict(completed_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),files=items,seconds=time.monotonic()-started)
-(target/'transfer.json').write_text(json.dumps(out)+'\\n');print(json.dumps(out),flush=True)
+(target/'transfer.json').write_text(json.dumps(out));print(json.dumps(out),flush=True)
 '''.replace('TARGET',repr(p['adapter'])).replace('ALLOWED',repr(p['adapter_files'])).replace('BASE_URL',repr('http://'+src['host']+':'+str(src['port'])+'/'+src['path_prefix']+'/'))
     save('adapter-transfer-source.json',dict(server_source=server,downloader_source=downloader))
     job=call(p['mount'],'start_process',dict(command='timeout --signal=TERM --kill-after=5s 300s python3 -c '+shlex.quote(downloader),cwd=''))

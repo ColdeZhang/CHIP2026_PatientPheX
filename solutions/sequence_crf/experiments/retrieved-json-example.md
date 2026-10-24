@@ -13,3 +13,5 @@ root已授权唯一600s+TERM30推断：原SFT32 epoch2 adapter `4f4815b6…` / c
 新80原生token/渲染SHA在实际TF5.20.2/tokenizers0.23.1再核，模型完整15文件由旧runner实核。完整响应→原解析/候选/实体→fullpred先freeze，再唯一F1 v2；基线已评Score .6609420026531936复用。保留准则为micro+macro之和严格升、且macro不降，无例数/提示/阈值扫描、不原dev。当前只有输入准备，不宣称推断或质量已完成。
 
 准备与真实source恢复见 [CPU证据](../evidence/round2/retrieved-json-example-preparation.json)、[正式计划](../evidence/round2/retrieved-json-example-formal-plan.json)。外部 `research/retrieved-json-example/` 保存唯一query、完整选择记录、实际token报告；`formal/` 保存运行/回收/评分入口。源码在本方案 `retrieved_json_example/`，包括逐字节冻结的必要legacy依赖。
+
+Adapter-only transfer recovery: the first transport attempt stopped with `RemoteDisconnected`; the source default interpreter is Python 3.8 and the handler used the Python 3.9 `str.removeprefix` API. The source was stopped and the empty destination preserved. The transfer helper now uses a prefix check plus slicing, accepts only that empty own destination, and writes a valid JSON receipt. Both old source/plan/process records remain in external `formal/attempt2-python38-transfer/`; no GPU or inference had started. Model, prompts, runner and budget are unchanged.
