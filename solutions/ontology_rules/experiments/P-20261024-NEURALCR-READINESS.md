@@ -114,3 +114,7 @@ root指定本owner为A100唯一恢复探测者，不看mount元数据；01:46:59
 ### 连接间隔内的纯静态后继准备
 
 原native tokenkey top1缓存、float32标量类型、严格>.8和原生重叠顺序、先raw解码后官方HPO映射、全部683438位置/408272键完整性已写contract。没有读取gold逐例、NN/fit/质量。独立本地依赖分析定位无B旧8池244794行、B独有追加2010行及六列，full64新增500/dev新增102来自既有冻结元数据；新管线从无B池重建、fresh vectorizer/HGB，不以biobert_present删除共享键，也不重用旧103列概率/模型。实际新维度由新训练字段确定，不虚称97+2固定。后续关系/support若消费旧B实体须由owner追踪，当前只核实体链，10B替换投影仍有条件。静态结果入口cache-replacement-static/manifest.json；全缓存预算必须等已授权GPU探针实测，未凭CPU小batch外推。
+
+### 01:52 单次间隔恢复实际成功
+
+按root授权等5分钟后，01:52:08.828086→01:52:11.426848Z唯一5文件实际SHA库存2.598757秒/rc0：4文件完整exact，其中前次UNKNOWN的44193B probe-inputs已落盘；仅cpu-reference.json缺失。原失败收据原样保留，不重传4份已成功文件；库存先checkpoint，再只补CPU参考、远端CPU compile，沿原唯一180秒GPU探针。实际恢复已共享root与sequence，后者仍等NCR释放再接GPU2。
