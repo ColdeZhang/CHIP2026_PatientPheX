@@ -317,7 +317,7 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 患者优先F0首次固定58推断在第24条`3563609:relations:8`遇到患者矩阵键检查失败。runner在`parse_final`后才写raw，因此只保存了23条成功响应；失败条的原始文本和token IDs丢失，无法确认缺了哪个患者、是否有未知键或其他具体内容。调用顺序只支持此前的EOS/非截断/JSON门槛已过，不能冒称已逐项读取失败响应。训练两轮和完整状态仍有效，这不是质量负分数。
 
-**避免方法**：每条生成结束即原子保存原始IDs、解码文本、实际EOS/cap/超时、输入身份及耗时，再做严格解析；校验错误写独立状态，不覆盖raw。此次原rc1/130.785秒、23条缓存和trace保留；后继使用独立目录、复用23条并重新生成其余35条，失败行的新输出不等于找回旧响应。有限缺键弃答政策在任何F0质量前另行冻结，原strict失败不改写，不补负答案或评分不完整子集。修复与完整质量当前待实际验证；恢复入口见[序列方案F0记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-F0.md)。
+**避免方法**：每条生成结束即原子保存原始IDs、解码文本、实际EOS/cap/超时、输入身份及耗时，再做严格解析；校验错误写独立状态，不覆盖raw。此次原rc1/130.785秒、23条缓存和trace保留；后继使用独立目录、复用23条并重新生成其余35条，失败行的新输出不等于找回旧响应。有限缺键弃答政策在任何F0质量前另行冻结，原strict失败不改写，不补负答案或评分不完整子集。后继已实测240.178秒rc0：23条精确缓存＋35条重新生成，58条中57全键/1合法部分键；raw-first生效。完整评分中单臂负、旧模型并集.705527893正，统一终审`22325a29…`通过；原失败响应丢失仍无法补回。恢复入口见[序列方案F0记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/round2/sequence-crf/solutions/sequence_crf/experiments/patient-first-F0.md)。
 
 ## H50：按文件路径加载模块不会自动加入其兄弟依赖目录
 
