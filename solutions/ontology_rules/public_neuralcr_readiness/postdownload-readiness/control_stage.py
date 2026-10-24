@@ -95,6 +95,7 @@ if a.action == 'collect':
     print(json.dumps({'stage':a.stage,**terminal}));raise SystemExit()
 
 assert (R/planfile).is_file() and not (R/(a.stage+'-managed-job.json')).exists()
+assert not (R/(a.stage+'-start-intent.json')).exists(), 'Reconcile a previous unknown start; never blindly repeat'
 files=['stage_runner.py','inspect_complete.py','repair_fasttext_header.py','check_native.py','ncrmodel.py',planfile]
 files += [n for n in ['HP.tar.gz.assembly.json','shape-inventory.json','repair-report.json'] if (R/n).exists()]
 for name in files:
@@ -110,6 +111,7 @@ assert response['exit_code']==0,response
 write(R/(a.stage+'-deployment.json'),{'files':digests,'remote_actual':json.loads(response['stdout']),'asset_hardlinks':links})
 env={'CUDA_VISIBLE_DEVICES':'','PYTHONPATH':'','PYTHONNOUSERSITE':'1','PYTHONDONTWRITEBYTECODE':'1','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','MKL_NUM_THREADS':'1','TF_NUM_INTRAOP_THREADS':'1','TF_NUM_INTEROP_THREADS':'1'}
 command=shlex.quote(PYTHON)+' stage_runner.py '+a.stage
+write(R/(a.stage+'-start-intent.json'),{'command':command,'env':env,'cwd':DEST,'plan_sha256':sha((R/planfile).read_bytes()),'launcher_sha256':sha(Path(__file__).read_bytes())})
 job=call('start_process',{'command':command,'cwd':DEST,'env':env})
 write(R/(a.stage+'-managed-job.json'),job)
 write(R/(a.stage+'-launch.json'),{'command':command,'env':env,'cwd':DEST,'plan_sha256':sha((R/planfile).read_bytes()),'launcher_sha256':sha(Path(__file__).read_bytes())})

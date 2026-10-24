@@ -52,3 +52,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 尾段传输遇到共享MCP故障，新只读请求实际返回 `LUNA_OFFLINE`；不是公网资产缺失。已逐SHA核全部203个已计划公网缺口range共1,680,436,557字节在本地完整，另外248,512,512字节旧prefix/片仍在原服务器。原relay按既定逐片3次/3600秒收尾，不自动重开；失败片与原参数来源均保留。[离线状态](../public_neuralcr_readiness/local-relay-attempt3/provider-outage-0111.json)和[本地完整range清单](../public_neuralcr_readiness/local-relay-attempt3/all-local-network-ranges.json)是恢复入口，不能冒称远端fastText完整或native已运行。
 
 01:12实际新只读roundtrip已恢复，原attempt3自然结束为 `incomplete_fragments_preserved`（1681.128秒/12片共6,291,456B失败；非预算耗尽），原writer80372已无、timeout壳无命令字节。主线程授权仍在原01:44:22.681Z截止内的[独立MCP恢复](../public_neuralcr_readiness/relay-recovery-0113/recovery-plan.json)：先全2280个FT片/旧prefix实际SHA库存，仅缺失片用本地原字节写新目录，至多8worker/每片3次、≤512KiB；不重下公网，不重复HP。原失败state/receipt原留，后继完整资产manifest分别引用原HP与恢复FT，不篡改原attempt3终态。源/输入清单本检查点仅准备，尚未传输补缺。
+
+恢复前完整远端库存实际3.546秒/rc0：2280段中2273段、1,341,795,335字节实核正确，只有7片共3,670,016字节缺失；部分原失败RPC实际已落盘，故不能直接按12个失败请求全量重写。报告首取回`UNKNOWN_OUTCOME`，仅再次读取同一已有报告成功，未重跑库存。实际[补缺计划](../public_neuralcr_readiness/relay-recovery-0113/recovery-bound-plan.json)只写这7片新目录；对未来managed start先落intent，若响应不确定先核原进程，禁止盲目重启（H32）。

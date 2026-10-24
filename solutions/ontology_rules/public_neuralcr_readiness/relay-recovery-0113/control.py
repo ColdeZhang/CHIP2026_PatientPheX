@@ -82,5 +82,9 @@ if failures:state['status']='failed_fragments_preserved';save();raise SystemExit
 expected['segments']=[success.get(s['start'],s) for s in expected['segments']]
 payload=(json.dumps(expected,separators=(',',':'))+'\n').encode();assert len(payload)<=524288
 (R/'pmc_model_new.bin.segments.json').write_bytes(payload);put(remote+'/pmc_model_new.bin.segments.json',payload)
-job=call('start_process',{'command':shlex.quote(plan['python'])+' remote_launch.py pmc_model_new.bin.segments.json','cwd':remote,'env':{'CUDA_VISIBLE_DEVICES':'','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}})
+request={'command':shlex.quote(plan['python'])+' remote_launch.py pmc_model_new.bin.segments.json','cwd':remote,'env':{'CUDA_VISIBLE_DEVICES':'','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}}
+write(R/'assembly-start-intent.json',request)
+try:job=call('start_process',request)
+except Exception as error:
+    state.update(status='assembly_start_outcome_unknown_do_not_repeat',error=str(error));save();raise
 write(R/'assembly-job.json',job);state['status']='all_missing_pieces_written_assembly_started';save();print(json.dumps(job))
