@@ -1,0 +1,35 @@
+{
+  "status": "PASS_ACTUAL_NVIDIA_SMI_FIELD_ORDER_CPU_ONLY_SINGLE_TOTAL_FIX",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-attempt2/launcher.py",
+    "bytes": 5457,
+    "sha256": "c7a0a6589c091f3059812f6f332dc2b54cd78ca837a7fbefca9cd8bc3ba868c7"
+  },
+  "prior_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe-source/launcher.py",
+    "bytes": 5457,
+    "sha256": "7fbef9094b764af74b681639935480d37d7da8c6d638debe43edde9d4802cd55"
+  },
+  "actual_wrapper_failure": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/f0-preparation/probe/recovered/wrapper-result.json",
+    "bytes": 1911,
+    "sha256": "98f0ed9bbf06f177a5ca7059c04c9ddb41dd878b975fbdba25018535ccb9229e"
+  },
+  "actual_gate": {
+    "at": "2026-10-24T04:56:39.034250+00:00",
+    "gpu": "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 1, 81156, 81920",
+    "compute_apps": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435"
+  },
+  "positive_actual_gate_passed": true,
+  "negative_rejections": [
+    "excess_used",
+    "insufficient_free",
+    "wrong_total_old_free_value",
+    "wrong_index",
+    "target_GPU_process_present"
+  ],
+  "actual_fixture_seconds": 0.008732642003451474,
+  "only_changed_semantic": "memory.total exact81920 instead of historical memory.free81156; original used<=100/free>=80000/UUID and process check unchanged",
+  "no_GPU_model_or_native_tokenizer": true,
+  "original_probe_NN_calls": 0
+}

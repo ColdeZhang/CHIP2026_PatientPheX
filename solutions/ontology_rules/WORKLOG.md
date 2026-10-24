@@ -22,11 +22,11 @@
 - 已结束短探针job `proc_d63b7015-88a0-4da5-981e-cda0ee2ee160` 已观察running=false，实际终点在 `published-interface-v1/codec-longest-v1/gpu/recovered/`；只读恢复脚本 `poll_original.py`，不得重发start。
 - 统一终审09612e0f通过；主线程已授权下一阶段同F1固定80（2缓存+78新）、逐row fresh同seed、10800+TERM30。[正式作业](deepseek_r1_readiness/full80-preparation/README.md) `proc_12e6dfa0-4f21-4f0a-a2d2-4ad35a5ab248` 已04:12:06.254启动，主截止07:12:06.254+TERM30；plan4a88bd33原留。CPU同入口0.084秒通过，原只读monitor遇RPC退出，已由 `full80-preparation/monitor_recovery.py`（local72050）接原job，不得重发start。固定standalone与唯一oldSFT32∪R1两臂，共同冻结后各唯一v2；失败行弃答不修补。
 
-- 并行[F0准备](deepseek_r1_readiness/f0-preparation/README.md)：原58提示CPU已6.605秒通过，唯一最长index30/6028；.100→A800私有SHM九资产copy已04:55:02完整SHA/fsync，1797.002秒，原source止停。仅实际最长一条240+30已获工程授权，plan609febf2冻结准备start，新源先raw后parse；无完整58/质量授权。
+- 并行[F0准备](deepseek_r1_readiness/f0-preparation/README.md)：原58提示CPU已6.605秒通过，唯一最长index30/6028；.100→A800私有SHM九资产copy已04:55:02完整SHA/fsync，1797.002秒，原source止停。仅实际最长一条240+30已获工程授权，原plan609febf2在total/free混淆gate退出、0NN，原件保留；独立单字段修复plan a3745b9a准备start，同240+30，先raw后parse；无完整58/质量授权。
 
 ## 最近结案与索引
 
 - 强 BioBERT+NCR固定四fold **.730993616→.731229952**，仅2/4非降<事前3/4，关闭当前配方；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact、0错警，不迁原dev/扫cut。60.879秒/rc0，独审de325a2c。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)。
 - NCR全cache408272键、两工程错误与CPU-only恢复均原留；65件关键预测/metrics/小HGB/source在.100自有 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B，SHA bb9aa427，fsync/全成员通过，不含gold/大权重/大特征。
-- 最近已核远端 **abd1a74136e8dda5fd44e0312755d8ac24c5dbda**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
+- 最近已核远端 **41c10f548791acb5799f8d15b0a6965f9fa24d0e**，push+lsremote exact；本次终点保存后另核，不为台账自身hash递归提交。
 - 完整过程：[截至03:36旧台账](worklog/WORKLOG-through-20261024-0336.md)、[截至04:08旧台账](worklog/WORKLOG-through-20261024-0408.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。

@@ -1,0 +1,24 @@
+{
+  "status": "failed_wrapper_preserved",
+  "at": "2026-10-24T04:56:38.903715+00:00",
+  "source_sha256": "7fbef9094b764af74b681639935480d37d7da8c6d638debe43edde9d4802cd55",
+  "plan_sha256": "609febf2bcdcceff48a0e114196237f72eb8f63c1d3cfae6f9a5dcd31093bb4e",
+  "cap_seconds": 240,
+  "TERM_grace_seconds": 30,
+  "only_actual_F0_published_longest": true,
+  "no_gold_quality": true,
+  "fresh_GPU2": {
+    "at": "2026-10-24T04:56:39.034250+00:00",
+    "gpu": "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 1, 81156, 81920",
+    "compute_apps": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435"
+  },
+  "error": "AssertionError()",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/f0-longest-v1/launcher.py\", line 36, in main\n    gate=query();state['fresh_GPU2']=gate;validate(gate,plan['gpu_uuid']);atomic(base/'fresh-GPU2.json',gate)\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/f0-longest-v1/launcher.py\", line 20, in validate\n    assert int(values[3])<=100 and int(values[4])>=80000 and int(values[5])==81156\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "actual_release": {
+    "at": "2026-10-24T04:56:39.140271+00:00",
+    "gpu": "2, GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 1, 81156, 81920",
+    "compute_apps": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18, 56706\nGPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246, 28609\nGPU-307de7ec-0104-d883-c5cd-5f161a53f9b8, 18435"
+  },
+  "target_UUID_has_no_compute_process": true,
+  "finished_at": "2026-10-24T04:56:39.140319+00:00"
+}

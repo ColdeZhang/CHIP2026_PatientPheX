@@ -23,3 +23,7 @@
 04:55:02.246原fetch完整通过：九件16,388,603,517B、fullSHA/fsync，实际1797.001798秒；ACK87353c49，原managed fetch终态与source stop true均核，未重启/扩2400+30窗口。SHM副本为易失，.100持久原件仍在。
 
 实际单最长可执行[plan609febf2](probe/plan.json)及[entry09f5835b](probe/entry-manifest.json)已绑定该ACK与6028/index30、原17件源码/CPU；检查点后发唯一fresh A800 GPU2/240+30/4096探针。此计划不授权完整58或质量。
+
+原probe wrapper04:56:38.904→39.140在GPU字段校验退出：真实used1/free81156/total81920，源误将free当total81156，未spawn主程序/加载模型/0NN；managed终态与空卡实际齐。独立probe-attempt2仅total字面改81920（launcher c7a0a658），原阈值和UUID不变。真实gate+5拒绝反例CPU通过c09d58d1；原模型/6028输入/codec/240+30全留，主模型窗尚未消耗。
+
+新plan a3745b9a已冻，新五源实际SHA/compile已通过。小部署校验器一次占位替换SyntaxError发生在任何命令body前，原回执保留；修正生成字符串并先本地compile后核现有包再解包，无重传/NN。启动前检查点后只启动这一修复模型尝试，不扩完整58。

@@ -1,0 +1,11 @@
+--- original
++++ single-total-field-fixed
+@@ -17,7 +17,7 @@
+     return dict(at=now(),gpu=gpu,compute_apps=processes)
+ def validate(gate,uuid):
+     values=[x.strip() for x in gate['gpu'].split(',')];assert len(values)==6 and values[0]=='2' and values[1]==uuid=='GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc' and 'A800' in values[2]
+-    assert int(values[3])<=100 and int(values[4])>=80000 and int(values[5])==81156
++    assert int(values[3])<=100 and int(values[4])>=80000 and int(values[5])==81920
+     assert not any(line.split(',')[0].strip()==uuid for line in gate['compute_apps'].splitlines())
+ 
+ def main():
