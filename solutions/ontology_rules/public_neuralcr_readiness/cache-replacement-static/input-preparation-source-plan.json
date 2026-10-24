@@ -1,0 +1,26 @@
+{
+  "status": "input_only_preparation_sources_ready_no_mapping_pool_fit_executed",
+  "goal": "Apply fixed public current-HPO mapping after complete native cache, then merge exact-current-key NCR candidates into original BioBERT-free eight pools before choosing CPU fit budget.",
+  "sources": {
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/cache-replacement-static/build_ncr_current_map.py": "33d1c0afd00a98f7d4cc2b6091cf6ef87f634eab840f4de66a6da439c0d2a978",
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/cache-replacement-static/build_current_canonical.py": "64f38d7468081447b5417189a27fdc4e72f1f9fa123c60440276349c6b52da9b",
+    "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/cache-replacement-static/prepare_ncr_pools.py": "9052e443df79179409ea6a00acf09491de1ab8c0f0da90f2fe0cfeefaf62fa33"
+  },
+  "source_cache_finalization": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/full-train64-cache-attempt2/finalization-result.json",
+    "bytes": 5033,
+    "sha256": "3553e219611135e4f874fb69670e9586122cbb3c22ed9d12973c491c3590fe06"
+  },
+  "old_pool_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-phenotagger-top3-control/old-pools/manifest.json",
+    "sha256": "87264eb85a1801e249ac6f052faeec5ddeb03fa3044ecb014ca3b9c8d6d220bf"
+  },
+  "mapping_policy": "Same frozen public HPO allowed/alt_id/single replaced_by; raw head/order/None literal fixed, no top1 renormalization.",
+  "canonical_policy": "First native appearance order; current exact-key max actual float32 score with all raw origins/bits; no new threshold/overlap.",
+  "new_features": [
+    "ncr_present",
+    "ncr_score"
+  ],
+  "old_prefix_projection": "Values, recursive types and key order identical except two explicitly added NCR fields; no biobert_* or oldselector posterior. Preserve all origin/training provenance.",
+  "scope": "No gold, model load, NN, fit, evaluator, original-dev or official submission. Actual new rows/feature dimensions not guessed."
+}
