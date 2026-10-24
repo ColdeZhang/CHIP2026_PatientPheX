@@ -9,13 +9,13 @@
 - **F0作业均已完整结束**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
 - **full64已授权、CPU完整**：原173train/36纯dev实际209回放16.104秒通过，14件collection a77eaa7b；tinyCPU Adam/scheduler/Python/NumPy/Torch状态恢复通过，CUDA只结构未冒称实测。唯一13反向压力已12:14:37完整PASS/201.284秒：10637/557与6346/646两Pareto，已有Adam/累积梯度，峰29.684GB allocated/34.578GB reserved，状态丢弃；GPU2已真实释放，完整54件collection9e0c83c8已收齐。
 - **正式后继持续授权**：probe成功且实耗可容纳后，fresh173×2/44updates/warmup4/尾5/原LR1e-4，单6000+30共享两epoch与SHM→.100完整ACK；后继原dev纯36/1200+30与必要Sap180+30。只交new-only和完整quote，最终两个原dev质量由root执行，本线不读dev gold/评分。
-- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点444e17fe，后继源/计划先推送再启动。
+- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点6cff6111，后继源/计划先推送再启动。
 
 ## 执行与下一步
 
 1. 原CPU proc07b171cc已完整；collector95847已14件全SHA收齐。无原CPU/GPU重复启动。
-2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b已部署、epoch1 proc771dc9c7正在运行，真实SHM/.100容量门通过。原watch PID163752已收到step1；只用它接续两轮/ACK，不另起remote owner。
-3. 同一参数化训练器/已验indexed两轮持久桥准备，绝对deadline不重置；真实probe终点后绑定正式实际证据并启动。模型/大产物保持仓库外。
+2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b已部署、epoch1 proc771dc9c7正在运行，真实SHM/.100容量门通过。原watch PID163752已收到epoch1/step12；只用它接续两轮/ACK，不另起训练监控owner。
+3. 同一参数化训练器/已验indexed两轮持久桥已在运行，绝对deadline不重置。下游36fresh/同政策归一化/完整new-only交付源码已准备；真实两ACK和完整collection之后再绑定实际plan启动。模型/大产物保持仓库外。
 
 ## 历史阶段记录（准确原时点，非当前作业）
 
@@ -71,3 +71,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 12:17后完整54件pressure9e0c83c8回收；真实13行反向175.294秒，完整两轮token代理3891.968秒，加25%与600秒加载/保存/导出余量合计5464.959秒，小于6000预算。真正trainer.verify_inputs纯metadata已通过，正式计划及controller b812929b准备，尚未启动；完整173×2/44/warmup4/尾5、SHM→.100双ACK，原绝对预算不扩。
 
 正式原epoch1已2026-10-24T12:19:01.086681378Z唯一启动 proc_771dc9c7-e0e9-4561-87fa-ab1142274913 / driver6669；campaign起点2026-10-24T12:18:59.890792+00:00，共享TERM2026-10-24T13:58:59.890792+00:00 / KILL2026-10-24T13:59:29.890792+00:00。真fresh卡2=1MiB/noapps，SHM217.946GB/.100401.983GB；完整44更新/双ACK不改。独立session watcher PID163752，实际SID/独占flock ready625c4585，按180秒原时钟接续两epoch/两ACK，未知mutation只停本地调度并恢复原intent。不能另起训练或第二owner。
+
+12:40:15.980仅CPU导出子进程guardian已唯一启动proc1affca5f / GNU timeout PID44125 / guardian44129，源5504bac5先push6cff6111。此前只有stop_process递归清理未证实的风险，没有已观测孤儿；单独guardian只核原两HTTP child的UID/PID/startticks/argv/PGID/SID，原parent退出或原export绝对截止才关闭它们。原训练/plan/时钟/ACK不改，不新开HTTP/重复导出；actualstarted已回收，实际两次关闭待发生，见training_shared/guardian-plan.json。
