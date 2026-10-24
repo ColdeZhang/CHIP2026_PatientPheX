@@ -23,3 +23,5 @@
 V2 CPU调用返回UNKNOWN，30秒纯读及后继库存均没有结果/进程；不能确认是否已执行或稍后到达。root明确该检查只读固定源/数据，唯一小回执写入，无GPU/共享checkpoint，允许独立第二次CPU检查，不套GPU fence。新V3用不同namespace与`cpu-verify-attempt2.json`，原未知请求仍只会写V2；不声称仅一次CPU调用。新CPU外层python3保存真实child/stdout/stderr/terminal并30+5，避免未知返回丢掉错误。原formal共享截止/2570.350秒门不变，新单入口`training/formal-entry-v3.json`。
 
 第二次CPU实际0.418秒：原verify_inputs完整返回87/32，随后新加distribution metadata版本guard失败。此guard不能反映PYTHONPATH overlay真实import版本，先前未在断言前存版本值，不能凭失败冒称差异细节。独立V4/attempt3改为实际import版本与distribution metadata先存、再核；仅CPU CUDA隐藏，不加载权重/forward，trainer/目标/预算不变。单入口training/formal-entry-v4.json，所有首失败和UNKNOWN/V3终态保留。
+
+V4 CPU真实4.761801秒PASS，同87/32输入及实际import Torch2.6.0+cu124/TF5.20.2/PEFT.21.2/tokenizers.23.1。V4 formal仅启动前只读库存UNKNOWN，尚无start-intent/claim/start_process；原剩余已不足2570.350门，原schema campaign明确0模型/0fit关闭，不再start，保16:39旧钟。root预授权此条件下独立fresh3000+30，新命名空间formal-fresh-v1；复用V4真实CPU回执/17资产/同训练源码，不再CPU或probe。当前唯一入口training/formal-entry-fresh-v1.json，新硬钟将在其唯一start-intent时固定，非旧job延期。
