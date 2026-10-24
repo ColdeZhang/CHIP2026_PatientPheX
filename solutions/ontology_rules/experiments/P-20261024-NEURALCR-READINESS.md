@@ -46,3 +46,5 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 固定 NCR README 要求 fastText≥0.9.1，所关联0.9.1序列化源码 `Dictionary::save/load` 都先写/读 int64 `pruneidx_size` 再逐词记录。先前官方prefix的首词 `the\0` 在84、`prune=-1` 在88，顺序与标准不合；现只准备[单次窄修源](../public_neuralcr_readiness/postdownload-readiness/header-repair-preparation.json)，未执行。必须先完整原件 SHA/大小、666817词条、两个矩阵和精确EOF证明此布局，才在独立派生副本交换这12字节，保持原件、词序/计数/类型、所有数值矩阵及[0:84]/[96:EOF]逐字节相同。不将未知格式交C++，不截断、重建词表或裁参。
 
 当前授权仍仅下载/库存/180秒四合成native；将来若考虑替换BioBERT，必须从真正旧双head候选池重建、移除其来源及6字段并fresh HGB，不能保留依赖BioBERT的103列旧模型或缓存却扣除其参数。尚未开展这个质量控制。
+
+01:03环境恢复后已核原PID80371/80372继续执行，同一截止与0失败收据不变，未重复中转；顶部台账已纠正过期attempt2描述。[CPU执行包装](../public_neuralcr_readiness/postdownload-readiness/execution-preparation.json)只准备逐阶段入口：完整库存120秒、条件性窄修120秒、原生四合成180秒，另各15秒TERM清理；实际stage plan须绑定完整资产SHA后先推送。shape/native复用同私有目录硬链接，不再下载或复制大模型；当前未启动任何阶段。

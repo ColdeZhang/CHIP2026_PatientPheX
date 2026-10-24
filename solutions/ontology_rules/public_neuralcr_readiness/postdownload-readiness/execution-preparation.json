@@ -1,0 +1,33 @@
+{
+  "status": "CPU_stage_launcher_prepared_not_executed",
+  "existing_asset_relay_untouched": true,
+  "remote_directory": "public-neuralcr-readiness/postdownload-readiness-v1",
+  "GPU_hidden": true,
+  "stages": {
+    "shape": {
+      "cap_seconds": 120,
+      "scope": "complete asset hashes, dictionary, matrices, exact EOF"
+    },
+    "repair": {
+      "cap_seconds": 120,
+      "scope": "conditional previously authorized 12byte header compatibility only; original untouched"
+    },
+    "native": {
+      "cap_seconds": 180,
+      "scope": "four fixed synthetic cases; no task inputs/gold/quality"
+    }
+  },
+  "TERM_grace_seconds": 15,
+  "one_start_per_stage": true,
+  "bound_stage_plan_created_only_after_input_SHA_available": "prepare plan -> checkpoint/push -> start -> collect original managed job",
+  "big_assets": "hardlinks inside same private project, no second network download or whole-file copy for shape/native; only conditional repair writes derived fastText file",
+  "syntax_check": "py_compile passed locally; remote stage execution pending complete relay",
+  "sources": {
+    "stage_runner.py": "fe1a9ed0c99fef32d8dc332e531c693ed0970e72abea6e68f709123f70025b50",
+    "control_stage.py": "957e2a1584c13f8e7cdd8e990f1fb2d356686ec973628b9d4d12effecd3988a0",
+    "inspect_complete.py": "60cd7848819efdb09c0e0c8da85262b2088c6c8ae23745ee8bd60f1f36542ead",
+    "repair_fasttext_header.py": "a36cfa85a5b60db7b3046fd31b580283272f98ec8591e58fd978c3f88de9a3f5",
+    "check_native.py": "35e1a8407b6c41b6203750b6b5529cc830be4f3b82bc1c9ee4a279fa0001ed16",
+    "ncrmodel.py": "e46754e922f3c8aee4ae4bd1788d1b60643c74340c7b8bc366352fe363329e26"
+  }
+}
