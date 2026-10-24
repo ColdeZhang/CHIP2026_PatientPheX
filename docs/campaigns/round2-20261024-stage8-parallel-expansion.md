@@ -82,3 +82,9 @@ GP补全11步已344.730秒完整，卡实证释放；因.3连接抖动仅断点�
 Grounded原39条全部EOS且未触发补跑，254必要Sap查询11.6026秒完整结束；F1固定融合 .681717659986 高于N .676546354663，新关系35TP/63FP，new-only .583496662244，仍低于历史强支持 .686338981。机械元数据接口修复保留原失败，未重跑模型或旧评分；集中终审进行中。主线程另规划将全部接受的精确quote统一加入强Task1基线，尚无该控制质量。
 
 Qwen3正式32更新/两份完整ACK完成，80fresh推断11:14:28启动。患者输出编码CPU准备见[报告](../research/patient-response-code-readiness-20261024/REPORT.md)：原user证据完整，目标可逆映射，监督7170→8138，held最大14570，容量上限14848且不截断。新独立分支预先固定coded-alone主端点、N∪coded诊断端点；A100240+30真实新形状探针通过后可接2ep/两ACK共享3600+30及80fresh1200+30，未把准备报告当作实际训练。
+
+### 11:28 三条关系正候选与固定融合
+
+Grounded强B融合 .695950447742、双采样强B融合 .693653303500、原生Qwen3强B融合 .689312034492均胜同B .686338981272。三条分别独立记录；其中后两条训练/推断完整结束，GPU已释放。主线程在全部输入固定后预写两融合端点，强B保护下至少二源支持达 .701087332488（新增36=18TP18FP，micro .747809152872 /macro .641601241291），严格胜最佳单源；全并集 .684526718071负关闭。见[独立融合记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/parallel-relation-fusion/solutions/parallel_relation_fusion/WORKLOG.md)。原dev901尚未变，三条同权重F0准备中，主融合须在F0严格胜B0 .711507580027才保留。
+
+Root另做强Task1的统一quote增量：42新实体11TP31FP，.728697536469→.727242335488，负闭且已审；[记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-task1/solutions/grounded_task1/WORKLOG.md)。小包21成员已实际恢复，融合23成员亦实际恢复；未把任何未达.8实现合并main。

@@ -396,3 +396,9 @@ FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getso
 共识融合首装配把DocRE的`key/logit/probability`逐对记录传给公共validator的`load_jsonl`；该函数会要求每行有`pmc_id`并建立文档索引，因此在首个预测、金标读取或评分前抛错。
 
 **避免方法**：复用读取器前核其实际schema与附加校验，不只看JSONL函数名。此次仅让pair-score使用通用JSON解析，输入/基线/schema文档仍走原校验；原actual-v1源码/计划/失败保留，独立actual-v2完整装配与唯一质量已过，未更改模型、候选、阈值或评测器。源码47e27e4，集中终审ae9c4631；见[共识实验](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/relation-consensus/solutions/relation_consensus/experiments/E-20261024-FUSION-001.md)。
+
+## H61：指标文件不一定包含预测和金标的身份字段
+
+Grounded首个质量入口假设旧N的metrics含`prediction_sha256/gold_sha256`，实际文件只含指标与评测配置，因KeyError在新预测、freeze、gold和v2之前退出。训练、39条响应及规范化仍有效。
+
+**避免方法**：复用基线先读其真实元数据结构，沿已有summary→paired freeze→evaluation bound核预测、metrics与gold的实际身份；不要删掉身份检查来让入口运行，也不要为了接口错误重训或重生成。原源/计划/错误保留，独立机械恢复目录中的两个完整端点先共冻后仅2次新v2，旧0；集中终审`0fcffd7b`核验通过。见生成分支`solutions/grounded_generation/quality/`及外部`research/grounded-generation-v1/quality-F1-metadata-recovery-v1/`。
