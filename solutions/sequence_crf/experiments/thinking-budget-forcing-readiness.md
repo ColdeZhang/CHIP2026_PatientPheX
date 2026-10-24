@@ -74,3 +74,5 @@ PYTHONPATH="$RESEARCH_ROOT/cpu-libs" python solutions/sequence_crf/thinking_budg
 这是**同一固定首条、旧SFT32的格式/成本证据**。新增39.465秒不含之前4096生成沉没成本；不能把6.213秒外推为512tokens实际速度。未读gold/targets、未计算fit/F1/比赛分数，无法认定答案正确或泛化改善。原自然未闭失败、人工边界身份、重新prefill/new RNG及A800→A30差异均保留。按本单例范围结案，不自动扩80、F1或原dev。
 
 [结果摘要](../evidence/round2/thinking-budget-final-results.json)、[统一终点清单](../evidence/round2/thinking-budget-final-terminal-manifest.json)、[实际回收](../evidence/round2/thinking-budget-final-collection.json)。完整新raw和logs仍在外部`final-v1/terminal/`，不入Git。
+
+唯一[终点独审PASS](../evidence/round2/thinking-budget-final-terminal-review.json)，SHA `220b3cb78fe3ed014cd7a42faa696bc64e34f8bf52d4ba2ccc7c7e3ec0134f62`：独立核30refs/11产物、54实际IDs解码与严格new-suffix JSON/EOS、真实wrapper/资源闭环；不重跑旧CPU/NN，不涉及质量。单例任务完整结案。
