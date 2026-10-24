@@ -121,3 +121,10 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 02:19:56只读实际存储核验通过（[收据](../evidence/round2/patient-first-formal-storage-readiness.json)）：A800 uid1045，SHM可用248.569GB、自有输出/源码目录均未创建，原reference model目录存在非symlink；project磁盘仅177.066MB，所以只放约几MiB source/小日志，不落权重或state。.100 uid1006，持久磁盘可用443.631GB，自有checkpoints/tools尚不存在。未查询/操作GPU、未重复权重SHA、未mkdir/部署/启动。正式source原入口仍在GPU加载前核完整15文件SHA，卡和SHM余量在真正start时重新核；此存储状态不代表warm资源已释放。
+
+
+### 正式完整执行授权与部署
+
+主线程已授权完整fresh2ep→持久epoch2→固定80→唯一F1，不再等待逐步许可。原23件正式payload已实际部署/逐SHA+compile通过，原archive92834857及deployment-intent原样保存。独立新HTTP/fsync合成合同ac4d5209实际0.466s完成11件输运、目标fsync/回读SHA/ACK及4类拒绝，沿用该证据不重复旧Range检查。按审查建议只为3控制器save补flush/file fsync/dir fsync与必要os import，实际函数落盘/拒绝覆盖通过；原源码/计划快照位于formal-preparation/before-controller-fsync，数值训练/推断/数据不变，新readiness d5dfa72f。远端只窄补3源+2plan，不重部署原数据。
+
+检索已给最终GPU释放：02:25:04.529616Z A800 GPU2 f516无进程/81156MiB，release856903f5，原camp无后继。尚未运行本路线实际A800 CPU/GPU；接下来CPU隐藏CUDA核124编码/原生后端、fresh资源与模型SHA后直接按既定3900+30启动，不把收到释放消息当本次GPU检查。

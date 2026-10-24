@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**patient-first单步及完整终审PASS，正式fresh两轮源码/计划已准备，未启动。** 终审3f22cbfc沿37refs/23部署/8终点独核新native CPU124逐行hash、5556单步13.239s/native79.032/wrapper80.193s、3族B真更新/无base梯度/rc0及02:02:19.724空卡。A100余量.793GB不外推多步稳定。正式保留旧08fc整段数值循环：seed/r16/bs1acc8/2warmup/2ep32calls/native逐行CE，仅PID→CID schema与新400614/4694绑定；新真实CPU入口和两轮顺序exact，最终80解析新增7个EOS/身份合同通过。待A800 GPU2当前warm实际最终释放后按主线程安排，3900+30训练/600+30最终80；此时禁止启动。独立SHM输出与.100完整state导出180+10已准备，不碰warm目录；只有全80预测freeze后唯一F1，实体/旧候选不变，关系两F1之和严格升且macro不降才保留。首CPU过严guard/未知传输原件保留。[单步结果](evidence/round2/patient-first-probe-results.json)、[终审](evidence/round2/patient-first-probe-terminal-review.json)、[正式准备索引](evidence/round2/patient-first-formal-readiness.json)、[方法/恢复](experiments/patient-first-closed-set.md)。
+**patient-first正式fresh两轮已获完整执行授权，部署/实际CPU准备中，尚无GPU作业。** 单步及终审3f22cbfc通过；原23成员已部署A800，独立新HTTP/fsync合同ac4d5209实际通过。3控制器仅补启动intent/回执的file+dir fsync，新readiness d5dfa72f，训练a3ec17f5/推断d6055341/新schema数值与预算不变。检索已最终释放A800 GPU2（02:25:04.529Z，release856903f5），本路线做实际nativeCPU和fresh资源核后直接启动3900+30 fresh2ep32calls，最终完整state导出.100 180+10并实际SHA回读，再固定80推断600+30。只有完整raw/pred freeze后唯一F1；关系micro+macro之和严格升且macro不降才保留，否则关闭。无额外逐步审批/参数扫描/官方上传。[正式准备索引](evidence/round2/patient-first-formal-readiness.json)、[方法/恢复](experiments/patient-first-closed-set.md)。
 
 **完整80 thinking固定政策准备完成、明确暂缓。** 唯一思考2304/final512，原80输入实核587CID/1557pairs、max5689；最密compact合法JSON242tokens。旧trace全CID字面1479、七列表1721、C003肯定映射2214、全八列表3529，旧“前半八项全决定”已纠正，不把一条位置外推80充分性。A800预计约3小时，建议硬4h+30但未启动；root决定不降cap凑成本，优先更便宜patient-first。[固定政策/状态机/成本](experiments/thinking-budget-80-plan.md)、[冻结JSON](evidence/round2/thinking-budget-80-policy.json)。
 

@@ -17,8 +17,13 @@ def sha(path):
 
 
 def save(path, value):
-    with Path(path).open('x') as handle:
+    path = Path(path)
+    with path.open('x') as handle:
         json.dump(value, handle, indent=2); handle.write('\n')
+        handle.flush(); os.fsync(handle.fileno())
+    descriptor = os.open(str(path.parent), os.O_RDONLY | os.O_DIRECTORY)
+    try: os.fsync(descriptor)
+    finally: os.close(descriptor)
 
 
 def main():

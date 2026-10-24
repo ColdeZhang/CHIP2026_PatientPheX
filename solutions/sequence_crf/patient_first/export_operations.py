@@ -4,6 +4,7 @@ import base64
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import shlex
 import sys
@@ -26,6 +27,10 @@ def main():
     def save(name, value):
         with (b/name).open('x') as handle:
             json.dump(value,handle,indent=2); handle.write('\n')
+            handle.flush(); os.fsync(handle.fileno())
+        descriptor = os.open(str(b), os.O_RDONLY | os.O_DIRECTORY)
+        try: os.fsync(descriptor)
+        finally: os.close(descriptor)
     def call(mount, name, **kwargs):
         result = client.request('tools/call',dict(name=name,arguments=dict(mount_id=mount,**kwargs)))
         if result.get('isError'): raise RuntimeError(json.dumps(result))
