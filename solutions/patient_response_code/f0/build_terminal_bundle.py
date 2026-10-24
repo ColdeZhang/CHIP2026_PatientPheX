@@ -22,6 +22,7 @@ def main():
  for p in (I/'quality').rglob('*'):
   if p.is_file():add('quality/'+p.relative_to(I/'quality').as_posix(),p)
  add('F0-final-review-entry.json',B/'F0-final-review-entry.json')
+ for n in ['bridge-capability-cleanup.json','bridge-capability-cleanup-source.py']:add('transport/'+n,B/n)
  refs={n:dict(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for n,p in paths.items()};archive=D/'terminal.tar.gz'
  with tarfile.open(archive,'x:gz') as t:
   for n,p in sorted(paths.items()):t.add(p,arcname=n,recursive=False)
