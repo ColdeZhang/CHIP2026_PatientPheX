@@ -51,6 +51,8 @@ H5固定配方完整负结案：primary `.728697536469→.727938862709`（−.00
 
 只读复盘形成[条件后继报告](../research/round2-next-method-gap-20261024/REPORT.md)：不重复共指、实体slot、FLERT等已有负终点。H5只有严格OOF下游重拟合可列为条件候选；[轮数复盘](../research/round2-next-method-gap-20261024/EPOCH-ADDENDUM.md)查明normal累计四轮曝光曾负，而patient fresh四轮尚无终点，不能把两轮称已证最优；[FLA复盘](../research/round2-next-method-gap-20261024/FLA-ADDENDUM.md)指出原raw-logit门失败与softmax KL通过同时成立、未保存raw，现有证据不足判定长输入吞吐或中心化差异。仅准备独立新backend的有界诊断，当前native训练不变，不修改旧门或旧负结果。当前质量终点优先，不因提案自动扩实验。
 
-全文逆序完整负结案：79fresh＋新idx19缓存，80严格格式/自然EOS，native560.092秒rc0、08:37实际释放。两预测共冻f6176564后各1v2/旧0，CPU .333秒；primary N∪R **.667933002147**、diagnostic R **.664751423446**，均低原normal **.676546354663**，结果6bca6270，keep=false。相对normal新增49条=12TP/37FP，micro及macro都降；不扩F0/dev/官方，不做额外阈值或组合扫分。
+全文逆序完整负结案：79fresh＋新idx19缓存，80严格格式/自然EOS，native560.092秒rc0、08:37实际释放。两预测共冻f6176564后各1v2/旧0，CPU .333秒；primary N∪R **.667933002147**、diagnostic R **.664751423446**，均低原normal **.676546354663**，结果6bca6270、统一终审c2a53567通过，keep=false。相对normal新增49条=12TP/37FP，micro及macro都降；不扩F0/dev/官方，不做额外阈值或组合扫分。
 
 已授权FLA独立后继的CPU≤60秒准备和唯一A数值证据600+TERM30；新namespace、原私有缓存，128短输入完整raw及实际14390上下文固定32位置/共同8步历史的N/F/N/F对照，先保存原dtype张量与实际调用统计，再分析中心化和概率分布。≤1GiB raw留服务器持久目录，小证据回收；当前native训练不动。A的少量冷/暖耗时不冒充完整稳态或训练成本，B/C训练与质量控制不自动串联，尚未实际GPU启动。
+
+08:44新启动检查点：患者loss接口机械恢复`proc_0f960ddf-3622-482a-8535-4ad245497388`／PID13376于08:43:44.911937在A100唯一启动，独立240+TERM30；只允许已证两个None诊断参数，薄接口27case .129秒通过，原核心317项不重做，原失败72.035秒保留。FLA A在.100于08:44:12.927586唯一启动`proc_542e318b-4579-41ae-909c-3bdeb3c48ad7`／PID2708227，plan4207c804/source dc9552fe、600+TERM30；原cwd前置拒绝发生在模型调用前并保留，成功入口没有改数值方案。两者尚无质量结果，当前最佳仍901。

@@ -42,7 +42,7 @@ AutoPCR共享前后缀／协调短语query确有不同机制，但训练侧只�
 
 不能把弱端点的提升说成覆盖变好：owner按既有计数确认primary mention 1033TP/280FP→1016/255，doc585/95→573/82；overlay mention982/515→955/425，doc591/179→565/131。两端均少报TP、也少报FP。现有primary沿旧selector解释变化后的候选与public分数，因此“适配后分布与旧selector不匹配”是可能机制，**目前没有因果证据**；同样可能只是新头损失了有用召回。
 
-root已让owner只读旧/新pool的public字段、候选可用性与selected变化。原全候选LGB概率未持久保存，不能杜撰概率变化诊断，也不应为了本报告重算模型预测。此报告不重复owner代码，不新增gold诊断；待其结果后决定是否值得正式投入。若没有可保留的新独立信号，不建议为弱overlay小正自动增加训练。
+root已让owner只读旧/新pool的public字段、候选可用性与selected变化。2026-10-24 08:44更正：旧a465正式fit的F1全候选概率实际保存在`research/lightgbm-selector-readiness/formal-control/fold1/fitted/selector-scores.jsonl`（14,344,663B，SHA `645a252bfc261e10f2d777bfa3552eb71fc1a73ebb620c26d40148c0ecb71441`），主线程已实际重读核SHA；新H5应用没有保存对应全候选概率，所以仍不能据现存文件作成对概率变化或失准判断。此前“旧概率未保存”的表述过宽，本次只修订这项事实，未重算模型预测。此报告不重复owner代码，不新增gold诊断；待其结果后决定是否值得正式投入。若没有可保留的新独立信号，不建议为弱overlay小正自动增加训练。
 
 ### 与已做控制的实质差别
 
