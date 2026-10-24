@@ -7,3 +7,5 @@ root同意owner暂转idle；本地watch及原远端训练继续，不停止或�
 - 原绝对deadline1792837648.873858，8400+TERM30覆盖两轮与两次导出；不可改起点。第一轮里程碑见 `epoch1-milestone.json`，checkpoint/Adam/scheduler/RNG真实恢复，旧probe状态不用。
 - 两完整持久ACK与campaign-complete齐后，followup唤醒本owner。先运行 `f1_inference/bind_after_training.py`（无参数）把实际adapter绑定到 `R/research/qwen35-fulltext32-indexed-F1-full80-v1`，保存并push实际计划小指针；`evaluation_source/prepare_disabled.py`绑定仍禁执行模板。再按原 `operations.py deploy/start/inspect/collect --directory <该目录>`，fresh资源核后唯一全80fresh1200+TERM30，无旧adapter缓存。
 - 完整80终态后才用 `evaluation_source/bind_completed.py` 绑定 terminal 和 evaluation-template，接着原 evaluate_full80 一次。primary新alone、diagnostic旧短SFT32并集，共冻两完整pred→各1v2/旧0；强基线.676546354662594，Score严格升才留，macro报告。保留1189实体/所有非关系字节。没有自动F0/dev、额外GPU或官方提交授权。
+
+2026-10-24 09:28状态更新：owner已接回，两轮32步及两ACK齐，原watch正常完成。实际F1绑定已写 `f1_inference/bound-entry.json`；后续沿该新adapter入口唯一全80fresh，勿再次运行旧watch或训练。
