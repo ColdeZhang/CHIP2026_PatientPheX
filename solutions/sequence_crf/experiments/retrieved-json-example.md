@@ -17,3 +17,5 @@ root已授权唯一600s+TERM30推断：原SFT32 epoch2 adapter `4f4815b6…` / c
 Adapter-only transfer recovery: the first transport attempt stopped with `RemoteDisconnected`; the source default interpreter is Python 3.8 and the handler used the Python 3.9 `str.removeprefix` API. The source was stopped and the empty destination preserved. The transfer helper now uses a prefix check plus slicing, accepts only that empty own destination, and writes a valid JSON receipt. Both old source/plan/process records remain in external `formal/attempt2-python38-transfer/`; no GPU or inference had started. Model, prompts, runner and budget are unchanged.
 
 实际两文件传输18.432秒成功，目标逐文件完整SHA回读通过，临时服务stop后端口连接返回111。部署全部source/input SHA完成；最终ready入口为 `formal/readiness.json`。根在传输修复期间重新排短任务，当前明确暂停GPU启动，等待交回；此时没有推断/质量结果。
+
+根随后明确调度到已释放A800 GPU2（原80基线同卡），原Qwen SHM和旧SFT32 adapter原位复用。新的唯一执行目录 `research/retrieved-json-example/formal-a800/`，A100版无GPU启动且仍归档。仅机器/路径、资源receipt及磁盘guard改变；实际可用197492736B，约2MB输入源码、无权重保存，启动要求≥64MiB。80输入/方法/600+30预算保持；实际运行版本仍由preflight记录。

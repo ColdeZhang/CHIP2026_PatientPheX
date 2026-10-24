@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**关系JSON单检索示例CPU/部署已就绪，GPU启动等待根重新交卡。** 原9B/严格train32的124完整示例，按纯输入≤2048token固定短例池22条/19篇，train-only词1–2gramTFIDF为原80 F1提示取1；query/system/code_map不变，EX namespace逆映射user/target逐字节还原，包含空target不按标签筛。全部80选top1、无截断/overflow；真实总输入250696→389316、max5691→7581，14000内。旧同80实际282.502秒，粗成本435.9秒不能称GPU实测或保证5min。仅共享关系模型的输入控制，不改检索代码/权重。root批准旧SFT32单臂600+30秒；两文件adapter已18.432秒传完、完整SHA再读通过、源端口关闭。源Python3.8兼容失败与修复保留；根将A100临时交另一短探针，本路线未启动GPU，部署已完成，等待明确交回后fresh核空。实际readiness见 evidence/round2/retrieved-json-example-readiness.json。[CPU证据](evidence/round2/retrieved-json-example-preparation.json)、[正式计划与恢复](experiments/retrieved-json-example.md)。
+**关系JSON单检索示例已获A800明确交卡，正在部署同方法唯一推断。** 原9B/严格train32的124完整示例，按纯输入≤2048token固定短例池22条/19篇，train-only词1–2gramTFIDF为原80 F1提示取1；query/system/code_map不变，EX namespace逆映射user/target逐字节还原，包含空target不按标签筛。全部80选top1、无截断/overflow；真实总输入250696→389316、max5691→7581，14000内。旧同80实际282.502秒，粗成本435.9秒不能称GPU实测或保证5min。仅共享关系模型的输入控制，不改检索代码/权重。root批准旧SFT32单臂600+30秒；两文件adapter已18.432秒传完、完整SHA再读通过、源端口关闭。源Python3.8兼容失败与修复保留；根随后分配已释放A800，与原基线同卡；原位旧adapter再读SHA通过，实际余197MB，仅小文件部署，A100版本无GPU启动。唯一恢复入口改为外部 research/retrieved-json-example/formal-a800/，新plan038caf52；启动前fresh核空。[CPU证据](evidence/round2/retrieved-json-example-preparation.json)、[正式计划与恢复](experiments/retrieved-json-example.md)。
 
 **当前实体控制均已完成，无活动作业。** 同资源77 HGB固定.4基线独审3c7c12e5：Score.648061812；binary final.650311382仅+.002249570（men升/doc降）。唯一当前nested F1固定veto负：.728144787→.720623999，删除152=71TP81FP，men/doc都降，关系不变；按预设关闭，不扫cut/不迁原dev。95列/train48 base与附加binary32不同资源如实披露；新veto独审a842969e已PASS。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[veto结果/恢复](evidence/round2/entity-slot-selected-veto-results.json)。
 

@@ -54,7 +54,7 @@ def main():
         save(out/'results.json',dict(completed_at_utc=now(),baseline_metrics=base['metrics'],new_metrics=report['metrics'],
             delta=delta,keep=keep,keep_rule='micro+macro strictly increases and macro does not decrease',baseline_reused=True,
             relation_count_delta={k:report['counts']['relation'][k]-base['counts']['relation'][k] for k in ['tp','fp','fn']},
-            seconds=time.monotonic()-tick,scope='One developmentF1 input control; oldA800/newA100 runtime difference retained. No originaldev.'))
+            seconds=time.monotonic()-tick,scope='One developmentF1 input control; '+p['runtime_comparison']+' No originaldev.'))
         print((out/'results.json').read_text())
 
 if __name__=='__main__':main()

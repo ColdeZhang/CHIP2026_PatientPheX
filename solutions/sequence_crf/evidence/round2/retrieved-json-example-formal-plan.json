@@ -1,12 +1,12 @@
 {
   "frozen_at_utc": "2026-10-23T23:57:44.494223+00:00",
   "schema": "single-train32-retrieved-example-F1-v1",
-  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
-  "remote": "sequence-round2/retrieved-json-example-v1",
-  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
-  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
-  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
-  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/retrieved-json-example-adapter32",
+  "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+  "remote": "sequence-round2/retrieved-json-example-a800-v1",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/adapter",
   "adapter_files": {
     "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
     "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
@@ -20,8 +20,8 @@
     "cap": 300
   },
   "env": {
-    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
-    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
     "PYTHONDONTWRITEBYTECODE": "1",
     "PYTHONNOUSERSITE": "1",
     "OMP_NUM_THREADS": "1",
@@ -36,7 +36,7 @@
   "max_input_tokens": 14000,
   "max_new_tokens": 1600,
   "files": {
-    "launch.py": "6386b1c0f855a2e0e93597de71971f131bc6a4e5c8042c0a31d60c6cb619683f",
+    "launch.py": "d308ffedcb4f0ec86a4b446c7c4542cd3567dd6ea1becb87c5847bbc8f8c995e",
     "legacy/qwen35_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
     "legacy/merge_pair_rag.py": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1",
     "legacy/run.py": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0",
@@ -45,9 +45,9 @@
     "model-source-manifest.json": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
   },
   "control_sources": {
-    "operations.py": "e534a25020a10630d816f84139518ed2ee424708940160069515cef56f133e86",
+    "operations.py": "285cb7d8105696f2007becbee62868b75da8c49a53848527fbfa2d0ec00c97c9",
     "transfer_adapter.py": "4fea74b90662b88b379e2d5a96e15d17938090a77690a4647e3281927c2f52de",
-    "finish.py": "e7b29be5762f2709233b1f948e2a6d869d33ee7076c37fc1e4ea183c3a06dc6d"
+    "finish.py": "bd885f6bb66a8fabc1aa1f39480c1fbe2c175f64700cfe7356479fd40bf1da5d"
   },
   "local_references": {
     "input": {
@@ -117,5 +117,15 @@
   "runtime_difference": "Baseline A800/torch2.7.1 versus current A100/torch2.6; sameTF5.20.2/PEFT0.21.2, no claim bitwise hardware equivalence.",
   "no_new_fit": true,
   "no_originaldev": true,
-  "no_prompt_or_example_count_scan": true
+  "no_prompt_or_example_count_scan": true,
+  "minimum_free_bytes": 67108864,
+  "runtime_comparison": "Old baseline and new ICL both A800 GPU-f516, expected torch2.7.1/TF5.20.2/PEFT0.21.2; actual preflight records versions. Same base/adapter/decoder.",
+  "resource_mode": "reuse original on-disk SFT32 adapter and verified SHM base; no model transfer",
+  "migration_from": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/formal/plan.json",
+    "sha256": "03e49fa00e4112d11264078036b90452ac31ee5f5adee038bbf21361695a4ae6",
+    "old_A100_gpu_job_started": false,
+    "reason": "Root explicitly assigned released A800; same as original baseline hardware."
+  },
+  "disk_budget": "Only ~2MB source/prompts plus <=80*1600 output tokens and small logs/receipts; require >=64MiB fresh free, no weight/checkpoint writes."
 }

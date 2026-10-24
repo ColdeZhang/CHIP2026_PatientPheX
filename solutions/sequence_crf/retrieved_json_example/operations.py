@@ -29,7 +29,7 @@ def main():
         save('deployment.json',dict(files=p['files'],plan_sha256=hashlib.sha256((b/'plan.json').read_bytes()).hexdigest()))
     elif a.mode=='start':
         assert a.checkpoint and len(a.checkpoint)==40 and a.release_evidence and a.release_evidence.exists()
-        assert not (b/'job.json').exists() and (b/'deployment.json').exists() and (b/'adapter-transfer.json').exists()
+        assert not (b/'job.json').exists() and (b/'deployment.json').exists() and (b/'adapter-resource.json').exists()
         code='''import json,subprocess,shutil,hashlib,datetime
 from pathlib import Path
 p=json.loads(Path('plan.json').read_text());assert hashlib.sha256(Path('plan.json').read_bytes()).hexdigest()==PLAN_SHA
@@ -37,7 +37,7 @@ assert not Path('responses.jsonl').exists()
 apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_memory','--format=csv,noheader,nounits'],text=True)
 gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,memory.used,memory.total','--format=csv,noheader,nounits'],text=True)
 target=[x for x in gpu.splitlines() if p['gpu_uuid'] in x];assert len(target)==1 and p['gpu_uuid'] not in apps
-assert int(target[0].split(',')[1])<512 and shutil.disk_usage('.').free>2*1024**3
+assert int(target[0].split(',')[1])<512 and shutil.disk_usage('.').free>p['minimum_free_bytes']
 for n,h in p['adapter_files'].items():assert hashlib.sha256((Path(p['adapter'])/n).read_bytes()).hexdigest()==h
 print(json.dumps(dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),target_empty=True,gpu=target[0],free_bytes=shutil.disk_usage('.').free)))
 '''.replace('PLAN_SHA',repr(hashlib.sha256((b/'plan.json').read_bytes()).hexdigest()))

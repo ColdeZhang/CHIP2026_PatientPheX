@@ -38,7 +38,7 @@ for row in prompts:
 save('actual-preflight.json',dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
     plan_sha256=sha('plan.json'),adapter_files=actual_adapter,tokens=token_rows,
     torch=torch.__version__,transformers=transformers.__version__,peft=peft.__version__,tokenizers=tokenizers.__version__,
-    CUDA_initialized=torch.cuda.is_initialized(),runtime_difference='Old baselineA800 torch2.7.1; newA100 torch2.6, same model/adapter/decoder.'))
+    CUDA_initialized=torch.cuda.is_initialized(),runtime_difference=plan['runtime_comparison']))
 argv=[sys.executable,'legacy/qwen35_runner.py','--model',plan['model'],'--source-manifest','model-source-manifest.json',
       '--prompts','prompts.jsonl','--output','responses.jsonl','--adapter',plan['adapter'],
       '--max-input-tokens','14000','--max-new-tokens','1600']
