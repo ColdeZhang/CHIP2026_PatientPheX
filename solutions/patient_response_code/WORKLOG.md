@@ -74,3 +74,7 @@ F1 binder passed both complete ACKs/source copies/original native80 and final ad
 ### 2026-10-24 12:33 UTC — unique complete80 inference accepted
 
 Bound archive d3b2073a/469,434B transferred through authenticated private bridge. Original deployment verifier passed11 members/15 pieces/SHA/compile/fsync on actual UID1045, planbd88ca5b. Original sourceBridge was stopped immediately after verified fetch. Unique inference proc_a84ae36b-dac5-4e1b-8898-0ed1f22e7228/PID173877 accepted12:33:05.102124409Z. All80 fresh,14848input/1600greedy and strict PT inverse/raw-first whole-row abstention;1200+TERM30. Actual driver/GPU/response progress is separate from acceptance and will be read once; no repeated start.
+
+### 2026-10-24 12:36 UTC — actual inference and original engineering evidence
+
+Actual driver12:33:05.317552/child173895 binds TERM12:53:05.317552+30 and sourcea0794470. Read12:35:01 confirmed9/80 canonical terminal rows, no inferred score. Original training15 metadata members collected zip06dfa58c/20,209B; exact logical optimizer/scheduler/RNG resume proof passed. Original H51 full53-file collection10aeab87 now all SHA verified; one failed pure inventory UNKNOWN preserved, no probe repeated. Large arrays/clinical rows remain private; safe summary refs in evidence/complete-engineering-evidence.json.
