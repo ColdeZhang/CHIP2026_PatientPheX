@@ -6,6 +6,6 @@
 - 解码1290 HPO（含1 empty+missing）、123 NO、3 BOUNDARY、0 NIL/拒绝/cap；1289实体原子。并集新增124=24TP+100FP；new-only整体985TP/304FP，precision .764158。
 - 较旧Top8并集净FP减少12、TP数不变，Score +.000820473；new-only +.000992478。共享SYSTEM/语法与539监督共同改变，不能作纯数据归因。
 - CPU56成员、GPU2946小成员全SHA回收；4大状态保远端精确locator与实际回读证据。终态 [result.json](result.json)，外部稳定terminal `15896d47`，共同freeze `f79f1d83` 后恰好2v2/旧0。
-- [实验过程](experiments/E-20261024-boundary.md)、[风险与经验](NOTES.md)、[固定计划](plan.json)。最终增量独审及一次小备份收尾中。
+- [实验过程](experiments/E-20261024-boundary.md)、[风险与经验](NOTES.md)、[固定计划](plan.json)。95件小备份360584 B/SHA7771597d已16:49:29完整远端验证及同SHA回读；最终增量独审等待集中收口。
 
 大产物：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1`。root独立预锁BOUNDARY-veto由其自行消费同一完整输出，本线不另跑该端点。

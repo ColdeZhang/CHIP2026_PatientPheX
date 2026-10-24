@@ -39,3 +39,5 @@
 关系mic/mac保持强B对象及分项完全相同。union保1313原实体、增加124=24TP/100FP（增量精度.193548），共1437；new-only1289=985TP/304FP，FN368，整体precision.764158/recall.728012，不能把增量低精度写成整体精度。较旧Top8 union净TP数不变、净FP减少12，Score+.000820473；new-only净TP+2/FP−12，Score+.000992478。仅有小幅进展，两个强门均未过，配方关闭无F0/dev扩展或cut调整。新增539监督、共享SYSTEM与第四语法状态共同变更；只输出3个BOUNDARY不足以把净变化归因为这一状态的直接删除，root独立预锁veto另行检验，本文不代跑、不改原输出。
 
 稳定外部terminal.json13143 B/SHA15896d47d89a41523e2e490c23488b39acd2af7ef25b0eecf13d89d097ddb615，之后只加独立备份/独审指针，不覆写该原件。全部既有head报告比较无新gold/evaluator调用，comparison SHA62e5cc19。
+
+2026-10-24 16:49:29.859934 UTC，一次95件小备份360584 B/SHA7771597d562346a9e7972ea16986f73b7acdcf1865154cc21a7c16622b099355，远端全部成员核验并完整回读同SHA。只追加备份指针，稳定terminal15896d47保持字节不变。
