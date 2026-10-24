@@ -1,0 +1,45 @@
+{
+  "id": "E-20261024-ADAPTED-QUOTE-001",
+  "schema": "adapted-Grounded-literalquote-prequality-decision-v1",
+  "at_utc": "2026-10-24T16:01:55.252275+00:00",
+  "base_main": "bc8084e756f6f24fb9e633cc4fd31f8395b43f30",
+  "authorization": "Parent /root task issued before any new Sap F1 quality: separate adapted normalizer view; currently CPU preparation only, encoder query allocation pending.",
+  "primary": "B4 UNION (G_adapted_normalizer INTERSECT (S UNION Q UNION C))",
+  "support_explicitly_excludes_old_G": true,
+  "inputs": "Original ordinary Grounded32 d52 F1 existing raw and all573 accepted literalquote anchors before semantic screening; not Copy constrained outputs or only previously mapped relations",
+  "reuse": "Original39 complete raw-first outputs, EOS/JSON whole-array gates and itemwise invalid/duplicate rejection; all254 necessary queries and original strict decisions byteexact",
+  "changed": "Only semantic query encoder and public41099 vectors use same frozen final adapted Sap state; retain original strict exact/NIL/ambiguity/short-alias safeguards and cosine>=.90/distinctconceptmargin>=.03",
+  "model": {
+    "checkpoint_sha256": "b0482af6b273f02c15bd1e466f716b050f7f64f0a9932ba79466e5e3fd5f6b70",
+    "bank_sha256": "fa312ba7d0625b7822f9b2c247b7b8522a6cef3a06206bbc0d3198c6b97c132a",
+    "train32_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "epochs": 3,
+    "updates": 219,
+    "initial_grad_scaler": 4096,
+    "task_adapted": true,
+    "no_task_fit": false,
+    "parameters": 109482240,
+    "runtime": "FP32 parameter storage; CUDA FP16 autocast forward; CLS float32 then torch L2, max32 native IDs; same newbank encoder policy"
+  },
+  "quality": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "preserved_baseline_relations": 524,
+    "complete_freeze_before_score": true,
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "byteexact_zero_calls": true
+  },
+  "prohibited": [
+    "new training",
+    "9B regeneration",
+    "held gold before whole prediction freeze",
+    "Copy whole-row strict policy",
+    "old-G support self-agreement",
+    "changed thresholds or subset/standalone/seed scans",
+    "official upload"
+  ],
+  "limitation": "New adapted representation plus unchanged old conservative cosine boundary is uncalibrated joint control; no guarantee old threshold remains appropriate.",
+  "next": "CPU source/contracts/cost plan then root allocates necessary encoder queries; F1 strictly positive required before same fixed F0."
+}
