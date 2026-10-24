@@ -18,3 +18,15 @@ OPENBLAS_NUM_THREADS=1 /usr/bin/python3 solutions/patient_set_risk/census.py --g
 ```
 
 现目录已存在，恢复读取现有结果，不为查重重算。全部训练案例125KB、公开页面/代码在仓外；Git只放源码、固定计划、短证据和记录。
+
+## 2026-10-24 新 loss 与动态标准化源
+
+根线程批准一次固定4患者×2轨迹、共享1800+30秒探针。原 `pilot-plan.json` f423d747 保留，新增 `activation.json` 记录事前供给门修订：至少2组非零优势，其中至少1组gold非空、两输出合法且概念F1不同；另一组可为真实格式有效性差异。没有采样后改门。
+
+`pilot.py` 用fresh GenerationConfig和实际processor列表排除隐藏top-k/warper；只保存一份前步logits，记录全部实际token logp。生成/回放统一BF16 autocast(cache=False)，禁全部dropout；回放实际train+nonreentrant checkpoint并统计grad-enabled调用。完整8raw先落盘，当前父权重不变等待原FP16 public Sap，再按固定门决定是否执行8FB/1Adam；失败不重采样、不替换患者。same-full no-grad/grad沿原1e-5门，cached/full逐token差异单独记录，不宣称二者逐位等价。无formal87/held授权。
+
+新增纯CPU tiny loss合同在.100既有Torch2.7.1运行，CUDA_VISIBLE_DEVICES为空、1CPU线程、50+5秒。真实同输入BF16 no-grad/grad maxdiff0；串行与联合BF16 backward最大差约0.00097656，均finite，明确独立舍入而非逐位相同。一次tiny Adam更新实际生效；这不证明9B CUDA成本或实际语义优势。指针 `evidence/loss-CPU.json`。
+
+normalizer helper完成8raw→必要公共query→完整奖励接口及CPU合同（cb35c8f2），仅本子目录约93KB源和小证据；所有临床raw留仓库外。其GPUquery代码仅编译/静核，尚无新query模型调用。
+
+资源：A800 GPU2已有外部PID46312，不抢占；主体待根线程提供真实空闲40GB/80GB窗口。.100GPU0先由sequence F047使用，Sap也需等待其实际release。此刻无SCST GPU启动、无新held gold、无quality。

@@ -1,0 +1,73 @@
+{
+  "schema": "SCST-fixed4-root-execution-activation-v1",
+  "at_utc": "2026-10-24T16:30:11.753730+00:00",
+  "status": "AUTHORIZED_SINGLE_PILOT_SOURCE_READY_HOST_ADMISSION_PENDING",
+  "original_proposal": {
+    "path": "/workspace/patientphex-worktrees/research-patient-set-risk/solutions/patient_set_risk/pilot-plan.json",
+    "bytes": 9787,
+    "sha256": "f423d7478cd5075227ef407d25280383e375cfebe342d168292905024ef9d442"
+  },
+  "preserve_original_proposal_bytes": true,
+  "authorization": "Root authorizes one shared1800+30 four-patient8-generation supply/new-loss probe, no formal87 or held quality. Source/plan push before fresh-resource single launch.",
+  "gate_revision": {
+    "old": "2 groups both valid and distinct concept F1, at least1 nonempty gold",
+    "new": "At least2 actual nonzero advantage groups, including at least1 nonempty-gold group with both outputs valid and different concept F1. Other group may have real format-validity difference.",
+    "reason": "The fixed reward includes validity; real format validity differences provide learning signal. Still require a semantic difference, not format-only.",
+    "timing": "Pre-GPU-output, no SCST trajectory has been generated"
+  },
+  "unchanged": {
+    "indices": [
+      76,
+      44,
+      83,
+      19
+    ],
+    "seed_base": 20261024,
+    "greedy_and_samples_each": 1,
+    "max_new_tokens": 1600,
+    "categorical_temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "C": 136.5977011494253,
+    "CE_weight": 1.0,
+    "RL_weight": 1.0,
+    "lr": 1e-06,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "clip": 1.0,
+    "updates": 1,
+    "backwards": 8,
+    "probe_discarded": true
+  },
+  "numerics": {
+    "generation_and_replay": "Both BF16 autocast cache_enabled=False, all Dropout and native attention_dropout zero; generation eval/cacheTrue, replay train/cacheFalse/checkpoint nonreentrant",
+    "same_full_input_replay": "Existing rtol=atol1e-5; record before assert",
+    "cached_generation_vs_full_replay": "Record all selected pertoken logprobs and sums; no fabricated1e-5 criterion. Preserve observed discrepancy; material inconsistency must not be hidden by token masks or used to claim formal onpolicy validity.",
+    "checkpoint": "Assert enabled and count actual grad-enabled checkpoint function calls",
+    "CPU_serial_joint": "BF16 independently rounded serial and joint backward can differ; do not claim byteexact"
+  },
+  "resource_status": {
+    "A800_GPU2": "Foreign PID46312 blocked prior F047 gate; not released to SCST. Wait root realempty40GB/80GB allocation.",
+    "A30_100_GPU0": "Sequence migratedF047 first; dynamicSap only after its actual whole-chain release.",
+    "A30_3_GPU0": "Reserved other route; no SCST use",
+    "admission": "New300s separate from original shared1800TERM+30KILL, exclusive original start intent; UNKNOWN no retry"
+  },
+  "CPU_loss": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/cpu-loss-v1/result.json",
+    "bytes": 1435,
+    "sha256": "39682ddafa7d8f49a757a0f647a8471acb82ed0765cc5de2a9902c8ada170401"
+  },
+  "CPU_normalizer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/normalization-cpu-v1/complete.json",
+    "bytes": 1327,
+    "sha256": "cb35c8f24e400155061684038854d4e1b7b04957f7ff8baecdbd06dfb440495b"
+  },
+  "no_GPU_started": true,
+  "no_new_held_gold": true,
+  "no_quality": true,
+  "no_formal_training": true
+}

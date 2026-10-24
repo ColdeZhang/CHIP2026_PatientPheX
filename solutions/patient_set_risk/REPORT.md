@@ -50,3 +50,11 @@ CPU首次调用Python3.12误加载系统3.13 NumPy，在读取训练数据前失
 沿用已核ModelScope/HF c2022362的Qwen3.5-9B缓存、Apache-2.0；实际文本8,953,803,264参数，加43,278,336 LoRA为8,997,081,600。无需视觉组件，完整公开bundle原参数9,653,104,368加adapter也未过10B；各模型分别披露。原公开SapBERT109,482,240参数/090663c3冻结，只作既有normalizer，无新外部人工表型标注数据。允许资源范围继承官方README_EN§Participation Rules第3项，公有代码/模型/知识库引用齐备；本路线只增加数学和训练标签reward。
 
 风险：uniform patient reward直接对应macro-F1，不能保证同时提高global micro-F1或总Score；CE anchor也不是性能保证。长期序列所有token共享一个advantage，方差大；训练中的歧义/不一致标签不会因为reward优化而自动正确；正常化弃答可能限制reward上界。若供给/工程通过，root再定完整训练与唯一强对照质量端点，不能用训练target接近1冒充达到用户0.8目标。
+
+## 执行激活与当前状态
+
+根线程已批准固定单次1800+30秒供给/工程探针。原准备计划保持原字节，`activation.json` 增补事前修订门：≥2非零优势组，且≥1组非空gold、两个输出都合法并有不同概念F1；允许另一组来自格式差异。原其它参数和4患者不改。
+
+新源 `pilot.py`、`scst_ops.py`、`pilot_driver.py` 已实现8raw先持久化、同一未更新父权重等待动态标准化、完整suffix sum+原CE、8次串行FB及一次可丢弃Adam。全部dropout关闭；生成和回放使用同BF16/cacheFalse上下文，实际checkpoint调用另记。完整输入no-grad/grad保原1e-5检查，cached/full生成差异完整记录，不能将它冒称同一数值路径。
+
+两个CPU合同已通过：tiny新loss/Adam以及原normalizer完整输入与缺查询拒收。CPU结果不代表实际9B生成/显存/供给通过。当前主体卡被外部任务占用，尚未启动SCST GPU；正式87训练和任何held质量均未授权。
