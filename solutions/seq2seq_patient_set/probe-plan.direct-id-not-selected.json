@@ -1,0 +1,99 @@
+{
+  "status": "PREPARED_NOT_RUN_NO_WEIGHT_DOWNLOAD_NO_GPU_AUTHORIZATION_USED",
+  "selected": "google/long-t5-tglobal-base",
+  "hf_revision": "aecb1376e5bd78db32ebc5c9deb257449b9e2b21",
+  "modelscope_revision": "43e71100fb6bb97afaaff5de08a13aa6210dfb6c",
+  "preferred_download_base": "https://modelscope.cn/models/google/long-t5-tglobal-base/resolve/43e71100fb6bb97afaaff5de08a13aa6210dfb6c/",
+  "assets": {
+    "config.json": {
+      "bytes": 851,
+      "sha256": "05136d8c4e2e8430e3615f677dd4819690f6c099ead0db6593605e565c1ac642"
+    },
+    "spiece.model": {
+      "bytes": 791656,
+      "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86"
+    },
+    "tokenizer.json": {
+      "bytes": 1389353,
+      "sha256": "d2acde0d8d71dd30a711834b07781b9c89feaac33fd332f60507699282740066"
+    },
+    "pytorch_model.bin": {
+      "bytes": 990446387,
+      "sha256": "288fc9c6abd72d86f6e05ed3f3691628f11bf8ab45d69424eb31fc94000e2e34"
+    }
+  },
+  "supply": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/prepared-v1/manifest.json",
+    "bytes": 3255,
+    "sha256": "f5bde0d14902f0439f711f431ef3045dbbc7abe9eb2cc5d1c1539166fba2b9e2"
+  },
+  "probe_source": {
+    "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/probe.py",
+    "bytes": 7497,
+    "sha256": "bde6959981af1a003896e81103c33f597e1c16a809e438a4a647684e1087ca09"
+  },
+  "runtime": {
+    "transformers": "4.50.0",
+    "torch": "must bind actual compatible installed CUDA build before launch; not inspected remotely",
+    "precision": "FP32 parameters + BF16 autocast",
+    "attention": "native LongT5 TGlobal eager",
+    "gradient_checkpointing": "nonreentrant, both encoder and decoder",
+    "optimizer": "AdamW all weights, lr3e-5 weight_decay.01"
+  },
+  "resource": {
+    "candidate": "fresh A30 .100 GPU0 only after root scheduling; SCST necessary Sap has priority",
+    "required_free_MiB": 20000,
+    "budget_seconds": 600,
+    "TERM_grace_seconds": 30,
+    "launch_TTL_seconds": 300,
+    "external_timeout_required": true,
+    "no_automatic_retry": true
+  },
+  "cases": [
+    {
+      "name": "max_target_native",
+      "index": 83,
+      "pad_to": null,
+      "row_id": "6134758:P1",
+      "source_tokens": 5378,
+      "target_tokens": 298
+    },
+    {
+      "name": "8k_padded",
+      "index": 35,
+      "pad_to": 8192,
+      "row_id": "12250201:P1",
+      "source_tokens": 7517,
+      "target_tokens": 90
+    },
+    {
+      "name": "max_input_native",
+      "index": 76,
+      "pad_to": null,
+      "row_id": "5793168:P1",
+      "source_tokens": 9712,
+      "target_tokens": 3
+    },
+    {
+      "name": "16k_padded",
+      "index": 76,
+      "pad_to": 16384,
+      "row_id": "5793168:P1",
+      "source_tokens": 9712,
+      "target_tokens": 3
+    }
+  ],
+  "actual_GPU_FB_Adam_decode_calls": 0,
+  "formal_training_authorized": false,
+  "expected_outputs": [
+    "per-case actual FB/Adam seconds and peak allocated/reserved",
+    "all gradient/state finite and actual2Adam",
+    "tiny16-token training-only raw decode",
+    "source/input refs and terminal failure or complete"
+  ],
+  "limits": [
+    "No real 8k/16k memory or walltime measured yet",
+    "No full-state checkpoint save/restore in this bounded probe",
+    "Probe state discarded; formal budget and recipe require measured costs first"
+  ]
+}

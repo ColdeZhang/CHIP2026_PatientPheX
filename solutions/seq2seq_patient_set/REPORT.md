@@ -2,7 +2,7 @@
 
 建议进入一次有界工程探针的候选是 **`google/long-t5-tglobal-base`**，不是再开一条Qwen目标/loss变体。它把完整报告与全部患者锚点放在双向长上下文encoder中，短decoder通过cross-attention产生目标患者的整个关系集合；当前Qwen是单个因果decoder按提示前缀自回归。既有DocRE/GP是判别式候选或跨度模型，SCST/DPO改变目标与优化，teacher/quote补全改变监督供给，都不等价于这一架构变化。
 
-本次只有公开资料、小文件、CPU分词及完整供给准备；**未下载任何完整权重，未运行模型/GPU/fit/质量，也没有读取held gold。** 不承诺涨分。通用C4预训练没有医学/指令专门先验，87患者样本很少，直接生成HP编号的语义泛化也是风险；该路线是否贡献新错误模式必须由完整关系终点检验。
+静态检查后root已授权单base资产和600秒有界probe，正式训练仍未授权；当前实际状态只在WORKLOG维护。通用C4没有医学/指令专门先验，87样本少；**唯一目标改为原强G的完整87条quote答案语义**，以复用其可复制原文与固定公共规范化。纯ID方案保留为未选CPU对照，不能拿JSON往返证明HP编号长尾可学。
 
 ## 原始资产及唯一选型
 
@@ -18,7 +18,7 @@
 
 计数按固定config与HF4.50.0原生源码中共享输入embedding、独立LM head、两stack/relative-bias逐项求和，尚未实例化模型。矩阵只是单个中间张量，**不是整模型显存峰值**；TGlobal仍含随长度增长的全局块注意力，不能称完全线性。详细公式/尺寸见[capacity-comparison](evidence/capacity-comparison.json)。真实8k/16k耗时与峰值目前未测，不能用这些静态数值代替。
 
-large具有更多容量，原论文部分任务也优于base，但表中任务的长度/微调条件并非全部相同，不能据此宣称当前87患者必优。这里选base的首要依据是large当前PT转换资产缺输出头：只读取73,760B safetensors JSON头，零tensor payload，已确认缺失；不能默许随机新头或改`tie_word_embeddings`掩盖。原large Flax文件3.132GB可能保留完整头，但转换和恢复尚未核实，另行处理才能重开，不下载两套试分数。base实际加载也必须先核零missing，不能仅由文件大小宣称权重完整。
+large具有更多容量，原论文部分任务也优于base，但表中任务的长度/微调条件并非全部相同，不能据此宣称当前87患者必优。这里选base的首要依据是large当前PT配置/权重头存在静态不一致，根因仍待核：只读取73,760B safetensors JSON头，零tensor payload，已确认缺失；不能默许随机新头或改`tie_word_embeddings`掩盖。原large Flax文件3.132GB可能保留完整头，但转换和恢复尚未核实，另行处理才能重开，不下载两套试分数。base实际加载也必须先核零missing，不能仅由文件大小宣称权重完整。
 
 两款原始模型均Apache-2.0。Google原论文§4.1明确仅用C4预训练、4096输入/910输出、PEGASUS式无监督主要句子生成；所选是**原始预训练checkpoint**，不取PubMed摘要微调或外部phenotype人工标注模型。原论文与项目报告16k微调/QA可用；config中的`n_positions=4096`是预训练元数据，原生LongT5用相对位置与局部/全局块，没有4096绝对位置embedding硬截断。不能把“支持16k”写成“原始权重已16k预训”。
 
@@ -28,23 +28,25 @@ BioBART-large原配置`max_position_embeddings=1024`，不能直接覆盖本任�
 
 ## 忠实供给与原生token成本
 
-直接从原train32 SHA`38c353ea…`保留32篇/87患者全部完整passage、section顺序和全部患者mention定位；F1只读16篇/39患者input SHA`962b76a3…`，训练/held文献互斥。目标取原association按公共v2的**仅完整HP复合串拆分与集合去重**，共818原子（800单HPO串+18其他literal）、5空患者，不丢NIL、MESH、分支外literal，不从801弱quote或796标准名目标倒推。输出是固定JSON字符串数组，**不加teacher、不选nearest、不增加规范化器**。所有原目标文本与IDs已落盘并逐SHA冻结，818目标零UNK，87个JSON目标原字节encode/decode全等。
+固定继承原G `targets-v2` manifest SHA`85979cdc…` 的87 train与39纯输入，原train32 SHA`38c353ea…`，F1输入SHA`962b76a3…`，无文献交叉。将原两条system/user内容用两个换行连接交给encoder，所有全文passage、患者表与定位原字节保留。目标**不重新挑anchor、不做新teacher、不从818 ID替换/截取**，逐条使用原G答案801个weak quote triples，代表814个canonical keys、5空患者。原G已有4个incomplete患者/4个invalid relation label，目标不能声称覆盖原818全部v2原子；这4行保留，不私自补造或删除。
 
-| 原生SentencePiece，含EOS | 训练87 | held纯输入39 |
+| 原生SP，含EOS | 未选direct ID | **选定原G quote** |
 |---|---:|---:|
-| encoder总tokens | 463,477 | 213,904 |
-| encoder中位数 / 最大 | 4,978 / **9,712** | 5,146 / **10,754** |
-| 超4096 / 超8192 / 超16384行 | 66 / 8 / 0 | 27 / 2 / 0 |
-| decoder总 / 最大 | 5,997 / **298** | 无目标读取 |
+| train87 encoder总 / 最大 | 463477 / 9712 | **484678 / 9907** |
+| held39纯输入encoder总 / 最大 | 213904 / 10754 | **222706 / 10961** |
+| train decoder总 / 最大 | 5997 / 298 | **12943 / 658** |
+| 语义供给 | 原v2 818原子，数字ID长尾风险 | 原G 801可复制quote/814canonical，保原监督局限 |
 
-没有截文献、切窗或补写原文。完整训练/held压缩供给各1,112,099B/SHA`939c1d9a…`与485,781B/SHA`c9269c77…`，manifest SHA`f5bde0d1…`，见[CPU摘要](evidence/census-summary.json)与[probe-plan](probe-plan.json)。这是真实原生token成本，不是字符估计。
+两套均完整87/39、未截文献；最终只选quote。旧direct ID供给`prepared-v1/`和计划`probe-plan.direct-id-not-selected.json`保持，不进入模型。新`quote-prepared-v2/`保存每行原答案、可逆传输答案、label IDs各自SHA，见[evidence/quote-supply.json](evidence/quote-supply.json)。
 
-固定使用原厂`spiece.model` SHA`d60acb12…`的**SentencePiece 0.2.1直接编码**，EOS1、decoder-start/pad0、UNK2；SP自身`pad_id()`为-1，模型pad取config的0，不能混用。发布fast JSON与SP在9文献/33患者输入有不同Unigram分割（3行长度+1），已定位如`DU+C`/`D+UC`，根因细节未完全证实；不再旁支排查、不修文字、不用fast替代。原生词表对原文`<`与`~`共227次发UNK，保留并披露，**不是无损tokenization**；所有原文字符串仍完整保存在供给。目标不受此UNK问题影响。
+原G第18行有两个`<`：直接nativeSP会UNK；标准JSON `\u003c`也因反斜杠UNK失败。按root明确的可逆序列化准则，**仅把目标中这两个原生UNK位置映射到词表已有`<extra_id_0>` ID32099**，其余原SP IDs不变；decode pieces先恢复字面`<`，再交原G严格JSON/quote parser。没有新token/embedding/quote，也不改变原JSON语义。CPU实际87/87原答案字节及JSON逐项顺序完整恢复，双SHA及labels SHA均保存。传输token序列有变化，这一额外工程变量明确披露；不是偷偷修文字。
+
+固定原厂`spiece.model` SHA`d60acb12…`与SentencePiece0.2.1；EOS1、decoder-start/pad0、UNK2。SP自身`pad_id()`为-1，模型pad取config0。发布fast JSON在33/126 direct-ID输入发生Unigram切分差异，已定位但未穷究根因，后继不用fast重建。**输入原文完全不改**，原G输入原生UNK包括`<`182、`~`45及JSON患者表`{`608/`}`608次，必须披露，不能称无损token化。quote目标经上述专用codec可逆，不把输入UNK静默替换。
 
 ## 下一步仅一次工程，不是正式训练
 
-[probe.py](probe.py)已准备、未执行：原厂base全参数、FP32权重+BF16 autocast、原生encoder/decoder非重入checkpoint、AdamW。先真实free UUID/无进程门和300秒启动有效期，再四个完整训练案例：5378×298最大目标、7517×90右补到8192、9712×3最长输入、同完整输入右补到16384。padding mask=0，不截文本、不增加临床内容。前两例各真实Adam一次，后两例在已有Adam状态下做FB；保存loss/梯度有限性、实际8k/16k FB秒数、峰allocated/reserved，再16-token训练例工程解码。所有probe状态弃掉，无checkpoint恢复声明。
+[probe.py](probe.py)已准备、未执行：原厂base全参数、FP32权重+BF16 autocast、原生encoder/decoder非重入checkpoint、AdamW。先真实free UUID/无进程门和300秒启动有效期，再四个完整训练案例：5571×658最大目标、7733×213右补到8192、9907×3最长输入、同完整输入右补到16384。padding mask=0，不截文本、不增加临床内容。前两例各真实Adam一次，后两例在已有Adam状态下做FB；保存loss/梯度有限性、实际8k/16k FB秒数、峰allocated/reserved，再16-token训练例工程解码。所有probe状态弃掉，无checkpoint恢复声明。
 
-共享预算600秒+TERM30，排他输出目录、不自动重试；`.100 A30 GPU0`只是候选，root排程时SCST必要Sap优先，须真实空闲门。没有申请/启动正式87训练；需先取得每例实测与目标环境版本，再决定正式配方/预算。没有实测前不能填写训练分钟数。入口、原件、精确将来命令见[README](README.md)；此probe不运行held推断或质量。
+.100上单base资产/探针已由root授权，正式训练未授权。共享预算600秒+TERM30，排他输出目录、不自动重试；`.100 A30 GPU0`只是候选，root排程时SCST必要Sap优先，须真实空闲门。没有申请/启动正式87训练；需先取得每例实测与目标环境版本，再决定正式配方/预算。没有实测前不能填写训练分钟数。入口、原件、精确将来命令见[README](README.md)；此probe不运行held推断或质量。
 
 主要原始来源：[Google LongT5](https://github.com/google-research/longt5)、[NAACL论文](https://aclanthology.org/2022.findings-naacl.55/)、[base原始模型](https://huggingface.co/google/long-t5-tglobal-base/tree/aecb1376e5bd78db32ebc5c9deb257449b9e2b21)、[large原始模型](https://huggingface.co/google/long-t5-tglobal-large/tree/fb4ba84440d10e9b93fd626fb460683372329d4a)、[ModelScope base](https://modelscope.cn/models/google/long-t5-tglobal-base)。已核机制地图与当前route索引；这是架构条件生成控制，不称新的集合监督发明。

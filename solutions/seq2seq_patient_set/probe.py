@@ -38,6 +38,9 @@ def main(a):
         assert all(ref(a.supply)[k]==plan['supply'][k] for k in ('bytes','sha256'))
         assert all(ref(__file__)[k]==plan['probe_source'][k] for k in ('bytes','sha256'))
         assert plan['selected']=='google/long-t5-tglobal-base'
+        assert plan['target_mode']=='original-G87-quotes-existing-sentinel'
+        import quote_codec
+        assert all(ref(quote_codec.__file__)[k]==plan['codec_source'][k] for k in ('bytes','sha256'))
         modeldir=Path(a.model_dir)
         for name,item in plan['assets'].items():
             observed=ref(modeldir/name);assert all(observed[k]==item[k] for k in ('bytes','sha256')),name

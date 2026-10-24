@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED_NOT_RUN_NO_WEIGHT_DOWNLOAD_NO_GPU_AUTHORIZATION_USED",
+  "status": "FROZEN_CPU_PASS_ORIGINAL_G_QUOTE_TARGET_READY_FOR_AUTHORIZED_PROBE",
   "selected": "google/long-t5-tglobal-base",
   "hf_revision": "aecb1376e5bd78db32ebc5c9deb257449b9e2b21",
   "modelscope_revision": "43e71100fb6bb97afaaff5de08a13aa6210dfb6c",
@@ -23,14 +23,14 @@
     }
   },
   "supply": {
-    "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/prepared-v1/manifest.json",
-    "bytes": 3255,
-    "sha256": "f5bde0d14902f0439f711f431ef3045dbbc7abe9eb2cc5d1c1539166fba2b9e2"
+    "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/quote-prepared-v2/manifest.json",
+    "bytes": 4257,
+    "sha256": "641403ea7c923edfde2bbf3b2f0d28a22113e5062b84634c1c59320a4d4d8ec1"
   },
   "probe_source": {
     "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/probe.py",
-    "bytes": 7497,
-    "sha256": "bde6959981af1a003896e81103c33f597e1c16a809e438a4a647684e1087ca09"
+    "bytes": 7702,
+    "sha256": "e4f116fdd48da4b9b3157c1b46400a4f8b227d6e30ae661abb88f3b7cbba7a55"
   },
   "runtime": {
     "transformers": "4.50.0",
@@ -54,32 +54,32 @@
       "name": "max_target_native",
       "index": 83,
       "pad_to": null,
-      "row_id": "6134758:P1",
-      "source_tokens": 5378,
-      "target_tokens": 298
+      "row_id": "6134758:P1:grounded",
+      "source_tokens": 5571,
+      "target_tokens": 658
     },
     {
       "name": "8k_padded",
       "index": 35,
       "pad_to": 8192,
-      "row_id": "12250201:P1",
-      "source_tokens": 7517,
-      "target_tokens": 90
+      "row_id": "12250201:P1:grounded",
+      "source_tokens": 7733,
+      "target_tokens": 213
     },
     {
       "name": "max_input_native",
       "index": 76,
       "pad_to": null,
-      "row_id": "5793168:P1",
-      "source_tokens": 9712,
+      "row_id": "5793168:P1:grounded",
+      "source_tokens": 9907,
       "target_tokens": 3
     },
     {
       "name": "16k_padded",
       "index": 76,
       "pad_to": 16384,
-      "row_id": "5793168:P1",
-      "source_tokens": 9712,
+      "row_id": "5793168:P1:grounded",
+      "source_tokens": 9907,
       "target_tokens": 3
     }
   ],
@@ -95,5 +95,13 @@
     "No real 8k/16k memory or walltime measured yet",
     "No full-state checkpoint save/restore in this bounded probe",
     "Probe state discarded; formal budget and recipe require measured costs first"
-  ]
+  ],
+  "target_mode": "original-G87-quotes-existing-sentinel",
+  "codec_source": {
+    "path": "/workspace/patientphex-worktrees/research-seq2seq-patient-set/solutions/seq2seq_patient_set/quote_codec.py",
+    "bytes": 1130,
+    "sha256": "0f79f297bdf46b0e25ea1e15d0415c0abd31d70403914a3435cacca9e461f132"
+  },
+  "target_semantics": "original G 87 answers unchanged;801 weak quote targets,814canonical keys;4incomplete patients explicitly retained",
+  "target_transport": "only two less-than native-UNK positions use existing extra_id_0; no new tokens; all87 restored original bytes and parsed JSON exactly"
 }
