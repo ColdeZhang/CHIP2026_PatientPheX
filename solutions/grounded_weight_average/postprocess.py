@@ -42,7 +42,7 @@ def main():
   save(S/'extraction-plan.json',p)
  elif a.stage=='normalize-bind':
   p=read(G/'normalization/held-finalize-plan.json');prep=read(D/'normalization-preparation/manifest.json');p['preparation']=ref(D/'normalization-preparation/manifest.json');p['output_dir']=str(D/'normalized-v1');p['binding_source']=ref(__file__)
-  for k,n in [('query_collection','collection.json'),('query_scores','terminal/output/query-scores.json'),('query_complete','terminal/output/complete.json')]:p[k]=ref(D/'Sap-v1'/n) if prep['necessary_public_query_count'] else None
+  for k,n in [('query_collection','collection.json'),('query_scores','terminal/output/query-scores.json'),('query_complete','terminal/output/complete.json')]:p[k]=ref(D/'Sap100-v1'/n) if prep['necessary_public_query_count'] else None
   save(S/'normalization-finalize-plan.json',p)
  elif a.stage=='assemble':
   p=copy.deepcopy(OLD);p['actual']={};ex=read(D/'quotes-v1/manifest.json');nm=read(D/'normalized-v1/manifest.json')
