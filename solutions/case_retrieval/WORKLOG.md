@@ -10,18 +10,18 @@
 
 ## 当前状态：Med短输入完整负结案
 
-- 固定strict32旧124条×2epoch，原CID→PID任务、原生assistant CE/r16/238语言投影，32calls、248曝光；完整训练＋两次全状态持久导出/回读657.090秒<1200。两epoch loop合计316.568秒；不能把第二次invocation177.663秒当全部训练耗时。
+- 固定strict32旧124条×2epoch，原CID→PID任务、原生assistant CE/r16/238语言投影，32calls、248曝光；完整训练＋两次全状态持久导出/回读657.090秒<1200。两epoch loop合计316.568秒。
 - 原80输入完整推断，native226.016秒、campaign257.325秒<600；80/587CID全部有效，0未决、0触顶，1189实体及全部非关联原字节保持。GPU2于03:38:06.634Z实际空释放，旧训练/export/inference作业均结束，勿重启watch40635。
 - **旧基线 .660942003 → Med单独 .603701549；预先唯一并集 .644663430。** 关系TP/FP/FN分别310/73/210、253/147/267、326/176/194。并集新增119关系仅16TP/103FP，两端micro与macro均降，不达预定留用条件；不迁F0/原dev，不补阈值/组合/额外epoch。
 - 两个fullpred共同freeze `d7a52409` 在首次gold前，各唯一调用原v2，旧指标复用。见[固定结果](medgemma_relation_control/RESULT-short-input-frozen.md)、[结构化结果](medgemma_relation_control/quality-result.json)、[质量摘要](medgemma_relation_control/quality-F1/summary.json)。这是固定配方质量负，不是格式故障。
 - 统一工程审 `1dc8c37b`、正式入口审 `1d15ecd8`；完整终点审 `fcc84401` 已通过，见[终审](medgemma_relation_control/review/formal-terminal-review.json)。raw与双fullpred另已.100归档b66fd723/33项619551B，逐成员回读/fsync通过。实际全链清单为[terminal-manifest](medgemma_relation_control/terminal-manifest.json)。当前状态文件已转closed，并保留before-terminal原件，原deadline不改。
 
-## 当前后继：闭集全文正式准备（尚未启动）
+## 当前后继：闭集全文正式运行
 
 - 不变的CID→PID任务只追加全部允许原文。CPU13.458秒核124/80、原答案/CID/PID/候选/原消息与患者坐标精确保持；训练965436tokens/ep、最长12824、原监督7150不变，约旧382000的2.527319倍。F1输入645000tokens、最长13805。
 - 51条训练超过现有8192；旧Med trainer原样保留，未默改或截断。单独最长诊断显式容量14000，原native更新/cache数值段5562B逐字节复用；源码/CPU已审 `4a6544d2`。最长诊断用显式14000、freshbase、状态丢弃，已完成且无质量；当前正式控制另用新源/namespace。
 - 全文最长probe已完整关闭：proc_b941c71a…，native30.681秒/更新8.469秒，allocated58.364GB/reserved60.677GB，真实2token cache通过；03:45:17.126Z GPU2实际释放。原03:47:36Z+TERM30未延。见[工程终点](medgemma_relation_control/fullcontext-preparation/probe-a800/REPORT.md)，无全文正式训练/质量，不重复启动。
-- 仅按旧epoch loop乘token比约400.255秒/ep、800.510秒/2ep，是粗估；不含load、每次实际约118秒的导出、推断，注意力和显存可非线性。短输入正式reserved峰58.391GB，不能用单行probe30.839GB承诺长输入可装。
+- 仅按旧epoch loop乘token比约400.255秒/ep、800.510秒/2ep，是粗估；不含load、每次实际约118秒的导出、推断，注意力和显存可非线性。实际多形状峰与总耗时待本次记录。
 - 见[全文CPU报告](medgemma_relation_control/fullcontext-preparation/REPORT.md)、[CPU小清单](medgemma_relation_control/fullcontext-preparation/backup-filelist.json)、[最长源计划](medgemma_relation_control/fullcontext-preparation/probe-source/source-plan.json)。历史做过开放HPO/quote全文SFT；尚未测的是同CID闭集目标的train＋infer全文SFT，不能泛化成所有全文SFT未测。
 
 ## 恢复与持久资产定位
@@ -42,5 +42,5 @@
 ## 记录与下一步
 
 - 本索引只更新阶段结论、活动job/预算、资产入口和下一步；实验细节写各方案目录。关键方法/结果/失败与恢复及时commit、push并核ls-remote；正常逐步训练日志不入Git。只改本路线目录，主总台账/HANDOFF由root统一维护。
-- 短Med负与全文工程审2cc62bee已结案。root新授权全文fresh124×2ep/32calls：共享2700+30含两load/两全状态ACK，原full80另900+30；唯一primary fullMed/secondary oldSFT32∪fullMed，双freeze后各唯一v2。正式新源/端点20+16项CPU合同及9件实际部署已完成，统一入口[6c87fee0](medgemma_relation_control/fullcontext-preparation/formal-preparation/entry-manifest.json)、plan60eb799f；尚未启动。H48追加窄CPU17.716秒，Med/Qwen各80文本Auto/native IDs与解码同，组件/音频special差异如实记[报告](medgemma_relation_control/tokenizer-family-audit/REPORT.md)，无模型/gold。首OOM/非有限/截止停，不自动扩预算或F0/dev/官方。任何方法即使高于短Med.603702，也需与强旧基线.660942比较。
+- 短Med负与全文工程审2cc62bee已结案。root新授权全文fresh124×2ep/32calls：共享2700+30含两load/两全状态ACK，原full80另900+30；唯一primary fullMed/secondary oldSFT32∪fullMed，双freeze后各唯一v2。正式新源/端点20+16项CPU合同及9件实际部署已完成，独审[41e51269](medgemma_relation_control/review/fullcontext-formal-entry-review.json)已PASS，统一入口[6c87fee0](medgemma_relation_control/fullcontext-preparation/formal-preparation/entry-manifest.json)、plan60eb799f；03:55:35Z已启动epoch1 proc_2d5099e9/PID45488，watch31021；训练总绝对截止04:40:33.082Z+TERM30，不重新execute。状态见[恢复入口](medgemma_relation_control/fullcontext-preparation/formal-preparation/formal/execution-state.json)。H48追加窄CPU17.716秒，Med/Qwen各80文本Auto/native IDs与解码同，组件/音频special差异如实记[报告](medgemma_relation_control/tokenizer-family-audit/REPORT.md)，无模型/gold。首OOM/非有限/截止停，不自动扩预算或F0/dev/官方。任何方法即使高于短Med.603702，也需与强旧基线.660942比较。
 - 本次压缩前完整台账原字节已归档至[历史正文](history/WORKLOG-through-20261024-0339.md)，SHA `ddb89cb9545f1653b1304c6e97948cf14ad4603cce97b61956b8a09ca22bdb55`；它保留当时状态，不是当前启动依据。
