@@ -1,8 +1,8 @@
 # Copy-grounded decode 台账
 
-当前状态：**.100 GPU0 原正式39推断运行中；尚无新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**V1完整39但37EOS/2cap，按原门rc1关闭、0quality；独立fallback-v2已授权，待源与决策推送后固定归一化/完整评分**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
-最近远端检查点：2026-10-24 14:47 UTC，`origin/explore/copy-grounded-decode` 的 `b00734176a5d8ec7d2eb372df628fdf38e26b7fc` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+最近远端检查点：2026-10-24 15:05 UTC，`origin/explore/copy-grounded-decode` 的 `b221c06672d7e4d75219d4d08fdc32f0d7467296` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
@@ -19,3 +19,6 @@
 - sequence 已确认原F094及195必要Sap结束，14:52:39.579562 GPU0=0/noapps；原wrapper `7dfef780…` 已绑定 GPU plan。正式源 [infer.py](infer.py)、[infer-plan](infer-plan.json) 保原同d52/39、greedy/nonthinking/max1600/1800+30；全raw持久后才逐token与完整三元组校验，任何无EOS/cap/非法行阻断质量。
 - 14:56:04.120818 实际唯一正式启动：`proc_4367dbef-1163-4dd1-8778-02436c18a636`，driver2748471/child2748482；GPU0 fresh=0 MiB/24164 MiB free，无其进程，GPU1 foreign保持。TERM15:26:04.120813/KILL15:26:34.120813，不重启/加时。运行源与计划在启动前 `544295b3` 推送核验；该提交已冻结任何无EOS/cap/非法行阻断质量政策，完整39失败不得冒充pipeline漏行或临时改为abstain继续评分。
 - 后处理只改namespace/新source/schema绑定与既定同意公式，复用G严格定位、train32 alias、b59语义政策和原FP16 Sap。`collect_inference.py` 只在原child结束后冻原件ZIP；`postprocess.py contract` 已核旧字面前缀/非关系字节保护及其他旧流支持的新G能入primary，未读gold/调用模型/评分。
+
+- 15:08:10 V1原child完整39后rc1退出：37EOS/37strict、2cap1600、完整EOS parser failure0；native723.208秒/wrapper725.933秒。GPU0实际15:08:10.053941=0/noapps。原39raw/IDs共89件逐SHA/fsync收齐，collection d28367ba；原V1不归一化、不评分、不改PASS，见 [关闭证据](evidence/V1-closed.json)。此前仅末尾进度见1cap，完整统计更正2cap。
+- 父线程在无新gold/质量下批准独立 [fallback-v2](fallback_v2/decision.json)：这是看到无标签生成失败后的后设整行弃答策略，非原预锁V1通过。所有cap/nonEOS及原strict失败贡献空new，37完整strict行沿原parser；全16/39保留B4。只评既定B4∪validnew∩(G∪S∪Q∪C)，不重生成、不扩1600、不救前缀、不另评有效子集。源/decision先push，后仅必要FP16 Sap180+30与完整freeze后至多1newv2/old0。

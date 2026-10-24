@@ -1,0 +1,99 @@
+{
+  "schema": "copy-grounded-posthoc-whole-row-abstention-v2",
+  "decision_at_utc": "2026-10-24T15:13:46.586235+00:00",
+  "experiment": "E-20261024-COPY-GROUNDED-001/fallback-v2",
+  "parent_authorization": "Separate CPU assembly v2 after no-gold complete39 observation; universal whole-row abstention, unchanged fixed primary, necessary FP16 Sap180+30; at most1newv2/old0 or byteexact0",
+  "post_hoc_to_unlabeled_generation": true,
+  "pre_quality": true,
+  "observed_counts": {
+    "rows": 39,
+    "EOS": 37,
+    "cap": 2,
+    "strict": 37,
+    "complete_EOS_parser_fail": 0
+  },
+  "original": {
+    "wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/terminal/wrapper-complete.json",
+      "bytes": 538,
+      "sha256": "3d473799cf699be05b72fcc8230893007c3521e2ed2367ca83550fa776c51757"
+    },
+    "complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/terminal/output/complete.json",
+      "bytes": 24873,
+      "sha256": "ad2a0a3248453e9967ea0c34069594332841b63b700c5fcf10865b2abeb8315e"
+    },
+    "responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/terminal/output/responses.jsonl",
+      "bytes": 105123,
+      "sha256": "2e9f43c14b040c08b2ecbd1c92629390acafe9ffe4795a7f6c35f2d327cf2577"
+    },
+    "audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/terminal/output/constraint-audit.json",
+      "bytes": 17219,
+      "sha256": "aee6346e6a68795fcec6424042a70a4c34dff96501a7816377fa4f64491790eb"
+    },
+    "collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/collection.json",
+      "bytes": 37357,
+      "sha256": "d28367ba2ef991a913eafda265fc3cce99334254231329d3fd0a2a3e18c5a83f"
+    },
+    "infer_source": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/infer.py",
+      "bytes": 14699,
+      "sha256": "2bc0752e2745a54c93ca7acb85206667007489c425054f7e2e04eec0cd731772"
+    },
+    "infer_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/infer-plan.json",
+      "bytes": 12447,
+      "sha256": "30c7f479f2d1561cdc77efb5ca981425c8b9fa129894a4db640fb5a5794d4751"
+    }
+  },
+  "V1": {
+    "status": "CLOSED_STRICT_COMPLETENESS_FAILURE",
+    "returncode": 1,
+    "quality_calls": 0,
+    "not_reclassified_as_pass": true,
+    "prelock_commit": "544295b35c18680aae607a2ceda6cbba03a22bf9"
+  },
+  "policy": {
+    "cap_or_non_EOS": "Original interpret returns whole-row empty anchors before JSON parsing",
+    "complete_EOS_original_strict_failure": "Whole-row empty anchors without parsing or item salvage",
+    "original_strict_success": "Unchanged original Grounded interpret with complete status and zero rejected items",
+    "all_original39_required": true,
+    "no_cap_prefix_recovery": true,
+    "no_regeneration": true,
+    "max_new_tokens_unchanged": 1600,
+    "no_model_or_decoder_change": true
+  },
+  "primary": "B4 UNION (constrained_G_valid_rows INTERSECT (original_pure_G UNION S UNION Q UNION C))",
+  "retain_all_baseline": true,
+  "full_evaluation_coverage": {
+    "documents": 16,
+    "patients": 39,
+    "Task1_entities": 1189,
+    "baseline_relations": 524
+  },
+  "quality_budget": {
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "no_single_arm": true,
+    "no_valid_subset": true,
+    "no_all_union": true,
+    "byteexact_inherit_zero": true
+  },
+  "normalization": {
+    "policy": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20",
+    "aliases": "train32",
+    "bank_rows": 41099,
+    "FP16": true,
+    "GPU0_fresh_gate_required": true,
+    "budget_seconds": 180,
+    "grace_seconds": 30
+  },
+  "disclosures": [
+    "A30/Torch2.7.1 relative to original A100/Torch2.6; no pure decoder numerical causal claim",
+    "Finite pool strongB ancestor48 excludesF1 but includesF0; whole route not puretrain32; futureF0 needs separate excludingF0 pool",
+    "F1 repeatedly used for development, not blind evaluation"
+  ]
+}
