@@ -1,0 +1,292 @@
+{
+  "status": "input_only_existing_supply_checked_no_quality",
+  "at_utc": "2026-10-24T00:20:41.735249+00:00",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/research/check_gliner_strong_pool_supply.py",
+    "sha256": "a3e8f6ef278b3be0879e96a7f6f1a03374dcc58d360b00231d243e7c640fa4f5",
+    "bytes": 8275
+  },
+  "strong_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/complete-freeze.json",
+    "sha256": "cf8c1a2820ca94099d6129e9c121eb11c1fd049e4ec35d89de725ef169408f82",
+    "bytes": 6509
+  },
+  "supply_definition": "Only previously accepted GLiNER additions (old augmented minus old CRF/Sap base); never re-add all old CRF entities.",
+  "history_scope": "Sequence notes plus ontology owner confirmation: no prior three-public HGB+proper-nested plus old selected GLiNER-only nonoverlap control found. Earlier CRF/Sap unions are different.",
+  "limitations": [
+    "F0 GLiNER trained48; F1 trained32, both exclude their target16; not a same-training-size comparison.",
+    "Both resources and decoder were previously developed; this input-only audit is not a new blind evaluation.",
+    "Only F0/F1 existing supply is audited; no claim of fourfold ready models.",
+    "No new prediction, gold metrics, fit, neural forward, original dev, or model transfer."
+  ],
+  "elapsed_seconds": 0.16192960100306664,
+  "full_report": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gliner-strong-pool-supply/report.json",
+    "sha256": "2c8fe31388de6230b78d071aadfe02c3f532cb9855a26da50081d4b37ef62e18",
+    "bytes": 52722
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "counts": {
+        "already_selected_exact_key": 21,
+        "nonoverlap_new_key": 3,
+        "other_overlap_blocked": 2
+      },
+      "existing_gliner_additions": 26,
+      "strong_entities": 1089,
+      "model_training_documents": [
+        "10313222",
+        "11203018",
+        "11235872",
+        "11765409",
+        "11871647",
+        "11906559",
+        "12059664",
+        "12078887",
+        "12110755",
+        "12110769",
+        "12118522",
+        "12250201",
+        "12334843",
+        "12386172",
+        "12405443",
+        "12455887",
+        "12628480",
+        "12646972",
+        "12798528",
+        "12811285",
+        "12846941",
+        "12891056",
+        "2866573",
+        "2964533",
+        "4607013",
+        "4644339",
+        "5023785",
+        "5368377",
+        "5415817",
+        "5422868",
+        "5425407",
+        "5473715",
+        "5538066",
+        "5574094",
+        "5763540",
+        "5773845",
+        "5789735",
+        "5793168",
+        "5866036",
+        "5970456",
+        "6048891",
+        "6057141",
+        "6059678",
+        "6063015",
+        "6134758",
+        "6219255",
+        "6390251",
+        "9327653"
+      ],
+      "target_documents": [
+        "10553122",
+        "10789033",
+        "11196099",
+        "11826603",
+        "11919040",
+        "12444410",
+        "12652105",
+        "12779223",
+        "3563609",
+        "4678370",
+        "5452357",
+        "5537416",
+        "5575846",
+        "5959423",
+        "6338757",
+        "6491447"
+      ],
+      "training_target_intersection": 0,
+      "actual_epochs": 10,
+      "actual_steps": 4360,
+      "actual_model_sha256": "25bb0b35782f0a9c84ce7e3c564c4561c3fbb051cd98fcac139a2ed0b0602f23",
+      "resources": {
+        "link_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/manifest.json",
+          "sha256": "5ef9868e907816d83f3e41e7b5f628cf1c95fed2fc8bb508afa3459e73cb0c7c",
+          "bytes": 5804
+        },
+        "assembly_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/manifest.json",
+          "sha256": "0bf97d23b4302b323d6357ab4275c90128bfb287a2ade73755c272089dc26457",
+          "bytes": 2504
+        },
+        "training_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-outer0-a30/formal-fixed10ep/run_manifest.json",
+          "sha256": "c867f25b67b96a0752ba4e8d9f060bc267f86559406105b89b484acd1011c699",
+          "bytes": 44389
+        },
+        "prepared_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/manifest.json",
+          "sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+          "bytes": 24528
+        },
+        "training_windows": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/train48.jsonl",
+          "sha256": "5757e8b4c6718c4e3ca762ddedab5e46e475191addf95684c09e003fd1e77d33",
+          "bytes": 4437895
+        },
+        "target_input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+          "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37",
+          "bytes": 350409
+        },
+        "old_baseline": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/baseline.jsonl",
+          "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145",
+          "bytes": 124903
+        },
+        "old_augmented": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-outer0/assembled/augmented.jsonl",
+          "sha256": "431bbc6e8ce8ae673499d2bbb78c8f0db0569c8c68f84e26fe73dc5a4907d0b5",
+          "bytes": 128301
+        },
+        "strong_baseline": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold0/biobert.nested.jsonl",
+          "sha256": "60184224e48f20ec392caac09e0a4045511c8349a567c62fb6127870146a0a78",
+          "bytes": 143624
+        }
+      },
+      "hgb_training_documents": 48,
+      "gliner_training_documents": 48,
+      "source_policy": {
+        "probability": 0.65,
+        "similarity": 0.92,
+        "overlap_order": "GLiNER score descending,length descending,offset ascending",
+        "existing_entities": "unchanged",
+        "relation": "same fixed rules",
+        "unmapped_new_spans": "discard; preserve original NIL"
+      }
+    },
+    {
+      "fold": 1,
+      "counts": {
+        "already_selected_exact_key": 44,
+        "nonoverlap_new_key": 20,
+        "other_overlap_blocked": 5
+      },
+      "existing_gliner_additions": 69,
+      "strong_entities": 1317,
+      "model_training_documents": [
+        "11203018",
+        "11235872",
+        "11765409",
+        "12059664",
+        "12078887",
+        "12110755",
+        "12110769",
+        "12118522",
+        "12250201",
+        "12334843",
+        "12405443",
+        "12628480",
+        "12646972",
+        "12798528",
+        "12811285",
+        "12846941",
+        "2866573",
+        "4644339",
+        "5023785",
+        "5368377",
+        "5422868",
+        "5574094",
+        "5763540",
+        "5773845",
+        "5793168",
+        "5866036",
+        "5970456",
+        "6057141",
+        "6059678",
+        "6134758",
+        "6219255",
+        "6390251"
+      ],
+      "target_documents": [
+        "10313222",
+        "11871647",
+        "11906559",
+        "12386172",
+        "12455887",
+        "12891056",
+        "2964533",
+        "4607013",
+        "5415817",
+        "5425407",
+        "5473715",
+        "5538066",
+        "5789735",
+        "6048891",
+        "6063015",
+        "9327653"
+      ],
+      "training_target_intersection": 0,
+      "actual_epochs": 10,
+      "actual_steps": 2880,
+      "actual_model_sha256": "e099bfec6c03cb61c0333519ae18d978fc8357f4577ce88ad781c187a6d85214",
+      "resources": {
+        "link_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/manifest.json",
+          "sha256": "a72c8d614b5988d1977e75907ebe0f4a7a6598afc78b4898cd385f095856f9fd",
+          "bytes": 5609
+        },
+        "assembly_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/manifest.json",
+          "sha256": "9bd744ec8891b54145de167094d0a857e8ea404c90586206be0e1e5526a2783b",
+          "bytes": 2549
+        },
+        "training_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-long10ep-a800/formal-fixed10ep/run_manifest.json",
+          "sha256": "5ffc5df71c34d162bf61bc10d92b8f8383b2f75447b3aab5dc9a725b9ad617a2",
+          "bytes": 40733
+        },
+        "prepared_manifest": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/manifest.json",
+          "sha256": "f26b7a6de19b27edaff88daca5425506d0fa342bfa949231f06f4b1992b02d03",
+          "bytes": 24528
+        },
+        "training_windows": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-medium-v2-pilot/a800/prepared/nested_train32.jsonl",
+          "sha256": "a76db949c670f21909031ac99ac42e91d2eb9a959f4ae0d6cec9ed08f7154ed0",
+          "bytes": 2916726
+        },
+        "target_input": {
+          "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+          "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+          "bytes": 342703
+        },
+        "old_baseline": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/baseline.jsonl",
+          "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068",
+          "bytes": 155574
+        },
+        "old_augmented": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-link-inner1/assembled/augmented.jsonl",
+          "sha256": "f203078db95139d59d7842ff80a0d0bed490cfdebc4dea86f25ecae8cafbd810",
+          "bytes": 164527
+        },
+        "strong_baseline": {
+          "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold1/biobert.nested.jsonl",
+          "sha256": "1c607aaa596a4819de447af03904e74549fd143aa6a86fe745d4159b02a1f047",
+          "bytes": 174278
+        }
+      },
+      "hgb_training_documents": 48,
+      "gliner_training_documents": 32,
+      "source_policy": {
+        "probability": 0.65,
+        "similarity": 0.92,
+        "overlap_order": "GLiNER score descending,length descending,offset ascending",
+        "existing_entities": "unchanged",
+        "relation": "same fixed rules",
+        "unmapped_new_spans": "discard; preserve original NIL"
+      }
+    }
+  ]
+}
