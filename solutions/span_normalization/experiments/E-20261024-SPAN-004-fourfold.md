@@ -39,3 +39,5 @@ pooled mention +.000707214261、doc −.002209872452，两个关系指标完全�
 F2新增68/移除49（实体1109→1128），mention TP+5/FP+14、doc TP+4/FP+1；F3新增57/移除47（1053→1063），mention TP−1/FP+11、doc TP−7/FP+3。完整非entity对象exact，各fold全16篇格式校验通过。全候选分数与models外置，小包7fc01117/424392B保两新模型/完整预测/pooled与证据。
 
 只读资产盘点另确认四个GP48 target与旧full64训练池62281候选边界/词面精确一致；这只是可复用资产事实，不构成迁移授权或质量收益。原dev input/pool/gold均未读。完整数字、来源与独立审查入口见`evidence/oof-fourfold-result.json`。
+
+持久化：首次质量小包write ACK UNKNOWN，恢复先实核远端ABSENT，再写同一已冻结7fc01117 ZIP；65成员/424392B远端逐SHA全通过，receipt外部`quality-backup-receipt.json`。原UNKNOWN保留，无重复GPU/fit/quality。完整增量审已交root的document_relations/qwen3_history，复用旧F1/F0审，仅检查本次两折/pooled与新来源；结果尚未到件。

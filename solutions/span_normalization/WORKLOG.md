@@ -1,10 +1,10 @@
 # Span normalization 工作台账
 
 - 目标：原dev公开v2默认all/text Score≥.8。这里只运行train64内部文献分组验证，尚未打开原dev、未访问官方。
-- 当前：E004完整四折负结案，pooled .731545429370→.731169764822（−.000375664548），仅2/4折非降；按事前门关闭，不迁full64/原dev，不扫参数。GPU344.730s、CPU31.036s、91件原包实际恢复SHA通过；小型质量备份和集中独审收尾中。见[结果](evidence/oof-fourfold-result.json)、[实验](experiments/E-20261024-SPAN-004-fourfold.md)。
+- 当前：E004完整四折负结案，pooled .731545429370→.731169764822（−.000375664548），仅2/4折非降；按事前门关闭，不迁full64/原dev，不扫参数。GPU344.730s、CPU31.036s、91件原包实际恢复SHA通过；65件质量小包7fc01117已在.3实际逐SHA核验，集中增量独审已交root的document_relations/qwen3_history（待其空槽）。见[结果](evidence/oof-fourfold-result.json)、[实验](experiments/E-20261024-SPAN-004-fourfold.md)。
 - 决策门：已知F1 +.002115173201、F0 −.001065881294之后补另两折，明确研发而非盲测。训练/候选池/旧特征/160树/.3/nested/missing全部保持。两新全预测共冻后各唯一v2，再pooled64唯一v2；复用原F0/F1预测和指标，不逐折选模型。仅pooled严格升且≥3/4折非降才考虑原dev迁移，否则关闭该特征控制。
 - 计算：复用GP13/03/12/02，完整train32 bytes/IDs/config精确核；新GP01只训一次，另新GP01348/GP01248，共3训练/8全边界pass。新GP01两目标使用的训练文件bytes SHA也精确相同。所有原候选保留，包括低于−2分数；不能只存最终实体。
-- 源/备份：最近核远端`explore/span-normalization@c56227230bf40671ab6eb4b79b89928b4d415761`。新completion文件独立，F1/F0已审源SHA不变。外部主目录`/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/`；当前子目录`oof-fourfold-completion/`，服务器同名目录在项目根下。长作业须先查intent/started/terminal，不盲重启UNKNOWN。
+- 源/备份：最近核远端`explore/span-normalization@34b9e48`（方法源c562272）。新completion文件独立，F1/F0已审源SHA不变。外部主目录`/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/`；当前子目录`oof-fourfold-completion/`，服务器同名目录在项目根下。长作业须先查intent/started/terminal，不盲重启UNKNOWN。
 
 ## 完成控制与有效结论
 
