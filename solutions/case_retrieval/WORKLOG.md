@@ -2,7 +2,7 @@
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
-## 当前：LightGBM原dev .748583440；18列相对证据负结案
+## 当前：LightGBM原dev .748583440；两个CPU后继已负结案
 
 - 用户目标仍是原train64/dev16公共v2 Score≥.8；原dev已审候选当前**.748583440**（旧a179 .746081965）。内部F1、train64四fold均是多次研发使用的开发结果，不冒称原dev、盲测或官方。用户通知前禁止官方上传。
 - [固定LightGBM](lightgbm_selector_control/REPORT.md)：同强BioBERT八池/原feature/label、160轮/15叶/min35/lr.06/L2=5，.3/nested不变；仅将sklearn HGB替成LightGBM4.6.0，分箱/生长数值不宣称等价。实际维数102/101/103/103；4fit/predict/回载59.389秒<180，finalize2.933秒<30，全部160轮、原生正列与保存回载exact。
@@ -10,8 +10,9 @@
 - source f71e491已push核验；正式controller session13703已rc0，外部 `research/lightgbm-selector-readiness/formal-control/execution-state.json` 为complete，不重启。原plan d893继承的HGB/120秒旧说明字段未执行，实际LGB/180/Score门以新字段与源为准；[sidecar c19fb7ea](lightgbm_selector_control/results/plan-interpretation-addendum.json)明确，不修改原冻结字节。
 - [唯一full64结果](lightgbm_selector_control/full64-results/result.json)：原103列vec transform/同pool/fresh1fit，全部16.901秒<120。原dev **.746081964986→.748583439566**（+.002501474580）；men .786960514→.792801108，doc .824512535→.828677840，关系两项不变。11篇6加17删、最终1061实体/391关系/36患者；全部非entity literal bytes及35public-new保留。完整newpred先冻后唯一v2，旧分数复用；[终审a1b2c622](lightgbm_selector_control/full64-results/terminal-review.json)PASS。model803b6467/pred0e2c26f8/terminal64172581。
 - 两个CPU控制均complete且rc0，无运行作业；full64外部 `research/lightgbm-selector-readiness/full64-dev-control/execution-state.json` 为complete，禁止重启。[同一持久包](lightgbm_selector_control/full64-results/persistent-backup.json)288622b9/3.83MB/58成员已服务器逐成员SHA+fsync，manifest168b0c39；root已完成唯一server→local restore及58成员SHA复核。sequence独立患者关系仍使用原a179，不偷偷合成。[固定误差/历史查重](lightgbm_selector_control/research/next-entity-history.md)已完成；原dev只是事后方法选择依据，不用于新控制fit或手工补规则。
-- [相对候选18列](relative_candidate_evidence/README.md)完整负：原LGB pooled.731545429370→.730783429343（−.000762000027），仅F1正/1of4，keepfalse；43篇54加40删，关系不变。实际4fit61.879秒+端点2.647秒，全部160树/120,119,121,121列，先共冻再5newv2/old0；result295c2def/terminal6b67cbea。session57662已rc0/state complete，完整终审处理中，不扫子集/cut、不迁dev。
-- root另授权最多一个零fit固定控制：原强B HGB与原固定LGB的同候选概率1:1平均，保持.3/nested/四fold，对照仍LGB .731545429370。先核历史/来源/对齐，再30秒CPU一次完整共冻与5newv2；不含负18列，不扫权重。实际纯输入对齐3.065秒/62281候选通过，源/计划已冻，push后执行30秒CPU；恢复看外部`research/hgb-lightgbm-average-control/formal-control/execution-state.json`。
+- [相对候选18列](relative_candidate_evidence/README.md)完整负：原LGB pooled.731545429370→.730783429343（−.000762000027），仅F1正/1of4，keepfalse；43篇54加40删，关系不变。实际4fit61.879秒+端点2.647秒，全部160树/120,119,121,121列，先共冻再5newv2/old0；result295c2def/terminal6b67cbea。session57662已rc0/state complete，完整终审3f767632通过，不扫子集/cut、不迁dev。
+- [固定HGB/LGB均值](hgb_lightgbm_average/README.md)完整负：.731545429370→.731417753008（−.000127676362），仅F3正/1of4，29篇22加22删；关系/非entity bytes不变。唯一4.622秒、0fit/0新模型预测，先共冻5newv2/old0；审908fbc8c，session15356/state complete。固定关闭，不扫权重/cut/迁dev。
+- 当前本路线无运行CPU/GPU。root新授权当前best复现准备：核真实资源与已有薄HGB入口，补必要的加载既有LGB/vec、纯input候选+旧关系、no-fit/no-gold入口；不运行赛测集/官方或重做旧NN，明确仍依赖缓存的上游。
 
 ## 已关闭或保留的关键控制
 

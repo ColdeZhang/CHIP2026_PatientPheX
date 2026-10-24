@@ -33,4 +33,4 @@ source28cd1f9已push+lsremote exact后，唯一controller session57662于05:07:4
 
 pooled menF1 .772867639229→.771291866029，docF1 .811077715758→.809605488851；关系两项完全不变。43篇54加40删，mention净−2TP/+16FP。**keep=false**，不按仅正F1扫描特征子集、调整cut或迁full64/dev；结论仅限本次固定18列native-hybrid证据配置，不能泛化为全部边界模型无效。
 
-[结果295c2def](results/result.json)、[共同freeze](results/complete-freeze.json)、[terminal manifest6b67cbea](results/terminal-manifest.json)保留；当前外部execution-state为complete，无运行CPU/GPU。独立源审f0a2d9e9通过，完整终审待同一增量收口。当前原dev best仍是旧固定LGB .748583439566；新负配置没有改它。
+[结果295c2def](results/result.json)、[共同freeze](results/complete-freeze.json)、[terminal manifest6b67cbea](results/terminal-manifest.json)保留；当前外部execution-state为complete，无运行CPU/GPU。独立源审f0a2d9e9通过，[完整终审3f767632](results/terminal-review.json)已PASS/固定负，64篇全部非entity/关系literal exact，未重fit/评分。当前原dev best仍是旧固定LGB .748583439566；新负配置没有改它。
