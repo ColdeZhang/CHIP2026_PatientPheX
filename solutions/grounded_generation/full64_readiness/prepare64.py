@@ -39,7 +39,7 @@ def main():
    for name in ['nearer_other_patient','equally_near_other_patient']:counts[name]+=int(choice[name])
    counts['multi_candidate_relation_keys']+=int(choice['candidate_entities']>1)
    counts['chosen_entity_has_other_gold_atoms']+=bool(choice['chosen_entity_atoms_not_in_target_gold'])
- normalizer=StrictNormalizer(r['hpo']['path'],r['train']['path']);normalizer.assert_disjoint_input(r['held_input']['path'])
+ normalizer=StrictNormalizer(r['hpo']['path'],r['train']['path'],expected_train_sha256=r['train']['sha256']);normalizer.assert_disjoint_input(r['held_input']['path'])
  # Stable alias identity, no encoder/bank/model or query scoring.
  alias_table=[dict(text=text,options=[dict(ids=list(ids),evidence=evidence) for ids,evidence in sorted(options.items())]) for text,options in sorted(normalizer.exact.items())]
  alias_sha=hashlib.sha256(json.dumps(alias_table,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
