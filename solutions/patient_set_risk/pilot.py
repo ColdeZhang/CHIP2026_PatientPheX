@@ -139,6 +139,8 @@ def main():
         # Controller binds its fully frozen reward product to this exact raw file.
         delivery=json.loads((ep.parent/'reward-delivery.json').read_text())
         assert delivery['responses_sha256']==rawref['sha256'] and delivery['rewards_sha256']==sha(rewardpath)
+        assert delivery['normalizer_manifest_sha256']==plan['normalizer_manifest_sha256']
+        assert rewards['original_raw_responses']['sha256']==rawref['sha256']
         pairs={x['row_id']:x for x in rewards['pairs']};assert set(pairs)=={x['row_id'] for x in rows}
         assert all(math.isfinite(x['advantage']) and x['advantage']==x['sample_reward']-x['greedy_reward'] for x in pairs.values())
         nonzero=sum(x['advantage']!=0 for x in pairs.values());semantic=sum(x['semantic_difference'] for x in pairs.values())

@@ -14,7 +14,7 @@ def main():
     for i in [76,44,83,19]:
         e,t=encoded[i],targets[i];assert e['row_id']==t['row_id'];rows.append(dict(e,index=i,messages=t['messages']))
     with (out/'rows.json.gz').open('xb') as f:f.write(gzip.compress(json.dumps(rows,ensure_ascii=False,separators=(',',':')).encode(),mtime=0))
-    copied={'pilot-plan.json':w/'pilot-plan.json','activation.json':w/'activation.json','model-source-manifest.json':r/'case_retrieval/qwen35-preparation/model-source-manifest.json'}
+    copied={'pilot-plan.json':w/'pilot-plan.json','activation.json':w/'activation.json','model-source-manifest.json':r/'case_retrieval/qwen35-preparation/model-source-manifest.json','normalization-source-manifest.json':w/'normalization-source-manifest.json'}
     sources=('pilot.py','pilot_driver.py','common.py','scst_ops.py')
     for n in sources:copied[n]=w/n
     for n,p in copied.items():shutil.copyfile(p,out/n)
@@ -24,7 +24,8 @@ def main():
         adapter_model=dict(path=str(Path(h['adapter'])/'adapter_model.safetensors'),bytes=173181072,sha256='d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba'),
         adapter_config=dict(path=str(Path(h['adapter'])/'adapter_config.json'),bytes=1341,sha256='a9e753c405c1a0b0f3811d54224437455629c9cd96d647cfe5f6cf8222dfd307'),
         fixed=dict(indices=[76,44,83,19],max_new_tokens=1600,seed=20261024,shared_seconds=1800,CE_weight=1.,RL_weight=1.,C=11884/87),
-        original_native_encoded=native,original_train87=train,no_held_material_in_payload=True,no_formal_or_quality_authorized=True)
+        original_native_encoded=native,original_train87=train,no_held_material_in_payload=True,no_formal_or_quality_authorized=True,
+        normalizer_manifest_sha256=ref(w/'normalization-source-manifest.json')['sha256'],orchestration_source=ref(w/'remote.py'),reward_bridge_source=ref(w/'reward_bridge.py'))
     atomic(out/'execution.json',plan)
     members={p.name:ref(p) for p in out.iterdir() if p.is_file()}
     with zipfile.ZipFile(out/'deployment.zip','x',compression=zipfile.ZIP_DEFLATED) as z:

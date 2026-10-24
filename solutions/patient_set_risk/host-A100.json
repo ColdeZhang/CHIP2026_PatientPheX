@@ -1,0 +1,59 @@
+{
+  "schema": "SCST-host-revision-A100-v1",
+  "at_utc": "2026-10-24T16:32:28.434685+00:00",
+  "reason": "Root reassigned after foreignA800GPU2 process; no SCST GPU was launched there",
+  "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+  "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/formal-v1/output/epoch-002/adapter",
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "CUDA_VISIBLE_DEVICES": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "runtime": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1"
+  },
+  "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-set-risk-v1/pilot-A100-v1",
+  "source_previous_host": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/f0/infer-plan.json",
+    "bytes": 16520,
+    "sha256": "4edd175ccafd6411b48cc2765db198121667709680a8617370f12b94158fb8ec"
+  },
+  "actual_CPU_inventory": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-v1/host-A100-v1/result.json",
+    "bytes": 1240,
+    "sha256": "335220e77cc7675c39d891380d5f6c18665758a1a237a6574bf7c4c279987a65"
+  },
+  "resource_gate": "Wait root and seed owner complete train+inference release; then fresh actual >=38000MiBfree/noapps and >=1GiB durable disk",
+  "old_formal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/formal-v1/terminal/output/training_complete.json",
+    "bytes": 1239,
+    "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+  },
+  "memory": {
+    "old_formal_allocated_bytes": 28177982464,
+    "old_formal_reserved_bytes": 31388073984,
+    "new_max_prefix_plus_sample": 10423,
+    "old_max_full": 9210,
+    "old_max_suffix": 610,
+    "new_max_suffix": 1600,
+    "conservative_proxy_bytes": 37000000000,
+    "interpretation": "Old31.39GBreserved + roughly2.5GBlonger selected-vocab CE tensors +1.4GBlonger-context activations +1.7GBmargin. Empirical proxy only, not measured10423 gradient coverage; actual new4x2 probe required, OOM retained and stops.",
+    "minimum_actual_free_MiB": 38000
+  },
+  "no_new_weights_download": true,
+  "no_GPU_started": true
+}

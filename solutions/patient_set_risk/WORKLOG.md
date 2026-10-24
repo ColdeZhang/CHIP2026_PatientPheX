@@ -30,3 +30,11 @@ OPENBLAS_NUM_THREADS=1 /usr/bin/python3 solutions/patient_set_risk/census.py --g
 normalizer helper完成8raw→必要公共query→完整奖励接口及CPU合同（cb35c8f2），仅本子目录约93KB源和小证据；所有临床raw留仓库外。其GPUquery代码仅编译/静核，尚无新query模型调用。
 
 资源：A800 GPU2已有外部PID46312，不抢占；主体待根线程提供真实空闲40GB/80GB窗口。.100GPU0先由sequence F047使用，Sap也需等待其实际release。此刻无SCST GPU启动、无新held gold、无quality。
+
+## 2026-10-24 A100 主体绑定，无GPU启动
+
+根线程确认A800三卡现为外部进程占用，主体改排 `.12 GPU2` 原seed完整链之后。纯CPU只读实际库存确认 Torch2.6.0+cu124/TF5.20.2/PEFT0.21.2/tokenizers0.23.1、原native b4b17fe0、无FLA、CUDA未初始化；原d52 adapter及公共Qwen3.5本地路径存在，项目盘约48.4GB空余。此项未重复13步或做新分词/模型调用。
+
+`host-A100.json` 采用原同机G full87实际峰 allocated28.18GB/reserved31.39GB作依据，新10423完整输入和1600suffix只是约37GB代理，未冒称旧成本覆盖新形状。需实际>=38000MiB free且无process，真实probe才可确认显存。
+
+新 `remote.py` 与 `reward_bridge.py` 绑定完整normalizer源码和主执行SHA，单次排他start/独立300秒admission，8raw→必要Sap→完整reward在同一1800秒原绝对钟内；query UNKNOWN不重启。delivery先冻结再原子发布奖励，主模型核原8raw和normalizer manifest。`bound-A100-v1`未执行；v2仅补完reward控制器source绑定，数据和数学不变。入口 `evidence/binding-A100.json`。
