@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 import statistics
 from probe import write, sha
+from metadata import native_summary
 
 
 def main():
@@ -21,6 +22,9 @@ def main():
     partial=json.loads((root/'actual/complete.json.pending').read_text()+'null}}')
     assert partial['summary']['total_steps']==6 and partial['summary']['total_epochs']==2
     native_seconds=partial['summary']['total_time_seconds']
+    # The original traceback and partial prefix identify this exact no-eval sentinel.
+    recovered_native=native_summary(dict(partial['summary'],best_metric=math.inf,eval_metrics_history=[]))
+    assert recovered_native['best_metric'] is None and recovered_native['best_metric_status']=='not_computed_no_eval'
     selected=json.loads((root/'actual/selected.json').read_text())['indices'];steps=[];batches=[]
     for i in range(6):
         s=json.loads((root/f'actual/step-{i:03d}-complete.json').read_text());raw=json.loads((root/f'actual/batch-{i:03d}-actual.json').read_text());assert s==progress['steps'][i]

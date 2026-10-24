@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import time
 import traceback
+from metadata import native_summary
 
 
 def sha(path):
@@ -251,7 +252,7 @@ def main():
             gold_injection_hold_frac=.15, warmup_ratio=.1, scheduler_type='linear')
         trainer = ObservedTrainer(model, config, train_data=selected, eval_data=None)
         torch.cuda.reset_peak_memory_stats()
-        summary = trainer.train(train_data=selected, eval_data=None)
+        summary = native_summary(trainer.train(train_data=selected, eval_data=None))
         assert summary['total_steps'] == 6 and summary['total_epochs'] == 2 and not summary['eval_metrics_history']
         for epoch in (1, 2):
             seen = [i for x in state['steps'] if x['epoch'] == epoch for i in x['row_ids']]

@@ -2,7 +2,7 @@
   "experiment": "E-20261024-GLINER25-TASK1-001",
   "base_commit": "a89f225d33a4facbd896e6c2d61dbef481d6c5ff",
   "goal": "Find real Task1 incremental supply above fixed strong base; original dev best remains .754361, no new quality claimed",
-  "authorization": "CPU/source and one 180+30s native .100 GPU0 pressure probe only. Formal1600step training budget requires measured report to root.",
+  "authorization": "Root authorized full fixed chain: fresh native1200+TERM30 training with all320 windows×10epochs, final save/readback; completeF1 inference600+TERM30; necessary existing-bank Sap180+TERM30; two jointly frozen full predictions each onev2/old0. No originaldev/official.",
   "supersedes": "Readiness earlier paired-public-base/adapted and overlap/NIL exclusion proposals are superseded. Adapted only; primary all accepted union and new-only diagnostic. Old schema E001/E002 immutable.",
   "model": {
     "repository": "fastino/gliner2.5-base-v1",
@@ -194,7 +194,15 @@
     "dedupe_contained_entity_spans": false,
     "on_capacity_exceeded": "raise",
     "failure_guard": "Native failed-batch evidence then immediate raise; observe raw loss before nan_to_num and reject nonfinite. No skip/fallback/target truncation.",
-    "synthetic_entity_label_prob": 0.2
+    "synthetic_entity_label_prob": 0.2,
+    "budget_seconds": 1200,
+    "term_grace_seconds": 30,
+    "checkpoints": [
+      "epoch5 full model+optimizer/scheduler/scaler/Python/NumPy/CPU+CUDA RNG",
+      "final epoch10 same complete state"
+    ],
+    "checkpoint_readback": "All334model tensors and optimizer/scheduler/scaler/RNG equal on readback. Native weight-only loader is not complete automatic resume; no auto-resume claim.",
+    "metadata": "Shared metadata.native_summary maps only no-eval best_metric positive-inf sentinel to null+not_computed status; strict JSON still rejects real nonfinite loss."
   },
   "inference": {
     "query": [
@@ -205,7 +213,11 @@
     "all_declared_native_candidates_saved": true,
     "native_candidate_cap": 192,
     "offsets": "Exact original passage offsets and same-span score maximum; reject invalid or cross-source-passage spans",
-    "normalization": "Existing strict31d380f5/train32 and public41099 Sap frozen b59eb policy cos>=.90 margin>=.03 max32. No public bank encoding or threshold adjustment."
+    "normalization": "Existing strict31d380f5/train32 and public41099 Sap frozen b59eb policy cos>=.90 margin>=.03 max32. No public bank encoding or threshold adjustment.",
+    "budget_seconds": 600,
+    "term_grace_seconds": 30,
+    "Sap_budget_seconds": 180,
+    "Sap_term_grace_seconds": 30
   },
   "endpoints": {
     "baseline_path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
