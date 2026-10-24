@@ -94,7 +94,8 @@ def main():
         path.write_bytes(body)
         print(json.dumps({'path': str(path), 'bytes': len(body), 'sha256': hashlib.sha256(body).hexdigest()}))
     else:
-        print(json.dumps(value, ensure_ascii=False))
+        print(json.dumps({key: value[key] for key in ['id', 'pid', 'started_at', 'running', 'mount_id']
+                          if key in value}, ensure_ascii=False))
 
 
 if __name__ == '__main__':
