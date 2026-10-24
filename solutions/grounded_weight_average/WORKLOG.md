@@ -19,3 +19,5 @@
 Root 已授权真实双 adapter 校验、CPU 精确拼接与 PEFT 0.21.2 tiny save/load；原候选协议保持不改，新执行范围见 `execution-plan.json`。CPU 唯一 120+15 秒、CUDA 隐藏；通过后 .12 GPU2 完整 39 greedy，1800+30 秒。真实参数门 9,040,359,936，唯一质量终点仍 B4∪(G_meanweights∩G_originalgreedy)。无新训练或系数扫描，未执行任何新质量。
 
 CPU 实际 9.114 秒成功（proc89b08812，2026-10-24 14:04:34Z），两父 adapter/496 keys/F32/全部 config 已实核。新 248 模块、86,556,672 adapter 参数逐半张量保持原值，重开 exact；248 FP64 投影合同通过。真实 PEFT 0.21.2 的12类 tiny cat/save/load 通过，加载张量和投影输出 exact，CPU 无大基座/GPU/训练。完整凭据 `evidence/CPU-synthesis.json`。推断只替换 adapter 来源/rank/参数门，原39输入/nativeIDs/解码/固定规范化保持；启动前冻结独立新 plan。
+
+14:08:54.063619Z 原 A100 恢复后唯一实际推断启动：proc06596b00/PID239977、child239995；fresh门通过，TERM14:38:54.278290Z/KILL14:39:24.278290Z。原185秒退避和失败均保留，未重CPU或换卡。源码57ea4c74/plan580974f1；回执见 `evidence/inference-start.json`。原 output wrapper 为唯一终态，未知响应只读恢复，不再次start。
