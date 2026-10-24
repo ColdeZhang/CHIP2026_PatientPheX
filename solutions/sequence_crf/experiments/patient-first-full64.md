@@ -69,3 +69,7 @@
 唯一proc_b7a810e6于05:08:43启动，147.295s/rc0完整；实际计算窗口79.901s/44305tokens、12forward+12backward、1次完整group8更新；最长前已有496梯度与496 Adam参数状态，三族B已真变，最长loss .157666758，全部数值有限/base无grad。峰allocated25,031,000,576B、reserved29,976,690,688B；结束free11,769,544,704B是结束值，非峰headroom。05:11:10.524555Z卡0/40960MiB且无目标进程，权重丢弃。45小产物完整SHA核验，见[终点](../evidence/patient-first-full64-memory-recovery/terminal-manifest.json)。
 
 新正式source1203139e仅instance CE hook与失败上下文记录，原编码/批序/优化器/两epoch保存函数不变；22件实际部署/compile/ancestor fsync，free57.076GB。token线性粗估两轮约3103s，另约66s加载及两次完整状态I/O，固定4500+30预算不变，不保证全程。固定原64推断900+30、单一a179并集先freeze再唯一v2不变；没有读新devgold/无正式重训launch，交root一次统一决策。
+
+### 新fresh正式作业已启动
+
+root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由git rev-parse传入，fresh UUID/空卡/空间通过；唯一proc_7f51657c / PID141616于05:13:13.317Z启动，4500+TERM30，近似TERM06:28:13/KILL06:28:43，remote driver-started为权威。新run独立、不从probe或旧失败续训；原数值合同与两持久epoch、后继原64/900和唯一a179终点不变。操作与连接退避见[恢复入口](../patient_first_full64/memory_recovery/OPERATIONS.md)。
