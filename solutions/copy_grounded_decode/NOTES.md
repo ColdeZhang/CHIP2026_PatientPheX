@@ -27,3 +27,5 @@
 
 - MCP `start_process` 的UNKNOWN不等于失败/已执行。F0必要Sap首请求只有claim、无managed或/proc匹配，而原driver没有请求有效期；先沿实际进程/源码核事实。root批准exclusive tombstone占原fresh-resource-gate后，迟到旧driver会在其Popen前的os.link失败；不覆盖真实gate、不抹旧UNKNOWN。独立v3再绑定5分钟admission并在request/driver/模型前核，唯一执行成功。后继47也增加10分钟启动有效期，运行预算保持独立不延长。详见f0_proposer README与fence/actual receipts。
 - 完整生成证据和本地全诊断回读不是同一门：原172窗口selected/windows/inventory全部按冻结ZIP manifest核SHA后可推进，不拿部分窗口构池；大raw仍在server持久，pending明确记录。最终701原件全部本地回读，旧accepted manifest不改，补独立完成sidecar。
+
+- F0最终47/47EOS且严格合法，仍新增5TP/27FP并令固定Score下降.012344。格式可执行与质量可靠是两件事；合法quote和其他旧流支持不足以证明患者归属。保留F1正/F0负的完整证据，不能在见到F0结果后换G-only或扫描门槛来“救”同一实验。
