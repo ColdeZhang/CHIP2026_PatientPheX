@@ -6,7 +6,7 @@
 - 已完成：74成对样本/17篇、1149合法swap供给；完整原生token CPU1.917s；原124chosen与缓存IDs/mask全部exact。14个选中样本为多阳性，其余患者正例保留。
 - 已核原B4关系集合严格等于B471∪四pure中至少2票，非关系对象及B471列表前缀保持；重序列化对象列表顺序不同，不称byteexact。
 - 固定：Qwen3 train32 epoch2适配器543c82a5；β.1/LR1e-5/1epoch74pairs/10updates，新Adam；单完整主终点，不读取heldgold/不评分。
-- 当前：正式完整74对/148序列/10更新已555.637s完成并全状态ACK回读；终态ZIP全部成员已收齐核SHA。新adapter75518d93，唯一80fresh推断已14:46:00接收proc_4379dd7c/driver1217942；1200+30，D=deployment-infer-v2，sole watch184607/infer-watch；质量0。原失败和参考缓存保持不变。
+- 当前：**固定DPO配方已负结案**。唯一F1 `.701325377212172 → .7009053889090149`（Δ−.000419988303157），80/80严格/0弃权、预测18c067c9。1newv2/0old；不进F0/full64/原dev/官方，GPU已释放。最终报告/备份进行收尾。
 - 仓外 `R/research/patient-swap-dpo-readiness-20261024` 保存数据、完整public源码与CPU产物；候选协议见 `candidate-plan.json`。
 
 - 实际.3 tiny CPU通过（0.245s、28个LoRA梯度max1.30e−8、真实Adam），两原件完整回读a52ea3d/563b93d0；首只读guard异常后恢复原件，没有重跑。root已授权固定ref900/probe600/formal1800/infer1200各+30，真实GPU尚未启动。执行模板 `runtime/` 保留原方案预算历史，13压力对/两Pareto/26FB计划固定。
@@ -32,3 +32,5 @@
 - 08写结果未知后严格只读恢复：原read_file返回UNKNOWN_OUTCOME，30s后同路径纯CPU读取全部415819B并核3ce16f96成功，原文件已经存在，未重写；该receipt明确SHA验证而非全量字节回传。全部10件最终远端bytes/SHA/fsync及父目录链通过，plan2e17afa5就绪，模型计算仍0次infer。
 
 - 唯一80fresh14:46:00.677696接收，e6965a9d已推送核远端；原始字节/IDs先存再解析，driver+native独立1200+30。watch184607已核真实PPID1/SID/start_ticks和独占，无第二查询器/重启。下一步watch终态→stages.collect_infer→bind_quality→assemble冻结→唯一evaluate；相同语义继承原B4并0新v2。
+
+- 14:56:39唯一完整主端点负：保护B471，四源两票最终524关系，+2为1TP1FP，−2为2TP0FP；micro−.0019157088，macro+.0002357556，Task1差0。严格80/0弃权，全269成员/ZIPf310dc23已SHA回收。新Q387关系(旧416)，不能据数量变化或单臂未评分推断Q自身精度。依预写strict positive门关闭固定74pair配方，不扩展验证；原dev未读取。

@@ -8,4 +8,4 @@
 
 实际目标HF148编码通过后，唯一148 reference已完整成功。原probe首backward失败，保留原数值、完整日志和109成员；经真实CPU cache标志诊断，只关闭autocast权重缓存，在原probe绝对截止内独立恢复。完整13对/26FB/真实Adam/显存与成本门通过，fresh原543c＋newAdam正式训练已启动。详见 [原失败及恢复](../evidence/probe-failure-recovery.json)、[GPU工程门](../evidence/probe-pass-formal-start.json)。reference原字节复用，没有重新计算；数学配方、完整74对、数值门均未更改。
 
-后续必须完成持久终态→全80fresh→冻结完整主终点，才执行唯一完整质量。任何失败保留原attempt；未知远端状态恢复原意图，不盲目重启。当前没有新质量分数。
+后续必须完成持久终态→全80fresh→冻结完整主终点，才执行唯一完整质量。任何失败保留原attempt；未知远端状态恢复原意图，不盲目重启。唯一质量现已完成并负结案：Score .7009053889090149（原 .701325377212172），+2=1TP1FP、−2=2TP0FP，80/80严格、0弃权；新v2=1/旧0。严格正门未过，不进F0/full64/原dev。完整终态见 [final-result](../evidence/final-result.json)。
