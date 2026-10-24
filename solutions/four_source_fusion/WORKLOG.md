@@ -2,6 +2,6 @@
 
 2026-10-24 UTC。目标：检验新患者编码输出能否补强现有三源二票，不能只超过较弱单模型。
 
-已固定[决定](decision.json)及[F1计划](plan-F1.json)，源码沿已核open-concept控制，仅将交集机制改为新C与三旧源至少一源一致。尚未装配、读gold或评分。原dev最佳.755240不变。
+已固定[决定](decision.json)及[F1计划](plan-F1.json)，源码沿已核open-concept控制，仅将交集机制改为新C与三旧源至少一源一致。F1已完整装配及唯一v2，507→524关系（17新7TP10FP），Score .701087332488→**.701325377212**；micro+.001233、macro−.000281，实体两项不变。原dev最佳.755240不变。
 
-后续：source/plan先push，再运行`run.py --plan plan-F1.json assemble`与`evaluate`；完整预测在外部。F1严格胜.701087才同公式F0，双折正才提出full64。
+source/plan62565701已先推送核验，13:04:07共同freeze后唯一1v2、旧0、无NN/fit。完整预测/指标在外部，见[入口](evidence/entry.json)。后续：等待原strict coded58，按原固定公式做F0；双折正才提出full64。不同去重解码政策不混入本实验。
