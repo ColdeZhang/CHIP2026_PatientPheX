@@ -1,0 +1,1 @@
+此目录是只读增量研究的冻结摘要，未下载完整模型、未产生新质量。原始页面/访问响应和范围字节保留在仓库外 `/workspace/patientphex-runs/round2-20261023/research/public-phenotype-model-inventory-increment/`；source-index 中 local_file 相对此原始外部目录。后续完整下载/CPU接口按独立计划记录，不改写这份阶段结论。

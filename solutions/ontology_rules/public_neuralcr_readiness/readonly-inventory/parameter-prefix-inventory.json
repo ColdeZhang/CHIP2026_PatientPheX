@@ -1,0 +1,63 @@
+{
+  "status": "partial_binary_metadata_verified_full_NCR_inventory_pending",
+  "fastText": {
+    "vocabulary_rows": 666817,
+    "subword_buckets": 2000000,
+    "dimension": 100,
+    "input_shape": [
+      2666817,
+      100
+    ],
+    "input_parameters": 266681700,
+    "output_shape": [
+      666817,
+      100
+    ],
+    "output_parameters": 66681700,
+    "total_unique_matrix_parameters": 333363400,
+    "actual_matrix_headers_verified": true,
+    "not_derived_by_dividing_file_bytes": true,
+    "quantized": false,
+    "source_binary_format_version": 12,
+    "standard_v091_dictionary_header_pruneidx_at84": -4288321420,
+    "interface_note": "Header bytes84 start with the NUL-terminated string the, before -1. Standard v0.9.1 Dictionary.load expects int64 pruneidx_size at84. This is a static layout inconsistency, not a completed loader failure; native/compatibility check is pending."
+  },
+  "NCR": {
+    "observed_HDF_top_level_core_names": 10,
+    "full_H5_member_bytes": 630900616,
+    "all_dataset_shapes_not_yet_available": true,
+    "formula_if_upstream_architecture_matches": "E * ((D+1)*cl1 + (cl1+1)*cl2 + (N_concepts+1)*(cl2+1)); hierarchy aggregate raw embeddings are counted once; fixed sparse ancestor adjacency is separately inventoried as non-trained structure, not a second learned embedding matrix",
+    "paper_illustration_only": {
+      "D": 100,
+      "cl1": 1024,
+      "cl2": 1024,
+      "E": 10,
+      "paper_concepts": 11442,
+      "network_parameters": 128820990
+    },
+    "paper_illustration_is_not_released_checkpoint_actual_shape": true
+  },
+  "production_budget": {
+    "limit": 10000000000,
+    "current_parameters_including_one_full64_LoRA": 9597467990,
+    "remaining_before_NCR": 402532010,
+    "after_full_fastText": 69168610,
+    "current_inventory": {
+      "Qwen_text_shared_once": 8953803264,
+      "one_adopted_full64_LoRA": 43278336,
+      "PubMed_head": 122759794,
+      "Bioformer_head": 51380594,
+      "SapBERT": 109482240,
+      "GLiNER": 195175936,
+      "BioBERT_head": 121587826
+    },
+    "adapter_scope": "Parent traced production response manifests to the exact same full64 adapter weights/config. meta1 is training-side control/directory ancestry and is not an additional adopted adapter.",
+    "replace_new_BioBERT_scenario": {
+      "freed_parameters": 121587826,
+      "available_NCR_total": 524119836,
+      "available_CNN_after_full_fastText": 190756436,
+      "not_authorized_quality_run": true
+    }
+  },
+  "scope": "No full weight/model load, NN, GPU, training or quality evaluation in this report."
+}

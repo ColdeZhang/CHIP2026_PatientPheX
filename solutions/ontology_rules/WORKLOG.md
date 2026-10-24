@@ -3,6 +3,7 @@
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 - **BioBERT 原dev固定迁移（完成，统一独审PASS）**：四fold正后唯一full64 103列模型、native1379键并入旧池，Score **.737585917→.738493753（+.000907835）**，men+13TP17FP/doc+3TP1FP，368关系和所有nonentities原样/0错警。完整预测先冻后唯一v2，失败schema guard仅工程修复/总3.241s；native78.392s释放、同模型4655raw复用exact。独审7336b280全概率/预测/v2精确；模型/全部概率/预测外部保留，未官方/未达.8；[完整结果和恢复](evidence/round2/public-phenotagger-biobert-dev-results.json)。
 
+- **NeuralCR资源增量（仅只读阶段完成）**：确认官方release1.1两资产可达、真实fastText矩阵333,363,400参数，CNN完整形状待查；若直接追加超预算，只考虑替换BioBERT。PhenoLinker限定检索暂仅旧gene–phenotype图项目，未确证独立临床抽取checkpoint，不宣称不存在。下一已授权600s下载/180s合成CPU，不赛事质量/GPU；[来源与边界](public_neuralcr_readiness/readonly-inventory/review.md)。
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
 - **第三head固定四fold（正，统一终审PASS）**：BioBERT native缓存5903键；旧244794→246804行、6实际来源字段，HGB160/.3+原nested，pooled Score **.727975656→.730993616（+.003017961）**，men+.005649/doc+.006422、关系exact；3/4fold实体目标正、满足事前keep。4fit55.703秒/唯一终点2.973秒，实际102/101/103/103列，无cut扫描。随后唯一原dev迁移已完成，见上方结案。[完整结果](experiments/E-20261023-PUBLIC-PHENO-BIOBERT.md)。
 - **第三公开BioBERT准备（CPU独审PASS，未质量）**：固定486624416B H5/SHA1c4d799c实查、native201变量/121587826参数全部H5数组exact；28996 cased词表仍沿原先小写、17266列/映射保持。下载59.266秒，CPU20.054秒（含漏TF标记首失败总25.430秒<180），4合成接口finite，增量独审f954be78通过，准备阶段未GPU/任务缓存/质量。预计原2–8全64需244938独立前向，类比同架构GPU约272秒含余量，非实测或收益。[来源与恢复](experiments/P-20261023-PUBLIC-PHENO-BIOBERT.md)。
