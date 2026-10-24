@@ -34,3 +34,5 @@
 - 条件full64 CPU完成：265/64原行 native token/双解码与shift mask精确；train866495 tokens/max6155/监督15410，dev509609/max13175。2ep68updates，Pareto(4992,116)/(6155,113)。证据416da6ef，成本推算见 full64_readiness/cost-and-conditional-plan.json；尚未获或执行full64 GPU/原dev质量。
 
 - F0全58实际终态成功：428.808083s、rc0/no-timeout，11:53:51.051205 UTC GPU0回4MiB/noapps，已交生成线Sap；evidence/F0-release.json。收包/冻结质量仍在CPU进行。
+
+- 纯I/O暂阻：terminal.zip 464451B/202件/SHA2549e153，收2/4块后read_file返回LUNA_OFFLINE；完整GPU成功与11:53:51 release有效，不重start。当前.3由生成线Sap owner优先恢复，我暂停重复poll；恢复后运行R/stage8-qwen3-relations/collect_f0.py复用已存块，仅补缺块。尚无F0 gold读取/新质量。
