@@ -1,0 +1,134 @@
+{
+  "status": "PASS_UNIQUE_FIXED_CONTROL_TERMINAL_NEGATIVE_CLOSED",
+  "reviewer": "/root/validation_recover_0102",
+  "at_utc": "2026-10-24T04:34:31.143419+00:00",
+  "owner_terminal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/terminal-manifest.json",
+    "bytes": 5862,
+    "sha256": "45bbb6b091a18480feb4a687bf268c24fd37defd7b8a82cc4580fd95c40fa9e1"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/plan.json",
+    "bytes": 4663,
+    "sha256": "4db8e36340ba8fea149d1adf51f3ae8bed3fe666c07237830d135e3a4a1341af"
+  },
+  "actual_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/global-compatible-decoder-review/actual-checks.json",
+    "bytes": 17597,
+    "sha256": "aecedbf1b29ab1e5e3ef561055b5c3ba72c74e11430ccb74a1cc581f49bd74cf"
+  },
+  "checker": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/global-compatible-decoder-review/check_terminal.py",
+    "bytes": 7992,
+    "sha256": "d4c5a41c1fef2b90776b9b9902fcb7ba9353b324e75de881f65b6c06bcdd125d"
+  },
+  "result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/formal/result.json",
+    "bytes": 3332,
+    "sha256": "e6af6096a55185ec0532523250c19be8dd285ea373fccdb6a60dc9612b216f36"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/global_compatible_decoder/control.py",
+    "sha256": "cf9a064b10486ccc0a73c16c43286a6fe109277150f3b618ff1a7e46e305ca70",
+    "bytes": 14072
+  },
+  "scope": "Incremental fixed decoder control over completed strong BioBERT fourfold probabilities. Local source/AST, frozen metadata, existing prediction bytes and saved metrics only; no optimizer/evaluator/parser/model run, no gold read/hash, no Git/MCP. Original strongB source/fit provenance reused, not re-audited end to end.",
+  "contract": {
+    "input": "Existing four folds: 64 held documents, 62281 candidate rows; fixed strongB learned selector/probabilities and .3 cutoff unchanged. Census receipt ba64508e and original49a2 plan/cf8c freeze bound.",
+    "eligibility": "Same original greedy anchors bypass prior unary filters; above-cut nonanchors must pass original legal HPO and non-negation. 4642 >=.3 become4633eligible; actual exact-cut items0. No extra anchor removal or new unary policy.",
+    "conflicts": "Overlap conflicts unless proper containment with disjoint atomic HPO IDs; equal spans/crossings/shared-ID-containing remain conflicts. 70edges,66nontrivial components(62size2+4size3); isolated existing selections retained.",
+    "objective": "Exhaust all subsets only within each component, maximize exact Fraction.from_float(original_p)-Fraction.from_float(.3); tie maximize intersection with old nested, then lex sorted(offset,length,HPO,original_index). No epsilon/alternate penalty/threshold. Source proof inspected; verifier only checked reported selected utilities/feasibility, did not rerun optimization.",
+    "quality": "All four predictions and exact component choices frozen before any gold. Because one changed document exists, planned branch computes exactly new4fold+pooled v2; prior metrics reused. If all identical the other branch would read no gold.",
+    "keep": "Pooled Score strictly higher and every fold Score nondecreasing; not met."
+  },
+  "actual": {
+    "CPU_seconds": 3.4878581079974538,
+    "process_exit_code": 0,
+    "budget": "Internal SIGALRM60; outer safety timeout65+kill5. Actual3.487858s within60.",
+    "synthetic_contract": "Saved seven distinguishing CPU cases77f1b3e PASS .000404s: global3node gain, both ties, oneULP, compatible pair, literal JSON top-level update and duplicate rejection. Not repeated.",
+    "predictions": [
+      true,
+      true,
+      true,
+      false
+    ],
+    "documents": 64,
+    "entities_before": 4566,
+    "entities_after": 4567,
+    "only_change": [
+      {
+        "fold": 3,
+        "pmc_id": "5422868",
+        "removed": [
+          [
+            13820,
+            32,
+            "HP:0007780"
+          ]
+        ],
+        "added": [
+          [
+            13793,
+            35,
+            "HP:0001118"
+          ],
+          [
+            13808,
+            20,
+            "HP:0007834"
+          ]
+        ]
+      }
+    ],
+    "exact_component_objective_gain": "259073311955265/4503599627370496",
+    "nonentity_and_association_literal_bytes_unchanged": true,
+    "relations_counts_all_folds_and_pooled_unchanged": true,
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/formal/complete-freeze.json",
+      "bytes": 3301,
+      "sha256": "146a301a6ac995143bb23d0fab7e725b29b65ca915fa8b2308b68c87535a02da"
+    },
+    "freeze_utc": "2026-10-24T04:32:29.921093+00:00",
+    "first_gold_marker_utc": "2026-10-24T04:32:29.923319+00:00",
+    "gold_marker": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/formal/evaluation-start.json",
+      "bytes": 305,
+      "sha256": "0b03e167bad844c927cbb942b0be696955fe0eb361202772397d6c3f8e1e57c7"
+    },
+    "new_unique_v2_calls": 5,
+    "baseline_recomputed": false,
+    "format_errors": 0,
+    "format_warnings": 0
+  },
+  "metrics": {
+    "pooled_before": {
+      "menF1": 0.7719484942002767,
+      "docF1": 0.8097896092743667,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7309936164915969
+    },
+    "pooled_after": {
+      "menF1": 0.7718663545435199,
+      "docF1": 0.8091865207125992,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7308223094369659
+    },
+    "pooled_Score_delta": -0.00017130705463097584,
+    "fold_Score_deltas": [
+      0.0,
+      0.0,
+      0.0,
+      -0.0007317804771334036
+    ],
+    "keep": false
+  },
+  "conclusion": "Fixed exact-utility decoding changes only one component in F3/PMC5422868 (remove1/add2). Utility increases but pooled Score .730993616492→.730822309437 (−.000171307055), F3 −.000731780477; three other folds byte-identical. Prespecified gate fails: close this objective/configuration, no dev transfer. This does not reject every possible compatible-set objective.",
+  "limits": [
+    "Folds already used in development; not blind generalization. No calibration gain inferred from increased probability utility.",
+    "Original production a179/.7460819649861977 and all relations unchanged; no0.8 or official-score claim.",
+    "Current182candidate deliberately excludes this later control; report can join next completed batch.",
+    "All large original score/prediction assets remain external; small actualsource/metadata snapshots are bound by actual-checks."
+  ]
+}
