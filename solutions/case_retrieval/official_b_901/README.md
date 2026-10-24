@@ -17,3 +17,6 @@ Task2旧full64 Qwen1a703b正序/逆序提示来自独立CRF/Sap/LR64+GLiNER48 fu
 
 
 public-new也已07:48:11完整286条／811.425秒（外816.758秒），一次rc0/不超时，A800 GPU2 1MiB/noapps释放；response573ce38b，原包30b4f31d/924,906B的303成员全部SHA回收。因此三旧Qwen的1126条已完整闭合。患者420也由sequence报告完成，尚在恢复原zip；必须等其纯导出与actual正例空间证明后才做唯一assembly，当前不上传、不评分。
+
+
+唯一完整装配已完成：`prediction50ef5daa`（894,806 B）覆盖100篇／244患者／6,816实体／2,395关系；核心0.907秒、外层1.017秒rc0，plan8f7ee208在41d4460先push。normal1788、reverse1782、public原787→LGB文档概念支持284、patient1769（相对前三并集新增126）。全部actual patient正例在其原合法空间内、与actual public空间交0；不含dev特定6条。normal一个未决CID沿原LR fallback，其他3002以及reverse3003/public1932个决策合法。Task1实体与非association全部literal bytes保持；五份keys只留外部，Git留 `B-result-pointer.json` 的SHA指针。文件已直接交root/validator，当前终审与root唯一上传尚待；本代理没有上传或查分。
