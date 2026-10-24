@@ -23,12 +23,15 @@ if mode in ['deploy','start']:a=activation()
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');from mcp_client import Client
 c=Client();c.initialize()
 def call(n,args):
- r=c.request('tools/call',dict(name=n,arguments=dict(mount_id=M,**args)));assert not r.get('isError');return r['structuredContent']
+ r=c.request('tools/call',dict(name=n,arguments=dict(mount_id=M,**args)))
+ if r.get('isError'):
+  (D/('error-'+str(datetime.datetime.now(datetime.timezone.utc).timestamp())+'.json')).write_text(json.dumps(r,indent=2)+'\n');raise RuntimeError('MCP operation returned error; preserve intent and inspect, do not repeat start')
+ return r['structuredContent']
 def command(code):
  r=call('run_command',dict(command='python3 -c '+shlex.quote(code),timeout_seconds=30));assert r['exit_code']==0,r.get('stderr','')[-800:];return json.loads(r['stdout'])
 if mode=='deploy':
  ready=json.loads((D/'ready.json').read_text());assert sha(D/'prepared.zip')==ready['archive']['sha256'];b=(D/'prepared.zip').read_bytes();h=hashlib.sha256(b).hexdigest();write(D/'deploy-intent.json',dict(archive_sha256=h,activation=a))
- for i,off in enumerate(range(0,len(b),196608)):call('write_file',dict(path=REMOTE+'-upload/part-%03d'%i,content=base64.b64encode(b[off:off+196608]).decode(),encoding='base64',create_parents=True))
+ for i,off in enumerate(range(0,len(b),49152)):call('write_file',dict(path=REMOTE+'-upload/part-%03d'%i,content=base64.b64encode(b[off:off+49152]).decode(),encoding='base64',create_parents=True))
  code="""from pathlib import Path
 import hashlib,io,json,zipfile,os
 root=Path(REMOTE);assert not root.exists();b=b''.join(p.read_bytes() for p in sorted(Path(REMOTE+'-upload').glob('part-*')));assert hashlib.sha256(b).hexdigest()==HASH;root.mkdir();z=zipfile.ZipFile(io.BytesIO(b));assert all('/' not in n for n in z.namelist());z.extractall(root);(root/'activation.json').write_text(json.dumps(ACTIVATION,indent=2)+'\\n');result={}
@@ -45,8 +48,8 @@ elif mode=='status':
  j=json.loads((D/'job.json').read_text());m=call('read_process_output',dict(process_id=j['id'],stream='stdout',cursor=0,limit=2048));state=command("from pathlib import Path;import json;p=Path("+repr(REMOTE+'/state.json')+");print(p.read_text() if p.exists() else '{}')");(D/'latest-status.json').write_text(json.dumps(dict(managed=m,state=state),indent=2)+'\n');print(json.dumps(dict(running=m.get('running'),state=state)))
 elif mode=='collect':
  manifest=command("from pathlib import Path;print(Path("+repr(REMOTE+'/terminal-manifest.json')+").read_text())");assert manifest['state']['status']!='running';write(D/'terminal-manifest.json',manifest);a=manifest['archive'];chunks=[]
- for off in range(0,a['bytes'],196608):
-  x=command("from pathlib import Path;import json,base64;f=Path("+repr(a['path'])+").open('rb');f.seek("+str(off)+");print(json.dumps(dict(data=base64.b64encode(f.read(196608)).decode())))");chunks.append(base64.b64decode(x['data']))
+ for off in range(0,a['bytes'],49152):
+  x=command("from pathlib import Path;import json,base64;f=Path("+repr(a['path'])+").open('rb');f.seek("+str(off)+");print(json.dumps(dict(data=base64.b64encode(f.read(49152)).decode())))");data=base64.b64decode(x['data']);(D/('collect-part-%09d.bin'%off)).write_bytes(data);chunks.append(data)
  b=b''.join(chunks);assert len(b)==a['bytes'] and hashlib.sha256(b).hexdigest()==a['sha256'];(D/'terminal.zip').write_bytes(b);out=D/'terminal';out.mkdir(exist_ok=False)
  with zipfile.ZipFile(io.BytesIO(b)) as z:
   assert all('..' not in n and not n.startswith('/') for n in z.namelist());assert json.loads(z.read('members.json'))==manifest['members'];z.extractall(out)

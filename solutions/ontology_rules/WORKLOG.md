@@ -67,3 +67,5 @@
 - 两唯一GPU工程实际启动：A100 H5 proc_352c3ab0/PID256648，07:56:59，240+30；A800 head-index proc_20d3881d/PID47321，07:57:45，420+30，15基座文件全SHA及空卡通过。仅监控原作业，未知不重启；全产物在research/public-h5-train32-probe-readiness与research/qwen35-head-index-probe-v1，actual-start小指针已保存。
 
 - head唯一工程已284.121738秒rc0/12次真实反向通过，A80008:02:29释放；peakallocated32.6926GB与旧近似，reserved35.1231GB较旧59.1153GB低，不能宣称大幅提速。root授权独立formal_indexed原124×2/32calls/8400+30；新helper原字节复用、旧formal保留，逐epoch完整状态持久ACK契约不变。H569.501秒工程正，root授权独立formal_train20步+F1/600+30；向量维数更正F1实际101，其余模型比较身份不变。两正式尚未启动。
+
+- indexed正式epoch1已08:07:31 A800 GPU2唯一proc_93f50e85/PID65024，plan635493e4；完整8400原deadline已开始，原state恢复/每epoch .100持久ACK保持。head53件实际终审e35dba61已PASS。H5纯CPU旧F1 pool/primary8cb/diagnostic24d双字节精确复现（原LGB只apply一次，无fit/quality）；overlay缺json的首故障已保存、修复只补namespace并复用已成功primary。正式H5各独立源已冻结，等本次push后fresh启动600。
