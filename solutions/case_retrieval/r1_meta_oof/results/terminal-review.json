@@ -1,0 +1,610 @@
+{
+  "status": "PASS_INCREMENTAL_SOURCE_AND_ACTUAL_TERMINAL_KEEP_FALSE_NO_F0_SUCCESSOR",
+  "created_at_utc": "2026-10-24T05:44:30.974942+00:00",
+  "reviewer": "/root/validation_recover_0518/sft32_fulltext_source",
+  "experiment_id": "E-20261024-R1-META-OOF-01",
+  "scope": "Unique fixed document-grouped known-F1 development OOF; source and actual receipts audited together. No new fit, predict, normalized-response parser, evaluator, remote or Git operation.",
+  "decision": {
+    "keep": false,
+    "new_F0_or_originaldev_or_official_authorized": false,
+    "reason": "R1 improves matched11-feature OOF but remains below highest-Score same-pool completed comparator and its macro floor."
+  },
+  "metrics": {
+    "without_r1": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6628571428571428,
+      "macF1": 0.49633675241606595,
+      "Score": 0.6435332077654673
+    },
+    "with_r1": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6628440366972477,
+      "macF1": 0.5232997949842887,
+      "Score": 0.6502706918675492
+    }
+  },
+  "strongest_same_pool_comparator": {
+    "name": "old_union_patient",
+    "metrics": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6842105263157895,
+      "macF1": 0.5585366247949581,
+      "Score": 0.664421521724852
+    }
+  },
+  "delta_with_minus_without": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -1.3106159895137637e-05,
+    "macF1": 0.02696304256822274,
+    "Score": 0.006737484102081859
+  },
+  "delta_with_minus_strongest": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.021366489618541817,
+    "macF1": -0.035236829810669446,
+    "Score": -0.014150829857302871
+  },
+  "coverage": {
+    "documents": 16,
+    "prompts": 80,
+    "candidate_codes": 587,
+    "patients": 39,
+    "OOF_pairs_per_arm": 1557,
+    "entities": 1189,
+    "F1_original_literal_training_positives_from_actual_receipts": 365,
+    "R1_selected": 453,
+    "R1_observed_not_selected": 822,
+    "R1_missing_CID_unknown": 50,
+    "R1_invalid_row_unknown": 232,
+    "unknown_pairs_are_not_replacement_negative_labels": true
+  },
+  "fold_checks": [
+    {
+      "fold": 0,
+      "train_document_ids": [
+        "10313222",
+        "11871647",
+        "11906559",
+        "12455887",
+        "12891056",
+        "2964533",
+        "5425407",
+        "5473715",
+        "5538066",
+        "6048891",
+        "6063015",
+        "9327653"
+      ],
+      "held_document_ids": [
+        "12386172",
+        "4607013",
+        "5415817",
+        "5789735"
+      ],
+      "train_documents": 12,
+      "held_documents": 4,
+      "train_rows": 1016,
+      "held_rows": 541,
+      "training_held_document_intersection": [],
+      "both_arm_actual_fit_receipts_match": true,
+      "matrix_membership_matches": true
+    },
+    {
+      "fold": 1,
+      "train_document_ids": [
+        "11871647",
+        "12386172",
+        "12455887",
+        "12891056",
+        "4607013",
+        "5415817",
+        "5473715",
+        "5538066",
+        "5789735",
+        "6048891",
+        "6063015",
+        "9327653"
+      ],
+      "held_document_ids": [
+        "10313222",
+        "2964533",
+        "5425407",
+        "11906559"
+      ],
+      "train_documents": 12,
+      "held_documents": 4,
+      "train_rows": 1362,
+      "held_rows": 195,
+      "training_held_document_intersection": [],
+      "both_arm_actual_fit_receipts_match": true,
+      "matrix_membership_matches": true
+    },
+    {
+      "fold": 2,
+      "train_document_ids": [
+        "10313222",
+        "11906559",
+        "12386172",
+        "12455887",
+        "12891056",
+        "2964533",
+        "4607013",
+        "5415817",
+        "5425407",
+        "5538066",
+        "5789735",
+        "6048891"
+      ],
+      "held_document_ids": [
+        "9327653",
+        "11871647",
+        "6063015",
+        "5473715"
+      ],
+      "train_documents": 12,
+      "held_documents": 4,
+      "train_rows": 1077,
+      "held_rows": 480,
+      "training_held_document_intersection": [],
+      "both_arm_actual_fit_receipts_match": true,
+      "matrix_membership_matches": true
+    },
+    {
+      "fold": 3,
+      "train_document_ids": [
+        "10313222",
+        "11871647",
+        "11906559",
+        "12386172",
+        "2964533",
+        "4607013",
+        "5415817",
+        "5425407",
+        "5473715",
+        "5789735",
+        "6063015",
+        "9327653"
+      ],
+      "held_document_ids": [
+        "5538066",
+        "12455887",
+        "6048891",
+        "12891056"
+      ],
+      "train_documents": 12,
+      "held_documents": 4,
+      "train_rows": 1216,
+      "held_rows": 341,
+      "training_held_document_intersection": [],
+      "both_arm_actual_fit_receipts_match": true,
+      "matrix_membership_matches": true
+    }
+  ],
+  "all_eight_12doc_train_ID_sets_and_held4_exclusions_independently_verified": true,
+  "actual_cost": {
+    "controller_seconds": 2.4065326240088325,
+    "stages": {
+      "prepare": {
+        "seconds": 0.567795559996739,
+        "cap_seconds": 60,
+        "returncode": 0
+      },
+      "fit": {
+        "seconds": 1.467129319004016,
+        "cap_seconds": 60,
+        "returncode": 0
+      },
+      "finalize": {
+        "seconds": 0.3648874880018411,
+        "cap_seconds": 30,
+        "returncode": 0
+      }
+    },
+    "fit_inner_seconds": 1.257274175004568,
+    "finalize_inner_seconds": 0.22306195499550086,
+    "fit_count": 8,
+    "iterations_per_fit": 100,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "GPU_calls": 0,
+    "runtime": {
+      "lightgbm": "4.6.0",
+      "numpy": "2.3.5",
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "all_eight_reload_array_equal_receipts": true,
+    "additional_reported_sklearn_default": {
+      "importance_type": "split"
+    },
+    "warnings": [
+      "X does not have valid feature names, but LGBMClassifier was fitted with feature names"
+    ]
+  },
+  "checks": [
+    {
+      "check": "artifact_and_source_identity",
+      "result": "PASS",
+      "detail": "All29 declared files independently byte/SHA checked, including opaque8pickles; source/plan/controller/prepare/fit/freeze/results/terminal references chained. No estimator deserialization."
+    },
+    {
+      "check": "whole_F1_base_source_isolation",
+      "result": "PASS_REUSED_LINEAGE_PLUS_METADATA_CROSSCHECK",
+      "detail": "Fixed inventory6e2b and prior base preparation e64af matched same32train/16F1 disjoint sets. All11base feature sources exclude entireF1; six context fields deterministic from isolated candidates, not oldHGB/fiveLR resubstitution probabilities. Public fixedR1 has no project-supervised training. Old model/source/quality audits reused, not repeated."
+    },
+    {
+      "check": "frozen_matching_arms_and_unknowns",
+      "result": "PASS_STATIC_AND_RECEIPTS",
+      "detail": "11 versus14 features differ only3R1 observed/selected/fraction columns, fixed100trees/depth3/7leaves/min35/lr.05/L2=10/threshold.5/singleCPU.282missing/invalid pairs retain observed0; supervised targets remain original365F1 positives, not R1-negative replacements."
+    },
+    {
+      "check": "actual_document_OOF",
+      "result": "PASS_INDEPENDENT_STRUCTURE_AND_ALL8_RECEIPTS",
+      "detail": "Recomputed deterministic SHAseed20261024 split. Every actual12doc train list exactly complements held4, intersection0; minimum projection of1557row matrix/OOF identities agrees in order, fold and coverage. Eacharm has541/195/480/341held rows; no row missing/duplicated."
+    },
+    {
+      "check": "native_positive_and_reload_contract",
+      "result": "PASS_SOURCE_AND_ACTUAL_RECEIPTS",
+      "detail": "Eachfit source fits trainmask only and predicts heldmask; positiveclass[0,1],100iterations, native versus wrapper arrays exact and savedpickle reload exact asserted and recorded. Model/state bytes pinned; reviewer did not independently deserialize or rerun predictions."
+    },
+    {
+      "check": "labels_and_freeze_boundary_disclosed",
+      "result": "PASS_WITH_EXPLICIT_SCOPE",
+      "detail": "F1 mixed target table intentionally read for training beforefreeze. Both1557pair/16doc predictions complete and fsynced at05:40:54.458331, exclusivequality marker05:40:54.460211. Only fullF1 goldfile/evaluator endpoint waits forfreeze; no claim labels were unseen."
+    },
+    {
+      "check": "literal_nonrelation_and_fixed_evaluator",
+      "result": "PASS_INDEPENDENT_BYTE_MASK_AND_RECEIPTS",
+      "detail": "Both outputs16docs/39patients/1189entities; independent association-mask byte hash equals oldtemplate0c882fe4. Fixedv2all/text and H50 validator first; both format receipts valid, noerrors/warnings. Newmetrics/manifest/result exact; old0/new2 calls, fold counts reuse same full evaluation."
+    },
+    {
+      "check": "retention_gate_and_process",
+      "result": "PASS",
+      "detail": "HighestScore among recorded20samepool comparators remains old_union_patient. Recomputed exactdeltas/keepfalse. Controllerprepare/fit/finalize rc0 eachwithin60/60/30, no retry, source exclusive8fit/quality reservations. No F0/dev/official successor."
+    }
+  ],
+  "limitations": [
+    "This is posthoc method-selected development CV after F1 aggregate quality was already known. F1 labels were intentionally used to train12doc meta learners; it is not a blind test, untouched heldout model-selection estimate, official result, or champion fivefold reproduction.",
+    "Rows are OOF with respect to their own meta learner; source/parameter/feature choice still depends on prior knownF1 experiments. Public pretraining corpus contamination is not assessed.",
+    "Anegative12docfit screening gate does not prove or disprove the separate16docfit F1-to-F0 proposal. Existing R1F0 closure remains unchanged.",
+    "Old base-model provenance and20comparators were reused from pinned metadata; old models, original mixedf055 labeltable, originalR1raw/parser and old quality were not re-executed or re-audited.",
+    "Reviewer hashed mixedmatrix/OOF bytes and projected only identities/folds/arraywidths; individual target, feature and probability values were not inspected or retained. Predicted entity/relation content was discarded after counts/opaque nonrelation mask; no fullgold/entity-label body was opened.",
+    "Saved8pickle files were hashed only; replay equality is supported by exact source plus actual fit-state receipts, not a new independent replay."
+  ],
+  "mixed_payload_policy": {
+    "snapshotted_payload_files": [],
+    "hash_only_model_files": 8,
+    "minimal_structure_only_files": [
+      "F1.matrix.jsonl",
+      "OOF.scores.jsonl",
+      "without_r1.OOF.pred.jsonl",
+      "with_r1.OOF.pred.jsonl"
+    ],
+    "no_raw_R1_or_gold_body_read": true
+  },
+  "review_actions": {
+    "new_fit_calls": 0,
+    "new_predict_calls": 0,
+    "new_model_loads": 0,
+    "new_normalized_response_parser_calls": 0,
+    "new_quality_calls": 0,
+    "remote_calls": 0,
+    "Git_operations": 0,
+    "owner_files_changed": false
+  },
+  "prediction_structure_checks": {
+    "without_r1": {
+      "documents": 16,
+      "entities": 1189,
+      "patients": 39,
+      "masked_nonrelation_sha256": "0c882fe4a5f976b4c3b7afc22dba9822b4375bec6890cb00bd29d32363fc0f60"
+    },
+    "with_r1": {
+      "documents": 16,
+      "entities": 1189,
+      "patients": 39,
+      "masked_nonrelation_sha256": "0c882fe4a5f976b4c3b7afc22dba9822b4375bec6890cb00bd29d32363fc0f60"
+    }
+  },
+  "reused_base_preparation_ref": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/preparation.json",
+    "bytes": 9090,
+    "sha256": "e64af5c476d54c6201945dd17da588b451f67fd302dd01fff99defaa7d9e7d20"
+  },
+  "snapshot_refs": [
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/plan.json",
+      "snapshot": "snapshots/plan.json",
+      "bytes": 14280,
+      "sha256": "133c4748ae20ca33e1d90f2f25cc068ed890d3395d00859e2134fc1b53a1fe7c"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/source-inventory.json",
+      "snapshot": "snapshots/source-inventory.json",
+      "bytes": 45186,
+      "sha256": "6e2b7247e3d0bc0ebc1a78276a725338ab072f91e2b096859dfff5e601f6a5ed"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/static-contract.json",
+      "snapshot": "snapshots/static-contract.json",
+      "bytes": 1089,
+      "sha256": "6ac80e9fa8cfd83bbd9640c31376f7127a0b0808b4eff062ab67140915426d6d"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/preparation.json",
+      "snapshot": "snapshots/preparation.json",
+      "bytes": 3187,
+      "sha256": "877ff85620d94098364ca9f1c1226ee957d160eed0c87b6c76e936627e4cd540"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fit-started.json",
+      "snapshot": "snapshots/fit-started.json",
+      "bytes": 349,
+      "sha256": "09561e6f556b17b840b8e8927e60e65f44c7e2af87efe2ace3ef0cbbea058f1a"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fit-state.json",
+      "snapshot": "snapshots/fit-state.json",
+      "bytes": 29237,
+      "sha256": "ed0139893bb969b32095e9419152ff9458981cd287841969045f889a63afd60a"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/complete-freeze.json",
+      "snapshot": "snapshots/complete-freeze.json",
+      "bytes": 1794,
+      "sha256": "c84eff0b2eb6a046cb9dc415b9e004d8547a08473124e94d0af3f690efd8c5aa"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/evaluation-started.json",
+      "snapshot": "snapshots/evaluation-started.json",
+      "bytes": 368,
+      "sha256": "d9890b36bf64a184ee4f1e1bd29ccc2d96789504df8601c858f722d4cc3e90c1"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/without_r1.metrics.json",
+      "snapshot": "snapshots/without_r1.metrics.json",
+      "bytes": 12923,
+      "sha256": "37613c845b5d7da25812669d3e8bef1756ee2375e8fc4fe8a7dcde52b9f4ad86"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/with_r1.metrics.json",
+      "snapshot": "snapshots/with_r1.metrics.json",
+      "bytes": 12962,
+      "sha256": "0f2993fd8a2943ccea7328c3cb3848e800095b523164712c68daac7b3c49cfeb"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/without_r1.validation.json",
+      "snapshot": "snapshots/without_r1.validation.json",
+      "bytes": 425,
+      "sha256": "ef5824f05b6ea84db61daa05be8a5dc734cfb59e99f8ffb90a0dbd4e5aece933"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/with_r1.validation.json",
+      "snapshot": "snapshots/with_r1.validation.json",
+      "bytes": 425,
+      "sha256": "d1189839b4f1068d1e0fb1a90c0508f6c4162491b40540514638801c3d87824d"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/result.json",
+      "snapshot": "snapshots/result.json",
+      "bytes": 10167,
+      "sha256": "a607f8ab072db1a3c1298daa5e34a599ac4d5af912e9cb18a9ce5bb703898fb5"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/execution-state.json",
+      "snapshot": "snapshots/execution-state.json",
+      "bytes": 4062,
+      "sha256": "1d13dd3520cf7ede1e1b8f1cb9a78fc2e48227a3102f9321067ffa936f3fdafe"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/process-terminal.json",
+      "snapshot": "snapshots/process-terminal.json",
+      "bytes": 4062,
+      "sha256": "1d13dd3520cf7ede1e1b8f1cb9a78fc2e48227a3102f9321067ffa936f3fdafe"
+    },
+    {
+      "source": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/screen.py",
+      "snapshot": "snapshots/screen.py",
+      "bytes": 27563,
+      "sha256": "00251da4a031a55489f35b0daee5bea9a0698ad9ee60264cd933d378a0df7156"
+    },
+    {
+      "source": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/execute_once.py",
+      "snapshot": "snapshots/execute_once.py",
+      "bytes": 2891,
+      "sha256": "bf44cdf0c0f3125a0a28695c253b897a64d149edad447b8e84bddbcb815f14f7"
+    },
+    {
+      "source": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/terminal-manifest.json",
+      "snapshot": "snapshots/terminal-manifest.json",
+      "bytes": 9261,
+      "sha256": "d6569b91e4a080803e9346b3608ccf6741ef678d66998a6856f4d2dab2332ce3"
+    },
+    {
+      "source": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/README.md",
+      "snapshot": "snapshots/README.md",
+      "bytes": 2566,
+      "sha256": "b64cd5dd25500b768e9fac564848f450e8f853b834f4bfc5f8d3d01b153055da"
+    }
+  ],
+  "checked_artifacts": [
+    {
+      "name": "plan.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/plan.json",
+      "bytes": 14280,
+      "sha256": "133c4748ae20ca33e1d90f2f25cc068ed890d3395d00859e2134fc1b53a1fe7c"
+    },
+    {
+      "name": "source-inventory.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/source-inventory.json",
+      "bytes": 45186,
+      "sha256": "6e2b7247e3d0bc0ebc1a78276a725338ab072f91e2b096859dfff5e601f6a5ed"
+    },
+    {
+      "name": "static-contract.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/static-contract.json",
+      "bytes": 1089,
+      "sha256": "6ac80e9fa8cfd83bbd9640c31376f7127a0b0808b4eff062ab67140915426d6d"
+    },
+    {
+      "name": "preparation.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/preparation.json",
+      "bytes": 3187,
+      "sha256": "877ff85620d94098364ca9f1c1226ee957d160eed0c87b6c76e936627e4cd540"
+    },
+    {
+      "name": "F1.matrix.jsonl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/F1.matrix.jsonl",
+      "bytes": 441814,
+      "sha256": "b3d667ab0170f87d03b34f9869cfa432522797bb36435a7b30d5925e0fd5771b"
+    },
+    {
+      "name": "fit-started.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fit-started.json",
+      "bytes": 349,
+      "sha256": "09561e6f556b17b840b8e8927e60e65f44c7e2af87efe2ace3ef0cbbea058f1a"
+    },
+    {
+      "name": "fit-state.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fit-state.json",
+      "bytes": 29237,
+      "sha256": "ed0139893bb969b32095e9419152ff9458981cd287841969045f889a63afd60a"
+    },
+    {
+      "name": "OOF.scores.jsonl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/OOF.scores.jsonl",
+      "bytes": 345446,
+      "sha256": "1194319dd8468ea1207844a4f28a04ea9b846ee28f3b2dd36f5b53347c437061"
+    },
+    {
+      "name": "complete-freeze.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/complete-freeze.json",
+      "bytes": 1794,
+      "sha256": "c84eff0b2eb6a046cb9dc415b9e004d8547a08473124e94d0af3f690efd8c5aa"
+    },
+    {
+      "name": "evaluation-started.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/evaluation-started.json",
+      "bytes": 368,
+      "sha256": "d9890b36bf64a184ee4f1e1bd29ccc2d96789504df8601c858f722d4cc3e90c1"
+    },
+    {
+      "name": "without_r1.OOF.pred.jsonl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/without_r1.OOF.pred.jsonl",
+      "bytes": 153778,
+      "sha256": "5a91447701642e373deb7509ea648b3271d93d8e63441770ebd5fe8fa79ac119"
+    },
+    {
+      "name": "with_r1.OOF.pred.jsonl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/with_r1.OOF.pred.jsonl",
+      "bytes": 153742,
+      "sha256": "4e98604747997c1537a0476ef8143f12b6383c9db76bfec67c0c69f8b4542830"
+    },
+    {
+      "name": "without_r1.metrics.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/without_r1.metrics.json",
+      "bytes": 12923,
+      "sha256": "37613c845b5d7da25812669d3e8bef1756ee2375e8fc4fe8a7dcde52b9f4ad86"
+    },
+    {
+      "name": "with_r1.metrics.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/with_r1.metrics.json",
+      "bytes": 12962,
+      "sha256": "0f2993fd8a2943ccea7328c3cb3848e800095b523164712c68daac7b3c49cfeb"
+    },
+    {
+      "name": "without_r1.validation.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/without_r1.validation.json",
+      "bytes": 425,
+      "sha256": "ef5824f05b6ea84db61daa05be8a5dc734cfb59e99f8ffb90a0dbd4e5aece933"
+    },
+    {
+      "name": "with_r1.validation.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/with_r1.validation.json",
+      "bytes": 425,
+      "sha256": "d1189839b4f1068d1e0fb1a90c0508f6c4162491b40540514638801c3d87824d"
+    },
+    {
+      "name": "result.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/result.json",
+      "bytes": 10167,
+      "sha256": "a607f8ab072db1a3c1298daa5e34a599ac4d5af912e9cb18a9ce5bb703898fb5"
+    },
+    {
+      "name": "execution-state.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/execution-state.json",
+      "bytes": 4062,
+      "sha256": "1d13dd3520cf7ede1e1b8f1cb9a78fc2e48227a3102f9321067ffa936f3fdafe"
+    },
+    {
+      "name": "process-terminal.json",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/process-terminal.json",
+      "bytes": 4062,
+      "sha256": "1d13dd3520cf7ede1e1b8f1cb9a78fc2e48227a3102f9321067ffa936f3fdafe"
+    },
+    {
+      "name": "fold0.with_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold0.with_r1.pkl",
+      "bytes": 85873,
+      "sha256": "953371b2b8372fc46978db0c17eaa142439d31083d5c5753be9450fc68101986"
+    },
+    {
+      "name": "fold0.without_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold0.without_r1.pkl",
+      "bytes": 85993,
+      "sha256": "a97da7c52ffa2a56a0334f0b33a202d17c78f926e4677bd9b72472b9d317dd0e"
+    },
+    {
+      "name": "fold1.with_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold1.with_r1.pkl",
+      "bytes": 90283,
+      "sha256": "31355539d92c243f5b8e2b61273abb6878e96613d6571fb7b0e54ed312ada31e"
+    },
+    {
+      "name": "fold1.without_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold1.without_r1.pkl",
+      "bytes": 89814,
+      "sha256": "3dd7c20c9bd5f1841f083def86ba40c01021ba4e9ad25d6e8a0216ac4f8dfc9d"
+    },
+    {
+      "name": "fold2.with_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold2.with_r1.pkl",
+      "bytes": 81642,
+      "sha256": "b3e88a78a097af5835cc548f3ffd5d492020ba14cfe650813a604346c5b79d51"
+    },
+    {
+      "name": "fold2.without_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold2.without_r1.pkl",
+      "bytes": 79529,
+      "sha256": "c0d26cf0c4672937abbefacbb51743b0089095de3dc36cbd357078f296608cdd"
+    },
+    {
+      "name": "fold3.with_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold3.with_r1.pkl",
+      "bytes": 87541,
+      "sha256": "18e639d75fb350f1f8fe2f05a0ed10bee24e36211bd156da7a47e5b6c10f5300"
+    },
+    {
+      "name": "fold3.without_r1.pkl",
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/fold3.without_r1.pkl",
+      "bytes": 85807,
+      "sha256": "c0ca13df5e562ec74e9d7db83b084acb55ea4f2e9ba4ad143396324f59c8f15f"
+    },
+    {
+      "name": "screen.py",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/screen.py",
+      "bytes": 27563,
+      "sha256": "00251da4a031a55489f35b0daee5bea9a0698ad9ee60264cd933d378a0df7156"
+    },
+    {
+      "name": "execute_once.py",
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_meta_oof/execute_once.py",
+      "bytes": 2891,
+      "sha256": "bf44cdf0c0f3125a0a28695c253b897a64d149edad447b8e84bddbcb815f14f7"
+    }
+  ]
+}
