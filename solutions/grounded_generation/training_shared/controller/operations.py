@@ -25,7 +25,11 @@ p=Path(PARAM['path']);b=(json.dumps(PARAM['value'],indent=2)+chr(10)).encode()
 if p.exists():assert p.read_bytes()==b
 else:
  with p.open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())
-fd=os.open(str(p.parent),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+directory=p.parent
+while True:
+ fd=os.open(str(directory),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+ if directory.parent==directory:break
+ directory=directory.parent
 print(json.dumps(dict(path=str(p),bytes=len(b),sha256=hashlib.sha256(b).hexdigest())))
 '''
  return remote(mount,code,dict(path=path,value=obj),label)
@@ -63,7 +67,11 @@ for gzname,item in PARAM['decompress'].items():
  b=gzip.decompress((p/gzname).read_bytes());assert len(b)==item['bytes'] and hashlib.sha256(b).hexdigest()==item['sha256']
  with (p/item['name']).open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())
 shm=Path(PARAM['shm']);assert not shm.exists();shm.mkdir(mode=0o700)
-fd=os.open(str(p),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+directory=p
+while True:
+ fd=os.open(str(directory),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+ if directory.parent==directory:break
+ directory=directory.parent
 print(json.dumps(dict(status='ACTUAL_SOURCE_DATA_SHA_COMPILE_FSYNC_DEPLOYED',plan_sha256=hashlib.sha256((p/'controller-plan.json').read_bytes()).hexdigest(),files=len(m['files']),private_shm=str(shm))))
 '''
  actual=remote(source,code,dict(root=root,manifest=manifest,parts=refs,decompress=plan['decompress'],shm=str(Path(plan['output_dir']).parent)),'source-deploy-tool.json',60);save('source-deployment.json',actual)
@@ -77,7 +85,11 @@ for n,r in PARAM['files'].items():
  f=p/n;assert f.stat().st_size==r['bytes'] and hashlib.sha256(f.read_bytes()).hexdigest()==r['sha256']
  with f.open('rb') as h:os.fsync(h.fileno())
  if f.suffix=='.py':compile(f.read_text(),n,'exec')
-fd=os.open(str(p),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+directory=p
+while True:
+ fd=os.open(str(directory),os.O_RDONLY|os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+ if directory.parent==directory:break
+ directory=directory.parent
 print(json.dumps(dict(status='ACTUAL_PERSISTENT_FETCH_SOURCE_FSYNC',free=shutil.disk_usage(p).free)))
 '''
  files={n:dict(bytes=(B/n).stat().st_size,sha256=sha((B/n).read_bytes())) for n in ['fetch_checkpoint.py','io_driver.py','controller-plan.json']};actual=remote(target,code,dict(root=dest,files=files),'target-deploy-verify.json');save('target-deployment.json',actual);print(json.dumps(actual))

@@ -312,7 +312,7 @@ def run(args):
                 if probes:
                     changed={family:not torch.equal(before,p.detach()) for family,(_,p,before) in probes.items()}
                     write_json(output/'first-nonzero-update.json',dict(step=global_step,learning_rate=learning_rate,
-                        gradient_norm_before_clip=float(grad_norm),changed_B_families=changed,fresh_run=True))
+                        gradient_norm_before_clip=float(grad_norm),changed_B_families=changed,fresh_run=args.resume is None,resumed_epoch=args.resume is not None))
                     assert set(changed)=={'DeltaNet','full_attention','MLP'} and all(changed.values())
                     first_update_checked=True
                 loss_sum+=group_loss
