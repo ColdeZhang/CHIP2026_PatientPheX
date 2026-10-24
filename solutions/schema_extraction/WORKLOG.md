@@ -13,3 +13,5 @@
 - .3私网transfer首次start_process返回UNKNOWN_OUTCOME；原意图和token已持久化，只读恢复原server状态/port，不重启第二服务。
 - .100实际依赖已核，10:37:32独立同SHA资产传输启动proc_ddfd0c60-864e-46b3-891d-15ef1076a625，600+30s，原.3已完成资产不重启。原私网服务状态由span统一恢复；无.100 fetch并发。
 - CPU摘要证据[evidence/cpu-readiness.json](evidence/cpu-readiness.json)已本地保存；真正质量仍为0。原dev/官网均未操作。
+- .100 CPU全输入/strict load已实际通过14.965s，TF5.20.2下与发布tokenizer.json逐窗IDs仍一致。HF pinned树五件非LFS文件git-blob SHA1全部吻合，见[evidence/hf-identity.json](evidence/hf-identity.json)；不是拿SHA1错比SHA256。
+- 下一步按既有root授权fresh核空闲GPU1后最大输入窗口工程probe；不会因probe文本输出修改固定schema/阈值。
