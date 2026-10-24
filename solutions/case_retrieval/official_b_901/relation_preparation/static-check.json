@@ -1,0 +1,57 @@
+{
+  "status": "PASS_STATIC_ONLY_ACTUAL_B_PENDING",
+  "sources": {
+    "prepare.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/prepare.py",
+      "bytes": 14158,
+      "sha256": "69cc0aa813849495b556885d4b1d41e71709e63772e9beeeab993c81fd2bad82"
+    },
+    "qwen35_runner_raw_first.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/qwen35_runner_raw_first.py",
+      "bytes": 16905,
+      "sha256": "f9c1b3ce0ff794e1b0c2adaca2a42370a1629042f893e3b1d2c25734b910d420"
+    },
+    "token_audit.py": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/token_audit.py",
+      "bytes": 3971,
+      "sha256": "615b14a301ef4ff2e9245a82911b912769a0e86869152006dc243e87a3ff1df6"
+    }
+  },
+  "old_runner": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/legacy/qwen35_runner.py",
+    "bytes": 11012,
+    "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+  },
+  "checks": {
+    "all_python_sources_ast_parse": true,
+    "original_model_tokenizer_adapter_from_pretrained_calls_exact": true,
+    "original_generate_call_exact": true,
+    "original_skip_special_tokens_true_response_decode_retained": true,
+    "adapter_sha_and_config_pinned": true,
+    "all_three_prompt_semantics_static_review": "PASS by /root/retrieval_recover_0518/pure_load_inventory/b_prompt_static_audit at source69cc0aa8; old_candidate_manifest actual input/output binding pending sequence schema",
+    "raw_ids_fsync_before_response_decode_source_order": true,
+    "exact_model_source_manifest_hardpin_74e82": true,
+    "native_audit_source_hardpin": true,
+    "actual_runtime_versions_and_total_parameters_asserted": true,
+    "actual_eos_and_pad_asserted": true,
+    "published_NFC_roundtrip_vs_raw_literal_roundtrip_separately_recorded": true
+  },
+  "actual_execution": {
+    "B_prepare": 0,
+    "tokenizer_load": 0,
+    "NN": 0,
+    "fit": 0,
+    "score": 0,
+    "remote": 0
+  },
+  "limitations": [
+    "No actual B space/token report until old full-lr and public caches arrive.",
+    "Actual GPU AutoTokenizer/native equivalence and raw first execution not yet run.",
+    "Parent must bind GPU/runtime/budget plus model/adapter resources; no automatic GPU launch."
+  ],
+  "deployment_contract": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/official_b_901/relation_preparation/deployment-contract.json",
+    "bytes": 10422,
+    "sha256": "bd8d980a98eb229a89a925f32968a8be6a8088f9248e8dec3376ff3155318a69"
+  }
+}
