@@ -15,3 +15,4 @@
 - CPU摘要证据[evidence/cpu-readiness.json](evidence/cpu-readiness.json)已本地保存；真正质量仍为0。原dev/官网均未操作。
 - .100 CPU全输入/strict load已实际通过14.965s，TF5.20.2下与发布tokenizer.json逐窗IDs仍一致。HF pinned树五件非LFS文件git-blob SHA1全部吻合，见[evidence/hf-identity.json](evidence/hf-identity.json)；不是拿SHA1错比SHA256。
 - 下一步按既有root授权fresh核空闲GPU1后最大输入窗口工程probe；不会因probe文本输出修改固定schema/阈值。
+- 最大窗口GPU probe通过，总16.538s/窗口.918s/峰928.5MB，GPU已0MiB/noapps释放。固定完整164窗估计347.306s，按root既有授权准备一次full100-v1，硬上限600+30s。见[evidence/probe.json](evidence/probe.json)。
