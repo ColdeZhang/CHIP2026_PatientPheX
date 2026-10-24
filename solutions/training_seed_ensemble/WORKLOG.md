@@ -2,7 +2,7 @@
 
 2026-10-24 UTC，分支 `research/training-seed-ensemble`，起点 `main@ff7ad16777e3907ed3b4b4231794439017aa5bf8`。仅修改本方案目录。共享规则已读，后继启动尤其遵循 H49 原始响应先存、H68 按实际成本做最小工程检查、H69 启动有效期与运行预算分开。
 
-**当前：原fresh训练16:30:57完整成功，87×2/22更新及两完整持久ACK已在原watch终态核到；恢复收件后接39条F1，尚无新质量。**
+**当前：原fresh训练16:30:57完整成功，87×2/22更新及两完整持久ACK已在原watch终态核到；终态收件全核后39条F1已16:42:47唯一真实启动，尚无新质量。**
 
 **历史释槽交接（现已恢复）**：根线程安排本 owner idle，原训练与只读 watcher 保持。两轮及逐轮完整 state 持久 ACK 由同一远端 trainer 自动完成，无手动跨轮/导出依赖。唯一恢复指针 [evidence/active-idle-handoff.json](evidence/active-idle-handoff.json) 记录已核活 PID/锁、原硬钟与后继命令。root 看到外存 `formal-fresh-v1/watch/terminal-observed.json` 后唤醒本 owner；先收原终态/两 ACK，成功才绑定39条新推断。不能使用历史失败入口的 start，也不凭暂时 idle 判定模型已结束。
 
@@ -39,3 +39,5 @@ V4 CPU真实4.761801秒PASS，同87/32输入及实际import Torch2.6.0+cu124/TF5
 16:40原watch自行恢复并收到实际终态，两轮持久ACK分别16:14:52/16:30:56，controller2000.189秒，实际16:31:00 .12GPU2释放；非.100卡释放。训练源码与原3000时钟未变。完整终态观察见[evidence/training-complete-observed.json](evidence/training-complete-observed.json)。首collector inventory成功，freeze返回UNKNOWN，保原请求并只读原包恢复，不重训/不把缺收件称质量失败。SCST已直接通知仍需等待本39推断实际释放。
 
 原UNKNOWN freeze已实际完成；原25件metadata包全部逐SHA收回，collection196b22f6/17826B，两完整state仍远端持久且重新核SHA。已通过binder绑定真实finaladapter c3dc7de5及双ACK/22步；F1唯一39全fresh计划66bf2e69，1800+30与300秒launch TTL在绑定时锁，旧普通G generation/parser不变。原概率/标签未用于选择，无新质量。
+
+F1 actual proc803b4f9d/driver67252/child67270，.12GPU2，16:42:47.217启动，原TERM17:11:09.465607不重置；新sole只读watch详见evidence/F1-running.json。此前只读inventory UNKNOWN没有start intent，恢复库存后才唯一claim/start，未知写入分片逐SHA复用。SCST等待这条39真实release；必要Sap由root安排在document_relations当前.3作业完成后fresh核原GPU0。首次localwatch启动误用不存在/usr/local/bin/python，Popen前失败、0新进程；新receipt改实际sys.executable，原空日志/failure保留，远端不变。
