@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-24T13:42:27.242271+00:00",
+  "updated_at_utc": "2026-10-24T13:50:28.773789+00:00",
   "purpose": "Current recovery pointers. Read immutable job and latest owner state before acting; milestones below are not a fresh remote inventory.",
   "current_original_dev_score": 0.7692356699419443,
   "current_prediction_sha256": "05cfa90fdcba16371ddc6fb06aabdabfbcfd1cf631fc30101d98b3e40dd0d5ba",
@@ -573,7 +573,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-patient-response-code",
       "owner": "/root/ontology_recover_0518",
       "base_commit": "cd4086b83e5bc5dec99dc88aa64017b7cabee6cd",
-      "next": "ActualH51→conditionalfreshfull64 2ep68/warmup4/5400+30/twoACK→64fresh1200+30, purecomponent only. RemainsA100 afterrecovery; no .7 migration. PureC usesold955entityframe only;rootfinalusesB9011061.",
+      "next": "NewhostA800 H51 actual→freshfull64 2ep68/warmup4/5400+30/two.100ACK→64fresh1200+30. No A100 bootstrap or repeatedCPU; source/host difference disclosed. Soleowner ontology.",
       "formal_job": {
         "process_id": "proc_4e8346b7-b644-425b-9edf-8b323fc54ed8",
         "bootstrap_pid": 141053,
@@ -661,7 +661,20 @@
         "TERM_utc": "2026-10-24T13:41:16.967707Z",
         "KILL_utc": "2026-10-24T13:41:46.967707Z",
         "gpu": ".12 A100GPU2",
-        "budget": "240+30"
+        "budget": "240+30",
+        "complete": true,
+        "actual_seconds": 168.330223,
+        "formal_never_started_on_this_host": true,
+        "status": "A100_PROBE_PASS; formal fetch uncertain/MCPunavailable, no formal start_process sent; replaced by explicit A800 migration"
+      },
+      "full64_A800_probe_job": {
+        "process_id": "proc_f275c605-83eb-479d-a4a8-d46f9bcbab56",
+        "driver_pid": 40008,
+        "started_at_utc": "2026-10-24T13:48:48.839681393Z",
+        "gpu": ".7 A800GPU2",
+        "budget": "240+30",
+        "plan_sha256_prefix": "21255251",
+        "source_checkpoint": "9826584b"
       }
     },
     {
@@ -793,7 +806,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-mention-hard-negatives",
       "owner": "/root/schema_extraction",
       "base_commit": "23b053e67636249e8f24415b5f770f86db0363e9",
-      "status": "ORIGINAL_EPOCH2_ACTIVE: actual660/734 observed13:37:24; firstfullACK31ee14d9 preserved. Sameprocess/budget; noquality.",
+      "status": "TRAINING_COMPLETE734updates/5862rows/twoACK;native3410.522s. Whole1416inference originaljob active13:43:18.070760→1200+30, noquality.",
       "readiness": "docs/research/mention-hard-negative-readiness-20261024/README.md",
       "next": "Originalsolecontroller/observer→complete734updates/twoACK/full1416→twojointfrozenquality2v2/old0; no newprobe or changesfromoldquality.",
       "formal_job": {
@@ -805,6 +818,14 @@
         "source_checkpoint": "4fe44571",
         "job_checkpoint": "fa76133b",
         "runtime_difference": "Torch2.7.0+cu128 vs original2353 on2.7.1+cu126; same privateTF4.51.3/native source. Not bitwise pure-data ablation."
+      },
+      "inference_job": {
+        "child_pid": 1213791,
+        "started_at_utc": "2026-10-24T13:43:18.070760Z",
+        "gpu": ".3 A30GPU0",
+        "budget": "1200+30",
+        "adapter_sha256_prefix": "2a1a5a09",
+        "epoch2_ACK_sha256_prefix": "a1e0bb45"
       }
     },
     {
@@ -952,14 +973,20 @@
       "route": "response_code_equivariance",
       "branch": "explore/response-code-equivariance",
       "owner": "/root/ontology_recover_0518",
-      "status": "UNIQUE53FRESH_INFERENCE_ACTIVE .100GPU0;27exactcache notregenerated.",
-      "next": "Originalfull53fresh terminal+27cache→twofixedendpointsjointfreeze; runtimeconfounddisclosed.",
+      "status": "COMPLETE_NEGATIVE_CLOSED:53fresh27cache/80strict/442.208813s, .701282498644 belowB4 .701325377212 (+2TP3FP);diagnostic .621756506260. 2v2/old0, GPU0released13:43:57.",
+      "next": "NoF0/permutation scan; originalstandardfull64C unchanged. Consolidatedreviewinprogress.",
       "entry": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/CPU-ready.json",
       "job": {
         "process_id": "proc_d8c112f4",
         "TERM_utc": "2026-10-24T13:56:35.558786Z",
         "gpu": ".100GPU0",
         "budget": "1200+30"
+      },
+      "terminal_checkpoint": "f4674b53d99c6f61f51aa31203c1470aa2cf640f",
+      "terminal_entry": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/response-code-equivariance-v1/review-input.json",
+        "bytes": 3408,
+        "sha256": "4fd920eed9c59548271daca9163c640bcf8250d02e1c358fa2232f45424c6edb"
       }
     },
     {
@@ -997,13 +1024,36 @@
       "route": "mention_candidate_selection",
       "branch": "explore/mention-candidate-selection",
       "owner": "/root/schema_extraction",
-      "status": "ALL_PUBLIC_QUERIES_COMPLETE: old1284reused+1034newactual19.589s, GPU1released13:38:01.309913. Complete2931/1416candidate/nativeCPU preparation underway;0LLMtrain/quality.",
-      "next": "Full4347nativeinput/mask/513stringgrammar/costcontracts, then decideGPUtraining. Noheldgold/candidategoldinsertion;OTHER separatefromNO/NIL.",
+      "status": "CPU_COMPLETE4347allnative/mask/513grammar. Authorized.100GPU1H51 240+30; notyetstarted. Per_epoch1516620tokens/33522super/max684.",
+      "next": "Ifactualprobe memory/numerics andpredeclaredcost<=7200, automaticallyfresh2931 twoep734updates/warmup37/twoACK7200+30, full1416infer1800+30 thenfixedjoint2v2. No data/precision/training-target changes tofitbudget.",
       "readiness": {
         "path": "/workspace/patientphex-runs/round2-20261023/research/mention-public-top8-readiness-20261024/REPORT.md",
         "bytes": 4329,
         "sha256": "e6ee30db4832062a3d33efe62b58a794a5c2339a973e8fd432e49ff39d31c466"
       }
+    },
+    {
+      "route": "document_supported_relation_filter",
+      "branch": "explore/document-supported-relation-filter",
+      "owner": "/root/document_relations",
+      "status": "COMPLETE_NEGATIVE_CLOSED: B4 intersect(Task1documentliteral support OR >=2pureG/S/Q/C),524→522 deletes1TP1FP, .701325377212→.701225288549;37contracts/1v2old0.",
+      "next": "NoF0/full64/subsetscan; independentreview93622ff9complete.",
+      "terminal_checkpoint": "400e55e3c938c572d0f755c6df6c3194ff41105a",
+      "terminal_entry": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/document-supported-relation-filter-20261024/terminal-manifest.json",
+        "bytes": 6370,
+        "sha256": "fed3c0d9b31a256012f25986ffa2afbd7ec291e181a697177c436d988c7f0165"
+      }
+    },
+    {
+      "route": "grounded_sampled_consensus",
+      "branch": "explore/grounded-sampled-consensus",
+      "worktree": "/workspace/patientphex-worktrees/explore-grounded-sampled-consensus",
+      "base_commit": "504659ec5abf4a045bb2fcd6333bcd954cbe0756",
+      "owner": "/root/sequence_recover_0518",
+      "status": "CPU39_COMPLETE6.779s; noGPUintent/start yet. PreserveoldGgreedy/full64. New78freshquotes twofixedseeds, originald52train32/native/strict/norm unchanged.",
+      "next": "Migrateonly173MBd52 tofree.100GPU0; no19GBbasecopy/re-tokenize. Freshactualsame-runtime/GPUgate→unique783600+30. Newhostcost2369s proxy, prestartbudgetupdates retained. F1B4union normalizedliteralS1∩S2 singlequality,zeroadd0v2; strictF1positive thenfixedF0.",
+      "sampling": "T.7/p.8/k20/minp0/repetition1/presence0, seeds20261024/25,maxnew1600. Initialpresence1.5proposal withdrawn beforefirstsourcefreeze/GPU dueexactquote copying; no customprocessor."
     }
   ],
   "FLA_quality_supplements_actual_restore": {
@@ -1081,5 +1131,10 @@
       "bytes": 9390,
       "sha256": "58141a6f27cb79bce74975dc6343c5dde5dcd9407eeaefa79af1770f46755bfb"
     }
+  },
+  "grounded_full64_supplement_actual_restore": {
+    "path": "/workspace/patientphex-runs/round2-20261023/grounded-full64-dev36-supplement-restore-20261024/complete.json",
+    "bytes": 15280,
+    "sha256": "aabaeacf93e87cff2d0cb5c3e929aa5daf56c818c42ac3f16b8848b936b3c5bb"
   }
 }
