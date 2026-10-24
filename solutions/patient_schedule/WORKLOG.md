@@ -18,8 +18,10 @@
 
 ## 下一步及停止边界
 
-root已收到新生成A100显存PASS并将A800 GPU2分配本路线；授权已另存evidence/GPU-AUTHORIZATION.json，原false模板保留；已唯一proc_975a3621/PID27842，watcher PID143721（exec73046）。原campaign TERM截止11:38:41.825555Z/+30，训练及四导出共5400秒，禁止重启或重置时钟。若获相同预算与资源授权，沿RUNBOOK一次部署/fresh核/唯一epoch1，后续4ACK再绑定最终80。工程失败保原raw/状态，不盲重启、不自动扫epoch。完整质量再做一次实际增量终审；本轮无新patient4质量结论。
+root已收到新生成A100显存PASS并将A800 GPU2分配本路线；授权已另存evidence/GPU-AUTHORIZATION.json，原false模板保留；已唯一proc_975a3621/PID27842，原watcher PID143721（exec73046）已无进程/会话；现独立恢复watcher PID145075（PPID1/SID145075）。原campaign TERM截止11:38:41.825555Z/+30，训练及四导出共5400秒，禁止重启或重置时钟。若获相同预算与资源授权，沿RUNBOOK一次部署/fresh核/唯一epoch1，后续4ACK再绑定最终80。工程失败保原raw/状态，不盲重启、不自动扫epoch。完整质量再做一次实际增量终审；本轮无新patient4质量结论。
 
 Git：上一个已核远端源码检查点`c3c5991`；最终prepared检查点将在本页完成后同批commit/push，最终hash以Git与交接消息为准，不为记录自身hash追加循环提交。
 
 实际启动：fresh全部15资产SHA、GPU1MiB无apps、SHM220.026GB、项目1.485GB、.100411.545GB；首watch inspect已过token audit/GPU门，在加载base。51成员688033B准备包`7e6b2b1b…`已.100真实fsync/reopen全SHA，包含私有输入/预测，不能进公共review-index。current pointers与原start意图见ready，原训练state与大raw继续外存。
+
+10:18本地监控恢复：原PID/exec已失、无failure/complete，根因未知；原远端epoch1训练仍健康，root最新发布step10/loss.19727。新增独立恢复目录watch-recovery-1，锁定单owner、脱离短工具launcher，复用旧watch/operations且保原deadline；首次查询等root原inspect+120秒，不立即重复。训练本身从未重启。
