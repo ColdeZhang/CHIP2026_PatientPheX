@@ -1,0 +1,342 @@
+--- C32/controller/bootstrap.py
++++ full64/controller/bootstrap.py
+@@ -61,10 +61,10 @@
+   deploy=constant((S/'deploy.py').read_text(),'verify');tree=ast.parse((S/'operations.py').read_text());nodes=[n for n in ast.walk(tree) if isinstance(n,ast.If) and isinstance(n.test,ast.Compare) and any(isinstance(q,ast.Constant) and q.value=='preflight' for q in n.test.comparators)];assert len(nodes)==1;sub=ast.Module(body=nodes[0].body,type_ignores=[]);preflight=constant(ast.unparse(sub),'code')
+   manifest=json.loads((C/'deployment-manifest.json').read_text());b=Path(manifest['archive']['path']).read_bytes();assert sha(b)==manifest['archive']['sha256'];parts=[dict(name='part-%03d'%i,bytes=len(b[j:j+32768]),sha256=sha(b[j:j+32768])) for i,j in enumerate(range(0,len(b),32768))]
+   payload=dict(root=plan['remote_absolute'],deploy_source=deploy,preflight_source=preflight,deploy_parameters=dict(root=plan['remote_absolute'],manifest=manifest,parts=parts,decompress=plan['decompress'],shm=str(Path(plan['output_dir']).parent),output=plan['output_dir']),bootstrap_sha256=ref(__file__)['sha256'])
+-  save(C/'bootstrap-payload.json',payload);save(C/'bootstrap-entry.json',dict(source=ref(__file__),payload=ref(C/'bootstrap-payload.json'),original_entry=ref(C/'entry.json'),original_plan=ref(C/'controller-plan.json'),archive=manifest['archive'],operations=ref(S/'operations.py'),watcher=ref(S/'watch_authorized_campaign.py'),no_method_or_data_change=True,unique_epoch1_start=True,shared3600_from_original_managed_bootstrap_start=True,source_verify_and_preflight_reused_exact_strings=True));print(json.dumps(ref(C/'bootstrap-entry.json')))
++  save(C/'bootstrap-payload.json',payload);save(C/'bootstrap-entry.json',dict(source=ref(__file__),payload=ref(C/'bootstrap-payload.json'),original_entry=ref(C/'entry.json'),original_plan=ref(C/'controller-plan.json'),archive=manifest['archive'],operations=ref(S/'operations.py'),watcher=ref(S/'watch_authorized_campaign.py'),no_method_or_data_change=True,unique_epoch1_start=True,shared5400_from_original_managed_bootstrap_start=True,source_verify_and_preflight_reused_exact_strings=True));print(json.dumps(ref(C/'bootstrap-entry.json')))
+  else:
+-  assert (C/'target-deployment.json').is_file() and not (C/'epoch-001-start-intent.json').exists() and not (C/'campaign.json').exists();entry=json.loads((C/'bootstrap-entry.json').read_text());assert entry['source']==ref(__file__) and entry['payload']==ref(C/'bootstrap-payload.json');auth=json.loads((C/'GPU-AUTHORIZATION.json').read_text());assert auth['authorized'] and auth['budget_seconds']==3600 and auth['controller_plan_sha256']==ref(C/'controller-plan.json')['sha256']
+-  started=time.time();campaign=dict(plan_sha256=ref(C/'controller-plan.json')['sha256'],cap_seconds=3600,grace_seconds=30,started_unix=started,absolute_deadline_unix=started+3600,no_budget_reset=True);save(C/'campaign.json',campaign)
++  assert (C/'target-deployment.json').is_file() and not (C/'epoch-001-start-intent.json').exists() and not (C/'campaign.json').exists();entry=json.loads((C/'bootstrap-entry.json').read_text());assert entry['source']==ref(__file__) and entry['payload']==ref(C/'bootstrap-payload.json');auth=json.loads((C/'GPU-AUTHORIZATION.json').read_text());assert auth['authorized'] and auth['budget_seconds']==5400 and auth['controller_plan_sha256']==ref(C/'controller-plan.json')['sha256']
++  started=time.time();campaign=dict(plan_sha256=ref(C/'controller-plan.json')['sha256'],cap_seconds=5400,grace_seconds=30,started_unix=started,absolute_deadline_unix=started+5400,no_budget_reset=True);save(C/'campaign.json',campaign)
+   code='''from pathlib import Path
+ import json,os,hashlib
+ p=Path(P['root']);b=(json.dumps(P['value'],indent=2)+chr(10)).encode();q=p/'campaign.json'
+--- C32/controller/collect_training_terminal.py
++++ full64/controller/collect_training_terminal.py
+@@ -38,7 +38,7 @@
+ js(D/'manifest.json',r)
+ restores={}
+ for ep in [1]:
+- q=D/'collected'/'resume-state-verified.json';j=json.loads(q.read_text());assert j['status']=='PASS_EXACT_LOGICAL_FULL_STATE_RESTORE' and j['completed_epochs']==ep and j['global_step']==16*ep and j['restored_state_digest']==j['serialized_state_digest'] and j['all_RNG_restored']
++ q=D/'collected'/'resume-state-verified.json';j=json.loads(q.read_text());assert j['status']=='PASS_EXACT_LOGICAL_FULL_STATE_RESTORE' and j['completed_epochs']==ep and j['global_step']==34*ep and j['restored_state_digest']==j['serialized_state_digest'] and j['all_RNG_restored']
+  restores[str(ep)]=j
+ js(D/'checks.json',dict(all_original_members_SHA=True,restores=restores,model_calls=0,source_sha256=sha(Path(__file__).read_bytes()),manifest_sha256=sha((D/'manifest.json').read_bytes())))
+ print(json.dumps(dict(collected=len(r['files']),zip_bytes=len(payload),zip_sha256=sha(payload),one_actual_complete_state_restore=True)))
+--- C32/controller/epoch_driver.py
++++ full64/controller/epoch_driver.py
+@@ -20,8 +20,8 @@
+ def main():
+  ap=argparse.ArgumentParser();ap.add_argument('--plan',type=Path,required=True);ap.add_argument('--campaign',type=Path,required=True);ap.add_argument('--epoch',type=int,choices=[1,2],required=True);a=ap.parse_args()
+  plan=json.loads(a.plan.read_text());campaign=json.loads(a.campaign.read_text());epoch=a.epoch
+- assert campaign['plan_sha256']==sha(a.plan) and campaign['cap_seconds']==3600 and campaign['grace_seconds']==30
+- deadline=campaign['absolute_deadline_unix'];assert deadline==campaign['started_unix']+3600
++ assert campaign['plan_sha256']==sha(a.plan) and campaign['cap_seconds']==5400 and campaign['grace_seconds']==30
++ deadline=campaign['absolute_deadline_unix'];assert deadline==campaign['started_unix']+5400
+  assert time.time()<deadline and __import__('pwd').getpwuid(os.getuid()).pw_name=='zhangyuheng' and os.environ['CUDA_VISIBLE_DEVICES']==plan['gpu_uuid']
+  for name,item in plan['payload_files'].items():
+   p=Path(plan['remote_absolute'])/name;assert p.is_file() and not p.is_symlink() and p.stat().st_size==item['bytes'] and sha(p)==item['sha256']
+@@ -30,7 +30,7 @@
+  if epoch==1:assert not output.exists()
+  else:
+   assert (output/'epoch-001/checkpoint.json').is_file() and not (output/'epoch-002').exists()
+-  ack=output/'export-ack-epoch-001.json';proof=json.loads(ack.read_text());assert proof['status']=='persistent_checkpoint_verified' and proof['completed_epochs']==1 and proof['global_step']==16
++  ack=output/'export-ack-epoch-001.json';proof=json.loads(ack.read_text());assert proof['status']=='persistent_checkpoint_verified' and proof['completed_epochs']==1 and proof['global_step']==34
+   assert proof['fsync_all_files'] and proof['reopened_final_filename_SHA_all_files'] and proof['destination_directories_fsynced']
+   assert proof['checkpoint_sha256']==sha(output/'epoch-001/checkpoint.json')
+  fresh=gpu(plan);index,uuid,used,free,total=[x.strip() for x in fresh['target_csv'].split(',')]
+@@ -49,16 +49,16 @@
+  report=dict(epoch=epoch,returncode=rc,elapsed_seconds=time.time()-started,absolute_deadline_unix=deadline,no_budget_reset=True,at_utc=datetime.now(timezone.utc).isoformat())
+  if rc==0:
+   try:
+-   cp=output/('epoch-%03d'%epoch);meta=json.loads((cp/'checkpoint.json').read_text());assert meta['completed_epochs']==epoch and meta['global_step']==16*epoch and not meta['smoke_only']
++   cp=output/('epoch-%03d'%epoch);meta=json.loads((cp/'checkpoint.json').read_text());assert meta['completed_epochs']==epoch and meta['global_step']==34*epoch and not meta['smoke_only']
+    assert meta['fingerprint']['source_sha256']==plan['trainer_sha256']
+    files={}
+    for n,digest in meta['files'].items():
+     p=cp/n;assert p.is_file() and not p.is_symlink() and sha(p)==digest;files[n]=dict(bytes=p.stat().st_size,sha256=digest)
+-   report.update(checkpoint=str(cp),checkpoint_sha256=sha(cp/'checkpoint.json'),files=files,global_step=16*epoch,final_state_persistent_export_pending=True)
++   report.update(checkpoint=str(cp),checkpoint_sha256=sha(cp/'checkpoint.json'),files=files,global_step=34*epoch,final_state_persistent_export_pending=True)
+    if epoch==1:
+-    paused=json.loads((output/'paused.json').read_text());assert paused['completed_epochs']==1 and paused['global_step']==16
++    paused=json.loads((output/'paused.json').read_text());assert paused['completed_epochs']==1 and paused['global_step']==34
+    else:
+-    complete=json.loads((output/'training_complete.json').read_text());assert complete['epochs']==2 and complete['global_step']==32;report['training_complete_sha256']=sha(output/'training_complete.json')
++    complete=json.loads((output/'training_complete.json').read_text());assert complete['epochs']==2 and complete['global_step']==68;report['training_complete_sha256']=sha(output/'training_complete.json')
+   except Exception as e:report['endpoint_error']=dict(type=type(e).__name__,message=str(e))
+  save(control/'wrapper-complete.json',report)
+  release=gpu(plan);save(control/'gpu-release.json',release)
+--- C32/controller/export_checkpoint_server.py
++++ full64/controller/export_checkpoint_server.py
+@@ -1,5 +1,5 @@
+ """Read-only HTTP allowlist for one complete Qwen35 response-code epoch; no GPU/model import.
+-Owner bounds this separate final export to CPU600s maximum within original3600s deadline and stops this dynamic-port server.
++Owner bounds this separate final export to CPU600s maximum within original5400s deadline and stops this dynamic-port server.
+ """
+ from pathlib import Path, PurePosixPath
+ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+@@ -25,14 +25,14 @@
+     assert root==SOURCE_RUN_ROOT and cp.name in {'epoch-001','epoch-002'}
+     meta=json.loads((cp/'checkpoint.json').read_text())
+     assert cp.name==f"epoch-{meta['completed_epochs']:03d}" and meta['completed_epochs'] in (1,2)
+-    assert meta['global_step']==16*meta['completed_epochs'] and not meta['smoke_only']
++    assert meta['global_step']==34*meta['completed_epochs'] and not meta['smoke_only']
+     assert meta['fingerprint']['schema']==plan['fingerprint_schema']
+     assert meta['fingerprint']['source_sha256']==TRAINER_SHA and meta['fingerprint']['train_sha256']==TRAIN_SHA
+     assert CHECKPOINT_REQUIRED<=set(meta['files'])<=CHECKPOINT_ALLOWED
+     assert sha(root/plan['export_trainer_basename'])==TRAINER_SHA
+     run_meta=json.loads((root/'run_manifest.json').read_text())
+     assert run_meta['fingerprint']==meta['fingerprint']
+-    assert (run_meta['epochs'],run_meta['total_optimizer_steps'],run_meta['warmup_steps'])==(2,32,2)
++    assert (run_meta['epochs'],run_meta['total_optimizer_steps'],run_meta['warmup_steps'])==(2,68,4)
+     names={}
+     for n,digest in meta['files'].items():
+         rel=PurePosixPath(n);assert not rel.is_absolute() and '..' not in rel.parts and str(rel)==n
+@@ -47,7 +47,7 @@
+         path=root/n;assert path.is_file() and not path.is_symlink();names['_run/'+n]=path
+     if meta['completed_epochs']==2:
+         completed=json.loads((root/'training_complete.json').read_text())
+-        assert completed['epochs']==2 and completed['global_step']==32 and not completed['smoke_only']
++        assert completed['epochs']==2 and completed['global_step']==68 and not completed['smoke_only']
+         assert completed['source_sha256']==TRAINER_SHA
+     files={n:{'bytes':q.stat().st_size,'sha256':sha(q)} for n,q in sorted(names.items())}
+     manifest={'source_checkpoint_directory':str(cp),'completed_epochs':meta['completed_epochs'],
+@@ -82,7 +82,10 @@
+     assert time.time()<a.deadline
+     print(json.dumps({'ready':True,'port':server.server_address[1],
+         'manifest_sha256':hashlib.sha256(payload).hexdigest(),'manifest':manifest}),flush=True)
+-    server.serve_forever()
++    server.timeout=min(1.0,max(.001,a.deadline-time.time()))
++    try:
++        while time.time()<a.deadline:server.handle_request()
++    finally:server.server_close()
+ 
+ 
+ if __name__=='__main__':main()
+--- C32/controller/fetch_checkpoint.py
++++ full64/controller/fetch_checkpoint.py
+@@ -51,7 +51,7 @@
+     with urllib.request.urlopen(a.url+'/manifest.json',timeout=min(20,max(1,a.deadline-time.time()))) as response:data=response.read()
+     assert hashlib.sha256(data).hexdigest()==a.manifest_sha256
+     manifest=json.loads(data);epoch=manifest['completed_epochs']
+-    assert epoch in (1,2) and manifest['global_step']==16*epoch and root.name==f'epoch-{epoch:03d}'
++    assert epoch in (1,2) and manifest['global_step']==34*epoch and root.name==f'epoch-{epoch:03d}'
+     assert manifest['source_checkpoint_directory']==str(SOURCE_RUN_ROOT/root.name)
+     assert manifest['trainer_sha256']==TRAINER_SHA
+     ack_name=f'export-ack-epoch-{epoch:03d}.json';assert manifest['ack_basename']==ack_name
+--- C32/controller/io_driver.py
++++ full64/controller/io_driver.py
+@@ -10,7 +10,7 @@
+  ap=argparse.ArgumentParser();ap.add_argument('--plan',type=Path,required=True);ap.add_argument('--campaign',type=Path,required=True);ap.add_argument('--entry',type=Path,required=True);a=ap.parse_args()
+  plan=json.loads(a.plan.read_text());campaign=json.loads(a.campaign.read_text());entry=json.loads(a.entry.read_text());phase=entry['phase'];epoch=entry['epoch']
+  assert phase in ['server','fetch'] and epoch in [1,2] and entry['plan_sha256']==sha(a.plan)
+- assert campaign['plan_sha256']==sha(a.plan) and campaign['cap_seconds']==3600 and campaign['grace_seconds']==30
++ assert campaign['plan_sha256']==sha(a.plan) and campaign['cap_seconds']==5400 and campaign['grace_seconds']==30
+  deadline=entry['absolute_deadline_unix'];assert deadline<=campaign['absolute_deadline_unix'] and deadline<=entry['started_unix']+600 and time.time()<deadline
+  assert not os.environ.get('CUDA_VISIBLE_DEVICES')
+  root=Path(plan['remote_absolute'] if phase=='server' else plan['persistent_remote_absolute']);control=root/'control'/('export-%s-epoch-%03d'%(phase,epoch));control.mkdir(parents=True,exist_ok=False)
+--- C32/controller/operations.py
++++ full64/controller/operations.py
+@@ -30,7 +30,7 @@
+ '''
+  return remote(mount,code,dict(path=path,value=obj),label)
+ def load_campaign():
+- d=json.loads((B/'campaign.json').read_text());assert d['plan_sha256']==plan_sha and d['absolute_deadline_unix']==d['started_unix']+3600
++ d=json.loads((B/'campaign.json').read_text());assert d['plan_sha256']==plan_sha and d['absolute_deadline_unix']==d['started_unix']+5400
+  return d
+ if a.action=='preflight':
+  assert not (B/'preflight-intent.json').exists();save('preflight-intent.json',dict(at_epoch=time.time(),no_model=True,plan_sha256=plan_sha))
+@@ -49,14 +49,14 @@
+ '''
+  d=remote(source,code,dict(root=root),'preflight-tool.json',60);save('preflight.json',d);print(json.dumps({k:v for k,v in d.items() if k!='files'}))
+ elif a.action=='start-epoch':
+- activation=json.loads((B/'GPU-AUTHORIZATION.json').read_text());assert activation['authorized'] is True and activation['controller_plan_sha256']==plan_sha and activation['budget_seconds']==3600
++ activation=json.loads((B/'GPU-AUTHORIZATION.json').read_text());assert activation['authorized'] is True and activation['controller_plan_sha256']==plan_sha and activation['budget_seconds']==5400
+  assert not (B/('epoch-%03d-start-intent.json'%epoch)).exists()
+  if epoch==1:
+   proof=json.loads((B/'preflight.json').read_text());assert proof['plan_sha256']==plan_sha and time.time()-proof['at_epoch']<300
+-  assert not (B/'campaign.json').exists();started=time.time();campaign=dict(plan_sha256=plan_sha,cap_seconds=3600,grace_seconds=30,started_unix=started,absolute_deadline_unix=started+3600,no_budget_reset=True);save('campaign.json',campaign)
++  assert not (B/'campaign.json').exists();started=time.time();campaign=dict(plan_sha256=plan_sha,cap_seconds=5400,grace_seconds=30,started_unix=started,absolute_deadline_unix=started+5400,no_budget_reset=True);save('campaign.json',campaign)
+   publish_json(source,root+'/campaign.json',campaign,'source-campaign.json');publish_json(target,dest+'/campaign.json',campaign,'target-campaign.json')
+  else:
+-  campaign=load_campaign();ack=json.loads((B/'epoch-001-export-ack.json').read_text());assert ack['status']=='persistent_checkpoint_verified' and ack['completed_epochs']==1 and ack['global_step']==16 and (B/'epoch-001-source-ack-copy.json').exists()
++  campaign=load_campaign();ack=json.loads((B/'epoch-001-export-ack.json').read_text());assert ack['status']=='persistent_checkpoint_verified' and ack['completed_epochs']==1 and ack['global_step']==34 and (B/'epoch-001-source-ack-copy.json').exists()
+  assert time.time()<campaign['absolute_deadline_unix'];save('epoch-%03d-start-intent.json'%epoch,dict(at_epoch=time.time(),plan_sha256=plan_sha,campaign=campaign,epoch=epoch))
+  argv=[plan['python'],'-u',root+'/epoch_driver.py','--plan',root+'/controller-plan.json','--campaign',root+'/campaign.json','--epoch',str(epoch)]
+  d=call(source,'start_process',dict(command=shlex.join(argv),cwd=plan['remote_relative'],env=plan['env']),'epoch-%03d-start-tool.json'%epoch);save('epoch-%03d-job.json'%epoch,d);print(json.dumps(d))
+@@ -99,7 +99,7 @@
+ '''
+  d=remote(source,code,dict(root=root,epoch=epoch),'epoch-%03d-server-ready-%s-tool.json'%(epoch,time.time_ns()));ready=d['ready']
+  if ready is None:print(json.dumps(d));raise SystemExit(0)
+- assert ready['ready'] and ready['manifest']['completed_epochs']==epoch and ready['manifest']['global_step']==16*epoch
++ assert ready['ready'] and ready['manifest']['completed_epochs']==epoch and ready['manifest']['global_step']==34*epoch
+  state=json.loads((B/('epoch-%03d-state.json'%epoch)).read_text());assert ready['manifest']['checkpoint_sha256']==state['wrapper']['checkpoint_sha256']
+  save('epoch-%03d-server-ready.json'%epoch,ready);entry={**entry,'phase':'fetch','url':'http://'+plan['source_private_IP']+':'+str(ready['port']),'manifest_sha256':ready['manifest_sha256']};save('epoch-%03d-fetch-intent.json'%epoch,entry)
+  name='epoch-%03d-fetch-entry.json'%epoch;publish_json(target,dest+'/'+name,entry,'epoch-%03d-fetch-entry-copy.json'%epoch)
+@@ -125,9 +125,9 @@
+ '''
+  d=remote(target,code,dict(root=dest,epoch=epoch,checkpoint=plan['persistent_checkpoint_root']+'/epoch-%03d'%epoch),'epoch-%03d-export-collect-%s-tool.json'%(epoch,stamp),60)
+  if not d['complete']:print(json.dumps(d));raise SystemExit(0)
+- ready=json.loads((B/('epoch-%03d-server-ready.json'%epoch)).read_text());ack=d['ack'];assert ack['files']==ready['manifest']['files'] and ack['transport_manifest_sha256']==ready['manifest_sha256'] and ack['completed_epochs']==epoch and ack['global_step']==16*epoch
++ ready=json.loads((B/('epoch-%03d-server-ready.json'%epoch)).read_text());ack=d['ack'];assert ack['files']==ready['manifest']['files'] and ack['transport_manifest_sha256']==ready['manifest_sha256'] and ack['completed_epochs']==epoch and ack['global_step']==34*epoch
+  save('epoch-%03d-export-ack.json'%epoch,ack);save('epoch-%03d-export-verification.json'%epoch,d)
+  published=publish_json(source,plan['output_dir']+'/export-ack-epoch-%03d.json'%epoch,ack,'epoch-%03d-source-ack-tool.json'%epoch);save('epoch-%03d-source-ack-copy.json'%epoch,published)
+  job=json.loads((B/('epoch-%03d-server-job.json'%epoch)).read_text());stopped=call(source,'stop_process',dict(process_id=job['id']),'epoch-%03d-server-stop-tool.json'%epoch);save('epoch-%03d-server-stop.json'%epoch,stopped)
+- if epoch==2:save('campaign-complete.json',dict(status='TWO_COMPLETE_EPOCHS_32_STEPS_DURABLE_ACKS_VERIFIED',at_epoch=time.time(),campaign=load_campaign(),epoch1_ack_sha256=sha((B/'epoch-001-export-ack.json').read_bytes()),epoch2_ack_sha256=sha((B/'epoch-002-export-ack.json').read_bytes()),no_quality=True))
++ if epoch==2:save('campaign-complete.json',dict(status='TWO_COMPLETE_EPOCHS_68_STEPS_DURABLE_ACKS_VERIFIED',at_epoch=time.time(),campaign=load_campaign(),epoch1_ack_sha256=sha((B/'epoch-001-export-ack.json').read_bytes()),epoch2_ack_sha256=sha((B/'epoch-002-export-ack.json').read_bytes()),no_quality=True))
+  print(json.dumps(dict(complete=True,epoch=epoch,bytes=ack['total_bytes'],seconds=ack['seconds'],ack_sha256=d['ack_sha256'],persistent_directory=ack['persistent_directory'])))
+--- C32/controller/prepare.py
++++ full64/controller/prepare.py
+@@ -8,8 +8,10 @@
+  with Path(p).open('x') as f:json.dump(x,f,indent=2);f.write('\n')
+ def main():
+  ap=argparse.ArgumentParser();ap.add_argument('--directory',type=Path,required=True);ap.add_argument('--probe-terminal',type=Path,required=True);ap.add_argument('--cost-decision',type=Path,required=True);a=ap.parse_args()
+- C=Path(__file__).resolve().parent;F=C.parent/'formal_train';B=a.directory;B.mkdir(exist_ok=False);training=json.loads((F/'training-plan.json').read_text())
+- terminal=json.loads(a.probe_terminal.read_text());decision=json.loads(a.cost_decision.read_text());assert terminal['returncode']==0 and not terminal['timed_out'] and terminal['all12_backwards_and_one_update_verified'] and terminal['target_has_no_process'];assert decision['formal_cost_fits_3600'] is True
++ C=Path(__file__).resolve().parent;F=C.parent/'formal_train';B=a.directory;training=json.loads((F/'training-plan.json').read_text())
++ from activation import require_actual_probe
++ gate=require_actual_probe(training,a.probe_terminal,a.cost_decision)
++ B.mkdir(exist_ok=False)
+  files=['train.py','runtime_contract.py','selected_loss.py','indexed_head.py','qwen35_smoke.py','qwen35_relation_cost.py','model-source-manifest.json','training-plan.json','CPU-contract-result.json']
+  for n in files:shutil.copyfile(F/n,B/n)
+  controls=['epoch_driver.py','io_driver.py','export_checkpoint_server.py','fetch_checkpoint.py']
+@@ -20,18 +22,18 @@
+  decompress={}
+  for key,n in [('train','train.response-code.jsonl'),('excluded_input','excluded.input.jsonl')]:
+   item=training['data_arguments'][key];assert ref(item['path'])==item;b=Path(item['path']).read_bytes();gz=n+'.gz';(B/gz).write_bytes(gzip.compress(b,mtime=0));decompress[gz]=dict(name=n,bytes=len(b),sha256=hashlib.sha256(b).hexdigest())
+- project='/home/zhangyuheng/projects/CHIP2026_PatientPheX';relative='patient-response-code/normal2ep-v1';root=project+'/'+relative;python=training['python'];uuid='GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1';output=training['output_directory']
++ project='/home/zhangyuheng/projects/CHIP2026_PatientPheX';relative='patient-response-code/full64-v1';root=project+'/'+relative;python=training['python'];uuid='GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1';output=training['output_directory']
+  allfiles=files+controls+data+list(decompress)
+  payload={n:{k:v for k,v in ref(B/n).items() if k!='path'} for n in allfiles}
+  for item in decompress.values():payload[item['name']]={k:item[k] for k in ['bytes','sha256']}
+  argv=[python,'-u',root+'/train.py','--mode','train','--train',root+'/train.response-code.jsonl','--excluded-input',root+'/excluded.input.jsonl','--data-manifest',root+'/original-preparation-manifest.json','--response-preparation',root+'/structural-result.json','--native-receipt',root+'/native-result.json','--native-row-audit',root+'/native-row-audit.json','--model',training['model'],'--model-source-manifest',root+'/model-source-manifest.json','--output-dir',output,'--gpu-uuid',uuid]
+  env=dict(CUDA_VISIBLE_DEVICES=uuid,PYTHONPATH=training['pythonpath'],PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',TOKENIZERS_PARALLELISM='false',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1')
+- plan=dict(status='FROZEN_FRESH_SHORT124_CODED_2EPOCHS_32UPDATES_TWO_DURABLE_ACKS',mount_id='476f81cf-09e7-445b-a7f0-d0e12b12e50f',persistent_mount_id='5a9955da-5240-41cc-9e52-05d3d8da8a3c',source_owner='zhangyuheng',remote_relative=relative,remote_absolute=root,persistent_remote_relative=relative,persistent_remote_absolute=root,persistent_checkpoint_root=training['persistent_directory'],python=python,persistent_python='/home/zhangyuheng/projects/ScratchVL/.venv/bin/python',source_private_IP='10.5.3.12',gpu_uuid=uuid,model=training['model'],output_dir=output,trainer_sha256=training['source_files']['train.py']['sha256'],train_sha256=training['train_sha256'],fingerprint_schema=training['fingerprint_schema'],export_trainer_basename='train.py',export_run_files=training['run_files'],total_absolute_budget_seconds=3600,term_grace_seconds=30,export_seconds_each=600,source_training_plan=ref(F/'training-plan.json'),CPU_contract=ref(F/'CPU-contract-result.json'),probe_terminal=ref(a.probe_terminal),cost_decision=ref(a.cost_decision),train_argv=argv,payload_files=payload,decompress=decompress,env=env,resume_policy=training['resume'],no_probe_state_reuse=True,no_inference_or_quality_here=True)
++ plan=dict(status='FROZEN_FRESH_SHORT265_CODED_2EPOCHS_68UPDATES_TWO_DURABLE_ACKS',mount_id='476f81cf-09e7-445b-a7f0-d0e12b12e50f',persistent_mount_id='5a9955da-5240-41cc-9e52-05d3d8da8a3c',source_owner='zhangyuheng',remote_relative=relative,remote_absolute=root,persistent_remote_relative=relative,persistent_remote_absolute=root,persistent_checkpoint_root=training['persistent_directory'],python=python,persistent_python='/home/zhangyuheng/projects/ScratchVL/.venv/bin/python',source_private_IP='10.5.3.12',gpu_uuid=uuid,model=training['model'],output_dir=output,trainer_sha256=training['source_files']['train.py']['sha256'],train_sha256=training['train_sha256'],fingerprint_schema=training['fingerprint_schema'],export_trainer_basename='train.py',export_run_files=training['run_files'],total_absolute_budget_seconds=5400,term_grace_seconds=30,export_seconds_each=600,source_training_plan=ref(F/'training-plan.json'),CPU_contract=ref(F/'CPU-contract-result.json'),probe_terminal=ref(a.probe_terminal),cost_decision=ref(a.cost_decision),train_argv=argv,payload_files=payload,decompress=decompress,env=env,resume_policy=training['resume'],no_probe_state_reuse=True,no_inference_or_quality_here=True)
+  save(B/'controller-plan.json',plan);allfiles+=['controller-plan.json'];m={n:{k:v for k,v in ref(B/n).items() if k!='path'} for n in allfiles}
+  with tarfile.open(B/'deployment.tar.gz','w:gz') as t:
+   for n in allfiles:t.add(B/n,arcname=n,recursive=False)
+  save(B/'deployment-manifest.json',dict(archive=ref(B/'deployment.tar.gz'),files=m,controller_plan=ref(B/'controller-plan.json'),raw_inputs_verified_after_decompression=decompress))
+- save(B/'GPU-AUTHORIZATION.json',dict(authorized=True,controller_plan_sha256=ref(B/'controller-plan.json')['sha256'],budget_seconds=3600,grace_seconds=30,source='root conditional authorization now backed by actual pressure PASS and measured cost estimate',no_fresh_probe_state=True))
+- save(B/'entry.json',dict(plan=ref(B/'controller-plan.json'),operations=ref(C/'operations.py'),deployment_operation=ref(C/'deploy.py'),launcher=ref(C/'launch_watch.py'),watcher=ref(C/'watch_authorized_campaign.py'),deployment=ref(B/'deployment-manifest.json'),authorization=ref(B/'GPU-AUTHORIZATION.json'),unknown='Inspect original intent/job; never blindly repeat model start',budget_seconds=3600))
++ save(B/'GPU-AUTHORIZATION.json',dict(authorized=True,controller_plan_sha256=ref(B/'controller-plan.json')['sha256'],budget_seconds=5400,grace_seconds=30,source='root conditional authorization now backed by actual pressure PASS and measured cost estimate',no_fresh_probe_state=True,actual_gate=gate))
++ save(B/'entry.json',dict(plan=ref(B/'controller-plan.json'),operations=ref(C/'operations.py'),deployment_operation=ref(C/'deploy.py'),launcher=ref(C/'launch_watch.py'),watcher=ref(C/'watch_authorized_campaign.py'),deployment=ref(B/'deployment-manifest.json'),authorization=ref(B/'GPU-AUTHORIZATION.json'),unknown='Inspect original intent/job; never blindly repeat model start',budget_seconds=5400))
+  print(json.dumps(ref(B/'entry.json')))
+ if __name__=='__main__':main()
+--- C32/controller/recover_final_ack.py
++++ full64/controller/recover_final_ack.py
+@@ -33,7 +33,7 @@
+     for epoch in [1,2]:
+         ack=json.loads((C/f'epoch-{epoch:03d}-export-ack.json').read_text())
+         verified=json.loads((C/f'epoch-{epoch:03d}-export-verification.json').read_text())
+-        assert verified['all_files_reopened_SHA'] and verified['ack']==ack and ack['global_step']==16*epoch
++        assert verified['all_files_reopened_SHA'] and verified['ack']==ack and ack['global_step']==34*epoch
+     def save(n,j):
+         with (C/n).open('x') as f:json.dump(j,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+     def call(name,args,label):
+@@ -59,7 +59,7 @@
+     else:
+         assert (C/'epoch-002-server-stop.json').exists()
+         for epoch in [1,2]:assert json.loads((C/f'epoch-{epoch:03d}-source-ack-copy.json').read_text())['sha256']==sha(C/f'epoch-{epoch:03d}-export-ack.json')
+-        done=dict(status='TWO_COMPLETE_EPOCHS_32_STEPS_DURABLE_ACKS_VERIFIED',at_epoch=time.time(),campaign=campaign,epoch1_ack_sha256=sha(C/'epoch-001-export-ack.json'),epoch2_ack_sha256=sha(C/'epoch-002-export-ack.json'),no_quality=True,final_metadata_recovery_source_sha256=sha(__file__))
++        done=dict(status='TWO_COMPLETE_EPOCHS_68_STEPS_DURABLE_ACKS_VERIFIED',at_epoch=time.time(),campaign=campaign,epoch1_ack_sha256=sha(C/'epoch-001-export-ack.json'),epoch2_ack_sha256=sha(C/'epoch-002-export-ack.json'),no_quality=True,final_metadata_recovery_source_sha256=sha(__file__))
+         save('campaign-complete.json',done);print(json.dumps(done))
+ 
+ 
+--- C32/controller/watch_authorized_campaign.py
++++ full64/controller/watch_authorized_campaign.py
+@@ -7,32 +7,53 @@
+ import datetime,fcntl,hashlib,json,os,subprocess,sys,time
+ S=Path(__file__).parent
+ import argparse
+-ap=argparse.ArgumentParser();ap.add_argument('--directory',type=Path,required=True);a=ap.parse_args();D=a.directory
++ap=argparse.ArgumentParser();ap.add_argument('--directory',type=Path,required=True);a=ap.parse_args();D=a.directory;F=D;first_inspect_not_before=time.time()
+ lock=(D/'monitor-owner.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+ def save(n,x):
+- with (D/n).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
++ with (F/n).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ plan=json.loads((D/'controller-plan.json').read_text());campaign=json.loads((D/'campaign.json').read_text());deadline=campaign['absolute_deadline_unix']
+-assert deadline==campaign['started_unix']+3600 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
++assert deadline==campaign['started_unix']+5400 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
+ assert (D/'epoch-001-job.json').exists() and not (D/'campaign-complete.json').exists()
+ ops=S/'operations.py';expected=''
+ source_hash=hashlib.sha256(ops.read_bytes()).hexdigest()
+ save('local-watch-intent.json',dict(at=now(),pid=os.getpid(),operations_sha256=source_hash,source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),absolute_deadline_unix=deadline,no_remote_new_recipe=True,unknown_outcome_policy='stop_local_watcher_preserve_original_intent_no_retry',training_poll_seconds=120,export_poll_seconds=15))
+ def log(event,**data):
+  x=dict(at=now(),event=event,**data)
+- with (D/'local-watch-events.jsonl').open('a') as f:f.write(json.dumps(x)+'\n');f.flush();os.fsync(f.fileno())
++ with (F/'local-watch-events.jsonl').open('a') as f:f.write(json.dumps(x)+'\n');f.flush();os.fsync(f.fileno())
+  print(json.dumps(x),flush=True)
+ def run(action,epoch):
+- assert time.time()<deadline and hashlib.sha256(ops.read_bytes()).hexdigest()==source_hash
+- result=subprocess.run([sys.executable,str(ops),action,'--directory',str(D),'--epoch',str(epoch)],stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,text=True,timeout=min(180,max(1,deadline-time.time())))
+- if result.returncode:raise RuntimeError('Original operations failed, inspect saved original intent/tool receipt; '+action+': '+result.stderr[-1000:])
+- log('original_operation_complete',action=action,epoch=epoch)
++ unknown_retries=0
++ while True:
++  assert time.time()<deadline and hashlib.sha256(ops.read_bytes()).hexdigest()==source_hash
++  tag='epoch-%03d'%epoch
++  safe_read=(action=='inspect' or (action=='start-fetch' and not (D/(tag+'-fetch-intent.json')).exists() and not (D/(tag+'-server-ready.json')).exists()) or (action=='collect-export' and not (D/(tag+'-export-ack.json')).exists()))
++  pattern='inspect-*-tool.json' if action=='inspect' else tag+'-server-ready-*-tool.json' if action=='start-fetch' else tag+'-export-collect-*-tool.json'
++  before=set(D.glob(pattern))
++  result=subprocess.run([sys.executable,str(ops),action,'--directory',str(D),'--epoch',str(epoch)],stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,text=True,timeout=min(180,max(1,deadline-time.time())))
++  if result.returncode:
++   errors=[]
++   if safe_read:
++    for p in set(D.glob(pattern))-before:
++     value=json.loads(p.read_text());kind='LUNA_OFFLINE' if 'LUNA_OFFLINE' in json.dumps(value) else 'UNKNOWN_OUTCOME' if 'UNKNOWN_OUTCOME' in json.dumps(value) else None
++     if value.get('isError') and kind:errors.append(dict(receipt=str(p),kind=kind,sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
++   if errors:
++    if any(e['kind']=='LUNA_OFFLINE' for e in errors):delay=185;unknown_retries=0
++    else:
++     delay=30 if unknown_retries==0 else 185;unknown_retries+=1
++    not_before=time.time()+delay;log('readonly_state_backoff',action=action,errors=errors,delay_seconds=delay,unknown_retries=unknown_retries,not_before_unix=not_before,remote_model_untouched=True)
++    while time.time()<not_before:nap(min(30,not_before-time.time()))
++    continue
++   raise RuntimeError('Original operation failed; unknown mutation never repeated: '+action+': '+result.stderr[-1000:])
++  log('original_operation_complete',action=action,epoch=epoch);return
+ def intent_job_gate(stem):
+  if (D/(stem+'-intent.json')).exists() and not (D/(stem+'-job.json')).exists():raise RuntimeError('Unknown prior mutation '+stem+'; no repeated start')
+ def nap(seconds):
+  assert time.time()<deadline
+  time.sleep(min(seconds,max(0,deadline-time.time())))
+ try:
++ log('recovery_ready',first_inspect_not_before_unix=first_inspect_not_before,remote_model_untouched=True)
++ while time.time()<first_inspect_not_before:nap(min(30,first_inspect_not_before-time.time()))
+  for epoch in [1,2]:
+   tag='epoch-%03d'%epoch
+   if epoch>1 and not (D/(tag+'-job.json')).exists():
+@@ -42,7 +63,7 @@
+    run('inspect',epoch)
+    if not (D/(tag+'-state.json')).exists():nap(120)
+   state=json.loads((D/(tag+'-state.json')).read_text());assert state['wrapper']['returncode']==0 and not state['release']['target_compute_rows']
+-  log('epoch_finished',epoch=epoch,wrapper_seconds=state['wrapper'].get('seconds',state['wrapper'].get('wrapper_seconds')))
++  log('epoch_finished',epoch=epoch,wrapper_seconds=state['wrapper'].get('elapsed_seconds',state['wrapper'].get('seconds',state['wrapper'].get('wrapper_seconds'))))
+   if (D/(tag+'-export-ack.json')).exists():
+    assert (D/(tag+'-source-ack-copy.json')).exists(),'Incomplete original ACK publication; do not retry'
+    continue
+--- C32/controller/watch_resilient.py
++++ full64/controller/watch_resilient.py
+@@ -13,7 +13,7 @@
+ def save(n,x):
+  with (F/n).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ plan=json.loads((D/'controller-plan.json').read_text());campaign=json.loads((D/'campaign.json').read_text());deadline=campaign['absolute_deadline_unix']
+-assert deadline==campaign['started_unix']+3600 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
++assert deadline==campaign['started_unix']+5400 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
+ assert (D/'epoch-001-job.json').exists() and not (D/'campaign-complete.json').exists()
+ ops=S/'operations.py';expected=''
+ source_hash=hashlib.sha256(ops.read_bytes()).hexdigest()
+--- C32/controller/watch_state_recovery.py
++++ full64/controller/watch_state_recovery.py
+@@ -13,7 +13,7 @@
+ def save(n,x):
+  with (F/n).open('x') as f:json.dump(x,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ plan=json.loads((D/'controller-plan.json').read_text());campaign=json.loads((D/'campaign.json').read_text());deadline=campaign['absolute_deadline_unix']
+-assert deadline==campaign['started_unix']+3600 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
++assert deadline==campaign['started_unix']+5400 and campaign['plan_sha256']==hashlib.sha256((D/'controller-plan.json').read_bytes()).hexdigest()
+ assert (D/'epoch-001-job.json').exists() and not (D/'campaign-complete.json').exists()
+ ops=S/'operations.py';expected=''
+ source_hash=hashlib.sha256(ops.read_bytes()).hexdigest()

@@ -1,0 +1,100 @@
+{
+  "status": "SOURCE_ONLY_STATIC_AND_STDLIB_CHECKS_PASSED_NOT_BOUND_NOT_RUN",
+  "files": {
+    "README.md": {
+      "bytes": 4704,
+      "sha256": "8bfb45a94932188c98f3c705d15f56907d6e8b6a7e28c81733909a7ccfdf2a4c"
+    },
+    "bind_after_training.py": {
+      "bytes": 10258,
+      "sha256": "dbd552e50da2107e700f6f35699c96fcec96577541e4a3dd8d9bd23c034d036d"
+    },
+    "infer_full64.py": {
+      "bytes": 12158,
+      "sha256": "56f8d964e52a9981a83b4eb711c1e8e00880f4cbab0df37256374b99f042bf82"
+    },
+    "launch.py": {
+      "bytes": 3802,
+      "sha256": "924a5beb3d2890d416feaab8871c0303ef64c6f396b49cc5db495f1e5ea89adb"
+    },
+    "legacy_runner.py": {
+      "bytes": 2312,
+      "sha256": "8b38e8cc6c9b645b7cc71bf6ace5b1382fab0f40f1a984b3b0643edc27506b5f"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "operations.py": {
+      "bytes": 10000,
+      "sha256": "dd607c2ef8dc15abf8639f546e78f9db1139c6f3626b9961631b8f04d99d9b10"
+    },
+    "probe_runner.py": {
+      "bytes": 697,
+      "sha256": "54ad36b63a8a848ea726e66614f0504e9c77ed60e01414b14cb09fef60bf5d45"
+    },
+    "response_codec.py": {
+      "bytes": 1088,
+      "sha256": "44f24baed7bbb22ab6a7114a32c45b4cc726a77fe0b0116d0cbb888ba77eb847"
+    }
+  },
+  "adapted_from": {
+    "infer_full80.py": {
+      "bytes": 11173,
+      "sha256": "29335a35f1c850cb8a3bae4cad722fb66529d53394d823f5ba15c4a1f64528aa"
+    },
+    "probe_runner.py": {
+      "bytes": 8970,
+      "sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f"
+    },
+    "legacy_runner.py": {
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "response_codec.py": {
+      "bytes": 4878,
+      "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+    },
+    "launch.py": {
+      "bytes": 3802,
+      "sha256": "a0794470d4c9618a9b561f4ad37a8550781964a31d53752e392ffb406ca12fa2"
+    },
+    "operations.py": {
+      "bytes": 9988,
+      "sha256": "4b98837c7538f1a3e7c7aaf0690080b7476d724886312be4fda68d2e98e206ad"
+    },
+    "bind_after_training.py": {
+      "bytes": 4829,
+      "sha256": "41b887cce95777a1a5650b5b1b04cc6deb8842ccde18deaa4fa2407055333448"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "checks": {
+    "python_compile": 7,
+    "decoder_AST_identical": [
+      "unique_object",
+      "parse_matrix",
+      "decode_response"
+    ],
+    "held_metadata_census": {
+      "rows": 64,
+      "documents": 16,
+      "patients": 36,
+      "CID_values": 466,
+      "patient_concept_pairs": 1006,
+      "input_tokens": 523821,
+      "max_tokens": 13425,
+      "longest_index": 1
+    },
+    "binder_executed": false,
+    "tokenizer_executed": false,
+    "model_loaded": false,
+    "remote_called": false,
+    "gold_read": false
+  },
+  "runtime_difference": "Actual CPU Torch2.7.1+cu126 versus future A100 inference Torch2.6.0+cu124; future all64 IDs must match actual CPU audit before model load",
+  "handoff": "After actual ACK34+ACK68 and campaign complete, bind then unique deploy/start/inspect/collect; only complete canonical records handed to owner."
+}

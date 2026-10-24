@@ -1,0 +1,288 @@
+{
+  "status": "PREPARED_DISABLED_AWAITING_ACTUAL_FULL64_H51_PASS_AND_COST_LE5400",
+  "adapted_trainer": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/formal_train/train.py",
+    "bytes": 38367,
+    "sha256": "9b8addda66b1efdbb45ee6c32ff5c284d75a899f414612e1c9f102431c0a62da"
+  },
+  "adapted_runtime": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/formal_train/runtime_contract.py",
+    "bytes": 7134,
+    "sha256": "854c794c5eaa3866c33b4dde6df438cdb91dd64f2111fa0d08803eac9710fa57"
+  },
+  "fingerprint_schema": "patientphex-qwen35-full64-response-code-indexedHead-lora-v1",
+  "train_sha256": "4fdc4c6684f43bed88551cef1e2b72d67877efda49c896e5f34b855ca6d48d07",
+  "original_short_train_sha256": "27ecf4769e2917bfc06c7c47f679d2dea19ac9013626288093b4e4cb6dffab3c",
+  "encoded_sha256": "3d294abc9e30c733148848c8e5dac0f565a4bcc573d0752c7859c6e20b12ccff",
+  "training_rows": 265,
+  "training_documents": 64,
+  "excluded_documents": 16,
+  "training_tokens_each_epoch": 918058,
+  "max_tokens": 6462,
+  "engineering_rejection_cap": 6656,
+  "supervised_tokens": 17399,
+  "max_supervised_tokens": 128,
+  "original_supervised_tokens": 15410,
+  "CE_target_token_representation_changed": true,
+  "research_change": "Fresh original base trained on full originaltrain64 OOF short265, using fixed PT response coding. Actual17399 assistant JSON+EOS/newline supervision; original pre-code15410 is only provenance, not unchanged-token claim. All candidate ancestors exclude originaldev16.",
+  "configuration": {
+    "max_seq_length": 6656,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "epochs": 2,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "in_proj_b",
+      "in_proj_a",
+      "out_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "quantization": false,
+    "packing": false,
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    }
+  },
+  "optimizer_updates": 68,
+  "steps_per_epoch": 34,
+  "warmup_updates": 4,
+  "groups_per_epoch": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    1
+  ],
+  "objective": "Same indexed causal per-row mean FP32 fixed CE and actual accumulation-group normalization, batch1/accum8 with one tail microbatch per265-row epoch. No truncation, packing, sampler change or C32adapter continuation.",
+  "total_absolute_budget_seconds": 5400,
+  "term_grace_seconds": 30,
+  "export_cap_seconds_each": 600,
+  "absolute_deadline_supplied_by_controller_and_unchanged": true,
+  "resume": "Fresh base; discard full64 H51 probe. Epoch1 pauses after34updates. Exact full-state+adapter persistent ACK gates epoch2; restore Adam/scheduler/all RNG/globalstep34, then finish68. Both epoch ACKs share original5400sec, stage exports min600/remaining; no warmstart/reset/replayed partial epochs.",
+  "output_directory": "/dev/shm/patientphex-response-code-20261024/full64-formal2ep",
+  "persistent_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-v1/checkpoints",
+  "remote_source_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-v1",
+  "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+  "pythonpath": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "formal_runtime": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1",
+    "model_source_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "native_loss_sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe",
+    "native_GDN": true,
+    "matmul_TF32": false,
+    "cudnn_TF32": true
+  },
+  "prior_native_census_runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1",
+    "note": "Actual CPU no model/CUDA; receipt reused, actual A100 train input IDs and labels will be re-checked exactly."
+  },
+  "run_files": [
+    "run_manifest.json",
+    "train.py",
+    "qwen35_smoke.py",
+    "qwen35_relation_cost.py",
+    "runtime_contract.py",
+    "selected_loss.py",
+    "progress.json",
+    "indexed_head.py"
+  ],
+  "second_epoch_extra_run_files": [
+    "training_complete.json"
+  ],
+  "fresh_epoch1_args": [
+    "--mode",
+    "train",
+    "--stop-after-epoch",
+    "1"
+  ],
+  "resumed_epoch2_args": [
+    "--mode",
+    "train",
+    "--resume",
+    "{output}/epoch-001",
+    "--resume-export-ack",
+    "{output}/export-ack-epoch-001.json"
+  ],
+  "common_args": [
+    "--train",
+    "{train.response-code.jsonl}",
+    "--excluded-input",
+    "{dev16.input.jsonl}",
+    "--data-manifest",
+    "{original-preparation-manifest.json}",
+    "--response-preparation",
+    "{structural-result.json}",
+    "--native-receipt",
+    "{native-result.json}",
+    "--native-row-audit",
+    "{native-row-audit.json}",
+    "--model",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "--model-source-manifest",
+    "{model-source-manifest.json}",
+    "--output-dir",
+    "/dev/shm/patientphex-response-code-20261024/full64-formal2ep",
+    "--gpu-uuid",
+    "{fresh-allocated-UUID}",
+    "--absolute-deadline-unix",
+    "{same-original-5400-deadline}"
+  ],
+  "scope": "Full64 train-only runner, disabled until actual full64 probe and bound cost pass. Controller does not load or score dev labels. Separate post-two-ACK inference produces pure64 canonical records for owner fusion; no quality or automatic official submission.",
+  "source_files": {
+    "train.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/train.py",
+      "bytes": 39141,
+      "sha256": "da8b785a82b9db6296adeeab687b85d69232d0153092d98c6ff4bb2214146c84"
+    },
+    "runtime_contract.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/runtime_contract.py",
+      "bytes": 7131,
+      "sha256": "c4a7a6ff41004f85cad92d0b53a170bcca4540ae18d4b9c180df792a23b14e8b"
+    },
+    "indexed_head.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/indexed_head.py",
+      "bytes": 10783,
+      "sha256": "0d28201832721c800696321c6afa1ef7831d63b697620a02290d65317a4428bb"
+    },
+    "selected_loss.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/selected_loss.py",
+      "bytes": 1101,
+      "sha256": "dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9"
+    },
+    "qwen35_smoke.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/qwen35_smoke.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "qwen35_relation_cost.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/qwen35_relation_cost.py",
+      "bytes": 22367,
+      "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+    },
+    "model-source-manifest.json": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "cpu_contract.py": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/cpu_contract.py",
+      "bytes": 10018,
+      "sha256": "999daaaee5ff11b2e5d064be42d10a6fff6251d0a03696ceec65293763d7beb1"
+    }
+  },
+  "expected_probe_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/probe/plan.json",
+    "bytes": 13180,
+    "sha256": "834979123381b6dfaf5688c7aff65f968b7b46e29d672e58ebe1ad1e67572294"
+  },
+  "data_arguments": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-readiness-v1/train.response-code.jsonl",
+      "bytes": 4025015,
+      "sha256": "4fdc4c6684f43bed88551cef1e2b72d67877efda49c896e5f34b855ca6d48d07"
+    },
+    "excluded_input": {
+      "path": "/workspace/patientphex-data/day1/dev16.input.jsonl",
+      "bytes": 294884,
+      "sha256": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e"
+    },
+    "data_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/preparation-manifest.json",
+      "bytes": 13653,
+      "sha256": "389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44"
+    },
+    "response_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-readiness-v1/structural-result.json",
+      "bytes": 8888,
+      "sha256": "ba3acc00fc96f63ca20743ba7876d09ffb89dfb66091fa6955b6729d6666a272"
+    },
+    "native_receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-readiness-v1/native100-attempt2/native-terminal/native-result.json",
+      "bytes": 7775,
+      "sha256": "0ef29c1252c53527e8ee6947d05006e7179edd60a62dcfaea3f530ac87b2d627"
+    },
+    "native_row_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-readiness-v1/native100-attempt2/native-terminal/native-row-audit.json",
+      "bytes": 366705,
+      "sha256": "51e7a3327d09966cc08a250571e03d3a97705a5e53a0abe2a062e810d4704adb"
+    },
+    "model_source_manifest": {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "default_local_controller": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-formal-v1/controller",
+  "pure_inference_contract": {
+    "rows": 64,
+    "documents": 16,
+    "patients": 36,
+    "CID": 466,
+    "pairs": 1006,
+    "native_tokens": 523821,
+    "max_tokens": 13425,
+    "input_cap": 13824,
+    "max_new_tokens": 1600,
+    "all_fresh": true,
+    "cap_seconds": 1200,
+    "grace_seconds": 30,
+    "quality_calls": 0
+  },
+  "disabled_activation": {
+    "authorized": false,
+    "reason": "actual full64 probe and cost not yet supplied to binder; conditional authorization cannot be represented as actual PASS",
+    "binder": "../controller/entry.py prepare --controller <new> --probe-terminal <actual-wrapper> --cost-decision <actual-cost>"
+  }
+}

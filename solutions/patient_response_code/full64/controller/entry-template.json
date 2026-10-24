@@ -1,0 +1,73 @@
+{
+  "status": "DISABLED_PENDING_ACTUAL_FULL64_PROBE_AND_COST",
+  "GPU_authorized": false,
+  "conditional_root_authorization": true,
+  "source_entry": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/controller/entry.py",
+    "bytes": 2663,
+    "sha256": "a6168de7d0cef25bbe8ed614731d50f608e76c56324176b90f82395ea550049b"
+  },
+  "formal_source_manifest": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/source-manifest.json",
+    "bytes": 3881,
+    "sha256": "8f277ce9fd9161afbf86412114dc78049b8aa8b18e5eac8de92d41194114be8f"
+  },
+  "controller_source_manifest": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/controller/source-manifest.json",
+    "bytes": 7309,
+    "sha256": "1118987e0f6694294b81225d3e8f3cc758ce6a2207203ac0ecb4bdb594a0347b"
+  },
+  "inference_source_manifest": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/inference/source-manifest.json",
+    "bytes": 3318,
+    "sha256": "142e49698eba7211b2645470526bd8c273ad699d2cdac5b915add2a79a3a8f1b"
+  },
+  "CPU_contract": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/CPU-contract-result.json",
+    "bytes": 8614,
+    "sha256": "ddcff6853dc3e85fe6f2be24a82e1ff2f600d6f0e836b12695b43ad64de1a483"
+  },
+  "training_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/formal_train/training-plan.json",
+    "bytes": 11544,
+    "sha256": "72f54539ee734e5bafb5b83f2b140185b7ce835d96d3343e1ff00f45c1ac1d9d"
+  },
+  "required_probe_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/probe/plan.json",
+    "bytes": 13180,
+    "sha256": "834979123381b6dfaf5688c7aff65f968b7b46e29d672e58ebe1ad1e67572294"
+  },
+  "source_activation_gate": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/controller/activation.py",
+    "bytes": 3802,
+    "sha256": "9fe8b1a771aad7aea4a24df8a86ae086d9c3df0dbbf9b6ed670ec01dd7965c9c"
+  },
+  "new_actual_probe_result": null,
+  "new_cost_decision": null,
+  "default_controller": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-full64-formal-v1/controller",
+  "prepare_argv": [
+    "python",
+    "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/full64/controller/entry.py",
+    "prepare",
+    "--controller",
+    "{new-controller}",
+    "--probe-terminal",
+    "{actual-wrapper-complete.json}",
+    "--cost-decision",
+    "{actual-formal-cost-decision.json}"
+  ],
+  "shared_training_budget_seconds": 5400,
+  "grace_seconds": 30,
+  "epoch1_updates": 34,
+  "epoch2_final_updates": 68,
+  "warmup_updates": 4,
+  "inference_after_two_actual_ACKs": {
+    "rows": 64,
+    "all_fresh": true,
+    "cap_seconds": 1200,
+    "grace_seconds": 30,
+    "input_cap": 13824,
+    "generation_limit": 1600,
+    "quality_calls": 0
+  }
+}

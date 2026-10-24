@@ -1,0 +1,531 @@
+--- C32/formal_train/cpu_contract.py
++++ full64/formal_train/cpu_contract.py
+@@ -1,145 +1,105 @@
+-"""New binding and unchanged training/resume source checks; stdlib only.
+-
+-Uses safe native receipts and byte hashes; no training answer parsing, tokenizer,
+-Torch, model, network, inference, or scoring. Prior numeric/resume tests are reused.
+-"""
++"""Stdlib full64 binding/schedule/resume/activation contracts; no model/tokenizer."""
+ from pathlib import Path
+-import argparse, ast, copy, hashlib, importlib.util, json, random, sys, time
++import argparse, ast, copy, hashlib, importlib.util, json, math, random, sys, tempfile, time
+ sys.dont_write_bytecode = True
+ B = Path(__file__).resolve().parent
+ 
+ 
+-def ref(path):
+-    p = Path(path)
+-    return {'path': str(p), 'bytes': p.stat().st_size,
+-            'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
+-
+-
+-def load_contract(path):
+-    spec = importlib.util.spec_from_file_location('response_runtime_contract', path)
+-    module = importlib.util.module_from_spec(spec)
+-    spec.loader.exec_module(module)
+-    return module
+-
+-
+-def function(tree, name):
+-    return next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == name)
++def ref(p):
++    p = Path(p).resolve(); b = p.read_bytes()
++    return dict(path=str(p), bytes=len(b), sha256=hashlib.sha256(b).hexdigest())
++def load(path, name):
++    spec = importlib.util.spec_from_file_location(name, path); module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module); return module
++def function(tree, name): return next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == name)
++def treefn(tree, name, ns):
++    exec(compile(ast.Module(body=[function(tree,name)],type_ignores=[]),name,'exec'),ns); return ns[name]
+ 
+ 
+ def main():
+-    parser = argparse.ArgumentParser()
+-    parser.add_argument('--plan', required=True, type=Path)
+-    args = parser.parse_args()
+-    started = time.monotonic()
+-    plan = json.loads(args.plan.read_text())
+-    checks = []
+-
+-    def okay(name, value=True):
+-        if not value:
+-            raise AssertionError(name)
+-        checks.append({'name': name, 'pass': True})
+-
+-    def reject(name, callback):
+-        try:
+-            callback()
+-        except (ValueError, KeyError, AssertionError, TimeoutError):
+-            okay(name)
+-            return
+-        raise AssertionError('Invalid fixture accepted: ' + name)
+-
+-    for record in list(plan['source_files'].values()) + list(plan['data_arguments'].values()) + list(plan['reused_evidence'].values()):
+-        okay('exact source/data/evidence bytes: ' + record['path'], ref(record['path']) == record)
+-    old = ast.parse(Path(plan['adapted_trainer']['path']).read_text())
+-    current_text = (B / 'train.py').read_text()
+-    current = ast.parse(current_text)
+-    dump = lambda x: ast.dump(x, include_attributes=False)
+-    for name in ['semantic_configuration', 'model_files', 'validate_checkpoint', 'batch_plan',
+-                 'verify_fingerprint', 'validate_stop_epoch', 'epoch_outcome', 'collate']:
+-        okay('unchanged existing function: ' + name, dump(function(old, name)) == dump(function(current, name)))
+-    old_run, new_run = function(old, 'run'), function(current, 'run')
+-    epoch_loop = lambda root: next(n for n in ast.walk(root) if isinstance(n, ast.For) and isinstance(n.target, ast.Name) and n.target.id == 'epoch')
+-    okay('entire existing indexed epoch loop AST unchanged', dump(epoch_loop(old_run)) == dump(epoch_loop(new_run)))
+-    restore = lambda root: next(n for n in ast.walk(root) if isinstance(n, ast.If) and ast.unparse(n.test) == 'checkpoint' and any(isinstance(t, ast.Call) and isinstance(t.func, ast.Attribute) and t.func.attr == 'load_state_dict' for t in ast.walk(n)))
+-    okay('complete existing Adam/scheduler/RNG restore AST unchanged', dump(restore(old_run)) == dump(restore(new_run)))
+-    old_runtime = Path(plan['adapted_runtime']['path']).read_text().replace(
+-        '/ontology-round2/qwen35-fulltext32-indexed-formal-v1/checkpoints/epoch-001',
+-        '/patient-response-code/normal2ep-v1/checkpoints/epoch-001')
+-    okay('runtime source identical except ACK persistent namespace', old_runtime == (B / 'runtime_contract.py').read_text())
+-    namespace = {'random': random}
+-    for name in ['batch_plan', 'native_training_rows', 'validate_response_metadata']:
+-        exec(compile(ast.Module(body=[function(current, name)], type_ignores=[]), str(B / 'train.py'), 'exec'), namespace)
+-    constants = {}
+-    for n in current.body:
+-        if isinstance(n, ast.Assign) and len(n.targets) == 1 and isinstance(n.targets[0], ast.Name) and n.targets[0].id.endswith('_SHA'):
+-            constants[n.targets[0].id] = ast.literal_eval(n.value)
+-    namespace.update(constants)
+-    for epoch in [0, 1]:
+-        groups = namespace['batch_plan'](124, 1, 8, 20261023, epoch)
+-        okay('epoch%d retains 15 groups of8 plus tail4 and every row once' % epoch,
+-             [len(g) for g in groups] == [8] * 15 + [4] and
+-             sorted(i for g in groups for batch in g for i in batch) == list(range(124)))
+-    response = json.loads(Path(plan['data_arguments']['response_preparation']['path']).read_text())
+-    native = json.loads(Path(plan['data_arguments']['native_receipt']['path']).read_text())
+-    audit = json.loads(Path(plan['data_arguments']['native_row_audit']['path']).read_text())
+-    original = json.loads(Path(plan['data_arguments']['data_manifest']['path']).read_text())
+-    train_ids, excluded_ids = original['training_document_ids'], original['excluded_document_ids']
+-    validate = namespace['validate_response_metadata']
+-    okay('actual response preparation/native identity and all32 excluded source contract',
+-         validate(response, native, audit, train_ids, excluded_ids) and len(train_ids) == len(excluded_ids) == 32)
+-    rows = namespace['native_training_rows'](audit)
+-    okay('new8138 target tokens disclosed, original7170 not asserted unchanged',
+-         sum(r['supervised_tokens'] for r in rows) == 8138 and plan['original_supervised_tokens'] == 7170 and plan['CE_target_token_representation_changed'])
+-    for field, value in [('rows', 123), ('total_tokens', 1009181), ('max_tokens', 13549),
+-                         ('supervised_tokens', 7170), ('encoded_sha256', '0' * 64), ('proposed_512_rejection_cap', 13824)]:
+-        bad = copy.deepcopy(native)
+-        bad['groups']['train']['arms']['response_code'][field] = value
+-        reject('reject stale or changed native field ' + field,
+-               lambda bad=bad: validate(response, bad, audit, train_ids, excluded_ids))
+-    for field, value in [('all_original_user_UTF8_preserved', False), ('all_original_PID_and_CID_metadata_exact', False)]:
+-        bad = copy.deepcopy(response)
+-        bad['groups']['train'][field] = value
+-        reject('reject preparation failure ' + field,
+-               lambda bad=bad: validate(bad, native, audit, train_ids, excluded_ids))
+-    for name, change in [
+-        ('missing row', lambda r: r.pop()),
+-        ('changed index', lambda r: r[0].update(index=1)),
+-        ('changed mask', lambda r: r[0].update(prefix_mask_exact=False)),
+-        ('changed document', lambda r: r[0].update(pmc_id='unseen-document')),
+-    ]:
+-        bad = copy.deepcopy(rows)
+-        change(bad)
+-        other = [r for r in audit if not (r['group'] == 'train' and r['arm'] == 'response_code')]
+-        reject('reject native audit ' + name,
+-               lambda bad=bad: validate(response, native, other + bad, train_ids, excluded_ids))
+-    reject('reject held document contaminating training', lambda: validate(response, native, audit, train_ids, train_ids))
+-    # Runtime will encode real rows and compare both exact IDs and labels against
+-    # the prior native audit. This CPU increment never reconstructs those arrays.
+-    for literal in ["helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']",
+-                    "helpers.json_sha(row['labels'])!=actual['labels_sha256']",
+-                    "helpers.json_sha(encoded)!=ENCODED_SHA",
+-                    "args.absolute_deadline_unix-time.time()>3600",
+-                    "torch.__version__!='2.6.0+cu124'",
+-                    "importlib.metadata.version('tokenizers')!='0.23.1'",
+-                    "ack_receipt=contract.validate_export_ack"]:
+-        okay('runtime fixed binding ' + literal, literal in current_text)
+-    okay('ACK gate before model load and logical restore before training',
+-         current_text.index('ack_receipt=contract.validate_export_ack') < current_text.index("status('load_complete_text_base')") and
+-         current_text.index('restored_digest=contract.tree_digest(actual_state,torch)') < current_text.index('model.train();first_update_checked=False'))
+-    contract = load_contract(B / 'runtime_contract.py')
+-    reject('expired shared deadline rejected', lambda: contract.check_deadline(time.time() - 1))
+-    okay('no Torch/tokenizer/models imported', all(x not in sys.modules for x in ['torch', 'transformers', 'tokenizers']))
+-    result = {'status': 'PASS_STDLIB_RESPONSE_BINDINGS_AND_UNCHANGED_INDEXED_TRAINING_RESTORE_SOURCE',
+-              'seconds': time.monotonic() - started, 'checks_count': len(checks), 'checks': checks,
+-              'source': ref(B / 'train.py'), 'runtime_contract': ref(B / 'runtime_contract.py'),
+-              'cpu_source': ref(__file__), 'plan_sha256': ref(args.plan)['sha256'],
+-              'raw_training_answers_parsed': False, 'native_census_repeated': False,
+-              'Torch_model_tokenizer_loaded': False, 'remote_GPU_training_or_quality': False,
+-              'scope': 'New source/data binding and runtime namespace guards only. Actual A100 stress/full training/state restore remain future evidence; old exact logical restore and head numerical proofs reused, no new bitwise-equivalence claim.'}
+-    with (B / 'CPU-contract-result.json').open('x') as handle:
+-        json.dump(result, handle, indent=2)
+-        handle.write('\n')
+-    print(json.dumps({'status': result['status'], 'checks': len(checks), 'seconds': result['seconds']}))
++    ap=argparse.ArgumentParser(); ap.add_argument('--plan',required=True,type=Path); a=ap.parse_args()
++    start=time.monotonic(); p=json.loads(a.plan.read_text()); checks=[]
++    def okay(name, result=True):
++        if not result: raise AssertionError(name)
++        checks.append(dict(name=name,pass_=True))
++    def reject(name, call):
++        try: call()
++        except (ValueError,KeyError,AssertionError,FileNotFoundError,TimeoutError):okay(name);return
++        raise AssertionError('Invalid fixture accepted: '+name)
++    for item in list(p['source_files'].values())+list(p['data_arguments'].values())+[p['adapted_trainer'],p['expected_probe_plan']]:
++        okay('exact byte identity '+Path(item['path']).name,ref(item['path'])==item)
++    text=(B/'train.py').read_text(); t=ast.parse(text); old=ast.parse(Path(p['adapted_trainer']['path']).read_text()); dump=lambda n:ast.dump(n,include_attributes=False)
++    for name in ['semantic_configuration','batch_plan','verify_fingerprint','validate_stop_epoch','epoch_outcome','collate','model_files']:
++        okay('unchanged '+name+' AST',dump(function(t,name))==dump(function(old,name)))
++    micro=lambda root:next(n for n in ast.walk(root) if isinstance(n,ast.For) and isinstance(n.target,ast.Name) and n.target.id=='indices')
++    okay('complete indexed forward/rowmean/group-normalized backward AST unchanged',dump(micro(function(t,'run')))==dump(micro(function(old,'run'))))
++    restore=lambda root:next(n for n in ast.walk(root) if isinstance(n,ast.If) and ast.unparse(n.test)=='checkpoint' and any(isinstance(c,ast.Call) and isinstance(c.func,ast.Attribute) and c.func.attr=='load_state_dict' for c in ast.walk(n)))
++    expected=copy.deepcopy(restore(function(old,'run')))
++    for n in ast.walk(expected):
++        if isinstance(n,ast.Constant) and type(n.value) is int and n.value==16:n.value=34
++    okay('complete actual state restore AST changes only epoch-step count16to34',dump(restore(function(t,'run')))==dump(expected))
++    ns={'random':random}
++    for n in t.body:
++        if isinstance(n,ast.Assign) and len(n.targets)==1 and isinstance(n.targets[0],ast.Name) and n.targets[0].id.endswith('_SHA'):ns[n.targets[0].id]=ast.literal_eval(n.value)
++    batch=treefn(t,'batch_plan',ns); treefn(t,'native_training_rows',ns); validate=treefn(t,'validate_response_metadata',ns)
++    for epoch in [0,1]:
++        g=batch(265,1,8,20261023,epoch); flat=[i for group in g for item in group for i in item]
++        expected_order=list(range(265)); random.Random(20261023+epoch).shuffle(expected_order)
++        okay('actual265 once and original seeded order epoch'+str(epoch),flat==expected_order and sorted(flat)==list(range(265)))
++        okay('33 complete groups8 plus tail1 epoch'+str(epoch),[len(x) for x in g]==[8]*33+[1])
++    steps=math.ceil(265/8);total=steps*2;warmup=math.ceil(.05*total)
++    okay('derived original recipe34x2 and ceil(.05*68)=4',(steps,total,warmup)==(34,68,4))
++    okay('scheduler and manifest use derived counts','get_linear_schedule_with_warmup(optimizer,4,68)' in text and "'steps_per_epoch':34" in text and "'warmup_steps':4" in text)
++    structural=json.loads(Path(p['data_arguments']['response_preparation']['path']).read_text())
++    native=json.loads(Path(p['data_arguments']['native_receipt']['path']).read_text())
++    audit=json.loads(Path(p['data_arguments']['native_row_audit']['path']).read_text())
++    original=json.loads(Path(p['data_arguments']['data_manifest']['path']).read_text())
++    train_ids,held_ids=original['training_document_ids'],original['excluded_document_ids']
++    okay('actual full64 structure/native/excludeddev identity',validate(structural,native,audit,train_ids,held_ids))
++    okay('all four candidate generators exclude own targets and originaldev',len(original['provenance'])==4 and all(not set(x['train_ids'])&set(x['input_ids']) and not set(held_ids)&(set(x['train_ids'])|set(x['input_ids'])) for x in original['provenance']))
++    okay('originaldev16 exact exclusion source',original['excluded_dev_input_sha256']==p['data_arguments']['excluded_input']['sha256'])
++    for key,val in [('rows',124),('total_tokens',427560),('max_tokens',5910),('supervised_tokens',8138),('encoded_sha256','0'*64)]:
++        bad=copy.deepcopy(native);bad['groups']['train']['arms']['response_code'][key]=val
++        reject('reject stale C32 native '+key,lambda bad=bad:validate(structural,bad,audit,train_ids,held_ids))
++    for key in ['all_original_users_UTF8_preserved','all_train_targets_inverse_exact','train64_originaldev16_disjoint','all_candidate_ancestors_exclude_originaldev']:
++        bad=copy.deepcopy(structural);bad[key]=False
++        reject('reject structural failure '+key,lambda bad=bad:validate(bad,native,audit,train_ids,held_ids))
++    bad=copy.deepcopy(audit);next(x for x in bad if x['group']=='train' and x['arm']=='response_code')['prefix_mask_exact']=False
++    reject('reject changed label mask proof',lambda:validate(structural,native,bad,train_ids,held_ids))
++    contract=load(B/'runtime_contract.py','full64_runtime_contract');names=['A','B']
++    state=dict(completed_epochs=1,global_step=34,optimizer={'state':{i:dict(step=34,exp_avg=[.1],exp_avg_sq=[.2]) for i in range(2)},'param_groups':[{'params':[0,1]}]},scheduler={'last_epoch':34,'_step_count':35},python_rng=[1],numpy_rng=[2],torch_rng=[3],cuda_rng=[[4]],optimizer_parameter_names=names)
++    okay('new complete first epoch state structure accepted',contract.validate_state_structure(state,1,names))
++    for key in contract.STATE_KEYS:
++        bad=copy.deepcopy(state);del bad[key]
++        reject('missing fullstate field '+key,lambda bad=bad:contract.validate_state_structure(bad,1,names))
++    bad=copy.deepcopy(state);bad['global_step']=16
++    reject('C32 step16 checkpoint rejected',lambda:contract.validate_state_structure(bad,1,names))
++    for last,count in [(0,1),(16,17)]:
++        bad=copy.deepcopy(state);bad['scheduler'].update(last_epoch=last,_step_count=count)
++        reject('reset or old scheduler rejected '+str(last),lambda bad=bad:contract.validate_state_structure(bad,1,names))
++    bad=copy.deepcopy(state);del bad['optimizer']['state'][0]['exp_avg_sq']
++    reject('missing Adam second moment rejected',lambda:contract.validate_state_structure(bad,1,names))
++    reject('shared absolute deadline cannot reset',lambda:contract.check_deadline(time.time()-1))
++    for fragment in ["args.absolute_deadline_unix-time.time()>5400","helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']","helpers.json_sha(row['labels'])!=actual['labels_sha256']","torch.__version__!='2.6.0+cu124'","'CPU_census_torch':'2.7.1+cu126'","scheduler.last_epoch!=global_step"]:
++        okay('fixed runtime/source '+fragment,fragment in text)
++    C=B.parent/'controller';activation=load(C/'activation.py','full64_activation')
++    with tempfile.TemporaryDirectory(prefix='full64-gate-contract-') as temporary:
++        root=Path(temporary);w=root/'wrapper.json';d=root/'cost.json'
++        w.write_text(json.dumps(dict(returncode=1,timed_out=False,all12_backwards_and_one_update_verified=False,target_has_no_process=True)));d.write_text('{}')
++        reject('actual failed probe cannot activate',lambda:activation.require_actual_probe(p,w,d))
++        reject('missing actual probe cannot activate',lambda:activation.require_actual_probe(p,root/'missing',d))
++    prepare=(C/'prepare.py').read_text()
++    okay('actual probe gate before deployable directory/authorization',prepare.index('gate=require_actual_probe')<prepare.index('B.mkdir(exist_ok=False)')<prepare.index("save(B/'GPU-AUTHORIZATION.json'"))
++    for name in ['operations.py','epoch_driver.py','io_driver.py','watch_authorized_campaign.py','watch_state_recovery.py','bootstrap.py']:
++        s=(C/name).read_text();ast.parse(s)
++        okay('fixed5400/no old3600 '+name,'5400' in s and '3600' not in s)
++    watch=(C/'watch_authorized_campaign.py').read_text()
++    okay('read-only LUNA UNKNOWN recovery retained','safe_read=' in watch and "'LUNA_OFFLINE'" in watch and "'UNKNOWN_OUTCOME'" in watch and 'unknown mutation never repeated' in watch)
++    okay('HTTP has own original export deadline',"while time.time()<a.deadline:server.handle_request()" in (C/'export_checkpoint_server.py').read_text())
++    okay('no tokenizer/Torch/model imports',all(x not in sys.modules for x in ['torch','transformers','tokenizers']))
++    result=dict(status='PASS_STDLIB_FULL64_DATA_SCHEDULE_RESUME_AND_DISABLED_ACTIVATION_CONTRACT',checks_count=len(checks),checks=checks,seconds=time.monotonic()-start,source=ref(B/'train.py'),runtime_contract=ref(B/'runtime_contract.py'),cpu_source=ref(__file__),plan_sha256=ref(a.plan)['sha256'],actual_native_repeated=False,raw_training_target_parsed=False,model_GPU_remote_quality=False,formal_GPU_authorization_created=False,scope='New binding/schedule/epoch guards and copied mathematical source; future actual full-state restoration remains runtime assertion, not new GPU numerical equivalence proof.')
++    with (B/'CPU-contract-result.json').open('x') as f:json.dump(result,f,indent=2);f.write('\n')
++    print(json.dumps({k:result[k] for k in ['status','checks_count','seconds']}))
+ 
+ 
+-if __name__ == '__main__':
+-    main()
++if __name__=='__main__':main()
+--- C32/formal_train/runtime_contract.py
++++ full64/formal_train/runtime_contract.py
+@@ -18,9 +18,9 @@
+ 
+ def validate_state_structure(state,completed,names):
+     if set(state)!=STATE_KEYS:raise ValueError('Complete optimizer/scheduler/Python/NumPy/Torch/CUDA state required')
+-    if completed!=1 or state['completed_epochs']!=completed or state['global_step']!=16*completed:raise ValueError('Resume only exact first complete epoch16')
++    if completed!=1 or state['completed_epochs']!=completed or state['global_step']!=34*completed:raise ValueError('Resume only exact first complete epoch34')
+     if state['optimizer_parameter_names']!=list(names):raise ValueError('Optimizer parameter ordering differs')
+-    if state['scheduler']['last_epoch']!=16 or state['scheduler']['_step_count']!=17:raise ValueError('Full scheduler/warmup state differs')
++    if state['scheduler']['last_epoch']!=34 or state['scheduler']['_step_count']!=35:raise ValueError('Full scheduler/warmup state differs')
+     optimizer=state['optimizer']
+     if len(optimizer['state'])!=len(names) or len(optimizer['param_groups'])!=1:raise ValueError('Complete Adam state inventory differs')
+     if optimizer['param_groups'][0]['params']!=list(range(len(names))):raise ValueError('Adam parameter IDs differ')
+@@ -51,11 +51,11 @@
+     output=Path(output);checkpoint=Path(checkpoint);ack=json.loads(Path(path).read_text())
+     expected_name='export-ack-epoch-001.json'
+     if Path(path).resolve()!= (output/expected_name).resolve():raise ValueError('ACK must use own output root non-checkpoint basename')
+-    if ack.get('status')!='persistent_checkpoint_verified' or ack.get('completed_epochs')!=1 or ack.get('global_step')!=16:raise ValueError('Persistent first-epoch ACK required')
++    if ack.get('status')!='persistent_checkpoint_verified' or ack.get('completed_epochs')!=1 or ack.get('global_step')!=34:raise ValueError('Persistent first-epoch ACK required')
+     if ack.get('trainer_sha256')!=trainer_sha or ack.get('source_checkpoint_directory')!=str(checkpoint):raise ValueError('ACK source identity differs')
+     if ack.get('checkpoint_sha256')!=sha(checkpoint/'checkpoint.json'):raise ValueError('ACK checkpoint SHA differs')
+     if ack.get('persistent_mount_id')!='5a9955da-5240-41cc-9e52-05d3d8da8a3c':raise ValueError('ACK is not on expected persistent mount')
+-    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/normal2ep-v1/checkpoints/epoch-001'
++    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/full64-v1/checkpoints/epoch-001'
+     if ack.get('persistent_directory')!=expected_directory:raise ValueError('ACK persistent namespace differs')
+     if not re.fullmatch('[0-9a-f]{64}',ack.get('transport_manifest_sha256','')):raise ValueError('ACK transport manifest SHA missing')
+     for key in ['fsync_all_files','reopened_final_filename_SHA_all_files','destination_directories_fsynced']:
+@@ -69,7 +69,7 @@
+         if relative.is_absolute() or '..' in relative.parts:raise ValueError('Unsafe ACK member')
+         source=output/Path(*relative.parts[1:]) if relative.parts[0]=='_run' else checkpoint/relative
+         if not source.is_file() or source.is_symlink() or record!={'bytes':source.stat().st_size,'sha256':sha(source)}:raise ValueError('ACK source member SHA differs: '+name)
+-    return {'status':'PASS_PERSISTENT_ACK_BINDS_COMPLETE_FIRST_EPOCH_STATE', 'ack_sha256':sha(path),'checkpoint_sha256':sha(checkpoint/'checkpoint.json'),'members':len(files),'persistent_directory':expected_directory,'completed_epochs':1,'global_step':16}
++    return {'status':'PASS_PERSISTENT_ACK_BINDS_COMPLETE_FIRST_EPOCH_STATE', 'ack_sha256':sha(path),'checkpoint_sha256':sha(checkpoint/'checkpoint.json'),'members':len(files),'persistent_directory':expected_directory,'completed_epochs':1,'global_step':34}
+ 
+ def local_publish_checkpoint(staging,destination,output):
+     """Fsync/reopen own SHM files; explicitly does not claim persistent durability."""
+--- C32/formal_train/train.py
++++ full64/formal_train/train.py
+@@ -1,10 +1,10 @@
+ #!/usr/bin/env python3
+-"""Qwen3.5 response-code LoRA:124 short meta32 OOF rows,2 epochs,complete-epoch resume.
++"""Qwen3.5 response-code LoRA:265 short full64 OOF rows,2 epochs,complete-epoch resume.
+ 
+ CPU boundary contracts live in cpu_contract.py; this train-only entry
+ requires an allocated empty GPU and exact official files. No validation labels,
+ inference, quantization, packing, smoke adapter or alternative task is supported.
+-Fresh base is required; only this exact meta32 run may resume complete epochs.
++Fresh base is required; only this exact full64 run may resume complete epochs.
+ Resume state is saved/restored; numerical GPU resume equivalence is not claimed.
+ Length6144 is only a rejection cap: batches pad to their actual maximum, never to cap.
+ """
+@@ -31,23 +31,23 @@
+ PROTOCOL_SHA='a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c'
+ OLD_TRAINER_SHA='2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423'
+ SOURCE_MANIFEST_SHA='74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7'
+-CONFIG={'max_seq_length':6144,'batch_size':1,'gradient_accumulation':8,'epochs':2,
++CONFIG={'max_seq_length':6656,'batch_size':1,'gradient_accumulation':8,'epochs':2,
+         'learning_rate':1e-4,'weight_decay':.01,'warmup_ratio':.05,'max_grad_norm':1.,
+         'rank':16,'alpha':32,'dropout':.05,'seed':20261023,'targets':protocol.TARGETS,
+         'dtype':'bfloat16','attention':'sdpa','quantization':False,'packing':False,
+         'gradient_checkpointing':{'use_reentrant':False}}
+-ORIGINAL_TRAIN_SHA='cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8'
+-TRAIN_SHA='f73cb24fa73bcb1342d7cbd35d0ca76ccd7d7ccc5a5afd9abf01a80e46c84e28'
+-ENCODED_SHA='15832a38541dd574ec2058462ef910db675b16ab7dcf867f5beae9f0f87ea453'
+-RESPONSE_PREPARATION_SHA='03d497ccc9f7f3564ee3d369f85b2d3bc7e60034bc785009de6f300745e81a7e'
+-NATIVE_RECEIPT_SHA='56d7ce92cfef78cdeb03835dc3520444c3341188c346d9059f37b5de709595b4'
+-NATIVE_AUDIT_SHA='87215b5652bf06489ff59fba555a999fa7ead84002ab9237594e8522f4e0aeb2'
++ORIGINAL_TRAIN_SHA='27ecf4769e2917bfc06c7c47f679d2dea19ac9013626288093b4e4cb6dffab3c'
++TRAIN_SHA='4fdc4c6684f43bed88551cef1e2b72d67877efda49c896e5f34b855ca6d48d07'
++ENCODED_SHA='3d294abc9e30c733148848c8e5dac0f565a4bcc573d0752c7859c6e20b12ccff'
++RESPONSE_PREPARATION_SHA='ba3acc00fc96f63ca20743ba7876d09ffb89dfb66091fa6955b6729d6666a272'
++NATIVE_RECEIPT_SHA='0ef29c1252c53527e8ee6947d05006e7179edd60a62dcfaea3f530ac87b2d627'
++NATIVE_AUDIT_SHA='51e7a3327d09966cc08a250571e03d3a97705a5e53a0abe2a062e810d4704adb'
+ SELECTED_LOSS_SHA='dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9'
+ NATIVE_LOSS_SHA='83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe'
+ MODEL_SOURCE_SHA='b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3'
+-RUNTIME_CONTRACT_SHA='854c794c5eaa3866c33b4dde6df438cdb91dd64f2111fa0d08803eac9710fa57'
+-EXCLUDED_SHA='2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82'
+-PREPARATION_SHA='356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47'
++RUNTIME_CONTRACT_SHA='c4a7a6ff41004f85cad92d0b53a170bcca4540ae18d4b9c180df792a23b14e8b'
++EXCLUDED_SHA='c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e'
++PREPARATION_SHA='389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44'
+ COPIED_TRAINER_SHA='9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b'
+ sha256=helpers.sha
+ write_json=helpers.write
+@@ -71,8 +71,8 @@
+     if any(not isinstance(x, str) for x in ids) or len(ids) != len(set(ids)):
+         raise ValueError('Training row IDs must be unique strings')
+     document_ids = sorted({str(x['pmc_id']) for x in data})
+-    if len(document_ids) != 32 or set(document_ids) & set(heldout_ids):
+-        raise ValueError('Require the actual 32-document training set, disjoint from excluded input')
++    if len(document_ids) != 64 or set(document_ids) & set(heldout_ids):
++        raise ValueError('Require the actual 64-document training set, disjoint from excluded input')
+     for row in data:
+         messages = row.get('messages')
+         if not isinstance(messages, list) or not messages or messages[-1].get('role') != 'user':
+@@ -89,19 +89,22 @@
+     if sha256(inspect.getfile(helpers))!=HELPER_SHA or sha256(inspect.getfile(protocol))!=PROTOCOL_SHA:
+         raise ValueError('Frozen Qwen3.5 helper/protocol source differs')
+     if sha256(args.train)!=TRAIN_SHA or sha256(args.excluded_input)!=EXCLUDED_SHA:
+-        raise ValueError('Require exact meta32 two16-to16 OOF124 train and stripped outer0+metaF1 input')
++        raise ValueError('Require exact full64 four train48-to-input16 OOF124 train and stripped outer0+metaF1 input')
+     if sha256(args.model_source_manifest)!=SOURCE_MANIFEST_SHA:
+         raise ValueError('Official15-file fixed source manifest differs')
+     rows,train_ids,excluded_ids=training_rows(args.train,args.excluded_input)
+-    if len(rows)!=124 or len(train_ids)!=32 or len(excluded_ids)!=32:
+-        raise ValueError('Require124 rows/32train documents/32excluded input documents')
++    if len(rows)!=265 or len(train_ids)!=64 or len(excluded_ids)!=16:
++        raise ValueError('Require265 rows/64train documents/16excluded input documents')
+     if sha256(args.data_manifest)!=PREPARATION_SHA:
+-        raise ValueError('Frozen meta32 candidate provenance differs')
++        raise ValueError('Frozen full64 candidate provenance differs')
+     preparation=json.loads(Path(args.data_manifest).read_text())
+-    if (preparation['training_sha256']!=ORIGINAL_TRAIN_SHA or preparation['excluded_input_sha256']!=EXCLUDED_SHA
++    if (preparation['training_sha256']!=ORIGINAL_TRAIN_SHA or preparation['excluded_dev_input_sha256']!=EXCLUDED_SHA
+         or preparation['training_document_ids']!=train_ids or preparation['excluded_document_ids']!=excluded_ids
+         or not preparation['all_target_documents_excluded_from_own_generators']):
+-        raise ValueError('Meta32 provenance identity/isolation differs')
++        raise ValueError('Full64 provenance identity/isolation differs')
++    if not preparation['fresh_base_required'] or not preparation['old_adapter_continuation_forbidden'] or not preparation['held_partition_union64']:raise ValueError('Fresh full64/OOF provenance differs')
++    for fold in preparation['provenance']:
++        if (set(fold['train_ids'])&set(fold['input_ids']) or set(excluded_ids)&(set(fold['train_ids'])|set(fold['input_ids']))):raise ValueError('Candidate ancestor saw its target or originaldev')
+     if sha256(args.response_preparation)!=RESPONSE_PREPARATION_SHA or sha256(args.native_receipt)!=NATIVE_RECEIPT_SHA or sha256(args.native_row_audit)!=NATIVE_AUDIT_SHA:
+         raise ValueError('Frozen response construction/native receipt/audit differs')
+     response=json.loads(Path(args.response_preparation).read_text());native=json.loads(Path(args.native_receipt).read_text())
+@@ -113,37 +116,39 @@
+ 
+ def native_training_rows(audit):
+     rows=[x for x in audit if x['group']=='train' and x['arm']=='response_code']
+-    if (len(rows)!=124 or [x['index'] for x in rows]!=list(range(124))
+-        or len({x['row_id'] for x in rows})!=124
++    if (len(rows)!=265 or [x['index'] for x in rows]!=list(range(265))
++        or len({x['row_id'] for x in rows})!=265
+         or any(not x['published_native_Auto_template_decode_exact'] or not x['prefix_mask_exact'] for x in rows)
+-        or sum(x['full_tokens'] for x in rows)!=427560 or max(x['full_tokens'] for x in rows)!=5910
+-        or sum(x['supervised_tokens'] for x in rows)!=8138 or max(x['supervised_tokens'] for x in rows)!=128):
++        or sum(x['full_tokens'] for x in rows)!=918058 or max(x['full_tokens'] for x in rows)!=6462
++        or sum(x['supervised_tokens'] for x in rows)!=17399 or max(x['supervised_tokens'] for x in rows)!=128):
+         raise ValueError('Exact response-code native row inventory/accounting differs')
+     return rows
+ 
+ 
+ def validate_response_metadata(response,native,audit,train_ids,excluded_ids):
+     group=response['groups']['train'];observed=native['groups']['train'];stats=observed['arms']['response_code']
+-    expected={'rows':124,'total_tokens':427560,'max_tokens':5910,'supervised_tokens':8138,
+-              'max_supervised_tokens':128,'encoded_sha256':ENCODED_SHA,'proposed_512_rejection_cap':6144}
+-    if (response['status']!='PASS_RESPONSE_CODE_STRUCTURE_NOT_MODEL_QUALITY'
++    expected={'rows':265,'total_tokens':918058,'max_tokens':6462,'supervised_tokens':17399,
++              'max_supervised_tokens':128,'encoded_sha256':ENCODED_SHA,'proposed_512_rejection_cap':6656}
++    if (response['status']!='PASS_FULL64_SHORT265_FULLTEXT64_RESPONSE_CODE_NO_DEV_GOLD'
+         or group['source']['sha256']!=ORIGINAL_TRAIN_SHA or group['output']['sha256']!=TRAIN_SHA
+-        or group['rows']!=124 or group['documents']!=32
+-        or not group['all_original_user_UTF8_preserved'] or not group['all_original_PID_and_CID_metadata_exact']
+-        or response['codec']['sha256']!='da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6'
+-        or response['source']['sha256']!='caca4808c339b2b76a5c7d005ccf6a13346a713935c5789c2074e4c86fa5cdf2'
+-        or native['status']!='PASS_NATIVE_CPU_RESPONSE_CODE_CENSUS_NO_MODEL'
++        or group['rows']!=265 or group['documents']!=64 or group['patients']!=173
++        or group['CID_values']!=1908 or group['patient_concept_pairs']!=5328
++        or any(response[k] is not True for k in ['all_original_users_UTF8_preserved','all_train_targets_inverse_exact',
++               'complete_full_report64_reconstruction_exact','train64_originaldev16_disjoint','all_candidate_ancestors_exclude_originaldev'])
++        or response['originaldev_gold_read'] or response['new_NN_calls'] or response['new_quality_calls']
++        or response['source']['sha256']!='a0049eca519dd437e85e9d70145b35d0e7c0b484f7c0bfa0c76c2353de2bfcb3'
++        or native['status']!='PASS_NATIVE_CPU_RESPONSE_CODE_FULL64_CENSUS_NO_MODEL'
+         or observed['source_sha256']!=ORIGINAL_TRAIN_SHA or observed['response_data_sha256']!=TRAIN_SHA
+         or any(stats.get(k)!=v for k,v in expected.items())
+-        or observed['arms']['original']['supervised_tokens']!=7170
++        or observed['arms']['original']['supervised_tokens']!=15410
+         or native['audit_sha256']!=NATIVE_AUDIT_SHA or native['truncation']
+         or native['model_loaded'] or native['training_performed'] or native['held_gold_read']):
+-        raise ValueError('Response construction/native receipt identity or target scope differs')
++        raise ValueError('Full64 response construction/native identity or target scope differs')
+     rows=native_training_rows(audit)
+     held={x['pmc_id'] for x in audit if x['group']=='held' and x['arm']=='response_code'}
+-    if (sorted({x['pmc_id'] for x in rows})!=train_ids or len(held)!=16
+-        or not held<=set(excluded_ids) or set(train_ids)&set(excluded_ids)):
+-        raise ValueError('Response train/held native document identity or exclusion differs')
++    if (sorted({x['pmc_id'] for x in rows})!=train_ids or len(train_ids)!=64 or len(excluded_ids)!=16
++        or held!=set(excluded_ids) or set(train_ids)&set(excluded_ids)):
++        raise ValueError('Full64 train/originaldev native document identity or exclusion differs')
+     return True
+ 
+ 
+@@ -168,12 +173,12 @@
+ def encode_all(rows,tokenizer,output,native_row_audit):
+     encoded=[helpers.encode(row,tokenizer) for row in rows]
+     lengths=[len(e['input_ids']) for e in encoded]
+-    if len(encoded)!=124 or max(lengths)!=5910 or sum(lengths)!=427560 or any(n>CONFIG['max_seq_length'] for n in lengths):
+-        raise ValueError('Frozen124 token accounting differs; no truncation permitted')
+-    if sum(e['supervised_tokens'] for e in encoded)!=8138:
++    if len(encoded)!=265 or max(lengths)!=6462 or sum(lengths)!=918058 or any(n>CONFIG['max_seq_length'] for n in lengths):
++        raise ValueError('Frozen265 token accounting differs; no truncation permitted')
++    if sum(e['supervised_tokens'] for e in encoded)!=17399:
+         raise ValueError('Frozen supervised-token accounting differs')
+     native=native_training_rows(json.loads(Path(native_row_audit).read_text()))
+-    if helpers.json_sha(encoded)!=ENCODED_SHA or len(native)!=124:raise ValueError('Actual response-code encoded124 differs from previously native-verified IDs')
++    if helpers.json_sha(encoded)!=ENCODED_SHA or len(native)!=265:raise ValueError('Actual response-code encoded265 differs from previously native-verified IDs')
+     for index,(row,expected) in enumerate(zip(encoded,native)):
+         actual=expected
+         if (row['row_id']!=expected['row_id'] or helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']
+@@ -181,8 +186,8 @@
+             raise ValueError('Exact input/mask contract differs at row '+str(index))
+     write_json(output/'token-mask-audit.json' ,{'rows':[{'row_id':e['row_id'],'full_tokens':len(e['input_ids']),
+         'prefix_tokens':e['prefix_tokens'],'supervised_tokens':e['supervised_tokens']} for e in encoded],
+-        'rows_count':124,'total_full_tokens':sum(lengths),'max_full_tokens':max(lengths),
+-        'supervised_tokens':8138,'truncated_rows':0,'prefix_mask_eos_passed':True,
++        'rows_count':265,'total_full_tokens':sum(lengths),'max_full_tokens':max(lengths),
++        'supervised_tokens':17399,'truncated_rows':0,'prefix_mask_eos_passed':True,
+         'encoded_sha256':helpers.json_sha(encoded),'response_preparation_sha256':RESPONSE_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA})
+     return encoded
+ 
+@@ -195,8 +200,8 @@
+     completed=int(metadata['completed_epochs']);expected=output/f'epoch-{completed:03d}'
+     if checkpoint.resolve()!=expected.resolve() or checkpoint.name!=max(p.name for p in contract.complete_epoch_directories(output)):
+         raise ValueError('Resume requires latest complete epoch checkpoint')
+-    if not 1<=completed<2 or metadata['global_step']!=16*completed or metadata.get('smoke_only'):
+-        raise ValueError('Checkpoint is not an unfinished formal124x2-meta32 run')
++    if not 1<=completed<2 or metadata['global_step']!=34*completed or metadata.get('smoke_only'):
++        raise ValueError('Checkpoint is not an unfinished formal265x2-full64 run')
+     for name,digest in metadata['files'].items():
+         relative=Path(name)
+         if relative.is_absolute() or '..' in relative.parts:raise ValueError('Unsafe checkpoint member')
+@@ -257,10 +262,10 @@
+     os.environ['TOKENIZERS_PARALLELISM']='false';os.environ['HF_HUB_OFFLINE']=os.environ['TRANSFORMERS_OFFLINE']='1'
+     if args.mode!='train':raise ValueError('CPU source checks use cpu_contract.py; this runner is train-only')
+     contract.check_deadline(args.absolute_deadline_unix)
+-    if args.absolute_deadline_unix-time.time()>3600:raise ValueError('Absolute deadline exceeds authorized total budget')
++    if args.absolute_deadline_unix-time.time()>5400:raise ValueError('Absolute deadline exceeds authorized total budget')
+     if os.environ.get('PYTORCH_ALLOC_CONF') or os.environ.get('PYTORCH_CUDA_ALLOC_CONF'):raise ValueError('Allocator configuration differs')
+     output=Path(args.output_dir)
+-    if str(output)!='/dev/shm/patientphex-response-code-20261024/formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
++    if str(output)!='/dev/shm/patientphex-response-code-20261024/full64-formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
+     if not args.resume and args.resume_export_ack:raise ValueError('Fresh run cannot consume any old ACK')
+     if args.resume and not args.resume_export_ack:raise ValueError('Resume requires exact durable full-state ACK')
+     if output.exists() and any(output.iterdir()) and not args.resume:raise ValueError('Fresh invocation needs an empty output; use explicit own-run resume')
+@@ -311,10 +316,10 @@
+             if not torch.cuda.is_available() or torch.cuda.device_count()!=1 or not torch.cuda.is_bf16_supported():raise RuntimeError('Require one BF16 CUDA device')
+             environment.update(gpu_name=torch.cuda.get_device_name(0),gpu_uuid=args.gpu_uuid,gpu_capability=list(torch.cuda.get_device_capability(0)))
+             torch.cuda.manual_seed_all(CONFIG['seed'])
+-        fingerprint={'schema':'patientphex-qwen35-meta32-response-code-indexedHead-lora-v1','configuration':semantic_configuration(args),
+-            'source_sha256':sha256(__file__),'adapted_indexed_trainer_sha256':'3de5ed915a2b01a2abe36bd214ebffc6227774994b369abf4d850292bc45148f','helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
++        fingerprint={'schema':'patientphex-qwen35-full64-response-code-indexedHead-lora-v1','configuration':semantic_configuration(args),
++            'source_sha256':sha256(__file__),'adapted_indexed_trainer_sha256':'9b8addda66b1efdbb45ee6c32ff5c284d75a899f414612e1c9f102431c0a62da','helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
+             'copied_epoch_loop_source_sha256':OLD_TRAINER_SHA,'copied204_trainer_sha256':COPIED_TRAINER_SHA,
+-            'meta32_preparation_sha256':PREPARATION_SHA,'train_sha256':TRAIN_SHA,
++            'full64_preparation_sha256':PREPARATION_SHA,'train_sha256':TRAIN_SHA,
+             'excluded_input_sha256':EXCLUDED_SHA,'training_document_ids':training_ids,'excluded_document_ids':excluded_ids,
+             'base_files':base_files,'environment':environment,'text_config':text_config.to_dict(),
+             'encoded_sha256':helpers.json_sha(encoded),'response_preparation_sha256':RESPONSE_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA}
+@@ -323,11 +328,11 @@
+         fingerprint=json.loads(json.dumps(fingerprint,default=helpers.json_default,sort_keys=True))
+         manifest_path=output/'run_manifest.json'
+         if args.resume:verify_fingerprint(json.loads(manifest_path.read_text())['fingerprint'],fingerprint)
+-        manifest={'fingerprint':fingerprint,'examples':124,'max_tokens':5910,'total_tokens':427560,'supervised_tokens':8138,
+-            'steps_per_epoch':16,'epochs':2,'total_optimizer_steps':32,'warmup_steps':2,'smoke_only':False,
++        manifest={'fingerprint':fingerprint,'examples':265,'max_tokens':6462,'total_tokens':918058,'supervised_tokens':17399,
++            'steps_per_epoch':34,'epochs':2,'total_optimizer_steps':68,'warmup_steps':4,'smoke_only':False,
+             'resume_unit':'complete acknowledged epoch only; no automatic partial epoch replay','new_gpu_resume_numerical_equivalence_tested':False,
+             'fresh_base_on_initial_run':True,'validation_labels_used':False,
+-            'target_representation_changed':True,'old_original_supervised_tokens':7170,
++            'target_representation_changed':True,'old_original_supervised_tokens':15410,
+             'original_clinical_user_UTF8_preserved':True,'CPU_census_torch':'2.7.1+cu126','formal_torch':'2.6.0+cu124'}
+         write_json(manifest_path,manifest)
+         for name,source in [('train.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('runtime_contract.py',contract.__file__)]:
+@@ -373,12 +378,12 @@
+         if not model.is_gradient_checkpointing:raise RuntimeError('Gradient checkpointing not enabled')
+         write_json(output/'model-coverage.json',coverage)
+         parameters=list(named.values());optimizer=torch.optim.AdamW(parameters,lr=CONFIG['learning_rate'],weight_decay=CONFIG['weight_decay'])
+-        scheduler=get_linear_schedule_with_warmup(optimizer,2,32)
++        scheduler=get_linear_schedule_with_warmup(optimizer,4,68)
+         completed_epochs=global_step=0
+         if checkpoint:
+             state=torch.load(checkpoint/'training_state.pt',map_location='cpu',weights_only=False)
+             completed_epochs,global_step=state['completed_epochs'],state['global_step']
+-            if completed_epochs!=resumed_epochs or global_step!=16*completed_epochs:raise ValueError('Serialized epoch/step differs from checkpoint metadata')
++            if completed_epochs!=resumed_epochs or global_step!=34*completed_epochs:raise ValueError('Serialized epoch/step differs from checkpoint metadata')
+             contract.validate_state_structure(state,resumed_epochs,list(named))
+             if contract.tree_digest({n:p for n,p in named.items()},torch)!=metadata['trainable_parameter_digest']:raise ValueError('Resumed adapter tensor values differ')
+             expected_state_digest=contract.tree_digest(state,torch)
+@@ -401,7 +406,7 @@
+         model.train();first_update_checked=False;status('formal_training')
+         for epoch in range(completed_epochs,2):
+             groups=batch_plan(len(encoded),1,8,CONFIG['seed'],epoch)
+-            if len(groups)!=16 or sum(len(g) for g in groups)!=124:raise RuntimeError('Frozen epoch batch/step accounting differs')
++            if len(groups)!=34 or sum(len(g) for g in groups)!=265:raise RuntimeError('Frozen epoch batch/step accounting differs')
+             loss_sum=0.;epoch_started=time.time()
+             for group in groups:
+                 contract.check_deadline(args.absolute_deadline_unix)
