@@ -1,0 +1,8 @@
+from pathlib import Path
+import sys,json,hashlib,base64,shlex
+sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');from mcp_client import Client
+D=Path(__file__).parent;p=D/'terminal-manifest.json';b=p.read_bytes();remote='research/patient-competition-calibration-v1/terminal-manifest.json';M='5a9955da-5240-41cc-9e52-05d3d8da8a3c';c=Client();c.initialize()
+def call(n,a,label):
+ v=c.request('tools/call',{'name':n,'arguments':{'mount_id':M,**a}});(D/('manifest-backup-'+label+'.json')).write_text(json.dumps(v,indent=2));assert not v.get('isError');return v.get('structuredContent') or json.loads(v['content'][0]['text'])
+x=call('write_file',{'path':remote,'content':base64.b64encode(b).decode(),'encoding':'base64','create_parents':True},'write');assert x['sha256']==hashlib.sha256(b).hexdigest()
+code="from pathlib import Path;import os,hashlib;p=Path(%r);f=p.open('rb');os.fsync(f.fileno());f.close();fd=os.open(p.parent,os.O_DIRECTORY);os.fsync(fd);os.close(fd);assert hashlib.sha256(p.read_bytes()).hexdigest()==%r;print('PASS')"%('/home/zhangyuheng/projects/CHIP2026_PatientPheX/'+remote,hashlib.sha256(b).hexdigest());x=call('run_command',{'command':'python3 -c '+shlex.quote(code),'timeout_seconds':30},'fsync');assert x['exit_code']==0;x=call('read_file',{'path':remote,'offset':0,'limit':len(b)},'readback');got=base64.b64decode(x['content']) if x.get('encoding')=='base64' else x['content'].encode();assert got==b;(D/'terminal-manifest-backup.json').write_text(json.dumps({'status':'FILE_PARENT_FSYNC_FULL_READBACK_EXACT','path':remote,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()},indent=2));print('PASS competition terminal manifest backup')
