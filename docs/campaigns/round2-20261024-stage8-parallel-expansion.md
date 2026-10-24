@@ -4,6 +4,8 @@
 
 用户明确继续固定原dev≥.8，同时允许扩展方法、多分支/worktree、多代理迭代。每个独立模型≤10B，允许集成；按原文献隔离和公共v2比较，禁止将dev标签作为训练资源。新方法的价值以完整验证与互补贡献判断，不以是否原创判断。官方上传仍暂停。
 
+**当前接手入口是[总台账](../../WORKLOG.md)和[运行快照](round2-current-work.json)。** 下文保留按时间形成的实验过程，早期“尚未启动”、初始资源安排和被后继替代的提案不代表当前状态。原dev仍.754361398；最新三源固定二源一致在内部F1为.701087，跨F0复验正在运行。当前F0生成模型复用排除F0的train32权重，候选层可使用排除F0的train48；早期“第二折再训练48”的设想不是当前执行计划。
+
 | 新工作线 | 独立分支 / worktree尾目录 | 首要机制与职责 |
 |---|---|---|
 | span_normalization | explore/span-normalization / explore-span-normalization | 调研并实现跨度检测与HPO规范化联合学习或显式span方法；区别既有BIO/GLiNER简单追加，不只换encoder名称 |
@@ -12,6 +14,12 @@
 | patient_schedule | explore/patient-schedule / explore-patient-schedule | 原标准CE与输入保持，固定fresh四轮训练；完整终点与原两轮及强组合比较 |
 | schema_extraction | explore/schema-extraction / explore-schema-extraction | GLiNER2.5原生联合实体/关系抽取，独立HPO规范化，先完整内部控制 |
 | qwen3_relations | explore/qwen3-relations / explore-qwen3-relations | 原生Qwen3-8B的strict train32关系SFT及全文F1；不同基座控制，不称首次全注意力 |
+| sampled_consensus | explore/sampled-consensus / explore-sampled-consensus | 同一native模型两固定seed，保强基线后增加两次一致关系；完整F1正、F0运行中 |
+| patient_response_code | explore/patient-response-code / explore-patient-response-code | 保全文与临床身份，输出端增加可逆患者编码；真实显存探针通过，准备正式训练 |
+| gliner25_task1 | explore/gliner25-task1 / explore-gliner25-task1 | 预训练boundary头的原生实体监督适配；[最终决定](../research/gliner25-task1-adaptation-readiness-20261024/README.md)替代初始冲突过滤提案 |
+| relation_consensus / grounded_task1 | 各自explore同名分支/worktree | 主线程已关闭的DocRE/schema共识与生成跨度统一追加控制；保留完整负结果 |
+| parallel_relation_fusion | explore/parallel-relation-fusion / explore-parallel-relation-fusion | 三新模型固定二源一致，完整F1正；全并集负关闭，F0源已准备 |
+| relation_calibration | explore/relation-calibration / explore-relation-calibration | 仅F1训练的固定三bit LR；严格排F0祖先，不使用B1特征或增量筛选，未来F0独立验证 |
 
 每线维护自己的WORKLOG/experiments/NOTES/evidence，先用已有历史排除重复，随后完成可运行初版和训练内完整对照，不停在调研报告。允许复用成熟代码、模型和现有已核资产；源码/许可/版本保存。常规工程修复自主处理，未知状态恢复原作业，避免重复启动。模型/大型raw留外部，关键结果及时commit/push并核远端。
 

@@ -1,0 +1,273 @@
+{
+  "scope": "CPU readiness only; no GPU/model-forward/training/quality executed",
+  "model": {
+    "repo": "fastino/gliner2.5-base-v1",
+    "revision": "54785d51df8d86a0d8f2eb212fec15871aad2c4d",
+    "upstream": "ca4f68235b50fe4c3ecf3876851d748fe4b15c6c",
+    "weight_sha256": "7274094de2e0c2a37a386f55fc4e23061a954da5bd7a335e7dfe56f2743c277a",
+    "parameters": 193581591,
+    "limits": "All bundle parameters counted, including unused heads. Full pretraining data lineage unknown."
+  },
+  "data": {
+    "train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "folds": [
+      2,
+      3
+    ],
+    "documents": 32,
+    "held_f1_sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415",
+    "held_documents": 16,
+    "held_patients": 39
+  },
+  "targets": {
+    "query": "phenotype",
+    "positive": "All non-NO exact source offsets; compound/NIL spans are phenotype, no ontology ID target; coordinate duplicates collapse",
+    "NO": "No separate category. Exact NO spans audited and excluded from positives; negative context retained. Sparse pair loss does not guarantee every NO pair sampled.",
+    "unaligned": "38 inside-native-word positives explicitly retained in audit but unrepresentable; never expand gold boundaries or claim complete annotation coverage.",
+    "nested": "Explicit SurfaceSpan dictionaries and dedupe_contained_entity_spans=False",
+    "max_gold_per_query": 64,
+    "on_capacity_exceeded": "raise"
+  },
+  "windows": {
+    "size": 384,
+    "overlap": 64,
+    "splitter": "original native WhitespaceTokenSplitter",
+    "source": "Full report original passage order with explicit source maps",
+    "train_windows": 320,
+    "batch_size": 2,
+    "drop_last": "Native true but320 divisible by2,0 omitted; guard future data changes",
+    "no_truncation": "Native Trainer max_len is a WORD-token cap, defaults to checkpoint4096. Actual windows have <=384 native words before punctuation; independently audit all wordpiece IDs <=4096. No max_len truncation is needed."
+  },
+  "training": {
+    "entry": "gliner2.training.ExtractorTrainer",
+    "initialization": "Fresh public weights; no old probe reuse",
+    "epochs": 10,
+    "steps_per_epoch": 160,
+    "total_steps": 1600,
+    "encoder_lr": 1e-05,
+    "task_lr": 0.0005,
+    "weight_decay": 0.01,
+    "clip": 1.0,
+    "scheduler": "linear",
+    "warmup_ratio": 0.1,
+    "fp16": false,
+    "bf16": true,
+    "gradient_accumulation": 1,
+    "seed": 20261024,
+    "num_workers": 0,
+    "strict_training": true,
+    "allow_invalid_samples": false,
+    "ignore_nonfinite_losses": false,
+    "skip_step_errors": false,
+    "dedupe_contained_entity_spans": false,
+    "gold_injection_start": 1.0,
+    "gold_injection_end": 0.25,
+    "gold_injection_hold_frac": 0.15,
+    "eval_strategy": "epoch",
+    "eval_data": null,
+    "save_best": false,
+    "early_stopping": false,
+    "endpoint": "Final epoch10 only; no held selection",
+    "loss": "Unchanged native/checkpoint boundary multi-term loss: asymmetric marginals, sparse reranking/proposal, inside/softIoU/consistency, count and abstention; not old valid-span mean BCE or exhaustive all-pair loss",
+    "max_train_samples": -1,
+    "max_steps": -1,
+    "constructor_eval_data": null,
+    "train_eval_data": null,
+    "automatic_holdout": "No call to TrainingDataset.split; selected native trainer has no automatic holdout",
+    "loader_validation": "validate_data=True; require unchanged320-row canonical multiset after native sanitize and160 batches each epoch"
+  },
+  "inference": {
+    "entry": "extract_entities",
+    "types": [
+      "phenotype"
+    ],
+    "threshold": 0.5,
+    "overlap_policy": "allow",
+    "include_spans": true,
+    "include_confidence": true,
+    "chunks": "same384/64",
+    "offsets": "reject cross-source-passage spans; same original coordinates merge by max probability",
+    "normalization": "Existing strict31d380f5/train32 plus public41099 Sap policy b59eb3f8; cos>=.90/margin>=.03/max32. No bank reencoding.",
+    "primary": "Preserve strong baseline/nonentity fields. Add only legal mapped HPO spans disjoint or properly nested with different concept. Reject same-span conflict/crossing. Sort score desc,length desc,offset asc. NIL raw diagnostics retained, primary does not append NIL."
+  },
+  "strong_baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+    "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f",
+    "bytes": 173758,
+    "entities": 1313,
+    "Score": 0.7286975364690524,
+    "metrics_sha256": "4099a624f17f4d9c2809ae62f8da677a32d419029b1dbecefbbb37eedfa3acbd"
+  },
+  "future_quality": "If assigned later, public base and adapted model use identical Task1 schema/decoder/normalization; freeze complete strong-base unions together. E001 joint-relation outputs are not a matched Task1 base. No quality in this readiness.",
+  "cost": "1600 proposed optimizer steps; actual training GPU memory/time unmeasured. Inference68-80s is not a training budget. Future discarded longest2/allnegative/mixed target native loss-gradient/proposal-recall check needed before full budget.",
+  "decision": "Distinct executable data path, but independent correct strong-pool supply unknown. Do not assume new model gains or start large multiseed/OOF.",
+  "actual_preparation_counts": {
+    "positive_annotations": 2275,
+    "NO_annotations": 87,
+    "unaligned_positive": 38,
+    "unique_representable_positive": 2236,
+    "unique_representable_NO": 87,
+    "positive_proper_nested_pairs": 8,
+    "positive_crossing_pairs": 2,
+    "windows": 320,
+    "positive_target_window_instances": 2642,
+    "NO_window_instances": 99,
+    "empty_positive_windows": 74,
+    "windows_with_NO": 44,
+    "documents": 32
+  },
+  "actual_cpu_contract": {
+    "status": "CPU_ALL_TRAIN32_NATIVE_TASK1_TARGETS_PASS_NO_FIT",
+    "counts": {
+      "positive_annotations": 2275,
+      "NO_annotations": 87,
+      "unaligned_positive": 38,
+      "unique_representable_positive": 2236,
+      "unique_representable_NO": 87,
+      "positive_proper_nested_pairs": 8,
+      "positive_crossing_pairs": 2,
+      "windows": 320,
+      "positive_target_window_instances": 2642,
+      "NO_window_instances": 99,
+      "empty_positive_windows": 74,
+      "windows_with_NO": 44,
+      "documents": 32
+    },
+    "max_input_ids": 698,
+    "max_gold_per_query_observed": 49,
+    "native_appended_period_windows": 271,
+    "batch_size": 2,
+    "training_steps_per_epoch": 160,
+    "proposed_epochs": 10,
+    "proposed_optimizer_steps": 1600,
+    "tail_samples_dropped": 0,
+    "all_representable_targets_exact": true,
+    "all_dense_start_end_inside_and_padding_masks_verified": true,
+    "all_tokenizer_json_input_ids_exact": true,
+    "silent_truncation": false,
+    "NO_policy": "Positive phenotype query only. NO spans are contextual negatives; no separate class or forced negative pair injection. Sparse pair-loss receives only proposed candidates.",
+    "unaligned_policy": "Retain exact original annotations in audit; 38 inside-native-word positives cannot be emitted by this unchanged native splitter and are not expanded or silently relabeled.",
+    "source_sha256": "3f50dd03f0cd882c0f5f023ee73f8ded05ee96d99d65d8c8d7a5c57b1de6b029",
+    "train_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "model_parameters_loaded": 0,
+    "forward_calls": 0,
+    "backward_calls": 0,
+    "optimizer_steps": 0,
+    "quality_evaluations": 0,
+    "elapsed_seconds": 8.352758504915982,
+    "outputs": {
+      "unrepresentable.json": {
+        "bytes": 7465,
+        "sha256": "a7ea38a16b633bcd0d44da52befb1ed9e30e007ee1401e35ae471664bf89e353"
+      },
+      "prepared-summary.json": {
+        "bytes": 8705,
+        "sha256": "fb33e2f27ee4428ea84dc8e3f2a6852a699fd583424dee334d683453d2412db9"
+      },
+      "target-audit.jsonl": {
+        "bytes": 1026390,
+        "sha256": "216b7d477472232b8de1886fb94651dd66e89560df0d4c50f61cd570209c16d9"
+      },
+      "train.native.jsonl": {
+        "bytes": 833524,
+        "sha256": "f23981c22d76b66055e76e302a9590f284f2d43911d959fb5c0d0735f7dea466"
+      }
+    }
+  },
+  "actual_loader_contract": {
+    "status": "NATIVE_LOADER_SAMPLER_ALL320_BY10_PASS_NO_TRAINER_OR_MODEL",
+    "validated_loader_records": 320,
+    "record_multiset_unchanged": true,
+    "positive_targets": 2642,
+    "explicit_negative_query_windows": 74,
+    "epochs": [
+      {
+        "epoch": 1,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "ca9139b3177b8910cb801cb16652154351b0de126571a8d201792aaa38762e3b"
+      },
+      {
+        "epoch": 2,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "662a261c031cd00521e4e3a269996f4da697ee5f546d391a91343533957f2ff3"
+      },
+      {
+        "epoch": 3,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "c15bd806049ed1295694e3c011dc60567a49773130e70d3ab615644d9e9b5250"
+      },
+      {
+        "epoch": 4,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "0e2056d7ccb6abee0a066a6b17753e3b5cd713927f053a9b189d5b039224f5c4"
+      },
+      {
+        "epoch": 5,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "2989c8cddc8b48959562b901dfaabe8228bfd6f884687734ca44d4bc11644b37"
+      },
+      {
+        "epoch": 6,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "75682fda000d6c21c40e855d3b159b03283e19267aa15c183295754e70183ea5"
+      },
+      {
+        "epoch": 7,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "8f0fb8725c9c38c2c7042ad8c870aa4bbb7fde8a1840f55e63134ce5ae820d53"
+      },
+      {
+        "epoch": 8,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "83582a3e94916ae54aa6fe79fe0a12eea42f23230ce2450ceb42237bd8f5f2dd"
+      },
+      {
+        "epoch": 9,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "e33eea7854f0c4496cdc2123651dce2a5ce7f80ac903bc31bd9adbd92b21faf0"
+      },
+      {
+        "epoch": 10,
+        "batches": 160,
+        "samples": 320,
+        "order_sha256": "996a6bebd4aa0c65d4aa1fac419d087a26ff4ad25dc2299fd0057699636d9b69"
+      }
+    ],
+    "config": {
+      "num_epochs": 10,
+      "batch_size": 2,
+      "max_train_samples": -1,
+      "max_steps": -1,
+      "eval_strategy": "epoch",
+      "save_best": false,
+      "early_stopping": false,
+      "strict_training": true,
+      "allow_invalid_samples": false
+    },
+    "cpu_config_precision_only": true,
+    "planned_gpu_bf16": true,
+    "trainer_constructed": false,
+    "model_parameters_loaded": 0,
+    "forward_calls": 0,
+    "optimizer_steps": 0,
+    "quality_evaluations": 0,
+    "elapsed_seconds": 0.03799787489697337
+  },
+  "successor_override": {
+    "branch": "explore/gliner25-task1",
+    "authorization": "CPU/source and one 180+30 GPU probe only; no formal fit yet",
+    "primary": "strong8cb61ba9 union all normalization accepted entities; no additional overlap/conflict filter",
+    "diagnostic": "new-only entity shell preserving original associations",
+    "quality": "two complete jointly frozen endpoints, each one v2, no old rerun",
+    "failure_guard": "native OOM handler must fail closed after recording; strict_training alone does not prevent skip"
+  }
+}

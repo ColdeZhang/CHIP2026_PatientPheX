@@ -1,0 +1,37 @@
+{
+  "at_utc": "2026-10-24T11:40:49.795777+00:00",
+  "status": "ROOT_FINAL_ENDPOINT_DECISION_SUPERSEDES_INITIAL_READINESS_PROPOSAL",
+  "immutable_original_readiness": {
+    "REPORT.md": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/gliner25-task1-adaptation-readiness-20261024/REPORT.md",
+      "bytes": 9762,
+      "sha256": "669c4098be3868405831a87726cd9a7881045103b69d46762fb0619e323366c6"
+    },
+    "recipe.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/gliner25-task1-adaptation-readiness-20261024/recipe.json",
+      "bytes": 11358,
+      "sha256": "895f44ecad35694ff5e916de034628f5877948e2fe33107610fd9f1280895db3"
+    },
+    "sources.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/gliner25-task1-adaptation-readiness-20261024/sources.json",
+      "bytes": 5660,
+      "sha256": "d87b12a196c5aeb186d44d35962730aa8a85c4cf822c598c48724ba6d0e4f6b7"
+    }
+  },
+  "new_branch": "explore/gliner25-task1",
+  "new_worktree": "/workspace/patientphex-worktrees/explore-gliner25-task1",
+  "source_owner": "/root/schema_extraction",
+  "training": "Original native10epoch recipe, finalepoch only; no automatic holdout/eval selection. All320 windows each epoch,160 optimizer updates each epoch,1600 total. Native OOM skip changed to fail after diagnostic; finite-loss sanitizer guarded before original finite computation. Real GPU probe pending.",
+  "fixed_endpoints": {
+    "primary": "StrongTask1 base8cb61ba9 plus ALL accepted mapped/nil exact normalized spans; atomic span/HPO dedup only, all oldentities and nonentity objects retained. No overlap/conflict/NO/NIL veto.",
+    "diagnostic": "New-only entity set in same baseline shell, all originalrelations retained.",
+    "evaluation": "Both fullF1 predictions jointly freeze then2newv2/old0; primary must strictly exceed .728697536469. No matching public-base Task1 rerun or cut sweep."
+  },
+  "superseded_proposals": [
+    "paired public-base versus adapted Task1 supplied-score comparison",
+    "disjoint/proper-nested/conflict gating",
+    "excluding acceptedNIL additions"
+  ],
+  "normalizer": "Original b59eb threshold/policy, exact train32 dictionary/public41099bank; only input interface adaptation for valid native spans. No refit or bank reencoding.",
+  "allocation": "Only one native realFB/Adam pressureprobe on .100 GPU0 UUID126293b9 authorized180+30; fresh10epochformal budget after actualspeed/memory. No GPUstart observed yet."
+}
