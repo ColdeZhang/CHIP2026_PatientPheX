@@ -9,7 +9,12 @@
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 当前任务：患者优先双折互补的三方CPU控制／full64准备
+## 当前任务：患者优先 full64 正式训练 → 原 dev 唯一并集
+
+**正在运行**：A100 GPU2 唯一 `proc_5b00069a-f26c-45c5-a559-c9aa3e7d1d64` / driver PID120406、child120423；04:42:33.455Z启动，fresh265×2/68calls/4warmup，4500+TERM30，近似TERM05:57:33/KILL05:58:03。04:45:40实际已进入正式训练，尚无完整epoch终点。不要再次start。外部F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-preparation`；只读`monitor_existing.py <新收据名>`，完整终点用`formal_operations.py collect --phase train`。
+
+- root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
+- [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当前未新devgold/未质量/未官方。
 
 **F0恢复58完整结束，原strict失败保留；primary负、oldSFT48∪patient增量通过事前判据。** 新primary .684342231，旧baseline .695443948；固定secondary **.705527893（+.010083945）**，关系micro+.020643194、macro+.019692587，新增26=16TP10FP且保留全部旧关系。947实体/非关联不变。仍低同池rules .711353522；原dev .8目标未完成，不自动迁dev。
 
@@ -34,7 +39,7 @@
 ## 记录与备份
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
-- 截至本页整理前，已push并lsremote确认 `0def94519a4a198b4623bd353932b5c6b07581c4`，包含完整恢复双质量；终审与新CPU资源本次跟进备份。不要为记录台账自身SHA递归提交。
+- 截至本页整理前，已push并lsremote确认 `dfdfdb45512037b0d7f0e051325c786d1e27a4d0`，含full64唯一正式job、实际CPU/探针、固定单臂政策及后继真实收据控制器。不要为记录台账自身SHA递归提交。
 - 下一里程碑是full64两轮68calls完整持久终点，再原dev64 fresh900+30推断、共同冻结完整raw+单一a179并集后一次v2；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
 - full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z运行；4500+30，近似TERM05:57:33/KILL05:58:03。见 [full64记录](experiments/patient-first-full64.md)。

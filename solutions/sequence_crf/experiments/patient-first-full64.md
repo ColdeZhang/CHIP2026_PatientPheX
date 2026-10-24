@@ -47,3 +47,5 @@
 单一dev端点已静态冻结87633491/policy901b5b2f，等待真实训练与推断小收据再绑定；203成员、64生成IDs独立decode和codec/strict并列、只a179 literal union一份预测/一次v2。原政策a0b2的Score升best及macro披露口径不变。后续推断仍依完整durable epoch2，不使用probe或部分epoch。
 
 04:45:40首次常规观察：原child120423已完成基座实际指纹/完整编码审计/载模，进入formal_training；无失败或终点，不冒称实际步数。终点控制器 `finish_setup.py` 已准备但未执行，仅在真实epoch2/fullstate齐后绑定3SHA、受限部署两小件并绑定单一dev端点。输入级窄查有2个原候选字面字符串（increased apoptosis、cardiovascular），它们与其余候选同样保持；辅助全HPO假设过严失败单独保存，不改任何训练/推断/端点源码或筛掉候选。
+
+统一正式入口独审468a1f84 PASS：训练数学/来源/20件实际部署/CPU、完整状态祖先fsync、原dev单臂端点和后继收据绑定控制器均无具体阻断。两文件后继部署是逐文件原子，不冒称跨文件事务；UNKNOWN须原路径库存后接续。训练继续原proc/4500+30，不新增探针、早停或评分臂。
