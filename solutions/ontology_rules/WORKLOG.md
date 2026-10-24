@@ -1,13 +1,9 @@
-## NCR 当前恢复检查点（2026-10-24 00:44 UTC）
-
-公开 NCR readiness 尚无质量结果。前两轮下载均未完整，attempt2 payload timeout/rc1；248.51 MB 稳定片段已保存核验。独立本机 Range→MCP attempt3 已在00fa820推送后于00:44:22.681751Z启动（PID80371，deadline01:44:22.681751Z、TERM30，≤8 workers，≤512 KiB），HP已完整核验（60数组/157705490参数），仅替换BioBERT的491068890总参数投影合预算，现继续fastText缺口；全FT/原生CPU仍待完成。见 [协议](experiments/P-20261024-NEURALCR-READINESS.md)；无GPU/赛事输入。
-
 # 本体规则工作台账
 
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
 - **BioBERT 原dev固定迁移（完成，统一独审PASS）**：四fold正后唯一full64 103列模型、native1379键并入旧池，Score **.737585917→.738493753（+.000907835）**，men+13TP17FP/doc+3TP1FP，368关系和所有nonentities原样/0错警。完整预测先冻后唯一v2，失败schema guard仅工程修复/总3.241s；native78.392s释放、同模型4655raw复用exact。独审7336b280全概率/预测/v2精确；模型/全部概率/预测外部保留，未官方/未达.8；[完整结果和恢复](evidence/round2/public-phenotagger-biobert-dev-results.json)。
 
-- **NeuralCR准备（等待共享MCP稳定，补缺已停）**：原attempt3及首轮recovery失败原留；第二轮先实际核7缺口的14路径，再单worker于01:25:01开始，45.901秒完成1片512KiB，下一请求LUNA_OFFLINE后立即停、其余5片未请求，0 assembly/native。当前6片未确认/缺失，不自动第三次补缺、不重下公网/HP；全部203个公网range完整有SHA，原01:44:22.681截止仍留作恢复上限。纯输入census已完整6.427秒：683438 raw坐标/408272 token keys，非HPO预测或质量。[补缺终态](public_neuralcr_readiness/relay-recovery-attempt2-0122/terminal.json)、[输入报告](public_neuralcr_readiness/input-only-census/REPORT.md)、[完整方法](experiments/P-20261024-NEURALCR-READINESS.md)。
+- **NeuralCR准备（64 KiB输运变体已准备）**：原attempt3及首轮recovery失败原留；第二轮先实际核7缺口的14路径，再单worker于01:25:01开始，45.901秒完成1片512KiB，下一请求LUNA_OFFLINE后立即停、其余5片未请求，0 assembly/native。当前6片未确认/缺失；01:28实际小只读成功后，获准在原截止内准备64KiB顺序写新目录、先核一个原512KiB片的输运变体，任一错误全停，不重下公网/HP；全部203个公网range完整有SHA，原01:44:22.681截止仍留作恢复上限。纯输入census已完整6.427秒：683438 raw坐标/408272 token keys，非HPO预测或质量。[补缺终态](public_neuralcr_readiness/relay-recovery-attempt2-0122/terminal.json)、[输入报告](public_neuralcr_readiness/input-only-census/REPORT.md)、[完整方法](experiments/P-20261024-NEURALCR-READINESS.md)。
 - **目标与约束**：固定 train64/dev16、公共 evaluator v2，Score ≥ .8；训练资源按文献隔离。未达标，不合并；本轮禁止官方上传。
 - **第三head固定四fold（正，统一终审PASS）**：BioBERT native缓存5903键；旧244794→246804行、6实际来源字段，HGB160/.3+原nested，pooled Score **.727975656→.730993616（+.003017961）**，men+.005649/doc+.006422、关系exact；3/4fold实体目标正、满足事前keep。4fit55.703秒/唯一终点2.973秒，实际102/101/103/103列，无cut扫描。随后唯一原dev迁移已完成，见上方结案。[完整结果](experiments/E-20261023-PUBLIC-PHENO-BIOBERT.md)。
 - **第三公开BioBERT准备（CPU独审PASS，未质量）**：固定486624416B H5/SHA1c4d799c实查、native201变量/121587826参数全部H5数组exact；28996 cased词表仍沿原先小写、17266列/映射保持。下载59.266秒，CPU20.054秒（含漏TF标记首失败总25.430秒<180），4合成接口finite，增量独审f954be78通过，准备阶段未GPU/任务缓存/质量。预计原2–8全64需244938独立前向，类比同架构GPU约272秒含余量，非实测或收益。[来源与恢复](experiments/P-20261023-PUBLIC-PHENO-BIOBERT.md)。

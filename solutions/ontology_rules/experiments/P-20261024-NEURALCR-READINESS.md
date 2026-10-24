@@ -62,3 +62,7 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 独立attempt2增量库存已实际完成：原7缺口及前次7目标共14路径均核不存在，仍需7×512KiB；其余2273既有SHA核验记录复用，不把旧复核写成重跑，最终组装仍核全部2280段。实际bound plan已更新，单worker/首offline全停，源与实际缺口推送后才启动writer。
 
 第二轮实际于01:25:01启动、45.901秒后首LUNA_OFFLINE全局结束：1片512KiB成功、1次失败、5片未请求，未启动assembly/native；壳PID85174无命令字节，实际rc未由本监视器获取，不根据源码推断返回码。剩6片状态须稳定连接后再实核，不能因为失败响应直接判定未落盘；当前无自动第三轮writer。[真实终态](../public_neuralcr_readiness/relay-recovery-attempt2-0122/terminal.json)含成功片路径和状态SHA。
+
+### 01:30 64 KiB输运变体（准备）
+
+主线程已停止新的大MCP传输并授权一次有界变体。01:28:36实际自有plan读取1.385秒成功且SHA exact。新目录`relay-recovery-64k-0130`，先核7个原不确定片在original/R1/R2三处实际SHA；只对真实缺失片按64KiB顺序写，一次请求失败即全停，8块全验再按原512KiB SHA组装。首个原片完整后继续其余真实缺片；所有最终文件字节不变，绝对deadline仍01:44:22.681751Z，不重公网/HP、不与旧writer并发。最终全FT assembly仍复验2280片。本观察不能证明大包是根因。源/plan先checkpoint，实际库存另freeze后才start。
