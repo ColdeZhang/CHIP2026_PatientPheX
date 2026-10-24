@@ -1,0 +1,22 @@
+{
+  "experiment": "E-20261024-MENTION-NO-VETO-001",
+  "locked_utc": "2026-10-24T14:03:04.537390+00:00",
+  "status": "FIXED_BEFORE_HARDNEG_QUALITY_AND_BEFORE_THIS_CONTROL_OUTPUT_COUNTS",
+  "parent": "hardneg2931fresh2epoch finaladapter2a1a5a09",
+  "baseline_sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f",
+  "baseline_score": 0.7286975364690524,
+  "formula": "Delete a baseline entity iff the identical (pmc_id, offset, length, text) held mention has a complete EOS, uncapped, strictly parsed NO output. Retain HPO/NIL/rejected/missing; keep all other entity objects in original order and all nonentity objects. No replacements/additions.",
+  "complete_rows": 1416,
+  "baseline_entities": 1313,
+  "documents": 16,
+  "patients": 39,
+  "endpoints": 1,
+  "new_v2": 1,
+  "old_v2": 0,
+  "zero_change": "inherit exact baseline bytes and metrics, zero v2",
+  "gate": "strict Score > baseline; no originaldev/full64 without secondfold validation",
+  "not_threshold_or_subset_scan": true,
+  "held_gold_before_freeze": false,
+  "new_GPU_or_fit": false,
+  "prior_mechanism": "9B binary entity-slot veto was already negative. This reuses a different completed Qwen3 head explicitly trained with 578 additional annotation-negative spans; does not claim first-ever entity veto."
+}
