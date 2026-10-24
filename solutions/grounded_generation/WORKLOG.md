@@ -56,3 +56,5 @@
 GG-002父线程新授权固定强B2a65056f（.686338981272）∪全部282grounded，源plan baee5ec先push；完整pred ef93ce2d/156658B、freeze31648074→唯一v2/旧0。总分 .695950447742（+.009611466471），micro−.013393436395/macro+.051839302277，Task1不变；+90=26TP64FP，保全部471基底。此为已知首结果后的独立固定CPU控制，无TP筛选。当前准备同权重/normalizer全祖先排F0和47患者全文原生输入合同，预计A8002调度，仍不自动GPU；[strong_support_union/result.json](strong_support_union/result.json)。
 
 11:26恢复：F1完整终审0fcffd7b PASS，训练/39raw/254query/原双质量及后续强B融合一次收口，见final-F1-review指针；不重复运行。F0本地纯输入47全文已1.322秒完整，289420tokens/max9935，manifest37534e8e；F2F3训练32/alias与F0不交，纯公共41099链原审复用，未读取F0gold。下一步A800实际native47合同与173MBd52推断缓存同字节复制，完整训练state仍A100，实际Torch2.7.1与原A1002.6.0差异明示；固定强F0 B .7115075800266846∪全部新关系，不自动启动GPU。F1最小补包源码已准备，原3 ZIP逐字节收进补包、所有大权重另留精确locator。
+
+F1补包62d55b/1006565B已.100全184内容逐SHA/fsync/reopen，root随后实际下载恢复并核184内容＋内嵌manifest，receipt c48d3776；不重复下载。F0 native47实际11:32:16 rc0/5.522秒，全部IDs/渲染/decode exact，11件5bcd8c19已完整回收；A100唯一copy库存11:32:23.677 LUNA，未部署HTTP/未启动复制，统一ontology最早11:35:28.677恢复，A800卡未占。
