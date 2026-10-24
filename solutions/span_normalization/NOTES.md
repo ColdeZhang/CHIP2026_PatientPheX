@@ -12,3 +12,5 @@ vendor/legacy_linker.py与semantic_encoder.py复用项目非archive现行源；�
 已知坑：AutoModel(add_pooling_layer=False)加载公开MaskedLM资产时，pooler.dense.weight/bias是预期未使用键；应精确允许这两项而非允许所有未知参数，仍拒绝missing/mismatch。MCP返回可为非JSON LUNA_OFFLINE，先保存原响应再解析；UNKNOWN时查原对象，不能盲重训。误差诊断不要用defaultdict下标测试不存在键，会污染边界全集。
 
 首轮证据改变了优先级：全池新增正确HPO仅12，弱边界假阳远多于规范化错；下一步如继续应检验严格OOF学分数过滤，不能把union负结果包装成联合规范化已经验证失败。
+
+第二控制工程经验：旧ontology与sequence均把入口命名run.py，拼接同解释器的feature/decoder时必须隔离sys.modules查找，保留对象引用并核实际模块路径；CPU合同已验证旧完整概率/实体逐值一致。MCP大文件write_file可能在HTTP层413（此次ZIP2107921B/base64后超限）；先stat明确缺失，再对同一已冻结ZIP分512KiB块、分别SHA、远端拼回原SHA，不重打包或重复启动。
