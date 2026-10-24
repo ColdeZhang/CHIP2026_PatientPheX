@@ -1,29 +1,11 @@
 --- actual-G32-20261023/train.py
 +++ proposed-G32-20261025/train.py
-@@ -34,7 +34,7 @@
-     'qwen35_smoke':'9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3',
- }
- CONFIG={'rows':87,'epochs':2,'steps_per_epoch':11,'optimizer_calls':22,'warmup_steps':2,
+@@ -37 +37 @@
 -    'batch_size':1,'gradient_accumulation':8,'tail_group_size':7,'seed':20261023,
 +    'batch_size':1,'gradient_accumulation':8,'tail_group_size':7,'seed':20261025,
-     'learning_rate':1e-4,'weight_decay':.01,'max_grad_norm':1.,'rank':16,'lora_alpha':32,'dropout':.05,
-     'dtype':'bfloat16','attention':'sdpa','gradient_checkpointing':{'use_reentrant':False},
-     'packing':False,'quantization':False,'loss':'standard per-row mean causal CE; divide each row by actual group size',
-@@ -154,7 +154,7 @@
- 
- 
- def batch_plan(epoch):
+@@ -157 +157 @@
 -    indices=list(range(87));random.Random(20261023+epoch).shuffle(indices)
 +    indices=list(range(87));random.Random(20261025+epoch).shuffle(indices)
-     groups=[indices[i:i+8] for i in range(0,87,8)]
-     assert len(groups)==11 and [len(g) for g in groups]==[8]*10+[7]
-     assert sorted(i for group in groups for i in group)==list(range(87))
-@@ -295,7 +295,7 @@
-         loader=modules['slot_model'];protocol=modules['qwen35_relation_cost'];indexed=modules['indexed_head']
-         torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=True
-         stage='fresh_public_base_and_fresh_LoRA';check_deadline(args.absolute_deadline_unix)
+@@ -298 +298 @@
 -        model,named,loaded=loader.load_fresh(plan['model'],assets['model_manifest']['path'],20261023)
 +        model,named,loaded=loader.load_fresh(plan['model'],assets['model_manifest']['path'],20261025)
-         base=model.get_base_model();assert base.loss_function is native_loss.ForCausalLMLoss
-         assert not any(p.requires_grad for p in base.lm_head.parameters())
-         assert loaded['fresh_public_base'] and loaded['no_saved_adapter_loaded']
