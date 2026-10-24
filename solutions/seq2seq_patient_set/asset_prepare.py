@@ -27,7 +27,10 @@ def main(a):
             target.flush();os.fsync(target.fileno())
         assert size==spec['bytes'] and h.hexdigest()==spec['sha256'],name
         os.rename(temp,path)
-        with path.open('rb') as reopened:assert hashlib.file_digest(reopened,'sha256').hexdigest()==spec['sha256']
+        reopened_hash=hashlib.sha256()
+        with path.open('rb') as reopened:
+            for block in iter(lambda:reopened.read(4*1024*1024),b''):reopened_hash.update(block)
+        assert reopened_hash.hexdigest()==spec['sha256']
         files[name]={**spec,'reused':False,'seconds':time.monotonic()-tick,'url':url}
     fd=os.open(root,os.O_DIRECTORY);os.fsync(fd);os.close(fd)
     result={'status':'COMPLETE_SINGLE_BASE_ASSETS_FULL_SHA_FSYNC_REOPEN','files':files,'seconds':time.monotonic()-start,'GPU_calls':0}
