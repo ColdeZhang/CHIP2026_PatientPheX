@@ -35,3 +35,5 @@
 主线程已基于实测统一授权fresh265×2/68calls/4warmup的4500+30正式训练，以及durable epoch2后原dev64唯一900+30推断。首OOM/非有限/硬截止停，不降精度/改loss/扩预算、不重复生成。原dev唯一评分为a179全预测literal∪有效患者关联，1072实体/391旧关系/35public-new严格保留；完整raw与最终pred先冻再单次v2，旧.746081965复用，不评分patient-alone或扫组合。Score严格升记新候选best，macro下降必须披露；用户达标是Score≥.8并通过格式/来源/复现，内部折macro筛选不另作用户硬条件。协议a0b2b77b在任何新dev质量前冻结。
 
 正式源/计划661f60f4已准备；推断三个epoch2实际SHA保持pending，未伪造实际模型身份。probe独审02881279 PASS只覆盖工程单步，不当正式训练或质量证明。
+
+正式部署04:38:21原intent后唯一213363B上传块返回UNKNOWN_OUTCOME；mkdir先成功，未解包/未formalCPU/无GPU启动。04:39:24跨路线同A100只读也UNKNOWN，按共享退避到≥04:40:25只核原目录库存，若块已落只复用，不重mkdir/整包/start。这是连接观察失败，不是模型训练失败。
