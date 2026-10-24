@@ -1,8 +1,8 @@
 # 人工结束思考后续写：公开方法与精确 token 重放可行性
 
-实验 `E-20261023-009-thinking-budget-forcing-readiness`，2026-10-24 UTC。**仅完成 CPU、源码和计划；未启动 GPU、未生成新答案、未读 gold/targets、没有质量分。**
+实验 `E-20261023-009-thinking-budget-forcing-readiness`，2026-10-24 UTC。**CPU研究已完成；后续获准的单条GPU格式诊断已启动，终点待回收。未读 gold/targets，没有质量分。**
 
-**后续单条诊断已由主线程选择，正在完成部署与备份。** 实际目标改为 .100 A30 GPU1，复用原生 TF5.20.2/PEFT.21.2；CPU 实核 FLA 不可导入、两GDN绑定均原生。实际 generation helper L2935–2936本已自动置`logits_to_keep=1`，新入口显式1沿用语义。15项新增presence位置反例均在真实HF CPU通过，未重做原14项或token重放。A30只读库存未找到旧32 adapter，已用独立两文件HTTP从A800复制：173181072B权重4f4815b6、1287B配置96564441均full SHA，19.224秒，不涉及warm新权重或GPU。实际[运行计划](../evidence/round2/thinking-budget-final-run-plan.json)、[CPU接口](../evidence/round2/thinking-budget-final-presence-cpu.json)、[运行环境](../evidence/round2/thinking-budget-final-runtime-preflight.json)、[传输收据](../evidence/round2/thinking-budget-final-adapter-transfer.json)。源在`thinking_budget_forcing/runner.py`，独立wrapper写真实returncode与资源释放，launch前保存唯一intent以防MCP unknown后重复启动。第一次只读runtime检查因内嵌换行转义SyntaxError在import前退出，失败source/收据保留在外部final-v1；修正后CPU通过，不是模型失败。
+**后续单条诊断已由主线程选择并启动。** 实际目标改为 .100 A30 GPU1，复用原生 TF5.20.2/PEFT.21.2；CPU 实核 FLA 不可导入、两GDN绑定均原生。实际 generation helper L2935–2936本已自动置`logits_to_keep=1`，新入口显式1沿用语义。15项新增presence位置反例均在真实HF CPU通过，未重做原14项或token重放。A30只读库存未找到旧32 adapter，已用独立两文件HTTP从A800复制：173181072B权重4f4815b6、1287B配置96564441均full SHA，19.224秒，不涉及warm新权重或GPU。实际[运行计划](../evidence/round2/thinking-budget-final-run-plan.json)、[CPU接口](../evidence/round2/thinking-budget-final-presence-cpu.json)、[运行环境](../evidence/round2/thinking-budget-final-runtime-preflight.json)、[传输收据](../evidence/round2/thinking-budget-final-adapter-transfer.json)。源在`thinking_budget_forcing/runner.py`，独立wrapper写真实returncode与资源释放，launch前保存唯一intent以防MCP unknown后重复启动。第一次只读runtime检查因内嵌换行转义SyntaxError在import前退出，失败source/收据保留在外部final-v1；修正后CPU通过，不是模型失败。
 
 结论：原 4096-token 思考可以逐 token 保留，拼接当前模型真实的人工结束边界后进行有限续写。原来的“触顶且未自然闭合”失败保持原样。可精确恢复的是 token 前缀，旧 RNG 与 KV 状态未保存，不能叫同一随机流或原缓存的精确续跑，更不能把人工边界记成模型生成。
 
@@ -34,9 +34,9 @@ s1 默认边界是 `<|im_start|>answer\nFinal Answer:`；其 README 简例主要
 
 精确重建用[prepare_replay.py](../thinking_budget_forcing/prepare_replay.py)，结果见[CPU 报告](../evidence/round2/thinking-budget-replay-readiness.json)。全量重放 IDs 留外部 `replay/replay-input.json`，不入 Git。重新 prefill 6129 tokens 仍有计算成本；不同 prefill/cache 路径的浮点状态不保证与旧4096步自然轨迹逐位一致。
 
-## 建议的单次后续合同（尚未启动）
+## 最初建议的单次后续合同（实际执行状态见上方）
 
-[机器可读提案](../evidence/round2/thinking-budget-proposal.json)记录一条固定输入、同旧32 adapter、同 native GDN/BF16/SDPA/TF 5.20.2/PEFT 0.21.2，最多新生成512，单 job **180 秒 + TERM30**，涵盖冷加载、核验、prefill 与 final。没有重试、延长思考、扫预算或自动扩成80条/F1/原dev；目前无推断入口运行，无 GPU 占用。
+[机器可读提案](../evidence/round2/thinking-budget-proposal.json)记录一条固定输入、同旧32 adapter、同 native GDN/BF16/SDPA/TF 5.20.2/PEFT 0.21.2，最多新生成512，单 job **180 秒 + TERM30**，涵盖冷加载、核验、prefill 与 final。没有重试、延长思考、扫预算或自动扩成80条/F1/原dev；这是最初提案状态；实际A30入口、启动信息和资源以本页上方及下方记录为准。
 
 原 EOS 有两个：text config 的248044与 chat 的248046；**248069只结束思考，不结束整个回复**。新 suffix 要自行以真正 EOS 结束，解析仅移除末尾这一个 EOS，不用 `skip_special_tokens=True` 吞掉中间非法角色标记。严格需要8个CID全集与合法PID，完整 JSON。源在[strict_final.py](../thinking_budget_forcing/strict_final.py)；这只是新合同，不会令原输出变合法。
 
@@ -59,3 +59,5 @@ PYTHONPATH="$RESEARCH_ROOT/cpu-libs" python solutions/sequence_crf/thinking_budg
 ```
 
 其中 `RESEARCH_ROOT` 为上述外部根，`QWEN_ROOT` 为既有外部 `case_retrieval/qwen35-preparation/`。目前只证明 token/方法/格式合同可准备；单条最终格式成功也不能当训练 fit、F1泛化或比赛收益。后续若主线程选择该控制，再实现小型固定ID续写入口并冻结实际来源，不需要重做旧思考。
+
+实际启动：source/plan已推送并核验`716d11a`后，`proc_fe75c622-5418-4e3a-9357-3e51bc14dd18`/PID2602756于01:35:18.739Z启动；原生driver写180+TERM30绝对截止与真实returncode。见[启动收据](../evidence/round2/thinking-budget-final-job.json)、[增量入口独审PASS](../evidence/round2/thinking-budget-final-entry-review.json)。实际plan9e96e594，末端只读回收原job，不因MCP故障重新启动。
