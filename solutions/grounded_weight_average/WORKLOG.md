@@ -41,3 +41,5 @@ Root另准CPU准备既有 `.100 GPU0` Sap包装：原.3已给DPO，不迁大生�
 - F0 固定复验已授权：同 r32 合成权重、47 完整输入、同 CPU FP32 查询策略；289420 tokens / max9935，成本预估2685.36s < 3000+30。原生ID CPU合同先行；不读F0 gold、不新训。双父train32逐document排F0见 evidence/F0-ancestry.json。
 
 F0 原生47 CPU 8.513秒全通过，实际 IDs/rendered/decode 与旧缓存一致（90be3840）；新推断14:54:40.106115Z proc3d9e8637/driver271042/child271060，TERM15:44:40.327297Z/KILL15:45:10.327297Z，同A100/GPU2。计划4edd175c、源码470b81bf已先推。只读watcher185906按180秒观察原intent；未重新训练或改候选。下游静态检查修正F0引用键删除写错（无下游执行/质量），补有区分力键合同v2；不改变正在运行源。
+
+F0收件受.12连接阻断：read_file在15:16、15:20实际LUNA_OFFLINE；按root许可185秒后15:23:59尝试原responses≤32768B纯CPU run_command回传，仍明确LUNA_OFFLINE（非UNKNOWN）。无片段/无模型重启/无远端写，继续只读退避。原complete由成功终态观察按cd41d29a逐字节恢复，42EOS/5cap及GPU释放均已有证据；不把文件读取错误当推断失败。恢复入口 `f0/read_original_responses.py` 保存各原片段，可在连接恢复后接续，再走 `direct_collect.py`。
