@@ -16,7 +16,7 @@ def save(p,v):
   q=q.parent
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['inventory','deploy','serve','observe-source','fetch','observe-destination']);a=ap.parse_args();B.mkdir(exist_ok=True);os.umask(0o077)
+ ap=argparse.ArgumentParser();ap.add_argument('--source-inventory',type=Path);ap.add_argument('stage',choices=['inventory','deploy','serve','observe-source','fetch','observe-destination']);a=ap.parse_args();B.mkdir(exist_ok=True);os.umask(0o077)
  lock=(B/'owner.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  p=json.loads((S/'copy-plan.json').read_text());assert ref(S/'adapter_copy.py')==p['source']
  for backoff in B.glob('*.backoff.json'):assert time.time()>=json.loads(backoff.read_text())['not_before_unix']
@@ -42,12 +42,15 @@ def main():
  def cmd(mount,code,tag):
   v=call('run_command',dict(mount_id=mount,cwd='.',command='python3 -c '+shlex.quote(code),timeout_seconds=40),tag);assert v['exit_code']==0;return json.loads(v['stdout'])
  def inventory(mount,source):
-  code="import hashlib,json,os,subprocess;from pathlib import Path;root=Path("+repr(ROOT)+");p="+repr(p)+";base=Path(p['source_directory' if "+repr(source)+" else 'destination']);print(json.dumps(dict(addresses=subprocess.check_output(['hostname','-I'],text=True).split(),free=os.statvfs('.').f_bavail*os.statvfs('.').f_frsize,files={name:dict(bytes=(base/name).stat().st_size,sha256=hashlib.sha256((base/name).read_bytes()).hexdigest()) for name in p['files'] if (base/name).is_file()},markers=[n for n in ['serve-intent.json','fetch-intent.json','source.stdout.log','fetch.stdout.log'] if (root/n).exists()],deployment={n:dict(bytes=(root/n).stat().st_size,sha256=hashlib.sha256((root/n).read_bytes()).hexdigest()) for n in ['adapter_copy.py','copy-plan.json'] if (root/n).exists()})))"
+  code="import hashlib,json,os,subprocess;from pathlib import Path;root=Path("+repr(ROOT)+");p="+repr(p)+";base=Path(p['source_directory' if "+repr(source)+" else 'destination']);print(json.dumps(dict(addresses=subprocess.check_output(['hostname','-I'],text=True).split(),free=os.statvfs('.').f_bavail*os.statvfs('.').f_frsize,files={name:dict(bytes=(base/name).stat().st_size,sha256=hashlib.sha256((base/name).read_bytes()).hexdigest()) for name in p['files'] if (base/name).is_file() and not "+repr(source)+"},markers=[n for n in ['serve-intent.json','fetch-intent.json','source.stdout.log','fetch.stdout.log'] if (root/n).exists()],deployment={n:dict(bytes=(root/n).stat().st_size,sha256=hashlib.sha256((root/n).read_bytes()).hexdigest()) for n in ['adapter_copy.py','copy-plan.json'] if (root/n).exists()})))"
   return cmd(mount,code,'inventory-source' if source else 'inventory-destination')
  if a.stage=='inventory':
-  src=inventory(p['source_mount'],True);dst=inventory(p['destination_mount'],False)
+  assert a.source_inventory is not None
+  known=json.loads(a.source_inventory.read_text());src=known['grounding_copy']
+  assert src['source_directory']==p['source_directory']
+  dst=inventory(p['destination_mount'],False)
   assert p['source_private_address'] in src['addresses'] and src['files']==p['files'] and dst['free']>=p['minimum_free_bytes']
-  save(B/'inventory.json',dict(source=src,destination=dst,plan=ref(S/'copy-plan.json')))
+  save(B/'inventory.json',dict(source=src,source_existing_receipt=ref(a.source_inventory),source_checked_at_unix=known['at_unix'],destination=dst,plan=ref(S/'copy-plan.json')))
  elif a.stage=='deploy':
   assert (B/'inventory.json').exists()
   for mount,source in [(p['source_mount'],True),(p['destination_mount'],False)]:
