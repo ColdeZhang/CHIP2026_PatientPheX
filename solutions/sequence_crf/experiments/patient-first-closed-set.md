@@ -91,3 +91,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 修复后的 CPU 子进程7.189640秒、rc0（合同内部6.284941秒）；真实TF5.20.2 tokenizer对124行所有新token/label哈希及32文献来源exact，总400614/监督4694，最长5556/5421/135。Torch实际导入，CUDA仍隐藏/未初始化，无模型权重或forward；没有重跑旧25例。三件原始收据/编码已按实际SHA回收，并保持原字节flat复制到远端根目录。选中编码9c84e688（108350B），CPU收据2c5d8254（8020B），runtime689d3317（905B）。[CPU收据](../evidence/round2/patient-first-native-CPU-receipt.json)、[真实环境](../evidence/round2/patient-first-native-runtime.json)。
 
 [最终run-plan](../evidence/round2/patient-first-probe-run-plan.json)固定原23成员SHA、actual CPU收据及选中编码，明确fresh state丢弃、180+TERM30、仅一次非零LR1e-4/native full CE真实更新；无推断/质量/正式训练。NCR实际01:58:17释放GPU2，启动仍由原operations核fresh空卡/写唯一intent。先完成并回报峰值/耗时，再由主线程安排后续训练；本体修复后的NCR在本probe实际release后接卡。
+
+
+02:00:59.317Z 已fresh核A100 GPU2 0MiB/无目标进程后启动唯一`proc_9d262dcf-1234-47db-88d0-ec6c1a941d8f`、PID6498，源码检查点0a87abc。原180+TERM30，近似TERM02:03:59/KILL02:04:29，actual deadline由远端driver-started记录。只运行本最长行一步，结果未知；终点实际release后将卡交NCR，不能重复start。[启动/恢复](../evidence/round2/patient-first-probe-launch.json)。
