@@ -93,3 +93,10 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 ## 固定原58推断启动
 
 完整训练终点af86985ad2ea已push/lsremote后，按原授权fresh核GPU2空卡、持久epoch2的adapter/config/checkpoint/training_complete实际SHA，唯一proc_22400ec4-e939-41a7-988e-bef7c87ddc23/PID93337于04:08:22.106526Z启动。固定原58、600+TERM30，approx TERM04:18:22.107/KILL04:18:52.107；实际以driver-started为准。无新采样/阈值/旧baseline评分，尚无新F0质量。训练camp仍保留GPU2至完整推断真正释放；不因训练释放收据提前移交。
+
+
+## 原strict58格式失败与有界后继授权
+
+原推断04:10:32.994 rc1/130.785452秒，23行已持久，实际04:10:33.116 GPU2空卡；无F0评分/完整组装。按固定长度+row_id顺序，失败输入为第24条3563609:relations:8，3073input，允许患者O1P1/O1P2/O1P3/O2P/O3P/O4P/O5P/O6P/O7P，C000–C007。trace在validate_matrix顶层keys检查：可能非object、缺PID或多PID，尚未检查CID值。原runner在parse_final成功后才write/flush，故失败raw/IDs未保存，无法还原具体key差异；只能依据固定控制流推断EOS/计数/非cap/JSON解析已越过，具体EOS ID/输出长度均未知。原23raw SHA73235d91，7小件23939B完整回收，失败诊断0fd182ef；训练成功不受此格式故障否定，也不能将本次记成F0负分数。
+
+主线程在未见新F0质量时明确授权独立恢复：精确复用23缓存，余35新生成（包含丢失那条，明确非精确恢复原响应），同epoch2/输入/greedy数值与1600cap，600+TERM30；先保存唯一raw/IDs/终止统计再解析。新有限codec允许合法PID子集，遗漏键仅弃答、不补模型答案；未知/重复PID、非法/重复CID、非object/错误值类型/cap/无EOS整row弃答，不扩其他格式规则。全58终态后两完整预测共冻再各唯一v2，旧指标复用，保留标准不改。原源/失败/23缓存单独冻结，不改写strict判断；新CPU/源准备中，未启动恢复GPU。
