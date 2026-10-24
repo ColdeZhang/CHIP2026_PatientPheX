@@ -1,0 +1,229 @@
+{
+  "fixed_model": "Qwen3-8B-canonical-name-v1",
+  "model_id": "Qwen/Qwen3-8B",
+  "HF_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "interpretation": "Base and target jointly changed; not a target-only ablation. Fixed before new held quality.",
+  "authorized_phases": [
+    "probe",
+    "formal",
+    "infer"
+  ],
+  "authorization": "root fixed8B and240+30; if all engineering/cost passes fresh87x2/22steps2400+30 and complete39greedy512900+30",
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/Qwen3-8B",
+  "model_files": {
+    "LICENSE": {
+      "size": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "config.json": {
+      "size": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "generation_config.json": {
+      "size": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "merges.txt": {
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "model-00001-of-00005.safetensors": {
+      "size": 3996250744,
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+    },
+    "model-00002-of-00005.safetensors": {
+      "size": 3993160032,
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+    },
+    "model-00003-of-00005.safetensors": {
+      "size": 3959604768,
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+    },
+    "model-00004-of-00005.safetensors": {
+      "size": 3187841392,
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+    },
+    "model-00005-of-00005.safetensors": {
+      "size": 1244659840,
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+    },
+    "model.safetensors.index.json": {
+      "size": 32878,
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+    },
+    "tokenizer.json": {
+      "size": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "size": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "size": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "tokenizers": "0.21.2"
+  },
+  "native_forward_sha256": "f0ec853368a9b19d664bfa6099d14f6c0d96e9d06a8ca540b181157be8246069",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "seed": 20261023,
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/training-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "recipe": {
+    "rows": 87,
+    "epochs": 2,
+    "updates": 22,
+    "updates_per_epoch": 11,
+    "last_batch_size": 7,
+    "warmup_steps": 2,
+    "learning_rate": 0.0001,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "quantization": false,
+    "packing": false,
+    "truncation": false,
+    "loss": "Native unchanged indexed standard per-row mean causal CE"
+  },
+  "budgets": {
+    "probe": 240,
+    "formal": 2400,
+    "infer": 900,
+    "each_TERM_grace": 30
+  },
+  "probe_pareto_shapes": [
+    [
+      8832,
+      208
+    ],
+    [
+      5216,
+      269
+    ]
+  ],
+  "probe_generation_train_index": 44,
+  "probe_generation_uses_training_only": true,
+  "source_refs": {
+    "own/qwen3_entry.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/qwen3_entry.py",
+      "bytes": 9452,
+      "sha256": "1b183b580d122905065d598347a131d1d1c08dac3bcf15f6fc035bb8722d2791"
+    },
+    "own/phase_driver.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/phase_driver.py",
+      "bytes": 3980,
+      "sha256": "dcb2972740d0fe165fdd900636a4ff83768cd98e81ea11863ea9d757c5191517"
+    },
+    "own/schema_contract.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/schema_contract.py",
+      "bytes": 5709,
+      "sha256": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644"
+    },
+    "backend/common.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/backend/common.py",
+      "bytes": 12516,
+      "sha256": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b"
+    },
+    "backend/native.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/backend/native.py",
+      "bytes": 16932,
+      "sha256": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c"
+    },
+    "backend/loss_ops.py": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/backend/loss_ops.py",
+      "bytes": 3893,
+      "sha256": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc"
+    }
+  },
+  "backend_source_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/source/backend",
+  "run_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/run",
+  "durability_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1",
+  "cpu_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/data/cpu.json",
+    "bytes": 2064,
+    "sha256": "1600789fbbe75b9dec0515eae55ef4653f3ff780fc78d96b09513f955d9785c7"
+  },
+  "native_cpu_receipt": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-native-cpu-v1/actual/result.json",
+    "bytes": 3374,
+    "sha256": "b62e18b3e08188fcf87bfbeade70b9c23dfc445ba6a2ecb0c9bc50e821d06a32"
+  },
+  "names_gzip": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-native-cpu-v1/names.gz",
+    "bytes": 211799,
+    "sha256": "87466c9efe30d140614e8dc79c6e79ea8b294b9cf99914b03c98be6bd367d5f7"
+  },
+  "inference": {
+    "max_new_tokens": 512,
+    "max_input_reject": 9984,
+    "maximum_input_plus_output": 10435,
+    "batch_size": 1,
+    "do_sample": false,
+    "num_beams": 1,
+    "thinking": false
+  },
+  "counts": {
+    "train": {
+      "rows": 87,
+      "documents": 32,
+      "tokens": 434582,
+      "max_tokens": 8832,
+      "supervised_tokens": 5406,
+      "encoded": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/data/train.encoded.jsonl.gz",
+        "bytes": 627992,
+        "sha256": "1c0b487ad284b2efec02d434f0312950c18137d1c46d303fa85431d9d5609302"
+      }
+    },
+    "held": {
+      "rows": 39,
+      "documents": 16,
+      "tokens": 198785,
+      "max_tokens": 9923,
+      "supervised_tokens": 0,
+      "encoded": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/canonical-names-v1/qwen3-candidate-v1/data/held.encoded.jsonl.gz",
+        "bytes": 119971,
+        "sha256": "1d124d3d51346d91403f5a1338a21dbee9f3d17c5b213975c9868c6957ccf666"
+      }
+    }
+  },
+  "quality_policy": "After complete39 and whole-row strict parse, B union all new HPO; preserve1189entities/471relations; completefreeze then1v2/old0; score>.6863389812716092; no single-head quality.",
+  "no_original_dev_gold": true,
+  "NIL_outbranch_limit": "All87 retained;14patients have explicit unrepresented NIL/outbranch positives; target is HPO projection only."
+}
