@@ -11,3 +11,5 @@
 入口：本地 `prepare_inputs.py --mode public`；原远端 runtime 执行 `--mode encode`；`driver.py --plan <frozen-plan>` 唯一窗口内执行 `infer.py`。完整实际命令、原输入与资产 SHA、进程和截止时间保存外部。
 
 CPU 门已全部通过：原 BertTokenizerFast/transformers4.50.0，64,854 tokens、172 个510/384完整窗口（单篇最多19），所有提及唯一 owner、剥 marker 原 token 精确还原、相邻/共享/嵌套边界合同通过。编码 a3fda0a2（160,911B），保留全部2,195对。原 F1 164窗推断1.598秒；F0 180+30 包含读取/校验1.3GB检查点，预算足够。
+
+已结案：唯一 `proc_9715fc3b-4626-4e3c-815a-0ef1af4c0c8c`，实际11:01:44.410178 UTC开始，180+30，10.322515秒rc0成功；11:01:54.885448实际释放GPU0（4MiB/noapps）。全部2195有序keys逐项与完整编码精确一致，logits有限/probability精确，原vendor逐字节不变；checkpoint严格205张量完整加载。raw scores `969b31af…`（214954B），外部21件ZIP `8def940f…`（333035B）已本地完整逐SHA回收，服务器副本可恢复。零上下文对保留，未训练、未读gold、未调用v2。详见[result.json](result.json)；root接手固定共识，本站无GPU后继。
