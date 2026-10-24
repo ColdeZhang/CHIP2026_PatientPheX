@@ -39,3 +39,7 @@ UIE将异构抽取统一为带schema提示的结构生成，与本轮把患者�
 ### 已确认的接口坑：旧指标文件不一定内嵌身份字段
 
 公开v2标准metrics可只有metrics/config/counts，pred/gold SHA在原pairedfreeze/evaluation-bound/summary。消费旧基线时先核实际schema，再沿冻结链绑定，不能猜prediction_sha256字段。GG首组装已在任何新pred/gold/v2之前发现并保留；独立恢复只改metadata绑定，未改变科研端点。对应根H39的真实返回对象/manifest合同问题，不凭字段缺失重评旧基线。
+
+## 独立 session HTTP 导出子进程必须有已证退出路径
+
+full64原io_driver用start_new_session=True启动HTTP，MCP stop_process停止管理父后，首个child61705仍活且被重新收养（PPID4735）；这次实际证实不能假设递归清理。保持原训练/导出/ACK不变的补充CPU guardian预先记录UID/PID/startticks/完整argv/PGID/SID，父退出或原绝对截止后只TERM该已核HTTP child组；首次0.100秒实际退出，未触训练/foreign。来源5504bac5及actual一次观察见training_shared/guardian-plan.json；第二次独立终态仍待，不泛称所有清理已验。未来新控制器优先让HTTP本身GNU timeout受原截止约束，勿把薄清理扩成新NN调度。

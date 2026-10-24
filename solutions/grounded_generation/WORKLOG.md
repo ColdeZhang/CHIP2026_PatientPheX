@@ -9,12 +9,12 @@
 - **F0作业均已完整结束**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
 - **full64已授权、CPU完整**：原173train/36纯dev实际209回放16.104秒通过，14件collection a77eaa7b；tinyCPU Adam/scheduler/Python/NumPy/Torch状态恢复通过，CUDA只结构未冒称实测。唯一13反向压力已12:14:37完整PASS/201.284秒：10637/557与6346/646两Pareto，已有Adam/累积梯度，峰29.684GB allocated/34.578GB reserved，状态丢弃；GPU2已真实释放，完整54件collection9e0c83c8已收齐。
 - **正式后继持续授权**：probe成功且实耗可容纳后，fresh173×2/44updates/warmup4/尾5/原LR1e-4，单6000+30共享两epoch与SHM→.100完整ACK；后继原dev纯36/1200+30与必要Sap180+30。只交new-only和完整quote，最终两个原dev质量由root执行，本线不读dev gold/评分。
-- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点6cff6111，后继源/计划先推送再启动。
+- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点dd38cf3c，后继源/计划先推送再启动。
 
 ## 执行与下一步
 
 1. 原CPU proc07b171cc已完整；collector95847已14件全SHA收齐。无原CPU/GPU重复启动。
-2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b已部署、epoch1 proc771dc9c7正在运行，真实SHM/.100容量门通过。原watch PID163752已收到epoch1/step12；只用它接续两轮/ACK，不另起训练监控owner。
+2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b原epoch1已1781.356秒完整，22步/尾5。第一份完整520072494B已.100持久ACK593a538f，原watch唯一12:50:59接续epoch2 proc38f84872/driver64529；同6000时钟不重置，只用PID163752接续两轮/ACK。
 3. 同一参数化训练器/已验indexed两轮持久桥已在运行，绝对deadline不重置。下游36fresh/同政策归一化/完整new-only交付源码已准备；真实两ACK和完整collection之后再绑定实际plan启动。模型/大产物保持仓库外。
 
 ## 历史阶段记录（准确原时点，非当前作业）
@@ -73,3 +73,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 正式原epoch1已2026-10-24T12:19:01.086681378Z唯一启动 proc_771dc9c7-e0e9-4561-87fa-ab1142274913 / driver6669；campaign起点2026-10-24T12:18:59.890792+00:00，共享TERM2026-10-24T13:58:59.890792+00:00 / KILL2026-10-24T13:59:29.890792+00:00。真fresh卡2=1MiB/noapps，SHM217.946GB/.100401.983GB；完整44更新/双ACK不改。独立session watcher PID163752，实际SID/独占flock ready625c4585，按180秒原时钟接续两epoch/两ACK，未知mutation只停本地调度并恢复原intent。不能另起训练或第二owner。
 
 12:40:15.980仅CPU导出子进程guardian已唯一启动proc1affca5f / GNU timeout PID44125 / guardian44129，源5504bac5先push6cff6111。此前只有stop_process递归清理未证实的风险，没有已观测孤儿；单独guardian只核原两HTTP child的UID/PID/startticks/argv/PGID/SID，原parent退出或原export绝对截止才关闭它们。原训练/plan/时钟/ACK不改，不新开HTTP/重复导出；actualstarted已回收，实际两次关闭待发生，见training_shared/guardian-plan.json。
+
+12:50:41第一份完整持久ACK593a538f（13件520072494B/61.460秒）与source ACK回写齐，原epoch2已12:50:59.113唯一proc38f84872/driver64529启动；实际完整state restore证据待后续原collection，当前不冒称完成两轮。guardian原HTTP61705在父61701退出后仍存且PPID转4735，精确身份匹配后12:50:58.246 TERM，0.100秒实际/proc消失；首个关闭真实通过，第二次待。详见evidence/full64-current.json与training_shared/guardian-plan.json；下一原180秒观察，不额外GPU检查。
