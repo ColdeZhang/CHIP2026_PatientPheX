@@ -14,3 +14,5 @@
 - Probe已78.736652s PASS：1原生FB＋13indexed FB＋1Adam，全部Pareto、原14322最长cache prefill通过；13资产共16,397,443,036B全SHA核完。实际同logits loss差4.768e-7在预写容差内，梯度exact；勿称loss bitwise exact。估2ep973.507s<2400；已discard后fresh正式子PID2730123，11:02:53.552177启动，TERM11:42:53.552177/KILL11:43:23.552177。
 
 - epoch1已11:08:43.488205完成16updates并durable ACK：504adapter、504Adam/1512tensor、scheduler与全部RNG重开exact，checkpoint139e8be0，adapter174655536B/Adam等state349612141B；4.228s。原正式窗内继续epoch2，不评分中间checkpoint。
+
+- 正式两轮完整PASS：32updates、248行曝光/806302tokens/14340监督tokens，两个durable ACK；train686.263s、phase693.697s，11:14:27.312087完成，峰21179588096B。全80fresh infer子PID2731613已11:14:28.408008启动，TERM11:34:28.408008/KILL11:34:58.408008；未读gold/未评分。
