@@ -20,3 +20,5 @@
 正式实际162.877秒rc0，完整状态1.319GB在.3持久，原始2874 logits已回收SHA `ccce0f52417100c636e6d412416c17ba03fa870b3f3bfe448b2f401ce6e4956a`。主要失败为新增214条只有36TP/178FP，多患者候选AP .413；总候选覆盖469/520，不能归因仅候选缺漏。质量入口原假设pred含patient字段在读gold前失败，机械改按既有association并与encoded患者核同39ID，原失败源/空目录保留，未重训/推断。源d3a761f已推并远端核准；下一步根据真实诊断选择机制，禁止F1扫cut伪改善。
 
 后继marker-v2已获root唯一600+30，排Sap→GP feature control之后。只改有原ATLOP依据的显式`*`边界和起始marker表示；原模型/全候选/loss/8ep64Adam/cut/两终点不变，fresh公开base。实际全48篇CPU剥marker重构原tokens精确、完整marked mention单owner/共享与相邻边界合同均通过；train319窗/held164窗（原300/156），发布词表`*`=14，无新参数。当前等待队列，未启动GPU；计划见evidence/marker-formal-plan.json。
+
+marker-v2部署已完成：4件source/encoded在.3 CUDA隐藏CPU写入/fsync/重开逐SHA通过，receipt09379831…；source/plan检查点ea482a4已push并远端核准，正式尚等span释放。另导出融合候选逐提及边界/原文/三public来源，1069概念2180提及/360052B，stable key与全部2874logits匹配，见evidence/fusion-support.json。
