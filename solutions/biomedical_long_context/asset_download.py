@@ -22,6 +22,8 @@ def save(p,x):
 
 def main():
     root=Path(__file__).resolve().parent;cfg=json.loads((root/'candidate-plan.json').read_text())
+    ticket=json.loads((root/'asset-launch-ticket.json').read_text())
+    assert time.time()<=ticket['launch_not_after_unix'],'Expired asset intent; no download'
     dest=Path(cfg['remote_model']);dest.mkdir(parents=True,exist_ok=True)
     assert shutil.disk_usage(dest).free>=4_000_000_000
     with (root/'asset-exclusive.json').open('x') as f:f.write(str(os.getpid()))
