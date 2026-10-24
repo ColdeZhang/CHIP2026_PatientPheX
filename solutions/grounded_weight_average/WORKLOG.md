@@ -13,3 +13,7 @@
 - 参数：拟r32 text+adapter9,040,359,936；即全bundle保守9,739,661,040，≤10B。原39推断1103.2秒仅成本proxy，建议root决定有界完整控制。
 - 供给：原G282关系中62在当前B4外，只是潜在新增上界，未读gold或计算新分数。
 - 已提交并实际核验远端 `origin/explore/grounded-weight-average@d23a7fb06a85ce3d9c23dab929d6008cb72a1d88`，源码/短报告/未执行plan均已备份。下一步仅由root决定实际CPU合成/PEFT微型加载及GPU，不自动开跑。
+
+## 固定控制实施中
+
+Root 已授权真实双 adapter 校验、CPU 精确拼接与 PEFT 0.21.2 tiny save/load；原候选协议保持不改，新执行范围见 `execution-plan.json`。CPU 唯一 120+15 秒、CUDA 隐藏；通过后 .12 GPU2 完整 39 greedy，1800+30 秒。真实参数门 9,040,359,936，唯一质量终点仍 B4∪(Gmean∩Gold)。无新训练或系数扫描，未执行任何新质量。

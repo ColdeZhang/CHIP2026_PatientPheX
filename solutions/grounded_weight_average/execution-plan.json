@@ -1,0 +1,94 @@
+{
+  "experiment": "GWA-20261024-001",
+  "status": "ROOT_AUTHORIZED_EXECUTION_FIXED_CONTROL",
+  "formula": "B4 UNION (G_meanweights INTERSECT G_originalgreedy)",
+  "coefficient": 0.5,
+  "parent_epochs": [
+    1,
+    2
+  ],
+  "parent_optimizer_steps": [
+    11,
+    22
+  ],
+  "base_unchanged": true,
+  "effective_delta": "0.5*(2*B1@A1+2*B2@A2)",
+  "adapter_representation": "concat_A_axis0_concat_B_axis1_rank32_alpha32",
+  "checkpoint_selection": false,
+  "alpha_scan": false,
+  "SVD_or_factor_mean": false,
+  "fresh_training": false,
+  "complete_input_rows": 39,
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "enable_thinking": false,
+    "max_new_tokens": 1600,
+    "context_truncation": false,
+    "all_rows_fresh": true
+  },
+  "raw_first": true,
+  "exact_quote_and_fixed_normalization": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+    "bytes": 1699,
+    "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+  },
+  "relation_identity": "public-v2 literal atom (document, patient, HP ID or exact NIL text); NO excluded",
+  "union_rule": "Keep every B4 relation/list prefix and all nonassociation/patient objects. Add only literal intersections of both pure G views, without B-union contamination.",
+  "post_Generation_quality_if_later_authorized": "Freeze exactly one complete primary prediction, then one newv2/old0; if byteexact no change inherit baseline with0v2.",
+  "no_alone_or_epoch_or_full_union_endpoints": true,
+  "gate": "Strict Score>B4 .701325377212172; disclose micro and macro. Further F0 or full64 only by root decision.",
+  "sources": {
+    "current_B4": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/prediction.jsonl",
+      "bytes": 141149,
+      "sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e"
+    },
+    "current_B4_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/four-source-fusion-20261024/F1-v1/metrics.json",
+      "bytes": 13158,
+      "sha256": "44b6277d2ed2904247f8efc1c9f276b0dabe8868fd9563501979899b6b876831"
+    },
+    "original_G_pure": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    },
+    "inference_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/infer-plan.json",
+      "bytes": 18976,
+      "sha256": "7c9c3026ac34efe10f8793c86c507f4a2a715a9541d65ba40c15fefc6b464058"
+    },
+    "normalization_policy": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    }
+  },
+  "GPU_authorized": true,
+  "quality_authorized": true,
+  "actual_adapter_synthesis": false,
+  "next_if_authorized": [
+    "Revalidate both actual parent adapterSHA/keys/config; no retraining.",
+    "CPU compose in a unique namespace and preserve source tensor values; new config r32/alpha32; no optimizer state fabricated.",
+    "Tiny ordinary CPU PEFT rank32 config/tensor save-load/selected linear delta contract using pinned0.21.2; full-backbone GPU separately bounded by owner.",
+    "Reuse full39 native inputIDs, greedy1600/raw-first/no repair, exactquote and fixedtrain32/public normalizer.",
+    "Assemble only the single primary fullF1 relation intersection endpoint; no threshold or patient scans."
+  ],
+  "candidate_protocol_preserved": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/candidate-plan.json",
+    "bytes": 3770,
+    "sha256": "1f67d4bf967bcc51ab3ecba8d2683780ebf21855ac5de880a185278fe6a89e82"
+  },
+  "CPU_plan": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-weight-average/solutions/grounded_weight_average/cpu-plan.json",
+    "bytes": 39636,
+    "sha256": "5587cfed80bcf6125bb8795233ec1d74425da14d4b54b7bd0f46a6a60c1d362f"
+  },
+  "inference_budget_seconds": 1800,
+  "inference_TERM_grace_seconds": 30,
+  "Sap_budget_seconds": 180,
+  "Sap_TERM_grace_seconds": 30,
+  "full_model_parameters": 9040359936,
+  "no_probe_or_training": true
+}
