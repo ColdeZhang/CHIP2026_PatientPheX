@@ -29,3 +29,5 @@
 13:51:33四件173197471B已完整私网复制20.214秒，source/destination SHA+fsync/reopen及祖先目录通过；原源保留，0 optimizer/NN。A30最终plan d5c60e9a、package0e8dbe24绑定19件和原CPU3882542a，不跨host假复用部署文件。独立源HTTP180+10原TTL待核关闭；准备源checkpoint后唯一正式GPU启动。
 
 新78实际入口已经完整绑定；A30计划/源检查点f599620f已远端核。必要Sap按root新队列固定使用同GPU0在9B真实释放后一次180+30，复用原publicbank与train32政策，不等待GPU1、不共驻9B。
+
+13:55原4文件HTTP已实际关闭：原managedPID不存在、准确namespace无进程、端口无监听，closure8f97e1dc，无kill/重开服务。必要Sap normalization_runtime已3f20aee6远端核，15metadata用例通过，仅准备不执行；完整78+真实release之后才绑定/查询。
