@@ -1,6 +1,6 @@
 # BioClinical GP selector 工作台账
 
-分支 research/long-context-gp-selector；起点 main5333e7f8。仅修改本目录。当前 root 已授权唯一 F1 控制，尚未启动GPU模型；原生CPU接口7.885秒已PASS，等待schema真实GPU1释放。
+分支 research/long-context-gp-selector；起点 main5333e7f8。仅修改本目录。当前 root 已授权唯一 F1 控制，GP正式已唯一真实启动；原生CPU接口7.885秒已PASS。
 
 固定忠实 strong48：F0/F2/F3 严格 OOF 新 GP 两列，最终48训练供F1；复用GP23→F0，新拟合GP03、GP02、GP023。候选、101旧特征、160trees/.3/nested均不变，只增valid/raw-logit，唯一完整F1 v2，严格胜 .728697536469 才保留；不扫cut、不自动F0。
 
@@ -15,3 +15,5 @@
 正式源计划53f716b3已完整部署；唯一CPU已rc0；actual64/native+tinyGP+model-only载入完整见observation-1792861803790532935.json，不重跑。后继只执行operations.py start一次，再按observe/pack/collect恢复原句柄；必须schema实际交卡且fresh门通过。源/计划/预写质量已完成，详见experiments/E-20261024-LCGP-001.md。
 
 完整单一恢复入口 EXECUTION_HANDOFF.md 已写齐。root要求阶段final释放槽并在schema实际release后followup唤醒；没有GPU start intent、没有watcher或NN时钟。当前源码/运行计划保持53f716b3，后续metadata/传输恢复不改变NN合同。
+
+正式17:20:26.912310真实start proc_5c2a3038-fd67-477c-a0e7-7332504ddd7c /driver2757749/child2757757，.100 GPU1空卡门通过。TERM17:35:26.912310/KILL17:35:56.912310，共享900+30不变。唯一detached只读watch pid206118，首后继约17:22:41，之后≥120秒（错误185）节奏；root只读formal-v1/watch-state.json与observation，不重复远端查询。完整实际引用见evidence/formal-start.json。

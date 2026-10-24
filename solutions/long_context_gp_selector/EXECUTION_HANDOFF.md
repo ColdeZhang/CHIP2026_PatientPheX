@@ -1,6 +1,6 @@
 # 唯一执行/恢复入口（2026-10-24 17:12 UTC）
 
-**状态：全部前置完成；没有GPU启动意图或模型作业。** root要求本阶段final释放槽，在schema的GPU1真实release后followup恢复本代理。不要轮询或停止schema；它原F0作业17:03:03启动、预计约17:16释放，硬钟17:33:34。GPU0与其他进程不属于本任务。
+**状态：正式已唯一实际启动，禁止再次 start。** 原schema已真实释放，root已恢复本线程。managed proc_5c2a3038-fd67-477c-a0e7-7332504ddd7c，driver2757749/child2757757；实际17:20:26.912310，TERM17:35:26.912310/KILL17:35:56.912310。唯一detached只读watch PID206118；本地 `D/watch-state.json` 和 `D/watch-launch.json` 为恢复入口。GPU0与其他进程不属于本任务。
 
 ## 固定身份与授权
 
@@ -26,13 +26,13 @@
 
 ## 后继唯一动作
 
-收到schema**实际release**后，确认本地没有`D/start.intent.json`。从worktree执行：
+以下启动命令已执行，`D/start.intent.json`已存在，**不可重复**：
 
 ```bash
 python solutions/long_context_gp_selector/operations.py start
 ```
 
-它创建唯一ticket（admission300s）、核源/CPU、fresh UUID/noapps/空闲显存/≥8GB盘后，独立900+30运行。记返回managed ID，并一次`operations.py observe`取得真正child PID、start/TERM/KILL时点；不要把managed请求发出当模型已经开始。当前**没有watcher**；启动后仅单owner≥120秒节奏只读observe，root需读本地observation无需另查服务器。
+它创建唯一ticket（admission300s）、核源/CPU、fresh UUID/noapps/空闲显存/≥8GB盘后，独立900+30运行。记返回managed ID，并一次`operations.py observe`取得真正child PID、start/TERM/KILL时点；不要把managed请求发出当模型已经开始。现已单owner detached watcher，≥120秒节奏只读observe，失败退避185秒；root只读本地observation无需另查服务器。
 
 若任一启动工具UNKNOWN：先恢复原`D/transport/`意图、remote `job/{exclusive-launch,started,ended,expired-before-entry}.json`与原admission时钟。**不得直接再执行start**；空卡/暂未见进程不证明旧请求失效（H69）。不自动改预算、模型、精度、数据或重启fit。
 
