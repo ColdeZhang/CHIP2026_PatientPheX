@@ -24,3 +24,5 @@
 - 最终source/两质量终点补包108292B/48件，SHA92004344，已在同.100真实重开全SHA并联核原338件46d56879；evidence/quality-backup-ack.json。交validation只读终审；接下来仅CPU核F0原祖先/完整全文CID和可用runtime，未授权/未启动新GPU。
 
 - F0本地祖先/全58 append-only原输入已核：原124训练F2/F3，两train16候选生成器和训练32均排整个F0；F0候选层为train48（与F1层train32不同，明确披露），semantic/CRF实际manifest同trainSHA且排F0。完整58/16篇47患者/415concept保持，无F0gold/fit/GPU/评分。evidence/F0-ancestry.json 44493fcb；仅CPU原生分词脚本与plan4e1706b6已预写。
+
+- F0真实CPU5.807805s PASS：完整58/16篇47患者415concept/1166pairs，503003tokens/max16142，拒绝cap16384/gen1600，原生/raw IDs与双解码全部exact。原两epoch文件/ACK及所有parent目录链已单独纯I/O fsync补证，旧产物不改。root已授权待目标资产/runtime/fresh门后纯58推断900+30，B0保护union唯一1v2/旧0、raw-new-alone仅供root融合。当前.3实际Qwen3同13基座缓存，Torch2.7.0cu128/TF4.50；需复制已核完整TF4.51.3私有runtime+PEFT与174MB原epoch2adapter，未GPU。
