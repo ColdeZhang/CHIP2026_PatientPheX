@@ -1,8 +1,8 @@
 # Copy-grounded decode 台账
 
-当前状态：**独立fallback-v2完整F1已正完成：.704349598608，Δ+.003024221396；V1仍rc1/0quality。GPU已释放，待主线程决定排F0新资源的后继**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**F1独立弃答v2严格正完成：.704349598608，Δ+.003024221396；原V1仍rc1/0quality。F0同GLiNER必要提议172窗已完整rc0，待原件回收/accepted过滤→完整47受限解码；暂无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
-最近远端检查点：2026-10-24 15:14 UTC，`origin/explore/copy-grounded-decode` 的 `539c280352d048ba2a581fd763a31d2cc358e5ab` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+最近远端检查点：2026-10-24 15:24 UTC，`origin/explore/copy-grounded-decode` 的 `e8a6de06a792691b9ffd23df7e30346270c23c35` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
