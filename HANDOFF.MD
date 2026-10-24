@@ -259,6 +259,8 @@ Transformers的实际loading info可包含Python `set`。早期Qwen入口已为�
 
 **避免方法**：公共运行辅助逻辑沿用已核接口，新增manifest写入用真实返回对象或包含空/非空集合的契约检查。对支持的类型显式转换，对未知类型报错；不要一概 `str()` 隐藏数据结构。保存失败源码/无forward证据，核实原进程和GPU已释放后，用独立attempt目录恢复，不覆盖失败产物或重启重复作业。既有helper检查在外部 `case_retrieval/qwen35-preparation/loading-info-serialization-fix.json`；本次仅序列化修复提交 `0a2fada`，模型/98分支输入不变，终点与实际耗时见检索方案记录。
 
+FLA独立A后继曾再次用普通writer保存真实loading info，32.688秒wrapper在任何forward前失败；原件保留。机械恢复逐字复用既有serializer，空/非空set、frozenset及未知类型检查通过，随后85.423秒wrapper在原绝对截止内完成数值采集。该入口错误已修复；所得跨backend数值差异是另外的实验结论，不能合并成同一个失败原因。终审`validation/fla-A-final-review/review.json`（`8959740a…`）通过；仅远端保留的大tensor校验范围仍明确披露。
+
 ## H40：逐文OOF资源不自动满足新验证划分的隔离
 
 准备train32（F2+F3）→F1的新实体判别时，旧四fold HGB给F2/F3的概率、旧outer0内层候选都对各自目标文献隔离，但其训练资源均包含新F1的16篇。直接拿它们筛选或构造新训练样本，会让本应留出的F1信息进入下游；“是OOF”不能替代完整资源依赖核查。
