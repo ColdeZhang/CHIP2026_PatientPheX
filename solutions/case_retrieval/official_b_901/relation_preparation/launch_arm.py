@@ -60,7 +60,7 @@ def main():
     with (out/'stdout.log').open('xb') as stdout, (out/'stderr.log').open('xb') as stderr:
         child=subprocess.Popen(command,stdout=stdout,stderr=stderr,start_new_session=True)
         save(out/'child-process.json',dict(pid=child.pid,command=command,started_epoch=started))
-        try:rc=child.wait(timeout=plan['cap_seconds'])
+        try:rc=child.wait(timeout=max(0.001,started+plan['cap_seconds']-time.time()))
         except subprocess.TimeoutExpired:
             timeout=True;os.killpg(child.pid,signal.SIGTERM)
             try:rc=child.wait(timeout=30)

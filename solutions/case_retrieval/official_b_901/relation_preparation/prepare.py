@@ -101,6 +101,11 @@ def main():
     assert input_contract['document_ids_unique_and_disjoint_from_train80'] is True
     docs = rows(input_path)
     by = {str(d['pmc_id']): d for d in docs}
+    old_meta = read(references['old_candidate_manifest']['path'])
+    assert old_meta['input_sha256'] == references['input']['sha256']
+    assert old_meta['documents'] == 100 and old_meta['patients'] == 244
+    assert old_meta['prediction']['sha256'] == references['old_candidates']['sha256']
+    assert old_meta['prediction']['bytes'] == references['old_candidates']['bytes']
     old_rows = rows(references['old_candidates']['path'])
     old = {str(d['pmc_id']): d for d in old_rows}
     assert len(docs) == len(by) == len(old_rows) == len(old) == plan['documents']
