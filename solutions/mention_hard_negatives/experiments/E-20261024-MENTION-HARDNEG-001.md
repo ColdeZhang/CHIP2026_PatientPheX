@@ -11,3 +11,7 @@
 CPU增量真实完成：新增578个原生/HF输入、全mask/1156答案prefix一致；全2931的Pareto仍原(333,28)/(336,27)/(383,23)，新增max369/3被已完成压力覆盖。完整1416 held编码未重做，原SHA不变。实际7.410s，rc0；30成员小包全SHA回收。成本按同预写公式替换rows/updates，保守估4521.224秒，尚无新GPU授权、训练或评分。
 
 root后续正式授权：空闲.3GPU0，固定4800+30两轮/734/尾3/warmup37，两完整ACK→1416fresh1200+30→两个同端点jointfreeze再2v2。无需等原2353质量调整配方，578选择及配比均保持运行前冻结。新主机Torch版本差异如NOTES披露，原native.train/common/loss逐字沿用；首正式资产复用同机Doc完整SHA与当前stat一致守卫，不做重复压力或新下载。
+
+## 第一轮持久检查点
+
+原proc_92c814d2于13:14:22.272530完成367updates，持久ACK31ee14d9/1764B；504adapter、504Adam/1512状态张量和scheduler/RNG原生重开验证通过。adapter174655536B/d00b85a4，state349612141B/9c37cc5d；完整远端locator与SHA见evidence/epoch1-ack-observed.json。此处是原收据经RPC解析的观察，终态再回收精确原件；不冒称大状态已独立下载或自动resume。固定第二轮继续，无epoch择优/held质量。
