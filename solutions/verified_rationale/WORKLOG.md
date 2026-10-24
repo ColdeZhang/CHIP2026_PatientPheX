@@ -1,10 +1,10 @@
 # 患者归属理由蒸馏：只读与 CPU 供给准备
 
-状态：唯一15条公开R1教师供给正在.100 GPU0执行，driver2752489/child2752493；15:57:26 UTC开始，TERM16:42:26/KILL16:42:56。最长9400输入先行，固定3072；0学生训练/0held gold/0质量。恢复见 `evidence/pilot-start.json`，不可重复启动。
+状态：固定15条已完整负结案。590.428秒、13EOS/2cap、15机械拒收、0可训练理由；不扩814或学生训练，原dev最佳不变。GPU0于16:07:16释放，69成员原始包完整回收。见 [终点](evidence/final-result.json)、[逐条内容复盘](evidence/semantic-review.json)、[备份](evidence/backup.json)。
 
 目标：判断训练标签约束的教师理由是否提供直接 JSON 标签、弱 quote 与 DPO 之外的新监督，先检验可定位证据和患者歧义的真实供给。
 
-约束：原 train64/dev16 最终目标≥.8；当前最佳保持。无新大权重下载、无 GPU；不把 nearest/same-sentence 或答案正确等同人工确认的归属理由。
+约束：原 train64/dev16 最终目标≥.8；当前最佳保持。准备时仅CPU；后经root授权唯一15条GPU供给已完成，无新大权重下载/学生训练/质量。不把 nearest/same-sentence 或答案正确等同人工确认的归属理由。
 
 成功标准：准确查重；给出有来源的 train-only 覆盖与验证局限，决定是否值得一个小型供给探针。尚未提出或执行训练配方。
 
@@ -25,3 +25,7 @@
 - root对实际pilot/driver/evidence_contract和execution2549842e的增量静核PASS，2780B/SHA df947aee，[独立指针](evidence/source-review.json)；未重CPU/GPU/质量。当前继续等copy47+必要Sap整链release，实际启动不再需要重复预算确认。
 
 - 15:56:38 Copy47+126必要Sap整链实际release后，freshGPU0=0MiB/noapps/24164free；唯一proc_e0d16e85于15:57:26启动，原2700+30时钟/300秒admission均已绑定。先保存raw再解析，等完整15后逐条语义审查；不据部分行判供给通过。
+
+- 16:07:16完整15结束，driver rc0/noTERM/noKILL，590.428秒，native589.545秒，16640输出tokens；最长完整输入可行。13EOS均带fence，另两条3072未闭合think。0机械PASS，原10+5门未达；本地逐raw重放原parser与全部成员SHA一致。
+- 15条训练文本内容复盘已齐：存在真实组内/跨句供给，但当前引用常混用patientID/unit/offset，部分拼接非原文引用、混患者或漏同义表达。单例gold关系与原文排除冲突不外推任务规则、不改gold。只否定此固定配方，不能否定全部理由蒸馏。
+- 69成员（68payload+inventory）324174B包已远端fsync/reopen、本地全量回读逐SHA。原始运行包与最终CPU指标/逐条记录分处持久包和Git，避免重复大包。最后已核远端检查点7621bc1d；本结案将随下一提交推送。

@@ -1,6 +1,8 @@
 # 训练标签条件下的患者归属理由蒸馏
 
-**存在尚未实际试过的机制，但目前只够支持训练集供给探针，不够直接启动蒸馏训练。** 建议研究“带原文引用的短归属解释作为辅助监督，预测时仍直接输出关系”。它区别于零样本长思考、直接标签 SFT、nearest 弱 quote 和 DPO。当前没有证明缓存模型能产出足够忠实的理由，更没有新的质量分数。
+**固定15条供给探针已负结案：0条通过原验收合同，未启动学生训练。** 下面保留首次提案与执行演进；最终结果见文末。
+
+首次提案判断：存在尚未实际试过的机制，但当时只够支持训练集供给探针，不够直接启动蒸馏训练。 建议研究“带原文引用的短归属解释作为辅助监督，预测时仍直接输出关系”。它区别于零样本长思考、直接标签 SFT、nearest 弱 quote 和 DPO。当前没有证明缓存模型能产出足够忠实的理由，更没有新的质量分数。
 
 ## 新信号与已试方法的区别
 
@@ -76,3 +78,24 @@ root授权进一步供给准备后，.100 原 R1 runtime 无 CUDA 3.919 秒完�
 真实config36层/8KV头/128head_dim，最长12472的BF16 KV为1,839,071,232B，权重16,381,470,720B；旧真实5689输入+2197输出已完成、allocated峰19,495,760,896B。当前真实generation源码自动logits_to_keep=1，native forward只投末位置；维持SDPA/DynamicCache。经验估计23,366,319,357B，不是显存上界。相对旧观测free24164MiB约25.34GB仅剩约1.97GB，实际启动必须再读取真实free对比；不能只拿名义24GiB证明可行。根批准首次最长就是正式15条之一，OOM保留并停，不缩输入/改dtype/补答案。
 
 实际runner入口为 `pilot.py` + `pilot_driver.py`：H69预绑定5分钟admission与exclusive发布点，在子进程前及载模型前再次检查；2700+30计算时钟独立；每条先写原始IDs/raw/EOS/cap，再独立解析。3类真实CPU admission反例均在创建子进程前拒绝；不把这些CPU合同当GPU运行。源与绑定完整推送且copyowner整链release后才启动，学生训练/全814调用仍禁止。
+
+
+## 固定15条实际终点：停止本配方，不扩大供给
+
+原.100 A30唯一任务15:57:26开始，16:07:16完整结束，driver590.428秒/native589.545秒，13EOS、2条达到3072上限且未闭合think，共16640生成tokens。最长9400输入已真实通过；峰allocated19,495,760,896B/reserved19,505,610,752B。0学生更新、0 held gold、0质量；GPU0实际0MiB/noapps/24164free，子PID2752493已消失。
+
+**原strict合同15/15拒收，0可训练理由，0条合格跨句/群组链，未达10+5门。** 13条EOS final全部带Markdown fence；其中还广泛出现patient ID代unit、全局offset代出现次数、多套锚点数组、错unit和拼接引文，不能称“只去fence即可修复”。2条cap的思考即便提到正确线索，也没有最终回答，不能补答案。原parser、提示、样本、采样和预算未变，无重新生成。
+
+[逐条train-only内容复盘](evidence/semantic-review.json)与机械门分列。真实有用线索包括II-3的群组癫痫、P1跨段temper tantrums、proband段落中的dental malocclusion，但现有证据结构均不合格；不能把这些诊断当原门已通过。也有实质错误：P2男婴与胎儿anchor混用；将原文中已经是目标的brother说成“目标的brother”再凭家族关系推断；免疫描述拼接为原文不存在的完整引文；漏掉O3明确end-stage renal failure同义证据。
+
+PMC5763540/P1/HP0025498是边界案例：既定train association含该关系、entity note=null，但U0019明确“thus ruling out aceruloplasminemia”。教师弃答符合原句，不能因给定标签强迫编正理由。官方README_EN L274–282仍规定note=NO否定项不作正例；本例只证明这一训练记录的标签/文本存在矛盾，不推导整个任务应纳入否定关系，更不修改gold。
+
+结论只否定**本次固定提示与严格输出合同下的理由供给**。未测理由蒸馏训练效果，不能说所有证据蒸馏无效；也不能把给定答案的解释数当教师预测准确率。当前不扩大814、不训练student。后继若重新考虑，应先厘清任务极性与标签噪声，采用更明确的有限证据索引/示例合同，并另行预锁；本线不自发追加GPU。
+
+[终点](evidence/final-result.json)保存原source/plan/raw身份及完整15结果；[持久备份](evidence/backup.json)为324174B、SHA de04a9cb…，69成员全量本地逐SHA通过，远端fsync/reopen。CPU复核命令：
+
+```bash
+python solutions/verified_rationale/finalize.py --collection /workspace/patientphex-runs/round2-20261023/research/verified-rationale-v1/collection-v1 --semantic-review solutions/verified_rationale/evidence/semantic-review.json --output /workspace/patientphex-runs/round2-20261023/research/verified-rationale-v1/final-v1
+```
+
+上面实际输出目录已存在，不直接覆盖或重复调用。原native result的semantic-review-pending是其生成时状态，保持原字节；最终关闭状态写独立CPU终点。内容审查由本路线owner完成、未盲化，未冒称独立复核。
