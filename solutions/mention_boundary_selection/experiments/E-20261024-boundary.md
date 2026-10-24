@@ -11,3 +11,7 @@
 实际probe20.4655秒/wrapper21.2574rc0，13FB/1Adam、峰17,648,261,632B，5类训练输入均生成合法HPO（仅工程，不称识别正确）。预锁warm-token成本5642.17≤7200；原含cold诊断9099.33与worst-row5764.30完整保留。15:21:59.012453 fresh正式已启动868steps，probe state丢弃。
 
 原CPU ZIP de55a04b / 9,438,522B已完整73块重组，56成员全部SHA核验；仅恢复原缺失range，没有重pack、重CPU或改模型。此前selected证明和传输错误记录保留。
+
+## 第一轮完整状态
+
+2026-10-24 15:55:26.766964 UTC，原formal在434更新后完成epoch1持久ACK；adapter174655536 B/SHA59886a2e，training_state349612141 B/SHA52bc9694。504 adapter张量、504 optimizer states/1512 tensor entries与RNG回读exact；ACK1785 B/SHA874860639d890bd9d6e4290ed3f0418c1341321a2d33a439e33a328c26e8acd9。记录耗时3.674663秒不包含最后ACK追加与父链同步尾操作的严格上界。第二轮同一任务继续，未做中途质量或epoch选择。小证据为原ACK对象+字节身份观察，完整原件随终包回收。
