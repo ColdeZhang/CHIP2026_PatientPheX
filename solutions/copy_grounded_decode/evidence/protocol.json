@@ -1,0 +1,85 @@
+{
+  "id": "E-20261024-COPY-GROUNDED-001",
+  "status": "CPU_READY_PREPARATION_ONLY_NO_GPU_RUN",
+  "base_main": "6f66672f75b23c6c9af2094765c335fde6717650",
+  "primary": "B4 UNION (constrained_G INTERSECT (original_pure_G UNION S UNION Q UNION C))",
+  "superseded": "B4 UNION (constrained_G INTERSECT original_pure_G)",
+  "revision_reason": "Original G-only intersection cannot retain recovered relations missing from original invalid quotes. Revised by coordinator before any new model output or quality call; one primary only.",
+  "fixed": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/targets-v2/F1.input.jsonl",
+      "bytes": 1705039,
+      "sha256": "c6426db4c5183c137c7798fc7fe1abe326646ed08391aa240a2cd304ae8dcfc0"
+    },
+    "pool": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-readiness-20261024/final-cpu/candidates-by-patient.jsonl",
+      "bytes": 143692,
+      "sha256": "f2027e69fbcee298071275751105872eccaf05200e9b740e2ae1c0708400b91d"
+    },
+    "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
+    "checkpoint": "grounded-generation-v1/formal-v1/output/epoch-002",
+    "epoch": 2,
+    "global_step": 22,
+    "decoding": "greedy/nonthinking, max_new_tokens1600, EOS248044/248046, original39 complete prompts unchanged",
+    "normalization_policy_sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20",
+    "same_prompt_and_weight": true,
+    "no_beam_or_temperature_sweep": true
+  },
+  "inherited_reviews": {
+    "grounded-F1-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/grounded-F1-final-review/review.json",
+      "bytes": 24705,
+      "sha256": "0fcffd7b8ba8b0a7bff5c8f499c6998c9f780c26e1815862b8761e2d47495c72"
+    },
+    "mention-canonical-normalization-2353-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/mention-canonical-normalization-2353-final-review/review.json",
+      "bytes": 8275,
+      "sha256": "2d54b6fbed13fdc934da1afbe8837c4bcce59d07d3238ed58057577a2b5332fe"
+    },
+    "gliner25-task1-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/gliner25-task1-final-review/review.json",
+      "bytes": 2979,
+      "sha256": "763a5c812d3dd57c8768c44fb6c101d6feffc47b4d580ce56862a7f4ac3b8f05"
+    },
+    "lightgbm-selector-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/lightgbm-selector-review/review.json",
+      "bytes": 7532,
+      "sha256": "1d6ed9fda12b68e40b7677e2024e246de684bac2ca52e8dfe2bb3e4e53a17421"
+    },
+    "sampled-consensus-F1-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/sampled-consensus-F1-final-review/review.json",
+      "bytes": 12865,
+      "sha256": "e5437e127079f3174a5a5c6779060d1410d28fd24bde773eb5d09ea2ab4d8f26"
+    },
+    "qwen3-fixed-relations-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/qwen3-fixed-relations-final-review/review.json",
+      "bytes": 13354,
+      "sha256": "7c9c7c45c5f82fb7d1182d53b9229ef68e78babd501b138169caaf6b3c00570a"
+    },
+    "patient-response-code-F1-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-response-code-F1-final-review/review.json",
+      "bytes": 13652,
+      "sha256": "187cfa0fc89c2a1f47d0b68506e98054f0d2b517dbf86febea62566f70573364"
+    },
+    "four-source-fusion-F1-final-review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/four-source-fusion-F1-final-review/review.json",
+      "bytes": 2922,
+      "sha256": "c950efe73355d14b449a961fa21cfd3ae3f4e6db9348e54359c5282b8b155737"
+    }
+  },
+  "lineage": {
+    "grounded": "task train32 F2F3; train aliases and fixed public HPO/Sap normalizer exclude F1; reuse original reviewed identities",
+    "pool": "Strong B nested LGB train48 F0F2F3 plus GLiNER train32 F2F3; 1416 exact union, F1 excluded. Whole route is not pure train32.",
+    "support": "Original reviewed G,S,Q,C task train32 and existing candidate/B4 ancestors exclude F1. S stored as B UNION consensus; verified all471 inherited B relations already in B4, so outside-B4 support unchanged.",
+    "F0": "Must use corresponding excluding-F0 proposals and support streams; current F1 pool not reusable.",
+    "pretraining": "Public pretraining document membership unknown; no claim of excluding literature from public base pretraining."
+  },
+  "future_execution_gates": [
+    "Parent decides whether to allocate GPU; this preparation makes no launch.",
+    "Bind existing remote base/adapter/normalizer identities and same native tokenizer runtime; actual HF callback interface check remains.",
+    "Persist raw generated IDs then native/HF-equal text before parse for all39, including cap/failure. No prefix salvage, repair, candidate/prior answers inserted in prompt, or regenerated fallback.",
+    "Strict complete EOS/schema/pool/duplicate validation; fixed inherited normalization, full16/39 assembly preserving every B4 non-association object and old relation.",
+    "Freeze only primary complete prediction; if exact B4 reuse identity and do not rescore. Otherwise root decides one v2 comparison; no standalone arm or threshold sweep."
+  ]
+}
