@@ -1,6 +1,6 @@
 # 强 BioBERT 选择器的固定 LightGBM 控制
 
-2026-10-24；当前状态：唯一四fold已完整结束，pooled小幅提高、3/4fold不降，满足事前保留条件；统一终审1d6ed9fd已通过。目标是检验成熟树实现的具体边际收益，不重造候选/调阈值，不宣称更换库保证提分。
+2026-10-24；当前状态：四fold通过事前条件后，唯一full64/原dev实体替换完成，Score .746081965→.748583440；完整终审a1b2c622通过，仍未达到.8。目标是检验成熟树实现的具体边际收益，不重造候选/调阈值，不宣称更换库保证提分。
 
 ## 依据与唯一变量
 
@@ -44,10 +44,27 @@ pooled menF1 **.771948494→.772867639**，docF1 **.809789609→.811077716**；�
 
 计划继承旧模板的`status/runtime_checks/success`文字未及时清理，其中仍写HGB/120秒；这是未执行的旧描述字段。实际estimator、180秒数值门和Score+3/4条件已在新字段及controller中事前固定，实际运行也一致。原plan不改写；[明确说明](results/plan-interpretation-addendum.json) `c19fb7ea`逐项标出旧字段和真正执行入口，不将旧文字冒充实际配置。
 
-## 独立的唯一full64/原dev迁移：源与计划就绪
+## 独立的唯一full64/原dev迁移：完整正结果
 
 四fold终审1d6ed9fd通过后，root授权一个同配置fresh full64模型。直接复用已冻结64篇62,281候选pool `0b3d835a`和16篇13,246候选纯dev pool `18ac347e`；从旧bundle `42e94115`只取固定103列vectorizer做transform，不重fit向量器或HGB，不重生候选/特征缓存。旧矩阵文件未保存，只能称同数据/源/列序，不冒称比较过历史矩阵字节。[完整来源](FULL64-LINEAGE.md)明确四held16合64的OOF链和a179继承baac的实体链。
 
 新计划从最终作用域独立建立：[full64-plan.json](full64-plan.json) `745b1b85`、[entry](full64-entry.json) `c8c1d78a`、源[full64_dev.py](full64_dev.py) `e93a23c6`。单次fit＋完整保存回载＋dev predict，并连同解码/唯一v2全部放在120秒硬窗内，外层TERM5；没有沿用CV模板文字。新合并进程先用ontology feature，再显式给nested decoder绑定不同的sequence `run.py`；实际1.059秒纯导入合同证明原feature模块仍保留自己的baseline对象。未在准备阶段打开train/dev标签或pool正文。
 
-唯一预测模板固定a179，**只替换实体**，原391关系（含既有35项public-new）、全部患者及非entity UTF8片段原样保持，不重算支持或加入正在训练的患者模型。完整新fullpred冻结后仅一次v2，旧 **.746081964986**指标复用，报告四项指标；仅Score严格升判为candidate best，≥.8另走复现验收。原dev长期用于开发，非盲测。sequence仍使用其独立a179关系端点，本控制不改其baseline，也无官方操作。实际当前尚未运行，恢复入口为外部 `lightgbm-selector-readiness/full64-dev-control/execution-state.json`，存在输出目录时禁止重复启动。
+唯一预测模板固定a179，**只替换实体**，原391关系（含既有35项public-new）、全部患者及非entity UTF8片段原样保持，不重算支持或加入正在训练的患者模型。完整新fullpred冻结后仅一次v2，旧 **.746081964986**指标复用，报告四项指标；仅Score严格升判为candidate best，≥.8另走复现验收。原dev长期用于开发，非盲测。sequence仍使用其独立a179关系端点，本控制不改其baseline，也无官方操作。实际已完成，外部 `lightgbm-selector-readiness/full64-dev-control/execution-state.json` 为complete；唯一session57140已rc0，禁止重复启动。
+
+
+完整实际运行 **16.901秒**，其中fit/保存回载/devpredict **16.314秒**，均在原120秒窗口内。fresh1fit/103列/160iterations，原生正列和全dev保存回载概率exact；新完整16篇预测04:56:18.658605冻结，首次eval marker18.668289之后仅一次v2，旧指标复用。
+
+| 原dev指标 | 原a179 | LightGBM仅实体替换 | 差值 |
+|---|---:|---:|---:|
+| Score | .746081964986 | **.748583439566** | **+.002501474580** |
+| menF1 | .786960514233 | .792801107522 | +.005840593289 |
+| docF1 | .824512534819 | .828677839851 | +.004165305032 |
+| relation microF1 | .725118483412 | .725118483412 | 0 |
+| relation macroF1 | .647736327480 | .647736327480 | 0 |
+
+11篇发生实体变化，6加17删，最终1061实体/36患者/391关系，格式0错0警。实体mention为859TP/202FP/247FN；这只是固定开发结果，不因观察到错误再调本轮阈值。符合事前Score严格增，成为候选best；未达到.8。
+
+[完整结果](full64-results/result.json) `ce560fb5`、[冻结](full64-results/complete-freeze.json) `f8bc9f48`、[终点manifest](full64-results/terminal-manifest.json) `64172581`保持实际原字。新model+vec `803b646771d5d7701730ce2a7161275158e63b63ddec36fed9ce793b64e6f98d`，完整预测 `0e2c26f8a546af6e8ab343f9883f212792d5b32ad01f4db8d28ac1ee27a2345e`，均位于仓库外 `R/research/lightgbm-selector-readiness/full64-dev-control/`。[唯一终审](full64-results/terminal-review.json) `a1b2c622`通过：全部非entity原始UTF8片段、391关系和既有35public-new保留，无重fit/评分/gold读取。持久小包另记，包含确切模型、vec、预测、源码、指标和本审查，依赖旧a179持久链，不声称是包含全部NN权重/数据的独立训练环境。
+
+持久备份已完成：[标准restore指针](full64-results/persistent-backup.json)，remote manifest `day1/coordinator-backup/git/original-dev-lightgbm-0e2c26f8-20261024T050047Z.manifest.json`、完整manifest SHA `168b0c39`。archive `288622b9` /3,827,082B，58成员；实际服务器逐成员SHA以及archive/manifest/父目录fsync完成。root另负责唯一服务器→本地恢复核验，本收据不抢先声称已恢复。
