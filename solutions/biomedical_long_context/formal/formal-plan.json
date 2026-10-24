@@ -1,0 +1,127 @@
+{
+  "schema": "bioclinical-full-context-fixed8epoch-formal-v1",
+  "authorization": "root fresh8epochs256Adam+all17held+lastfullstate1200TERM30; necessary originalSap<=180TERM30 later; one strongprotectedunionF1 only",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/assets/bioclinical-modernbert-base-c3648aa8",
+  "model_files": {
+    "config.json": {
+      "bytes": 1149,
+      "sha256": "dd3550a1b22f63cbc24b2015dbcd8b64bcf1050c265c3d30191236be886fb071",
+      "sha_basis": "actual_small_file"
+    },
+    "model.safetensors": {
+      "bytes": 598635000,
+      "sha256": "ea7388682b12cb833491ca8a697e84e3e67122c65c9c658f4ad3355fdd891546",
+      "sha_basis": "publisher_LFS_not_local_full_download"
+    },
+    "special_tokens_map.json": {
+      "bytes": 693,
+      "sha256": "e232f6a2ac8b149dc247c27e30282c42b0b70720a35cc845fa3e791f9ee9da00",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer.json": {
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1",
+      "sha_basis": "actual_small_file"
+    },
+    "tokenizer_config.json": {
+      "bytes": 20809,
+      "sha256": "11251bae0abce4551fb3e1822e487b31700b1ccc3c036743f4c64cf2161b9457",
+      "sha_basis": "actual_small_file"
+    }
+  },
+  "cpu_receipt": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1/cpu-complete.json",
+  "probe_complete": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/probe-v1/collected/probe-output/complete.json",
+    "bytes": 2472,
+    "sha256": "1e144fce3ec61b61bd1046268d91dbabfe1a7890a05f9e670737cdfc0c65f6a3"
+  },
+  "discard_probe_checkpoint": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1/probe-output/discarded-full-state.pt",
+    "bytes": 1789524601,
+    "sha256": "cc522af2fca4b92357d3992fb1f40be7d58fd62be0aab60dc584933f799e89ca"
+  },
+  "probe_state_never_loaded": true,
+  "budget_seconds": 1200,
+  "term_grace_seconds": 30,
+  "launch_TTL_seconds": 300,
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "data": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/biomedical-long-context-readiness-20261024/probe-v1/data.json.gz",
+    "bytes": 1948468,
+    "sha256": "8095180e13c10cde3fb071670d1f3d9f308ec55bc0946370e67aa2a75cc69626"
+  },
+  "remote_data_source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/biomedical-long-context/probe-v1/data.json.gz",
+  "source_files": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/formal/common.py",
+      "bytes": 1391,
+      "sha256": "2dfb39df2d50f5b98f2a51003f99e9211c3014ff25fdff3377424420edf85172"
+    },
+    "driver.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/formal/driver.py",
+      "bytes": 3246,
+      "sha256": "18bcf7aaaad09a88078bae62698be052f12bec1897f2acf88fd339f01a47ecbf"
+    },
+    "model.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/formal/model.py",
+      "bytes": 2992,
+      "sha256": "636a0ac4fd4e0b28c4919c133cabf48d7e995110a0fc82110b6baa721a786d3a"
+    },
+    "train_infer.py": {
+      "path": "/workspace/patientphex-worktrees/research-biomedical-long-context/solutions/biomedical_long_context/formal/train_infer.py",
+      "bytes": 7095,
+      "sha256": "115762c7355445245be0bf01aec58652eb3c473c9e6ef6eb82b9ab843abeae34"
+    }
+  },
+  "recipe": {
+    "seed": 20261024,
+    "epochs": 8,
+    "actual_Adam_updates": 256,
+    "batch_documents": 1,
+    "accumulation": 1,
+    "warmup_updates": 25,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "clip_grad": 1.0,
+    "state": "last epoch8 only",
+    "all_train_docs_per_epoch": 32,
+    "original_positive_key_sha256": "935d21166a5e3601ef107b57d509dacae67663f916503b6e195e876b53b92ae8",
+    "accepted": 2266,
+    "aligned": 2265,
+    "raw_floor": -2.0,
+    "decode_cut": 0.0,
+    "duplicate_rule": "same doc/passage/start/end → maximum raw logit over complete17 windows",
+    "normalization": "Exact original GP link_decode.py: public originalSap weights, fold-local publicHPO+train32 alias bank; exact-first, cosine.65, original char/NIL fallback, original word boundary/positive surface whitelist. No adaptedSap and no quote41099/.90 substitution."
+  },
+  "quality": {
+    "endpoints": 1,
+    "baseline_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-control/fold1/lightgbm.nested.jsonl",
+      "sha256": "8cb61ba94fab8de4223acafeece83ef5a243954312d008073a42e5ba80398d6f"
+    },
+    "baseline_score": 0.7286975364690524,
+    "assembly": "same original GP protected union only; keep all existing entities/nonentity objects, add legal HPO where disjoint or proper containment differing ID; reject same-span ID conflict/crossing; deterministic descending GP; no alone diagnostic",
+    "held_gold_before_freeze": false,
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "byteexact_zero_new_v2": true,
+    "positive_gate": "strictly higher totalScore and formatpass; otherwise closed no cutoff/epoch scan"
+  },
+  "cost_basis": {
+    "probe_seconds": 23.73717451095581,
+    "peak_allocated_bytes": 3985531392,
+    "conservative_seconds": 983.5589158916846
+  }
+}
