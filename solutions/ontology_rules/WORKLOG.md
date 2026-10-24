@@ -51,3 +51,5 @@
 - 训练内关系候选空间审计唯一0.716438秒rc0：Task1缺口F0仅1个doc-HPO/6对/覆盖0FN，F1仅2个/9对/覆盖2FN；三者均BioBERT-only原生供给但同时有semantic候选，非独立贡献。old/public2实际提示空间等价全过、原关系252/63/127与366/105/154精确复核，新评分/模型0。建议不专门开GPU扩展；完整输入先冻、literal与canonical分列。[结案建议](relation_candidate_space_followup/RESULT.md)。
 
 - 后继参考FN分解一次0.055596秒rc0：F0 55合法无已解析正例＋47无HPO空间＋16非HPO/文本＋9支持拒；F1 86＋45＋7＋16；集合未解释0，原FN127/154不变。支持优先既有关系训练、另审候选识别适配，不据25正确被gate拒就放宽gate。[小诊断](relation_candidate_space_followup/fn_partition/RESULT.md)。
+
+- 公开原生H5监督适配只读盘点：native接口可行，但原上游训练入口不先load H5、旧19120头builder与17266列/None末列不同，不能直接套。复用历史train64类覆盖，不重读标签；NO词面冲突、canonical多列与固定LGB分布迁移须另冻合同。[可行性](public_h5_adaptation_readiness/README.md)。无数据准备/训练/新GPU。head_index准备另获独审102f5148无阻断，仍未部署/GPU，原formal不改。

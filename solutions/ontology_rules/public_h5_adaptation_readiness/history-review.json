@@ -1,0 +1,88 @@
+{
+  "status": "READ_ONLY_HISTORY_NO_NATIVE_PUBLIC_H5_ADAPTATION_ENDPOINT_FOUND",
+  "at_utc": "2026-10-24T07:12:29.814712+00:00",
+  "roots": {
+    "W": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules",
+    "R": "/workspace/patientphex-runs/round2-20261023"
+  },
+  "searched_scope": "Ontology WORKLOG/NOTES, E-20261023-007 and PUBLIC-PHENO* experiments; public_phenotagger* sources/plans/cache metadata; public-phenotagger-reuse sources/small manifests; old phenotagger-fold0 adaptation plan/terminal. Keywords17266/H5/adaptation/fine-tuning/fit/optimizer/GradientTape. Bounded search, not proof no unindexed/archive run exists.",
+  "finding": "No actual task-supervised public native17266-column H5 continuation found. Three checked train64 native cache manifests explicitly set public_model_training_on_task=false. HGB/LGB fits do not update H5.",
+  "distinct_completed_experiment": "Existing3epoch/1701step adaptation loads own Biomed19120-class100epoch d3aaf718 model,1749 real pairs repeated16 times plus HPO/None replay. Actual complete marker exists; this is not public-H5 adaptation.",
+  "coverage_reused_not_recomputed": {
+    "linked_mentions": 4665,
+    "mentions_any_canonical_head_id": 4626,
+    "mentions_all_canonical_ids_in_head": 4623,
+    "distinct_canonical_ids": 1406,
+    "distinct_canonical_ids_in_head": 1378,
+    "limit": "Train64 class coverage only; no extraction/score guarantee. No train records reread."
+  },
+  "technical_limits": [
+    "DIRECT REUSE BLOCKER: old adapt_data hard-codes19120 labels with None first; public native17266 has None index17265. Cannot use unchanged or reorder trained head.",
+    "TARGET POLICY: native generate_label_list exactly looks up original columns. Current/alt IDs, canonical collisions, multiple old columns, compound labels and missing columns need fixed policy; coverage does not imply a unique sparse label.",
+    "ENGINEERING UNPROVEN: native TF/Keras CLS-softmax encoder/head are trainable; no structural backprop prohibition found. Strict full-H5 restore proves inference, not finite gradients, memory or actual updates. Old Torch optimizer/state is not native continuation.",
+    "SEMANTICS: HP:None reject is not true unlinked -1; NO/NIL policy remains explicit. Native lowercase word-list/max32 representation must be preserved, not replaced blindly with old Torch normalized rows."
+  ],
+  "read_boundary": "Only docs/source/small metadata; no gold/raw-input/prediction body, new coverage counting, model load, NN, fit, remote or Git. No source edits.",
+  "evidence": {
+    "native_model": {
+      "root": "R",
+      "path": "research/public-phenotagger-reuse/sources/00-nn_model.py",
+      "bytes": 5878,
+      "sha256": "7543d6712fb497ff658b73b26c393832135c9152a23d15f547b839270dbcfeb7"
+    },
+    "native_representation": {
+      "root": "R",
+      "path": "research/public-phenotagger-reuse/sources/01-nn_represent.py",
+      "bytes": 11161,
+      "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf"
+    },
+    "strict_public_load": {
+      "root": "R",
+      "path": "research/public-phenotagger-reuse/native-h5-result.json",
+      "bytes": 2370,
+      "sha256": "d6ed2d31bf8a4dd3fd483f7658ea42ddc5be72a830124442a603bbe38b62e900"
+    },
+    "existing_coverage": {
+      "root": "R",
+      "path": "research/public-phenotagger-train-coverage/report.json",
+      "bytes": 2443,
+      "sha256": "54fc5b7df1edd8e6a24828de99ea1a0c36e209cfd32dffb41284d5525544594a"
+    },
+    "old_adapt_builder": {
+      "root": "W",
+      "path": "phenotagger_adapt_data.py",
+      "bytes": 13210,
+      "sha256": "819b723ade9e48f0db31747a2b4514fe3e0c95e6687104daf2078ed0e376f9af"
+    },
+    "old_adapt_plan": {
+      "root": "W",
+      "path": "evidence/round2/phenotagger-adaptation-plan.json",
+      "bytes": 6924,
+      "sha256": "1c6af26e243a4533d3757b6170a67b69be0628caffaadd407e41a4ec593f0bd7"
+    },
+    "old_adapt_complete": {
+      "root": "R",
+      "path": "ontology_rules/phenotagger-fold0/adaptation3ep/collected/trained/complete.json",
+      "bytes": 417,
+      "sha256": "d82439cf1e2fe2a11b2f7bcf8d8da1b97c2daa9b365224d44862e3d485f671c6"
+    },
+    "pubmed_cache": {
+      "root": "R",
+      "path": "research/public-phenotagger-train64-cache/terminal/native-train64-cache/manifest.json",
+      "bytes": 8929,
+      "sha256": "adaedb5c673d559656b9b454a34bebf79eff4f561d51248c0f91f2a5494a1b87"
+    },
+    "bioformer_cache": {
+      "root": "R",
+      "path": "research/public-phenotagger-bioformer-train64-cache/terminal/native-train64-final-cache/manifest.json",
+      "bytes": 7410,
+      "sha256": "05e82c5fb3acce990e37d8e9427b19bbe8ceae4c8b7485badbed9fa3be2e731a"
+    },
+    "biobert_cache": {
+      "root": "R",
+      "path": "research/public-phenotagger-biobert-train64-cache/terminal/native-train64-final-cache/manifest.json",
+      "bytes": 7435,
+      "sha256": "65cd50b29c4fae420423b1156f872585d685aa5b0aa493b5f7b6795d4da7a18f"
+    }
+  }
+}

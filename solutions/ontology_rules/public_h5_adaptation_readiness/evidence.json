@@ -1,0 +1,141 @@
+{
+  "status": "SOURCE_AND_EXISTING_METADATA_FEASIBILITY_ONLY",
+  "at_utc": "2026-10-24T07:12:06.174257+00:00",
+  "sources": {
+    "native_model": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/sources/00-nn_model.py",
+      "bytes": 5878,
+      "sha256": "7543d6712fb497ff658b73b26c393832135c9152a23d15f547b839270dbcfeb7"
+    },
+    "native_representation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/sources/01-nn_represent.py",
+      "bytes": 11161,
+      "sha256": "3b1dc54aa4e3e4aa199d2d73355021c43389b13272824aa6a7cac4a675cbfecf"
+    },
+    "native_labels": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/sources/03-lable.vocab",
+      "bytes": 189923,
+      "sha256": "ffa1f5af2dc60fef1ba6203640fa51b4b4f45d5179e8cc865b80d42c137ea48b"
+    },
+    "upstream_training": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/phenotagger-v1.2-review/PhenoTagger_training.py",
+      "bytes": 8650,
+      "sha256": "7da5400969b6f553eb8d703899d5cf703a95e857fefe440c75b3f6800d58d4c6"
+    },
+    "actual_strict_loader": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/check_native_h5.py",
+      "bytes": 5362,
+      "sha256": "031015640150004fe004a825f357da06c96d456b5bcde79d1a58e78e4a32e9a3"
+    },
+    "actual_native_load_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-h5-result.json",
+      "bytes": 2370,
+      "sha256": "d6ed2d31bf8a4dd3fd483f7658ea42ddc5be72a830124442a603bbe38b62e900"
+    },
+    "ontology_column_map": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/original-column-to-current-HPO.json",
+      "bytes": 2595787,
+      "sha256": "8a07e31d30ca83c9b4ac35c971ad489b7e77394bea3011e5ac5ac0f078f72adf"
+    },
+    "historical_train64_coverage": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train-coverage/report.json",
+      "bytes": 2443,
+      "sha256": "54fc5b7df1edd8e6a24828de99ea1a0c36e209cfd32dffb41284d5525544594a"
+    },
+    "historical_coverage_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train-coverage/check_coverage.py",
+      "bytes": 2864,
+      "sha256": "fc354910103684fb20be31f1c015ca1e8e2fd19caaee6b4295b7c561b77d1ded"
+    },
+    "hybrid_tagging": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/src/tagging_text.py",
+      "bytes": 3125,
+      "sha256": "fe4ec013d1efddedb11f7654a28add9ff8bc92779d2236ebe468a6161e57329f"
+    },
+    "hybrid_combine": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-reuse/native-pipeline/src/combine_result.py",
+      "bytes": 3811,
+      "sha256": "157d6f97f28bf93c0dac64b530a9ef75e4011a33b4660fdeea6665bd77193b95"
+    },
+    "old_adapt_recipe": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/phenotagger_adapt_data.py",
+      "bytes": 13210,
+      "sha256": "819b723ade9e48f0db31747a2b4514fe3e0c95e6687104daf2078ed0e376f9af"
+    },
+    "old_adapt_actual": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/collected/trained/manifest.json",
+      "bytes": 3894,
+      "sha256": "e29c46d003b39e93e1070e6c425f82827a6b4a20f68c14602c5436c87db11887"
+    },
+    "old_adapt_raw_quality": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/results.json",
+      "bytes": 13863,
+      "sha256": "01734cc608e17791709389d5e0a74e0457a4e951aed6b48458b5e18e2e2acc22"
+    },
+    "old_adapt_sap_quality": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/phenotagger-fold0/adaptation3ep/sap-consensus/results.json",
+      "bytes": 8116,
+      "sha256": "7e64561b77cfeed12d208d26d09f55f9fa2652e29b4375f07bf49b1dcb61792e"
+    }
+  },
+  "existing_native_contract": {
+    "columns": 17266,
+    "HPO_classes": 17265,
+    "HP_None_index": 17265,
+    "mapped_current_ids": 17090,
+    "counts": {
+      "same_valid_current_id": 17084,
+      "official_alt_id": 178,
+      "outside_current_branch_or_unresolved": 3,
+      "none_class": 1
+    }
+  },
+  "existing_train64_coverage": {
+    "scope": "train64 ontology-class coverage diagnostic only; no heldout/originaldev read, no predictions or public Score, no method/threshold selection",
+    "at_utc": "2026-10-23T20:49:57.597804+00:00",
+    "documents": 64,
+    "counts": {
+      "positive_mentions": 4765,
+      "unlinked_or_nonHPO_mentions": 100,
+      "linked_mentions": 4665,
+      "mentions_any_exact_head_id": 4617,
+      "mentions_any_canonical_head_id": 4626,
+      "mentions_all_canonical_ids_in_head": 4623,
+      "NO_excluded": 155
+    },
+    "distinct_raw_ids": 1410,
+    "distinct_canonical_ids": 1406,
+    "distinct_canonical_ids_in_head": 1378,
+    "limitations": [
+      "Coverage ignores extraction, confidence, negation and normalization accuracy; not attainable-score estimate.",
+      "Canonical diagnostic is semantic class coverage; publicv2 evaluator does not canonicalize all alt IDs.",
+      "Only positive linked mentions tested; model None does not represent correct NIL text output."
+    ]
+  },
+  "actual_public_pubmed_weight": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+  "actual_public_pubmed_parameters": 122759794,
+  "findings": [
+    "Upstream BERT_training constructs a fresh model and compiles/fits without first loading the public H5; using it unchanged is not public-checkpoint adaptation.",
+    "Existing strict native loader constructs from_config and overwrites all native variables with exact H5 datasets. Explicit load-before-train is feasible but no training step on these public weights has been tested here.",
+    "Native input is lowercased phrase-only maxlen32 CLS and 17266-way softmax. A target supervision contract must handle equivalent original columns, compounds, unseen current HPO and NIL separately.",
+    "Old adaptation was final100 self-trained Biomed/2026-head weights, fresh PyTorch Adam, 3 epochs, 1749 positives repeated16 with original HPO/None replay. NO and unlinked spans were excluded from added positives.",
+    "Existing training64 coverage is an old coarse class-coverage diagnostic; startswithHP and alias mapping do not prove strict valid-HPO eligibility or per-fold sample counts.",
+    "Dictionary generation is outside the neural graph; scores can affect later collision handling, but neural adaptation does not directly teach a dictionary rejection rule.",
+    "Fixed LGB features/calibration were learned from original public weights. New NN scores introduce distribution shift; any later control must explicitly freeze or rebuild fold-matched selector ancestry."
+  ],
+  "not_performed": [
+    "no gold/input-body read",
+    "no new coverage computation",
+    "no NN or model import",
+    "no fit or optimizer step",
+    "no GPU/remote/deployment/download",
+    "no evaluation or original-dev lookup",
+    "no data preparation or threshold/model choice"
+  ],
+  "next_minimal_preparation_if_authorized": [
+    "Choose a single exact public parent and development fold before new labels are inspected.",
+    "CPU training-fold census of class-inverse ambiguities, positive/NO phrase conflicts and strict boundary negative eligibility; audit original max32 representation collisions.",
+    "Freeze one supervision/output contract and small engineering budget from actual row/token counts; keep native label order and all variables load-exact.",
+    "Assess full hybrid and fixed fusion behavior on frozen fold endpoints; do not infer end-to-end Score from phrase-training accuracy."
+  ]
+}
