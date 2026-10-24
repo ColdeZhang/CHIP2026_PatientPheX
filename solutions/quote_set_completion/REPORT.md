@@ -1,6 +1,6 @@
 # 条件表型集合补全
 
-当前状态：固定 v2 正式训练已启动；尚无新 held 输出或质量。原 d52 权重只作 warm start，新的 Adam、scheduler、RNG 从头开始；实际作业和恢复入口见 [WORKLOG.md](WORKLOG.md)。最初 174 行 CPU 提案保留在 [初始报告](initial-proposal-report.md)，不作为当前运行配置。
+当前状态：固定 v2 全部训练/39推断/规范化及唯一F1质量完成；Score .701325377→.702224686，新增2TP/0FP，micro/macro均升。详见 [唯一实验记录](experiments/E-20261024-QSC-001.md)。F0已获准同固定配方验证，尚未启动。原 d52 权重只作 warm start，新的 Adam、scheduler、RNG 从头开始；实际作业和恢复入口见 [WORKLOG.md](WORKLOG.md)。最初 174 行 CPU 提案保留在 [初始报告](initial-proposal-report.md)，不作为当前运行配置。
 
 本实验检验 `患者全文＋已报告词面集合 → 剩余词面集合`。目标是补回患者关系的遗漏，不改实体底座。它区别于此前关闭的独立全答案双采样；成熟依据、查重范围及反证文献见初始报告和 [公开来源](public-sources.json)。原 patient–HPO 关系标签确定，代表词面只是可复现弱锚点，不能称人工患者证据。
 

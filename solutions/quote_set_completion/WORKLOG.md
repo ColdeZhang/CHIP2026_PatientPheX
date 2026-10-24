@@ -1,6 +1,6 @@
 # 工作台账
 
-分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前261行warm-d52正式训练与完整持久ACK均已成功，唯一39补全推断运行中；无新质量。实际身份/原时钟见文末和evidence/live-inference.json。前述174行/3600秒仅保留为已替代历史。
+分支 explore/quote-set-completion，从 main 08a12023 创建，仅维护 solutions/quote_set_completion。当前261行warm-d52训练/39推断/固定规范化和唯一F1质量均完成，F1 .702224686/新增2TP0FP，保留同配方F0验证候选；F0尚未启动。实际身份/原时钟见文末和evidence/live-inference.json。前述174行/3600秒仅保留为已替代历史。
 
 目标：检验给定已报告表型时的条件补全，是否比独立重新生成更能回收遗漏患者关系。当前原dev最佳 .769235669942；本线不读其gold、不宣称预计达标。先复用原train32的87患者弱quote目标，构造两个互补known/remaining视图；原真实关系标签不变，词面代表弱锚点而非人工患者证据。原双采样F1正/F0负已在旧分支关闭，不能重复其采样共识。
 
@@ -37,3 +37,5 @@ Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30�
 Root已预排必要Sap在.100 GPU0（teacher16:07真实释放），全39后fresh门直接唯一180+30；不占.3的adapted query或GPU1 BOUNDARY。H69只新增启动有效期，原Sap查询/driver剥离admission插入后AST逐同、12边界检查2152eeac通过，固定FP16/41099bank/全部query/policy不变；实际plan仍待完整queries绑定。
 
 39原完整终态已123.479秒rc0，16:10:33.615实际释放A800GPU2。92原件ca965d2e全SHA回收；普通G逐item合同39 EOS/0cap/0abstain，33合法空数组、其余共42精确anchors/40词面。固定strict准备仅需28个public查询，未读gold/质量。query plan1e59d2a7，原policy与所有quotes保持，按root预排.100GPU0/fresh门唯一180+30。
+
+F1唯一质量已完整：pred50bb61dc/141199B，freezebc8a9de1在先，唯一新v2/旧0 resultfb352642；Score .701325377212→.702224686258 (+.000899309)，新增2TP0FP，micro+.002391889/macro+.001205347，Task1不变。稳定entry a9044674/36466B已交统一终审，结果evidence/F1-result.json，细节唯一实验QSC-001。Root授权同cd977 F0全47/强B4 .728195628911/普通G32合法known，1800+30和必要Sap，负平关闭；新full64仍仅条件CPU，须F0严格正另预算。
