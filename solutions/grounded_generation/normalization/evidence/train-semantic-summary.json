@@ -1,0 +1,80 @@
+{
+  "scope": "one fixed policy train-only diagnostic; not F1/held validation",
+  "policy": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/normalization/policy_v1.json",
+    "bytes": 1699,
+    "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+  },
+  "prepared": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/normalization-v1/prepared/cpu-summary.json",
+    "bytes": 4319,
+    "sha256": "1e80a43af9eed8c8e2b79931c0167800e132a19037d86ad819e4c254d2b5dcdc"
+  },
+  "scores": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/normalization-v1/deployment/terminal/actual/query-scores.json",
+    "bytes": 586682,
+    "sha256": "ad265eccfce114390c8434ad3e8a79982101371bc4fc2a3927fcb5152dec1056"
+  },
+  "controls": {
+    "strict_resubstitution": {
+      "counts": {
+        "abstain": 5,
+        "reason:ambiguous_mapping": 5,
+        "nil": 18,
+        "reason:unanimous_whole_span_alias": 796,
+        "correct_accepted": 796,
+        "mapped": 778
+      },
+      "semantic_accepted_unique_quotes": 0
+    },
+    "public_only": {
+      "counts": {
+        "mapped": 603,
+        "reason:unanimous_whole_span_alias": 448,
+        "correct_accepted": 586,
+        "abstain": 198,
+        "reason:semantic_cosine_below_fixed_boundary": 163,
+        "reason:public_sap_cosine_and_concept_margin": 155,
+        "semantic_correct": 140,
+        "reason:semantic_insufficient_lexical_context": 2,
+        "incorrect_accepted": 17,
+        "semantic_incorrect": 15,
+        "reason:semantic_numeric_specificity_not_preserved": 1,
+        "reason:semantic_distinct_concept_margin_too_small": 12,
+        "reason:semantic_unknown_abbreviation": 3,
+        "reason:semantic_possible_compound_quote": 16,
+        "reason:semantic_explicit_negative_or_normal_quote": 1
+      },
+      "semantic_accepted_unique_quotes": 134
+    },
+    "leave_document_out": {
+      "counts": {
+        "abstain": 185,
+        "reason:ambiguous_mapping": 2,
+        "reason:semantic_cosine_below_fixed_boundary": 148,
+        "mapped": 616,
+        "reason:unanimous_whole_span_alias": 488,
+        "correct_accepted": 603,
+        "reason:public_sap_cosine_and_concept_margin": 128,
+        "semantic_correct": 117,
+        "reason:semantic_insufficient_lexical_context": 2,
+        "incorrect_accepted": 13,
+        "semantic_incorrect": 11,
+        "reason:semantic_numeric_specificity_not_preserved": 1,
+        "reason:semantic_distinct_concept_margin_too_small": 12,
+        "reason:semantic_unknown_abbreviation": 3,
+        "reason:semantic_possible_compound_quote": 16,
+        "reason:semantic_explicit_negative_or_normal_quote": 1
+      },
+      "semantic_accepted_unique_quotes": 117
+    }
+  },
+  "unique_queries": 624,
+  "threshold_search": false,
+  "target_quote_occurrences": 801,
+  "mistakes": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/normalization-v1/train-semantic-diagnostic-v1/train-only-mistakes.json",
+    "bytes": 32192,
+    "sha256": "4794214427499c87b5ddc8f18907e156df6246d40dbb2d6bc4dc210c193df278"
+  }
+}

@@ -35,3 +35,5 @@ python solutions/grounded_generation/normalization/diagnose.py evaluate \
 ```
 
 报告strict重代入、public-only、LODO各自接受正确/错误/弃答及语义增量；不扫阈值，不把训练诊断称held质量。首次实际加载/查询仍可能发现工程差异，按原失败+原预算保存，不改变政策掩盖问题。
+
+实际唯一运行完成：proc8ccd4671 / driver1197856，09:57:49.906495Z起，wrapper16.717259秒rc0；624query/41099公共bank/0overflow。完整14小件+外部3大件SHA/fsync/reopen已收ce208cd1，scoresad265ecc；actual bankbc4ea231/126256256B、publiclabels60a27430/10807562B、queryvectors2171fe40/1917056B保留.3同ROOT/actual。postchild target GPU processes为空，已通知root/span释放。唯一固定诊断summary0f999a0d：LODO语义128接受=117正确+11错误，完整603正确/13错误/185弃答；只是train32逐文排除标准化诊断，不是F1模型质量，不扫阈值。

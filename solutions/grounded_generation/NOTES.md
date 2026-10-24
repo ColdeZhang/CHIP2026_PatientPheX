@@ -27,3 +27,5 @@
 
 
 2026-10-24 GPU前澄清：全文先判目标患者的概念，复制quote只作概念词面锚定，不把该处出现当患者归属证据；最近mention只是确定训练代表词面的弱选取规则。首CPU产物targets-v1与源c3b69eb保留，v2仅修正prompt语义，目标/身份/全文不变并逐项对照。170/814处其他患者更近已如实披露。
+
+2026-10-24实读原论文摘要：https://arxiv.org/abs/2101.05779 ，Paolini等《Structured Prediction as Translation between Augmented Natural Languages》(TANL)。其核心是把联合实体/关系等结构化预测表述为可解析的增强自然语言翻译。本路线借鉴可解析文本输出这一任务表达；没有声称复现TANL架构、训练数据或论文benchmark，也未据论文替代当前病例关系/词面弱监督边界。
