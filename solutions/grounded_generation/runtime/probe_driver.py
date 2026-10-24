@@ -68,13 +68,23 @@ def main():
     terminal = dict(at_utc=now(), returncode=rc, timed_out=timed_out, elapsed_seconds=time.monotonic() - start,
         cap_seconds=420, grace_seconds=30, child_pid=child.pid,
         complete_exists=Path('complete.json').exists(), failure_exists=Path('failure.json').exists())
+    if rc == 0 and not timed_out:
+        try:
+            complete=json.loads(Path('complete.json').read_text()); step=json.loads(Path('step.json').read_text())
+            assert complete['actual_steps']==1 and complete['actual_backwards']==14 and complete['fresh_state_discarded']
+            assert complete['step_sha256']==hashlib.sha256(Path('step.json').read_bytes()).hexdigest()
+            assert complete['manifest_sha256']==hashlib.sha256(Path('run-manifest.json').read_bytes()).hexdigest()
+            assert step['actual_forwards']==14 and step['actual_backwards']==14 and step['all_three_Pareto_completed']
+            assert step['final_inventory']['all_grad_finite'] and step['final_inventory']['frozen_base_no_gradient']
+            terminal['all14_backwards_and_one_update_verified']=True
+        except Exception as error:terminal['endpoint_error']=dict(type=type(error).__name__,message=str(error))
     try:
         actual = resources(); terminal['gpu_release'] = actual
         terminal['target_has_no_process'] = plan['gpu_uuid'] not in actual['processes']
     except Exception as error: terminal['release_unknown'] = type(error).__name__
     save('wrapper-complete.json', terminal)
     print(json.dumps(terminal), flush=True)
-    if rc or timed_out: raise SystemExit(1)
+    if rc or timed_out or 'endpoint_error' in terminal: raise SystemExit(1)
 
 
 if __name__ == '__main__': main()

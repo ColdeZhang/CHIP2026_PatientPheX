@@ -83,8 +83,7 @@ def main():
         model, named, loaded = loader.load_fresh(plan["model"], "model-source-manifest.json", 20261023)
         base=model.get_base_model()
         assert base.loss_function is native_loss.ForCausalLMLoss
-        base.loss_function=selected_loss.selected_causal_loss
-        assert base.loss_function is selected_loss.selected_causal_loss
+        # No loss monkeypatch: indexed path passes labels=None and uses external CE.
         model.config.use_cache = False
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant":False})
         model.enable_input_require_grads()
