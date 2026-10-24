@@ -26,3 +26,6 @@
 - 独立v2 source/decision在da4c5a9c先push；提取37complete/2whole-row-abstain=498 anchors/333quotes、0rejected。实际142必要query plan2d3c22e9在539c2803先push后15:14:29.395233唯一启动；driver2749626/child2749637，8.243秒rc0，15:14:37.640730真实GPU0=0/noapps，13原件collection f0a89b5a。
 - 完整16/39/1189的唯一primary先freeze0b5ea454，后1newv2/old0：Score .704349598608（B4 .701325377212，Δ+.003024221396），新增32=9TP/23FP、删0，mic下降/mac上升；完整终点见 [evidence](evidence/F1-fallback-v2-result.json)。原V1和原39raw保持；无模型重跑、无cap救回、无有效行子集/单臂质量。原dev .8尚未达标，本F1不冒称原dev。
 - 交接入口：仓外 `research/copy-grounded-decode-v1/fallback-v2/final-review-entry.json`；代码 `fallback_v2/postprocess.py`（已执行extract-bind→normalize-bind→assemble→score，禁止重复score）。F0需排F0新pool及匹配B4/G/S/Q/C，由主线程决定，当前不启动。
+
+- F1最小包186758B/a5e63746原write回执UNKNOWN；只读确认原目标已同SHA后fsync文件和祖先、六个≤32768B块实际回读全部成员吻合，无重传。回执ec20bb53见 [备份](evidence/F1-minimal-backup.json)。
+- root批准同后设整行弃答协议转F0：全47/16/947，原B4 343/.728195628911；相同GLiNER2.5 task1 final10缺F0输出，现成54a88544权重，真实172窗62940 word tokens，先唯一次600+30与原accepted归一化必要Sap180+30，再完整47 trie2400+30。strong fold0现成79d3568e且全部训练祖先排F0，GLiNER/alias32=F2F3。F0 source/pool准备中，暂无新GPU；仅复用stage8相同输入17f9607e，不复用其异模型预测。

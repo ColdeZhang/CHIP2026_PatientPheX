@@ -1,0 +1,98 @@
+"""Unique CPU or fresh GPU inference with one absolute deadline, no retry."""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+import time
+from raw_store import publish_json
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with Path(path).open('rb') as f:
+        for block in iter(lambda:f.read(4*1024*1024),b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def resources():
+    def query(arg):
+        return subprocess.check_output(['nvidia-smi',arg,'--format=csv,noheader,nounits'],text=True,timeout=10)
+    fs = os.statvfs('.')
+    return dict(at_utc=datetime.now(timezone.utc).isoformat(),gpu=query('--query-gpu=index,uuid,memory.used,memory.free,memory.total'),
+                processes=query('--query-compute-apps=gpu_uuid,pid,used_memory'),disk_free_bytes=fs.f_bavail*fs.f_frsize)
+
+
+def main():
+    ap = argparse.ArgumentParser();ap.add_argument('--plan',required=True);args=ap.parse_args()
+    os.umask(0o077);p=json.loads(Path(args.plan).read_text());root=Path(p['storage_parent'])
+    cap=p['budget_seconds'];grace=p['grace_seconds'];gpu=True
+    assert (cap,grace)==((600,30) if p['phase']=='infer' else (180,30))
+    assert p['authorized'] and p['expected_documents']==16 and p['expected_patients']==47 and p['complete_all_inputs']
+    assert os.environ['PATIENTPHEX_DURABILITY_ROOT']==str(root)
+    for name,item in p['files'].items():
+        assert Path(name).stat().st_size==item['bytes'] and sha(name)==item['sha256']
+    assert not Path(p['output_dir']).exists()
+    assert all(not Path(n).exists() for n in ['driver-started.json','child-started.json','wrapper-complete.json','stdout.log','stderr.log'])
+    if gpu:
+        assert os.environ['CUDA_VISIBLE_DEVICES']==p['gpu_uuid']
+        # Parent-owned release receipt is a prerequisite; fresh hardware checks
+        # still apply and do not infer release from an old F1 job.
+        assert p['predecessor_release']['confirmed_by_owner'] is True
+        gate=resources();publish_json('fresh-resource-gate.json',gate,root)
+        target=[s.split(',') for s in gate['gpu'].splitlines() if p['gpu_uuid'] in s]
+        assert len(target)==1 and int(target[0][2])<=10 and int(target[0][3])>=23000
+        assert p['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes']>=512*1024**2
+    else:
+        assert os.environ['CUDA_VISIBLE_DEVICES']==''
+    start=time.monotonic();utc=time.time();timed_out=False
+    publish_json('driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),
+        plan_sha256=sha(args.plan),command=p['argv'],deadline_TERM_unix=utc+cap,deadline_KILL_unix=utc+cap+grace,
+        budget_seconds=cap,grace_seconds=grace,no_automatic_retry=True),root)
+    with Path('stdout.log').open('xb') as out,Path('stderr.log').open('xb') as err:
+        child=subprocess.Popen(p['argv'],stdout=out,stderr=err,start_new_session=True)
+        publish_json('child-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),child_pid=child.pid),root)
+        try:
+            rc=child.wait(timeout=max(.001,start+cap-time.monotonic()))
+        except subprocess.TimeoutExpired:
+            timed_out=True;os.killpg(child.pid,signal.SIGTERM)
+            try:
+                rc=child.wait(timeout=max(.001,start+cap+grace-time.monotonic()))
+            except subprocess.TimeoutExpired:
+                os.killpg(child.pid,signal.SIGKILL);rc=child.wait()
+        for f in [out,err]:
+            f.flush();os.fsync(f.fileno())
+    report=dict(at_utc=datetime.now(timezone.utc).isoformat(),returncode=rc,child_pid=child.pid,timed_out=timed_out,
+                elapsed_seconds=time.monotonic()-start,budget_seconds=cap,grace_seconds=grace,no_automatic_retry=True)
+    if rc==0 and not timed_out:
+        try:
+            result=Path(p['output_dir'])/'complete.json';v=json.loads(result.read_text())
+            assert v['status']==p['expected_status'] and v['documents']==16 and v['patients']==47
+            assert v['source_sha256']==p['runner']['sha256']
+            if p['phase']=='infer':
+                assert v['windows']==172 and v['quality_evaluations']==0
+                assert sha(Path(p['output_dir'])/'selected.json')==v['selected_sha256']
+                for suffix in ['.head-raw.pt','.input.json','.candidates.json','.raw.json']:
+                    assert len(list(Path(p['output_dir']).glob('*'+suffix)))==172
+            else:
+                assert sha(Path(p['output_dir'])/'entities.json')==v['entities_sha256']
+                assert v['semantic_queries']==p['necessary_query_count'] and not v['public_bank_reencoded']
+                assert v['policy_sha256']=='b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20'
+            report.update(result_sha256=sha(result),complete_members_verified=True,no_quality_performed=True)
+        except Exception as error:
+            report['endpoint_error']=dict(type=type(error).__name__,message=str(error))
+    if gpu:
+        try:
+            report['gpu_release']=resources();report['target_has_no_process']=p['gpu_uuid'] not in report['gpu_release']['processes']
+        except Exception as error:
+            report['release_unknown']=type(error).__name__
+    publish_json('wrapper-complete.json',report,root);print(json.dumps(report),flush=True)
+    raise SystemExit(rc or (1 if timed_out or 'endpoint_error' in report else 0))
+
+
+if __name__=='__main__':
+    main()
