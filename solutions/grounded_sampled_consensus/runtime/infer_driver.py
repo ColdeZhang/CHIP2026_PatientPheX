@@ -1,4 +1,4 @@
-"""Unique fresh78 native inference with original absolute 1800+TERM30 budget."""
+"""Unique fresh78 native inference with original absolute 2400+TERM30 budget."""
 from datetime import datetime,timezone
 import hashlib,json,os,signal,subprocess,time
 from pathlib import Path
@@ -22,7 +22,7 @@ def resources():
 def main():
  os.umask(0o077);p=json.loads(Path('infer-plan.json').read_text());cap=p['budget_seconds']
  assert p['schema']=='grounded-sample78-inference-v1' and p['inference_authorized'] is True
- assert cap==p['authorized_budget_seconds']==1800 and p['grace_seconds']==30 and p['expected_rows']==78 and p['all_rows_fresh']
+ assert cap==p['authorized_budget_seconds']==2400 and p['grace_seconds']==30 and p['expected_rows']==78 and p['all_rows_fresh']
  for name,item in p['files'].items():assert Path(name).stat().st_size==item['bytes'] and sha(name)==item['sha256']
  assert all(not Path(n).exists() for n in ['driver-started.json','child-started.json','wrapper-complete.json','stdout.log','stderr.log'])
  assert not Path(p['output_dir']).exists() and os.environ['CUDA_VISIBLE_DEVICES']==p['gpu_uuid'] and os.environ['PATIENTPHEX_DURABILITY_ROOT']==p['storage_parent']

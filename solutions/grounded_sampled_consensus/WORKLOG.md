@@ -15,3 +15,5 @@
 ## 执行
 
 先实际原生39输入/新78随机种子接口CPU120+5；源/CPU/成本checkpoint后，A800 GPU2 fresh空卡门唯一1800+30包含两seed/一次加载，不扩截止、不重训、不按格式挑重试。全78及必要Sap180+30齐才组装。未知MCP状态恢复原intent，不重复start。当前仅准备，没有GPU任务。
+
+预算前置修订：root在任何GPU start/intent之前根据1779.411秒保守估计，明确将唯一正式78共享上限1800改2400+TERM30。原1800源f6a85817/decision保留，新decision-budget-v2记录；CPU120+5、全部39×2输入/1600/两seed/normalizer/单quality均不改，无GPU失败/试跑。

@@ -67,7 +67,7 @@ def checked_plan(plan_path):
     plan=json.loads(Path(plan_path).read_text())
     assert plan['operations_source']==ref(__file__)
     assert plan['schema']=='grounded-sample78-inference-v1' and plan['expected_rows']==78
-    assert plan['budget_seconds']==1800 and plan['budget_seconds']==plan['authorized_budget_seconds'] and plan['grace_seconds']==30
+    assert plan['budget_seconds']==2400 and plan['budget_seconds']==plan['authorized_budget_seconds'] and plan['grace_seconds']==30
     assert plan['output_dir']==ROOT+'/output'
     return plan
 
