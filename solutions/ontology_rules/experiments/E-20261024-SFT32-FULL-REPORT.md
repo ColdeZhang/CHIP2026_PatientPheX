@@ -11,3 +11,10 @@ CPU实际11.767秒：80提示/16文献/587CID/39PID；570passages和162给定men
 入口：`qwen35_sft32_full_report_readiness/probe/operations.py`，外部B=`/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/probe-v1`。plan1ab430d2、runner062cbf90；部署/启动前先看既有intent和job，未知状态不重复start。大输入/IDs/raw/log保留外部，Git仅源和小索引。
 
 05:23:00.013584Z唯一原driver实际启动，proc_7fce4726/PID40976，child/PGID40989，TERM05:27:00.013584，额外30秒后KILL。前置source检查点9dd171c6已push；8件实际source/input SHA与compile/fsync通过。恢复只读首检查含driver/child、尚无终点，不因观察未知而重复start。
+
+
+## 最长真实终点及完整80授权
+
+13件终点已完整回收、逐SHA：manifest ed9f4e94。14390输入→70输出，native6.547998秒、wrapper33.770421秒rc0，load5.186099秒；完整供给CID/PID严格JSON与自然EOS、无cap。峰allocated22,233,742,848/reserved23,502,782,464字节；05:23:33.776673实际GPU2无进程。raw-first保证从generate返回后开始，不保证生成中OOM/TERM仍能回收部分IDs。
+
+据此root统一授权一次完整80、1200+TERM30，idx19精确缓存1＋79fresh，同input14400/gen1600及原模型/adapter/greedy/math flags；不自动扩时或再生成。旧80 282.502秒×输入token2.673只是约755秒成本代理，非保证。新source9bb2b322/plan73ebed7c，按原长度/row_id排序，逐行IDs→raw持久后按probe严格供给CID/PID完整JSON校验；EOS/cap/格式失败整行弃答、无补负答案。完整两个端点共同freeze后才各唯一v2，1189实体与全部非关系literal bytes保持，旧分复用；不自动迁F0/dev。当前source准备、无新质量。
