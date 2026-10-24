@@ -1,7 +1,7 @@
 """Bind only actual terminal identities and original shared deadline; no scoring."""
 from pathlib import Path
 import hashlib,json,time
-S=Path(__file__).parent
+S=Path(__file__).parent.parent
 D=Path('/workspace/patientphex-runs/round2-20261023/research/public-h5-train32-formal-v1/native-format-recovery')
 def ref(p):return dict(path=str(p),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
 manifest=json.loads((D/'terminal-manifest.json').read_text())
