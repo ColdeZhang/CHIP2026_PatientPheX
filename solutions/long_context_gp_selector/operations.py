@@ -7,6 +7,7 @@ def ref(p):
  p=Path(p);b=p.read_bytes();return dict(path=str(p.resolve()),bytes=len(b),sha256=hashlib.sha256(b).hexdigest())
 def save(p,v):
  with p.open('x') as f:json.dump(v,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ fd=os.open(p.parent,os.O_DIRECTORY);os.fsync(fd);os.close(fd)
 def run(code,tag,timeout=30):
  v=call(D,'run_command',dict(mount_id=MOUNT,cwd='.',command='python3 -c '+shlex.quote(code),timeout_seconds=timeout),tag);assert v.get('exit_code')==0,v;return json.loads(v['stdout'])
 def main():
@@ -60,15 +61,15 @@ print(json.dumps(dict(status='ALL_SOURCE_AND_RAW_INPUT_EXACT',members=len(member
   v=call(D,'start_process',dict(mount_id=MOUNT,cwd=REL,command=shlex.join([cfg['python'],'-u',REMOTE+'/driver.py']),env=cfg['environment']),'formal-start');save(D/'started.json',v);print(json.dumps(v))
  elif a.action=='observe':
   names=['cpu-complete.json','job/started.json','job/ended.json','job/fresh-gate.json','job/expired-before-entry.json','output/progress.json','output/complete.json']
-  code="import json;from pathlib import Path;r=Path("+repr(REMOTE)+");o={n:json.loads((r/n).read_text()) for n in "+repr(names)+" if (r/n).exists()};p=r/'job/stderr';o['stderr']=p.read_text()[-4000:] if p.exists() else None;print(json.dumps(o))"
+  code="import json;from pathlib import Path;r=Path("+repr(REMOTE)+");o={n:json.loads((r/n).read_text()) for n in "+repr(names)+" if (r/n).exists()};p=r/'job/stderr';o['stderr']=p.read_text()[-4000:] if p.exists() else None;cfg=json.load(open(r/'formal-plan.json'));q=Path(cfg['GP23_model_manifest']['path']);assert __import__('hashlib').sha256(q.read_bytes()).hexdigest()==cfg['GP23_model_manifest']['sha256'];o['GP23-model-manifest.json']=json.loads(q.read_text());print(json.dumps(o))"
   v=run(code,'observe');save(D/('observation-'+str(time.time_ns())+'.json'),v);print(json.dumps(v))
  elif a.action=='pack':
   code="""import json,hashlib,zipfile,os
 from pathlib import Path
-r=Path(%r);e=json.load(open(r/'job/ended.json'));assert e['returncode']==0 and not e['timed_out'];members={};zpath=r/'terminal.zip'
+r=Path(%r);e=json.load(open(r/'job/ended.json'));assert e['status'] in ['COMPLETE','FAILED'];members={};zpath=r/'terminal.zip'
 with zipfile.ZipFile(zpath,'x',compression=zipfile.ZIP_DEFLATED) as z:
  for p in sorted(r.rglob('*')):
-  if p.is_file() and p.suffix in ('.json','.jsonl','.py') and p.name!='data.json':
+  if p.is_file() and (p.suffix in ('.json','.jsonl','.py') or str(p.relative_to(r)) in ('job/stdout','job/stderr')) and p.name!='data.json':
    n=str(p.relative_to(r));b=p.read_bytes();members[n]=dict(bytes=len(b),sha256=hashlib.sha256(b).hexdigest());z.writestr(n,b)
  index=json.dumps(members,indent=2).encode();z.writestr('members.json',index)
 with zpath.open('rb') as f:os.fsync(f.fileno())
@@ -94,5 +95,7 @@ print(json.dumps(dict(archive=dict(bytes=zpath.stat().st_size,sha256=hashlib.sha
     b=z.read(n);assert len(b)==r['bytes'] and hashlib.sha256(b).hexdigest()==r['sha256'];p=out/n;p.parent.mkdir(parents=True,exist_ok=True)
     with p.open('wb') as f:f.write(b);f.flush();os.fsync(f.fileno())
     assert ref(p)['sha256']==r['sha256']
+  for directory,dirs,files in os.walk(out,topdown=False):
+   fd=os.open(directory,os.O_DIRECTORY);os.fsync(fd);os.close(fd)
   save(D/'collection-complete.json',dict(status='WHOLE_ZIP_AND_ALL_MEMBERS_SHA_FSYNC_REOPEN',members=len(members),package=ref(D/'terminal-package.json'),collected=str(out)))
 if __name__=='__main__':main()
