@@ -1,6 +1,6 @@
 # 监督式 SapBERT 链接器
 
-状态：**真实工程通过；正式600+30与唯一完整F1端点已授权，源已冻结，尚未start。**
+状态：**完整F1单端点负结案，不扩F0，不追加训练或阈值。**
 
 目标是检验真实 train32 词面监督是否改善共享 Sap 编码器的概念距离，固定旧强实体跨度，仅替换非精确匹配的 ID。原 F1 强基线 Score `.7286975364690524`；成功门是完整同口径 Score 严格提高，不能用训练检索召回替代。
 
@@ -19,3 +19,7 @@ CPU v1 在0模型/0CUDA阶段拒绝合法整数buffer：199个F16权重＋`embed
 15:48:39.262891→15:48:58.366413唯一GPU工程完整19.104秒，4FB/2Adam/197非pooler全部更新，793state张量实比，峰5.218GB；GPU0真实4MiB/noapps释放。完整native1160/41099/303为6.319秒，0截断。必要6小metadata已收，1.309GBprobe state仅远端保留且禁止续训。正式按已授权fresh3ep219/4bank/finalACK/303，同源核心AST一致；成本273.263代理、600+30共享时钟，动态候选增长披露。实际入口 `formal/ops.py deploy|start|observe|collect`，完整后 `formal/quality.py formal/quality-plan.json`，无原dev/官网。质量gold只定位已有正确文件名/SHA，冻结前不读取。
 
 正式v1 15:54:09.943514→15:54:42.500011实际32.556秒rc1，epoch1完整73/1160/9.235s、epoch2候选已建，后续batch的AMP梯度非有限；前向loss有限，final state尚未产生。原GPU已释放，原source/namespace保留。root授权独立fresh数值恢复：仅GradScaler初值65536→4096及失败前批次/finite诊断，FP16/目标/seed/LR/3epoch219均不改，仍原16:04:09.943514 TERM/+30绝对时钟，不默默跳批或复用失败Adam。源码 `formal_recovery/`；成功也不声称证明原具体根因。数值非有限实际实现为整链拒绝，区别于旧提案“单条保留旧ID”；全finite输出时替换公式不变。
+
+最终：fresh4096恢复15:58:05.919361→15:59:02.517115，56.598秒/原deadline未延，3epoch219真实更新＋4公共bank＋final完整ACK＋303全部完成，峰4.667GB，GPU0已释放。唯一F1在16:03:25.413338全冻/.419492开始质量，Score **.728697536469→.722613656516**（−.006083879953），33换ID中16原对变错、17仍错，TP−16/FP+16；关系两项完全不变，format0错0警告，1新v2/旧0。当前422替ID配方关闭；不能无匹配零步臂把下降纯归微调。原结果/新scale联合工程差异均保留。
+
+read_file第二片UNKNOWN仅I/O，首131072字节复用＋run_command只读6片补165608字节，完整303原SHA06fd77e0，0重推断。必要6小件全收；24成员小包137963B/da6e4f66已服务器逐SHA/fsync/reopen＋5次32KB实际readback。1.309GB模型/bank126MB保远端actuallocator，不称小包自包含。统一 `evidence/F1-terminal-pointer.json` 供独立终审。root在本质量前预提的Gquote应用是另协议，当前不执行、不替代本负结论。

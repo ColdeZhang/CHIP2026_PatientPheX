@@ -1,0 +1,68 @@
+{
+  "schema": "task-adapted-sapbert-encoder-and-public-bank-v1",
+  "task_adapted": true,
+  "no_task_fit": false,
+  "parent": {
+    "repo": "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+    "revision": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+    "fp16_parent_sha256": "dc5e5071ed867afd44cc2fdb21974f2c4ca2288442ac765be353eec80c2e4814"
+  },
+  "train": {
+    "folds": [
+      "F2",
+      "F3"
+    ],
+    "documents": 32,
+    "source_sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a",
+    "unique_surfaces": 1160,
+    "epochs": 3,
+    "adam_updates": 219,
+    "seed": 20261024,
+    "grad_scaler_init": 4096,
+    "held_labels_used": false
+  },
+  "checkpoint": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/supervised-sapbert-linker/formal-recovery-v1/formal-output/final-epoch3-state.pt",
+    "bytes": 1309305869,
+    "sha256": "b0482af6b273f02c15bd1e466f716b050f7f64f0a9932ba79466e5e3fd5f6b70"
+  },
+  "checkpoint_schema": "torch.save dict; model FP32state_dict,optimizer,scheduler,scaler,rng; not HF folder",
+  "parameters": 109482240,
+  "bank": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/supervised-sapbert-linker/formal-recovery-v1/formal-output/final-public-bank.npy",
+    "bytes": 126256256,
+    "sha256": "fa312ba7d0625b7822f9b2c247b7b8522a6cef3a06206bbc0d3198c6b97c132a"
+  },
+  "bank_shape": [
+    41099,
+    768
+  ],
+  "bank_dtype": "float32",
+  "public_labels": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/supervised-linker-readiness-20261024/owner-v1/public-rows.json",
+    "bytes": 10807562,
+    "sha256": "60a27430437a25239768c5d33a6a58d9588dbe5e2f80168c19b9d4c955756b9f"
+  },
+  "public_rows_content_sha256": "55086bb25e540e11068cd086faeaa1a07c336f07e6b168075e3c3e2d3d89969f",
+  "public_mapping_training_aliases": false,
+  "inference": {
+    "source": {
+      "path": "/workspace/patientphex-worktrees/research-supervised-sapbert-linker/solutions/supervised_sapbert_linker/formal_recovery/train.py",
+      "bytes": 12507,
+      "sha256": "f1ff4d21c6b26726e8bbe5a66042004159e635ea1686ea01c93ad621c4be4392"
+    },
+    "parameters_dtype": "float32",
+    "forward_policy": "torch.autocast(cuda,float16)",
+    "last_hidden_dtype": "not separately recorded; do not assert FP16 output tensor",
+    "pooling": "last_hidden_state[:,0].float(),L2",
+    "max_length": 32,
+    "model_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/model",
+    "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.50.0",
+    "tokenizers": "0.21.4"
+  },
+  "mount": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "scope": "Actual supervised encoder/public bank; old frozen-public certificates must not be reused for new vectors. Task1 endpoint negative; other endpoint requires separate predeclared root protocol."
+}
