@@ -311,6 +311,8 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 **避免方法**：GPU前同时核发布文件与实际运行对象的完整处理链，并用独立原生加载器比较真实输入编码、解码及特殊token边界；不能只比较同一错误入口的两个API。不假设所有模型都逐字符无损，预期规范化必须与发布处理链一致。此次已定位，使用发布JSON的generic修正核验中；raw/generic各自往返正确不自动等于两者IDs相同，新入口须直接核全部80行及序列化缺省字段。旧1024/4096作业、原输入与输出保持，限定为TF5重建tokenizer下的工程记录，不能当发布模型的格式/质量负结论；已有2644 IDs正确解码后仍只有2/8候选键，原strict合同不通过，不能补空列表冒充模型答案。实际CPU11.833秒，无权重/GPU/质量；统一纠正审查`validation/deepseek-r1-format-cost-review/successor-and-interface-correction-review.json`，SHA`4cc5b614…`。
 
+后续修正CPU7.932秒通过：80行raw/generic/chat-template IDs直接全等、往返及special一致，按顺序mergepairs与原发布文件相同；新first2014/max5689，原长度2171/6002不得沿用。证据`published-interface-v1/cpu/actual-result.json` SHA`d0aace8e…`，新GPU/质量另记。另一次同环境17.716秒核Med与Qwen3.5各80纯输入，其Auto/native编码及双decode均相同；不据R1故障否定旧模型。该结果仅覆盖实际文本：Qwen序列化组件/未用音频special存在差异，不能扩大成所有输入或序列化字节等价。
+
 ## 更新方式
 
 新问题使用稳定编号，写清触发条件、影响、避免方法及证据。修复时更新该条状态并追加验证版本，不删除防复发经验。待核实猜测不得混入“已确认”；大量案例移入对应实验或审计记录，只留链接。
