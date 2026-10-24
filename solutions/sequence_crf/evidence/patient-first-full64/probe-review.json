@@ -1,0 +1,105 @@
+{
+  "status": "PASS_FULL64_INPUT_NATIVE_CPU_AND_UNIQUE_LONGEST_UPDATE_FORMAT_COST_ONLY",
+  "reviewer": "/root/validation_recover_0102",
+  "at_utc": "2026-10-24T04:37:38.384567+00:00",
+  "refs": {
+    "owner_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-probe/terminal-manifest.json",
+      "bytes": 11054,
+      "sha256": "47728168f82aff97b98279e7715449966f0622feb1bbc5ae879a9c1f60eb1536"
+    },
+    "entry_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-probe-review/entry-checks.json",
+      "bytes": 17432,
+      "sha256": "55798ebe8a54a95c3a116ee888c0bfd0890656432b89584f8cd792c2fd24664d"
+    },
+    "terminal_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-probe-review/terminal-checks.json",
+      "bytes": 9032,
+      "sha256": "2aee2d4a2dccd437e7eb08a3faeab366f8fd3ae2ff771fa82c9c8b17079ebf01"
+    },
+    "checker": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-full64-probe-review/check_terminal.py",
+      "bytes": 5008,
+      "sha256": "f0776bf33640d7561a1b49a095982e7a560ac0a6d1a25aef69886fb2ebcae2c5"
+    },
+    "source": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_full64/probe.py",
+      "bytes": 10270,
+      "sha256": "013593aae5b962e2dbc3387897f340608d97da450620afc57795d37df38d9e77"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-probe/run-plan.json",
+      "bytes": 5386,
+      "sha256": "c537af791136f231dd0583b0532b73b439ad88185363644ebde8389960d64c55"
+    }
+  },
+  "scope": "Only full64 data bindings/nativeCPU and one fresh longest native CE step incremental to previous F0 probe. No repeated25/27 contracts, tokenizer/model/score calls or gold by verifier; no Git/remote actions.",
+  "data_contract": {
+    "rows": 265,
+    "training_documents": 64,
+    "excluded_original_dev_documents": 16,
+    "input_rows_from_four_48_to16_chains": true,
+    "training_dev_overlap": 0,
+    "input_original265_fields_and5328_binary_matrix_inverse_preserved": "Owner pureCPU handoff f958/summaryda72; sourceguards checked, old train payload not reopened",
+    "full_tokens_per_epoch": 860405,
+    "supervised_per_epoch": 9818,
+    "longest_row": "3563609:relations:0",
+    "longest_full_prefix_supervised": [
+      6166,
+      6044,
+      122
+    ],
+    "native_CPU_seconds": 8.432020742446184,
+    "native_encoded_and_record_fingerprints_exact_to_pureCPU_summary": true,
+    "CUDA_hidden_uninitialized": true,
+    "Torch_imported_honestly_recorded": true,
+    "dev_targets_read": false
+  },
+  "source_contract": {
+    "native_math_byteexact_vs_F0": true,
+    "native_math_bytes": 4918,
+    "native_math_sha256": "8a5fcedb6e4d8d8f17cdd19216875c287821800364991c1b63b8ca75ed000a30",
+    "bound_model": "Existing actual native Qwen3.5-9B base8953803264+adapter43278336=8997081600; HF5.20.2/Torch2.6cu124/PEFT.21.2, bothnative GDN functions,noFLA",
+    "one_step": "freshbase/r16 alpha32 dropout.05/nativefull-logit unweightedassistantCE/batch1/accum1,AdamW FP32 lr1e-4 weightdecay.01 clip1,no warmup. Frozenbase/onlyadapter; no basecopies/allocatorchange/truncation/lossorattentionchange."
+  },
+  "actual": {
+    "job": "proc_281ec4d2-bef3-490c-bdd7-4d60f43dccae",
+    "pid": 113890,
+    "started_utc": "2026-10-24T04:33:22.332056599Z",
+    "authoritative_driver_utc": "2026-10-24T04:33:22.436534+00:00",
+    "main_cap_seconds": 240,
+    "TERM_grace_seconds": 30,
+    "wrapper_rc": 0,
+    "wrapper_seconds": 81.87303733825684,
+    "native_seconds": 80.69966880977154,
+    "step_seconds": 15.166887570172548,
+    "loss": 0.25297603011131287,
+    "gradient_norm_before_clip": 3.1054887771606445,
+    "three_families_B_update": true,
+    "nonzero_B_gradient_tensors": 248,
+    "nonzero_A_gradient_tensors": 0,
+    "A_zero_expected_from_fresh_B_zero": true,
+    "actual_steps": 1,
+    "peak_allocated_bytes": 38183758336,
+    "peak_reserved_bytes": 39082524672,
+    "post_update_free_bytes": 2665807872,
+    "release": {
+      "at_utc": "2026-10-24T04:34:44.426409+00:00",
+      "target": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+      "target_has_no_process": true,
+      "target_memory": [
+        "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960"
+      ]
+    },
+    "diagnostic_state_discarded": true,
+    "checkpoint_saved": false,
+    "quality_computed": false
+  },
+  "conclusion": "Actual new full64 longest6166 tokens completes one finite native CE update in15.167s (wrapper81.873s<240), three adapter families update; GPU released04:34:44.426409. It provides a resource feasibility point for this fixed single update, not full68-step training or quality evidence.",
+  "limits": [
+    "One fresh row/update does not establish accumulation8/multiple lengths/laterAdamstate stability. Post-update free2.6658GB is not measured headroom at peak; peakallocated38.184GB/reserved39.083GB are separate values.",
+    "Probestate discarded, no trained adapter/model retained or reused for formal. Root later separately authorized freshfull64 training4500+30 and devinfer900+30; this review does not mark them started/complete.",
+    "Originaldev currenta179/.7460819649861977 unchanged; futuredev fullpredfreeze and solefixed endpoint require their own incremental actualproof."
+  ]
+}

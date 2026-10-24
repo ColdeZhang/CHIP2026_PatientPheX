@@ -29,3 +29,9 @@
 真实04:34:44.426409释放GPU2，0/40960MiB且无进程。8小件逐SHA回收，step2d94cb44、wrapper700a210d；完整探针清单见evidence。第一次回收读取先见complete、未见wrapper；随后原文件回收证实实际成功终点，不重启作业。source与job已d313452推送。
 
 正式计划参考同A100 F0两轮2279.145秒，新token比1.309922，线性参考2985.501秒；拟4500+TERM30包括每epoch完整状态fsync/祖先链持久/原字SHA回读。原dev64另900+30，原max6400不截断，fresh两轮265条/68calls/4warmup。正式trainer已绑定actualnative但尚未运行，full64正式是否启动由root根据实测统一决定。纯推断草稿保留先原始IDs后raw再有限codec，三项epoch2真实收据仍pending。
+
+## 正式事前协议（探针后授权）
+
+主线程已基于实测统一授权fresh265×2/68calls/4warmup的4500+30正式训练，以及durable epoch2后原dev64唯一900+30推断。首OOM/非有限/硬截止停，不降精度/改loss/扩预算、不重复生成。原dev唯一评分为a179全预测literal∪有效患者关联，1072实体/391旧关系/35public-new严格保留；完整raw与最终pred先冻再单次v2，旧.746081965复用，不评分patient-alone或扫组合。Score严格升记新候选best，macro下降必须披露；用户达标是Score≥.8并通过格式/来源/复现，内部折macro筛选不另作用户硬条件。协议a0b2b77b在任何新dev质量前冻结。
+
+正式源/计划661f60f4已准备；推断三个epoch2实际SHA保持pending，未伪造实际模型身份。probe独审02881279 PASS只覆盖工程单步，不当正式训练或质量证明。
