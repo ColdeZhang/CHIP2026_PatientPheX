@@ -1,118 +1,49 @@
-# CRF 序列标注工作台账
+# CRF 路线工作台账
 
-实验 `E-20261023-009`，分支 `round2/sequence-crf`，初始基点 `00f7da8`。共享主分支已正常合并至 `0f8901e`，merge `773d12e` 已推送；同步前后本方案 Git tree 字节一致。新任务还应读取 `git show main:HANDOFF.MD` / `main:AGENTS.md`，再看本页。
+分支 `round2/sequence-crf`，worktree `/workspace/patientphex-worktrees/round2-sequence-crf`；负责人只修改 `solutions/sequence_crf/`。新任务先读当前 `main:HANDOFF.MD`、`main:AGENTS.md` 与主线程总账，再读本页及对应实验文档。完整旧台账已移至[历史快照](WORKLOG-HISTORY-20261024-0335.md)，其中旧“运行中”字样不表示当前状态。
 
-## 目标与可信最佳结果
+## 目标与已知最佳
 
-- 原 train64/dev16、指定 HPO 2026-06-23、公共 evaluator v2 all/text，**Score ≥ .8** 才申请主线程验收合并。本轮不上传官方。
-- 本路线原政策 dev **.711324992**（独审PASS）：原CRF+Sap/LR基线保留，增加固定train48 GLiNER终点、train64 Sap筛选跨度，再沿既有LR；源码`4adf9da`，预测`gliner-dev-transfer/assembled/full-lr.jsonl`。对应仅增实体不改关系控制.706111684；独立train64 LR重拟合、三输出/全部指标逐字节复现，格式/HPO零错警。前一独审最佳.700635947及完整证据继续保留。
-- 跨路线Pheno实体-only组合候选 **.712586161** 已独审PASS；固定nested48候选.712146627也已独审PASS。两项都只有温和增益，mention分项有下降，均未达.8。
-- 新跨路线候选 **.728794595** 已独审PASS：全train64 source-HGB+公开Pheno新实体，原best aa107790 SFT关联对象完全保留；较原best .715759605 +.013034990，只提升实体两项。详见台账17；新fit/全概率/预测与指标独立复现（1112ced2），仍未达.8。
-- 新双公开模型候选 **.732257765** 已独审PASS（fc98e9ca）：同完整SFT关联、全64双来源HGB+训练OOF预选cut.3；固定.4对照.731445835也提高。仅实体变化、仍未.8；真实295637B模型已保存，见台账20。
-- 当前跨路线固定嵌套候选 **.737585917** 已独审PASS（9c068d49）：在root已审e9 .736526555上仅补38实体（14TP24FP），原368关系完全不变；men小降/doc升，仍未.8。恢复见[实体嵌套终点](evidence/round2/selector-nested-dev-results.json)。
-- 内四折规则关系优于 LR，原 dev 相反；LR/rules 都评过原 dev，该选择使用过 dev，不能声称盲验证。尚未达到 .8。
+- 用户验收仍是原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text、Score ≥ .8 且格式/复现通过；内层F0/F1的诊断不能替代该目标。当前不上传官方，不自动迁移原dev。
+- 每个独立模型 ≤10B，允许多模型；不要重新按全链参数合计禁用集成（main HANDOFF H47）。
+- 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
+- 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 正在执行与恢复入口
+## 当前唯一GPU作业：patient-first F0
 
-**旧8B∪旧9B固定F0控制负关闭，独审PASS。** 同原58/947实体，唯一literal union只新增54＝16TP38FP；Score .695443948→.688565023，micro/macro双负，格式0错警，实际CPU0.260秒、旧指标零重评。旧8B1处既定LR回退披露。单独实验不改当前patient-first F0训练，不扫组合/不迁F1/dev；[结果与来源](experiments/old-sft-union-f0.md)。
+**正式两轮运行中，尚无F0患者优先质量结果。** 严格train48/204条、原F0纯输入58；fresh公开9B、r16、同优化器/seed、连续2epoch/52calls/3warmup。唯一变化是PID→CID集合监督；原binary目标可双逆还原，但token级损失权重随因子分解变化，不能称数值目标相同。
 
-**patient-first F1统一终审PASS；单独输出负，固定并集小幅正，F0本地和A100实际CPU均通过，唯一新最长行probe完整PASS/独审PASS且卡已释放，正式F0两轮已03:26:28启动proc_ced868e2，最迟04:31:58强退；完成后原58及双臂固定评分。** 严格train32→内层F1原80、完整fresh2ep32calls，native1141.720s；最终80全严格通过native194.801/wrapper199.625s，无fallback。primary **.645531861**（旧.660942003，−.015410142），keep=false；pre-quality固定oldSFT32∪new **.664421522**（+.003479519），micro−.002389695/macro+.016307771，新增15TP32FP、旧383关联全保留，按两关系F1之和升且macro不降keep=true。两输出1189实体不变/格式0错警，共同freeze先gold，各唯一v2，旧基线未重评。并集是小幅macro收益，仍未.8，主线程已另授权固定F0复验，现只核旧204/58转置与A100成本，不自动追加原dev/组合/官方上传。最终state12件519972522B已.100持久fsync/全SHA回读；02:53:13.364 A800 GPU2实际释放并交检索，本camp无GPU后继。[F0准备](experiments/patient-first-F0.md)、[终审](evidence/round2/patient-first-formal-terminal-review.json)、[完整结果](evidence/round2/patient-first-formal-results.json)、[77项终点清单](evidence/round2/patient-first-formal-terminal-manifest.json)、[方法/恢复](experiments/patient-first-closed-set.md)。
+| 项目 | 当前事实 |
+|---|---|
+| 作业 | `proc_ced868e2-fd8c-4ae4-b4b5-da75a8bb06a0`，driver PID64875 / trainer PID64892 |
+| 设备 | A100 GPU2，UUID `GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1` |
+| 权威开始/截止 | 2026-10-24 03:26:28.596527 UTC；TERM **04:31:28.596**，KILL **04:31:58.596** |
+| 最近实际监控 | 03:32:05已到epoch1/step5；训练loss .2026448834、lr9.795918e-5、peakallocated34.669GB；无失败或完整终点 |
+| 保存 | A100项目持久盘；每epoch adapter+optimizer/scheduler+全部RNG，file/dir及新父链fsync、原子rename、重开SHA、独立durability收据 |
+| 固定源/计划 | trainer `cc707253`，train-plan `4b70dbce`；完整入口独审 `bcaf14d3` PASS |
 
-**完整80 thinking固定政策准备完成、明确暂缓。** 唯一思考2304/final512，原80输入实核587CID/1557pairs、max5689；最密compact合法JSON242tokens。旧trace全CID字面1479、七列表1721、C003肯定映射2214、全八列表3529，旧“前半八项全决定”已纠正，不把一条位置外推80充分性。A800预计约3小时，建议硬4h+30但未启动；root决定不降cap凑成本，优先更便宜patient-first。[固定政策/状态机/成本](experiments/thinking-budget-80-plan.md)、[冻结JSON](evidence/round2/thinking-budget-80-policy.json)。
+新最长5769 token单步已真实PASS，13.936秒step、81.688秒wrapper；峰allocated36.894GB/reserved41.748GB。**仅单步证据，不保证accum8/常驻optimizer/多形状全程稳定**。正式预算3900+TERM30包含保存，首OOM/数值/截止失败停，不改loss/精度/allocator/长度、不自动重启。
 
-**thinking 人工边界单条格式诊断完成，终审220b3cb7 PASS，仅限可用性。** 原2030+4096+人工3token组成6129，旧自然闭合失败保留；同old32/native GDN由A800移A30，真实新final54tokens、EOS248046、完整8CID/合法P1 JSON通过。生成含prefill6.213秒、native38.552/wrapper39.465秒，真实rc0；峰allocated19.886GB/reserved20.487GB，01:35:58.384Z fresh核fc5d卡0MiB/无进程，单次180+30内完成。旧32两文件fullSHA、15新增presence位置反例、入口独审7c70e5c1均通过；旧14/replay沿用。完整11产物/30成员清单已回收，raw8cf737d8；无gold/targets/质量、不扩80/F1。旧RNG/KV未存、人工边界、新seed与A800→A30差异保留；39.465秒不含旧4096思考沉没成本。[方法与过程](experiments/thinking-budget-forcing-readiness.md)、[结果](evidence/round2/thinking-budget-final-results.json)、[终点清单](evidence/round2/thinking-budget-final-terminal-manifest.json)。
+完整持久epoch2后才执行固定原58推断（另600+30）；primary和预设oldSFT48∪new保持947实体/415CID/1166对，两完整预测共同freeze后各唯一v2，旧baseline .6954439475814587不重评。保留条件是delta(micro+macro)>0且macro不降；不得新增8B/其他规则组合或据分数改政策。
 
-**全局患者—表型聚合：完整负结案，统一终审5ea352fb通过。** 严格train32/F1同2506/1557对、同全文窗口/encoder/344577头，双fresh各8ep256步，总351.677秒、峰2.443GB；模型actual SHA已核，GPU释放。两完整预测共同freeze后唯一固定.5 F1：uniform **.542015995**，pair **.557825484**，虽两臂间+.01580949，仍低同池SFT32 **.660942003**与rules **.644761594**；pair232TP/261FP/288FN，较SFT少78TP多188FP。1189实体/nonassociation exact，双格式0错警，keep=false关闭，不加轮次/扫cut/F0/原dev。MCP离线只影响回收，root已补回最后2文件，全9成员SHA闭合；未知小tar不作已验证备份声明。[完整协议与过程](experiments/pair-conditioned-document.md)、[固定终点](evidence/round2/pair-document-formal-results.json)、[回收证据](evidence/round2/pair-document-final-collection.json)。
+- [完整方法、失败恢复和证据链](experiments/patient-first-F0.md)；[入口终审](evidence/round2/patient-first-F0-formal-entry-review.json)、[真实job](evidence/round2/patient-first-F0-formal-train-job.json)。
+- 外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`；P内 `resource.json`、`train-job.json`、`train-launch-intent.json` 和 `RECOVERY.md` 是恢复入口。A100自有目录 `sequence-round2/patient-first-F0-formal-v1/`，不要重调train start。
+- 源入口 `patient_first_f0/formal/formal_operations.py`：先 `collect --phase train --directory P`；只有rc0/52calls/两完整durability收据后，fresh卡启动唯一infer；完整collect infer后依次 `finish.py assemble`、`secondary_union.py assemble-common`、`secondary_union.py evaluate-both`。缺件/格式失败不得评分。
+- MCP UNKNOWN/OFFLINE只表示传输未知；保留原intent，至少60秒后一次原目录只读库存，不能当作模型失败或重复启动。无其他本路线GPU后继；A800已交检索。
 
-**原dev唯一逆序并集完整正，独审PASS（5a106306）。** 当前baac .738493753→**.746081965**（+.007588212），micro+.016226888/macro+.014125962；新增15TP8FP、无移除，1072实体及全部368旧关系（含35publicnew）原留、新391关系、0错警。完整freeze先gold，唯一union质量；native230.897/wrapper239.176秒，00:40:47 GPU2核空释放。旧A30/新A800差异明示，仍未.8。[结果/恢复](evidence/round2/reverse-json-order-dev-results.json)、[方法](experiments/reverse-json-order-dev.md)。
+## 已闭环的最近关键决策
 
-**固定逆序并集F0终点正，独审PASS（ac631bcd），GPU已释放。** 原58/SFT48/旧候选415全有效，wrapper222.352秒；唯一union Score **.695443948→.704687440**（+.009243492），micro+.008895764/macro+.028078206，只新增12TP14FP，原947实体/旧关系全留，0错警。符合事前keep，reverse-alone未评；F1同union微升但micro负限制保留，不自动迁原dev。GPU2于00:29:56核空；旧48只读SHM副本可从.100持久原件恢复，无活动job。[终点及恢复](evidence/round2/reverse-json-order-f0-results.json)、[方法](experiments/reverse-json-order-f0.md)。
+| 控制 | 结论与下一步 |
+|---|---|
+| patient-first F1 | 单独.645531861低旧.660942003；预设并集.664421522，+.003479519，micro微降/macro升，新增15TP32FP。小幅互补促成本次固定F0复验，未达.8。[完整记录](experiments/patient-first-closed-set.md) |
+| 旧8B∪旧9B F0 | 唯一CPU控制.695443948→.688565023，micro/macro双负，新增54=16TP38FP；旧8B1处LR回退披露。独审c12e3ae5 PASS，负关闭，不F1/dev，不改正在运行的患者F0。[记录](experiments/old-sft-union-f0.md) |
+| 全局pair-conditioned BERT | 双fresh8ep：uniform.542016、pair.557825，均低同池SFT/rules；完整负关闭。[记录](experiments/pair-conditioned-document.md) |
+| Thinking人工边界 | 单条格式/成本PASS，仅可用性，无质量外推。完整80固定2304/512政策因约3小时成本已明确暂缓，不降cap或自行启动。[固定政策](experiments/thinking-budget-80-plan.md) |
 
-**固定候选逆序两臂完成，独审PASS（baf7aec6），GPU已释放。** 同旧80/SFT32原位A800，80/587有效、无fallback，290.848秒。双完整预测先freeze再唯一F1：reverse alone .650566370（负）；预设old∪reverse **.662472447**，较旧.660942003+.001530444，新增15TP36FP，micro−.005258502/macro+.011380279。满足事前Score升且macro不降，但precision仅29.4%，不直接迁dev；原1189实体保持、0错警。没有intersection/扫描。原job proc_f40cda16已结束，00:22:02Z GPU2核空；禁止重推。[结果与恢复](evidence/round2/reverse-json-order-results.json)、[方法](experiments/reverse-json-order.md)。
+其他已完成的实体、共指、检索、GLiNER、公开模型及正负控制见[历史快照](WORKLOG-HISTORY-20261024-0335.md)和[证据索引](evidence/round2/README.md)，不重跑已审合同。
 
-**旧 GLiNER 两折供给追加负，关闭。** 强三公开HGB+propernested仅补历史固定已选非重叠3/20，保留所有原实体/关系；两fullpred共同freeze后唯一v2。合并32 mention +4TP19FP、doc +1TP11FP，实体均值−.002533434、Score .733753245→.732486528，两折目标均负（F0极小负）。F0 GLiNER48/F1 GLiNER32区别明示；无新fit/NN/原dev，按keep失败关闭，不重训四fold。独立增量审PASS（b6427b49）。[完整结果](evidence/round2/gliner-strong-pool-control-results.json)、[来源及边界](experiments/gliner-strong-pool-supply.md)。
+## 记录与备份
 
-**关系JSON单检索示例已负结案，独立终审PASS（b1a178ca）。** 唯一同A800/SFT32/80提示，CPU输入与实际token/模型/运行环境均通过；80完整响应、587候选全部有效，无fallback/tokenlimit，runner304.593秒/wrapper313.157秒，GPU已00:12:04释放。完整fullpred先freeze再唯一F1评：Score **.660942003→.645783102**，micro−.044148462/macro−.016487140，净−27TP/+5FP；实体完全不变、0错警。按预设keep失败关闭，不扫示例/提示、不原dev。传输与本地解析依赖失败均留档，同源环境恢复未增加推断；当前无活动GPU。[结果及全部恢复](evidence/round2/retrieved-json-example-results.json)、[过程](experiments/retrieved-json-example.md)。
-
-**当前实体控制均已完成，无活动作业。** 同资源77 HGB固定.4基线独审3c7c12e5：Score.648061812；binary final.650311382仅+.002249570（men升/doc降）。唯一当前nested F1固定veto负：.728144787→.720623999，删除152=71TP81FP，men/doc都降，关系不变；按预设关闭，不扫cut/不迁原dev。95列/train48 base与附加binary32不同资源如实披露；新veto独审a842969e已PASS。[对照结果](evidence/round2/entity-slot-legacy-baseline-results.json)、[veto结果/恢复](evidence/round2/entity-slot-selected-veto-results.json)。
-
-**实体二元固定终点完成、独审PASS。** 严格train32候选链/HGB77 gate≥.1，637提示/2430候选；fresh9B独立LoRA、固定2ep160calls，A100训练1460.803秒、峰27.035GB。公共base/唯一epoch2同F1的398提示/1589候选，推断230.765秒，双完整预测先freeze后唯一评：men **.503219→.701740**、doc **.604003→.762191**、Score **.561134423→.650311382**；全部437旧关系及非entity字段保持，0错警。显著优于公开base，但**公开base比较不是当前97列best的直接比较；后补同77 HGB对照仅+.00225**，不升级原dev。训练resub gate偏差与候选覆盖限制保留。新增终点独审f8f50357通过，GPU2 23:43:03.639Z已释放，无本路线活动GPU；同F1 HGB及单次veto已完成，见上；不重GPU/扫阈值。[结果/全部恢复](evidence/round2/entity-slot-formal-results.json)、[过程与边界](experiments/entity-slot-feasibility.md)。
-
-**公开pair路线最后旧池控制已负结案。** 原Bioformer旧pool244794行、旧字段/顺序不变，只加同3均值；4fit64.88秒、九cut1.11秒，统一选.3，实体目标 **.780192596→.777836002**（−.002356594），三fold负；mention净−21TP/+16FP、doc净−4TP/−3FP。关系/非实体对象保留，无新NN/原dev，关闭本配方不扫。独立终审35d9e67e通过：244794旧字段/3均值全核、fold0唯一重fit/预测exact、36decode曲线exact、format0。当前无活动进程。[完整结果/恢复](evidence/round2/phenobert-old-pool-results.json)、[方法](experiments/phenobert-old-pool-control.md)。
-
-**公开 PhenoBERT pair 控制已完成，未升级。** 固定top3/non-Sap全部旧候选/字段，三类原子均值新增，严格四fold HGB160共163.19秒；固定.3主臂pooled **.725155643**，比匹配top3+.001688347，但低保留Bioformer.3的.725655389。九点训练校准3.19秒仍选.3，实体目标.779193104低保留.780192596；3折升/1折降。固定原边界仅ID臂10对象变更，Score **.725763139**（+.000107750），doc略降、fold0负/两折零/仅fold3正；不自动迁原dev。全部预测先共同freeze、关系/非实体保留、0错警；整体独审85050d25通过：188349 held旧字段及三列全核，唯一fold0独立fit概率/预测byteexact；其余三fold同引擎复用。公开cache189.65秒、GPU已释放，当前无活动进程。恢复见[完整结果](evidence/round2/phenobert-pair-results.json)、[方法与记录](experiments/phenobert-pair-control.md)；原准备/启动指针保留历史，禁止重复已完成fit。
-
-1. **共指控制全部完成**：fold0 72窗严格定位新增18mentions；原规则/旧alias/offset-only三路输出与原baseline逐字节相同，Score仍.711353522。独立重放10产物一致，18项语义阅读17支持/1输入身份未决，未按复核结果过滤。见 [共指索引](evidence/round2/coreference-fold0.json) 与 [独立审查](evidence/round2/coreference-independent-review.json)。
-2. **同adapter SFT小幅提升**：仅changed29重推，完整相同29行复用旧响应且实际权重/decoder/runtime核验一致；固定947实体，.674333431→.686852935，净TP+4/FP-1，仍低于rules .711353522。实际作业已结束，GPU2复查释放，无待恢复GPU任务。见 [SFT结果与完整恢复入口](evidence/round2/coreference-sft-results.json)。
-3. **GLiNER训练内控制结案**：nested32→16固定fresh2ep/10ep的纯span非重叠组合为.700614/.702135；固定10ep+Sap全链.644762→.653745，69新增=42TP/27FP，四项均升，独审PASS。见[2ep](evidence/round2/gliner-supervised-results.json)、[10ep](evidence/round2/gliner-long10ep-results.json)、[固定链接](evidence/round2/gliner-link-results.json)。
-4. **outer48→fold0同政策已完成**：A30 fresh10/4360steps耗996.64秒、峰值6.028GB；零样本/终点预测先冻结。固定原947实体+Sap筛选新增26项（16TP/10FP），关联7TP/4FP，Score **.711353522→.721504431**、四项均升，纯span/来源/完整输出重放独审均PASS。只保留final模型+latest，实际余477.22GB。详见[终点结果/完整恢复](evidence/round2/gliner-outer0-results.json)，外存gliner-outer0-a30/、gliner-link-outer0/。
-5. **原dev迁移两臂已完成**：明确span48原文/标签是linker64子集且dev隔离；不重训64、不扫阈值。1103原始跨度经固定Sap等处理新增32实体（22TP/10FP），entity-only **.706111684**；同LR新增关联12TP/9FP、未移除旧关系，full-LR **.711324992**。两臂17:46:38Z统一冻结、零错警，独审PASS。[结果及全部恢复入口](evidence/round2/gliner-dev-transfer-results.json)；GPU1于17:45:11Z交检索、GPU0于17:46:11Z释放，无活动GPU。等待根预先固定其他有效候选组合，不自行扫顺序/阈值。
-6. **固定GLiNER→Pheno组合已结案**：只追加12实体（4TP/8FP），保旧关系臂 **.712586161**；同LR臂 **.712070726**（新增2TP/5FP）。两臂独审PASS；mention分项略降，只有小总分收益，不扫组合顺序/阈值。[完整结果](evidence/round2/gliner-pheno-joint-dev.json)。
-7. **全train64固定10已完成、未改善**：fresh64/2372窗/5930steps耗1300.262秒，峰6.021GB，最终model e7985761、真实Adam/RNG state8026c3a8再哈希通过，仅保epoch10+latest。原48同runtime候选byteexact。64主fullLR **.705869445**（较48下降.005456），entity-only.705271539；预先固定nested次臂.706234066，仍较差。所有输出18:18:59Z统一freeze后评，0错警；模型跨度净+2TP/+3FP但关系-1TP/+9FP，不能因全量训练就替换旧模型。GPU于18:18:39Z fresh核空交本体，实余217.22GB，本次任务已结案，后续large-v2任务见第9项。新终点独审PASS、三预测/全部指标独立复现；[完整结果与恢复入口](evidence/round2/gliner-full64-results.json)。
-8. **固定嵌套实体控制完成**：nested57字节复现2d24bb99；同proper containment/HPO不交政策，outer48追加31（12TP/19FP），.721504→.723440；原dev48追加35（10TP/25FP），.711325→.712147，mention分下降而doc分升，所有旧关系不变、0错警，三路独立重放PASS。只保留温和收益，不扫规则；64主终点原政策及预声明nested次臂已统一freeze/评，均未超过48。[结果](evidence/round2/gliner-nested-control-results.json)。
-
-9. **large-v2 固定终点完成、不升级**：fresh train48/1744窗/459,495,168参数、固定10ep4360steps耗2279.35秒，峰13.34GiB；工作区中断未重启远端。base/final/raw/Sap均exit0，19:26:36Z完整输出先freeze，格式0错警。固定原947实体+Sap/rules新增24项，Score **.720152028**，较原.711354升.008799但低于medium48 .721504431（-.001352403）；mention/micro较medium升，document/macro降。纯span非重叠93TP96FP、union .769904，不能拿纯span收益代替完整Score。GPU0 19:26:26Z fresh空，实际余203.93GB。保留medium，不扫参/不自行迁移原dev；终点CPU重放及实际谱系独审均PASS；root关闭本次替换、不迁移原dev。[完整结果/源码/全部恢复入口](evidence/round2/gliner-large-terminal-results.json)，外存gliner-large-v2/terminal-summary.json；原训练与最后链接managed均已结束。
-
-10. **GLiNER-BioMed唯一nested16零样本完成**：公开f7977121实际477,981,696参数，来源/CPU/接口均独审通过；594窗2085跨度推理24.93秒、峰2.139GB。固定Sap32/.65/.92/原rules新增58实体（32TP/26FP），关联8TP/10FP，Score **.644761594→.652014251**，四项升，但略低同层medium32训练10ep .653745027；原dev未触。裸span F1 .453801高于已存medium-zero .277295，未经Sap非重叠union却.548780（118TP/966FP），不可直接叠原池。两阶段exit0，完整输出先freeze、格式0错警；新全链CPU重放/实际谱系独审均PASS 4b925364。GPU0 19:30:52Z fresh空释放，无活动GPU。第一次launcher因Python3.10缺file_digest在模型前退出，保留trace并修流式SHA，非模型负结果。新作业proc_b66bb6f7已完成；[完整结果/全部恢复与失败证据](evidence/round2/gliner-biomed-nested-results.json)，外存gliner-biomed-nested/。root现授权一次独立native-loader监督适配，见第11项，不更改本零样本终点。
-
-11. **BioMed监督32×10已完成、小幅改善**：fresh公开基座/原1150窗/477,981,696参数，固定2880steps耗1660.16秒（27.67min）、峰13.78GiB；实际原生loader/显式BCE及唯一终点不变。训练/final推断/原监督Sap三阶段exit0，20:06:42Z完整freeze后统一评分，0错警。固定新增58实体42TP16FP、关联8TP10FP，Score **.654424302**，较同层medium32 **+.000679275**、较BioMed公开零样本+.002410051；mention/doc升而macro略降，不能夸大微小总分收益。原dev未触，不自动扩大训练。模型aed0d582及真实latest-state f4e01084均再次全SHA核对；20:06:37Z fresh核GPU0空释放，实余197.85GB，managed proc_64f58b79已退出，无本路线活动GPU。[完整结果/实际命令/恢复与成本](evidence/round2/gliner-biomed-supervised-results.json)，外存gliner-biomed-supervised/terminal-summary.json；新终点独审PASS（cd5afba8），完整预测/指标字节复现。原[计划](evidence/round2/gliner-biomed-supervised-plan.json)、[就绪证据](evidence/round2/gliner-biomed-supervised-readiness.json)、[启动指针](evidence/round2/gliner-biomed-supervised-launch.json)均保留，禁止重复开跑已完成作业。
-
-12. **本体覆盖诊断及CPU exact控制已结案、负结果**：原train48三套OOF的908无重叠FN仅54被HPO name/EXACT正确覆盖，高置信Sap40、并集60，不优先全HPO短语预适配。只解除`c.exact`跳过，旧三对照byteexact、三新预测统一freeze后评：pooled **.667647648→.666761145**，等权平均.669729202→.668894975，一升两降；新增实体40TP58FP、移除1TP3FP，新增关系6TP22FP、移除1TP。保留旧政策，不扫阈值/不触原dev/不占GPU；独立复核PASS（6e49d0c8），六预测byteexact/全部新指标一致。[短机制结论](experiments/ontology-miss-mechanism.md)、[完整结果与复现入口](evidence/round2/exact-gate-control-results.json)。
-
-13. **同A30固定focal三臂完成、均不升级**：原1150窗、两fresh medium32固定10ep/2880steps；BCE训练685.10秒、focal693.25秒，各峰6.030GB。完整训练子进程共1400.51秒<1800硬cap，六GPU阶段均exit0。评分前另冻唯一解析score cut .6011759516702939（实际loss梯度/解析零点CPU通过），其余Sap .65/.92与原装配不变；原两臂保留，三预测20:57:04Z统一freeze后唯一nested16评分。BCE **.655315611**，focal **.653881260**（-.001434351），解析cut **.655256389**（-.000059222）；后者实体两项小升/关系两项降。三臂均0错警、独立重装/指标/来源预算和解析过滤PASS（cdbd1f23）。只关闭这套固定配方，不泛化所有focal；未触原dev/不扫阈值。20:55:34Z fresh核GPU1空，实余446.93GB，managed proc_483790e9已完整退出，无本路线活动GPU。[完整结果/模型状态与复现入口](evidence/round2/focal-pair-results.json)，外存focal-loss-control/；原[启动](evidence/round2/focal-pair-launch.json)、[配对计划](evidence/round2/focal-pair-plan.json)与[解析CPU臂](evidence/round2/focal-analytic-endpoint-plan.json)均保留。
-
-
-14. **公开新来源选择器准备（CPU/源码，不训练）**：严格OOF本体/Sap/CRF HGB已能删旧实体、替换冲突边界/ID，四折source/confidence和严格CE入树均已完成，不能称新机制。当前未有GLiNER/publicPheno完整同折池；最小新控制为旧source-HGB±公开Pheno候选/真实来源分数，复用三train32 OOF与秒级CPU训练入口。固定公开模型可无标签缓存train64后按篇跨折复用，赛事别名/CRF/Sap-LR/任务NER和二层标签仍按折；待bio helper的64cache与schema，尚未训练/推断/评分。[短判断与唯一提案](experiments/public-source-selector-readiness.md)、[11快照/12配置哈希证据](evidence/round2/selector-readiness.json)。
-
-15. **唯一public source-HGB控制完成、独审PASS**：原source baseline `59bf4fa3`/预测`8ec02c6c`（.710359060）复用；真实公开64缓存6064项来源核验后，新pool训练+887/外层+257，六新特征、HGB160/.4/三train32 OOF不变，CPU13.40秒<120cap。两fullpred21:14:44Z共同freeze后唯一outer0评，新Score **.732901229**（+.022542168），四项升、0错警。实体增61TP38FP/删12TP39FP，public-only增23TP13FP、原池重选增38TP25FP；关系净+14TP/+7FP。支持新来源+特征整体方法，未触原dev/不宣称.8；一次新fit独立复现PASS（8107cc27）。[完整结果与恢复](evidence/round2/public-selector-results.json)、[固定计划](evidence/round2/public-selector-plan.json)，外存 `public-selector-control/`。无本路线活动GPU。
-
-16. **固定public selector四fold已完成、独审PASS**：source-HGB同法outer1/2/3仅改reference白名单，9套旧train32资源SHA/隔离齐；三次CPU共47.06秒<120cap，无新NN。三新fullpred21:18:45Z共同freeze后一次评分，f1 .663220→.720292、f2 .721467→.738304、f3 .680343→.703019；f2关系两项降仍保留。加复用f0四折Score全升，pooled **.692527322→.722651022**、mean .693847251→.723628971；pooled四项升、实体净+281TP/-51FP、关系+61TP/+23FP。无原dev。outer0独审8107cc27已PASS；三新fit/全概率及预测/全部指标/谱系独审PASS（c9428a9e）。[完整结果](evidence/round2/public-selector-followup-results.json)、[计划](evidence/round2/public-selector-followup-plan.json)，外存 `public-selector-followup/`。
-
-17. **固定原dev迁移已完成、独审PASS**：全train64/4组旧train48 OOF，旧60182例+公开1142=61324/4092正，85+6=91自然列，唯一CPU16.709秒。两新/两旧预测21:24:07Z共同freeze后一次v2，0错警。A新实体+原规则 **.659239099**（匹配旧.639287+.019952）；B同新实体+aa107790全部关联原样保留 **.728794595**（比原best .715760+.013035），men .782359/doc .807393，关系micro .694656/macro .630770完全相同。相对best实体增58TP52FP/删23TP62FP；仍未.8、不扫参数。独立新fit/全概率/两预测/全部指标与关联保留复核PASS（1112ced2）。[完整结果](evidence/round2/public-selector-dev-results.json)、[固定计划](evidence/round2/public-selector-dev-plan.json)，外存 `public-selector-dev-transfer/`。
-
-
-18. **独立Bioformer四fold控制完成、独审PASS**：PubMed .95六字段不变，增加独立Bioformer .95来源/六字段（真实分数不混）；四次CPU共51.494秒<120cap，无新NN。4新+4旧完整预测21:31:35Z共同freeze后唯一评分，pooled **.722651022→.724556074**（+.001905），四汇总分项升；foldΔ[-.000862,+.000012,+.007617,+.001178]，首折下降保留。实体增56TP51FP/删37TP63FP，关联增19TP32FP/删15TP30FP；0错警。新选择输出无Bioformer-only键，增量107项来自已有pool重选；这是键来源统计，不能据此单独归因特征。原dev未触，四新fit/全概率/预测/分数/实际cache谱系独审PASS（0efe738e）；root关闭负的lowgate，不做联合，转预设OOF cut校准。[完整结果/恢复](evidence/round2/public-bioformer-selector-results.json)、[计划](evidence/round2/public-bioformer-selector-plan.json)，外存public-bioformer-selector-control/。
-
-
-19. **统一OOF cut校准完成、独审PASS**：固定九点.1… .9/原greedy，36完整decode21:35:13Z先freeze后读取train64实体标签，.4四fullpred逐字节复现。总2.125秒CPU，按pooled(menF1+docF1)/2唯一选 **.3**：.777993968@.4→.780192596@.3，实体men .763831/doc .796554、4315条（+161）；mention+70TP91FP/doc+41TP48FP，fold目标Δ[+.003036,+.007263,-.004463,+.001727]。这是全train64选择后的**校准拟合指标**，不是新盲验证Score；无关系选型、无原dev。独立36预测/全曲线/OOF来源/选点复核PASS（234064fe）；后继仅固定.4/.3同SFT关系共同迁移，不扩网格。[结果](evidence/round2/public-bioformer-cut-results.json)、[计划](evidence/round2/public-bioformer-cut-plan.json)，外存public-bioformer-cut-calibration/。
-
-
-20. **双公开模型原dev两cut已完成、独审PASS**：全train64/4×48 OOF、61781例4147正/97自然列，CPU fit14.755秒、三阶段exit0；两新+旧16cd/model/prob21:40:00Z共同freeze后唯一v2，0错警。固定.4 **.731445835**（较旧+.002651）、OOF预选.3 **.732257765**（+.003463；比.4+.000812）。.3 men .786730/doc .816874，较.4 men下降/doc上升；全部aa107关系TP273/FP60/FN180及micro/macro完全相同。相对旧best实体净+14TP/+10FP，未.8，不追加cut。模型selector.pkl295637B SHA db2fc288已实际保存，Python3.12.14/sklearn1.8.0，独立重fit概率/预测/模型byteexact，实际模型重载16篇全部13144概率exact；根负责另备份。旧16cd31成员备份059d680a保留。[完整结果/恢复](evidence/round2/public-bioformer-dev-results.json)、[计划](evidence/round2/public-bioformer-dev-plan.json)，外存public-bioformer-dev-transfer/；无活动GPU/新训练任务。源码与终点检查点`8b830ec`已推送，当前只补独审结案。
-
-
-## 已完成的近期结论
-
-- 关系 LoRA：204 条严格嵌套 OOF 提示独立审查通过，2epoch/52steps 已完成。同 A800 基座 `.623068` → adapter `.674333`，减少过度归属但低于同实体规则 `.711354`；固定集合投票也未超规则。原 dev 未新增测试。
-- 本体校准池的 24 个新概念/26 支持跨度经现有 adapter 判断，保留原实体及规则关系，仅增 14 项关系（4TP/10FP），fold0 `.712942`。边际精度较低，尚不推广。
-- 训练锚点诊断独立复算通过：967 个 SFT 候选内正关系中，363 项实际局部证据无目标患者 marker；全局 anchors 仍可见，不能称不可回答率。完整全文 LLM 共指此前没有实际运行。
-- 共指首轮训练输入 pilot 因子串定位与身份混淆失败；同 3 篇仅修订一次为唯一原文 context＋完整词边界，严格保留 4 项新增且逐条身份检查通过，召回保守。已按此协议复验fold0，新增18mentions但规则零变化；同adapter SFT有小增益但未超规则，不继续按结果调提示。
-- 神经 NER、HPO 重排、零样本关系、thinking 小样本、O 编号锚点、外部表格等正负结果与限制均保留在实验报告。O 编号四折不稳定、表格新增关系均为本地 FP，未升级默认。未使用包含本地 dev 的赛事公开成品权重。
-
-## 证据与下一步
-
-- 新增[当前最佳端到端资源清单](experiments/best-pipeline-resource-inventory.md)：只读确认实际HGB/CRF/Sap及关系模块恢复入口，不跑test、不新增训练。F0/F1 cut.3 OOF实体支持集已交检索，明确全train64选cut的开发使用；现已补候选池→已存HGB的薄入口并完成无评分字节回放，原文候选生成与跨目录CRF模型路径适配仍未整合。
-
-- [实验过程](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。完整产物根目录：`/workspace/patientphex-runs/round2-20261023/sequence_crf/`；权重/预测/原始响应/完整日志不入 Git。
-- [SFT 固定结果与恢复索引](evidence/round2/relation-sft-fold0-results.json)、[新关系池结果](evidence/round2/new-ontology-relation-results.json)、[训练锚点诊断](evidence/round2/patient-anchor-audit.json)。A800 现有 base 和本路线 epoch2 adapter 可只读复用；旧 180 概念/29 提示弱池未运行。
-- 共指完成后保留全部控制，包括负结果；如无可靠收益，停止当前原型，不以格式通过替代身份或分数验证。后续再协调检索新跨度与本体候选组合，避免混淆本次单变量对照。
-- 历史基线口径：旧 baseline-fold0 未拆复合关系标签 `.613929`，修复后 `.603398`，实体不变；fold1–3 已使用修复版。不要将四折旧关系基线写成同一未修补模型。
-
-### 已存HGB推断入口（无新增实验质量分）
-
-`predict_existing_selector.py` 只load模型+vectorizer，接受任意输入/合并候选/base/source路径与cut，可选原关联原样装配；无fit/gold读取。原16篇13144概率和完整cut.3预测分别复现c032ca68/6401a24e，实际约1.99秒；16项合同含概率毒化后实际重算、任意ID/空池、fit及annotation-IO陷阱通过。独立增量审PASS（7c3b8401），全16实际重算及16合同独立重放一致。[使用与边界](experiments/load-existing-selector.md)、[实际命令/所有证据](evidence/round2/selector-load-only.json)。未跑test100/官方；不把新HGB实体自动改作Task2候选。
-
-### 固定WIS解码控制已完成：零变化
-
-只改旧Bioformer四fold/cut.3非重叠选择，精确p-.3效用与固定tie；80组独立穷举/边界合同通过。实际3.31秒，8fullpred先freeze，新旧64篇全部byteexact、实体/关系TPFP全Δ0，pooled仍.725655389；exact .3候选0。当前池此效用下greedy已同最优，关闭该固定控制，不扫效用、不迁移原dev；无fit/GPU。旧baseline首测指标按同SHA复用，独立新增审PASS（4802573a）。[结果/恢复](evidence/round2/weighted-interval-results.json)、[实验](experiments/weighted-interval-control.md)。
-
-### 旧HGB池严格嵌套追加已完成：温和正收益已独审
-
-旧GLiNER纯边界/合法HPO/否定政策复用，上游明确换HGB .3/原排序；2.63秒CPU，pooled .725655389→.727975656（+.002320267），195新增86TP109FP，全部旧实体/关联保留。三fold正、f3−.001194855，完整碰撞/拒绝证据外存，0错警；独审PASS f5482b85；唯一原dev迁移已完成 .736526555→.737585917（+.001059362），38实体14TP24FP、men降/doc升，368关系不变，0错警，新增端点独审PASS（9c068d49）。仍无fit/GPU。[结果/恢复](evidence/round2/selector-nested-results.json)。
-
-- 2026-10-23 动态微批探针已115.957秒PASS/卡释放：五组真实更新、native双列exact/梯度通过，峰26.786GB；预计更新阶段23.5–23.8分钟但尚无正式训练。入口 evidence/round2/entity-slot-microbatch-probe-results.json，actual独审待回。
-
-- 2026-10-23 根已授权唯一fresh实体槽train32×2：637提示/160calls，2200+30训练cap，base/final同398F1输入固定.5，600+30推断cap；计划 evidence/round2/entity-slot-formal-plan.json，尚未启动时不称完训。
-
-- 实际23:13:53.928Z已fresh启动 `proc_3fc5df9d-531b-4280-9257-4d2f809d196c`，A100GPU2；主cap至23:50:33.928Z+30秒grace。恢复入口外部 `entity-slot-formal32-v1/train-job.json`。本地controller后补重入/未来infer计划闭环，live训练/source/plan不变。
-
-- 正式入口/CPU独审 `eca2f72e` PASS，live源与plan不变；未来infer使用带重入和计划闭环守卫的controller。实际训练/唯一epoch2质量仍待终点，不以入口通过代替完训。
+- 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
+- 截至本页整理前，已push并lsremote确认 `b8cc2e4df701ece8448bbc02a75f75a3d8f797ae`，包含正式启动/入口及旧模型并集负终审。不要为记录台账自身SHA递归提交。
+- 下一里程碑是epoch1真实持久收据、完整epoch2、原58完整推断及唯一双质量终点；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
