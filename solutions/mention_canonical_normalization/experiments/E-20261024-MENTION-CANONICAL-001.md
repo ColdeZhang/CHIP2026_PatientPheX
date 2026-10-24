@@ -15,3 +15,5 @@ root已授权条件GPU链：.100GPU1唯一180+30，native initial8→Adam→3acc
 原180+30探针实际34.423s、wrapper35.195s rc0；14FB/1Adam、三原生训练状态约束输出EOS。steady FB max0.592576s、Adam0.059550s，预写公式3654.233s>2400，完整成本门关闭，未开展训练或质量。69原件完整回收SHA986ab81d，原job及release见evidence/probe-complete.json。
 
 root明确批准fresh正式预算4800+30，保持2353×2/590/warmup30及所有学习变量不变；新formal-plan.json只增加前次成功probe及asset绑定与formal-only入口。原gpu-v1及旧计划保历史。后继仍全部1416请求、固定双端点共冻后2v2，不因成本裁样。
+
+全两轮真实完成：590updates/4706rows，完整2554.713秒，wrapper rc0；两epoch fullstate ACK逐504adapter/504Adam1512tensor/RNG重开精确。估3654秒是预算依据，实际训练仍未包含质量。第二轮唯一adapter932e4f12，13:08:05.921同控制器已转全1416 fresh推断，原1200+30不改。

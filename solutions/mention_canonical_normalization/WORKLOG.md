@@ -1,6 +1,6 @@
 # Mention canonical 工作台账
 
-2026-10-24 UTC。独占分支explore/mention-canonical-normalization，base bc939eeb；主线程目标仍原dev公共v2≥.8，当前无本线质量。CPU及真实GPU探针通过；唯一fresh两轮训练正在第二轮。
+2026-10-24 UTC。独占分支explore/mention-canonical-normalization，base bc939eeb；主线程目标仍原dev公共v2≥.8，当前无本线质量。CPU及真实GPU探针通过；全2353两轮已完整通过，原唯一控制器正在生成全部1416 F1输出。
 
 - CPU数据完整：2353 train32目标=2222HPO/44NIL/87NO；16compound、8分支外正注释显式排除。拟每侧256原字符，保整个mention，不按标签选择上下文。
 - 纯F1跨度池：16篇/39患者/1416行；强B独有530、共有783、GLiNER独有103。强B源8cb61ba9，GLiNER接受源6ac9aa51；不提示旧ID/候选，不读heldgold。
@@ -15,3 +15,5 @@
 root已批准新formal-recovery-v1：同2353×2/590updates/warmup30，预算4800+30；正式/推断独立目录，保原probe和旧门原件，不重probe/不载probe状态。formal-plan.json绑定原probe/assets精确SHA并复用原native.train。正式成功后全部1416推断1200+30、两完整端点共冻→2v2/旧0。已于12:25:27.733787实际启动proc_d77f2343/PID2737730，源3ac73adc已push核，formal-recovery-v1先4800+30正式后1200+30全量推断。见evidence/formal-start.json；原job尚未终态，不重启。
 
 阶段检查点：12:45:31.800681 epoch1完整295updates已durable ACK 89be9596；504adapter/504Adam1512状态及scheduler/RNG重开全等，约524MB完整状态留.100。第二轮继续，不选择epoch1评分，见evidence/epoch1-observed.json。
+
+最新完整训练：13:08:02.553986第二ACK a72a419f；590updates、4706rows、1,328,556tokens、48,126监督，native2548.302s/完整2554.713s/wrapper2557.202s rc0。finaladapter932e4f12/fullstate7e193bd3；只用epoch2，无验证选择。13:08:05.921已自动转infer1200+30，child2740659。GPU1槽继续保留至完整生成release，不把formal阶段瞬时空卡当资源释放。见evidence/formal-complete-observed.json。
