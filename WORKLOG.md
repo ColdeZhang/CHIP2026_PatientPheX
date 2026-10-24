@@ -10,8 +10,8 @@
 - **有效增量**：full64三源二票将原dev从ee39的.755240提高至 **.769236**；相对原901新增4关系3TP1FP，macro .657186→.713196，实体不变。双采样旧最佳ee39和原901恢复入口保留。四来源内部两折均正，但完整full64原dev .768401低于三源best，新增5=1TP4FP，已保留负结果。
 - **实际运行/恢复**：BOUNDARY固定删除控制在F1 .728698→.729204（删3个误报、无误删），正迁移条件在核；其父并集与新长文本GP并集均负。独立种子G全39推断中；SCST已准备，等同卡释放。下一批研究是长序列T5、全文关系与新GP严格OOF特征，均先核来源/成本。见[运行快照](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
-- **证据备份**：273项/6639引用已增量独审发布，92新引用＋11控制共103成员实际7次回读核验；217→224→234→242→249→258→263→268→273链完整。集合补全F1原包204成员也已独立实际恢复，当前F0等作业不混入已完成清单。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@5333e7f8`；BOUNDARY正控制已推`1a893035`，新GP删除负控制已推`63aa3829`；各路线源码及结果独立推送，未达标实现不合入main。Git401/503按H18有限重试。
+- **证据备份**：278项/6719引用已完成增量独审和发布；80新引用＋11控制共91成员实际7次回读，继承273之前完整链。QSC F0的83成员、两个root删除控制共48成员也已实际恢复。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
+- **Git**：最近已核验`origin/main@0a4e30aa`；BOUNDARY正控制已推`1a893035`，各新工作线源码/预算和正负结论独立推送，未达标实现不合入main。Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
