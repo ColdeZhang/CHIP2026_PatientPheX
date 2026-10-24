@@ -34,3 +34,9 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 [网络普查](../public_neuralcr_readiness/network-census/summary.json)中本机同官方 1 MiB GET 约 .41 秒，4×512 KiB MCP 写 3.846 秒、含服务器 SHA 共 5.207 秒；吞吐投影不是保证，不增加探针或公网 tunnel。[无网络传输 fixture](../public_neuralcr_readiness/local-relay-attempt3/transport-check.json)通过中断只补余字节、单片重试、512 KiB 限制与 HP 参数门阻止 fastText；源/计划先提交推送后才启动 bulk。
 
 `00fa820` 已推送/远端核验后，attempt3 于 **00:44:22.681751Z** 启动，PID80371，截止 **01:44:22.681751Z**、TERM30 至01:44:52；[实际启动记录](../public_neuralcr_readiness/local-relay-attempt3/initial-job.json)。完整文件后的[CPU源准备](../public_neuralcr_readiness/postdownload-readiness/preparation.json)复用原完整fastText矩阵解析与原生检查，当前未启动模型加载。
+
+### HP 完整资产与实际参数门
+
+[实际主文件终点](../public_neuralcr_readiness/local-relay-attempt3/HP.tar.gz.assembly.json)已完成：583,483,718 字节，SHA `08e48710399ce8aa321367d6dafdef87a464048b85437552edc728e0e129668b`；938 个既有/新片段全部按位置和SHA核验再拼接。安全提取只包含 H5、onto.json、config，archive 没有单独许可文件；保留仓库 MIT 与权重未单列许可的区别。内部拼接/提取/shape 9.088 秒，[实际外层job](../public_neuralcr_readiness/local-relay-attempt3/HP.tar.gz.segments.json.job.json)另列。
+
+实际 H5 630,900,616 字节/SHA `9a43dd5a237f7ad630ca26bed729aee07a8cc6c5cac9c90916be4ded9520d807`，**60 个唯一数组，157,705,490 参数**；10 ensemble，每个 width1 Conv1D 100→1024、Dense 1024、层级 head 14261，其中14260 ontology概念（含root），额外一列为原代码的 `None`。加两fastText矩阵的保守header投影为 **491,068,890**；直接追加 **10,088,536,880** 超10B，替换BioBERT为 **9,966,949,054**（余33,050,946）。fastText全文件shape仍未完成，不能把投影说成完整库存；原冻结门允许继续补词向量，当前不进行NN/质量。
