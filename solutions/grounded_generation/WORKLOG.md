@@ -81,3 +81,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 原dev36推断已2026-10-24T13:25:33.499808+00:00唯一启动proc_cc10bcf5-ba7b-4a60-88fd-6d61cb7d0ec7 / driver62347 / child62357；TERM2026-10-24T13:45:33.499804+00:00/KILL2026-10-24T13:46:03.499804+00:00，1200+30不重置。18成员完整SHA部署，其中5份同服务器已核原件复用仅省传输，响应全部fresh。独立session readonlywatch PID172572实际SID/独占flock f054a624已核，180秒节奏；先看原intent/实际终态，不再start。精确入口evidence/full64-dev36-start.json；当前无新质量。
 
 13:34接续：原36推断在原1200窗内完整成功，无续跑或重生成；原包所有实际成员SHA核过，extraction-plan已冻结。Sap尚无start，按root新队列只将目标绑定GPU1 UUIDfc5d0525，模型/银行/政策/runtime不变，实际fresh门仍必须通过。
+
+原84实际件collection e48e8fa5完整：36EOS/0cap，native370.471秒、wrapper371.410秒，峰20.665GB。固定解析59382717保453原文锚点/347词面，拒7项、1患者全部item被拒，原raw未修。train64/b59准备c8ab6c8a产生171必要Sap，实际plan a599a115锁.100GPU1/180+30，预计23.42秒；root/span/schema均已协调，下一步fresh门唯一启动。
