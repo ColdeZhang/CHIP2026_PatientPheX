@@ -432,3 +432,9 @@ Grounded full64检查点导出的HTTP子进程使用独立session。停止其MCP
 串行DPO先无梯度计算两答案概率，再反传对应加权概率。首个真实GPU probe虽然chosen的两次logp完全相同，却在首次backward报非重入checkpoint重算张量shape/dtype不一致，12.449秒退出，正式训练未开始。目标Torch2.7.0的微型BF16/checkpoint CPU复现中，cache=True同样通过数值重放却未过梯度门；cache=False则28/28非零有限梯度、Adam状态及参数变化全部通过。CPU没有复现完全相同的CUDA异常，不能夸大为所有backend的根因证明。
 
 **避免方法**：此类无梯度系数计算与训练交替的入口，要同时检查真实梯度和checkpoint重算，不能只凭logp相等。当前只关闭该DPO入口的autocast cast缓存，保BF16、目标、数据及1e−5重放门；原148序列reference保留原source/plan/parent/encoded绑定，不重算或删除身份门。独立恢复在原probe绝对截止内完成13对/26反向、真实Adam1次和504梯度/1512状态张量有限，才丢弃probe状态从原父权重fresh正式训练。CPU证据`research/patient-swap-dpo-v1/deployment-v2/autocast-cpu/result.json`（27cc632b）；[原失败与修复](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/55589a63/solutions/patient_swap_dpo/evidence/probe-failure-recovery.json)，[真实恢复门](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/6e1801e3/solutions/patient_swap_dpo/evidence/probe-pass-formal-start.json)（88cc4d15）。工程门已通过，完整训练/质量另行记录。
+
+## H66：约束解码的合法负无穷 mask 必须放在原始数值检查之后
+
+exact-quote trie 的 CPU 接口核验发现：前缀约束会把不合法 token 的分数置为 `-inf`；若后面再执行“全部 logits 有限”检查，会把合法 mask 错判为模型数值故障。目标 Transformers 5.20.2 的真实 processor 列表中，逆序确实触发失败，尚未发生线上模型失败。
+
+**避免方法**：显式按“检查原始 logits → 前缀 mask”的顺序组装同一个 `LogitsProcessorList`；不要同时传默认 `prefix_allowed_tokens_fn`，使框架提前加 mask。保留对原始 NaN/±inf 的拒绝，不能简单删除数值门。目标 CPU 共234状态核验合法分数不变、非法项屏蔽、重复回调和 EOS/空池合同，并确认39条原输入IDs一致；无模型/forward/GPU/质量调用。证据 [actual-cpu.json](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/544295b3/solutions/copy_grounded_decode/evidence/actual-cpu.json)，完整结果SHA `8c2a642b…`。GPU39仍按独立终点记录，不由CPU合同推定模型质量。
