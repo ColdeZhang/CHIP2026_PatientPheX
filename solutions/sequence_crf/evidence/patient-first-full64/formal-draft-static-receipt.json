@@ -1,0 +1,124 @@
+{
+  "at_utc": "2026-10-24T04:32:22.899117+00:00",
+  "status": "PASS_static_DRAFT_BLOCKED_pending_actual_native",
+  "seconds": 0.38956224999856204,
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-source-draft/trainer.py",
+    "bytes": 46963,
+    "sha256": "57b677c7006482778a3a841fbf3c0101fcaf10937b9072271b3eb4bb285614b0"
+  },
+  "frozen_F0": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-source-draft/frozen-f0-trainer.py",
+    "bytes": 46668,
+    "sha256": "cc707253ba277a87544d9f9f57f3735217e10b2d4ebd74a35ada8d5967591011"
+  },
+  "frozen_old_full64": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-formal-source-draft/frozen-old-full64-trainer.py",
+    "bytes": 28823,
+    "sha256": "f83236587d8f307bb6e51ca44c9c69177efce27661b0f889bd00745808030f03"
+  },
+  "actual_old_full64_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/run_manifest.json",
+    "bytes": 10650,
+    "sha256": "7918e5e703f5a517d1f11d2ab01f0d13e9b5b6bd09a4b0a72d96910b22ff2af7"
+  },
+  "new_CPU_summary": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-cpu/cpu-v1/summary.json",
+    "bytes": 19253,
+    "sha256": "da72bcb8f891452370d0b97ba4c276a4a7013d172664d9ebce7d8f9f8fb23836"
+  },
+  "CONFIG_exact_old_full64": true,
+  "actual_configuration": {
+    "max_seq_length": 6400,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "epochs": 2,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "max_grad_norm": 1.0,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "in_proj_b",
+      "in_proj_a",
+      "out_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "quantization": false,
+    "packing": false,
+    "gradient_checkpointing": {
+      "use_reentrant": false
+    }
+  },
+  "immutable_helpers_byteexact": [
+    "batch_plan",
+    "collate",
+    "model_files",
+    "verify_fingerprint",
+    "validate_stop_epoch",
+    "epoch_outcome",
+    "durability_fsync_directory",
+    "durability_inventory"
+  ],
+  "durability_delta": "Only complete-epoch accounting26→34 and error label204→265; all fsync/readback/ancestor/H44 logic byteexact",
+  "numeric_tail": {
+    "bytes": 8863,
+    "sha256": "6445a457b09c0bb0bb947f307187716f145499444729080ec59bb1d252ad3cbe",
+    "old_full64_exact_after_replacing_only_durability_hook": true,
+    "span": "load_complete_text_base through training_complete, excluding except handler"
+  },
+  "new_two_epoch_index_schedule": [
+    {
+      "epoch": 1,
+      "steps": 34,
+      "rows": 265,
+      "last_group_examples": 1,
+      "ordered_indices_sha256": "1fae2f50cdc9e9843d0ba2619cf12895ea74188789c450ab322edf2972549439"
+    },
+    {
+      "epoch": 2,
+      "steps": 34,
+      "rows": 265,
+      "last_group_examples": 1,
+      "ordered_indices_sha256": "a404f7d0ef4c5e78e2f589bdc69dddc2300b46bac79d61a610a1db1c6709aa29"
+    }
+  ],
+  "total_optimizer_calls": 68,
+  "warmup_calls": 4,
+  "full64_max_seq_length": 6400,
+  "data_binding": {
+    "OLD_TRAIN_SHA": "27ecf4769e2917bfc06c7c47f679d2dea19ac9013626288093b4e4cb6dffab3c",
+    "TRAIN_SHA": "4fee5f9c3817730c08673bdd26bf5127d7cd7856d37d3f9082554f5db755c882",
+    "TRANSPOSITION_SHA": "da72bcb8f891452370d0b97ba4c276a4a7013d172664d9ebce7d8f9f8fb23836",
+    "TRAIN_TOKEN_AUDIT_SHA": "e6f8f9db7e73e88a53e675e1a32bca20054ddef59cd253bddc79622447fa5684",
+    "EXCLUDED_SHA": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "PREPARATION_SHA": "389b4a9c81a71f53b0abf99b610f011598a8a3b0a2a42f4ac7bb73d751ccac44",
+    "ALL_ENCODED_SHA": "aee739b1462fd1be2f6641f852709023d7051f20f3f94b5dc50d24cdf818e92c",
+    "ALL_RECORDS_SHA": "e4e2dcb4f20f53e5b067a6f89068ed9d8388607c3e626f79c309f198cc62c2a0",
+    "SELECTED_ENCODED_SHA": "69130af96b46a6f327ff1de6ab2de728d216cc5b52dc61e052a3e36923125789",
+    "OLD_FULL64_TRAINER_SHA": "f83236587d8f307bb6e51ca44c9c69177efce27661b0f889bd00745808030f03"
+  },
+  "pending": [
+    "NATIVE_CPU_RECEIPT_SHA",
+    "NATIVE_CPU_CONTRACT_SHA",
+    "native receipt exact field/schema confirmation",
+    "owner final runtime/plan/probe/fullstate entry"
+  ],
+  "no_trainer_import_or_execution": true,
+  "no_labels_tokenizer_or_model_read": true,
+  "no_GPU_MCP_Git": true,
+  "no_old_synthetics_or_data_replay": true
+}

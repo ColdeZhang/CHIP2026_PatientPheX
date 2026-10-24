@@ -13,7 +13,7 @@
 
 **F0恢复58完整结束，原strict失败保留；primary负、oldSFT48∪patient增量通过事前判据。** 新primary .684342231，旧baseline .695443948；固定secondary **.705527893（+.010083945）**，关系micro+.020643194、macro+.019692587，新增26=16TP10FP且保留全部旧关系。947实体/非关联不变。仍低同池rules .711353522；原dev .8目标未完成，不自动迁dev。
 
-- 原两轮52calls训练成功/完整state已持久；原strict推断第24行格式失败、无分数，23raw保存。独立恢复23精确缓存＋35新生成，于04:22:08 rc0/240.178秒完整终止，GPU2实际0MiB/无进程，本路线无活动GPU或后继。
+- 原两轮52calls训练成功/完整state已持久；原strict推断第24行格式失败、无分数，23raw保存。独立恢复23精确缓存＋35新生成，于04:22:08 rc0/240.178秒完整终止，GPU2实际0MiB/无进程，该恢复协议无后继；当前新full64 probe另列。
 - 完整58中57complete/1partial/0整row弃答；新3563609:relations:8只缺O7P，弃8候选对，53tokens/真实EOS248046。这是新生成实际内容，不能冒称找回旧失败raw。162小件逐SHA、全部ID独立decode/codec一致；两fullpred共冻be17f7b4后才两次v2，旧metric不重评。
 - [完整记录](experiments/patient-first-F0.md)、[结果](evidence/round2/patient-first-F0-recovery-results.json)、[终点清单](evidence/round2/patient-first-F0-recovery-terminal-manifest.json)。外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`，B=P/abstain-recovery。source/完整raw/state/原失败均冻结，禁止重启已完作业或重评。统一终点独审22325a29 PASS；未重训练、parser测试或评测。
 - root随后授权的事后提出、事前固定CPU控制已通过：F1/F0 literal union(oldSFT,reverse,patient)，两折预测共冻后各唯一v2；门槛两折Score均严格高于各自old∪reverse且macro均不降。无扫描/第四臂，总.479秒。F1 .663841821（+.001369374，micro降/macro升）、F0 .709556743（+.004869303），仍低F0 rules；独审3444fe0a PASS。[结案](experiments/relation-triple-union.md)。
@@ -35,6 +35,6 @@
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
 - 截至本页整理前，已push并lsremote确认 `0def94519a4a198b4623bd353932b5c6b07581c4`，包含完整恢复双质量；终审与新CPU资源本次跟进备份。不要为记录台账自身SHA递归提交。
-- 下一里程碑是F0恢复统一终审、三方固定CPU控制及full64 input-only准备；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 下一里程碑是full64最长单步实际数值/显存/释放，再汇报正式两轮成本与计划；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
-- full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，实际native/GPU待执行，正式训练未授权。见 [full64记录](experiments/patient-first-full64.md)。
+- full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，04:33:22.332Z唯一最长probe proc_281ec4d2/PID113890运行，240+30；近似TERM04:37:22/KILL04:37:52，正式训练未授权。见 [full64记录](experiments/patient-first-full64.md)。
