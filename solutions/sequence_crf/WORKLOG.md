@@ -88,8 +88,8 @@ B CPU底座6件来源入口已完成，见[阶段摘要](official_901_B/old_pool
 
 patient B参数化入口只改输入identity/count和artifact标签，f787三actual SHA、greedy14000/1600、原raw-before-codec与native BF16完全保持；源码[增量清单](official_901_B/patient/source-delta.json)。normal-B闭集prompt3a8e已绑定完整oldpool7732；native420全ID/decoder核过，唯一计划1e4e已真实启动，详见顶部当前状态。
 
-后继唯一N/R/P≥2票双fold控制源码/计划已c5f2455提交推送并lsremote exact；两完整预测共同冻结9650ab99，F1关系469→370、F0 317→276，其余字节保持，0.08785秒纯CPU。未读gold/评分，无keep结论；[待评分清单](research_readonly/majority_vote_control/pending-score.json)。根的保留门为两fold Score各自严格高于原tripleunion，macro只披露；root已07:54:13真实accepted一次901，5→4且未取分，gate919362af已释放。首次入口0.317秒已完成唯一F1 v2：.663437054811低旧.663841820660，随后gold诊断误用预测去重断言而退出；F1 metric/failure保留，F0从未call-start。root明确授权独立机械恢复，复用F1、只诊断gold采用set语义并执行唯一F0；29+1剩余CPU计划准备中，不重F1、不扫票数/迁原dev。两fold同增门已因F1负不能保留，仍完成原固定双fold终点。
+后继唯一N/R/P≥2票双fold控制源码/计划已c5f2455提交推送并lsremote exact；两完整预测共同冻结9650ab99，F1关系469→370、F0 317→276，其余字节保持，0.08785秒纯CPU。未读gold/评分，无keep结论；[待评分清单](research_readonly/majority_vote_control/pending-score.json)。根的保留门为两fold Score各自严格高于原tripleunion，macro只披露；root已07:54:13真实accepted一次901，5→4且未取分，gate919362af释放后已完成两折：F1 .663841820660→.663437054811（−.00040477，micro升/macro降，删29TP70FP），F0 .709556743085→.699390541129（−.01016620，micro/macro双降，删15TP26FP）；实体两项不变，固定both-positive门负关闭，不扫票数/迁原dev。首次F1唯一v2成功后gold诊断误用预测去重断言，原metric/failure保留；独立恢复仅用冻结evaluator的set/last-assignment语义做诊断并执行唯一F0，原F1不重评，累计实际.632206秒。[完整终态](research_readonly/majority_vote_control/terminal-summary.json)。
 
-## 已授权后继准备（尚未开始）
+## 当前后继：患者等权混合目标α=.5源码/CPU准备
 
-root要求先完成官方B交付及已冻majority两折控制，再与`biomed_model_review`对接少量train-only摘要，准备独立单变量patient-balanced mixed loss的源码和CPU数值合同，不新fit/GPU；GPU预算待root根据方案另定。已有仅train32 prepared-target系数普查为124行/32文献/87患者：1–4正原子患者37人（42.53%）仅占患者归属token系数19.86%、list-value14.59%，chunk-only仍23.85%。这是损失系数现象，不是实际梯度或因果结论；prepared空不能当真实无表型，不读取heldout gold。研究目标为总Score改善，macro完整披露；机制是跨患者归一权重，与已经负关闭的value×2不同，不能重开旧配置或提前拟合。
+官方B和majority已闭环；已读并联系`biomed_model_review`的既有train-only报告，正准备独立单变量patient-balanced mixed loss源码与CPU数值合同，不新fit/GPU。固定α=.5；每epoch P87/S16、每患者chunk数n_p，新增项患者/患者内chunk等权，沿旧loss/len(group)时row系数必须含实际group_size（含尾4）。GPU预算待root另定。已有仅train32 prepared-target系数普查为124行/32文献/87患者：1–4正原子患者37人（42.53%）仅占患者归属token系数19.86%、list-value14.59%，chunk-only仍23.85%。这是损失系数现象，不是实际梯度或因果结论；prepared空不能当真实无表型，不读取heldout gold。研究目标为总Score改善，macro完整披露；机制是跨患者归一权重，与已经负关闭的value×2不同，不能重开旧配置或提前拟合。
