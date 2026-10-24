@@ -111,3 +111,5 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 恢复12件自有部署已actual SHA/compile通过（archive aad9d871），原prompt/audit/model-manifest与23缓存/fingerprint均同机copy逐SHA；04:17:46 A100真实Python3.10.21隐藏CUDA导入新runner/codec/raw_store通过，Torch未导入、无权重或forward，源52c9ccac；实际roundtrip .499秒。不重新跑旧tokenizer或训练合同。
 
 恢复source/实际CPU已push+lsremote a74ef8a39c2e。fresh空卡与同epoch2身份后，唯一proc_d19bf1ac-96f4-49a4-b65c-56aec88322c2/PID100444于04:18:08.457145Z启动35新生成，独立600+30，approx TERM04:28:08.457/KILL04:28:38.457；以driver实际为准。23旧raw精确复用，尚未新F0评分，原strict判断不改写。
+
+恢复终点源6ee51d66/plan b719834e/policy8bd22643已在新质量前冻结：要求完整162件/原23字节前缀/35独立generation receipts，原ID独立完整decode、有限codec逐条重放；只汇总显式正关联，弃答计数单列，947实体/非关联不变。双fullpred共同freeze后各唯一v2，原old48指标复用，不读partial质量。helper仅静态0.042635秒，未来终点尚未执行；旧strict源/计划不改。

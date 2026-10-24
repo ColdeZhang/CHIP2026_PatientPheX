@@ -1,0 +1,53 @@
+{
+  "at_utc": "2026-10-24T04:21:06.476381+00:00",
+  "status": "PASS_source_and_manifest_only",
+  "seconds": 0.042635312012862414,
+  "endpoint": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-preparation/endpoint.py",
+    "bytes": 23032,
+    "sha256": "6ee51d6655d2c42c28202c1f5a2c4f683090e5284238c4d9e8ec798c10e9321d"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-preparation/endpoint-plan.json",
+    "bytes": 9116,
+    "sha256": "b719834e2af634a2b7be80359b080d815a297a44b7de5742aabd85d02739d6ee"
+  },
+  "policy": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-preparation/policy.json",
+    "bytes": 3766,
+    "sha256": "8bd22643d1193a0641ac169bc986d304e8c695215d6ad891b3b752ca93c1ea1d"
+  },
+  "snapshots": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation/abstain-recovery/endpoint-preparation/snapshot-manifest.json",
+    "bytes": 11530,
+    "sha256": "10ff80c05e9394775f6c6c3ce6f3685f1108771a8c0c1af943dea6bc3b3dd76f"
+  },
+  "scope": "AST compile and exact byte-bound source/plan inspection only; no endpoint import or future response read",
+  "relations_helper_byteexact": true,
+  "build_union_helper_byteexact": true,
+  "evaluator_interface": "unchanged evaluate_report(gold,prediction,all,text) one syntactic call in fixed two-arm loop",
+  "checks": [
+    "three new actual protocol/plan/job refs exact",
+    "six deployed source bindings exact",
+    "original endpoint refs and gold locator unchanged",
+    "23+35 original byte prefix and exact 162-member endpoint required",
+    "remote refs mapped to local relative members only",
+    "raw full token decode before independent codec",
+    "complete/partial/abstain positives only with omission counts",
+    "947 entities and nonassociation/patient metadata preserved",
+    "both fullpreds common-frozen before exclusive before-gold marker and two v2 calls",
+    "original old9B metrics reused; no baseline evaluator call",
+    "exclusive outputs, fsynced records, 30/60 CPU cap; no partial/retry/threshold scan"
+  ],
+  "not_executed": [
+    "endpoint assemble",
+    "endpoint evaluate",
+    "new raw read",
+    "gold/target read or hash",
+    "tokenizer decode/replay",
+    "codec or old tests",
+    "NN/GPU/MCP",
+    "Git"
+  ],
+  "runtime_limit": "These static checks do not certify future 58 records or numerical quality; owner must run the complete endpoint once after successful collection."
+}

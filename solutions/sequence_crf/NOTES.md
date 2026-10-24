@@ -202,3 +202,8 @@ ATLOP原局部乘积需要两端attention支持相交；独立passage编码下�
 ## 2026-10-24 官方单模型参数限制纠正
 
 重新核对官方overview外部文本`research/overview.txt`（SHA256 `475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861`）：§3.1原文“Each individual model was limited to 10 billion parameters”；§4.2冠军明确融合Qwen3-8B与DeepSeek-R1-0528-Qwen3-8B，亚军也组合Qwen3.5-9B不同任务/推理策略。因此此前把全链所有模型参数相加≤10B的限制过严，今后按单个模型核算、技术报告披露完整组合。历史因总和排除多个LoRA/NCR等仅是当时资源选择，不能继续当官方禁令。当前正在运行的patient-first单adapter/fresh2ep/原80唯一F1及keep条件完全不变；规则纠正不授权事后加入新组合或挑选质量臂，后续组合仍需预先固定并隔离验证。主线程负责主分支规则与正式来源索引。
+
+
+## 已有关系学习融合盘点（2026-10-24）
+
+[只读库存](research_readonly/relation-stacking-inventory/README.md)实际核11份旧纯pred和2份无标签p：旧303列HGB（LR/规则/context+单SFT四事实）与binary两列LR已做，不能将stacking换名当新方法；已有有限低收益。规则、LR、old9B、binary32、reverse双折完整；8B缺strict F1、Med缺匹配F0、R1缺双fold。binary两fold均同train32，不能冒称F0来自train48。[固定五维可行性](research_readonly/relation-stacking-five-feature-preparation/README.md)界定rules为mean occurrence vote、LR为max occurrence probability；该只读阶段未打开混target F1表。root后续另行授权固定C1/.5低容量单控已由并行helper完成：[唯一结果](research_readonly/relation-stacking-five-feature-control/README.md) .697656525，虽高oldSFT但低old∪reverse/rules，负关闭不调参。F1标签真实用于meta训练，不能把先前只读准备的pure声明延伸至该fit。

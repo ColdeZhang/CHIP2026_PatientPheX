@@ -1,0 +1,101 @@
+{
+  "status": "actual_single_control_execution_record",
+  "recorded_utc": "2026-10-24T04:20:01.735317+00:00",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1"
+  },
+  "calls": [
+    {
+      "stage": "synthetic_only",
+      "argv": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "-B",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/control.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "models_or_quality": false
+    },
+    {
+      "stage": "authorized_F1_labels_and_whitelist_preparation",
+      "argv": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "-B",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/control.py",
+        "--plan",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/plan.json",
+        "--stage",
+        "prepare"
+      ],
+      "exit_code": 0,
+      "tool_chunk_id": "420e88",
+      "tool_wall_seconds": 0.693015743,
+      "F1_labels_read": true,
+      "F0_gold_read": false
+    },
+    {
+      "stage": "unique_fit_predict_reload_and_F0_freeze",
+      "argv": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5s",
+        "60s",
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "-B",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/control.py",
+        "--plan",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/plan.json",
+        "--stage",
+        "fit"
+      ],
+      "exit_code": 0,
+      "tool_chunk_id": "36c385",
+      "tool_wall_seconds": 1.151113776,
+      "measured_internal_elapsed_before_manifest": 1.0949935110111255,
+      "model_fit_count": 1,
+      "F0_gold_read": false
+    },
+    {
+      "stage": "first_evaluation_loader_failed_before_gold_and_evaluator_call",
+      "argv": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "-B",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/control.py",
+        "--plan",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/plan.json",
+        "--stage",
+        "evaluate"
+      ],
+      "exit_code": 1,
+      "tool_chunk_id": "33bc84",
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/evaluation-attempt1-import-error/receipt.json",
+        "bytes": 2280,
+        "sha256": "7efcc7ea06dd9a5ad56aeeab0604ab268e00582f0f26351fb703d4a3f4f29cb0"
+      },
+      "new_quality_calls": 0
+    },
+    {
+      "stage": "sole_fixed_public_v2_endpoint_after_loader_recovery",
+      "argv": [
+        "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+        "-B",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/evaluation-recovery/evaluate_recovered.py",
+        "--plan",
+        "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-five-feature-control/evaluation-recovery/plan.json"
+      ],
+      "exit_code": 0,
+      "tool_chunk_id": "d6d68e",
+      "tool_wall_seconds": 0.149843527,
+      "new_quality_calls": 1,
+      "fit_or_predict_rerun": false
+    }
+  ],
+  "no_MCP_GPU_Git_or_R1_modification": true
+}

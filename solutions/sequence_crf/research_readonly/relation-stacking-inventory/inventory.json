@@ -1,0 +1,360 @@
+{
+  "status": "complete_readonly_inventory_no_new_quality",
+  "at_utc": "2026-10-24T04:10:06.962030+00:00",
+  "input_contract": {
+    "F1": {
+      "prompts": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+        "bytes": 1090947,
+        "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+      },
+      "rows": 80,
+      "documents": 16,
+      "candidates": 587,
+      "pairs": 1557,
+      "patients": 39
+    },
+    "F0": {
+      "prompts": {
+        "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+        "bytes": 823917,
+        "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+      },
+      "rows": 58,
+      "documents": 16,
+      "candidates": 415,
+      "pairs": 1166,
+      "patients": 47
+    }
+  },
+  "predictions": {
+    "rules": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+          "bytes": 155574,
+          "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 483,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      },
+      "F0": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/crf-semantic-fold0/rules.pred.jsonl",
+          "bytes": 124903,
+          "sha256": "b44c10f1a39a2eae5960aa2c0a50c8d879f50b71f93f25f103d5fbefa064b145"
+        },
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "positive_relations": 345,
+        "fixed_pool_pairs": 1166,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "relation_LR": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/meta_F1.lr.pred.jsonl",
+          "bytes": 157876,
+          "sha256": "65ed4e7a32e10f8110a8acd8322ed3d05ec75795c11bda37a7a15735f69a6251"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 648,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      },
+      "F0": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/fusion-inputs/outer_F0.lr.pred.jsonl",
+          "bytes": 126729,
+          "sha256": "3e400ed82c5f2913e159116ec9e1ff1623ad559a14e69bc65889f9d0c2f6d25a"
+        },
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "positive_relations": 476,
+        "fixed_pool_pairs": 1166,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "Qwen35_CID_SFT": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+          "bytes": 154176,
+          "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 383,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      },
+      "F0": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/adapter58.pred.jsonl",
+          "bytes": 123941,
+          "sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb"
+        },
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "positive_relations": 276,
+        "fixed_pool_pairs": 1166,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "Qwen35_reverse_same_SFT": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/formal/assembled/reverse.jsonl",
+          "bytes": 154308,
+          "sha256": "bc9d1b26bde9a843b1a5ec95c78d46cafd8d8a30748365276942be5c744e29ba"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 393,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      },
+      "F0": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-f0/formal/assembled/reverse.jsonl",
+          "bytes": 124065,
+          "sha256": "0c5cea7e6bf934d9efdc978f7b79d346cd3ddc0f97067878ce67b45b314e68f7"
+        },
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "positive_relations": 285,
+        "fixed_pool_pairs": 1166,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "Qwen3_8B_CID_SFT": {
+      "F0": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/adapter58.pred.jsonl",
+          "bytes": 124233,
+          "sha256": "c31574728477fbe0490e7198a826e18920f9316224396f5ff803e444840ea23f"
+        },
+        "documents": 16,
+        "patients": 47,
+        "entities": 947,
+        "positive_relations": 297,
+        "fixed_pool_pairs": 1166,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "Qwen35_patient_first": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/formal-preparation/assembled/patient-first.jsonl",
+          "bytes": 153874,
+          "sha256": "2d73259b82d3c23ca82f56dd70207d963e5ef003cc4c58c25f60518df9bc7bcf"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 362,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    },
+    "MedGemma_short_CID_SFT": {
+      "F1": {
+        "prediction": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/quality-F1/primary-medgemma/pred.jsonl",
+          "bytes": 154410,
+          "sha256": "d34eeec1af5ccd31dad9fe9fde338099b7b24903e64ccf79b792786e20c8d3b2"
+        },
+        "documents": 16,
+        "patients": 39,
+        "entities": 1189,
+        "positive_relations": 400,
+        "fixed_pool_pairs": 1557,
+        "all_positive_keys_in_pool": true,
+        "nonassociation_and_patient_metadata_exact": true,
+        "feature_semantics": "Complete hard selection on fixed candidate universe; absence=negative selection, not calibrated probability"
+      }
+    }
+  },
+  "binary32_probabilities": {
+    "F1": {
+      "probabilities": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/fixed-slot-infer-v1/adapter.probabilities.jsonl",
+        "bytes": 100919,
+        "sha256": "b14ef30bda31e70e7e3861eaf183634b85fa9ab10ba6a1eb959554aefa0f9c71"
+      },
+      "rows": 80,
+      "pairs": 1557,
+      "all_fixed_keys_exact": true,
+      "finite_probabilities_and_logits": true,
+      "labels_present": false
+    },
+    "F0": {
+      "probabilities": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/decision-target-context-design/F0-slot-infer-v1/probabilities.jsonl",
+        "bytes": 76041,
+        "sha256": "6fe3a7953d45b56f142497faa080b5fcde0806b4fbb5c66fdd8dfc54a9885611"
+      },
+      "rows": 58,
+      "pairs": 1166,
+      "all_fixed_keys_exact": true,
+      "finite_probabilities_and_logits": true,
+      "labels_present": false
+    }
+  },
+  "source_isolation": {
+    "actual_metadata_id_checks": true,
+    "F1_base_train32_excludes_F0_F1": true,
+    "F0_base_train48_is_F1_F2_F3": true,
+    "nested_generators_already_reviewed": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/binary-complement-design/source-check.json",
+      "bytes": 5540,
+      "sha256": "4af6c224f8a401abcfa679a91ce7e410a2dc1f6b061753a70b6d1dfb8bb39170",
+      "snapshot": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-inventory/source-snapshots/4af6c224f8a4--source-check.json"
+    },
+    "limitation": "Reused explicit provenance review; no training-label files or weights reopened"
+  },
+  "existing_stacking": {
+    "HGB": {
+      "meta_train": "F1 16 docs /1557pairs; SFT+LR underlying train32 F2F3",
+      "test": "F0 16docs /1166pairs; oldSFT48 and LR48, excludesF0",
+      "columns_without_SFT": 299,
+      "columns_with_SFT": 303,
+      "existing_model_rule_columns": [
+        "relation_lr_probability",
+        "relation_lr_selected",
+        "rule_selected_max",
+        "rule_selected_mean",
+        "rule_selected_min"
+      ],
+      "SFT_columns": [
+        "llm_selected",
+        "llm_empty",
+        "llm_parse_failed",
+        "llm_selected_count"
+      ],
+      "source": {
+        "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/sft_meta1/fusion.py",
+        "bytes": 13984,
+        "sha256": "53a954f0b31db34e87e64ccf8733446d426defeb084e4fa2ba3623489a3b7942",
+        "snapshot": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-inventory/source-snapshots/53a954f0b31d--fusion.py"
+      },
+      "summary": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/paired-summary.json",
+        "bytes": 7682,
+        "sha256": "26e8ad71138a8884748f3830ffc62bb707b95ce501f54233f261ec8bf233483c",
+        "snapshot": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-inventory/source-snapshots/26e8ad71138a--paired-summary.json"
+      },
+      "old_results": {
+        "without_llm": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6282245827010622,
+          "macF1": 0.6132004814841803,
+          "Score": 0.673525488537567
+        },
+        "with_llm": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6798179059180577,
+          "macF1": 0.60274404983177,
+          "Score": 0.6838097114287133
+        }
+      },
+      "controls": {
+        "rules": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.7044198895027625,
+          "macF1": 0.6883173080126084,
+          "Score": 0.711353521870099
+        },
+        "lr": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6152046783625731,
+          "macF1": 0.5002539793232106,
+          "Score": 0.6420338869127022
+        },
+        "sft48": {
+          "menF1": 0.724105461393597,
+          "docF1": 0.7285714285714285,
+          "micF1": 0.6900763358778625,
+          "macF1": 0.6390225644829467,
+          "Score": 0.6954439475814587
+        }
+      },
+      "limitation": "Already a learned mixture of LR/rules-context and one SFT model; not three independently trained LLM predictors; single meta fold only"
+    },
+    "binary_plus_SFT_LR": {
+      "summary": {
+        "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/binary-sft-complement/F0-terminal/summary.json",
+        "bytes": 29726,
+        "sha256": "61ef2aabbadb92715943fe725075cb4326e40d4c0f71001936f2ebb3171bb0ac",
+        "snapshot": "/workspace/patientphex-runs/round2-20261023/research/relation-stacking-inventory/source-snapshots/61ef2aabbadb--summary.json"
+      },
+      "features": [
+        "binary_logit",
+        "old_sft_positive"
+      ],
+      "Score": 0.6965456885142385,
+      "delta": {
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": 0.0,
+        "macF1": 0.004406963731118929,
+        "Score": 0.0011017409327798156
+      },
+      "not_new_direction": true
+    }
+  },
+  "not_ready": {
+    "patient_first_F0": "Active owner experiment deliberately not inspected; use only after completed freeze/review",
+    "Qwen3_8B_F1": "No strict train32 original80 cache located in bounded history; F0 alone has 1 disclosed prior LR fallback",
+    "MedGemma_F0": "No paired F0 cache in completed short-input experiment; new fullcontext active run not inspected",
+    "DeepSeek_R1": "No completed original80+58 cache/quality; two format samples cannot substitute",
+    "prior_HGB_as_new_meta_input": "Only outerF0 probabilities saved here; its F1 is meta fitting, so in-sample F1 would not be valid OOF stacking input"
+  },
+  "boundaries": {
+    "new_gold_or_target_reads": 0,
+    "labeled_feature_matrices_opened": 0,
+    "new_fit_predict_evaluate_calls": 0,
+    "MCP_GPU_network_calls": 0,
+    "active_patient_F0_or_Med_full_quality_reads": 0,
+    "full_logs_traversed": false,
+    "exhaustive_search_claim": false
+  },
+  "seconds": 0.04483849300595466
+}
