@@ -19,3 +19,5 @@
 三个新worktree已从main `0c0672d` 创建，对应远端分支均已push/ls-remote核同SHA。span负责人 `/root/span_normalization`、docRE负责人 `/root/document_relations` 已启动；生成负责人 `/root/sequence_recover_0518` 正将旧α负实验收尾后转新worktree。span拟先显式起止联合打分+固定规范化，docRE独立选择完整文档多提及机制；尚无新GPU或新分数。
 
 首轮资源排程：span与docRE复用.3已有Biomed/BioLink/Sap资产，span先获≤600+30窗口（尚未实际启动），释放后docRE接续；两者CPU准备并行。A100 GPU2拟留给患者证据生成，当前仅旧α小补包I/O且连接暂退避，不等同GPU作业。A800新全文80与.100 FLA80原质量运行不受影响。显式分类器保存紧凑全候选分数便于后续学习融合，生成器保留raw/IDs与解析状态；不把大张量/日志放Git。
+
+启动前统一划分：三新路线初版均使用F2+F3 train32→F1完整16篇/39患者，第二折再train48→F0。span/docRE原先拟F0方案尚未实际GPU或数据准备，已在启动前协调修订，方法/预算不变。公共冻结模型可复用，任何监督别名、候选/特征模型仍须核本折来源；不把强train48对照称同训练量对照。三线各自固定非目标对象并报告分项/差值，root在相同F1文献上组装完整融合，避免为对齐重复补训。
