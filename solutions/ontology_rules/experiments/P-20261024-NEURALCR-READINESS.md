@@ -120,3 +120,5 @@ root指定本owner为A100唯一恢复探测者，不看mount元数据；01:46:59
 按root授权等5分钟后，01:52:08.828086→01:52:11.426848Z唯一5文件实际SHA库存2.598757秒/rc0：4文件完整exact，其中前次UNKNOWN的44193B probe-inputs已落盘；仅cpu-reference.json缺失。原失败收据原样保留，不重传4份已成功文件；库存先checkpoint，再只补CPU参考、远端CPU compile，沿原唯一180秒GPU探针。实际恢复已共享root与sequence，后者仍等NCR释放再接GPU2。
 
 01:52库存成功后，仅补cpu-reference.json的唯一write又LUNA_OFFLINE，立即停，未到CPU compile或GPU start；原失败state不改写。参考本来与同服务器postdownload/native-cpu-result.json逐字节同SHA，故后继已准备一次samehost run_command：复核现有5文件，只有reference缺失时从已验原件hardlink，所有SHA/CPU compile完成再start。该恢复不需任何再次上传，不覆盖异常不同字节，也不把离线错误解释成一定未落盘。新的同机恢复仅准备，未自动执行；source/plan/probe180秒与1536+41query完全不变。
+
+root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；已加samehost-reference-intent guard，在任何UNKNOWN结果后拒绝重发，只能后续只读核已执行状态。GPU source/plan/budget不变，sequence等待实际释放。
