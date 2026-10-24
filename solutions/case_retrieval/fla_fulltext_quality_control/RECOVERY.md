@@ -7,3 +7,5 @@ CUDA隐藏的一次CPU导入显示native分支而非GPU下的FLA分支，因此�
 独立recovery目录保留原infer逐字节，只有backend上述删项、launcher固定原09:45:09.929177 UTC/monotonic3725518.161365813截止及部署目标变化；1200秒时钟不重置，soft截止仍提前30秒，TERM后30秒。恢复仍全部80fresh，无原native回应缓存、模型/模板/解码变更。
 
 收件器初次替换前缀有误，在读取不存在terminal时失败，尚未创建archive；原intent/错误收据留collection-wrong-prefix-preserved。仅修前缀后冻结原真实终态一次，不重模型或造新的原始响应。
+
+恢复唯一proc_1bf02d93于09:28:05.464启动，实余1024.466秒；fresh GPU1=0MiB/noapps。09:28:49实际依赖95f22f6d完整保存，两FLA/nativeconv明确，真实chunk wrapper确为Torch eval_frame.py（ef442289，73605B），与旧A所见相同；这闭合检查器差异，不代替完整质量。原27成员失败包f5e4b922/manifest a4da8fd2已全SHA回收。
