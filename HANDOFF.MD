@@ -337,7 +337,7 @@ R1-0528-Qwen3-8B发布配置标注`LlamaTokenizerFast`，但当前Transformers5.
 
 R1监督适配的首次GPU探针，在最短570-token样本比较原生与selected-CE的LoRA梯度时，先执行`allclose(rtol=1e-4, atol=1e-6)`断言，尚未持久保存实际差值便退出。完整29.99997秒rc1，未建立Adam、未测最长、没有训练更新；因此既不能归因为OOM，也不能凭CPU数学通过就称正常GPU噪声或直接放宽门槛。首次实际差异量仍无法恢复。
 
-**避免方法**：先保存每次loss、梯度差异/范数/原判定、真实shape与RNG身份，再执行失败断言。独立诊断可用同配置原生重复估计可重复性，再用同一冻结实际logits区分CE数值与模型前向差异；保留原失败和原阈值，后继测量不冒称恢复首次张量。原失败统一终审`validation/r1-supervised-adaptation-probe-review/review.json`，SHA`615e4193077dc78248299c4d5761ca1011b1a94df36b0ebdb0e80cffb46d6665`；后继数值诊断另立，未据此宣布完整训练可行。
+**避免方法**：先保存每次loss、梯度差异/范数/原判定、真实shape与RNG身份，再执行失败断言。独立诊断可用同配置原生重复估计可重复性，再用同一冻结实际logits区分CE数值与模型前向差异；保留原失败和原阈值，后继测量不冒称恢复首次张量。原失败统一终审`validation/r1-supervised-adaptation-probe-review/review.json`，SHA`615e4193077dc78248299c4d5761ca1011b1a94df36b0ebdb0e80cffb46d6665`；后继数值诊断另立：同输入/前后RNG/logits/loss下，原生重复自身237/504梯度也未过旧门；同冻结实际logits的CE监督梯度逐位相同、ignored梯度全0，独审`55524bf2…`。应先建立原生重复基线，不能把完整反向差异直接归于loss优化，也不能据一次接近宣称统计等价或定位kernel。原门/失败保留；新H51探针另以独立CE证明和真实更新检查工程可行，先存observations再断言，CPU NaN保存顺序检查通过，实际12步压力终审`92fab5e1…`通过；完整训练/质量另行验证。
 
 ## 更新方式
 
