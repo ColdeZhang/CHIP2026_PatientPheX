@@ -18,4 +18,4 @@ E-20261024-SEQ2SEQ-READY-001：LongT5-TGlobal-base247,587,456，原强G完整87�
 - generated transport保原nativeSP UNK文本再itemwise校验；87目标解码仍逐字节同training codec。混合坏quote只拒坏item的增量合同通过。未定义extra/padded-vocab ID保raw并拒transport。训练labels原件不动。
 - .3已收到原关系GPUrelease，但工具随后LUNA_OFFLINE/UNKNOWN；同四资产私网copy源180s服务到期closed、delivered=[]，无GPU/无新增训练。保原client与未知stderr；停止.3追加copy。按root协调预备回.100缓存资产，不占SCST必要Sap窗口。
 - .100正式CPU合同3.624s完整PASS：base247587456/126SP IDs/87目标字节；tiny原生LongT5 fullstate 120张量、29唯一optimizer参数/两state.step保存fsync重开恢复及fresh model load准确、input共享/head独立、0CUDA。原件/evidence见[formal-native-CPU](evidence/formal-native-CPU.json)。这不是全base训练checkpoint的实际ACK。
-- 当前模型/数据/计划齐，**尚无正式GPU启动**；待root给实际resource binding后fresh门1800+30训练+最终完整stateACK，39greedy1600另锁时钟。入口[formal/README](formal/README.md)。
+- 当前唯一正式GPU已在root最终协调后启动：2026-10-24 17:24:16.702 UTC，.100GPU0 UUID126293b9，proc_664e32e1-f0eb-47d4-bfbb-bb348930f780/PID2758035；TERM17:54:16.702、kill17:54:46.702，不延时。fresh门GPU0空闲24164MiB/无进程，GPU1任务不动。仅训练+最终完整stateACK，39greedy1600另锁时钟。实际[start/恢复定位](evidence/formal-start.json)。入口[formal/README](formal/README.md)。

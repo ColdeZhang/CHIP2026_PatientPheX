@@ -1,0 +1,112 @@
+{
+  "status": "ACTUAL_TRAIN_V1_RUNNING_NO_HELD",
+  "root_authorized_resource": ".100 GPU0 after SCST future Sap moved to GPU1",
+  "refs": {
+    "train-v1-binding.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/train-v1-binding.json",
+      "bytes": 1570,
+      "sha256": "fe3eae55d34773f8948066febf5e777b331cc04e0b7ee7e9dab426569aea58ac",
+      "content": {
+        "schema": "longt5-explicit-resource-binding-v1",
+        "phase": "train",
+        "authorized_by_root": true,
+        "root_resource_message": "GPU0 transferred after SCST owner fixed future Sap GPU1; no other same-card task",
+        "runtime_commit": "3adf4884da9cc11d9246254da196ff917b049d6b",
+        "reviewable_commit": "c7765494928910d03852759dc9f8dc54969eae57",
+        "plan": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/plan.json",
+          "bytes": 8272,
+          "sha256": "8254f7e34066fede2ed605920203395c0514c0875f163eefb5633b6be784e5b9"
+        },
+        "target_CPU_receipt": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/cpu-contract-v1/complete.json",
+          "bytes": 3006,
+          "sha256": "0d672ecfce66ca52c0cda8726eae93e9baa9b7ffe1d359cdda2b0951f234752c"
+        },
+        "gpu_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+        "model_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-v1/assets-base",
+        "supply_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/supply",
+        "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/output",
+        "driver_output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/driver",
+        "budget_seconds": 1800,
+        "grace_seconds": 30,
+        "torch": "2.7.1+cu126",
+        "transformers": "4.50.0",
+        "issued_unix": 1792862655.5484118,
+        "admit_until": 1792862955.5484138
+      }
+    },
+    "train-v1-started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/train-v1-started.json",
+      "bytes": 1509,
+      "sha256": "d84b99fa24155c5be6cfa007a5184ac40f43245b5305f4fa5d5616d5fa88a3d1",
+      "content": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"command\":\"/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/plan.json --binding /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/binding.json\",\"id\":\"proc_664e32e1-f0eb-47d4-bfbb-bb348930f780\",\"mount_id\":\"5a9955da-5240-41cc-9e52-05d3d8da8a3c\",\"pid\":2758035,\"port\":34127,\"project_id\":\"64baaea6-43e2-435f-9896-7e4935aa5091\",\"running\":true,\"started_at\":\"2026-10-24T17:24:16.632655996Z\"}"
+          }
+        ],
+        "structuredContent": {
+          "command": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python -u /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/driver.py --plan /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/plan.json --binding /home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/binding.json",
+          "id": "proc_664e32e1-f0eb-47d4-bfbb-bb348930f780",
+          "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+          "pid": 2758035,
+          "port": 34127,
+          "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+          "running": true,
+          "started_at": "2026-10-24T17:24:16.632655996Z"
+        }
+      }
+    },
+    "collected/train-v1/driver/started.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/train-v1/driver/started.json",
+      "bytes": 1444,
+      "sha256": "51afd502a879ad9667a5584c32fae8c391acc713995fdecb8b9f5ffd0308b43b",
+      "content": {
+        "started_unix": 1792862656.7024627,
+        "term_deadline_unix": 1792864456.7024627,
+        "kill_deadline_unix": 1792864486.7024627,
+        "command": [
+          "timeout",
+          "--signal=TERM",
+          "--kill-after=30s",
+          "1800s",
+          "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+          "-u",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/train.py",
+          "--plan",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/plan.json",
+          "--binding",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/binding.json"
+        ],
+        "pid": 2758035,
+        "binding": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/train-v1/binding.json",
+          "bytes": 1570,
+          "sha256": "fe3eae55d34773f8948066febf5e777b331cc04e0b7ee7e9dab426569aea58ac"
+        },
+        "plan": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/plan.json",
+          "bytes": 8272,
+          "sha256": "8254f7e34066fede2ed605920203395c0514c0875f163eefb5633b6be784e5b9"
+        },
+        "source": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/seq2seq-patient-set-formal-v1/application/formal/driver.py",
+          "bytes": 3189,
+          "sha256": "6aee266f88135786e60bec8409388c6dad1ae2a404216b58c956f670fc01e9e0"
+        }
+      }
+    },
+    "collected/train-v1/output/admission.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/seq2seq-patient-set-readiness-20261024/collected/train-v1/output/admission.json",
+      "bytes": 243,
+      "sha256": "727bf6a332fe4194c84ff0013aa444b98e6d0ac41b33f53cf7fc415d626feaff",
+      "content": {
+        "gpus": "GPU-126293b9-6677-8464-cee7-01e693efbf29, 24164\nGPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 19195\n",
+        "apps": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 2757757\n",
+        "expected_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29"
+      }
+    }
+  }
+}
