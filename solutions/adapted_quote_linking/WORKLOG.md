@@ -1,6 +1,6 @@
 # Adapted quote linking 台账
 
-状态：root已授权.3 GPU0唯一254查询180+30；唯一254原job实际运行中，source38424058已先push。0新增训练/9B推断/GPU/held gold/质量。旧Copy完整负结果保留，不在本线续试。
+状态：root已授权.3 GPU0唯一254查询180+30；254完整查询已rc0并释放GPU，唯一全量预测已freeze，正在先push后一次质量。0新增训练/9B推断/GPU/held gold/质量。旧Copy完整负结果保留，不在本线续试。
 
 目标：检验同train32监督适配Sap能否改善普通Grounded原合法引文的映射，唯一primary为 `B4 ∪ [Gadapted ∩ (S∪Q∪C)]`，明确不含旧G自证。最终验收仍为原train64/dev16 v2≥.8；内部F1只决定是否进入固定F0。
 
@@ -17,3 +17,6 @@
 - root明确授权.3 GPU0唯一254查询、180+30、freshUUID/process门和300秒启动有效期；无需新增模型probe。正式execution-plan ffb0b2bd，admission截止 2026-10-24T16:15:37.255692+00:00；sourceplan先push再唯一start。controller过期合同PASS，在GPU查询/Popen前阻断。原入口多保存实际254IDs后才比较，不改数值。完整收件→版本化normalize→全16/39/1189/B524 freeze/push→唯一F1；完成release通知root/sequence。
 
 - 唯一实际启动proc_dd549ce6-c862-4f5d-a143-af1ecb79d2f9，driver1223586/child1223598，child16:11:28.179715；TERM16:14:28.177424/KILL16:14:58.177424，不延期或重试。恢复只用remote.py observe --directory .../F1-query-v1，禁止第二start；启动证据evidence/actual-start.json。
+
+- 原254 child1223598在16:11:42.086147完整rc0/no-timeout，13.909秒（native12.731），actualrelease16:11:42.095268 GPU0=4MiB/noapps，已交root/sequence。必要全scores/254实际nativeIDs/终态完整收件；原0.78MBqueryvectors在server同SHA18994851持久，未冒称本地已下载。
+- 完整573anchors已按新fab55644 policy归一化，无原始响应改动；唯一16/39/1189/B524预测freeze403a67ea，新增0、删0，纯新G249仅无分审计，byteexact=True。先push此freeze再独立score入口最多1新v2/旧0。
