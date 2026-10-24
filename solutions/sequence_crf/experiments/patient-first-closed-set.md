@@ -118,3 +118,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 最终完整checkpoint计划由已核HTTP方式在独立180+TERM10内从A800自有SHM导出到`.100/sequence-round2/patient-first-formal/checkpoints/epoch-002`，只复制白名单adapter/Adam/RNG及小来源文件；目标fsync后重开完整SHA，再独立读回校验；动态端口、源进程记录先于start，未知结果查原进程，确认文件固定`export-ack-epoch-002.json`。新HTTP源使用兼容3.8的resolved-parent包含检查，避开H33。成功回收只停止本次server；连接未知时原远端180+10仍有界。最终导出实际成功前不进入推断。适配源码/恢复CLI已准备，未部署或发送权重。
 
 运行/恢复入口为外部`formal-preparation/`：[准备总清单](../evidence/round2/patient-first-formal-readiness.json)，`formal_operations.py deploy/start/collect --phase train|infer`负责唯一部署与phase intent，`export_operations.py prepare/start-server/start-fetch/collect/stop-server`负责CPU持久导出，`finish.py assemble`先freeze，随后才`evaluate`。实际runplan/文件SHA见清单。准备脚本与全部嵌入远端Python模板均compile检查；当前GPU/磁盘fresh preflight及新实际运行仍待资源释放和主线程安排，不把计划写成已执行结果。
+
+
+02:19:56只读实际存储核验通过（[收据](../evidence/round2/patient-first-formal-storage-readiness.json)）：A800 uid1045，SHM可用248.569GB、自有输出/源码目录均未创建，原reference model目录存在非symlink；project磁盘仅177.066MB，所以只放约几MiB source/小日志，不落权重或state。.100 uid1006，持久磁盘可用443.631GB，自有checkpoints/tools尚不存在。未查询/操作GPU、未重复权重SHA、未mkdir/部署/启动。正式source原入口仍在GPU加载前核完整15文件SHA，卡和SHM余量在真正start时重新核；此存储状态不代表warm资源已释放。
