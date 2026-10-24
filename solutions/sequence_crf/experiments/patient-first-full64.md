@@ -4,7 +4,7 @@
 
 ## 当前状态与边界
 
-旧完整logit-CE正式训练已OOM，新仅监督位置FP32 CE的fresh完整265×2/68calls已06:03:05成功，两个epoch状态完整持久。已获持续授权的后继为真实epoch2原dev64推断900+30，然后a179全预测literal union唯一v2；1072实体/391旧关系/35public-new不变。以下按实际顺序保留历史准备、失败及恢复，不把早期“尚未授权/待运行”当作当前阻断。最新入口与终态见文末和[台账](../WORKLOG.md)。未官方上传。
+旧完整logit-CE正式训练已OOM，新仅监督位置FP32 CE的fresh完整265×2/68calls已06:03:05成功，两个epoch状态完整持久。后继真实epoch2原dev64推断900+30与a179全预测literal union唯一v2已完成：Score .746261043，新增3TP3FP，macro下降，未.8/未替换全局最佳；1072实体/391旧关系/35public-new不变。以下按实际顺序保留历史准备、失败及恢复，不把早期“尚未授权/待运行”当作当前阻断。最新入口与终态见文末和[台账](../WORKLOG.md)。未官方上传。
 
 ## 实际 CPU 数据
 
@@ -93,3 +93,13 @@ root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由
 ### 原dev64唯一推断已启动（06:07:59）
 
 两小件实际部署rc0且SHA精确。已推d3954589c4908ec372f45636f949314b4c3502d1后fresh GPU UUID/空卡/持久空间与实际adapter/checkpoint三SHA门槛通过，唯一proc_05ce4894-3a78-49c7-8c9b-60191eac14d4 / driver180748，06:07:59.129686558Z启动900+TERM30（近似TERM06:22:59/KILL06:23:29，remote driver为权威）。一次原64全fresh、零缓存；完整终态前无质量。endpoint-plan已绑定实际job/runner/plan与原a179 policy，只读watch每180秒、连接错误只恢复观察，不再次start。[恢复证据](../evidence/patient-first-full64-memory-recovery/final-infer-job.json)。
+
+### 原dev完整终点：小幅增益，仍未达到目标（06:14:47）
+
+唯一原64推断06:13:10.259624Z实际311.034046秒rc0，未触900+30；06:13:10.362409Z GPU2已0MiB/无进程。64全fresh、64 strict/codec complete，0partial/abstain、无截断回退或答案修复，138patient key slots全部出现；显式318正pair。203原小文件125,009B压缩回收，collection f68df296、zip6abdea6f；完整原IDs独立decode、codec重放均精确。assembly未读gold，原1072实体/391关系/35public-new全部保留，加入6条后397关系，非关联字段和原关联列表前缀精确。
+
+06:14:45完整pred765cd5a0614f5e3e9155607bcdff00262de3e6d937e3936954d8c58fe4a4549c（141732B）与raw共同freeze2ac4b470；06:14:47唯一v2，旧metrics直接复用，未评patient-alone/组合。格式valid、0errors/0warnings。Score .746081964986→**.746261042824（+.000179077837）**；men .786960514233/doc .824512534819完全不变，micro .725118483412→.727058823529（+.001940340117），macro .647736327480→.646512298713（−.001224028768）。新增6=3TP3FP，未删除旧关联。按预定Score严格上升规则是相对a179的正候选，但幅度很小、macro下降，且低已知全局0e2c .748583439566；不能称全局best，也未达.8。开发集已反复使用，不是盲验证。
+
+完整实际[结果](../evidence/patient-first-full64-memory-recovery/final-results.json)与[终点原件索引](../evidence/patient-first-full64-memory-recovery/final-terminal-summary.json)。没有换LightGBM实体/追加质量臂/官方上传。终态记录时一次本地exec transport断开，下一只读已恢复，模型/评测没有重跑。旧OOM、两轮状态、全部原输出和唯一新pred保留；等待统一终点增量独审，不重新运行已完成任务。
+
+随后root同步另一独立端点支持gate3049d9fe已独审接受，全局best更新为.754216969282；本patient端点仍低该值。root将待两端点收尾后决定是否只把相对a179的6条新增做一次固定CPU合成；当前未合成、未替换本端点1072实体或391旧关系。

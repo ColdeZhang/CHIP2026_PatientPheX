@@ -4,21 +4,23 @@
 
 ## 目标与已知最佳
 
-- 用户验收仍是原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text、Score ≥ .8 且格式/复现通过；内层F0/F1的诊断不能替代该目标。当前不上传官方；本次已授权的full64→原dev唯一端点按下方协议推进，其他新评分臂需明确决定。
+- 用户验收仍是原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text、Score ≥ .8 且格式/复现通过；内层F0/F1的诊断不能替代该目标。当前不上传官方；本次full64→原dev唯一端点已完整结束，其他新评分臂需明确决定。
 - 每个独立模型 ≤10B，允许多模型；不要重新按全链参数合计禁用集成（main HANDOFF H47）。
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 当前任务：full64 两轮已持久，实际 epoch2 推断入口已绑定
+## 当前任务结案：full64 完整成功，原dev增益很小，未达 .8
 
-原唯一训练 `proc_7f51657c-95c7-4118-9d9d-68377242d294` 已 **06:03:05Z rc0 / 2991.911秒** 完成265×2/68calls；没有触及4500+30截止。两个完整epoch各5成员519,867,104B，文件/目录/祖先fsync与重开SHA全通过。最终allocated峰25.029GB、reserved峰34.907GB；06:03:05.457Z GPU2已0MiB/无进程。[训练终态](evidence/patient-first-full64-memory-recovery/formal-training-terminal-summary.json)。原proc及本地watch均已结束，不重启。
+selected-CE fresh训练已06:03:05Z完成265×2/68calls，rc0/2991.911秒；两个epoch各5成员519,867,104B均fsync/祖先fsync与重开SHA通过。真实epoch2三SHA绑定后，唯一原dev64推断 `proc_05ce4894-3a78-49c7-8c9b-60191eac14d4` 已06:13:10Z **rc0/311.034秒**；64条全fresh，64 strict/codec complete、零partial/abstain，203小件逐SHA及原始ID独立decode通过。两作业均已结束，卡实际释放，不重启或重评分。
 
-F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal`。17个原小文件已压缩回收；实际final三SHA分别training_complete `9c9c7d35`、checkpoint `0f8cb039`、durability `bd174b1f`，已绑定[入口](evidence/patient-first-full64-memory-recovery/actual-final-inference-binding.json)与[900+30计划](evidence/patient-first-full64-memory-recovery/infer-plan.json)。只替模板三个SHA常量和模块说明，未改变生成/codec/来源。唯一原dev64推断已06:07:59.129Z实际启动 `proc_05ce4894-3a78-49c7-8c9b-60191eac14d4` / driver180748，900+30，近似TERM06:22:59/KILL06:23:29，以remote driver为准。新会话先查F/infer-job.json及intent，存在即仅监控原job，不能重复launch。只读watcher入口F/watch_infer_0608.py，每180秒观察，原KILL+300止；恢复reader F/monitor_infer_existing.py。实际两小件部署及endpoint绑定完成，[job证据](evidence/patient-first-full64-memory-recovery/final-infer-job.json)。当前未新devgold或质量。[恢复操作](patient_first_full64/memory_recovery/OPERATIONS.md)。
+唯一a179∪patient新 **Score .746261042824**，相对原a179 .746081964986 **+.000179077837**；新增6关联=3TP3FP，micro+.001940340117、**macro−.001224028768**。1072实体不变、旧391关系和35public-new全保留、最终397关系。完整raw/pred先冻2ac4b470，再唯一v2；格式0错0警告。新pred765cd5a0/141732B。仍低root最新已独审全局支持gate3049d9fe **.754216969282**（完成端点时的前一0e2c为.748583439566），原dev .8未完成，未替换全局best、未合并/官方上传。[完整结果](evidence/patient-first-full64-memory-recovery/final-results.json)、[终点与原件索引](evidence/patient-first-full64-memory-recovery/final-terminal-summary.json)。终点增量独审待统一回收；不为等待独审重跑旧合同或新质量。
+
+F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal`。实际training-collection b5164026，inference-collection f68df296；训练/推断原raw、两个fullstate、freeze/metrics/旧OOM均外存。已完的train/infer launch-intent及watcher-terminal是终态凭据；恢复只读既有小文件，不执行旧start/bind/assemble/evaluate命令。[恢复操作](patient_first_full64/memory_recovery/OPERATIONS.md)。
 
 **已核依据**：旧proc5b00首epoch backward OOM、无完整状态，独审f7668be7；不能exact续训。新恢复只将有监督位置先选后FP32 CE，完整BF16 head/每rowmean/有效group/精度不变。目标Torch288例通过；新probe12次前后向/1次完整group更新，已有496 Adam状态与累积梯度下最长6166通过，147.295秒rc0、峰allocated25.031GB/reserved29.977GB，05:11:10实际释放并弃权重。统一独审b46983ef通过，正式fresh已获root一次统一授权。探针通过不保证完整训练稳定，原失败记录不改写。
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
-- [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当前未新devgold/未质量/未官方。
+- [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当时未新devgold；现原dev单一质量已完成，未官方。
 
 **F0恢复58完整结束，原strict失败保留；primary负、oldSFT48∪patient增量通过事前判据。** 新primary .684342231，旧baseline .695443948；固定secondary **.705527893（+.010083945）**，关系micro+.020643194、macro+.019692587，新增26=16TP10FP且保留全部旧关系。947实体/非关联不变。仍低同池rules .711353522；原dev .8目标未完成，不自动迁dev。
 
@@ -43,7 +45,7 @@ F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-mem
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
 - 截至本页整理前，已push并lsremote确认 `ca72c3cde197650428ed2ba4550aa84bd20f1f43`，含原失败、新工程完整终点、fresh正式job、环境重连恢复与后继单一dev入口。不要为记录台账自身SHA递归提交。
-- 旧full64 OOM完整保留；新selected-CE fresh两轮已成功且实际epoch2已绑定，下一里程碑是原dev64/唯一a179并集。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 旧full64 OOM完整保留；新selected-CE fresh两轮与原dev64唯一a179并集已完整结束，下一步仅终态增量独审/记录。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
 - full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z启动，04:51:51 OOM/rc1退出；原4500+30未耗尽。见 [full64记录](experiments/patient-first-full64.md)。
 
