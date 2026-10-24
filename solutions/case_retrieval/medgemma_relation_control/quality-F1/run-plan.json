@@ -1,0 +1,172 @@
+{
+  "schema": "patientphex-medgemma-primary-union-F1-v1",
+  "control_sha256": "22aec1f43fc6c5498404bd7e9cfb2c599216a6d94b8d5cc68e3f31752081744b",
+  "freeze_plan_sha256": "24d213e542d45219b8c24258a82d82e9191127959e6482f07f8723daf078c102",
+  "python": "/workspace/patientphex-runs/day1-20261023/sequence-crf/.venv/bin/python",
+  "policy": {
+    "primary": "MedGemma native full-bundle text-only fresh strict32 two-epoch adapter; frozen original80 parser and baseline-rule fallback",
+    "secondary": "literal per-document per-patient set union of cached old-SFT32 and primary MedGemma relations",
+    "selection_comparator": "cached old-SFT32 baseline",
+    "retention": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "union_vs_medgemma": "report differences only; no additional selection/combinations",
+    "evaluation": "both complete predictions frozen first; each one unchanged v2 all/text call; old metrics cached",
+    "nonrelation": "original baseline bytes outside each top-level association value preserved exactly",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false,
+    "F0_originaldev_official": false
+  },
+  "references": {
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379",
+      "bytes": 154176
+    },
+    "old_entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "parser_base": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/run.py",
+      "bytes": 21153,
+      "sha256": "41ee61bce9a8cfb5ef01d73c644172fdff0e29fd6aca2cf5aa08a9c880b5f5d0"
+    },
+    "validator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477",
+      "bytes": 13115
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "evaluator": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "parser": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/relation-quality-plan/merge_pair_rag.py",
+      "bytes": 3684,
+      "sha256": "817fdc4494e7ed349085fe97c5744409d66d0f1de476089ac8c5696a84a6b4a1"
+    },
+    "tree_helper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/source-snapshots/llm_feature_tree.py",
+      "bytes": 21699,
+      "sha256": "6093741856c42fe56dc0f13d365b3eaf4c962e2f67befa5fa3ce865362989bef"
+    },
+    "med_runner": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/infer_medgemma80.py",
+      "bytes": 10004,
+      "sha256": "87c187c889a8631b745bac1b05b8d6ea55b7ff9efacb0d4524142513c2e57a32"
+    },
+    "med_trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/train_medgemma32.py",
+      "bytes": 33132,
+      "sha256": "3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f"
+    },
+    "med_interface": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/medgemma_interface.py",
+      "bytes": 7685,
+      "sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be"
+    },
+    "med_model_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medical-small-model-readiness/assets/expected-files.json",
+      "bytes": 7145,
+      "sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+    },
+    "med_generation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/actual-cpu/greedy-generation-config.json",
+      "bytes": 2042,
+      "sha256": "0c945640d895383814ec0662afe115c57c47fed332fff5b46b5e228b48531eaf"
+    }
+  },
+  "pretraining_amendment": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/pretraining-amendment.json",
+    "bytes": 3662,
+    "sha256": "4fc77827e02394c682ac9a83311b03c0d48ce93ac5fabdd6c0a19eee92308f88"
+  },
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+  "historical_F1_gold_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+  "formal_directory": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal",
+  "endpoint_paths": {
+    "training_manifest": "epoch-002/run_manifest.json",
+    "training_complete": "train-002/training_complete.json",
+    "checkpoint": "epoch-002/checkpoint.json",
+    "export_ack": "epoch-002/export-ack.json",
+    "inference_plan": "inference-plan.json",
+    "responses": "responses.jsonl",
+    "response_manifest": "responses.manifest.json",
+    "response_checkpoint": "responses.checkpoint.json",
+    "response_loading": "responses.loading.json",
+    "response_freeze": "responses-freeze.json"
+  },
+  "endpoint_references": {
+    "training_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/epoch-002/run_manifest.json",
+      "bytes": 13249,
+      "sha256": "774bc4681e6aada0e3450892d3818232afb5822b9e93d5092de05a1dec3f0ae8"
+    },
+    "training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/train-002/training_complete.json",
+      "bytes": 525,
+      "sha256": "6d3b41ffe30aa1d6546f8479c5031dc9fcd377ee185d7b15b4ca0ca328e1d7c6"
+    },
+    "checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/epoch-002/checkpoint.json",
+      "bytes": 13791,
+      "sha256": "68c59c9402989145adbf58c292337de8157e59ce0ae065e3418a59922232be9a"
+    },
+    "export_ack": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/epoch-002/export-ack.json",
+      "bytes": 3417,
+      "sha256": "8c18132b67ed745ac40ef9642edb903b52ab5d66398d3f1b1a99c7c06865c145"
+    },
+    "inference_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/inference-plan.json",
+      "bytes": 926,
+      "sha256": "901add530e6abdd8907d2c2a6c27ffbc5213be7ae119b17d1c7e2c16ae658c71"
+    },
+    "responses": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/responses.jsonl",
+      "bytes": 25280,
+      "sha256": "98c1adbbe443343724da643ae390413c9dda297b8938d4fdcf974c707ae916b6"
+    },
+    "response_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/responses.manifest.json",
+      "bytes": 7333,
+      "sha256": "885bcf4542b3196acbb609b9286abd85d096f8df46d044ccf1bcc01780973448"
+    },
+    "response_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/responses.checkpoint.json",
+      "bytes": 6457,
+      "sha256": "3a13df4290df6be1ca78bbd8de2c871efcc3858a5dea884840055076545bbe64"
+    },
+    "response_loading": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/responses.loading.json",
+      "bytes": 95,
+      "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85"
+    },
+    "response_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/responses-freeze.json",
+      "bytes": 323,
+      "sha256": "53562af856437fb12231388a59b7701234beaa7782ca12b437dc74aad9afae5b"
+    }
+  }
+}

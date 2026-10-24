@@ -1,0 +1,187 @@
+{
+  "status": "complete_native_CPU_fullcontext_budget_only",
+  "source_sha256": "39279ddeb366020e35cdd0201233a87e510cabea4682f68dda92aeabf59eecd9",
+  "construction_source_sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44",
+  "legacy_source_sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb",
+  "interface_sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be",
+  "bundle_sha256": "30f71da90b166e518e2284f06eec5fd632b2d975f78c08e85bd241a01464ed0b",
+  "model_asset_manifest_sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1",
+  "actual_tokenizer_files": {
+    "added_tokens.json": {
+      "bytes": 35,
+      "sha256": "50b2f405ba56a26d4913fd772089992252d7f942123cc0a034d96424221ba946"
+    },
+    "chat_template.jinja": {
+      "bytes": 1532,
+      "sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4"
+    },
+    "config.json": {
+      "bytes": 2551,
+      "sha256": "300c724c2c1fcdea39f1e21865cb1b14a605f1e3bb5ef50550faaa48da944fc8"
+    },
+    "generation_config.json": {
+      "bytes": 115,
+      "sha256": "921a391e0d387377b4c4a05273a68b7bc2196cf2a272ee605007853ea37f3224"
+    },
+    "special_tokens_map.json": {
+      "bytes": 662,
+      "sha256": "2f7b0adf4fb469770bb1490e3e35df87b1dc578246c5e7e6fc76ecf33213a397"
+    },
+    "tokenizer.json": {
+      "bytes": 33384570,
+      "sha256": "7d4046bf0505a327dd5a0abbb427ecd4fc82f99c2ceaa170bc61ecde12809b0c"
+    },
+    "tokenizer.model": {
+      "bytes": 4689074,
+      "sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c"
+    },
+    "tokenizer_config.json": {
+      "bytes": 1155415,
+      "sha256": "88269475414d45d3e59892d3519b0d4e28ec6416fecf6b523fb986cbe452075f"
+    }
+  },
+  "native_runtime": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "transformers": "5.20.2",
+    "torch": "2.7.1+cu126",
+    "tokenizers": "0.23.1",
+    "tokenizer_class": "GemmaTokenizer"
+  },
+  "train_full_tokens": {
+    "rows": 124,
+    "total": 965436,
+    "min": 2693,
+    "median": 7637.0,
+    "max": 12824,
+    "longest_row_id": "12628480:relations:8",
+    "over_caps": {
+      "6144": 97,
+      "8192": 51,
+      "12288": 2,
+      "14000": 0,
+      "16384": 0,
+      "32768": 0
+    }
+  },
+  "train_prefix_tokens": {
+    "rows": 124,
+    "total": 958286,
+    "min": 2638,
+    "median": 7580.0,
+    "max": 12754,
+    "longest_row_id": "12628480:relations:8",
+    "over_caps": {
+      "6144": 97,
+      "8192": 49,
+      "12288": 2,
+      "14000": 0,
+      "16384": 0,
+      "32768": 0
+    }
+  },
+  "train_supervised_tokens": {
+    "rows": 124,
+    "total": 7150,
+    "min": 9,
+    "median": 59.0,
+    "max": 109,
+    "longest_row_id": "5422868:relations:8",
+    "over_caps": {
+      "6144": 0,
+      "8192": 0,
+      "12288": 0,
+      "14000": 0,
+      "16384": 0,
+      "32768": 0
+    }
+  },
+  "inference_input_tokens": {
+    "rows": 80,
+    "total": 645000,
+    "min": 3973,
+    "median": 8042.0,
+    "max": 13805,
+    "longest_row_id": "12455887:relations:40",
+    "over_caps": {
+      "6144": 62,
+      "8192": 38,
+      "12288": 6,
+      "14000": 0,
+      "16384": 0,
+      "32768": 0
+    }
+  },
+  "inference_input_plus_fixed1600": {
+    "rows": 80,
+    "total": 773000,
+    "min": 5573,
+    "median": 9642.0,
+    "max": 15405,
+    "longest_row_id": "12455887:relations:40",
+    "over_caps": {
+      "6144": 77,
+      "8192": 58,
+      "12288": 10,
+      "14000": 5,
+      "16384": 0,
+      "32768": 0
+    }
+  },
+  "baseline": {
+    "train_full_tokens": 382000,
+    "train_max": 5380,
+    "supervised_tokens": 7150,
+    "infer_input_tokens": 238727,
+    "infer_input_max": 5422,
+    "actual_original_epoch1_loop_seconds": 158.37138986587524,
+    "actual_original_epoch1_reference": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/train-001/progress.json",
+      "bytes": 253,
+      "sha256": "b47fa8a6711a3abdb6210c88d5efdb613fa87f61d369da59abe765a5df93669a"
+    }
+  },
+  "training_token_ratio_vs_382000": 2.527319371727749,
+  "inference_input_token_ratio": 2.7018309617261558,
+  "cost_proxy_not_measured": {
+    "two_epoch_full_tokens": 1930872,
+    "epoch_loop_seconds_linear_token_proxy": 400.2550815354742,
+    "two_epoch_loop_seconds_linear_token_proxy": 800.5101630709484,
+    "not_actual_fullcontext_training_time": true,
+    "limitations": "Attention length and allocator can be nonlinear; no memory-fit or latency guarantee; excludes model loads, checkpoints, durable export and inference. Do not multiply the 118.342s export by token ratio."
+  },
+  "existing_caps_unchanged": {
+    "training_sequence_cap": 8192,
+    "inference_input_cap": 14000,
+    "inference_new_tokens": 1600,
+    "over_training_cap": 51,
+    "over_inference_cap": 0,
+    "config_text_max_position_embeddings": 131072
+  },
+  "coordinate_summary": {
+    "train": {
+      "documents": 32,
+      "patients": 87,
+      "passages": 1122,
+      "given_mentions": 255,
+      "all_original_text_reconstructed": true,
+      "all_given_patients_marked": true
+    },
+    "infer": {
+      "documents": 16,
+      "patients": 39,
+      "passages": 570,
+      "given_mentions": 162,
+      "all_original_text_reconstructed": true,
+      "all_given_patients_marked": true
+    }
+  },
+  "supervision_boundary_passed_all124": true,
+  "all_answers_CID_PID_candidates_original_messages_preserved": true,
+  "no_truncation": true,
+  "model_weights_loaded": false,
+  "cuda_initialized": false,
+  "F1_gold_opened": false,
+  "training_or_prediction_or_score_performed": false,
+  "elapsed_CPU_seconds": 13.458181628026068,
+  "row_token_audit_sha256": "80f5bbce3f2f4d1537bfef9e9dbee5bd61c77d17bb7430c3810fc6bfbdedd1e0"
+}

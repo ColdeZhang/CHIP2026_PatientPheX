@@ -1,0 +1,134 @@
+{
+  "status": "CPU_prepared_append_only_not_tokenized_not_trained",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/prepare_local.py",
+    "bytes": 7624,
+    "sha256": "c25957915781a84e0836e40ee7416476ee2ea41523b412aea1fb7cf53522c450"
+  },
+  "construction_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/construct.py",
+    "bytes": 2818,
+    "sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44"
+  },
+  "legacy_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/legacy_full_context.py",
+    "bytes": 12751,
+    "sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb"
+  },
+  "interface_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/medgemma_interface.py",
+    "bytes": 7685,
+    "sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be"
+  },
+  "sources": {
+    "original_train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "original_infer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "train_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-training-candidate-preparation/train32.input.jsonl",
+      "bytes": 657954,
+      "sha256": "a2c2baecb86ca425ae978688014073b69a415dbc9d3526d24be96f82b89e3e6d"
+    },
+    "infer_input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "strict_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "pure_input64": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/train64.input.jsonl",
+      "bytes": 1351066,
+      "sha256": "ee2523843ff61f524db313fb2f9c37707a858e40f252870a7a05f4e7c1b3c246"
+    },
+    "baseline_train_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/actual-cpu/token-mask-audit.json",
+      "bytes": 17870,
+      "sha256": "e0392b9691c42b1479d3c703285fbd39f773116ff8ab46a996492d317b14ddfb"
+    },
+    "baseline_infer_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/actual-cpu/inference-input-audit.json",
+      "bytes": 6296,
+      "sha256": "a3c5b58e9af427a887a883372f3ede09d4601caf93696a2d95b811416a317db6"
+    },
+    "measured_original_epoch1": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/train-001/progress.json",
+      "bytes": 253,
+      "sha256": "b47fa8a6711a3abdb6210c88d5efdb613fa87f61d369da59abe765a5df93669a"
+    }
+  },
+  "checks_passed": [
+    "actual_pure_inputs_match_frozen_input64",
+    "strict32_F1_document_isolation",
+    "all_204_original_rows_restored_exact",
+    "all_original_answer_bytes_CID_PID_candidates_preserved",
+    "all_original_message_prefixes_preserved",
+    "all_original_passages_and_offsets_preserved",
+    "all_patient_mentions_exact_original_slices",
+    "shared_and_overlap_marker_policy_matches_legacy",
+    "wrong_patient_coordinate_text_rejected"
+  ],
+  "train_rows": 124,
+  "inference_rows": 80,
+  "training_documents": 32,
+  "inference_documents": 16,
+  "append_prefix": "\n\nFull supplied report, original passage order:\n",
+  "training_answers_unchanged": true,
+  "all_nonmessage_fields_unchanged": true,
+  "documents": {
+    "train": {
+      "patients": 87,
+      "passages": 1122,
+      "given_mentions": 255,
+      "inserted_markers": 254,
+      "overlap_skipped": 1
+    },
+    "infer": {
+      "patients": 39,
+      "passages": 570,
+      "given_mentions": 162,
+      "inserted_markers": 162,
+      "overlap_skipped": 0
+    }
+  },
+  "artifacts": {
+    "train.fullcontext.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/train.fullcontext.jsonl",
+      "bytes": 4145866,
+      "sha256": "9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e"
+    },
+    "infer.fullcontext.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/infer.fullcontext.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "budget-inputs.json.gz": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/budget-inputs.json.gz",
+      "bytes": 1547433,
+      "sha256": "30f71da90b166e518e2284f06eec5fd632b2d975f78c08e85bd241a01464ed0b"
+    },
+    "document-audits.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/document-audits.json",
+      "bytes": 707536,
+      "sha256": "8dd9cbc9e8747644c81adeac8087fab3750ff00f56f7d3c605ea48c90399614f"
+    },
+    "row-construction-audits.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/row-construction-audits.json",
+      "bytes": 118595,
+      "sha256": "4c956900b2676b8b2b4bc68b25f3e06c93b73dc228b8bfcd3f99b833f9b18e24"
+    }
+  },
+  "F1_gold_opened": false,
+  "new_model_encoding": false,
+  "quality_calls": 0
+}

@@ -1,0 +1,79 @@
+{
+  "status": "single_native_CPU_tokenizer_audit",
+  "at_utc": "2026-10-24T03:33:11.477925+00:00",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "namespace": "research/medgemma-relation-control/fullcontext-preparation-v1",
+  "files": {
+    "native_audit.py": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/native_audit.py",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/native_audit.py",
+      "bytes": 12547,
+      "sha256": "39279ddeb366020e35cdd0201233a87e510cabea4682f68dda92aeabf59eecd9"
+    },
+    "construct.py": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/construct.py",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/construct.py",
+      "bytes": 2818,
+      "sha256": "b201fb7f4b1208a6bdad6a4178aea04045cdb9d3f59e64fb0d666fdc891b5c44"
+    },
+    "legacy_full_context.py": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/legacy_full_context.py",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/legacy_full_context.py",
+      "bytes": 12751,
+      "sha256": "ae7f5853fc55ab430b080631496b73686cd3c6dd1a80ce181553d695ea3e01bb"
+    },
+    "medgemma_interface.py": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/medgemma_interface.py",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/medgemma_interface.py",
+      "bytes": 7685,
+      "sha256": "aecef7eaab0565ab98ce76c034f01b543be3342b00a84d4bae71c36d614d55be"
+    },
+    "expected-files.json": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medical-small-model-readiness/assets/expected-files.json",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/expected-files.json",
+      "bytes": 7145,
+      "sha256": "690e0829d0036901491dbca2f9f094cfecff4190eb023e03ad8a8cc611bdbfb1"
+    },
+    "budget-inputs.json.gz": {
+      "local": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/fullcontext-preparation/budget-inputs.json.gz",
+      "remote": "research/medgemma-relation-control/fullcontext-preparation-v1/budget-inputs.json.gz",
+      "bytes": 1547433,
+      "sha256": "30f71da90b166e518e2284f06eec5fd632b2d975f78c08e85bd241a01464ed0b"
+    }
+  },
+  "argv": [
+    "/usr/bin/timeout",
+    "--signal=KILL",
+    "60",
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "research/medgemma-relation-control/fullcontext-preparation-v1/native_audit.py",
+    "--bundle",
+    "research/medgemma-relation-control/fullcontext-preparation-v1/budget-inputs.json.gz",
+    "--bundle-sha256",
+    "30f71da90b166e518e2284f06eec5fd632b2d975f78c08e85bd241a01464ed0b",
+    "--model",
+    "research/medical-small-model-readiness/models/medgemma-1.5-4b-it-9bca96ca3e30",
+    "--source-manifest",
+    "research/medgemma-relation-control/fullcontext-preparation-v1/expected-files.json",
+    "--output-directory",
+    "research/medgemma-relation-control/fullcontext-preparation-v1/native-cpu"
+  ],
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "budget_seconds": 60,
+  "grace_seconds": 0,
+  "no_GPU_model_weights_training_inference_quality": true,
+  "launcher_sha256": "8dbd4cb511193607b1d6f8d73e90d249973a6fae38f8d0f7c8854ed2e30699a5",
+  "preparation_sha256": "811ef287e28735c859ec0547db3a820535ac30041ce1fde11ae332604539ac9b"
+}
