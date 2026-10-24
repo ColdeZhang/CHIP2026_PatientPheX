@@ -196,6 +196,12 @@ def deploy_infer(directory, remote):
     record(out / 'deployment.json', items)
     for index, item in enumerate(items):
         intent = out / f'upload-{index:02d}-intent.json'; receipt = out / f'upload-{index:02d}-receipt.json'
+        if receipt.exists():
+            previous=json.loads(receipt.read_text())
+            assert previous['item']==item and previous['remote_byteexact'] is True
+            # Local content was checked by deployment_items; the final remote
+            # SHA+fsync command rechecks every file, including inherited receipts.
+            continue
         data = Path(item['local']['path']).read_bytes()
         if not intent.exists():
             save(intent, {'at_utc': now(), **item})

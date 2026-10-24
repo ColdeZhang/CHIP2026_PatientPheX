@@ -26,3 +26,5 @@
 - 14:36:21正式终结并释放4MiB/no apps：74/148/519954tokens/9344监督，FP32 LoRA504、Adam504/1512 tensor及所有RNG回读完全一致；完整adapter75518d93(174655536B)、state d31283d6(349612077B)，无恢复旧Adam。完整小终态ZIP全成员SHA/安全路径核验后回收；原reference三件再次SHA绑定。inference-plan按实际epoch1/global10启用80fresh，1200+30，未发送start。
 
 - 推断首次start前补H64：旧driver只由控制器限时，现加native自身GNU timeout1200+30；旧68b69118只到部分源部署，MCP只读失败已退出，实际未发送infer start。保旧intent/source/plan，切deployment-infer-v2及远端downstream-bounded-v2。新计划2e17afa5，模型/80输入/生成/codec/quality.py/主端点不变。
+
+- 部署原07写接口失败后先读同路径取得NOT_FOUND，才进行一次有记录的同内容重试；456576B完整回读一致，原intent/失败/恢复receipt均保留。其余已核receipt由最终远端全SHA+fsync统一再次复核，避免恢复时重复所有读取。sole watcher已扩展infer模式，仍不触发任何start。
