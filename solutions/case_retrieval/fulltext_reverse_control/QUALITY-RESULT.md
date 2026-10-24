@@ -15,3 +15,5 @@ N 有412关联（324TP/88FP）；R 有422（320TP/102FP），两者交373。并�
 唯一作业proc_caadb388-9440-45ca-aaa4-a37ab925ab00（08:28:15→08:37:37）程序560.092秒，fresh generation525.728秒，加载6.988秒；peak allocated22,051,603,968B/reserved24,989,663,232B，实际GPU释放。原421件包6f13b7a6/256167B与manifestd331e46a/63839B全SHA回收，未重NN/decode/parser。源1497a86先push；质量源e293192及实际plan4a2331d9先以7a31b37推送。
 
 两份完整16篇预测共同fsync并冻结f6176564后，注册固定validator/载入原v2，再首次读取金标、各唯一1v2/旧0。CPU .332640秒/外.441103秒，rc0，无超时。primary pred dca31dd2，diagnostic pred6d037f73；summary6bca6270/quality terminalc773aaa2，完整引用见 [结果指针](quality-result-pointer.json)。最终统一独审c2a53567通过（13482B），421原件/全部实际输入缓存/非关系字节/患者级并集与质量顺序独核；此前CPU＋最长probe审d1496139不重复。
+
+质量/源/独审已单独持久补包：29件119663B，archive03b2017c、manifesta0323735、server receipt a0fa7353，全部成员SHA/fsync/reopen通过。原421件NN包沿6f13b7a6，不重复复制；位置见 [持久指针](quality-persistence.json)。root独立恢复尚未宣称。
