@@ -1,0 +1,92 @@
+{
+  "experiment_id": "E-20261024-RELCAL-001",
+  "stage": "F1_META_TRAIN_ONLY",
+  "fit_calls": 1,
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "bytes": 342703,
+    "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+  },
+  "documents": 16,
+  "patients": 39,
+  "sample_rows_per_seed": 80,
+  "raw_sources": {
+    "grounded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    },
+    "qwen3": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/quality-v1/single.prediction.jsonl",
+      "bytes": 154632,
+      "sha256": "103cab0f1eae88356bc164ed5b8924272642c686a3e031652010e584f2d7a9c4"
+    },
+    "sampled_diagnostics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/nonthinking-sampled-consensus-native-20261024/assembled-v1/row-diagnostics.jsonl",
+      "bytes": 265037,
+      "sha256": "91ad644fa6d617a4e921f8a8414c8c620c504be12fff10d79fc2cbddc22b236f"
+    }
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3",
+    "metadata_only_before_fit": true
+  },
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/relation-calibration-20261024/preparation-v1/ancestry.json",
+    "bytes": 5901,
+    "sha256": "54394c3e35a6799b549031a9c0c77d64f533b5638017f1b0758e1d5d83b67f76"
+  },
+  "features": [
+    "grounded",
+    "sampleintersection",
+    "qwen3"
+  ],
+  "cut": 0.5,
+  "candidate_policy": "full union of three raw sets; no B1 or label-based restriction",
+  "sklearn_parameters": {
+    "C": 1.0,
+    "class_weight": null,
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 1000,
+    "n_jobs": null,
+    "penalty": "deprecated",
+    "random_state": 20261024,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "runtime": {
+    "scikit-learn": "1.8.0",
+    "effective_penalty": "L2, default l1_ratio=0; penalty default sentinel deprecated",
+    "threads": 1,
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "no_scan": true,
+  "no_F1_v2": true,
+  "no_upstream_change": true,
+  "no_F0_gold_before_root_jointfreeze": true,
+  "F0_success": "Score strictly above B0 .7115075800266846 AND root fixed 2of3; macro disclosed; negative closes route",
+  "sources": {
+    "common.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/common.py",
+      "bytes": 7873,
+      "sha256": "37578e207d4f8be6f2faf880c99b7f0a1cf155a82075c806311f8f8c5c98a5a7"
+    },
+    "fit_once.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/fit_once.py",
+      "bytes": 6574,
+      "sha256": "0e5e4aec0dd89e7fe0d102a33591de841364fc54a84f698ea8af90d15ef06e3e"
+    },
+    "prepare.py": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-calibration/solutions/relation_calibration/prepare.py",
+      "bytes": 7758,
+      "sha256": "72b5dc06d13a06f33be9a29fe54c2d4959f6a9ed02333e11ddc0d291e0b7d78c"
+    }
+  }
+}
