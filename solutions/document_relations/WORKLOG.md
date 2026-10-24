@@ -10,3 +10,5 @@
 旧local pair CE、identity bridge、doc-HPO max-MIL都有真实负终点；本控制区别是完整文档的一次共享编码及实体全提及表示、pair共有attention，既不是局部独立片段分类，也不是取出现max分数。详见NOTES及实验协议。
 
 准备已完成：train32候选4495对、727/818训练关系可由公共候选覆盖；held2874对。仅正文/原患者及冻结public候选进入held，未读F1 gold。CPU编码已独立部署8件/412068B并唯一启动，等待真实token/window及pair几何统计；尚无GPU。源码处于初版工程状态，CPU与GPU终点尚待。
+
+实际CPU编码1.250秒：训练113210 tokens/300窗、最长7023/18窗；held58522/156窗、最长7729/20窗，两个gzip真实回收逐SHA通过。原run_command的1秒wrapper超时丢失退出码，原子进程完成且已不存在；未重编码，后继改用start_process。训练几何720/727正对有attention支持交叠，7对无交集仍由两端entity表示分类；不加额外全局fallback。held输入2172/2874交叠，无gold。首版不宣称完整跨窗注意力传播。相同span但不同HPO的10组中仅2个训练患者组标签冲突，保留为当前无概念名输入的限制，不临时加入额外语义头。

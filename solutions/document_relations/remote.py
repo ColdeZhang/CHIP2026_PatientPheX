@@ -68,7 +68,7 @@ def main():
                                                   'limit': 1048576}}
     else:
         command = Path(args.command_file).read_text()
-        call = {'name': 'run_command', 'arguments': {'mount_id': args.mount, 'command': command, 'timeout_seconds': 1,
+        call = {'name': 'start_process', 'arguments': {'mount_id': args.mount, 'command': command,
                 'env': {'CUDA_VISIBLE_DEVICES': '', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}}}
         if args.action == 'run':
             call['arguments'].pop('env')
