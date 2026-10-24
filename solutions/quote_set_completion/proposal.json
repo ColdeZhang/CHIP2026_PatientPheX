@@ -1,0 +1,57 @@
+{
+  "schema": "quote-set-completion-proposed-first-control-v1",
+  "status": "PROPOSED_NOT_GPU_AUTHORIZED",
+  "training": {
+    "initial_adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
+    "base": "exact Qwen3.5-9B c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "rows": 174,
+    "epochs": 1,
+    "optimizer_updates": 22,
+    "accumulation": 8,
+    "tail": 6,
+    "warmup_updates": 2,
+    "learning_rate": 1e-05,
+    "optimizer": "fresh AdamW state; no old optimizer/scheduler/RNG continuation",
+    "rank": 16,
+    "seed": 20261023,
+    "objective": "original indexed per-row mean causal CE on missing triples only, known triples are prompt-masked",
+    "checkpoint": "one final complete adapter+optimizer/scheduler/RNG persistent ACK"
+  },
+  "inference": {
+    "parent_known_source": "original G32 d52 greedy F1 exact-grounded and fixed-normalizer accepted quotes; reuse complete39 output, never resample or teacher-generate",
+    "known_list": "all accepted mapped/NIL quote triples per patient, exact tuple deduplicate and source-coordinate order; no confidence or held-label selection",
+    "rows": 39,
+    "passes": 1,
+    "decode": "native nonthinking greedy max_new_tokens1600; whole cap/nonEOS/strict failure abstain",
+    "normalizer": "same train32 aliases/public41099/b59 fixed policy",
+    "output": "additional literal normalized relations; union collapses repeats"
+  },
+  "quality": {
+    "baseline_prediction_sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e",
+    "baseline_score": 0.701325377212172,
+    "formula": "B4 UNION all normalized completion relations",
+    "one_endpoint": true,
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "no_added_zero_v2": true,
+    "keep": "F1 strictly above B4, then identical fixed F0; both positive before full64",
+    "all_entities_patients_and_old_relations_preserved": true,
+    "no_oracle": true
+  },
+  "budget_proposal": {
+    "native_CPU_seconds": 120,
+    "CPU_grace": 5,
+    "engineering_probe_seconds": 240,
+    "engineering_grace": 30,
+    "formal_seconds": 3600,
+    "formal_grace": 30,
+    "full39_inference_seconds": 1800,
+    "inference_grace": 30,
+    "Sap_seconds": 180,
+    "Sap_grace": 30,
+    "basis": "OldG32 174 total rows903344tokens2039.028s A100; new174rows920222tokens=1.0187x with fewer supervised tokens. A800/warm-start actual cost unknown; probe first, no guarantee."
+  },
+  "deployment_shift": "Training known sets are true label subsets; deployment known sets may contain false positives, alternative synonyms, and complete/near-complete sets not covered for high-cardinality patients. No gold feedback.",
+  "mechanism_difference": "p(missing_set | report,patient,already_reported_set), rather than repeated p(full_set | report,patient) or independent-sample filtering",
+  "no_model_or_quality_executed": true
+}
