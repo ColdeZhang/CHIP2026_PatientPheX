@@ -1,6 +1,6 @@
 # Copy-grounded decode 台账
 
-当前状态：**F1独立弃答v2严格正；原V1仍失败/0quality。排F0同资源池1149与真实CPU47已过，.100 GPU0完整47原job正在运行；无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**F1独立弃答v2严格正；原V1仍失败/0quality。排F0完整47已rc0/47EOS/47strict，0cap/0parserfail；126必要FP16 Sap计划已冻结待唯一启动，无F0新质量**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
 最近远端检查点：2026-10-24 15:24 UTC，`origin/explore/copy-grounded-decode` 的 `e8a6de06a792691b9ffd23df7e30346270c23c35` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
@@ -39,3 +39,5 @@
 - 15:42:28.195456 UTC原47唯一正式child启动：proc_abf6b0ac-541b-4d8f-943d-9786a2f03bc1，driver2751534/child2751542；实际plan633d7749，启动前f8d42dea已push核远端。TERM16:22:28.192639/KILL16:22:58.192639，admission15:51:27.626540不重置。恢复只用 `f0/remote.py observe --directory .../F0-v1/infer`，禁止再start；完整47后 `f0/collect.py`→`f0_postprocess/README.md`固定链，尚无任何F0质量。见f0/actual-start.json。
 
 - 原GLiNER大包后台回收已15:41:51.615933完整结束：701原件collection998f08bd、ZIP3355845B/cb201713全部实际本地SHA吻合；sidecar `F0-proposer-v1/infer-v1/full-raw-collection-status.json`，accepted a1242b31保持原字节。见f0_proposer/full-readback-ref.json。47原job继续，暂无F0评分。
+
+- 原47在15:54:43.690492完整rc0、735.498秒/no timeout，真实GPU0释放15:54:43.723052；完整收件后确认47EOS/47strict、0cap/0parserfail，701anchors/309quotes、0rejected/0abstain。原F1 V1失败记录不变。完整原件collection和quotes均逐SHA绑定，固定train32/b59归一化仅126必要query；新Sap计划27bb31db、180+30，先push再唯一fresh门启动，暂无F0评分。
