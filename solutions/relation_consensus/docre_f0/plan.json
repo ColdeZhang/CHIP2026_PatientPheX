@@ -1,0 +1,115 @@
+{
+  "id": "DocRE30-F0-inference-v1",
+  "scope": "Reuse audited final epoch30 checkpoint, complete F0 input only. No fitting, gold, quality or candidate filtering. Raw logits provided for root fixed consensus; no standalone evaluation.",
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-0/validation16.input.jsonl",
+    "bytes": 350409,
+    "sha256": "ec38c1355f09642f7e8d5af1976c3cabf15a0538bf34d8ed8440ede493459b37"
+  },
+  "public_caches": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-train64-cache/terminal/native-train64-cache/canonical-entities.jsonl",
+      "bytes": 1580994,
+      "sha256": "876317bd77ce255564b87d15bd8b6dc900d80b2799e6ab29844d33f6a4c942a7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-bioformer-train64-cache/terminal/native-train64-final-cache/canonical-entities.jsonl",
+      "bytes": 1528556,
+      "sha256": "046bc82df77c413b633f05c360fe99a2b6b922f51005483756f1ddd91a4103fb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-phenotagger-biobert-train64-cache/terminal/native-train64-final-cache/canonical-entities.jsonl",
+      "bytes": 1537656,
+      "sha256": "061796544b3ddbd7956dac56cd2791f4e7e239c31e1da2b962239bd7653303e5"
+    }
+  ],
+  "held_ids": [
+    "10553122",
+    "10789033",
+    "11196099",
+    "11826603",
+    "11919040",
+    "12444410",
+    "12652105",
+    "12779223",
+    "3563609",
+    "4678370",
+    "5452357",
+    "5537416",
+    "5575846",
+    "5959423",
+    "6338757",
+    "6491447"
+  ],
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/docre30-F0-reuse-ancestry.json",
+    "bytes": 6664,
+    "sha256": "446e470f6d45e8a2061b95a5d3b2338c559d76f5df7a60e11b28105532579dc0"
+  },
+  "checkpoint": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-document-relations/formal-marker-long-v3/native/checkpoint.pt",
+    "bytes": 1318873119,
+    "sha256": "67317bdd67d5fae26846806844edf59c5dc3ea4f2478f9a137fd9c8d1abe3142"
+  },
+  "budget_seconds": 180,
+  "grace_seconds": 30,
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/semantic-neural/venv/lib/python3.10/site-packages",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "USE_TF": "0"
+  },
+  "model_assets": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/pretrained-biomedbert/tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+  },
+  "tokenizer_assets": {
+    "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+  },
+  "source": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/source",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/formal-v1",
+  "encoded": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-relation-consensus/docre-f0/encoded/held.json.gz",
+  "vendor_sources": {
+    "vendor/encode.py": {
+      "path": "solutions/relation_consensus/docre_f0/vendor/encode.py",
+      "bytes": 5609,
+      "sha256": "6e41cb02a8dc1c3a0d78cc51a842732943c6aac8578e8f2ccd54ca652755cc1e"
+    },
+    "vendor/marker_encode.py": {
+      "path": "solutions/relation_consensus/docre_f0/vendor/marker_encode.py",
+      "bytes": 7428,
+      "sha256": "9c5ba05db056d78785b4f00f85b374cfc3188b4e7f2ab5ebfbcc5234fdab9bff"
+    },
+    "vendor/model.py": {
+      "path": "solutions/relation_consensus/docre_f0/vendor/model.py",
+      "bytes": 4926,
+      "sha256": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b"
+    },
+    "vendor/prepare.py": {
+      "path": "solutions/relation_consensus/docre_f0/vendor/prepare.py",
+      "bytes": 6145,
+      "sha256": "1fcf64f54b28de06a4ef1de19976940648d587403ea52459eebf5ad9cd681ef5"
+    }
+  },
+  "old_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/long-formal-plan.json",
+    "bytes": 3457,
+    "sha256": "8ad763366678d86978e5fdc335ae3e6d3ca5aa447969210722c1018066fb70bb"
+  },
+  "fixed_logit_use": "No thresholding here. Root consensus uses original raw logit > 0; zero-context pairs retained.",
+  "expected_pairs": 2195,
+  "expected_patients": 47,
+  "prepared_sha256": "0b0fce00146261e7b8f556a4b6b1876097eb165605b59962869a004e176edb5e"
+}
