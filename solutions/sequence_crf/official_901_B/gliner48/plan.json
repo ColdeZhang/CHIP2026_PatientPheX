@@ -1,0 +1,76 @@
+{
+  "at_utc": "2026-10-24T06:36:45.447257+00:00",
+  "status": "FROZEN_single_original_native_GLiNER48_B100",
+  "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "project": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "remote_preparation": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation",
+  "control": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/control",
+  "input": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/B.input.jsonl",
+  "output": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/prediction",
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-outer0/formal-fixed10ep/epoch-010/pytorch_model.bin": {
+      "sha256": "25bb0b35782f0a9c84ce7e3c564c4561c3fbb051cd98fcac139a2ed0b0602f23"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-outer0/formal-fixed10ep/epoch-010/gliner_config.json": {
+      "sha256": "e42a1fa50e3aff0b1a05da8c975d1ef2e3278a35a6213ac651a3917e986bd391"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/config.json": {
+      "sha256": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/spm.model": {
+      "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer/tokenizer_config.json": {
+      "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/run_gliner_pilot.py": {
+      "bytes": 8965,
+      "sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/B.input.jsonl": {
+      "bytes": 2060389,
+      "sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/driver.py": {
+      "bytes": 4531,
+      "sha256": "1d0c4732d5ae4c8181c4f9f521bb8aafa8805323c9d2a1c60fe2daaa9831dbaf"
+    }
+  },
+  "argv": [
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/run_gliner_pilot.py",
+    "--model-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/gliner-outer0/formal-fixed10ep/epoch-010",
+    "--tokenizer-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/pretrained-gliner-medium-v2/tokenizer",
+    "--input",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/preparation/B.input.jsonl",
+    "--output-dir",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/official-901-B/gliner48/prediction"
+  ],
+  "runner_sha256": "2b70ec5883546a8857220c996c2a51835873a205bcb9b1ff8b83202429a00e3f",
+  "input_sha256": "878fe248ce5ae2cf9c96cc35c9ed3a7bae929988752cfdc3ea30ef60c64370d4",
+  "root_input_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/official-highest-901-B-20261024/input-contract.json",
+    "bytes": 1940,
+    "sha256": "2c1690660c58337235e9e11d96633109ac3ac3ffd62fa5e0600980c4b8a2ba21"
+  },
+  "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+  "cap_seconds": 300,
+  "grace_seconds": 30,
+  "documents": 100,
+  "patients": 244,
+  "source_training_documents": 48,
+  "source_model_sha256": "25bb0b35782f0a9c84ce7e3c564c4561c3fbb051cd98fcac139a2ed0b0602f23",
+  "original_native_versions": {
+    "torch": "2.7.1+cu126",
+    "transformers": "4.51.3",
+    "gliner": "0.2.22",
+    "tokenizers": "0.21.4",
+    "sentencepiece": "0.2.1"
+  },
+  "policy": "Original phenotype strict>.5;maxwidth12,window384,12wordoverlap,nested noncrossing decoder; later same Sap64 .65/.92 and old-pool overlap. No fit/no other checkpoint or model.",
+  "resource_order": "After confirmed original R1 terminal and actual GPU1 release; complete then hand GPU1 to retrieval oldQwen normalB",
+  "no_new_fit_or_quality": true
+}
