@@ -16,3 +16,4 @@
 
 - 初次本地入口发现 main 尚不含 Grounded 分支模块；改为显式可配置 `GROUNDED_SOURCE_ROOT`，并核原 schema/decode SHA 后复用。
 - 初次 CPU 全合同跑完后，文件白名单阻止读取刚写出的候选文件来计算 SHA；只将该实际生成文件加入允许集合。未放宽任何既有输入，更未开放 gold。最终 `final-cpu` 成功；失败临时产物留仓外，不将 tracebacks 入 Git。
+- 新增接口风险：原 Grounded `inference/run.py`（SHA `56c3a9aa…`）的 `FiniteLogitsOnly` 要求所有 scores finite；HF 前缀约束会用 `-inf` 屏蔽非法词。不能直接追加默认 `prefix_allowed_tokens_fn` 再假定原 custom guard 顺序兼容。后继必须在目标 runtime 核顺序，保留 raw-logit finite 检查在 trie mask **之前**（例如有序 custom processors），并验证合法 logits 原值保留、非法 logits 为 `-inf`、NaN/+inf 原始故障仍报错。不能删除数值检查作为修复。本准备未执行该真实 HF 门。

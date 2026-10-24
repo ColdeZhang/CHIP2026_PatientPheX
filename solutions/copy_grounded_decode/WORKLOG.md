@@ -12,3 +12,4 @@
 - 最终 1416 exact triples / 907 文档内不同 quotes；39 prompts 原 SHA 未变，原文坐标逐项通过。native 合同 1839 串/62159 callback tokens，1.430 秒 CPU；零模型/fit/质量调用。
 - 主线程在新预测/质量仍为零时将 G-only 改为 `B4 ∪ (constrained_G ∩ (G∪S∪Q∪C))`，原决定保留于协议。B4 外支持空间 62→133，额外 71 中 66 有候选 proposer 同文档预测 ID 对应；仅供给代理，不能当质量。
 - 历史最终 G39 为 1103 秒级；CPU 准备不代表实际 HF generate 已验。下一步限主线程判断是否给有界完整推断，再按 raw-first/固定 normalizer/唯一 primary 流程执行；F0 另换排 F0 资源。
+- 交接前补查原 runner，确认 all-finite guard 与前缀 `-inf` mask 有顺序风险；将“raw finite 检查先、trie mask 后”的实际接口合同加入协议，未删数值检查，未更改已通过的 native grammar 源码。

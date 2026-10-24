@@ -37,6 +37,8 @@
 
 尚未执行：真实 HF `generate` callback 集成、同 runtime native/HF 双解码、新输出完整 EOS 覆盖、固定 normalizer、最终装配与质量比较。未来先持久化 raw IDs、raw 文本及结束状态，再严格验证完整列表；不得截取合法 prefix、补答案或失败重生成。只装配一个 primary，保留 B4 全部非关系对象和旧关系，完整冻结后由主线程决定是否一次 v2 比较。
 
+集成时还有一个明确门：原 runner 的 all-finite guard 必须置于 trie 的 `-inf` mask **之前**，不能直接加默认 prefix callback 后沿用未经检查的 processor 顺序。合法 logits 不变、非法项屏蔽、原始 NaN/+inf 拒绝，都须在实际 runtime 核实；详见 [NOTES](NOTES.md)。
+
 复现：在本 worktree 运行下列命令；`PATIENTPHEX_WORKSPACE` 和 `GROUNDED_SOURCE_ROOT` 可改根路径，输入 SHA 保持不变。完整候选 143692 B、SHA `f2027e69…` 放仓外且可重建。
 
 ```bash
