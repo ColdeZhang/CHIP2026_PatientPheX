@@ -2,8 +2,12 @@
 
 2026-10-24 UTC，分支 explore/gliner25-task1；仅维护 solutions/gliner25_task1。
 
-- 当前：首probe已15.528493秒rc1/0FB/0Adam，GPU0于11:42:20.873894实释；这是检查器随机schema身份误判，未形成方法负。原生.2 query增强保持。root已授权新独立180+30机械恢复，6形状×2轮CPU当前schema/独立IDs/目标薄核4.970秒通过，实际最长699（entity1查询比旧698多1），.2增强保持；尚无恢复start intent。正式未启动。
-- 固定目标：主strong8cb61ba9 .728697536469 ∪ 全部规范化接受实体严格提高；另new-only完整诊断。详见README和plan。
-- 继承证据：schema分支de08d1f CPU准备；320窗目标8.353秒、loader320×10全覆盖0.038秒，0模型forward/fit/质量。报告外存 R/research/gliner25-task1-adaptation-readiness-20261024。
-- 外存：R=/workspace/patientphex-runs/round2-20261023；本线 R/research/gliner25-task1-v1。原生train.native f23981c2及target-audit216b7d47从.3已核完整ZIP6a5f1cf3本地回收，不重新构建或下载权重。
-- 最近已核远端源码c70e49b；fresh GPU0=0MiB/noapps，盘407.228GB。恢复见 evidence/probe-start.json；只读原job与managed ended，不重复启动。下一步收完整native负例/Adam/峰值与真实rc，向root报正式预算。无原dev/官网操作。
+- **当前：原生压力合同完成，正式训练未启动。** 恢复运行6次真实FB/Adam/两轮，72 raw loss分项与梯度有限、encoder/boundary每步真实改变；已有300 Adam状态后max49 gold/最长699通过。峰allocated4.841GB、reserved5.994GB；native训练2.604秒，完整wrapper18.289秒。
+- **GPU已实释**：.100 GPU0 UUID126293b9，2026-10-24 11:46:25.813506 UTC 0MiB/noapps；恢复proc_e373f602/PID2735167。终态见 [probe-final](evidence/probe-final.json)，不得重跑已完成6步。
+- **两个工程故障已保留**：首probe把不同随机schema旧IDs当固定值，15.528秒/0FB退出；恢复保native .2 query增强、先存actual schema/IDs/RNG后独立比对，6步全完后因无eval的best_metric=inf哨兵不能JSON化而rc1。仅CPU恢复summary，无GPU重跑，原rc1/failure/partial保持。
+- **目标与固定端点**：主strong8cb61ba9 .728697536469 ∪ 全部规范化接受mapped/NIL实体，精确原子去重；另new-only完整诊断保原关系；2共冻v2、旧0，主严格胜才候选。尚无新质量结果，原dev最高不变。
+- **预算建议已报root**：fresh公开权重、320窗全10epoch/1600更新、final epoch10唯一；以实测稳态.151–.421s/步及native平均.434s估计约675–695秒，建议训练1200+30秒，正式预算待root分配。无holdout/earlystop/epoch选择。
+- **证据与源**：首失败11件ZIP2169be41、恢复30件ZIP8e386dec全SHA回收，CPU准备de08d1f继承320目标/loader，当前GPU实际源818a4a5/probe c18ecd5e。最近已核远端818a4a5，本次收尾待push。
+- **外存恢复**：R=/workspace/patientphex-runs/round2-20261023；本线R/research/gliner25-task1-v1。原始probe-v1、probe-recovery-v1；唯一推荐派生终态metadata-recovery-v2（v1的native耗时为已读值直接填，v2改从同一partial原件严格读取，无神经或质量重算）。服务器原完整证据仍在同相对目录。
+
+下一步：不重跑probe；由root按实际成本安排fresh正式训练。当前无GPU请求/在途计算，无原dev或官网操作。
