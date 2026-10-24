@@ -122,3 +122,7 @@ Archiveed66def0/364,005B fetchUNKNOWN resolved by read-only exact11member/12piec
 ### 2026-10-24 13:16 UTC — complete F0 strict58 and fixed positive quality
 
 Original GPU finished13:14:20.722876 rc0/515.979612s and released13:14:20.836959.58strict/0abstention/58fresh/0cache.187member zip5de9e767/69,494B complete; last3958B UNKNOWN resumed once using prior two verified pieces. Two complete predictions froze13:16:41.258865→2new/0old v2 .583918s. Primary .700893777351 (+.004289802607vsN), union .700560731214 (+.003956756470); primary selected. Bothmicro decline, macro improve; both belowstrongB0/root2of3. Pureprimary9e6b5840 supplied to root independentfusion. F0-final-review-entry.json immutable; smallbackup pending. No further GPU here.
+
+### 2026-10-24 13:19 UTC — F0 durable backup complete; new CPU-only scope
+
+Original89-member864,521B archive4c009372 received .100 allSHA/fsync/reopen13:19:07.162117; F0-final-handoff.json binds immutable964d reviewentry and actualACK. F0 complete positivecandidate, fixedoriginaloutputs unchanged. Next authorized120+5CPU tasks: full64 shortnormal265+originaldev fulltext64 (samePT, freshfull64 futuremodel only), then independent cyclic1 responsemapping80. No newGPU/fit/quality; originaldevgold never read for preparation.
