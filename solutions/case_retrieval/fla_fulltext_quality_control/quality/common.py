@@ -101,7 +101,7 @@ def reference_gate(plan, source, ready):
         assert isinstance(plan['expected_inference_plan_sha256'],str) and len(plan['expected_inference_plan_sha256']) == 64
     if ready:
         assert set(plan['endpoint_references']) == set(ACTUAL_NAMES)
-        records += list(plan['endpoint_references'].values())
+        records += list(plan['endpoint_references'].values()) + [plan['published_inference_plan_reference']]
     else: assert plan['endpoint_references'] is None
     for record in records:
         assert Path(record['path']).resolve() != Path(plan['gold_path']).resolve() and record['sha256'] != GOLD_SHA

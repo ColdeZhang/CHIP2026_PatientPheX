@@ -10,7 +10,7 @@ import sys
 import zipfile
 
 MOUNT = '5a9955da-5240-41cc-9e52-05d3d8da8a3c'
-REMOTE_PREFIX = 'research/qwen35-fulltext-FLA-20261024'
+REMOTE_PREFIX = 'research/fla-fulltext-normal-quality-20261024'
 FREEZE = r'''
 import pathlib,json,hashlib,zipfile,os
 p=pathlib.Path(REMOTE_PLACEHOLDER)

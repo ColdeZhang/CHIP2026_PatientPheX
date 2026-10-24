@@ -1,0 +1,120 @@
+{
+  "schema": "fixed-SFT32-normal-fulltext-FLA-F1-quality-v1",
+  "status": "SOURCE_ONLY_NO_QUALITY_EXECUTION",
+  "normal_pred": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 154584,
+    "sha256": "f33a30f1f3c505022dbcf846a19e6496b3810627808e97cde595a9ed53d17866"
+  },
+  "normal_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12922,
+    "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+  },
+  "baseline_metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.6952789699570815,
+    "macF1": 0.5959675129046342,
+    "Score": 0.676546354662594
+  },
+  "expected": {
+    "rows": 80,
+    "documents": 16,
+    "patients": 39,
+    "concepts": 587,
+    "pairs": 1557,
+    "entities": 1189,
+    "normal_tokens": 670122,
+    "normal_max_tokens": 14390
+  },
+  "model": {
+    "base_id": "Qwen/Qwen3.5-9B",
+    "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "independent_parameters": 8997081600,
+    "adapter_files": {
+      "adapter_config.json": "96564441328e6759568e60c49ea87db432b9ec45cfd57001ef81640d4ff9c4f9",
+      "adapter_model.safetensors": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff"
+    },
+    "adapter_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/thinking-budget-final-v1/old32-adapter",
+    "base_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "tokenizers": "0.23.1",
+      "actual_tokenizer_class": "Qwen3_5Tokenizer",
+      "matmul_TF32": false,
+      "cudnn_TF32": true
+    },
+    "base_modelscope_revision": "aa2aaf6060dd45e8ca24da2d37ffb0172eb985d6",
+    "original_complete_asset_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "quality": {
+    "primary": "FLA alone",
+    "diagnostic": "cached normal fulltext union FLA",
+    "complete_both_predictions_frozen_before_gold": true,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "comparator": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6952789699570815,
+      "macF1": 0.5959675129046342,
+      "Score": 0.676546354662594
+    },
+    "retention": "Either Score strictly above cached normal .676546354662594; all metrics including macro disclosed. Select higher passing Score; exact tie primary FLA-alone. Fixed identities.",
+    "no_new_originaldev_F0_or_official": true
+  },
+  "hardware_disclosure": "Cached native normal fulltext N ran on A800; fresh normal FLA variant runs on A30. Both retain original BF16/SDPA text-only model and native convolution, while two GDN functions use FLA. Long-input numerical differences are already established: this is an independent quality variant, not a transparent replacement or isolated pure-backend causal comparison.",
+  "data_scope": "Previously inspected train32 to F1 development; no fitting, new split, originaldev, F0 or official action.",
+  "input_policy": {
+    "full80_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "CPU_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/row-audit.json",
+      "bytes": 79950,
+      "sha256": "35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb"
+    },
+    "CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/input-cpu/actual-result.json",
+      "bytes": 2454,
+      "sha256": "f029779093c37fbf42b68274a19309298662e9644c0f9ca6ba1f304d4e8b3c38"
+    },
+    "all80_fresh": true,
+    "cached_rows": 0,
+    "native_response_cache_forbidden": true,
+    "no_old_probe19_cache": true,
+    "input_limit": 14848,
+    "generation_limit": 1600,
+    "total_input_tokens": 670122,
+    "maximum_input_tokens": 14390
+  },
+  "codec": "Reuse existing frozen strict complete-row canonical policy; invalid rows wholly abstain. Quality does not decode or reparse model response text, fill missing CIDs, or call old load_inputs/cache helpers.",
+  "implementation": {
+    "legacy_helpers": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/evaluation-source/evaluate_full80.py",
+      "bytes": 26978,
+      "sha256": "ef28ec270f4fe41d15895f536fbbabbbf55be66ee3996b0e1c2b2c26077a9436"
+    },
+    "literal_helpers": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/evaluation-source/literal_helpers.py",
+      "bytes": 4690,
+      "sha256": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828"
+    },
+    "assemble_two_return_order": [
+      "alone",
+      "union",
+      "counts"
+    ],
+    "primary_prediction": "alone",
+    "diagnostic_prediction": "union"
+  }
+}
