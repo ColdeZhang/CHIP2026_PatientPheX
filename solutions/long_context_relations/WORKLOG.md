@@ -15,3 +15,5 @@
 工程实际：16:53:37.575758→16:53:59.103917 UTC，6FB/非零Adam1、140参数全变化/梯度finite、563state张量重开回装，峰3.965GB；16:53:59.254489 GPU0=4MiB/noapps。probe db5d273c仅保存丢弃。正式与probe model/common逐字相同，全部data沿原冻结；源准备不占卡，等seed短Sap交接。
 
 正式首次纯I/O source.zip上传16:56明确LUNA_OFFLINE，无deployment ACK、无formal start intent/GPU。原probe终态有效，暂停.3调用；恢复先核原源文件，不重复模型。root静核正式与单质量源码无阻断，并指出prediction文件需先fsync再freeze：已以排他完整写/flush/fsync/父目录同步修正，配方不变、未发生质量调用。
+
+传输恢复：16:59:29唯一纯读在线且原8247B包不存在；同包write_file再次UNKNOWN，后一次纯读也UNKNOWN。sequence17:00:43明确.3离线，统一退避至17:03:48由本owner单次恢复。root允许若原包未落、run_command已恢复时，用独立source-transfer-v2.zip写同原SHA字节并fsync/reopen，再原成员解包；旧UNKNOWN记录不覆盖、不重打包，0GPU意图。该fallback目前仅源码准备。
