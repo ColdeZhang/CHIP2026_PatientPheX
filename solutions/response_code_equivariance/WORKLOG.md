@@ -9,13 +9,13 @@
 - 模型仍原C32，全部8,997,081,600参数<10B；实际14848/1600。allocated22,283,378,176 B / reserved25,029,509,120 B，A30 reserved余量很小，不能只用allocated推断后续可行性。
 - 253件终点/240shards、81缓存原字节全SHA；zip `3adf1ecc`/94,139B。双预测共同freeze `251dfb1d` 后新2v2/旧0，1189实体与非关系字节全保。当前完整证据位于仓库外 `research/response-code-equivariance-v1/gpu-v1`。
 - 此为映射＋host/runtime开发控制：原C A100/Torch2.6，本次 A30/Torch2.7。只关闭本次固定配置，不把负结果归因为纯映射，也不否定已有原响应编码模型。
-- 源/运行/工具检查点 `a1ee4f88` 已推送核验；完整质量与单一终审入口已落盘：`review-input.json` 4fd920ee；69件内容包 e777a0e3/745871B 已本地冻结。13:47:07备份offset622592写回UNKNOWN，正按原namespace库存SHA恢复；服务器ACK尚未取得，不称远端备份完成。
+- 源/运行/工具检查点 `a1ee4f88` 已推送核验；完整质量与单一终审入口已落盘：`review-input.json` 4fd920ee；69件内容包 e777a0e3/745871B 已本地冻结。13:47:07单片写回UNKNOWN已按原namespace库存SHA恢复；13:48:13.605 UTC，.100对同一69件/e777a0e3包完整SHA、fsync、重开逐成员校验通过，见 evidence/content-backup-receipt.json。未重打包、未重模型/质量。
 
 ## 下一步
 
 1. 此固定实验不再启动模型、parser、质量或其他排列。
 2. 以仓库外 `review-input.json` 做一次增量终审；旧C和native证明沿用，勿重复运行。
-3. 完成唯一内容包远端SHA/fsync/reopen回执，提交推送最终摘要；后继研究由root结合其他路线另定。
+3. 唯一内容包远端ACK已完成；当前实验关闭，后继研究由root结合其他路线另定。
 
 详见 [实验](experiments/E-20261024-EQUIVARIANCE-001.md) 与 [研究笔记](NOTES.md)。
 
@@ -33,3 +33,7 @@
 ## 13:36:35 UTC：唯一模型作业已启动
 
 `proc_d8c112f4-496a-43cd-874b-7c738d093e7d` / PID2743313，91部署成员逐SHA/fsync/compile完成；源检查点 `876b02b8` 已推送且ls-remote核验。模型终点尚未到，检查原namespace见 `evidence/GPU-job.json`，禁止unknownstart重复。额外合成固定交集/非关系字节合同0.000642秒通过，无真实gold/评测。
+
+## 13:48 UTC：内容备份完成
+
+69成员/745871B，SHA `e777a0e3e1a737b9932a8924cda2de320ea9aa148a3bdfe271d3266d83bb76a6`；.100持久目录 `patient-response-code-equivariance/evidence-backup-v1/content-backup-v1.zip`，所有成员重开SHA一致且archive/目录fsync。单一终审入口4fd920ee保持原字节，owner完整性自检不冒充独审。UNKNOWN仅影响传输回执；原包、模型和两质量没有重跑。
