@@ -12,3 +12,5 @@
 入口 `control.py deploy → prepare-start → prepare-collect`；实际准备通过后冻结并push `bound-plan.json`，`publish-bound → start → collect`。所有阶段小源/plan和关键收据及时提交推送；完整资产与运行目录 `/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/full-train64-cache`；远端同名相对目录。
 
 实际唯一作业 `proc_816a57aa-0e43-4617-924a-95507eab0e36`，02:18:05.774Z 启动 wrapper；`control.py collect` 读取进度/终态，不能重复start。尚未宣称NN完成或GPU已释放。
+
+实际首次终态：输入初始化 `input_docs=input_docs` 的 NameError，主程序5.133720秒/rc1，0模型/0NN/0缓存行；02:18:16核GPU2=0MiB无目标PID。原源/plan/失败不覆盖；后续单行修复须独立目录和actual CPU初始化检查。此为工程失败，不是模型质量结论。

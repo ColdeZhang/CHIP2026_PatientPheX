@@ -1,0 +1,43 @@
+{
+  "status": "engineering_initialization_failure_before_numpy_cache_or_model",
+  "error": "NameError(\"name 'input_docs' is not defined\")",
+  "cause": "Owner broad string replacement of docs=[...] also matched substring input_docs=[...], producing input_docs=input_docs. Compile alone did not detect runtime NameError.",
+  "actual_main_seconds": 5.133719872683287,
+  "returncode": 1,
+  "new_NN_calls": 0,
+  "loaded_model": false,
+  "reused_rows": 0,
+  "actual_release": {
+    "at_utc": "2026-10-24T02:18:16.108077+00:00",
+    "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960",
+    "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+  },
+  "original_source_plan_untouched": true,
+  "proposed_narrow_fix": "Only first input_docs initialization becomes actual JSON input read; independent CUDA-hidden actual-input AST check before unique remaining-budget894s run in a new directory. No re-enumeration or extra NN.",
+  "refs": {
+    "run_cache.py": {
+      "bytes": 13466,
+      "sha256": "7a0fbcba0b4ebed627b3455a2cb82636012835e617fd513f4641e5c1df1e6550"
+    },
+    "plan.json": {
+      "bytes": 7811,
+      "sha256": "a8addd083eb3384cf9b1d4683d21df7e48525ebb8084476cbea92d7e8314c8a4"
+    },
+    "bound-plan.json": {
+      "bytes": 1305,
+      "sha256": "1c2f91895f847fd4f0ecd3c3242762a127a47996561e2fe95c6f288afc57b813"
+    },
+    "cache-result.json": {
+      "bytes": 1043,
+      "sha256": "f502077552538f9863714f31da6e65057935233ec10c39d9b1f3d47c6a29380b"
+    },
+    "run-state.json": {
+      "bytes": 2507,
+      "sha256": "59997ae1a777128e1ce3cba18f1f11a989e1ed36405f22e80931726181e646f0"
+    },
+    "cache.stderr.log": {
+      "bytes": 393,
+      "sha256": "a8f2deb8c929b35d344c3d83116f6a18600c66cd427d4cb4865d9ec7dbfc1ad9"
+    }
+  }
+}
