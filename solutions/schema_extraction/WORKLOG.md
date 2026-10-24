@@ -11,3 +11,5 @@
 - 最近已核远端检查点8e33710；本阶段保存prepare/run_joint/protocol与失败恢复证据定位，不包含大资产。
 - .3资产已全SHA通过；CPU strict load和全164窗原生tokenizer独立IDs合同11.788s通过。未质量/未GPU。root授权.100 probe120+30、满足真实估计后full900+30；.100 runtime合同与复制进行中。
 - .3私网transfer首次start_process返回UNKNOWN_OUTCOME；原意图和token已持久化，只读恢复原server状态/port，不重启第二服务。
+- .100实际依赖已核，10:37:32独立同SHA资产传输启动proc_ddfd0c60-864e-46b3-891d-15ef1076a625，600+30s，原.3已完成资产不重启。原私网服务状态由span统一恢复；无.100 fetch并发。
+- CPU摘要证据[evidence/cpu-readiness.json](evidence/cpu-readiness.json)已本地保存；真正质量仍为0。原dev/官网均未操作。
