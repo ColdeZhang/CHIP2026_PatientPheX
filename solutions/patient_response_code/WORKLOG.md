@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：F1全部闭合且私有202件/1.694MB小包b8afef77已.100全SHA/fsync/reopen持久。primary coded-alone .686618943020胜强N，diagnostic .682275610224；2new/0old质量，选primary。无活跃GPU/监控。root已单独授权同32权重F0完整58复验，准备独立namespace，不修改F1任何原件。
+当前：F1主臂 .686618943020 已独审通过、202件小包已持久；F0同2c777e88权重的唯一58fresh实际运行（driver196256/child196277），TERM13:25:44.871579+30，13:09实读22/58。原startUNKNOWN已恢复实际PID，不重启。固定主coded-alone/诊断N∪coded对N48 .696603974744；只改本路线，无新训练/官网。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
