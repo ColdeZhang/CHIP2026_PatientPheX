@@ -38,6 +38,8 @@ def main():
             for i,row in enumerate(items):
                 prompt=tk.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=False);ids=tk.encode(prompt,add_special_tokens=False)
                 assert ids==native.backend.encode(prompt,add_special_tokens=False).ids
+                assert native.apply_chat_template(row['messages'],False,True,False)==prompt
+                assert native.apply_chat_template(row['messages'],True,True,False)==ids
                 assert tk.decode(ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)==native.backend.decode(ids,skip_special_tokens=False)==prompt
                 if split=='train':
                     value=encode(row,native);actual=encode(row,tk);assert actual==value
