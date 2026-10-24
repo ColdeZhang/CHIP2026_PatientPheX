@@ -1,0 +1,147 @@
+{
+  "schema": "fixed-SFT48-normal-fulltext-FLA-F0-quality-v1",
+  "status": "SOURCE_ONLY_NO_QUALITY_EXECUTION",
+  "normal_pred": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 124231,
+    "sha256": "f87b2c9b8f871d24f7a2e089a45505114f36bdeb5f9dc8d4bbdcaf1bd09ace72"
+  },
+  "normal_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12837,
+    "sha256": "1e6ef50371ae9f03a22996185c494da202738d546d6637ecad51f18c8784d8e1"
+  },
+  "baseline_metrics": {
+    "menF1": 0.724105461393597,
+    "docF1": 0.7285714285714285,
+    "micF1": 0.6834319526627219,
+    "macF1": 0.6503070563481811,
+    "Score": 0.6966039747439822
+  },
+  "expected": {
+    "rows": 58,
+    "documents": 16,
+    "patients": 47,
+    "concepts": 415,
+    "pairs": 1166,
+    "entities": 947,
+    "normal_tokens": 505090,
+    "normal_max_tokens": 16245
+  },
+  "model": {
+    "base_id": "Qwen/Qwen3.5-9B",
+    "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "independent_parameters": 8997081600,
+    "adapter_files": {
+      "adapter_config.json": "165dbc59c340d68b9756443331cdc1a5f3e81c1834b1237a99d004c33e14cbb9",
+      "adapter_model.safetensors": "8e32daeea3c078af25a7d01e9d9cebf1fe8d99bbfaf2ca5e2c172e643d346513"
+    },
+    "adapter_locator": "Bound only from the parent published F0 GPU plan; original8e32 weights/config165dbc, no native response cache.",
+    "base_locator": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "tokenizers": "0.23.1",
+      "actual_tokenizer_class": "Qwen3_5Tokenizer",
+      "matmul_TF32": false,
+      "cudnn_TF32": true
+    },
+    "base_modelscope_revision": "aa2aaf6060dd45e8ca24da2d37ffb0172eb985d6",
+    "original_complete_asset_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    }
+  },
+  "quality": {
+    "primary": "FLA alone",
+    "diagnostic": "cached normal fulltext union FLA",
+    "complete_both_predictions_frozen_before_gold": true,
+    "new_v2_calls": 2,
+    "old_v2_calls": 0,
+    "comparator": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.6834319526627219,
+      "macF1": 0.6503070563481811,
+      "Score": 0.6966039747439822
+    },
+    "retention": "Either Score strictly above cached native F0 N .6966039747439822; macro/all components disclosed. Select higher passing Score; exact tie primary FLA-alone. Below existing triple .7095567430848545 is not a new global best.",
+    "no_new_otherfold_originaldev_or_official": true
+  },
+  "hardware_disclosure": "Cached native F0 fulltext N ran on A800; fresh F0 SFT48 FLA variant runs on A30. BF16/SDPA text-only model and native convolution remain, two GDN functions use FLA. This is a distinct backend/hardware quality variant, not numerical equivalence or isolated pure-backend causality.",
+  "data_scope": "Previously inspected train48 to F0 development. No fitting, new split, originaldev, F1 quality or official action.",
+  "input_policy": {
+    "full58_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/expanded58.jsonl",
+      "bytes": 2021497,
+      "sha256": "d633225256dbf1cd5b64e94c74d7ce7f220b834cd748158082b306f12191fab2"
+    },
+    "CPU_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/row-audit.json",
+      "bytes": 57976,
+      "sha256": "2fa5c495f8341ba4bf5f6ea4f731f75128f159f28ecb6302abaf7ead67872d02"
+    },
+    "CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/input-cpu/result.json",
+      "bytes": 2813,
+      "sha256": "ccdcd461fdb8dc7119bc0755ed7c253bcee64c5ae7738c0c53a0259a30517116"
+    },
+    "all58_fresh": true,
+    "cached_rows": 0,
+    "native_response_cache_forbidden": true,
+    "no_old_probe30_cache": true,
+    "input_limit": 16384,
+    "generation_limit": 1600,
+    "total_input_tokens": 505090,
+    "maximum_input_tokens": 16245,
+    "longest_original_index": 30,
+    "processing": "Longest30 first with complete engineering gate then remaining ascending(input_tokens,row_id)"
+  },
+  "codec": "Reuse existing frozen strict complete-row canonical policy; invalid rows wholly abstain. Quality does not decode or reparse model response text, fill missing CIDs, or call old load_inputs/cache helpers.",
+  "implementation": {
+    "legacy_helpers": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/evaluation-source/evaluate_full58.py",
+      "bytes": 29094,
+      "sha256": "662aeccc6efef1f93e7a9cde76710ca9714f4eaabcf75e93b4eb5c1984991ce3"
+    },
+    "literal_helpers": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/f0-preparation/full58-v1/evaluation-source/literal_helpers.py",
+      "bytes": 4361,
+      "sha256": "1c70b9c4a8fb61be607618564409a1ea3480f9e099900c4d9b9aaf4b6ded2bf0"
+    },
+    "assemble_two_return_order": [
+      "alone",
+      "union",
+      "counts"
+    ],
+    "primary_prediction": "alone",
+    "diagnostic_prediction": "union"
+  },
+  "stronger_existing_comparator": {
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/assembled/F0.triple.jsonl",
+      "bytes": 124507,
+      "sha256": "c46f4662e4c5bc6d9342f91b79eee1570e057300d23721df74d8989a3e706cf7"
+    },
+    "cached_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/relation-triple-union-control/order-guard-recovery/evaluation/F0.metrics.json",
+      "bytes": 13055,
+      "sha256": "b92dbbb1efeea7eb72ee4113bbe72832496c79c9c44d9e2950541aa707ec5c57"
+    },
+    "metrics": {
+      "menF1": 0.724105461393597,
+      "docF1": 0.7285714285714285,
+      "micF1": 0.7040229885057471,
+      "macF1": 0.6815270938686453,
+      "Score": 0.7095567430848545
+    },
+    "nonassociation_check": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/fla_fulltext_F0_control/quality/strong-comparator-check.json",
+      "bytes": 2438,
+      "sha256": "5aa2f4484ad90b2727dfcf74b1b92d94cae00d6522c05fc0db0197b33cb9a91d"
+    },
+    "purpose": "Additional disclosure only, zero reevaluation and no endpoint added; improvement over native N alone is not global best."
+  }
+}
