@@ -31,10 +31,13 @@ def token_logps(model,input_ids,labels):
 def replay_observation(reference,replay):
     import torch
     diff=(reference.detach().float()-replay.detach().float()).abs()
-    return dict(tokens=reference.numel(),max_absolute_token_difference=float(diff.max()),
-                sum_absolute_token_difference=float(diff.sum()),reference_sum=float(reference.sum()),
-                replay_sum=float(replay.detach().sum()),
-                allclose_rtol_atol_1e5=bool(torch.allclose(reference,replay.detach(),rtol=1e-5,atol=1e-5)))
+    finite=bool(torch.isfinite(reference).all() and torch.isfinite(replay.detach()).all())
+    def value(x):return float(x) if bool(torch.isfinite(x)) else None
+    return dict(tokens=reference.numel(),max_absolute_token_difference=value(diff.max()),
+                sum_absolute_token_difference=value(diff.sum()),reference_sum=value(reference.sum()),
+                replay_sum=value(replay.detach().sum()),all_finite=finite,
+                nonfinite_reference=int((~torch.isfinite(reference)).sum()),nonfinite_replay=int((~torch.isfinite(replay.detach())).sum()),
+                allclose_rtol_atol_1e5=finite and bool(torch.allclose(reference,replay.detach(),rtol=1e-5,atol=1e-5)))
 
 def family(name):
     if '.linear_attn.' in name:return 'DeltaNet'

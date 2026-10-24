@@ -76,14 +76,17 @@ def main():
         # One previous logits vector (not1600 full vocabulary tensors) captures
         # the actual probability of each selected token, including terminal EOS.
         class Observe(LogitsProcessor):
-            def __init__(self,prefix):self.prefix=prefix;self.previous=None;self.ids=[];self.logps=[]
+            def __init__(self,prefix,stem):self.prefix=prefix;self.stem=stem;self.previous=None;self.ids=[];self.logps=[]
             def finish_previous(self,ids):
                 if self.previous is not None:
                     target=int(ids[0,-1]);assert ids.shape[1]-self.prefix==len(self.ids)+1
                     self.ids.append(target);self.logps.append(float(torch.log_softmax(self.previous.float(),dim=-1)[0,target]));self.previous=None
             def __call__(self,input_ids,scores):
                 self.finish_previous(input_ids)
-                if not bool(torch.isfinite(scores).all()):raise FloatingPointError('nonfinite original logits')
+                if not bool(torch.isfinite(scores).all()):
+                    atomic(out/(self.stem+'.nonfinite-logits.json'),dict(shape=list(scores.shape),nonfinite_count=int((~torch.isfinite(scores)).sum()),
+                        generated_ids=input_ids[0,self.prefix:].tolist(),cached_selected_logps=self.logps,first_nonfinite_retained=True))
+                    raise FloatingPointError('nonfinite original logits')
                 self.previous=scores.detach().clone();return scores
         underlying=model.get_base_model();original_processor=underlying._get_logits_processor;processor_audits=[]
         def audited_processors(self,*args,**kwargs):
@@ -96,7 +99,7 @@ def main():
         for row in rows:
             for arm in ('greedy','sample'):
                 budget();n=row['prefix_tokens'];prefix=row['input_ids'][:n];seed=20261024+row['index'];torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
-                ids=torch.tensor([prefix],device='cuda',dtype=torch.long);observer=Observe(n);tick=time.monotonic();stem=f"row{row['index']}-{arm}"
+                ids=torch.tensor([prefix],device='cuda',dtype=torch.long);tick=time.monotonic();stem=f"row{row['index']}-{arm}";observer=Observe(n,stem)
                 cfg=GenerationConfig(do_sample=arm=='sample',temperature=1.,top_p=1.,top_k=0,min_p=None,typical_p=1.,epsilon_cutoff=0.,eta_cutoff=0.,
                     repetition_penalty=1.,encoder_repetition_penalty=1.,no_repeat_ngram_size=0,encoder_no_repeat_ngram_size=0,bad_words_ids=None,
                     force_words_ids=None,suppress_tokens=None,begin_suppress_tokens=None,forced_bos_token_id=None,forced_eos_token_id=None,
@@ -168,6 +171,12 @@ def main():
             inp=torch.tensor([full],device='cuda',dtype=torch.long);labels=inp.clone();labels[:,:n]=-100
             with torch.no_grad(),amp():ng=token_logps(model,inp,labels).detach()
             cached=torch.tensor(sample['cached_selected_logps'],device='cuda',dtype=torch.float32)
+            if not bool(torch.isfinite(ng).all() and torch.isfinite(cached).all()):
+                atomic(out/f"row{row['index']}-nonfinite-replay.json",dict(row_id=row['row_id'],tokens=len(suffix),
+                    cached_nonfinite=int((~torch.isfinite(cached)).sum()),full_nonfinite=int((~torch.isfinite(ng)).sum()),
+                    cached_logps=[float(v) if math.isfinite(float(v)) else str(float(v)) for v in cached],
+                    full_logps=[float(v) if math.isfinite(float(v)) else str(float(v)) for v in ng]))
+                raise FloatingPointError('nonfinite replay retained; no mask or update')
             cached_diff=(cached-ng).abs();obs=dict(row_id=row['row_id'],advantage=pairs[row['row_id']]['advantage'],
                 cached_token_logps=cached.tolist(),full_no_grad_token_logps=ng.tolist(),cached_full_max_abs=float(cached_diff.max()),
                 cached_full_sum_abs=float(cached_diff.sum()),cached_sum=float(cached.sum()),full_sum=float(ng.sum()),
@@ -185,10 +194,16 @@ def main():
             assert bool(torch.isfinite(ce));ce.backward();r['real_backward_calls']+=1;obs['CE_quarter']=float(ce.detach());del ce,goldlp,gold,goldlabels
             observations.append(obs);atomic(out/'loss-progress.json',dict(observations=observations,real_backward_calls=r['real_backward_calls'],checkpoint_calls=checkpoint_calls))
         assert r['real_backward_calls']==8 and checkpoint_calls['grad_enabled']>0
-        gradient={n:dict(finite=p.grad is not None and bool(torch.isfinite(p.grad).all()),norm=float(p.grad.float().norm()) if p.grad is not None else None) for n,p in params.items()}
+        gradient={}
+        for n,p in params.items():
+            finite=p.grad is not None and bool(torch.isfinite(p.grad).all());norm=p.grad.float().norm() if p.grad is not None else None
+            gradient[n]=dict(finite=finite,norm=float(norm) if norm is not None and bool(torch.isfinite(norm)) else None,
+                             nonfinite_count=int((~torch.isfinite(p.grad)).sum()) if p.grad is not None else None)
         atomic(out/'gradient.json',dict(parameters=gradient,checkpoint_modules=checkpoint_modules,checkpoint_calls=checkpoint_calls))
         assert all(x['finite'] for x in gradient.values()) and all(p.grad is None for p in model.parameters() if not p.requires_grad)
-        norm=torch.nn.utils.clip_grad_norm_(list(params.values()),1.);assert bool(torch.isfinite(norm));budget();optimizer.step();r['optimizer_steps']=1
+        norm=torch.nn.utils.clip_grad_norm_(list(params.values()),1.)
+        atomic(out/'clip-observation.json',dict(finite=bool(torch.isfinite(norm)),norm=float(norm) if bool(torch.isfinite(norm)) else None))
+        assert bool(torch.isfinite(norm));budget();optimizer.step();r['optimizer_steps']=1
         delta={n:float((p.detach().cpu()-before[n]).abs().max()) for n,p in params.items() if n in before}
         assert all(bool(torch.isfinite(p).all()) for p in params.values())
         for state in optimizer.state.values():

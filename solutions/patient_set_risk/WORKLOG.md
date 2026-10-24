@@ -38,3 +38,5 @@ normalizer helper完成8raw→必要公共query→完整奖励接口及CPU合同
 `host-A100.json` 采用原同机G full87实际峰 allocated28.18GB/reserved31.39GB作依据，新10423完整输入和1600suffix只是约37GB代理，未冒称旧成本覆盖新形状。需实际>=38000MiB free且无process，真实probe才可确认显存。
 
 新 `remote.py` 与 `reward_bridge.py` 绑定完整normalizer源码和主执行SHA，单次排他start/独立300秒admission，8raw→必要Sap→完整reward在同一1800秒原绝对钟内；query UNKNOWN不重启。delivery先冻结再原子发布奖励，主模型核原8raw和normalizer manifest。`bound-A100-v1`未执行；v2仅补完reward控制器source绑定，数据和数学不变。入口 `evidence/binding-A100.json`。
+
+窄源审发现未触发的非有限诊断缺口：原JSON allow_nan=False可能在保留NaN/Inf norm前异常。GPU前机械修复为finite/count/null（逐token非有限值用明确字符串），保存首非有限logits shape/count和实际IDs，再按原finite/1e-5门失败；没有改损失/阈值/患者。原CPU数学 source身份仍保留，修复仅记录路径，未重跑旧数学。最终未执行绑定v3替代v2，旧文件都留仓库外；source审只核此diff。
