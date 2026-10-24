@@ -15,7 +15,7 @@ import sys
 import time
 import zipfile
 
-MOUNT='1593f159-19bc-41ca-8b4c-2e7455f5db99'
+MOUNT='5a9955da-5240-41cc-9e52-05d3d8da8a3c'
 PROJECT='/home/zhangyuheng/projects/CHIP2026_PatientPheX'
 REL='grounded-generation-full64-v1/normalization-dev36-v1'
 ROOT=PROJECT+'/'+REL
