@@ -1,6 +1,6 @@
 # 全文患者概念关系
 
-**负结案。** 原fresh30ep/240Adam及全部F1完整完成，唯一B4保护并集 .701325377212→.664715835189（−.036609542024），新增181=14TP167FP；micro/macro均降，Task1及全部旧关系保留。冻后1v2/旧0，关闭不F0/不扫cut/不加轮。已释放GPU，仅终态小包/审查交接。
+**负结案。** 原fresh30ep/240Adam及全部F1完整完成，唯一B4保护并集 .701325377212→.664715835189（−.036609542024），新增181=14TP167FP；micro/macro均降，Task1及全部旧关系保留。冻后1v2/旧0，关闭不F0/不扫cut/不加轮。已释放GPU，终态小包实际备份/回读完成，等待root批次独审。
 
 分支 explore/long-context-relations 起点9709b712，独立目录，只复用旧DocRE完整公共候选与已验证BioClinical原厂资产/原生IDs。Task1负方案保持关闭，没有加载其训练权重。完整结果见experiments/E-20261024-LCTX-REL-001.md；外部R/research/long-context-relations-v1。
 
@@ -27,3 +27,5 @@ root资源修订：T5于17:05:05.631真实释放.100GPU0，seed必要Sap改该�
 正式实际：proc_e18cb722/PID1227634、child1227642，17:06:48.691644 UTC start，原TERM17:46:48.691644/+30。首正常观察2/30轮、16Adam，每轮4495对，stderr空。没有加载probe或GP状态；完整epoch30与2874held前不质量、不早停。恢复入口formal_ops.py observe，唯一原intent已存在禁止再start。
 
 正式完整终态：17:15:06.020657 UTC rc0/497.329s，17:15:06.210255 GPU0=4MiB/noapps并交LongT5。final state63db2cca仅远端、563state ACK13eafe5b；2874完整分数290106B/e889877b已本地回收。9必要成员ZIP79375B/665c2265已实际全SHA/fsync/reopen。所有30轮/960次文献/每轮4495对完整，不是工程故障；原17:46:48硬截止不变且未触。
+
+最终持久：terminal-backup-v1/complete.json a8ebe3bc；source-quality.zip 79027B/38e4b857，38内容+manifest=39成员全实读回核SHA/fsync/reopen；原9formal父包复用，不复制大state。稳定完整entry a6abb440已交root/validation，源码/结果按本分支推送，当前无模型作业或额外研究。
