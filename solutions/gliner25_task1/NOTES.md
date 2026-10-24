@@ -9,3 +9,5 @@
 原生 SamplingConfig 默认 synthetic_entity_label_prob=.2：同一逻辑phenotype目标会随机变成entity 1查询。先前CPU静态IDs来自各自一次随机schema，不能与新train批逐行硬比；不同不是已证tokenizer损坏。恢复保原native增强，先保存实际schema_tokens/query_layout、IDs、collate前后Python RNG，再独立编码当前schema与文本并核同gold目标。原probe首次未先存实际IDs而只留failed_batch/schema，此信息缺失无法补回；新CPU/恢复观测不能称恢复旧张量。
 
 无eval时native trainer保best_metric=inf表示未计算，不能用严格JSON直接写完整summary。本次全部6真实步完成后才遇元数据写入失败；保原rc1，以原逐步证据和partial summary纯CPU恢复。后继只把已确认的未评估best_metric映射null并加status，不能将模型loss中的非有限值泛化为可容忍。
+
+完整负结果的解释：new-only正常归一化实体precision .8160、recall .5344，但对强池104个新增仅23正确，因此固定全部并集负.004073。正确覆盖重叠与新增精度应分开看；不把训练数值正常、原始候选多、或单模型总体precision当增益。保留23个独有正确实体只是后继可研究供给，不允许回头改本次阈值/接受规则后冒称原计划成功。
