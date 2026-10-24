@@ -3,7 +3,6 @@ import hashlib,io,json,zipfile
 from pathlib import Path
 S=Path(__file__).resolve().parent
 D=Path('/workspace/patientphex-runs/round2-20261023/research/long-context-relations-v1')
-P='/home/zhangyuheng/projects/CHIP2026_PheX'
 def ref(p):p=Path(p);b=p.read_bytes();return dict(path=str(p),bytes=len(b),sha256=hashlib.sha256(b).hexdigest())
 def main():
  cfg=json.loads((S/'runtime/execution-plan.json').read_text());pkg=json.loads((D/'probe-v1/package.json').read_text())
