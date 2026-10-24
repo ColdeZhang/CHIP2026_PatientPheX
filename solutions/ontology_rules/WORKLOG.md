@@ -63,3 +63,5 @@
 - root已给PubMed短探针条件授权：收到真实官方accepted回执后，fresh空A100 GPU2可直接唯一240+30，无需再次批准；尚未收到回执/未建activation/未GPU。仍不自动20步或held质量。原plan186b82ff不改，另存[条件授权](public_h5_adaptation_readiness/gpu_probe/conditional-authorization.json)。
 
 - 07:54:13官方901 B已真实accepted（8d39aba4，额度5→4，不查询成绩）；按root授权恢复两独立工程probe。fresh A100 GPU2=0MiB、A800 GPU2=1MiB/noapps，盘余54.0GB/1.51GB。H5原240+30启动准备；head原420+30新增复用stress的controller，仅绑定真实accepted及收齐head统计，不改plan/数值门/模型源；均无正式训练或质量授权。
+
+- 两唯一GPU工程实际启动：A100 H5 proc_352c3ab0/PID256648，07:56:59，240+30；A800 head-index proc_20d3881d/PID47321，07:57:45，420+30，15基座文件全SHA及空卡通过。仅监控原作业，未知不重启；全产物在research/public-h5-train32-probe-readiness与research/qwen35-head-index-probe-v1，actual-start小指针已保存。

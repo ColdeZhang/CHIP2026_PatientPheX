@@ -24,3 +24,7 @@ CPU在现成.100 Torch2.7.1+cu126、CUDA隐藏下唯一运行0.157秒：9个真�
 - `CPU-result.json`、`cpu-run-intent.json`：实际CPU证据；重复工具封装留本地且忽略。
 
 `build_probe_source.py`和`prepare_cpu_source.py`仅生成派生源码；`build_payload.py`仅构造本地包，无MCP/GPU调用。已有CPU唯一intent阻止无意重复。执行时由owner沿entry部署并核SHA后，按主线程明确决定运行launch；不调用旧formal/controller，也不把新探针状态用于正式训练。
+
+## 接收后实际启动
+
+官方accepted凭据8d39aba4已核；本独立唯一作业已启动，具体ID/时间见[实际启动](actual-start.json)。以上准备阶段记录保留；新实际结果另存，不重写事前门槛。当前还没有完整工程终点或质量结论。

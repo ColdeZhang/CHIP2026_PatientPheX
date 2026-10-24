@@ -35,3 +35,7 @@ seed20261024，按 `SHA256('20261024|epoch1|'+token_sha)` 排序，完整顺序�
 若root以后启用，仅按 `deploy → start → status → collect` 进入这一唯一作业；未知启动结果先恢复原intent/job，不能重复start。代码/计划和所有比较容差已冻结，失败保留证据，不在此入口放宽门槛或扩多配方。完整20步＋原F1推断总预算仍需root根据实际三步成本/内存/加载与保存开销决定；本准备没有质量结论。
 
 [计划](plan.json)、[批次](sampling.json)、[静态检查](static-checks.json)、[本地包指针](ready.json)。
+
+## 接收后实际启动
+
+官方accepted凭据8d39aba4已核；本独立唯一作业已启动，具体ID/时间见[实际启动](actual-start.json)。以上准备阶段记录保留；新实际结果另存，不重写事前门槛。当前还没有完整工程终点或质量结论。
