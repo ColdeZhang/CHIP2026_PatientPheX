@@ -1,0 +1,109 @@
+{
+  "status": "PASS_incremental_formal_source_plan_persistence_and_pretraining_twoarm_endpoint",
+  "at_utc": "2026-10-24T03:23:40.351582+00:00",
+  "formal_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/formal/run-plan.json",
+    "bytes": 14335,
+    "sha256": "1352c9441c4c7fb80d10cae748ea81b8498ca8afa9dc55b3970fe0b6a74488cc",
+    "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-formal-entry-review/entry-snapshots/1352c9441c4c--run-plan.json"
+  },
+  "snapshot_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-formal-entry-review/entry-snapshot-manifest.json",
+    "bytes": 10038,
+    "sha256": "1209b34bd762307abfe4b3c522295dda750f7626c8a83eefeb16013c414a24f7"
+  },
+  "existing_engineering_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/medgemma-runtime-readiness-review/review.json",
+    "bytes": 17451,
+    "sha256": "1dc8c37b2a779cbd7f30eb5f2c947e45467085fe443adca12183af2a7403036b"
+  },
+  "authorized_scope": "Root conditionally authorized one fresh strict32 Med2epoch stage1200+TERM30 including both model invocations and both persistent complete-state exports, then fixed80 inference600+TERM30. This report adds no approval gate and makes no actual formal success/quality claim.",
+  "training": {
+    "trainer_sha256": "3daa85b011d80a371589fbd2b4cbe1f6dda28885ddd8d4d27089d283d16d965f",
+    "unchanged_training_math": true,
+    "strict_train32_rows": 124,
+    "epochs": 2,
+    "exposures": 248,
+    "optimizer_steps": 32,
+    "warmup_steps": 2,
+    "grad_accumulation": 8,
+    "last_group": 4,
+    "seed": 20261023,
+    "fresh_initial_public_base": true,
+    "own_epoch1_resume_only_after_actual_durable_ACK": true,
+    "restore": "Adapter+Adam/scheduler+Python/NumPy/Torch/CUDA RNG; exact same fingerprint and remaining original schedule. No claim of separately tested bitwise resume equivalence.",
+    "stage_deadline": "A single start+1200 absolute deadline shared by train1/export1/train2/export2; common controller calculates remaining at server launch. Final remaining() enforces completed phase within same window.",
+    "failure": "OOM/nonfinite/partial/unknown does not advance, reset, cancel healthy jobs or relaunch; keep known job and original absolute deadline."
+  },
+  "storage": {
+    "A800_SHM_is_temporary": true,
+    "persistent_mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "persistent_root": "research/medgemma-relation-control/formal2ep/checkpoints",
+    "epoch_checks": "Complete metadata requires16/32steps, full adapter and training_state, allowlisted own SHM path; export includes run manifest/progress/source/interface/helper and3 originalCPU receipts.",
+    "copy": "Original tested HTTP Handler and Range/fullSHA loop AST reused; files fsync and reopened sizeSHA, all child dirs and newly-created ancestor chain through project cwd fsync before ACK; ACK file+rootdir fsync afterwards. Actual persistent readback rehash verifies all records against source before model continuation.",
+    "narrow_review_fix": "Old89dc fetch preserved. New07ba onlyadds ancestor-directory fsync loop; runtime math unchanged.",
+    "checkpoint_provenance": "After epoch1 persistent ACK, source own complete members are independently reopened/SHAchecked; epoch2 trainer resumes exact local epoch1. Both checkpoint fingerprints must match.",
+    "actual_fullstate_exports": "Pending formal execution; no receipt invented."
+  },
+  "inference": {
+    "runner_sha256": "87c187c889a8631b745bac1b05b8d6ea55b7ff9efacb0d4524142513c2e57a32",
+    "rows": 80,
+    "pure_prompt_sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe",
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "native_greedy_no_thinking": true,
+    "EOS": [
+      1,
+      106
+    ],
+    "only_final2ep32_checkpoint": true,
+    "final_adapter_SHA_readback_bound": true,
+    "independent_budget_seconds": 600,
+    "TERM_grace_seconds": 30,
+    "fresh_empty_GPU_before_each_stage": true,
+    "no_response_resume_or_partial_quality": true
+  },
+  "pretraining_amendment": {
+    "policy_sha256": "4fc77827e02394c682ac9a83311b03c0d48ce93ac5fabdd6c0a19eee92308f88",
+    "fixed_utc": "2026-10-24T03:22:15.996989+00:00",
+    "owner_text_sha256": "d97d36b3e498786ff42af1828a52dcef1ec0ab03c58994ffaff75cb28c606fae",
+    "before_new_formal_quality": true,
+    "historical_standalone_only_scope_preserved_and_explicitly_superseded": true,
+    "arms": [
+      "primaryMed",
+      "literaloldSFT32_unionMed"
+    ],
+    "baseline": "CachedoldSFT32 ffb2/7e36 on same F1, not rescored. Same1189entities39patients587candidates1557pairs.",
+    "retain_rule": "micF1+macF1 strictly increases versus old and macF1 nondecreasing; union-minus-Med report-only; no other combinations/cuts/scans.",
+    "complete_freeze_contract": "One original frozen parser/baseline-rulefallback; both complete fullpredfiles frozen before firstgold byte and before exactly2 unchanged v2 all/text calls. Once-only reservation and fixed output directories reject duplicate execution.",
+    "literal_nonassociation_bytes": "Preserve original baseline line skeleton except top-level association span; verify identical masked-nonrelation bytes. Patient coverage/nonassociation semantics also checked before union.",
+    "source": "22aec1f43fc6c5498404bd7e9cfb2c599216a6d94b8d5cc68e3f31752081744b",
+    "freeze_source": "24d213e542d45219b8c24258a82d82e9191127959e6482f07f8723daf078c102",
+    "template": "bf9b097f64c10ba4a1b8771ddfe9b80c1faab1f278db36bbd1d7e2805c4cd649",
+    "fixed_asset_pin": "Actual19-file690e expected inventory; initialdraft c093 repository manifest mistake corrected beforetraining/quality and disclosed.",
+    "gold": "Only separate historical locator/digest pin copied from previously reviewed utility; verifier never opens/hashes gold."
+  },
+  "actual_new_CPU_evidence": {
+    "controller_fixture": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/controller-contract-check.json",
+      "bytes": 747,
+      "sha256": "1568ab501b0385e2341668eb149333ee1c479e6dc978ad60f24258a41c837c89"
+    },
+    "controller_cases": 4,
+    "endpoint_fixture": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/cpu-contract.json",
+      "bytes": 1064,
+      "sha256": "5127abfc49613fcf3d16f1d6a0d0ecd2bb0bccf2ce6a845fbee0e064d8fdd523"
+    },
+    "endpoint_cases": 13,
+    "endpoint_seconds": 0.010048758995253593,
+    "no_old_HTTP_model_CPU_contracts_repeated": true
+  },
+  "pending_actual_terminal": [
+    "Both exact own epoch checkpoints and persistent ACKs, original common deadline and process releases.",
+    "Final80 actual manifest/adapter/source identities and completeness before any quality.",
+    "Both common-frozen full predictions, unique v2 outputs and declared comparator retention; no originaldev/official claim."
+  ],
+  "limits": "Oldasset/nativeCPU/singleprobe proof reused; a singleprobe does not guarantee formal accumulation/stability or score. Each Med fullbundle+adapter4,329,881,968<10B; aggregate chain sum is resource disclosure only.",
+  "verifier_actions": "Read-only static source/AST/metadata/SHA binding and small immutable snapshots; no source imports or fixture/parser/NN/evaluator rerun, no remote, gold, Git or live index."
+}
