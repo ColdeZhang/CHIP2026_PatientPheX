@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：新增工作线覆盖跨度、文档关系、患者条件生成、训练长度、预训练联合抽取、原生Qwen3关系及主线程共识融合；各有独立分支/worktree和分层记录。负配方及时关闭，当前安排见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：full64三源二票将原dev从ee39的.755240提高至 **.769236**；相对原901新增4关系3TP1FP，macro .657186→.713196，实体不变。双采样旧最佳ee39和原901恢复入口保留。四来源内部两折均正，但完整full64原dev .768401低于三源best，新增5=1TP4FP，已保留负结果。
-- **实际运行/恢复**：C full64两轮68更新/两ACK/64 strict已完成；根四源唯一原dev负结案。Grounded双采样F1 .705226为正、F0 .725133低于.728196，关闭且不迁full64；权重平均F1 .703883小幅正，另一折47条已A100启动。患者偏好训练74对/10更新/80 strict完整，但固定F1 .700905未胜B4，已关闭；Top8候选选择已完整1416，正在收件/唯一评分。精确复制约束通过目标HF CPU接口，已A30 GPU0启动完整39条验证。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
+- **实际运行/恢复**：C full64/根四源、G双采样F0、DPO、Top8候选选择均完整结束，后继固定端点未胜各自强基线；当前最高分不变。有效LoRA平均仍验证原47条；复制约束原39条推断继续。新条件集合补全固定261训练视图（含完整时停止），先目标CPU/真实短工程门，再按实测成本决定完整训练。准确作业与恢复入口见[当前运行JSON](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
-- **证据备份**：258项/6296引用已增量核验发布；新增难负例/NO删除联合终审9b6e2c3e与G双采样c54828bd待下批索引；后者128内容补包已实际3次读取恢复。新241引用＋12控制已上传并实际回读核验全部253成员。217→224→234→242→249→258恢复链完整；新最佳05cfa90f的15内容预测/配方包、Grounded124内容补包已实际回读，旧ee39/901及官方B保留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@08a12023`；三源最佳分支`aee2b17f`、四源负终点及备份`0b54308c`均已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **证据备份**：263项/6411引用已增量核验发布；115新引用＋11控制已上传并实际3次读取核验全部126成员，217→224→234→242→249→258→263恢复链完整。G双采样F0负结案90内容包亦实际回读；DPO/Top8完整终点待下批终审。最佳05cfa、旧ee39/901及官方B恢复入口均保留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
+- **Git**：最近已核验`origin/main@c4889360`；三源最佳`aee2b17f`、四源负终点及备份`0b54308c`均已推送。各路线保持独立分支，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
