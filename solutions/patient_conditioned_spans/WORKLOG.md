@@ -1,6 +1,6 @@
 # 患者条件跨度路线台账
 
-当前：E-20261024-PCS-001，完整CPU几何、实际生产autograd和原生HF分词合同已通过，整文GPU工程已完整通过，formal尚未启动。独立分支 `explore/patient-conditioned-spans`；只拥有本目录。
+当前：E-20261024-PCS-001，完整CPU几何、实际生产autograd和原生HF分词合同已通过，整文GPU工程已完整通过，formal已唯一运行。独立分支 `explore/patient-conditioned-spans`；只拥有本目录。
 
 目标是改善患者归属与候选池外漏概念，检验整文共享编码、患者条件跨度与概念级 max-MIL；不重复已负的公共候选对 DocRE 或无患者条件 GP。
 
@@ -13,3 +13,5 @@
 事前修订：86b37baf 的 balanced-BCE 准备保留且未执行任何 GPU/质量。为保持本次关键变量为患者条件和 latent bag，正式 NER 改用原 GP 的 multilabel categorical loss；完整几何不变，新增高分稀有负例影响/有限梯度 CPU 合同。
 
 公开Sap41099库已.3→.100同SHA实际复制/fsync重开，1.5245秒；使用原policy .90 cosine/.03 distinct margin及全部字符串保护，无重编码。证据 [工程结果](evidence/probe-complete.json)。
+
+正式790fb2be：12:44:47.459117 UTC / proc_72ec2375-4ed8-4467-b534-21d86c477aeb / driver2739073，native2739081，绝对截止12:59:47.459117+TERM30。D/formal-v1/started.json；只恢复原任务。原38.914秒观察epoch4 step97/256；规范化与训练共享此时钟。
