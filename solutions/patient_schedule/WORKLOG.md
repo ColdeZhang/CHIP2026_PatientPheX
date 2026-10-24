@@ -1,6 +1,6 @@
 # 患者四轮统一时程台账
 
-当前：**四轮原标准CE已10:08:43在A800 GPU2唯一启动，原watcher自动推进；完整训练/质量尚未完成。**分支`explore/patient-schedule`，base main`4af0123`。只修改本路线。单一恢复入口：[evidence/ready.json](evidence/ready.json)，命令见[RUNBOOK](RUNBOOK.md)。
+当前：**四轮训练及四份完整持久ACK已完成；最终epoch4绑定完成，准备唯一全部80条F1推断。** 分支`explore/patient-schedule`，单一入口[evidence/ready.json](evidence/ready.json)。训练/监控已正常终态，不重启。
 
 ## 目标与固定方案
 
@@ -27,3 +27,5 @@ Git：上一个已核远端源码检查点`c3c5991`；最终prepared检查点将
 10:18本地监控恢复：原PID/exec已失、无failure/complete，根因未知；原远端epoch1训练仍健康，root最新发布step10/loss.19727。新增独立恢复目录watch-recovery-1，锁定单owner、脱离短工具launcher，复用旧watch/operations且保原deadline；首次查询等root原inspect+120秒，不立即重复。训练本身从未重启。
 
 10:21接续已实际闭环：epoch1 rc0/590.267秒/16updates；.100完整520024097B于10:21:37取得SHA/fsync/reopen ACK（58.451秒），source ACK副本6220ce84；原daemon10:21:55唯一启动epoch2 proc_8bfcfd40/PID52010，仍原11:38:41.825555截止。此时仅start已确认，模型内部完整state恢复以其后续原收据为准。见evidence/epoch1-durable-epoch2-start.json。
+
+11:01恢复确认：四轮wrapper均rc0，耗时590.267/590.081/591.626/593.164秒；第四轮10:55:01结束、.100 ACK实际10:56:43，原5400时钟内。watch145075已有正常complete且进程Z，非活跃监控。绑定最终adapter7c97bbdc、F1 plan64df17bb，四ACK/64step/原source全部匹配；单独1200+30全80fresh按既定双端点执行。精确恢复数值收据后继回收，不把模型启动回执代替state恢复证据。

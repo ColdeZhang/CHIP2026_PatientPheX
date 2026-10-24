@@ -1,6 +1,6 @@
 # 恢复与执行入口
 
-当前**epoch1原proc_975a3621/PID27842已完整持久，epoch2唯一proc_8bfcfd40/PID52010运行；原watcher143721已失；独立恢复watcher145075（PPID1/SID145075）运行**。不得重跑deploy/start/watch。恢复见evidence/watch-recovery-1.json；监控events改在C/watch-recovery-1，旧日志保持。[ready.json](evidence/ready.json)给全部准确SHA、外部目录和预算。模型、输入、质量基线均固定；下面1–4仅保留已执行历史和异常恢复接口，不能重复执行。四ACK后5–7已有root授权。
+当前**四轮及四份持久ACK已完整，watch145075正常退出，epoch4 7c97bbdc已绑定F1 plan64df17bb**。不得重复部署、训练或watch；下一步仅原授权步骤6，随后实际终态步骤7。单一状态入口[evidence/ready.json](evidence/ready.json)。
 
 外部B=`/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1`，C=`$B/controller`；源码S为本目录。root已明确训练/完整F1授权，已按实际决定将 `GPU-AUTHORIZATION.template.json`另存为`GPU-AUTHORIZATION.json`，填写已给出的授权，原模板保持。实际authorization/plan已SHA绑定并推送。controller检查plan SHA及固定预算。若改卡/路径/预算，应另冻结独立plan与部署，不覆盖原冻结件。
 
