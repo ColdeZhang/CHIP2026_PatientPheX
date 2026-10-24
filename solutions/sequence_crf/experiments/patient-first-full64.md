@@ -73,3 +73,8 @@
 ### 新fresh正式作业已启动
 
 root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由git rev-parse传入，fresh UUID/空卡/空间通过；唯一proc_7f51657c / PID141616于05:13:13.317Z启动，4500+TERM30，近似TERM06:28:13/KILL06:28:43，remote driver-started为权威。新run独立、不从probe或旧失败续训；原数值合同与两持久epoch、后继原64/900和唯一a179终点不变。操作与连接退避见[恢复入口](../patient_first_full64/memory_recovery/OPERATIONS.md)。
+
+
+### 05:18 本地环境重连后的原作业接管
+
+原本地watcher PID108070已不存在；05:17:47实际原状态最后打印epoch1 step5、loss .302332392/峰allocated23.892GB，05:18:35独立只读核driver141616及trainer141633命令仍指向原selected-CE计划，A100 used28305MiB/util68%。未重新start、未改变源/数据/预算，没有完整epoch或新dev评分。新的本地只读watcher使用独立reconnect-0518命名空间，每180秒一次原状态读取、仍于原KILL+300止；恢复证明[小收据](../evidence/patient-first-full64-memory-recovery/reconnect-0518-status.json)。原目录中preparation-time的`formal_execution_authorized_by_root=PENDING`字段保持原字，不作为当前状态；实际统一授权、job和已推源码才是本次运行依据。

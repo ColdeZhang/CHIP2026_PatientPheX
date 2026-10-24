@@ -9,12 +9,13 @@
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 当前任务：full64 OOM 后单变量显存恢复
+## 当前任务：selected-CE fresh full64 正式训练中
 
-**原训练已关闭**：A100 job `proc_5b00069a` 04:51:51 backward OOM，557.666s/rc1，最后记录completed step10，确切失败行/step/算子未知。无完整epoch/staging、不能exact续训；实际GPU已释放。独审f7668be7，详见[原终点](evidence/patient-first-full64/failure-terminal-manifest.json)。
+**当前唯一远端job** `proc_7f51657c-95c7-4118-9d9d-68377242d294`，A100 GPU2 UUID2c22，driver141616/child141633；05:13:13.317Z启动4500+TERM30，近似TERM06:28:13/KILL06:28:43，以remote driver-started为准。环境重连后05:18:35实际核两PID仍存在、GPU used28305MiB/util68%；05:17:47最后打印epoch1 step5、loss .302332392、峰allocated23.892GB。还没有完整epoch或新质量，不从观察连接状态推断终态。
 
-**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。root已统一授权正式fresh重训；唯一新probe `proc_b7a810e6` 已147.295s/rc0完整通过，05:11:10Z核空释放；峰allocated25.031GB/reserved29.977GB，结束free11.770GB，actual native loss property/setter 隐藏CUDA核验通过（0参数/0forward），10远端成员SHA完整。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺UNKNOWN已库存核两缺件实际落盘；原hook无进程/无结果，独立一次接口CPU完成，未重288。fresh gate实际通过；此job仅工程探针，已真实1个完整8微批更新＋后3累计＋6166 backward，共12forward/backward、Adam496状态和三族B真更新。CLI commit元数据一位笔误已独立纠正为已推344e9672，原intent/job保留、不重启。
+原本地watcher108070已不存在。新只读watcher独立namespace接管，入口F/watch_reconnect_0518.py、每180s只读原状态、原KILL+300后止，不start/修改远端；F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal`。新会话先检查该watcher实际PID，若断开仅恢复监控，不能重复launch。实际恢复证据见[小收据](evidence/patient-first-full64-memory-recovery/reconnect-0518-status.json)，完整操作见[恢复入口](patient_first_full64/memory_recovery/OPERATIONS.md)。
 
+**已核依据**：旧proc5b00首epoch backward OOM、无完整状态，独审f7668be7；不能exact续训。新恢复只将有监督位置先选后FP32 CE，完整BF16 head/每rowmean/有效group/精度不变。目标Torch288例通过；新probe12次前后向/1次完整group更新，已有496 Adam状态与累积梯度下最长6166通过，147.295秒rc0、峰allocated25.031GB/reserved29.977GB，05:11:10实际释放并弃权重。统一独审b46983ef通过，正式fresh已获root一次统一授权。探针通过不保证完整训练稳定，原失败记录不改写。
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
 - [full64运行/恢复记录](experiments/patient-first-full64.md)。最长6166实际一步81.873秒PASS/卡已释放；正式CPU10.454秒PASS。未知上传经库存确认未落，3小片补齐同源后再启动。源码与job已推送；当前未新devgold/未质量/未官方。
@@ -25,7 +26,6 @@
 - 完整58中57complete/1partial/0整row弃答；新3563609:relations:8只缺O7P，弃8候选对，53tokens/真实EOS248046。这是新生成实际内容，不能冒称找回旧失败raw。162小件逐SHA、全部ID独立decode/codec一致；两fullpred共冻be17f7b4后才两次v2，旧metric不重评。
 - [完整记录](experiments/patient-first-F0.md)、[结果](evidence/round2/patient-first-F0-recovery-results.json)、[终点清单](evidence/round2/patient-first-F0-recovery-terminal-manifest.json)。外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`，B=P/abstain-recovery。source/完整raw/state/原失败均冻结，禁止重启已完作业或重评。统一终点独审22325a29 PASS；未重训练、parser测试或评测。
 - root随后授权的事后提出、事前固定CPU控制已通过：F1/F0 literal union(oldSFT,reverse,patient)，两折预测共冻后各唯一v2；门槛两折Score均严格高于各自old∪reverse且macro均不降。无扫描/第四臂，总.479秒。F1 .663841821（+.001369374，micro降/macro升）、F0 .709556743（+.004869303），仍低F0 rules；独审3444fe0a PASS。[结案](experiments/relation-triple-union.md)。
-- 并行仅CPU准备原full64/265训练提示与原dev纯64转置、来源/实际tokens/空间，禁止读取新devgold或启动正式GPU。三方通过后root现授权actual CPU通过则A100唯一最长240+30更新probe；formal265×2/68calls4warmup、4500+30和原dev64另900+30仅准备，正式待probe实测后统一放行。最终须只向当前a179完整预测加三方关联，保留旧实体/关系/public-new支持。
 
 ## 已闭环的最近关键决策
 
@@ -42,8 +42,8 @@
 ## 记录与备份
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
-- 截至本页整理前，已push并lsremote确认 `dfdfdb45512037b0d7f0e051325c786d1e27a4d0`，含full64唯一正式job、实际CPU/探针、固定单臂政策及后继真实收据控制器。不要为记录台账自身SHA递归提交。
-- 原full64已OOM停止；下一里程碑为独立显存恢复工程探针，完整重训需root统一决定；原dev固定单臂政策保留，不运行缺少真实epoch2的入口。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 截至本页整理前，已push并lsremote确认 `beb362fa55ddb11dd1ee4e12b2eb78833ec5564d`，含原失败、新工程完整终点、fresh正式job及后继单一dev入口。不要为记录台账自身SHA递归提交。
+- 原full64已OOM停止，新selected-CE fresh正式训练正在运行；下一里程碑为两完整epoch持久终点，再按持续授权执行原dev64/唯一a179并集。缺少真实epoch2时推断入口仍不可执行。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
 - full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z启动，04:51:51 OOM/rc1退出；原4500+30未耗尽。见 [full64记录](experiments/patient-first-full64.md)。
 
