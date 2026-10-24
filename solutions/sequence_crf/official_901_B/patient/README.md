@@ -8,7 +8,7 @@
 
 1. 接收retrieval按原算法生成的normal-B完整纯输入prompt及full-LR oldpool（含原parser回退关系），分别绑定实际SHA。`prepare.py`做原patient-first转置和逆变换一致检查，保留code_map、患者及证据顺序；只加载原tokenizer，逐条对发布原生JSON的实际IDs与解码，无权重/GPU。超过14000即停，不能截短或删样本。
 2. native census完成后冻结实际行数/文献/输入tokens、具体时间预算和源计划，提交推送，再由`driver.py`在已交接且fresh核空的A100 GPU2启动唯一完整推断。原任务目录、raw和已审dev均不修改；超时/失败保留原件，不自动重跑。
-3. `export_positive_keys.py`逐件SHA核完整收件清单、完整行覆盖、生成/raw/decision三方一致及原始token独立解码，再重放同一有限codec。只导出显式模型 `[pmc_id, patient_id, original_concept]` 正关系与完整原code_map空间，不加入任何baseline或回退。
-4. 与retrieval使用实际B和原canonical/alt-ID政策证明patient空间来自oldpool、public-new与其逐文献互斥。证明后才应用901的等价并集；有交集则按root决定恢复原counterfactual差集，不能临时删patient或猜。
+3. `collect.py`先确认原driver已退出，冻结唯一完整原件包并分块校验收回；仅恢复字节传输，不重生成。具体映射及export引用见`COLLECT_NOTES.md`和`endpoint-preparation.json`。`export_positive_keys.py`逐件SHA核完整收件清单、完整行覆盖、生成/raw/decision三方一致及原始token独立解码，再重放同一有限codec。只导出显式模型 `[pmc_id, patient_id, original_concept]` 正关系与完整原code_map空间，不加入任何baseline或回退。
+4. `prove_positive_membership.py`将实际420行code_map/PID与已独立验证的全合法空间精确绑定，核所有显式正例属于7147候选对；以集合包含证明实际正例仍canonical不交，不重新归一或删除结果。与retrieval使用实际B和原canonical/alt-ID政策证明patient空间来自oldpool、public-new与其逐文献互斥。证明后才应用901的等价并集；有交集则按root决定恢复原counterfactual差集，不能临时删patient或猜。
 
 当前native CPU420全输入已完成，原A100唯一推断proc_7c9baef1于07:17:15Z启动。具体SHA/绝对预算和只读恢复入口见路线WORKLOG及仓库外 `research/official-901-B/patient/`；未完整收件前不称结果已完成。root独占官方上传和最终统一审，禁止读取官方成绩。
