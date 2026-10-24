@@ -1,0 +1,92 @@
+{
+  "schema": "sft32-full-report-terminal-fixed-selection-v1",
+  "review_required_exact_at_execution": true,
+  "review_status_at_preparation": "PENDING; no final-review file manufactured or inferred",
+  "required": {
+    "probe": [
+      "runner.py",
+      "launch.py",
+      "legacy_runner.py",
+      "plan.json",
+      "decision.json",
+      "model-source-manifest.json",
+      "terminal-manifest.json",
+      "terminal/actual-input-and-assets.json",
+      "terminal/base-loading.json",
+      "terminal/generated-ids.json",
+      "terminal/raw-response.json",
+      "terminal/format-result.json",
+      "terminal/summary.json",
+      "terminal/fresh-gpu.json",
+      "terminal/driver-started.json",
+      "terminal/child-started.json",
+      "terminal/wrapper-complete.json",
+      "terminal/gpu-release.json"
+    ],
+    "full80": [
+      "infer_full80.py",
+      "launch.py",
+      "probe_runner.py",
+      "legacy_runner.py",
+      "model-source-manifest.json",
+      "plan.json",
+      "decision.json",
+      "row-audit.json",
+      "terminal-manifest.json",
+      "evaluation-bound.json",
+      "evaluation-source/evaluate_full80.py",
+      "evaluation-source/literal_helpers.py",
+      "evaluation-source/bind_completed.py",
+      "evaluation-source/self_test.py",
+      "evaluation-source/self-test-receipt.json",
+      "evaluation-source/evaluation-template.json",
+      "evaluation-source/README.md",
+      "evaluation-source/manifest.json",
+      "terminal/actual-input-and-assets.json",
+      "terminal/base-loading.json",
+      "terminal/summary.json",
+      "terminal/complete.json",
+      "terminal/fresh-gpu.json",
+      "terminal/driver-started.json",
+      "terminal/child-started.json",
+      "terminal/wrapper-complete.json",
+      "terminal/gpu-release.json",
+      "terminal/responses.jsonl",
+      "terminal/canonical.jsonl",
+      "terminal/evaluation-started-full-report-v1.json",
+      "quality/paired-predictions-freeze.json",
+      "quality/evaluation-started.json",
+      "quality/summary.json",
+      "quality/diagnostic-fulltext-alone/pred.jsonl",
+      "quality/diagnostic-fulltext-alone/metrics.json",
+      "quality/diagnostic-fulltext-alone/validation.json",
+      "quality/primary-oldSFT32-union-fulltext/pred.jsonl",
+      "quality/primary-oldSFT32-union-fulltext/metrics.json",
+      "quality/primary-oldSFT32-union-fulltext/validation.json"
+    ]
+  },
+  "fixed_row_evidence": {
+    "folders": [
+      "generated-ids",
+      "raw-responses",
+      "canonical-records"
+    ],
+    "indices": {
+      "first": 0,
+      "last": 79
+    },
+    "count": 240
+  },
+  "excluded": [
+    "gold or training labels",
+    "model/checkpoint/adapter/tokenizer weights or full assets",
+    "expanded80.jsonl and full input corpus",
+    "deployment or terminal download archives",
+    "operations/MCP client and all raw tool/login/upload receipts",
+    "stdout/stderr logs, repeated inspections and pycache",
+    "earlier experiments and F0/dev/official artifacts"
+  ],
+  "compressed_limit_bytes": 1048576,
+  "selection_is_not_recursive": true,
+  "remote_upload_implemented": false
+}
