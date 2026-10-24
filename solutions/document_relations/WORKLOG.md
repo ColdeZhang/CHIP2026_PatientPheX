@@ -4,7 +4,7 @@
 - 当前实验 `E-20261024-DOCRE-001`：复现ATLOP式多提及池化与局部attention交集，扩展为覆盖全文的重叠窗口，固定公共三模型提供HPO候选；不复用任务训练候选，避免新的留出泄漏。
 - 先完成F2+F3 train32→F1初版。正文全部编码；物理提及只归属一个完整窗口，跨窗重复不重复计权。患者/概念多提及logsumexp，ATLOP式pair context＋分块双线性头。首版不加额外实体图Transformer。
 - 二元关联使用单logit BCE/零logit阈值；不把二元退化的ATLoss当新优势。正例和负例都按实际关系标签生成，无人工evidence标签。
-- **当前后继：marker-v2正式运行中**，.3 GPU0 `proc_1670417f-df6b-43d4-a79c-f2fba0ef8503` / PID1198389，10:04:00.083760 UTC启动，TERM10:14:00.083747、KILL+30；actual fresh4MiB/noapps、182.0GB空闲。source/plan检查点98f9b6a已核远端，恢复看[marker start](evidence/marker-start.json)。
+- **当前：两表示完整F1终点已完成，均未过强N门**。marker union **.663128103**（比unmarked +.017472459，但仍低N .676546355），replacement **.558854734**；不扩F0/full64/dev。两run共新4v2/旧0。GPU已10:06:58实际释放；完整[比较](evidence/comparison.json)、[marker运行恢复](evidence/marker-runtime.json)。
 - **首版已完整负结案**。8ep/64Adam及全F1完成、GPU已09:54:09释放；两固定终点共冻后新2v2/旧0：union **.645655645**、candidate-replacement **.534242627**，均低强N **.676546355**。不扩F0/full64，不改当前best。完整[结果](evidence/quality-v1.json)、[诊断](evidence/diagnosis-v1.json)、[运行/恢复](evidence/formal-runtime.json)。
 - 恢复：外部 `/workspace/patientphex-runs/round2-20261023/stage8-document-relations/`；源码入口本目录`prepare.py`。
 
@@ -25,3 +25,5 @@
 marker-v2部署已完成：4件source/encoded在.3 CUDA隐藏CPU写入/fsync/重开逐SHA通过，receipt09379831…；source/plan检查点ea482a4已push并远端核准，正式尚等span释放。另导出融合候选逐提及边界/原文/三public来源，1069概念2180提及/360052B，stable key与全部2874logits匹配，见evidence/fusion-support.json。
 
 marker改变输入长度，维持510窗上限的必要重映射已披露：训练正对attention支持交叠720→713/727、无交集7→14；held无标签交叠2172→2053/2874。所有原提及仍参与，无新增fallback或mask。不是完全同token窗的数值等价对照。
+
+marker正式178.409秒rc0，8epoch/64Adam/16held全部完成，state1.319GB SHA14858de2…持久；scores2874/SHA8c94001c…实际回收。候选AP .44811→.54738，多患者AP .41319→.50542；新167条43TP/124FP，仍不足以改善强N。端点前两完整预测共冻，未作cut/epoch选择。源47ae85d已push并远端核准，当前整理两run持久交接；固定更充分训练仅为待协调后继，不冒称已执行。
