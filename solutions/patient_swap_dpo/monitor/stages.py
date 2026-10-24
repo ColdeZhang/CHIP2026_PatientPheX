@@ -95,10 +95,19 @@ def inspect(directory, remote, inference=False):
 
 def collect_core(directory, remote):
     p = core_plan(directory); out = state(directory) / 'core'
+    receipt_path=state(directory)/'core-terminal-receipt.json'
+    write_exact(receipt_path,read_small(remote,p['run_root']+'/small-terminal-receipt.json'))
+    receipt=json.loads(receipt_path.read_text())
+    assert receipt['archive']['path']==p['run_root']+'/small-terminal.zip'
+    archive=state(directory)/'core-terminal.zip'
+    fetch_archive(remote,receipt['archive'],archive)
+    collected=state(directory)/'core-terminal'
+    unpack_verified(archive,collected,receipt['members'])
+    assert (collected/'plan.json').read_bytes()==(directory/'execution-plan.json').read_bytes()
     names = ['driver-start.json', 'driver-result.json', 'formal/start.json', 'formal/complete.json',
              'formal/verified-assets.json', 'formal/epoch-001-persistent-ack.json', 'formal/epoch-001/checkpoint.json']
     for name in names:
-        write_exact(out / name, read_small(remote, p['run_root'] + '/' + name))
+        write_exact(out / name, (collected/'run'/name).read_bytes())
     driver = json.loads((out / 'driver-result.json').read_text())
     inherited=p.get('inherited_reference')
     assert driver['status'] == ('COMPLETE_RECOVERY_PROBE_AND_FORMAL' if inherited else 'COMPLETE_ALL_THREE_PHASES')
@@ -131,7 +140,9 @@ def collect_core(directory, remote):
     assert checkpoint['counts'] == done['counts'] and checkpoint['recipe'] == p['recipe']
     assert {k: {x: v[x] for x in ['bytes', 'sha256']} for k, v in ack['files'].items()} == checkpoint['files']
     record(state(directory) / 'core-collected.json', {'core_plan': ref(directory / 'execution-plan.json'),
-           'files': {n: ref(out / n) for n in names}, 'large_states_remain_remote': True})
+           'files': {n: ref(out / n) for n in names}, 'large_states_remain_remote': True,
+           'terminal_archive':ref(archive),'terminal_inventory':ref(collected/'inventory.json'),
+           'full_small_inventory_verified_before_extract':True})
 
 
 def check_receipt(directory, name):
