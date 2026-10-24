@@ -1,0 +1,50 @@
+--- published-oldpolicy/run_probe.py
++++ newcodec-longest/run_probe.py
+@@ -1 +1 @@
+-"""Published tokenizer first+longest native R1 format/cost pilot; max4096, no quality."""
++"""New fixed codec longest-only native R1 format/cost; fresh prompt/RNG, no quality."""
+@@ -5,0 +6 @@
++from normalized_final import parse_normalized,tests as normalized_tests
+@@ -25 +26 @@
+-        assert plan['execution_ready'] is True and plan['process_budget_seconds']==480 and plan['TERM_grace_seconds']==30
++        assert plan['execution_ready'] is True and plan['process_budget_seconds']==240 and plan['TERM_grace_seconds']==30
+@@ -40,5 +41,8 @@
+-        rows=[json.loads(x) for x in checked(plan['selected_prompts']).read_text().splitlines()];encoded=json.loads(checked(plan['selected_encoded']).read_text())['rows'];assert 1<=len(rows)==len(encoded)==len(plan['row_ids'])<=2
+-        assert [x['row_id'] for x in rows]==plan['row_ids']==[x['row_id'] for x in encoded]==[x['row_id'] for x in cpu['selected']]
+-        assert [x['native_input_tokens'] for x in encoded]==plan['input_tokens']==[x['native_input_tokens'] for x in cpu['selected']]
+-        assert cpu['all80_raw_generic_native_IDs_exact'] and cpu['all80_roundtrip_exact'] and cpu['selected_indices']==plan['selected_CPU_indices']
+-        report['fixed_selected_row_count']=len(rows);report['fresh_prompt_not_old_KV_or_RNG_continuation']=True
++        rows=[json.loads(x) for x in checked(plan['selected_prompts']).read_text().splitlines()];encoded=json.loads(checked(plan['selected_encoded']).read_text())['rows'];assert len(rows)==len(encoded)==2
++        assert [x['row_id'] for x in rows]==plan['published_CPU_pair_row_ids']==[x['row_id'] for x in encoded]==[x['row_id'] for x in cpu['selected']]
++        assert [x['native_input_tokens'] for x in encoded]==[x['native_input_tokens'] for x in cpu['selected']]==[2014,5689]
++        assert cpu['all80_raw_generic_native_IDs_exact'] and cpu['all80_roundtrip_exact'] and cpu['selected_indices']==[0,73] and plan['selected_pair_index']==1
++        rows=rows[1:2];encoded=encoded[1:2]
++        assert [x['row_id'] for x in rows]==plan['row_ids']==['6063015:relations:0'] and plan['input_tokens']==[5689] and plan['selected_CPU_indices']==[73]
++        codec_receipt=json.loads(checked(plan['codec_CPU_result']).read_text());assert codec_receipt['status']=='PASS_FIXED_CODEC_CPU_ONLY_ON_EXISTING_FIRST746' and codec_receipt['codec_sha256']==plan['sources']['normalized_final.py']
++        report['fixed_selected_row_count']=1;report['fresh_prompt_not_old_KV_or_RNG_continuation']=True;report['first_sample_not_regenerated']=True
+@@ -65 +69 @@
+-        report['parser_tests']=tests();report['sparse_parser_tests']=sparse_tests();report['input_preflight_seconds']=time.monotonic()-start;atomic(out/'progress.json',dict(report,phase='loading_native_model'))
++        report['parser_tests']=tests();report['sparse_parser_tests']=sparse_tests();report['normalized_parser_tests']=normalized_tests();report['input_preflight_seconds']=time.monotonic()-start;atomic(out/'progress.json',dict(report,phase='loading_native_model'))
+@@ -93,3 +97,3 @@
+-        # A fixed internal wall stop leaves15seconds for serialization/release under the external480s cap.
+-        soft_deadline=start+465;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':4096,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
+-        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=465
++        # A fixed internal wall stop leaves15seconds for serialization/release under the external240s cap.
++        soft_deadline=start+225;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':4096,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
++        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=225
+@@ -120 +124,5 @@
+-            atomic(out/('row%d.json'%row_number),item);report['rows'].append({'path':str(out/('row%d.json'%row_number)),**ref(out/('row%d.json'%row_number)),**{k:item[k] for k in ['row_id','input_tokens','generated_tokens','native_EOS_observed','stopped_at_token_cap','stopped_at_wall_budget','generation_seconds','tokens_per_second_including_prefill','strict_final_valid','legal_sparse_valid']}})
++            try:
++                normalized=parse_normalized(content,eos_observed=eos,stopped_at_cap=cap or stopper.wall_stop,code_map=row['code_map'],patient_ids=row['patient_ids']);item['normalized_valid']=True;item['normalized_evidence']=normalized
++                if item['strict_final_valid']:assert normalized['provided_mapping']==item['parsed_final']
++            except (ValueError,TypeError) as e:item['normalized_valid']=False;item['normalized_invalid_reason']=str(e)
++            atomic(out/('row%d.json'%row_number),item);report['rows'].append({'path':str(out/('row%d.json'%row_number)),**ref(out/('row%d.json'%row_number)),**{k:item[k] for k in ['row_id','input_tokens','generated_tokens','native_EOS_observed','stopped_at_token_cap','stopped_at_wall_budget','generation_seconds','tokens_per_second_including_prefill','strict_final_valid','legal_sparse_valid','normalized_valid']}})
+@@ -122,4 +130,4 @@
+-            if not item['legal_sparse_valid']:
+-                report['status']='STOPPED_FIRST_TRUNCATED_OR_INVALID_FINAL_THIS_BUDGET_ONLY';report['stop_reason']=item['sparse_invalid_reason'];break
+-        else:report['status']='PASS_PUBLISHED_NATIVE_LEGAL_SPARSE_FORMAT_COST_ONLY_NOT_QUALITY'
+-        report['full_generation_IDs_preserved']=True;report['limitation']='A4096-token or480-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'
++            if not item['normalized_valid']:
++                report['status']='STOPPED_FIRST_TRUNCATED_OR_INVALID_FINAL_THIS_BUDGET_ONLY';report['stop_reason']=item['normalized_invalid_reason'];break
++        else:report['status']='PASS_PUBLISHED_NORMALIZED_LONGEST_FORMAT_COST_ONLY_NOT_QUALITY'
++        report['full_generation_IDs_preserved']=True;report['limitation']='A4096-token or240-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'

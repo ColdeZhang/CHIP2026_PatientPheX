@@ -1,0 +1,14 @@
+--- published-oldpolicy/launch_probe.py
++++ newcodec-longest/launch_probe.py
+@@ -1 +1 @@
+-"""One owned GPU probe process, fresh physical GPU1 gate,480s+TERM30, release receipt."""
++"""One owned GPU probe process, fresh physical GPU1 gate,240s+TERM30, release receipt."""
+@@ -23 +23 @@
+-    assert os.getuid()==1006 and plan['execution_ready'] is True and plan['process_budget_seconds']==480 and plan['TERM_grace_seconds']==30
++    assert os.getuid()==1006 and plan['execution_ready'] is True and plan['process_budget_seconds']==240 and plan['TERM_grace_seconds']==30
+@@ -25 +25 @@
+-    state=dict(status='starting_owned_probe',at=now(),source_sha256=sha(__file__),plan_sha256=sha(p),cap_seconds=480,TERM_grace_seconds=30,only_published_first_and_longest=True,no_gold_quality=True)
++    state=dict(status='starting_owned_probe',at=now(),source_sha256=sha(__file__),plan_sha256=sha(p),cap_seconds=240,TERM_grace_seconds=30,only_published_longest_new_codec=True,no_gold_quality=True)
+@@ -30 +30 @@
+-        command=['timeout','--signal=TERM','--kill-after=30s','480s',plan['python'],'-u',str(base/'run_probe.py'),'--plan',str(p)];state['command']=command;state['GPU_main_started_at']=now();t=time.monotonic()
++        command=['timeout','--signal=TERM','--kill-after=30s','240s',plan['python'],'-u',str(base/'run_probe.py'),'--plan',str(p)];state['command']=command;state['GPU_main_started_at']=now();t=time.monotonic()
