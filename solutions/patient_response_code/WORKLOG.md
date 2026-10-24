@@ -14,3 +14,7 @@
 - Dedicated helper prepared only `formal_train/`: source manifest `e112cd2b…`, trainer `9b8addda…`, plan `43db4c0c…`; 59 stdlib checks passed in 0.026066 s. Original indexed epoch loop and complete Adam/scheduler/RNG restore AST reused. No model run by helper.
 - Owner prepared two-epoch / 3600+30 controller, per-epoch private SHM→.100 full SHA/fsync/reopen ACK, detached exclusive-lock local watcher, complete80 fresh F1 decoder and two fixed quality arms. Formal activation remains conditional on this route's actual 240+30 pressure result and measured cost.
 - First A100 read-only deployment inventory returned UNKNOWN (no write/claim/start); next inventory returned explicit LUNA_OFFLINE at 11:23:44 UTC. Preserved both receipts separately. Unified ≥185 s cooldown until 11:26:49.308 UTC. No GPU work has started; original method/source/clock authorization unchanged.
+
+### 2026-10-24 11:27 UTC — unique actual probe started
+
+A100 recovered; all 13 package members SHA/fsync/reopen passed. A subsequent start inventory UNKNOWN was before local intent/remote claim; same inventory recovered once, no repeated model start. Actual job proc_6e7979ca-c61e-4cb0-9807-ce042f7fbfe3 / PID 129094 at 2026-10-24T11:27:21.190874469Z. Driver original TERM 2026-10-24T11:31:21.388561+00:00, KILL 2026-10-24T11:31:51.388561+00:00. Full proof in evidence/probe-start.json; no formal/quality yet.
