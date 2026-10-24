@@ -9,16 +9,15 @@
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
 
-## 当前任务：patient-first F0 格式失败后的固定恢复准备
+## 当前任务：患者优先双折互补的三方CPU控制／full64准备
 
-**两轮52calls完整持久训练成功；原strict58在第24行格式失败停止，尚无新F0分数。** 原推断proc_22400ec4于04:10:32.994 rc1/130.785秒退出，23条合法raw已存；04:10:33.116 GPU2实际0MiB/无进程。第24输入3563609:relations:8（3073token、9患者/8CID），顶层patient-key集合不符合strict。旧runner先parse再write，丢失该条raw/IDs；不能猜具体缺键或重新生成后冒称原件。
+**F0恢复58完整结束，原strict失败保留；primary负、oldSFT48∪patient增量通过事前判据。** 新primary .684342231，旧baseline .695443948；固定secondary **.705527893（+.010083945）**，关系micro+.020643194、macro+.019692587，新增26=16TP10FP且保留全部旧关系。947实体/非关联不变。仍低同池rules .711353522；原dev .8目标未完成，不自动迁dev。
 
-主线程已授权独立后继：精确复用23条缓存，其余35（含丢失失败条）新生成，同durable epoch2/greedy/输入/1600cap，独立600+TERM30。先逐行原子持久raw/IDs/终止信息，再有限解析；合法PID子集的缺键为弃答，未知/重复key或非法CID等整行弃答，不把补空列表伪称模型答案。完整58各有已存响应/失败后，primary/old∪new共同freeze再各唯一v2，旧指标复用，原strict失败保持独立。不重训/自动改变数值或增加其他组合。新源/实际CPU已通过，恢复job proc_d19bf1ac-96f4-49a4-b65c-56aec88322c2/PID100444于04:18:08.457145Z已启动，approx TERM04:28:08.457/KILL04:28:38.457（driver为准）；不重复start。
-
-- 训练rc0/native2279.145秒，两epoch各519,866,582B完整state，真实file/dir/祖先链fsync/重开SHA；final adapter51f8c7a4/state9932ff4d。原16件collection b9693ce9；新推断7件回收精确。
-- [完整方法和原失败](experiments/patient-first-F0.md)、[严格失败诊断](evidence/round2/patient-first-F0-strict-failure-diagnostic.json)；训练入口bcaf14d3保持，恢复入口另立。
-- 外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`；原`training-collection.json`、`inference-collection.json`、`strict-failure/diagnostic.json`和两个terminal目录不可覆盖。旧finish/commonfreeze/evaluate均未运行，不能对23条部分评分。新目录`abstain-recovery/`，MCP UNKNOWN只查既有intent，不重复未知start。
-- F0固定基线old48 .6954439475814587；保留规则仍delta(micro+macro)>0且macro不降。原dev验收不变，未授权官方上传或自行迁dev。
+- 原两轮52calls训练成功/完整state已持久；原strict推断第24行格式失败、无分数，23raw保存。独立恢复23精确缓存＋35新生成，于04:22:08 rc0/240.178秒完整终止，GPU2实际0MiB/无进程，本路线无活动GPU或后继。
+- 完整58中57complete/1partial/0整row弃答；新3563609:relations:8只缺O7P，弃8候选对，53tokens/真实EOS248046。这是新生成实际内容，不能冒称找回旧失败raw。162小件逐SHA、全部ID独立decode/codec一致；两fullpred共冻be17f7b4后才两次v2，旧metric不重评。
+- [完整记录](experiments/patient-first-F0.md)、[结果](evidence/round2/patient-first-F0-recovery-results.json)、[终点清单](evidence/round2/patient-first-F0-recovery-terminal-manifest.json)。外部P=`/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-preparation`，B=P/abstain-recovery。source/完整raw/state/原失败均冻结，禁止重启已完作业或重评。终点同validator集中复核中。
+- root随后新授权一个事后提出但事前固定的CPU控制：F1/F0 literal union(oldSFT,reverse,patient)，两折预测共冻后各唯一v2；门槛两折Score均严格高于各自old∪reverse且macro均不降。无扫描/第四臂，≤60秒；helper执行，不属于原初预注册。
+- 并行仅CPU准备原full64/265训练提示与原dev纯64转置、来源/实际tokens/空间，禁止读取新devgold或启动正式GPU。三方控制若不过则不迁dev；若过再据最长行实成本准备probe/full64，由root统筹。
 
 ## 已闭环的最近关键决策
 
@@ -36,4 +35,4 @@
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
 - 截至本页整理前，已push并lsremote确认 `8946555a80c6c5711449b8460a4fabf9ad0942e8`，包含首轮持久收据；本次完整训练终点即刻备份。不要为记录台账自身SHA递归提交。
-- 下一里程碑是原23+新35完整推断及唯一双质量终点；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 下一里程碑是F0恢复统一终审、三方固定CPU控制及full64 input-only准备；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。

@@ -113,3 +113,18 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 恢复source/实际CPU已push+lsremote a74ef8a39c2e。fresh空卡与同epoch2身份后，唯一proc_d19bf1ac-96f4-49a4-b65c-56aec88322c2/PID100444于04:18:08.457145Z启动35新生成，独立600+30，approx TERM04:28:08.457/KILL04:28:38.457；以driver实际为准。23旧raw精确复用，尚未新F0评分，原strict判断不改写。
 
 恢复终点源6ee51d66/plan b719834e/policy8bd22643已在新质量前冻结：要求完整162件/原23字节前缀/35独立generation receipts，原ID独立完整decode、有限codec逐条重放；只汇总显式正关联，弃答计数单列，947实体/非关联不变。双fullpred共同freeze后各唯一v2，原old48指标复用，不读partial质量。helper仅静态0.042635秒，未来终点尚未执行；旧strict源/计划不改。
+
+
+## 恢复完整终点：primary负，固定旧SFT并集正
+
+04:22:08.734实际wrapper rc0/240.177567秒，native234.234秒、peakallocated19,874,135,552B；GPU2于04:22:08.853670核0MiB/无进程，无GPU后继。162件完整回收逐SHA，raw f8e449b6/manifest8b0cf767；原23 byte前缀精确、35新generation receipts完整。所有58原IDs独立decode与有限codec重放通过，57complete/1partial/0整rowabstain。新partial仍为3563609:relations:8，实际省O7P，保留其它8键中2条显式正关联，8候选对弃答；53tokens/EOS248046/非cap。此为新响应证据，不能反推原丢失raw逐字相同。
+
+完整947实体/415CID/1166对不变，primary277关系、旧276、并集302；共冻be17f7b4后04:22:42各唯一v2，旧指标复用：
+
+| 臂 | Score | micro | macro | 对旧SFT变化／判定 |
+|---|---:|---:|---:|---|
+| 旧SFT48（复用） | .695443948 | .690076336 | .639022564 | 固定基线 |
+| patient显式输出primary | .684342231 | .692073171 | .592618865 | Score−.011101716；加16TP10FP/删15TP10FP，macro降，负 |
+| 旧SFT48∪patient | .705527893 | .710719530 | .658715151 | Score+.010083945；加16TP10FP/不删旧关系，micro和macro升，keep=true |
+
+两份格式均0错误/0警告，实体两指标不变。仍低同池rules .711353522；相较既有old∪reverse .704687440总分略高但macro较低，不据此直接迁dev或擅增三方。root另行授权双折三方literal union固定CPU控制，明确在看到两个增量后新提出，原初政策不改写。owner终点5d75fcea已交同validator，待一份增量终审；完整raw/fullpred/state留外部。
