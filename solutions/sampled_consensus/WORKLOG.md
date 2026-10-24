@@ -29,3 +29,5 @@ root根据F1/F0主配方均正，已授权同native normal full64、128fresh、�
 原dev迁移native CPU门4.384秒已通过：复用原已核基座证书并逐inode/mtime/size精确一致，新1a703b适配器SHA完整重核，128行seed/四samplerprocessor合同通过，无新tokenization/GPU。F0+full64准备独审`1c110220…`已PASS，范围不含新的128运行。最终plan/receipt冻结后即唯一启动。
 
 原dev唯一128已实际11:56:20.925305Z启动，`proc_de171481-475e-41b2-806d-5ff33364cd8d` / PID2735800，原TERM12:31:20.925286Z/KILL12:31:50.925286Z。GPU1 fresh0MiB，GPU0为其他路线6146MiB进程未碰；最长index1正式首行已EOS/strict成功，后续仍待完整128，禁止重新启动。恢复入口外部`nonthinking-sampled-consensus-full64-20261024/monitor_once.py`。
+
+原dev128已完整：852.192秒rc0，12:10:33.243420Z实际释放GPU1为0MiB/noapps，全部EOS/strict/0弃答。411成员原包284031B/01e7681e完整读回及逐SHA核过，128原IDs/raw/canonical/source合同通过。唯一主预测ee39defb与freeze已固定，保全部B901；此提交前新v2仍0，随后仅评预定主端点1次。
