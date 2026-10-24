@@ -1,0 +1,49 @@
+{
+  "status": "CONDITIONAL_COST_ESTIMATE_NOT_GPU_AUTHORIZATION",
+  "actual_cpu": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/full64-readiness/result.json",
+    "bytes": 2593,
+    "sha256": "416da6efc4adef9ac1f0ccc9ff4cd8b6489d9483bd1ccb48836c0eca992c96d9"
+  },
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/full64-readiness/ancestry.json",
+    "bytes": 8790,
+    "sha256": "0846cfd33fcc3146a339351b3bd796aa974f8fbeb4e8dcda99c6256626168188"
+  },
+  "dev_crf_extra_actual_ancestry": {
+    "path": "/workspace/patientphex-runs/day1-20261023/sequence-crf/crf-dev-v1/pred-manifest.json",
+    "bytes": 1409,
+    "sha256": "93a629e8ff9181ffb27c32925a2c6d73d769fc959c75ee014cb2a3b316fa3def"
+  },
+  "reference_train32": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/collected/run/formal/complete.json",
+    "bytes": 18024,
+    "sha256": "ceac18f95369580a0c7c1c21302d8d333833da44573ed83cffddc72aa8a198c8"
+  },
+  "scales": {
+    "training_rows": 2.1370967741935485,
+    "sum_tokens": 2.1493063393120693,
+    "sum_squared_tokens": 2.151291436156187,
+    "longest_tokens": 1.1122153957354535
+  },
+  "empirical_reference_training_seconds": 686.262835,
+  "linear_seconds_estimate": 1474.9890616997725,
+  "quadratic_seconds_estimate": 1476.3513598877662,
+  "estimate_limit": "A30 same capacity but source Torch2.7.1cu126 vs target2.7.0cu128. Token/quadratic scaling bounds are heuristic, not measured full64 runtime.",
+  "formal_suggested_seconds": 2400,
+  "TERM_grace_seconds": 30,
+  "required_new_shape_gate": "Only if root authorizes after F0 gate: fresh public Qwen3 and same r16 indexed standard CE, initial8 -> Adam -> accum3 -> both Pareto(4992,116)/(6155,113), no loss re-audit or truncation; discard probe state. Proposed240+30 includes original same loader.",
+  "known_source_peak_allocated_bytes": 21179588096,
+  "new_peak_not_measured": true,
+  "intended_same_training": "2epochs/68updates/accum8/tail1/lr1e-4/wd.01/r16alpha32drop.05/all7/seed20261023; preserve original indexed standard mean causalCE, original265 rows, fresh base rather than old32 adapter continuation.",
+  "disk": {
+    "cached_base_bytes": 16397443036,
+    "two_epoch_adapter_optimizer_state_bytes_reference": 1048535354,
+    "runtime_already_copied": true,
+    "free_at_F0_start_bytes": 169315987456,
+    "suggested_new_run_free_bytes": 2147483648
+  },
+  "originaldev_inference": "64 full inputs,509609tokens,max13175; max_new1600 unchanged; no originaldev GPU/quality authorized or run",
+  "originaldev_gold_read": false,
+  "full64_fit_steps": 0
+}

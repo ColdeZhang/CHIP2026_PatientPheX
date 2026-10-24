@@ -30,3 +30,5 @@
 - F0迁移完成：原182807574B/b357f150/2617件固定包，public tunnel约103s仅6MiB，已明确停止自己receiver/server并关闭tunnel、保留partial。改.100→.3私网单包bearer/180TTL/20MiB上限，小range身份核通过，16.043463s全SHA+fsync完成；服务已停止、secret删除。目标CPU8.819904s核实际Torch2.7.0cu128/TF4.51.3/PEFT.15.2/tokenizers.21.2等，58原生IDs/双解码与.100编码全exact、504adapter头43.646976M参数，未加载NN值/未CUDA。f0-plan.json与唯一union质量plan已固定，等待fresh GPU0门后唯一900+30。
 
 - F0 唯一推断已实际启动：11:46:42.243320 UTC，proc_8618168a / PID1206030，child1206034；TERM12:01:42.243320、KILL12:02:12.243320。首观察3/58，非训练；启动和全卡只读门见 evidence/F0-start.json。
+
+- 条件full64 CPU完成：265/64原行 native token/双解码与shift mask精确；train866495 tokens/max6155/监督15410，dev509609/max13175。2ep68updates，Pareto(4992,116)/(6155,113)。证据416da6ef，成本推算见 full64_readiness/cost-and-conditional-plan.json；尚未获或执行full64 GPU/原dev质量。
