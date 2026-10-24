@@ -174,3 +174,7 @@ PhenoBERT pair-only对原文短语和当前preferred name联合编码，输出No
 
 
 动态微批实体槽探针保留每行槽mean和原8行组真实分母、8192单微批pad上限，实际native原head双列与F.linear exact；按同head两行取值不增加参数。右padding毒化0但batch-vs-row BF16 logits max差.25，在事前相对容差内，不能宣称bitwise等价。2epoch291微批替代1274逐行调用，warm组实测4.09–15.50s，预算代理约23.5–23.8分钟更新阶段，不是正式训练耗时。参见entity-slot-microbatch-probe-results.json；未用F1标签/质量，未正式训练。
+
+## 固定候选逆序输入控制：可行性，尚无质量
+
+原9B/SFT32同80未做过列表逆序或对应一致性组合（检索负责人确认；旧530条件枚举保留原顺序）。本次仅CPU把原候选逆序并同步CID/code_map，全部user双逆byteexact、587概念/患者/证据不变，max5691token。它检查AR多答案的排序依赖，不能先认定会提高正确率。原单检索示例F1已经负结案，不附加到此控制。无GPU/新评分，详见 experiments/reverse-json-order.md。
