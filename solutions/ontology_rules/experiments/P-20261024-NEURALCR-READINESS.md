@@ -15,6 +15,10 @@
 
 ## 完整文件到齐后的最小检查
 
+首轮实际于 00:31:04.996494Z 核实 MCP stopped、原 PID 和精确 downloader argv 均无；[终态](../public_neuralcr_readiness/download-terminal.json)为未完整，原返回码未知，不推测 rc124。稳定 prefix 为 HP 26,214,400 字节、fastText 150,994,944 字节，共 **177,209,344** 字节；fastText 的最后状态记有 3 次网络失败。原 state/partial 保留，不能称首轮按时下载完成。
+
+独立 attempt2 的[正式计划](../public_neuralcr_readiness/resume-preparation/resume-plan.json)绑定这两个 prefix 的真实 SHA/原 ETag，只下载剩余 **1,751,739,725** 字节；4 路总并发、1800 秒+TERM30，完整输出写入 `public-neuralcr-readiness/resume-attempt2/downloads`。计划和源码推送后才启动，原文件只读；没有自动第三轮授权。
+
 [已冻结 CPU 计划](../public_neuralcr_readiness/cpu-preparation-plan.json)仅安全提取 `HP/ncr_weights.h5`、`HP/config.json`、`HP/onto.json`，拒绝链接与目录逃逸，不反序列化 pickle、不提取外部标注。核 H5 唯一对象和完整 fastText 字典/两个矩阵至精确 EOF；异常头结构先保留证据，不能把未确认布局直接交 C++ 或私自修改。
 
 原生加载另限总 180 秒，四个事前固定非空合成文本，保持 10 ensemble、原 `.8`、1–7 gram、原 overlap 政策。预先允许的一行兼容改动仅 `tensorflow` → `tensorflow.compat.v1`；数学不变。检查实际权重恢复、概率有限、返回字符坐标与真实打分词串/原文的对应。不把接口通过当质量增益。首次故障保留，必要时仅一次有证据的接口修复；未完整下载/库存不足时不进入赛事质量。
