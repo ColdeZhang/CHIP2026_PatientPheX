@@ -20,6 +20,7 @@ def ref(p):p=Path(p).resolve();return dict(path=str(p),bytes=p.stat().st_size,sh
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);a=ap.parse_args();p=json.loads(Path(a.plan).read_text());started=time.monotonic()
+ assert time.time()<=p['admission_deadline_unix'],'Expired launch admission before any model import'
  assert p['schema']=='grounded-copy47-inference-v1' and p['inference_authorized'] is True
  assert p['max_new_tokens']==1600 and p['all_rows_fresh'] and p['expected_rows']==47
  assets=p['assets']
@@ -112,6 +113,7 @@ def main():
  assert set(pools)==set(ids)
  for row in rows:
   c=pools[row['row_id']];assert (c['pmc_id'],c['target_patient_id'])==(row['pmc_id'],row['target_patient_id'])
+ assert time.time()<=p['admission_deadline_unix'],'Expired launch admission before loading weights'
  config=Qwen3_5TextConfig.from_pretrained(modelpath,local_files_only=True)
  model,loading=Qwen3_5ForCausalLM.from_pretrained(modelpath,config=config,dtype=torch.bfloat16,device_map='cuda:0',attn_implementation='sdpa',local_files_only=True,output_loading_info=True)
  publish_json(out/'loading.json',loading,root)

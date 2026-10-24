@@ -1,5 +1,5 @@
 """Bind the full47 inference after actual CPU success and prior GPU release."""
-import argparse,json,sys
+import argparse,json,sys,time
 from pathlib import Path
 S=Path(__file__).resolve().parent;C=S.parent;D=Path('/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-v1');P='/home/zhangyuheng/projects/CHIP2026_PatientPheX';ROOT=P+'/copy-grounded-decode-v1/F0-v1/infer';CPU=P+'/copy-grounded-decode-v1/F0-v1/cpu'
 sys.path.insert(0,str(C));from local_common import ref,save
@@ -18,5 +18,6 @@ def main():
  p['assets']['candidates']=cp['assets']['candidates'];p['assets']['constraint_cpu_result']=dict(path=CPU+'/actual/result.json',**ident(ref(D/'cpu/terminal/actual/result.json')))
  payload={name:ref((S if name in ['infer.py','job_driver.py'] else C)/name) for name in ['infer.py','job_driver.py','raw_store.py','processors.py','triple_trie.py']};p['payload_sources']=payload;p['files']={ROOT+'/'+n:ident(v) for n,v in payload.items()}
  for key,name in [('runner','infer.py'),('driver','job_driver.py'),('raw_store','raw_store.py'),('processors','processors.py'),('trie','triple_trie.py')]:p['assets'][key]=dict(path=ROOT+'/'+name,**ident(payload[name]))
+ p['admission_bound_at_unix']=time.time();p['admission_deadline_unix']=p['admission_bound_at_unix']+600;p['admission_semantics']='10-minute absolute launch window checked at driver entry, before child Popen, and before weights; inference remains2400+30 from actual start, no reset onUNKNOWN'
  save(S/'infer-plan.json',p);print(json.dumps(ref(S/'infer-plan.json')))
 if __name__=='__main__':main()

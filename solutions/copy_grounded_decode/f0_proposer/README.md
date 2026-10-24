@@ -41,3 +41,11 @@ python "$S/finalize_essential_v2.py"
 ```
 
 旧`prepare.py`及推断plan保持；新builder在所有172 windows唯一覆盖、selected总数逐窗一致、model/source/input身份核齐后才构必要query计划。个体raw IDs/heads诊断仍有原SHA/完整服务器locator；不得写allraw本地已齐。旧full collector可在不挤占关键MCP时续读原冻结包，禁重打包/重生成。
+
+### F0 Sap UNKNOWN 的独立恢复 v3
+
+原 `normalize-v1` 唯一 start 请求于 15:31:07.731526 UTC 返回 UNKNOWN；原运行器没有预绑定启动有效期，不能用等待或空卡代替终态。只读 registry 与 `/proc` 均无匹配，得到 root 明确授权后，15:34:16.013005 在原 `fresh-resource-gate.json` 独占发布 `FENCED_UNKNOWN_LAUNCH`（599e2e7f；不是 resource PASS）。原 driver 在任何 Popen 前必须独占发布此路径，因此迟到请求将退出。完整 fence receipt 位于仓外 `unknown-fence-v3/complete.json`（18b088de），原源码、plan、UNKNOWN 和 claim 保留。
+
+独立 `normalize-recovery-v3` 保持同 296 查询、模型/输入/FP16/policy、180+30 秒预算，只增加 plan/request/driver/normalizer 的固定五分钟启动有效期。有效期过后不得载入模型；不是扩大实际运行预算。CPU 合同覆盖有效/过期/错绑定、真实入口在任何源/模型读取前拒绝、内嵌远端代码编译；无 GPU/远端调用。部署通过原已完成 package 的同 SHA 文件服务器内校验复制，只传变化源与新 plan。parent 推送新 source/plan 并确认后才能启动。
+
+原 GLiNER 全 172 窗完整、10 件 essential 已逐 SHA 回收；3355845 字节原完整 raw ZIP 在服务器持久，仍待本地完整回收。规范化及 accepted 池不评任何质量端点。

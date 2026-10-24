@@ -33,6 +33,11 @@ def main():
     cap=p['budget_seconds'];grace=p['grace_seconds'];gpu=p['phase']=='infer'
     assert (cap,grace)==((2400,30) if gpu else (120,5))
     assert p['execution_authorized'] and p['expected_rows']==47 and p['all_rows_fresh']
+    def admission():
+        if gpu and time.time()>p['admission_deadline_unix']:
+            publish_json('admission-expired.json',dict(status='EXPIRED_BEFORE_MODEL_CHILD',at_utc=datetime.now(timezone.utc).isoformat(),deadline_unix=p['admission_deadline_unix'],plan_sha256=sha(args.plan),model_child_started=False),root)
+            raise SystemExit(125)
+    admission()
     assert os.environ['PATIENTPHEX_DURABILITY_ROOT']==str(root)
     for name,item in p['files'].items():
         assert Path(name).stat().st_size==item['bytes'] and sha(name)==item['sha256']
@@ -49,11 +54,13 @@ def main():
         assert p['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes']>=512*1024**2
     else:
         assert os.environ['CUDA_VISIBLE_DEVICES']==''
+    admission()
     start=time.monotonic();utc=time.time();timed_out=False
     publish_json('driver-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),
         plan_sha256=sha(args.plan),command=p['argv'],deadline_TERM_unix=utc+cap,deadline_KILL_unix=utc+cap+grace,
         budget_seconds=cap,grace_seconds=grace,no_automatic_retry=True),root)
     with Path('stdout.log').open('xb') as out,Path('stderr.log').open('xb') as err:
+        admission()
         child=subprocess.Popen(p['argv'],stdout=out,stderr=err,start_new_session=True)
         publish_json('child-started.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),driver_pid=os.getpid(),child_pid=child.pid),root)
         try:
