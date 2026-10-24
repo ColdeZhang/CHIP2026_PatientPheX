@@ -131,7 +131,7 @@ def main():
    except BaseException as error:
     publish_json(out/'generation-failure.json',dict(seed=seed,row_id=row['row_id'],type=type(error).__name__,message=str(error),no_retry=True,completed_rows=len(all_records),no_completed_suffix_available=True),root);raise
    suffix=output[0,len(tokens):].tolist();ended=bool(suffix and suffix[-1] in eos);capped=len(suffix)>=1600 and not ended
-   gen=dict(row_id=row['row_id'],pmc_id=row['pmc_id'],target_patient_id=row['target_patient_id'],seed=seed,row_seed=rs,generated_token_ids=suffix,input_tokens=len(tokens),output_tokens=len(suffix),actual_last_token_eos=ended,hit_token_limit=capped,seconds=time.monotonic()-began,decoded_or_parsed=False)
+   gen=dict(row_id=row['row_id'],pmc_id=row['pmc_id'],target_patient_id=row['target_patient_id'],seed=seed,row_seed=rs,generated_token_ids=suffix,input_tokens=len(tokens),output_tokens=len(suffix),actual_last_token_eos=ended,hit_token_limit=capped,seconds=time.monotonic()-began,max_gpu_allocated_bytes=torch.cuda.max_memory_allocated(),max_gpu_reserved_bytes=torch.cuda.max_memory_reserved(),decoded_or_parsed=False)
    gref=publish_json(row_path(seedout/'generation',row['row_id']),gen,root);generation_refs.append(gref)
    text_ids=suffix[:-1] if ended else suffix
    response=native_tok.decode(text_ids,skip_special_tokens=False);hresponse=tok.decode(text_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)

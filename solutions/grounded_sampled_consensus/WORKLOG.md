@@ -19,3 +19,7 @@
 预算前置修订：root在任何GPU start/intent之前根据1779.411秒保守估计，明确将唯一正式78共享上限1800改2400+TERM30。原1800源f6a85817/decision保留，新decision-budget-v2记录；CPU120+5、全部39×2输入/1600/两seed/normalizer/单quality均不改，无GPU失败/试跑。
 
 原CPU唯一proc1e022915/driver32173在13:44:17完整结束，6.779秒；12实际件collection3882542a全部SHA收齐。39全文native/HF/local IDs与模板/decoder全等，78种子无重复、同seedCPU draws一致，原d52四cache文件精确SHA通过；没有GPU/fit。实际GPU计划e3707f21绑定原d52及新2400+30，全部78 fresh，下一步先checkpoint再fresh卡门唯一启动。固定后处理SOURCE-HANDOFF c18ad4fa与合成4165bc40也已完整，不读heldgold。
+
+迁机前置修订：原A800完整部署但从未GPU intent/start；卡交本体full64C。root改为.100 A30 GPU0，原native39 CPU receipt复用。actual249dad20核Torch2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1及两runtime SHA同一，base15件stat仍同旧全SHA证书，tokenizer/config四件新SHA通过，两卡空闲/盘396GB；3个准确目录均无d52。仅四件173197471B私网同字节复制，原完整训练state不迁移。
+
+本机真实同9B native116/128行分别805.858/851.003秒；按输出tokens代理新78约2369秒，1.45余量+150约3585秒，因此root在任何GPUstart前明确唯一共享3600+TERM30，decision-host-budget-v3记录原1800→2400→3600且旧源保留。每seed正式最长10080输入先行、原每行随机种子使排序独立，1600 cap和全部78不改；每行保存实际峰值显存，禁止临时截断/量化/KV变更。
