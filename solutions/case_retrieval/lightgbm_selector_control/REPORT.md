@@ -43,3 +43,11 @@ pooled menF1 **.771948494→.772867639**，docF1 **.809789609→.811077716**；�
 [结果](results/result.json) `6fc2c9e7`、[freeze](results/complete-freeze.json) `e31cfa67`、[完整终点清单](results/terminal-manifest.json) `087572cf`。入口独审[084923ce](results/entry-review.json)通过；[完整唯一终审1d6ed9fd](results/terminal-review.json)通过，未重fit/评分/读取新gold。root已据此另授权唯一full64/原dev迁移准备，本四fold源/质量保持冻结，不因后续修改。
 
 计划继承旧模板的`status/runtime_checks/success`文字未及时清理，其中仍写HGB/120秒；这是未执行的旧描述字段。实际estimator、180秒数值门和Score+3/4条件已在新字段及controller中事前固定，实际运行也一致。原plan不改写；[明确说明](results/plan-interpretation-addendum.json) `c19fb7ea`逐项标出旧字段和真正执行入口，不将旧文字冒充实际配置。
+
+## 独立的唯一full64/原dev迁移：源与计划就绪
+
+四fold终审1d6ed9fd通过后，root授权一个同配置fresh full64模型。直接复用已冻结64篇62,281候选pool `0b3d835a`和16篇13,246候选纯dev pool `18ac347e`；从旧bundle `42e94115`只取固定103列vectorizer做transform，不重fit向量器或HGB，不重生候选/特征缓存。旧矩阵文件未保存，只能称同数据/源/列序，不冒称比较过历史矩阵字节。[完整来源](FULL64-LINEAGE.md)明确四held16合64的OOF链和a179继承baac的实体链。
+
+新计划从最终作用域独立建立：[full64-plan.json](full64-plan.json) `745b1b85`、[entry](full64-entry.json) `c8c1d78a`、源[full64_dev.py](full64_dev.py) `e93a23c6`。单次fit＋完整保存回载＋dev predict，并连同解码/唯一v2全部放在120秒硬窗内，外层TERM5；没有沿用CV模板文字。新合并进程先用ontology feature，再显式给nested decoder绑定不同的sequence `run.py`；实际1.059秒纯导入合同证明原feature模块仍保留自己的baseline对象。未在准备阶段打开train/dev标签或pool正文。
+
+唯一预测模板固定a179，**只替换实体**，原391关系（含既有35项public-new）、全部患者及非entity UTF8片段原样保持，不重算支持或加入正在训练的患者模型。完整新fullpred冻结后仅一次v2，旧 **.746081964986**指标复用，报告四项指标；仅Score严格升判为candidate best，≥.8另走复现验收。原dev长期用于开发，非盲测。sequence仍使用其独立a179关系端点，本控制不改其baseline，也无官方操作。实际当前尚未运行，恢复入口为外部 `lightgbm-selector-readiness/full64-dev-control/execution-state.json`，存在输出目录时禁止重复启动。

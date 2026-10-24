@@ -8,7 +8,7 @@
 - [固定LightGBM](lightgbm_selector_control/REPORT.md)：同强BioBERT八池/原feature/label、160轮/15叶/min35/lr.06/L2=5，.3/nested不变；仅将sklearn HGB替成LightGBM4.6.0，分箱/生长数值不宣称等价。实际维数102/101/103/103；4fit/predict/回载59.389秒<180，finalize2.933秒<30，全部160轮、原生正列与保存回载exact。
 - pooled **.730993616492→.731545429370**（+.000551812878）；F0/F1/F2正，F3−.000405716，达到事前pooled严格升且≥3/4fold不降。44篇49加55删，非entity/关系literal bytes不变；完整四pred共冻e31cfa67先于eval marker，新5v2/旧0。结果6fc2c9e7、终点087572cf；入口审084923ce通过，完整终审1d6ed9fd已PASS/keeptrue。
 - source f71e491已push核验；正式controller session13703已rc0，外部 `research/lightgbm-selector-readiness/formal-control/execution-state.json` 为complete，不重启。原plan d893继承的HGB/120秒旧说明字段未执行，实际LGB/180/Score门以新字段与源为准；[sidecar c19fb7ea](lightgbm_selector_control/results/plan-interpretation-addendum.json)明确，不修改原冻结字节。
-- root新增授权：复用强B原full64训练数据/103列及原dev纯features，唯一同配置fresh fit+回载+dev predict≤120秒CPU；仅替换a179实体，旧391关系及全部非entity原字节不变，完整新predfreeze后一次v2、旧.746081965复用，Score严格升才候选best。**当前仅source/lineage准备，尚未full64 fit或dev新评分**；不更改sequence正在进行的患者关系baseline，也不偷偷合成两条变更。
+- root新增授权的[full64新计划](lightgbm_selector_control/full64-plan.json)745b1b85/entryc8c1d78a已冻：复用强B train0b3d/dev18ac两个pool和旧103列vec transform，唯一同配置fresh fit+回载+dev predict及端点全部≤120秒CPU；仅替换a179实体，旧391关系及全部非entity原字节不变，完整newpredfreeze后一次v2、旧.746081965复用，Score严格升才候选best。pure-import1.059秒已核ontology/sequence同名run正确绑定。**尚未full64 fit或dev新评分，sourcepush后执行**；不更改sequence独立患者关系baseline，恢复看外部full64-dev-control状态，不重启已有目录。
 
 ## 已关闭或保留的关键控制
 
