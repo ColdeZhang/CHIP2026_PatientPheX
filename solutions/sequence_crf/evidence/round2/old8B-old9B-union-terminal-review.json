@@ -1,0 +1,75 @@
+{
+  "status": "PASS_terminal_audit_negative_control_closed",
+  "at_utc": "2026-10-24T03:28:20.734557+00:00",
+  "owner_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-fixed-union/manifest.json",
+    "bytes": 7811,
+    "sha256": "11457cf4269f9492dc05da2875376b96cdf04d86d4b1d0cdbefa9cb778fe864a",
+    "snapshot_path": "/workspace/patientphex-runs/round2-20261023/validation/old8B-old9B-union-terminal-review/snapshots/11457cf4269f--manifest.json"
+  },
+  "snapshot_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/old8B-old9B-union-terminal-review/snapshot-manifest.json",
+    "bytes": 9464,
+    "sha256": "9ebdfee769224a1773e758d7f10b590f6cdaf5420eb27eb25ab6ae04804c3720"
+  },
+  "actual_checks": {
+    "literal_union_independently_reconstructed_as_sets": true,
+    "original8B_relations": 297,
+    "original9B_relations": 276,
+    "intersection": 243,
+    "union": 330,
+    "added_over9B": 54,
+    "removed_from9B": 0,
+    "closed_pairs": 1166,
+    "same_documents": 16,
+    "same_patients": 47,
+    "entities": 947,
+    "same_nonassociation_and_patient_metadata_projected_JSON_bytes": true,
+    "pred_sha256": "ace468526fa62241d43ea9c577ae43a62e93c38198a58933f6449b4f50eac6d6",
+    "full_prediction_freeze_before_gold": true,
+    "freeze_sha256": "10eae725bb6c0a2eb723f090878b9f5274f8e87674f2abd2dc59bb054edc38ba",
+    "before_gold_sha256": "ea3fe6b20b7114188fcb14fd8b4c6f80cecc25a9893ba05c03f1533f8e1ff768",
+    "source_has_one_v2_call": true,
+    "actual_new_evaluator_calls": 1,
+    "cached_old_metrics_no_re_evaluation": true,
+    "format_errors": 0,
+    "format_warnings": 0,
+    "CPU_body_seconds": 0.2227374799986137,
+    "wrapper_seconds": 0.2598158019973198,
+    "wrapper_returncode": 0,
+    "cap_seconds": 60
+  },
+  "provenance": {
+    "history_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/old8B-old9B-union-history/report.json",
+      "bytes": 18079,
+      "sha256": "1bd35d9e42cc9c59d0fca00e218af09d5c0106fecaa0a2fcde70af65fa609a32"
+    },
+    "old8B_pred_sha256": "c31574728477fbe0490e7198a826e18920f9316224396f5ff803e444840ea23f",
+    "old9B_pred_sha256": "63aefe68b07664bd1e64d31e0008d05259020c727e836fbd709a5837e8929edb",
+    "shared_train48_204_2epoch_52calls": true,
+    "same_F0_58row_415candidate_pool": true,
+    "training_provenance_reused_without_old_tokens_weights_or_targets_rerun": true,
+    "old8B_existing1_LR_fallback": "414/415 valid originalcandidate decisions plus one frozen baseline fallback preserved; not silently turned into a pure8B prediction.",
+    "history_limit": "Existing boundedmetadata search found no prior directunion; not a claim no unrecorded/external experiment ever existed."
+  },
+  "result": {
+    "old9B_score": 0.6954439475814587,
+    "union_score": 0.6885650228734785,
+    "delta": {
+      "menF1": 0.0,
+      "docF1": 0.0,
+      "micF1": -0.007424713875041622,
+      "macF1": -0.020090984956878888,
+      "Score": -0.0068789247079801275
+    },
+    "added_tp": 16,
+    "added_fp": 38,
+    "retain": false,
+    "retain_rule": "delta(micF1+macF1)>0 and delta(macF1)>=0",
+    "micro_and_macro_both_declined": true,
+    "interpretation": "Fixed union adds more false positives than true positives and worsens both relation aggregates. Close this one combination; no F1/originaldev transfer, no threshold/model search implied."
+  },
+  "separation": "Independent pureCPU old8B/old9B control. Active patient-firstF0 two-arm plan and Med training unchanged; no newGPU, no originaldev or official submission.",
+  "scope": "Standard-library hashes/small immutable snapshots/JSONprojection and relation-set comparison, arithmetic of frozenmetrics and static call/order inspection. No gold open/hash, no evaluator/parser/model/tokenizer/oldCPU rerun, no remote/Git/liveindex changes."
+}

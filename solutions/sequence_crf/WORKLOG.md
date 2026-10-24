@@ -14,7 +14,7 @@
 
 ## 正在执行与恢复入口
 
-**旧8B∪旧9B固定F0控制负关闭。** 同原58/947实体，唯一literal union只新增54＝16TP38FP；Score .695443948→.688565023，micro/macro双负，格式0错警，实际CPU0.260秒、旧指标零重评。旧8B1处既定LR回退披露。单独实验不改当前patient-first F0训练，不扫组合/不迁F1/dev；[结果与来源](experiments/old-sft-union-f0.md)。
+**旧8B∪旧9B固定F0控制负关闭，独审PASS。** 同原58/947实体，唯一literal union只新增54＝16TP38FP；Score .695443948→.688565023，micro/macro双负，格式0错警，实际CPU0.260秒、旧指标零重评。旧8B1处既定LR回退披露。单独实验不改当前patient-first F0训练，不扫组合/不迁F1/dev；[结果与来源](experiments/old-sft-union-f0.md)。
 
 **patient-first F1统一终审PASS；单独输出负，固定并集小幅正，F0本地和A100实际CPU均通过，唯一新最长行probe完整PASS/独审PASS且卡已释放，正式F0两轮已03:26:28启动proc_ced868e2，最迟04:31:58强退；完成后原58及双臂固定评分。** 严格train32→内层F1原80、完整fresh2ep32calls，native1141.720s；最终80全严格通过native194.801/wrapper199.625s，无fallback。primary **.645531861**（旧.660942003，−.015410142），keep=false；pre-quality固定oldSFT32∪new **.664421522**（+.003479519），micro−.002389695/macro+.016307771，新增15TP32FP、旧383关联全保留，按两关系F1之和升且macro不降keep=true。两输出1189实体不变/格式0错警，共同freeze先gold，各唯一v2，旧基线未重评。并集是小幅macro收益，仍未.8，主线程已另授权固定F0复验，现只核旧204/58转置与A100成本，不自动追加原dev/组合/官方上传。最终state12件519972522B已.100持久fsync/全SHA回读；02:53:13.364 A800 GPU2实际释放并交检索，本camp无GPU后继。[F0准备](experiments/patient-first-F0.md)、[终审](evidence/round2/patient-first-formal-terminal-review.json)、[完整结果](evidence/round2/patient-first-formal-results.json)、[77项终点清单](evidence/round2/patient-first-formal-terminal-manifest.json)、[方法/恢复](experiments/patient-first-closed-set.md)。
 
