@@ -14,11 +14,14 @@ root已转述用户新授权，只提交当前最高901/.754361398199方法；�
 
 **患者B唯一NN已完整完成**：原`proc_7c9baef1-5019-462b-960a-d5278f96971b` / driver229438由07:17:15运行至07:43:36.417754Z，**rc0/1580.513秒**，420fresh全complete、0partial/0abstain。07:43:36.552420 GPU2实际0MiB/no_process；07:45既定monitor确认两PID退出。原3600+30未超时；原Torch2.6.0+cu124/TF5.20.2、f787/codec未改。[原终态观测](evidence/official-901-B/patient-infer-terminal-observation.json)、[作业](evidence/official-901-B/patient-infer-job.json)。监控session70981已正常退出，不再启动模型或watch。
 
-**当前只剩原件传输和CPU导出**：唯一原ZIP897210B/1df686ce、member-index643557e7已真实冻结，[原包绑定](evidence/official-901-B/patient-original-archive-binding.json)。前262144B原字节已SHA/fsync；07:45:42第三个128KiB read返回UNKNOWN，07:46:10尝试较小块前的只读inventory也UNKNOWN（尚未读64KiB、非LUNA）。失败与部分字节均保留，不重包/重NN。root已授权child `official_b_oldpool_cpu` 单owner同字节A100→.100私网桥接；本owner不并发查host。完整ZIP到齐后用[纯本地收件](official_901_B/patient/finish_local_collection.py)核原whole/index和所有成员，再caf48导出与8881实际正例空间证明，直接交retrieval/validation，不等额外审批。当前没有把远端成功或部分包称作最终本地通过。
+**完整B患者终点已07:51:06交付**：原ZIP897210B/1df686ce、member-index643557e7和**1273原件**逐SHA/fsync通过；caf48一次CPU导出0.856秒，1769纯模型正关系/7147合法候选对，420原始ID独立decode/codec全exact，零遗漏患者、无baseline/fallback。8881实际空间包含证明0.205秒通过：420实际map/PID与原已证输入空间exact，所有positive属于7147 legal，canonical/raw与public-new交0。完整refs已直接发retrieval/validation/root，不等后续包装。[终点摘要](evidence/official-901-B/patient-terminal-summary.json)；统一B终审待回，未读取gold/评分/上传。
+
+原传输失败如实保留：前262144B成功后07:45:42第3个128KiB read UNKNOWN，07:46:10较小块前inventory也UNKNOWN，未实际读64KiB、非LUNA。child单owner确认A100原包/10.5.3.12后，唯一TTL180 HTTP proc_f4827a2a/PID251759仅供.100，2.064秒fetch同SHA/fsync；随后stop及/proc核实际退出，未声称优雅ended.json。临时认证已删除。原prefix保留，稳定.100续取同包后纯本地finish3d47完成全部校验，无重包/NN/策略变更。[桥接说明](official_901_B/patient/BRIDGE_RECOVERY.md)。原完整包同时保留A100与.100自有持久目录；child正在准备新CPU终点最小补包，不重复权重或原raw，不阻塞最终组合。
+
 
 原07:08/07:11 LUNA部署恢复历史保留：07:16先库存确认plan未落，同字节8324B/1e4e部署后才唯一start。.100备用从未生成可执行入口或运行，已[取消于准备前](official_901_B/patient/cache_fallback/STATUS.md)。所有原始控制/预测保存在A100 `sequence-round2/official-901-B/patient/` 与本地D同名目录，恢复仅处理原包和CPU终点。
 
-[独立实际B合法空间证明](evidence/official-901-B/patient-space-proof-summary.json)：420原schema逆变换/逐行code_map一致，100文献原HPO后代alt图与public-new实际code_maps canonical+literal交0；16个合法text概念保持。实际patient prompt9f94fffc/5403066B已与native产物相同字节。此时仅证明输入空间，实际positive成员/输出级互斥待完整raw后验证，不能称B结果已完成。后继研究只读一页[机制盘点](research_readonly/post901-relation-proposal.md)，不阻塞官方，不新NN/fit/评分。
+[独立实际B合法空间证明](evidence/official-901-B/patient-space-proof-summary.json)：420原schema逆变换/逐行code_map一致，100文献原HPO后代alt图与public-new实际code_maps canonical+literal交0；16个合法text概念保持。实际patient prompt9f94fffc/5403066B已与native产物相同字节。该原输入证明已由8881绑定完整actual420 map/PID和1769 pure positives，输出级交0已实际通过；详见上述终点摘要。后继研究只读一页[机制盘点](research_readonly/post901-relation-proposal.md)，不阻塞官方，不新NN/fit/评分。
 
 B最终合成还须按root规则核：patient合法HPO来自oldpool，public-new来自相对oldpool差集，在实际canonical/alt处理后逐doc空间及输出级严格互斥才允许等价全union；否则精确原counterfactual a179_B差集，不能猜或临时删patient。此证明与retrieval共同完成。
 
