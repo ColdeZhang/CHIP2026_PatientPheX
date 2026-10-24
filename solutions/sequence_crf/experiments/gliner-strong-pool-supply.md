@@ -26,3 +26,9 @@ python solutions/sequence_crf/research/check_gliner_strong_pool_supply.py --root
 Root 根据以上无标签供给授权只做 F0/F1 两折：保持三公开+propernested baseline 的全部实体及所有非entity对象；按旧 augmented 次序仅追加上述3/20项。没有新排序、阈值、否定或相似度筛选，不触碰2/5碰撞项。两份新完整预测共同freeze后唯一两折与合并32篇v2；旧单折指标复用，pooled32旧基线若无现成指标同次计算。keep 预设 pooled `(menF1+docF1)/2` 严格增，若两折方向不一致先讨论，不自动迁移dev。每阶段CPU30秒，无新fit/NN。
 
 冻结计划外存 `research/gliner-strong-pool-supply/control/plan.json`，SHA `762d68b03d9d604d3b4774805c298c942bcb878e5871f348b79013beab839ffe`；入口 `research/append_existing_gliner_supply.py`。先推送此检查点，再执行 `assemble` 和单次 `evaluate`；输出仍留外存control目录。
+
+## 唯一终点：负，关闭
+
+计划/source检查点 `b7438c8` 已push并核远端后，先追加并共同freeze，再一次v2。F0的3条造成mention +2TP1FP、doc +0TP1FP，实体均值−.000006214；F1的20条造成mention +2TP18FP、doc +1TP10FP，实体均值−.004575967。合并32篇mention +4TP19FP、doc +1TP11FP，关系完全不变：Score .733753245→.732486528，实体目标均值−.002533434。按事前keep失败关闭，不迁dev、不训四fold、不修改过滤。两折均为开发控制且训练规模48/32不同。
+
+完整两预测freeze `c86d9adc…`，执行/终点与旧单fold指标引用见 `evidence/round2/gliner-strong-pool-control-results.json`。旧单fold未重评，旧pooled32在同次比较计算。独立小增量审排在逆序之后；不重旧模型/NN。

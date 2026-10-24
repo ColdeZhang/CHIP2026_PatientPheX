@@ -14,9 +14,9 @@
 
 ## 正在执行与恢复入口
 
-**固定候选逆序唯一推断已在A800运行。** 原80/SFT32的固定逆序+CID/code_map同步，80完整双逆byteexact，587语义候选不变；78条变/2条不变，总250691/max5691token，无截断，old80耗时代理282.5秒。历史未做等价控制；root最终预定义逆序alone诊断+old-or-reverse并集主臂，不运行intersection；两fullpred共同freeze后唯一F1，600+30秒，不原dev。实际00:16:56.588Z启动 proc_f40cda16-1503-40ce-8094-72329c15ea69，主截止00:26:56.588Z；外部research/reverse-json-candidate-order/formal/job.json恢复，禁止重复启动。[计划与成本](experiments/reverse-json-order.md)。
+**固定候选逆序两臂完成，独审PASS（baf7aec6），GPU已释放。** 同旧80/SFT32原位A800，80/587有效、无fallback，290.848秒。双完整预测先freeze再唯一F1：reverse alone .650566370（负）；预设old∪reverse **.662472447**，较旧.660942003+.001530444，新增15TP36FP，micro−.005258502/macro+.011380279。满足事前Score升且macro不降，但precision仅29.4%，不直接迁dev；原1189实体保持、0错警。没有intersection/扫描。原job proc_f40cda16已结束，00:22:02Z GPU2核空；禁止重推。[结果与恢复](evidence/round2/reverse-json-order-results.json)、[方法](experiments/reverse-json-order.md)。
 
-**旧 GLiNER 供给只读核查完成。** 当前三公开HGB+propernested尚未试过仅补旧GLiNER已选非重叠增量；F0旧26中21已有/2碰撞/3可补，F1旧69中44已有/5碰撞/20可补。实际训练窗与link训练集严格排各目标16，F0 train48/F1 train32规模不同；同Sap.65/.92和旧assembler，未生成新预测/质量、无fit/NN/原dev。只支持便宜CPU供给控制可行性，不为此重训四fold。[来源及边界](experiments/gliner-strong-pool-supply.md)。
+**旧 GLiNER 两折供给追加负，关闭。** 强三公开HGB+propernested仅补历史固定已选非重叠3/20，保留所有原实体/关系；两fullpred共同freeze后唯一v2。合并32 mention +4TP19FP、doc +1TP11FP，实体均值−.002533434、Score .733753245→.732486528，两折目标均负（F0极小负）。F0 GLiNER48/F1 GLiNER32区别明示；无新fit/NN/原dev，按keep失败关闭，不重训四fold。独立增量审排队。[完整结果](evidence/round2/gliner-strong-pool-control-results.json)、[来源及边界](experiments/gliner-strong-pool-supply.md)。
 
 **关系JSON单检索示例已负结案，独立终审PASS（b1a178ca）。** 唯一同A800/SFT32/80提示，CPU输入与实际token/模型/运行环境均通过；80完整响应、587候选全部有效，无fallback/tokenlimit，runner304.593秒/wrapper313.157秒，GPU已00:12:04释放。完整fullpred先freeze再唯一F1评：Score **.660942003→.645783102**，micro−.044148462/macro−.016487140，净−27TP/+5FP；实体完全不变、0错警。按预设keep失败关闭，不扫示例/提示、不原dev。传输与本地解析依赖失败均留档，同源环境恢复未增加推断；当前无活动GPU。[结果及全部恢复](evidence/round2/retrieved-json-example-results.json)、[过程](experiments/retrieved-json-example.md)。
 

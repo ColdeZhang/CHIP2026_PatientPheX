@@ -13,3 +13,17 @@
 [冻结计划](../evidence/round2/reverse-json-order-plan.json)、[实际CPU/源/所有产物SHA](../evidence/round2/reverse-json-order-readiness.json)。本方案源码 `reverse_json_order/prepare.py`，外部 `research/reverse-json-candidate-order/`。
 
 后续root已授权唯一同A800/SFT32逆序80推断600+30。最终预定义主臂为旧hard OR 逆序完整关系并集（改善候选内FN），逆序alone仅顺序依赖对照；不运行前述intersection提议。字面v2键：只有完整HPO compound拆原子，NIL、大小写、非HPO和含分号原文保持原字符串；旧关联列表/对象字段原样保留，仅append新集合差。合同覆盖compound/NIL/字面分号/重复/患者与非association边界。两个新fullpred统一freeze后各一次v2，keep=union Score严格升且macro不降，不改组合/门槛；已评原.660942基线仅复用。
+
+## 唯一终点
+
+同A800旧SFT32原位，80响应/587 CID全部有效，无fallback；runner282.419秒、wrapper290.848秒、峰19.771GB。00:22:02Z核空释放；两完整预测00:22:15Z共同freeze，再唯一F1评分。原1189实体及所有非association字段完全不变，格式0错警。
+
+| 臂 | Score | micro | macro | 相对旧结果 |
+|---|---:|---:|---:|---|
+| 旧80（复用已评） | .660942003 | .686600221 | .542228853 | 基线 |
+| 逆序 alone | .650566370 | .657174151 | .530152392 | +15TP36FP / −25TP16FP |
+| 旧 OR 逆序（预设主臂） | .662472447 | .681341719 | .553609132 | 只新增15TP36FP |
+
+主臂Score+.001530444、macro+.011380279符合事前keep，但micro−.005258502、新增precision仅29.4%，只是温和且混合的单F1开发信号；不直接迁移原dev。逆序alone负，保留其排序敏感性事实。没有追加intersection/其他逆序/阈值扫描。完整原job、原始响应、source/runtime、双freeze和唯一v2路径见 `evidence/round2/reverse-json-order-results.json`；唯一增量独审进行中。
+
+终点独审 PASS：`validation/reverse-json-candidate-order-terminal-review/review.json` SHA `baf7aec632415a304a273ec6bff7745a63fa16477683836ca6555f77b07a59b0`。两completepred、v2/format与literal union全部独立复现；未重评旧baseline。
