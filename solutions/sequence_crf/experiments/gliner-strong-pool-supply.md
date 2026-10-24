@@ -20,3 +20,9 @@ python solutions/sequence_crf/research/check_gliner_strong_pool_supply.py --root
 ```
 
 外存报告保留每个旧增量与所有新基底碰撞 key；Git 小索引见 `evidence/round2/gliner-strong-pool-supply.json`。未核 F2/F3 现成模型，不声称四折供给齐全。
+
+## 固定 CPU 追加控制（新授权，尚未评分）
+
+Root 根据以上无标签供给授权只做 F0/F1 两折：保持三公开+propernested baseline 的全部实体及所有非entity对象；按旧 augmented 次序仅追加上述3/20项。没有新排序、阈值、否定或相似度筛选，不触碰2/5碰撞项。两份新完整预测共同freeze后唯一两折与合并32篇v2；旧单折指标复用，pooled32旧基线若无现成指标同次计算。keep 预设 pooled `(menF1+docF1)/2` 严格增，若两折方向不一致先讨论，不自动迁移dev。每阶段CPU30秒，无新fit/NN。
+
+冻结计划外存 `research/gliner-strong-pool-supply/control/plan.json`，SHA `762d68b03d9d604d3b4774805c298c942bcb878e5871f348b79013beab839ffe`；入口 `research/append_existing_gliner_supply.py`。先推送此检查点，再执行 `assemble` 和单次 `evaluate`；输出仍留外存control目录。
