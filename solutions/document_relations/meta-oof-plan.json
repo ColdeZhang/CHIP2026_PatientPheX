@@ -1,0 +1,140 @@
+{
+  "experiment_id": "E-20261024-DOCRE-002",
+  "run_id": "meta-oof-fusion-v1",
+  "status": "FIXED_PAIRED_CPU_META_OOF_BEFORE_FIT",
+  "source_sha256": "cd3862c1ab1baadcb65737149b79a76caefc566f24d4f9e25539e734c2f6ec45",
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+      "bytes": 155402,
+      "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+      "bytes": 13187,
+      "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+    },
+    "scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/collected/formal-marker-long-v3/native/held-scores.jsonl",
+      "bytes": 279294,
+      "sha256": "2933713266fcbaa433397a3f30350ca1e0473aa1d4c85f252a241e9c1b86520f"
+    },
+    "encoded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/marker-encoded-v2/held.json.gz",
+      "bytes": 173321,
+      "sha256": "37dd3266a33e1684d2a86a0925a9a25c0b7fac84f1318ca802b206e5e2b47912"
+    },
+    "r1_split_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-meta-oof-screen-20261024/plan.json",
+      "bytes": 14280,
+      "sha256": "133c4748ae20ca33e1d90f2f25cc068ed890d3395d00859e2134fc1b53a1fe7c"
+    },
+    "helper": {
+      "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/evaluate.py",
+      "bytes": 7414,
+      "sha256": "fbd9511edaa936186a7baa01f6f9734d81428abd6114e6b8be538dc272024166"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "base_ancestry_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-new-lgb-support-review/review.json",
+      "bytes": 13941,
+      "sha256": "5c04357465df8725fbd6b6e56a2cd229639708382930c95d94f570f02ffa50f6"
+    },
+    "docre_training_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/long-formal-plan.json",
+      "bytes": 3457,
+      "sha256": "8ad763366678d86978e5fdc335ae3e6d3ca5aa447969210722c1018066fb70bb"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "new_ancestry_gate": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/meta-ancestry/result.json",
+      "bytes": 17569,
+      "sha256": "b23d1354babcf5809027a78cac64b2251cc1661d6f8002985d6e3f2fbabf55e3"
+    }
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/meta-oof-fusion-v1",
+  "heldout_document_groups": [
+    [
+      "12386172",
+      "4607013",
+      "5415817",
+      "5789735"
+    ],
+    [
+      "10313222",
+      "2964533",
+      "5425407",
+      "11906559"
+    ],
+    [
+      "9327653",
+      "11871647",
+      "6063015",
+      "5473715"
+    ],
+    [
+      "5538066",
+      "12455887",
+      "6048891",
+      "12891056"
+    ]
+  ],
+  "split_policy": "Exact reuse of R1 SHA256(seed20261024:PMC) four interleaved groups, 12 train/4 held documents per model; no stratification.",
+  "features": {
+    "base_only": [
+      "base_selected"
+    ],
+    "with_docre": [
+      "base_selected",
+      "docre_raw_logit",
+      "score_valid"
+    ]
+  },
+  "logistic": {
+    "C": 1.0,
+    "solver": "lbfgs",
+    "max_iter": 1000,
+    "class_weight": null,
+    "random_state": 20261024
+  },
+  "scaler": "StandardScaler mean/std fitted only on each meta-train12 documents, each arm independently.",
+  "probability_threshold": 0.5,
+  "threshold_operator": ">=",
+  "modeled_candidate_pairs": 2874,
+  "outside_policy": "Base selected pairs absent from DocRE score universe are protected unchanged and never sent to either classifier; score_valid is therefore 1 for every modeled row.",
+  "budget": {
+    "seconds": 120,
+    "new_classifier_fits": 8,
+    "new_scaler_fits": 8,
+    "new_v2_reports": 2,
+    "old_v2_reports": 0,
+    "GPU_calls": 0
+  },
+  "disclosure": "Posthoc development meta-OOF on known F1, after three direct zero-cut DocRE controls failed. F1 canonical labels explicitly fit meta models; each model/scaler excludes its held4 documents. All base-model/candidate task fitting excludes entire F1. Base raw Qwen and DocRE train32 F2+F3; base support gates train48 F0+F2+F3. Historical methods/cut .3 selected with pooled64, and F1 used for prior development; this is not blind validation. No original dev, F0 quality, or official calls.",
+  "success": "with_docre Score strictly exceeds both fixed complete-base .6863389812716092 and base_only OOF. Report macro unconditionally; no sweep, no intermediate selection. Otherwise close this screening configuration.",
+  "predict_freeze": "Complete both 16-document predictions and all OOF probabilities, fsync/hash, then each public v2 once; known F1 labels necessarily read before freeze for meta training, explicitly disclosed.",
+  "entry": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python solutions/document_relations/meta_oof.py run --plan solutions/document_relations/meta-oof-plan.json"
+}
