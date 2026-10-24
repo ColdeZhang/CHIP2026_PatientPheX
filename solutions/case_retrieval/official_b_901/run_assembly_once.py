@@ -19,7 +19,10 @@ def main():
  plan=json.loads(a.plan.read_text());assert plan['status']=='ACTUAL_REFERENCES_FROZEN_READY_FOR_UNIQUE_CPU_ASSEMBLY'
  assert plan['source']==ref(plan['source']['path']);assert all(isinstance(v,dict) and ref(v['path'])==v for v in plan['references'].values())
  assert plan['CPU_seconds']==60 and plan['quality_or_upload_calls']==0
- d=a.directory.resolve();d.mkdir(parents=True,exist_ok=False);output=d/'actual-v1'
+ d=a.directory.resolve();assert d.parent.is_dir();d.mkdir(exist_ok=False);output=d/'actual-v1'
+ fd=os.open(d.parent,os.O_RDONLY)
+ try:os.fsync(fd)
+ finally:os.close(fd)
  command=[sys.executable,plan['source']['path'],'--plan',str(a.plan.resolve()),'--output-directory',str(output)]
  save(d/'intent.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),source=ref(__file__),plan=ref(a.plan),command=command,executions=1,outer_seconds=65,term_grace_seconds=5,no_quality_or_upload=True))
  env=dict(os.environ,CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
