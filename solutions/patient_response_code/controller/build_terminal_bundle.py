@@ -52,11 +52,23 @@ def main():
                 add('controller/'+folder.name+'/'+path.name, path)
     for path in C.glob('epoch-*-server-recovery-*.json'):
         add('controller/'+path.name, path)
+    for pattern in ['final-ack-recovery-*.json', 'final-ack-inspect-*.json',
+                    'final-server-stop-intent.json']:
+        for path in C.glob(pattern):
+            add('controller/'+path.name, path)
     for n in ['terminal.zip', 'manifest.json', 'checks.json']:
         add('training-terminal/'+n, C/'training-terminal'/n)
     for n in ['plan.json', 'entry.json', 'deployment-manifest.json', 'start-intent.json',
               'job.json', 'terminal-manifest.json', 'terminal.zip']:
         add('inference/'+n, I/n)
+    for n in ['collect-intent.json', 'collect-manifest-tool.json', 'read-only-offline-124138.json']:
+        if (I/n).is_file():
+            add('inference/'+n, I/n)
+    for folder in I.glob('collect-recovery-*'):
+        for path in folder.glob('*.json'):
+            # Piece tool bodies are redundant with terminal.zip and are excluded.
+            if not path.name.startswith('part-'):
+                add('inference/'+folder.name+'/'+path.name, path)
     for path in (I/'quality').rglob('*'):
         if path.is_file():
             add('quality/'+path.relative_to(I/'quality').as_posix(), path)

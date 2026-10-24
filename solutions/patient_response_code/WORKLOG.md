@@ -82,3 +82,7 @@ Actual driver12:33:05.317552/child173895 binds TERM12:53:05.317552+30 and source
 ### 2026-10-24 12:42 UTC — full80 read-only offline window
 
 Actual inference reached52/80 terminal records at12:40:29, no partial score. Read12:41:38.104880 returned explicit LUNA; same mount recovery not before12:44:43.104880. Original proc_a84ae36b and12:53:05.317552+30 unchanged, no repeated generation. Recovery pointer D/read-only-offline-124138.json; original raw outputs remain on source until final collection.
+
+### 2026-10-24 12:48 UTC — all80 actual terminal, original collection recovered read-only
+
+Unique full80 job actually ended12:44:29.153898 rc0/683.960027s, 80fresh/0cache,79strict and1whole-row abstention; GPU2 released12:44:29.263048. Peak allocated22,280,655,872B/reserved41,437,626,368B. Original collection manifest request returned UNKNOWN; no model repeated. Independent recovery reads and verifies the already-existing original253-member zip71db687e/93,245B, never repacks remote output. Partial reads reuse SHA-verified bytes. Two quality endpoints remain unexecuted pending complete collection.
