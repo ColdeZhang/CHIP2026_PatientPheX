@@ -25,6 +25,7 @@ def main():
  hpo=HPO(p['hpo']);bank=PublicConceptBank(hpo,p['bank'],p['labels'],p['bank_manifest']);assert len(bank.rows)==41099
  out=Path(p['output_dir']);out.mkdir(parents=True,exist_ok=False);save(out/'started.json',dict(plan=ref(a.plan),source=ref(__file__),queries=len(quotes),no_bank_reencoding=True,no_fit=True))
  encoder=PublicSapEncoder(p['model_dir'],'cuda');save(out/'encoder-runtime.json',encoder.manifest)
+ assert all(encoder.manifest[k]==v for k,v in p['expected_encoder_runtime'].items())
  vectors,counts=encoder.encode(quotes)
  import io
  buf=io.BytesIO();np.save(buf,vectors,allow_pickle=False);put(out/'query-vectors.npy',buf.getvalue());save(out/'query-token-counts.json',dict(quotes=quotes,token_counts=counts,query_vectors=ref(out/'query-vectors.npy')))
