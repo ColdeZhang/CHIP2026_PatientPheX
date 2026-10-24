@@ -1,0 +1,203 @@
+{
+  "status": "PASS_MATCHED_WARMSTART_FINAL_ENTRY_WITH_DURABLE_INTENT_AND_ABSOLUTE_SERVER_DEADLINE",
+  "at_utc": "2026-10-24T01:23:12.067495+00:00",
+  "scope": "Narrow final revision over full source/data/CPU entry71b9c9b2; no additional training, inference or quality.",
+  "decision": "No remaining source-contract blocker. Root-authorized execution uses the final plan and existing runtime/resource checks; this report does not claim a launch or durable production checkpoint export.",
+  "prior_complete_entry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/review.json",
+    "bytes": 10327,
+    "sha256": "71b9c9b2cef3c0d3219e24ffc4ce667ae206dd423b25b101b584024f918a2046"
+  },
+  "final_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/run-plan.json",
+    "bytes": 14911,
+    "sha256": "3d0acfe84d09dc897efd1d96966ab294fbeec4fbaec46a22d711bb960e3af727"
+  },
+  "final_controller": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/run_paired.py",
+    "bytes": 15660,
+    "sha256": "586620a36721d138f29e9432474eb0a2af0e2510c0d37d277fc83feff9a208c5"
+  },
+  "unchanged": {
+    "trainer": true,
+    "paired_evaluator": true,
+    "all_data_and_supervision": true,
+    "two_arms_OO_RO": true,
+    "calls32_each": true,
+    "four_epoch_exports": true,
+    "two_original80_inferences": true,
+    "total3900_plus_TERM30": true,
+    "all_other_controller_methods_AST_exact": [
+      "__init__",
+      "call",
+      "command",
+      "remaining",
+      "gpu_empty",
+      "watch",
+      "get_file",
+      "shm_json",
+      "export",
+      "train_segment",
+      "infer",
+      "execute"
+    ],
+    "all_other_plan_fields_exact": true
+  },
+  "boundary": {
+    "fsynced_intent_before_every_start": true,
+    "exclusive_intent_prevents_duplicate": true,
+    "jobID_saved_after_response": true,
+    "server_recomputes_remaining_against_same_absolute_deadline": true,
+    "expired_server_deadline_refuses_launch": true,
+    "remote_timeout_TERM_grace_seconds": 30,
+    "reviewer_actual_CPU_checks": [
+      "real_fsynced_intent_exists_before_mutating_call",
+      "actual_python_timeout_benign_payload_pass",
+      "returned_job_ID_persisted",
+      "existing_intent_blocks_duplicate_before_call",
+      "server_expired_deadline_refuses_payload"
+    ],
+    "owner_actual_CPU_checks": [
+      "intent_exists_before_mutating_start",
+      "actual_remote_wrapper_executes_benign_command",
+      "known_job_persisted_after_return",
+      "duplicate_intent_refuses_second_start",
+      "expired_server_deadline_refuses_payload_even_if_client_once_had_time"
+    ],
+    "owner_CPU_seconds": 0.0350553280004533
+  },
+  "endpoint_fixture": {
+    "final_source_sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d",
+    "actual_cases": 32,
+    "seconds": 0.023191074003989343,
+    "event_order": [
+      "assembly",
+      "assembly",
+      "format",
+      "format",
+      "gold_bytes",
+      "v2",
+      "v2"
+    ],
+    "incomplete_second_arm_blocks_both_assemblies_and_gold": true,
+    "synthetic_only": true,
+    "no_real_parser_evaluator_gold_model_or_network": true
+  },
+  "superseded_reference_resolution": {
+    "old_controller": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/before-intent-persistence/run_paired.py",
+      "bytes": 14901,
+      "sha256": "b78468eefab32a7067ae8c04a3fb6eb50d594373ecc238a609e16afa775d4acb"
+    },
+    "old_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/before-intent-persistence/formal/run-plan.json",
+      "bytes": 14544,
+      "sha256": "2dadd63a7e771e1a5a107b94424a656cbf1158669ef318fa7e690ed300790c31"
+    },
+    "old_interface_record": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired_interface.md",
+      "bytes": 9097,
+      "sha256": "dde4f43b7b5085aba6f1fe30308d3a24ed84deb1b50686f04d4d602500cef6e9"
+    },
+    "current_interface": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired_interface.md",
+      "bytes": 9900,
+      "sha256": "6f615c7b4088ce3045b3a3b89bc73b8864cb939e79119ece395f16b7bf235fe7"
+    },
+    "note": "The explanatory interface file was expanded to record the reproducible final32case fixture after initial review. It is not asserted byte-identical to the old9097B document; the current fixture source/receipt and unchanged563da3a1 executable establish the current contract. Initial review is retained as chronology and its old controller/plan bytes are preserved separately."
+  },
+  "limitations": [
+    "Entry readiness is not a completed training result, validated durable production export, or Score >= .8.",
+    "Root paused new MCP actions after global outage; tiny .100 fetcher deployment, fresh GPU/storage preflight, source push/backup and all new-stage execution remain pending.",
+    "Known F1 is repeatedly observed development; comparison to old also changes optimization stage and training amount. O/O vs R/O is the matched order contrast.",
+    "Old preparation fresh-base/forbid-continuation flags describe the historical baseline; the explicitly selected new stage reuses its data provenance and adapter values, with fresh optimizer/RNG.",
+    "Same initial seed does not imply identical later dropout masks with changed token lengths.",
+    "Runtime/token/meta and owner transport fixtures were verified from source-bound actual receipts, not rerun by reviewer; full warm-model forward and complete-checkpoint restore are not asserted.",
+    "Global execution budget includes training/export/inference. Current-invocation trainer timings must not be mistaken for full-stage elapsed.",
+    "No server backup is claimed while MCP is unavailable.",
+    "Earlier explanatory interface prose changed after initial review. This addendum explicitly supersedes that document reference; it does not rewrite the initial report or treat changed prose as old bytes."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/review.json",
+      "bytes": 10327,
+      "sha256": "71b9c9b2cef3c0d3219e24ffc4ce667ae206dd423b25b101b584024f918a2046"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/data-and-schedule.json",
+      "bytes": 3325,
+      "sha256": "7a90442a043f8748664b54544740067be970f38c34f37dd0be6adaebc962aa48"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/trainer-and-ack-source.json",
+      "bytes": 5103,
+      "sha256": "6b207eee0c58c735e2f163ab012d5377724299bfb6e283c9498535c66ecab17a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/before-intent-persistence/run_paired.py",
+      "bytes": 14901,
+      "sha256": "b78468eefab32a7067ae8c04a3fb6eb50d594373ecc238a609e16afa775d4acb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/before-intent-persistence/formal/run-plan.json",
+      "bytes": 14544,
+      "sha256": "2dadd63a7e771e1a5a107b94424a656cbf1158669ef318fa7e690ed300790c31"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/before-intent-persistence/entry-source-manifest.json",
+      "bytes": 2201,
+      "sha256": "02b7f41533aa1572e02fb916029f8c55385b3b765db276f97cb6bad58b96f96a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/run_paired.py",
+      "bytes": 15660,
+      "sha256": "586620a36721d138f29e9432474eb0a2af0e2510c0d37d277fc83feff9a208c5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/run-plan.json",
+      "bytes": 14911,
+      "sha256": "3d0acfe84d09dc897efd1d96966ab294fbeec4fbaec46a22d711bb960e3af727"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/entry-source-manifest.json",
+      "bytes": 2299,
+      "sha256": "6cf3071b34275c620a670142a621872b66c09fd93a4a794b9d9ab49082a20fd8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/test_start_boundary.py",
+      "bytes": 2603,
+      "sha256": "50149fcf24c9f07c2cbac236fd4a4d30b71116927c091b2556578a37b13182c4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/start-boundary-cpu-contract.json",
+      "bytes": 546,
+      "sha256": "665dec14b33474516065447d0f08e0f8623c4b9d254a562b28d9925682839fcf"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/paired_evaluation_cpu_contract.py",
+      "bytes": 16531,
+      "sha256": "c9c6d4882c92a6d417190f37ba927749bb64226b7d08c60bb9568a819044030a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/paired-evaluation-cpu-contract.json",
+      "bytes": 1797,
+      "sha256": "5459b2d46d9128a6f31a9860474a85ae695c34adf0bc6a6c0c72027ecf45d6e8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired_interface.md",
+      "bytes": 9900,
+      "sha256": "6f615c7b4088ce3045b3a3b89bc73b8864cb939e79119ece395f16b7bf235fe7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired.py",
+      "bytes": 20575,
+      "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/audit_final_boundary.py",
+      "bytes": 8786,
+      "sha256": "5f0f29e93b1f0705ba969b06e5c03ae4a0fbc0664b106cdc18dd3378b0c1abad"
+    }
+  ],
+  "no_MCP_GPU_model_or_quality": true
+}

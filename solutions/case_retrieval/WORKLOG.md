@@ -10,9 +10,9 @@
 - **thinking单条格式负结案、独审e5f68aef通过**：旧SFT32/首条2030输入、真实suffix-only presence/官方采样4096，186.896秒生成/209.493秒native；4096触顶未闭think、无合法final，重复复核C003而未结束。01:03:39.439Z A800空释放；环境恢复只续采原job，没有新NN/targets/Score/重试，不扩大。[完整终点](research/thinking-sampling-followup.md)、[结果](evidence/round2/thinking-sampling-result.json)。
 - **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，该阶段未接LLM，后继B质量负结案已另列；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
 - **FLA合成数值控制未通过、已结束**：私有fused绑定及单GDN前向/梯度/cache通过，首128token全9B raw-logit relL2 .090575>.01、maxabs13.03125>.25（KL .0004124<.001），按事前合同停止；无其余三条/LoRA/质量，01:04:59 A30GPU1核空。首次采样器失败与修复链保留，不切换正式runtime、不把rawlogit失败说成任务质量负。[结果](fla_kernel_readiness/GPU_RESULT.md)，完整终点独审b78eec32已补备份。
-- **顺序增强新stage入口已备妥、未启动GPU**：选择同旧SFT32 epoch2 adapter warm-start，新建相同AdamW/RNG/LR；控制O/O、增强R/O各两轮248曝光/32calls。原fresh四轮CPU方案保留历史，未执行。实际native CPU 7.0066秒/无CUDA、可逆目标/32-call/持久ack/双pred先freeze合同通过，整体独审71b9c9b2；共享3900+30预算。A800项目盘空间不足已实核，逐epoch自有SHM→.100完整state导出才继续。MCP间歇恢复，源push后允许fresh核资源再启动；.100fetcher尚未部署，当前无本路线GPU作业；[状态与恢复入口](order_warmstart_stage/OWNER_STATUS.md)。
+- **顺序增强新stage入口已备妥、未启动GPU**：选择同旧SFT32 epoch2 adapter warm-start，新建相同AdamW/RNG/LR；控制O/O、增强R/O各两轮248曝光/32calls。原fresh四轮CPU方案保留历史，未执行。实际native CPU 7.0066秒/无CUDA、可逆目标/32-call/持久ack/双pred先freeze合同通过，整体独审71b9c9b2＋最终启动边界39ad3212；共享3900+30预算。A800项目盘空间不足已实核，逐epoch自有SHM→.100完整state导出才继续。MCP间歇恢复，源push后允许fresh核资源再启动；.100fetcher已实际部署且SHA核对，当前无本路线GPU作业；[状态与恢复入口](order_warmstart_stage/OWNER_STATUS.md)。
 - **目标仍未达**：root已核原dev固定逆序并集最新.746081965；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
-- **最近备份**：`ea34b2c3`已push并ls-remote一致；本次新增共同旧权重的新两轮顺序对照入口/实际CPU/传输证据与统一独审，以及FLA终点独审，待同批检查点。大权重/raw在外部持久目录；当前训练尚未开始，网络恢复后需fresh空卡/空间/源核验，不盲目重启旧job。
+- **最近备份**：`aaf3f38c`已push并ls-remote一致，含共同旧权重的新两轮顺序对照入口/实际CPU/传输证据及FLA终点独审；本次补最终启动边界独审与fetcher实际部署。大权重/raw在外部持久目录；当前训练尚未开始，网络恢复后需fresh空卡/空间/源核验，不盲目重启旧job。
 
 ## 已完成主要结果（历史摘要）
 

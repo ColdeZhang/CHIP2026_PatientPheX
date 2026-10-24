@@ -28,4 +28,4 @@
 
 controller在每个start_process之前先fsync保存intent，再保存返回的已知job；模糊失败没有job ID时按intent查原进程，不能自动补launch。运行后若会话/连接中断，读取 `formal/**/job.json`、monitor游标和已有 `.100` export ack，先核原进程，禁止盲目重跑controller或复制训练。所有新launch受同一绝对deadline约束，连接故障不延长预算。完整结果之后用 `freeze_evaluation_plan.py` 固化动态元数据，再用既定 `evaluate_paired.py` 执行两臂唯一评测；不能提前读取gold。
 
-当前 `.100` fetcher 尚未部署，新训练checkpoint尚不存在；“入口已准备”不代表长训完成或checkpoint已持久备份。用户原dev≥.8目标仍未达到，不合并本路线实现，不上传官方。
+`.100` fetcher 已在本次真实MCP往返中部署且actual SHA `24e92491`一致；最终启动边界独审 `39ad3212`通过。新训练checkpoint尚不存在；“入口已准备”不代表长训完成或checkpoint已持久备份。用户原dev≥.8目标仍未达到，不合并本路线实现，不上传官方。
