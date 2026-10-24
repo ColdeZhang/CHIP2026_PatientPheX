@@ -56,7 +56,9 @@ def apply_pair(plan,out,torch,model,row,reference,group_size,identifier):
         observations.append(x)
         with (out/'replay-observations.jsonl').open('a') as f:
             f.write(json.dumps(dict(row_id=row['row_id'],event=identifier,**x),allow_nan=False)+'\n');f.flush();os.fsync(f.fileno())
-    with torch.autocast('cuda',dtype=torch.bfloat16):
+    # A no-grad coefficient pass must not populate casts reused by the grad
+    # replay/checkpoint pass. Keep BF16 math, disable only the weight-cast cache.
+    with torch.autocast('cuda',dtype=torch.bfloat16,cache_enabled=False):
         result=serial_dpo_backward(model,cc,rr,row['prompt_length'],reference['chosen'],reference['rejected'],group_size,observe)
     torch.cuda.synchronize()
     return dict(**result,seconds=time.monotonic()-tick,tokens=cc.shape[1]+rr.shape[1],row_id=row['row_id'],replay_observations=len(observations))
@@ -131,8 +133,14 @@ def main(phase,path):
     rows=encoded(plan)
     refs=None
     if phase!='reference':
-        done=json.loads((Path(plan['run_root'])/'reference/complete.json').read_text());assert done['status']=='COMPLETE_ALL148_FROZEN_REFERENCE_LOGPS'
-        assert done['plan']==ref(path) and done['encoded']==plan['encoded']
+        inherited=plan.get('inherited_reference')
+        done=json.loads(checked(inherited['complete']).read_text()) if inherited else json.loads((Path(plan['run_root'])/'reference/complete.json').read_text())
+        assert done['status']=='COMPLETE_ALL148_FROZEN_REFERENCE_LOGPS'
+        assert done['plan']==(inherited['plan'] if inherited else ref(path)) and done['encoded']==plan['encoded']
+        if inherited:
+            assert done['reference']==inherited['logps']
+            original=json.loads(checked(inherited['plan']).read_text())
+            assert all(original[k]==plan[k] for k in ['recipe','parent_adapter_files','encoded','pairs','CPU_ready','model_files','native_forward_sha256','seed'])
         assert done['parent_adapter_files']==plan['parent_adapter_files']
         refs=json.loads(checked(done['reference']).read_text());assert len(refs)==74
         assert all(a['row_id']==b['row_id'] and a['finite'] for a,b in zip(refs,rows))

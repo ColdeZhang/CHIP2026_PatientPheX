@@ -1,0 +1,183 @@
+{
+  "status": "ORIGINAL_PROBE_FAILED_BEFORE_ANY_FORMAL_OR_QUALITY",
+  "original_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-v2/execution-plan.json",
+    "bytes": 7344,
+    "sha256": "965b322dedb7abc0f1a46f6403b97a869231611255dce14e14c69a6a912d569b"
+  },
+  "archive": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-v2/failure-collected/small-terminal.zip",
+    "bytes": 69834,
+    "sha256": "fa6c081ada77e41638f6682e83395ff676816ef2b377f710251e8e0705933800"
+  },
+  "members_verified": 109,
+  "original_stages": [
+    {
+      "phase": "reference",
+      "pid": 1216106,
+      "started_at_utc": "2026-10-24T14:18:46.603439+00:00",
+      "term_at_utc": "2026-10-24T14:33:46.603439+00:00",
+      "kill_at_utc": "2026-10-24T14:34:16.603439+00:00",
+      "budget_seconds": 900,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30",
+        "900",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application/runtime/native.py",
+        "reference",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application/execution-plan.json"
+      ],
+      "finished_at_utc": "2026-10-24T14:21:00.348727+00:00",
+      "return_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 133.7453278065659,
+      "complete_file_exists": true,
+      "released_gpu": {
+        "at_utc": "2026-10-24T14:21:00.517204+00:00",
+        "target_gpu": [
+          "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4"
+        ],
+        "target_apps": []
+      }
+    },
+    {
+      "phase": "probe",
+      "pid": 1216274,
+      "started_at_utc": "2026-10-24T14:21:00.518905+00:00",
+      "term_at_utc": "2026-10-24T14:31:00.518905+00:00",
+      "kill_at_utc": "2026-10-24T14:31:30.518905+00:00",
+      "budget_seconds": 600,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30",
+        "600",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application/runtime/native.py",
+        "probe",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application/execution-plan.json"
+      ],
+      "finished_at_utc": "2026-10-24T14:21:12.967929+00:00",
+      "return_code": 1,
+      "timed_out": false,
+      "elapsed_seconds": 12.449060664046556,
+      "complete_file_exists": false,
+      "released_gpu": {
+        "at_utc": "2026-10-24T14:21:13.137261+00:00",
+        "target_gpu": [
+          "0, GPU-07726469-bf7a-b832-9dee-019dc276dc1d, 4"
+        ],
+        "target_apps": []
+      }
+    }
+  ],
+  "reference": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run/reference/reference-logps.json",
+    "bytes": 18087,
+    "sha256": "fece4e82813e5987dec3767b398db7f9ef913983cccd3e3931dc28ca2788fcbc"
+  },
+  "probe_error": "torch.utils.checkpoint.CheckpointError on first chosen backward; replay -0.2504003942012787 exact before backward",
+  "CPU_cache_diagnosis": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-v2/autocast-cpu/result.json",
+    "bytes": 2562,
+    "sha256": "27cc632bb1be421da277c5fcf544aa615544cb2a13364a67c01b46849a39919b"
+  },
+  "CPU_cache_result": {
+    "at_utc": "2026-10-24T14:23:58.017432+00:00",
+    "seconds": 0.35548559576272964,
+    "torch": "2.7.0+cu128",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "source_sha256": "1f6d0439ed1c388b64402312663cbfce488beedd1d423998466924ab1b35c06f",
+    "ops_sha256": "e1e07c660b1e2c11013e7dbd21c4ae58806ab431f791ecf6557c4127e8719b1b",
+    "results": [
+      {
+        "cache_enabled": true,
+        "status": "FAILED_ORIGINAL_EVIDENCE",
+        "error_type": "AssertionError",
+        "error_head": "",
+        "seconds": 0.2690762532874942,
+        "replay": [
+          {
+            "kind": "coefficient_forward_replay",
+            "side": "chosen",
+            "finite": true,
+            "no_grad_logp": -13.796034812927246,
+            "grad_logp": -13.796034812927246,
+            "absolute_difference": 0.0,
+            "passed": true,
+            "rtol": 1e-05,
+            "atol": 1e-05
+          },
+          {
+            "kind": "coefficient_forward_replay",
+            "side": "rejected",
+            "finite": true,
+            "no_grad_logp": -17.101537704467773,
+            "grad_logp": -17.101537704467773,
+            "absolute_difference": 0.0,
+            "passed": true,
+            "rtol": 1e-05,
+            "atol": 1e-05
+          }
+        ]
+      },
+      {
+        "cache_enabled": false,
+        "status": "PASS_SERIAL_BF16_CHECKPOINT_AND_ADAM",
+        "values": {
+          "loss": 0.6779887080192566,
+          "coefficient": 0.04923630878329277,
+          "chosen_logp": -13.796034812927246,
+          "rejected_logp": -17.101537704467773
+        },
+        "gradients": 28,
+        "nonzero": 28,
+        "changed": 28,
+        "grad_norm": 0.3928506374359131,
+        "Adam_states": 28,
+        "seconds": 0.05006342614069581,
+        "replay": [
+          {
+            "kind": "coefficient_forward_replay",
+            "side": "chosen",
+            "finite": true,
+            "no_grad_logp": -13.796034812927246,
+            "grad_logp": -13.796034812927246,
+            "absolute_difference": 0.0,
+            "passed": true,
+            "rtol": 1e-05,
+            "atol": 1e-05
+          },
+          {
+            "kind": "coefficient_forward_replay",
+            "side": "rejected",
+            "finite": true,
+            "no_grad_logp": -17.101537704467773,
+            "grad_logp": -17.101537704467773,
+            "absolute_difference": 0.0,
+            "passed": true,
+            "rtol": 1e-05,
+            "atol": 1e-05
+          }
+        ]
+      }
+    ],
+    "GPU_calls": 0,
+    "pretrained_weights_loaded": false,
+    "competition_data_read": false,
+    "quality_calls": 0,
+    "scope": "One cache flag CPU BF16 checkpoint diagnosis; not proof of full CUDA success."
+  },
+  "new_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/execution-plan.json",
+    "bytes": 8431,
+    "sha256": "34cea8c6d73def4acdc65f108d1db8b8993c7f5338c24be74802ec10d1ac4678"
+  },
+  "old_evidence_retained": true,
+  "quality_calls": 0
+}
