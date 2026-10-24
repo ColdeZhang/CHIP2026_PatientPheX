@@ -9,6 +9,8 @@
 - **来源**：新头train32=F2F3，所有资源排F1；强F1 proposer48含F0，因此整个管线不能称仅train32，后继F0需要真正排F0的跨度池。完整公开预训练成员未知。CPU/source/方案见plan.json、formal-plan.json与实验记录；原2400成本门关闭是工程预算修正，不是质量失败。
 - **恢复入口**：外存D=/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1，terminal.json SHA fcb6e0bf；formal-recovery-v1-collection.json完整2888件逐SHA，ZIP7b080c97/1602882B。四大state文件保服务器精确locator和owner逐tensor重开收据，未冒称独立下载或自动resume。
 - **资源终态**：原proc_d77f2343/PID2737730同控制器完整完成；formal/infer child均rc0，managed原job读回running=false但未返回wrapper rc。13:20:29.893985实释放.100 GPU1 UUIDfc5d0525=0MiB/noapps，已交root，不再占卡。
-- **备份/下一步**：79成员小包317915B/5a14e627已服务端逐件核验且完整回下载同SHA（13:23:46，evidence/backup.json），集中独审终稿待回；本线不调阈值或再跑质量。原方法/完整过程见experiments/E-20261024-MENTION-CANONICAL-001.md；精确指标与终态索引见evidence/final-result.json、evidence/terminal.json。
+- **备份/下一步**：79成员小包317915B/5a14e627已服务端逐件核验且完整回下载同SHA（13:23:46，evidence/backup.json），集中独审2d54b6fb已PASS（evidence/review.json）；本线不调阈值或再跑质量。原方法/完整过程见experiments/E-20261024-MENTION-CANONICAL-001.md；精确指标与终态索引见evidence/final-result.json、evidence/terminal.json。
 
 源码正式入口3ac73adc已事前push；训练终态检查点d5691a67已push核验。当前结案提交随后核验，避免为记录自身hash反复提交。
+
+独立后继只读准备：readiness_top8/核全部2353训练目标的公开Top8供给，不改变本线负结果/预测；原2931独立训练继续。
