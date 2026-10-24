@@ -1,0 +1,85 @@
+{
+  "id": "E-20261024-FUSION-001",
+  "at_utc": "2026-10-24T10:54:16.103059+00:00",
+  "hypothesis": "Two structurally different relation models agreeing may supply higher-precision additions than either alone. Known individual negatives motivate a distinct fixed consensus control.",
+  "algorithm": "Preserve every original strongfullsupport relation; add all and only DocRE30 rawlogit>0 AND schema-zero-shot selected pairs not already present. Exact shared evaluator association-set semantics, no threshold/model/patient selection.",
+  "refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+      "bytes": 155402,
+      "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+      "bytes": 13187,
+      "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "source": {
+      "path": "/workspace/patientphex-worktrees/explore-relation-consensus/solutions/relation_consensus/run.py",
+      "bytes": 6434,
+      "sha256": "cda25adc65b575c8d374a6b5159427794233ade1ca24287293ed8e97801a7407"
+    },
+    "schema": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-schema-extraction/quality-v1/new-alone.pred.jsonl",
+      "bytes": 150430,
+      "sha256": "b92ca60d1b721a3a7177a1fac9190f99f0b070fd239a0ec8386d359577f87b72"
+    },
+    "docre_scores": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-document-relations/collected/formal-marker-long-v3/native/held-scores.jsonl",
+      "bytes": 279294,
+      "sha256": "2933713266fcbaa433397a3f30350ca1e0473aa1d4c85f252a241e9c1b86520f"
+    },
+    "docre_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/document-relations-controls-final-review/review.json",
+      "bytes": 47758,
+      "sha256": "954f72590db8f49b871353f7e63aaae3915c4646531c9149f10eb8aa48bb241d"
+    },
+    "schema_quality": {
+      "path": "/workspace/patientphex-runs/round2-20261023/stage8-schema-extraction/quality-v1/quality-complete.json",
+      "bytes": 3866,
+      "sha256": "705324806283bb18bee594d3a16207b835f33065cc7698d379b65dcdb6c18da9"
+    },
+    "baseline_ancestry": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/public-new-lgb-support-review/review.json",
+      "bytes": 13941,
+      "sha256": "5c04357465df8725fbd6b6e56a2cd229639708382930c95d94f570f02ffa50f6"
+    }
+  },
+  "output": "/workspace/patientphex-runs/round2-20261023/research/docre-schema-intersection-20261024/actual-v1",
+  "budget": {
+    "GPU": 0,
+    "fit": 0,
+    "new_v2_if_any_addition": 1,
+    "old_v2": 0,
+    "CPU_seconds": 60
+  },
+  "success": "Full default v2 all/text Score strictly above strongfullsupport .6863389812716092; macro reported unconditionally. No quality if zero added supply; no further subset/cut search.",
+  "scope": "F1 complete16docs/39patients/1189 fixedentities. DocRE and schema train-derived normalizer use stricttrain32; baseline support trained48 excludes F1. Originaldev untouched.",
+  "disclosure": "All F1 has been used for methoddevelopment; both constituent negative results already known. This is an additional development control, not blind. Gold is read only after full prediction freeze; no labels select individual additions.",
+  "recovery": "run.py assemble first, then evaluate exactly once. Existing output/intent refuses blind retry; inspect artifacts on interruption."
+}
