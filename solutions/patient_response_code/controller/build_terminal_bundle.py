@@ -34,8 +34,10 @@ def main():
             add('source/'+path.relative_to(S).as_posix(), path)
     for n in ['controller-plan.json', 'campaign.json', 'campaign-complete.json',
               'entry.json', 'bootstrap-entry.json', 'target-deployment.json',
-              'local-watch-intent.json', 'local-watch-events.jsonl', 'local-watch-failure.json']:
+              'local-watch-intent.json', 'local-watch-failure.json']:
         add('controller/'+n, C/n)
+    if (C/'local-watch-events.jsonl').is_file():
+        add('controller/local-watch-events.jsonl', C/'local-watch-events.jsonl')
     for epoch in [1, 2]:
         for suffix in ['job', 'start-intent', 'state', 'export-intent', 'server-job', 'server-ready',
                        'fetch-intent', 'fetch-job', 'export-ack', 'export-verification', 'source-ack-copy']:
@@ -63,6 +65,15 @@ def main():
     assert probe_collection['all_actual_SHA_verified']
     add('probe/collection.json', P/'collection.json')
     add('probe/probe-output.zip', probe_collection['archive']['path'])
+    Q=C.parent.parent/'patient-response-code-readiness-20261024'
+    for n in ['prepare.py', 'response_codec.py', 'native_cpu.py', 'cpu_operations.py',
+              'cpu-plan.json', 'readiness-plan.json', 'sources.json', 'row-contract.json',
+              'structural-result.json', 'identity-input-census.json', 'ready.json', 'REPORT.md',
+              'train.response-code.jsonl', 'held.response-code.jsonl',
+              'train.original.jsonl.gz', 'held.original.jsonl.gz']:
+        add('readiness/'+n, Q/n)
+    for path in (Q/'native-terminal').glob('*.json'):
+        add('readiness/native-terminal/'+path.name, path)
     add('final-review-entry.json', C.parent/'final-review-entry.json')
     refs = {n: dict(bytes=q.stat().st_size, sha256=hashlib.sha256(q.read_bytes()).hexdigest()) for n, q in paths.items()}
     archive = D/'terminal.tar.gz'
@@ -78,7 +89,7 @@ def main():
             assert len(b) == r['bytes'] and hashlib.sha256(b).hexdigest() == r['sha256']
     manifest = dict(archive=dict(path=str(archive), bytes=archive.stat().st_size,
                                 sha256=hashlib.sha256(archive.read_bytes()).hexdigest()),
-                    members=refs, private_clinical_responses=True, no_held_gold=True,
+                    members=refs, private_clinical_responses=True, train_targets_in_private_backup=True, no_held_gold=True,
                     no_model_optimizer_arrays=True, capability_excluded=True,
                     full_checkpoint_storage='Both complete epoch states are separately .100 durable with exact ACKs')
     with (D/'archive-manifest.json').open('x') as f:
