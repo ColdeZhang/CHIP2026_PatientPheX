@@ -8,10 +8,15 @@
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前：R1 F1完整负结案，F0扩展不启动
+## 当前：SFT32全文最长工程探针
+
+- 唯一A800 GPU2作业 `proc_7fce4726-81f5-4319-b92f-2e6bb7d4fae7`，driver40976/timeout40989。实际driver开始05:23:00.013584Z；240+TERM30，TERM05:27:00.013584/KILL05:27:30.013584。输入14390、上限14400，原greedy生成1600；无gold/质量，完整80尚未授权。
+- 原型源码/计划已push9dd171c6，8件远端SHA/compile/fsync已过。只读恢复：`python <B>/operations.py inspect --directory <B>`；完整终点collect。`B=R/research/qwen35-sft32-full-report-feasibility/probe-v1`。**先查原job/driver，不重复start。** [实验](experiments/E-20261024-SFT32-FULL-REPORT.md)。
+
+## 最近：R1 F1完整负结案，F0扩展不启动
 
 - 准确公开R1固定F1的80行已完成，78新+2精确缓存；**旧 .660942003 → R1单独 .605215986 / 唯一并集 .634402907**。两臂均未满足事前关系micro+macro升且macro不降；不迁原dev、不扩codec/预算。实体及非关联字节完全保持。[实验与分项](experiments/E-20261024-R1-F1.md)、[完整清单](deepseek_r1_readiness/full80-preparation/terminal-manifest.json) d8e5a992。
-- 70行合法、10整行弃答（含2触顶），478/587 CID有答案；缺CID仅弃答。3446.521秒/rc0，05:09:32.952 A30 GPU1空卡；原monitor及唯一finish controller均结束，无本路线运行中GPU/训练/传输。完整终点独审05d60bdb通过；65内容项＋members.json共66归档成员，405598字节包0873a63e已在.100全SHA/成员核验并fsync，不重模型/评分。
+- 70行合法、10整行弃答（含2触顶），478/587 CID有答案；缺CID仅弃答。3446.521秒/rc0，05:09:32.952 A30 GPU1空卡；原monitor及唯一finish controller均结束，R1本身无运行中GPU/训练/传输，新SFT32探针另列。完整终点独审05d60bdb通过；65内容项＋members.json共66归档成员，405598字节包0873a63e已在.100全SHA/成员核验并fsync，不重模型/评分。
 - F0已完成58真实编码、九资产私网copy及6028→3427最长工程（89.507秒，strict/normalized均8/8），统一独审fb9edc97。后继条件在F1质量前冻结；因union负而[关闭完整58](deepseek_r1_readiness/f0-preparation/final58-preparation/closed-before-start.json)，pending仍禁用，无F0质量。A800 GPU2预留已解除。
 
 ## 持久资源与接手
