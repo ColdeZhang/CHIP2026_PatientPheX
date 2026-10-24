@@ -1,4 +1,4 @@
-当前仅正式训练源码草稿；未运行或导入 trainer、Torch、tokenizer、模型，未部署、评分或读取 held gold。正式预算、实际 native CPU 完整结果及本路线 GPU probe 仍由父线程绑定；本目录不包含可启动的正式计划。
+当前仅正式训练源码草稿；未运行或导入 trainer、Torch、tokenizer、模型，未部署、评分或读取 held gold。正式预算及本路线 GPU probe 仍由父线程绑定；实际 native CPU 完整结果已绑定；本目录不包含可启动的正式计划。
 
 收尾时已把唯一成功 native CPU v2 的真实 result `629c2c16…`、encoded `4b503cd2…`、runtime、plan及修复源 refs 填入接口清单，并绑定完整 collection `237aaa65…`。这里只读既有元数据/核文件 SHA，未重复 CPU 或逐数组对照；父线程已完成的对象一致性结论沿用。旧 v1 的 generation-config lookup 失败原样保留。GPU probe 三项 actual refs 和正式预算仍未绑定。
 
