@@ -1,0 +1,256 @@
+{
+  "source_commit": "a7535827f1cd04252bff98e9686a70d9326efcba",
+  "start_response": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/start-response.json",
+    "bytes": 1863,
+    "sha256": "2da833843d960c3a27ff607cc03c4de57cded27d11fb2c083ecb2dc8a0e1005b"
+  },
+  "start_intent": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-competition-loss-v1/start-intent.json",
+    "bytes": 1174,
+    "sha256": "3daf4e7fa4a3a07cf8fed816686aec68fa64039cb639b2038f27546a2063a55f"
+  },
+  "actual": {
+    "started": 1792847953.2707472,
+    "started_utc": "2026-10-24T13:19:13.270747+00:00",
+    "deadline": 1792848853.2707472,
+    "term_grace_seconds": 30,
+    "budget_seconds": 900,
+    "driver_pid": 2741397,
+    "commands": [
+      [
+        "native",
+        [
+          "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+          "-u",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/train.py",
+          "--mode",
+          "formal",
+          "--plan",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/plan.json",
+          "--model",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public",
+          "--encoded",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/encoded",
+          "--output",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/run/native"
+        ]
+      ],
+      [
+        "normalization",
+        [
+          "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+          "-u",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/normalize.py",
+          "--native",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/run/native",
+          "--encoded",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/encoded",
+          "--output",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/run/normalization",
+          "--input",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/held.jsonl",
+          "--train",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/train.jsonl",
+          "--hpo",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/hp.obo",
+          "--bank",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank",
+          "--model",
+          "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT"
+        ]
+      ]
+    ],
+    "plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/plan.json",
+      "bytes": 12290,
+      "sha256": "1220573789251f7988041409f84463d472b7d69a56459542dea8e21d01ebe914"
+    },
+    "source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/driver.py",
+      "bytes": 4107,
+      "sha256": "4571d0d973b071d535367108bb90ac149f6f31d9679575a23e78e59817a1a1cb"
+    }
+  },
+  "fresh_inventory": {
+    "observed_utc": "2026-10-24T13:19:13.269189+00:00",
+    "gpus": "0, GPU-126293b9-6677-8464-cee7-01e693efbf29, 0, 24576\n1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 16353, 24576\n",
+    "apps": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 2740660, 16344\n",
+    "free_disk_bytes": 397319032832
+  },
+  "actual_initialized": {
+    "mode": "formal",
+    "train_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ],
+    "held_ids": [
+      "10313222",
+      "11871647",
+      "11906559",
+      "12386172",
+      "12455887",
+      "12891056",
+      "2964533",
+      "4607013",
+      "5415817",
+      "5425407",
+      "5473715",
+      "5538066",
+      "5789735",
+      "6048891",
+      "6063015",
+      "9327653"
+    ],
+    "parameters": 109187763,
+    "encoder_parameters": 108891648,
+    "unused_pretraining_keys": [
+      "cls.predictions.bias",
+      "cls.predictions.decoder.bias",
+      "cls.predictions.decoder.weight",
+      "cls.predictions.transform.LayerNorm.bias",
+      "cls.predictions.transform.LayerNorm.weight",
+      "cls.predictions.transform.dense.bias",
+      "cls.predictions.transform.dense.weight",
+      "cls.seq_relationship.bias",
+      "cls.seq_relationship.weight",
+      "pooler.dense.bias",
+      "pooler.dense.weight"
+    ],
+    "probe_state_used": false,
+    "effective_preparation": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/effective-preparation.json",
+      "bytes": 35423,
+      "sha256": "a21f7fdab140b68fb029b5d564d2472079cba8d2a0c802f93f1733f965b7fb93"
+    },
+    "torch": "2.7.1+cu126",
+    "assets": {
+      "pytorch_model.bin": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public/pytorch_model.bin",
+        "bytes": 440474434,
+        "sha256": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193"
+      },
+      "config.json": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public/config.json",
+        "bytes": 385,
+        "sha256": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1"
+      },
+      "vocab.txt": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public/vocab.txt",
+        "bytes": 226150,
+        "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      },
+      "tokenizer_config.json": {
+        "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public/tokenizer_config.json",
+        "bytes": 28,
+        "sha256": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+      }
+    },
+    "plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/plan.json",
+      "bytes": 12290,
+      "sha256": "1220573789251f7988041409f84463d472b7d69a56459542dea8e21d01ebe914"
+    },
+    "source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/train.py",
+      "bytes": 9786,
+      "sha256": "d33ddadc0d3e327e4ec221d13f138d93bef7fdbad587e83b28e06b74b90e31bd"
+    },
+    "model_source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/model.py",
+      "bytes": 2579,
+      "sha256": "23682f1ddb44c9ee1d575eabb603125dcae8c552537b6d9554d6052acccae541"
+    },
+    "base_model_source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-competition-loss-v1/source/vendor/base_model.py",
+      "bytes": 5868,
+      "sha256": "83e6ba33ba2939c7417487eb4b7911ad9fb7919fa6a7598be465eff54a205b47"
+    },
+    "optimizer_groups": [
+      {
+        "lr": 3e-05,
+        "weight_decay": 0.01,
+        "parameters": 109187713
+      },
+      {
+        "lr": 0.01,
+        "weight_decay": 0.01,
+        "parameters": 50
+      }
+    ],
+    "config": {
+      "window_tokens": 510,
+      "stride": 384,
+      "encoder_batch": 4,
+      "head_size": 64,
+      "epochs": 24,
+      "seed": 20261024,
+      "learning_rate": 3e-05,
+      "weight_decay": 0.01,
+      "gradient_clip": 1.0,
+      "global_NER_loss": "whole-document unique physical candidate GP multilabel categorical logsumexp positive/negative plus zero",
+      "patient_bag_loss": {
+        "function": "unchanged vendor.gp.multilabel_loss on concept x patient matrix",
+        "groups": "sorted exact tuple(bag.concept) union masked_bag.concept within one document",
+        "valid": "only original representable bags; masked positives/negatives invalid",
+        "all_masked_concept": "zero loss included in mean over all C; all-empty document graph-connected0",
+        "multiple_positive_patients": "all preserved, no single-patient softmax",
+        "global_NER_weight": 1.0,
+        "patient_loss_weight": 1.0,
+        "natural_scale_differs_from_BCE": true
+      },
+      "global_NER_weight": 1.0,
+      "patient_bag_weight": 1.0,
+      "NER_raw_floor": -2.0,
+      "NER_decision_logit": 0.0,
+      "patient_decision_logit": 0.0,
+      "optimizer_documents_per_step": 1,
+      "scheduler": "linear 76 warmup steps / 768 total; one complete document per step",
+      "patient_geometry": {
+        "shape": [
+          25,
+          2
+        ],
+        "initialization": "zeros after all old heads; no RNG advance",
+        "gap": "i-b if anchor precedes; j+1-a if follows; overlap/adjacent0",
+        "bucket": "sign(d)*min(12,1+floor(log2(abs(d)))) plus12; d0 index12",
+        "same_passage": "candidate and anchor in same original passage",
+        "aggregation": "mean all unique physical anchors sorted; no nearest or hard filter",
+        "training_scope": "complete bag instance union only",
+        "inference_scope": "original retained chunks, no fullPxcandidate cache"
+      },
+      "geometry_lr": 0.01,
+      "geometry_parameters": 50
+    }
+  }
+}
