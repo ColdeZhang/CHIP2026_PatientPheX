@@ -1,4 +1,4 @@
-"""Collect all frozen native CPU outcomes and actual terminal; never rerun the contract."""
+"""Collect closed original constrained-G39 raw outcomes; never rerun inference."""
 import argparse
 import base64
 import fcntl
@@ -141,7 +141,7 @@ for p in sorted(root.rglob('*')):
 assert {'driver-started.json','child-started.json','wrapper-complete.json','stdout.log','stderr.log'}<=set(files)
 assert 'member-index.json' not in files
 assert not external_large_artifacts
-index=dict(schema='grounded-held-query-terminal-members-v1',package=cfg['package_reference'],remote_root=str(root),files=files,wrapper=state['wrapper'],child_exit=state['child_exit'],exclusion_policy='Only frozen deployment input/source members and deployment parts excluded; all actual numeric query scores/runtime/terminal included; original query vectors retained at exact external SHA/fsync locator',external_large_artifacts=external_large_artifacts,original_files_fsynced=True)
+index=dict(schema='grounded-held-query-terminal-members-v1',package=cfg['package_reference'],remote_root=str(root),files=files,wrapper=state['wrapper'],child_exit=state['child_exit'],exclusion_policy='Only frozen deployment inputs/sources and deployment parts excluded; every actual generation ID file, raw response, constraint audit, runtime and terminal included',external_large_artifacts=external_large_artifacts,original_files_fsynced=True)
 index_bytes=(json.dumps(index,indent=2)+chr(10)).encode()
 bundle.mkdir(exist_ok=False);sync(root)
 put(bundle/'member-index.json',index_bytes)
@@ -290,7 +290,7 @@ def main():
         wrapper=wrapper, child_exit_before_freeze=index['child_exit'],
         inference_reported_success=(wrapper['returncode'] == 0 and not wrapper['timed_out'] and wrapper.get('complete39_actual_members_verified') is True and 'endpoint_error' not in wrapper),
         failed_or_timed_out_outputs_also_preserved=True, all_original_output_files_included=True, no_model_checkpoints_written=True,
-        all_actual_SHA_verified=True, all39_raw_and_ID_bytes_verified=True, collection_mode='closed_child_byteexact_archive', remote_archive_frozen=True, files_and_ancestor_directories_fsynced=True, zip_safety_checked=True,
+        all_actual_SHA_verified=True, all39_raw_and_ID_bytes_verified=(sum(n.startswith('output/raw/') for n in files)==39 and sum(n.startswith('output/generation/') for n in files)==39), collection_mode='closed_child_byteexact_archive', remote_archive_frozen=True, files_and_ancestor_directories_fsynced=True, zip_safety_checked=True,
         read_file_chunk_limit=CHUNK, no_inference_reexecution_or_GPU_query_or_kill=True)
     save(root / 'collection.json', report)
     print(json.dumps(dict(collection=ref(root / 'collection.json'), files=len(files),

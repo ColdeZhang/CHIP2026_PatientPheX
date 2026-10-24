@@ -62,6 +62,7 @@ def main():
   sys.path.insert(0,str(Path(r['evaluator']['path']).parent));import evaluate as ev,validate_predictions as va
   old=pairs(base,ev);original_view=pairs(oldpure,ev);support_view=original_view | set().union(*(pairs(support.jsonl(r[n]['path']),ev) for n in ['support_S','support_Q','support_C']))
   constrained={(did,pid,key[1]) for (did,pid),keys in selected.items() for key in keys}
+  assert len(support_view-old)==133 and len((support_view-old)-original_view)==71
   assert len(old)==524 and len(original_view)==282 and len(base)==16 and sum(len(d['entities']) for d in base)==1189
   assert sum(len(d['association']) for d in base)==39 and {str(d['pmc_id']) for d in oldpure}==set(ids)
   final=primary_keys(old,constrained,support_view);add=final-old;spans,mask=support.byte_helpers(r['byte_helper']);rendered=[]
