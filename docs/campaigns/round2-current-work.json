@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-24T10:04:59.862519+00:00",
+  "updated_at_utc": "2026-10-24T10:11:55.821541+00:00",
   "purpose": "Current recovery pointers. Read immutable job and latest owner state before acting; milestones below are not a fresh remote inventory.",
   "current_original_dev_score": 0.7543613981990362,
   "current_prediction_sha256": "9016863cb3bff53da5dfde25fce634bd60882f057d0c14501be7cb4937e71c67",
@@ -9,7 +9,7 @@
       "route": "ontology_rules",
       "branch": "round2/ontology-rules",
       "owner": "/root/ontology_recover_0518",
-      "status": "COMPLETE_NEGATIVE; owner d8edeec pushed, private66-member141db4c6 supplement durable on.100. Owner ended/released slot, validator now reviewing this and FLA together.",
+      "status": "COMPLETE_NEGATIVE_REVIEWED_a9d524a9; owner d8edeec pushed, 66-member supplement durable. Owner now patient_schedule.",
       "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
       "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
       "job": {
@@ -31,7 +31,7 @@
       "deadline_utc": "2026-10-24T10:27:28.873858Z",
       "budget": "Original shared 8400 seconds + TERM 30, not reset for epoch 2",
       "recovery_command": "python /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller/operations.py inspect --directory /workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-formal-v1/controller --epoch 2",
-      "next": "Use the existing watcher for original epoch-2 export and durable ACK, then already authorized fresh F1 full80/1200+30 and paired quality. Do not start another trainer or watcher.",
+      "next": "Closed. Do not restart old trainer/watcher/inference. Actual formal and F1 reviews are in pending-index-reviews.json.",
       "quality_job": {
         "process_id": "proc_36a62965-457f-49bb-8dab-13b4b34d1b5f",
         "driver_pid": 22795,
@@ -66,7 +66,7 @@
       },
       "budget": "2400 seconds + TERM 30; approximately 09:32:35/09:33:05 UTC; driver deadline is authoritative",
       "recovery_command": "python /workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal_remote.py observe --directory /workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1",
-      "next": "Require both complete epoch durable ACKs. Then fresh F1 full80/600+30 and the fixed two predictions frozen before unique evaluation. No automatic F0/dev.",
+      "next": "Closed. No additional alpha/F0/dev runs. Owner now grounded_generation.",
       "connection_policy": "UNKNOWN is not failure; recover original intent/result. A100 LUNA_OFFLINE: owner-only bounded backoff; do not duplicate start.",
       "deadline_utc": "2026-10-24T09:32:35.025472Z",
       "kill_deadline_utc": "2026-10-24T09:33:05.025472Z",
@@ -86,7 +86,7 @@
       "route": "case_retrieval",
       "branch": "round2/case-retrieval",
       "owner": "/root/retrieval_recover_0518",
-      "status": "FLA F1/F0 complete and independently reviewed8ca5/4fbaeaf1. F1 .678896254186, F0 .697299773647, both matched-native positive; still no globaldev best. Owner375721a persisted both quality supplements.",
+      "status": "FLA F1/F0 matched controls small positive and reviewed; current unchanged full901 original-dev deployment variant running. Original native best remains .754361398199.",
       "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
       "gpu_uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
       "process_id": "proc_99477f17-f631-4ca9-b349-1eff59cb3e6e",
@@ -97,7 +97,7 @@
       "source_checkpoint": "43571da",
       "infer_sha256_prefix": "3e1e8e9d",
       "plan_sha256_prefix": "3f5335d6",
-      "next": "Root explicitly authorized CPU inventory/cost and one original-dev control of unchanged full901 recipe with all Qwen streams on FLA. Reconstruct901 exactly from oldcanonical first; same prompts/models/entity/gates, no retraining/fulltext rewriting. If actual estimate <=1800+30, owner may uniquely run fullfresh streams and one frozen pipeline v2; no official actions. Preparing, no new dev GPU start yet.",
+      "next": "Keep unique shared1800+30 four-stream job; all234fresh, recompute original patient difference algorithm. Freeze one complete prediction then one v2/old0. Hardware/Torch confounds disclosed; no official actions.",
       "recovery": {
         "process_id": "proc_1bf02d93-8450-421d-bd9c-bd834a79cd5f",
         "driver_pid": 2714693,
@@ -111,6 +111,21 @@
         "path": "/workspace/patientphex-runs/round2-20261023/research/fla-fulltext-normal-quality-20261024/full80-v1/quality/summary.json",
         "sha256_prefix": "829a650c",
         "bytes": 5799
+      },
+      "original_dev_control": {
+        "process_id": "proc_e4930517-46b9-4ecb-8d2a-c09b24dcf64f",
+        "driver_pid": 2721779,
+        "started_at_utc": "2026-10-24T10:10:38.469613071Z",
+        "budget": "shared1800+TERM30 across normal64/reverse64/public42/patient64; no reset",
+        "source_checkpoint": "8976acd",
+        "plan_sha256_prefix": "178ae0ec",
+        "receipt": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/fla-best901-originaldev-20261024/full234-v1/managed-process.json",
+          "bytes": 1252,
+          "sha256": "4497621a73712ea4c070fdec88c80d30b29508ea834774ef2e5a5fc09d4f7fcf"
+        },
+        "old901_byteexact": true,
+        "quality_completed": false
       }
     }
   ],
@@ -121,7 +136,7 @@
     "fulltext_reverse": "Both endpoints below normal .676546354663; closed",
     "fla_backend_A": "Engineering review8959740a completed, real long-input differences. New independent FLA task-quality control explicitly allocated09:19; no transparent replacement or training B/C; outside217."
   },
-  "review_and_backup": "Index217/5010 refs published; all5028 archived members actually restored from .100 and SHA verified09:11:25. Prior206/4770-member actual restore retained. FLA A outside this batch.",
+  "review_and_backup": "Frozen217/5010 refs published and all5028 archived members actually restored09:11. Five complete independent reviews pending next single candidate/publication; no222 candidate yet. Route artifacts also persist on servers.",
   "new_parallel_worktrees": [
     {
       "route": "span_normalization",
@@ -129,7 +144,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-span-normalization",
       "owner": "/root/span_normalization",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "First GP32 complete negative: append.701293121901<.728697536469; GP-only.663575801621. Rawpool2133 retained. Second strictOOF GP-feature control GPU complete10:03:40.602957,277.219s; three fresh8ep models and4 fulltarget scoring passes, same strongpool/old101+2features. Local sole LGB fit/F1quality pending.",
+      "status": "StrictOOF GP features F1 complete positive .730812709670 versus .728697536469; one new LGB fit/onev2/old0. Full terminal review pending; F0 replication CPU lineage/interface passed, deploying.",
       "job": {
         "process_id": "proc_03655e70-29ef-4447-9413-84f06e920184",
         "pid": 1196540,
@@ -157,6 +172,16 @@
         "plan_sha256_prefix": "174b3c01",
         "final48_weight_sha256_prefix": "961645a5",
         "gpu_released": true
+      },
+      "F0_control": {
+        "status": "CPU passed; GPU not yet reported started",
+        "source_checkpoint": "e109b90224fc2e7e833a9f443cbb82d75cd6c5d7",
+        "old_features": 102,
+        "new_features": 104,
+        "old_score": 0.74057214044,
+        "budget": "900+TERM30",
+        "reuse": "Only original GP23 excluding F0; two fresh inner32 plus final48; no threshold scan",
+        "quality": "existing old baseline exactreuse, one new fit/onev2/old0"
       }
     },
     {
@@ -165,7 +190,7 @@
       "worktree": "/workspace/patientphex-worktrees/explore-document-relations",
       "owner": "/root/document_relations",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "First full DocRE complete negative: union.645655645/candidate-replace.534242627 versusN.676546355; candidatecoverage469/520, all2874logits preserved. Mature ATLOP literal*-boundary marker representation is new fixed control, same training/candidates; CPU stripping restoresall oldtokens. New formal active.",
+      "status": "Both8epoch controls complete negative and preserved. Unmarked union .645655645; marker union .663128103/replace .558854734, below strongN .676546355. Marker improved ranking but not deployment. Fixed fresh30epoch/240Adam control now authorized behind GP F0.",
       "marker_job": {
         "process_id": "proc_1670417f-df6b-43d4-a79c-f2fba0ef8503",
         "pid": 1198389,
@@ -173,8 +198,13 @@
         "budget": "600+TERM30; actual driver deadline authoritative",
         "source_checkpoint": "98f9b6a",
         "gpu": ".3 GPU0",
-        "same8epochs64calls": true
-      }
+        "same8epochs64calls": true,
+        "completed_at_utc": "2026-10-24T10:06:58.492447Z",
+        "elapsed_seconds": 178.408751,
+        "gpu_released_at_utc": "2026-10-24T10:06:58.652505Z"
+      },
+      "next": "Same marker/data/LR/candidates/loss/cut, only fixed30epochs and corresponding240Adam;900+30, no new engineering probe. Only final full F1 two frozen endpoints, each1v2. If both below strongN, close this control family; no cut/epoch search.",
+      "terminal_checkpoint": "5f594473529002800d17008e4214f05963e89d21"
     },
     {
       "route": "grounded_generation",
@@ -182,16 +212,19 @@
       "worktree": "/workspace/patientphex-worktrees/explore-grounded-generation",
       "owner": "/root/sequence_recover_0518",
       "base_commit": "0c0672da4a761cadf0ff5b501ed2d4cbf321c910",
-      "status": "Native CPU-v2 complete16.244s/126 inputs+6numerical checks. A100 deployment UNKNOWN recovered without duplicate model; local dict.get default KeyError occurred before any start intent and was narrowly fixed. Unique420+30 probe active; first8/oneAdam passed, remaining3+3Pareto ongoing.",
+      "status": "NativeCPU and actual14backward/oneAdam/threePareto GPU probe complete PASS; native240.557/wrapper242.157s, peak28.1817GB. Formal3000+30 fresh2epochs22calls followed39fresh1200+30 and twoquality authorized. Source d262f384/payload deployed, A100 LUNA_OFFLINE before any start intent; owner backoff until10:13:37.",
       "probe_job": {
         "process_id": "proc_7d1bc518-3e0c-4ed5-9bf4-5d3a369671e5",
         "driver_pid": 66162,
         "started_at_utc": "2026-10-24T10:00:29.145Z",
         "budget": "420+TERM30; actual driver deadline authoritative",
         "gpu": "A100 GPU2",
-        "no_formal_training_started": true
+        "no_formal_training_started": true,
+        "completed": true,
+        "gpu_released_at_utc": "2026-10-24T10:04:31.503595Z"
       },
-      "normalizer": "624train-only queries completed.3 rc0/16.717s,41099public bank subset reused; data/thresholds fixed beforeheld outputs.120+15 original job8ccd4671; .3 released and raw14files recovered. LODO fallback117correct/11wrong is train-only, notheld quality."
+      "normalizer": "624train-only queries completed.3 rc0/16.717s,41099public bank subset reused; data/thresholds fixed beforeheld outputs.120+15 original job8ccd4671; .3 released and raw14files recovered. LODO fallback117correct/11wrong is train-only, notheld quality.",
+      "next": "Owner-only sparse original-start recovery after connection; no duplicate probes/deploy. Independent engineering review may run in parallel. Fixed train-only normalizer; two frozen fullquality endpoints, choose highest strictly above strongN, tieprimary; primary hypothesis separately disclosed."
     },
     {
       "route": "patient_schedule",
@@ -199,8 +232,23 @@
       "worktree": "/workspace/patientphex-worktrees/explore-patient-schedule",
       "base_commit": "4af01236d130efdc51afc167ead1b6d72555cc83",
       "owner": "/root/ontology_recover_0518",
-      "status": "CPU/source only. FreshstandardCE4ep64calls/warmup4,124originalrows. A800 allocation waits grounded A100stress. StrongN union oldP2 matched CPU baseline uniquely frozen/evaluated.671703122962488, belowN.676546355; future primaryN unionP4 and diagnosticP4-alone fixed, no intermediateepoch selection.",
-      "matched_baseline_result": "/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1/matched-baseline/result.json"
+      "status": "RUNNING unique fresh4epoch64calls standardCE campaign A800 GPU2, source c0fcff6 pushed. Original local watcher alive, four complete state exports/ACKs required. Owner idle until all4ACKs, then followup for authorized80fresh/twoquality.",
+      "matched_baseline_result": "/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1/matched-baseline/result.json",
+      "job": {
+        "process_id": "proc_975a3621-b856-4de5-9417-3016af6c08b2",
+        "driver_pid": 27842,
+        "started_at_utc": "2026-10-24T10:08:43.041913Z",
+        "deadline_TERM_utc": "2026-10-24T11:38:41.825555Z",
+        "budget": "shared5400+TERM30 including four durableACKs",
+        "local_watcher_pid": 143721,
+        "local_exec_session": 73046
+      },
+      "recovery_entry": {
+        "path": "/workspace/patientphex-worktrees/explore-patient-schedule/solutions/patient_schedule/evidence/ready.json",
+        "bytes": 4876,
+        "sha256": "591f7ff58386560159e9fdbca044ae0f6b8b9db90f94323ef6443437826d2f3a"
+      },
+      "next": "Do not duplicate watcher/trainer. On campaign-complete and all4ACKs wake ontology_recover_0518 to run existing binder and full80fresh1200+30, fixed twoquality endpoints. No additional stage permission needed."
     }
   ]
 }
