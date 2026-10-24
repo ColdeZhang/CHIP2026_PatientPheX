@@ -1,0 +1,45 @@
+{
+  "status": "PROSPECTIVELY_FIXED_BEFORE_CANONICAL_NAMES_QUALITY",
+  "at_utc": "2026-10-24T12:35:40.904164+00:00",
+  "hypothesis": "Two heads without a closed candidate-concept list provide complementary patient attribution: exact canonical-name set generation and exact-quote grounded generation. Their literal agreement may add reliable relations beyond the current three-source consensus.",
+  "formula": "Complete current two_of_three baseline UNION (all canonical_names relations INTERSECT all grounded relations)",
+  "selection": "All literal patient-HPO agreements used; no subset, confidence threshold, source replacement or patient selection. Names supply HPO only; old baseline NIL and all other relations retained.",
+  "F1": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-20261024/actual-v1/two_of_three.prediction.jsonl",
+      "bytes": 140928,
+      "sha256": "4967e8a65cab39e74d78d03ba6811e7b7dd19d561c3f87e25289b2dc603b2ce1"
+    },
+    "metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-20261024/actual-v1/two_of_three.metrics.json",
+      "bytes": 12939,
+      "sha256": "e7567b707eb555530baab7ac50d8defd2ca44b4513f2ca1759472b00f01e114e"
+    },
+    "Score": 0.7010873324879443,
+    "relations": 507,
+    "entities": 1189,
+    "patients": 39,
+    "grounded": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1/quality-F1-metadata-recovery-v1/assembled/new-only.jsonl",
+      "bytes": 152760,
+      "sha256": "80bc3dc728bb7f93bfeda726b66596ec293160d4ac1333c2e7f9a31911250e65"
+    }
+  },
+  "F0_if_F1_strict_positive": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/parallel-relation-fusion-F0-20261024/actual-v1/two_of_three.prediction.jsonl",
+      "bytes": 112769,
+      "sha256": "311aee8c6d586fd843713a5d4219cc800b135bdfd00b36f5f41cadd96c192921"
+    },
+    "Score": 0.7244573553320438,
+    "relations": 330,
+    "entities": 947,
+    "patients": 47,
+    "same_frozen_model32_and_policy": true,
+    "new_F0_inference_requires_root_resource_schedule": true
+  },
+  "source_training": "Canonical name and grounded heads both train32 F2/F3; upstream baseline/source provenance already audited. No new task-model fit in this control.",
+  "quality": "Per fold one complete prediction frozen before one v2 all/text, old0; if no new relations, exact equality conclusion and no redundant score. Originaldev/official not authorized by this decision.",
+  "comparison": "Strictly above the complete current two_of_three baseline, not the weaker initial B. Both folds are development.",
+  "independent_canonical_endpoint": "Existing owner one-shot B471 union canonical result remains separate; this formula will not be selected or altered based on that result."
+}
