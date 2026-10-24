@@ -9,6 +9,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from torch.utils.checkpoint import checkpoint
+from vendor.gp import multilabel_loss
 
 
 def rotate_positions(x,positions):
@@ -51,8 +52,9 @@ class PatientSpanModel(nn.Module):
    pairs=torch.tensor(row['candidates'],device=hidden.device,dtype=torch.long);ner=self.global_scores(hidden.float(),pairs);positive=torch.zeros(len(pairs),device=hidden.device,dtype=torch.bool);positive[row['positive_candidates']]=True
    negative=~positive
    if row.get('ignored_NER_candidates'):negative[row['ignored_NER_candidates']]=False
-   posloss=F.softplus(-ner[positive]).mean() if bool(positive.any()) else None;negloss=F.softplus(ner[negative]).mean() if bool(negative.any()) else None
-   components=[x for x in [posloss,negloss] if x is not None];nerloss=torch.stack(components).mean()
+   valid=positive|negative
+   # One batch row is the unique physical candidate vector for the entire doc.
+   nerloss=multilabel_loss(ner[None],positive[None],valid[None])
    used=sorted({i for b in row['bags'] for i in b['instances']});lookup={i:j for j,i in enumerate(used)}
    if used:
     relation=self.patient_scores(hidden.float(),patients.float(),pairs[used]);baglogits=torch.stack([relation[b['patient_index'],[lookup[i] for i in b['instances']]].max() for b in row['bags']]);labels=torch.tensor([b['label'] for b in row['bags']],device=hidden.device,dtype=torch.float32);reloss=F.binary_cross_entropy_with_logits(baglogits,labels)

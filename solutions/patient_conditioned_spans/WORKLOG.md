@@ -9,3 +9,5 @@
 - CPU-v2：813 个可监督正袋、1 个 masked 正袋；3 个不精确词片正跨度的覆盖候选不作为 NER 负例。完整数目与口径见实验。
 - 下一步：现成 BiomedBERT 精确资产、远端生产代码 CPU autograd 和 HF token 合同；等待名称路线真实释放 .100 GPU0 后，唯一 120+30 秒整文双形状工程更新。
 - 禁止依赖 held gold 调 cut；未训练、未推断、未评分。原 sampled 成功记录及所有旧路线保持原样。
+
+事前修订：86b37baf 的 balanced-BCE 准备保留且未执行任何 GPU/质量。为保持本次关键变量为患者条件和 latent bag，正式 NER 改用原 GP 的 multilabel categorical loss；完整几何不变，新增高分稀有负例影响/有限梯度 CPU 合同。

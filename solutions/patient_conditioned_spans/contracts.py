@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse,copy,json,torch
 from torch import nn
 from model import PatientSpanModel
+from vendor.gp import multilabel_loss
 from common import save,ref
 
 class ToyEncoder(nn.Module):
@@ -26,9 +27,12 @@ def run():
  # Duplicated overlap windows average to identical global representation when
  # the encoder itself has no positional/context effect; anchor occurrence remains once.
  model.eval();h,p=model.encode_document(row);dup=copy.deepcopy(row);dup['windows'].append(copy.deepcopy(row['windows'][1]));h2,p2=model.encode_document(dup);assert torch.allclose(h,h2,atol=1e-7) and torch.allclose(p,p2,atol=1e-7)
+ # A rare high-score negative remains influential among many easy negatives.
+ logits=torch.cat([torch.tensor([0.,8.]),torch.full((100000,),-20.)]).requires_grad_();positive=torch.zeros_like(logits,dtype=torch.bool);positive[0]=True;valid=torch.ones_like(positive);valid[-1]=False
+ loss=multilabel_loss(logits[None],positive[None],valid[None]);loss.backward();assert torch.isfinite(loss) and torch.isfinite(logits.grad).all();assert logits.grad[1]>.99 and logits.grad[0]<0 and logits.grad[-1]==0
  # Target gradients really reach both encoder and patient-conditioned parameters.
  model.train();model.zero_grad();before={n:p.detach().clone() for n,p in model.named_parameters()};opt=torch.optim.AdamW(model.parameters(),lr=1e-3);a=model.loss(row);a['loss'].backward();opt.step();changed={n for n,p in model.named_parameters() if not torch.equal(before[n],p)}
  assert any(n.startswith('encoder.') for n in changed) and any(n.startswith('condition_head.') for n in changed) and any(n.startswith('patient_head.') for n in changed)
- return {'status':'PASS_PRODUCTION_CPU_FULL_DOCUMENT_GRADIENT_CONTRACTS','cross_window_anchor_gradients':True,'both_patients_can_be_positive_same_concept':True,'whole_document_max_bag':True,'true_empty_patient_negative_bags':True,'overlap_average_no_anchor_duplication':True,'finite_loss_and_gradients':True,'actual_Adam_updates':sorted(changed),'toy_only_not_GPU_cost_or_quality':True,'torch':torch.__version__,'sources':[ref(Path(__file__)),ref(Path(__file__).with_name('model.py'))]}
+ return {'status':'PASS_PRODUCTION_CPU_FULL_DOCUMENT_GRADIENT_CONTRACTS','cross_window_anchor_gradients':True,'both_patients_can_be_positive_same_concept':True,'whole_document_max_bag':True,'globalNER_multilabel_rare_high_negative_gradient':float(logits.grad[1]),'ignored_candidate_gradient_zero':True,'true_empty_patient_negative_bags':True,'overlap_average_no_anchor_duplication':True,'finite_loss_and_gradients':True,'actual_Adam_updates':sorted(changed),'toy_only_not_GPU_cost_or_quality':True,'torch':torch.__version__,'sources':[ref(Path(__file__)),ref(Path(__file__).with_name('model.py'))]}
 if __name__=='__main__':
  ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);a=ap.parse_args();r=run();save(a.output,r);print(json.dumps(r))
