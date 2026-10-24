@@ -16,6 +16,7 @@
 
 ## 已关闭或保留的关键控制
 
+- [R1条件学习融合只读研究](research/r1-meta-fusion-feasibility.md)：官方§4.2支持LLM预测＋上下文→LightGBM，旧303HGB／五列LR均未包含R1；严格F1→F0技术上可隔离。固定后备为同11列树±3个R1状态、强对照匹配；F1 1557对中282对R1未知，不填负。F0缺57fresh、历史均值估约42分钟，新增21TP/140FP证据弱，root同意暂列后备先回收在跑方法。只读报告，无gold/fit/新质量/GPU；旧F0关闭不变。
 - [全局兼容解码](global_compatible_decoder/REPORT.md)：强B4,633候选/66非平凡组件最大3；精确有理数枚举3.488秒，仅F3一组件删1加2。pooled .730993616→.730822309、F3−.000731780，其余三fold byteexact；统一终审98962250，固定负，保旧nested、不改目标/cut/迁dev。
 - [全文Med](medgemma_relation_control/fullcontext-preparation/RESULT-fullcontext-frozen.md)：fresh Med同strict32/124，train+infer追加允许全文，cap14000/7150监督、32calls；oldSFT32 **.660942003**→全文Med **.592418621**、唯一old∪Med **.627966889**，均负。两epoch/两完整持久ACK1264.674秒<2700，final80 307.881秒<900；587CID合法0fallback，1189实体/非关联bytes不变。终审f7e5df86，不F0/dev/官方。
 - [短Med](medgemma_relation_control/RESULT-short-input-frozen.md)：.603701549、old并集.644663430，审fcc84401，固定负。短/全文是不同输入控制，旧零样本全文、开放HPO全文SFT另列，不把任一负结果泛化为所有全文方法无效。
