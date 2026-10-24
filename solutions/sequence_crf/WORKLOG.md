@@ -12,7 +12,7 @@
 - **独立机械恢复完整通过**：proc_0f960ddf/PID13376，08:43:45→08:46:24，rc0/159.843927秒，12反向+1真实非零Adam，最长5556在已有Adam+3累积梯度下通过；496梯度/state finite、三族B实变/base冻结。12真实call均只有两diagnostic=None，scope全恢复。峰allocated25.699GB/reserved40.077GB，后者接近卡额如实披露；GPU2实际0/40339释放。77原件/ZIP971478f6全SHA/fsync，collection8986ae69；观测LUNA只延迟收件，未重启。原72.035秒失败仍保留。[单份完整终态](patient_balanced_loss/interface_recovery/terminal-summary.json)。
 - **probe输入/源码**：12行唯一编码0.693748秒、44992tokens/530监督，原IDs/labels/rendered/整metadata exact，payload4cfdb1f1；source6f0188d4/hook97a0c5ce/driverafa8c149已独审静态无阻断。[部署原件](patient_balanced_loss/probe-deployment.json)。原H5初次释放后等其机械恢复完成才start，旧快照保留但未作当前gate。
 - **运行位置**：外部 `R/research/patient-balanced-mixed-loss-alpha05/{preparation,cpu-numerical-v1}`；R=`/workspace/patientphex-runs/round2-20261023`。远端 mount476f / project `sequence-round2/patient-balanced-alpha05/cpu-contract-v1/actual`。模型未载入；原数值任务已终态；该probe已终态且GPU2释放。
-- **下一步**：完整CPU已收回并统一独审；真实工程probe已完整通过，提交正式2400+30保守预算建议（两轮801228tokens，实测吞吐约1581秒、最慢shape外推1722秒，加load/两epoch持久/余量）；原失败不重跑。正式训练与质量未授权。后继 [trainer接线设计](patient_balanced_loss/FUTURE-INTEGRATION.md)已落实为probe专用hook；正式trainer仅source draft，已引用同一v2 hook，并沿原协议接两epoch durable ACK；匹配控制器与13件输入映射仅source准备，无正式训练授权。root已给上述唯一probe预算，须CPU全件到齐、H5实际释放、fresh卡核和源计划push后执行。候选保留总Score为准、macro完整披露，不恢复旧macro硬门。
+- **下一步**：完整CPU已收回并统一独审；真实工程probe已完整通过，执行已授权正式2400+30（两轮801228tokens，实测吞吐约1581秒、最慢shape外推1722秒，加load/两epoch持久/余量）；原失败不重跑。正式训练与质量未授权。后继 [trainer接线设计](patient_balanced_loss/FUTURE-INTEGRATION.md)已落实为probe专用hook；正式trainer仅source draft，已引用同一v2 hook，并沿原协议接两epoch durable ACK；匹配控制器与13件输入映射仅source准备，root已按159.844秒实测授权唯一fresh两轮2400+TERM30，最终epoch2 durable后另final80/600+TERM30。root已给上述唯一probe预算，须CPU全件到齐、H5实际释放、fresh卡核和源计划push后执行。候选保留总Score为准、macro完整披露，不恢复旧macro硬门。
 
 ## 当前最佳及官方授权
 
@@ -49,4 +49,4 @@
 
 - [实验索引 E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[原证据索引](evidence/round2/README.md)。大日志、raw、完整pred、权重均在R或已核持久locator，不进Git。
 - 最近实际推送核验：`25a6e074a6192cee7435809eb3450c9312b587b5`（v2薄接口PASS与新plan）；旧`dec93f4691ffeea985eeb8b6e1704a80ad65c8d5`，含新probe源/12编码事前计划/quality固定设计；`dd7f782`是原CPU执行前源冻结，`3a81ef4`保留首次UNKNOWN启动收据。后续结果按实际完成更新，不为台账自身hash循环提交。
-- 所有既有train/infer/score终态均不可重启或重评。v2工程probe已完整终态，正式两轮预算待root；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。
+- 所有既有train/infer/score终态均不可重启或重评。v2工程probe已完整终态，正式两轮2400+30及后续final80/600+30已获root授权，待fresh核唯一启动；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。

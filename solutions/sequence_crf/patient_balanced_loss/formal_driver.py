@@ -46,7 +46,7 @@ def main():
     plan = json.loads(Path('formal-plan.json').read_text())
     assert plan['phase'] == 'train' and plan['formal_training_authorized'] is True
     cap = plan['budget_seconds']
-    assert type(cap) is int and cap > 0 and plan['grace_seconds'] == 30
+    assert type(cap) is int and cap == 2400 and plan['grace_seconds'] == 30
     assert plan['epochs'] == 2 and plan['optimizer_calls'] == 32 and plan['warmup_steps'] == 2
     assert plan['rows'] == 124 and plan['alpha'] == .5
     assert not any(Path(n).exists() for n in ['driver-started.json', 'child-started.json',
