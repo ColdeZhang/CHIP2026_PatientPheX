@@ -140,3 +140,6 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 
 
 唯一正式入口独审71d71097 PASS（44冻结refs）：包括actual A800 CPU、三控制器fsync、新HTTP合成合同、F1纯输入scope澄清、cwd窄修和唯一真实job；原train/infer数值与完整数据隔离绑定通过。审查未新增CPU/NN，也不代表正式训练、最终80或质量已完成；终点仍按上述原任务收尾。[入口独审](../evidence/round2/patient-first-formal-entry-review.json)。
+
+
+02:40:44实际监控确认epoch1完整，16/32 optimizer calls，epoch557.7481575s、平均accumulation-group训练loss .2666083614；epoch-001已完整保存，继续同一进程第二轮。step15峰allocated36.7366GB，nvidia-smi缓存/进程占用69559/81920MiB，原80GiB仍有余量，无OOM/数值异常。首非零step2/lr5e-5、norm6.57372、三族B真变化如原warmup；未评epoch1，且此时仅SHM检查点，尚无持久导出声明。[首轮进度](../evidence/round2/patient-first-formal-epoch1-progress.json)。
