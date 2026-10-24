@@ -2,9 +2,19 @@
 
 分支 `round2/sequence-crf`，worktree `/workspace/patientphex-worktrees/round2-sequence-crf`；负责人只修改 `solutions/sequence_crf/`。新任务先读当前 `main:HANDOFF.MD`、`main:AGENTS.md` 与主线程总账，再读本页及对应实验文档。完整旧台账已移至[历史快照](WORKLOG-HISTORY-20261024-0335.md)，其中旧“运行中”字样不表示当前状态。
 
+## 当前优先：用户已授权唯一901方法官方B真实推断
+
+root已转述用户新授权，只提交当前最高901/.754361398199方法；此前默认暂停上传已被这次明确授权覆盖。序列负责共同train64规则base/Sap64/CRF原文候选底座、Task2 GLiNER48追加，以及实际patient f787 B闭集推断；root最终校验并只上传一次，我不上传。禁止新fit/换checkpoint/加入未完成模型或把dev16/六条固定概念当测试预测。
+
+[纯B输入清单](evidence/official-901-B/input-manifest.json)：100篇/244患者/3802passages/1,708,003字符，2,060,389B，SHA878fe248；与train64文献零重叠，未含entities/association。oldpool加载子代理`official_b_oldpool_cpu`只动official_901_B/old_pool_cpu，准备共同base/CRF/Sap供Task1与Task2，GLiNER48仅Task2。旧CLIs会重fit，必须薄加载已存coef/pickle/bank。patient final_infer baf06014只泛化新输入identity/count，保持f787、BF16/native/greedy14000/1600与raw-before-codec，不用devgold。
+
+B最终合成还须按root规则核：patient合法HPO来自oldpool，public-new来自相对oldpool差集，在实际canonical/alt处理后逐doc空间及输出级严格互斥才允许等价全union；否则精确原counterfactual a179_B差集，不能猜或临时删patient。此证明与retrieval共同完成。
+
+恢复补线：患者173MB第二副本仍未完成。两次source部署观察错误，06:23及06:24实际目录为空；06:25结构化写明确LUNA_OFFLINE，按≥180s退避，HTTP/fetch从未启动。原A100完整state仍持久；.100新最小901补包尚待完成，不宣称已备份。
+
 ## 目标与已知最佳
 
-- 用户验收仍是原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text、Score ≥ .8 且格式/复现通过；内层F0/F1的诊断不能替代该目标。当前不上传官方；本次full64→原dev唯一端点已完整结束，其他新评分臂需明确决定。
+- 用户验收仍是原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text、Score ≥ .8 且格式/复现通过；内层F0/F1的诊断不能替代该目标。用户现在已授权唯一901官方B真实推断/提交，由root执行上传；本次full64→原dev唯一端点已完整结束，其他新评分臂需明确决定。
 - 每个独立模型 ≤10B，允许多模型；不要重新按全链参数合计禁用集成（main HANDOFF H47）。
 - 本路线已知的跨方案原dev候选 **.746081965**：固定逆序关系并集，1072实体不变，原368关系保留、新391关系；+.007588212、15TP8FP，已独审PASS，仍未.8。[结果与恢复](experiments/reverse-json-order-dev.md)。更晚的跨路线最佳以主线程总账为准。
 - 本路线独立原政策 **.711324992**（独审PASS），旧CRF/Sap、GLiNER及HGB实体控制详情均在历史与各实验文档中。[当前资源清单](experiments/best-pipeline-resource-inventory.md)、[已存HGB推断入口](experiments/load-existing-selector.md)。
