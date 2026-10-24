@@ -1,0 +1,148 @@
+{
+  "status": "CPU_GEOMETRY_ONLY_NO_NN_NO_QUALITY",
+  "preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/cpu-v2/preparation.json",
+    "bytes": 33492,
+    "sha256": "74db483bbb1e2cf207dcda9cee5c6fa31f1bda769ac4192a65d18f4627bd521f"
+  },
+  "configuration": {
+    "window_tokens": 510,
+    "stride": 384,
+    "encoder_batch": 4,
+    "head_size": 64,
+    "epochs": 8,
+    "seed": 20261024,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "global_NER_loss": "equal positive/negative BCE means, absent positive uses negative mean",
+    "patient_bag_loss": "mean BCEWithLogits(max_instance_logit, patient_concept_label)",
+    "global_NER_weight": 1.0,
+    "patient_bag_weight": 1.0,
+    "NER_raw_floor": -2.0,
+    "NER_decision_logit": 0.0,
+    "patient_decision_logit": 0.0,
+    "optimizer_documents_per_step": 1,
+    "scheduler": "linear, 10 percent warmup"
+  },
+  "sources": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/nested-outer0-inner1/train32.jsonl",
+      "bytes": 969963,
+      "sha256": "38c353ea9920f8917dbc4e0e7c6d58d2130ebcca9779fcbb04cbc0a2abcb479a"
+    },
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "provenance": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "vocab": {
+      "path": "/workspace/patientphex-runs/day1-20261023/sequence-crf/pretrained-biomedbert/vocab.txt",
+      "bytes": 226150,
+      "sha256": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    }
+  },
+  "counts": {
+    "train": {
+      "documents": 32,
+      "patients": 87,
+      "patient_anchors": 255,
+      "tokens": 113210,
+      "windows": 300,
+      "candidate_spans": 3197738,
+      "positive_entity_records": 2275,
+      "NO_records": 87,
+      "NER_positive_spans": 2271,
+      "NER_ignored_unrepresentable_covering_spans": 3,
+      "bags": 3194,
+      "positive_bags": 813,
+      "masked_bags": 1,
+      "masked_positive_bags": 1,
+      "valid_gold_relation_keys": 814,
+      "empty_patients": 5,
+      "NIL_bags": 79,
+      "HPO_bags": 3115,
+      "invalid_relation_literals": 4,
+      "conflicting_ner_positive_and_NO_spans": 0,
+      "unrepresentable_positive": 3
+    },
+    "held": {
+      "documents": 16,
+      "patients": 39,
+      "patient_anchors": 162,
+      "tokens": 58522,
+      "windows": 156,
+      "candidate_spans": 1658187
+    }
+  },
+  "shapes": {
+    "train": {
+      "maximum_tokens": 7023,
+      "maximum_windows": 18,
+      "maximum_patients": 14,
+      "maximum_candidate_spans": 207255,
+      "maximum_patient_candidates": 1082396,
+      "maximum_bags": 384
+    },
+    "held": {
+      "maximum_tokens": 7729,
+      "maximum_windows": 20,
+      "maximum_patients": 7,
+      "maximum_candidate_spans": 222460,
+      "maximum_patient_candidates": 1100953,
+      "maximum_bags": 0
+    }
+  },
+  "files": {
+    "train": {
+      "compressed": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/cpu-v2/train.json.gz",
+        "bytes": 27637607,
+        "sha256": "a01387c89d807868c01b85089dbd7a5b163952baf63a124bacf4306a835bf4dc"
+      },
+      "decoded_bytes": 115076256,
+      "decoded_sha256": "3878fa3ca531574be0f8eae6d5ec8f17f116bd0249ca484d1ea66666b0e705c5"
+    },
+    "held": {
+      "compressed": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/cpu-v2/held.json.gz",
+        "bytes": 14339954,
+        "sha256": "c621e1dc67c9619cf1517475d8fc886eac1792996706dbaa91128d0bc53e4ce6"
+      },
+      "decoded_bytes": 59781629,
+      "decoded_sha256": "0c3f0020077548dbec0bb2ef3f8b0eeb3caabe6f09d947db3e77cf62642e62ea"
+    }
+  },
+  "research": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-attribution-completion-readiness-20261024/sources.json",
+    "bytes": 14994,
+    "sha256": "dcf95df860c36f8a31c039751292d643c54c9d86ac7707a0f7daed349dd1c1af"
+  },
+  "vendor": [
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-conditioned-spans/solutions/patient_conditioned_spans/vendor/doc_encode.py",
+      "bytes": 5609,
+      "sha256": "6e41cb02a8dc1c3a0d78cc51a842732943c6aac8578e8f2ccd54ca652755cc1e"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-conditioned-spans/solutions/patient_conditioned_spans/vendor/gp.py",
+      "bytes": 2022,
+      "sha256": "b7eaea1143010db548abbbe5e687addb09f423883c87eaabe3b9c84c6c17b557"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-conditioned-spans/solutions/patient_conditioned_spans/vendor/strict.py",
+      "bytes": 13619,
+      "sha256": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+    }
+  ]
+}
