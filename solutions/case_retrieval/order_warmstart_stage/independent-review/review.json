@@ -1,0 +1,228 @@
+{
+  "status": "PASS_MATCHED_WARMSTART_STAGE_COMPLETE_ENTRY_OFFLINE_NO_LAUNCH",
+  "at_utc": "2026-10-24T01:20:12.678487+00:00",
+  "scope": "Source/data/supervision/matched-budget/durable-export/paired-evaluation entry; no new training, inference or quality result.",
+  "decision": "No source-contract blocker remains. Root MCP pause still applies; entry PASS does not assert deployment, current free GPU, training or remote backup.",
+  "formal_plan_sha256": "2dadd63a7e771e1a5a107b94424a656cbf1158669ef318fa7e690ed300790c31",
+  "endpoint_source_sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d",
+  "data": {
+    "train_documents": 32,
+    "rows": 124,
+    "patient_concept_pairs": 2506,
+    "positives": 594,
+    "excluded_documents": 32,
+    "F1_prompts": 80,
+    "F1_pairs": 1557,
+    "F1_entities": 1189,
+    "reverse_semantics_and_exposure_independently_rebuilt": true
+  },
+  "training": {
+    "warm_adapter_sha256": "4f4815b6c6c245c43dc976406942f43cecc7250266a0ec91ee6e1807fe63bfff",
+    "old_epochs": 2,
+    "new_epochs": 2,
+    "arms": {
+      "original": [
+        "O",
+        "O"
+      ],
+      "reverse-first": [
+        "R",
+        "O"
+      ]
+    },
+    "optimizer_calls_each": 32,
+    "examples_each": 248,
+    "supervised_tokens_each": 14340,
+    "total_tokens": {
+      "original": 805188,
+      "reverse-first": 805190
+    },
+    "fresh_Adam_scheduler_and_RNG": true,
+    "exact_old_optimizer_resume": false,
+    "same_sample_order_and_start_seed": true,
+    "unchanged_old_full_JSON_loss": true
+  },
+  "actual_CPU": {
+    "job_id": "proc_62c878d9-638e-463a-9389-1fb03b50d134",
+    "started_at": "2026-10-24T01:16:09.561295767Z",
+    "native_seconds": 7.006587028503418,
+    "CUDA_initialized": false,
+    "all_parameter_devices": [
+      "meta"
+    ],
+    "base_parameters": 8953803264,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600,
+    "per_row_native_token_lengths_and_supervision_match_both_frozen_variants": true,
+    "actual_warm_adapter_SHA_verified_by_CPU_source": true,
+    "actual_model_weights_loaded": false
+  },
+  "controller": {
+    "shared_seconds": 3900,
+    "TERM_grace_seconds": 30,
+    "sequential_one_A800": true,
+    "training_segments": 4,
+    "full_persistent_exports": 4,
+    "original80_inferences": 2,
+    "complete_epoch_export_and_actual_readback_before_resume": true,
+    "checkpoint_contains": [
+      "adapter",
+      "Adam",
+      "scheduler",
+      "Python RNG",
+      "NumPy RNG",
+      "Torch RNG",
+      "CUDA RNG",
+      "run manifest",
+      "source",
+      "progress"
+    ],
+    "mutable_start_not_retried": true,
+    "HTTP_server_cleanup_in_finally": true,
+    "remaining_budget_checked_before_every_new_start": true,
+    "read_only_endpoint_checks_after_deadline_do_not_start_new_jobs": true,
+    "source_and_empty_GPU_rechecked_before_start": true
+  },
+  "endpoint": {
+    "only_final_epoch2": true,
+    "both_complete80_and_fullpreds_before_first_gold": true,
+    "parser_and_v2_unchanged": true,
+    "cached_old_metrics_only": true,
+    "one_v2_per_new_arm": true,
+    "old_nonrelation_fields_and1189_entities_exact": true,
+    "no_union_threshold_search_migration_or_official": true,
+    "retention": "Score strictly increases with nondecreasing macF1; compare R/O to O/O and both to cached old32; advisory only."
+  },
+  "corrections_before_launch": [
+    "Aligned evaluator export receipt to fixed .100 mount plus safe relative prefix.",
+    "Added model_source_sha256 to controller inference plan."
+  ],
+  "reviewer_final_export_guard_cases": [
+    "actual_relative_prefix_pass",
+    "reject_/absolute/checkpoint",
+    "reject_elsewhere/checkpoint",
+    "reject_case-retrieval/qwen35-preparation/order-warmstart-stage/checkpoints/../escape",
+    "reject_case-retrieval/qwen35-preparation/order-warmstart-stage/checkpoints",
+    "wrong_mount_rejected"
+  ],
+  "limitations": [
+    "Entry readiness is not a completed training result, validated durable production export, or Score >= .8.",
+    "Root paused new MCP actions after global outage; tiny .100 fetcher deployment, fresh GPU/storage preflight, source push/backup and all new-stage execution remain pending.",
+    "Known F1 is repeatedly observed development; comparison to old also changes optimization stage and training amount. O/O vs R/O is the matched order contrast.",
+    "Old preparation fresh-base/forbid-continuation flags describe the historical baseline; the explicitly selected new stage reuses its data provenance and adapter values, with fresh optimizer/RNG.",
+    "Same initial seed does not imply identical later dropout masks with changed token lengths.",
+    "Runtime/token/meta and owner transport fixtures were verified from source-bound actual receipts, not rerun by reviewer; full warm-model forward and complete-checkpoint restore are not asserted.",
+    "Global execution budget includes training/export/inference. Current-invocation trainer timings must not be mistaken for full-stage elapsed.",
+    "No server backup is claimed while MCP is unavailable."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal/run-plan.json",
+      "bytes": 14544,
+      "sha256": "2dadd63a7e771e1a5a107b94424a656cbf1158669ef318fa7e690ed300790c31"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluation-template.json",
+      "bytes": 4229,
+      "sha256": "56a43ae28552fabfbcc8ad49bb4dc1fccf72abec782e17022be929e758217498"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/run_paired.py",
+      "bytes": 14901,
+      "sha256": "b78468eefab32a7067ae8c04a3fb6eb50d594373ecc238a609e16afa775d4acb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired.py",
+      "bytes": 20575,
+      "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/freeze_evaluation_plan.py",
+      "bytes": 1600,
+      "sha256": "442de08b2db933558845bb016e15b563c57b8870319c45e5c7964a66acb26274"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/prepare_run.py",
+      "bytes": 5646,
+      "sha256": "64e522d894afa799910d495297eb2872b5bcac75b14647b67d0e6c22e06c214c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/deploy_fetcher.py",
+      "bytes": 1418,
+      "sha256": "fdf9bdc03539df0a3939fd74644dd39ea02f80eb8d29863e72a2cd233f26945e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/cpu-runtime-complete.json",
+      "bytes": 983,
+      "sha256": "0393f0efb3726b777d393af189be95ace52e72360109675a6eb31722cb37bdd9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/cpu-runtime-job.json",
+      "bytes": 2627,
+      "sha256": "27ecc8607a55ef5d5c1a2ea346e71382d480d97447dd7496ce1aa35fe6f85787"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/cpu-runtime-monitor.json",
+      "bytes": 180,
+      "sha256": "1dea4f25029adabdd66e53035901aa7f5dae504d22acdf5251330ca1a018bbb5"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/deployment-actual.json",
+      "bytes": 804,
+      "sha256": "0ac6ef548e672deee2545e5c4c1feefc3ac5f2169d9db6c45b8da167c407e54f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired_interface.md",
+      "bytes": 9097,
+      "sha256": "dde4f43b7b5085aba6f1fe30308d3a24ed84deb1b50686f04d4d602500cef6e9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/data-and-schedule.json",
+      "bytes": 3325,
+      "sha256": "7a90442a043f8748664b54544740067be970f38c34f37dd0be6adaebc962aa48"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/trainer-and-ack-source.json",
+      "bytes": 5103,
+      "sha256": "6b207eee0c58c735e2f163ab012d5377724299bfb6e283c9498535c66ecab17a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/audit_entry.py",
+      "bytes": 13010,
+      "sha256": "a203bbbfac954352126c9cc004399a379678358cbc3b99d1d62141083cb5f080"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/run_manifest.json",
+      "bytes": 10880,
+      "sha256": "f8e48487d95beedfb3f54d3ec801171d8582fe3317730d3cb70d110bfd88b7b6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/token-mask-audit-O.json",
+      "bytes": 17505,
+      "sha256": "d97f3438a4bab5996caada009b2bb659a1e679e93ae657893f05fcd1e206a86c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/cpu_complete.json",
+      "bytes": 517,
+      "sha256": "da7d1b760266c90806023ecfcf7f6848579573c43799994ba939b082c1e46486"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/token-mask-audit-R.json",
+      "bytes": 19861,
+      "sha256": "3b2d9590499ef28175633390c64eda44a2235202acdc342fc4ac6ee1d7effed0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/meta-coverage.json",
+      "bytes": 50275,
+      "sha256": "fe36ce32a505bedaf2221feff333cc9d4794694c1a3acae2e7a374274eed1644"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/actual-cpu/causal-loss-cpu-check.json",
+      "bytes": 403,
+      "sha256": "ce688b381e4ec90140e585a2222864bc143757726b6344048feefff837d41c2e"
+    }
+  ],
+  "no_gold_read": true,
+  "no_model_or_tokenizer_import": true,
+  "no_network_or_GPU": true
+}

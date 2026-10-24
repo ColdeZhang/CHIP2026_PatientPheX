@@ -1,0 +1,137 @@
+{
+  "status": "PASS_INCREMENTAL_TRAINER_AND_ACK_SOURCE_NOT_COMPLETE_RUNTIME_ENTRY",
+  "at_utc": "2026-10-24T01:15:53.293306+00:00",
+  "reviewer_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/audit_trainer.py",
+    "bytes": 8980,
+    "sha256": "cc7be3a119c2c2ed6b2255bdf0dd5085bb9ae247d8bf48889e8a1724f26ef307"
+  },
+  "references": {
+    "trainer-source-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/trainer-source-manifest.json",
+      "bytes": 1561,
+      "sha256": "1b9c22f6915188a6f9d7f602fc864a16365d30842e64b8b75620838fb0692784"
+    },
+    "train_order_warmstart.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/train_order_warmstart.py",
+      "bytes": 38314,
+      "sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4"
+    },
+    "cpu-source-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/cpu-source-contract.json",
+      "bytes": 5763,
+      "sha256": "a6e14e82bc46c2792a3abac93443bee8004cd91cfae33896015678d9ea2f7a9d"
+    },
+    "export_checkpoint_server.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/export_checkpoint_server.py",
+      "bytes": 3771,
+      "sha256": "e6d32ef491791ea46498f741a1502027bc0d46f215ae3779dce84bcd71d271ae"
+    },
+    "fetch_checkpoint.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/fetch_checkpoint.py",
+      "bytes": 3933,
+      "sha256": "24e92491c7657ab6409bcc08e200a043b3b0a418759beaccf9fc2e14a7860085"
+    },
+    "test_export_contract.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/test_export_contract.py",
+      "bytes": 8136,
+      "sha256": "8cd1655e72a9c0cc4ee0d23231a470a7fdb14097e37a8314c748141e702bf14d"
+    },
+    "export-cpu-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/export-cpu-contract.json",
+      "bytes": 1014,
+      "sha256": "0091a4aaa4095e16d89c17422d893dfb64097031c7eaf0b604069befa5e3e3fd"
+    }
+  },
+  "unchanged_old_function_AST": [
+    "training_rows",
+    "verify_sources_and_data",
+    "model_files",
+    "validate_checkpoint",
+    "batch_plan",
+    "verify_fingerprint",
+    "validate_stop_epoch",
+    "epoch_outcome",
+    "collate"
+  ],
+  "unchanged_old_microbatch_loss_and_own_resume_AST": true,
+  "old_optimizer_never_loaded_at_initial_warm_start": true,
+  "fresh_initial_Adam_scheduler_and_seed_asserted_in_source": true,
+  "same_old_adapter_SHA_and_FP32_LoRA_parameter_counts_checked_at_runtime": true,
+  "source_stage_transition_negative_cases": [
+    [
+      "train",
+      null,
+      2,
+      null
+    ],
+    [
+      "train",
+      null,
+      null,
+      null
+    ],
+    [
+      "train",
+      null,
+      1,
+      "ack"
+    ],
+    [
+      "train",
+      "own/epoch-001",
+      2,
+      null
+    ],
+    [
+      "train",
+      "own/epoch-001",
+      1,
+      "ack"
+    ],
+    [
+      "cpu",
+      null,
+      null,
+      "ack"
+    ]
+  ],
+  "actual_reviewer_ACK_cases": [
+    "complete_ack_pass",
+    "missing_optimizer_rejected",
+    "changed_optimizer_sha_rejected",
+    "changed_optimizer_size_rejected",
+    "wrong_source_path_rejected",
+    "wrong_epoch_rejected",
+    "wrong_global_step_rejected",
+    "wrong_mount_rejected",
+    "wrong_manifest_rejected",
+    "missing_run_manifest_rejected",
+    "path_escape_rejected"
+  ],
+  "owner_transport_fixture_source_SHA_verified": true,
+  "owner_transport_fixture": {
+    "checks": {
+      "unlisted_and_traversal_paths_rejected": true,
+      "exact_range_response": true,
+      "partial_range_resume_complete_SHA_fsync_and_ack": true,
+      "completed_ack_not_overwritten": true,
+      "wrong_existing_payload_rejected_no_ack": true,
+      "wrong_transport_manifest_SHA_rejected": true,
+      "actual_interrupted_HTTP_resumes_exact_saved_prefix": true,
+      "source_short_EOF_immediately_closes_with_IncompleteRead": true
+    },
+    "seconds": 1.4185128169992822
+  },
+  "transport_review": "Allowlisted immutable complete-epoch paths, pinned manifest, exact size/SHA and Range recovery, file fsync before exclusive final ACK, immediate failure on unexpected short source. Owner CPU fixture inspected, not rerun.",
+  "limitations": [
+    "Controller/endpoint and global deadline are a separate pending whole-entry check.",
+    "Actual remote CPU token/meta coverage and actual training/export are pending.",
+    "Same start seed does not imply identical later dropout masks when token shapes differ.",
+    "Fresh optimizer stage after old epoch2 is not exact old-stage continuation or a fresh4epoch run.",
+    "Current invocation elapsed must be aggregated by controller; old epoch1 export ACK is required before own-stage epoch2."
+  ],
+  "no_model_or_tokenizer_import": true,
+  "no_network": true,
+  "no_gold_read": true
+}

@@ -1,0 +1,140 @@
+{
+  "status": "PASS_LOCAL_SOURCE_AND_SCHEDULE_CONTRACTS_NOT_RUNTIME_OR_QUALITY",
+  "at_utc": "2026-10-24T01:12:37.089879+00:00",
+  "cpu_seconds": 0.03393739300372545,
+  "references": {
+    "train_order_warmstart.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/train_order_warmstart.py",
+      "bytes": 38314,
+      "sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4"
+    },
+    "derive_trainer.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/derive_trainer.py",
+      "bytes": 14962,
+      "sha256": "ec9ac6d19b53b0d3a05fb83f1453f591ce826c63115cb0aa660943405674ec43"
+    },
+    "upstream-trainer.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/upstream-trainer.py",
+      "bytes": 28818,
+      "sha256": "08fc142c6b9a5d78603c2a1ad7545b733d66dff12f86d1bc1737a7dec0c27fe1"
+    },
+    "trainer.diff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/trainer.diff",
+      "bytes": 23447,
+      "sha256": "fb9c29bdcbaae718095a2e196944fe725fe518159216ca7857291a7bb5f7e961"
+    },
+    "matched-32-call-schedule.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/matched-32-call-schedule.json",
+      "bytes": 17981,
+      "sha256": "3d76f9409ed0539feed802f1eaec10bfd53a53606ba186d618fbfacfd597c205"
+    },
+    "checkpoint.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10435,
+      "sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120"
+    },
+    "run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/run_manifest.json",
+      "bytes": 10310,
+      "sha256": "5535d33a34859c00da1f4e99d6847e1fc87200ca167e503b4ef255f54b58be8c"
+    },
+    "preparation-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "summary.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/summary.json",
+      "bytes": 5017,
+      "sha256": "de50bdb4c6c6242ee9ad6905f625e47f1999d4ce386ed69048f232c4118695f2"
+    },
+    "row-inverse-and-token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/row-inverse-and-token-audit.json",
+      "bytes": 243161,
+      "sha256": "2dd81e8027ff5604013a82b1d62d967f8c4af8a3e46178f6287b6581ebbc2b8b"
+    }
+  },
+  "unchanged_function_AST": [
+    "training_rows",
+    "verify_sources_and_data",
+    "model_files",
+    "validate_checkpoint",
+    "batch_plan",
+    "verify_fingerprint",
+    "validate_stop_epoch",
+    "epoch_outcome",
+    "collate"
+  ],
+  "same_actual_old32_adapter_and_base_inventory_as_latest_inference": true,
+  "old32_training_and_excluded_document_sets_exact": true,
+  "old_preparation_fresh_baseline_flags_unchanged": {
+    "fresh_base_required": true,
+    "old_adapter_continuation_forbidden": true
+  },
+  "old_completed_checkpoint_rejected_by_original_resume": true,
+  "new_resume_control_arguments_do_not_change_semantic_configuration": true,
+  "old_checkpoint_optimizer_scheduler_RNG_resume_body_AST_exact": true,
+  "old_loss_microbatch_body_AST_exact": true,
+  "warm_start_branch_has_no_torch_load": true,
+  "initial_stop1_export_then_resume_stop2_required": true,
+  "export_ack_contracts": [
+    "complete_pass",
+    "wrong_checkpoint_sha_rejected",
+    "wrong_epoch_rejected",
+    "wrong_step_rejected",
+    "wrong_mount_rejected",
+    "wrong_source_directory_rejected",
+    "missing_state_rejected",
+    "wrong_size_rejected",
+    "wrong_manifest_rejected",
+    "missing_run_manifest_rejected",
+    "unsafe_extra_rejected"
+  ],
+  "schedule": {
+    "new_epochs": 2,
+    "calls": 32,
+    "nonzero_lr_calls": 31,
+    "exposures": 248,
+    "groups": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      4
+    ],
+    "control": "O/O",
+    "augmentation": "R/O",
+    "original_sample_ID_per_call_shared": true,
+    "control_tokens": 805188,
+    "augmented_tokens": 805190,
+    "supervised_tokens_each": 14340,
+    "warmup_steps": 2,
+    "peak_lr": 0.0001,
+    "final_used_lr": 3.3333333333333333e-06,
+    "after_final_scheduler_lr": 0.0,
+    "recorded_old32_LR_observations_match": true
+  },
+  "limitations": [
+    "No model/Peft/optimizer objects loaded; actual warm-start branch still needs authorized runtime CPU/source checks.",
+    "Common seed/RNG reset is identical at new-stage start; changed per-row token shapes can change later dropout RNG consumption, so do not claim identical stochastic masks.",
+    "No fresh4epoch or exact old optimizer continuation: old2epoch weights plus a new2epoch optimizer stage.",
+    "Complete-epoch exit/export/resume adds two extra base loads across paired arms; owner measures/budgets separately.",
+    "Final elapsed_seconds belongs to final invocation, not both new epochs; owner aggregates both segments.",
+    "Metadata/source references were verified locally; no fresh remote weights or storage checks here."
+  ],
+  "no_gpu_or_network": true,
+  "no_tokenizer_or_model_import": true,
+  "no_F1_gold_or_score": true,
+  "source_sha256": "222df7db671fb027d96393f635eb11faa87ce49e2e8f96d94180230c8efeb1c7"
+}

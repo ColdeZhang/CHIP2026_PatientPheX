@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-10-24T01:08:44.135436+00:00",
+  "selected": "oldSFT32 epoch2 warm-start + fresh new2epoch stage; O/O versus R/O",
+  "not_selected": "fresh4epoch two arms",
+  "total_hard_seconds": 3900,
+  "termination_grace_seconds": 30,
+  "runtime": "verified native/reference A800 TF5.20.2/PEFT0.21.2, no FLA target",
+  "stage_budget_reason": "Two old124x2 A800 runs projected2298.9s total; two old80 inference564.0s; 4 complete epoch exports approximately2.1GB. Prior same A800→.100 adapter173MB transfer18.57s implies ~224s for2.1GB, only proxy. Total expected~3090s plus~810s margin, cap3900 not a guarantee.",
+  "checkpoint_policy": "Train own SHM; after each complete epoch require actual .100 durable full checkpoint SHA/size acknowledgment before next epoch. Preserve original complete-epoch resume and fresh-stage fingerprint. No infer/score partial states. All source and small status in Git; SHM never sole handoff after checkpoint ack.",
+  "storage_record": "actual-storage-gpu.json",
+  "transfer_route_existing_evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/adapter-transfer-manifest.json",
+    "sha256": "a2b139d7209261d32ddbf8725b7735b0291864a4b9ab39a9a4129c40f5c18cdf",
+    "source": "A80010.5.4.7",
+    "destination": ".100",
+    "seconds": 18.57271122932434,
+    "scope": "adapter only; optimizer export new gate will use actual full SHA and same byte transport"
+  },
+  "small_new_transfer_test_pending": true,
+  "formal_training_not_started": true
+}

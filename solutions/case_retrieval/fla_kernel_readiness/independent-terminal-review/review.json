@@ -1,0 +1,183 @@
+{
+  "status": "PASS_AUDIT_OF_FAILED_FLA_FULL_MODEL_NUMERIC_CONTRACT_NO_EXPANSION",
+  "at_utc": "2026-10-24T01:08:24.404527+00:00",
+  "scope": "Incremental frozen code, instrumentation-repair, binding, measured contract and resource-terminal review. No new GPU, logits generation or competition evaluation.",
+  "dispatch": {
+    "import_gate_seconds": 9.369929313659668,
+    "both_GDN_actual_FLA": true,
+    "both_conv_reference": true
+  },
+  "attempt1": {
+    "failure": "cache instrumentation iterated integer dictionary key as Tensor",
+    "fused_numeric_compared": false,
+    "quality_failure": false
+  },
+  "repair": {
+    "only_cache_sampler_and_structure_comparison_changed": true,
+    "original_source_plan_thresholds_exact": true,
+    "actual_CPU_mixed_container_and_fail_closed_contract_receipts_pass": true,
+    "original_absolute_deadline_preserved": true
+  },
+  "passed_scope": {
+    "block_forward_relative_L2": 0.0056788431734863835,
+    "block_decode_relative_L2": 0.0012255113538789718,
+    "gradient_parameters": 9,
+    "max_gradient_relative_L2": 0.008515594515039296,
+    "cache_snapshots": 9,
+    "state_tensors_per_snapshot": 2
+  },
+  "failed_scope": {
+    "first_full_model_prompt_tokens": 128,
+    "logits_relative_L2": 0.09057512261468924,
+    "logits_max_abs": 13.03125,
+    "mean_KL": 0.00041240028804168105,
+    "L2_and_max_abs_fail": true,
+    "KL_pass": true
+  },
+  "unavailable": [
+    "full-model 128 teacherforced/cache/greedy numerical or token comparisons",
+    "255/256/513 full-model controls",
+    "three-repeat alternating full-model timing",
+    "LoRA gradients and optimizer update comparison",
+    "raw full logits for centered-error reanalysis"
+  ],
+  "timing": {
+    "block_fused_cold_forward_backward_seconds": 140.3985619037412,
+    "includes_cold_JIT": true,
+    "block_native_warm_median": 0.0030925688333809376,
+    "block_fused_warm_median": 0.0063407947309315205,
+    "full_model_load_seconds": 5.717249335721135,
+    "full_model_speed_conclusion": false
+  },
+  "terminal": {
+    "managed_running_false": true,
+    "managed_exit_code_unavailable": true,
+    "GPU_empty": true,
+    "release_utc": "2026-10-24T01:04:59.034588+00:00",
+    "original_deadline_unix": 1792804070.1162088,
+    "attempt2_remaining_budget_seconds": 385.01779985427856
+  },
+  "decision": "Keep the reference runtime; no kernel rollout or third retry from this result.",
+  "limitations": [
+    "Verified saved numerical receipts and frozen code; raw large tensors were not retained and no reviewer NN rerun was performed.",
+    "Mean KL passing does not override the predeclared combined logit contract. No causal attribution to constant shifts or task-quality degradation.",
+    "The first infer call executed additional teacherforced/greedy paths internally but failed before saving/comparing them, so they are not counted as passed."
+  ],
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/probe-plan.json",
+      "bytes": 2833,
+      "sha256": "f16cc09a5cfc8b0dddd8555e93e39a1ce56dd8538f3b51b6ca2c99f1c83267d8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/probe-source-manifest.json",
+      "bytes": 1449,
+      "sha256": "8776dea603cb8a1adb59cb3269db40dda9d5c357b6d5af6c1828a8e989a0e893"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/gpu_probe.py",
+      "bytes": 14588,
+      "sha256": "b8aca0d289e70623d57e537e23751017c2b6cd260a6ab2cba6a740997bf1e01e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/gpu-import-gate.json",
+      "bytes": 3915,
+      "sha256": "43bec591443d8151c4c2016ecf5eac49968da2bfc557e5f27e1bee055a62244e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2-repair-manifest.json",
+      "bytes": 975,
+      "sha256": "c8dd4836d0e18d81f63923d89f8dbb935cbf7688e075e609cf6e0047a16537f3"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/cache_snapshot_attempt2.py",
+      "bytes": 2466,
+      "sha256": "258010cf372357c1e99194b5c96f24542a668cc58ba22f6bbcbbc6ae2ac7dad8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/gpu_probe_attempt2.py",
+      "bytes": 617,
+      "sha256": "c6351a4910c0c70549d0e13fa748e5ef51d1ecaf8576324484e328359d4ce5c1"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2-cache-cpu-contract.json",
+      "bytes": 592,
+      "sha256": "f5ccbbd379dd03f3aee2b8738e31cb06907250204e3c3ff8dd9ccf1035ec7505"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt1/process-terminal.json",
+      "bytes": 446,
+      "sha256": "07368ad0d6eca60560dae0ae101fb97d66c5a63e61b83ddc7ce8080148efdf6f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt1/numeric.stderr.log",
+      "bytes": 1067,
+      "sha256": "1c905a2da1da3a12b1fa075dda7be6261c9263be381f79145bda14f692b49fc4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt1/gpu-numeric-v1/timings.json",
+      "bytes": 59,
+      "sha256": "638cf40085ce137b01a29d3273e24339af3bfa786d37fd0ef2d90ff92d3c116b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/terminal.json",
+      "bytes": 2394,
+      "sha256": "6ec5062691d7e2e56ea181365bf582a0f45d1a96d568b68988af29d1cc585e5d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/metrics.json",
+      "bytes": 9927,
+      "sha256": "efaf1868a12d4d9138ff0ea6b5d3268f6d3204f7282b9f23ec2c98304a7f2365"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/timings.json",
+      "bytes": 604,
+      "sha256": "296d845d017d94127d902e55e839b8af0de14076817018cf8fc7e32b7d54de78"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/actual-bindings.json",
+      "bytes": 4298,
+      "sha256": "dd7f6e17057887d1b96bb24bcdbde5c8f0c090dd5d6f5efac5d8a7f9bb68fc13"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/gpu-numeric-attempt2/loading-info.json",
+      "bytes": 95,
+      "sha256": "ea8462ce1fb5161e28a2547070c1a7915315f32097d1aec2ca40a21e18831d85"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/failure-traceback.txt",
+      "bytes": 748,
+      "sha256": "f5d495f1cc1a45c6e9fd59d0c1e241b60f42c233d70605a12e45c1c39803e171"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/collection.json",
+      "bytes": 1706,
+      "sha256": "ddb579e107754812448470a0524b05e8724cd7345b23766a919a68beaa79fa75"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/attempt2-launch-record.json",
+      "bytes": 742,
+      "sha256": "033813887200119979125dce1bec8a827ccb2cd98bcfb43a2b12262fa059b450"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/process-terminal.json",
+      "bytes": 433,
+      "sha256": "ab464f66d941bef07bed0254b19505ab3f507d93de2c2a20d4a923fe31106348"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/attempt2/gpu-release.json",
+      "bytes": 466,
+      "sha256": "83c0d60b09073b44659bd177f4439d4d51fd1762d2f39ec399ed338edf569992"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/fla-kernel-readiness/GPU_RESULT.md",
+      "bytes": 3386,
+      "sha256": "a392310f2cc0fe6e7d488cf75c031d2289e85597286692b2d89b903583e57aac"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/fla-kernel-terminal-review/audit.py",
+      "bytes": 9653,
+      "sha256": "87c175d907297350df04e88219ffb05b48400da98eeb84e446ae1ff7fc6c2d21"
+    }
+  ]
+}

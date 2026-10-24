@@ -1,0 +1,69 @@
+{
+  "status": "PASS_INDEPENDENT_TRAIN_ONLY_REVERSE_SEMANTICS_AND_NEW_STAGE_SCHEDULE",
+  "at_utc": "2026-10-24T01:15:14.424578+00:00",
+  "reviewer_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/audit_data.py",
+    "bytes": 7411,
+    "sha256": "00ceac68383da565d23dcc0cf96eb8a52943cbb97f5f971c79ff70694e7d2e6e"
+  },
+  "references": {
+    "case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "research/candidate-order-training-feasibility/reverse124.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/reverse124.jsonl",
+      "bytes": 1725840,
+      "sha256": "34778f082d1057cab4646a3ef259fd0f15f4e48f13944ad5216bbde042e609b8"
+    },
+    "research/candidate-order-training-feasibility/plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/plan.json",
+      "bytes": 6248,
+      "sha256": "c8ba7bf6b9d8dbd905676a1b6f2c4552bbda001913f83f1bf36e9cdb9726745a"
+    },
+    "research/candidate-order-training-feasibility/row-inverse-and-token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/row-inverse-and-token-audit.json",
+      "bytes": 243161,
+      "sha256": "2dd81e8027ff5604013a82b1d62d967f8c4af8a3e46178f6287b6581ebbc2b8b"
+    },
+    "research/candidate-order-warmstart-entry/matched-32-call-schedule.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/matched-32-call-schedule.json",
+      "bytes": 17981,
+      "sha256": "3d76f9409ed0539feed802f1eaec10bfd53a53606ba186d618fbfacfd597c205"
+    },
+    "case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    }
+  },
+  "training_documents": 32,
+  "rows_per_variant": 124,
+  "candidate_values": 880,
+  "patient_concept_pairs": 2506,
+  "positives": 594,
+  "negatives": 1912,
+  "exact_two16_to16_OOF_source_isolation": true,
+  "no_F1_or_original_dev_labels": true,
+  "candidate_only_reversal_and_top_level_code_rename": true,
+  "all_clinical_prefix_and_system_messages_byte_exact": true,
+  "meaning_evidence_nested_literals_patient_IDs_and_label_semantics_exact": true,
+  "independently_rebuilt_32_call_schedule_exact": true,
+  "stage": {
+    "control": "O/O",
+    "augmented": "R/O",
+    "epochs": 2,
+    "optimizer_calls": 32,
+    "exposures": 248,
+    "warmup_calls": 2,
+    "nonzero_lr_calls": 31,
+    "control_tokens": 805188,
+    "augmented_tokens": 805190,
+    "supervised_tokens_each": 14340
+  },
+  "token_receipt_scope": "Existing CPU receipt; every O row exactly matches old native token audit. No new tokenizer or model run.",
+  "no_model_or_tokenizer_import": true,
+  "no_gold_read": true,
+  "no_network": true
+}
