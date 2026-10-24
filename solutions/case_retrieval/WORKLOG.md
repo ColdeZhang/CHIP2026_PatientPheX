@@ -19,8 +19,8 @@
 ## 当前后继：全文仅CPU与一次工程诊断
 
 - 不变的CID→PID任务只追加全部允许原文。CPU13.458秒核124/80、原答案/CID/PID/候选/原消息与患者坐标精确保持；训练965436tokens/ep、最长12824、原监督7150不变，约旧382000的2.527319倍。F1输入645000tokens、最长13805。
-- 51条训练超过现有8192；旧Med trainer原样保留，未默改或截断。单独最长诊断显式容量14000，原native更新/cache数值段5562B逐字节复用；源码/CPU已审 `4a6544d2`。root现授权A800 fresh空卡一次最长更新/cache、180+TERM30，freshbase、状态丢弃，第一OOM/非有限/截止即停；**无全文正式训练或新质量授权**。
-- 当前最长诊断正在独立小源部署，实际job/绝对deadline以 `R/research/medgemma-relation-control/fullcontext-preparation/` 后继入口记录为准，不能把源码准备当GPU成功。启动后须在本段更新known job；不得复用已结束的短输入任务。
+- 51条训练超过现有8192；旧Med trainer原样保留，未默改或截断。单独最长诊断显式容量14000，原native更新/cache数值段5562B逐字节复用；源码/CPU已审 `4a6544d2`。root现授权A800 fresh空卡一次最长更新/cache、180+TERM30，freshbase、状态丢弃，第一OOM/非有限/截止即停；原最长诊断无训练/质量；root现按实际结果另授权下述正式控制。
+- 全文最长probe已完整关闭：proc_b941c71a…，native30.681秒/更新8.469秒，allocated58.364GB/reserved60.677GB，真实2token cache通过；03:45:17.126Z GPU2实际释放。原03:47:36Z+TERM30未延。见[工程终点](medgemma_relation_control/fullcontext-preparation/probe-a800/REPORT.md)，无全文正式训练/质量，不重复启动。
 - 仅按旧epoch loop乘token比约400.255秒/ep、800.510秒/2ep，是粗估；不含load、每次实际约118秒的导出、推断，注意力和显存可非线性。短输入正式reserved峰58.391GB，不能用单行probe30.839GB承诺长输入可装。
 - 见[全文CPU报告](medgemma_relation_control/fullcontext-preparation/REPORT.md)、[CPU小清单](medgemma_relation_control/fullcontext-preparation/backup-filelist.json)、[最长源计划](medgemma_relation_control/fullcontext-preparation/probe-source/source-plan.json)。历史做过开放HPO/quote全文SFT；尚未测的是同CID闭集目标的train＋infer全文SFT，不能泛化成所有全文SFT未测。
 
@@ -38,10 +38,9 @@
 - [顺序训练增强](order_warmstart_stage/RESULT.md)：旧.660942003，新O/O .658421563、R/O .645528610，固定两臂负；四全状态已持久/审d253f625。训练增强负不否定此前固定reverse推断union原dev正结果。
 - [共指B](public_coreference_readiness/prompt-control-b/REPORT.md) .660756991负；公开212训练 .674046941低于对应旧.682128804，value2 .660769446亦未改善。各原始输入/终点见evidence/round2与历史索引，不重复跑已闭路线。
 - [thinking4096](research/thinking-sampling-followup.md) 未闭think/无strict final是格式终点；后续budget-forcing归sequence，旧行为摘要已补token位置限定。FLA raw-logit合同失败见[fused结果](fla_kernel_readiness/GPU_RESULT.md)，不等于任务质量负，正式runtime未切换。
-- 本路线原dev独立检索CPU基线.625073738，抽取＋Sap＋本路线关系组合.662396726；共享关系支持组合.736526555。不同实体/关系来源不能混称纯检索提升，目标尚未达。详细证据沿原experiments/evidence保留。
 
 ## 记录与下一步
 
 - 本索引只更新阶段结论、活动job/预算、资产入口和下一步；实验细节写各方案目录。关键方法/结果/失败与恢复及时commit、push并核ls-remote；正常逐步训练日志不入Git。只改本路线目录，主总台账/HANDOFF由root统一维护。
-- 当前先完成短Med终点独审/小产物持久备份及唯一全文最长工程诊断；诊断结果回来再交root决定，不能自动开全文训练、F0或官方。任何方法即使高于短Med.603702，也需与强旧基线.660942比较。
+- 短Med负与全文工程审2cc62bee已结案。root新授权全文fresh124×2ep/32calls：共享2700+30含两load/两全状态ACK，原full80另900+30；唯一primary fullMed/secondary oldSFT32∪fullMed，双freeze后各唯一v2。正式新源正在准备，未启动；首OOM/非有限/截止停，不自动扩预算或F0/dev/官方。任何方法即使高于短Med.603702，也需与强旧基线.660942比较。
 - 本次压缩前完整台账原字节已归档至[历史正文](history/WORKLOG-through-20261024-0339.md)，SHA `ddb89cb9545f1653b1304c6e97948cf14ad4603cce97b61956b8a09ca22bdb55`；它保留当时状态，不是当前启动依据。
