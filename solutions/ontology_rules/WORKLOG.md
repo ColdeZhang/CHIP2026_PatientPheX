@@ -8,13 +8,13 @@
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前执行（2026-10-24 08:12 UTC）
+## 当前执行（2026-10-24 08:21 UTC）
 
 - 官方最高901的B预测已07:54:13真实accepted（回执8d39aba4，额度5→4），不查询成绩；现恢复本地冲0.8，其他上传暂停。
 - **A800 indexed全文正式运行中**：08:07:31唯一 `proc_93f50e85`/PID65024，epoch1；原124×2/32updates/7170监督，整体8400+30，绝对截止 `1792837648.873858`。每epoch必须完整state跨机.100持久ACK后继续；恢复入口 `research/qwen35-fulltext32-indexed-formal-v1/controller`，源[formal_indexed](qwen35_sft32_full_report_training_readiness/formal_indexed/README.md)。原fullhead正式版从未启动，独立保留。
-- **A100 H5正式尚未启动**：fixed1252query/20steps+完整F1/双端点600+30已授权、源及CPU旧端点字节复现已push；部署原包头2分片已核，08:10:01明确LUNA_OFFLINE，最早08:13:06.710732唯一库存恢复补缺。无start-intent/job，600计算窗未开始；[恢复指针](public_h5_adaptation_readiness/formal_train/transport-recovery-pointer.json)。
+- **A100 H5正式已启动**：08:21:27唯一 `proc_431edce8`/PID274558，原fresh H5固定1252query/20steps+完整F1 native/双端点600+30；部署原dd9651包12件SHA通过，plancc1e不变。UNKNOWN合并传输未落地已只补缺片恢复，无重复模型。源码/CPU旧端点字节复现已push；[实际启动](public_h5_adaptation_readiness/formal_train/actual-start.json)。
 - 两实际工程已通过：head284.122秒/12真实反向，peakallocated32.693GB、reserved35.123GB，独审e35dba61；PubMed69.501秒/原201变量/三Adam更新，独审d2734bc0。均不代表质量提升。H5旧F1实际vec101（full64才103），原a465/8cb基线身份不变。
-- 最近已核远端 `264da38`；两方案源码/启动/失败恢复及报告指针均已保存，原完整权重、数组和训练产物外存。以下为阶段历史，实际恢复以本节与新namespace为准。
+- 最近已核远端 `ed8a9c7`；两方案源码/启动/失败恢复及报告指针均已保存，原完整权重、数组和训练产物外存。以下为阶段历史，实际恢复以本节与新namespace为准。
 
 ## 已完成阶段：唯一最高方案901的官方B预测
 
