@@ -72,3 +72,5 @@
 - **value加权probe失败保留**：上述A100短行追加8masked pad后的loss差超预写容差，完整short数值尚未持久化、最长step未执行，不能报PASS或质量负。23:56:53Z fresh空40339MiB交sequence ICL，不自动重试/放宽容差；[失败与恢复证据](evidence/round2/json-value-weighted-probe-failure.json)。当前212训练51/54、1705.637s正常，继续固定终点。
 
 - **公开扩充212训练完整结束**：两epoch/54calls实际1803.222s，唯一final adapter `cb2f3f8e…`/Adam-RNG已真实SHA核；epoch1/2 loss .135688/.059961仅训练记录。2026-10-23T23:59:18.943Z A800GPU2 fresh空，watch10348结束，不重启。仅新62 F1支持追加计划 `cc2bbb40…` 已按actual trainer/data/inputfreeze/policy绑定，源和原decoder不变，待一次600+30执行；[训练终点](evidence/round2/public-SFT-training-complete.json)、[F1计划](evidence/round2/public-SFT-F1-new62-plan.json)。
+
+- **公开候选扩训练负结案**：旧JSON124+公开新88=212、651512tokens，fresh2ep54calls/1803.222s完整。仅同62新提示固定支持对照 **.682128804→.674046941**（−.008082）；351TP97FP169FN→340TP90FP180FN，micro/macro均降。旧1189实体/383关联保留；新47=30TP17FP，较旧新增集合加1FP/删11TP8FP，不保留/不扩F0或原dev。62/449有效0回退，native209.411s、fullfreeze2d4c2d10先唯一质量。00:03:53.514Z A800 fresh空释放，watch3810结束；独立实际训练1a953b82已通过，质量增量审进行中。[结果](evidence/round2/public-SFT-F1-new62-result.json)。
