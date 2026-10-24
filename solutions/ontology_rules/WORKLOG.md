@@ -8,10 +8,11 @@
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前：SFT32全文完整80准备
+## 当前：SFT32全文完整80运行中
 
 - 唯一最长idx19探针已PASS：14390→70，native6.548秒，wrapper33.770秒rc0；严格供给CID/PID完整JSON、自然EOS、无cap，峰allocated22.234GB。05:23:33.776673 A800GPU2实际释放。原proc_7fce4726已结束，不能重启；原始IDs先保存、raw再解析已实际核。
-- root据实测统一授权完整80 **1200+TERM30**：精确idx19缓存1＋79fresh，input14400/gen1600，同旧SFT32/base/greedy/runtime。plan73ebed7c、runner9bb2b322，源047fb47已push并核远端，13件/7小片部署进行中，尚未start。完整两个端点共冻后各唯一v2、旧0；主old∪fulltext沿原micro+macro升且macro不降，不自动迁F0/dev。
+- root据实测统一授权完整80 **1200+TERM30**：精确idx19缓存1＋79fresh，input14400/gen1600，同旧SFT32/base/greedy/runtime。plan73ebed7c、runner9bb2b322，源与评测af32f19已push并核远端，13件/7小片部署actual SHA/fsync通过，唯一正式运行已开始。完整两个端点共冻后各唯一v2、旧0；主old∪fulltext沿原micro+macro升且macro不降，不自动迁F0/dev。
+- 实际job `proc_cce6e47e-4136-4340-ba79-f90fa5986319`，driver53156/childPGID53166，05:32:47.863925开始；TERM 05:52:47.863925，额外30秒后KILL。此作业不得重复start。
 - `F=R/research/qwen35-sft32-full-report-feasibility/full80-v1`；只读恢复 `operations.py inspect --directory <F>`，唯一start前先查intent/job。probe证据在同级probe-v1，完整quality在完成80前禁用。[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)。
 
 ## 最近：R1 F1完整负结案，F0扩展不启动
@@ -31,5 +32,5 @@
 
 - 强BioBERT+NCR四fold **.730993616→.731229952**，仅2/4非降<事前3/4而关闭；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)，独审de325a2c。
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
-- 最近已核Git远端 **047fb47b300212f05cc796d510ede67f55fdd542**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
+- 最近已核Git远端 **af32f19bec19eebb18969f7c6d12df1f1033492c**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。

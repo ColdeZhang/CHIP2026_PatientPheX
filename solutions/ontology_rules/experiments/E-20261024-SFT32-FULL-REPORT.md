@@ -20,3 +20,5 @@ CPU实际11.767秒：80提示/16文献/587CID/39PID；570passages和162给定men
 据此root统一授权一次完整80、1200+TERM30，idx19精确缓存1＋79fresh，同input14400/gen1600及原模型/adapter/greedy/math flags；不自动扩时或再生成。旧80 282.502秒×输入token2.673只是约755秒成本代理，非保证。新source9bb2b322/plan73ebed7c，按原长度/row_id排序，逐行IDs→raw持久后按probe严格供给CID/PID完整JSON校验；EOS/cap/格式失败整行弃答、无补负答案。完整两个端点共同freeze后才各唯一v2，1189实体与全部非关系literal bytes保持，旧分复用；不自动迁F0/dev。当前source准备、无新质量。
 
 完整后继CPU评测源已冻结：8件56455字节，manifest84346afc，evaluator ef28ec27 / template3b170a4e / binder1251ce92。合成自检约0.01秒PASS，模板保持disabled，只有完整80、rc0、卡释放和240份逐行证据核验后才绑定；共同freeze后首次gold，固定新2次v2/旧0。静态增量62f1a2c1无阻断，实际评测尚未执行。
+
+唯一完整80实际启动：proc_cce6e47e-4136-4340-ba79-f90fa5986319 / driver53156 / child与PGID53166；05:32:47.863925 UTC开始，TERM05:52:47.863925、另30秒后KILL。部署13件7片全部实际SHA/compile/fsync通过，启动前af32f19已push。首次只读检查原driver/child存在、尚无终态；不重复启动。
