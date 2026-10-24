@@ -77,6 +77,13 @@ def main():
  for row in rows:
   text=tok.apply_chat_template(row['messages'],tokenize=False,add_generation_prompt=True,enable_thinking=False)
   assert hashlib.sha256(text.encode()).hexdigest()==audit[row['row_id']]['rendered_prefix_sha256']
+ from transformers import LogitsProcessor,LogitsProcessorList
+ class FiniteLogitsOnly(LogitsProcessor):
+  def __call__(self,input_ids,scores):
+   if not torch.isfinite(scores).all().item():
+    raise FloatingPointError('Nonfinite generation logits; stop without retry')
+   return scores
+ finite_processors=LogitsProcessorList([FiniteLogitsOnly()])
  config=Qwen3_5TextConfig.from_pretrained(modelpath,local_files_only=True)
  model,loading=Qwen3_5ForCausalLM.from_pretrained(modelpath,config=config,dtype=torch.bfloat16,device_map='cuda:0',attn_implementation='sdpa',local_files_only=True,output_loading_info=True)
  publish_json(out/'loading.json',loading,root)
@@ -87,14 +94,14 @@ def main():
  eos=model.generation_config.eos_token_id;eos=set(eos if isinstance(eos,list) else [eos]);eos.add(tok.eos_token_id);eos.discard(None);assert eos
  publish_json(out/'run-manifest.json',dict(plan=ref(a.plan),source=ref(__file__),verified_model=verified,assets=assets,
   runtime=dict(torch=torch.__version__,transformers=transformers.__version__,peft=peft.__version__,tokenizers=tokenizers.__version__),
-  rows=39,documents=16,eos_ids=sorted(eos),max_new_tokens=1600,all_fresh=True,normalization_and_quality_performed=False),root)
+  rows=39,documents=16,finite_logits_guard_reused=True,eos_ids=sorted(eos),max_new_tokens=1600,all_fresh=True,normalization_and_quality_performed=False),root)
  records=[];generation_refs=[];raw_refs=[]
  for row in sorted(rows,key=lambda r:(len(ids[r['row_id']]),r['row_id'])):
   began=time.monotonic();tokens=ids[row['row_id']];inp=torch.tensor([tokens],device='cuda',dtype=torch.long)
   try:
-   with torch.inference_mode():output=model.generate(input_ids=inp,attention_mask=torch.ones_like(inp),do_sample=False,num_beams=1,use_cache=True,max_new_tokens=1600,eos_token_id=sorted(eos),pad_token_id=tok.pad_token_id)
+   with torch.inference_mode():output=model.generate(input_ids=inp,attention_mask=torch.ones_like(inp),do_sample=False,num_beams=1,use_cache=True,max_new_tokens=1600,eos_token_id=sorted(eos),pad_token_id=tok.pad_token_id,logits_processor=finite_processors)
   except BaseException as error:
-   publish_json(out/'generation-failure.json',dict(row_id=row['row_id'],type=type(error).__name__,message=str(error),no_retry=True,completed_rows=len(records)),root);raise
+   publish_json(out/'generation-failure.json',dict(row_id=row['row_id'],type=type(error).__name__,message=str(error),no_retry=True,completed_rows=len(records),no_completed_suffix_available=True),root);raise
   suffix=output[0,len(tokens):].tolist();ended=bool(suffix and suffix[-1] in eos);capped=len(suffix)>=1600 and not ended
   gen=dict(row_id=row['row_id'],pmc_id=row['pmc_id'],target_patient_id=row['target_patient_id'],generated_token_ids=suffix,input_tokens=len(tokens),output_tokens=len(suffix),actual_last_token_eos=ended,hit_token_limit=capped,seconds=time.monotonic()-began,decoded_or_parsed=False)
   gref=publish_json(row_path(out/'generation',row['row_id']),gen,root);generation_refs.append(gref)
