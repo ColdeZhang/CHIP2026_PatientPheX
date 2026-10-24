@@ -24,19 +24,56 @@
 
 总指挥只维护[协调记录](../campaigns/round2-20261023.md)和根台账；每方案的台账、实验、笔记、证据在其目录维护，避免重复。上表指向当前工作分支；达标实现合并前，main 中方案文档仅代表启动基点，不能当作最新过程。下一新实验 ID 为 `E-20261023-010`（跨日使用实际日期）。
 
-## 第八阶段新增工作线
+## 第八阶段方案目录
 
-各自完整实验记录在独立分支，当前状态与准入比较以[第八阶段总记录](../campaigns/round2-20261024-stage8-parallel-expansion.md)为准。原三线表中的“进行中”表示总体冲分任务；具体旧配方的结案不因总体目标未达而重开。
+当前执行状态、下一步与近期终点只维护在[运行入口](../campaigns/round2-current-work.json)和根台账；完整实验 ID、方法、正负结果与证据由下列各线台账索引。此目录不重复维护容易过期的“正在训练”等状态。旧原三线“进行中”指总体冲分目标，不能据此重开已关闭配方。
 
-| 工作线 | 分支台账 | 当前配方状态 |
-|---|---|---|
-| 跨度模型 | [span_normalization](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/span-normalization/solutions/span_normalization/WORKLOG.md) | 直接追加与四折特征配方负结案 |
-| 文档关系 | [document_relations](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/document-relations/solutions/document_relations/WORKLOG.md) | 三直接控制及meta融合均负结案 |
-| 患者条件生成 | [grounded_generation](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-generation/solutions/grounded_generation/WORKLOG.md) | 进行中 |
-| 患者训练长度 | [patient_schedule](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-schedule/solutions/patient_schedule/WORKLOG.md) | 进行中 |
-| 预训练联合抽取 | [schema_extraction](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/schema-extraction/solutions/schema_extraction/WORKLOG.md) | 完整推断后规范化与质量处理中 |
-| 原生Qwen3关系 | [qwen3_relations](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/qwen3-relations/solutions/qwen3_relations/WORKLOG.md) | CPU/源码已备，真实工程准备中 |
-| 固定关系共识融合 | [relation_consensus](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/relation-consensus/solutions/relation_consensus/WORKLOG.md) | 内部F1正并独审，固定F0复验中 |
+| 方案 | 分支中的完整记录 |
+|---|---|
+| `span_normalization` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/span-normalization/solutions/span_normalization/WORKLOG.md) · `explore/span-normalization` |
+| `document_relations` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/document-relations/solutions/document_relations/WORKLOG.md) · `explore/document-relations` |
+| `grounded_generation` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-generation/solutions/grounded_generation/WORKLOG.md) · `explore/grounded-generation` |
+| `patient_schedule` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-schedule/solutions/patient_schedule/WORKLOG.md) · `explore/patient-schedule` |
+| `schema_extraction` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/schema-extraction/solutions/schema_extraction/WORKLOG.md) · `explore/schema-extraction` |
+| `qwen3_relations` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/qwen3-relations/solutions/qwen3_relations/WORKLOG.md) · `explore/qwen3-relations` |
+| `relation_consensus` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/relation-consensus/solutions/relation_consensus/WORKLOG.md) · `explore/relation-consensus` |
+| `sampled_consensus` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/sampled-consensus/solutions/sampled_consensus/WORKLOG.md) · `explore/sampled-consensus` |
+| `grounded_task1` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-task1/solutions/grounded_task1/WORKLOG.md) · `explore/grounded-task1` |
+| `parallel_relation_fusion` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/parallel-relation-fusion/solutions/parallel_relation_fusion/WORKLOG.md) · `explore/parallel-relation-fusion` |
+| `gliner25_task1` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/gliner25-task1/solutions/gliner25_task1/WORKLOG.md) · `explore/gliner25-task1` |
+| `relation_calibration` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/relation-calibration/solutions/relation_calibration/WORKLOG.md) · `explore/relation-calibration` |
+| `patient_response_code` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-response-code/solutions/patient_response_code/WORKLOG.md) · `explore/patient-response-code` |
+| `canonical_names` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/canonical-names/solutions/canonical_names/WORKLOG.md) · `explore/canonical-names` |
+| `mention_canonical_normalization` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/mention-canonical-normalization/solutions/mention_canonical_normalization/WORKLOG.md) · `explore/mention-canonical-normalization` |
+| `patient_conditioned_spans` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-conditioned-spans/solutions/patient_conditioned_spans/WORKLOG.md) · `explore/patient-conditioned-spans` |
+| `mention_hard_negatives` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/mention-hard-negatives/solutions/mention_hard_negatives/WORKLOG.md) · `explore/mention-hard-negatives` |
+| `open_concept_consensus` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/open-concept-consensus/solutions/open_concept_consensus/WORKLOG.md) · `explore/open-concept-consensus` |
+| `canonical_prefix_agreement` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/canonical-prefix-agreement/solutions/canonical_prefix_agreement/WORKLOG.md) · `explore/canonical-prefix-agreement` |
+| `patient_span_geometry` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-span-geometry/solutions/patient_span_geometry/WORKLOG.md) · `explore/patient-span-geometry` |
+| `four_source_fusion` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/four-source-fusion/solutions/four_source_fusion/WORKLOG.md) · `explore/four-source-fusion` |
+| `response_set_decoder` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/response-set-decoder/solutions/response_set_decoder/WORKLOG.md) · `explore/response-set-decoder` |
+| `patient_competition_loss` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-competition-loss/solutions/patient_competition_loss/WORKLOG.md) · `explore/patient-competition-loss` |
+| `span_document_support` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/span-document-support/solutions/span_document_support/WORKLOG.md) · `explore/span-document-support` |
+| `response_code_equivariance` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/response-code-equivariance/solutions/response_code_equivariance/WORKLOG.md) · `explore/response-code-equivariance` |
+| `patient_competition_calibration` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-competition-calibration/solutions/patient_competition_calibration/WORKLOG.md) · `explore/patient-competition-calibration` |
+| `unanimous_relation_veto` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/unanimous-relation-veto/solutions/unanimous_relation_veto/WORKLOG.md) · `explore/unanimous-relation-veto` |
+| `mention_candidate_selection` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/mention-candidate-selection/solutions/mention_candidate_selection/WORKLOG.md) · `explore/mention-candidate-selection` |
+| `document_supported_relation_filter` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/document-supported-relation-filter/solutions/document_supported_relation_filter/WORKLOG.md) · `explore/document-supported-relation-filter` |
+| `grounded_sampled_consensus` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-sampled-consensus/solutions/grounded_sampled_consensus/WORKLOG.md) · `explore/grounded-sampled-consensus` |
+| `grounded_weight_average` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-weight-average/solutions/grounded_weight_average/WORKLOG.md) · `explore/grounded-weight-average` |
+| `mention_no_veto` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/mention-no-veto/solutions/mention_no_veto/WORKLOG.md) · `explore/mention-no-veto` |
+| `patient_swap_dpo` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-swap-dpo/solutions/patient_swap_dpo/WORKLOG.md) · `explore/patient-swap-dpo` |
+| `copy_grounded_decode` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/copy-grounded-decode/solutions/copy_grounded_decode/WORKLOG.md) · `explore/copy-grounded-decode` |
+| `quote_set_completion` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/quote-set-completion/solutions/quote_set_completion/WORKLOG.md) · `explore/quote-set-completion` |
+| `mention_boundary_selection` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/mention-boundary-selection/solutions/mention_boundary_selection/WORKLOG.md) · `explore/mention-boundary-selection` |
+| `conditional_stacking` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/conditional-stacking/solutions/conditional_stacking/WORKLOG.md) · `research/conditional-stacking` |
+| `verified_rationale` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/verified-rationale/solutions/verified_rationale/WORKLOG.md) · `research/verified-rationale` |
+| `supervised_sapbert_linker` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/supervised-sapbert-linker/solutions/supervised_sapbert_linker/WORKLOG.md) · `research/supervised-sapbert-linker` |
+| `training_seed_ensemble` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/research/training-seed-ensemble/solutions/training_seed_ensemble/WORKLOG.md) · `research/training-seed-ensemble` |
+| `adapted_quote_linking` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/adapted-quote-linking/solutions/adapted_quote_linking/WORKLOG.md) · `explore/adapted-quote-linking` |
+| `boundary_veto` | [方案台账](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/boundary-veto/solutions/boundary_veto/WORKLOG.md) · `explore/boundary-veto` |
+
+机制查重先读[机制地图](../research/method-coverage-map-20261024/MAP.md)（明确为13:08历史快照），再读相应路线的最新记录；不把旧快照的待完成项当作重启指令。各链接目标已按本地对应worktree核实存在；不为目录整理访问官网、重评分或下载模型。
 
 ## 历史诊断索引
 
@@ -53,5 +90,3 @@
 - 对需保留的大产物记录路径、大小、SHA-256 和重建方式。只有 `/tmp` 副本的产物，应在交接前保存关键证据或明确为可丢弃，不写成已持久保存。
 - 每项指标注明训练/验证/交叉验证/诊断/官方及统计口径。与基线比较前确认划分、指标和代码版本一致；有代码改动未提交时记录文件/补丁校验值。
 - 碰到可复用的坑，同步更新 `HANDOFF.MD`；本文件只索引实验，不重复工作台账。
-
-- 2026-10-24 新增患者条件跨度与多实例监督工作线，独立分支 `explore/patient-conditioned-spans`，研究/授权见[准备与决定](../research/patient-attribution-completion-readiness-20261024/README.md)；尚无模型质量。
