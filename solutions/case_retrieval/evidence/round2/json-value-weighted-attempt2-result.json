@@ -1,0 +1,151 @@
+{
+  "status": "implementation_probe_PASS_no_quality_or_formal_training",
+  "complete": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/complete.json",
+    "sha256": "dcab1b5dc0cfd1791325fcfed74beed226e13853360b96e0fe4b57c271155317",
+    "bytes": 472
+  },
+  "actual_seconds": 96.4921764805913,
+  "same_shape_results": [
+    {
+      "shape_tokens": 591,
+      "pad": 0,
+      "native_full_CE": 1.0698593854904175,
+      "full_logits_hand_CE": 1.0698593854904175,
+      "weighted_full_hand_CE": 1.6439672708511353,
+      "tolerances": {
+        "logits_rtol": 0.01,
+        "logits_atol": 0.01,
+        "loss_rtol": 0.005,
+        "loss_atol": 0.005,
+        "gradient_relative_l2": 0.02
+      },
+      "selected_all1_CE": 1.069859504699707,
+      "weighted_selected_CE": 1.6439672708511353,
+      "logits_max_abs_diff": 0.0,
+      "logits_allclose": true,
+      "gradient_w1_relative_L2": 0.016870042412645617,
+      "gradient_w2_relative_L2": 0.016745513096421298
+    },
+    {
+      "shape_tokens": 599,
+      "pad": 8,
+      "native_full_CE": 1.05128812789917,
+      "full_logits_hand_CE": 1.05128812789917,
+      "weighted_full_hand_CE": 1.6222522258758545,
+      "tolerances": {
+        "logits_rtol": 0.01,
+        "logits_atol": 0.01,
+        "loss_rtol": 0.005,
+        "loss_atol": 0.005,
+        "gradient_relative_l2": 0.02
+      },
+      "selected_all1_CE": 1.05128812789917,
+      "weighted_selected_CE": 1.6222522258758545,
+      "logits_max_abs_diff": 0.0,
+      "logits_allclose": true,
+      "gradient_w1_relative_L2": 0.01676130475917748,
+      "gradient_w2_relative_L2": 0.01615682319855549
+    }
+  ],
+  "cross_shape_native_CE_difference": -0.01857125759124756,
+  "cross_shape_weighted_full_CE_difference": -0.02171504497528076,
+  "frozen_logits_poison": {
+    "padding_targets": 8,
+    "predictor_positions": [
+      590,
+      591,
+      592,
+      593,
+      594,
+      595,
+      596,
+      597
+    ],
+    "loss_clean": 1.6222522258758545,
+    "loss_poisoned": 1.6222522258758545,
+    "loss_exact": true,
+    "gradient_exact": true,
+    "pad_gradient_zero": true
+  },
+  "longest": {
+    "row_id": "11235872:relations:8",
+    "input_tokens": 5523,
+    "supervised": 106,
+    "loss": 0.4082373380661011,
+    "step_seconds": 12.180502124130726,
+    "gradient_norm": 4.268564224243164,
+    "family_gradient_squared_norms": {
+      "DeltaNet": 8.318069623267093,
+      "MLP": 5.201842252863571,
+      "full_attention": 4.700729015283287
+    },
+    "changed_LoRA_B": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "head_frozen": true,
+    "learning_rate": 0.0001,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ],
+    "peak_allocated_bytes": 23859097600,
+    "peak_reserved_bytes": 24415043584,
+    "free_bytes": 17331191808
+  },
+  "token_linear_twoepochs_estimate_seconds": 1775.7729756155297,
+  "estimate_limit": "Single longest full optimizer step includes probe checks; excludes fresh load/hash fixed cost, not measured formal time or guarantee.",
+  "release_utc": "2026-10-24T00:05:03.344450+00:00",
+  "watch53301_finished": true,
+  "prior_attempt_failure_preserved": true,
+  "no_checkpoint_saved": true,
+  "no_quality": true,
+  "implementation_limits": [
+    "Selected/full logits exact and CE within FP32 rounding, but actual full-LoRA gradients differ1.62\u20131.69%, within predeclared2% not bitwise.",
+    "Native full model also changes between591 and599 shapes; this does not identify numerical/kernel root cause.",
+    "Poison ignored pad logits changes neither masked loss nor gradient; actual semantic/quality benefit of weighting remains untested."
+  ],
+  "references": {
+    "run-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/run-plan.json",
+      "sha256": "36571c73aed549fefcbc747cf632632a2b3894216db1130448bd720e368372dc",
+      "bytes": 6828
+    },
+    "remote-plan.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/remote-plan.json",
+      "sha256": "2b980451f05069611a5a4d9322f8457c3ba80f0788f3299d4094524f8583c410",
+      "bytes": 2277
+    },
+    "job.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/job.json",
+      "sha256": "c63a1fd14b618e9a0e4281e4c53ddd97a845cedca7e3cdfd58de0ecfb4af0256",
+      "bytes": 991
+    },
+    "run_manifest.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/run_manifest.json",
+      "sha256": "0953b516b0e16fcd8e83205b79f4fa4d20f77a5bf08c1b215d03c7846bad4e39",
+      "bytes": 54777
+    },
+    "short-equivalence.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/short-equivalence.json",
+      "sha256": "f1c745e58e7f8e907dee6c5d7349ba4b17341f5693ce85e905d420822d778876",
+      "bytes": 3409
+    },
+    "frozen-logits-pad-poison.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/frozen-logits-pad-poison.json",
+      "sha256": "f76d68ef86c024e45a0e6c2959bfb1ef53bb6456c870bc93ac643933f0057197",
+      "bytes": 282
+    },
+    "longest-step.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/longest-step.json",
+      "sha256": "951a0d12f60f88efdec4b45ed4b1209645ee334b4c5c7402f8d89673f571215e",
+      "bytes": 846
+    },
+    "gpu-release.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/gpu-release.json",
+      "sha256": "a24cd8b21992fd8845992937fba5094066dcf623ec7e3c4f79ee56144c4b7e0d",
+      "bytes": 504
+    }
+  }
+}

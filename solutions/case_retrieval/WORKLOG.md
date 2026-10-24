@@ -74,3 +74,6 @@
 - **公开扩充212训练完整结束**：两epoch/54calls实际1803.222s，唯一final adapter `cb2f3f8e…`/Adam-RNG已真实SHA核；epoch1/2 loss .135688/.059961仅训练记录。2026-10-23T23:59:18.943Z A800GPU2 fresh空，watch10348结束，不重启。仅新62 F1支持追加计划 `cc2bbb40…` 已按actual trainer/data/inputfreeze/policy绑定，源和原decoder不变，待一次600+30执行；[训练终点](evidence/round2/public-SFT-training-complete.json)、[F1计划](evidence/round2/public-SFT-F1-new62-plan.json)。
 
 - **公开候选扩训练负结案**：旧JSON124+公开新88=212、651512tokens，fresh2ep54calls/1803.222s完整。仅同62新提示固定支持对照 **.682128804→.674046941**（−.008082）；351TP97FP169FN→340TP90FP180FN，micro/macro均降。旧1189实体/383关联保留；新47=30TP17FP，较旧新增集合加1FP/删11TP8FP，不保留/不扩F0或原dev。62/449有效0回退，native209.411s、fullfreeze2d4c2d10先唯一质量。00:03:53.514Z A800 fresh空释放，watch3810结束；独立实际训练1a953b82已通过，质量增量审进行中。[结果](evidence/round2/public-SFT-F1-new62-result.json)。
+
+- **公开212统一独审通过**：训练1a953b82+质量完整重装汇总 `e8627dfe`；唯一.674046941负结果正式关闭，不重评。
+- **value权重attempt2实现通过**：两shape内logits exact、CE差≤1.2e−7，全LoRA梯度1.62–1.69%差在预写2%内，非bitwise；同冻结logits poison padding loss/grad exact。原生跨shapeCE也差−.018571，旧失败保留，不归因具体内核。最长5523加权真更新12.181s/peak23.859GB，总96.492s，00:05:03Z A100GPU2空交ontology，watch53301结束。仅工程检查无质量/正式训练；[结果](evidence/round2/json-value-weighted-attempt2-result.json)。
