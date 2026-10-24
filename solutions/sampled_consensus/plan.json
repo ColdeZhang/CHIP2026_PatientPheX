@@ -244,5 +244,48 @@
     "not_actual_sampling_measurement": true,
     "hard_cap_seconds": 1800,
     "all160_terminal_required": true
-  }
+  },
+  "cpu_gate": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/cpu-v1/complete.json",
+    "bytes": 28257,
+    "sha256": "267f1afd8ff918d5c6317e249396d7271efad74ae2b88c9d9051a18d23a2094c"
+  },
+  "cpu_source_checkpoint": "43b58d022768338863d8b42df3fe19d2efab9755",
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/sampling.py": "334f560b2f94e48cf5088988aa1612837baf291d356d35945775bcc31c2c2ef1",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/cpu_gate.py": "37f05b6108752a837e781b1f97de6c8e16b87e14461e094f5930d965179ba8f2",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/infer.py": "d2ee06dc8ef4da72620377afbdab9d57449de5c3aaf2a3edf9f0bb7cb85ed3de",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/driver.py": "4b47dea2a3e2dba74069670954469eb6db4037db634677a34164949a885c8f32",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/vendor/probe_runner.py": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/source/vendor/legacy_runner.py": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/nonthinking-sampled-consensus-native-20261024/cpu-v1/complete.json": "267f1afd8ff918d5c6317e249396d7271efad74ae2b88c9d9051a18d23a2094c"
+  },
+  "quality_refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    }
+  },
+  "quality_source_note": "Gold ref copied from previous fixed F1 plan without opening gold; quality.py reads only after complete160/jointfreeze/format/exclusiveintent."
 }
