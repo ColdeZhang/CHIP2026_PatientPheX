@@ -15,3 +15,5 @@
 局部源审：attempt1→2 自 import numpy 到最终完整输出的整个AST相等（ca609406），初始化检查不改变GPU尾段。回传脚本还将逐条核实际raw span的原文坐标/cache行/HPO/score bits以及798个连续批区间，不做不同NumPy阈值解码。公共当前HPO映射仅源码与六合成检查已准备，尚未运行真实映射；fresh HGB纯静态计划已保存。
 
 实际 attempt2 主程序219.361秒/rc1：全部798批408272键、795新forward、683438候选离线解码5341rawspans完成。NPY/gzip生成后末尾manifest错误假设columns在attempt2目录，实际按prep复用于原目录，触发FileNotFoundError；02:24:47真实GPU空卡。原失败不改，下一CPU-only完整文件核验后另写恢复清单。TF32实际前测false；末尾查询因此前dictcomp异常未执行，缺测明确保留，不能编造。一次monitor read UNKNOWN后隔约60秒回收成功，不重启原任务。
+
+CPU-only独立finalization已实际PASS：1.369823秒/rc0（程序1.271485），完整NPY2449760B/ea398fda、gzip1399184B/7588b357、rawspans192972B/efdf3beb；798连续批和5341全span text/offset/query/HPO/scorebits经NumPy1.23.5核验。原failed结果/rc1与end TF32缺测不改。缓存此时可用，紧凑文件正回传至独立recovered/；无新NN/fit/质量。

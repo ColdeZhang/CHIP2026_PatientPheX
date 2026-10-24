@@ -1,0 +1,14 @@
+{
+  "command": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python -c 'from pathlib import Path;import subprocess,sys,os,json,time,datetime\nassert os.environ['\"'\"'CUDA_VISIBLE_DEVICES'\"'\"']=='\"'\"''\"'\"' and not Path('\"'\"'finalization-job.json'\"'\"').exists()\ncmd=['\"'\"'timeout'\"'\"','\"'\"'--signal=TERM'\"'\"','\"'\"'--kill-after=5s'\"'\"','\"'\"'45s'\"'\"',sys.executable,'\"'\"'finalize_cpu.py'\"'\"'];j={'\"'\"'status'\"'\"':'\"'\"'running'\"'\"','\"'\"'command'\"'\"':cmd,'\"'\"'cap_seconds'\"'\"':45,'\"'\"'TERM_grace_seconds'\"'\"':5,'\"'\"'started_at'\"'\"':datetime.datetime.now(datetime.timezone.utc).isoformat()};Path('\"'\"'finalization-job.json'\"'\"').write_text(json.dumps(j));t=time.monotonic()\nwith Path('\"'\"'finalization.stdout.log'\"'\"').open('\"'\"'xb'\"'\"') as out,Path('\"'\"'finalization.stderr.log'\"'\"').open('\"'\"'xb'\"'\"') as err:p=subprocess.run(cmd,stdout=out,stderr=err,timeout=52)\nj.update(status='\"'\"'complete'\"'\"' if p.returncode==0 else '\"'\"'failed'\"'\"',returncode=p.returncode,elapsed_seconds=time.monotonic()-t,finished_at=datetime.datetime.now(datetime.timezone.utc).isoformat());Path('\"'\"'finalization-job.json'\"'\"').write_text(json.dumps(j,indent=2));print(json.dumps(j));raise SystemExit(p.returncode)'",
+  "cwd": "public-neuralcr-readiness/full-train64-cache-attempt2",
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1"
+  },
+  "timeout_seconds": 55
+}
