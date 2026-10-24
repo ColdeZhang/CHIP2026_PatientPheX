@@ -1,6 +1,6 @@
 # 工作台账
 
-当前优先：A800 full64首轮34更新已正常完成并14:18:19取得520MB完整持久ACK；第二轮14:18:32唯一proc_dbc66625/PID29757已真实start。共享5400硬截止15:23:52.618929 UTC（TERM+30），两个完整state ACK均含在窗内，尾1/warmup4/68updates不变。独立watcher178713/PPID1/SID178713、真实exclusive lock已核，首inspect13:54:15成功。唯一恢复入口full64_a800/controller/entry.py、仓外B=R/research/patient-response-code-full64-a800-v1/controller；只接原作业，严禁旧A100bootstrap或另起watch。完成两ACK后原64fresh1200+30纯组件，零本线gold/v2。
+当前优先：A800 full64两轮68更新与两完整持久ACK均已14:42:43完成；训练1324.142+1322.840s，总campaign2930.692s。15件原metadata/完整Adam+scheduler+RNG逻辑恢复已核；最终adapter71c664db，唯一originaldev64fresh推断入口515cf90e已绑定，1200+30/cap13824/gen1600，无本线gold/v2。旧watch178713已正常complete，不重启训练或watch。仓外B=R/research/patient-response-code-full64-a800-v1；下一步推断deploy→唯一start→全部raw回收→pure C给root，固定源full64_a800/README.md。
 
 - 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
@@ -64,3 +64,7 @@ A100原formal campaign/start均0，closure独立保存，不再bootstrap；其�
 ### 2026-10-24 14:18 UTC — first full ACK and original epoch2 chain
 
 首轮实际1324.141567s rc0/34updates，第一完整520026536B检查点在.100于14:18:19.649完成全SHA/fsync/reopen，导出64.037120s；ACK d7957917/2933B，源端同字节已发布。watch178713于14:18:32.715启动原epoch2 proc_dbc66625/PID29757，原15:23:52.618929截止不重置；完整Adam/scheduler/RNG逻辑恢复收据在终点统一回收核验，未据启动就冒称已核。原HTTP managed stop已回执，真正子服务闭环终点另核，不把单stop回执当全部进程退出证明。小证据见evidence/full64-a800-epoch1-ACK.json；无新推断/评分。
+
+### 2026-10-24 14:43 UTC — full campaign complete, unique64 binding
+
+第二轮1322.840344s rc0/68累计更新，第二520027147B全state在14:42:32.330持久ACK0836c594，62.752894s；原源ACK/两轮共享5400窗闭合，campaign b7cb4043实际2930.691671s。15件training ZIP1da3f87d/22266B完整SHA，resume-state-verified明确global34/epoch1/model+Adam+scheduler/RNG逻辑状态全部exact；不宣称跨host逐位续训。原watch14:42:43正常终结。新64fresh entry515cf90e绑定epoch2 adapter71c664db，原1200+30/cap13824/gen1600/严格PT与完整input不变，先push再唯一启动；source955实体壳仅供关系，root保1061实体。
