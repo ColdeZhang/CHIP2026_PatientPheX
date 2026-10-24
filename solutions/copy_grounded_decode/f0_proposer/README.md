@@ -1,12 +1,12 @@
 # F0 同 GLiNER2.5 提议链
 
-当前同权重F0推断已完整rc0（26.639秒，172窗/1207selected），正在回收原件；规范化尚未启动，评分0。只由同Task1 final10权重生成F0候选，非新质量臂；不得替用旧schema模型预测。初始[source/lineage](lineage.json)、[CPU薄合同](cpu-contract.json)、[实际推断计划](infer-plan.json)先由主线程commit/push。
+当前 accepted 池已完整就绪：同权重 F0 推断 26.639 秒、172 窗/1207 selected；独立 v3 规范化 9.799 秒、296 Sap 查询，输出 736 accepted atoms、全16doc/47patient，评分0。终点见 [accepted-result](accepted-result.json)。只由同Task1 final10权重生成F0候选，非新质量臂；不得替用旧schema模型预测。初始[source/lineage](lineage.json)、[CPU薄合同](cpu-contract.json)、[实际推断计划](infer-plan.json)先由主线程commit/push。
 
 固定16doc/47patient/172完整窗，原FP32/native phenotype query/threshold.5/overlap allow/cap192，600+30绝对截止。原模型193581591参数、权重54a88544；仅F0身份/计数绑定与耐久raw发布有机械变化。增加每窗原head tensors保存后再检查有限/坐标；API结果沿原入口先保存后映射。raw/IDs/候选全量保留；不重训、不扫描、无gold/quality。
 
 正常后继是原strict train32 F2F3 + public41099 FP16 Sap/b59政策，全部mapped/NIL接受，拒绝项保留；不能用全部raw跨度代替accepted池。原Sap运行库Torch2.7.0/TF4.50.0(.3)→本次Torch2.7.1/TF4.51.3(.100)差异披露。GPU0 fresh门，GPU1不碰。原GLiNER runtime复用TF5.20.2。
 
-设 `S=solutions/copy_grounded_decode/f0_proposer`，`D=/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-proposer-v1`。以下是顺序入口；只有主线程确认source/plan已推送后才执行部署和start。
+设 `S=solutions/copy_grounded_decode/f0_proposer`，`D=/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-proposer-v1`。以下保留初始顺序入口供复现审计，实际已执行 infer，原 normalize UNKNOWN 已封禁；当前全部模型阶段完成，禁止重放 start。
 
 ```bash
 python "$S/remote.py" deploy --directory "$D/infer-v1"
@@ -49,3 +49,7 @@ python "$S/finalize_essential_v2.py"
 独立 `normalize-recovery-v3` 保持同 296 查询、模型/输入/FP16/policy、180+30 秒预算，只增加 plan/request/driver/normalizer 的固定五分钟启动有效期。有效期过后不得载入模型；不是扩大实际运行预算。CPU 合同覆盖有效/过期/错绑定、真实入口在任何源/模型读取前拒绝、内嵌远端代码编译；无 GPU/远端调用。部署通过原已完成 package 的同 SHA 文件服务器内校验复制，只传变化源与新 plan。parent 推送新 source/plan 并确认后才能启动。
 
 原 GLiNER 全 172 窗完整、10 件 essential 已逐 SHA 回收；3355845 字节原完整 raw ZIP 在服务器持久，仍待本地完整回收。规范化及 accepted 池不评任何质量端点。
+
+实际 v3 15:38:02.249605 启动，15:38:12.045424 完整 rc0；15:38:12.046755 GPU0=0/noapps。全13件规范化原件已 SHA 回收（collection 6e52e3fa）；accepted manifest a1242b31、entities 40b12fcc。原 GLiNER 大 raw ZIP 本地回收仍 pending，不影响完整必要输入和规范化终点；将沿原冻结包续读，不重启模型。
+
+原 full ZIP 断点续读由既有只读 collector PID193481/startticks10899276 继续；本地 guardian PID193616（ready 见仓外 infer-v1/readback-guardian-ready.json）限时15分钟，只能对该核验身份发TERM，不创建/重启collector，不调用远端。它完成后另写 infer-v1/full-raw-collection-status.json；该 sidecar 可改变 pending 状态，已绑定 accepted/manifest.json 不修改。

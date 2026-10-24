@@ -1,0 +1,277 @@
+{
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "gpu_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PATIENTPHEX_DURABILITY_ROOT": "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+  },
+  "storage_parent": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "checkpoint_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/model-cache/epoch-002",
+  "adapter": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/model-cache/epoch-002/adapter",
+  "original_training_checkpoint": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/formal-v1/output/epoch-002",
+  "source_inference_cache_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-generation-v1/F0-inference-cache/epoch-002",
+  "training_runtime": "Torch2.6.0+cu124",
+  "inference_runtime": {
+    "versions": "Torch2.7.1+cu126; native TF5.20.2,no FLA",
+    "host": ".100 A30 GPU0",
+    "native_CPU_reused_from_A800": true,
+    "cross_GPU_bitwise_equivalence_claimed": false
+  },
+  "schema": "grounded-copy47-inference-v1",
+  "id": "E-20261024-COPY-GROUNDED-001-F0",
+  "phase": "infer",
+  "execution_authorized": true,
+  "inference_authorized": true,
+  "authorization": "Root fixed completeF0 after positiveF1 post-hoc abstaining pipeline; all47greedy2400+30, strict failed rows whole-row abstain, no probes/regeneration",
+  "budget_seconds": 2400,
+  "authorized_budget_seconds": 2400,
+  "grace_seconds": 30,
+  "expected_rows": 47,
+  "all_rows_fresh": true,
+  "max_new_tokens": 1600,
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "use_cache": true,
+    "max_new_tokens": 1600
+  },
+  "expected_status": "COMPLETE_FRESH47_CONSTRAINED_RAW_NO_QUALITY",
+  "assets": {
+    "runner": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/infer.py",
+      "bytes": 14961,
+      "sha256": "e0ce6898ede60ce5fa6b000b74c9fb504bf102718a4356a827c803b271cb01c0"
+    },
+    "raw_store": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "trainer": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/train.py",
+      "bytes": 27697,
+      "sha256": "198d1de2234bff7d60d662f37ecc41bed7c25efd6ebedbe665c7f58705871e8e"
+    },
+    "checkpoint": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/checkpoint.json",
+      "bytes": 9706,
+      "sha256": "ddb14b092933f1805b11ba97db9bc60ba8c6bdaf1dd05b3bbd59f5b7b5cf5ab0"
+    },
+    "durability": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/durability-epoch-002.json",
+      "bytes": 2031,
+      "sha256": "5f8ca5fc2d09f74c7f5951dc1405a87551fe050ef4694200f1292c373fb9338f"
+    },
+    "training_complete": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/training_complete.json",
+      "bytes": 1239,
+      "sha256": "26b9558f1b1d542de44178d6191c80cb31833132a3a058a732857858e7d4f75b"
+    },
+    "training_wrapper": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/training-wrapper-complete.json",
+      "bytes": 6367,
+      "sha256": "d1d20d175b7b951f8814d1e1dda5a76f20c1ccc5fc5575ed69498579ed5c65cd"
+    },
+    "prompts": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F0-A30-v1/held-prompts.jsonl",
+      "bytes": 2256937,
+      "sha256": "1bf40537f16fdc2692b2180fe66554aaa0cd5a6d4b37d118a0e6285a9e859243"
+    },
+    "held_ids": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F0-A30-v1/held-actual-ids.json.gz",
+      "bytes": 241973,
+      "sha256": "1cdb8faa10849fb2eb8b9ec63dabae850260abd4fed0377db7620487c8591a7e"
+    },
+    "held_audit": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F0-A30-v1/held-audit.json",
+      "bytes": 13555,
+      "sha256": "6b77263cb508499c49b6a9fcbbbe886be9bac22e26ba1e6fb4cc8fd5dd3c9d5b"
+    },
+    "model_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/model-source-manifest.json",
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "normalization_policy": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/normalization-policy.json",
+      "bytes": 1699,
+      "sha256": "b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20"
+    },
+    "native_cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F0-A30-v1/native-CPU-result.json",
+      "bytes": 2304,
+      "sha256": "92ed62ad861fc8e0f6dceba60a4d79804bf0edfc279e27a3cfb1478766e24121"
+    },
+    "inference_cache_binding": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/inference-cache-binding.json",
+      "bytes": 2155,
+      "sha256": "7a3982d31546a090dbf10fd4b2d17869f6dc53a3e5ed83198190ee4cb074bfef"
+    },
+    "host_cache_binding": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/host-cache-binding.json",
+      "bytes": 2193,
+      "sha256": "ca3445a8bbc14be7294dd880213266f15adcb18e896cd0f8e959494495ef181a"
+    },
+    "host_runtime": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/grounded-sampled-consensus-v1/infer-F1-A30-v1/host-runtime.json",
+      "bytes": 8785,
+      "sha256": "249dad2032e1c5b8723e719285dea856f9364dad93129085815b6a58b34a0427"
+    },
+    "processors": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/processors.py",
+      "bytes": 838,
+      "sha256": "5b74803eea020e15454a3471a051f445d396e5d4b6833d0da0cee07e4e6d418f"
+    },
+    "trie": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/triple_trie.py",
+      "bytes": 6360,
+      "sha256": "40f90c299c923cf8fff546bb27ee09560dc17a7fad29d00ab8c83833cf01e65f"
+    },
+    "driver": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/job_driver.py",
+      "bytes": 5832,
+      "sha256": "b43900d1acaf31dba1b9b22efa6a721a19766b898c8e16f4951946396aaa9dbc"
+    },
+    "candidates": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/cpu/candidates.jsonl",
+      "bytes": 130871,
+      "sha256": "233a7f00761773b9e14574b8f18fdf66ae05da2383443ad3e35e17b74d9ccc75"
+    },
+    "constraint_cpu_result": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/cpu/actual/result.json",
+      "bytes": 29551,
+      "sha256": "a60e82eba4c660a929974dba7c0311e85e405847908710ac63574e5ac2cdea71"
+    }
+  },
+  "payload_sources": {
+    "infer.py": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/infer.py",
+      "bytes": 14961,
+      "sha256": "e0ce6898ede60ce5fa6b000b74c9fb504bf102718a4356a827c803b271cb01c0"
+    },
+    "job_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/job_driver.py",
+      "bytes": 5832,
+      "sha256": "b43900d1acaf31dba1b9b22efa6a721a19766b898c8e16f4951946396aaa9dbc"
+    },
+    "raw_store.py": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "processors.py": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/processors.py",
+      "bytes": 838,
+      "sha256": "5b74803eea020e15454a3471a051f445d396e5d4b6833d0da0cee07e4e6d418f"
+    },
+    "triple_trie.py": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/triple_trie.py",
+      "bytes": 6360,
+      "sha256": "40f90c299c923cf8fff546bb27ee09560dc17a7fad29d00ab8c83833cf01e65f"
+    }
+  },
+  "files": {
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/infer.py": {
+      "bytes": 14961,
+      "sha256": "e0ce6898ede60ce5fa6b000b74c9fb504bf102718a4356a827c803b271cb01c0"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/job_driver.py": {
+      "bytes": 5832,
+      "sha256": "b43900d1acaf31dba1b9b22efa6a721a19766b898c8e16f4951946396aaa9dbc"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/raw_store.py": {
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/processors.py": {
+      "bytes": 838,
+      "sha256": "5b74803eea020e15454a3471a051f445d396e5d4b6833d0da0cee07e4e6d418f"
+    },
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/triple_trie.py": {
+      "bytes": 6360,
+      "sha256": "40f90c299c923cf8fff546bb27ee09560dc17a7fad29d00ab8c83833cf01e65f"
+    }
+  },
+  "output_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/output",
+  "argv": [
+    "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+    "-u",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/infer.py",
+    "--plan",
+    "/home/zhangyuheng/projects/CHIP2026_PatientPheX/copy-grounded-decode-v1/F0-v1/infer/infer-plan.json"
+  ],
+  "constraint_cpu_source_sha256": "fd216db01a68eec5e4d712b018f388147082eb70b17177541189d81d49680279",
+  "constraint_cpu_plan_sha256": "3257692030248128b0052b619384d4220b5da899aa48337d7a63c11737936e4a",
+  "predecessor_release": {
+    "confirmed_by_owner": true,
+    "actual": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-proposer-v1/normalize-recovery-v3/terminal/wrapper-complete.json",
+      "bytes": 753,
+      "sha256": "bbe56e6f5a7a61eb05c1a39f2e34f770d3a4f1b73d95971127bd93ac2419ba04"
+    },
+    "gpu_release": {
+      "at_utc": "2026-10-24T15:38:12.046755+00:00",
+      "gpu": "0, GPU-126293b9-6677-8464-cee7-01e693efbf29, 0, 24164, 24576\n1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 17431, 6733, 24576\n",
+      "processes": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 2750097, 17422\n",
+      "disk_free_bytes": 393867759616
+    }
+  },
+  "primary": "B4_F0 UNION (constrained_G_valid_rows INTERSECT (original_pure_G UNION S UNION Q UNION C))",
+  "normalization": "original b59 policy/train32 aliases/public41099; necessary FP16 GPU query180+30 after inference release; no new threshold",
+  "cross_runtime_limit": "A30/Torch2.7.1 versus original A100/Torch2.6; not a pure decoder numerical causal claim",
+  "operations_source": {
+    "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/remote.py",
+    "bytes": 19120,
+    "sha256": "c3957c6baee81aa77ffd0e0b07cbcf712a746cc3ab03ea3bfe4e0baa44f14b06"
+  },
+  "collection_source": {
+    "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/collect.py",
+    "bytes": 15877,
+    "sha256": "1992e2f3c1485cb943d1eb9a914205df0d0783bd823e3cae59101cc0f796c616"
+  },
+  "binding_source": {
+    "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/bind.py",
+    "bytes": 3790,
+    "sha256": "8b1cb517e6f9158723bd37c556ebee6356c42eecb5210e11c29ad76e81989197"
+  },
+  "input_sources": {
+    "F1_result": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/evidence/F1-fallback-v2-result.json",
+      "bytes": 7582,
+      "sha256": "24db8e70456b13a8a829b8396bd91158d49a52080e09a447f9190527cbf0e114"
+    },
+    "F0_decision": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/decision.json",
+      "bytes": 4853,
+      "sha256": "824eaae9c7a7eef0f222c8974cbc1e188fa80b1286b617f48ed07fceb4b5a009"
+    },
+    "actual_CPU_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/F0-v1/cpu/collection.json",
+      "bytes": 5220,
+      "sha256": "b5cf35deb7abb8035bafc442393e7c035afc249c01415a77b8a114f8bc6b18f1"
+    },
+    "actual_CPU_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/f0/cpu-plan.json",
+      "bytes": 8920,
+      "sha256": "3257692030248128b0052b619384d4220b5da899aa48337d7a63c11737936e4a"
+    }
+  },
+  "admission_bound_at_unix": 1792856487.62654,
+  "admission_deadline_unix": 1792857087.62654,
+  "admission_semantics": "10-minute absolute launch window checked at driver entry, before child Popen, and before weights; inference remains2400+30 from actual start, no reset onUNKNOWN"
+}

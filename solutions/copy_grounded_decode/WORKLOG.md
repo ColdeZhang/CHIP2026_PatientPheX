@@ -32,3 +32,6 @@
 
 - F0同GLiNER172窗原唯一job proc_a87b4ea4、child2750169实际15:22:28.700565启动，原600+30；15:22:55.337158完整rc0、26.639秒，GPU0 15:22:55.352522真实0/noapps，GPU1他线不碰。1207 selected，原ZIP3355845B/cb201713回读中，尚未accepted pool。
 - document_relations交F0后处理源码与两个合成合同，source-manifest ae6cb6dd。本线只读实核原315继承B⊆B4/S/Q、16/47/947与343B4；旧G/S/Q/C支持union在B4外141，见f0/old-support-contract.json。无F0新质量。
+
+- 同GLiNER accepted736 manifest a1242b31已到；与strong1085按exact anchor去重为1149 triples/629 docquotes，候选233a7f00。proposer v3必要296Sap实9.799秒rc0，15:38:12.046755真实释放GPU0；原启动UNKNOWN仅transport事件，fence599e2e7f成功后新admission v3完成。原大raw在server持久，local后台只读续收且有15:55:51截止guardian，不阻塞G47。
+- 真实CPU47原289420 tokens/max9935及全池正反native拼接/processor已10.098秒rc0（15:40:38.508558），实际result a60e82eb，完整10件collection b5cf35de。固定47 infer-plan已绑定，admission绝对截止 2026-10-24T15:51:27.626540+00:00，2400+30实际运行预算不变；尚未GPU启动。
