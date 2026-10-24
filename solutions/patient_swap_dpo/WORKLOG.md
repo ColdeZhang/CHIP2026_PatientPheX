@@ -18,3 +18,5 @@
 - 唯一core已14:18:46.52103044接收：proc_561bb090 / driver1216102，plan965b322d。首次activation只读失败保留，同路径byteexact恢复后才start；没有重复上传/start。原ref900→probe600→formal1800链正在运行，已加任务子timeout保留父控制器退出后的限时。只读watch源和显式下游阶段CLI已准备；实际质量仍0。
 
 - 14:21原core停止：reference133.745s成功，probe12.449s首checkpoint backward metadata错位；原chosen两replay差0，GPU已释放。109成员/ZIPfa6c081a回收。真实CPU BF16+checkpoint0.355s：cache=True梯度门失败（非同一CUDA异常），False两replay差0、28梯度/Adam通过。只禁autocast cast cache，保原阈值/配方；新application/run-recovery-v1，沿原TERM14:31:00.518905+30，新formal仍fresh543c。详见evidence/probe-failure-recovery.json。
+
+- 恢复attempt已14:25:48.723319接收proc_4c647956/driver1216597，plan34cea8c6，6件全部SHA/fsync；7052a9a5已推送核远端。唯一watch182584记录deployment-recovery-v1/core-watch；原参考未重算。probe仍须13完整对/26FB/真实Adam/成本全部通过，才fresh正式。下游collector显式继承原reference并核原绝对deadline；尚未正式/质量。

@@ -39,3 +39,9 @@ DPO采用 [Rafailov et al., 2305.18290](https://arxiv.org/abs/2305.18290) 原始
 全80fresh原始响应、严格解析、完整预测冻结后，仅1次公共v2 all/text，与B4 **.701325377212172**比较，并披露新增/删除及micro/macro。没有Q-alone、整并集、β/epoch/患者筛选；严格正才考虑固定F0。内部F1是开发集，原dev最好.769235669942仍未改变。
 
 记录初始PT父模型建议被原生Qwen3替代，以及“只追加”改为固定Q替换的理由；均在GPU及heldgold读取前完成，不是失败运行或事后挑公式。执行入口、精确SHA与未执行门见 `candidate-plan.json`、`evidence/readiness.json`。
+
+## 实际执行状态（14:25 UTC）
+
+目标CPU148完整接口已4.580s通过。root把准备时预算建议替换为ref900/probe600/formal1800/infer1200各+30；原建议保留为历史。原reference148实际完整133.745s；首probe在12.449s的chosen backward因checkpoint元数据不一致停止，原chosen no-grad/grad logp均−.2504003942，未失败于预写数值门。正式训练/质量均未启动，109原成员及SHA完整保留。
+
+CPU BF16＋同nonreentrant checkpoint单cache标志对照0.355s：开启缓存时梯度存在/finite门失败，关闭时两replay差0、28/28梯度和真实Adam通过；CPU没有复现CUDA同一CheckpointError，因果范围有限。恢复只关闭autocast权重cast缓存，保持原数学/数据/阈值。原148 reference按旧plan965b322d＋parent543c＋encoded9528绑定原字节fece4e82复用；新plan34cea8c6/attempt14:25:48沿**原probe TERM14:31:00.518905**，不重置时限。实际完整probe通过才以fresh543c/newAdam正式训练。

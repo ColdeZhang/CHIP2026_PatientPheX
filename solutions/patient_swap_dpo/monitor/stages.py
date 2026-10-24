@@ -100,8 +100,21 @@ def collect_core(directory, remote):
     for name in names:
         write_exact(out / name, read_small(remote, p['run_root'] + '/' + name))
     driver = json.loads((out / 'driver-result.json').read_text())
-    assert driver['status'] == 'COMPLETE_ALL_THREE_PHASES'
-    assert [s['phase'] for s in driver['stages']] == ['reference', 'probe', 'formal']
+    inherited=p.get('inherited_reference')
+    assert driver['status'] == ('COMPLETE_RECOVERY_PROBE_AND_FORMAL' if inherited else 'COMPLETE_ALL_THREE_PHASES')
+    assert [s['phase'] for s in driver['stages']] == (['probe','formal'] if inherited else ['reference','probe','formal'])
+    if inherited:
+        assert driver['inherited_reference']==inherited
+        for key in ['complete','plan','logps']:
+            name='inherited-reference/'+key+'.json'
+            write_exact(out/name,read_small(remote,inherited[key]['path']))
+            content_matches(out/name,inherited[key]);names.append(name)
+        original=json.loads((out/'inherited-reference/complete.json').read_text())
+        assert original['status']=='COMPLETE_ALL148_FROZEN_REFERENCE_LOGPS'
+        assert original['plan']==inherited['plan'] and original['reference']==inherited['logps']
+        assert original['parent_adapter_files']==p['parent_adapter_files'] and original['encoded']==p['encoded']
+        probe=next(x for x in driver['stages'] if x['phase']=='probe')
+        assert probe['term_at_utc']==p['probe_absolute_term_utc']
     assert all(s['return_code'] == 0 and not s['timed_out'] and s['complete_file_exists']
                and not s['released_gpu']['target_apps'] for s in driver['stages'])
     for name in ['driver-start.json', 'formal/start.json']:
