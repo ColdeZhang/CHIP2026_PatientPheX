@@ -1,0 +1,121 @@
+{
+  "status": "PASS_RELATION_SUBCHAIN_INDEPENDENT_OF_ADDED_PHENOTAGGER_BIOBERT",
+  "at_utc": "2026-10-24T01:56:32.970808+00:00",
+  "scope": "Existing frozen provenance and prediction relation-object bytes only. No gold file, scoring, model load, cache inference, or Git mutation.",
+  "conclusion": "a179 relationship output can be reused after genuine removal of the added121587826-parameter BioBERT component. The complete a179/Baac prediction cannot be reused as an entity source; its BioBERT-conditioned entity selector must be replaced.",
+  "oldpool": {
+    "entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/gliner-dev-transfer/assembled/full-lr.jsonl",
+      "bytes": 128419,
+      "sha256": "c1c2e508ec49272aa19ccdd37a7d0f39bb5dd33bc28e081ed9385f725489eca2"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/dev-relation-transfer-preparation/prompts.jsonl",
+      "bytes": 880994,
+      "sha256": "e09bcc41553e6aca540ffae8d2dcab77022f0ad71870d0a2e9164fbeb8aa975d"
+    },
+    "candidate_components": [
+      "CRF",
+      "SapBERT",
+      "GLiNER"
+    ],
+    "prompt_reads": "predicted entities plus stripped input/HPO only; no association or selector score enters prompt",
+    "full64_adapter": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b",
+    "training_source": "Four frozen CRF/Sap held-fold candidate chains; training manifest binds same full64 adapter lineage."
+  },
+  "public_new": {
+    "input_only_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations-dev/candidate-difference/input-only-freeze.json",
+      "bytes": 6969,
+      "sha256": "50ce32580ccb1ed145a0fd8f53f6aba99d7355fd4539c9c0a8fac1485e61230e"
+    },
+    "support_prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/public-bioformer-dev-transfer/calibrated-point3.jsonl",
+      "bytes": 131911,
+      "sha256": "6401a24e06ea48d8e8711313b7dfe726f6fa7a9dae4ec93e21e97e1707835fbd"
+    },
+    "sources": [
+      "PubMed95",
+      "Bioformer95"
+    ],
+    "support_HGB_feature_count": 97,
+    "support_HGB_has_BioBERT_features": false,
+    "new_prompts": 42,
+    "new_concepts": 276,
+    "raw_decisions_reconstructed": 145,
+    "supported_decisions_reconstructed": 35,
+    "all_35_actual_support_membership_and_output_append_exact": true
+  },
+  "actual_bytes": {
+    "preB": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/selector-nested-dev-transfer/nested.jsonl",
+      "bytes": 137435,
+      "sha256": "d531f2ee098d56dc7a40551eca147c046eb548469f8bff11947555afff557440"
+    },
+    "BioBERT": {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-dev-transfer/terminal-attempt2/biobert.nested.jsonl",
+      "bytes": 141326,
+      "sha256": "baac818637f757badf56123b7e5f8cb77153e18c2e710e35044154b7a05fad67"
+    },
+    "best": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order-dev/formal/assembled/union.jsonl",
+      "bytes": 141648,
+      "sha256": "a179a5de5b7271979a0fba851afc269d63125248a56681674e7388d0c6728c39"
+    },
+    "raw_association_substrings": [
+      {
+        "before": "old",
+        "after": "support",
+        "documents": 16,
+        "raw_association_JSON_substrings_byteexact": true,
+        "aggregate_sha256": "2c415dbee12f9d1d537b93be6ab5ee16ca7281e4701d5eed4882aaa8d6b3ccd9"
+      },
+      {
+        "before": "public",
+        "after": "preB",
+        "documents": 16,
+        "raw_association_JSON_substrings_byteexact": true,
+        "aggregate_sha256": "20bd6e0696cd0a71c4340ccf63c7d648593b97f345f73bd498a95f2ec75d73a9"
+      },
+      {
+        "before": "preB",
+        "after": "B",
+        "documents": 16,
+        "raw_association_JSON_substrings_byteexact": true,
+        "aggregate_sha256": "20bd6e0696cd0a71c4340ccf63c7d648593b97f345f73bd498a95f2ec75d73a9"
+      }
+    ],
+    "relations_before_BioBERT": 368,
+    "relations_after_BioBERT": 368,
+    "relations_a179": 391,
+    "reverse_added": 23,
+    "all_added_from_original466_concepts": true,
+    "all35_public_new_relations_unchanged": true,
+    "old_relation_list_prefixes_metadata_patient_order_unchanged": true,
+    "final_entities_argument": "Baac is copied only to output entities by merger; it is not a prompt, support, fallback or relation filtering input. All466 reverse decisions valid."
+  },
+  "reuse": [
+    "Qwen full64 adapter and oldpool original/reverse prompt-response artifacts",
+    "Pre-BioBERT PubMed/Bioformer raw public-new responses and fixed6401 support rule/35 outputs",
+    "a179 association projection with its document/patient identities and original literal strings"
+  ],
+  "must_rebuild": [
+    "Remove actual BioBERT candidate source and all six biobert_* columns from training/inference feature pools.",
+    "Fresh-fit the entity selector against the replacement pool; do not retain the103-column BioBERT HGB and merely subtract parameter metadata.",
+    "Recompute entity scoring, .3 decode/nested assembly under the intended replacement policy; graft the independently reusable relation projection, not all a179 rows.",
+    "If changing the original fixed public-new support policy to use replacement entities, recompute that support/append deterministically; current35 are reusable only with the frozen pre-B6401 policy."
+  ],
+  "parameter_boundary": {
+    "current_production": 9597467990,
+    "remove_added_BioBERT": 121587826,
+    "add_NCR": 491068890,
+    "conditional_total": 9966949054,
+    "note": "Arithmetic is valid only after the entity dependency is actually removed; this relation audit does not itself produce a replacement model or score."
+  },
+  "evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/biobert-relation-dependency-review/evidence.json",
+    "bytes": 19050,
+    "sha256": "4f76f6ea9a7aa2907b62152524c8393494ab53e2e92d32be142c1e804b272254"
+  },
+  "no_new_quality_claim": true
+}

@@ -25,3 +25,7 @@
 计入FT两矩阵的完整NCR491068890参数；只有实际移除BioBERT121587826及全部可执行依赖，原9597467990预算才投影为9966949054。不能保留旧模型后只改参数表。该静态准备未实施替换、fit或任何评分。
 
 本地纯dtype边界例（NumPy2.3.5）验证同一float32(.8)标量与转Python float后`>.8`结果可不同；这是保持dtype的依据，不外推当前远端NumPy1.23.5，也未执行任何模型/质量检查。证据score-dtype-boundary.json。
+
+## 关系间接依赖已闭环（01:57）
+
+统一独审a09d7978核对冻结提示/来源及逐文原始association子串，确认e9→d531→baac关系完全原留；public-new只来自PubMed/Bioformer的42响应和固定pre-B6401支持保留35，a179新增23仅旧466概念池。因此可原字复用a179的association投影，无需重跑关系NN；不能复用baac/a179实体或旧103列selector。若改变固定支持政策才重算支持。完整review见relation-dependency-review.json；只有实际去掉BioBERT实体候选/6列/执行依赖并fresh HGB+解码后，9966949054参数投影才成立。本阶段仍是静态准备，未实施替换。
