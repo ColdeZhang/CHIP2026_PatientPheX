@@ -6,7 +6,7 @@
 - 已完成：74成对样本/17篇、1149合法swap供给；完整原生token CPU1.917s；原124chosen与缓存IDs/mask全部exact。14个选中样本为多阳性，其余患者正例保留。
 - 已核原B4关系集合严格等于B471∪四pure中至少2票，非关系对象及B471列表前缀保持；重序列化对象列表顺序不同，不称byteexact。
 - 固定：Qwen3 train32 epoch2适配器543c82a5；β.1/LR1e-5/1epoch74pairs/10updates，新Adam；单完整主终点，不读取heldgold/不评分。
-- 当前：原reference148完整成功，原probe首backward失败；已完整保留，正做已获授权的cache-only机械恢复。数学配方/门槛未变，无正式训练/质量。
+- 当前：cache-only恢复后13完整压力对/真实Adam/最长形状/原数值门全通过；fresh父543c正式一轮74对已14:27:05启动，TERM14:57:05+30。质量尚0。原失败完整保留。
 - 仓外 `R/research/patient-swap-dpo-readiness-20261024` 保存数据、完整public源码与CPU产物；候选协议见 `candidate-plan.json`。
 
 - 实际.3 tiny CPU通过（0.245s、28个LoRA梯度max1.30e−8、真实Adam），两原件完整回读a52ea3d/563b93d0；首只读guard异常后恢复原件，没有重跑。root已授权固定ref900/probe600/formal1800/infer1200各+30，真实GPU尚未启动。执行模板 `runtime/` 保留原方案预算历史，13压力对/两Pareto/26FB计划固定。
@@ -20,3 +20,5 @@
 - 14:21原core停止：reference133.745s成功，probe12.449s首checkpoint backward metadata错位；原chosen两replay差0，GPU已释放。109成员/ZIPfa6c081a回收。真实CPU BF16+checkpoint0.355s：cache=True梯度门失败（非同一CUDA异常），False两replay差0、28梯度/Adam通过。只禁autocast cast cache，保原阈值/配方；新application/run-recovery-v1，沿原TERM14:31:00.518905+30，新formal仍fresh543c。详见evidence/probe-failure-recovery.json。
 
 - 恢复attempt已14:25:48.723319接收proc_4c647956/driver1216597，plan34cea8c6，6件全部SHA/fsync；7052a9a5已推送核远端。唯一watch182584记录deployment-recovery-v1/core-watch；原参考未重算。probe仍须13完整对/26FB/真实Adam/成本全部通过，才fresh正式。下游collector显式继承原reference并核原绝对deadline；尚未正式/质量。
+
+- 14:27:04实际GPU工程门通过：26FB/26coefficient forward，504梯度/504Adam状态/1512tensor finite；峰allocated20.672GB/reserved21.987GB，成本估1040.034s≤1800。fresh正式14:27:05.278767，timeout父1216698，原probe状态丢弃。证据probe-pass-formal-start.json；后续完整ACK再绑定80fresh推断。

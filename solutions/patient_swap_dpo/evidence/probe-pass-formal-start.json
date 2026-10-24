@@ -1,0 +1,71 @@
+{
+  "status": "PASS_ACTUAL_BF16_DPO_SERIAL_REPLAY_ADAM_AND_PARETO_PRESSURE",
+  "at_utc": "2026-10-24T14:27:04.055955+00:00",
+  "pressure_pairs": 13,
+  "actual_backward_calls": 26,
+  "coefficient_forward_calls": 26,
+  "real_Adam_updates": 1,
+  "pareto_indices": [
+    2,
+    57
+  ],
+  "final_inventory": {
+    "gradient_tensors": 504,
+    "all_grad_finite": true,
+    "optimizer_states": 504,
+    "optimizer_tensors": 1512,
+    "all_optimizer_finite": true,
+    "frozen_base_no_gradient": true,
+    "memory": {
+      "allocated": 17097929728,
+      "reserved": 21986541568,
+      "peak_allocated": 20672356352,
+      "peak_reserved": 21986541568,
+      "free_bytes": 3034906624
+    }
+  },
+  "formal_estimated_seconds": 1040.0342771920828,
+  "formal_budget_gate": true,
+  "probe_state_must_be_discarded": true,
+  "note": "Actual score replay passed prewritten tolerance; not a BF16 bitwise-equivalence claim.",
+  "plan": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/execution-plan.json",
+    "bytes": 8431,
+    "sha256": "34cea8c6d73def4acdc65f108d1db8b8993c7f5338c24be74802ec10d1ac4678"
+  },
+  "model_manifest": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/run-recovery-v1/probe/model-manifest.json",
+    "bytes": 774,
+    "sha256": "fac3c509a6136c26f865b188496276655cdf355c878c8c99bd1b42a32edfd386"
+  },
+  "source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/runtime/native.py",
+    "bytes": 11011,
+    "sha256": "576fdc39abe49c76378e1184d1f659e7952de13fd48d21bd283dca0c31fa9d72"
+  },
+  "no_quality_calls": true,
+  "observation_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-swap-dpo-v1/deployment-recovery-v1/inspect-1792852030236429212.json",
+    "bytes": 7797,
+    "sha256": "f11b13d090a96946a97335a2a733615eae06fc5238e2e00169cee0a370d3b9f8"
+  },
+  "formal_start": {
+    "phase": "formal",
+    "pid": 1216698,
+    "started_at_utc": "2026-10-24T14:27:05.278767+00:00",
+    "term_at_utc": "2026-10-24T14:57:05.278767+00:00",
+    "kill_at_utc": "2026-10-24T14:57:35.278767+00:00",
+    "budget_seconds": 1800,
+    "command": [
+      "timeout",
+      "--signal=TERM",
+      "--kill-after=30",
+      "1800",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/runtime/native.py",
+      "formal",
+      "--plan",
+      "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-swap-dpo-v1/application-recovery-v1/execution-plan.json"
+    ]
+  }
+}
