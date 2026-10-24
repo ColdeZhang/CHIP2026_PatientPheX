@@ -32,16 +32,18 @@ A100 GPU2 fresh核空后23:48:23.549Z开跑，首个真实128批的词表28996/C
 
 pooled Score **.727975655663→.730993616492（+.003017960829）**；mention净+48TP/+8FP，document+25TP/FP不变。micro .687846109006、macro .654390253486及1180TP/534FP/537FN关系计数完全相同。3/4fold实体均值提高，F1微降−.000176738；两实体pooled均提高，因此满足事前keep。此为已开发train64四fold结果，未达到用户原dev Score≥.8目标，也不是盲测或官方成绩。
 
-完整模型/vectorizer、全候选概率和4份预测外存保留，模型真实SHA均在共同freeze引用中；独审将load实际模型复放，不需要重复拟合。root批准下一唯一原dev开发迁移，先无标签输入/缓存与完整train64来源准备，A100等待序列ICL作业释放，尚未读devgold/启动新NN或改变最佳配置。缓存源与终点1597f28f已独审，选择器统一终审2907fc55已通过（全8池/四真实pickle所有held概率及预测逐字节、4+pooled v2/格式/冻结时序exact，无重复fit/NN）。[结果及恢复索引](../evidence/round2/public-phenotagger-biobert-results.json)。
+完整模型/vectorizer、全候选概率和4份预测外存保留，模型真实SHA均在共同freeze引用中；独审已load实际模型复放，无重复拟合。四fold结案后获准的唯一原dev迁移见下方完整结案。缓存源与终点1597f28f已独审，选择器统一终审2907fc55已通过（全8池/四真实pickle所有held概率及预测逐字节、4+pooled v2/格式/冻结时序exact，无重复fit/NN）。[结果及恢复索引](../evidence/round2/public-phenotagger-biobert-results.json)。
 
-### 固定原dev迁移（运行中）
+### 固定原dev迁移（已完成）
 
-四fold统一独审2907fc55通过后，原4×48 OOF来源完整64篇训练池61,781→62,281（+500）逐原spec核验，唯一HGB160模型103实际列/4,196正例，内部14.706秒、含进程15.084秒；模型42e94115在新dev推断前冻结。复用旧full64来源，公共BioBERT六字段同训练侧，dev只使用c0fc四字段输入。固定.3/proper-nested、当前d531模板全部非entities/368关系原样；先新完整预测冻结再唯一v2，旧指标复用，不扫阈值/重算关系支持。源码与[固定协议](../public_phenotagger_biobert_dev_transfer/fixed-dev-protocol.json)已保存；native同模型4,655缓存复用+50,548新forward，独立GPU上限180+TERM30，尚无新dev质量。总共享权重库存9,597,467,990，实际采用adapter仍沿原库存另记；闭合实体/二元模型不计入生产链。
+四fold统一独审2907fc55通过后，原4×48 OOF来源完整64篇训练池61,781→62,281（+500）逐原spec核验，唯一HGB160模型103实际列/4,196正例，内部14.706秒、含进程15.084秒；模型42e94115在新dev推断前冻结。复用旧full64来源，公共BioBERT六字段同训练侧，dev只使用c0fc四字段输入。固定.3/proper-nested、当前d531模板全部非entities/368关系原样；先新完整预测冻结再唯一v2，旧指标复用，不扫阈值/重算关系支持。源码与[固定协议](../public_phenotagger_biobert_dev_transfer/fixed-dev-protocol.json)已保存；native同模型4,655缓存复用+50,548新forward，独立GPU上限180+TERM30，准备时尚无新dev质量，实际终点如下。总共享权重库存9,597,467,990，实际采用adapter仍沿原库存另记；闭合实体/二元模型不计入生产链。
 
-#### 原dev唯一端点（完成，独审待回收）
+#### 原dev唯一端点（完成，统一独审PASS）
 
 Score **0.737585917391→0.738493752650（+0.000907835259）**；mention +13TP/+17FP、doc +3TP/+1FP，mic/mac及368关系全部不变，0格式错警。1,379个native键并入旧13,144候选→13,246；同一个已冻full64 103列模型预测3.305秒（外3.524）。native78.392秒/纯新NN34.452秒，GPU已00:08:21.369131释放，来源CPU0.967秒；同BioBERT4,655复用全部原tuple/top3/native行/索引精确。
 
-首装配1.572秒在读取gold或输出预测前因错误的metadata整对象等式退出：旧提交schema没有patient/full_text。只改为现有公共字段一致检查，原源/计划保留，独立attempt2在剩余28秒内用时1.669秒，未改任何数学/分数/输入。完整新预测SHA `baac8186…` 冻结 `a84d2ea8…` 后唯一v2；结果 `3f5d2aa0…`。合计3.241秒<原30，不追加臂/阈值；当前best仍待root收独审。
+首装配1.572秒在读取gold或输出预测前因错误的metadata整对象等式退出：旧提交schema没有patient/full_text。只改为现有公共字段一致检查，原源/计划保留，独立attempt2在剩余28秒内用时1.669秒，未改任何数学/分数/输入。完整新预测SHA `baac8186…` 冻结 `a84d2ea8…` 后唯一v2；结果 `3f5d2aa0…`。合计3.241秒<原30，不追加臂/阈值；统一独审7336b280已通过，root负责更新受审best。
 
 [结果与完整模型恢复索引](../evidence/round2/public-phenotagger-biobert-dev-results.json)保留真实pickle、全量候选/概率、预测与失败轨迹路径/SHA；大产物外置，不能只凭小summary重训练或重推NN。此为原dev开发正结果，尚未达0.8，不是官方分。
+
+独立复核实际full64 pickle重放13,246个候选概率maxdiff0/JSONL字节一致，完整1,072实体预测（1,026 greedy＋46 proper-nested）逐字节一致；新v2/格式/先freeze后gold时序全部通过。原始raw仅复用真实来源与既有完整验证链，未重复NN/fit。备份82项合计1,847,310字节，含实际完整训练模型/vectorizer；后补独审包单列，四fold模型、大特征矩阵和rawlogits未混入。
