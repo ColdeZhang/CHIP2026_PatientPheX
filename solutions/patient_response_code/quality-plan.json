@@ -1,0 +1,65 @@
+{
+  "evaluator": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/evaluate.py",
+    "bytes": 10539,
+    "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+  },
+  "validator": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/scripts/validate_predictions.py",
+    "bytes": 12208,
+    "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+  },
+  "hpo": {
+    "path": "/workspace/patientphex-data/hp.obo",
+    "bytes": 11222341,
+    "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+  },
+  "input": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+    "bytes": 342703,
+    "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+  },
+  "gold": {
+    "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+    "bytes": 525710,
+    "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+  },
+  "strong_N": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 154584,
+    "sha256": "f33a30f1f3c505022dbcf846a19e6496b3810627808e97cde595a9ed53d17866"
+  },
+  "strong_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12922,
+    "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+  },
+  "prompts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/held.response-code.jsonl",
+    "bytes": 2893388,
+    "sha256": "54c8cb8c3e273dca62d6972cf24fc520d921fde091f35626931adf5de2676e9b"
+  },
+  "policy": {
+    "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/quality-policy.json",
+    "bytes": 657,
+    "sha256": "9c5f342e9bb59931821548492179655e9705720273dcdc3b291ab76238cea35b"
+  },
+  "source_sha256": "aeac22a6a4b34c6605d5c47810af7f291412399f0caa4894d79dfbb723d50659",
+  "fixed_source_refs": [
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/quality/common.py",
+      "bytes": 3630,
+      "sha256": "03fc64ef6cde3dad6f513bb76b63606d32dcde840ce2da8bd81575c0efaaf1ca"
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/explore-patient-response-code/solutions/patient_response_code/quality/literal_union_helpers.py",
+      "bytes": 3599,
+      "sha256": "b0a5a0c4a466b8f7fca241aa6d6fbfc54a78536c53b5fee40fdc2cad842c633f"
+    }
+  ],
+  "new_quality_calls": 2,
+  "old_quality_calls": 0,
+  "final_epoch": 2,
+  "method": "coded-alone primary; N-union-coded diagnostic; whole-row abstention",
+  "selection": "highest Score above strong N, tie primary; report macro and historical fullsupport difference"
+}

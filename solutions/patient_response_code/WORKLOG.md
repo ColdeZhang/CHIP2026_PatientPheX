@@ -8,3 +8,9 @@
 - 探针：A100GPU2 UUID2c22a952；12行first8建立非零诊断Adam，然后3条累积（含max监督128 index94）＋最长5910 index6；诊断不复演formal warmup，丢弃状态。240+TERM30；复用实证indexed标准CE/loader，A100Torch2.6/runtime明确区别CPU A8002.7。
 - 正式条件：fresh原2epochs32calls/warmup2/标准CE/r16/seed，含两完整SHM→.100 ACK统一3600+30；原逻辑state恢复不重置时钟，probe状态不用。最终全部80fresh，只有最终epoch2质量，不选epoch。
 - 外部R/research/patient-response-code-v1/。原始数据/模型/完整输出外存，main与旧patient分支未改。source/plan先push后唯一start；UNKNOWN查原作业，不盲重启。
+
+### 2026-10-24 11:26 UTC — formal / F1 source prepared
+
+- Dedicated helper prepared only `formal_train/`: source manifest `e112cd2b…`, trainer `9b8addda…`, plan `43db4c0c…`; 59 stdlib checks passed in 0.026066 s. Original indexed epoch loop and complete Adam/scheduler/RNG restore AST reused. No model run by helper.
+- Owner prepared two-epoch / 3600+30 controller, per-epoch private SHM→.100 full SHA/fsync/reopen ACK, detached exclusive-lock local watcher, complete80 fresh F1 decoder and two fixed quality arms. Formal activation remains conditional on this route's actual 240+30 pressure result and measured cost.
+- First A100 read-only deployment inventory returned UNKNOWN (no write/claim/start); next inventory returned explicit LUNA_OFFLINE at 11:23:44 UTC. Preserved both receipts separately. Unified ≥185 s cooldown until 11:26:49.308 UTC. No GPU work has started; original method/source/clock authorization unchanged.

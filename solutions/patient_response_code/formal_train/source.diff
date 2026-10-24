@@ -1,0 +1,213 @@
+--- old_formal_indexed/train.py
++++ patient_response_code/formal_train/train.py
+@@ -1,12 +1,12 @@
+ #!/usr/bin/env python3
+-"""Fixed Qwen3.5 relation LoRA:124 meta32 OOF rows,2 epochs,complete-epoch resume.
++"""Qwen3.5 response-code LoRA:124 short meta32 OOF rows,2 epochs,complete-epoch resume.
+ 
+ CPU boundary contracts live in cpu_contract.py; this train-only entry
+ requires an allocated empty GPU and exact official files. No validation labels,
+ inference, quantization, packing, smoke adapter or alternative task is supported.
+ Fresh base is required; only this exact meta32 run may resume complete epochs.
+ Resume state is saved/restored; numerical GPU resume equivalence is not claimed.
+-Length13824 is only a rejection cap: batches pad to their actual maximum, never to cap.
++Length6144 is only a rejection cap: batches pad to their actual maximum, never to cap.
+ """
+ from __future__ import annotations
+ import argparse
+@@ -31,21 +31,21 @@
+ PROTOCOL_SHA='a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c'
+ OLD_TRAINER_SHA='2a25b83d5d9e3dcc3f57cc8e2ff1aaf519a41a709e4ff289b2b26db9fab51423'
+ SOURCE_MANIFEST_SHA='74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7'
+-CONFIG={'max_seq_length':13824,'batch_size':1,'gradient_accumulation':8,'epochs':2,
++CONFIG={'max_seq_length':6144,'batch_size':1,'gradient_accumulation':8,'epochs':2,
+         'learning_rate':1e-4,'weight_decay':.01,'warmup_ratio':.05,'max_grad_norm':1.,
+         'rank':16,'alpha':32,'dropout':.05,'seed':20261023,'targets':protocol.TARGETS,
+         'dtype':'bfloat16','attention':'sdpa','quantization':False,'packing':False,
+         'gradient_checkpointing':{'use_reentrant':False}}
+ ORIGINAL_TRAIN_SHA='cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8'
+-TRAIN_SHA='9e80e54125d3d46479acb9a3720e8b5f4c13ffacb5f65e82d3d9d10ac839d25e'
+-ENCODED_SHA='0755d5fc1e21675e85b96dc09311a4587e9c7b93a0c0d728360f76c6b2d7a980'
+-FULLTEXT_PREPARATION_SHA='c489a9eeb2bc17462e26b23e7e7cf18950c8d0b66ba125bb2da0cfb1deefd14b'
+-NATIVE_RECEIPT_SHA='6a82b6a63c88812a1ab1fdc86d92fb5af9e4b53a4606712790257ea6a8f2acfa'
+-NATIVE_AUDIT_SHA='38afa9b9df2685b074346aa285c2e93e33e81d43764c694763e89a5f6f585935'
++TRAIN_SHA='f73cb24fa73bcb1342d7cbd35d0ca76ccd7d7ccc5a5afd9abf01a80e46c84e28'
++ENCODED_SHA='15832a38541dd574ec2058462ef910db675b16ab7dcf867f5beae9f0f87ea453'
++RESPONSE_PREPARATION_SHA='03d497ccc9f7f3564ee3d369f85b2d3bc7e60034bc785009de6f300745e81a7e'
++NATIVE_RECEIPT_SHA='56d7ce92cfef78cdeb03835dc3520444c3341188c346d9059f37b5de709595b4'
++NATIVE_AUDIT_SHA='87215b5652bf06489ff59fba555a999fa7ead84002ab9237594e8522f4e0aeb2'
+ SELECTED_LOSS_SHA='dfd0759fd43a181f7fbc4faa339a61a5495b3b1e6cadfae462f59a3d752d3cf9'
+ NATIVE_LOSS_SHA='83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe'
+ MODEL_SOURCE_SHA='b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3'
+-RUNTIME_CONTRACT_SHA='5504f20d3d56f548c9c61232033d8033730a20153fcdfc9aa9d4aa9a6bf66e24'
++RUNTIME_CONTRACT_SHA='854c794c5eaa3866c33b4dde6df438cdb91dd64f2111fa0d08803eac9710fa57'
+ EXCLUDED_SHA='2786daf5d7a09fea9d3c526b64f5cf972c0d7298e3a2a29d87d479055b4e5c82'
+ PREPARATION_SHA='356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47'
+ COPIED_TRAINER_SHA='9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b'
+@@ -102,17 +102,49 @@
+         or preparation['training_document_ids']!=train_ids or preparation['excluded_document_ids']!=excluded_ids
+         or not preparation['all_target_documents_excluded_from_own_generators']):
+         raise ValueError('Meta32 provenance identity/isolation differs')
+-    if sha256(args.fulltext_preparation)!=FULLTEXT_PREPARATION_SHA or sha256(args.native_receipt)!=NATIVE_RECEIPT_SHA or sha256(args.native_row_audit)!=NATIVE_AUDIT_SHA:
+-        raise ValueError('Frozen fulltext construction/native receipt/audit differs')
+-    fulltext=json.loads(Path(args.fulltext_preparation).read_text());native=json.loads(Path(args.native_receipt).read_text())
+-    if (fulltext['original_train']['sha256']!=ORIGINAL_TRAIN_SHA or fulltext['expanded_train']['sha256']!=TRAIN_SHA
+-        or fulltext['training_document_ids']!=train_ids or fulltext['excluded_document_ids_metadata_only']!=excluded_ids
+-        or not fulltext['answers_utf8_preserved_all124'] or not fulltext['all_metadata_CID_PID_local_evidence_preserved']
+-        or not fulltext['all_passage_text_reconstruction_exact'] or native['expanded_encoded_sha256']!=ENCODED_SHA
+-        or native['expanded']['supervised_tokens']!=7170 or not native['all_assistant_supervision_IDs_unchanged']):
+-        raise ValueError('Fulltext changes original target/metadata or native identity')
++    if sha256(args.response_preparation)!=RESPONSE_PREPARATION_SHA or sha256(args.native_receipt)!=NATIVE_RECEIPT_SHA or sha256(args.native_row_audit)!=NATIVE_AUDIT_SHA:
++        raise ValueError('Frozen response construction/native receipt/audit differs')
++    response=json.loads(Path(args.response_preparation).read_text());native=json.loads(Path(args.native_receipt).read_text())
++    audit=json.loads(Path(args.native_row_audit).read_text())
++    validate_response_metadata(response,native,audit,train_ids,excluded_ids)
+     if sha256(contract.__file__)!=RUNTIME_CONTRACT_SHA:raise ValueError('Runtime contract source differs')
+     return rows,train_ids,excluded_ids
++
++
++def native_training_rows(audit):
++    rows=[x for x in audit if x['group']=='train' and x['arm']=='response_code']
++    if (len(rows)!=124 or [x['index'] for x in rows]!=list(range(124))
++        or len({x['row_id'] for x in rows})!=124
++        or any(not x['published_native_Auto_template_decode_exact'] or not x['prefix_mask_exact'] for x in rows)
++        or sum(x['full_tokens'] for x in rows)!=427560 or max(x['full_tokens'] for x in rows)!=5910
++        or sum(x['supervised_tokens'] for x in rows)!=8138 or max(x['supervised_tokens'] for x in rows)!=128):
++        raise ValueError('Exact response-code native row inventory/accounting differs')
++    return rows
++
++
++def validate_response_metadata(response,native,audit,train_ids,excluded_ids):
++    group=response['groups']['train'];observed=native['groups']['train'];stats=observed['arms']['response_code']
++    expected={'rows':124,'total_tokens':427560,'max_tokens':5910,'supervised_tokens':8138,
++              'max_supervised_tokens':128,'encoded_sha256':ENCODED_SHA,'proposed_512_rejection_cap':6144}
++    if (response['status']!='PASS_RESPONSE_CODE_STRUCTURE_NOT_MODEL_QUALITY'
++        or group['source']['sha256']!=ORIGINAL_TRAIN_SHA or group['output']['sha256']!=TRAIN_SHA
++        or group['rows']!=124 or group['documents']!=32
++        or not group['all_original_user_UTF8_preserved'] or not group['all_original_PID_and_CID_metadata_exact']
++        or response['codec']['sha256']!='da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6'
++        or response['source']['sha256']!='caca4808c339b2b76a5c7d005ccf6a13346a713935c5789c2074e4c86fa5cdf2'
++        or native['status']!='PASS_NATIVE_CPU_RESPONSE_CODE_CENSUS_NO_MODEL'
++        or observed['source_sha256']!=ORIGINAL_TRAIN_SHA or observed['response_data_sha256']!=TRAIN_SHA
++        or any(stats.get(k)!=v for k,v in expected.items())
++        or observed['arms']['original']['supervised_tokens']!=7170
++        or native['audit_sha256']!=NATIVE_AUDIT_SHA or native['truncation']
++        or native['model_loaded'] or native['training_performed'] or native['held_gold_read']):
++        raise ValueError('Response construction/native receipt identity or target scope differs')
++    rows=native_training_rows(audit)
++    held={x['pmc_id'] for x in audit if x['group']=='held' and x['arm']=='response_code'}
++    if (sorted({x['pmc_id'] for x in rows})!=train_ids or len(held)!=16
++        or not held<=set(excluded_ids) or set(train_ids)&set(excluded_ids)):
++        raise ValueError('Response train/held native document identity or exclusion differs')
++    return True
+ 
+ 
+ def model_files(model_dir,source_manifest,require_weights):
+@@ -136,22 +168,22 @@
+ def encode_all(rows,tokenizer,output,native_row_audit):
+     encoded=[helpers.encode(row,tokenizer) for row in rows]
+     lengths=[len(e['input_ids']) for e in encoded]
+-    if len(encoded)!=124 or max(lengths)!=13549 or sum(lengths)!=1009181 or any(n>CONFIG['max_seq_length'] for n in lengths):
++    if len(encoded)!=124 or max(lengths)!=5910 or sum(lengths)!=427560 or any(n>CONFIG['max_seq_length'] for n in lengths):
+         raise ValueError('Frozen124 token accounting differs; no truncation permitted')
+-    if sum(e['supervised_tokens'] for e in encoded)!=7170:
++    if sum(e['supervised_tokens'] for e in encoded)!=8138:
+         raise ValueError('Frozen supervised-token accounting differs')
+-    native=json.loads(Path(native_row_audit).read_text())
+-    if helpers.json_sha(encoded)!=ENCODED_SHA or len(native)!=124:raise ValueError('Actual fulltext encoded124 differs from previously native-verified IDs')
++    native=native_training_rows(json.loads(Path(native_row_audit).read_text()))
++    if helpers.json_sha(encoded)!=ENCODED_SHA or len(native)!=124:raise ValueError('Actual response-code encoded124 differs from previously native-verified IDs')
+     for index,(row,expected) in enumerate(zip(encoded,native)):
+-        actual=expected['expanded']
++        actual=expected
+         if (row['row_id']!=expected['row_id'] or helpers.json_sha(row['input_ids'])!=actual['input_ids_sha256']
+             or helpers.json_sha(row['labels'])!=actual['labels_sha256'] or row['supervised_tokens']!=actual['supervised_tokens']):
+             raise ValueError('Exact input/mask contract differs at row '+str(index))
+     write_json(output/'token-mask-audit.json' ,{'rows':[{'row_id':e['row_id'],'full_tokens':len(e['input_ids']),
+         'prefix_tokens':e['prefix_tokens'],'supervised_tokens':e['supervised_tokens']} for e in encoded],
+         'rows_count':124,'total_full_tokens':sum(lengths),'max_full_tokens':max(lengths),
+-        'supervised_tokens':7170,'truncated_rows':0,'prefix_mask_eos_passed':True,
+-        'encoded_sha256':helpers.json_sha(encoded),'fulltext_preparation_sha256':FULLTEXT_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA})
++        'supervised_tokens':8138,'truncated_rows':0,'prefix_mask_eos_passed':True,
++        'encoded_sha256':helpers.json_sha(encoded),'response_preparation_sha256':RESPONSE_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA})
+     return encoded
+ 
+ 
+@@ -225,10 +257,10 @@
+     os.environ['TOKENIZERS_PARALLELISM']='false';os.environ['HF_HUB_OFFLINE']=os.environ['TRANSFORMERS_OFFLINE']='1'
+     if args.mode!='train':raise ValueError('CPU source checks use cpu_contract.py; this runner is train-only')
+     contract.check_deadline(args.absolute_deadline_unix)
+-    if args.absolute_deadline_unix-time.time()>8400:raise ValueError('Absolute deadline exceeds authorized total budget')
++    if args.absolute_deadline_unix-time.time()>3600:raise ValueError('Absolute deadline exceeds authorized total budget')
+     if os.environ.get('PYTORCH_ALLOC_CONF') or os.environ.get('PYTORCH_CUDA_ALLOC_CONF'):raise ValueError('Allocator configuration differs')
+     output=Path(args.output_dir)
+-    if str(output)!='/dev/shm/patientphex-qwen35-fulltext32-indexed-1045-20261024/formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
++    if str(output)!='/dev/shm/patientphex-response-code-20261024/formal2ep':raise ValueError('Full state must stay in own fixed SHM namespace')
+     if not args.resume and args.resume_export_ack:raise ValueError('Fresh run cannot consume any old ACK')
+     if args.resume and not args.resume_export_ack:raise ValueError('Resume requires exact durable full-state ACK')
+     if output.exists() and any(output.iterdir()) and not args.resume:raise ValueError('Fresh invocation needs an empty output; use explicit own-run resume')
+@@ -246,12 +278,12 @@
+         import peft
+         from transformers import AutoTokenizer,Qwen3_5TextConfig,Qwen3_5ForCausalLM,get_linear_schedule_with_warmup
+         from peft import PeftModel
+-        if transformers.__version__!='5.20.2' or peft.__version__!='0.21.2':raise RuntimeError('Require isolated TF5.20.2/PEFT0.21.2')
++        if transformers.__version__!='5.20.2' or peft.__version__!='0.21.2' or importlib.metadata.version('tokenizers')!='0.23.1':raise RuntimeError('Require isolated TF5.20.2/PEFT0.21.2/tokenizers0.23.1')
+         torch.set_num_threads(1);torch.set_num_interop_threads(1)
+         random.seed(CONFIG['seed']);np.random.seed(CONFIG['seed']);torch.manual_seed(CONFIG['seed'])
+         torch.backends.cudnn.benchmark=False
+         torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=True
+-        if torch.__version__!='2.7.1+cu126':raise RuntimeError('Exact A800 Torch runtime differs')
++        if torch.__version__!='2.6.0+cu124':raise RuntimeError('Exact A100 Torch runtime differs')
+         import transformers.models.qwen3_5.modeling_qwen3_5 as q
+         if sha256(q.__file__)!=MODEL_SOURCE_SHA or importlib.util.find_spec('fla') is not None:raise RuntimeError('Native Qwen runtime differs')
+         if any(getattr(q,n).__module__!=q.__name__ or inspect.unwrap(getattr(q,n)).__module__!=q.__name__ for n in ['torch_chunk_gated_delta_rule','torch_recurrent_gated_delta_rule']):raise RuntimeError('Native GDN dispatch differs')
+@@ -279,22 +311,24 @@
+             if not torch.cuda.is_available() or torch.cuda.device_count()!=1 or not torch.cuda.is_bf16_supported():raise RuntimeError('Require one BF16 CUDA device')
+             environment.update(gpu_name=torch.cuda.get_device_name(0),gpu_uuid=args.gpu_uuid,gpu_capability=list(torch.cuda.get_device_capability(0)))
+             torch.cuda.manual_seed_all(CONFIG['seed'])
+-        fingerprint={'schema':'patientphex-qwen35-meta32-fulltext-indexedHead-lora-v1','configuration':semantic_configuration(args),
+-            'source_sha256':sha256(__file__),'helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
++        fingerprint={'schema':'patientphex-qwen35-meta32-response-code-indexedHead-lora-v1','configuration':semantic_configuration(args),
++            'source_sha256':sha256(__file__),'adapted_indexed_trainer_sha256':'3de5ed915a2b01a2abe36bd214ebffc6227774994b369abf4d850292bc45148f','helper_sha256':HELPER_SHA,'protocol_sha256':PROTOCOL_SHA,
+             'copied_epoch_loop_source_sha256':OLD_TRAINER_SHA,'copied204_trainer_sha256':COPIED_TRAINER_SHA,
+             'meta32_preparation_sha256':PREPARATION_SHA,'train_sha256':TRAIN_SHA,
+             'excluded_input_sha256':EXCLUDED_SHA,'training_document_ids':training_ids,'excluded_document_ids':excluded_ids,
+             'base_files':base_files,'environment':environment,'text_config':text_config.to_dict(),
+-            'encoded_sha256':helpers.json_sha(encoded),'fulltext_preparation_sha256':FULLTEXT_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA}
++            'encoded_sha256':helpers.json_sha(encoded),'response_preparation_sha256':RESPONSE_PREPARATION_SHA,'native_receipt_sha256':NATIVE_RECEIPT_SHA,'selected_loss_sha256':SELECTED_LOSS_SHA,'runtime_contract_sha256':RUNTIME_CONTRACT_SHA}
+         # JSON round-trip normalizes config integer keys/tuples before comparing
+         # a newly computed fingerprint with its persisted checkpoint form.
+         fingerprint=json.loads(json.dumps(fingerprint,default=helpers.json_default,sort_keys=True))
+         manifest_path=output/'run_manifest.json'
+         if args.resume:verify_fingerprint(json.loads(manifest_path.read_text())['fingerprint'],fingerprint)
+-        manifest={'fingerprint':fingerprint,'examples':124,'max_tokens':13549,'total_tokens':1009181,'supervised_tokens':7170,
++        manifest={'fingerprint':fingerprint,'examples':124,'max_tokens':5910,'total_tokens':427560,'supervised_tokens':8138,
+             'steps_per_epoch':16,'epochs':2,'total_optimizer_steps':32,'warmup_steps':2,'smoke_only':False,
+             'resume_unit':'complete acknowledged epoch only; no automatic partial epoch replay','new_gpu_resume_numerical_equivalence_tested':False,
+-            'fresh_base_on_initial_run':True,'validation_labels_used':False}
++            'fresh_base_on_initial_run':True,'validation_labels_used':False,
++            'target_representation_changed':True,'old_original_supervised_tokens':7170,
++            'original_clinical_user_UTF8_preserved':True,'CPU_census_torch':'2.7.1+cu126','formal_torch':'2.6.0+cu124'}
+         write_json(manifest_path,manifest)
+         for name,source in [('train.py',__file__),('qwen35_smoke.py',inspect.getfile(helpers)),('qwen35_relation_cost.py',inspect.getfile(protocol)),('runtime_contract.py',contract.__file__)]:
+             (output/name).write_bytes(Path(source).read_bytes())
+@@ -430,7 +464,7 @@
+ def main():
+     parser=argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--mode',choices=['train'],required=True)
+-    for name in ['train','excluded-input','data-manifest','fulltext-preparation','native-receipt','native-row-audit','model','model-source-manifest','output-dir']:parser.add_argument('--'+name,required=True)
++    for name in ['train','excluded-input','data-manifest','response-preparation','native-receipt','native-row-audit','model','model-source-manifest','output-dir']:parser.add_argument('--'+name,required=True)
+     parser.add_argument('--gpu-uuid');parser.add_argument('--resume');parser.add_argument('--stop-after-epoch',type=int)
+     parser.add_argument('--resume-export-ack');parser.add_argument('--absolute-deadline-unix',type=float,required=True)
+     args=parser.parse_args()
+--- old_formal_indexed/runtime_contract.py
++++ patient_response_code/formal_train/runtime_contract.py
+@@ -55,7 +55,7 @@
+     if ack.get('trainer_sha256')!=trainer_sha or ack.get('source_checkpoint_directory')!=str(checkpoint):raise ValueError('ACK source identity differs')
+     if ack.get('checkpoint_sha256')!=sha(checkpoint/'checkpoint.json'):raise ValueError('ACK checkpoint SHA differs')
+     if ack.get('persistent_mount_id')!='5a9955da-5240-41cc-9e52-05d3d8da8a3c':raise ValueError('ACK is not on expected persistent mount')
+-    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen35-fulltext32-indexed-formal-v1/checkpoints/epoch-001'
++    expected_directory='/home/zhangyuheng/projects/CHIP2026_PatientPheX/patient-response-code/normal2ep-v1/checkpoints/epoch-001'
+     if ack.get('persistent_directory')!=expected_directory:raise ValueError('ACK persistent namespace differs')
+     if not re.fullmatch('[0-9a-f]{64}',ack.get('transport_manifest_sha256','')):raise ValueError('ACK transport manifest SHA missing')
+     for key in ['fsync_all_files','reopened_final_filename_SHA_all_files','destination_directories_fsynced']:
