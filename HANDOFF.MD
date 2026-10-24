@@ -384,3 +384,9 @@ FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getso
 患者四轮训练的本地watcher143721启动后只留下首个inspect；10:16实际PID已不存在、原exec73046不可用，却没有failure或complete记录。只读原远端job确认epoch1仍在正常训练step10。因此只能确认本地跨轮监控丢失，**无法确定退出根因**，不能归因成模型失败或断言由代理结束造成。
 
 **避免方法**：远端模型与本地监控分别保存身份/生命周期。接手先核进程与原意图，未知结果恢复原作业，不重新训练。需要持续本地调度时，用独立session、明确stdin/stdout/stderr、exclusive lock及实际ready回执；新监控保留旧记录，用独立恢复namespace，继续原绝对截止。此次new PID145075实际PPID1/SID145075，持monitor-owner.lock，只接续原watch/operations和11:38:41.825555截止；旧远端proc975a3621不变。恢复证据`research/patient-schedule-fresh4-v1/controller/watch-recovery-1/worker-ready.json`，源码检查点4ad5061；下一轮完整ACK链仍按实际结果记录。
+
+## H59：先按实际候选、输入与学习目标查重，不能只按方法名称判断新旧
+
+新一轮把“上下文＋Sap Top-K＋cross-encoder”初判为未试，逐源码查重才发现旧路线已完整做过Sap Top8新增ID、±180字符上下文及监督CE，正式终点负；严格嵌套CE入树也已负完成。另“top3扩池”实际来自PhenoTagger/Bioformer分类头，不是Sap top3检索。
+
+**避免方法**：提出新实验前分别核候选供给、上下文、监督目标、保护规则、祖先划分和实际终点，区分当前源码与历史执行SHA。旧池单ID比例高不能否定新ID召回，弱池的负结果也不证明所有新池必负；但不能把已做过的机制换个名字重训。当前关闭宽泛重复提案，重开先需当前train-only固定跨度的可修复TopK供给证据。准确三组实验与13份来源见[只读查重报告](docs/research/context-normalization-gap-20261024/REPORT.md)，没有为查重重跑模型或读取gold。
