@@ -122,6 +122,8 @@ def main():
         canonical=ref(terminal / 'canonical.jsonl'), prediction=ref(destination / 'pred.jsonl'),
         documents=16, entities=955, patients=36, rows=64, candidates=466, candidate_pairs=1006,
         relations=sum(len(values) for doc in decisions.values() for values in doc.values()),
+        source_frame_only=True, source_entities_not_final_Task1=True,
+        root_fusion_expected_template_entities=1061,
         whole_row_abstentions=abstentions, all_nonrelation_bytes_preserved=True,
         new_model_calls=0, raw_reparsed=False, gold_read=False, quality_calls=0, fusion_performed=False))
     descriptor = os.open(str(destination), os.O_RDONLY)
