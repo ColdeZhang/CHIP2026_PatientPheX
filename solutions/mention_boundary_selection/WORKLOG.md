@@ -9,3 +9,7 @@
 - [实验过程](experiments/E-20261024-boundary.md)、[风险与经验](NOTES.md)、[固定计划](plan.json)。95件小备份360584 B/SHA7771597d已16:49:29完整远端验证及同SHA回读；最终增量独审等待集中收口。
 
 大产物：`/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1`。root独立预锁BOUNDARY-veto由其自行消费同一完整输出，本线不另跑该端点。
+
+## 后继独立控制准备
+
+root预锁BOUNDARY-veto F1小正（删3=0TP/3FP），不改本线两负。CPU迁移核已确认3470训练与两个负例候选祖先排F0，无需重训；现成F0强LGB1085与同GLiNER接受736合为1149跨度，缺403公共Top8，完整头推断代理834秒/保守1254秒。原dev1061缺408queries，作为后继备用；未GPU/质量。见[evidence/transfer-readiness.json](evidence/transfer-readiness.json)，等待root固定F0端点与资源安排。
