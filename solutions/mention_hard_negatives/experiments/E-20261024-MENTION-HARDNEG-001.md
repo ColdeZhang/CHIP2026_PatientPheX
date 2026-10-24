@@ -15,3 +15,7 @@ root后续正式授权：空闲.3GPU0，固定4800+30两轮/734/尾3/warmup37，
 ## 第一轮持久检查点
 
 原proc_92c814d2于13:14:22.272530完成367updates，持久ACK31ee14d9/1764B；504adapter、504Adam/1512状态张量和scheduler/RNG原生重开验证通过。adapter174655536B/d00b85a4，state349612141B/9c37cc5d；完整远端locator与SHA见evidence/epoch1-ack-observed.json。此处是原收据经RPC解析的观察，终态再回收精确原件；不冒称大状态已独立下载或自动resume。固定第二轮继续，无epoch择优/held质量。
+
+## 两轮正式完成
+
+13:43:16.763233第二持久ACKa1e0bb45（1763B）完整734updates，全部5862行、1,646,466输入tokens、51,594监督，native3410.521524秒/完整3420.725578秒，原formal child rc0。两完整状态原生重开exact；epoch2 adapter2a1a5a09/state390ed7b6精确locator与全SHA见evidence/formal-complete-observed.json。原controller13:43:18.070760转全1416fresh，child1213791/1200+30；不按epoch质量选择，尚无held评测。服务器连接抖动是只读回执失败，后续原状态证明训练继续，不重启、不当方法负。
