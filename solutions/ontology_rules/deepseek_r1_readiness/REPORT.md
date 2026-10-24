@@ -1,25 +1,43 @@
-# DeepSeek-R1-0528-Qwen3-8B：准确检查点可行性
+# DeepSeek-R1-0528-Qwen3-8B：原生资产、接口与成本
 
-**当前资产终点：PASS。** 原唯一下载于03:36:58完成，1862.200秒，9文件/16,388,603,517B全部SHA与固定revision一致，399 BF16 tensors、8,190,735,360参数、两片连续payload与精确EOF通过；原managed已实际running=false。未重试/扩预算。actual完整收据5c7ed899、头ef4303dc；执行plan dc3ba5f1绑定既有CPU/YaRN，唯一短GPU尚未启动，无质量分。
+准备实验 `P-20261024-R1-0528-READINESS`。**准确模型资产及原生加载通过；1,024 token预算未产生完整最终答案。** 唯一GPU程序45.260秒、wrapper46.141秒/rc0，首条达到token上限后按事前规则停止余两条；无gold、全80推断或质量分，不据此否定R1提升比赛分数的可能性。完整[合一清单](terminal-manifest.json) SHA `d172a788…`，实际[小摘要](gpu-probe/terminal-summary.json) SHA `a1d3aea0…`；统一独立终审等待中。
 
-官方overview §4.2 Agriv用Qwen3-8B与本检查点共同生成患者—表型证据，再以OOF/LightGBM融合。每个独立模型≤10B允许这一方向。其公开权重卡也列出准确模型；这支持研究价值，不证明本项目边际收益。现有本地记录没有找到该准确检查点的实际任务质量或缓存，普通Qwen3/9B思维模式负结果不能替代它的实测。搜索范围见existing-resource-search.json，未在可行性阶段新查远端磁盘。
+## 为什么研究这个准确模型
 
-魔搭 `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B` 固定revision `5ee5fa4832e658ab84298806de06ed2a167834bd`，MIT代码/权重许可。已取5个小文件并逐个对API SHA；仅HTTP Range读取两权重头共46,076B，**0 tensor payload**，核399 BF16 tensors、8,190,735,360参数，16,381,470,720数值字节与index完全一致。两完整权重预期SHA/大小在metadata/modelscope-files.json；该只读阶段尚未核权重数值字节；随后完整资产终点见顶部。config为36层、4096宽、32Q/8KV heads、128 head_dim、12288 MLP、151936词表、独立embedding/lm_head，固定YaRN配置原留。
+官方overview §4.2 Agriv明确将Qwen3-8B与DeepSeek-R1-0528-Qwen3-8B生成的患者—表型证据做OOF/LightGBM融合。§3.1是每个独立模型≤10B，允许这种集成。它证明有成熟使用依据，不证明本项目边际收益。已有本地记录未发现这个准确检查点的任务实测/cache；普通Qwen3或9B thinking负结果不能替代它。[搜索范围](existing-resource-search.json)与[事前可行性计划](feasibility-plan.json)保留。
 
-**接口不能套普通Qwen。** 官方说明架构相同但必须用本repo全部配置；tokenizer_config为DeepSeek特殊token/LlamaTokenizerFast，chat_template没有enable_thinking开关。0528支持system，无需人为加`<think>`起始；不能用普通Qwen的enable_thinking=False宣称关闭思考。README的23K平均推理token描述大R1，不能冒称此8B成本。8B基准64K上限也不适合作赛事预算。
+ModelScope固定 `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B` revision `5ee5fa4832e658ab84298806de06ed2a167834bd`，MIT代码/权重许可。最初只读HTTP Range头推导399 BF16 tensors、8,190,735,360参数；36层、4096宽、32Q/8KV、head_dim128、MLP12288、词表151936，embedding/lm_head不共享。完整模型BF16数值16,381,470,720B；参数量满足单模型规则。
 
-BF16权重约15.256GiB，理论batch1 KV为每token147456B，8192总token约1.125GiB；未含激活/logits/CUDA/碎片。A10040GB更有余量；A30 24GB在短上下文batch1可能可行，但仍须真实探针，131072上限不作为实际配置。现有A100环境记录torch2.6cu124/Transformers5.20.2，不代表本模型已经加载通过。当前A100 GPU2留给sequence，本准备不用GPU。
+## 资产与CPU的真实终点
 
-最小对照复用F1纯input80条/16篇/587CID（ddba03ff）及旧strict32 Qwen3.5-9B完整回答，不新增候选或看gold选难例。未来先exact tokenizer长度审计，再固定first/median/longest三条自然输出格式/成本探针：单180秒+TERM30、每条最多1024新token、seed20261024、temperature.6/top_p.95，无强制闭思维/重试；不完整或无合法final记缺失证据。失败不自动扩思考预算。只有成本可用且后续授权才做一次全部80条同池控制，先冻结DeepSeek-alone与预定old∪new再唯一评测。学习式融合需另备严格OOF训练侧特征，不能拿F1标签训练后又评F1；详细候选协议和原资源refs见feasibility-plan.json。
+.100自有持久目录单次2100秒+TERM30窗口下载：03:05:56开始，03:36:58完成，报告1862.200秒；9文件16,388,603,517B全SHA与固定来源一致，399实际头/连续payload/精确EOF通过。原managed `proc_1c596785-307e-4471-8541-c982943da8bb` 已观察running=false，无重试、无延期。下载报告elapsed止于小header检查前；没有伪造工具未提供的wrapper退出码。[完整资产收据](assets/complete.json) `5c7ed899…`、[实际头](assets/actual-header-inventory.json) `ef4303dc…`。
 
-下一已获根线程授权仅资产准备：.100持久自有目录缓存优先，单2100秒+TERM30固定下载窗口、完整SHA/真实头核；不装环境、不加载模型、不GPU/新gold/评分。原metadata和当前源码先入Git，未知启动/监控先核原intent/job，partial保留，不重复下载。
+保留准确DeepSeek tokenizer/template，不能套普通Qwen的enable_thinking开关。实际80纯输入消息/候选/患者原样；原生token总269064，min852/median3425/max6002，True/False enable_thinking均被模板忽略且字节相同。CPU首版因TF5默认BatchEncoding与list比较失败4.791秒；仅显式return_dict=False后5.582秒完整通过。strict final解析器2正12负通过，要求自然EOS、完整可选think、全部CID键与合法PID；截断不是负关系。
 
-资产唯一作业已于2026-10-24T03:05:56.359Z启动：`proc_1c596785-307e-4471-8541-c982943da8bb`，.100 mount5a9955da；绝对截止2026-10-24T03:40:49.472593+00:00+TERM30。原intent/job与远端启动标记是恢复依据；原Git401已由主线程03:07代推解决：4edacb9 push+lsremote exact，源/job已GitHub备份；远端3源SHA与Python3.10实际编译也通过。恢复入口`assets/poll_original.py`，不要重发start。
+YaRN原配置保留，包括非标准attn_factor；实际TF5与HF4.51原生函数均读取attention_factor而不读取该非标准字段，缩放1.138629436111989，64个CPU FP32频率逐位/bytesSHA相同。保留warning，不静默改config或推断其他引擎。首次CPU辅助源占位符语法错误原留，修复后真实通过。[CPU完整清单](cpu-terminal-manifest.json) `038d6044…`。
 
-原生CPU终点已完成：首入口因TF5默认BatchEncoding与list比较失败4.791秒，实际单行input_ids逐项相等；只加return_dict=False后5.582秒通过全部80/16篇，消息/候选/患者原样。native长度852/3425/6002（min/median/max），固定index0/67/73输入2171/3425/6002；parser2正12负通过，未加载模型。YaRN实际64个FP32频率与HF4.51官方参考逐位/字节SHA相同，缩放均1.138629436111989；两版均不读取非标准attn_factor，保留原配置及warning，不推断其他引擎或作者意图。脚本首次占位符语法错误原留，未进CPU函数；修复后实际通过。完整[CPU清单](cpu-terminal-manifest.json)，资产仍在原35分钟窗口下载。
+启动前主线程发现跨CPU/GPU字节强等可能误拒正常舍入。实际TF5源证明非持久buffer原生FP32，经meta搬运及原生函数重建；保存旧源，明确拒绝未知dtype而不cast，加载内比较同device原生64值，事前rtol=8×FP32 epsilon、atol=0。实际buffer与CPU bitexact；GPU函数参考最大绝对差1.86265e-9/相对差9.07048e-8，在约9.53674e-7容差内。没有独立额外GPU探针、模型/config/生成变更。[窄修依据](gpu-probe/rotary-prestart-change.json)。
 
-后继三条探针仅检格式/成本：若1024预算截断，它只说明此预算不可用，不否定R1全部质量机制；保存完整实际生成ID/token速度，是否值得更大预算或80条须由根线程据实测另定。
+## 唯一A30格式/成本探针
 
-GPU探针5件源于03:25在.100实际全SHA及Python3.10编译通过，尚未启动。待原资产终点真实通过后才绑定执行plan；启动器保留唯一intent和远端marker，UNKNOWN先查原作业，fresh GPU1门检与180+30固定窗口不变。回收脚本只读取原进程与不可变终点，不因监控失败停止健康作业。
+执行plan `dc3ba5f1…`、runner `796df0d7…`，.100 GPU1 UUID `GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539`。fresh卡0MiB、free24164、目标无计算进程；其他UUID作业未触碰。managed `proc_2eb8109a-602c-4714-956c-1aa4db401a35`，03:38:17.500开始；总180+TERM30（含加载与验证），165秒内部软停止留序列化时间。
 
-启动前窄修：主线程发现CPU/GPU rotary频率字节强等可能误拒正常舍入，实际TF5源证明FP32 buffer的meta搬运/原生重建路径。保存原源，改为明确拒绝未知dtype、同device原生64值与实际buffer比对，跨CPU/GPU记录差值，事前rtol=8×FP32 epsilon/atol=0；CPU对HF4.51原bitexact证据保持。新源796df0d7已实际SHA/编译通过，模型配置/权重/生成参数及唯一180+30预算均不变，没有额外GPU检查。
+固定采样seed20261024、temperature.6/top_p.95/top_k0、最多1024新token，原生BF16/SDPA、不量化，TF32初末false；不强制开启/关闭think，不重采样、不修答案。
+
+| 固定input-only样本 | 输入token | 实际终点 |
+|---|---:|---|
+| first：10313222:relations:0 | 2171 | 1024新token，33.219182秒，30.82556 token/s含prefill；无EOS、token cap=true、wall cap=false |
+| median：5789735:relations:48 | 3425 | 按首截断停规则未运行 |
+| longest：6063015:relations:0 | 6002 | 按首截断停规则未运行 |
+
+加载6.713929秒，实际399参数键/全部shape/BF16/finite、总8,190,735,360检查通过，无missing/unexpected/mismatched/errors；untied head保留。权重全SHA来自刚结束的资产收据，加载前后stat保持，小配置重hash；未把它说成再读16GB或逐元素文件/加载值比对。峰allocated19,495,760,896B、reserved19,505,610,752B。03:39:03.804实际卡空0MiB/目标无进程。
+
+完整1024生成IDs及原始文本双份留本地和.100，row0 SHA `a7eaf566…`（20958B）；实际1个think开启、0个闭合。当前观测只证明2171输入这条、1024预算不足；不能当6002最长行/全部80稳定成本，也不能据截断宣称模型质量负。后继更大预算或全部80须由根线程据实测另定。
+
+收据提取器最初硬编码启动前旧runner SHA而拒绝，原源/错误来源说明保留于[本地摘要异常](gpu-probe/summary-attempt1-stale-source/receipt.json)；只把本地常量更新为已经冻结的真实源/plan，重新读取已有收据，没有重模型/解析器/评分。
+
+## 持久资源与恢复
+
+持久mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，自有根目录：`/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/deepseek-r1-0528-qwen3-8b-readiness/`。模型在 `models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6/`，CPU固定样本在 `cpu-preparation-v2/actual/`，GPU全部源/执行plan与原生输出在 `gpu-probe-v1/`；资产与GPU原job均终止，无待恢复运行。
+
+本地完整证据：`R/research/deepseek-r1-0528-qwen3-8b-feasibility`（R=`/workspace/patientphex-runs/round2-20261023`）。Git只保存小源/收据/索引，完整提示、生成IDs/text、权重保留外部；每件SHA见合一清单和collection manifest。不得重发已有start脚本。

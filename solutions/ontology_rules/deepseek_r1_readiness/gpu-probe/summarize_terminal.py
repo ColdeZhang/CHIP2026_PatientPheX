@@ -13,8 +13,9 @@ from pathlib import Path
 import re
 
 
+PLAN_SHA256 = 'dc3ba5f12ee5e13ec053caaa73a7115322ca09e34e14ad36a3988923a56d6074'
 SOURCE_SHA256 = {
-    'run_probe.py': '7eaa96d808e4f2b1ec49a12cc1768d4850b1b3278b20341f9d4949b9318c9fee',
+    'run_probe.py': '796df0d7e91e4bb26797a7aef8766f9ffb43a585cf2ff41417d5a5d1dcaf0c72',
     'launch_probe.py': '084aabe899a63d6cedf1e46586dd612e1a312c74d4d234932e925189a316c9d3',
     'strict_final.py': '20943d8681b4cf81aee0465b0f217d3491460a311be00f3bbc2818b721013fad',
 }
@@ -131,6 +132,7 @@ def main():
     source_dir = Path(args.source_dir).resolve()
     wrapper_path = Path(args.wrapper).resolve() if args.wrapper else terminal.parent / 'wrapper-result.json'
     plan_ref, result_ref, wrapper_ref = ref(args.plan), ref(terminal / 'result.json'), ref(wrapper_path)
+    require(plan_ref['sha256'] == PLAN_SHA256, 'Not the already executed frozen R1 probe plan')
     plan, report, wrapper = read(args.plan), read(terminal / 'result.json'), read(wrapper_path)
     require(plan['execution_ready'] is True and plan['process_budget_seconds'] == 180 and
             plan['TERM_grace_seconds'] == 30 and plan['max_new_tokens'] == 1024,

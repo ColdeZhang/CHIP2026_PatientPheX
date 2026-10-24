@@ -1,0 +1,24 @@
+{
+  "status": "prior_local_extraction_rejected_stale_source_constant_no_summary",
+  "recorded_utc": "2026-10-24T03:39:41.005950+00:00",
+  "evidence_origin": "Parent reported the prior local extractor rejection; its stdout/stderr was not saved in this directory. The source guard and old/new immutable SHA bindings were independently inspected without rerunning that rejected extractor.",
+  "reported_condition": "Native probe source set changed",
+  "guard": "require(plan['sources'] == SOURCE_SHA256, ...)",
+  "old_extractor": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/gpu-probe/summary-attempt1-stale-source/summarize_terminal.py",
+    "bytes": 14241,
+    "sha256": "7b6237d5ec48717fdcd1cd59afc882116e3e917053a7d4fc6bd121614caabeb4"
+  },
+  "old_run_constant": "7eaa96d808e4f2b1ec49a12cc1768d4850b1b3278b20341f9d4949b9318c9fee",
+  "actual_executed_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/deepseek-r1-0528-qwen3-8b-feasibility/gpu-probe/plan.json",
+    "bytes": 4651,
+    "sha256": "dc3ba5f12ee5e13ec053caaa73a7115322ca09e34e14ad36a3988923a56d6074"
+  },
+  "actual_run_source_sha256": "796df0d7e91e4bb26797a7aef8766f9ffb43a585cf2ff41417d5a5d1dcaf0c72",
+  "launch_and_strict_final_unchanged": true,
+  "terminal_summary_existed_before_repair": false,
+  "model_or_quality_failure": false,
+  "GPU_or_model_reexecuted": false,
+  "repair_scope": "Archive exact original extractor, update only its frozen native source binding and pin the already executed plan; then run only this local receipt extractor."
+}
