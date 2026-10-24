@@ -9,3 +9,5 @@
 入口：`control.py deploy → cpu → collect-cpu → start → collect`；任何未知start先查状态，禁止重复。
 
 实际同入口CPU检查 PASS：02:20:26–02:20:32，5.943131秒/rc0，所有输入变量/schema、408272键与14261列实际验证，CUDA隐藏，无NumPy/cache/model/NN。下一唯一894秒GPU作业。
+
+唯一 attempt2 作业 `proc_12da0748-d80a-4c7d-b1ee-6a222be4f36d`，02:21:02.777Z。完整终态和实际卡空后，`collect_artifacts.py` 只读回传紧凑NPY gzip、head、raw spans gzip与进度，64KiB/调用，逐件全SHA；本地已有16.45MB keys直接核验复用，不重传。不同本地NumPy只核存储，不重跑threshold解码。
