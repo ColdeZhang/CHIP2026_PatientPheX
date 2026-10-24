@@ -1,3 +1,7 @@
+## CPU完整终点与唯一后继
+
+原CPU已完整回收8件，317观察allPASS，worker5.207856秒/driver5.690608秒；collection9f0bf341、resultcd96f25b、observationsb3a8a9d7。独审8765aeb8已PASS，包含完整系数桥接、12新输入编码与hook/driver静态增量；不重执行CPU。见[唯一终态](CPU-terminal-summary.json)。后续仅已授权240+TERM30工程probe，源/真实输入绑定在[probe-plan.json](probe-plan.json)，H5 proc431edce8释放后fresh核；probe未启动，formal和质量尚未授权。
+
 ## 新授权与待运行探针
 
 root已授权在原CPU全部原件核验后、H5正式600控制实际释放GPU2之后，沿原A100环境唯一240+TERM30工程probe。8微批非零Adam→3累积→最长5556，共12次反向，状态弃掉；不是formal训练，没有评分。`probe_prepare.py`只重新编码这12行并对原native四SHA，既有全124位置/Fraction合同不重跑；probe源检查点先推送。

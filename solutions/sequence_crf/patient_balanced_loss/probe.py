@@ -62,9 +62,17 @@ def main():
         assert cpu["status"] == "PASS_CPU_SYNTHETIC_LOSS_AND_LOGITS_GRADIENT_CONTRACT"
         assert cpu["source"]["sha256"]==plan["CPU_contract_source_sha256"]
         assert cpu["actual_loss_coefficient_bridge_both_epochs_all124_and87_patients"]
+        collection=json.loads(Path("CPU-collection.json").read_text())
+        assert collection["schema"]=="patient-balanced-CPU-contract-readonly-collection-v1"
+        assert collection["all_actual_SHA_verified"] and collection["observations_all_passed"]
+        assert collection["complete_recursive_directory"] and collection["observations"]==cpu["comparisons"]==317
+        assert collection["original_CPU_returncode"]==0 and collection["no_new_CPU_contract_execution"]
+        assert collection["files"]["result.json"]["sha256"]==digest("CPU-result.json")
+        assert collection["files"]["observations.jsonl"]["sha256"]==cpu["observations"]["sha256"]
         assert plan["alpha"]==.5 and plan["patients"]==87 and plan["groups_per_epoch"]==16
         payload=json.loads(gzip.decompress(Path("probe-encoded.json.gz").read_bytes()))
         rows=payload["rows"];assert len(rows)==12
+        assert payload["P"]==87 and payload["S"]==16 and payload["group_size"]==8
         assert [r["original_index"] for r in rows]==[62,108,84,87,63,93,106,78,65,85,80,6]
         assert len(rows[-1]["input_ids"])==5556 and rows[-1]["prefix_tokens"]==5421 and rows[-1]["supervised_tokens"]==135
         assert len({r["original_index"] for r in rows})==12
