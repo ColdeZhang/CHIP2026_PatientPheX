@@ -1,8 +1,8 @@
 # 恢复与执行入口
 
-当前仅CPU/source准备，**没有远端部署、GPU job、watcher或训练start-intent**。[ready.json](evidence/ready.json)给全部准确SHA、外部目录和预算。模型、输入、质量基线均固定；当前不运行下面GPU命令。
+当前**已唯一启动proc_975a3621/PID27842，原watcher PID143721（local exec73046）运行**。不得重跑deploy/start/watch。[ready.json](evidence/ready.json)给全部准确SHA、外部目录和预算。模型、输入、质量基线均固定；下面1–4仅保留已执行历史和异常恢复接口，不能重复执行。四ACK后5–7已有root授权。
 
-外部B=`/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1`，C=`$B/controller`；源码S为本目录。root排卡并明确训练/完整F1授权后，按实际决定将 `GPU-AUTHORIZATION.template.json`另存为`GPU-AUTHORIZATION.json`，填写已给出的授权而非把模板当授权。controller检查plan SHA及固定预算。若改卡/路径/预算，应另冻结独立plan与部署，不覆盖原冻结件。
+外部B=`/workspace/patientphex-runs/round2-20261023/research/patient-schedule-fresh4-v1`，C=`$B/controller`；源码S为本目录。root已明确训练/完整F1授权，已按实际决定将 `GPU-AUTHORIZATION.template.json`另存为`GPU-AUTHORIZATION.json`，填写已给出的授权，原模板保持。实际authorization/plan已SHA绑定并推送。controller检查plan SHA及固定预算。若改卡/路径/预算，应另冻结独立plan与部署，不覆盖原冻结件。
 
 1. `python "$S/controller/operations.py" deploy --directory "$C"`
 2. `python "$S/controller/operations.py" preflight --directory "$C"`：实际全部15资产SHA、完整UUID空卡、SHM/.100空间；不因旧释放记录跳过。
