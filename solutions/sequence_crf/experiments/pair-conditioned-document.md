@@ -74,3 +74,8 @@ NumPy 13项合同通过：两臂两标签对全部98个小模型参数及输入�
 
 
 01:09正常查询在01:10返回 `UNKNOWN_OUTCOME`，对同proc一次有界只读复查返回 `LUNA_OFFLINE`。最后01:08:11确认running/空stderr，当前是否继续训练未知，不能视为模型失败或已结束；不启动第二份作业。原远端硬截止不变，恢复后读同job/已有progress及产物，连接事件见 `pair-document-connectivity-interruption.json`。正式源/数据/训练协议保持原冻结版本。
+
+
+正式训练实际01:13:28.931510Z完整结束：native351.677秒，uniform174.263/pair176.398秒，各8ep/256步，末轮训练loss .221419/.214733；首轮/末轮各模块梯度和初始化合同沿正式入口逐步执行。峰2.44334GB/2.44263GB。两final均1,311,091,575B，SHA `e414436e…` / `0c98692d…`；01:14:35独立系统查询确认原PID不存在、目标卡空，后续8.996秒只读重hash真实final/两概率完全相符。不冒称获得训练远端退出码。
+
+managed输出读取再次UNKNOWN_OUTCOME，改直接回收小文件；已收7/9后按root建议停止本地只读reader（不是远端训练）改小tar，保留并复用所有已有字节。新tar创建请求UNKNOWN_OUTCOME，紧接只读存在性查询LUNA_OFFLINE，01:17暂停MCP待连接恢复。当前未知的是tar状态与剩余两个小文件传输，训练完成事实不变；不重新创建/覆盖可能已生成的tar，不重新训练。完整双预测尚未组装、F1gold未读、没有质量结论。关键state和恢复在 `pair-document-endpoint-recovery.json`，恢复先检查原tar，按每成员SHA回收后执行原已冻端点。
