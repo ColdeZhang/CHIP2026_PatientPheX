@@ -30,3 +30,9 @@ root预锁三源2of3在F1/F0均正，F0 .724457355332高于固定双采样 .7219
 Epoch1完整34updates已12:22:09.652993 UTC取得ACK：504adapter/504Adam1512tensor及scheduler/RNG重开exact，checkpoint6b681bb2；adapter174655536B/df4ef6ca，state349612141B/dc56ad04。receipt记录3.212588秒，不把它当包括最后ACK/父链同步的严格总成本。第二轮沿原窗口继续。
 
 正式两轮已12:34:29.703457完整PASS：68updates，530行曝光/1,732,990tokens/30,820监督tokens；train1478.328467秒、phase1487.504494秒，峰allocated21,627,827,200B。两份完整ACK成立，epoch2 checkpoint a8a02d4e、adapter59fb484a/state45e5c7e4。原控制器12:34:31.050998接唯一infer child1209224，TERM12:54:31.050998/KILL12:55:01.050998；完整64fresh仍待终态，无质量调用。
+
+64/64 fresh全文推断已12:41:03.507730完成，strict完整64、弃答0，infer392.385980秒/child393.468161秒；峰allocated21,105,800,704B。实际GPU0于12:41:04.692081回4MiB/noapps，全三阶段rc0、无timeout。终包1,076,977B/284件，SHA8d1283bf；当前只收原包并装配固定new-only，不读取originaldev gold。
+
+全部284成员SHA回收通过后，12:43:53.079831冻结完整new-only预测3d2e4ca3（138474B）：16篇/36患者/1061实体/265关系，候选466概念、全部64行fresh strict完整，0cap/0弃答。原901全部非association字节精确保留，公共格式验证0error/0warning，质量调用0次、原dev gold读取0次。
+
+该组件已交root预锁2of3及最终共冻流程；本线只判工程交付完成，不独立判原dev涨分，也不复活旧Qwen独立F0负方案。完整原始IDs、responses、canonical和checkpoint ACK路径见evidence/full64-component-terminal.json；两个大完整state留.3原位置，小source/assembly补包另有持久回执。

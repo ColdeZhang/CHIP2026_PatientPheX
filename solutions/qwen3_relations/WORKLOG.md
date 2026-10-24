@@ -2,7 +2,7 @@
 
 - 目标：为root已通过F1/F0的固定三源2of3提供full64原生Qwen3组件；完整265行两轮68updates及64条fresh全文推断，不单独评价原dev。整体目标仍原dev Score≥.8。独立Qwen并集F0负结案保留。
 - 来源：`explore/qwen3-relations`，base `ff676a01615cce944b95ea8032e8d9bcd056cfdf`。只维护本目录。DocRE另线四组负结案保持。
-- 当前：组合full64训练完整PASS，两轮68updates/530行曝光及两个完整state ACK，12:34:29结束。原控制器接64fresh全文infer child1209224，12:34:31.050998开始，TERM12:54:31.050998/KILL12:55:01.050998；仅new-only组件供root共冻，不独立quality。恢复见 evidence/full64-component-resume.json。
+- 当前：组合full64组件完整交付root：预测3d2e4ca3/138474B，16篇36患者1061实体/265关系；64fresh strict完整、0弃答/0cap，非关联字段与901 exact、格式0err/warn。两轮68updates及两完整state ACK已完成，GPU已释放。无本线原dev gold/quality；小补包持久备份收尾中。
 - 原生标准模型与R1-0528-Qwen3-8B为不同发布权重；两者都是全注意力，不称首次attention或冠军复现。历史Qwen3 Task1 train48→F1已做过，strict32关系SFT＋fullF1未见现有终点。
 - 固定HF b968826d9c46dd6066d109eabc6255188de91218，ModelScope26028140be3ee69b82b1d1450179ab71bb1121b9，Apache2.0。基座8,190,735,360＋r16七线性LoRA43,646,976=8,234,382,336，每模型<10B。
 - CPU11.979837s已核204原生/raw IDs及解码exact：train124/32总403151/max5534/监督7170；F1 full80/16总666591/max14322。源cb7f67e1与2a95bad1不变；no new gold/quality。
@@ -48,3 +48,5 @@
 - 组合full64 epoch1完整ACK：12:22:09.652993 UTC/34updates，504adapter及504Adam1512tensor、scheduler/RNG重开exact，checkpoint6b681bb2，174655536B adapter df4ef6ca与349612141B state dc56ad04；保存核验3.212588秒（receipt计时不含最后ACK/父链尾操作）。继续原第二轮，无中间quality。
 
 - 组合full64正式完整：train1478.328467s，68updates/1,732,990tokens/30,820监督，峰21.628GB；epoch2 checkpoint a8a02d4e/adapter59fb484a/state45e5c7e4，两ACK及原64推断start见 evidence/full64-component-trained-infer-start.json。
+
+- 组合组件终态：284件/1,076,977B/8d1283bf逐SHA回收；12:43:53.079831完整new-only冻结3d2e4ca3交root，265关系/466候选概念/0质量。完整训练和raw解析出处见 evidence/full64-component-terminal.json；独立旧F0负保留。
