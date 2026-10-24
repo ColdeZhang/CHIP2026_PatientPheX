@@ -34,7 +34,7 @@ def main():
     watcher=Path(__file__).with_name('watch.py');log=d/'watch';log.mkdir(exist_ok=True)
     observations=sorted(d.glob('observation-*.json'));assert observations
     initial=json.loads(observations[-1].read_text());assert 'wrapper-complete.json' not in initial
-    deadline=initial['driver-started.json']['deadline_TERM_unix'];assert time.time()<deadline
+    deadline=initial['driver-started.json']['value']['deadline_TERM_unix'];assert time.time()<deadline
     assert not (d/'watch-launch-intent.json').exists(),'Inspect the original PID/lock; never relaunch blindly'
     with (log/'owner.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
