@@ -32,3 +32,5 @@
 推断前复用原baf060的FiniteLogitsOnly guard（class AST逐同）：只在NaN/Inf时保留故障并停止，合法logits原样返回；不改变greedy1600/模型/输入/规范化。实际held尚未启动，后续绑定新runner SHA；不为此重跑CPU、probe或已运行训练。
 
 10:32:16原只读观察已见第一完整epoch/step11/尾7，程序epoch耗时982.831秒，mean group loss .3920198；summary绑定durability ACK d51df102/2031B，原第二轮自动继续。此时未收最终ACK全文/两epoch成员，不把它冒充完整训练终审；统一待唯一终态collection。按首轮实耗约10:48前后可能结束，实际硬TERM11:03:49.227不变。
+
+10:38:10.265原A100 readonly观察明确LUNA_OFFLINE；最后真实健康10:35:28为epoch2/step13。唯一watcher144628仍alive，按原backoff最早10:41:15.267再观察；不增加owner、不重start，远端driver绝对TERM11:03:49不变。后继.3 E004已10:38:31完整结束并实际释放，准确local release为stage8-span-normalization/oof-fourfold-completion/gpu-release-observation.json；真正Sap启动仍需当时fresh门。
