@@ -70,3 +70,7 @@ FLA A已在原截止内完成，新8次N/F/N/F及40原dtype张量333,805,160B留
 09:19后继决定：患者α原正式已09:17:01完整rc0，1466.506秒/32calls，两epoch durable readback均true；owner正在原collector核实际完整状态，再按已冻结80fresh/600+30进入质量。全文原epoch2继续。检索另接旧BioLinkNER相对强public池的单次训练内F0供给统计（≤60秒CPU、先核排除F0、无新fit/v2），只有独立正确候选供给才考虑以后拟合。
 
 FLA A的新证据支持一次**独立推断变体**质量控制：自重复exact，但跨backend长输入存在真实差异，仍不称透明替换；原门和失败不改。固定旧4f48、F1全文normal80完整输入、greedy1600，全部fresh，单独1200+30；primary为FLA-alone、diagnostic为N∪FLA，对N .676546354663，完整共同freeze后新各1v2/旧0、macro披露。复用已验raw-first与写入器，唯一空卡门后启动；当前两个native模型不改变，不附带FLA训练B/C或F0/dev。这是root明确新增的质量实验决定，取代此前仅A后等待的边界，不推断一定提速或涨分。
+
+BioLink供给诊断已0.384秒完成：原固定NER≥.55/Sap≥.65保存的1117实体，相对强F0池新增133个严格支持ID单位，其中117新边界/16同跨度换ID，只新覆盖1个gold（强池外152个中的1个）；另7个NIL新跨度不证明ID正确。132个未匹配标注候选不是实际选择器FP。两来源均train48排F0，仅1次训练内gold读取，无模型/fit/v2或原dev。首次schema失败在gold前、独立修复证据保留；当前不新建OOF融合，不泛化到未保存低分原始跨度。结果1fca36ec、分支ee9b7d3，详见检索`biolink_supply_diagnostic/DECISION.md`。
+
+09:25:09.856 FLA独立normal80已在.100 GPU1唯一启动proc_99477f17-f631-4ca9-b349-1eff59cb3e6e/PID2714216，原1200+TERM30、soft1170；source checkpoint43571da先推送，infer3e1e8e9d/plan3f5335d6，12部署件逐SHA/fsync/reopen完成。仍无新质量结果，不复用native响应、不附带训练；完整实际结果后统一增量终审。
