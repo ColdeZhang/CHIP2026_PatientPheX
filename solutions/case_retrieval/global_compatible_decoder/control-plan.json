@@ -1,0 +1,87 @@
+{
+  "status": "frozen_before_unique_control",
+  "total_CPU_cap_seconds": 60,
+  "sources": [
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/global_compatible_decoder/control.py",
+      "sha256": "cf9a064b10486ccc0a73c16c43286a6fe109277150f3b618ff1a7e46e305ca70",
+      "bytes": 14072
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/global_compatible_decoder/census.py",
+      "sha256": "71276d1170b768992d14ea6cd674e8a1581c8e6bac0afef0cb07580e6d83447c",
+      "bytes": 9267
+    },
+    {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/global_compatible_decoder/check_control.py",
+      "sha256": "2ea3d88993b435fe21ab0410b3b07059d2d337f7b36dafaecaf985c1fdb7d9da",
+      "bytes": 2712
+    }
+  ],
+  "contracts": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/contracts.json",
+    "sha256": "77f1b3e2631dd900475850374f323c3d42ea2451c6f83b6a799b0dab44b11588",
+    "bytes": 1249
+  },
+  "old_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-plan.json",
+    "sha256": "49a2ef2f259cbb4e11267143592896203010bc50413a2b6e650fa80e4c5452c3",
+    "bytes": 17536
+  },
+  "old_freeze": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/complete-freeze.json",
+    "sha256": "cf8c1a2820ca94099d6129e9c121eb11c1fd049e4ec35d89de725ef169408f82",
+    "bytes": 6509
+  },
+  "census": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-census/census.json",
+    "sha256": "ba64508e369dadc92733b3ea545c29726efa187f6004cf5a385acf0e77559db3",
+    "bytes": 46052
+  },
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/research/global-compatible-decoder-control/formal",
+  "baseline_fold_metrics": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold0/biobert.metrics.json",
+      "sha256": "076315c01f1c929b5313baa29ed57d8c056b651e038c4e08e252327abc606154",
+      "bytes": 12958
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold1/biobert.metrics.json",
+      "sha256": "5ded498245aba5d04f0761f9634ae8bd35922f47463a5d769fdabd470e6b98ac",
+      "bytes": 13022
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold2/biobert.metrics.json",
+      "sha256": "82be075800809fd9060d7f6147e96f5f9e127712c0e457d2e4bfc24b5d63f05d",
+      "bytes": 12925
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/fold3/biobert.metrics.json",
+      "sha256": "9ed568e1ecd0ac1f217be386ed03e31878133aaa2dcacba509a43c1bf2ebbbfe",
+      "bytes": 12955
+    }
+  ],
+  "baseline_pooled_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/ontology_rules/public-biobert-selector-control/formal-control/biobert.pooled.metrics.json",
+    "sha256": "ed7bce5b7ab9611cbfca89b1ee5de65060e40f2ece1ac5fff8e301b7eae6540a",
+    "bytes": 42705
+  },
+  "objective": "sum(Fraction.from_float(original_probability)-Fraction.from_float(0.3)); exact binary-float rationals, no epsilon",
+  "ties": [
+    "maximum overlap count with fixed old nested selected entity keys",
+    "lexicographically smallest sorted (offset,length,HPO_identifier,original_candidate_index) tuple"
+  ],
+  "eligibility": "same 4633 as census: original greedy anchors OR p>=.3 nonanchors passing old legal HPO/nonnegation; no exact .3 in actual pool",
+  "conflicts": "overlap AND NOT(proper containment AND disjoint atomic HPO IDs); identical boundaries/crossing/shared-ID-containing remain conflicts",
+  "isolates": "retain unchanged, verified selected in old nested",
+  "freeze_before_gold": [
+    "all four fullpred",
+    "all 66 nontrivial component exact objectives/keys/edges/old and new selections",
+    "changed document/item counts"
+  ],
+  "quality_policy": "If every complete prediction is semantically identical, preserve original bytes and reuse all old metrics without opening gold. Otherwise exactly one v2 all/text per new fold and one pooled; never rescore old.",
+  "keep_policy": "pooled Score strictly improves AND no fold Score decreases; otherwise close. No originaldev migration or alternate objective/cut.",
+  "no_fit": true,
+  "no_GPU": true,
+  "no_official_actions": true
+}
