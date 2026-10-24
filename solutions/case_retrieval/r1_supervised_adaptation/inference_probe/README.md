@@ -29,3 +29,6 @@ python bind_completed.py --template template.json \
 ## 当前调度暂停
 
 root为本次唯一官方901提交优先，已明确暂缓新R1 index73探针及质量，等待这份官方结果文件接收确认后再恢复。当前只保存CPU准备；不得因formal完成就自动绑定/启动。新R1不参与本次提交。原formal已在718.379秒完整结束、两份状态持久并终审，不能重启。最新质量保留政策见[事前补充](../quality-policy-addendum.json)，不影响本工程探针的输入／采样／预算。
+
+
+2026-10-24 07:54:13 root已确认唯一901官方提交accepted（receipt8d39aba4，未取分），调度暂停解除。新的deployment-plan.json沿原9个源码/原template不改，绑定后立即按既有240+TERM30唯一index73执行；固定final三SHA20f15/2fbd/f49f。旧模板内“pending parent notice”是准备期字段，root此次已给执行通知，不新增审批门。先报告真实格式/成本以确定全80预算；不自动盲推未定预算的80，不增加官方提交。
