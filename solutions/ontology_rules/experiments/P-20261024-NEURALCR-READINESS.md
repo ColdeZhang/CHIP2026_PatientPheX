@@ -86,3 +86,5 @@ shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(6668
 ### native部署写入UNKNOWN_OUTCOME（非模型失败）
 
 原controller小source/plan上传循环返回UNKNOWN_OUTCOME并实际rc1；原uploader未逐文件记录，故不编造失败filename/请求数/完整耗时。native部署验证/启动intent/managedjob均不存在，未发模型启动。保留原失败收据。按H32仅只读核9份实际source/plan的完整SHA，补真实缺件后再验证全量SHA与已有hardlinks，沿原0107a27b plan唯一180秒native；不重shape/repair、不上传大模型，未知写入不视作未落盘。
+
+只读实际核验结果：9/9 source/plan完整size/SHA精确，0缺件/0mismatch；UNKNOWN_OUTCOME写入实际已经落盘。无需重新上传任何文件。冻结收据后再核完整源SHA和hardlinks，启动原180秒native。
