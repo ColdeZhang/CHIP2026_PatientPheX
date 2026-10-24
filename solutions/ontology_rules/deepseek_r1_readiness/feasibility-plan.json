@@ -1,0 +1,76 @@
+{
+  "status": "read_only_feasibility_complete_assets_authorized_GPU_quality_not_authorized",
+  "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "MS_revision": "5ee5fa4832e658ab84298806de06ed2a167834bd",
+  "refs": {
+    "official_overview": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/overview.txt",
+      "bytes": 45381,
+      "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+    },
+    "agriv_model_card": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/agriv-model-card.md",
+      "bytes": 2178,
+      "sha256": "f7159c603f2203a0f18f4cbb7db8f8cb4713a1556785657b423bb8c20a1d1250"
+    },
+    "F1_input_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "F1_existing_Qwen35_responses_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.manifest.json",
+      "bytes": 4142,
+      "sha256": "84e0eec5c9a005d5ee9e372e69fe34afbf764c8539db2b4a8b11b209302e7733"
+    },
+    "F1_existing_run_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/run-plan.json",
+      "bytes": 13675,
+      "sha256": "8ba5cf11c9531989043e4567f093011eaf9b31ffcf6cfb918edbc953ccd63e28"
+    },
+    "F0_input_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/qwen-pair-fold0/prompts.jsonl",
+      "bytes": 823917,
+      "sha256": "d387f5b8e7b714e81619f5972a6385925629bf7b2e4be3ca55936c82a1077ff0"
+    },
+    "A100_existing_runtime_receipt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/cpu-native/runtime-cpu.json",
+      "bytes": 905,
+      "sha256": "689d3317b2295c8b424e8ec00e0b719c20aa4d225e1e98086fc1aa21b2dd949c"
+    },
+    "unrelated_Qwen35_forced_boundary_format": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/thinking-budget-forcing-readiness/final-v1/results.json",
+      "bytes": 2635,
+      "sha256": "9be449d60c462dee165bb6807c6fe3a4908926f69c0815f775652675878325e4"
+    }
+  },
+  "evidence": "Official overview4.2 Agriv used Qwen3-8B and this exact checkpoint together for patient-phenotype features, with contextual/positional features and OOF LightGBM. This is motivation, not proof of marginal benefit in our pipeline.",
+  "existing_exact_checkpoint_quality_or_cache_found": false,
+  "existing_search_scope": "Local saved experiment records only; no new remote disk survey at feasibility stage.",
+  "proposed_minimal_protocol": {
+    "status": "PROPOSAL_NOT_RUN_OR_GPU_AUTHORIZATION",
+    "task": "Task2 same frozen CID/PID candidate pool; no new entities or alternative label support.",
+    "primary_input": "F1 input80 prompts/16docs/587CIDs ddba03ff",
+    "baseline": "Frozen strict32-adapted Qwen3.5-9B F1 .660942003, not identical model to official Qwen3-8B; isolates marginal diverse evidence over current pipeline rather than reproducing champion.",
+    "native_CPU_first": "If assets available, exact repository tokenizer/template/config, no ordinaryQwen template or enable_thinking. Hash all inputs; real prompt lengths determine eligible resource and budgets before any NN.",
+    "format_cost_probe": "Only if later authorized: first, median and longest prompts by exact native token length, deterministic tie by existing row order, no gold, one sampled response each seed20261024/temperature.6/top_p.95, hard max_new_tokens1024 and single180s+TERM30 wrapper including load. Native natural final only; no forced closing/retry/output scan. Preserve truncation/invalid as missing evidence; if no usable finals or cost fails stop without automatic larger thought budget.",
+    "full_same_pool": "Only after actual probe and explicit scope: one80-response frozen run with same fixed cap/seed policy, all output SHA frozen before unique evaluation. Compare DeepSeek alone and predeclared old-union-new, no learned F1 threshold. Invalid/missing is abstention with separate feature, never negative or gold repaired. Keep old entity support and primary baseline unchanged.",
+    "future_learned_fusion": "Only if complementary evidence warrants: add presence/validity/agreement signals to existing relation classifier using new strict document-OOF DeepSeek features on the training side. Never train fusion using F1 evaluation labels or old newly-held-exposed models. All trained components keep actual source manifests.",
+    "no_unbounded_thinking": true
+  },
+  "resource_estimate": {
+    "parameters": 8190735360,
+    "BF16_GiB": 15.256433486938477,
+    "KV_GiB_batch1_8192_total": 1.125,
+    "KV_excludes": "activations, logits, CUDA, kernels, fragmentation; not actual memory measurement",
+    "preferred": "A10040GB after sequence releases; A30 24GB batch1 <=8192 total tokens plausibly fits but requires actual probe. No full131072 context use.",
+    "wall_time": "No exact-checkpoint tokens/s measured. Old9B80 rows282.502s cannot be transplanted. New bounded probe must provide actual cost before fullcache."
+  },
+  "asset_authorization": {
+    "scope": "fixedMS revision assets+stdlib SHA/header only; no install/model load/GPU/gold/score",
+    "persistent_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "single_cap_seconds": 2100,
+    "TERM_grace_seconds": 30,
+    "root_authorized": true
+  }
+}

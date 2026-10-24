@@ -1,0 +1,42 @@
+{
+  "status": "existing_frozen_diagnostics_do_not_contain_added_removed_TP_FP_decomposition",
+  "refs": {
+    "input-only-diagnostics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/input-only-diagnostics.json",
+      "bytes": 135569,
+      "sha256": "63f2cf0a6a188049a15fb7a2a880e7fbace32fd222bb8b3d70c3a90e020b17d7"
+    },
+    "ncr.pooled.metrics.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/ncr.pooled.metrics.json",
+      "bytes": 42766,
+      "sha256": "718b7266225e16076b629723f396aa6dd5905561abb8408485e8b2b26fed747a"
+    },
+    "results.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/results.json",
+      "bytes": 13388,
+      "sha256": "8ec12cfb7b878255535e4e4bab668f8a9053fdc29e2ba2151a8a16d988a52f48"
+    }
+  },
+  "existing_diagnostic_scope": "Nested decoder input-only collision/added counts, not strongB-versus-NCR entity additions/deletions with correctness labels.",
+  "available_net_counts": {
+    "mention": {
+      "tp": -7,
+      "fp": -17,
+      "fn": 7
+    },
+    "document": {
+      "tp": -5,
+      "fp": -10,
+      "fn": 5
+    }
+  },
+  "interpretation": "Pooled small F1 gain accompanies fewer false positives and slightly lower recall. Net counts cannot uniquely identify added/removed TP or FP, and do not demonstrate NCR newly supplied true positives.",
+  "not_measured": [
+    "added_TP",
+    "added_FP",
+    "removed_TP",
+    "removed_FP"
+  ],
+  "no_new_gold_prediction_scoring_or_tuning": true,
+  "scope_of_rejection": "Only this fixed strongB+NCR two-feature HGB160/.3/nested recipe failed the prespecified3/4fold retention criterion; not all possible NCR uses."
+}

@@ -1,0 +1,340 @@
+{
+  "status": "PASS_COMPLETE_INCREMENTAL_AUDIT_NCR_FIXED_FOURFOLD_SUCCESS_CRITERION_NOT_MET",
+  "created_at_utc": "2026-10-24T03:01:25.508205+00:00",
+  "verifier": "validation_recover_0102",
+  "decision": {
+    "default": "Keep the existing strong BioBERT chain/current a179. Do not transfer this fixed NCR configuration to originaldev or launch additional scans based on this result.",
+    "reason": "Pooled entity mean improves0.00047267040742571265 but only2/4folds nondecrease, below the prospectively fixed3/4. Pooled Score gain0.00023633520371291183 is not sufficient under that success rule.",
+    "status_of_route": "This closes one specific cache+strongB+NCR fresh160/15/.3/nested experiment. Engineering work succeeded; it does not prove the entire NCR approach has no possible value."
+  },
+  "scope": "One complete remote pureinput cache, observed-current-HPO projection, strong BioBERT eight-pool increment, and one fresh fourfold CPU endpoint. No originaldev/official evaluation or upload; no new neural model execution or gold read by the verifier.",
+  "quality": {
+    "strong_B_baseline": {
+      "menF1": 0.7719484942002767,
+      "docF1": 0.8097896092743667,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7309936164915969
+    },
+    "NCR": {
+      "menF1": 0.7724314520431025,
+      "docF1": 0.8102519922463924,
+      "micF1": 0.6878461090061206,
+      "macF1": 0.6543902534856236,
+      "Score": 0.7312299516953098
+    },
+    "delta": {
+      "menF1": 0.0004829578428258152,
+      "docF1": 0.0004623829720257211,
+      "micF1": 0.0,
+      "macF1": 0.0,
+      "Score": 0.00023633520371291183
+    },
+    "fold_entity_mean_deltas": [
+      -0.0024836215595279154,
+      0.0013431325985640563,
+      -0.0011860930409823833,
+      0.004186399511031391
+    ],
+    "nondecreasing_folds": 2,
+    "required_nondecreasing_folds": 3,
+    "prespecified_success": false,
+    "count_deltas": {
+      "mention": {
+        "tp": -7,
+        "fp": -17,
+        "fn": 7
+      },
+      "document": {
+        "tp": -5,
+        "fp": -10,
+        "fn": 5
+      },
+      "relation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "explanation": "Small precision-driven entity improvement: mention TP−7/FP−17/FN+7, document TP−5/FP−10/FN+5. Relations and every nonentity object remain exact. Baseline/preB are cached reports, not rescored."
+  },
+  "cache_engineering": {
+    "rows": 408272,
+    "dtype": "packed column<u2 + score<f4,6bytes/row",
+    "payload_bytes": 2449632,
+    "NPY_bytes": 2449760,
+    "complete_batches": 798,
+    "reused_batches": 3,
+    "reused_rows": 1536,
+    "new_NN_batches": 795,
+    "new_NN_rows": 406736,
+    "native_candidates": 683438,
+    "native_raw_spans": 5341,
+    "actual_source_math_and_decode_tail_AST_exact": "ca6094066d3ff77d8fc6c5bb0f3c80600bb75ae59f008003d8e04ff44bbbbf7e",
+    "first_failure": "Initialization input_docs=input_docs,5.133719872683287s/rc1 before NumPy/model/NN. Original source/plan/failure preserved.",
+    "second_failure": "Complete795forward+native outputs; final metadata lookup used absent attempt2 columns.json instead of original preparation path.219.36103107780218s/rc1 preserved.",
+    "repair": "Independent CPU finalizer on actual remote NPY/gzip/queries/columns/progress/rawspans;1.271484807s body/1.369822960s wrapper rc0. Full798 coverage/all408272 finite rows/gzip exact/all5341 coordinates/query/HPO/float32 scorebits/native1.23.5 threshold checked. No rerunNN or changed output.",
+    "full_cache_remote_verified_local_partial": "Full cache remains verified remotely; local top1.gz.part is explicitly partial and not used as completed artifact. Exact local192972B rawspan SHAefdf3beb matches the actual remote finalization and suffices for input construction.",
+    "source_reuse_scope": "Native050b and GPUede8 loading/cost proofs reused; official HP/FT provenance and60weights numeric np.array_equal remain valid, no new memory byte hash claimed.",
+    "TF32": "Initial actual false; final measurement was not reached after metadata exception. Source has no later switch; end state is not fabricated.",
+    "GPU_release": {
+      "at_utc": "2026-10-24T02:24:47.180351+00:00",
+      "gpu": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40960",
+      "compute_apps": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720"
+    },
+    "fixed_batch_limitation": "Fixed512 outputs with final208; no claim of bitwise equivalence to every alternative passage-sized batch."
+  },
+  "current_mapping_and_pools": {
+    "observed_raw_HPO_ids": 1298,
+    "label_mapping": {
+      "same_valid_current_id": 1278,
+      "official_alt_id": 16,
+      "outside_current_branch_or_unresolved": 4
+    },
+    "mapped_current_IDs": 1286,
+    "canonical_keys": 5296,
+    "unmapped_raw_spans": 45,
+    "collapsed_raw_spans": 0,
+    "mapping_scope": "Only observed raw IDs mapped with unchanged public mapping source33d and fixed HPO2026-06-23. Remote full14261head order was verified earlier; local full-head verification is explicitly false. Mapping follows native output, with no head rewrite, re-normalization, new threshold or reranking.",
+    "actual_canonical_equality": "All canonical keys/text/maximum original float32 score bits compared to exact local raw and observed mapping table.",
+    "base_candidate_rows": 246804,
+    "new_candidate_rows": 253204,
+    "added_rows": 6400,
+    "matched_rows": 14784,
+    "retained_BioBERT_six_features": true,
+    "additional_features": [
+      "ncr_present",
+      "ncr_score"
+    ],
+    "actual_eight_pool_checks": "Every old prefix retained exact recursive JSON values/types/order after deleting only2new fields; metadata/base/input/origin exact, no oldselector_probability; all new NCR values bind to canonical source.",
+    "provenance": "Original four disjoint held16 folds partition64; each train48 is complement, and3nested16 partitions with original generator metadata retained. Actual fit independently enforces32-to16 label provenance; verifier did not read those labels."
+  },
+  "actual_formal_training": {
+    "source_and_plan_bound": true,
+    "fresh_four_vectorizers_and_HGB": true,
+    "only_held_probabilities": true,
+    "estimator": "max_iter160,max_leaf_nodes15,min_samples_leaf35,l2=5,learning_rate=.06,seed20261023,early_stopping=false; fullget_params equals strongB baseline.",
+    "actual_F": [
+      104,
+      103,
+      105,
+      105
+    ],
+    "each_fold_actual_trees": 160,
+    "each_fold_actual_nodes": 4640,
+    "each_fold_actual_leaves": 2400,
+    "actual_state_inventory": [
+      {
+        "fold": 0,
+        "F": 104,
+        "numeric_storage_slots": 62247,
+        "actual_array_bytes": 274098,
+        "tree_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold0/fitted/tree-state.json",
+          "bytes": 575520,
+          "sha256": "a310b867718c38c7d79a97ee127a1acae8d59466fc49b5a1600b9dceea9e3e3f"
+        },
+        "model_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold0/fitted/model-vectorizer.pkl",
+          "bytes": 300599,
+          "sha256": "26a4f951216929ae30b586ce81b0e4d4edbdbe66a551a80e0929bbbc68905c11"
+        }
+      },
+      {
+        "fold": 1,
+        "F": 103,
+        "numeric_storage_slots": 62247,
+        "actual_array_bytes": 274109,
+        "tree_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold1/fitted/tree-state.json",
+          "bytes": 575257,
+          "sha256": "9252f4095becea1a7d6dff61a445594fbcc14954d78190b18f37ab0525a0a229"
+        },
+        "model_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold1/fitted/model-vectorizer.pkl",
+          "bytes": 300562,
+          "sha256": "905731522434eae36c6af823c238ed34cb79daf8313435772cebfa55d3b8ea46"
+        }
+      },
+      {
+        "fold": 2,
+        "F": 105,
+        "numeric_storage_slots": 62251,
+        "actual_array_bytes": 274119,
+        "tree_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold2/fitted/tree-state.json",
+          "bytes": 575783,
+          "sha256": "3010d7726d6d68a6eec406c535916261adcabe2602e7c6426b23a9b162690cac"
+        },
+        "model_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold2/fitted/model-vectorizer.pkl",
+          "bytes": 300683,
+          "sha256": "f88a7d624c6bb91d4511efc4832ddc95829452b80c805f8b7e34710e57864bb5"
+        }
+      },
+      {
+        "fold": 3,
+        "F": 105,
+        "numeric_storage_slots": 62256,
+        "actual_array_bytes": 274159,
+        "tree_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold3/fitted/tree-state.json",
+          "bytes": 575783,
+          "sha256": "9ff6f18b33247769df5fa8a4811451562877fe4dc46db6be6794ba8d8cf9abd5"
+        },
+        "model_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/public-neuralcr-readiness/strong-biobert-plus-ncr-preparation/formal-control/fold3/fitted/model-vectorizer.pkl",
+          "bytes": 300723,
+          "sha256": "993dd9f8dc10393a9b2a36f4a054ea41c6cf107e25dc02d261fdaf2213d7fbc4"
+        }
+      }
+    ],
+    "state_count_boundary": "Tree structured integers, thresholds, baseline/classes/binmaps and optional bitsets are actual storage slots. They are not called neural trainable parameters; configuration/Python serialization overhead is separate. No values inferred from max_iter or F.",
+    "formal_elapsed_seconds": 60.87905228599993,
+    "shared_cap_seconds": 900,
+    "TERM_grace_seconds": 30,
+    "all_five_owned_jobs_rc0": true,
+    "all4_fullpred_frozen_at": "2026-10-24T02:59:04.155351+00:00",
+    "first_new_quality_marker": "2026-10-24T02:59:04.158628+00:00",
+    "evaluation": "One endpoint: each of4folds and pooled64 evaluated once using frozen v2 all/text after common freeze. No baseline rescore, fit or decoder rerun by verifier.",
+    "nonentities": "Actual predicted document objects projected without entities compare byte-exact to each strongB baseline; relations/metadata unchanged across all64.",
+    "template_metadata": "Executable plan retained template status strings, clarified in owner terminal; execution_ready=true plus explicit root authorization and source-bound actual window control the run. Plan bytes unchanged during execution."
+  },
+  "rule_correction_and_current_lineage": {
+    "official_parameter_limit": "Per individual model<=10B, not sum of the pipeline. Actual NCR NN157705490 + fastText333363400 =491068890. BioBERT is retained, not falsely subtracted.",
+    "superseded_design": "Old forced-removeBioBERT static preparation was superseded before any fit when official individual-model rule was verified. Not mixed into the active strongB comparison.",
+    "current_unchanged": "No new originaldev predictions; a179 relations and db2fc public-new support dependency remain as previously audited. The current a179/.7460819649861977 predictor is unchanged."
+  },
+  "evidence_and_actions": {
+    "checks": "Frozen SHA/size/source bindings; actual local raw/pool objects, held-score-to-input equality, nonentity projection bytes; arithmetic on saved metrics and actual tree metadata. Large new model/scores hashed once but not copied or deserialized.",
+    "not_performed": "No gold reads, model/NN/fit/feature transformation/parser/decoder/evaluator or native mapper rerun, no remote/MCP calls, no Git/index edits.",
+    "grouping": "This single report closes cache+projection+strongB fresh4fold. Prior native/probe reports are referenced, not resubmitted as new terminals."
+  },
+  "refs": {
+    "cache_receipt_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/cache-receipt-checks.json",
+      "bytes": 5332,
+      "sha256": "342538edca9a3aa3ad4892bbacaa1f317729daf8a0426bc0aa1e70958f40d538"
+    },
+    "current_input_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-checks.json",
+      "bytes": 3951,
+      "sha256": "9eb11bccb31bdd084b43928804f87dc37a3f61b49700d3b049d53aafefe63302"
+    },
+    "formal_terminal_checks": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-checks.json",
+      "bytes": 11010,
+      "sha256": "a0d1c5ddd96b62e290029ddc8a1e392086ff8f431d06f6f2803f0556c77974b8"
+    },
+    "cache_audit_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/audit_cache_receipts.py",
+      "bytes": 6516,
+      "sha256": "5cacc003bcaa7463e8acb441c9c60504994580f5db979f46bb3ca660b24874f4"
+    },
+    "current_input_audit_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/audit_current_projection.py",
+      "bytes": 10056,
+      "sha256": "f76dd2edf543bde170e7e44c269ffb6f46ca9d1411edf7ae4696fd3116c39de2"
+    },
+    "formal_terminal_audit_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/audit_formal_terminal.py",
+      "bytes": 11839,
+      "sha256": "cecf9113a56c9b5a8aae27e3208c3d75a74af3a3af74eaf3e681642954d4ab7c"
+    },
+    "current_input_snapshot_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshot-manifest.json",
+      "bytes": 17089,
+      "sha256": "59be8a74b0813c3f26232f1e598ea9b2fdd62c890ae448f9653561dd98b4cb1b"
+    },
+    "formal_terminal_snapshot_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshot-manifest.json",
+      "bytes": 21666,
+      "sha256": "2716efae008c671e5961bd302ed0866a93ef6ad4ecd3c191d638ef4cb767037a"
+    },
+    "owner_cache_input_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/cache-input-terminal-manifest.json",
+      "bytes": 16742,
+      "sha256": "492aaa1116d124331e195d4dcf872bdbd1f8b46cb9e402b3f7aac76334939136"
+    },
+    "owner_terminal_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/terminal-manifest.json",
+      "bytes": 18843,
+      "sha256": "5c45554f29193e66675f2b7792b084684b5e8232e3623cd61fa112c7ca52e1fe"
+    },
+    "formal_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/formal-plan.json",
+      "bytes": 17076,
+      "sha256": "2f6657455aa6f78423f01332dd665b33bfec381e8ea9d49bc2dfffe418783086"
+    },
+    "formal_results": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/results.json",
+      "bytes": 13388,
+      "sha256": "8ec12cfb7b878255535e4e4bab668f8a9053fdc29e2ba2151a8a16d988a52f48"
+    },
+    "common_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/complete-freeze.json",
+      "bytes": 10410,
+      "sha256": "306624202861f4c4002d2b3ad5875731e58443e04df3a23be490b56dce0a2009"
+    },
+    "first_quality_marker": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/evaluation-start.json",
+      "bytes": 904,
+      "sha256": "d3eab7c23593832b57f299983797552719d5926a5a37e9ad3b73b40878b7ce13"
+    },
+    "execution_terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/execution-state.json",
+      "bytes": 5327,
+      "sha256": "75919ee2f189a1252d18363bcf4285f6376a185e62e378073cb18d42a356613b"
+    },
+    "new_pooled_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/formal-terminal-snapshots/ncr.pooled.metrics.json",
+      "bytes": 42766,
+      "sha256": "718b7266225e16076b629723f396aa6dd5905561abb8408485e8b2b26fed747a"
+    },
+    "current_canonical_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/projection--canonical--manifest.json",
+      "bytes": 4037,
+      "sha256": "1bf41b2d941bdc5682a394779ff2e79aeced1779fcaad9f6a1e5ae11a3b690d0"
+    },
+    "observed_HPO_map": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/projection--observed-current-map.json",
+      "bytes": 168857,
+      "sha256": "6eaa3d11e2cd177bf9a03716be2e3e2da854c558e79080fcbb389546c508841b"
+    },
+    "actual_prepared8pool_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/projection--prepared--manifest.json",
+      "bytes": 41542,
+      "sha256": "a970c9a87309aad3dcb9c1fe94a84afb99bfa931bf356eeda4c7e6ca6ee52071"
+    },
+    "actual_remote_finalization": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/attempt2--finalization-result.json",
+      "bytes": 5033,
+      "sha256": "3553e219611135e4f874fb69670e9586122cbb3c22ed9d12973c491c3590fe06"
+    },
+    "raw_local_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-full-cache-terminal-review/current-input-snapshots/attempt2--raw-collection.json",
+      "bytes": 1274,
+      "sha256": "983418f761fafa22cb3a53ba1cf2bc9067ddd3ff3c996548104d21717e73616e"
+    },
+    "prior_native_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-native-terminal-review/review.json",
+      "bytes": 33717,
+      "sha256": "050b512b8c91cfa655e4edf6d386342e5f7aab71600812718dae04cab08d1508"
+    },
+    "prior_GPU_probe_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/neuralcr-gpu-cost-review/terminal-review.json",
+      "bytes": 25677,
+      "sha256": "ede8ddabde27491eec56e0f6866561cf14cb61b52834d9f3859d7088ad8df963"
+    },
+    "individual_model_rule_correction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/model-parameter-rule-correction/review.json",
+      "bytes": 4196,
+      "sha256": "5bd082d3c04e378e9735cbf174dd95d90420d7375b317201ebc16585f3ed9a80"
+    },
+    "prior_relation_dependency_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/biobert-relation-dependency-review/review.json",
+      "bytes": 6091,
+      "sha256": "a09d7978567d305375ba241f8bac7b0bf495828cb23384f422bef54c2a61d0a2"
+    }
+  }
+}

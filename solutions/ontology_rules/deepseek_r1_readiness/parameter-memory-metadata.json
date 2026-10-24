@@ -1,0 +1,73 @@
+{
+  "status": "metadata_only_exact399_BF16_shapes_no_weight_values",
+  "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "revision": "5ee5fa4832e658ab84298806de06ed2a167834bd",
+  "parameters": 8190735360,
+  "by_kind": {
+    "self_attn.k_proj.weight": 150994944,
+    "self_attn.v_proj.weight": 150994944,
+    "self_attn.o_proj.weight": 603979776,
+    "self_attn.q_norm.weight": 4608,
+    "self_attn.k_norm.weight": 4608,
+    "mlp.gate_proj.weight": 1811939328,
+    "mlp.up_proj.weight": 1811939328,
+    "mlp.down_proj.weight": 1811939328,
+    "input_layernorm.weight": 147456,
+    "post_attention_layernorm.weight": 147456,
+    "self_attn.q_proj.weight": 603979776,
+    "final_norm": 4096,
+    "lm_head": 622329856,
+    "embedding": 622329856
+  },
+  "dtype": "BF16",
+  "parameter_bytes": 16381470720,
+  "parameter_GiB": 15.256433486938477,
+  "KV_bytes_per_sequence_token": 147456,
+  "KV_GiB_at_total_tokens": {
+    "4096": 0.5625,
+    "6144": 0.84375,
+    "8192": 1.125,
+    "16384": 2.25,
+    "32768": 4.5,
+    "131072": 18.0
+  },
+  "KV_assumptions": "batch1, unquantized BF16 K+V,36layers,8KVheads,128head_dim. Excludes activations/logits/kernel/CUDA/allocator/fragmentation overhead; theoretical, not measured.",
+  "config": {
+    "architectures": [
+      "Qwen3ForCausalLM"
+    ],
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": 151643,
+    "eos_token_id": 151645,
+    "head_dim": 128,
+    "hidden_act": "silu",
+    "hidden_size": 4096,
+    "initializer_range": 0.02,
+    "intermediate_size": 12288,
+    "max_position_embeddings": 131072,
+    "max_window_layers": 36,
+    "model_type": "qwen3",
+    "num_attention_heads": 32,
+    "num_hidden_layers": 36,
+    "num_key_value_heads": 8,
+    "rms_norm_eps": 1e-06,
+    "rope_scaling": {
+      "rope_type": "yarn",
+      "factor": 4.0,
+      "original_max_position_embeddings": 32768,
+      "attn_factor": 0.8782488562869419
+    },
+    "rope_theta": 1000000,
+    "sliding_window": null,
+    "tie_word_embeddings": false,
+    "torch_dtype": "bfloat16",
+    "transformers_version": "4.51.0",
+    "use_cache": true,
+    "use_sliding_window": false,
+    "vocab_size": 151936
+  },
+  "tokenizer_class": "LlamaTokenizerFast",
+  "chat_template_enable_thinking_supported": false,
+  "tensor_payload_bytes_downloaded": 0
+}

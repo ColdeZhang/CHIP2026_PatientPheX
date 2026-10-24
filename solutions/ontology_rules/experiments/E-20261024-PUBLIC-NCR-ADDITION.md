@@ -36,6 +36,8 @@
 
 聚合mention为3620TP/925FP/1208FN（比强B −7TP/−17FP/+7FN），doc1881TP/311FP/570FN（−5TP/−10FP/+5FN）。这是少报带来的微小F1收益，不能据聚合增益声称新增NCR候选提高召回。仅2/4fold实体目标非降，低于事前要求3/4，`prespecified_success=false`。比pre-B的+.003254296仅为辅助归因，不能代替与强B比较。当前配方保留结果和可复用公共cache，但不升级默认、不自动迁原dev或改阈值。
 
-四个真实fresh模型均160树、4640节点/2400叶，所有模型/held概率/预测SHA外部保留。实际F104/103/105/105，完整数值存储槽分别62247/62247/62251/62256（含结构，不能称神经可学习参数）；模型参数上限按每个individual模型核，未删除B。完整终点 [manifest](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/terminal-manifest.json) SHA5c45554f；结果8ec12cfb；独立审查进行中。
+四个真实fresh模型均160树、4640节点/2400叶，所有模型/held概率/预测SHA外部保留。实际F104/103/105/105，完整数值存储槽分别62247/62247/62251/62256（含结构，不能称神经可学习参数）；模型参数上限按每个individual模型核，未删除B。完整终点 [manifest](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/terminal-manifest.json) SHA5c45554f；结果8ec12cfb；统一完整独审PASS（de325a2c），统计保留条件仍false；[终审](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/independent-review.json)。
 
 正式plan的`status/template_policy`保留模板阶段描述，运行前已明确`execution_ready=true`及根线程持续授权，源实际检查后启动唯一window；运行中未修改冻结plan，实际边界由window与完整终点证明。后续新计划应同步清理模板描述，避免记录语义混杂。
+
+增删归因边界：现有冻结诊断只记录nested解码的输入侧碰撞/追加，metrics只含逐文与聚合计数，**未保存相对强B的新增/删除各自TP/FP分解**。按本次只复用证据的范围，不新增gold诊断/预测/调参；−7TP/−17FP只是净变化，不能从中唯一反推出四格。聚合小正伴随净FP减少、召回略降；关闭的是本次固定配方，不能推广为NCR所有用法无效。证据 [可用性](../public_neuralcr_readiness/strong-biobert-plus-ncr-preparation/existing-diagnostic-availability.json)。
