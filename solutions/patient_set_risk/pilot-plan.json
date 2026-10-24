@@ -1,0 +1,185 @@
+{
+  "status": "PRELOCKED_MINIMAL_PILOT_PROPOSAL_CPU_ONLY_NO_GPU_START",
+  "at_utc": "2026-10-24T16:19:02.471871+00:00",
+  "base_commit": "21dca5f301c0e7437488b65d3b9f9e440006787c",
+  "branch": "research/patient-set-risk",
+  "references": {
+    "cpu": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-readiness-v1/cpu-v3/result.json",
+      "bytes": 3985,
+      "sha256": "0831331a0781fd46228070507e2643e5ec7fec16c7551b8f3f6899a94edaa086"
+    },
+    "initial_cpu": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-readiness-v1/cpu-v2/result.json",
+      "bytes": 3984,
+      "sha256": "ad0c96e34372adfde756fabda00ff60d803dfe87cea6c3f2439327d22314f3d5"
+    },
+    "fixed_patients": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-readiness-v1/cpu-v3/pilot-selection.json",
+      "bytes": 567,
+      "sha256": "794a9b8822a5aff0d6a4a8a72f11c1fc8d42980cb7f90f737a82c70c74c37733"
+    },
+    "public_metadata": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-readiness-v1/public/fetch.json",
+      "bytes": 1132,
+      "sha256": "04064cb662d041cc7c835d31cc54487f3dd66396adbb65693d5d6d9e7c23dafe"
+    },
+    "public_code": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-set-risk-readiness-v1/public/source.json",
+      "bytes": 1267,
+      "sha256": "b01d6a9f9bd1d6ed28b864b0ed1aa12234042b458e89817d713efa5b2df9dcff"
+    },
+    "existing_G_resources": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/evidence/resources.json",
+      "bytes": 1153,
+      "sha256": "c20f261f1a0083b59705d3a4b52c14d57144e46c3f814c6d22dca4c6fc42af33"
+    },
+    "G_parent": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/evidence/formal-terminal.json",
+      "bytes": 7025,
+      "sha256": "75c0bca5ccd6918d92210ea93f8eff07ed68f3cacbeae0f287a14e30685618eb"
+    },
+    "G_decoder": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/decode.py",
+      "bytes": 2439,
+      "sha256": "8e98f9ef2c1e123e9d071dc83f525a92ba90f26fffcca89532bcd78ac2b61305"
+    },
+    "G_policy": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/inference/policy.json",
+      "bytes": 1973,
+      "sha256": "b642bbfde979b131317dc547610411250af875bf64b3f4cfd1c1ea1cbe77fd18"
+    },
+    "frozen_v2_source": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "official_rules": {
+      "path": "/workspace/CHIP2026_PatientPheX/docs/competition/sources/2026-10-23/official-github/README_EN.md",
+      "bytes": 24881,
+      "sha256": "063a4cadd28d2acd61deddb840285ca90775bac4899933248aa28b27d28e0440"
+    }
+  },
+  "method": "Self-critical sequence training with concept-set patient F1 and a fixed original-label CE anchor",
+  "parent": {
+    "model": "Qwen/Qwen3.5-9B",
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
+    "adapter_bytes": 173181072,
+    "train_documents": 32,
+    "train_patients": 87,
+    "model_parameters_including_LoRA": 8997081600,
+    "no_new_weights_download": true
+  },
+  "pilot_rows": [
+    {
+      "index": 76,
+      "row_id": "5793168:P1:grounded",
+      "gold_count": 0,
+      "prefix_tokens": 8823,
+      "supervised_tokens": 3
+    },
+    {
+      "index": 44,
+      "row_id": "12628480:OP1:grounded",
+      "gold_count": 28,
+      "prefix_tokens": 8811,
+      "supervised_tokens": 399
+    },
+    {
+      "index": 83,
+      "row_id": "6134758:P1:grounded",
+      "gold_count": 42,
+      "prefix_tokens": 5066,
+      "supervised_tokens": 610
+    },
+    {
+      "index": 19,
+      "row_id": "12059664:O4:grounded",
+      "gold_count": 31,
+      "prefix_tokens": 6072,
+      "supervised_tokens": 449
+    }
+  ],
+  "selection_reason": "Before any new model calls: longest input, longest original full train sequence, longest original supervision, largest remaining prefix*supervision; includes one true empty row and all3 old Pareto-frontier positive rows",
+  "old_unexecuted_selection_retained": "cpu-v2 included2empty; v3 corrects shape coverage before any GPU or sampling",
+  "sampling": {
+    "seed": 20261024,
+    "per_row_seed": "20261024 + original row index",
+    "samples_per_patient": 1,
+    "greedy_baselines_per_patient": 1,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "repetition_penalty": 1.0,
+    "num_beams": 1,
+    "max_new_tokens": 1600,
+    "thinking": false,
+    "grammar_constraints": false,
+    "no_prompt_truncation": true,
+    "maximum_prefix_plus_generated": 10423,
+    "policy_distribution": "Full untruncated categorical at temperature1; loss must score the same distribution",
+    "order": "Fixed patient order [76,44,83,19], greedy then sampled; reset RNG for each sampled row"
+  },
+  "reward": {
+    "sets": "Exact existing G raw decoder plus frozen train32 aliases/public HPO/FP16 public Sap b59; concepts deduplicate and compounds expand; NIL remains literal",
+    "gold": "All818 original v2 association atoms including4 not constructible in old G targets; no canonicalization/drop of malformed gold literals",
+    "definition": "2*|Y intersect P|/(|Y|+|P|); both valid empty sets ->1",
+    "validity": "Require actual EOS and complete JSON, and no invalid itemwise grounding in this training reward; otherwise reward0. Original itemwise deployment parser remains unchanged.",
+    "normalizer": "Same frozen FP16 public encoder and41099 bank, not FP32 substitution, no oracle gold-span mapping",
+    "unknown_quotes": "All eligible quotes absent from existing624 train cache must receive complete original public query; no dropping, strict-only fallback or new threshold",
+    "source_of_negative": "Not in training annotation means reward FP only; never a clinical absence claim",
+    "advantages": "r(sample)-r(current-policy greedy), detached; no reward normalization/clipping/ranking/batch std"
+  },
+  "loss": {
+    "equation": "mean_i[ CEmean(original_gold_answer_i) - detached(A_i)/C * SUM_logp(actual_sampled_suffix_i) ]",
+    "C_fixed_train_mean_supervised_tokens": 136.5977011494253,
+    "CE_weight": 1.0,
+    "policy_gradient_weight": 1.0,
+    "length_normalization": "Only fixed corpus scalar C; do not divide policy term by individual sampled length, preserving an expected-reward gradient up to a constant",
+    "suffix": "Actual generated tokens through actual EOS; capped sequence contains no invented EOS. Prefix never supervised. Original CE keeps original EOS/newline mask.",
+    "dropout": "Disable all dropout; current baseline/sample/replay same weights and same effective stochastic model; no-grad autocast cache separated/cache_enabled=False",
+    "replay": "Teacher-force actual generated IDs, serial gold and sample gradients, do not retain two long activations",
+    "on_policy": "All4 greedy/sample/reward/logprob use untouched fresh parent before the sole probe Adam. Future87 epoch, if separately approved, must generate each accumulation group at current parameters, then update once; pre-generating87 then training is off-policy and is not this recipe."
+  },
+  "optimizer_probe": {
+    "lr": 1e-06,
+    "optimizer": "AdamW",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "gradient_clip": 1.0,
+    "updates": 1,
+    "group_size": 4,
+    "real_backward_calls": 8,
+    "probe_state_discarded": true,
+    "no_formal_training_authorized": true
+  },
+  "gates": {
+    "primary": "At least2 of4 complete greedy/sample pairs have strict valid grounded outputs and distinct concept-set F1; one must be nonempty-gold. This tests informative supply, not a benchmark improvement.",
+    "all8_raw_required": true,
+    "zero_advantage_policy": "Record exactzero; do not manufacture differences, reroll seed or substitute gold output",
+    "engineering": "All8 outputs/rewards/coefficients persisted; if supply gate passes,8 serial complete FB and one Adam with all trainable gradients/updated state finite, loss numeric observations preserved before assertions; save/fsync/reopen complete probe state",
+    "failure": "No automatic regenerate/format repair/patient replacement/longer cap. Stop if fixed budget or resource gate fails. No held inference or v2 in pilot."
+  },
+  "resources": {
+    "main": "A800 .7 GPU2 only after sequence F0-47 owner actual release then fresh UUID/noapp/disk gate",
+    "normalization": "One complete necessary frozen public Sap query batch on separately assigned .3 GPU0 or .100 GPU0; exact original runtime/assets, <=180+30 within shared main clock",
+    "no_extra_reference_or_critic_model": true,
+    "H69": "Source-bound5min admission separate from compute deadline; exclusive launch fence; UNKNOWN recovers original intention"
+  },
+  "budget": {
+    "proposed_shared_TERM_seconds": 1800,
+    "grace_seconds": 30,
+    "source": "Original G39 native10513 outputtokens/1030.9700386s, total1103.2154703s; not sparse completion39/123s",
+    "max8_output_tokens": 12800,
+    "old_token_time_proxy_seconds": 1255.2474549639228,
+    "replay_normalization_load_and_persistence_margin_seconds": 540,
+    "estimate_is_not_a_guaranteed_upper_bound": true,
+    "no_deadline_started": true
+  },
+  "formal_boundary": "No full87 train, no174 generation campaign, noheld quality. Supply/engineering actuals first; root decides one fixed formal followup after cost and reward evidence. Current best remains unchanged."
+}
