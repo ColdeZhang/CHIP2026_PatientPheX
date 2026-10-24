@@ -17,3 +17,5 @@
 源包57,435B upload曾UNKNOWN；一次实际库存已核SHA6a14304b，复用已落包无重传。目标17件实际SHA/compile以及Torch2.7.1/TF5.20.2/tokenizers.23.1、generic/rotary源码与CPU一致，CUDA未初始化。`bind_executable_plan.py`只在实际全9ACK后本地绑定计划；之后仍须Git检查点、实际prestart/fresh GPU才能发唯一start。
 
 独审增量[source-CPU-review.json](source-CPU-review.json) 4612ef50已核58纯输入/48-16来源/真实部署与raw-first源，无阻断；完整copy和实际最长仍pending。后继[evaluation-source](evaluation-source/NOTE.md)只准备F0两个唯一终点，复用已审通用函数；当前完整58预算/cache划分/响应refs均null、不可执行，无gold/真实预测/质量。
+
+[full58-source](full58-source/NOTE.md)只是后继静态准备：实际probe资产gate/399加载块沿用，fresh每行raw-first异常保全通过纯合成0.032秒；source-manifest e3d70caf。总窗口/TERM、完整授权、cache_indices/new_indices、cache refs、targetACK均null，入口拒绝启动，未运行真实load_inputs/tokenizer/model/质量。最长实际结果和root后继决定仍是前提。
