@@ -1,0 +1,174 @@
+{
+  "experiment_id": "E-20261024-PCS-002-DURATION24",
+  "mode": "whole_document_patient_conditioned_maxMIL",
+  "starting_commit": "267e6ea619289ed50a16f90d6ee1d901478618f4",
+  "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+  "gpu_uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/patient-identity-bridge/model-public",
+  "model_files": {
+    "pytorch_model.bin": "ad7bbb66376cfd6b2db3447192b034efe016337cbef135c35c411fd61b13c193",
+    "config.json": "56bab767c02bc792897638feb8addc06d483d9c73769a5f554bbabea1f5507a1",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "tokenizer_config.json": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1"
+  },
+  "python": "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+  "pythonpath": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/runtime",
+  "training": {
+    "epochs": 24,
+    "seed": 20261024,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "optimizer_documents_per_step": 1,
+    "updates": 768,
+    "warmup_steps": 76,
+    "window": 510,
+    "stride": 384,
+    "encoder_batch": 4,
+    "whole_document_graph": true,
+    "anchor_detach": false,
+    "max_span_tokens": 32,
+    "globalNER_weight": 1.0,
+    "max_MIL_bag_weight": 1.0,
+    "checkpoint_non_reentrant": true,
+    "checkpoint_preserve_rng_state": true,
+    "loss_fp32": true,
+    "encoder_autocast": "bfloat16",
+    "tf32": false,
+    "global_NER_loss": "vendor.gp.multilabel_loss over one full unique physical candidate vector per document"
+  },
+  "probe": {
+    "cap_seconds": 120,
+    "term_grace_seconds": 30,
+    "documents": [
+      "5793168",
+      "11235872"
+    ],
+    "actual_updates_each": 1,
+    "weights_discarded": true
+  },
+  "formal": {
+    "cap_seconds": 900,
+    "term_grace_seconds": 30,
+    "conditional_on_measured_cost_fits": false,
+    "fresh_model": true,
+    "full_inputs": true,
+    "measured_estimate_seconds": 263.02657568780705
+  },
+  "decoder": {
+    "globalNER_logit_gt": 0.0,
+    "patient_logit_gt": 0.0,
+    "raw_globalNER_floor_inclusive": -2.0,
+    "all_patient_logits_for_retained_raw": true,
+    "normalization": "strict-whole-span-v1 + public-Sap-conservative-v1 unchanged; assets mandatory, no silent strict-only"
+  },
+  "quality": {
+    "primary": "B471 union all new",
+    "diagnostic": "new only, entity B fixed",
+    "both_jointfreeze": true,
+    "new_v2": 2,
+    "old_v2": 0,
+    "baseline_score": 0.6863389812716092,
+    "strictly_greater_to_keep": true,
+    "held": "pure F1 16docs/39patients",
+    "originaldev": false
+  },
+  "pre_gpu_revision": {
+    "supersedes": "86b37baf balanced-BCE preparation, no model/quality ran",
+    "reason": "Keep established GP multilabel loss; avoid mean-negative BCE dilution with millions of spans",
+    "bag_loss_unchanged": true,
+    "geometry_unchanged": true
+  },
+  "cpu_complete": {
+    "remote_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/cpu-complete.json",
+    "sha256": "6f5c0f66d4525c4a0ff805f6d805345f4552e2a94f902ea2d35171eb159b3344"
+  },
+  "baseline": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/supported.pred.jsonl",
+    "bytes": 155402,
+    "sha256": "2a65056f8c47738b8a5d8f54a8e36bbc68e68e9a3657a237c56ccd9f3241b7d0"
+  },
+  "baseline_metrics": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/actual-v1/fold1/metrics.json",
+    "bytes": 13187,
+    "sha256": "59242df4e4bb406b077af54cad1d8c3ad41c607a47bb0bfc78c672e905920afd"
+  },
+  "quality_refs": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "gold": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+      "bytes": 525710,
+      "sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    }
+  },
+  "quality_reference_note": "Copied frozen refs without opening held gold; quality reads only after full16 normalization/common freeze/format and exclusive evaluation intent.",
+  "normalization": {
+    "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/round2/models/SapBERT",
+    "bank": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/public-bank",
+    "input": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/held.jsonl",
+    "train": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/cpu-v1/input/train.jsonl",
+    "hpo": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/ner-augmentation-control/hp.obo",
+    "public_bank_sha256": "bc4ea231f10cab61db652900f59e5f1eab75bc2dad840a47d5b6669e4a227a59",
+    "policy": "grounded-public-sap-conservative-v1",
+    "minimum_cosine": 0.9,
+    "minimum_distinct_concept_margin": 0.03,
+    "all_other_policy_rules_unchanged": true
+  },
+  "effective_preparation": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/patient-conditioned-spans-v1/duration24-v1/source/effective-preparation.json",
+  "previous_fixed8": {
+    "terminal": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/terminal-manifest.json",
+      "bytes": 8175,
+      "sha256": "e6dad33b8e2f1c4ad34bc5a3fbcc5f0101e395d2460338493d45d9886a8842d6"
+    },
+    "quality": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/quality-v1/result.json",
+      "bytes": 3948,
+      "sha256": "b38c860e4b8bd5a4097c72139e2ec3efba9fece36823406c2682f2f91ecb5623"
+    },
+    "train_diagnosis": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/training-diagnosis.json",
+      "bytes": 4705,
+      "sha256": "fd556eacd7dc5646295604e7ea26a3c8e26b65020d6167b52024f5be86e75b1d"
+    },
+    "review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-conditioned-spans-final-review/review.json",
+      "bytes": 15753,
+      "sha256": "f74ef7e3800438fb7f123c92555470271a856e9c584c245d749d59bf1d018b41"
+    }
+  },
+  "reuse_no_new_probe": {
+    "geometry_and_tokens": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/cpu-complete.json",
+      "bytes": 8540,
+      "sha256": "6f5c0f66d4525c4a0ff805f6d805345f4552e2a94f902ea2d35171eb159b3344"
+    },
+    "two_actual_updates": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-conditioned-spans-v1/collected/probe-v1/native/complete.json",
+      "bytes": 2456,
+      "sha256": "d5b19dc58a8a6e6feca1d85bf4330d467f417ba937c4d8afa67726456b2fe9db"
+    },
+    "new_probe": false
+  },
+  "only_method_change": "Fixed fresh24 epochs/768steps, proportional10%warmup76; same all data/seed/graph/heads/loss weights/base LR/decoder/normalization. Final epoch only.",
+  "checkpoint_storage": "final deployment state only, file+parent fsync and actual CPU reload keys/shape/dtype/value equality to live state_dict; no extra forward, no optimizer/RNG"
+}

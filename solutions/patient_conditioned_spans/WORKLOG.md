@@ -1,13 +1,13 @@
 # 患者条件跨度路线台账
 
-当前：E-20261024-PCS-001 **完整有效负结果，固定8轮配方关闭**。独立终审 f74ef7e3 通过；全部源码与结果保留，未迁F0/full64/原dev。
+当前：原8轮控制完整有效负结案并终审；已获批独立 E-20261024-PCS-002-DURATION24，正在冻结 fresh24轮/768步时长对照，尚未启动。
 
 目标是改善患者归属与候选池外漏概念，检验整文共享编码、患者条件跨度与概念级 max-MIL；不重复已负的公共候选对 DocRE 或无患者条件 GP。
 
 - 依据：[实验方案](experiments/E-20261024-PCS-001.md)、[注意事项](NOTES.md)、[证据索引](evidence/cpu-ready.json)。
 - train32 F2+F3 / pure F1：87 / 39 患者，所有文献、锚点、全文窗口均保留。
 - CPU-v2：813 个可监督正袋、1 个 masked 正袋；3 个不精确词片正跨度的覆盖候选不作为 NER 负例。完整数目与口径见实验。
-- 下一步：固定fresh8epochs +完整F1 +严格/Sap规范化在共享900+30窗口运行；两完整端点共冻后各1v2。工程原120窗口实际15.558s，峰allocated3.755GB，参数109187713，两个整文形状全部真实更新通过，12:40:06.810949实际release。CPU原start UNKNOWN已恢复同PID完整终态，无重启。
+- 下一步：同源同图同loss，仅fresh24轮/768步/warmup76，复用原CPU与两图probe，900+30，完整两端点共冻后2v2。工程原120窗口实际15.558s，峰allocated3.755GB，参数109187713，两个整文形状全部真实更新通过，12:40:06.810949实际release。CPU原start UNKNOWN已恢复同PID完整终态，无重启。
 - 禁止依赖 held gold 调 cut；未训练、未推断、未评分。原 sampled 成功记录及所有旧路线保持原样。
 
 事前修订：86b37baf 的 balanced-BCE 准备保留且未执行任何 GPU/质量。为保持本次关键变量为患者条件和 latent bag，正式 NER 改用原 GP 的 multilabel categorical loss；完整几何不变，新增高分稀有负例影响/有限梯度 CPU 合同。
@@ -24,3 +24,5 @@
 证据：原88内容包866369B/5b355298完整回收；48质量内容包121117B/4b45c790已远端文件fsync、重开全成员SHA及完整readback。末轮部署checkpoint436837342B/f556e751留.100，文件fsync与SHA实核，无optimizer/RNG或数值reload。
 
 只读后继诊断：两训练分项在第8轮仍下降；813正/2381负/1masked，256步。仅建议事前固定fresh24轮/768步检验优化充分性，估263秒；尚无新GPU授权，不自动重训/扫cut。当前原dev最佳ee39保持不变。
+
+后继root明确授权duration24：见 [独立计划](duration24/README.md)。原8轮所有源、模型和负质量均保留，新checkpoint只部署，不是full-resume。
