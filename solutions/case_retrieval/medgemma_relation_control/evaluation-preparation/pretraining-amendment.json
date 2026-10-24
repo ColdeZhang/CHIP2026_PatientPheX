@@ -1,0 +1,56 @@
+{
+  "schema": "patientphex-medgemma-quality-pretraining-amendment-v1",
+  "fixed_utc": "2026-10-24T03:22:15.996989+00:00",
+  "policy": {
+    "primary": "MedGemma native full-bundle text-only fresh strict32 two-epoch adapter; frozen original80 parser and baseline-rule fallback",
+    "secondary": "literal per-document per-patient set union of cached old-SFT32 and primary MedGemma relations",
+    "selection_comparator": "cached old-SFT32 baseline",
+    "retention": "relation micF1+macF1 strictly increases AND macF1 does not decrease",
+    "union_vs_medgemma": "report differences only; no additional selection/combinations",
+    "evaluation": "both complete predictions frozen first; each one unchanged v2 all/text call; old metrics cached",
+    "nonrelation": "original baseline bytes outside each top-level association value preserved exactly",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false,
+    "F0_originaldev_official": false
+  },
+  "owner_pretraining_amendment": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/formal-preparation/pretraining-amendment.md",
+    "bytes": 1002,
+    "sha256": "d97d36b3e498786ff42af1828a52dcef1ec0ab03c58994ffaff75cb28c606fae"
+  },
+  "historical_preparation_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/plan.json",
+    "bytes": 6252,
+    "sha256": "827b02d9c0e4bb4b072b30c0503045780c7cd1db769ff674ae6c37ed05911e25"
+  },
+  "supersedes_old_quality_scope": "The old preparation standalone-only/no-union evaluation choice is replaced by the explicitly authorized primary standalone and prespecified secondary old-SFT32 union. Original training data, native decoding, parser and all/text evaluator remain fixed.",
+  "endpoint_source_sha256": "22aec1f43fc6c5498404bd7e9cfb2c599216a6d94b8d5cc68e3f31752081744b",
+  "endpoint_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/evaluate_medgemma.py",
+    "bytes": 21903,
+    "sha256": "22aec1f43fc6c5498404bd7e9cfb2c599216a6d94b8d5cc68e3f31752081744b"
+  },
+  "freeze_plan_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/freeze_plan.py",
+    "bytes": 1879,
+    "sha256": "24d213e542d45219b8c24258a82d82e9191127959e6482f07f8723daf078c102"
+  },
+  "utilities_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/evaluate_paired.py",
+    "bytes": 20575,
+    "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+  },
+  "cpu_contract_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/cpu_contract.py",
+    "bytes": 5620,
+    "sha256": "6e5b59ab016d59d4e3a598bf717a152600f228449a20ca131895cd4db3fcfc0c"
+  },
+  "cpu_contract_receipt": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/evaluation-preparation/cpu-contract.json",
+    "bytes": 1064,
+    "sha256": "5127abfc49613fcf3d16f1d6a0d0ecd2bb0bccf2ce6a845fbee0e064d8fdd523"
+  },
+  "no_new_quality_observed": true,
+  "scope": "F1 development, cached known old baseline; no F0/originaldev/official; no extra search or quality calls; no automatic migration.",
+  "pre_review_correction": "Model asset source is medical-small-model-readiness/assets/expected-files.json (19-file list, SHA690e0829...), not medgemma-relation-control/source-manifest.json (repository/source provenance record). No training or quality execution used the initial mistaken pin."
+}
