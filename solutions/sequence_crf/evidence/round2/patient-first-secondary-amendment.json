@@ -1,0 +1,23 @@
+{
+  "at_utc": "2026-10-24T02:50:16.219700+00:00",
+  "authorization": "root explicit conditional amendment before any NEW patient-first F1 quality is read",
+  "new_patient_first_quality_read": false,
+  "new_patient_first_responses_read": false,
+  "inference_start_already_requested": true,
+  "inference_job_file_present": true,
+  "timing_qualification": "Inference request preceded this amendment; no response or new quality had been read. This implements the explicit pre-new-quality condition, without changing GPU inference.",
+  "primary_original_preserved": true,
+  "primary_endpoint_plan_sha256": "bb375d9cc6aafe2528a0b6f0619b2a987e27447e816803e64f685cee6cf890c6",
+  "primary_finish_source_sha256": "8fd2809a5e5619887abe5dea14da923799554f83906a9e125f9718853cdae4d5",
+  "secondary": "Exact old SFT32 associations UNION new patient-first associations, with identical1189 entities and candidate pool1557 pairs.",
+  "arms": [
+    "primary_patient_first_alone",
+    "secondary_old_SFT32_union_patient_first"
+  ],
+  "keep_for_each": "delta(micF1+macF1)>0 and delta(macF1)>=0 versus existing oldSFT32 metrics",
+  "threshold_scans": false,
+  "other_new_combinations": false,
+  "training_or_inference_recipe_changed": false,
+  "common_full_prediction_freeze_before_first_new_gold_read": true,
+  "quality_calls": "Exactly one evaluator v2 per new arm; reuse old SFT32 metrics without reevaluation"
+}

@@ -150,3 +150,10 @@ ontology于01:52:11实际run_command恢复成功后，本方案仅在自有目�
 02:48:06完整训练结束：2epochs/32calls，native1141.720450s/wrapper1142.721851s，rc0；epoch2 556.414091s、平均group训练loss .1188598782，原source a3ec17f5、总参数8,997,081,600。峰allocated36,737,212,416B、reserved80,752,934,912B；虽然缓存占用较高，完整两轮确实通过，未改allocator/loss/序列长度。14个终点原件已完整回收SHA；complete e327ce9d、最终checkpoint metadata d85779c4。02:48:06.295实际卡1MiB无process，仍留给本camp最终80，未移交。
 
 原CPU导出server proc_8f851455-e691-4bd4-940f-a58d1142c333在02:48:34.520Z启动、fetch proc_8cb892f7-d77a-43d2-9cf1-1c25996b4fe7在02:48:40.711Z启动；共享绝对deadline1792810293.624+TERM10。来源仅自有epoch2，目的.100持久目录，其他8.64GB复制已协调避让。此时尚未取得持久ACK，不提前声称备份成功，也未开始80推断或读取gold。[完整训练结果](../evidence/round2/patient-first-formal-training-results.json)。
+
+
+### 读取新质量前的唯一并集附加协议
+
+主线程根据已核官方“每个单模型≤10B”规则纠正，明确授权增加一个secondary＝旧SFT32∪新patient-first关联，原primary与keep不变。02:50:16.219Z amendment f43f6f60冻结，此时没有读取任何新patient-first raw或质量。时间限定如实保留：固定80推断已02:49:53.527启动，早于此amendment约23秒，因此这是pre-quality，不称pre-inference；训练、推断、预算完全未变。原primary endpoint bb375/finish8fd源与计划快照保留。
+
+新增secondary_union.py只做同1189实体/1557候选对上的集合并集，不增加阈值或其他组合，不改变任意非关联/患者元数据；原primary fullpred和此secondary共同freeze后才分别唯一v2，旧指标复用不重评，两臂各按delta(micro+macro)>0且macro不降判断。新增CPU合成检查覆盖共享/新增/空集合、输入未被修改及实体变更/患者元数据变更/池外关系/重复关系拒绝；未读取实际新输出或gold，不重复旧schema/CPU/GPU合同。相关source与amendment先push再执行端点。
