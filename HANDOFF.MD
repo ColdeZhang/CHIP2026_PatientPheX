@@ -111,6 +111,8 @@ dev 金标包含 6 项 `HP:ddddddd;HP:ddddddd` 关联。公共评测初版保留
 
 **避免方法**：仅拆分完整合法 HPO 复合串，不能盲目按分号拆自然文本或 MESH。公共评测已在 `92fa1f8` 修复为 `patientphex-public-approx-v2`，14 项测试通过；旧指标保留，新结果另存。训练侧未修正的路线在实验报告明确限制。alt ID、范围外金标与正文口径仍属官方未知项，不能悄改。证据见 [评测复核](docs/experiments/day1-evaluator-review.md)。
 
+补充诊断边界（2026-10-24）：预测不得重复投票的断言不能直接套到gold。固定多数投票的F1评分已成功保存，随后诊断因gold合法重复表型而退出，F0尚未评分。gold统计应沿冻结`evaluator.associations`的集合与同患者覆盖语义；恢复先核实际call-start/metrics，保留已有F1，只完成未执行的F0，不整组重评。原failure与机械源diff保留在序列方案单份终态`research_readonly/majority_vote_control/terminal-summary.json`（SHA`680a4973…`），完整负结果`d55a28d1…`；没有改变评测器或gold。
+
 ## H17：候选构造的训练自包含会掩盖模糊检索价值
 
 模糊路线初版训练候选仍能使用当前训练文献自己的金标别名，即使特征统计排除当前文献，也使正例几乎都是精确候选。按文献排除候选别名后，模糊输出增加，但本次总体得分下降。
