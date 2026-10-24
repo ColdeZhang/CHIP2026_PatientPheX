@@ -41,8 +41,8 @@
     },
     "source": {
       "path": "/workspace/patientphex-worktrees/explore-relation-consensus/solutions/relation_consensus/run.py",
-      "bytes": 6434,
-      "sha256": "cda25adc65b575c8d374a6b5159427794233ade1ca24287293ed8e97801a7407"
+      "bytes": 6582,
+      "sha256": "70760f9b6cefe1d91358cab6fec040227304c2ae42dd08cbbd0c0c28336ff0f2"
     },
     "schema": {
       "path": "/workspace/patientphex-runs/round2-20261023/stage8-schema-extraction/quality-v1/new-alone.pred.jsonl",
@@ -70,7 +70,7 @@
       "sha256": "5c04357465df8725fbd6b6e56a2cd229639708382930c95d94f570f02ffa50f6"
     }
   },
-  "output": "/workspace/patientphex-runs/round2-20261023/research/docre-schema-intersection-20261024/actual-v1",
+  "output": "/workspace/patientphex-runs/round2-20261023/research/docre-schema-intersection-20261024/actual-v2",
   "budget": {
     "GPU": 0,
     "fit": 0,
@@ -81,5 +81,6 @@
   "success": "Full default v2 all/text Score strictly above strongfullsupport .6863389812716092; macro reported unconditionally. No quality if zero added supply; no further subset/cut search.",
   "scope": "F1 complete16docs/39patients/1189 fixedentities. DocRE and schema train-derived normalizer use stricttrain32; baseline support trained48 excludes F1. Originaldev untouched.",
   "disclosure": "All F1 has been used for methoddevelopment; both constituent negative results already known. This is an additional development control, not blind. Gold is read only after full prediction freeze; no labels select individual additions.",
-  "recovery": "run.py assemble first, then evaluate exactly once. Existing output/intent refuses blind retry; inspect artifacts on interruption."
+  "recovery": "run.py assemble first, then evaluate exactly once. Existing output/intent refuses blind retry; inspect artifacts on interruption.",
+  "mechanical_recovery": "actual-v1 failed before prediction/gold because document schema reader was used for pair-score records; original source/plan/failure preserved. Only pair-row reader corrected."
 }

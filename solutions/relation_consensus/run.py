@@ -50,7 +50,9 @@ def run(plan_path, mode):
     if mode == "assemble":
         output.mkdir(parents=True, exist_ok=False)
         write(output / "assembly-start.json", {"at_utc": now(), "plan": identity(plan_path)})
-        rows = {k: va.load_jsonl(verify(refs[k])) for k in ("input", "baseline", "schema", "docre_scores")}
+        rows = {k: va.load_jsonl(verify(refs[k])) for k in ("input", "baseline", "schema")}
+        rows["docre_scores"] = [json.loads(line) for line in
+                                verify(refs["docre_scores"]).read_text().splitlines() if line.strip()]
         baseline = {str(d["pmc_id"]): d for d in rows["baseline"]}
         schema = {str(d["pmc_id"]): d for d in rows["schema"]}
         inputs = {str(d["pmc_id"]): d for d in rows["input"]}
