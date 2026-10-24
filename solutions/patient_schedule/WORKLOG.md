@@ -25,3 +25,5 @@ Git：上一个已核远端源码检查点`c3c5991`；最终prepared检查点将
 实际启动：fresh全部15资产SHA、GPU1MiB无apps、SHM220.026GB、项目1.485GB、.100411.545GB；首watch inspect已过token audit/GPU门，在加载base。51成员688033B准备包`7e6b2b1b…`已.100真实fsync/reopen全SHA，包含私有输入/预测，不能进公共review-index。current pointers与原start意图见ready，原训练state与大raw继续外存。
 
 10:18本地监控恢复：原PID/exec已失、无failure/complete，根因未知；原远端epoch1训练仍健康，root最新发布step10/loss.19727。新增独立恢复目录watch-recovery-1，锁定单owner、脱离短工具launcher，复用旧watch/operations且保原deadline；首次查询等root原inspect+120秒，不立即重复。训练本身从未重启。
+
+10:21接续已实际闭环：epoch1 rc0/590.267秒/16updates；.100完整520024097B于10:21:37取得SHA/fsync/reopen ACK（58.451秒），source ACK副本6220ce84；原daemon10:21:55唯一启动epoch2 proc_8bfcfd40/PID52010，仍原11:38:41.825555截止。此时仅start已确认，模型内部完整state恢复以其后续原收据为准。见evidence/epoch1-durable-epoch2-start.json。
