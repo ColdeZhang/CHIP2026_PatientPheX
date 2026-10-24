@@ -35,8 +35,8 @@ def main():
     assert result['exit_code']==0,result.get('stderr');ready=json.loads(result['stdout']);write(out/'ready.json',ready)
     assert ready['terminal'] and ready['driver_status'] in ['COMPLETE_THREE_PHASES','STOPPED_ORIGINAL_NO_RETRY']
     wanted=ready['archive'];data=bytearray()
-    for pos in range(0,wanted['bytes'],1048576):
-        r=call('read_file',dict(mount_id=MOUNT,path=wanted['path'][len(P)+1:],offset=pos,limit=min(1048576,wanted['bytes']-pos)),f'read-{pos}')
+    for pos in range(0,wanted['bytes'],131072):
+        r=call('read_file',dict(mount_id=MOUNT,path=wanted['path'][len(P)+1:],offset=pos,limit=min(131072,wanted['bytes']-pos)),f'read-{pos}')
         data.extend(base64.b64decode(r['content']) if r.get('encoding')=='base64' else r['content'].encode())
     assert len(data)==wanted['bytes'] and hashlib.sha256(data).hexdigest()==wanted['sha256']
     archive=out/'terminal.zip'
