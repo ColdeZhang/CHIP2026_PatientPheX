@@ -9,3 +9,5 @@
 Score .7542169692819372→**.7543613981990362（+.0001444289170991）**；men .7928011075219197、doc .8286778398510242完全不变；micro .7369640787949016→.7387802071346375（+.001816128339736），macro .6584248509599031→.6571864382885636（−.001238412671340）。新增3TP3FP。按固定Score门是候选全局best，无额外macro否决门，但增益微小、macro降低须如实报告。距.8尚差.045638601801；未达标，不合并实现或官方上传。
 
 外部D=`/workspace/patientphex-runs/round2-20261023/research/support-plus-patient-six-delta`；全部pred/freeze/metrics留外部，Git仅[结果](../evidence/support-patient-synthesis/result.json)、[终点索引](../evidence/support-patient-synthesis/terminal-summary.json)及源计划。[恢复入口](../support_patient_synthesis/README.md)。当前等待统一终审及持久小包；不重复评测。
+
+统一终审76ada874（11846B）PASS，核全部1061实体/410关系及非关系原字节、六差集/54public实际空交和2删除缺席、冻结与单v2顺序；root已正式接受9016863c为当前best。完整两LoRA资源清单另列，不把新patient模型当旧adapter重复推断。root另授权173MB新adapter-only备份.100，原A100完整Adam/RNG保持；该恢复副本与当前质量已接受独立。

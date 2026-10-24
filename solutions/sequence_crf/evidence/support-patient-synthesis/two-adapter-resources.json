@@ -1,0 +1,109 @@
+{
+  "status": "two_distinct_full64_Qwen_adapters_same_frozen_base",
+  "recorded_at_utc": "2026-10-24T06:24:43.354290+00:00",
+  "base": {
+    "model": "Qwen/Qwen3.5-9B",
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "source_manifest_sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "actual_base_files_identical_between_two_adapters": true,
+    "A100_and_persistent100_model_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "text_base_parameters": 8953803264,
+    "adapter_parameters_each": 43278336,
+    "loaded_single_model_plus_one_adapter_parameters": 8997081600,
+    "distinct_fitted_adapters": 2,
+    "not_one_adapter_repeated_inference": true
+  },
+  "old_relation_adapter": {
+    "use": "Existing old/reverse/public relation policies underlying3049",
+    "persistent_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "persistent_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/full64-dev-transfer/adapter-epoch002",
+    "files": {
+      "adapter_config.json": {
+        "bytes": 1287,
+        "sha256": "c4a478a7dd1aa65613279cdd4250da344ca16df8605de4249f445a1de2e8f2e2"
+      },
+      "adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b"
+      }
+    },
+    "actual_copy_evidence": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-dev-transfer-preparation/adapter-transfer-evidence.json",
+      "bytes": 1020,
+      "sha256": "2951532884a82f62e4e1938e1e13658062214011d89358ad552d6b61fc83aea8"
+    },
+    "original_checkpoint_metadata": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10774,
+      "sha256": "f217bdc5bd191fe4319c38c99b46ef7b8d1f505d5f89d8c4d2e21a9425511e87"
+    },
+    "optimizer_rng_locator": {
+      "mount": "69b991ee-183f-4add-af1a-579af92479c9",
+      "directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/epoch-002",
+      "training_state_sha256": "38b9877a280c7f300878f93d9f362803f75b011a6cb5fd26eb6bf78c3fd66c88",
+      "original_adapter_weight_deleted_after_prior_verified_copy": true,
+      "not_currently_self_contained_without_persistent100_weight": true
+    }
+  },
+  "patient_adapter": {
+    "use": "Distinct patient-first full64 selected-CE fit; original64 inference and exact six incremental relation keys",
+    "source_mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "original_complete_checkpoint_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/run/formal2ep/epoch-002",
+    "files": {
+      "adapter/README.md": {
+        "bytes": 5352,
+        "sha256": "bd7363c9041c455304d35f564fd75126a6bf31a4b8661ea33006050aba917e93"
+      },
+      "adapter/adapter_config.json": {
+        "bytes": 1341,
+        "sha256": "1ddab7dd3f78669538f8087fa4b1d03e62d1e4501d377ac5581b5fb28686b2ae"
+      },
+      "adapter/adapter_model.safetensors": {
+        "bytes": 173181072,
+        "sha256": "f787f18de7843f4af092e0a36ab5df05e9109081c1d6df81b7c3d9cb864065b7"
+      },
+      "checkpoint.json": {
+        "bytes": 12697,
+        "sha256": "0f8cb039da6db2552eb8ef6693e087c4dc53b6b083ecb535896d131fff7f954d"
+      },
+      "training_state.pt": {
+        "bytes": 346666642,
+        "sha256": "689580a6125762b52df925cdb85431919f148e901429566b0aa5ca57671426b6"
+      }
+    },
+    "actual_training_durability": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/training-terminal/durability-epoch-002.json",
+      "bytes": 2234,
+      "sha256": "bd174b1fd07bb77b5494c8f6ade1627ebf010b71de3a2a3f710e5e20ab5cd8be"
+    },
+    "actual_checkpoint_metadata": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery/formal/training-terminal/epoch-002/checkpoint.json",
+      "bytes": 12697,
+      "sha256": "0f8cb039da6db2552eb8ef6693e087c4dc53b6b083ecb535896d131fff7f954d"
+    },
+    "second_inference_copy": {
+      "status": "NOT_COMPLETE_deployment_observation_error_no_HTTP_started_yet",
+      "target_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "destination": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-first-full64-selected-CE-formal-v1/inference-cache/epoch-002",
+      "four_file_plan": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/support-plus-patient-six-delta/adapter-copy/plan.json",
+        "bytes": 1525,
+        "sha256": "54c65279ac438b29e155039775bad5673e89d0a2087d379e9b3ffa59adb09bea"
+      },
+      "optimizer_not_copied": true
+    },
+    "original_optimizer_rng_state_retained": true
+  },
+  "accepted3049_packet_chain": {
+    "mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "archive_relative": "research/public-new-lgb-support-control-20261024/accepted3049-recovery-v1/accepted3049-cache-supplement-20261024T062040Z.tar.gz",
+    "archive_bytes": 95248,
+    "archive_sha256": "7d27735fbc7c966027f8fd2de8a385ab9bfe58509b596d8d60802080b584b1f1",
+    "manifest_relative": "research/public-new-lgb-support-control-20261024/accepted3049-recovery-v1/accepted3049-cache-supplement-20261024T062040Z.manifest.json",
+    "manifest_bytes": 21159,
+    "manifest_sha256": "2de7d23cc857e302fe0d3efacdbb5ae7ea68b0d0a5de7b1b8b34be20756199bb",
+    "root_will_do_one_actual_recovery_no_duplicate_here": true
+  },
+  "no_prior_weights_duplicated_in_small_packet": true,
+  "fresh_NN_reproduction_not_run": true
+}
