@@ -24,3 +24,11 @@
 [已冻结 CPU 计划](../public_neuralcr_readiness/cpu-preparation-plan.json)仅安全提取 `HP/ncr_weights.h5`、`HP/config.json`、`HP/onto.json`，拒绝链接与目录逃逸，不反序列化 pickle、不提取外部标注。核 H5 唯一对象和完整 fastText 字典/两个矩阵至精确 EOF；异常头结构先保留证据，不能把未确认布局直接交 C++ 或私自修改。
 
 原生加载另限总 180 秒，四个事前固定非空合成文本，保持 10 ensemble、原 `.8`、1–7 gram、原 overlap 政策。预先允许的一行兼容改动仅 `tensorflow` → `tensorflow.compat.v1`；数学不变。检查实际权重恢复、概率有限、返回字符坐标与真实打分词串/原文的对应。不把接口通过当质量增益。首次故障保留，必要时仅一次有证据的接口修复；未完整下载/库存不足时不进入赛事质量。
+
+## 独立 attempt3：本地 Range / MCP 小片中转
+
+Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异常在响应 payload `read`，不能称 1800 秒耗尽或断定只是 GitHub 重定向慢。无旧 writer、全部稳定片段逐 SHA 冻结，累计可复用 **248,512,512 字节**。完整块耗时 2.16–164.90 秒，未观察到稳定相同连接限速。[终态清单](../public_neuralcr_readiness/resume-preparation/terminal-inventory.json)保存原 prefix、7 个完整块及各 partial；不覆盖首两轮。
+
+主线程另授权 attempt3 **3600 秒+TERM30**：[新计划](../public_neuralcr_readiness/local-relay-attempt3/plan.json)只补实际缺口，本机官方固定 ETag Range 8 MiB → MCP ≤512 KiB 写回 A100，单一总线程池 8；每片至多 3 次，保留所有成功片和本地 partial，单片失败不丢弃整批。HP 缺 485,966,150 字节优先补完，实际完整 SHA、安全提取与 H5 唯一 shape/count 后，只有替换 BioBERT 的完整参数投影可行才继续 fastText 1,194,470,407 字节缺口。保守仍计 input/output 两矩阵。两大完整文件到齐后才进行原定 180 秒合成原生检查。
+
+[网络普查](../public_neuralcr_readiness/network-census/summary.json)中本机同官方 1 MiB GET 约 .41 秒，4×512 KiB MCP 写 3.846 秒、含服务器 SHA 共 5.207 秒；吞吐投影不是保证，不增加探针或公网 tunnel。[无网络传输 fixture](../public_neuralcr_readiness/local-relay-attempt3/transport-check.json)通过中断只补余字节、单片重试、512 KiB 限制与 HP 参数门阻止 fastText；源/计划先提交推送后才启动 bulk。

@@ -1,3 +1,7 @@
+## NCR 当前恢复检查点（2026-10-24 00:46 UTC）
+
+公开 NCR readiness 尚无质量结果。前两轮下载均未完整，attempt2 payload timeout/rc1；248.51 MB 稳定片段已保存核验。现冻结独立本机 Range→MCP attempt3（3600+TERM30，≤8 workers，≤512 KiB），优先 HP 实际 H5 参数门后再 fastText。见 [协议](experiments/P-20261024-NEURALCR-READINESS.md)；无GPU/赛事输入。
+
 # 本体规则工作台账
 
 实验 `E-20261023-007`；分支 `round2/ontology-rules`。先读根 HANDOFF.MD，本方案只记录关键状态，完整过程见[实验](experiments/E-20261023-007.md)。
