@@ -13,3 +13,5 @@
 唯一 attempt2 作业 `proc_12da0748-d80a-4c7d-b1ee-6a222be4f36d`，02:21:02.777Z。完整终态和实际卡空后，`collect_artifacts.py` 只读回传紧凑NPY gzip、head、raw spans gzip与进度，64KiB/调用，逐件全SHA；本地已有16.45MB keys直接核验复用，不重传。不同本地NumPy只核存储，不重跑threshold解码。
 
 局部源审：attempt1→2 自 import numpy 到最终完整输出的整个AST相等（ca609406），初始化检查不改变GPU尾段。回传脚本还将逐条核实际raw span的原文坐标/cache行/HPO/score bits以及798个连续批区间，不做不同NumPy阈值解码。公共当前HPO映射仅源码与六合成检查已准备，尚未运行真实映射；fresh HGB纯静态计划已保存。
+
+实际 attempt2 主程序219.361秒/rc1：全部798批408272键、795新forward、683438候选离线解码5341rawspans完成。NPY/gzip生成后末尾manifest错误假设columns在attempt2目录，实际按prep复用于原目录，触发FileNotFoundError；02:24:47真实GPU空卡。原失败不改，下一CPU-only完整文件核验后另写恢复清单。TF32实际前测false；末尾查询因此前dictcomp异常未执行，缺测明确保留，不能编造。一次monitor read UNKNOWN后隔约60秒回收成功，不重启原任务。
