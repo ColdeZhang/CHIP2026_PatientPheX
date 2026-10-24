@@ -30,6 +30,17 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument('--plan', type=Path, required=True);a=ap.parse_args()
     plan=json.loads(a.plan.read_text());out=a.plan.parent
     assert plan['policy']=='fixed_old1a703b_official901_B_arm_v1'
+    root=Path(plan['project_root']).resolve()
+    assert out.resolve().is_relative_to(root)
+    def fsync_parent_chain():
+        cursor=out.resolve()
+        while True:
+            fd=os.open(cursor,os.O_RDONLY)
+            try:os.fsync(fd)
+            finally:os.close(fd)
+            if cursor==root:break
+            cursor=cursor.parent
+    fsync_parent_chain()
     assert plan['arm'] in ('normal','reverse','public-new')
     assert 60 <= plan['cap_seconds'] <= 10800 and plan['term_grace_seconds']==30
     assert not (out/'launch-started.json').exists() and not (out/'responses.jsonl').exists()
@@ -77,6 +88,7 @@ def main():
         wall_seconds=time.time()-started,finished_utc=datetime.now(timezone.utc).isoformat(),files=members,
         gpu_after=release_gpu,processes_after=release_processes,
         scope='Old frozen1a703b officialB inference only; no training/quality/upload. All completed raw IDs and responses preserved on failure.'))
+    fsync_parent_chain()
     print(json.dumps(dict(exit_code=rc,timeout_triggered=timeout,arm=plan['arm'],wall_seconds=time.time()-started)),flush=True)
     raise SystemExit(rc if not timeout else 124)
 

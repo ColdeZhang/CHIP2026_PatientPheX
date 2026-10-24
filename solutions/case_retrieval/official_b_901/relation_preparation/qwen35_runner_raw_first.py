@@ -185,6 +185,12 @@ def main():
     atomic_json(checkpoint, fingerprint)
     raw_ids_dir = output.with_suffix(".raw-ids")
     raw_ids_dir.mkdir(exist_ok=True)
+    # Persist the newly created raw-directory entry before first generation.
+    parent_fd = os.open(output.parent, os.O_RDONLY)
+    try:
+        os.fsync(parent_fd)
+    finally:
+        os.close(parent_fd)
     row_indices = {row["row_id"]: i for i, row in enumerate(rows)}
     expected_saved = {f"{row_indices[rid]:05d}.json" for rid in done}
     if {p.name for p in raw_ids_dir.iterdir()} != expected_saved:

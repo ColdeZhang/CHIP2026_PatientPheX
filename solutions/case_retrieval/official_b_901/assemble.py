@@ -136,7 +136,7 @@ def main():
         assert manifest['expected_rows']==manifest['native_input_rows_verified']==len(arm_prompts[arm])
         finger=manifest['fingerprint']
         assert finger['prompts_sha256']==refs[arm+'_prompts']['sha256']
-        assert finger['source_sha256']=='f9c1b3ce0ff794e1b0c2adaca2a42370a1629042f893e3b1d2c25734b910d420'
+        assert finger['source_sha256']=='fe98e76d3692401df9207f67ace24cef57249944ef846b08bc45f8675e0e1333'
         assert finger['source_manifest_sha256']=='74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7'
         assert finger['adapter_files']['adapter_model.safetensors']=='1a703b244b17c1378b383e4d6feefe2486b1a888e78cbd6f9f25c3fa6e46f45b'
         assert manifest['total_parameters']==8997081600
