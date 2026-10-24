@@ -1,0 +1,78 @@
+{
+  "status": "FAILED_FIRST_ROW_LOSS_INTERFACE_GUARD_PRESERVED_NO_RETRY",
+  "job": {
+    "command": "/dataset/miniforge3/envs/vlm-det/bin/python -u probe_driver.py",
+    "id": "proc_470248fd-6214-4214-8ab2-02f57590ab3b",
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "pid": 4698,
+    "port": 36292,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-24T08:31:12.12325686Z"
+  },
+  "failure": {
+    "at_utc": "2026-10-24T08:32:23.222058+00:00",
+    "stage": "forward_row_01",
+    "last_row": {
+      "ordinal": 1,
+      "row_id": "12811285:relations:0",
+      "original_index": 62,
+      "tokens": 2704,
+      "supervised_tokens": 39
+    },
+    "actual_updates": 0,
+    "error_type": "AssertionError",
+    "message": "",
+    "elapsed_seconds": 70.84125611558557,
+    "no_retry": true,
+    "no_checkpoint": true,
+    "no_quality": true,
+    "cuda_memory": {
+      "peak_allocated_bytes": 20299819008,
+      "peak_reserved_bytes": 21078474752,
+      "free_bytes": 20678246400
+    }
+  },
+  "wrapper": {
+    "at_utc": "2026-10-24T08:32:24.367820+00:00",
+    "returncode": 1,
+    "timed_out": false,
+    "elapsed_seconds": 72.0354464314878,
+    "cap_seconds": 240,
+    "grace_seconds": 30,
+    "child_pid": 4722,
+    "complete_exists": false,
+    "failure_exists": true,
+    "gpu_release": {
+      "at_utc": "2026-10-24T08:32:24.368025+00:00",
+      "gpu": "0, GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 25988, 14350, 40960\n1, GPU-fcb63542-b461-df9c-48ef-a351284f11da, 37913, 2426, 40960\n2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40339, 40960\n3, GPU-f5417237-913f-06e6-77bc-00d0ce84b68b, 19607, 20732, 40960\n",
+      "processes": "GPU-f0a95935-ce63-211a-b236-df14de82f8ab, 100456, 5672\nGPU-f0a95935-ce63-211a-b236-df14de82f8ab, 173597, 20302\nGPU-fcb63542-b461-df9c-48ef-a351284f11da, 97720, 37904\nGPU-f5417237-913f-06e6-77bc-00d0ce84b68b, 173610, 19598\n",
+      "disk_free_bytes": 51942805504
+    },
+    "target_has_no_process": true
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/probe-v1/collection.json",
+    "bytes": 6172,
+    "sha256": "7199bb34a898ac46735949233190811455ffbec4b6842ecd709e2ec24f0e576e"
+  },
+  "stderr": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/probe-v1/terminal/stderr.log",
+    "bytes": 7612,
+    "sha256": "c74ba2b0b442118a90ba36d01fcbe002d1af5c96ce0d68e2652a052fe50f4f6b"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/row_loss_scope.py",
+    "bytes": 2993,
+    "sha256": "97a0c5ce8784a6723640c84331a76f98e413197329866dc31986dccc22db468c"
+  },
+  "exact_failure": "row_loss_scope.py:22 asserts num_items_in_batch is None and ignore_index == -100 and shift_labels is None and not kwargs",
+  "call_stack": "Actual PEFT peft_model.py:2120 \u2192 native Qwen modeling_qwen3_5.py:1726 \u2192 row hook guard. Full head forward reached hook; mixed_loss core was not called, no backward/Adam/quality.",
+  "kwargs_not_recorded_in_original_failure": true,
+  "diagnosis_pending": "Read exact installed PEFT/generic source before compatible whitelist; do not assume all assertion conjunct values from traceback alone.",
+  "no_OOM_or_timeout": true,
+  "no_optimizer_updates": true,
+  "original_CPU_contract_not_reexecuted": true,
+  "budget": "Original attempt ended72.035s. Remaining original absolute240 deadline insufficient for another load+12backward; no restart or implicit extension.",
+  "original_GPU_released": true
+}
