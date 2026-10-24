@@ -1,0 +1,72 @@
+{
+  "schema": "patient-balanced-interface-contract-plan-v1",
+  "status": "SOURCE_PREPARED_NOT_EXECUTED",
+  "budget_seconds": 10,
+  "grace_seconds": 1,
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/interface_recovery/interface_contract.py",
+    "bytes": 18646,
+    "sha256": "f4a6325c0f4261f0a7d24df907c17ba9d5e0914c368a0e31960ba0d74616f044"
+  },
+  "references": {
+    "peft_forward": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/interface-recovery/peft_forward.py",
+      "bytes": 4014,
+      "sha256": "021d3f71ec3aead069cc00ba687c2eefcab6601ddf4341e93b453f48c44e7428"
+    },
+    "return_decorator": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/interface-recovery/return_decorator.py",
+      "bytes": 765,
+      "sha256": "731c6ba6836044bb499a2293f1e85c3386af60762b109297741062252e0e1da3"
+    },
+    "source_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/interface-recovery/source-manifest.json",
+      "bytes": 1204,
+      "sha256": "78e66621e7ce513b9181d534182c07348be69fdd40262589baca12bd5cd62241"
+    },
+    "qwen_modeling": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-feasibility/independent-review/modeling_qwen3_5.py",
+      "bytes": 87985,
+      "sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3"
+    },
+    "old_hook": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/row_loss_scope.py",
+      "bytes": 2993,
+      "sha256": "97a0c5ce8784a6723640c84331a76f98e413197329866dc31986dccc22db468c"
+    },
+    "new_hook": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/interface_recovery/row_loss_scope_v2.py",
+      "bytes": 4242,
+      "sha256": "7b9900fc4896f53b02f4edcbbd94799258c3bb8f91fec7c3b3768054d4690da8"
+    }
+  },
+  "output_directory": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/interface-recovery/python-contract-v1",
+  "execution_gate": "Parent exact source and plan push confirmed before unique local invocation",
+  "cases": 27,
+  "old_hook_cases": 4,
+  "new_hook_cases": 23,
+  "g_values": [
+    4,
+    8
+  ],
+  "expected_accepted_cases": 10,
+  "expected_rejected_cases": 17,
+  "algorithm": "AST extract unchanged real PEFT forward, Qwen3_5ForCausalLM.forward and can_return_tuple body; remove only Qwen auto_docstring metadata decorator; execute with pure Python identity sentinels and core recorder",
+  "scope": "ordinary LoRA; no prompt/POLY/MPT/aLoRA/special adapter arguments; get_alora_offsets is explicit identity stub; PEFT adapter hook context is explicit nullcontext",
+  "observations_before_assert": true,
+  "observer_persists_before_any_hook_compatibility_guard": true,
+  "no_Torch_Transformers_PEFT_import": true,
+  "no_real_target_values": true,
+  "no_model_or_loss_math_or_gradients": true,
+  "no_remote_or_GPU_or_fit_or_quality_score": true,
+  "no_reexecution_of_existing_numeric_contract": true,
+  "no_automatic_retry": true,
+  "old_hook_source_unchanged": true,
+  "does_not_prove": [
+    "real tensor CE or gradient math",
+    "model backward/checkpoint recomputation",
+    "LoRA/Adam update",
+    "GPU memory",
+    "quality"
+  ]
+}
