@@ -1,0 +1,151 @@
+{
+  "probe/complete.json": {
+    "value": {
+      "status": "COMPLETE_CANDIDATE_REAL_FB_ADAM_AND_CLOSED_MODE_GENERATE_PROBE",
+      "indexed_forward_backward": 13,
+      "optimizer_updates": 1,
+      "cost": {
+        "rule": "load+cold_first_FB+1.25*(actual_full_training_tokens*max_remaining_steady_FB_seconds_per_input_token+868*actual_first_Adam)+120s_two_ACK_IO",
+        "actual_full_training_tokens": 4004840,
+        "optimizer_updates": 868,
+        "steady_max_seconds_per_token": 0.0010884620746502937,
+        "actual_first_Adam_seconds": 0.06359991291537881,
+        "native_probe_wall_seconds": 8.717166072688997,
+        "cold_first_FB_seconds": 1.0041036270558834,
+        "estimated_formal_seconds": 5642.173936771378,
+        "budget_seconds": 7200,
+        "fits": true,
+        "legacy_native_including_cold_scaled_estimate": 9099.327219940722,
+        "diagnostic_worst_row_everywhere_estimate": 5764.299381547142,
+        "estimation_limit": "token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit"
+      },
+      "formal_budget_gate": true,
+      "probe_state_must_be_discarded": true,
+      "generation": [
+        {
+          "training_target_state": "HPO",
+          "index": 364,
+          "seconds": 0.8076693769544363,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "NIL",
+          "index": 1677,
+          "seconds": 0.7639210331253707,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "NO",
+          "index": 2768,
+          "seconds": 0.7616184898652136,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "OTHER",
+          "index": 1638,
+          "seconds": 0.7604643050581217,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        },
+        {
+          "training_target_state": "BOUNDARY",
+          "index": 3147,
+          "seconds": 0.7634911201894283,
+          "generated_tokens": 12,
+          "eos": true,
+          "capped": false,
+          "rejection": null,
+          "generated_mode": "HPO"
+        }
+      ],
+      "all_generated_tokens_within_actual_constraint": true,
+      "no_semantic_quality_claim": true,
+      "memory": {
+        "allocated": 16573116928,
+        "reserved": 16884170752,
+        "peak_allocated": 17648261632,
+        "peak_reserved": 17928552448,
+        "free_bytes": 8137342976
+      },
+      "at_utc": "2026-10-24T15:21:58.144541+00:00",
+      "elapsed_seconds": 20.46553818602115,
+      "phase": "probe"
+    },
+    "bytes": 2644,
+    "sha256": "415e805402ebd9eda16f59a13b84122fd02d1dedc975b20782f6f802652ea0f7"
+  },
+  "probe/cost.json": {
+    "value": {
+      "rule": "load+cold_first_FB+1.25*(actual_full_training_tokens*max_remaining_steady_FB_seconds_per_input_token+868*actual_first_Adam)+120s_two_ACK_IO",
+      "actual_full_training_tokens": 4004840,
+      "optimizer_updates": 868,
+      "steady_max_seconds_per_token": 0.0010884620746502937,
+      "actual_first_Adam_seconds": 0.06359991291537881,
+      "native_probe_wall_seconds": 8.717166072688997,
+      "cold_first_FB_seconds": 1.0041036270558834,
+      "estimated_formal_seconds": 5642.173936771378,
+      "budget_seconds": 7200,
+      "fits": true,
+      "legacy_native_including_cold_scaled_estimate": 9099.327219940722,
+      "diagnostic_worst_row_everywhere_estimate": 5764.299381547142,
+      "estimation_limit": "token scaling is an empirical cost estimate at observed shapes, not a worst-case runtime proof; recipe never shortened to fit"
+    },
+    "bytes": 808,
+    "sha256": "aa9999859a25a0947ee4422773baa2fcf2ea60390347ed52a2cb4f36622b935c"
+  },
+  "jobs/probe/ended.json": {
+    "value": {
+      "at_unix": 1792855318.8597727,
+      "child_exit_code": 0,
+      "seconds": 21.257432310376316,
+      "gpu": "0, GPU-126293b9-6677-8464-cee7-01e693efbf29, 0\n1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 0\n",
+      "apps": ""
+    },
+    "bytes": 216,
+    "sha256": "6c7b808f6ccc84f20a89c1fb7d8911a169edcbd4e71174a15bb227e4692100d5"
+  },
+  "jobs/formal/start.json": {
+    "value": {
+      "at_unix": 1792855319.0124533,
+      "command": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=30s",
+        "7200s",
+        "/home/zhangyuheng/projects/ScratchVL/.venv/bin/python",
+        "-u",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/application/gpu_entry.py",
+        "--plan",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-boundary-selection-v1/gpu-v1/application/gpu-plan.json",
+        "--mode",
+        "formal"
+      ],
+      "budget_seconds": 7200,
+      "grace_seconds": 30
+    },
+    "bytes": 543,
+    "sha256": "35056216ff9742893d23dc2f3b1fbf2435314bdff00f9d15988fcd9670eeb687"
+  },
+  "jobs/formal/child.json": {
+    "value": {
+      "pid": 2750096
+    },
+    "bytes": 21,
+    "sha256": "267b3b32242afecfdb46c51d7ea63d199ae80f120dc7b200a8146dd1f5654cf5"
+  }
+}
