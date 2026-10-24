@@ -1,0 +1,99 @@
+{
+  "scope": "Only same fixed47 inference migration after before-child A800 resource refusal. No training/decoder/parser/normalizer change.",
+  "original_sources": {
+    "run.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/run.py",
+      "bytes": 13300,
+      "sha256": "4252550603ba559119f76e59b1ba2ad79f0ded83f4925e4f0845122cf9db9136"
+    },
+    "infer_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/infer_driver.py",
+      "bytes": 5140,
+      "sha256": "3d3b339e4afa42b8b05b92d69bf297123359a4b9981de35cab7f5a230c541a0a"
+    },
+    "remote.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/remote.py",
+      "bytes": 19206,
+      "sha256": "9c006744994d6bac6ce158d830cff42d83ba889f6948cf7e6e58dbdb811648e5"
+    },
+    "collect.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/collect.py",
+      "bytes": 15349,
+      "sha256": "188437e5ca6954ac5f165b3f858076d2c0f981ccd7c047d86b2ab0693da11a6b"
+    },
+    "watch.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/watch.py",
+      "bytes": 2376,
+      "sha256": "fa48836879824dab132216950b908dc364c0b17351abfbd2470a3e756cf97cc4"
+    },
+    "launch_watch.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0/launch_watch.py",
+      "bytes": 3436,
+      "sha256": "23768b739c5ac71fc0f77e0e92d21fde1dbe72235ddb81a27f659ecb14832647"
+    }
+  },
+  "new_sources": {
+    "run.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/run.py",
+      "bytes": 13410,
+      "sha256": "7a4f1e299cee401b90462c3886030e221068933efa8db0d00c9e7088bfa8ff43"
+    },
+    "infer_driver.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/infer_driver.py",
+      "bytes": 5140,
+      "sha256": "689fa96df6b06db6838b00a20c61f27aeda8d42369165ab23386c7deee57c6d5"
+    },
+    "remote.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/remote.py",
+      "bytes": 19210,
+      "sha256": "cb52b03867b5c6c3b588a89606b7ca06f6b2418cd132eb75337014bdae689e10"
+    },
+    "collect.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/collect.py",
+      "bytes": 15353,
+      "sha256": "e42b1a4b00f37959f2ad06a7a1e87d3a2d350d9c5fc55d02b863fe45bd510c70"
+    },
+    "watch.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/watch.py",
+      "bytes": 2376,
+      "sha256": "fa48836879824dab132216950b908dc364c0b17351abfbd2470a3e756cf97cc4"
+    },
+    "launch_watch.py": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/f0_a30/launch_watch.py",
+      "bytes": 3436,
+      "sha256": "23768b739c5ac71fc0f77e0e92d21fde1dbe72235ddb81a27f659ecb14832647"
+    }
+  },
+  "run_diff": [
+    "--- ",
+    "+++ ",
+    "@@ -48,8 +48,9 @@",
+    "  ckpt=Path(p['checkpoint_directory']).resolve();root=Path(p['storage_parent']).resolve();out=Path(p['output_dir']).resolve();out.relative_to(root)",
+    "  assert sha(ckpt/'checkpoint.json')==assets['checkpoint']['sha256']",
+    "  assert ckpt.name=='epoch-001' and Path(p['adapter']).resolve()==ckpt/'adapter'",
+    "- assert ckpt==Path(p['training_output_dir'])/'epoch-001' and ckpt.parent.parent.parent==Path('/dev/shm')",
+    "- assert ckpt.parent.parent.name=='patientphex-quote-set-completion-v2-formal' and ckpt.parent.name=='output'",
+    "+ assert ckpt==Path(p['persistent_checkpoint_root'])/'epoch-001'",
+    "+ assert ckpt==Path(ack1['persistent_directory']) and p['loaded_checkpoint_mount']=='5a9955da-5240-41cc-9e52-05d3d8da8a3c'",
+    "+ assert p['training_output_dir']=='/dev/shm/patientphex-quote-set-completion-v2-formal/output'",
+    "  for epoch,ack in [(1,ack1)]:",
+    "   assert ack['status']=='persistent_checkpoint_verified' and ack['completed_epochs']==epoch and ack['global_step']==33*epoch",
+    "   assert ack['persistent_mount_id']=='5a9955da-5240-41cc-9e52-05d3d8da8a3c'",
+    "@@ -124,7 +125,7 @@",
+    "  eos=model.generation_config.eos_token_id;eos=set(eos if isinstance(eos,list) else [eos]);eos.add(tok.eos_token_id);eos.discard(None);assert eos",
+    "  publish_json(out/'run-manifest.json',dict(plan=ref(a.plan),source=ref(__file__),verified_model=verified,assets=assets,",
+    "   runtime=dict(torch=torch.__version__,transformers=transformers.__version__,peft=peft.__version__,tokenizers=tokenizers.__version__),",
+    "-  rows=47,documents=16,finite_logits_guard_reused=True,eos_ids=sorted(eos),max_new_tokens=1600,all_fresh=True,normalization_and_quality_performed=False),root)",
+    "+  rows=47,documents=16,finite_logits_guard_reused=True,eos_ids=sorted(eos),max_new_tokens=1600,all_fresh=True,normalization_and_quality_performed=False,hardware_migration=p['hardware_migration']),root)",
+    "  records=[];generation_refs=[];raw_refs=[]",
+    "  for row in sorted(rows,key=lambda r:(len(ids[r['row_id']]),r['row_id'])):",
+    "   began=time.monotonic();tokens=ids[row['row_id']];inp=torch.tensor([tokens],device='cuda',dtype=torch.long)"
+  ],
+  "changes": [
+    "Existing persistent .100 ACK directory replaces source SHM model load; original source SHM path retained only as ACK lineage. All fullstate/adapter files must actualSHA match ACK.",
+    "Same TF/torch/runtime sourceSHA; native complete47 allIDs before model.",
+    "Target mount/GPU/namespace/Python path change; fresh free minimum23000MiB, no competing process.",
+    "Plan independent1800+30/admission300; no oldjob continuation.",
+    "CopyF0 max9935/peak20979295232 versusnew10262 +327: root-authorized finite feasibility proxy, not exact shape coverage."
+  ]
+}

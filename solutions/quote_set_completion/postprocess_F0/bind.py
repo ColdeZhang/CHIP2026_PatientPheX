@@ -17,14 +17,14 @@ def main():
  assert fixed['inputs']['baseline']['sha256']==BASE_SHA
  refs=fixed['inputs'];plans=RUN/'postprocess-F0-plans';plans.mkdir(exist_ok=True)
  if a.stage=='extract':
-  d=RUN/'inference-F0-v1';c=read(d/'collection.json')
+  d=RUN/'inference-F0-A30-v1';c=read(d/'collection.json')
   assert c['all_actual_SHA_verified'] and c['inference_reported_success']
   for item in c['files'].values():checked(item)
-  p=read(Q/'f0/infer-plan.json');files=c['files']
+  p=read(Q/'f0_a30/infer-plan.json');files=c['files']
   assert c['wrapper']['complete47_actual_members_verified']
   inputs=dict(complete=files['output/complete.json'],responses=files['output/responses.jsonl'],wrapper=files['wrapper-complete.json'],
    F0_input=refs['F0_input'],prompts=ref(RUN/'F0-input-preparation-v1/prompts.jsonl'))
-  sources={name:ref(path) for name,path in [('extract_quotes.py',OLD/'f0/extract_quotes.py'),('decode.py',OLD/'inference/decode.py'),('schema.py',OLD/'schema.py'),('run.py',Q/'f0/run.py')]}
+  sources={name:ref(path) for name,path in [('extract_quotes.py',OLD/'f0/extract_quotes.py'),('decode.py',OLD/'inference/decode.py'),('schema.py',OLD/'schema.py'),('run.py',Q/'f0_a30/run.py')]}
   assert sources['run.py']['sha256']==p['assets']['runner']['sha256']
   plan=dict(schema='grounded-extract-complete47-v1',sources=sources,inputs=inputs,gold_metadata_only=GOLD,
    remote_output=p['output_dir'],local_output=str(d/'terminal/output'),output_dir=str(RUN/'F0-extraction-v1'),
@@ -40,7 +40,7 @@ def main():
   else:plan.update(query_collection=None,query_complete=None,query_scores=None)
   path=plans/'finalize-plan.json';save(path,plan);print(json.dumps(dict(plan=ref(path),command=['env','PYTHONPATH='+str(OLD.parents[1]),'python',str(OLD/'f0/held_finalize.py'),'--plan',str(path)])));return
  norm=RUN/'F0-normalized-v1/manifest.json';n=read(norm);assert n['no_quality'] and n['policy_sha256']==POLICY_SHA
- inputs={**refs, 'normalization':ref(norm),'collection':ref(RUN/'inference-F0-v1/collection.json'),'prompts':ref(RUN/'F0-input-preparation-v1/prompts.jsonl')}
+ inputs={**refs, 'normalization':ref(norm),'collection':ref(RUN/'inference-F0-A30-v1/collection.json'),'prompts':ref(RUN/'F0-input-preparation-v1/prompts.jsonl')}
  plan=dict(schema='quote-completion-postprocess-v1',stage='quality',state='BOUND_COMPLETE_ACTUAL_ARTIFACTS',sources=source_contract(),
   gold_metadata_only=GOLD,inputs=inputs,output_directory=str(RUN/'quality-F0-v1'),formula='B4 UNION all completion relations',
   baseline_score=BASE_SCORE,expected_baseline_relations=343,new_v2_max=1,old_v2=0,score_budget_seconds=30,term_grace_seconds=1,

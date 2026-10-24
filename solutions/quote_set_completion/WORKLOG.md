@@ -43,3 +43,5 @@ F1唯一质量已完整：pred50bb61dc/141199B，freezebc8a9de1在先，唯一�
 F0准备完成dbf30e16：同cd977、原G32 acceptedknown204、16空known、全47/16纯输入296853tokens/max10262，低于实际F1max10854；train32/d52/cd977/normalizer完整祖先与F0文献互斥。新plan e3047615，同native greedy1600/1800+30/5min admission；唯一对照B4F0 .728195628911/343关系/947实体，固定并全completion，负平关闭。源/输入/基线绑定CPU通过，尚未F0 GPU/质量；不重旧probe。
 
 - F0 唯一启动16:22:33在载模型前资源门失败：GPU2新PID46312/484MiB（target493MiB）；driver14768明确退出，无child/forward。原N/inference-F0-v1与H69意图保留，未重start/未碰外部PID；待root资源协调。F1补包203+1原成员正在.100持久部署。
+
+- F0资源恢复预锁：原A8000forward明确终态保留；同cd977持久ACK改.100GPU0，f0_a30/source-contract记录全部机械差异。CopyF0实际max9935/峰20.98GB，新10262多327tokens，root明确允许按余量做完整47有界尝试，不冒称exactshape覆盖；1800+30/启动300秒不变。F1最小补包已203+1实际服务器SHA/fsync/reopen，根唯一下载另记。
