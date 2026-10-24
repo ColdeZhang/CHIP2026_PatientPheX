@@ -71,3 +71,5 @@
 - indexed正式epoch1已08:07:31 A800 GPU2唯一proc_93f50e85/PID65024，plan635493e4；完整8400原deadline已开始，原state恢复/每epoch .100持久ACK保持。head53件实际终审e35dba61已PASS。H5纯CPU旧F1 pool/primary8cb/diagnostic24d双字节精确复现（原LGB只apply一次，无fit/quality）；overlay缺json的首故障已保存、修复只补namespace并复用已成功primary。正式H5各独立源已冻结，等本次push后fresh启动600。
 
 - H5工程原27成员zip已远端完整逐SHA重开；26小件实际本地，8MB概率数组原A100持久定位保留（非本地全恢复），不重算。H5正式部署write_file UNKNOWN实核只已有2分片、无start/job；恢复仅补余4、原包不变。paired质量入口提前修正旧library metrics缺gold_sha256，用既有F1元数据665a绑定，deadline每调用前硬核；尚无新评分。
+
+- A10008:10:01明确LUNA_OFFLINE，H5正式尚无GPU/start，源/分片保留，owner最早08:13:06唯一库存后恢复；sequence同mount CPU未知启动也不重复。H5工程/正式源联合独审d2734bc0通过（真实full20/held质量待后继）；head实际/新正式源联合e35dba61通过。
