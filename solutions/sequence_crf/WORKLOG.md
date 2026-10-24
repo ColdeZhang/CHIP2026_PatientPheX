@@ -51,6 +51,8 @@ F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-mem
 
 - 新正式fresh已05:13:13Z启动 `proc_7f51657c` / driver141616，4500+30，近似TERM06:28:13/KILL06:28:43（remote driver为准）；已实际部署22件SHA/compile/fsync，持久盘free57.076GB；保持265×2/68calls/4warmup、4500+30及原dev64另900+30，原a179单臂不变。新probe通过但不保证完整两轮；[entry](evidence/patient-first-full64-memory-recovery/formal-entry-readiness.json)已获root一次统一授权，**当时fresh启动，现已06:03:05完整结束**；旧OOM与新probe状态独立。恢复入口见[操作说明](patient_first_full64/memory_recovery/OPERATIONS.md)。
 
-## 后继唯一CPU合成已获明确授权
+## 后继唯一CPU合成已完整：候选全局 .754361398199
 
-root于本次终点后明确授权：用最新已接受3049d9fe/.7542169692819372完整预测作底，仅加765cd5a0相对a179的精确6条差集；1061实体/36患者/410现有关系、非关系字节及旧列表顺序保持，不恢复新支持gate删除的2条public关系。精确20refs已绑定，源b9ea4f50/plan edee73ab待推送后完整16pred freeze→唯一v2，旧metrics复用。[唯一入口](support_patient_synthesis/README.md)。仅这一合成，非盲验证、不扫阈值或新NN；Score严格升才候选。当前尚未执行。
+root在两独立结果及终审已知后明确授权；源b9ea4f50/plan edee73ab由e731663提交推送并lsremote精确后，完整16pred于06:18:59冻结d3f058fd，06:19:04唯一v2完成。以3049完整基底只加765−a179精确6差集；实际与现有410/54public零交集，因此加入全部6=3TP3FP。1061实体/36患者/416关系，原410及54public全部保留；非关系原字节/旧phenotype前缀与元数据精确，新支持gate删除的2public未恢复。
+
+Score **.754216969282→.754361398199（+.000144428917）**；men .792801107522/doc .828677839851不变，micro .736964078795→.738780207135（+.001816128340），macro .658424850960→.657186438289（−.001238412671）。按固定Score门为候选全局best，但幅度很小且macro下降，尚未.8。pred9016863c/140578B，格式valid/0错0警告，assemble .02849秒、eval .17502秒；0NN/旧重评/扫描。新终审和持久小包待回收，不重复模型/评分。已有原dev反复开发，不是盲验证。[终点](evidence/support-patient-synthesis/terminal-summary.json)、[结果](evidence/support-patient-synthesis/result.json)、[源码与恢复](support_patient_synthesis/README.md)。
