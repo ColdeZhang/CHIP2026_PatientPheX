@@ -33,7 +33,7 @@ try:
  labels=json.loads((L/'columns.json').read_text())['labels'];assert len(labels)==14261 and sha('\n'.join(labels).encode())==bound['columns_order_sha256'];keys=[json.loads(x)['query'] for x in q.read_text().splitlines()]
  native=R.parent/'postdownload-readiness/ncrmodel.py';assert sha(native.read_bytes())==plan['native_source']['sha256'];from prepare_inputs import extract_native
  _,tokenize,_=extract_native(native.read_text());span_count=0;unique=set()
- with gzip.open(R/'native-raw-spans.jsonl.gz','rt',encoding='utf-8') as f:
+ with gzip.open(L/'native-raw-spans.jsonl.gz','rt',encoding='utf-8') as f:
   for line in f:
    z=json.loads(line);d=docs[z['pmc_id']];passage=d['full_text'][z['passage_index']];start=z['local_start'];end=z['local_end'];assert 0<=start<end<=len(passage['text']) and z['text']==passage['text'][start:end] and z['passage_offset']==passage['offset'] and z['offset']==passage['offset']+start and z['length']==end-start and z['passage_type']==passage['type']
    index=z['cache_row'];assert 0<=index<408272;stored=a[index];assert labels[int(stored['column'])]==z['raw_hpo_id'] and int(stored['score'].view(np.uint32))==z['score_float32_bits']==int(np.float32(z['score']).view(np.uint32))
