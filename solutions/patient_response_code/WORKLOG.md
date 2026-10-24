@@ -26,3 +26,9 @@ Original probe ended 11:29:55.022 UTC, rc0 /153.633742 s; 12 forward/backward +1
 Measured pressure82.430726 s, other native overhead69.915781 s. Frozen cost formula max(row/token projection)×1.15 +twice overhead +600s combined export/control allowance =2698.935144 s, below shared3600. A800 historical520MB exports56–60s are a proxy, not A100 network measurement; budget remains a hard cap, not a guarantee. Bound fresh2epoch controller entry9183521c; no checkpoint from probe.
 
 A100 CPU/HTTP read window briefly handed to sequence owner while this local binding/source is pushed. Same-card GPU remains reserved for this route; fresh gate precedes formal start. Reliable exact-piece deployment inventories original bytes after UNKNOWN; source/target identity and all hashes preserved, no automatic model retry.
+
+### 2026-10-24 11:44 UTC — exact source bridge and one managed entry
+
+A100 transfer recovered through authenticated private .100 HTTP with600s TTL; capability stored private and redacted from receipts, never Git. The original460078B deployment archive SHA735543ba is unchanged: A100 original4 pieces reused,11 missing filled/fsynced; no existing different bytes overwritten. Post-transfer inventory then returned explicit LUNA, unified next window11:45:02.911.
+
+New mechanical bootstrap entryd13841bc preserves original entry9183521c and all failure receipts. It reuses the exact original archive verify/preflight code strings, acquires an exclusive remote claim, then invokes the unchanged original epoch_driver. .100 fetch sources are staged first. One original3600 clock begins at the single managed bootstrap activation, conservatively including its source/fresh checks; epoch2 and exports never reset it. A100 no formal campaign/start yet. Changed local inspect exposes any bootstrap failure rather than silently waiting for a model that never began.

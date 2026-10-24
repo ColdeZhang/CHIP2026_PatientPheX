@@ -64,6 +64,9 @@ elif a.action=='inspect':
  stamp=str(time.time_ns());code='''from pathlib import Path
 import json
 p=Path(PARAM['root']);out={};output=Path(PARAM['output'])
+for n in ['claim.json','failure.json','complete.json']:
+ f=p/'bootstrap-control'/n
+ if f.is_file():out['bootstrap-'+n]=json.loads(f.read_text())
 for epoch in [1,2]:
  c=p/'control'/('epoch-%03d'%epoch);d={}
  for n in ['driver-started.json','wrapper-complete.json','gpu-release.json']:
@@ -75,6 +78,7 @@ for n in ['progress.json','training_complete.json','failure.json']:
 print(json.dumps(out))
 '''
  d=remote(source,code,dict(root=root,output=plan['output_dir']),'inspect-'+stamp+'-tool.json');save('inspect-'+stamp+'.json',d)
+ if 'bootstrap-failure.json' in d:raise RuntimeError('Original bootstrap failed; inspect saved actual failure, never restart blindly')
  for ep in [1,2]:
   value=d.get(str(ep),{});wrapper=value.get('wrapper-complete.json');release=value.get('gpu-release.json');path=B/('epoch-%03d-state.json'%ep)
   if wrapper and release and not path.exists():save(path.name,dict(wrapper=wrapper,release=release))
