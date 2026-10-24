@@ -1,0 +1,7 @@
+# 方法边界与风险
+
+原raw候选没有label字段；probability是另一16篇训练的词面Sap向量LogisticRegression表型存在分数，similarity是合并公共/该fold训练别名bank最近邻余弦。exact标记也包括train别名，不能称纯公共字典。旧slot/CE的0标签是exactspan+ID不匹配，不等于临床NO。
+
+6224未匹配重叠中1886候选ID与所重叠正标相同、431精确词面在别处有正标（归一词面443），不能全部设NO。当前过滤保留crossing-only并排多注释/NO/NIL/outbranch/compound、词典exact、全train32归一同词面正标及同ID；剩809，固定上限选539。原合法嵌套/相同span多ID目标完整保留。仍有非穷尽注释风险，BOUNDARY是训练注释支持语义，不是人工确认临床错误。
+
+F1跨度proposer48祖先含F0；新头/539 OOF来源排F0和F1，但整个管线不能称puretrain32或F0隔离。原dev/官网不执行。

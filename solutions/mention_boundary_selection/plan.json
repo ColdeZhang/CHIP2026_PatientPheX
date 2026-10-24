@@ -1,0 +1,66 @@
+{
+  "phase": "BOUNDARY_FIXED_RECIPE_CPU_AND_CONDITIONAL_GPU_CHAIN",
+  "base_main": "da0f7992feabee8efe2dd3310d1a7c35528c2888",
+  "train_rows": 3470,
+  "held_rows": 1416,
+  "boundary_rows": 539,
+  "selection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-boundary-selection-v1/selected-v1/selection.json",
+    "sha256": "d045db5df122359371fac73de55301d9aa40f1167b30f2096f54711ce2160149"
+  },
+  "new_query_count": 509,
+  "recipe": {
+    "epochs": 2,
+    "updates_per_epoch": 434,
+    "updates": 868,
+    "last_group_size": 6,
+    "warmup_steps": 44,
+    "model": "Qwen3-8B",
+    "fresh": true,
+    "rank": 16,
+    "learning_rate": 0.0001,
+    "seed": 20261023,
+    "final_epoch_only": true
+  },
+  "budgets": {
+    "sap": 180,
+    "CPU": 120,
+    "probe": 240,
+    "formal": 7200,
+    "infer": 1800,
+    "GPU_TERM_grace": 30
+  },
+  "quality": {
+    "primary": "strongB union allaccepted",
+    "diagnostic": "new-only",
+    "baseline": 0.7286975364690524,
+    "joint_freeze": true,
+    "v2": 2,
+    "old": 0,
+    "official": false,
+    "originaldev": false
+  },
+  "source_files": {
+    "schema.py": "c1da87e7eb16913e6f3065488d924c25903b861eecebb9eb8b5bfb45b01f1fa4",
+    "prepare.py": "b1e66c5a5f9a8b9ed73718433084219bdf22c96a2ea3b2da65f74b49c10a3708",
+    "quality.py": "d52d0d558ee1a922b59a6890daf9d2a83f4a752fc2b034bacb62be86142d9f90",
+    "gpu_driver.py": "427e781851c0d15fd5b774414ccfa9deaea296c15e2d6eeb27f13572eebaeb24",
+    "cpu_contract.py": "cbc5f744adf3d7f17e2f9e0572a16de0635df535b5258bb70a2bc230be26a333",
+    "helpers.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "gpu_entry.py": "2c2cf02d61aa6a0ae312d2838073dd735c1e1c569e96371eeaac065547b5ebe7",
+    "reuse/native_tokenizer.py": "4343b5b12a01e86bdd13762f1164173a14650cb77cd31bd5c7b3cad919aaa026",
+    "reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5",
+    "query/driver.py": "34dc1cd650e1684a4fd4b6b04d15ce6c77e4b57f5787bd7fbcaf36b1adeaad3c",
+    "query/query.py": "a092329605abb020444fb056fea1db325bf5800069a4f1599a2c5f51ed9093b6",
+    "reuse/doc/common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "reuse/doc/loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "reuse/doc/literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "reuse/doc/native.py": "41443a75b82bde0dfaad1aa02db2802e22aae4989bcf6d37084b1699d5a0f73c",
+    "reuse/canonical/common.py": "e3e5050005451235322d88c1639f5a1839fa8b04603ad02152443665b8bd667d",
+    "reuse/canonical/schema_contract.py": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644",
+    "reuse/canonical/token_census.py": "f4316599a50d6f6ecd5d8d9bf56c63787d7a867a7e0bda245afd8412e1af1ad9",
+    "query/reuse/public_bank.py": "d17acf74a151d8214d9d54af73cedaaadedeb77b956d606fb501e87eb8649061",
+    "query/reuse/semantic.py": "e0e015a9b37593f474cb2d053842db74b1992685e972dda3c616b3f3952c9b82",
+    "query/reuse/strict.py": "31d380f582a6ab83e0c73bddbac983c5cf038b250dd2b29355c14f11d8eaebf5"
+  }
+}
