@@ -106,6 +106,7 @@ def main():
     for path in source.rglob('*'):
         if path.is_file() and path.suffix in ('.py', '.md', '.json', '.diff') and '__pycache__' not in path.parts:
             add('source/' + path.relative_to(source).as_posix(), path)
+    add('source-dependencies/original-F0-store-terminal.py', source.parent / 'f0/store_terminal.py')
     for name in ('final-review-entry.json', 'formal-cost-decision.json', 'initial-inventory.json'):
         add(name, root / name)
     for name in ('entry.json', 'controller-plan.json', 'campaign.json', 'campaign-complete.json', 'GPU-AUTHORIZATION.json',

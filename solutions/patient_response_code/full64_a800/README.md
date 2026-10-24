@@ -24,3 +24,5 @@ python solutions/patient_response_code/full64_a800/inference/operations.py start
 `finalize.py --directory B` 是新准备的本地收尾入口，尚未执行：只在两完整ACK、全状态恢复收据、完整64终点及纯组件已存在时，生成单份 `final-review-entry.json` 和私有内容包。它没有服务器、模型、gold 或评测入口。内容包还须沿现有私有持久传输完成实际全SHA/fsync/reopen ACK；模型与optimizer本体已由两份训练ACK持久保存，不再次打包。
 
 发现原运行/回收入口的机械异常时，保留原错误和源SHA，只修接口/传输，不更改数据、方法、原截止或重新生成响应。恢复监控使用独立 recovery 意图，先证明旧 watcher 已死且没有双owner。
+
+完成本地封包后使用 `python solutions/patient_response_code/full64_a800/store_terminal.py --directory B/terminal-backup`，复用固定SHA的既有私有传输实现，仅切换独立full64目录。尚未执行；上传UNKNOWN时先核原同字节分块，不重复盲写。真正stored-receipt到齐才称持久备份完成。
