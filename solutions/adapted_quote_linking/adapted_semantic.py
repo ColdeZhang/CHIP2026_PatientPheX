@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 import time
 import numpy as np
-from common import checked, module, read, ref
+from common import checked, module, read, ref, save
 
 OLD_POLICY_SHA = 'b59eb3f8845ff297578241ed61192fb8ae0153587deab924c51b0a33a5e8bd20'
 STATE_SHA = 'b0482af6b273f02c15bd1e466f716b050f7f64f0a9932ba79466e5e3fd5f6b70'
@@ -97,6 +97,9 @@ class AdaptedEncoder:
         queries = read(checked(cfg['queries']))
         texts = [legacy_bank.legacy_text(q['quote']) for q in queries]
         actual_ids = self.tok(texts,add_special_tokens=True,padding=False,truncation=False)['input_ids']
+        save(Path(cfg['output_dir'])/'actual-native-tokenization.json',dict(actual_ids=actual_ids,
+            expected_ids=cfg['native_ids'],equal=actual_ids==ids,tokenizer_class=type(self.tok).__name__,
+            special_tokens=self.tok.special_tokens_map,no_model_loaded_yet=True))
         assert actual_ids == ids and len(ids) == cfg['query_count'] == 254
         assert all(x[0] == self.tok.cls_token_id and x[-1] == self.tok.sep_token_id for x in ids)
         admitted(cfg)  # Absolute launch validity, before any model load.
