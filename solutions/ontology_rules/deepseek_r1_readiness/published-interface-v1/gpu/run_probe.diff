@@ -1,0 +1,79 @@
+--- oldTF5/run_probe.py
++++ published/run_probe.py
+@@ -1 +1 @@
+-"""One frozen first native R1 generation with4096-token cap; no continuation or quality."""
++"""Published tokenizer first+longest native R1 format/cost pilot; max4096, no quality."""
+@@ -4,0 +5 @@
++from sparse_final import parse_sparse,tests as sparse_tests
+@@ -24 +25 @@
+-        assert plan['execution_ready'] is True and plan['process_budget_seconds']==240 and plan['TERM_grace_seconds']==30
++        assert plan['execution_ready'] is True and plan['process_budget_seconds']==480 and plan['TERM_grace_seconds']==30
+@@ -29 +30 @@
+-        assert assets['status']=='ASSET_FILES_AND_ACTUAL_HEADERS_VERIFIED' and assets['MS_revision']==plan['MS_revision'] and cpu['status'].startswith('PASS_actual_native_R1_') and yarn['status']=='PASS_CPU_ROTARY_FUNCTION_REFERENCE_EQUIVALENCE'
++        assert assets['status']=='ASSET_FILES_AND_ACTUAL_HEADERS_VERIFIED' and assets['MS_revision']==plan['MS_revision'] and cpu['status']=='PASS_PUBLISHED_RAW_GENERIC_FULL80_INPUT_AND_RUNTIME_CONFIG_CPU_CONTRACT' and yarn['status']=='PASS_CPU_ROTARY_FUNCTION_REFERENCE_EQUIVALENCE'
+@@ -39,7 +40,5 @@
+-        rows=[json.loads(x) for x in checked(plan['selected_prompts']).read_text().splitlines()];encoded=json.loads(checked(plan['selected_encoded']).read_text())['rows'];assert len(rows)==len(encoded)==3
+-        assert [x['row_id'] for x in rows]==plan['CPU_frozen_source_row_ids']==[x['row_id'] for x in encoded]
+-        assert [x['native_input_tokens'] for x in encoded]==[2171,3425,6002]
+-        assert plan['selected_CPU_index']==0
+-        rows=rows[:1];encoded=encoded[:1]
+-        assert [x['row_id'] for x in rows]==plan['row_ids']==['10313222:relations:0'] and plan['input_tokens']==[2171]
+-        report['fixed_selected_row_count']=1;report['fresh_prompt_not_old_KV_or_RNG_continuation']=True
++        rows=[json.loads(x) for x in checked(plan['selected_prompts']).read_text().splitlines()];encoded=json.loads(checked(plan['selected_encoded']).read_text())['rows'];assert 1<=len(rows)==len(encoded)==len(plan['row_ids'])<=2
++        assert [x['row_id'] for x in rows]==plan['row_ids']==[x['row_id'] for x in encoded]==[x['row_id'] for x in cpu['selected']]
++        assert [x['native_input_tokens'] for x in encoded]==plan['input_tokens']==[x['native_input_tokens'] for x in cpu['selected']]
++        assert cpu['all80_raw_generic_native_IDs_exact'] and cpu['all80_roundtrip_exact'] and cpu['selected_indices']==plan['selected_CPU_indices']
++        report['fixed_selected_row_count']=len(rows);report['fresh_prompt_not_old_KV_or_RNG_continuation']=True
+@@ -48 +47 @@
+-        from transformers import AutoTokenizer,AutoModelForCausalLM,StoppingCriteria,StoppingCriteriaList
++        from transformers import PreTrainedTokenizerFast,AutoConfig,AutoModelForCausalLM,StoppingCriteria,StoppingCriteriaList
+@@ -52 +51,10 @@
+-        tok=AutoTokenizer.from_pretrained(modeldir,local_files_only=True,trust_remote_code=False)
++        tc=json.loads((modeldir/'tokenizer_config.json').read_text())
++        def token_content(n):
++            x=tc.get(n);return x.get('content') if isinstance(x,dict) else x
++        published_raw=tokenizers.Tokenizer.from_file(str(modeldir/'tokenizer.json'))
++        tok=PreTrainedTokenizerFast(tokenizer_file=str(modeldir/'tokenizer.json'),bos_token=token_content('bos_token'),eos_token=token_content('eos_token'),pad_token=token_content('pad_token'),unk_token=token_content('unk_token'),chat_template=tc['chat_template'],clean_up_tokenization_spaces=False,model_max_length=tc['model_max_length'])
++        raw_backend=json.loads(published_raw.to_str());chosen_backend=json.loads(tok.backend_tokenizer.to_str());assert all(raw_backend[k]==chosen_backend[k] for k in ['model','normalizer','pre_tokenizer','post_processor','decoder','added_tokens'])
++        derived_path=checked(plan['derived_config']);derived=json.loads(derived_path.read_text());original_config=json.loads((modeldir/'config.json').read_text());expected_derived=json.loads(json.dumps(original_config));expected_derived['rope_scaling']['attention_factor']=1.0;assert derived==expected_derived
++        load_config=AutoConfig.from_pretrained(str(derived_path),local_files_only=True,trust_remote_code=False);assert load_config.rope_parameters['attention_factor']==1.0
++        report['tokenizer_policy']='Published JSON raw/generic full backend identical; selected input IDs and roundtrip checked against new all80CPU contract. No AutoTokenizer Llama reconstruction.'
++        report['explicit_derived_config']=plan['derived_config'];report['two_interface_fixes_not_single_variable_causal_claim']=True
+@@ -55,2 +63,3 @@
+-            assert rendered==enc['rendered_prompt'] and ids==enc['input_ids'] and ids_sha(ids)==enc['native_ids_sha256'] and all(k in row for k in ['code_map','patient_ids'])
+-        report['parser_tests']=tests();report['input_preflight_seconds']=time.monotonic()-start;atomic(out/'progress.json',dict(report,phase='loading_native_model'))
++            assert rendered==enc['rendered_prompt'] and ids==enc['input_ids']==published_raw.encode(rendered,add_special_tokens=False).ids and ids_sha(ids)==enc['native_ids_sha256'] and all(k in row for k in ['code_map','patient_ids'])
++            assert tok.decode(ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)==published_raw.decode(ids,skip_special_tokens=False)==rendered
++        report['parser_tests']=tests();report['sparse_parser_tests']=sparse_tests();report['input_preflight_seconds']=time.monotonic()-start;atomic(out/'progress.json',dict(report,phase='loading_native_model'))
+@@ -58 +67 @@
+-        model,loading=AutoModelForCausalLM.from_pretrained(modeldir,local_files_only=True,trust_remote_code=False,dtype=torch.bfloat16,device_map={'':'cuda:0'},attn_implementation='sdpa',output_loading_info=True)
++        model,loading=AutoModelForCausalLM.from_pretrained(modeldir,config=load_config,local_files_only=True,trust_remote_code=False,dtype=torch.bfloat16,device_map={'':'cuda:0'},attn_implementation='sdpa',output_loading_info=True)
+@@ -82 +91 @@
+-        assert float(rotary.attention_scaling)==float(scale_gpu)==float(scale_cpu)==yarn['native_attention_scaling']
++        assert float(rotary.attention_scaling)==float(scale_gpu)==float(scale_cpu)==cpu['native_CPU_attention_scaling']==plan['derived_attention_scaling']==1.0
+@@ -84,3 +93,3 @@
+-        # A fixed internal wall stop leaves15seconds for serialization/release under the external240s cap.
+-        soft_deadline=start+225;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':4096,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
+-        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=225
++        # A fixed internal wall stop leaves15seconds for serialization/release under the external480s cap.
++        soft_deadline=start+465;torch.manual_seed(plan['seed']);torch.cuda.manual_seed_all(plan['seed']);generation_config={'do_sample':True,'temperature':.6,'top_p':.95,'top_k':0,'repetition_penalty':1.,'max_new_tokens':4096,'num_return_sequences':1,'use_cache':True,'eos_token_id':tok.eos_token_id,'pad_token_id':tok.pad_token_id,'return_dict_in_generate':True,'output_scores':False}
++        report['generation_arguments']=generation_config;report['soft_deadline_seconds_from_start']=465
+@@ -105,2 +114,7 @@
+-            except (ValueError,TypeError) as e:item['strict_final_valid']=False;item['invalid_reason']=str(e)
+-            atomic(out/('row%d.json'%row_number),item);report['rows'].append({'path':str(out/('row%d.json'%row_number)),**ref(out/('row%d.json'%row_number)),**{k:item[k] for k in ['row_id','input_tokens','generated_tokens','native_EOS_observed','stopped_at_token_cap','stopped_at_wall_budget','generation_seconds','tokens_per_second_including_prefill','strict_final_valid']}})
++            except (ValueError,TypeError) as e:item['strict_final_valid']=False;item['strict_invalid_reason']=str(e)
++            try:
++                sparse=parse_sparse(content,eos_observed=eos,stopped_at_cap=cap or stopper.wall_stop,code_map=row['code_map'],patient_ids=row['patient_ids']);item['legal_sparse_valid']=True;item.update(sparse)
++                assert sparse['strict_every_CID']==item['strict_final_valid']
++                if item['strict_final_valid']:assert item['parsed_final']==sparse['provided_mapping']
++            except (ValueError,TypeError) as e:item['legal_sparse_valid']=False;item['sparse_invalid_reason']=str(e)
++            atomic(out/('row%d.json'%row_number),item);report['rows'].append({'path':str(out/('row%d.json'%row_number)),**ref(out/('row%d.json'%row_number)),**{k:item[k] for k in ['row_id','input_tokens','generated_tokens','native_EOS_observed','stopped_at_token_cap','stopped_at_wall_budget','generation_seconds','tokens_per_second_including_prefill','strict_final_valid','legal_sparse_valid']}})
+@@ -108,4 +122,4 @@
+-            if not item['strict_final_valid']:
+-                report['status']='STOPPED_FIRST_TRUNCATED_OR_INVALID_FINAL_THIS_BUDGET_ONLY';report['stop_reason']=item['invalid_reason'];break
+-        else:report['status']='PASS_SINGLE_NATIVE_FINAL_FORMAT_COST_ONLY_NOT_QUALITY'
+-        report['full_generation_IDs_preserved']=True;report['limitation']='A4096-token or240-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'
++            if not item['legal_sparse_valid']:
++                report['status']='STOPPED_FIRST_TRUNCATED_OR_INVALID_FINAL_THIS_BUDGET_ONLY';report['stop_reason']=item['sparse_invalid_reason'];break
++        else:report['status']='PASS_PUBLISHED_NATIVE_LEGAL_SPARSE_FORMAT_COST_ONLY_NOT_QUALITY'
++        report['full_generation_IDs_preserved']=True;report['limitation']='A4096-token or480-second failure only characterizes this fixed budget. No claim this model cannot improve task quality; root decides any separate larger-budget experiment.'

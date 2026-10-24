@@ -16,6 +16,7 @@
 - 原生80纯输入CPU完成，三固定row输入2171/3425/6002 token；首BatchEncoding错误与修复原留。YaRN CPU对HF4.51参考64值bitexact，配置不改。[完整CPU清单](deepseek_r1_readiness/cpu-terminal-manifest.json)。
 - **唯一GPU探针已结束并释放**：.100 GPU1，managed `proc_2eb8109a-602c-4714-956c-1aa4db401a35`；wrapper46.141秒/rc0，加载6.714秒/399实际参数完整。first2171输入→1024新token，33.219秒/30.826 token/s，无EOS，首token cap停止余2条；峰allocated19.496GB。03:39:03.804目标卡0MiB且无进程。仅当前预算不够，无gold/80质量，不关闭模型质量方向。[实际摘要](deepseek_r1_readiness/gpu-probe/terminal-summary.json)。
 - **4096已结束＋tokenizer接口纠正**：97.441秒/rc0，2644token自然EOS/think闭合，非cap/wall，03:44:55.871GPU1释放；原Auto解码异常。CPU实际确认TF5 Llama类改写发布ByteLevel编码，80输入ID全不同；旧2171输入与两个GPU终点不能冒充准确发布输入。正确解既有IDs后仅2/8CID，strict仍拒绝。[纠正/证据](deepseek_r1_readiness/ERRATA-TOKENIZER-20261024.md)。
+- **发布接口新pilot准备完成**：CPU7.932秒/rc0核全部80 raw==generic==native IDs与往返/special/完整backend一致；新first2014与longest5689（index0/73），总249937，常规median3129（收据3131为uppermedian）。原config不改，另显式attention_factor=1.0。新source37304f26/plan cf88943c，480+TERM30、各4096、465s软停；严格EveryCID与合法稀疏/缺键abstention双政策已冻结并经实际CPU3正12负检查。尚未GPUstart。[计划](deepseek_r1_readiness/published-interface-v1/gpu/plan.json)。
 - 原生FP32 rotary同device比较及CPU/GPU 8eps容差在启动前冻结，原CPU证据保留；source实际SHA/compile通过。执行恢复入口为外部 `gpu-probe/{plan.json,start-intent.json,job.json}` 与 `gpu-probe/recovered/wrapper-result.json`，实际生成结果在 `recovered/`；只有真实产生后才作为已运行证据。[研究/过程/边界](deepseek_r1_readiness/REPORT.md)。
 
 ## 最近结案
@@ -27,7 +28,7 @@
 ## 下一步与备份
 
 1. 已冻结完整资产/CPU/GPU合一清单 `d172a788`，原阶段统一增量复核8fa2f637通过，后继tokenizer纠正须同时阅读；两个GPU/下载均结束。
-2. 先冻结发布tokenizer的实际80输入ID/长度及generic/raw一致性，不复用旧2171假设；后继GPU由主线程安排。完整80质量仍未授权。
+2. 新发布输入CPU合同已PASS，按主线程条件授权fresh .100GPU1执行唯一first+longest格式成本pilot；完整80质量未授权。
 3. 完整原始生成IDs及资产位于.100持久自有namespace，文件SHA/恢复见[路线报告](deepseek_r1_readiness/REPORT.md)和[合一清单](deepseek_r1_readiness/terminal-manifest.json)。
 
-最近已核远端：`1c8703f`，push与lsremote exact（R1实际运行job/空卡检查）。大文件在外部/持久服务器，不入Git。更早各公开模型、链接、NER与关系正负实验见[原台账完整历史](worklog/WORKLOG-through-20261024-0336.md)、[实验目录](experiments/)、[笔记](NOTES.md)与[证据索引](evidence/round2/README.md)。
+最近已核远端：`a5b32cb`，push与lsremote exact（旧GPU/CPU接口纠正）。大文件在外部/持久服务器，不入Git。更早各公开模型、链接、NER与关系正负实验见[原台账完整历史](worklog/WORKLOG-through-20261024-0336.md)、[实验目录](experiments/)、[笔记](NOTES.md)与[证据索引](evidence/round2/README.md)。
