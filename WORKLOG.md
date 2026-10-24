@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：新增工作线覆盖跨度、文档关系、患者条件生成、训练长度、预训练联合抽取、原生Qwen3关系及主线程共识融合；各有独立分支/worktree和分层记录。负配方及时关闭，当前安排见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：固定双采样原dev完整128条及唯一质量已复核，901→ee39，Score .754361→.755240，8新增关系3TP5FP；实体不变。主线程三源二票F1/F0均正，第四响应编码来源进一步到.701325/.728196；准备full64编码组件，原三源还待Grounded完整。全部并集及固定LR负配方关闭。
-- **实际运行/恢复**：Qwen full64组件已完成，Grounded进入第二轮，齐后做原dev预锁融合。response-code两折均胜N，进入full64 CPU准备；患者条件跨度8/24/几何均负，针对患者归属错误的新分组loss已在.100 GPU0运行。2353片段规范化训练已完，.100 GPU1全量预测；2931负例增补在.3 GPU0第二轮。患者名称直接生成负，合法前缀共识零增量；患者编码去重控制亦负，均关闭。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
+- **实际运行/恢复**：Qwen full64组件已完成，Grounded两轮/双ACK完成并正在生成原dev36条；齐后做预锁融合。response-code全64编码已核，待实际显存探针后训练；PT循环映射独立对照已具备53条新推断/27条缓存。2353规范化及患者竞争loss完整负结案；2931难负例组仍在原第二轮。新增公开Top8候选选择仅CPU准备，另做四流一致否定过滤、F0校准后固定F1验证。准确身份见[当前运行入口](docs/campaigns/round2-current-work.json)。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
 - **证据备份**：249项/6055引用已增量核验发布；205成员新包已服务器实际下载核验（195新引用），旧5860引用沿217→224→234→242继承，完整恢复顺序217→224→234→242→249。新最佳ee39的96质量/411raw内容包亦已完整回读；旧901和官方B原留。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@20fa611b`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
+- **Git**：最近已核验`origin/main@0878cbdf`；新最佳分支`explore/sampled-consensus@edb562e3`已推送核验。各路线在独立分支持续保存，Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 
