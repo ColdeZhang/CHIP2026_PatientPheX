@@ -81,3 +81,5 @@
 - H5工程原27成员zip已远端完整逐SHA重开；26小件实际本地，8MB概率数组原A100持久定位保留（非本地全恢复），不重算。H5正式部署write_file UNKNOWN实核只已有2分片、无start/job；恢复仅补余4、原包不变。paired质量入口提前修正旧library metrics缺gold_sha256，用既有F1元数据665a绑定，deadline每调用前硬核；尚无新评分。
 
 - A10008:10:01明确LUNA_OFFLINE，H5正式尚无GPU/start，源/分片保留，owner最早08:13:06唯一库存后恢复；sequence同mount CPU未知启动也不重复。H5工程/正式源联合独审d2734bc0通过（真实full20/held质量待后继）；head实际/新正式源联合e35dba61通过。
+
+- 08:17 A100再次明确LUNA_OFFLINE，H5正式依旧无start/job/600时钟，下一唯一库存≥08:20:08.743648；单条原包恢复入口已准备，只校验/补缺且不触模型。Qwen原93f50仍formal_training。已准备新adapter F1全80fresh入口，复用原加载/generate/parser AST，14400/1600不变；实际2epoch持久ACK绑定前模板不能执行，旧idx19缓存完全移除。[入口](qwen35_sft32_full_report_training_readiness/formal_indexed/f1_inference/README.md)。

@@ -1,0 +1,151 @@
+{
+  "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+  "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/ontology-round2/qwen-venv/bin/python",
+  "model": "/dev/shm/patientphex-qwen35-1045-c20223623576",
+  "adapter": null,
+  "adapter_files": {},
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a800-migration/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "generation": {
+    "do_sample": false,
+    "use_cache": true,
+    "thinking": false,
+    "precision": "BF16_text_only_native_SDPA_no_quantization",
+    "eos": "same legacy generation-config union tokenizer EOS"
+  },
+  "baseline_old_SFT32_reference": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "entities": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/inner1/candidates.jsonl",
+      "bytes": 155574,
+      "sha256": "8acd182b5eee9e1cf56d43f299924de410635d2bc309c8c10bf51be9a59b7068"
+    },
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "old_response": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.jsonl",
+      "bytes": 25270,
+      "sha256": "78e28c724f6cb127383c08a14951ff4cf8381d01e38a9081d91672f8d1488b21"
+    },
+    "old_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.responses.manifest.json",
+      "bytes": 4142,
+      "sha256": "84e0eec5c9a005d5ee9e372e69fe34afbf764c8539db2b4a8b11b209302e7733"
+    },
+    "training_checkpoint": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/epoch-002/checkpoint.json",
+      "bytes": 10435,
+      "sha256": "5cecc79c3286089ad413b94ec1c52c0f78e84df2e3fc8b161ca2168f6a9e0120"
+    },
+    "adapter_actual_hashes": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/checkpoint-actual-hashes.json",
+      "bytes": 901,
+      "sha256": "80a40c2c741f7abca19dc542b02771f4c1b229a685a942acbaf3195b10ce160e"
+    },
+    "CPU_report": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/report.json",
+      "bytes": 6622,
+      "sha256": "81a771eab7387e8ccbc3cbd08cd4c16399bf653b51c049f949e6844065fa1410"
+    },
+    "CPU_addendum": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/retrieved-json-example/readiness-addendum.json",
+      "bytes": 2046,
+      "sha256": "407886b57ef94d96c43efa8f601086e9b0bf08a6a4c5777dc34f9c0603d84c4f"
+    }
+  },
+  "actual_CPU": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/input-cpu/actual-result.json",
+    "bytes": 2454,
+    "sha256": "f029779093c37fbf42b68274a19309298662e9644c0f9ca6ba1f304d4e8b3c38"
+  },
+  "frozen_at_utc": null,
+  "schema": "qwen35-new-fulltext-trained-SFT32-F1-full80-v1",
+  "remote": "ontology-round2/qwen35-fulltext32-indexed-F1-full80-v1",
+  "cap_seconds": 1200,
+  "term_grace_seconds": 30,
+  "input_limit": 14400,
+  "generation_limit": 1600,
+  "cached_original_indices": [],
+  "fresh_rows": 80,
+  "expected_rows": 80,
+  "output_order": "ascending(input_tokens,row_id)",
+  "files": {
+    "infer_full80.py": {
+      "bytes": 11049,
+      "sha256": "5bee8be8a41eb72d650cf56308c9164cdd70213060e96a8ddcd265c58a518145"
+    },
+    "launch.py": {
+      "bytes": 3759,
+      "sha256": "ede91d29c513fe9a8fb38bd65f7a8099d6387ef7d5983580a653046fb069a9f0"
+    },
+    "probe_runner.py": {
+      "bytes": 8970,
+      "sha256": "062cbf90e04cec32e635975a2f903efa5fe7c1774fe568f2066b23dda26d824f"
+    },
+    "legacy_runner.py": {
+      "bytes": 11012,
+      "sha256": "33a5a497ff8106a02cab5dda5d59193b4b1f14aed4d5791464d266b7d05d5669"
+    },
+    "model-source-manifest.json": {
+      "bytes": 3911,
+      "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+    },
+    "expanded80.jsonl": {
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "row-audit.json": {
+      "bytes": 79950,
+      "sha256": "35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb"
+    }
+  },
+  "training_completed_epochs": 2,
+  "training_global_step": 32,
+  "status": "TEMPLATE_PENDING_TWO_ACTUAL_DURABLE_EPOCH_ACKS",
+  "expected_runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "tokenizers": "0.23.1",
+    "actual_tokenizer_class": "Qwen3_5Tokenizer",
+    "matmul_TF32": false,
+    "cudnn_TF32": true
+  },
+  "configured_eos_ids": [
+    248044,
+    248046
+  ],
+  "endpoint_policy": {
+    "primary": "new fulltext SFT alone",
+    "diagnostic": "old short SFT32 union new fulltext SFT",
+    "strong_baseline_Score": 0.676546354662594,
+    "retention": "Score strictly higher; macro reported without additional veto",
+    "two_complete_predictions_freeze_before_gold": true,
+    "new_quality_calls": 2,
+    "old_quality_calls": 0,
+    "no_auto_F0_or_dev": true
+  }
+}
