@@ -1,0 +1,140 @@
+{
+  "schema": "patient-balanced-final80-input-and-source-map-v1",
+  "status": "SOURCE_PREPARED_ACTUAL_FINAL_RECEIPTS_UNBOUND",
+  "sources": {
+    "final_infer.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/final_infer.py",
+      "bytes": 23265,
+      "sha256": "4575c2113b38f8291b1e7770eb43999ef085f4465d5c6cf744cfda77b3b7a5ce"
+    },
+    "final_parser.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/final_parser.py",
+      "bytes": 1381,
+      "sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee"
+    },
+    "patient_first.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/patient_first.py",
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "raw_store.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/raw_store.py",
+      "bytes": 1657,
+      "sha256": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43"
+    }
+  },
+  "inputs": {
+    "prompts.jsonl": {
+      "consumer": "--prompts",
+      "local": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1.input80.patient-first.jsonl",
+        "bytes": 1092467,
+        "sha256": "32b52a2d580024342f25a5d74388c61323f2cc3bbf2bdb0eea404b19a9d64b18"
+      }
+    },
+    "input-token-audit.json": {
+      "consumer": "--token-audit",
+      "local": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1-input-token-audit.json",
+        "bytes": 59512,
+        "sha256": "7fc89abd9075705853071502f0131c4b50ec8fe025154926a778ef74f68de3be"
+      }
+    },
+    "model-source-manifest.json": {
+      "consumer": "--source-manifest",
+      "local": {
+        "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/model-source-manifest.json",
+        "bytes": 3911,
+        "sha256": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7"
+      }
+    }
+  },
+  "original_F1_inference_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/infer.py",
+    "bytes": 15142,
+    "sha256": "d605534102e25e8bc762a4607d6ce3d557c7089b1c9e3a8ab7fbdd44a171c6ff"
+  },
+  "raw_first_and_durable_binding_reference": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_full64/memory_recovery/formal/final_infer.py",
+    "bytes": 20662,
+    "sha256": "baf06014fe77ff248b293b05d8be9a8b179710287d0820295d2fd7b11b5276ec"
+  },
+  "required_training_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/train_patient_balanced.py",
+    "bytes": 56051,
+    "sha256": "3eab37084ad45a7e0acde7ce1d1c32fd3023825490f0d87aa76aa4187c1c965a"
+  },
+  "actual_final_receipt_slots": {
+    "training_complete": {
+      "path": null,
+      "sha256": "UNBOUND_ACTUAL_ALPHA05_TRAINING_COMPLETE_SHA256",
+      "expected_basename": "training_complete.json"
+    },
+    "training_checkpoint": {
+      "path": null,
+      "sha256": "UNBOUND_ACTUAL_ALPHA05_EPOCH002_CHECKPOINT_SHA256",
+      "expected_basename": "epoch-002/checkpoint.json"
+    },
+    "training_durability": {
+      "path": null,
+      "sha256": "UNBOUND_ACTUAL_ALPHA05_EPOCH002_DURABILITY_SHA256",
+      "expected_basename": "durability-epoch-002.json"
+    }
+  },
+  "execution_blocked_until_all_three_actual_SHA_constants_are_bound": true,
+  "fixed_contract": {
+    "expected_rows": 80,
+    "documents": 16,
+    "train_rows": 124,
+    "training_epochs": 2,
+    "training_steps": 32,
+    "train_sha256": "14af86cffe1a8b87af022d13e42f9b910281f0da478e3cc731bc2fbc9ba68c3b",
+    "batch_size": 1,
+    "do_sample": false,
+    "enable_thinking": false,
+    "precision": "BF16",
+    "attention": "sdpa",
+    "max_input_tokens": 14000,
+    "max_new_tokens": 1600,
+    "ordering": [
+      "input_tokens",
+      "row_id"
+    ],
+    "strict_final_parser_sha256": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee",
+    "old_F1_Torch": "2.7.1",
+    "current_required_Torch": "2.6.0+cu124",
+    "fresh_generations": 80,
+    "limited_codec": false,
+    "partial_or_abstain_policy": false,
+    "automatic_retry_or_resume": false
+  },
+  "future_controller_plan_schema": {
+    "phase": "infer",
+    "budget_seconds": 600,
+    "grace_seconds": 30,
+    "expected_rows": 80,
+    "fields_to_bind_after_real_training": [
+      "files: absolute paths -> bytes/SHA for exact sources, inputs and actual receipts",
+      "argv: original F1 CLI plus --training-durability",
+      "environment: allocated CUDA_VISIBLE_DEVICES and PATIENTPHEX_DURABILITY_ROOT",
+      "training_actual: three original actual receipt refs and adapter membership",
+      "source_sha256: newly frozen final_infer after actual SHA binding",
+      "output: responses.jsonl in empty own prediction directory separate from sources/control"
+    ],
+    "terminal_checks": [
+      "strict_all80_EOS_and_PID_CID_schema=true",
+      "expected_rows=80 and new_rows=80 and cached_rows=0",
+      "raw/generation/complete-decision coverage80",
+      "response and artifact whole SHAs; process terminal and GPU release"
+    ]
+  },
+  "authorized_future_inference_budget_only": {
+    "seconds": 600,
+    "TERM_grace_seconds": 30,
+    "single_fresh_run_after_actual_final_epoch2_durable_completion": true
+  },
+  "current_actions": "Only original source/raw-byte copies, hashing, AST comparison and source preparation; no tokenizer/model/remote/quality execution",
+  "no_heldout_gold_or_predictions_opened": true,
+  "no_original_frozen_asset_modified": true,
+  "input_refs_hashed_without_tokenization_or_new_census": true
+}
