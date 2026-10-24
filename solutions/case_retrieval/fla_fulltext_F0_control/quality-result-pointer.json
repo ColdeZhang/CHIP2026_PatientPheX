@@ -1,5 +1,5 @@
 {
-  "status": "COMPLETE_POSITIVE_F0_PAIR_BELOW_EXISTING_STRONG_PENDING_INCREMENTAL_REVIEW",
+  "status": "COMPLETE_POSITIVE_F0_PAIR_BELOW_EXISTING_STRONG_INDEPENDENT_REVIEW_PASS",
   "summary": {
     "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext-F0-fla-quality-control-20261024/quality-v1/summary.json",
     "bytes": 7599,
@@ -221,8 +221,12 @@
   "quality_wrapper_seconds": 0.38951028099108953,
   "new_v2_calls": 2,
   "old_v2_calls": 0,
-  "independent_review": null,
-  "review_activation": "followup_task rejected thread limit; root notified and complete refs queued, not yet reviewed",
+  "independent_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/fla-fulltext-F0-quality-review/review.json",
+    "bytes": 15338,
+    "sha256": "4fbaeaf1791fc63535f1d5ec5fb32e582b84a37289771a54748b417a93ad265e"
+  },
+  "review_activation": "Unified incremental review4fbaeaf1 completed;321original members and real paired endpoint independently verified. No repeated model/parser/gold/v2.",
   "hardware_disclosure": "Cached native F0 fulltext N ran on A800; fresh F0 SFT48 FLA variant runs on A30. BF16/SDPA text-only model and native convolution remain, two GDN functions use FLA. This is a distinct backend/hardware quality variant, not numerical equivalence or isolated pure-backend causality.",
   "known_F0_development_not_blind": true,
   "no_originaldev_or_official": true
