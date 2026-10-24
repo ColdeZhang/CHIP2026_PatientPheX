@@ -4,11 +4,19 @@
 
 ## 目标与可信基线
 
-- 原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text，目标 Score≥.8；未达标，不合并实验实现、不上传官方。
+- 原 train64/dev16 文献隔离、公共 evaluator v2 默认 all/text，目标 Score≥.8；未达标，不合并实验实现。最高901已按用户单次授权官方接收，其余上传暂停。
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前最高优先级：唯一最高方案901的官方B预测
+## 当前执行（2026-10-24 08:12 UTC）
+
+- 官方最高901的B预测已07:54:13真实accepted（回执8d39aba4，额度5→4），不查询成绩；现恢复本地冲0.8，其他上传暂停。
+- **A800 indexed全文正式运行中**：08:07:31唯一 `proc_93f50e85`/PID65024，epoch1；原124×2/32updates/7170监督，整体8400+30，绝对截止 `1792837648.873858`。每epoch必须完整state跨机.100持久ACK后继续；恢复入口 `research/qwen35-fulltext32-indexed-formal-v1/controller`，源[formal_indexed](qwen35_sft32_full_report_training_readiness/formal_indexed/README.md)。原fullhead正式版从未启动，独立保留。
+- **A100 H5正式尚未启动**：fixed1252query/20steps+完整F1/双端点600+30已授权、源及CPU旧端点字节复现已push；部署原包头2分片已核，08:10:01明确LUNA_OFFLINE，最早08:13:06.710732唯一库存恢复补缺。无start-intent/job，600计算窗未开始；[恢复指针](public_h5_adaptation_readiness/formal_train/transport-recovery-pointer.json)。
+- 两实际工程已通过：head284.122秒/12真实反向，peakallocated32.693GB、reserved35.123GB，独审e35dba61；PubMed69.501秒/原201变量/三Adam更新，独审d2734bc0。均不代表质量提升。H5旧F1实际vec101（full64才103），原a465/8cb基线身份不变。
+- 最近已核远端 `264da38`；两方案源码/启动/失败恢复及报告指针均已保存，原完整权重、数组和训练产物外存。以下为阶段历史，实际恢复以本节与新namespace为准。
+
+## 已完成阶段：唯一最高方案901的官方B预测
 
 - 用户最新明确授权只提交当前最高分方法，覆盖此前“暂不上传”的阶段约束；root统一协调提交与回执，不查询官方成绩。
 - 冻结方法901原dev Score .754361398199；B输入878fe248/2060389B，100文献/244患者/3802段，公共合同2c169066。Task1沿train64规则/Sap64/CRF、三public和固定103特征/LGB803b，不fit、不调阈值、不混day1 train80。
@@ -16,7 +24,7 @@
 - 本owner只追加三public原native候选及103特征pool；sequence提供共同底座，retrieval固定LGB .3与关系组装。原公共H5/TF2.12环境在A100 mount476f完整，06:28 fresh GPU2空；root安排先三public后patient。唯一CPU census57.819秒完成，100doc/3794有效段/446799候选/362779unique/347634fresh、6100dictionary；CPU42d9。已冻三模型顺序总2400+30/单绝对deadline，源plan6fc113a8；唯一proc_f3f4ef06/PID199194于06:34:37.589启动，原native与threshold不变。PubMed已338.457+5.186秒rc0，100doc/8929canonical，manifest5ef5e971/canonicalfbcadc36已交retrieval；Bioformer也271.310+5.384秒rc0、100doc/8726，manifest4d1ea0d/canonicala38a4766已交retrieval；BioBERT也334.467+5.384秒rc0、100doc/8723，manifest6e920d5f/canonicalf66e1f45。三源整体970.229908秒rc0、06:50:47.914198 GPU2实际释放并已交sequence；Sap完整b0013d9f已恢复；Task1 pure池11.792190秒rc0、100doc/93710候选，final4838f658/5263866B、Bioformer中间53998556均已交retrieval固定803b预测；manifest3f158274。
 - 全文formal8400训练已完成源码部署，但无campaign、无epoch job、无GPU启动；因官方优先暂停，保留私有目录与源码，仅在root确认本次提交接收后恢复。事前Score-only附录0714ffe3另存，旧policy e9a7不改：同强基线.6765463547，保留只按Score严格升，macro完整报告不加额外硬门，双升取Score高者；两fold复验保留，旧结案不重开。[暂停收据](qwen35_sft32_full_report_training_readiness/formal_train/controller/paused-before-GPU-official-priority.json)。
 
-## 当前：两折全文输入对照结案；更强缓存对照与训练CPU可行性准备
+## 历史：两折全文输入对照与训练CPU可行性准备
 
 - F1旧 **.660942003 → 全文单独 .676546355 / 事前主臂旧∪全文 .669554799**；主micro与macro均增，新增19TP26FP。80strict/0弃答，376.475652秒rc0；独审原d655/metadata8d19，303内容成员包190297B/d7cb2131与两个小审查附录已在.100完整SHA/fsync。
 - F0旧 **.695443948 → 全文单独 .696603975 / 主旧∪全文 .695988393**，按事前Score升且macro不降门都true；但主micro **.690076336→.682352941** 下降、macro **.639022564→.648923742** 上升，仅新增6TP19FP，Score只+.000544446。58strict/0弃答，277.261910秒rc0；05:58:08.483853 GPU2实际释放。统一独审760cc08d通过，240内容+members共241成员包170467B/0e14e398已在.100逐SHA/fsync。原模型/评分不重跑。
