@@ -10,9 +10,9 @@
 - **thinking单条格式负结案、独审e5f68aef通过**：旧SFT32/首条2030输入、真实suffix-only presence/官方采样4096，186.896秒生成/209.493秒native；4096触顶未闭think、无合法final，重复复核C003而未结束。01:03:39.439Z A800空释放；环境恢复只续采原job，没有新NN/targets/Score/重试，不扩大。[完整终点](research/thinking-sampling-followup.md)、[结果](evidence/round2/thinking-sampling-result.json)。
 - **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，该阶段未接LLM，后继B质量负结案已另列；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
 - **FLA合成数值控制未通过、已结束**：私有fused绑定及单GDN前向/梯度/cache通过，首128token全9B raw-logit relL2 .090575>.01、maxabs13.03125>.25（KL .0004124<.001），按事前合同停止；无其余三条/LoRA/质量，01:04:59 A30GPU1核空。首次采样器失败与修复链保留，不切换正式runtime、不把rawlogit失败说成任务质量负。[结果](fla_kernel_readiness/GPU_RESULT.md)，完整终点独审b78eec32已补备份。
-- **顺序增强新stage完整负结案**：同旧epoch2权重＋fresh新2epoch，O/O Score .658421563（较旧.660942003低.002520440），R/O .645528610（较O/O低.012892953）。两臂各32calls/80完整响应/587合法CID，四个519MB全状态均已持久导出；全部NN3669.545秒在原3900窗内。双fullpred共同freeze后各唯一v2，无原dev/官方，不迁移或追加搜索；[完整结果](order_warmstart_stage/RESULT.md)、[证据](evidence/round2/order-warmstart-paired-result.json)。原ack工程失败已修复且结案，原与恢复controller均结束，勿重启；GPU2于02:25:04.530Z实际释放并交sequence。最终独审待回收。
+- **顺序增强新stage完整负结案**：同旧epoch2权重＋fresh新2epoch，O/O Score .658421563（较旧.660942003低.002520440），R/O .645528610（较O/O低.012892953）。两臂各32calls/80完整响应/587合法CID，四个519MB全状态均已持久导出；全部NN3669.545秒在原3900窗内。双fullpred共同freeze后各唯一v2，无原dev/官方，不迁移或追加搜索；[完整结果](order_warmstart_stage/RESULT.md)、[证据](evidence/round2/order-warmstart-paired-result.json)。原ack工程失败已修复且结案，原与恢复controller均结束，勿重启；GPU2于02:25:04.530Z实际释放并交sequence。最终独审d253f625通过；双raw/fullpred另已.100实际归档SHA2dd8bfc0/逐成员核。
 - **目标仍未达**：root已核原dev固定逆序并集最新.746081965；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
-- **最近备份**：`d13716da`已push并ls-remote一致，含四完整持久checkpoint与最终80启动；本次补完整终点、双唯一质量、失败/恢复与结案状态。大权重/raw/fullpred留外部；原和恢复controller均已结束，不重复启动。
+- **最近备份**：`e3f6bdf9`已push并ls-remote一致，含完整负终点与双唯一质量；本次补终点独审d253f625及.100双raw/fullpred持久归档收据。大权重/raw/fullpred留外部；原和恢复controller均已结束，不重复启动。
 
 ## 已完成主要结果（历史摘要）
 

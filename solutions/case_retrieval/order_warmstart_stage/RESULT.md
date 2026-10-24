@@ -1,6 +1,6 @@
 # 共同旧权重起点的新两轮训练：完整负结果
 
-2026-10-24 UTC，两臂完整训练、四次持久全状态导出和各80条推断结束；唯一F1开发对照总分均未提高，关闭本配置，不替换旧adapter、不迁F0/原dev、不扫描阈值或更多epoch。原dev≥0.8目标仍未达到。独立终点审核待回收；既有入口与恢复审核保留。
+2026-10-24 UTC，两臂完整训练、四次持久全状态导出和各80条推断结束；唯一F1开发对照总分均未提高，关闭本配置，不替换旧adapter、不迁F0/原dev、不扫描阈值或更多epoch。原dev≥0.8目标仍未达到。独立终点审核 `d253f625` 通过；既有入口与恢复审核保留。
 
 ## 同预算对照与结果
 
@@ -33,3 +33,5 @@ R/O相比匹配O/O再降.012892953，少16误报、也少12正确关系，macro�
 - [最终状态](formal/execution-state.json)：原controller已被恢复入口替代且两者都已结束。禁止重启任何controller或评测入口；原始状态快照不变。
 - 外部完整产物：`/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/paired-evaluation/`。O/O完整pred `c45c3920`、R/O `f1d9e571`；原80raw分别`c398d637`/`a5849b49`。原始预测、响应、日志与权重留仓库外，Git只保存源、小manifest和结果。
 - .100持久mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，相对目录 `case-retrieval/qwen35-preparation/order-warmstart-stage/checkpoints/{original,reverse-first}/epoch-00{1,2}`。A800 SHM不是唯一备份；未清理任何新checkpoint。
+
+独立终点审核以101个小源/收据快照复核4 fullstate ACK与已有持久回读、epoch fingerprint、双raw覆盖、实体对象与共同freeze/唯一v2来源；未再次读gold、运行parser/v2/NN或重新下载2.08GB权重。见[终审](terminal-review/review.json)。随后双raw/fullpred及小manifest共31个业务成员453,591B另存.100自有58,944B归档，02:31:28.789Z实际服务器逐成员size/SHA与fsync通过，SHA `2dd8bfc0`；[备份收据](terminal-backup/receipt.json)、[最终结案](formal-ack-recovery/terminal-closeout.json)。较早terminal-result快照中的“review pending”保留当时事实，不表示当前未审。

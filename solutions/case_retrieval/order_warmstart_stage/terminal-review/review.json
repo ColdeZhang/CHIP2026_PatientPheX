@@ -1,0 +1,820 @@
+{
+  "status": "PASS_complete_negative_fixed_warmstart_order_configuration",
+  "reviewed_at_utc": "2026-10-24T02:31:40.489949+00:00",
+  "scope": "Incremental terminal review along the frozen source/data/runtime/export/endpoint reviews. Local standard-library size/SHA, receipt, checkpoint fingerprint, output coverage, object equality and metric arithmetic checks only; no gold/model/parser/evaluator execution or remote/Git action.",
+  "source_contract_reused": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/review.json",
+      "bytes": 10327,
+      "sha256": "71b9c9b2cef3c0d3219e24ffc4ce667ae206dd423b25b101b584024f918a2046"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/final-boundary-addendum.json",
+      "bytes": 10245,
+      "sha256": "39ad321210c94c9139ee66ce6d0b9eadf4474223a833ab0e07df3411a315a713"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-entry-review/ack-filename-recovery-addendum.json",
+      "bytes": 12847,
+      "sha256": "baa8be3b795510c40e8d3b73ff898d81f979dc3079bace42d884080fbab01a11"
+    }
+  ],
+  "method": "Both arms start from the same old strict32 two-epoch adapter4f4815b6 with fresh AdamW/RNG/LR. New two-epoch arms O/O versus R/O, each124rows per epoch,248exposures,14340supervised token exposures and32optimizer updates. Epoch1 is durably exported; epoch2 resumes its own full-state. This is not exact old-optimizer continuation or fresh-from-base four-epoch training.",
+  "actual_training": {
+    "trainer_sha256": "93301f6070f624672d8331b8fda7304089a2af44b95c83424513ef4895873ab4",
+    "both_arms_real_training": true,
+    "same_old_adapter_and_fixed_config": true,
+    "same_O_R_encoded_fingerprints": true,
+    "same_fingerprint_within_each_arm_across_epoch1_and2": true,
+    "strict32_training_and32_excluded_ids_disjoint": true,
+    "native_implementation": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3, A800 Torch2.7.1/Transformers5.20.2/PEFT0.21.2, no FLA; all15 base file SHA receipts bound.",
+    "neural_parameters": 8997081600,
+    "checkpoint_records": [
+      {
+        "arm": "original",
+        "epoch": 1,
+        "step": 16,
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--checkpoint.json",
+          "bytes": 11942,
+          "sha256": "3f9f3402674ce37ce6b651b34e55d9a9916dab0bf2377fd81b5fdf301cd0c5bb"
+        },
+        "ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--export-ack.json",
+          "bytes": 2263,
+          "sha256": "9311e05540c1d4bd34aba7bd8a355bba48032d9a442496ae63bd03954f641132"
+        },
+        "readback": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--persistent-actual-readback.json",
+          "bytes": 2171,
+          "sha256": "bedd4e96979880ce3a0d37d1038e27aea0c37e69cb78ec71ea5a288ec3b95ac6"
+        },
+        "epoch_seconds": 562.1666760444641
+      },
+      {
+        "arm": "original",
+        "epoch": 2,
+        "step": 32,
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--checkpoint.json",
+          "bytes": 11942,
+          "sha256": "25c945d0cdeb99e80714d802ea62e6e2922587523425400574d132f022fa1ee9"
+        },
+        "ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--export-ack.json",
+          "bytes": 2262,
+          "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+        },
+        "readback": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--persistent-actual-readback.json",
+          "bytes": 2170,
+          "sha256": "1d3056ac7207b1122da4be0fe59fc13577f34d4a6e13592b99ca74850d72b102"
+        },
+        "epoch_seconds": 560.873940706253
+      },
+      {
+        "arm": "reverse-first",
+        "epoch": 1,
+        "step": 16,
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--checkpoint.json",
+          "bytes": 11957,
+          "sha256": "eff27e6b8911918e34bf4f2a3931c14cabf1b2a86440b93f5bc8ae511a53d9d4"
+        },
+        "ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--export-ack.json",
+          "bytes": 2272,
+          "sha256": "d40a64307f1089e674be14e4165094b2700332aa227c80c38862b72fca3f5aac"
+        },
+        "readback": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--persistent-actual-readback.json",
+          "bytes": 2180,
+          "sha256": "c165becc9cddd5d7243a4a6c7840fb2007ae13a93f0dbfb267372f30b2aa680f"
+        },
+        "epoch_seconds": 563.2876887321472
+      },
+      {
+        "arm": "reverse-first",
+        "epoch": 2,
+        "step": 32,
+        "checkpoint": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--checkpoint.json",
+          "bytes": 11957,
+          "sha256": "0312521ad8ab864fdbbd5edf03ec425b44f6e9a186ed53b9ecaeae5b441bb148"
+        },
+        "ack": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--export-ack.json",
+          "bytes": 2272,
+          "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+        },
+        "readback": {
+          "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--persistent-actual-readback.json",
+          "bytes": 2180,
+          "sha256": "00ca2e5267e39b5c575ff6c8b9179a142e3bee7f822b64bac2413f796717011d"
+        },
+        "epoch_seconds": 561.4454865455627
+      }
+    ],
+    "new_resume_numerical_equivalence_tested": false,
+    "failure_lineage": "Original first epoch retained. First epoch2 attempt failed before base load because epoch-001-export-ack.json matched trainer latest-epoch glob. Controller ACK basename-only repair and same-byte rename preserved source/data/full-state; only own epoch2 resumed under the same original absolute deadline. No extra optimizer updates or numerical retry claimed."
+  },
+  "durable_exports": {
+    "four_full_state_exports": true,
+    "total_bytes": 2079864798,
+    "seconds": 233.85177051462233,
+    "persistent_mount": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+    "namespace": "case-retrieval/qwen35-preparation/order-warmstart-stage/checkpoints/{original,reverse-first}/epoch-{001,002}",
+    "checks": "All4 ACKs match checkpoint SHA/epoch/step, all adapter and training_state hashes, producer manifest/source, member-size sums and exact persistent readback receipt. Source fsync/reopened-SHA protocol reused. Complete optimizer/scheduler/RNG state is opaque here; no pickle load or new full2.08GB download.",
+    "scope_limit": "Independent reviewer verified original transfer/readback receipts and local metadata, not a second current remote hash pass."
+  },
+  "quality_boundary": {
+    "endpoint_source_sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d",
+    "recovered_history_materializer_sha256": "25f2669768d110497d974eddd4b768d52b18cfcaf19e603513e825b2901578fc",
+    "history": "Final run-plan binds original epoch1 checkpoint/manifest/ACK and recovered subsequent3 ACKs, immutable original-deadline state, ACK rename and both-responses completion. Materializer adds no-label history metadata; evaluator source and old14/shared8arm interfaces unchanged.",
+    "raw_coverage": "Both80 rows have unique row IDs, no removed demonstrations or token-limit flag; frozen runner/prompts and final epoch2 adapter SHAs match.",
+    "parse": "587 valid candidate decisions each, unresolved0; parser has baseline fallback option but no unresolved decision exercised it. Original fixed parser reused without a new fragment rescue.",
+    "prediction_objects": "Independent direct JSON-object comparison confirms same16docs/1189entities and every non-association field exactly equal to frozen old baseline for both arms.",
+    "freeze_UTC": "2026-10-24T02:25:55.340053+00:00",
+    "before_first_gold_marker_UTC": "2026-10-24T02:25:55.341108+00:00",
+    "both_full_predictions_frozen_before_gold": true,
+    "one_v2_call_per_new_arm": true,
+    "old_cached_baseline_not_rescored": true,
+    "evaluation": "patientphex-public-approx-v2 all/text, HPO2026-06-23; both format0errors/0warnings. This is repeatedly observed F1 development, not independent generalization, originaldev16 or official scoring."
+  },
+  "results": {
+    "old": {
+      "menF1": 0.6671911880409127,
+      "docF1": 0.7477477477477478,
+      "micF1": 0.6866002214839424,
+      "macF1": 0.5422288533401712,
+      "Score": 0.6609420026531936
+    },
+    "original_OO": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6607734806629835,
+        "macF1": 0.5579738339714966,
+        "Score": 0.6584215626057851
+      },
+      "relation_counts": {
+        "tp": 299,
+        "fp": 86,
+        "fn": 221,
+        "precision": 0.7766233766233767,
+        "recall": 0.575,
+        "f1": 0.6607734806629835
+      },
+      "rows": 80,
+      "valid_candidate_decisions": 587,
+      "unresolved_candidate_decisions": 0,
+      "nonrelation_fields_exact": true,
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/paired-evaluation/original/pred.jsonl",
+        "bytes": 154204,
+        "sha256": "c45c39202fac3844c5f1edc05fb9f9fcd67718da04ffc6796ae0490483020fe2"
+      },
+      "raw_response": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/responses.jsonl",
+        "bytes": 25271,
+        "sha256": "c398d63705c5ab7b67250fa6115f1b4b44c7f40a0ce848e3ae6e37750b6e3373"
+      },
+      "format_errors": 0,
+      "format_warnings": 0,
+      "inference_seconds": 280.585
+    },
+    "reverse_first_RO": {
+      "metrics": {
+        "menF1": 0.6671911880409127,
+        "docF1": 0.7477477477477478,
+        "micF1": 0.6545039908779932,
+        "macF1": 0.5126715129416005,
+        "Score": 0.6455286099020635
+      },
+      "relation_counts": {
+        "tp": 287,
+        "fp": 70,
+        "fn": 233,
+        "precision": 0.803921568627451,
+        "recall": 0.551923076923077,
+        "f1": 0.6545039908779932
+      },
+      "rows": 80,
+      "valid_candidate_decisions": 587,
+      "unresolved_candidate_decisions": 0,
+      "nonrelation_fields_exact": true,
+      "prediction": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/paired-evaluation/reverse-first/pred.jsonl",
+        "bytes": 153810,
+        "sha256": "f1d9e571774ad923ade9b4900ca2a327f3b8970f728219646bf5b1500925af04"
+      },
+      "raw_response": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/responses.jsonl",
+        "bytes": 25089,
+        "sha256": "a5849b495f8054f581a07662b68d4d2febaae2e64c55cdc47ec11eed671ced26"
+      },
+      "format_errors": 0,
+      "format_warnings": 0,
+      "inference_seconds": 279.659
+    },
+    "delta": {
+      "original_minus_old": {
+        "Score": -0.0025204400474084787,
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.025826740820958927,
+        "macF1": 0.015744980631325345
+      },
+      "reverse-first_minus_old": {
+        "Score": -0.015413392751130073,
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.03209623060594924,
+        "macF1": -0.02955734039857072
+      },
+      "reverse-first_minus_original": {
+        "Score": -0.012892952703721594,
+        "menF1": 0.0,
+        "docF1": 0.0,
+        "micF1": -0.006269489784990312,
+        "macF1": -0.045302321029896064
+      }
+    }
+  },
+  "decision": {
+    "replace_old": false,
+    "migrate_to_F0_or_original_dev": false,
+    "official_upload": false,
+    "threshold_union_epoch_search": false,
+    "reason": "O/O Score0.658421562606 is below old0.660942002653 despite higher macF1. R/O0.645528609902 is below both old and matched O/O; relation micro and macro both deteriorate against O/O. Close this fixed candidate-order warm-start configuration.",
+    "interpretation_limits": "The matched O/O versus R/O contrast tests candidate-order change in this one-seed new stage. Old-versus-new changes include additional training plus optimizer/RNG restart; do not attribute solely to order or prove the entire technique ineffective."
+  },
+  "cost_and_resource": {
+    "shared_original_deadline_unix": 1792808951.5793016,
+    "budget_seconds": 3900,
+    "TERM_grace_seconds": 30,
+    "all_neural_seconds_from_original_start": 3669.545177936554,
+    "four_actual_epoch_seconds": 2247.773792028427,
+    "four_export_seconds": 233.85177051462233,
+    "inference_original_seconds": 280.585,
+    "inference_reverse_first_seconds": 279.659,
+    "one_CPU_endpoint_seconds": 3.9292298709988245,
+    "release": {
+      "gpu_uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+      "empty": true,
+      "device": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc, NVIDIA A800 80GB PCIe, 81156 MiB",
+      "server_epoch": 1792808704.5296156,
+      "shm_free": 248568627200
+    },
+    "managed_process_status": "Unavailable; terminal completion is established by full checkpoints/complete/response SHA and running=false, not invented rc0.",
+    "endpoint_local_returncode": 0,
+    "resource_handoff": "Final target GPU empty receipt02:25:04.529615; no new GPU activity from this review. Subsequent patient-first use is a separate task."
+  },
+  "verification": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/checks.json",
+    "bytes": 7814,
+    "sha256": "cd516aa904f6a46320b46c24b73b2da880e1b2b4dc55096141e4343e59d4d174"
+  },
+  "snapshot_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshot-manifest.json",
+    "bytes": 35524,
+    "sha256": "edb44c12ba630c0c5623a2e66df448df20ae0866129adb215a51ef9ead367528"
+  },
+  "snapshot_count": 101,
+  "snapshot_bytes": 278909,
+  "references": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--terminal-result.json",
+      "bytes": 9093,
+      "sha256": "675a9876fcbeb85c7f3282d18e9e73d43b044818f1bded83b80f17bae6f81940"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--summary.json",
+      "bytes": 5650,
+      "sha256": "32690b5217b2f0a96b94e99cc2e5ef8ca159d53779d5b65abe9f28e4a036d980"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--run-plan.json",
+      "bytes": 12463,
+      "sha256": "053e99ee93e50df0c8b02067e336097535b5c60014d201f22be7415003a7ed60"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--paired-predictions-freeze.json",
+      "bytes": 5133,
+      "sha256": "e35f9c3a1cc6d54e292d3fa1ebd601a1d0a1764db3dff67ab671c85b88bc4fc9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--evaluation-reservation.json",
+      "bytes": 349,
+      "sha256": "d13cdcace544206cfd1b71eb7b8cfa6a5bfd98e83ec3853c53e20e250617fb31"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--evaluation-started.json",
+      "bytes": 416,
+      "sha256": "b969763d99c97c3bcbb24f80b229c68339e776e9a69fb42feccbc5fc3628850f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--all-responses-complete.json",
+      "bytes": 1099,
+      "sha256": "0d35400fb3a41c0bd7e592fcab857e31cd9d3dbfeb6eaa38547d341e12dc2fe0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/prepare_recovered_evaluation.py",
+      "bytes": 2570,
+      "sha256": "25f2669768d110497d974eddd4b768d52b18cfcaf19e603513e825b2901578fc"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/evaluate_paired.py",
+      "bytes": 20575,
+      "sha256": "563da3a19527b28e96e07418eb2fee063762301faf9492630292d61615e8a79d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--execution-state-before-ack-recovery.json",
+      "bytes": 287,
+      "sha256": "a17919df6e4afded28e3a1cae97d89869c954f626db5bec000bb6c55db21663f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--actual-ack-rename.json",
+      "bytes": 375,
+      "sha256": "56c12036a37f54baee0bb05749d077757cf6c70ce514363df2f00e2f16590b70"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--gpu-release.json",
+      "bytes": 274,
+      "sha256": "5cfc03e73e662b7396cdabaa63d033226765bcf337d71afb1a82eb5e80c704d4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--progress.json",
+      "bytes": 253,
+      "sha256": "46f6e5d676e44da39e46025cd5c86a2622ac916dd542a9ab5aea59d730b3a941"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--paused.json",
+      "bytes": 349,
+      "sha256": "2cc744fe5e461ec3384205bd41afa355d05d6e7980bc50639a6ba25ea3cc0fd9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--process-terminal.json",
+      "bytes": 2051,
+      "sha256": "e2958cbdc5bc103fc77d9e94295b4390dad611e6c71c1672054d3a40a6f1ede6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-001--gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "868f9d27a74940d6bdb7e7876892f9ad7e3d201e9fb21cf539cbcade6763f936"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--persistent-actual-readback.json",
+      "bytes": 2171,
+      "sha256": "bedd4e96979880ce3a0d37d1038e27aea0c37e69cb78ec71ea5a288ec3b95ac6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--server-stopped.json",
+      "bytes": 83,
+      "sha256": "77d1c79a1c2f9171b7f51dc4b6c55eaf1b98d56b4fc6e6166ad6e592daf7e80a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--export-ack.json",
+      "bytes": 2263,
+      "sha256": "9311e05540c1d4bd34aba7bd8a355bba48032d9a442496ae63bd03954f641132"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--source-ack-written.json",
+      "bytes": 121,
+      "sha256": "1ad8a1a468bed0f8844f3714b5bae2e0e223a931825a5d5b673449ec51044822"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--server-ready.json",
+      "bytes": 2038,
+      "sha256": "91f3a3693e12a3c209bf8c052142d4e0cd6f76b66522422f45d8584840f83e6a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--gpu-release.json",
+      "bytes": 274,
+      "sha256": "ef7c613febaf12f567f81756c2e4366c27f8cfbf327b96797b400f03a95057cb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--progress.json",
+      "bytes": 253,
+      "sha256": "46f6e5d676e44da39e46025cd5c86a2622ac916dd542a9ab5aea59d730b3a941"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--process-terminal.json",
+      "bytes": 2283,
+      "sha256": "0471e60a720d10ad4d07b10b9745c5edc27ec5306238a3905fb50d3a944e316b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--train-002--gpu-preflight.json",
+      "bytes": 273,
+      "sha256": "b89c17e8b048ca7b2c2ac3f7b4bd98439651ddf3a0a0591bf47bcb9013311e3c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--progress.json",
+      "bytes": 253,
+      "sha256": "46f6e5d676e44da39e46025cd5c86a2622ac916dd542a9ab5aea59d730b3a941"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--run_manifest.json",
+      "bytes": 12600,
+      "sha256": "a5fcedb5e19e4a4c3727db8c496095340bb852423e7223c058aac092b119f3fe"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--export-ack.json",
+      "bytes": 2263,
+      "sha256": "9311e05540c1d4bd34aba7bd8a355bba48032d9a442496ae63bd03954f641132"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--epoch-001--checkpoint.json",
+      "bytes": 11942,
+      "sha256": "3f9f3402674ce37ce6b651b34e55d9a9916dab0bf2377fd81b5fdf301cd0c5bb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal--original--export-001--fetch--process-terminal.json",
+      "bytes": 1226,
+      "sha256": "d39093d9441a6a0d98c28f04114331c78f8321dc4b69db1decf45f9722ad5b3d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses.manifest.json",
+      "bytes": 4293,
+      "sha256": "89509094a7456aa4116ceaac340c7910ba3219b610f831590be18dd5c84bcb03"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-plan.json",
+      "bytes": 825,
+      "sha256": "b47327b5a536dc2791954627b6f7dddb6d5234494033190013a1ab507dd67253"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-gpu-release.json",
+      "bytes": 274,
+      "sha256": "74705ecc4a179e02a4a5f845f50408811632fd800221246e07e66092e119e3d4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses.checkpoint.json",
+      "bytes": 3594,
+      "sha256": "dbbcf627d77b8ab5cc05fa5057fb205021a6beac1cc197eaa03bea2ee4c86c61"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference-gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "dd9a9cc4284c3bb46295cfbadefe384a84a240f7259e5322ef3b02a4b9cd427f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--responses-freeze.json",
+      "bytes": 323,
+      "sha256": "d7cffa088ae853254074f2637fe59e48630c7b9221b081cab2fdbe3390d1fcc7"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--progress.json",
+      "bytes": 253,
+      "sha256": "6c6deba63baeabcdc6ca0484271ccf143952f4fa085aeb8e1b2b5c761de79cb4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--run_manifest.json",
+      "bytes": 12600,
+      "sha256": "a5fcedb5e19e4a4c3727db8c496095340bb852423e7223c058aac092b119f3fe"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--export-ack.json",
+      "bytes": 2262,
+      "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--epoch-002--checkpoint.json",
+      "bytes": 11942,
+      "sha256": "25c945d0cdeb99e80714d802ea62e6e2922587523425400574d132f022fa1ee9"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--gpu-release.json",
+      "bytes": 274,
+      "sha256": "28dacbe6424e3429a5ac5e6fd5153d766f6ae7299165ada1cdacba663e656bda"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--progress.json",
+      "bytes": 253,
+      "sha256": "6c6deba63baeabcdc6ca0484271ccf143952f4fa085aeb8e1b2b5c761de79cb4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--process-terminal.json",
+      "bytes": 2283,
+      "sha256": "afc0532f930e64c2d94d2c46b5581ce92284f85ffbbe05a0d2ad29f3804d8dce"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "193f5b43d071d191c877030c9becc28ef038d18e3883858f863124e31bb83d14"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--train-002--training_complete.json",
+      "bytes": 1344,
+      "sha256": "fc86fcd3f8c7566ca08469dc534d3dee6b7103e61fcad176e991cde1c632fcfc"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--persistent-actual-readback.json",
+      "bytes": 2170,
+      "sha256": "1d3056ac7207b1122da4be0fe59fc13577f34d4a6e13592b99ca74850d72b102"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--server-stopped.json",
+      "bytes": 83,
+      "sha256": "cb5bbfeef9c1aada2c7033d3c237c6f64bddd4b99202e45a89012148cf5f5666"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--export-ack.json",
+      "bytes": 2262,
+      "sha256": "f80c959bf38af338a14d1ae3d9bab9158b077a85dab3aa4b7c4922d7e2b612b2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--source-ack-written.json",
+      "bytes": 121,
+      "sha256": "a0d9be254fb941b5e91a57718cfb08ecce1f822b7d4e5abf099432c8247d02d8"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--server-ready.json",
+      "bytes": 2038,
+      "sha256": "212e89670d225590c59ae3c60b6b3d0276657863150becdc5fe3be4dc7acdd85"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--inference--process-terminal.json",
+      "bytes": 1581,
+      "sha256": "c60be500c0c023a02a617639c17deecf37b7fb46dc9e22605b2bbbc0d9730afb"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--original--export-002--fetch--process-terminal.json",
+      "bytes": 1226,
+      "sha256": "fea984db87c12a4d78d1cde4587f63302a382cdab3327bcf311f5b50fe2ce490"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses.manifest.json",
+      "bytes": 4303,
+      "sha256": "64ce357d8769fe8d7a54eb181898f95e6424a084bd39ff6bd40afbd0bc81bb60"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-plan.json",
+      "bytes": 830,
+      "sha256": "1881c066d24382eacbb5d5aa031ec5515f8350aaafb1ee5e4b48842fc1c45635"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-gpu-release.json",
+      "bytes": 274,
+      "sha256": "856903f5a26d280ef07bf2cbf3e0dfa8dd6a7264562ace12c3f40fa1e8962e69"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses.checkpoint.json",
+      "bytes": 3604,
+      "sha256": "08c552c84877f2e8d7fbdef6222cfd97abe91f1910be0ac55f34dc8ca7f65e7e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference-gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "66e07f174c98ba2657e7db3ec7b0f91a21b854151594f3e05b9844b345936b5a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--responses-freeze.json",
+      "bytes": 323,
+      "sha256": "8fdf0a91ea5e53a7738bfc541b17374f3cc9cb3e779cda715f72ccf15c4aec4b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--gpu-release.json",
+      "bytes": 272,
+      "sha256": "dfd2cf5ab920da543ac6e56c9dc14808dbd919caeb2147081258a0bf6a89d76f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--progress.json",
+      "bytes": 258,
+      "sha256": "ed66d3c6a4a6a9bb45a30674d73b5d1ee520f318f40f31c6309225b319ee1d62"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--paused.json",
+      "bytes": 358,
+      "sha256": "86441aeed36604bba65a874e9a1cfb0c853efb3b5636eb0a08eee6cf952b4341"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--process-terminal.json",
+      "bytes": 2060,
+      "sha256": "50e18badbc5ac65276b44cf770c8ba5af0ebdb329b7a01427e5536e337723789"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-001--gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "6e928a810a63bf383db46e735f5e9dae66cd4990d2b071e53f111b2498d38dbe"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--persistent-actual-readback.json",
+      "bytes": 2180,
+      "sha256": "c165becc9cddd5d7243a4a6c7840fb2007ae13a93f0dbfb267372f30b2aa680f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--server-stopped.json",
+      "bytes": 83,
+      "sha256": "88ea8856c0b92114efaa19dd7a8b408b598bc475d3b449c592511ef8912bb990"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--export-ack.json",
+      "bytes": 2272,
+      "sha256": "d40a64307f1089e674be14e4165094b2700332aa227c80c38862b72fca3f5aac"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--source-ack-written.json",
+      "bytes": 121,
+      "sha256": "1e51251f4bade14f8941d9f48dff2f84f8685b3c94e7b7b740d3871acb65fe16"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--server-ready.json",
+      "bytes": 2043,
+      "sha256": "4f476fa37fea5e959ee4ce58dddda23140957076433db1610932278d5f7e9621"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--progress.json",
+      "bytes": 258,
+      "sha256": "6e9f2c7a6700546ee1a1d93d4b4fcd9e0383c696bff6d42d81c58e71ee06d139"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--run_manifest.json",
+      "bytes": 12615,
+      "sha256": "9d8a66f4a321b5c79654a8ba24bffa0512cda1e0f1d11820e6da1822cfe803e6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--export-ack.json",
+      "bytes": 2272,
+      "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-002--checkpoint.json",
+      "bytes": 11957,
+      "sha256": "0312521ad8ab864fdbbd5edf03ec425b44f6e9a186ed53b9ecaeae5b441bb148"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--gpu-release.json",
+      "bytes": 273,
+      "sha256": "79c8caa4f8742fff91c712fe62d7a79756945d928d94653fecb3a8432a78ced6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--progress.json",
+      "bytes": 258,
+      "sha256": "6e9f2c7a6700546ee1a1d93d4b4fcd9e0383c696bff6d42d81c58e71ee06d139"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--process-terminal.json",
+      "bytes": 2303,
+      "sha256": "40dfc427a94705fe962d394cb35cb70330bb1d8e8000e277568bcb7e17957bbd"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--gpu-preflight.json",
+      "bytes": 274,
+      "sha256": "0c9bda1ca15dfe2237dfc2a1cd8bef52381c609850b0ee34320de0b370ff602e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--train-002--training_complete.json",
+      "bytes": 1349,
+      "sha256": "3f7e5206566ecc82c5d66b2436252a26b2f5ad1467d9c74f2bb00737f1e462ed"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--progress.json",
+      "bytes": 258,
+      "sha256": "ed66d3c6a4a6a9bb45a30674d73b5d1ee520f318f40f31c6309225b319ee1d62"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--run_manifest.json",
+      "bytes": 12615,
+      "sha256": "9d8a66f4a321b5c79654a8ba24bffa0512cda1e0f1d11820e6da1822cfe803e6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--export-ack.json",
+      "bytes": 2272,
+      "sha256": "d40a64307f1089e674be14e4165094b2700332aa227c80c38862b72fca3f5aac"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--epoch-001--checkpoint.json",
+      "bytes": 11957,
+      "sha256": "eff27e6b8911918e34bf4f2a3931c14cabf1b2a86440b93f5bc8ae511a53d9d4"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--persistent-actual-readback.json",
+      "bytes": 2180,
+      "sha256": "00ca2e5267e39b5c575ff6c8b9179a142e3bee7f822b64bac2413f796717011d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--server-stopped.json",
+      "bytes": 83,
+      "sha256": "845084ae294b0b1df265873824ba600e99474cbd393ca96fbbfd49af0058d20c"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--export-ack.json",
+      "bytes": 2272,
+      "sha256": "8abf5785093c83acf25fc8da8f7ee0a805d77033465857aff4a62030d5b4817f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--source-ack-written.json",
+      "bytes": 121,
+      "sha256": "711967a86acabc5df99c922254fcee6b6e30dac96838682524ba9993a03f29e1"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--server-ready.json",
+      "bytes": 2043,
+      "sha256": "53399ff12ca28875b330586e2257425add431e9d8f94639bbdec9659d932339f"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--inference--process-terminal.json",
+      "bytes": 1591,
+      "sha256": "65b2f66ac37d35610c41658834dbbff6e0971d41955fce38de38e25b503adf5d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-001--fetch--process-terminal.json",
+      "bytes": 1231,
+      "sha256": "5e2a8e716814f69bff145e991c760e1ee4bb7c3d6253c1f120a461e9dc88763e"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--reverse-first--export-002--fetch--process-terminal.json",
+      "bytes": 1231,
+      "sha256": "d29b006589de159d392f34a332948452860df72d662ec0d97035a6519cdb33b3"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--metrics.json",
+      "bytes": 13117,
+      "sha256": "e47440ea40d3a73d382e6dff0f7b615b6dfbfbc55e7333b73897c2d008847119"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--assembly-command.json",
+      "bytes": 2361,
+      "sha256": "f655e877c6ebb74330a69659b3cbb6ad454d3a30738279f9c92afa16bf40417a"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--pred.manifest.json",
+      "bytes": 1347,
+      "sha256": "1ea2a2c4a48f0156601471b1f0e72b77a0d6fa50e8f4ef7ddfa5b30dcf99b6b6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--validation.json",
+      "bytes": 686,
+      "sha256": "9d01d00cd2d11af6a22b97fc2fe1cfe62b30d00281dc7616ece595004141b7f3"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--evaluation-command.json",
+      "bytes": 1037,
+      "sha256": "ffc7c8cdd95d964269b143305eb6111db139a2357b8dca64275a18498d1a37a1"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--original--validation-command.json",
+      "bytes": 1483,
+      "sha256": "40e196958dca66fb120909192581fc76b471e8f810117c9d5b0170d0f63e81b6"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--metrics.json",
+      "bytes": 13169,
+      "sha256": "ae6634100a3f381a58747042f3f5754c8e4ba56ceb270cd967e377e864b65445"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--assembly-command.json",
+      "bytes": 2381,
+      "sha256": "fe102c63d56756a279e218cd9eee133fe0a27fcd05a55d02fec768345cca581d"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--pred.manifest.json",
+      "bytes": 1357,
+      "sha256": "5ebd0c162268c4a82ced0379931489ae77dc7a07aff5b690d409cc4b3d97f21b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--validation.json",
+      "bytes": 686,
+      "sha256": "7edc601505a0c677fb6f2f4416a693c01e8a7ade71c021d4eee0db793b93a037"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--evaluation-command.json",
+      "bytes": 1047,
+      "sha256": "a2bc476952ae3c5e210cd2160494f6181f57568ee5fc364d362f14bd38b43fd0"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/candidate-order-warmstart-terminal-review/snapshots/formal-ack-recovery--paired-evaluation--reverse-first--validation-command.json",
+      "bytes": 1493,
+      "sha256": "de3a79b3d4b9c6bc2c8fb7cf67aa183d0526836089da5a0bff3f11e8692afb8e"
+    }
+  ],
+  "large_artifacts_referenced_not_copied": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/paired-evaluation/original/pred.jsonl",
+      "bytes": 154204,
+      "sha256": "c45c39202fac3844c5f1edc05fb9f9fcd67718da04ffc6796ae0490483020fe2"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/original/responses.jsonl",
+      "bytes": 25271,
+      "sha256": "c398d63705c5ab7b67250fa6115f1b4b44c7f40a0ce848e3ae6e37750b6e3373"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/paired-evaluation/reverse-first/pred.jsonl",
+      "bytes": 153810,
+      "sha256": "f1d9e571774ad923ade9b4900ca2a327f3b8970f728219646bf5b1500925af04"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-warmstart-entry/formal-ack-recovery/reverse-first/responses.jsonl",
+      "bytes": 25089,
+      "sha256": "a5849b495f8054f581a07662b68d4d2febaae2e64c55cdc47ec11eed671ced26"
+    }
+  ],
+  "limitations": [
+    "No fresh GPU uninterrupted-versus-resumed numerical-equivalence test; existing full-state resume source is retained.",
+    "No unseen validation/generalization claim from this repeatedly used F1 fold.",
+    "Actual GPU managed exit codes were unavailable; do not replace them with invented rc0.",
+    "Production best a179 and public neural parameter subtotal inventory are unchanged."
+  ]
+}

@@ -10,4 +10,4 @@
 
 最终GPU2实际释放02:25:04.530Z，receipt `856903f5`，已交sequence独立实验使用。任何后继GPU任务需要重新授权和实际占用核验，不能把此历史空卡收据当当前状态。本路线当前无GPU进程/监控；本地原恢复monitor48145与唯一endpoint13222均已exit0。MCP未提供模型进程远端exitcode，不混用本地rc。
 
-已核入口：CPU7.006587秒/CUDAfalse；统一entry `71b9c9b2`、最终绝对预算/intent增量 `39ad3212`、ack恢复 `baa8be3b`。最终实际终点独审待回收；无需重跑旧CPU/GPU来等待审查。准备时期的源码、plan和小传输证据原样保留在本目录与既有Git历史。数据、权重、完整预测和日志继续留仓库外。
+已核入口：CPU7.006587秒/CUDAfalse；统一entry `71b9c9b2`、最终绝对预算/intent增量 `39ad3212`、ack恢复 `baa8be3b`。最终实际终点独审 `d253f625` 已通过；[最终结案](formal-ack-recovery/terminal-closeout.json)同时绑定双raw/fullpred在.100的实际小归档备份。无需重跑旧CPU/GPU/评测。准备时期的源码、plan和小传输证据原样保留在本目录与既有Git历史。数据、权重、完整预测和日志继续留仓库外。
