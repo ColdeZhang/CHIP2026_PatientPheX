@@ -100,3 +100,10 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 原推断04:10:32.994 rc1/130.785452秒，23行已持久，实际04:10:33.116 GPU2空卡；无F0评分/完整组装。按固定长度+row_id顺序，失败输入为第24条3563609:relations:8，3073input，允许患者O1P1/O1P2/O1P3/O2P/O3P/O4P/O5P/O6P/O7P，C000–C007。trace在validate_matrix顶层keys检查：可能非object、缺PID或多PID，尚未检查CID值。原runner在parse_final成功后才write/flush，故失败raw/IDs未保存，无法还原具体key差异；只能依据固定控制流推断EOS/计数/非cap/JSON解析已越过，具体EOS ID/输出长度均未知。原23raw SHA73235d91，7小件23939B完整回收，失败诊断0fd182ef；训练成功不受此格式故障否定，也不能将本次记成F0负分数。
 
 主线程在未见新F0质量时明确授权独立恢复：精确复用23缓存，余35新生成（包含丢失那条，明确非精确恢复原响应），同epoch2/输入/greedy数值与1600cap，600+TERM30；先保存唯一raw/IDs/终止统计再解析。新有限codec允许合法PID子集，遗漏键仅弃答、不补模型答案；未知/重复PID、非法/重复CID、非object/错误值类型/cap/无EOS整row弃答，不扩其他格式规则。全58终态后两完整预测共冻再各唯一v2，旧指标复用，保留标准不改。原源/失败/23缓存单独冻结，不改写strict判断；新CPU/源准备中，未启动恢复GPU。
+
+
+## 恢复源与新有限CPU合同冻结
+
+新目录P/abstain-recovery，远端sequence-round2/patient-first-F0-abstain-recovery-v1；readiness27dc0883绑定新infer/driver/ops/原子raw_store/codec与600+30。模型/204训练/source/epoch2适配器不变，23原8853B精确缓存复用，35新生成含原丢失行；两次均do_sample=False且原源无manual_seed，不声称重新载模/KV后逐位重放原失败结果。只新增只读FiniteLogitsOnly硬停检查，返回原scores不改logits；其他generation参数保持。
+
+新数据保存顺序为generation IDs/真实末EOS/cap/耗时先file+目录链fsync、原子排他发布，随后decode完整文本并持久raw，再调用有限codec；异常不会丢已取得的唯一生成IDs/raw。codecd60731e12在原23缓存全部与strict正集合/observed exact，27项新边界通过；合法非空PID子集partial，{}或任何非法row整体abstain，不补遗漏键。纯CPU0.00572秒，无gold/新模型/旧25或14/15重跑。原子保存新小fixture0.00352秒实际fsync后模拟codec异常，raw保留、重复写拒绝；隐藏CUDA导入新module仅Python，不导入Torch/加载模型。原strict失败独审a09c0e2c PASS，保持无分数。恢复endpoint另源准备，两完整pred先共冻再唯一双v2政策已在质量前freeze；此处尚未启动新GPU。
