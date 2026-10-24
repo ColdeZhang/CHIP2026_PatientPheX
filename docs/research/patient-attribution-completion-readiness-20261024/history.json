@@ -1,0 +1,140 @@
+{
+  "scope": "H59 actual inputs/candidates/target/endpoints; current source code identifies mechanism, terminal notes preserve original execution refs; not a new quality run",
+  "entries": [
+    {
+      "method": "patient CE",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/run_neural_relation.py",
+        "bytes": 9624,
+        "sha256": "09ae97d291add225b295fe5d053f84bb35a788efaca66d9c1ef5240d97b2ae5d"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/research/continuous-relation-confidence.md",
+        "bytes": 3150,
+        "sha256": "27a7d2b321a7aae11de9f5dea45da0eb62d80b9110de354d1cd9a05b285216de"
+      },
+      "actual": "Fixed predicted HPO; top3 local contexts; target/other markers; per patient-HPO binary class; old full outcome negative",
+      "proposal_difference": "No patient-conditioned dense span decoding or pool-external concepts"
+    },
+    {
+      "method": "doc-any-patient max-MIL",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/prepare_relation_mil.py",
+        "bytes": 6180,
+        "sha256": "07a5fe472c13a39d7c800300c7718b971f33d90f3991385a0b786226a1bb90c3"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/evidence/round2/relation-mil-results.json",
+        "bytes": 6235,
+        "sha256": "a1f15719af6be735a49d352d12d31b5ec33561467264c4a9646122881ea6c3b0"
+      },
+      "actual": "doc-HPO bag, patient IDs omitted/shared marker, any-given-patient positive; .711354 to .702753",
+      "proposal_difference": "Patient-specific bag target and all-token conditional spans absent"
+    },
+    {
+      "method": "pair-conditioned whole document",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/experiments/pair-conditioned-document.md",
+        "bytes": 15063,
+        "sha256": "507c5f5a30885acf1269b4e235326c1f1e4c660412311b7c0ddce7717bbe6d30"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/experiments/pair-conditioned-document.md",
+        "bytes": 15063,
+        "sha256": "507c5f5a30885acf1269b4e235326c1f1e4c660412311b7c0ddce7717bbe6d30"
+      },
+      "actual": "Fixed pool, learned patient-concept query over complete tokens; .557825 below old .660942",
+      "proposal_difference": "No conditional span output/new concept generation"
+    },
+    {
+      "method": "ATLOP DocRE",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/model.py",
+        "bytes": 4926,
+        "sha256": "354724165081ef8c85654fa1c9151dfd7a765d544b62591fdb216543e9cc873b"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/explore-document-relations/solutions/document_relations/WORKLOG.md",
+        "bytes": 5988,
+        "sha256": "c7afee556a440d2aa1cfae202339897df486a1fabc5d0cc593f590048597d3fb"
+      },
+      "actual": "3public candidates, entity logsumexp and attention-product context; BCE; marker30 union .669661581 below N .676546355",
+      "proposal_difference": "No per-occurrence patient latent bag loss and no output outside public pool"
+    },
+    {
+      "method": "unconditional GP",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/gp.py",
+        "bytes": 2022,
+        "sha256": "b7eaea1143010db548abbbe5e687addb09f423883c87eaabe3b9c84c6c17b557"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/explore-span-normalization/solutions/span_normalization/evidence/oof-fourfold-result.json",
+        "bytes": 11694,
+        "sha256": "e9942caf08f8b668393b1a5dd062217930890993faf63c7f4e6f2480e9c00ac5"
+      },
+      "actual": "One phenotype span head, patient-unconditioned; direct addition negative; GP feature fourfold pooled negative",
+      "proposal_difference": "Conditional patient dimension and relation bags absent"
+    },
+    {
+      "method": "grounded quote SFT",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/prepare.py",
+        "bytes": 9417,
+        "sha256": "51d7d1514b6e565a4574b968001e9c8fd35e48d2f72d9f6cd6eb05764b2afd42"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/WORKLOG.md",
+        "bytes": 14821,
+        "sha256": "c52c8539dd56d25c390c87548a4b23951e1931f432e0cbee23acd7928bc01a34"
+      },
+      "actual": "Patient-conditioned fulltext generation, nearest matched gold-concept span target; fixed current source successful internally",
+      "proposal_difference": "Must not repeat same quote target; proposed latent span objective uses all alternatives, discriminative outputs"
+    },
+    {
+      "method": "public joint GLiNER2.5",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/explore-schema-extraction/solutions/schema_extraction/run_joint.py",
+        "bytes": 11248,
+        "sha256": "773e88f7e299dfa925081e3141db66b910dc3658de7eeb1a886922438777dcae"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/explore-schema-extraction/solutions/schema_extraction/WORKLOG.md",
+        "bytes": 3073,
+        "sha256": "1df1c11d8bf23be7c05fe11c8e297593bda7962d428555f476ef41c2dee0d532"
+      },
+      "actual": "Public pretrained joint patient/phenotype relation extraction, strict identity binding and normalization; F1 union .672407144 negative",
+      "proposal_difference": "Not task-supervised patient-conditioned dense span with gold entity and bag losses"
+    },
+    {
+      "method": "coreference and identity bridge",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/prepare_coreference.py",
+        "bytes": 4251,
+        "sha256": "35b251a1c667230fd98542bd53b41614a83c3de52aee3037bf4c71799c2473ef"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/experiments/E-20261023-009.md",
+        "bytes": 83909,
+        "sha256": "3857175fa39c8aedbf7a80b40388053d5c7ab75d3406628672c92109287b33b8"
+      },
+      "actual": "LLM coref pilot and F0 SFT complete; gain vs weak .674333 to .686853 remains below rules .711354; separate public Fcoref F1 .660942 to .660757",
+      "proposal_difference": "Not new: refuse more generic coref prompt/marker proposal"
+    },
+    {
+      "method": "MedGemma",
+      "mechanism_source": {
+        "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/medgemma_relation_control/RESULT.md",
+        "bytes": 1343,
+        "sha256": "376fd1efab65aa2dc9faf3eeee2173934203716354f782edfa43f5c01956dacf"
+      },
+      "terminal_record": {
+        "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/medgemma_relation_control/RESULT.md",
+        "bytes": 1343,
+        "sha256": "376fd1efab65aa2dc9faf3eeee2173934203716354f782edfa43f5c01956dacf"
+      },
+      "actual": "Both short and fulltext supervised controls actually complete, both negative",
+      "proposal_difference": "Cannot market already-run domain model as new; BioMistral metadata only new"
+    }
+  ]
+}
