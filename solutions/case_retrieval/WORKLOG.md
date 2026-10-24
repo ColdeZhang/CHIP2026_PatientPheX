@@ -1,6 +1,6 @@
 # 病例检索路线：当前工作索引
 
-- **新授权准备：[901原配方FLA](fla_best901_control/README.md)**：四流normal64/reverse64/public42/patient64，共234，715548旧实际tokens；仅改backend、全部fresh。CPU234 native核3.957秒通过（c5a132f1），全部715548输入tokens/原顺序exact；原四raw唯一CPU复装0.109740秒byteexact901（dff40c6f），0gold/v2；新GPU源449cb790/计划178ae0ec已冻，唯一proc_e4930517/PID2721779已10:10:38.470实际start，.100GPU1四flow共享1800+30，预计TERM10:40:38/KILL10:41:08，最终单pred冻结后1newv2/旧0；所有非Qwen组件固定，预期总1800+30共享时钟。
+- **新授权准备：[901原配方FLA](fla_best901_control/README.md)**：四流normal64/reverse64/public42/patient64，共234，715548旧实际tokens；仅改backend、全部fresh。CPU234 native核3.957秒通过（c5a132f1），全部715548输入tokens/原顺序exact；原四raw唯一CPU复装0.109740秒byteexact901（dff40c6f），0gold/v2；新GPU源449cb790/计划178ae0ec已冻，唯一proc_e4930517/PID2721779已10:28:14.990完整结束，外1056.450秒/rc0，234fresh自然EOS/0cap/0cache，.100GPU1实际0MiB/noapps释放；terminal0fd11978。原1800+30共享截止未重置，724原成员/包28af55a3已全SHA一次回收，actual质量plan a6604c27已核全部234/源/原始IDs顺序；最终单pred冻结后1newv2/旧0，尚未新质量。
 
 - **[F0 全文 FLA完整质量](fla_fulltext_F0_control/QUALITY-RESULT.md)**：旧native .696603974744→主/诊断同 **.697299773647**（+.000695799），新增1TP/0FP，同分选primary；仍低同骨架强triple .709556743085，不是globalbest。原58fresh/最长16245门通过，387.541秒rc0/实际GPU释放；321原件全SHA恢复，双pred共冻8c201d5e后2newv2/旧0、CPU.306秒，summaryc7f32fb8。F1已审8ca5be23也主正+.002349900；两折局部正不自动迁原dev/组合/官方。F0统一增量终审4fbaeaf1通过，31件103KB质量小补包53edbb0a/manifestc09f39f0已服务器SHA/fsync/reopen，root已完成34+31件F1/F0双补包实际恢复，统一receipt5efabf7d（见下方），不重复备份。
 
@@ -9,7 +9,7 @@
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
-## 当前：901完整原配方四流FLA运行中；两折全文筛查已审
+## 当前：901完整原配方四流FLA生成完成，待完整单端点评分；两折全文筛查已审
 
 - **当前官方状态**：最高901方案的 B50ef5daa/894806B（100篇/244患者/6816实体/2395关联）已经 root 于07:54:13 UTC 唯一提交并 accepted（8d39aba4），额度5→4，未查询成绩；联合审cd7a6040通过。15件最终补包 c9f3451f 已.100持久且 root 实际回读恢复，不重复备份。完整来源见 [official B闭环](official_b_901/README.md)，无新fit，未混新R1或train80模型。
 - **当前单次CPU任务已结案**：[BioLink供给决定](biolink_supply_diagnostic/DECISION.md)。唯一有效F0统计.384376秒：新增133支持ID单位（117新边界/16换ID）仅补强池遗漏的1个严格gold，文献概念新增54也只补1；132为annotation-unmatched而非模型FP，另7NIL跨度单列。原train48完整排F0，未原dev/fit/NN/v2；首次schema在gold前退出保留。源plan先55a6c02 push，result1fca36ec；当前不推荐新OOF学习融合、不启动后继。
