@@ -19,3 +19,7 @@ root新授权唯一240+30的13真实FB/1Adam+三模式和OTHER训练输入必要
 ## 第一轮真实完整状态
 
 14:16:53.950961全2931行/367更新完成，原ACK da53e406/1789B：504adapter、504Adam/1512张量、scheduler/RNG重开exact。epoch1 adapter4a440385/174655536B，fullstate997d5f45/349612141B；只作为恢复状态，不评epoch1、不挑模型。原controller已继续epoch2，运行源f47a8bcb和预算不变。
+
+## 完整训练与唯一全量推断开始
+
+14:43:07.960933两轮734更新全部完成：5862行参与、3033240输入tokens、67044监督tokens；native3116.626s/含load3123.402s/wrapper3124.309s rc0，未削减任何样本/轮次。第二ACK883952ec/1790B，finaladapter732e99ba/174655536B、fullstatecdd8e4cf/349612141B，完整504adapter/504Adam1512张量及scheduler/RNG恢复exact。14:43:08.911899原controller唯一infer child2747622开始，1800+TERM30，deadline15:13:08.912；无held质量或中间checkpoint评分。原formal瞬时释放不能当完整GPU交接。
