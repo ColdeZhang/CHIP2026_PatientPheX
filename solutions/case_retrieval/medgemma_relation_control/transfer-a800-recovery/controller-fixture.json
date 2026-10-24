@@ -1,0 +1,184 @@
+{
+  "status": "PASS",
+  "source": "/workspace/patientphex-runs/round2-20261023/research/medgemma-relation-control/transfer-a800-recovery/run_once.py",
+  "controller_sha256": "0f64a522c2327884b944dab6c174fc2bff3f80fe5e0137963fc58eee41499207",
+  "source_bytes": 4167,
+  "prior_controller_sha256": "9afc2dc07fe5fe9b044c4dce6eaec9fbb69bd089af238ff34930bddf99a427f5",
+  "harness_sha256": "1358521fd486405a6d0d4e929ef05eaa1639164cde4541d851428412aa482f54",
+  "actual_plan_sha256_before": "3ce6454c8027e8662ce370973a4cf55b1044ebcd6bc5a226fe4aab4e314b5b07",
+  "method": "byte-identical temporary controller via runpy; sys.modules fake Run injection",
+  "real_MCP_calls": 0,
+  "real_HTTP_calls": 0,
+  "GPU_calls": 0,
+  "model_loads": 0,
+  "cases": [
+    {
+      "case": "watch_connection_error",
+      "status": "PASS",
+      "propagated_exception": "ConnectionError",
+      "evidence": {
+        "launches": 2,
+        "stop_process_calls": 0,
+        "fetch_terminal_confirmed": false,
+        "known_server": {
+          "id": "known-source-server"
+        },
+        "known_fetch": {
+          "id": "known-target-fetch"
+        },
+        "complete_claimed": false
+      },
+      "events": [
+        {
+          "operation": "save",
+          "file": "execution-state.json"
+        },
+        {
+          "operation": "start_bounded",
+          "mount": "synthetic-source-mount",
+          "job": {
+            "id": "known-source-server"
+          }
+        },
+        {
+          "operation": "save",
+          "file": "server-job.json"
+        },
+        {
+          "operation": "read_process_output",
+          "mount": "synthetic-source-mount",
+          "arguments": {
+            "process_id": "known-source-server",
+            "stream": "stdout",
+            "cursor": 0,
+            "limit": 30000
+          }
+        },
+        {
+          "operation": "save",
+          "file": "server-ready.json"
+        },
+        {
+          "operation": "start_bounded",
+          "mount": "synthetic-target-mount",
+          "job": {
+            "id": "known-target-fetch"
+          }
+        },
+        {
+          "operation": "save",
+          "file": "fetch-job.json"
+        },
+        {
+          "operation": "watch",
+          "job": {
+            "id": "known-target-fetch"
+          },
+          "terminal_return": false
+        },
+        {
+          "operation": "save",
+          "file": "controller-interruption.json"
+        }
+      ]
+    },
+    {
+      "case": "terminal_then_ack_failure",
+      "status": "PASS",
+      "propagated_exception": "OSError",
+      "evidence": {
+        "launches": 2,
+        "stop_process_calls": 1,
+        "fetch_terminal_confirmed": true,
+        "known_server": {
+          "id": "known-source-server"
+        },
+        "known_fetch": {
+          "id": "known-target-fetch"
+        },
+        "complete_claimed": false
+      },
+      "events": [
+        {
+          "operation": "save",
+          "file": "execution-state.json"
+        },
+        {
+          "operation": "start_bounded",
+          "mount": "synthetic-source-mount",
+          "job": {
+            "id": "known-source-server"
+          }
+        },
+        {
+          "operation": "save",
+          "file": "server-job.json"
+        },
+        {
+          "operation": "read_process_output",
+          "mount": "synthetic-source-mount",
+          "arguments": {
+            "process_id": "known-source-server",
+            "stream": "stdout",
+            "cursor": 0,
+            "limit": 30000
+          }
+        },
+        {
+          "operation": "save",
+          "file": "server-ready.json"
+        },
+        {
+          "operation": "start_bounded",
+          "mount": "synthetic-target-mount",
+          "job": {
+            "id": "known-target-fetch"
+          }
+        },
+        {
+          "operation": "save",
+          "file": "fetch-job.json"
+        },
+        {
+          "operation": "watch",
+          "job": {
+            "id": "known-target-fetch"
+          },
+          "terminal_return": true
+        },
+        {
+          "operation": "ACK_readback",
+          "remote_code_executed": false
+        },
+        {
+          "operation": "save",
+          "file": "controller-interruption.json"
+        },
+        {
+          "operation": "stop_process",
+          "mount": "synthetic-source-mount",
+          "arguments": {
+            "process_id": "known-source-server"
+          }
+        },
+        {
+          "operation": "save",
+          "file": "server-stopped.json"
+        }
+      ]
+    },
+    {
+      "case": "existing_execution_state",
+      "status": "PASS",
+      "propagated_exception": "AssertionError",
+      "evidence": {
+        "existing_marker_unchanged": true,
+        "launches": 0,
+        "stop_process_calls": 0
+      },
+      "events": []
+    }
+  ],
+  "source_and_plan_unchanged": true,
+  "seconds": 0.008534366003004834
+}

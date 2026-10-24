@@ -4,7 +4,7 @@
 
 ## 当前状态与接手入口（2026-10-24 UTC）
 
-- **当前MedGemma单模型准备**：19件8.64GB/full SHA与native CPU已通过。A800首次600复制因监控HTTP503/finally停源中断，双job实停；保留10小final＋2.092GB断点。根据实测剩余6.548GB，新且唯一恢复900+TERM30已由root启动前授权，源已部署，等待source push后执行；监控未知不取消后台。GPU2已sequence最终释放，为Med唯一180诊断预留；无正式两轮/质量。见[统一记录](medgemma_relation_control/README.md)、[恢复计划](medgemma_relation_control/transfer-a800-recovery/formal/run-plan.json)。
+- **当前MedGemma单模型准备**：19件8.64GB/full SHA与native CPU已通过。A800首次600复制因监控HTTP503/finally停源中断，双job实停；保留10小final＋2.092GB断点。根据实测剩余6.548GB，新且唯一恢复900+TERM30已由root启动前授权，源已598266a推送；唯一恢复实际03:02:26Z启动，绝对03:17:26Z+TERM30，fetch proc_63585aea/watch70063，原job不可重启；监控未知不取消后台。GPU2已sequence最终释放，为Med唯一180诊断预留；无正式两轮/质量。见[统一记录](medgemma_relation_control/README.md)、[恢复计划](medgemma_relation_control/transfer-a800-recovery/formal/run-plan.json)。
 
 - **value2完整负结案、独审4319c3f9通过**：fresh旧124两轮32calls/1485.777秒，唯一原80 F1 **.660942003→.660769446**（−.000172557）；310TP73FP210FN→301TP82FP219FN，micro−.019934/macro+.019243，1189实体/nonrelation原样。80/587候选决策全有效，0触顶/格式错误/警告；完整freeze后唯一v2，native513.989秒。A100GPU2已00:50:31.789Z核空释放，训练watch58297和推断watch33072均结束，勿重启；[完整结果](evidence/round2/json-value-weighted-F1-result.json)。不扫weight/epoch，不迁F0或原dev；在线loss下降不能证明明显欠拟合。后继thinking4096采样单条也已完整格式失败并结案，见下。
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
