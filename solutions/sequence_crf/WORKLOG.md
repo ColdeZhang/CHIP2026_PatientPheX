@@ -2,7 +2,11 @@
 
 分支 `round2/sequence-crf`，worktree `/workspace/patientphex-worktrees/round2-sequence-crf`；负责人只修改 `solutions/sequence_crf/`。新任务先读当前 `main:HANDOFF.MD`、`main:AGENTS.md` 与主线程总账，再读本页及对应实验文档。完整旧台账已移至[历史快照](WORKLOG-HISTORY-20261024-0335.md)，其中旧“运行中”字样不表示当前状态。
 
-## 当前优先：用户已授权唯一901方法官方B真实推断
+## 当前优先：患者均衡混合损失 α=.5 的 CPU 数值合同
+
+官方唯一901已07:54:13真实accepted（5→4），不查询分数；固定两折多数票均负并已独审关闭。新α=.5训练侧位置准备2.717秒通过（c713111b）：124行/32文献/87患者、原IDs/labels/audit exact、尾4正确且每患者新增1/87→1/174。源码checkpoint `9fa0603` 已推送核验。现冻结原A100 Torch2.6.0+cu124的一次60+TERM5纯CPU数值合同；CUDA隐藏、线程1、小词表合成数据，无模型/fit/heldout质量。GPU probe及训练待root预算；[当前协议与源](patient_balanced_loss/README.md)。
+
+## 已完成：唯一901方法官方B真实推断
 
 root已转述用户新授权，只提交当前最高901/.754361398199方法；此前默认暂停上传已被这次明确授权覆盖。序列负责共同train64规则base/Sap64/CRF原文候选底座、Task2 GLiNER48追加，以及实际patient f787 B闭集推断；root最终校验并只上传一次，我不上传。禁止新fit/换checkpoint/加入未完成模型或把dev16/六条固定概念当测试预测。
 
@@ -94,4 +98,4 @@ patient B参数化入口只改输入identity/count和artifact标签，f787三act
 
 官方B和majority已闭环；已读并联系`biomed_model_review`的既有train-only报告，正准备独立单变量patient-balanced mixed loss源码与CPU数值合同，不新fit/GPU。固定α=.5；每epoch P87/S16、每患者chunk数n_p，新增项患者/患者内chunk等权，沿旧loss/len(group)时row系数必须含实际group_size（含尾4）。GPU预算待root另定。已有仅train32 prepared-target系数普查为124行/32文献/87患者：1–4正原子患者37人（42.53%）仅占患者归属token系数19.86%、list-value14.59%，chunk-only仍23.85%。这是损失系数现象，不是实际梯度或因果结论；prepared空不能当真实无表型，不读取heldout gold。研究目标为总Score改善，macro完整披露；机制是跨患者归一权重，与已经负关闭的value×2不同，不能重开旧配置或提前拟合。
 
-新派生位置源码49950c45/计划da157756已准备，原124完整ID/labels/rendered/audit逐项相等，`Fraction`证明两epoch每患者新增份额1/87、乘α后1/174，尾4计入；首次执行输出独立`research/patient-balanced-mixed-loss-alpha05/preparation`，CPU120秒，无Torch/heldout/旧pred。源码与计划先push，再唯一执行。`mixed_loss.py`仅loss core，完整head后选择监督位置转FP32，原CE一半保留；尚未CPU数值/GPU/fit，不是可训练终态。
+新派生位置源码49950c45/计划da157756已准备，原124完整ID/labels/rendered/audit逐项相等，`Fraction`证明两epoch每患者新增份额1/87、乘α后1/174，尾4计入；首次执行输出独立`research/patient-balanced-mixed-loss-alpha05/preparation`，CPU120秒，无Torch/heldout/旧pred。该准备已唯一执行通过2.717秒，actual manifest c713111b；不重复执行。`mixed_loss.py`仅loss core，完整head后选择监督位置转FP32，原CE一半保留；尚未CPU数值/GPU/fit，不是可训练终态。

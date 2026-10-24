@@ -1,3 +1,11 @@
+## 实际进度（2026-10-24）
+
+原生位置与权重准备已唯一执行成功，2.716751秒，manifest `c713111b…`；全部原124行IDs/labels/audit exact、两轮每患者新份额1/87及混合1/174精确成立，跨两个患者值的token为0，prepared空列表106处保留。见 [小型实际清单](preparation-actual.json)。
+
+后继 [CPU数值计划](cpu-contract-plan.json) 固定原A100 Torch2.6.0+cu124、CUDA隐藏/线程1、60+TERM5；未执行。只用vocab11合成labels/logits，核原native CE、独立显式患者均值/解析梯度、FP32/BF16、NaN/Inf忽略区、原124行实际系数对Fraction桥接。α0仅合同锚点，不是新训练臂；不加载模型、未hook trainer、不fit或质量评分。实际源码/计划先推送，再按 `run_cpu_remote.py pack/deploy/start/collect` 唯一执行；任何未知结果先库存，不自动重试。
+
+以下保留原准备协议；其中“未执行”描述对应事前状态，以本节实际状态为准。
+
 # 固定 α=.5 患者等权混合目标：CPU 准备
 
 这里只准备原 patient-first train32 的 124 行目标位置及系数。父线程推送源码和计划后再唯一执行 `prepare_weights.py --plan preparation-plan.json`；此阶段不授权 GPU、模型加载或训练。`mixed_loss.py` 与梯度 CPU 合同由父线程独立负责。

@@ -1,0 +1,123 @@
+{
+  "schema": "patient-balanced-alpha05-numeric-contract-v1",
+  "execution_ready": true,
+  "status": "FROZEN_single_CPU_only_contract_not_yet_deployed_or_executed",
+  "source": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/cpu_contract.py",
+    "bytes": 30272,
+    "sha256": "141c42489a6fdc5b86497c8bc5892fce21739e863ad852418427bc6cb5d25b14"
+  },
+  "references": {
+    "mixed_loss": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/mixed_loss.py",
+      "bytes": 4076,
+      "sha256": "dc98bb97605419de568a5ba736607aa50d1907957f98daa618e12c87446fccd5"
+    },
+    "native_loss_utils": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime/transformers/loss/loss_utils.py",
+      "bytes": 8540,
+      "sha256": "83db16b24ce5c3a0642097624aa9a0ae7eb72445c41d8b4d5059a129862fdbbe"
+    },
+    "preparation_manifest": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/manifest.json",
+      "bytes": 5074,
+      "sha256": "c713111b51c70c2c39a34917f06a5dab4fb162c0fb724e0689c2d096abdeccda"
+    },
+    "row_weights": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/row-weights.jsonl",
+      "bytes": 308095,
+      "sha256": "e1e4cc5ec55a01b198607f271c6e4d4d7c15824a50cfeb884c6dd876218d4429"
+    },
+    "epoch_groups": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/epoch-groups.json",
+      "bytes": 594436,
+      "sha256": "6b80ef9d11f41811ec5d0e54a90189c359e267c18fec452cab242cf107640452"
+    },
+    "fraction_contract": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/patient-component-contract.json",
+      "bytes": 59058,
+      "sha256": "2d33e98c8386b7ecb425c37d313ad0b7f97d8aa197081766c7dce6d03eef9efc"
+    }
+  },
+  "expected_torch_version": "2.6.0+cu124",
+  "threads": 1,
+  "vocabulary_size": 11,
+  "budget_seconds": 60,
+  "term_grace_seconds": 5,
+  "fp32_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-05
+  },
+  "BF16_gradient_tolerance": {
+    "atol": 0.0001,
+    "rtol": 0.02
+  },
+  "BF16_expectation_policy": "Analytic expected input logits gradients rounded to BF16 before applying tolerance; scalar losses retain FP32 loss tolerance.",
+  "output_directory": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/cpu-contract-v1/actual",
+  "selected_layouts_expected": [
+    {
+      "reason": "longest",
+      "row_index": 6
+    },
+    {
+      "reason": "most_patients",
+      "row_index": 4
+    },
+    {
+      "reason": "single_patient",
+      "row_index": 113
+    }
+  ],
+  "selected_layout_metadata": [
+    {
+      "row_index": 6,
+      "length": 5556,
+      "patients": 14,
+      "supervised_tokens": 135,
+      "prepared_empty_values": 3
+    },
+    {
+      "row_index": 4,
+      "length": 4701,
+      "patients": 14,
+      "supervised_tokens": 130,
+      "prepared_empty_values": 3
+    },
+    {
+      "row_index": 113,
+      "length": 5413,
+      "patients": 1,
+      "supervised_tokens": 46,
+      "prepared_empty_values": 0
+    }
+  ],
+  "deployment_binding": "Original A100 mount476f, interpreter /dataset/miniforge3/envs/vlm-det/bin/python. Exact existing native loss source checked before deploy. Copies preserve bytes; unique actual directory refuses replay. No training/GPU/model.",
+  "runtime": "Original A100 Torch2.6.0+cu124, CUDA_VISIBLE_DEVICES empty, CPU tensors, intra/inter-op threads1; no model imports and no Torch download.",
+  "native_functions": "AST extract only exact fixed_cross_entropy and ForCausalLMLoss from83db source, injected torch/nn; do not import Transformers or remaining loss module.",
+  "tests": [
+    "alpha0 finite loss and full-logits gradient against original native full causal CE",
+    "alpha.5 independent patient-then-chunk explicit mean and analytic softmax gradient",
+    "FP32 and BF16 logits; original q to q-1 shift, all format/EOS/newline retained by alpha0",
+    "different n_p, multiple patients, prepared empty list value retained, outer group4 and8",
+    "shared value token, empty positions, unsupervised positions and metadata/label mask mismatch rejected",
+    "ignored prefix and tail logits poisoned with NaN,+Inf,-Inf; new loss/gradient equal finite baseline and ignored gradients exactly zero; no poisoned full native CE reference",
+    "three actual prepared layouts6/4/113 with explicit synthetic small-vocabulary logits and labels, never actual target IDs",
+    "actual value_coefficients over original2epochs124row layouts/group divisors and S-average agrees with prior Fraction1/87, alpha.5 1/174 perpatient at1e-12 absolute; no retokenization/census"
+  ],
+  "observation_policy": "Each actual numerical error/finite count/tolerance/pass is appended and fsynced before assertion; first failure stops and preserves failure/observations/terminal; no automatic retry.",
+  "alpha_values": [
+    0,
+    0.5
+  ],
+  "alpha_zero_is_contract_anchor_not_new_experiment_arm": true,
+  "original_Fraction_proof_referenced_not_recomputed": true,
+  "no_training_or_model_forward_or_optimizer": true,
+  "no_real_target_ids_or_heldout_gold_or_predictions": true,
+  "not_actual_LoRA_gradient_causality_update_quality_or_GPU_contract": true,
+  "not_executed": true,
+  "transport_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/run_cpu_remote.py",
+    "bytes": 8756,
+    "sha256": "94b212d5494af90728e309c5f0752056f656f927b7e25b6aca891a9f81e1ad7c"
+  }
+}
