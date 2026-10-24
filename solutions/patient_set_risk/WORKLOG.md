@@ -70,3 +70,5 @@ root唤醒后沿776b/f7c9同计划恢复。先核ontology seed39实际17:04:46.6
 只复用原G `json_default`（set/frozenset→sorted(key=repr)，未知类型仍TypeError），local AST逐节点等同原G；allow_nan=False和原missing/mismatch门不变。本地类型/拒绝合同通过。actual5.20.2 tiny随机CPU checkpoint类型合同0forward/无预训练下载，第一次源码write UNKNOWN已完整SHA只读恢复；后续50+5 CPU命令和一次只读目录均UNKNOWN，不重执行，约17:19统一原路径只读恢复。
 
 root明确原剩余窗不足1795保守代理，禁止硬挤或延长运行中旧窗；批准CPU+源/计划push后，在**独立新namespace新1800+30**恢复。原任务真实终态和17:39:49旧截止不改，四患者/seed/采样/供给门/损失均不变。此刻新GPU未启动，`evidence/loading-metadata-failure.json`给不可变原证据。
+
+17:19只读原CPU result仍UNKNOWN，未重跑。root明确已知metadata bug用原G json_default exact AST及本地empty/nonempty set/frozenset/未知类型/NaN合同即可，不再把远端tiny结果扩成新工程门；未知原调用保留。已补本地nonempty字段完整保留、原missing检查仍拒绝的证据，准备独立新namespace `pilot-A100-v3-loading-recovery`，执行绑定含原失败、原截止、新独立1800授权和原因，所有方法参数不变。当前未部署/admission/start；17:22:45单次恢复源部署，若仍离线退避。
