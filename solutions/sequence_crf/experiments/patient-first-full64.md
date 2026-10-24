@@ -78,3 +78,8 @@ root已依据53e98230与c85fa31c统一授权。精确已推Git dcf7a610直接由
 ### 05:18 本地环境重连后的原作业接管
 
 原本地watcher PID108070已不存在；05:17:47实际原状态最后打印epoch1 step5、loss .302332392/峰allocated23.892GB，05:18:35独立只读核driver141616及trainer141633命令仍指向原selected-CE计划，A100 used28305MiB/util68%。未重新start、未改变源/数据/预算，没有完整epoch或新dev评分。新的本地只读watcher使用独立reconnect-0518命名空间，每180秒一次原状态读取、仍于原KILL+300止；恢复证明[小收据](../evidence/patient-first-full64-memory-recovery/reconnect-0518-status.json)。原目录中preparation-time的`formal_execution_authorized_by_root=PENDING`字段保持原字，不作为当前状态；实际统一授权、job和已推源码才是本次运行依据。
+
+
+### 首轮完整状态已实际持久（05:38:41）
+
+原fresh作业首epoch完成34calls，实际loop1456.659908秒；5成员519,867,104B，checkpoint元数据f1338b1a、adapter2c0aa93b、optimizer/RNG state ea51443a。生产端文件/目录/祖先fsync与全部成员重开SHA通过，05:40:05只读观察已进入epoch2 step35，峰allocated25.029GB。仅回收生产端小收据正文，没有下载或反序列化大状态；该正文快照不冒称远端receipt文件的原始字节SHA，正式结尾由压缩回收绑定原文件。完整两轮与唯一dev评分仍待完成；[关键收据](../evidence/patient-first-full64-memory-recovery/formal-epoch1-milestone.json)。
