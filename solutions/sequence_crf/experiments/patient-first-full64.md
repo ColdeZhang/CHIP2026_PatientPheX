@@ -63,3 +63,9 @@
 目标Torch2.6.0+cu124实测288例与完整tiny head H/W梯度、group1/2/8均通过，1.843745s；原生83db两loss函数沿用，源e6b1无改。第一次传输构造SyntaxError未执行，窄修后真实合同通过；另部署保护因CPU-result已存在而拒绝，库存确认9成员exact后仅补smoke依赖与plan，UNKNOWN结果先查库存。上述均无GPU。小收据见[CPU](../evidence/patient-first-full64-memory-recovery/actual-Torch-CPU-summary.json)。
 
 固定probe只变dfd0759f选监督CE；保留全BF16head与原临时输出生命周期，每rowmean/8，非零LR1e-4先完整第一组8条产生真实Adam状态，再原第12组前三条累积与第4条6166完整backward。诊断不重现已丢失的原失败row、不重放前11组或正式warmup，不存权重、不质量；12条44305tokens，硬240+30。逐行记录stage、内存，最长前实核已有grad与Adam库存，三族B变化、base无梯度。最长通过仍不保证完整两轮。
+
+### 带实际 Adam 与累计梯度的 probe 完整通过
+
+唯一proc_b7a810e6于05:08:43启动，147.295s/rc0完整；实际计算窗口79.901s/44305tokens、12forward+12backward、1次完整group8更新；最长前已有496梯度与496 Adam参数状态，三族B已真变，最长loss .157666758，全部数值有限/base无grad。峰allocated25,031,000,576B、reserved29,976,690,688B；结束free11,769,544,704B是结束值，非峰headroom。05:11:10.524555Z卡0/40960MiB且无目标进程，权重丢弃。45小产物完整SHA核验，见[终点](../evidence/patient-first-full64-memory-recovery/terminal-manifest.json)。
+
+新正式source1203139e仅instance CE hook与失败上下文记录，原编码/批序/优化器/两epoch保存函数不变；22件实际部署/compile/ancestor fsync，free57.076GB。token线性粗估两轮约3103s，另约66s加载及两次完整状态I/O，固定4500+30预算不变，不保证全程。固定原64推断900+30、单一a179并集先freeze再唯一v2不变；没有读新devgold/无正式重训launch，交root一次统一决策。

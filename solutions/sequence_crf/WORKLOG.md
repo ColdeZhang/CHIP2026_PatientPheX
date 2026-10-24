@@ -13,7 +13,7 @@
 
 **原训练已关闭**：A100 job `proc_5b00069a` 04:51:51 backward OOM，557.666s/rc1，最后记录completed step10，确切失败行/step/算子未知。无完整epoch/staging、不能exact续训；实际GPU已释放。独审f7668be7，详见[原终点](evidence/patient-first-full64/failure-terminal-manifest.json)。
 
-**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。仅GPU工程probe获授权，正式fresh重训须root统一决定；唯一新probe `proc_b7a810e6` / PID138316 已05:08:43Z启动（TERM05:12:43/KILL05:13:13），actual native loss property/setter 隐藏CUDA核验通过（0参数/0forward），10远端成员SHA完整。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺UNKNOWN已库存核两缺件实际落盘；原hook无进程/无结果，独立一次接口CPU完成，未重288。fresh gate实际通过；此job仅工程探针。CLI commit元数据一位笔误已独立纠正为已推344e9672，原intent/job保留、不重启。
+**新工程准备**：保留完整BF16 head，仅监督位置先选后FP32 CE。目标Torch2.6真实CPU288例＋fullhead梯度＋group1/2/8通过（1.844s）；固定240+30 fresh probe为原第1组8行非零LR更新→原第12组前三条累积→最长6166 backward，12行44305tokens。无allocator/精度变化，无GC/emptycache，无质量。仅GPU工程probe获授权，正式fresh重训须root统一决定；唯一新probe `proc_b7a810e6` 已147.295s/rc0完整通过，05:11:10Z核空释放；峰allocated25.031GB/reserved29.977GB，结束free11.770GB，actual native loss property/setter 隐藏CUDA核验通过（0参数/0forward），10远端成员SHA完整。source/plan在 [memory_recovery](patient_first_full64/memory_recovery/)，外部 B=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-memory-recovery`。部署补缺UNKNOWN已库存核两缺件实际落盘；原hook无进程/无结果，独立一次接口CPU完成，未重288。fresh gate实际通过；此job仅工程探针，已真实1个完整8微批更新＋后3累计＋6166 backward，共12forward/backward、Adam496状态和三族B真更新。CLI commit元数据一位笔误已独立纠正为已推344e9672，原intent/job保留、不重启。
 
 
 - root已授权完整链：每epoch持久fullstate → 真实epoch2三SHA绑定 → 原dev纯64一次900+30 → raw和a179并集完整freeze → 唯一v2；不评patient-alone，不重算旧候选，不删旧1072实体/391关系/35public-new。Score严格升记候选best；macro降低如实披露；.8加独审才达标。
@@ -46,3 +46,5 @@
 - 原full64已OOM停止；下一里程碑为独立显存恢复工程探针，完整重训需root统一决定；原dev固定单臂政策保留，不运行缺少真实epoch2的入口。逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
 - full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z启动，04:51:51 OOM/rc1退出；原4500+30未耗尽。见 [full64记录](experiments/patient-first-full64.md)。
+
+- 新正式fresh入口已准备并实际部署22件SHA/compile/fsync，持久盘free57.076GB；保持265×2/68calls/4warmup、4500+30及原dev64另900+30，原a179单臂不变。新probe通过但不保证完整两轮；[entry](evidence/patient-first-full64-memory-recovery/formal-entry-readiness.json)已交root一次统一决策，**尚未launch完整重训**。

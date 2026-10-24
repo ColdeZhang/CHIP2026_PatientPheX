@@ -1,0 +1,78 @@
+{
+  "status": "PASS_selected_CE_fresh_group8_update_then_three_accumulated_plus_longest_backward_no_quality",
+  "actual_optimizer_steps": 1,
+  "actual_forwards": 12,
+  "actual_backwards": 12,
+  "longest": {
+    "ordinal": 12,
+    "row_id": "3563609:relations:0",
+    "original_index": 137,
+    "tokens": 6166,
+    "supervised_tokens": 122
+  },
+  "diagnostic_window_seconds": 79.90141022950411,
+  "first_update": {
+    "actual_steps": 1,
+    "group_size": 8,
+    "loss": 0.6301392391324043,
+    "learning_rate": 0.0001,
+    "gradient_norm_before_clip": 7.419428825378418,
+    "changed_LoRA_B": {
+      "DeltaNet": "base_model.model.model.layers.0.linear_attn.out_proj.lora_B.default.weight",
+      "MLP": "base_model.model.model.layers.0.mlp.gate_proj.lora_B.default.weight",
+      "full_attention": "base_model.model.model.layers.3.self_attn.q_proj.lora_B.default.weight"
+    },
+    "inventory": {
+      "gradient_tensors": 496,
+      "gradient_bytes": 173113344,
+      "optimizer_parameters_with_state": 496,
+      "optimizer_tensor_bytes": 346228672,
+      "optimizer_state_dtypes": [
+        "torch.float32"
+      ],
+      "all_grad_finite": true,
+      "frozen_base_no_gradient": true
+    },
+    "memory": {
+      "allocated_bytes": 18661674496,
+      "reserved_bytes": 24138219520,
+      "peak_allocated_bytes": 22855482368,
+      "peak_reserved_bytes": 24138219520,
+      "free_bytes": 17608015872
+    }
+  },
+  "final_inventory": {
+    "gradient_tensors": 496,
+    "gradient_bytes": 173113344,
+    "optimizer_parameters_with_state": 496,
+    "optimizer_tensor_bytes": 346228672,
+    "optimizer_state_dtypes": [
+      "torch.float32"
+    ],
+    "all_grad_finite": true,
+    "frozen_base_no_gradient": true
+  },
+  "final_family_gradient_squared_norms": {
+    "DeltaNet": 0.614386801009366,
+    "MLP": 0.39308426701080385,
+    "full_attention": 0.3981179296451829
+  },
+  "memory": {
+    "allocated_bytes": 18719874560,
+    "reserved_bytes": 29976690688,
+    "peak_allocated_bytes": 25031000576,
+    "peak_reserved_bytes": 29976690688,
+    "free_bytes": 11769544704
+  },
+  "learning_rate": 0.0001,
+  "formal_warmup_not_replayed": true,
+  "unchanged_full_BF16_head": true,
+  "only_loss_FP32_supervision_selection_changed": true,
+  "per_row_mean_divided_by_group8": true,
+  "no_explicit_gc_del_empty_cache": true,
+  "no_allocator_change": true,
+  "no_input_truncation": true,
+  "no_checkpoint": true,
+  "no_inference_or_quality": true,
+  "diagnostic_state_discarded_on_process_exit": true
+}
