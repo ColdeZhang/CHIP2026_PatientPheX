@@ -8,4 +8,8 @@
 
 固定primary为R1-alone关联集合；唯一secondary为旧SFT32集合与R1集合并。两完整预测共同冻结后，各唯一固定v2 all/text；旧metrics7e36dd93复用。每行association外字节保持oldprediction ffb2c54a精确。两个新臂都与强旧基线比较：关系micF1+macF1严格升且macF1不降才留用；不增加第三组合、阈值或自动迁F0/原dev/官方。
 
-当前source/plan已冻结，未start；后继实际部署/CPU/作业写同目录。远端自有 `research/deepseek-r1-0528-qwen3-8b-readiness/full80-v1`，mount5a9955da-5240-41cc-9e52-05d3d8da8a3c，Python及源SHA见plan。UNKNOWN先查已发intent/原wrapper/job，不重新start。旧格式成本结果见[发布接口报告](../published-interface-v1/REPORT.md)。
+当前唯一原job `proc_12e6dfa0-4f21-4f0a-a2d2-4ad35a5ab248` 正在运行。实际纯CPU同入口预检0.084373秒通过；GPU main于04:12:06.254启动，主截止07:12:06.254+TERM30；fresh GPU1 UUIDfc5d/0MiB/无目标，416.9GB盘。实际源/plan 4a88bd33不变，见[入口清单](entry-manifest.json)。远端自有 `research/deepseek-r1-0528-qwen3-8b-readiness/full80-v1`，mount5a9955da-5240-41cc-9e52-05d3d8da8a3c，Python及源SHA见plan。UNKNOWN先查已发intent/原wrapper/job，不重新start。旧格式成本结果见[发布接口报告](../published-interface-v1/REPORT.md)。
+
+评测入口纯合成检查通过。静态审查修正public evaluator按名导入validator的顺序：先用固定SHA加载canonical模块名，仍在双预测冻结后才import/读gold；旧未执行准备源12872737及template保存在evaluation-preparation-v1，新源4fbc58db，不是实际评分失败。
+
+已知原运行I/O边界：每行正常/预期非法时完整raw/IDs已写；未预期parser异常则只有每32token partial，末不足32 token可能缺失。该问题在唯一job启动后才指出，主线程明确保持健康原job，不热改/重跑；遇此异常只能工程partial，不能进入完整80质量。后继版本应先独立raw落盘再解析，本run没有假称已修。
