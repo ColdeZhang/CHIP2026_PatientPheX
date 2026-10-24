@@ -4,7 +4,7 @@
 
 ## 当前任务
 
-**固定双采样已负结案，等待一次增量终审与最小补包**：F1 Score .701325377212→.705226083109（14新9TP5FP），F0 .728195628911→.725132683325（13新2TP11FP），F0 micro/mac均降，故不满足预定双折都正，不迁full64/原dev、不扫seed。F0完整94原205件collectionab5781b7，1374.396秒；89EOS/5cap整行弃答，全部47患者保留。592合法anchors→195公共Sap8.4366秒/13原件b6c4→完整freeze b26048a8 后唯一1v2/旧0。统一入口1d23783b，结果0e3eb2ba，见evidence/F0-result.json。全部GPU14:52:39.579562真实释放并交copy_decode，当前仅本地结案/持久小包。F1 root实际restore721cd7d7已核。
+**固定双采样已负结案、终审通过、最小补包已持久**：F1 Score .701325377212→.705226083109（14新9TP5FP），F0 .728195628911→.725132683325（13新2TP11FP），F0 micro/mac均降，故不满足预定双折都正，不迁full64/原dev、不扫seed。F0完整94原205件collectionab5781b7，1374.396秒；89EOS/5cap整行弃答，全部47患者保留。592合法anchors→195公共Sap8.4366秒/13原件b6c4→完整freeze b26048a8 后唯一1v2/旧0。统一入口1d23783b，结果0e3eb2ba，见evidence/F0-result.json。全部GPU14:52:39.579562真实释放并交copy_decode，当前仅本地结案/持久小包。F1 root实际restore721cd7d7已核。
 
 原 train32 grounded 模型 d52、原 F1 16篇/39患者全文输入；固定 seed20261024/25、native nonthinking sampling T.7/p.8/k20/minp0/repetition1/max1600。两完整39经原严格 quote parser 与相同 train32 alias/public41099/b59政策后，唯一主端点 B4(524关系/.701325377212) UNION 两seed literal关系交集。新关系为零则原基底byteexact且0v2；否则完整freeze后1v2/旧0。严格Score正才F0；双折正才full64。
 
@@ -39,3 +39,5 @@ F1正式独审：c54828bd/12959B，41safe snapshots/manifestddd801e5稳定；入
 root已唯一实际读回F1补包，3 read_file，128内容+1embedded全部SHA/fsync/reopen，manifest字节exact；恢复721cd7d7/17273B见evidence/F1-actual-restore.json。未改9bd386cc入口/1527f730质量freeze，未复制旧权重或重模型。
 
 F0完整收口没有模型或质量重试；future f0_entry原写入器首次即通过，完整源/实际plan逐阶段预推。原94与195查询各唯一作业，严格弃答保持，不根据已知质量修正。末段独审followup曾因全局7槽满未启动，root协调后续；该资源约束不改变已经完整的负结论。
+
+F0统一独审a8bd9a47/6741B、manifest17580d0f稳定通过完整性和负结案。唯一最小补包74355340/732980B、manifestf984460a/40509B，90内容+1embedded，.100实际逐成员SHA/fsync/reopen收据a4ef2d40/34911B，路径见persistence/F0-receipt.json；旧F1包和大权重不重复。root后续唯一下载恢复，当前不冒称已本地读回远端包。

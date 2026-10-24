@@ -19,3 +19,5 @@ python -B solutions/grounded_sampled_consensus/persistence/F1_supplement.py depl
 持久目标：mount `5a9955da-5240-41cc-9e52-05d3d8da8a3c`，相对路径 `research/grounded-sampled-consensus-v1/F1-endpoint-supplement-20261024/`。恢复时主线程唯一下载 `endpoint-supplement.zip` 与 `members-manifest.json`，按实际 whole SHA、逐内容成员 SHA、嵌入 manifest 字节一致核验。**ZIP 总成员数 = 内容成员数 + 1 个嵌入 manifest**。
 
 部署沿已验 `endpoint_supplement.py` 的同字节分块与逐成员 SHA/fsync/reopen 协议；UNKNOWN 时先核原上传库存，保留分块和原包，禁止重打包、重新生成或重评分。服务器完整回执通过与主线程实际下载恢复分别记录，未取得后者前不宣称已实测下载恢复。
+
+F0已负结案：恢复入口[F0-receipt.json](F0-receipt.json)。原CPU12/NN205/Sap13三ZIP byteexact，完整规范化、固定预测和独审a8bd9a47同包；90内容+1embedded，旧F1只串其已实际恢复的locator，不重传。外部R/research/grounded-sampled-consensus-v1/endpoint-F0-supplement-v1保原package与服务器全SHA收据。
