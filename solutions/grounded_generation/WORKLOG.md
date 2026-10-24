@@ -4,19 +4,21 @@
 
 ## 当前目标和状态
 
-- 目标：9B原文证据复制＋独立HPO规范化，补充强全文N的患者关系；保持Task1骨架，固定总Score主门。N .676546只是normal全文强对照，历史完整public支持F1 .686338981只读参考；胜N先称方法候选，不称历史或原dev全流程best。原dev最佳.754361398，官方.6922为用户回传；本路线首F1方法候选N∪grounded .681717660（较强N +.005171305），new-only .583496662；原F1独审PASS；强B∪全grounded .695950447742，micro降/macro升。第二折准备中，原dev无新分数。
-- 原32金标38c353ea/969963B和356109e9谱系已核：F2+F3、32文献87患者；F1输入16文献39患者，与训练不交。held/原dev gold没有读取或哈希。
-- 历史边界已核：旧8B窗口抽取/SFT直接并集两折不稳；旧患者HP+quote自由编号严重失败。新机制改变为患者条件证据复制、禁止HP生成、独立规范化，不能只把换9B当创新。
-- 真实schema已核：association只有patient_id→phenotype；实体独立含offset与identifier。目标quote只是按关系选出的弱证据，不能称人工归属证据。用原passage单位ID保全原始offset，避免按gold切句。
-- 目标v2实际85979cdc/.484秒已完成，全87训练行/39held保留：814有效原子键全部有可定位词面，801去重目标，4关系无效/分支外明确列出；原文位置边界7项通过。local token实际c8f29baf/3.253秒：451672完整训练tokens，最长9210，监督11884/max610，held203588/max10080；三Pareto形状9210/399、6521/449、5676/610。原生TF CPU120+5与420+30工程已执行完成，正式训练已唯一完成87×2/22updates；10:47:48实际rc0，两durable ACK通过，held生成/质量未执行。规范化冻结公共银行与624个train-only查询已完整，政策未按scores调整。CPU与14步真实工程均已完整PASS，见下方实际终点；probe状态丢弃，正式87×2/3000+30已批准。
-- 当前资源：本线所有A100与.3 F1作业完整退出；A100已交response-code。A8002双seed作业11:22:33真实释放，拟同权重F0；仅CPU准备已授权，GPU按root调度。
+- **F1完整且终审PASS**：原GG001 N∪grounded .681717659986（强N .676546354663），new-only .583496662244；独立GG002强支持B∪全部grounded .695950447742（B .686338981272），micro下降.013393436/macro上升.051839302。9B只复制原文词面、独立HPO规范化，quote是弱词面锚定而非人工归属span。完整终审0fcffd7b，F1补包184内容已root实际服务器恢复c48d3776；原dev最高.754361398和官网结果不变。
+- **当前唯一NN**：同d52模型的F0全文47，A800 GPU2 `proc_1a64fada-6c00-43a3-806e-b9ea4b755862`，driver63172/child63188；11:38:58.166起，TERM12:13:58.166、KILL12:14:28.166。原plan ed3c9297/f657e38已推。唯一只读watch session54389/PID157105每180秒；先核其实际存在，禁止重复start。准确入口[f0/actual-start.json](f0/actual-start.json)、[恢复步骤](f0/RECOVERY.md)。
+- **已完成F0工程**：47原生输入5.522秒全部ID/渲染/decode一致，289420/max9935；11件5bcd8c19。173MB d52推断缓存19.422秒完成四SHA/两端fsync/reopen，原fullstate和两ACK仍A100。A800 Torch2.7.1相对训练A1002.6.0如实披露，原native/greedy1600/b59阈值不变。原LUNA与2GiB保守容量门失败保留；按实际cache/raw上界768MiB copy/512MiB infer，未清其他资产。
+- **F0固定质量**：全47→原解析/固定train32别名与public41099/Sap→全部新关系。只强B0 .7115075800266846∪全新关系一v2、旧0，保947实体/全部原关系/非关系字节；new-only只输出不评分，完整供root固定2of3与校准。不得因独立F0负删source，不自动原dev/官网。
+- **条件full64仅CPU已完成**：[full64_readiness/summary.json](full64_readiness/summary.json)，173患者全覆盖、1711有效关系可构建、1678弱quote，dev纯36；957793训练tokens、监督24997，max10637/646。两轮代理4242–4582秒、候选6000+30不是实测或授权，新形状需后续实际工程。train64含内部F0/F1监督，但这批独立未来资源绝未进入当前已冻结F0模型/别名。无原devgold、新fit、GPU或质量。
+- 当前分支检查点`bba8650`已核远端（后续台账提交可在其上）；所有大产物位于仓库外。资源由root调度，A100现给response-code，.3在DocRE QwenF0完成后才轮到本线必要Sap。
 
 ## 执行与下一步
 
-1. 固定每个目标患者的完整输入、可定位quote构造、不可构建与歧义统计；所有训练/held患者均在覆盖表。
-2. 实际计算训练全文/答案/监督位置与held预算，原生tokenizer核对；纯CPU合同及源/计划先推送。
-3. 与root协调一次有界真实最难工程检查，fresh正式训练与完整F1推断；不从工程状态续训。
-4. 两完整预测共同冻结后各唯一v2、旧分数复用。主臂N∪new、诊断new-only，Task1/患者/非关系字节保持；另一内部折有益后再full64/原dev验收。
+1. 维持原F0唯一watch，真实47完整终态后沿原collection回收；所有EOS、cap、strict失败原样保留，不按质量重试。
+2. 固定parser/normalizer完整闭环，先给root/validation纯new关系完整产物，再完整强B0union冻结→唯一v2。逐项实际命令见f0/RECOVERY.md。
+3. 完整终点一次增量审，结果和原件最小持久包、及时push；不逐阶段重复审旧链。
+4. 仅当独立F0或root固定2of3通过，再由root决定full64工程/训练；当前readiness不能当执行许可。
+
+## 历史阶段记录（准确原时点，非当前作业）
 
 大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前native CPU v2已原proc8bd3ffbe完整rc0/16.244秒，18件全部SHA回收237aaa65；87/39全输入与6数值PASS。GPU14步原proc7d1bc518已完整PASS，242.157秒/peak28.182GBallocated、29.067GBreserved，60件e24c8065全收；10:04:31.503GPU2已释放。root已批准正式87×2/22calls/warmup2/尾7 3000+30及39held1200+30/两个固定质量端点；formal-plan已bind，纯metadata preflight核全87/32输入与实际probe成功，19件原部署已SHA/fsync/reopen，package bd4d90a3；10:10:32启动前LUNA后按185秒单owner恢复，10:13:49.227正式唯一proc_e1b482f9/driver75341/child75359已启动。TERM11:03:49.227，KILL11:04:19.227 UTC；87×2/22calls/warmup2/尾7，原两完整ACK后才允许39fresh。未知状态先查原intent，禁止重复启动。
 
