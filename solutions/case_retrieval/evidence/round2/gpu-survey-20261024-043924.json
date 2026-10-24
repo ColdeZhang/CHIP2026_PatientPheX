@@ -1,0 +1,231 @@
+{
+  "status": "one_readonly_survey_per_four_preconfigured_hosts_complete",
+  "created_utc": "2026-10-24T04:40:06.905275+00:00",
+  "source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/gpu-resource-survey-0435/query_once.py",
+    "sha256": "25ac2dcf1c244a92106c499c8c455cbfcc724341bc337865bd29e066d9d063d3",
+    "bytes": 3100
+  },
+  "purpose": "Find newly idle large-memory cards without preempting existing or reserved jobs.",
+  "query_fields": {
+    "gpus": "index,uuid,name,memory.total,memory.used,utilization.gpu",
+    "compute_apps": "gpu_uuid,pid,used_gpu_memory"
+  },
+  "per_host_attempts": 1,
+  "hosts": [
+    {
+      "host": "a30_100",
+      "private_address": "10.5.2.100",
+      "mount_id": "5a9955da-5240-41cc-9e52-05d3d8da8a3c",
+      "status": "observed",
+      "reservation_by_index": {
+        "1": "R1 F1 running/reserved"
+      },
+      "started_utc": "2026-10-24T04:39:22.852028+00:00",
+      "finished_utc": "2026-10-24T04:39:24.474691+00:00",
+      "seconds": 1.622712390992092,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/gpu-resource-survey-0435/a30_100.json",
+        "sha256": "bf39c6a927ee41302a5a21c564960efdef52349d8cbda0360b2b3b6c8b635a56",
+        "bytes": 3236
+      },
+      "server_utc": "2026-10-24T04:39:24.058818+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+          "name": "NVIDIA A30",
+          "total_MiB": 24576,
+          "used_MiB": 4795,
+          "utilization_percent": 98
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+          "name": "NVIDIA A30",
+          "total_MiB": 24576,
+          "used_MiB": 18895,
+          "utilization_percent": 98
+        }
+      ],
+      "compute_apps": [
+        {
+          "uuid": "GPU-126293b9-6677-8464-cee7-01e693efbf29",
+          "pid": 2668237,
+          "used_MiB": 4786
+        },
+        {
+          "uuid": "GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539",
+          "pid": 2664328,
+          "used_MiB": 18886
+        }
+      ]
+    },
+    {
+      "host": "a30_3",
+      "private_address": "10.5.2.3",
+      "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+      "status": "observed",
+      "reservation_by_index": {},
+      "started_utc": "2026-10-24T04:39:22.881138+00:00",
+      "finished_utc": "2026-10-24T04:39:28.724805+00:00",
+      "seconds": 5.843742775992723,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/gpu-resource-survey-0435/a30_3.json",
+        "sha256": "27d96ff862121e9ec3ffb32e3faf3051d64870b682b9c4d991f3c9e0f82fac2f",
+        "bytes": 3673
+      },
+      "server_utc": "2026-10-24T04:39:24.171849+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+          "name": "NVIDIA A30",
+          "total_MiB": 24576,
+          "used_MiB": 4,
+          "utilization_percent": 0
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b",
+          "name": "NVIDIA A30",
+          "total_MiB": 24576,
+          "used_MiB": 1895,
+          "utilization_percent": 0
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9",
+          "name": "NVIDIA A30",
+          "total_MiB": 24576,
+          "used_MiB": 965,
+          "utilization_percent": 0
+        }
+      ],
+      "compute_apps": [
+        {
+          "uuid": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b",
+          "pid": 884964,
+          "used_MiB": 940
+        },
+        {
+          "uuid": "GPU-2f5f8096-b06e-7c4e-0fb4-d69bafe8a63b",
+          "pid": 897066,
+          "used_MiB": 940
+        },
+        {
+          "uuid": "GPU-d7fa7b70-7c9d-37d3-c2c8-bb586a067cc9",
+          "pid": 4190196,
+          "used_MiB": 956
+        }
+      ]
+    },
+    {
+      "host": "a100",
+      "private_address": "10.5.3.12",
+      "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+      "status": "UNKNOWN_tool_error",
+      "reservation_by_index": {
+        "2": "Patient-first full64 training reserved"
+      },
+      "started_utc": "2026-10-24T04:39:22.911804+00:00",
+      "finished_utc": "2026-10-24T04:39:25.714201+00:00",
+      "seconds": 2.8024344209989067,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/gpu-resource-survey-0435/a100.json",
+        "sha256": "a45fa8c1739d743962689ecb29e025f7482fc2b009ce175456e4327867dbbaaa",
+        "bytes": 1178
+      },
+      "error": "UNKNOWN_OUTCOME: request outcome is unknown"
+    },
+    {
+      "host": "a800",
+      "private_address": "10.5.4.7",
+      "mount_id": "69b991ee-183f-4add-af1a-579af92479c9",
+      "status": "observed",
+      "reservation_by_index": {
+        "2": "R1 F0 reserved"
+      },
+      "started_utc": "2026-10-24T04:39:22.885346+00:00",
+      "finished_utc": "2026-10-24T04:39:26.021713+00:00",
+      "seconds": 3.13639485501335,
+      "receipt": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/gpu-resource-survey-0435/a800.json",
+        "sha256": "c23dfe8c779b86a19feebee515a8da94b337e8a6a7df6e5c1bcc6697e4ac8345",
+        "bytes": 4173
+      },
+      "server_utc": "2026-10-24T04:39:24.263465+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18",
+          "name": "NVIDIA A800 80GB PCIe",
+          "total_MiB": 81920,
+          "used_MiB": 603,
+          "utilization_percent": 0
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246",
+          "name": "NVIDIA A800 80GB PCIe",
+          "total_MiB": 81920,
+          "used_MiB": 9101,
+          "utilization_percent": 0
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-f516a193-de9c-8552-7ac5-4725f24cc0fc",
+          "name": "NVIDIA A800 80GB PCIe",
+          "total_MiB": 81920,
+          "used_MiB": 1,
+          "utilization_percent": 0
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-307de7ec-0104-d883-c5cd-5f161a53f9b8",
+          "name": "NVIDIA A800 80GB PCIe",
+          "total_MiB": 81920,
+          "used_MiB": 76143,
+          "utilization_percent": 0
+        }
+      ],
+      "compute_apps": [
+        {
+          "uuid": "GPU-85df9f08-83c4-59ec-8fd3-f5eb9e813c18",
+          "pid": 56706,
+          "used_MiB": 594
+        },
+        {
+          "uuid": "GPU-fbd85b6b-d5a7-2d31-c182-1da41d3d5246",
+          "pid": 28609,
+          "used_MiB": 9092
+        },
+        {
+          "uuid": "GPU-307de7ec-0104-d883-c5cd-5f161a53f9b8",
+          "pid": 18435,
+          "used_MiB": 76134
+        }
+      ]
+    }
+  ],
+  "new_unreserved_large_GPU_recommendations": [],
+  "smaller_no_compute_candidate": {
+    "host": "10.5.2.3",
+    "index": 0,
+    "uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+    "total_MiB": 24576,
+    "used_MiB": 4,
+    "utilization_percent": 0,
+    "compute_pids": [],
+    "status": "point-in-time no-compute observation; not claimed zero memory or allocated; fresh-check before any use"
+  },
+  "constraints": [
+    "A100 GPU2 reserved for patient-first full64",
+    "A30 .100 GPU1 reserved for R1 F1",
+    "A800 GPU2 reserved for R1 F0 even when transiently no compute",
+    "A800 GPU0 PID56706 remains occupied, never shared or stopped",
+    "A100 UNKNOWN_OUTCOME retained without retry; does not diagnose ongoing training",
+    "No new hosts, process command lines, model loads, process stops, or training launches"
+  ],
+  "known_jobs_modified": false
+}
