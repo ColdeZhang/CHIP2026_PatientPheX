@@ -20,4 +20,4 @@
 
 原attempt1在loading-info保存遇H39 set序列化错误，30.448秒、0forward/0raw，21件2ec994c2完整保留。恢复只逐字复用旧json_default（set/frozenset按repr排序，unknown仍硬错），CPU空/非空/未知/NaN实际.005805秒通过；原probe数值源dc9552fe不改。attempt2 plan d1cbed01/source e1bfa93先push，08:47:31→08:48:57，程序82.748秒、load5.541秒，原08:54:12.927586绝对截止未重置，GPU释放。峰allocated22,232,783,360B/reserved23,540,531,200B。
 
-40份原BF16 tensor333,805,160B在.100原目录逐SHA/fsync/reopen，未下载至本地、未进Git；174小件包e34d0c9a/332239B、manifest4cdf6120/35510B全部SHA回收。原目录 `research/fla-backend-followup-v1/probe-A-attempt2`，result6f3f80d0、terminal094000db、collection577d10f3，见 [结果指针](result-pointer.json)。终审待统一回执。它提供后续独立backend控制的依据，当前不透明替换native、不自动启动稳态/训练/质量。
+40份原BF16 tensor333,805,160B在.100原目录逐SHA/fsync/reopen，未下载至本地、未进Git；174小件包e34d0c9a/332239B、manifest4cdf6120/35510B全部SHA回收。原目录 `research/fla-backend-followup-v1/probe-A-attempt2`，result6f3f80d0、terminal094000db、collection577d10f3，见 [结果指针](result-pointer.json)。统一增量终审8959740a通过（11569B）；原21+新174小件完整核验，40raw只按原server SHA/fsync回执边界披露。它提供后续独立backend控制的依据，当前不透明替换native、不自动启动稳态/训练/质量。
