@@ -6,10 +6,10 @@
 
 - 分支 `research/supervised-sapbert-linker`，起点 main `ff7ad16777e3907ed3b4b4231794439017aa5bf8`；只写本目录。
 - 查重、供给及固定未执行配方见 [实验记录](experiments/E-20261024-SAP-001.md)；原件在仓库外 `research/supervised-linker-readiness-20261024/owner-v1/`。
-- 已实际：本地 train32/public CPU 汇总、F1 输入与旧预测结构统计、6 项纯数学合同；0 模型加载、0 fit、0 新 gold、0 v2、0 remote、0 GPU、0 下载。
+- 已实际：native全量分词、真实GPU工程、原数值失败、固定scale4096的fresh3轮219有效更新、最终全state恢复、4次全bank与303推断；唯一完整F1评分负，GPU已释放。原readiness阶段0模型/0质量的范围保留在旧证据中。
 - 供给：2222 HPO 行、2246 原子、1160 词面、783 ID；public 非 exact 部分1040原子，旧 Sap top1 639/top8 908。这些均为训练侧供给。
 - 应用：16 篇/39 患者/1313 旧实体，保护873 unique exact 和18 ambiguous exact，只允许422实体/303词面进入新链接；保持全部关系。
-- 下一步：完成全部1160/41099/303 native IDs合同后，唯一300+30工程。真实初始bank与hard20决定最大候选/长度批次；原warmup两Adam、已有state累积反向、全state保存恢复，状态弃掉。实际成本回报root后再定正式预算。启动双时钟按H69预绑定5分钟有效期，不重发UNKNOWN。
+- 下一步：交主线程统一终审；当前无运行或待启动作业。Task1单端点负闭；root独立G quote应用由copy owner负责，不由本线追加。稳定入口 `evidence/F1-terminal-pointer.json`，新模型/公共bank证书见 `evidence/adapted-encoder-manifest.json`。
 - 实际 .3 初库存15:41:49 UTC：GPU0 4MiB/24160MiB空闲、无应用，项目盘166.65GB；GPU1/2他人进程不碰。来源外部 probe-v1/initial-inventory.response.json。start前另fresh门，旧库存不替代。
 
 2026-10-24：旧 Gmean F1 正/F0 负结案与本线独立。最终旧 F0 终审 `R/validation/grounded-weight-average-F0-final-review/review.json`，SHA `eb46a4ee532db0caa24baf1431259b7d35125e0c9025686174b92cbf5c037b6b`。不因此复活旧配方。
@@ -23,3 +23,5 @@ CPU v1 在0模型/0CUDA阶段拒绝合法整数buffer：199个F16权重＋`embed
 最终：fresh4096恢复15:58:05.919361→15:59:02.517115，56.598秒/原deadline未延，3epoch219真实更新＋4公共bank＋final完整ACK＋303全部完成，峰4.667GB，GPU0已释放。唯一F1在16:03:25.413338全冻/.419492开始质量，Score **.728697536469→.722613656516**（−.006083879953），33换ID中16原对变错、17仍错，TP−16/FP+16；关系两项完全不变，format0错0警告，1新v2/旧0。当前422替ID配方关闭；不能无匹配零步臂把下降纯归微调。原结果/新scale联合工程差异均保留。
 
 read_file第二片UNKNOWN仅I/O，首131072字节复用＋run_command只读6片补165608字节，完整303原SHA06fd77e0，0重推断。必要6小件全收；24成员小包137963B/da6e4f66已服务器逐SHA/fsync/reopen＋5次32KB实际readback。1.309GB模型/bank126MB保远端actuallocator，不称小包自包含。统一 `evidence/F1-terminal-pointer.json` 供独立终审。root在本质量前预提的Gquote应用是另协议，当前不执行、不替代本负结论。
+
+终态小补包7成员/8565B/ca343e12已实际服务器逐SHA、fsync、重开并回读，包含原formal故障、稳定entry与新adapted证书；原24成员主包保持不变。入口 `evidence/F1-supplement-pointer.json`。本线全部GPU/CPU作业及回收均结束，模型后继已交copy的独立G quote任务。
