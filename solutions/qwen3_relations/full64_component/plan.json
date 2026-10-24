@@ -1,0 +1,197 @@
+{
+  "model_id": "Qwen/Qwen3-8B",
+  "HF_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/shared-models/qwen3-8b-b968826",
+  "model_files": {
+    "LICENSE": {
+      "size": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "config.json": {
+      "size": 728,
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    "generation_config.json": {
+      "size": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "merges.txt": {
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "model-00001-of-00005.safetensors": {
+      "size": 3996250744,
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f"
+    },
+    "model-00002-of-00005.safetensors": {
+      "size": 3993160032,
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282"
+    },
+    "model-00003-of-00005.safetensors": {
+      "size": 3959604768,
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836"
+    },
+    "model-00004-of-00005.safetensors": {
+      "size": 3187841392,
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a"
+    },
+    "model-00005-of-00005.safetensors": {
+      "size": 1244659840,
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff"
+    },
+    "model.safetensors.index.json": {
+      "size": 32878,
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc"
+    },
+    "tokenizer.json": {
+      "size": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "size": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "size": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "native_forward_sha256": "f0ec853368a9b19d664bfa6099d14f6c0d96e9d06a8ca540b181157be8246069",
+  "mount_id": "1593f159-19bc-41ca-8b4c-2e7455f5db99",
+  "gpu_uuid": "GPU-07726469-bf7a-b832-9dee-019dc276dc1d",
+  "python": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-crf/.venv/bin/python",
+  "runtime": {
+    "torch": "2.7.0+cu128",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "tokenizers": "0.21.2",
+    "accelerate": "1.6.0",
+    "safetensors": "0.5.3",
+    "huggingface_hub": "0.30.2"
+  },
+  "environment": {
+    "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/f0-v1/transfer-direct/assets/training-runtime:/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/f0-v1/transfer-direct/assets/runtime",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "experiment_id": "E-20261024-QWEN3-003-FULL64-COMPONENT",
+  "role": "New deployment for root fixed2of3 positive twofold ensemble; prior independent Qwen union remains closednegative.",
+  "gpu_index": 0,
+  "durability_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+  "ModelScope_revision": "26028140be3ee69b82b1d1450179ab71bb1121b9",
+  "license": "Apache-2.0",
+  "seed": 20261023,
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "recipe": {
+    "epochs": 2,
+    "rows": 265,
+    "documents": 64,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "updates": 68,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_steps": 4,
+    "max_grad_norm": 1.0,
+    "loss": "standard shifted FP32 mean causal CE, indexed only at supervised prior-logit positions",
+    "quantization": false,
+    "packing": false,
+    "truncation": false,
+    "updates_per_epoch": 34,
+    "warmup_ratio": 0.05,
+    "last_batch_size": 1
+  },
+  "budgets": {
+    "probe": 240,
+    "formal": 2400,
+    "infer": 1200,
+    "each_TERM_grace": 30
+  },
+  "cpu_dir": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-readiness/actual",
+  "cpu_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-readiness/actual/result.json",
+    "bytes": 2593,
+    "sha256": "416da6efc4adef9ac1f0ccc9ff4cd8b6489d9483bd1ccb48836c0eca992c96d9"
+  },
+  "cpu_loss_result": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-component-v1/source/reused-cpu-loss-result.json",
+    "bytes": 2073,
+    "sha256": "e19d28582ea839a34971f5147a8edc306c754f17b5d39d3805eb89745d834b7c"
+  },
+  "cpu_loss_expected_status": "PASS_NATIVE_TF4513_CPU_INDEXED_HEAD_STANDARD_MEAN_CAUSAL_CE",
+  "run_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/stage8-qwen3-relations/full64-component-v1/run",
+  "source_files": {
+    "assemble_component.py": "3f255dada1c470e75ab83921347c7c76d5d119d46769cddf0d1dac53026961bf",
+    "common.py": "7b6b1344fd7b15811adbbd4daf2e678c3a3730844ac16a5c693b8ac2df998a7b",
+    "driver.py": "5e1396a6726551c29d44a6c73af3e712d7e5982d6e38ff018e5e55ab732851ef",
+    "literal_helpers.py": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+    "loss_ops.py": "44201b60802a3c59a3ba73d79f114cee768ddbd0a04ef631a0f3bdd794b273bc",
+    "native.py": "759333ca09e0a108964b455661fd97ec2a3054bec289ba7eebd4d983d55ab504"
+  },
+  "probe_schedule": "Only13 new-shape indexedFB:8accum->realAdam->3accum->Pareto(4992,116)/(6155,113); no oldmath or heldprefill; discardstate.",
+  "cost_gate": "1.25*worst_measured_indexed_seconds_per_token*1732990 + model_load_seconds+120 <=2400",
+  "inference": {
+    "thinking": false,
+    "do_sample": false,
+    "max_new_tokens": 1600,
+    "max_input_reject": 13312,
+    "fresh_rows": 64,
+    "policy": "Original strict complete CID/PID JSON, naturalEOS, invalid-wholerowabstention,rawIDs->rawtext->parse,no repair/retry"
+  },
+  "data": {
+    "train_rows": 265,
+    "train_documents": 64,
+    "train_tokens": 866495,
+    "train_max_tokens": 6155,
+    "train_supervised": 15410,
+    "dev_rows": 64,
+    "dev_documents": 16,
+    "dev_patients": 36,
+    "dev_tokens": 509609,
+    "dev_max_tokens": 13175,
+    "dev_concepts": 466,
+    "dev_pairs": 1006
+  },
+  "ancestry": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/full64-readiness/ancestry.json",
+    "bytes": 8790,
+    "sha256": "0846cfd33fcc3146a339351b3bd796aa974f8fbeb4e8dcda99c6256626168188"
+  },
+  "prior_actual_cpu": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/full64-readiness/result.json",
+    "bytes": 2593,
+    "sha256": "416da6efc4adef9ac1f0ccc9ff4cd8b6489d9483bd1ccb48836c0eca992c96d9"
+  },
+  "original_normal_full64_schedule_evidence": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/full64-relation-cpu-preparation/formal2ep/run_manifest.json",
+    "bytes": 10650,
+    "sha256": "7918e5e703f5a517d1f11d2ab01f0d13e9b5b6bd09a4b0a72d96910b22ff2af7"
+  },
+  "cross_host_runtime_difference": "Same copied native4.51.3/PEFT.15.2/tokenizers.21.2; Torch2.7.0cu128 target vs original32 2.7.1cu126; no quantization or dtype change",
+  "prohibition": "No originaldev gold/independent Qwen union/quality calls; only complete new-onlyprediction for root fixed ensemble.",
+  "cpu_source_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/stage8-qwen3-relations/full64-component/cpu-source-contract.json",
+    "bytes": 8097,
+    "sha256": "13bb891473c4e4e533e201956fe84fdd49bee73d9d6a42677a1ad49a8a419355"
+  }
+}

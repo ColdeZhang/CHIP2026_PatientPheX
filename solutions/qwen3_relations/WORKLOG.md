@@ -2,7 +2,7 @@
 
 - 目标：固定strict F2+F3 train32原124行normal关系监督，原生Qwen/Qwen3-8B非thinking两轮，完整F1全文80推断；新单臂与fullsupport整体并集两端点中至少一个Score严格高于.686338981才考虑F0。原dev.8总目标未达；本线F1固定并集已过内部继续门，另一折F0进行中。
 - 来源：`explore/qwen3-relations`，base `ff676a01615cce944b95ea8032e8d9bcd056cfdf`。只维护本目录。DocRE另线四组负结案保持。
-- 当前：独立固定并集两折不稳，已负结案：F1 .686338981272→.689312034492，F0 .711507580027→.688186671128。F0新增117=18TP99FP，微/宏均降；不调阈值、不追加epoch、独立full64迁移关闭。全58 raw完整且未单独评分，仍交root预锁融合；该组合若后续通过属于另一决定。本线full64仅CPU准备，不启动。详见 experiments/E-20261024-QWEN3-002-F0.md。
+- 当前：旧独立并集F0负结案不变。root固定三源2of3两折正（F0 .724457355332，审99e5a6d8），已另授权原生Qwen3 full64作为组合必要组件：新shape240+30→fresh2ep68updates2400+30→64fresh1200+30；只输出901实体壳上的new-only，禁止本线原dev gold/独立quality。CPU合同与源计划已固定，等待.3 fresh门后唯一控制器。
 - 原生标准模型与R1-0528-Qwen3-8B为不同发布权重；两者都是全注意力，不称首次attention或冠军复现。历史Qwen3 Task1 train48→F1已做过，strict32关系SFT＋fullF1未见现有终点。
 - 固定HF b968826d9c46dd6066d109eabc6255188de91218，ModelScope26028140be3ee69b82b1d1450179ab71bb1121b9，Apache2.0。基座8,190,735,360＋r16七线性LoRA43,646,976=8,234,382,336，每模型<10B。
 - CPU11.979837s已核204原生/raw IDs及解码exact：train124/32总403151/max5534/监督7170；F1 full80/16总666591/max14322。源cb7f67e1与2a95bad1不变；no new gold/quality。
