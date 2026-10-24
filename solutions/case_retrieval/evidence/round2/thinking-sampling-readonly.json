@@ -1,0 +1,94 @@
+{
+  "status": "read_only_followup_proposal_no_new_GPU_or_quality",
+  "native_HF_presence_penalty": false,
+  "checked_runtime": "Transformers5.20.2 actual private A100 runtime source; not source from unrelated version",
+  "custom_processor_possible": true,
+  "semantic_definition": "Subtract1.5 once from each token occurring in actual generated suffix; do not penalize prompt-only tokens or count repeats; apply before sampling warpers; repetition_penalty stays1.",
+  "custom_processor_implemented": false,
+  "sampling_or_longer_cap_previously_measured": false,
+  "original_thinking_1600_greedy_failure_preserved": true,
+  "proposed_input_only_selection": {
+    "method": "First unchanged row in frozen original80 file, not quality-selected",
+    "row_id": "10313222:relations:0",
+    "pmc_id": "10313222",
+    "CIDs": 8,
+    "patients": 1,
+    "old_false_input_tokens": 2032,
+    "new_true_token_count": "not measured; mandatory preflight before any GPU"
+  },
+  "proposed_config": {
+    "adapter": "stricttrain32 oldJSON epoch002 4f4815b6",
+    "thinking": true,
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "repetition_penalty": 1.0,
+    "seed": 20261023,
+    "max_new_tokens": 4096,
+    "proposed_total_cap_seconds": 300,
+    "proposed_TERM_grace_seconds": 30,
+    "GPU_authorized": false
+  },
+  "cost": {
+    "old_actual_tokens": 1600,
+    "old_actual_seconds": 72.048,
+    "linear_generation_proxy_seconds": 184.44288,
+    "loading_prefill_hash_checks_extra": true,
+    "not_measured_or_guaranteed": true
+  },
+  "references": {
+    "actual-HF-generation-source.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/actual-HF-generation-source.json",
+      "bytes": 892,
+      "sha256": "0721e1caa9121b69c6f74e131806e4827307b8e6956f4fee7975f33896b0d42d"
+    },
+    "actual-HF-custom-processor-order.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/actual-HF-custom-processor-order.json",
+      "bytes": 7716,
+      "sha256": "418b70920e0f87b063a2ae9b516c7a40b7d9cffc906165d6dd9cfbf3bcae493b"
+    },
+    "public-source-references.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/public-source-references.json",
+      "bytes": 926,
+      "sha256": "ad53d04b8294eef0aa6cd9590da8bbedf24dc7817a41076ae8444d4a52608bbb"
+    },
+    "vllm-penalties-reference.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/vllm-penalties-reference.py",
+      "bytes": 1844,
+      "sha256": "e3600a716e76348d198194f4fd18c91cd45b4a3b4b47b4980a379e337f0bff03"
+    },
+    "vllm-layer-utils-reference.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/thinking-sampling-followup/vllm-layer-utils-reference.py",
+      "bytes": 24405,
+      "sha256": "7c102381e4a48cd3d5893548de7280362938b39104a1c0375ecee5969d881262"
+    },
+    "model_card": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/README.md",
+      "bytes": 77643,
+      "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0"
+    },
+    "old_thinking_result": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/evidence/round2/qwen35-thinking12-result.json",
+      "bytes": 6884,
+      "sha256": "bd850f7fc18b73fea66a5eaceeb6609c9480835d7f18500c390898cbe89405f7"
+    },
+    "original80_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "strict_final_source": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/training_thinking12/evaluate_fit.py",
+      "bytes": 4285,
+      "sha256": "1fd0f122bf2969aeae98e918fd0ba01b26519ef9399e6b1a388a29147cc72f8e"
+    },
+    "strict_final_tests": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/operations/training_thinking12/test_strict_final.py",
+      "bytes": 1569,
+      "sha256": "21d210c82dfa37fde936204acebf192226bd6c706a8bd7a13673dfb24e8fbf63"
+    }
+  }
+}

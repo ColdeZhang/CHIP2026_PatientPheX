@@ -1,0 +1,28 @@
+# Thinking 后继：只做单条可用性检查的提案
+
+**当前只读准备，没有新的 GPU 运行。** 已完成的 thinking 控制不是空白：full64 epoch2、原有限 CID/患者提示、greedy、1600 输出上限，第一条实际 72.048 秒后触顶，未闭合 `</think>`、无合法 final；只完成 1/12 并早停，不读 targets、不报拟合。独审 `67b49e51` 保留。尚未做官方建议 sampling 或更长输出上限的真实探针；本提案不能把旧失败改写成成功。
+
+## 参数是否真实生效
+
+固定官方模型卡（README SHA `c5f5a8c2…`，832行附近）推荐 general thinking：temperature=1、top_p=.95、top_k=20、min_p=0、presence_penalty=1.5、repetition_penalty=1。其同时明确不同框架的支持不同。
+
+实际私有 Transformers 5.20.2 的 generation 配置、processor 和 generate 源码都没有原生 `presence_penalty`。**不能把 `repetition_penalty=1.5` 当替代，也不能仅传一个同名 kwargs 就声称生效。** 当前 HF 支持自定义 `logits_processor`；实际源码先合入自定义 processor，再施加 temperature/top-k/top-p。若后续执行，最小实现应只对本次生成 suffix 中已出现的 token 减一次 1.5：`score[v] -= 1.5 * 1[v in generated_suffix]`，不计 prompt，不随次数累加。这个定义与公开 vLLM 的 OpenAI presence 实现一致；其 repetition 另作用于 prompt/output 且是乘除惩罚。
+
+实现前必须有 CPU 反例：prompt-only token 不减、生成一次/重复多次均只减一次、正负 logit 都减同一量、两 batch 不串、空 suffix 不变。明确 prompt 长度边界包含 chat template 的 open-think，惩罚覆盖实际生成的思考与答案。没有新约束解码、禁止 token 列表或额外 system 指令；它会同时作用于 JSON/CID 重复，这是该官方配方本身的代价，不因本任务偷偷豁免。本页只证明接口/数学可行，尚未实现或验证 GPU sampler。
+
+## 唯一候选探针与预算
+
+| 项目 | 预先限定 |
+|---|---|
+| 输入 | 原 `meta.prompts.jsonl` 第一条 `10313222:relations:0`，按文件顺序选择，8 CID/1患者；只复制 system/user，绝不上传 target。原非thinking实际2032 input tokens；true模板须在启动前重新实分词，禁止截断。 |
+| 模型 | 已训练 strict train32 JSON SFT32 epoch2 `4f4815b6…`，原公开 base/原 tokenizer；不是 weighted/full64 adapter。 |
+| 生成 | enable_thinking=True，do_sample=True，seed=20261023，temperature1/top_p.95/top_k20/min_p0/repetition1，明确自定义 generated-only presence1.5；max_new_tokens4096。 |
+| 格式 | 复用已验证 strict-final 契约：prompt已开think时必须实际输出闭合 `</think>`，只解析其后的完整 JSON；CID 全集/合法患者、无重复键、无触顶截断。思考段中的 JSON 不算答案。 |
+| 终点 | 只记录实际 tokens、闭合/strict final、EOS/触顶、耗时/显存；不读 labels，不算 Score/拟合，不做第二 seed 或重试。闭合成功仅证明该条可用。 |
+| 拟议资源 | 等 root 的 kernel/资源安排；建议一张 fresh A800 的单次总300秒+TERM30，含加载/校验/生成，状态保留且超时不延长；当前没有运行授权。 |
+
+旧 A800 真实 1600/72.048 秒只给出约22.2 token/s的局部参照，4096线性代理184.44秒，另需加载/哈希/首prefill；更长序列、sampling、不同输入与kernel均可改变耗时，不能承诺300秒内生成完整。当前 A100 weighted80 的513.989秒不是该单样本吞吐测量，不混算。若 kernel 导入/数值检查改变部署或成本，应先固定实际入口后再决定是否执行。
+
+它同时改变旧失败的 adapter/样本、采样、长度，因此是**单样本格式和成本诊断**，不是证明 thinking 质量提升的单变量实验；无论结果如何，都不能据此直接迁移原 dev。
+
+证据：原失败 [qwen35-thinking12-result.json](../evidence/round2/qwen35-thinking12-result.json)；本次实际 HF 源码/公开惩罚快照和固定输入指针见 [thinking-sampling-readonly.json](../evidence/round2/thinking-sampling-readonly.json)。官方模型卡：[固定revision](https://huggingface.co/Qwen/Qwen3.5-9B/blob/c202236235762e1c871ad0ccb60c8ee5ba337b9a/README.md)；presence 参考：[vLLM apply_penalties](https://github.com/vllm-project/vllm/blob/main/vllm/model_executor/layers/utils.py)，本次下载字节另存 SHA，未安装或替换框架。
