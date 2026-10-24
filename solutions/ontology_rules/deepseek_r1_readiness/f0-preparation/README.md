@@ -11,3 +11,7 @@
 实际F0输入CPU于04:26:24完成：6.605219秒，58行raw/generic/template IDs及往返/六组件全等；16篇、415概念、47患者、1166许可关系对。输入总195157/min708/max6028，唯一最长原index30（3563609:relations:0），first2537。所有5输出已全SHA回收；[小清单](cpu-terminal-manifest.json) SHA b6b84e92，actual result e97b2ba4。旧80/5689长度不沿用。
 
 最长源准备已冻结于probe-source（runner0bc02bcf、launcher7fbef909）：IDs/end统计先fsync，raw文本再独立fsync，最后派生解析；意外解析异常保留原raw。probe/plan.pending.json绑定真实6028输入但execution_ready=false，等待完整复制ACK，不可启动。小17件部署不读模型，不占GPU。
+
+04:29监控RPC未知退出，原source/fetch按H32均继续，04:30:30实际copy仍3.023GB。`resume_monitor_existing.py`只接原job/绝对deadline，成功ACK且managed fetch终态后才停原source；失败冷却180秒。原observer包裹job对象的一次本地KeyError发生在0次MCP前，源/失败保留并明确取job子对象。
+
+源包57,435B upload曾UNKNOWN；一次实际库存已核SHA6a14304b，复用已落包无重传。目标17件实际SHA/compile以及Torch2.7.1/TF5.20.2/tokenizers.23.1、generic/rotary源码与CPU一致，CUDA未初始化。`bind_executable_plan.py`只在实际全9ACK后本地绑定计划；之后仍须Git检查点、实际prestart/fresh GPU才能发唯一start。

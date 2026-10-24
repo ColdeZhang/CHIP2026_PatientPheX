@@ -15,3 +15,5 @@
 已知原运行I/O边界：每行正常/预期非法时完整raw/IDs已写；未预期parser异常则只有每32token partial，末不足32 token可能缺失。该问题在唯一job启动后才指出，主线程明确保持健康原job，不热改/重跑；遇此异常只能工程partial，不能进入完整80质量。后继版本应先独立raw落盘再解析，本run没有假称已修。
 
 统一入口独审[b3670a88](entry-review.json)通过，未重NN/CPU。已准备本地单例finish_when_complete控制器：只观察原monitor，只有原作业完整终点才按已冻source执行回收→绑定动态SHA→两固定评测；每步intent，失败即停，不重模型/评分，不杀远端。STOP-AUTO-FINISH文件可阻止后继CPU步骤，原GPU预算独立保持。
+
+04:29原只读monitor因RPC错误退出，原GPU不变；独立`monitor_recovery.py`接原同一lock/job，固定原observer07:17:36截止，正常60秒/错误冷却180秒，不发start/stop。原finish-controller PID101275仍等待，未重复启动、未触发任何评价。04:31:28实际33/80；这只是运行进度。
