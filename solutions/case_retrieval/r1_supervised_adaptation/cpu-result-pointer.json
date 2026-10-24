@@ -1,0 +1,132 @@
+{
+  "schema": "r1-supervised-adaptation-cpu-result-pointer-v1",
+  "status": "PASS_R1_SFT_CPU_DATA_TOKEN_BOUNDARY_META_PARAMETER_AND_TOY_LOSS_CONTRACT",
+  "actual_result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/actual-result.json",
+    "bytes": 5127,
+    "sha256": "4fbd2c05784fd28b029e019cc4312f43a4555747cc50ffc44efc5131df7d51d1"
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/collection.json",
+    "bytes": 309,
+    "sha256": "2f6a534688127a09ea38aef1a8ee42912d01e427d73f16ceffb2acae072160ad"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/plan.json",
+    "bytes": 5436,
+    "sha256": "67faaaabd768b0dbb2865896fc9c01b38efd5f1de44f585d6422cc91520f7ebe"
+  },
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/r1_supervised_adaptation/cpu_contract.py",
+    "bytes": 16576,
+    "sha256": "6bf6df7ece82c144fe01ee970080d05105048a67f02dc3e79e1fcb551cce0df5"
+  },
+  "official_overview": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/overview.txt",
+    "bytes": 45381,
+    "sha256": "475fd55a179b422e118628ba0af662b701920f4d65e1249c5bc84e15a0511861"
+  },
+  "official_scope": "Section4.2 states champion Qwen3-8B/R1 predictions + context/position + LightGBM/fivefoldOOF; it does not disclose LLM SFT/LoRA. Explicit Qwen3.5 fine-tuning belongs to second team.",
+  "strict_train32_source_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+    "bytes": 9323,
+    "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+  },
+  "training_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+    "bytes": 1723484,
+    "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+  },
+  "runtime": {
+    "torch": "2.7.1+cu126",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.1",
+    "peft": "0.21.2"
+  },
+  "actual_exit_code": 0,
+  "program_seconds": 13.434167559724301,
+  "token_contract": {
+    "train_rows": 124,
+    "train_documents": 32,
+    "F1_rows": 80,
+    "F1_documents": 16,
+    "total_train_tokens": 401291,
+    "total_supervised_tokens": 7046,
+    "min_train_tokens": 570,
+    "max_train_tokens": 5519,
+    "longest_index": 6,
+    "longest_row_id": "11235872:relations:8",
+    "shortest_index": 8,
+    "shortest_row_id": "11765409:relations:8",
+    "proposed_reject_cap": 8192,
+    "all_fit_proposed_cap": true,
+    "truncate": false,
+    "all124_full_encode_prefix_and_target_EOS_exact": true,
+    "all80_match_existing_correct_R1_ids": true,
+    "prefix_think_open_rows": 0,
+    "supervision_policy": "Original closed-set JSON answer + nativeEOS; no fabricated or empty reasoning. Original template does not pre-open think."
+  },
+  "parameter_contract": {
+    "actual_weight_header_tensors": 399,
+    "base_parameters": 8190735360,
+    "lora_parameters": 43646976,
+    "total_base_plus_lora": 8234382336,
+    "target_linear_modules": 252,
+    "base_bytes_BF16": 16381470720,
+    "nominal_lora_FP32_weight_gradient_two_Adam_moments_bytes": 698351616,
+    "nominal_fixed_training_resident_bytes_excluding_activations": 17079822336,
+    "meta_instantiation_only": true,
+    "actual_weight_values_read": false,
+    "trainable_parameters_only_lora": true,
+    "base_head_and_embedding_frozen": true,
+    "actual_model_class": "Qwen3ForCausalLM",
+    "actual_head_shape": [
+      151936,
+      4096
+    ],
+    "loss_hook_reachable_in_actual_forward_source": true,
+    "real_model_forward_or_backward_performed": false
+  },
+  "synthetic_loss_contract": {
+    "cases": 4,
+    "dtypes": [
+      "float32",
+      "bfloat16"
+    ],
+    "with_and_without_explicit_denominator": true,
+    "all_loss_equal": true,
+    "all_max_abs_gradient_difference": 0.0,
+    "only_synthetic_logits_not_actual_model_training": true
+  },
+  "recovered_small_evidence": {
+    "train-token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/recovered/train-token-audit.json",
+      "bytes": 75212,
+      "sha256": "f4801f3b0a6b2e87c0ff6d685f63382ec6a5156b5d1d7b79d6f2ca92b3f23159"
+    },
+    "F1-token-audit.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/recovered/F1-token-audit.json",
+      "bytes": 19117,
+      "sha256": "8077ee476f34169a43d0a65af537c69356e12fd746f42186fedff3f696297a0b"
+    },
+    "actual-qwen3-forward.txt": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/r1-supervised-adaptation-readiness-20261024/recovered/actual-qwen3-forward.txt",
+      "bytes": 2321,
+      "sha256": "b734e5596a4ae018c5a8ec88e993995d34b7213ccd82ed2743436460ff364037"
+    }
+  },
+  "remote_encoded_training": {
+    "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/r1-supervised-adaptation-readiness-20261024/cpu-v1/actual/train124.encoded.jsonl.gz",
+    "bytes": 265883,
+    "sha256": "a476a7a7f28309cd37ce7151226a371ec2430e65109d32f91ad5866d9f7ad612"
+  },
+  "encoded_payload_recovered_locally": false,
+  "negative_execution_claims": {
+    "CUDA_initialized": false,
+    "NN_model_weight_values_loaded": false,
+    "train_optimizer_steps": 0,
+    "new_quality_calls": 0,
+    "F0_or_dev_gold_read": false
+  },
+  "next_boundary": "Parent has separate authorization for one .100 A30 GPU1 probe,420s+TERM30: real Adam and full accumulation, then keep three rows of gradients while testing longest5519. Parent owns new source/plan and launch; no GPU execution or scoring is established by this CPU pointer."
+}

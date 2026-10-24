@@ -4,7 +4,7 @@
 
 ## 当前：原dev .748583440；纯加载缓存复现通过
 
-- [R1监督适配可行性](r1_supervised_adaptation/README.md)正在准备CPU合同：冠军综述未披露LLM SFT细节；研究同一缓存R1对原train32/124闭集JSON监督，保原80输入。发布模板未预开think，完整编码边界/EOS、实际LoRA参数与meta loss接口将核验；只CPU，无GPU/下载/新dev金标，旧R1组合结案不动。
+- [R1监督适配](r1_supervised_adaptation/README.md)：唯一CPU13.434秒通过；124/32篇原JSON+EOS全边界及80旧输入IDs exact、R1 tokens401291/max5519；base8.190B+LoRA43.647M<10B，固定训练常驻下界17.080GB不等于峰值。root已授权一次A30GPU1真实CE/Adam/8条更新后3累积+最长探针420+30；源plan冻结后push再执行，未授权完整训练/质量。官方冠军SFT细节未披露，旧R1组合结案不动。
 - [独立R1元模型OOF筛查](r1_meta_oof/RESULT.md)唯一完成：已知F1 1557对／16篇SHA四组，各12篇fit／4篇held，11列±3R1共8fit回载1.467秒；双pred共冻后2newv2 .365秒。无R1 .643533208→含R1 .650270692（+.006737484），仍低强对照 .664421522且macro不达门，keepfalse。全基础排除整个F1；无F0/GPU/扫描，维持后备、不声称16篇fit方法证伪。运行前ca003df及结案d3eef75均已push；结果a607f8ab／终点d6569b91，统一源＋终审77802f13已PASS，无活动进程。
 - 用户目标仍是原train64/dev16公共v2 Score≥.8；原dev已审候选当前**.748583440**（旧a179 .746081965）。内部F1、train64四fold均是多次研发使用的开发结果，不冒称原dev、盲测或官方。用户通知前禁止官方上传。
 - [固定LightGBM](lightgbm_selector_control/REPORT.md)：同强BioBERT八池/原feature/label、160轮/15叶/min35/lr.06/L2=5，.3/nested不变；仅将sklearn HGB替成LightGBM4.6.0，分箱/生长数值不宣称等价。实际维数102/101/103/103；4fit/predict/回载59.389秒<180，finalize2.933秒<30，全部160轮、原生正列与保存回载exact。

@@ -11,3 +11,11 @@
 CPU范围：只在`.100`已有R1缓存所在机器运行一次59＋kill1秒；CUDA隐藏，仅读配置/tokenizer/权重头形状，模型仅meta构造，无真实权重值载入或神经前向。检查LoRA r16/α32/dropout .05、Q/K/V/O及gate/up/down七投影的真实形状与参数；保留冻结head/embedding。通用selected-CE可作为内存候选，但只检查实际Qwen3 forward/loss挂载和CPU合成logits梯度，不能沿用Qwen3.5的GPU结论。
 
 源与CPU计划运行前提交；完整token IDs/labels留服务器自有外部目录，Git只留短合同。当前没有GPU训练/推断或下载新模型；实际CPU结果、A30 24GB可行性、最小真实Adam/累积探针与完整单折预算将在结果出来后另列，禁止把推断19.5GB峰当训练显存。
+
+## CPU完成与唯一GPU工程探针
+
+CPU13.434秒完成，见[CPU结果](CPU-RESULT.md)。原124监督共401291输入tokens／7046答案tokens、max5519，原80输入IDs逐条等于既有正确R1缓存。实际published模板无预开think，监督纯JSON+nativeEOS，未伪造推理。
+
+root已授权`.100 A30 GPU1`一次420秒+TERM30探针，源`gpu_probe.py`、固定`gpu-plan.json`。先最短570样本同参数/同dropout RNG比较原生与selected CE及真实LoRA梯度；随后8条累积完成非零lr Adam更新，再保留3条累积梯度处理最长5519。后者按H51覆盖已建Adam；仅诊断使用lr1e-4无warmup，不冒称重放正式训练顺序。基座BF16、LoRA FP32、252目标模块、fullhead不变，TF32关/SDPA/derived95fb原Yarn；无量化、截断或allocator暗改。
+
+执行前fresh核GPU UUID/空闲/进程/空间和全部9件模型SHA；探针状态随进程丢弃，不保存adapter或产出质量。完整训练尚未授权。工程输出与失败在外部`R/research/r1-supervised-adaptation-readiness-20261024/gpu-probe-v1`；单独原CPU冻结plan不改。
