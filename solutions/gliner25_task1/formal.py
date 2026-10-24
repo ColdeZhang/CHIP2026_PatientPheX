@@ -53,8 +53,9 @@ def main():
         boundary._finite_loss_term=finite_guard
         class FullTrainer(ExtractorTrainer):
             def _prepare_data(self,data,is_train=True):
+                expected=Counter(json.dumps(r,sort_keys=True) for r in rows)
                 ds=super()._prepare_data(data,is_train=is_train)
-                actual=Counter(json.dumps(r,sort_keys=True) for r in ds.data);expected=Counter(json.dumps(r,sort_keys=True) for r in rows)
+                actual=Counter(json.dumps(r,sort_keys=True) for r in ds.data)
                 write(out/'loader.json',{'records':len(ds),'canonical_multiset_unchanged':actual==expected});assert len(ds)==320 and actual==expected
                 return ds
             def _create_dataloader(self,dataset,batch_size,shuffle=True,is_training=True):
@@ -106,7 +107,9 @@ def main():
                 # Native saver persists model/tokenizer only; explicitly save optimizer/schedule/RNG.
                 payload={'optimizer':self.optimizer.state_dict(),'scheduler':self.scheduler.state_dict(),'scaler':self.scaler.state_dict(),'python_rng':random.getstate(),'numpy_rng':np.random.get_state(),'torch_cpu_rng':torch.get_rng_state(),'torch_cuda_rng':torch.cuda.get_rng_state_all(),'completed_steps':completed_steps,'completed_epochs':completed_epochs,'next_sampler_epoch':completed_epochs,'sampler_seed':self.config.seed,'planned_steps':1600,'source_sha256':sha(__file__)}
                 p=dst/'training-state.pt';torch.save(payload,p)
-                with p.open('rb') as f:os.fsync(f.fileno())
+                for saved in dst.rglob('*'):
+                    if saved.is_file():
+                        with saved.open('rb') as f:os.fsync(f.fileno())
                 restored=torch.load(p,map_location='cpu',weights_only=False);assert restored['completed_steps']==completed_steps and restored['scheduler']==payload['scheduler'] and restored['scaler']==payload['scaler'] and restored['python_rng']==payload['python_rng']
                 assert restored['numpy_rng'][0]==payload['numpy_rng'][0] and np.array_equal(restored['numpy_rng'][1],payload['numpy_rng'][1]) and restored['numpy_rng'][2:]==payload['numpy_rng'][2:]
                 assert torch.equal(restored['torch_cpu_rng'],payload['torch_cpu_rng']) and len(restored['torch_cuda_rng'])==len(payload['torch_cuda_rng']) and all(torch.equal(a,b) for a,b in zip(restored['torch_cuda_rng'],payload['torch_cuda_rng']))
