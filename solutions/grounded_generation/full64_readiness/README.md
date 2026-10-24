@@ -11,3 +11,5 @@
 同配方两轮拟173×2、44次Adam、每轮尾5，warmup4保持原2/22比例；配置尚未激活。基于原A100实耗2037.651秒、实际长度/监督比例给出约4300秒训练＋完整两ACK的代理估计及6000+30候选上界，**不是实测或授权**。A800速度不能直接由A100保证。双epoch完整model/optimizer/scheduler/RNG约1.040GB，拟至少1.5GiB启动空闲；当前A800约1.3GB，不称训练资源就绪、不清其他route资产。精确公式、祖先SHA和shape见summary.json。
 
 规范化仅未来train-only aliases32→64变化，显式原train64 SHA；b59eb阈值、纯公共41099 bank与Sap encoder全部固定，无重bank编码或新fit。先等当前F0/固定共识裁决；不自动原dev质量/官方提交。
+
+后继持久备选已只读核实：[persistent-bridge-readiness.json](persistent-bridge-readiness.json)。A800自有SHM暂存完整每epoch，.100私有目录逐件SHA/fsync/reopen并回ACK后才继续，原patient4/indexed实例每520MB约56–60秒；新两epoch留约120秒传输及一次额外模型加载余量。当前grounded198d没有stop/resume入口，需沿已验indexed协议机械适配及完整RNG复原，不宣称现可直接训练。原project盘门不降低，真正启动前仍fresh核SHM和.100空间；本次未远端查询/改资产。
