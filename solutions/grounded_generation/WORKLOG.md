@@ -62,3 +62,5 @@ F1补包62d55b/1006565B已.100全184内容逐SHA/fsync/reopen，root随后实际
 F0原47已11:38:58.166169唯一启动A8002 proc1a64fada / driver63172 / child63188，TERM12:13:58.166/KILL12:14:28.166，2100+30；planed3c9297/sourcef657e38已push。copy19.422秒/173197471B四件两端SHA/fsync/reopen完成ACK7a3982d3；盘实际1.47GB，原任意2GiB门保留失败，改为按真实cache/raw上界768MiB copy/512MiB infer并获root确认，无清理他人资产。17件部署e1873dda，首观察两PID正常；唯一只读watch session54389/180秒，恢复先查看[f0/actual-start.json](f0/actual-start.json)，不可再start。固定同d52/native/greedy1600，全47后相同b59eb及唯一强B0union评分；不使用部分结果。
 
 F0原106件完整回收32aec970；固定解析d4bdba97得到342 exact anchors/262独特词面，3cap+2strict JSON整行弃答，48项拒绝如实保留。固定train32/public政策准备d5b77b01产生149必要Sap查询；绑定DocRE QwenF0实际11:53:51释放817ab0ca，plan5a347250/a6d2b6b已先推，原180+30同现成bank/encoder，无新fit或质量。
+
+F0唯一增量终审64946550 PASS（168refs，原106+13实际、47完整含5弃答、固定b59、全部173与强B0字节重构）；复用旧审不重NN/评分。root已因两折独立/三源共同正明确授权full64原173两轮：先CPU209/共享状态接口、13步新形状420+30；通过后6000+30跨两epoch和完整持久ACK，后继原dev36/1200+30仅交纯源，最终两质量由root执行。当前source/CPU计划先推，未GPU。CPU首pack缺input_sources元数据在remote之前失败，原ZIP/plan留独立failure目录；补字段后新包3f7b6d30，方法无变。
