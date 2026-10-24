@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已完成且完整state已.100持久ACK；第二轮唯一proc_eacc8793/PID158377于12:10:35.344602接受。原campaign截止12:45:04.713781 UTC，监控PID162090（watch-recovery-4）；未开始F1/质量。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；两轮32updates、两份完整.100 ACK全部闭合，campaign实际2768.492s<3600；F1最终adapter已绑定beeaa580，尚未启动。监控旧失败均保留、没有活跃训练/监控。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -64,3 +64,9 @@ Original .100 fetch proc_bb6ac3d4 began12:09:17.227461 and completed ACK12:10:19
 ### 2026-10-24 12:13 UTC — bounded inference transport prepared only
 
 Prepared inference/deploy_via_bridge.py by reusing the already-successful authenticated .100 private archive bridge in a new namespace. It binds the final inference archive only after both training ACKs, retains capability private/redacted, and executes the original inference operations.py deployment verification literal verbatim after same-SHA transfer. Source plus4 generated remote-code literals compile; no new remote action/model/quality. Native inference, generation, decoder and paired quality source unchanged. This avoids repeating fragile many-call A100 upload; whole archive and every member remain verified before original unique launch.
+
+### 2026-10-24 12:31 UTC — complete training campaign, exact final ACK recovered, F1 bound
+
+Epoch2 actually ended12:24:11.904241 rc0/816.317195s and released12:24:13.347342. Final adapter2c777e88/statef12d1b7e; complete32updates. Second .100 ACK5c8cfe2c completed12:28:19.908820 (56.740060s/520,025,589B), all14 SHA/fsync/reopen. Source-copy publication and a conditional recovery returned UNKNOWN; subsequent pure read found identical ACK already present, adopted without content write. We cannot infer which unknown request published it. Original server stop positively confirmed, then campaign closed12:31:13.206066 (2768.492285s), within original12:45:04 deadline. No repeated NN/transfer and no extra export window.
+
+F1 binder passed both complete ACKs/source copies/original native80 and final adapter: entrybeeaa580, all80fresh/input14848/gen1600 and fixed two-arm quality unchanged. Transport entry separately binds the identical archive and original deployment verifier; source and small binding evidence pushed before unique inference start.
