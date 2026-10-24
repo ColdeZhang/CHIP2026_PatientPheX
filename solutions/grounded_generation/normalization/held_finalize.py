@@ -1,5 +1,6 @@
 """Apply fixed policy to complete strict decisions and actual frozen public scores."""
 import argparse,hashlib,json,os,sys
+from collections import Counter
 from pathlib import Path
 from semantic import decide,load_policy
 from held_prepare import checked,ref,put,save
@@ -32,6 +33,6 @@ def main():
   normalized.append({**q,**decision,'policy_sha256':prep['policy']['sha256'],'length':len(q['quote']),'passage_index':row['passage_index']})
  out=Path(p['output_dir']);out.mkdir(parents=True,exist_ok=False)
  put(out/'normalizations.jsonl',b''.join((json.dumps(r,ensure_ascii=False)+'\n').encode() for r in normalized));save(out/'semantic-evidence.json',scores)
- manifest=dict(schema='grounded-held-normalization-complete-v1',plan=ref(a.plan),source=ref(__file__),sources=p['sources'],preparation=p['preparation'],query_collection=p.get('query_collection'),query_complete=p.get('query_complete'),query_scores=p.get('query_scores'),extraction_manifest=prep['extraction_manifest'],documents=16,patients=39,policy_sha256=prep['policy']['sha256'],input_sha256=prep['input']['sha256'],quotes_sha256=json.loads(checked(prep['extraction_manifest']).read_text())['quotes']['sha256'],records=len(normalized),normalizations=ref(out/'normalizations.jsonl'),normalizations_sha256=ref(out/'normalizations.jsonl')['sha256'],semantic_evidence=ref(out/'semantic-evidence.json'),semantic_evidence_sha256=ref(out/'semantic-evidence.json')['sha256'],necessary_public_queries=len(queries),status_counts={s:sum(r['status']==s for r in normalized) for s in ['mapped','nil','abstain']},no_input_annotations=True,no_fit=True,no_quality=True,no_policy_or_threshold_changes=True)
+ manifest=dict(schema='grounded-held-normalization-complete-v1',plan=ref(a.plan),source=ref(__file__),sources=p['sources'],preparation=p['preparation'],query_collection=p.get('query_collection'),query_complete=p.get('query_complete'),query_scores=p.get('query_scores'),extraction_manifest=prep['extraction_manifest'],documents=16,patients=39,policy_sha256=prep['policy']['sha256'],input_sha256=prep['input']['sha256'],quotes_sha256=json.loads(checked(prep['extraction_manifest']).read_text())['quotes']['sha256'],records=len(normalized),normalizations=ref(out/'normalizations.jsonl'),normalizations_sha256=ref(out/'normalizations.jsonl')['sha256'],semantic_evidence=ref(out/'semantic-evidence.json'),semantic_evidence_sha256=ref(out/'semantic-evidence.json')['sha256'],necessary_public_queries=len(queries),status_counts={s:sum(r['status']==s for r in normalized) for s in ['mapped','nil','abstain']},normalization_reason_counts=dict(Counter(r['reason'] for r in normalized)),accepted_source_counts=dict(Counter(r['match'] for r in normalized if r['status'] in ['mapped','nil'])),exact_anchor_fields_preserved=True,no_input_annotations=True,no_fit=True,no_quality=True,no_policy_or_threshold_changes=True)
  save(out/'manifest.json',manifest);print(json.dumps(ref(out/'manifest.json')))
 if __name__=='__main__':main()

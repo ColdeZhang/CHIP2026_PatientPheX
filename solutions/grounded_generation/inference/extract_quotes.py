@@ -1,5 +1,6 @@
 """Complete raw39 -> exact copied anchors. No normalization, gold, fit or score."""
 import argparse,hashlib,json,os,sys
+from collections import Counter
 from pathlib import Path
 from solutions.grounded_generation.inference.decode import interpret
 from solutions.grounded_generation.schema import units
@@ -65,6 +66,12 @@ def main():
  save(out/'manifest.json',dict(plan=ref(a.plan),sources=p['sources'],complete_original39=True,documents=16,patients=39,
   exact_anchors=len(quotes),unique_quotes=len({q['quote'] for q in quotes}),quotes=ref(out/'quotes.jsonl'),decisions=ref(out/'decisions.json'),
   abstaining_rows=sum(d['decision']['status']=='abstain' for d in decisions),rejected_items=sum(len(d['decision']['rejected']) for d in decisions),
+  row_reason_counts=dict(Counter(d['decision']['reason'] for d in decisions)),
+  rejected_item_reason_counts=dict(Counter(r['reason'] for d in decisions for r in d['decision']['rejected'])),
+  valid_empty_arrays=sum(d['decision']['status']=='complete' and d['decision']['generated_items']==0 for d in decisions),
+  rows_without_valid_anchor=sum(not d['decision']['anchors'] for d in decisions),
+  all_items_rejected_rows=sum(d['decision']['status']=='complete' and d['decision']['generated_items']>0 and not d['decision']['anchors'] for d in decisions),
+  EOS_rows=sum(r['actual_last_token_eos'] for r in records),cap_rows=sum(r['hit_token_limit'] for r in records),
   HPO_mapping_or_gold_or_score_performed=False,original_raw_not_repaired=True))
  print(json.dumps(ref(out/'manifest.json')))
 
