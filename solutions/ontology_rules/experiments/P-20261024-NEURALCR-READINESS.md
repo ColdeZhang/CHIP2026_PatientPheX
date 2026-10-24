@@ -78,3 +78,7 @@ Attempt2 实际在 **00:36:10.551370Z** 以 rc1 结束，255.631 秒；最后异
 ### 01:34 全文件结构通过，条件窄修plan冻结
 
 shape实际5.644秒/rc0：666817完整词记录、input(2666817,100)/output(666817,100)、EOF精确，333363400 FT参数；HP实际60数组/157705490，总491068890。标准prune header实际不合法，精确观察到the+NUL在84、prune=-1在88，其余记录完整。官方fastText v0.9.1固定源码Dictionary::save/load第431–465行明确prune应先于首词；源码SHA5cffc598…305290408ef02836a3b。因此仅触发已授权[84:88]与[88:96]交换，原件只读，所有有序词/count/type、双矩阵全SHA和其余字节须exact；修复plan先checkpoint，尚未进入C++。
+
+### 01:35 派生副本保真通过，四合成native plan冻结
+
+条件12字节布局修复实际20.108秒/rc0。原FT字节与mtime未变；所有666817词的有序word/count/type摘要一致，两个完整矩阵shape/offset/全SHA一致，84前及96后逐字节相同、EOF精确。派生文件只在独立postdownload目录，完整SHA `fa7509ecf7f42e06ed780de5c4599eeeb595cfd02c2547dd875fc528b0460752`。native仅四固定合成句、CPU1线程/GPU隐藏、180秒+TERM15，实际60权重数组对H5全finite/bitexact、10ensemble、14261列/概率/offset检查。完整实际依赖/输入plan先checkpoint后执行，无赛事样本或质量断言。
