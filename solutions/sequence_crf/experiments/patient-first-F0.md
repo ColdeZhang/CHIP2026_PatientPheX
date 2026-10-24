@@ -106,4 +106,6 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 
 新目录P/abstain-recovery，远端sequence-round2/patient-first-F0-abstain-recovery-v1；readiness27dc0883绑定新infer/driver/ops/原子raw_store/codec与600+30。模型/204训练/source/epoch2适配器不变，23原8853B精确缓存复用，35新生成含原丢失行；两次均do_sample=False且原源无manual_seed，不声称重新载模/KV后逐位重放原失败结果。只新增只读FiniteLogitsOnly硬停检查，返回原scores不改logits；其他generation参数保持。
 
-新数据保存顺序为generation IDs/真实末EOS/cap/耗时先file+目录链fsync、原子排他发布，随后decode完整文本并持久raw，再调用有限codec；异常不会丢已取得的唯一生成IDs/raw。codecd60731e12在原23缓存全部与strict正集合/observed exact，27项新边界通过；合法非空PID子集partial，{}或任何非法row整体abstain，不补遗漏键。纯CPU0.00572秒，无gold/新模型/旧25或14/15重跑。原子保存新小fixture0.00352秒实际fsync后模拟codec异常，raw保留、重复写拒绝；隐藏CUDA导入新module仅Python，不导入Torch/加载模型。原strict失败独审a09c0e2c PASS，保持无分数。恢复endpoint另源准备，两完整pred先共冻再唯一双v2政策已在质量前freeze；此处尚未启动新GPU。
+新数据保存顺序为generation IDs/真实末EOS/cap/耗时先file+目录链fsync、原子排他发布，随后decode完整文本并持久raw，再调用有限codec；异常不会丢已取得的唯一生成IDs/raw。codec60731e12在原23缓存全部与strict正集合/observed exact，27项新边界通过；合法非空PID子集partial，{}或任何非法row整体abstain，不补遗漏键。纯CPU0.00572秒，无gold/新模型/旧25或14/15重跑。原子保存新小fixture0.00352秒实际fsync后模拟codec异常，raw保留、重复写拒绝；隐藏CUDA导入新module仅Python，不导入Torch/加载模型。原strict失败独审a09c0e2c PASS，保持无分数。恢复endpoint另源准备，两完整pred先共冻再唯一双v2政策已在质量前freeze；此处尚未启动新GPU。
+
+恢复12件自有部署已actual SHA/compile通过（archive aad9d871），原prompt/audit/model-manifest与23缓存/fingerprint均同机copy逐SHA；04:17:46 A100真实Python3.10.21隐藏CUDA导入新runner/codec/raw_store通过，Torch未导入、无权重或forward，源52c9ccac；实际roundtrip .499秒。不重新跑旧tokenizer或训练合同。
