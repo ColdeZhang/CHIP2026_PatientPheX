@@ -1,6 +1,6 @@
 # 工作台账
 
-当前优先：fresh full64 响应编码组件。H51真实PASS、53件回收09ad8c62、cost4955.064<5400与actualplan c5b636f9已91a1bfef推送。正式563472B包在.100完整；A100首fetch及后两纯读UNKNOWN（非LUNA），未调用formal campaign/start。下一唯一只读恢复13:47:28.468 UTC，见evidence/full64-formal-deployment-recovery.json。原包/源/240探针均不重跑；齐后5400共享两ACK→64fresh1200，零本线quality。
+当前优先：root改派full64至A800 GPU2，新full64_a800独立namespace。A100正式从未campaign/start，已关闭、取消13:47库存，保原有效168秒H51和fetch UNKNOWN。A80013:47:27真实15资产SHA/runtime通过，GPU2仅1MiB/81156free无app，项目盘1.076GB/SHM216.9GB；新240+30同12H51计划6349cede先推后启动，PASS后原fresh265×2/68/warmup4/5400双ACK→64fresh1200纯组件。
 
 - 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
@@ -40,3 +40,7 @@ Source checkpoint6aa76b44与probeplan83497912已push；唯一CLI在CLAIM RPC UNK
 ### 2026-10-24 13:42–13:44 UTC — same deployment transfer UNKNOWN, formal not started
 
 .100包345dab64/563472B与新full64桥接18片全部SHA/fsync，源HTTP13:42:43至13:52:43。A100新私有namespace已确认空/uid1045/磁盘49.8GB/SHM116.7GB；唯一fetch UNKNOWN后只读两次仍UNKNOWN，不误记LUNA。originalmodel start从未发送，本地campaign/epoch1intent不存在。一次30秒只读恢复后转185秒窗口，13:47:28.468原片SHA库存；不重传未确认mutation，不重训。
+
+### 2026-10-24 13:46–13:48 UTC — root moved full64 to A800 before any A100 formal
+
+A100原formal campaign/start均0，closure独立保存，不再bootstrap；其原GPU工程结果有效但不作A800实际证明。sequence原.7sampling未start交卡，已独立转.100GPU0。A800实际13:47:27 inventory全部15基座SHA/native源码exact，Torch metadata2.7.1/TF5.20.2/PEFT.21.2/tokenizers.23.1，无FLA；model原SHM缓存不复制。项目盘仅1.076GB，明确小部署/日志门512MiB，完整state全SHM→.100；新driver仍fresh70000MiB/noapps。原329 nativeCPU、12rows/52201tokens/两Pareto、seed/目标完全复用，只host/runtime/locator和工程门变，新240+30源6349cede。document_relations helper仅并行新formal/controller/inference源，我唯一Git/remote。

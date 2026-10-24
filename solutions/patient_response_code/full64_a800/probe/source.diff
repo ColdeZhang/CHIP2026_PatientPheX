@@ -1,0 +1,60 @@
+--- A100/probe.py
++++ A800/probe.py
+@@ -68,7 +68,7 @@
+         assert transformers.__version__ == "5.20.2" and peft.__version__ == "0.21.2"
+         assert digest(q.__file__) == plan["modeling_source_sha256"]
+         assert digest(native_loss.__file__)==plan["native_loss_sha256"]
+-        assert torch.__version__=="2.6.0+cu124"
++        assert torch.__version__=="2.7.1+cu126"
+         assert importlib.util.find_spec("fla") is None
+         bindings = {name:dict(module=getattr(q, name).__module__, unwrapped=inspect.unwrap(getattr(q, name)).__module__)
+                     for name in ["torch_chunk_gated_delta_rule", "torch_recurrent_gated_delta_rule"]}
+@@ -106,7 +106,7 @@
+         assert {id(p) for p in model.parameters() if p.requires_grad} == {id(p) for p in named.values()}
+         assert not any(p.requires_grad for p in model.get_base_model().lm_head.parameters())
+         model.train()
+-        # Reuse previously completed A100 indexed-head mathematical/engineering proof.
++        # Reuse previous indexed-head mathematical/engineering proof; new A800 H51 is actual below.
+         # No duplicate local-head diagnostic or extra model forward in this probe.
+         local_summary={"status":"REUSED_PREVIOUS_INDEXED_HEAD_PROOF_NO_NEW_LOCAL_AB_TEST","source":plan["previous_head_proof"]}
+         local_memory={"peak_allocated_bytes":torch.cuda.max_memory_allocated(),"peak_reserved_bytes":torch.cuda.max_memory_reserved()}
+--- A100/probe_driver.py
++++ A800/probe_driver.py
+@@ -46,8 +46,8 @@
+     assert os.environ['CUDA_VISIBLE_DEVICES'] == plan['gpu_uuid']
+     gate = resources(); save('fresh-resource-gate.json', gate)
+     target = [line.split(',') for line in gate['gpu'].splitlines() if plan['gpu_uuid'] in line]
+-    assert len(target) == 1 and int(target[0][2].strip()) <= 10 and int(target[0][3].strip()) >= 39000
+-    assert plan['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes'] >= 2 * 1024**3
++    assert len(target) == 1 and int(target[0][2].strip()) <= 10 and int(target[0][3].strip()) >= 70000 and int(target[0][4].strip()) >= 80000
++    assert plan['gpu_uuid'] not in gate['processes'] and gate['disk_free_bytes'] >= 512 * 1024**2
+     command = [plan['python'], '-u', 'probe.py']
+     start = time.monotonic(); utc = time.time()
+     save('driver-started.json', dict(at_utc=now(), driver_pid=os.getpid(), command=command,
+--- A100/operations.py
++++ A800/operations.py
+@@ -15,9 +15,9 @@
+ import time
+ import zipfile
+ 
+-MOUNT='476f81cf-09e7-445b-a7f0-d0e12b12e50f'
++MOUNT='69b991ee-183f-4add-af1a-579af92479c9'
+ PROJECT='/home/zhangyuheng/projects/CHIP2026_PatientPheX'
+-REL='patient-response-code/full64-probe-v1'
++REL='patient-response-code/full64-a800-probe-v1'
+ ROOT=PROJECT+'/'+REL
+ REUSE_ROOTS={PROJECT+'/sequence-round2/patient-balanced-alpha05/formal-v1',PROJECT+'/grounded-generation-v1/native-cpu-v2'}
+ START_MARKERS={'start-intent.json','driver-started.json','child-started.json','wrapper-complete.json',
+--- A100/collect.py
++++ A800/collect.py
+@@ -12,8 +12,8 @@
+ import time
+ import zipfile
+ 
+-MOUNT = '476f81cf-09e7-445b-a7f0-d0e12b12e50f'
+-RELATIVE = 'patient-response-code/full64-probe-v1'
++MOUNT = '69b991ee-183f-4add-af1a-579af92479c9'
++RELATIVE = 'patient-response-code/full64-a800-probe-v1'
+ PROJECT = '/home/zhangyuheng/projects/CHIP2026_PatientPheX'
+ REMOTE = PROJECT + '/' + RELATIVE
+ CHUNK = 32768
