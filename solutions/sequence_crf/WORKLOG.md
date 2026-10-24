@@ -53,4 +53,4 @@ F=`/workspace/patientphex-runs/round2-20261023/research/patient-first-full64-mem
 
 ## 后继唯一CPU合成已获明确授权
 
-root于本次终点后明确授权：用最新已接受3049d9fe/.7542169692819372完整预测作底，仅加765cd5a0相对a179的精确6条差集；1061实体/36患者/410现有关系、非关系字节及旧列表顺序保持，不恢复新支持gate删除的2条public关系。待准确refs→源/plan推送→完整16pred freeze→唯一v2，旧metrics复用。仅这一合成，非盲验证、不扫阈值或新NN；Score严格升才候选。当前尚未执行。
+root于本次终点后明确授权：用最新已接受3049d9fe/.7542169692819372完整预测作底，仅加765cd5a0相对a179的精确6条差集；1061实体/36患者/410现有关系、非关系字节及旧列表顺序保持，不恢复新支持gate删除的2条public关系。精确20refs已绑定，源b9ea4f50/plan edee73ab待推送后完整16pred freeze→唯一v2，旧metrics复用。[唯一入口](support_patient_synthesis/README.md)。仅这一合成，非盲验证、不扫阈值或新NN；Score严格升才候选。当前尚未执行。
