@@ -1,0 +1,100 @@
+{
+  "schema": "patientphex-new-fulltext-trained-SFT32-full80-F1-v1",
+  "execution_ready": false,
+  "control_sha256": "e9238b8547cbc02a2a4001cb606f55901cfa0186a4aaa24d5c76574de78f631d",
+  "helpers_sha256": "0fa4ef7be27fbde82ed8e22020cbcef05fdfc396a5dae0d1711674bed9efb828",
+  "frozen_at_utc": null,
+  "policy": {
+    "primary": "New fulltext-trained SFT alone; complete natural-EOS supplied-CID/PID canonical mappings, invalid rows abstain.",
+    "diagnostic": "Literal per-document per-patient old short-input SFT32 union new fulltext-trained SFT.",
+    "canonical": "Consume frozen runner canonical records; never reparse raw, repair answers, or generate again.",
+    "literal": "Keep original concept strings including compound HPO/NIL; unchanged v2 handles exact HP compounds.",
+    "selection_comparator": "Cached old short-trained SFT with fulltext inference alone strong baseline; original short-input metrics also reported, zero old reevaluations.",
+    "retention": "Each arm Score strictly above the strong reference; macro fully reported without additional veto. If both pass select larger Score without changing arm identities.",
+    "evaluation": "Freeze both complete predictions together before gold; exactly one v2 all/text each.",
+    "nonrelation": "All bytes outside each old baseline top-level association value remain unchanged.",
+    "scope": "Known F1 development only; no F0/originaldev/official/generalization claim.",
+    "automatic_migration": false,
+    "parameter_or_threshold_search": false
+  },
+  "references": {
+    "input": {
+      "path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.input.jsonl",
+      "bytes": 342703,
+      "sha256": "962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415"
+    },
+    "old_baseline_pred": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.pred.jsonl",
+      "bytes": 154176,
+      "sha256": "ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379"
+    },
+    "old_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations/baseline.metrics.json",
+      "bytes": 13115,
+      "sha256": "7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477"
+    },
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/F1-old80/prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "expanded_prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "input_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/input-cpu/row-audit.json",
+      "bytes": 79950,
+      "sha256": "35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb"
+    },
+    "input_actual": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/input-cpu/actual-result.json",
+      "bytes": 2454,
+      "sha256": "f029779093c37fbf42b68274a19309298662e9644c0f9ca6ba1f304d4e8b3c38"
+    },
+    "hpo": {
+      "path": "/workspace/patientphex-data/hp.obo",
+      "bytes": 11222341,
+      "sha256": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b"
+    },
+    "evaluator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/evaluate.py",
+      "bytes": 10539,
+      "sha256": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781"
+    },
+    "validator": {
+      "path": "/workspace/CHIP2026_PatientPheX/scripts/validate_predictions.py",
+      "bytes": 12208,
+      "sha256": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f"
+    },
+    "strong_baseline_metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+      "bytes": 12922,
+      "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+    },
+    "old_inference_plan": {
+      "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/qwen35_sft32_full_report_readiness/full80/plan.json",
+      "bytes": 7636,
+      "sha256": "73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d"
+    }
+  },
+  "inference_references": {
+    "inference_plan": null,
+    "inference_launcher": null,
+    "inference_source": null
+  },
+  "actual_references": {
+    "actual_input": null,
+    "canonical": null,
+    "complete": null,
+    "gpu_release": null,
+    "responses": null,
+    "summary": null,
+    "wrapper": null
+  },
+  "terminal_dir": null,
+  "output_dir": "/workspace/patientphex-runs/round2-20261023/research/qwen35-fulltext32-indexed-F1-full80-v1/quality",
+  "gold_path": "/workspace/patientphex-data/round2-inner4/fold-1/validation16.gold.jsonl",
+  "historical_F1_gold_sha256": "665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3"
+}

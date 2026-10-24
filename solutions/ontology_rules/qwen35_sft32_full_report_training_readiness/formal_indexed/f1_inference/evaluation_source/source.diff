@@ -1,0 +1,176 @@
+--- old-fixed-fulltext-input-control
++++ new-fulltext-trained-all80fresh-control
+@@ -18,11 +18,13 @@
+ import time
+ 
+ sys.dont_write_bytecode = True
+-SCHEMA = 'patientphex-sft32-full-report-full80-F1-v1'
+-COMPLETE = 'COMPLETE_FIXED80_SFT32_FULL_REPORT_NO_QUALITY'
+-ENDPOINTS = ('diagnostic-fulltext-alone', 'primary-oldSFT32-union-fulltext')
++SCHEMA = 'patientphex-new-fulltext-trained-SFT32-full80-F1-v1'
++COMPLETE = 'COMPLETE_NEW_FULLTEXT_SFT32_FIXED80_ALL_FRESH_NO_QUALITY'
++ENDPOINTS = ('primary-new-fulltext-SFT-alone', 'diagnostic-old-shortSFT32-union-new-fulltext-SFT')
+ GOLD_SHA256 = '665a9de54f293fa85fa8bd3c1ce3d58d1331687e6dc157a31240fa1cf7d2dbe3'
+ SHARED_SHA = {
++ 'strong_baseline_metrics': '875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86',
++ 'old_inference_plan': '73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d',
+  'input': '962b76a39b64182502b83a78eae06edac113cf3c1db7dfa7017987c291bc9415',
+  'old_baseline_pred': 'ffb2c54ac4af0136fe1bb4fa08a34e14d3e0e27c4354a2b9c65aa50ea0f5f379',
+  'old_baseline_metrics': '7e36dd93a436bdaadd4b0527b1bb388d6e438d8f4bcf8748d00020a3a1c4f477',
+@@ -30,11 +32,6 @@
+  'expanded_prompts': '2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085',
+  'input_audit': '35f9a00ecabf0b0114d756d31b13fc5a947155cb3c3ec8f6a36392f1f0674abb',
+  'input_actual': 'f029779093c37fbf42b68274a19309298662e9644c0f9ca6ba1f304d4e8b3c38',
+- 'probe_plan': '1ab430d24eab017a73eb7b403e4a1da816d408caba21f8caaf9b449e2697e79a',
+- 'probe_raw': '8653359b5a2df2eb4473cd34681d4b2f6bf151ba4b8f3657fa5d6e01306f38fc',
+- 'probe_format': 'a1505a529bfd1d8a94a7d23276e8687c841059762b1b50dabb1410084a8aef3f',
+- 'probe_ids': '571acae79df36553cf6d813527e2a4c69036146d1b3aed366b8bd2a2e8bfa199',
+- 'probe_summary': '344ce7a0cd0b8676523975f735e1eec1b241b3cf820f0fbf8095af84ad7ae9d4',
+  'hpo': 'a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b',
+  'evaluator': 'ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781',
+  'validator': 'b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f',
+@@ -42,12 +39,12 @@
+ STATIC_INFERENCE = {'inference_source', 'inference_launcher', 'inference_plan'}
+ ACTUAL_NAMES = {'responses', 'canonical', 'summary', 'complete', 'wrapper', 'gpu_release', 'actual_input'}
+ POLICY = {
+- 'diagnostic': 'Only complete natural-EOS supplied-CID/PID canonical mappings; invalid whole rows abstain.',
+- 'primary': 'Literal per-document per-patient old-SFT32 union fulltext-alone.',
++ 'primary': 'New fulltext-trained SFT alone; complete natural-EOS supplied-CID/PID canonical mappings, invalid rows abstain.',
++ 'diagnostic': 'Literal per-document per-patient old short-input SFT32 union new fulltext-trained SFT.',
+  'canonical': 'Consume frozen runner canonical records; never reparse raw, repair answers, or generate again.',
+  'literal': 'Keep original concept strings including compound HPO/NIL; unchanged v2 handles exact HP compounds.',
+- 'selection_comparator': 'Cached old-SFT32 metrics, zero old reevaluations.',
+- 'retention': 'Primary relation micF1+macF1 strictly increases AND macF1 does not decrease.',
++ 'selection_comparator': 'Cached old short-trained SFT with fulltext inference alone strong baseline; original short-input metrics also reported, zero old reevaluations.',
++ 'retention': 'Each arm Score strictly above the strong reference; macro fully reported without additional veto. If both pass select larger Score without changing arm identities.',
+  'evaluation': 'Freeze both complete predictions together before gold; exactly one v2 all/text each.',
+  'nonrelation': 'All bytes outside each old baseline top-level association value remain unchanged.',
+  'scope': 'Known F1 development only; no F0/originaldev/official/generalization claim.',
+@@ -126,7 +123,8 @@
+ nonrelation_bytes = helpers.nonrelation_bytes
+ relation_map = helpers.relation_map
+ assemble_two = helpers.assemble_two
+-retain = helpers.retain
++def retain(current, reference):
++    return current['Score'] > reference['Score']
+ 
+ 
+ def canonical_gate(prompt, raw, item):
+@@ -233,22 +231,29 @@
+ 
+ def verify_inference(common, inference, actual, terminal_dir):
+     """Actual whole80 gate; pure CPU and no label/quality reads."""
+-    fixed = read(inference['inference_plan']['path']); probe = read(common['probe_plan']['path'])
++    fixed = read(inference['inference_plan']['path']); old_runtime = read(common['old_inference_plan']['path'])
+     require(fixed['cap_seconds'] == 1200 and fixed['term_grace_seconds'] == 30 and
+             fixed['input_limit'] == 14400 and fixed['generation_limit'] == 1600 and
+-            fixed['cached_original_indices'] == [19], 'Frozen runtime caps/cache differ')
+-    for key in ('model', 'adapter', 'adapter_files', 'generation', 'gpu_uuid', 'python'):
+-        require(fixed[key] == probe[key], 'Probe/runtime configuration drift: ' + key)
++            fixed['cached_original_indices'] == [] and fixed['fresh_rows'] == 80, 'Frozen runtime caps/cache differ')
++    for key in ('model', 'generation', 'gpu_uuid', 'python'):
++        require(fixed[key] == old_runtime[key], 'Original inference runtime configuration drift: ' + key)
++    provenance = fixed['actual_training_provenance']
++    for key in ('controller_plan','trainer','campaign_complete','epoch1_persistent_ACK','epoch2_persistent_ACK'):
++        checked(provenance[key])
++    campaign = read(provenance['campaign_complete']['path'])
++    require(campaign['status'] == 'TWO_COMPLETE_EPOCHS_32_STEPS_DURABLE_ACKS_VERIFIED', 'New training incomplete')
++    ack = read(provenance['epoch2_persistent_ACK']['path'])
++    require(ack['completed_epochs'] == 2 and ack['global_step'] == 32 and ack['reopened_final_filename_SHA_all_files'] and ack['fsync_all_files'], 'New checkpoint not durably verified')
++    require(campaign['epoch2_ack_sha256'] == provenance['epoch2_persistent_ACK']['sha256'] and ack['files'] == provenance['epoch2_full_files'], 'Training ACK identity differs')
++    require(fixed['adapter_files'] == {n: ack['files']['adapter/'+n]['sha256'] for n in ('adapter_config.json','adapter_model.safetensors')}, 'Wrong new adapter')
+     local_plan_names = {'infer_full80.py': inference['inference_source'], 'launch.py': inference['inference_launcher'],
+-        'expanded80.jsonl': common['expanded_prompts'], 'row-audit.json': common['input_audit'],
+-        'cache-probe-raw.json': common['probe_raw'], 'cache-probe-ids.json': common['probe_ids'],
+-        'cache-probe-format.json': common['probe_format'], 'cache-probe-summary.json': common['probe_summary']}
++        'expanded80.jsonl': common['expanded_prompts'], 'row-audit.json': common['input_audit']}
+     for name, record in local_plan_names.items():
+         require(fixed['files'][name]['sha256'] == record['sha256'] and fixed['files'][name]['bytes'] == record['bytes'],
+                 'Runtime deployment differs: ' + name)
+     summary = read(actual['summary']['path']); complete = read(actual['complete']['path'])
+     require(summary == complete and summary['status'] == COMPLETE and summary['expected_rows'] == 80 and
+-            summary['fresh_rows'] == 79 and summary['cached_rows'] == 1 and summary['cached_original_indices'] == [19],
++            summary['fresh_rows'] == 80 and summary['cached_rows'] == 0 and summary['cached_original_indices'] == [],
+             'Inference not the unique complete fixed80 run')
+     require(summary['quality_calls'] == 0 and summary['gold_read'] is False and
+             summary['raw_ids_saved_before_decode'] is True and summary['raw_response_saved_before_parse'] is True,
+@@ -272,8 +277,8 @@
+             'Actual input/context/asset receipt differs')
+     require({key: value['sha256'] for key, value in asset['adapter_files'].items()} == fixed['adapter_files'],
+             'Actual adapter bytes differ')
+-    require({key: asset[key] for key in fixed['cached_probe_runtime']} == fixed['cached_probe_runtime'],
+-            'Actual library/tokenizer/TF32 runtime differs from cached probe')
++    require({key: asset[key] for key in fixed['expected_runtime']} == fixed['expected_runtime'],
++            'Actual library/tokenizer/TF32 runtime differs from frozen original runtime')
+     originals = rows(common['prompts']['path']); expanded = rows(common['expanded_prompts']['path'])
+     audit = read(common['input_audit']['path']); raw = rows(actual['responses']['path']); canonical = rows(actual['canonical']['path'])
+     require(len(originals) == len(expanded) == len(audit) == len(raw) == len(canonical) == 80,
+@@ -284,7 +289,7 @@
+     expected_order = sorted(range(80), key=lambda i: (audit[i]['expanded']['tokens'], originals[i]['row_id']))
+     require([r['row_id'] for r in raw] == [originals[i]['row_id'] for i in expected_order] and
+             [r['row_id'] for r in canonical] == [r['row_id'] for r in raw], 'Missing/duplicate/wrong-order actual rows')
+-    probe_eos = read(common['probe_ids']['path'])['configured_eos_ids']
++    probe_eos = fixed['configured_eos_ids']
+     by_raw = {r['row_id']: r for r in raw}; by_canonical = {r['row_id']: r for r in canonical}
+     evidence, shard_refs = [], []
+     terminal = Path(terminal_dir).resolve()
+@@ -297,7 +302,7 @@
+                 {k: v for k, v in exp.items() if k != 'messages'}, 'Expanded nonmessage fields drift')
+         r, c = by_raw[prompt['row_id']], by_canonical[prompt['row_id']]
+         require(r['input_tokens'] == cpu['expanded']['tokens'] and
+-                c['provenance'] == ('cached_probe' if index == 19 else 'fresh'), 'Actual input/provenance drift')
++                c['provenance'] == 'fresh', 'Actual input/provenance drift')
+         evidence.append(canonical_gate(prompt, r, c))
+         records = [ref(terminal / folder / ('%03d.json' % index))
+                    for folder in ('raw-responses', 'canonical-records', 'generated-ids')]
+@@ -309,14 +314,10 @@
+                 len(values) == r['output_tokens'] and eos == probe_eos and
+                 r['natural_eos'] == ids['natural_eos'] == bool(values and values[-1] in eos) and
+                 r['hit_token_limit'] == ids['hit_token_limit'], 'Saved generated-ID proof differs')
+-        if index == 19:
+-            require(r == read(common['probe_raw']['path']) and records[0]['sha256'] == common['probe_raw']['sha256'] and
+-                    records[2]['sha256'] == common['probe_ids']['sha256'] and
+-                    c['candidate_patients'] == read(common['probe_format']['path'])['parsed'], 'Cached probe bytes/canonical drift')
+     valid = sum(x is not None for x in evidence)
+     require(summary['strict_complete_rows'] == valid and summary['whole_row_abstentions'] == 80 - valid,
+             'Summary canonical counts differ')
+-    coverage = {'rows': 80, 'fresh_rows': 79, 'cached_rows': 1, 'cached_original_indices': [19],
++    coverage = {'rows': 80, 'fresh_rows': 80, 'cached_rows': 0, 'cached_original_indices': [],
+         'strict_complete_rows': valid, 'whole_row_abstentions': 80 - valid,
+         'cap_rows': sum(r['hit_token_limit'] for r in raw), 'input_tokens': sum(r['input_tokens'] for r in raw),
+         'raw_text_reparsed': False, 'missing_CIDs_filled': False, 'raw_shards_verified': 240}
+@@ -392,7 +393,8 @@
+     truth = rows(plan['gold_path'])
+     require(len(truth) == 16 and [str(d['pmc_id']) for d in truth] == [str(d['pmc_id']) for d in inputs],
+             'Historical F1 document order differs')
+-    old = read(common['old_baseline_metrics']['path']); metrics = {}
++    old = read(common['old_baseline_metrics']['path']); strong = read(common['strong_baseline_metrics']['path']); metrics = {}
++    require(strong['metrics']['Score'] == 0.676546354662594, 'Strong baseline identity differs')
+     require(old['metrics']['Score'] == 0.6609420026531936, 'Cached baseline score differs')
+     for name in ENDPOINTS:
+         checked(frozen[name]['prediction'])
+@@ -408,12 +410,21 @@
+         checked(value['prediction'])
+     summary = {'status': 'complete_predeclared_SFT32_full_report_pair_F1_development', 'policy': POLICY,
+         'paired_freeze': freeze_ref, 'old_cached_metrics': common['old_baseline_metrics'], 'old_metrics': old['metrics'],
++        'strong_cached_metrics': common['strong_baseline_metrics'], 'strong_metrics': strong['metrics'],
+         'endpoints': {name: {'metrics': metrics[name]['metrics'], 'counts': metrics[name]['counts'],
+             'metrics_file': ref(directory / name / 'metrics.json'), 'format_file': ref(directory / name / 'validation.json'),
+-            'delta_vs_old': delta(metrics[name]['metrics'], old['metrics'])} for name in ENDPOINTS},
+-        'primary_retain_vs_old': retain(metrics[ENDPOINTS[1]]['metrics'], old['metrics']),
+-        'diagnostic_is_not_selection_endpoint': True, 'new_v2_calls': 2, 'old_v2_calls': 0,
++            'delta_vs_original_short': delta(metrics[name]['metrics'], old['metrics']),
++            'delta_vs_strong': delta(metrics[name]['metrics'], strong['metrics']),
++            'retain_vs_strong': retain(metrics[name]['metrics'], strong['metrics'])} for name in ENDPOINTS},
++        'primary_retain_vs_strong': retain(metrics[ENDPOINTS[0]]['metrics'], strong['metrics']),
++        'diagnostic_retain_vs_strong': retain(metrics[ENDPOINTS[1]]['metrics'], strong['metrics']),
++        'arm_identity_preserved': True, 'new_v2_calls': 2, 'old_v2_calls': 0,
+         'automatic_migration': False, 'elapsed_CPU_seconds': time.monotonic() - started}
++    passing = [name for name in ENDPOINTS if retain(metrics[name]['metrics'], strong['metrics'])]
++    maximum = max((metrics[name]['metrics']['Score'] for name in passing), default=None)
++    winners = [name for name in passing if metrics[name]['metrics']['Score'] == maximum]
++    summary['selected_candidate'] = winners[0] if len(winners) == 1 else None
++    summary['tied_positive_candidates'] = winners if len(winners) > 1 else []
+     save(directory / 'summary.json', summary)
+     print(json.dumps({'status': summary['status'], 'summary': ref(directory / 'summary.json')}))
+ 
