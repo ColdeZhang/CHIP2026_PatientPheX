@@ -1,0 +1,98 @@
+{
+  "schema": "quote-set-completion-proposed-first-control-v1",
+  "status": "PROPOSED_NOT_GPU_AUTHORIZED",
+  "training": {
+    "initial_adapter_sha256": "d52e2e6c74d3fe874940ddc9a882d3c0faa453ac362b118d1edb2782bae7c6ba",
+    "base": "exact Qwen3.5-9B c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "rows": 174,
+    "epochs": 1,
+    "optimizer_updates": 22,
+    "accumulation": 8,
+    "tail": 6,
+    "warmup_updates": 2,
+    "learning_rate": 1e-05,
+    "optimizer": "fresh AdamW state; no old optimizer/scheduler/RNG continuation",
+    "rank": 16,
+    "seed": 20261023,
+    "objective": "original indexed per-row mean causal CE on missing triples only, known triples are prompt-masked",
+    "checkpoint": "one final complete adapter+optimizer/scheduler/RNG persistent ACK"
+  },
+  "inference": {
+    "parent_known_source": "original G32 d52 greedy F1 exact-grounded and fixed-normalizer accepted quotes; reuse complete39 output, never resample or teacher-generate",
+    "known_list": "all accepted mapped/NIL quote triples per patient, exact tuple deduplicate and source-coordinate order; no confidence or held-label selection",
+    "rows": 39,
+    "passes": 1,
+    "decode": "native nonthinking greedy max_new_tokens1600; whole cap/nonEOS/strict failure abstain",
+    "normalizer": "same train32 aliases/public41099/b59 fixed policy",
+    "output": "additional literal normalized relations; union collapses repeats"
+  },
+  "quality": {
+    "baseline_prediction_sha256": "5ad5cfe33ebea607c0012ee04420b31ff54cad06a52305091c54bb7d7ed7207e",
+    "baseline_score": 0.701325377212172,
+    "formula": "B4 UNION all normalized completion relations",
+    "one_endpoint": true,
+    "new_v2_max": 1,
+    "old_v2": 0,
+    "no_added_zero_v2": true,
+    "keep": "F1 strictly above B4, then identical fixed F0; both positive before full64",
+    "all_entities_patients_and_old_relations_preserved": true,
+    "no_oracle": true
+  },
+  "budget_proposal": {
+    "native_CPU_seconds": 120,
+    "CPU_grace": 5,
+    "engineering_probe_seconds": 240,
+    "engineering_grace": 30,
+    "formal_seconds": 3600,
+    "formal_grace": 30,
+    "full39_inference_seconds": 1800,
+    "inference_grace": 30,
+    "Sap_seconds": 180,
+    "Sap_grace": 30,
+    "basis": "OldG32 174 total rows903344tokens2039.028s A100; new174rows920222tokens=1.0187x with fewer supervised tokens. A800/warm-start actual cost unknown; probe first, no guarantee."
+  },
+  "deployment_shift": "Training known sets are true label subsets; deployment known sets may contain false positives, alternative synonyms, and complete/near-complete sets not covered for high-cardinality patients. No gold feedback.",
+  "mechanism_difference": "p(missing_set | report,patient,already_reported_set), rather than repeated p(full_set | report,patient) or independent-sample filtering",
+  "no_model_or_quality_executed": true,
+  "revision": "v2-fixed-third-full-known-stop-before-first-GPU",
+  "supersedes_readonly": {
+    "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/proposal.json",
+    "bytes": 2853,
+    "sha256": "0d694b2404cdde7aea42206c36b26c7b8c49b383e4d7eeb17ef9cfd89198fc6c"
+  },
+  "root_authorized_scope": "261rows/1epoch/warmd52/freshAdam/LR1e-5/33calls; nativeCPU120+5 thenpressure240+30; measured formal<=3600 with ACK reserve then39fresh1800+30",
+  "actual_native_CPU": {
+    "status": "complete_native_CPU_no_GPU",
+    "CPU_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/native-cpu-v2/collection.json",
+      "bytes": 6756,
+      "sha256": "c2ff0d454519921a1f3ca4e503db35bba443043c1b4cdd42712aad5b62b970e5"
+    },
+    "CPU_result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/native-cpu-v2/terminal/actual/result.json",
+      "bytes": 2815,
+      "sha256": "c7ffbdb2047b3931af58681c9244f4c2fd4bfeb8f7f10195e8fa3d07874638b6"
+    },
+    "v2_local": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/train-only-cpu-v2-recovery/manifest.json",
+      "bytes": 4736,
+      "sha256": "d078cb8ff1098e623b79790e384ee5023b9942ee370a15ba4051eedef47dc08c"
+    },
+    "first_v2_failure": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/quote-set-completion-v1/v2-first-interface-failure.json",
+      "bytes": 856,
+      "sha256": "ff01fc75082abb4f1c4027a5fa009ec9dd6ff71673a037cff654502d39415bd4"
+    },
+    "probe_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/engineering/probe-plan.json",
+      "bytes": 14952,
+      "sha256": "fc6073cffa1d29644b924db45e7f5e7fb033542a7c815bb66a71a08736443c95"
+    },
+    "configuration": {
+      "path": "/workspace/patientphex-worktrees/explore-quote-set-completion/solutions/quote_set_completion/training/configuration.py",
+      "bytes": 1792,
+      "sha256": "65be55a81082bc7b58b7e9abc0ed42aa35483d97cae66963f9aacbd9b9ef0cfa"
+    }
+  },
+  "training_configuration": {}
+}
