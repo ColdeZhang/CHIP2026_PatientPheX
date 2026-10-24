@@ -86,3 +86,7 @@ Actual inference reached52/80 terminal records at12:40:29, no partial score. Rea
 ### 2026-10-24 12:48 UTC — all80 actual terminal, original collection recovered read-only
 
 Unique full80 job actually ended12:44:29.153898 rc0/683.960027s, 80fresh/0cache,79strict and1whole-row abstention; GPU2 released12:44:29.263048. Peak allocated22,280,655,872B/reserved41,437,626,368B. Original collection manifest request returned UNKNOWN; no model repeated. Independent recovery reads and verifies the already-existing original253-member zip71db687e/93,245B, never repacks remote output. Partial reads reuse SHA-verified bytes. Two quality endpoints remain unexecuted pending complete collection.
+
+### 2026-10-24 12:49 UTC — complete fixed quality, positive candidate
+
+Original253-member collection71db687e complete, including one30s bounded pure-read recovery; no remote repack/model repeat. Both full predictions froze at12:49:10.675487 before exactly2new/0old v2. Primary coded-alone Score.6866189430196797 (+.010072588357vsN;+.000279961748vs historicalfullsupport), diagnostic N-union-coded.6822756102237818 (+.005729255561vsN). Both pass; selectcoded-alone. Primary relation322TP73FP198FN/micro.703825136612/macro.627711699678. One duplicate-response-code whole-row abstention retained; no repair. All1189entities/nonrelationbytes preserved. Final review entry externalB/final-review-entry.json; no further GPU/quality/F0/dev/official. Private small backup pending.

@@ -1,0 +1,163 @@
+{
+  "status": "COMPLETE_FIXED_F1_POSITIVE_CANDIDATE_NO_AUTOMATIC_MIGRATION",
+  "completed_at_utc": "2026-10-24T12:49:51.445715+00:00",
+  "method": "short normal124 + explicit reversible response codes; full-report80 held; all clinical IDs/evidence preserved",
+  "training": {
+    "epochs": 2,
+    "updates": 32,
+    "rows": 124,
+    "documents": 32,
+    "supervision_before": 7170,
+    "supervision_after": 8138,
+    "campaign_seconds": 2768.492285490036,
+    "wrapper_seconds_by_epoch": [
+      840.6115655899048,
+      816.3171954154968
+    ],
+    "original_deadline_utc": "2026-10-24T12:45:04.713781+00:00",
+    "completed_utc": "2026-10-24T12:31:13.206066+00:00",
+    "both_full_states_durable": true,
+    "exact_logical_resume": true,
+    "bitwise_GPU_replay_claim": false
+  },
+  "inference": {
+    "rows": 80,
+    "fresh": 80,
+    "cached": 0,
+    "strict_complete": 79,
+    "whole_row_abstentions": 1,
+    "abstention_reasons": {
+      "ValueError: Duplicate patient response code": 1
+    },
+    "wrapper_seconds": 683.9600273407996,
+    "released_utc": "2026-10-24T12:44:29.263048+00:00",
+    "max_allocated_bytes": 22280655872,
+    "max_reserved_bytes": 41437626368,
+    "raw_first": true,
+    "repairs": 0
+  },
+  "quality": {
+    "status": "COMPLETE_FIXED_RESPONSE_CODE_F1",
+    "arms": {
+      "coded-alone": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.7038251366120218,
+          "macF1": 0.6277116996780366,
+          "Score": 0.6866189430196797
+        },
+        "counts": {
+          "mention": {
+            "tp": 848,
+            "fp": 341,
+            "fn": 505,
+            "precision": 0.7132043734230445,
+            "recall": 0.6267553584626755,
+            "f1": 0.6671911880409127
+          },
+          "document": {
+            "tp": 498,
+            "fp": 89,
+            "fn": 247,
+            "precision": 0.848381601362862,
+            "recall": 0.6684563758389261,
+            "f1": 0.7477477477477478
+          },
+          "relation": {
+            "tp": 322,
+            "fp": 73,
+            "fn": 198,
+            "precision": 0.8151898734177215,
+            "recall": 0.6192307692307693,
+            "f1": 0.7038251366120218
+          }
+        },
+        "delta_vs_strong_N": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": 0.008546166654940346,
+          "macF1": 0.031744186773402405,
+          "Score": 0.010072588357085688
+        },
+        "beats_strong": true,
+        "delta_vs_historical_fullsupport": 0.0002799617480705452,
+        "beats_historical_fullsupport": true,
+        "metrics_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/coded-alone/metrics.json",
+          "bytes": 13086,
+          "sha256": "3c684f8e6dbb8b24e678f73b16b6cad125a28720fea2048073d3989d01f84c3d"
+        }
+      },
+      "N-union-coded": {
+        "metrics": {
+          "menF1": 0.6671911880409127,
+          "docF1": 0.7477477477477478,
+          "micF1": 0.7036649214659686,
+          "macF1": 0.610498583640498,
+          "Score": 0.6822756102237818
+        },
+        "counts": {
+          "mention": {
+            "tp": 848,
+            "fp": 341,
+            "fn": 505,
+            "precision": 0.7132043734230445,
+            "recall": 0.6267553584626755,
+            "f1": 0.6671911880409127
+          },
+          "document": {
+            "tp": 498,
+            "fp": 89,
+            "fn": 247,
+            "precision": 0.848381601362862,
+            "recall": 0.6684563758389261,
+            "f1": 0.7477477477477478
+          },
+          "relation": {
+            "tp": 336,
+            "fp": 99,
+            "fn": 184,
+            "precision": 0.7724137931034483,
+            "recall": 0.6461538461538462,
+            "f1": 0.7036649214659686
+          }
+        },
+        "delta_vs_strong_N": {
+          "menF1": 0.0,
+          "docF1": 0.0,
+          "micF1": 0.008385951508887102,
+          "macF1": 0.014531070735863794,
+          "Score": 0.005729255561187752
+        },
+        "beats_strong": true,
+        "delta_vs_historical_fullsupport": -0.004063371047827391,
+        "beats_historical_fullsupport": false,
+        "metrics_ref": {
+          "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/N-union-coded/metrics.json",
+          "bytes": 13152,
+          "sha256": "3f0a26097d5427d0aa3b652b92ab6c3e7c46b5d5347d5ce3b7f7b7874ccb9e47"
+        }
+      }
+    },
+    "primary_pass": true,
+    "selected_candidate": "coded-alone",
+    "keep": true,
+    "Score_only_macro_reported": true,
+    "common_freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-v1/F1-full80-v1/quality/common-freeze.json",
+      "bytes": 1266,
+      "sha256": "ee609544baf74819e8c3abd0a42c3ccab861e1859260dafa448f919e0e9ec685"
+    },
+    "new_quality_calls": 2,
+    "old_quality_calls": 0,
+    "automatic_F0_dev_official": false,
+    "seconds": 0.5559878349304199
+  },
+  "limitations": [
+    "This fixed prompt/output-representation intervention also changes supervised token count; it is not a pure string-equivalence experiment.",
+    "One internally developed F1 fold, no F0/originaldev/official result and no global-best claim.",
+    "Old A800 indexed-head numerical proof is reused in its stated scope; current A100 H51 checks real backward/state, not new head A/B numerical equivalence."
+  ],
+  "no_live_model_or_monitor": true
+}
