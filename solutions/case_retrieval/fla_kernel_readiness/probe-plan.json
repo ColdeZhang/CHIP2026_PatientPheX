@@ -1,0 +1,38 @@
+{
+  "schema": "patientphex-private-fla-probe-v1",
+  "status": "cpu_preparation_only_gpu_not_authorized",
+  "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+  "seed": 20261024,
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "batch_size": 1,
+  "prompt_lengths": [128, 255, 256, 513],
+  "decode_steps": 8,
+  "warm_repeats": 3,
+  "thresholds": {
+    "logits_relative_l2": 0.01,
+    "logits_max_abs": 0.25,
+    "logits_mean_kl": 0.001,
+    "loss_abs": 0.02,
+    "cache_relative_l2": 0.02,
+    "gradient_relative_l2": 0.02,
+    "parameter_delta_relative_l2": 0.02,
+    "near_zero_reference_l2": 0.000001,
+    "near_zero_max_abs": 0.000001,
+    "greedy_exact": true,
+    "prefill_speedup_for_expansion": 1.2,
+    "maximum_decode_or_step_slowdown": 1.1
+  },
+  "near_zero_rule": "If reference L2<=1e-6, use max_abs<=1e-6 instead of dividing by a near-zero norm. Fresh zero-initialized LoRA B implies zero A gradients; A delta may contain weight decay only. Require finite gradients and nonzero B updates aggregated in DeltaNet/full_attention/MLP, not every A/B tensor.",
+  "stages": [
+    {"name":"single_gdn","budget_seconds":160,"scope":"Qwen config block; B1 T256 BF16; native/fused forward backward, cached prefill and eight teacherforced decode steps; cold and three warm timings"},
+    {"name":"load_text_only_9b","budget_seconds":120,"scope":"Existing cache, actual class Qwen3_5ForCausalLM; 8953803264 base params; no vision/MTP runtime"},
+    {"name":"four_synthetic_inference","budget_seconds":220,"scope":"Native/fused same shapes, all prefill logits and CE, eight cached teacherforced logits/states, eight greedy tokens; three warm prefill/decode repeats"},
+    {"name":"short_lora_step","budget_seconds":100,"scope":"Fixed synthetic128 row; full hybrid r16 alpha32 dropout0; nonreentrant gradient checkpointing; same initial adapter; use_cache=False; one AdamW step in each arm, compare gradients/delta/post-step loss"}
+  ],
+  "gpu_total_hard_seconds":600,
+  "termination_grace_seconds":30,
+  "failure_policy":"Stop on first numeric/dispatch/memory failure, save partial evidence. No automatic retry, threshold relaxation, model re-download, data-quality run or successor training.",
+  "same_process_control":"Load model once; alternate only the two GDN global function bindings between inspect.unwrap native reference and verified installed FLA wrappers. Conv remains reference. Save actual binding graph and other package hashes. Same model parameters and same inputs; reset adapter/optimizer before the training arm. This avoids repeated 18GB loads; source-level toggle must be CPU reviewed before GPU authorization.",
+  "report_scope":"engineering synthetic diagnostic, no competition samples/gold/quality; throughput not compared to historical80-prompt run"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "fla-private-cpu-contract-v1",
+  "started_unix": 1792803175.8571053,
+  "passed": false,
+  "cuda_visible_devices": "",
+  "packages": {
+    "torch": {
+      "version": "2.7.1+cu126",
+      "path": "/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages"
+    },
+    "triton": {
+      "version": "3.3.1",
+      "path": "/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages"
+    },
+    "transformers": {
+      "version": "5.20.2",
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime"
+    },
+    "peft": {
+      "version": "0.21.2",
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/a30-fullcontext/runtime"
+    },
+    "einops": {
+      "version": "0.8.1",
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target"
+    },
+    "fla-core": {
+      "version": "0.6.0",
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target"
+    }
+  },
+  "error": "RuntimeError: 0 active drivers ([]). There should only be one.",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/cpu_contract.py\", line 26, in main\n    from fla.ops.gated_delta_rule import chunk_gated_delta_rule,fused_recurrent_gated_delta_rule\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/__init__.py\", line 8, in <module>\n    from .abc import chunk_abc\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/abc/__init__.py\", line 8, in <module>\n    from .chunk import chunk_abc\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/abc/chunk.py\", line 12, in <module>\n    from fla.ops.utils import softmax_bwd, softmax_fwd\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/utils/__init__.py\", line 9, in <module>\n    from fla.ops.utils.csr import prepare_block_csr\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/utils/csr.py\", line 12, in <module>\n    from fla.ops.utils.index import prepare_chunk_offsets\n  File \"/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/fla-kernel-readiness/private-v1/target/fla/ops/utils/index.py\", line 25, in <module>\n    def prepare_position_ids_kernel(\n  File \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/triton/runtime/autotuner.py\", line 378, in decorator\n    return Autotuner(fn, fn.arg_names, configs, key, reset_to_zero, restore_value, pre_hook=pre_hook,\n  File \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/triton/runtime/autotuner.py\", line 130, in __init__\n    self.do_bench = driver.active.get_benchmarker()\n  File \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/triton/runtime/driver.py\", line 23, in __getattr__\n    self._initialize_obj()\n  File \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/triton/runtime/driver.py\", line 20, in _initialize_obj\n    self._obj = self._init_fn()\n  File \"/home/zhangyuheng/projects/ScratchVL/.venv/lib/python3.10/site-packages/triton/runtime/driver.py\", line 8, in _create_driver\n    raise RuntimeError(f\"{len(actives)} active drivers ({actives}). There should only be one.\")\nRuntimeError: 0 active drivers ([]). There should only be one.\n",
+  "elapsed_seconds": 1.5257933139801025
+}

@@ -8,6 +8,7 @@
 - **最近结案**：公开候选训练124+88→212、两轮54calls，唯一F1 supported .682128804→.674046941负，完整独审e8627dfe。事后同62桶诊断新raw少24TP且无新增TP，原过滤政策未改；无额外raw Score。[结果](evidence/round2/public-SFT-F1-new62-result.json)、[诊断](evidence/round2/public-SFT-raw-support-diagnostic.json)。
 - **共指B质量对照独立运行**：helper独占A800GPU2 `proc_4d814817-46d4-4e86-bafd-7837330bb64a`，00:49:59.627Z起/600秒主截止00:59:59.627Z/+TERM30，watch12031；外存`research/public-coreference-readiness/prompt-control-b/{job,monitor,run-plan}.json`，plan7084fd6c/source已ee27624备份。仅旧SFT32+原80已选上下文加B标签，strip exact、264626tokens/max5895；完整freeze后唯一质量，由helper管理，不与本次value2混合。
 - **独立共指普查完成**：F-coref公开90.5M固定模型已一次处理train32+F1共48篇，CPU首篇13.013秒，随后独立A30 full48实际10.154秒/峰1.402GB；00:44:54核空释放。A精确锚点新增406提及覆盖39患者，B完整包含新增970覆盖77患者；417原提及可逆保留、18跨passage跨度拒绝。只无标签结构覆盖，不代表关系质量，未接入LLM/未评分；见[普查报告](public_coreference_readiness/input-native-census/REPORT.md)。
+- **FLA仅CPU准备备份**：root独立helper私有安装/原生CPU合成合同通过，隐藏CUDA下fused import因Triton需driver失败；尚无GPU绑定/数值/速度证据。源码、失败与冻结plan见[CPU报告](fla_kernel_readiness/CPU_REPORT.md)，后继GPU由helper独占，本路线未启动。
 - **目标仍未达**：root已核原dev固定逆序并集最新.746081965；本路线已审共享关系支持组合.736526555。用户要求原dev≥.8，未达不得宣称完成，不上传官方；共享最高及其他路线看main总账。
 - **最近备份**：`ee27624`已push并ls-remote一致；大量权重/raw在外部持久目录。下面均为已完成或历史阶段，不代表仍有这些GPU进程。
 
