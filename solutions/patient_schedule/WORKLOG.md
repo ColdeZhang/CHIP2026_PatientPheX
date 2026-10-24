@@ -1,6 +1,6 @@
 # 患者四轮统一时程台账
 
-当前：**PS4-20261024-v1 完整负结案**。分支`explore/patient-schedule`，只修改本路线。恢复入口：[evidence/ready.json](evidence/ready.json)；终点审查入口为其中`final_review_entry`。训练/监控/F1均已结束，禁止重启或重评分。尚待本批私有终态包及集中独审收口。
+当前：**PS4-20261024-v1 完整负结案**。分支`explore/patient-schedule`，只修改本路线。恢复入口：[evidence/ready.json](evidence/ready.json)；终点审查入口为其中`final_review_entry`。训练/监控/F1均已结束，禁止重启或重评分。132成员私有终态包已完整持久，待root协调集中独审。
 
 ## 结果与决定
 
@@ -23,4 +23,6 @@
 
 ## 持久化与后续
 
-原准备包51件688033B/7e6b2b1b已.100完整持久；模型四检查点另存同机，不放项目小盘。终态包正在本批一次性收尾，含私有预测/原始响应，不能进入safe review-index正文。集中独审仅增量，不重NN/parser/v2。上次已核远端`58ec958`，本次最终提交以Git与交接回执为准。
+原准备包51件688033B/7e6b2b1b已.100完整持久；模型四检查点另存同机，不放项目小盘。终态包132成员302070B，SHA37b4797a，已11:06:13在.100原子保存、重开包及全部成员SHA核验，未宣称另做下载恢复；包含私有预测/原始响应，不能进入safe review-index正文。集中独审仅增量，不重NN/parser/v2。上次已核远端`5ce4d3b`，本次最终提交以Git与交接回执为准。
+
+归档后的当前ready另纠正旧准备字段`full_four_epoch_implementation_not_actual_quality_result`为false，并明确actual质量已完成；已存原132件历史包不重打，结果/源码/评测不变。新存储回执与当前指针由Git保存。
