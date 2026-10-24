@@ -78,3 +78,7 @@ Bound archive d3b2073a/469,434B transferred through authenticated private bridge
 ### 2026-10-24 12:36 UTC — actual inference and original engineering evidence
 
 Actual driver12:33:05.317552/child173895 binds TERM12:53:05.317552+30 and sourcea0794470. Read12:35:01 confirmed9/80 canonical terminal rows, no inferred score. Original training15 metadata members collected zip06dfa58c/20,209B; exact logical optimizer/scheduler/RNG resume proof passed. Original H51 full53-file collection10aeab87 now all SHA verified; one failed pure inventory UNKNOWN preserved, no probe repeated. Large arrays/clinical rows remain private; safe summary refs in evidence/complete-engineering-evidence.json.
+
+### 2026-10-24 12:42 UTC — full80 read-only offline window
+
+Actual inference reached52/80 terminal records at12:40:29, no partial score. Read12:41:38.104880 returned explicit LUNA; same mount recovery not before12:44:43.104880. Original proc_a84ae36b and12:53:05.317552+30 unchanged, no repeated generation. Recovery pointer D/read-only-offline-124138.json; original raw outputs remain on source until final collection.
