@@ -16,6 +16,8 @@ def save(p,v):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('action',choices=['prepare','serve','fetch']);ap.add_argument('--plan',required=True);ap.add_argument('--port',type=int);ap.add_argument('--manifest-sha');ap.add_argument('--admit-before',type=float);a=ap.parse_args();p=json.load(open(a.plan));root=Path(a.plan).resolve().parent
  if a.action=='prepare':
+  assert a.admit_before is not None and time.time()<a.admit_before
+  save(root/'prepare-v2-claim.json',dict(pid=os.getpid(),at=time.time(),admit_before=a.admit_before))
   import torch
   from safetensors.torch import save_file,load_file
   statepath=Path(p['GP23_parent']['path']);assert statepath.stat().st_size==p['GP23_parent']['bytes'] and sha(statepath)==p['GP23_parent']['sha256']

@@ -10,10 +10,10 @@ def main():
  from model import load_model
  root=Path(__file__).resolve().parent;cfg=json.load(open(root/'formal-plan.json'));out=root/'output';out.mkdir();fsync_dir(root)
  start=time.monotonic();cpu=json.load(open(root/'cpu-complete.json'));assert cpu['status']=='PASS_NATIVE64_AND_TARGET_RUNTIME_INTERFACE_NO_CUDA'
- assert ref(root/'data.json.gz')['sha256']==cpu['data']['sha256']==cfg['data']['sha256']
+ assert ref(root/'data.json')['sha256']==cpu['data']['sha256']==cfg['data']['sha256']
  for n,r in cpu['assets'].items():
   st=(Path(cfg['model'])/n).stat();assert st.st_size==r['bytes'] and st.st_ino==r['guard']['inode'] and st.st_mtime_ns==r['guard']['mtime_ns']
- data=json.loads(gzip.decompress((root/'data.json.gz').read_bytes()));assert len(data['jobs'])==4
+ data=json.loads((root/'data.json').read_bytes());assert len(data['jobs'])==4
  torch.set_num_threads(1);assert torch.cuda.device_count()==1 and torch.cuda.is_bf16_supported();torch.cuda.reset_peak_memory_stats();reports=[]
  for job in data['jobs']:
   name=job['name'];dest=out/name;dest.mkdir();fsync_dir(out);jstart=time.monotonic();train=job['train'];held=job['held'];n=len(train);total=8*n
