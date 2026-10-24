@@ -31,3 +31,5 @@ Root在任何formal部署/启动前明确把唯一共享预算改为4200+TERM30�
 15:28阶段交接：root明确要求保留原formal/watch并释放代理槽，root只读已有本地观察，完整ACK或实际故障后followup恢复本线。精确恢复协议见RESUME.md/evidence/live-formal.json；后继源已远端be0ab79d，全部GPU/NN/质量实际绑定仍待原训练终点，不停止或重启任何原作业。
 
 原formal完整成功：261/33、2464.423秒，峰28.292GB allocated/32.617GB reserved；新adaptercd977a24/fullstated90b14fd，完整持久ACK4b486327。原watch正常结束；原GNU timeout HTTP wrapper rc0/85.837秒，自有driver和timeoutchild实际已退出。34原件collection3c799b44逐SHA核齐，无重训。后继39实际plan b89a8f45已绑定；按H69新增5分钟启动有效期，入口/子Popen/模型加载前核，独立1800+30运行钟不变，12个exact-source CPU边界检查通过，未增加模型/质量。
+
+39唯一推断已16:08:29.878 start proc_4ac60fcc-feb9-4000-baec-d052cea8547a/driver36169/child36205，实际原TERM16:38:30.114/KILL16:39:00.114；admission截止16:13:28.846，全部39 HF/native输入核过、模型加载正常。只读watch沿已核full64入口仅36→39，下一次沿现有observe+180秒，不重复启动或加频。窄读helper仅核新后继schema无阻断即结束，未造新审查或重跑旧sample。
