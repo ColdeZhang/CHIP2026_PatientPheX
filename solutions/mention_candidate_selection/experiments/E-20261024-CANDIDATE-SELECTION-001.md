@@ -15,3 +15,7 @@ root新授权唯一240+30的13真实FB/1Adam+三模式和OTHER训练输入必要
 ## 实际压力探针与正式开始
 
 13:50:29唯一proc791启动；实际13FB/1Adam与四种训练目标输入的受限生成完整，峰17.607GB、probe34.164s/wrapper34.947s rc0。事前成本规则估4530.200s≤7200（原含冷步估6885.573s亦未越预算）。不依生成的语义选规则，探针全部丢弃；原controller13:51:04.487677 fresh正式两轮，child2744337。原件引用见evidence/probe-and-fresh-formal.json。尚无held质量。
+
+## 第一轮真实完整状态
+
+14:16:53.950961全2931行/367更新完成，原ACK da53e406/1789B：504adapter、504Adam/1512张量、scheduler/RNG重开exact。epoch1 adapter4a440385/174655536B，fullstate997d5f45/349612141B；只作为恢复状态，不评epoch1、不挑模型。原controller已继续epoch2，运行源f47a8bcb和预算不变。

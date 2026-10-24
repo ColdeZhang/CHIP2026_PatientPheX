@@ -1,8 +1,10 @@
 # 当前状态
 
-2026-10-24 13:53 UTC：独立 explore/mention-candidate-selection，实际 GPU 源 f47a8bcb。唯一 controller proc_791d296d-367e-4dd6-9e63-209793d50c3e / PID2744284 在 .100 GPU1；真实压力探针全部通过，已于13:51:04.487677自动 fresh 开始正式两轮。当前还没有完整训练、验证集预测或质量结果。
+2026-10-24 14:17 UTC：独立 explore/mention-candidate-selection，实际 GPU 源 f47a8bcb。唯一 controller proc_791d296d-367e-4dd6-9e63-209793d50c3e / PID2744284 在 .100 GPU1；真实压力探针全部通过，已于13:51:04.487677自动 fresh 开始正式两轮。第一轮已14:16:53.950961完整367更新/2931行并保存ACK；原作业正在第二轮，尚无完整两轮、验证预测或质量结果。
 
 固定2931训练行（原2353+578 annotation-negative）、1416纯跨度、±256字符上下文；公开Sap Top8不插gold/exact/训练别名。生成互斥 selected+missing、NIL、NO；empty+missing=false非法，missing不发明HPO或变NIL。新Qwen3-8B/r16/lr1e-4/seed20261023，2epochs/734updates/尾3/warmup37；保原生训练循环，无holdout、早停或挑epoch。正式7200+TERM30，两个完整状态ACK；随后全1416推断1800+TERM30，两个完整端点共冻再2v2/旧0。任一严格胜强B .728697536469才是候选；不涉及原dev/官网。
+
+第一轮ACK原件1789B/da53e406，504adapter/504Adam1512张量及全部RNG重开exact；adapter174655536B/4a440385、fullstate349612141B/997d5f45，证据evidence/epoch1-ack-observed.json。仅恢复，不挑epoch；两轮预算和固定终点不改。
 
 实际探针：13FB/1Adam，最大572/17与684/13；四类训练输入受限generate均EOS、未cap/拒绝，只证明运行合法，不代表语义正确。native34.164秒、wrapper34.947秒rc0，峰17.607GB。事前token成本门估4530.200秒≤7200，冷步旧估6885.573秒；不是耗时上界证明。探针状态丢弃，正式从公开权重重新加载。evidence/probe-and-fresh-formal.json保原始收据指纹。
 
