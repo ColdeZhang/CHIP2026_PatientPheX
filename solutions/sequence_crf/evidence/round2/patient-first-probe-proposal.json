@@ -1,0 +1,153 @@
+{
+  "status": "source_ready_MCP_blocked_native_CPU_and_GPU_NOT_started",
+  "root_authorization": "one fresh longest5556 real nonzero-LR update180+TERM30 after ontologyNCR releases A100GPU2; halt first OOM/numeric/budget failure",
+  "optimizer_steps": 1,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.01,
+  "clip": 1.0,
+  "seed": 20261023,
+  "rank": 16,
+  "alpha": 32,
+  "dropout": 0.05,
+  "batch_size": 1,
+  "accumulation_for_probe": 1,
+  "formal_accumulation_reference": 8,
+  "warmup_for_probe": false,
+  "formal_warmup_reference": "2steps/32total; first optimizer LR may be0, not used for this diagnostic",
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "loss": "native full logits model(**batch,use_cache=False).loss; unweighted valid assistant-token mean, no selected-logit rewrite",
+  "new_factorization_changes_AR_loss_despite_equal_binary_relation_matrix": true,
+  "nonreentrant_checkpoint": true,
+  "row_id": "11235872:relations:8",
+  "full_tokens": 5556,
+  "supervised_tokens": 135,
+  "prefix_tokens": 5421,
+  "all_train_rows": 124,
+  "all_train_full_tokens": 400614,
+  "all_train_supervised_tokens": 4694,
+  "data_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/data-plan.json",
+    "bytes": 2079,
+    "sha256": "6a06225dc4997817341de7da150e56e0947165dea487a3d4c25e2e02ce3365b6"
+  },
+  "runtime": "TF5.20.2/PEFT.21.2/A100 historicaltorch2.6cu124/nativeGDN noFLA; freshruntimecheckpending",
+  "resource": {
+    "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "CPU_env": {
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "remote": "sequence-round2/patient-first-longest-probe-v1",
+    "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1"
+  },
+  "budget_seconds": 180,
+  "grace_seconds": 30,
+  "checks": [
+    "onlyLoRA43278336 in optimizer/total8997081600",
+    "frozenbase no gradient/head frozen, no9Bbase copy",
+    "initialBzero explains Afirstgradmayzero",
+    "all adapter grads/loss finite; positive family gradient norms; 3small Bprobes actualchange",
+    "real native source/CPU124rowhash and independent5556/400614/4694 guards",
+    "actual timing/peak/rc/GPUrelease recorded; no checkpoint/inference/quality"
+  ],
+  "state_discarded": true,
+  "first_failure_stop": true,
+  "no_second_attention_loss_or_truncation_attempt": true,
+  "references": {
+    "old_weighted_selected_step": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/json-value-weighted-cpu-preparation/a100-probe-attempt2/longest-step.json",
+      "bytes": 846,
+      "sha256": "951a0d12f60f88efdec4b45ed4b1209645ee334b4c5c7402f8d89673f571215e"
+    },
+    "old_native_formal2ep": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/training_complete.json",
+      "bytes": 526,
+      "sha256": "d52918ed293c83e20f40faee2825cc7fc2eb5b0484cc94972d8bccdc5dcff20b"
+    },
+    "CPU_schema_handoff": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/handoff-manifest.json",
+      "bytes": 2819,
+      "sha256": "6e6ff2d818eae9beb78ee1a35b1337f78061650c1fe1b37f7453ab575d27a0f1"
+    },
+    "CPU_schema_review": {
+      "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-entry-review/cpu-data-contract.json",
+      "bytes": 3192,
+      "sha256": "d50c850e4d0a04ef2fb43ab0a79b426f8ad3038b4b0be39a93c5fa934510ebb8"
+    }
+  },
+  "historical_cost": {
+    "old_A100_selected_weighted_step_seconds": 12.180502124130726,
+    "old_A100_selected_weighted_peak_bytes": 23859097600,
+    "old_A800_native_formal2ep_peak_bytes": 36633378816,
+    "old_A800_native_formal2ep_reserved_bytes": 81109450752,
+    "scope": "different losses/card/state; neither guarantees this single5556 nativeA100 memory or time"
+  },
+  "sources": {
+    "data_contract.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/data_contract.py",
+      "bytes": 17291,
+      "sha256": "07805319ef5aa36aa0ae634f0e3844637d5445846db9f0d60159c9dea2db58c6"
+    },
+    "patient_first.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/patient_first.py",
+      "bytes": 7505,
+      "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+    },
+    "operations.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/operations.py",
+      "bytes": 7013,
+      "sha256": "9fd7bb23dd2f2efec79109159de140709134fdcaa83b1326013849fd73aae652"
+    },
+    "prepare.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/prepare.py",
+      "bytes": 16106,
+      "sha256": "2d652d266756ee83bee5e2ef9cbc7fae16a722dea522c5bb6deb90d8606e2d24"
+    },
+    "runtime_check.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/runtime_check.py",
+      "bytes": 1411,
+      "sha256": "f59423c0c2f055bc0b3e8a932ec0b2da605c4c05c84dd4f162c717bdee258504"
+    },
+    "deploy_cpu.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/deploy_cpu.py",
+      "bytes": 6362,
+      "sha256": "f72b4538889b9b4f382559baf534c04013b2c254da87e6b57c21a2679568e3ee"
+    },
+    "probe.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/probe.py",
+      "bytes": 9670,
+      "sha256": "e98ba7a99c87fde615917c0791fd55b2bee8acbdde4b8b831c1befc1a187ecaf"
+    },
+    "bounded_driver.py": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/bounded_driver.py",
+      "bytes": 2535,
+      "sha256": "11f450bc3b3522336b974699bce15dbbe80c3138f7117ff83abdac956bf1d384"
+    }
+  },
+  "prior_source_proposal": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/probe-proposal.json",
+    "bytes": 5982,
+    "sha256": "20a5ced8805d502e1fcc04557629bc9e90e3ff3f9cdfde8b0af125fd71312fc3"
+  },
+  "payload_manifest": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/probe-preparation/local-payload.json",
+    "bytes": 4592,
+    "sha256": "9ef5f17e09d0fa70b7f823ed7702446256f72f51d274825f3ee93379cfaad704"
+  },
+  "static_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/patient-first-entry-review/probe-static-contract.json",
+    "bytes": 5040,
+    "sha256": "3275b4616ad789d65d3134a7d629daf68da481a453328e5fd175e58d9a782ad9"
+  }
+}

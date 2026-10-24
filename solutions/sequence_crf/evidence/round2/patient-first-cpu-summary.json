@@ -1,0 +1,323 @@
+{
+  "status": "PASS_CPU_patient_first_closed_set_preparation_no_training_or_quality",
+  "completed_utc": "2026-10-24T01:39:41.832487+00:00",
+  "elapsed_seconds": 4.07026493599551,
+  "plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/plan.json",
+    "bytes": 3382,
+    "sha256": "14c8714ca4d9f775d220583cf57b95b1e3e3098a3a51864ff221526ed013d508"
+  },
+  "sources": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/train.jsonl",
+      "bytes": 1723484,
+      "sha256": "cb7f67e16959e4ec1357823303915aa44cc070c6f527b4c74ae66e23712d84a8"
+    },
+    "F1_input": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/meta.prompts.jsonl",
+      "bytes": 1090947,
+      "sha256": "ddba03fffb81141a6fe1148857f36b2527a38d05abbb31c35a6f393bb5931fbe"
+    },
+    "preparation_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/preparation-manifest.json",
+      "bytes": 9323,
+      "sha256": "356109e9b35d71e36c315b012831166419b4e007db061a289a04771abee69a47"
+    },
+    "native_train_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/tokenizer-audit.json",
+      "bytes": 73773,
+      "sha256": "46b005eff0cabad879c2a74034a7d2b3d4c1a0dc552338a339fc9b463b211555"
+    },
+    "old_training_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/formal2ep/run_manifest.json",
+      "bytes": 10310,
+      "sha256": "5535d33a34859c00da1f4e99d6847e1fc87200ca167e503b4ef255f54b58be8c"
+    },
+    "previous_F1_input_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/reverse-json-candidate-order/inverse-and-token-audit.json",
+      "bytes": 67458,
+      "sha256": "db99d932f141a6657368530af1b6c45203c3097657e864a455fe947c6a3cf30d"
+    },
+    "encode_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/candidate-order-training-feasibility/source/original_encode_helper.py",
+      "bytes": 26050,
+      "sha256": "9a15b1bbed46926ae8e6530c9f7704774088bcd5c6fee25cade36a9e9ada93c3"
+    },
+    "tokenizer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "template": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    }
+  },
+  "prepare_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/prepare.py",
+    "bytes": 16106,
+    "sha256": "2d652d266756ee83bee5e2ef9cbc7fae16a722dea522c5bb6deb90d8606e2d24"
+  },
+  "transform_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/patient_first.py",
+    "bytes": 7505,
+    "sha256": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08"
+  },
+  "training": {
+    "rows": 124,
+    "documents": 32,
+    "document_ids": [
+      "11203018",
+      "11235872",
+      "11765409",
+      "12059664",
+      "12078887",
+      "12110755",
+      "12110769",
+      "12118522",
+      "12250201",
+      "12334843",
+      "12405443",
+      "12628480",
+      "12646972",
+      "12798528",
+      "12811285",
+      "12846941",
+      "2866573",
+      "4644339",
+      "5023785",
+      "5368377",
+      "5422868",
+      "5574094",
+      "5763540",
+      "5773845",
+      "5793168",
+      "5866036",
+      "5970456",
+      "6057141",
+      "6059678",
+      "6134758",
+      "6219255",
+      "6390251"
+    ],
+    "candidate_values": 880,
+    "patient_output_keys": 346,
+    "positive_pairs": 594,
+    "negative_pairs": 1912,
+    "all_empty_rows": 7,
+    "old_empty_CID_values": 396,
+    "new_empty_patient_values": 106,
+    "total_pairs": 2506,
+    "old_native_token_audit_all_fields_exact": true,
+    "double_inverse_all_fields_and_targets_byteexact": true,
+    "token_statistics": {
+      "old": {
+        "full_tokens": {
+          "sum": 402594,
+          "minimum": 591,
+          "maximum": 5523,
+          "mean": 3246.7258064516127,
+          "median": 3311.0,
+          "p90_nearest_rank": 4635
+        },
+        "prefix_tokens": {
+          "sum": 395424,
+          "minimum": 582,
+          "maximum": 5417,
+          "mean": 3188.9032258064517,
+          "median": 3252.0,
+          "p90_nearest_rank": 4567
+        },
+        "supervised_tokens": {
+          "sum": 7170,
+          "minimum": 9,
+          "maximum": 116,
+          "mean": 57.82258064516129,
+          "median": 59.0,
+          "p90_nearest_rank": 73
+        },
+        "longest_row": "11235872:relations:8"
+      },
+      "patient_first": {
+        "full_tokens": {
+          "sum": 400614,
+          "minimum": 593,
+          "maximum": 5556,
+          "mean": 3230.7580645161293,
+          "median": 3298.0,
+          "p90_nearest_rank": 4612
+        },
+        "prefix_tokens": {
+          "sum": 395920,
+          "minimum": 586,
+          "maximum": 5421,
+          "mean": 3192.9032258064517,
+          "median": 3256.0,
+          "p90_nearest_rank": 4571
+        },
+        "supervised_tokens": {
+          "sum": 4694,
+          "minimum": 7,
+          "maximum": 135,
+          "mean": 37.854838709677416,
+          "median": 31.0,
+          "p90_nearest_rank": 63
+        },
+        "longest_row": "11235872:relations:8"
+      }
+    },
+    "delta_total_tokens": -1980,
+    "delta_label_tokens": -2476,
+    "delta_prefix_tokens": {
+      "sum": 496,
+      "minimum": 4,
+      "maximum": 4,
+      "mean": 4,
+      "median": 4.0,
+      "p90_nearest_rank": 4
+    },
+    "truncations": 0,
+    "supervised_EOS_one_each": true
+  },
+  "F1_input_only": {
+    "rows": 80,
+    "documents": 16,
+    "document_ids": [
+      "10313222",
+      "11871647",
+      "11906559",
+      "12386172",
+      "12455887",
+      "12891056",
+      "2964533",
+      "4607013",
+      "5415817",
+      "5425407",
+      "5473715",
+      "5538066",
+      "5789735",
+      "6048891",
+      "6063015",
+      "9327653"
+    ],
+    "unique_patients": 39,
+    "candidate_values": 587,
+    "candidate_patient_pairs": 1557,
+    "old_render_and_counts_match_previous_audit": true,
+    "old_tokens": {
+      "sum": 250696,
+      "minimum": 793,
+      "maximum": 5691,
+      "mean": 3133.7,
+      "median": 3142.0,
+      "p90_nearest_rank": 4169
+    },
+    "patient_first_tokens": {
+      "sum": 251016,
+      "minimum": 797,
+      "maximum": 5695,
+      "mean": 3137.7,
+      "median": 3146.0,
+      "p90_nearest_rank": 4173
+    },
+    "longest_row": "6063015:relations:0",
+    "answer_fields": 0,
+    "targets_read": false
+  },
+  "changes": [
+    "Only first two system lines specify patient-to-CID closed-set output",
+    "Training target matrix transposed deterministically; original patient and candidate order retained"
+  ],
+  "unchanged": [
+    "row IDs and row order",
+    "verbatim entire user messages",
+    "all candidate fields and code_map",
+    "all supplied patients",
+    "remaining clinical instructions",
+    "all positive and negative train pair labels",
+    "assistant-only mean-CE mask and EOS semantics"
+  ],
+  "isolation": {
+    "training_vs_F1_overlap": 0,
+    "both_training_generator_chains_exclude_F0_F1": true,
+    "existing_raw_HPO_labels_no_canonical_remap": true,
+    "no_gold_added_candidates": true,
+    "provenance_reused_not_retrained_generators": true
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "tokenizers": "0.23.1",
+    "jinja2": "3.1.6",
+    "torch_imported": false,
+    "transformers_imported": false,
+    "cuda_visible_devices": ""
+  },
+  "no_model_weights_loaded": true,
+  "no_GPU_or_training_or_quality": true,
+  "new_native_Transformers_GPU_token_or_gradient_contract_not_yet_run": true,
+  "synthetic_contracts": {
+    "valid_cases": [
+      "exact_P1_P10_C001_C0010",
+      "complete_double_inverse",
+      "all_empty_preserved",
+      "empty_candidate_set",
+      "JSON_key_order_semantically_irrelevant"
+    ],
+    "rejected_cases": [
+      "duplicate_patient_key",
+      "missing_patient",
+      "unknown_patient",
+      "unknown_CID",
+      "duplicate_CID_value",
+      "null_list",
+      "numeric_value",
+      "bool_value",
+      "string_instead_of_list",
+      "nested_list",
+      "markdown",
+      "trailing_second_object",
+      "nonfinite",
+      "old_schema_is_not_new_schema",
+      "duplicate_patient_whitelist",
+      "duplicate_CID_whitelist",
+      "empty_patient_whitelist",
+      "old_duplicate_CID_key",
+      "old_unknown_patient",
+      "old_duplicate_patient_value"
+    ],
+    "all_passed": true
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1-input-token-audit.json",
+      "bytes": 59512,
+      "sha256": "7fc89abd9075705853071502f0131c4b50ec8fe025154926a778ef74f68de3be"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/F1.input80.patient-first.jsonl",
+      "bytes": 1092467,
+      "sha256": "32b52a2d580024342f25a5d74388c61323f2cc3bbf2bdb0eea404b19a9d64b18"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/synthetic-contracts.json",
+      "bytes": 749,
+      "sha256": "774f22db9db6a3df53ec14c2bf7fc80c8e282d4f9e4dce9d71ef697040837d94"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train-token-audit.json",
+      "bytes": 163235,
+      "sha256": "36f6faaee683fcaff319714a3b08535208848b45185ab72b7958829417d03586"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/train124.patient-first.jsonl",
+      "bytes": 1720127,
+      "sha256": "14af86cffe1a8b87af022d13e42f9b910281f0da478e3cc731bc2fbc9ba68c3b"
+    },
+    {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set/cpu-v1/training-matrix-audit.json",
+      "bytes": 69319,
+      "sha256": "a71e410ad106a3d911e8ed5c28b39a93a1dc67f4bff9161306efdb13bc867616"
+    }
+  ]
+}

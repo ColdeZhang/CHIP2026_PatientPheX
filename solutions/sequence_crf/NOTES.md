@@ -192,3 +192,5 @@ ATLOP原局部乘积需要两端attention支持相交；独立passage编码下�
 - 人工边界单条实际验证：保留4096旧思考后，仅54新增tokens产生合法完整8CID JSON/EOS，A30额外wrapper39.465秒，说明一个终稿出口可用；不表示原思考自然闭合、答案正确或比赛分数改善。运行前source/plan已push，结束后完整raw freeze与严格new-suffix检查；后续预算方案必须另行预设并保留自然闭合状态分支。
 
 - 4096旧thinking行为摘要已校正：8CID字面出现1479token、7个明确列表1721、C003肯定映射2214、最后明确列表3529。不能把CID被提到、肯定判断和完整列表输出混为一谈，也不能以Refining标题认定循环起点。唯一80政策2304/512约3小时，主线程暂缓，不因成本再扫短cap。[预算结案](experiments/thinking-budget-80-plan.md)。
+
+- patient-first把同一闭集关系矩阵改为PID→CID集合，594/1912正负对双逆完全一致，但监督token7170→4694、序列条件分解不同，因此仅CE公式相同，优化目标数值不等同。新原生CPU绑定独立写124/400614/5556/4694 guard，不能绕过旧trainer防错常量。单步非零lr诊断不同于正式warmup；fresh B零时A梯度可零，检查三类B更新即可，不复制9B base制造额外峰值。[方法与一次探针准备](experiments/patient-first-closed-set.md)。
