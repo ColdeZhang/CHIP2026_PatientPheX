@@ -1,6 +1,6 @@
 # 强 BioBERT 选择器的固定 LightGBM 控制
 
-2026-10-24；当前状态：来源、私有依赖、原生接口与唯一计划已冻结，正式四fold尚未开始。目标是检验成熟树实现的具体边际收益，不重造候选/调阈值，不宣称更换库保证提分。
+2026-10-24；当前状态：唯一四fold已完整结束，pooled小幅提高、3/4fold不降，满足事前保留条件；统一终审1d6ed9fd已通过。目标是检验成熟树实现的具体边际收益，不重造候选/调阈值，不宣称更换库保证提分。
 
 ## 依据与唯一变量
 
@@ -25,3 +25,21 @@
 保留条件：pooled Score严格提高且至少3/4fold Score不降。候选与关系固定，所以变化来自实体选择；仍是曾用于阈值与方法研发的train64分组开发控制，不称盲测或原dev达标。强对照pooled **.730993616492**。本轮不执行full64/原dev迁移或官方提交，后续由root据结果决定。
 
 入口[formal-plan.json](formal-plan.json) `d8935e74`，[entry-manifest.json](entry-manifest.json) `59aaa484`；外部根 `R/research/lightgbm-selector-readiness`。正式恢复查看外部 `formal-control/execution-state.json`，不要重复启动已存在输出目录。唯一执行命令为计划python运行本目录 `execute_control.py --plan <外部formal-plan.json>`。模型、全量概率/预测、正常日志保持仓库外；本目录仅源、计划、实际接口和关键终点。
+
+## 唯一四fold实际结果
+
+四fit/predict/完整保存回载共**59.389秒**（15.979/14.262/14.621/14.524秒），decode/eval **2.933秒**，5个子进程及controller均rc0；每个模型实际160轮、classes=[0,1]，全部held正列与native predict及pickle回载exact。没有重fit旧HGB。四份完整预测于04:48:50.913303共冻，eval marker为50.914316，之后新四fold/pooled各一次v2，旧指标复用。
+
+| 指标 | 旧HGB | 固定LightGBM | 差值 |
+|---|---:|---:|---:|
+| pooled Score | .730993616492 | .731545429370 | +.000551812878 |
+| F0 Score | .739700183730 | .740572140440 | +.000871956710 |
+| F1 Score | .728056418176 | .728697536469 | +.000641118293 |
+| F2 Score | .753373106038 | .754425066951 | +.001051960914 |
+| F3 Score | .706780475185 | .706374759627 | −.000405715558 |
+
+pooled menF1 **.771948494→.772867639**，docF1 **.809789609→.811077716**；关系micro/macro及计数完全不变。44篇实体选择变化，49加55删；全部非entity UTF8原片段保留，四fold格式0错0警。F3回撤保留，不包装成四折全正。**keep=true**仅表示满足该开发控制事前条件，效应很小，不是原dev提升或.8达标。
+
+[结果](results/result.json) `6fc2c9e7`、[freeze](results/complete-freeze.json) `e31cfa67`、[完整终点清单](results/terminal-manifest.json) `087572cf`。入口独审[084923ce](results/entry-review.json)通过；[完整唯一终审1d6ed9fd](results/terminal-review.json)通过，未重fit/评分/读取新gold。root已据此另授权唯一full64/原dev迁移准备，本四fold源/质量保持冻结，不因后续修改。
+
+计划继承旧模板的`status/runtime_checks/success`文字未及时清理，其中仍写HGB/120秒；这是未执行的旧描述字段。实际estimator、180秒数值门和Score+3/4条件已在新字段及controller中事前固定，实际运行也一致。原plan不改写；[明确说明](results/plan-interpretation-addendum.json) `c19fb7ea`逐项标出旧字段和真正执行入口，不将旧文字冒充实际配置。

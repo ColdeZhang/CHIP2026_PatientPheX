@@ -1,0 +1,74 @@
+{
+  "created_utc": "2026-10-24T04:50:06.415748+00:00",
+  "status": "explanatory_only_original_frozen_plan_unchanged",
+  "original_plan": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/formal-plan.json",
+    "sha256": "d8935e74c946437e1e7e3a64ffb12b49a59eaff225f44eb7d7d07af24b69b473",
+    "bytes": 26653
+  },
+  "legacy_inert_fields": {
+    "status": "frozen_unique_fixed_BioBERT_source_control_before_fit_and_quality",
+    "runtime_checks": [
+      "four new full predictions plus four old nested refs frozen before any quality gold",
+      "same fixed HGB160,categorical vocabulary fit only per train48, report actual dimensions",
+      "model+vectorizer saved per fold; no cut/epoch search",
+      "old candidate projection exact, new HGB can reselect entities; all nonentities exact",
+      "label semantics and proper-nesting source remain frozen",
+      "fit120s aggregate; decode+freeze+v2/format30s aggregate; terminate owned child process groups only"
+    ],
+    "success": "pooled mean(menF1,docF1) strictly improves and at least3/4fold mean objective nondecrease"
+  },
+  "actual_authoritative_fields": {
+    "fit_infer_CPU_cap_seconds": 180,
+    "decode_evaluation_CPU_cap_seconds": 30,
+    "prespecified_comparison": {
+      "variable": "HGB implementation replaced once by fixed LightGBM4.6.0; same eight prepared candidate pools and feature/label recipe",
+      "hyperparameters_source": {
+        "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/ensemble/_hist_gradient_boosting/utils.py",
+        "sha256": "bd22fb30a6068e15b77741d16dfc48eb108be7e2f455c0115d3e54695d0f5d0c",
+        "bytes": 5568
+      },
+      "binary_classifier_not_ranker": true,
+      "not_mathematically_equivalent": true,
+      "max_bin255_not_identical_thresholds": true,
+      "no_prebinning": true,
+      "same_cut": 0.3,
+      "same_nested_decoder_sha256": "7f4484fc1db132746f674c8c268832705cbeba7d05bbe65268c1ef0e275a7c7f",
+      "all_nonentity_literal_bytes_preserved": true,
+      "keep": "pooled Score strictly increases AND at least3/4fold Score nondecreasing",
+      "old_HGB_never_refit": true,
+      "new_formal_fit_calls": 4,
+      "one_shared_fit_predict_budget_seconds": 180,
+      "new_fold_plus_pooled_evaluator_calls": 5,
+      "old_metrics_reused": true,
+      "no_originaldev_or_official": true,
+      "first_failure_stop_no_version_parameter_budget_retry": true
+    }
+  },
+  "controller": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/execute_control.py",
+    "sha256": "564aa143478748668aa3d2bf1ee1c09520af8ffbb7bf97404509945f9e4a8f98",
+    "bytes": 10123
+  },
+  "configuration": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/configuration.py",
+    "sha256": "85c1dd95fc3992867f0afab273fc74f2890889ac34c15296ec428a76485fe4aa",
+    "bytes": 954
+  },
+  "fit_source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/lightgbm_selector_control/fit_fold.py",
+    "sha256": "e878d7168ac6614db3671c1939bf5872a8ab7bcd3dd2419fc470444a3585ca5a",
+    "bytes": 9548
+  },
+  "explanation": "The three inherited descriptive fields are background from the strong-BioBERT HGB template, not consulted for estimator construction, deadlines, or keep decision. Actual LightGBM model class/version, 180-second shared fit budget and pooled Score + at least3/4fold criterion were frozen in new fields/source before fit. Original plan is not rewritten after results. Fixed relations also make Score and mean entity-F1 improvement signs equivalent here, but new declared Score criterion remains authoritative.",
+  "actual_evidence": {
+    "native_library": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/deps/runtime/lightgbm/lib/lib_lightgbm.so",
+      "sha256": "6a12e1a7b13824d14c252d2a4d2e36af467383331a114eb0e7448eecbf02d7b1",
+      "bytes": 10116688
+    },
+    "fit_stage_seconds": 59.38941039799829,
+    "keep": true
+  },
+  "new_model_or_quality_runs": 0
+}
