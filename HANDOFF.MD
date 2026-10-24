@@ -438,3 +438,15 @@ Grounded full64检查点导出的HTTP子进程使用独立session。停止其MCP
 exact-quote trie 的 CPU 接口核验发现：前缀约束会把不合法 token 的分数置为 `-inf`；若后面再执行“全部 logits 有限”检查，会把合法 mask 错判为模型数值故障。目标 Transformers 5.20.2 的真实 processor 列表中，逆序确实触发失败，尚未发生线上模型失败。
 
 **避免方法**：显式按“检查原始 logits → 前缀 mask”的顺序组装同一个 `LogitsProcessorList`；不要同时传默认 `prefix_allowed_tokens_fn`，使框架提前加 mask。保留对原始 NaN/±inf 的拒绝，不能简单删除数值门。目标 CPU 共234状态核验合法分数不变、非法项屏蔽、重复回调和 EOS/空池合同，并确认39条原输入IDs一致；无模型/forward/GPU/质量调用。证据 [actual-cpu.json](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/544295b3/solutions/copy_grounded_decode/evidence/actual-cpu.json)，完整结果SHA `8c2a642b…`。GPU39仍按独立终点记录，不由CPU合同推定模型质量。
+
+## H67：检查点容器路径不等于可直接加载的适配器目录
+
+集合补全的首次warm-start工程把复制回执中的 `epoch-002` 容器当作PEFT目录，漏了末级 `/adapter`，5.225秒在任何forward/update之前退出。它不证明模型或新目标失败。
+
+**避免方法**：按manifest的相对文件名解析真正加载目录，启动前核对 `adapter_config.json` 与权重及所需附属文件的完整路径/SHA，不能从目录名字猜。此次仅修正路径，4件实际SHA核验05499cc7通过；原failure e6ae3507与原计划fc6073cf保留。两极恢复后来从同d52父权重fresh通过实际加载、反向、Adam和完整保存重开。精确[来源与修复证据](docs/campaigns/round2-quote-completion-engineering-recovery.json)。
+
+## H68：恢复任务的剩余时间门要引用真实成本，工程检查也应针对新风险
+
+上述路径修复沿原绝对截止启动恢复时，只剩120秒，却用了未经实耗支撑的70秒门；同A800已有13步200.35秒证据，新输入预计约170秒。结果按原时钟终止，仅完成9次反向/1次Adam，未覆盖两极形状及保存验证，不能记成13步PASS。
+
+**避免方法**：先用同host/相近形状的真实成本判断剩余窗口，再启动；不足时明确独立预算，不能隐式延期。根据本次真正新增的风险选择最小检查，不机械照搬13步：完整261输入和33组/尾5已有CPU合同后，独立180秒检查只做已冻结的两极形状反向、一次Adam及完整adapter/optimizer/scheduler/RNG保存重开，63.351秒全部通过，probe状态弃掉。实际正式成本保守代理3915秒超过旧3600提案，因此在任何formal启动前另行明确4200共享预算（含120秒持久ACK），未降低公式或延长运行中的作业。原超时de86c2bf/partial998a3757与完整修复98fb4a1b均见[证据索引](docs/campaigns/round2-quote-completion-engineering-recovery.json)。
