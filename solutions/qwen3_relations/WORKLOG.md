@@ -44,3 +44,5 @@
 - 新组合full64控制器唯一12:08:35.986798Z启动proc_e5d04680/PID1207543，source f69d88d0/plan5490e564；初次source上传LUNA且实际未落文件，恢复后v2源成功，无先前GPU。freshGPU0 4MiB/noapps/盘169.31GB。精确probe child/截止见 evidence/full64-component-start.json；原240→2400→1200各+30自动有门顺序接续，原dev不独立评分。
 
 - 组合full64新shape实际64.748844s PASS：13indexedFB/1Adam，504梯度/504Adam1512状态finite，峰allocated21,628,089,344B，固定成本估2245.071238<2400。probe state丢弃后正式child1207643于12:09:42.129377启动；TERM12:49:42.129377/KILL12:50:12.129377，原两轮完整链继续。读probe子receipt一次UNKNOWN只属I/O，原formal身份已明确，不重启。
+
+- 组合full64 epoch1完整ACK：12:22:09.652993 UTC/34updates，504adapter及504Adam1512tensor、scheduler/RNG重开exact，checkpoint6b681bb2，174655536B adapter df4ef6ca与349612141B state dc56ad04；保存核验3.212588秒（receipt计时不含最后ACK/父链尾操作）。继续原第二轮，无中间quality。
