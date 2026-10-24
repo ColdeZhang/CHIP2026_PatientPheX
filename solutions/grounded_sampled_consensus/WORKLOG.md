@@ -4,7 +4,7 @@
 
 ## 当前任务
 
-**F0全94运行中**：`.100 GPU0` 唯一proc637bae55/driver2746607/child2746615，14:26:45.788 UTC启动，TERM15:26:45.788/KILL15:27:15.788。原same d52/两seed/政策，47 native实际CPU7.5455s/collectione4d68072通过，plan6fbd1274。只读watcher182710独立session/flock readydd00e8ae，180s观察，恢复只接原intent不重start。F1固定.705226已独审c548通过，小包7bc54091服务器128+1成员全核，root实际下载待回执。F0严格超过原B4 .728195628911才保跨折候选；尚无F0质量/原dev/官网动作。
+**F0全94运行中**：`.100 GPU0` 唯一proc637bae55/driver2746607/child2746615，14:26:45.788 UTC启动，TERM15:26:45.788/KILL15:27:15.788。原same d52/两seed/政策，47 native实际CPU7.5455s/collectione4d68072通过，plan6fbd1274。只读watcher182710独立session/flock readydd00e8ae，180s观察，恢复只接原intent不重start。F1固定.705226已独审c548通过，小包7bc54091服务器128+1成员全核，root实际下载721cd7d7已完整通过。F0严格超过原B4 .728195628911才保跨折候选；尚无F0质量/原dev/官网动作。
 
 原 train32 grounded 模型 d52、原 F1 16篇/39患者全文输入；固定 seed20261024/25、native nonthinking sampling T.7/p.8/k20/minp0/repetition1/max1600。两完整39经原严格 quote parser 与相同 train32 alias/public41099/b59政策后，唯一主端点 B4(524关系/.701325377212) UNION 两seed literal关系交集。新关系为零则原基底byteexact且0v2；否则完整freeze后1v2/旧0。严格Score正才F0；双折正才full64。
 
@@ -35,3 +35,5 @@
 F1收口：collection19b81037原173件，1411.159s，alloc21.012GB/reserved21.922GB；Sap6ccab164原13件/10.852s。两纯关系253/245、交集163；保护B4原524后538，全部1189实体/39患者/16文献及非关系字节保持。14:19:22完整freeze1527f730后唯一v2，predf9c33866/resultf9e268a2，0单seed/其他arm。汇总脚本首次仅SyntaxError，未写文件/模型/质量；机械修正只整理已有结果。
 
 F1正式独审：c54828bd/12959B，41safe snapshots/manifestddd801e5稳定；入口9bd386cc保原pending时点不改，另evidence/F1-final-review.json追加接受与persistence指针。F0源机械迁移在首次GPU前静读修正指标名称F1不随fold改名、完整94字段，未产生预测或质量；同接口/阈值/模型不变。native47仅新输入身份与94seed去重，原sampler toy/processor复用。
+
+root已唯一实际读回F1补包，3 read_file，128内容+1embedded全部SHA/fsync/reopen，manifest字节exact；恢复721cd7d7/17273B见evidence/F1-actual-restore.json。未改9bd386cc入口/1527f730质量freeze，未复制旧权重或重模型。
