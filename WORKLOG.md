@@ -8,10 +8,10 @@
 - **官方**：最高901的B预测50ef5daa已07:54:13 UTC接收，额度5→4；用户回传 **.6922、排名第五**，第一名.7389。见[用户结果记录](docs/submissions/round2-best-20261024-user-result.json)。没有主动查询网站；其余上传暂停，本次一次授权已用完。
 - **当前并行**：原三路线之外，已新建span规范化、文档关系、患者条件生成、患者训练长度四个独立分支/worktree。各线独立维护台账/实验/笔记/证据，root维护比较、资源、恢复与融合。见[第八阶段](docs/campaigns/round2-20261024-stage8-parallel-expansion.md)。
 - **有效增量**：GP折外特征F1 .728697537→.730812710，正在复核F0；FLA内部两折相对匹配native都小正，正在原dev按完整901配方234fresh验证，尚无新原dev结果。DocRE两版8epoch均未过强N，保留负结果，准备固定30epoch控制。
-- **实际运行/恢复**：A800患者fresh4轮已10:08:43启动，唯一watcher143721，共享TERM11:38:41.825555；.100完整901 FLA已10:10:38启动，共享1800+30。A100生成压力测试已通过，正式源已部署，10:10连接离线尚未start；.3排GP F0后DocRE30。所有准确job、owner、预算、入口见[当前运行入口](docs/campaigns/round2-current-work.json)，勿重复启动。
+- **实际运行/恢复**：A800患者fresh4轮已10:08:43启动，原本地监控退出后已独立恢复watcher145075（远端训练未重启），共享TERM11:38:41.825555；.100完整901 FLA已10:10:38启动，共享1800+30。A100生成工程通过且10:13:49正式启动，原TERM11:03:49.227060；.3排GP F0后DocRE30。所有准确job、owner、预算、入口见[当前运行入口](docs/campaigns/round2-current-work.json)，勿重复启动。
 - **已关闭控制**：R1、全文逆序、固定双折投票、患者均衡loss、indexed全文SFT及H5主组合均未胜各自强对照；完整失败与有效中间状态已保留。详见[第七阶段](docs/campaigns/round2-20261024-stage7-local-optimization.md)，不以工程成功或弱对照改善替代涨分。
-- **证据备份**：当前217项/5010引用索引及5028包成员已实际从.100恢复并逐SHA核验；另5份完成独审待下一批发布，未冒称已入217。最佳901共36件与官方B/接收凭据也已实际恢复。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
-- **Git**：最近已核验`origin/main@b8034fd`，各路线按阶段持续push并核远端。旧额外服务器bundle只包含其manifest所列历史提交，不声称包含后来成果。Git401/503按H18有限重试。
+- **证据备份**：当前217项/5010引用索引及5028包成员已实际从.100恢复并逐SHA核验；另7份完成独审正在准备下一批224候选，尚未发布，未冒称已入217。最佳901共36件与官方B/接收凭据也已实际恢复。见[审查备份](docs/campaigns/round2-review-backup.json)、[最佳方案备份](docs/campaigns/round2-best-dev-backup.json)。
+- **Git**：最近已核验`origin/main@a904014`，各路线按阶段持续push并核远端。旧额外服务器bundle只包含其manifest所列历史提交，不声称包含后来成果。Git401/503按H18有限重试。
 - **资源**：数据`/workspace/patientphex-data/`，产物`/workspace/patientphex-runs/round2-20261023/`；GPU通过`scripts/mcp_client.py`，只使用空闲卡、自有目录和进程。模型优先复用校验缓存/ModelScope。每个独立模型≤10B，允许集成，见[官方原文纠正](docs/campaigns/round2-model-parameter-rule.json)。
 - **历史入口**：五条首日路线已完整合并/推送/清理，见[合并证据](docs/campaigns/day1-20261023-merge.json)；首日成绩见[官方分析](docs/campaigns/day1-20261023-official-analysis.md)；第二轮总索引见[协调记录](docs/campaigns/round2-20261023.md)。
 

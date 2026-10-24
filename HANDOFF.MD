@@ -378,3 +378,9 @@ GP显式`add_pooling_layer=False`加载现成BiomedBERT，原生load成功但新
 FLA新推断入口额外要求`__module__`标为FLA的函数，其`inspect.getsourcefile`必须在FLA wheel的Python文件清单中；实际函数经Torch包装，源码指向已核`torch/_dynamo/eval_frame.py`，而旧A已验证同样结构。首次因此0forward退出，不能记成FLA未启用。
 
 **避免方法**：复用实际已验证的binding graph、wheel来源和运行开关合同；需要加强检查时先保存真实包装链，再验证其语义，不用单一路径归属替代后端身份。恢复撤回新增过强断言、infer源码不变，保存实际graph并保持原绝对截止；80条fresh和终审8ca5be23通过。原数值差异仍保留，不因接口修复称native/FLA逐位等价。见检索分支`fla_fulltext_quality_control/`及外部`validation/fla-fulltext-F1-quality-review/`。
+
+## H58：本地监控器退出不等于远端训练失败
+
+患者四轮训练的本地watcher143721启动后只留下首个inspect；10:16实际PID已不存在、原exec73046不可用，却没有failure或complete记录。只读原远端job确认epoch1仍在正常训练step10。因此只能确认本地跨轮监控丢失，**无法确定退出根因**，不能归因成模型失败或断言由代理结束造成。
+
+**避免方法**：远端模型与本地监控分别保存身份/生命周期。接手先核进程与原意图，未知结果恢复原作业，不重新训练。需要持续本地调度时，用独立session、明确stdin/stdout/stderr、exclusive lock及实际ready回执；新监控保留旧记录，用独立恢复namespace，继续原绝对截止。此次new PID145075实际PPID1/SID145075，持monitor-owner.lock，只接续原watch/operations和11:38:41.825555截止；旧远端proc975a3621不变。恢复证据`research/patient-schedule-fresh4-v1/controller/watch-recovery-1/worker-ready.json`，源码检查点4ad5061；下一轮完整ACK链仍按实际结果记录。
