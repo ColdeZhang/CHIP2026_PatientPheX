@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；两轮32updates、两份完整.100 ACK全部闭合，campaign实际2768.492s<3600；F1最终adapter已绑定beeaa580，尚未启动。监控旧失败均保留、没有活跃训练/监控。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；两轮32updates、两份完整.100 ACK全部闭合，campaign实际2768.492s<3600；F1唯一作业proc_a84ae36b/PID173877已12:33:05.102124接受，80fresh/1200+30；原driver精确时钟待只读确认。训练监控旧失败均保留、没有活跃训练/训练监控。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -70,3 +70,7 @@ Prepared inference/deploy_via_bridge.py by reusing the already-successful authen
 Epoch2 actually ended12:24:11.904241 rc0/816.317195s and released12:24:13.347342. Final adapter2c777e88/statef12d1b7e; complete32updates. Second .100 ACK5c8cfe2c completed12:28:19.908820 (56.740060s/520,025,589B), all14 SHA/fsync/reopen. Source-copy publication and a conditional recovery returned UNKNOWN; subsequent pure read found identical ACK already present, adopted without content write. We cannot infer which unknown request published it. Original server stop positively confirmed, then campaign closed12:31:13.206066 (2768.492285s), within original12:45:04 deadline. No repeated NN/transfer and no extra export window.
 
 F1 binder passed both complete ACKs/source copies/original native80 and final adapter: entrybeeaa580, all80fresh/input14848/gen1600 and fixed two-arm quality unchanged. Transport entry separately binds the identical archive and original deployment verifier; source and small binding evidence pushed before unique inference start.
+
+### 2026-10-24 12:33 UTC — unique complete80 inference accepted
+
+Bound archive d3b2073a/469,434B transferred through authenticated private bridge. Original deployment verifier passed11 members/15 pieces/SHA/compile/fsync on actual UID1045, planbd88ca5b. Original sourceBridge was stopped immediately after verified fetch. Unique inference proc_a84ae36b-dac5-4e1b-8898-0ed1f22e7228/PID173877 accepted12:33:05.102124409Z. All80 fresh,14848input/1600greedy and strict PT inverse/raw-first whole-row abstention;1200+TERM30. Actual driver/GPU/response progress is separate from acceptance and will be read once; no repeated start.
