@@ -15,3 +15,16 @@
 后继可学习适配（尚未训练、未作新质量）：上游 `InputExample`/`Relation` 虽类型注解为字符串，实际 `_is_locatable` 接受 `{text,start,end}` 并转 `SurfaceSpan`，processor `_resolve_span` 使用明确坐标；因此可以直接利用train32真实患者mention、表型span及文档association，避免同名字符串全局回搜。训练关系仍需声明从document-level关联到同窗mention对的弱监督假设，并测覆盖。stock `dedupe_contained_entity_spans=True` 会过滤同类嵌套gold；若做精确span监督应显式False且核全部gold。`max_gold_per_query`/relation pair budget必须先做train32 census，不通过截断gold制造训练成功。这些是后继机制与工程约束，不改变当前冻结zero-shot首版。
 
 纯输入覆盖：native384/64共164窗中80含给定患者mention，39患者都被覆盖；其余84窗本版不能推断跨窗患者关系。统计源R/stage8-schema-extraction/prepared/patient-window-census.json，未读heldgold。
+
+
+## 2026-10-24：Task1原生训练数据检查边界
+
+2.5 Task1监督准备与已关闭关系零样本分开：旧medium/large/BioMed、focal均有真实监督终点；2.5新增的是预训练boundary proposer/reranker的原生监督，不是“首次GLiNER”。
+
+上游训练collator的PreprocessedBatch.model_texts保持默认空tuple，实际normalize后的record.text在original_texts；不要仅凭dataclass字段名推断训练路径已填充。boundary targets也按设计build_dense=False，start/end/inside为None，原生loss随后通过dense_targets_from_pairs惰性构建。新审计器曾先后误用两处，已保真实异常，不当模型失败；诊断修复不改数据/模型/loss。完整320目标核验和源ref见外部research/gliner25-task1-adaptation-readiness-20261024。
+
+训练必须显式dedupe_contained_entity_spans=False保真嵌套；原生max_gold64超限raise。原生DataLoader会drop_last，现320窗/batch2整除，未来数据变化必须重核尾批。38词内正annotation不可被不变native splitter表达，保原坐标清单，不扩边界或称100%覆盖。
+
+### Task1 trainer实际全量合同
+
+原生loader validate=True可能sanitize/过滤，必须对比完整行多重集合；本次320行不变、10轮各160batch全覆盖通过。BF16 TrainingConfig会在CPU CUDA隐藏时直接拒绝，CPU结构核用显式fp32并将GPU BF16另测，不推断GPU失败。原生train对OOM无条件continue，strict_training不足以禁止样本丢弃；后继需原生记录后fail-closed。完整准备与失败证据见evidence/task1-readiness.json。

@@ -6,9 +6,9 @@
 
 - **E001完整负结案**：固定GLiNER2.5提取＋train32/publicSap规范化，F1完整16/39/164窗；N∪new Score **.672407144**低N .676546355，new-alone关系 .459793527。两端点共冻后各1v2、旧0、原dev0、官方0。新增47=12TP35FP；不是本线涨分。
 - **完整证据已回收和独审**：496件逐SHA、全部native候选/坐标/原分数；GLiNER79.625秒、Sap7.705秒，GPU均释放。独审dac8bde8通过，见[终态指针](evidence/terminal.json)、[质量摘要](evidence/quality-summary.json)。原managed exit_code未暴露，running=false及release另有实证。
-- **E002完整F0供给已冻**：原固定方法16/47/172窗，GLiNER68.948秒＋40-query Sap8.904秒，规范化75关系。new-alone `3c792094`固定强F0壳94504b97的947实体，格式零错零警；全部520件原候选与坐标证据逐SHA回收，两个GPU释放/原proc running=false。本线F0评分0、未读gold；交root统一固定共识比较，未声称新涨分。见[完整终态](evidence/f0-terminal.json)。
-- **监督API仅CPU可行性已完成，暂不扩展**：原生boundary训练入口可用；文档级关系不能冒作精确mention-pair标签。0模型加载/forward/fit。详见E001末节。
-- **最近已核远端检查点**：f293a05，完整F0收尾待本次阶段push；历史实际运行源179bd60f/协议dd526a45不可变。
+- **E002完整F0供给已冻**：原固定方法16/47/172窗，GLiNER68.948秒＋40-query Sap8.904秒，规范化75关系。new-alone `3c792094`固定强F0壳94504b97的947实体，格式零错零警；全部520件原候选与坐标证据逐SHA回收，两个GPU释放/原proc running=false。本线F0评分0、未读gold；root固定共识F0 .711507580→.710063636，新9=3TP6FP，门失败关闭，不迁原dev/不改cut。见[完整终态](evidence/f0-terminal.json)。
+- **Task1监督准备CPU完成**：320窗/2642目标、max49 gold、max698词片、74空正窗；完整原生目标合同8.353秒、loader320×10全覆盖0.038秒。38词内正标注无法精确表达并保留审计；0模型加载/forward/fit/质量。见[准备指针](evidence/task1-readiness.json)。后继已由root分配独立gliner25_task1工作线，本线旧终点保持。
+- **最近已核远端检查点**：7eb4039，CPU准备收尾待本次阶段push；历史实际运行源179bd60f/协议dd526a45不可变。
 
 ## 恢复入口
 
@@ -18,4 +18,4 @@
 - .3 mount1593f159-19bc-41ca-8b4c-2e7455f5db99，自有normalization-v1含已核train32/normalizer，F0独立产物。公共bank41099与Sap模型复用，绝不重编码。
 - UNKNOWN先恢复原意图/进程/已存chunks，不重复start。旧.3传输服务TTL结束，临时token已全部清理。
 
-下一步：等待root共识F0统一质量/增量审；不另调本线阈值、不跑F0单臂/原dev/官网，不重新启动已完作业。若共识不能复现，保留首轮负与F0供给证据后再讨论新的学习变量。
+下一步：本线E001/E002固定配方关闭，root消费结果见[evidence/root-f0-consumption.json](evidence/root-f0-consumption.json)。CPU准备已交独立explore/gliner25-task1后继；本线无新GPU/质量任务，不重跑旧源或修改冻结预测。
