@@ -104,3 +104,5 @@ native从01:38:41.619290Z到01:39:09.611785Z实际27.992051秒/rc0，程序27.04
 仍加载10ensemble和全FT，原生FP32且显式关TF32。第一actual forward是512批0（无前置合成暖机），再两暖批，之后仅复用原四合成CPU输出作ID/坐标/阈值一致及概率rtol1e-4/atol1e-5检查。get_match真实时间含phrase2vec/同步numpy/概率全体完整性/原top1，输出大矩阵仓外；记录TF峰显存、fresh UUID/空卡与释放。798批成本以load+cold+797×暖态min至1.25×max+60估计，仅规划范围不是真实全缓存或置信区间。源码/plan先push，尚未启动、不读gold/fit/quality，任何具体错误停，未知启动按H32查证。
 
 GPU成本探针源审PASS `684fe02d…b33261`。部署第4文件probe-inputs.json(44193B)出现UNKNOWN_OUTCOME，原state逐请求已记；前三份SHA已确认，未发GPU启动。按H32只读核5份实际文件，缺件才补，源/plan/固定1536+41query与180秒预算不变，不能把此部署错误称作模型失败。原controller及失败state保留；恢复controller独立收据后才start。
+
+随后sequence owner实际A100只读LUNA_OFFLINE并报root；本owner尚未发新的恢复库存请求，因此暂停新增MCP，保持原失败/3份已证源/未知input文件。没有GPU start-intent/managedjob，未占GPU。恢复后先实际五文件SHA，再补真缺件、CPU compile及原唯一probe；不从离线推断模型或吞吐失败。
