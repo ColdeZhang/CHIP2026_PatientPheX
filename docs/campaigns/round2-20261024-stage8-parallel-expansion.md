@@ -9,6 +9,9 @@
 | span_normalization | explore/span-normalization / explore-span-normalization | 调研并实现跨度检测与HPO规范化联合学习或显式span方法；区别既有BIO/GLiNER简单追加，不只换encoder名称 |
 | document_relations | explore/document-relations / explore-document-relations | 调研ATLOP/DocRE等成熟文档级关系建模，联合患者及表型多处提及；区别已失败的局部pair CE/简单max-MIL |
 | grounded_generation | explore/grounded-generation / explore-grounded-generation | 调研有原文证据的患者表型生成与独立规范化；明确区别旧8B开放HPO编号失败，优先复用9B及规范化资产 |
+| patient_schedule | explore/patient-schedule / explore-patient-schedule | 原标准CE与输入保持，固定fresh四轮训练；完整终点与原两轮及强组合比较 |
+| schema_extraction | explore/schema-extraction / explore-schema-extraction | GLiNER2.5原生联合实体/关系抽取，独立HPO规范化，先完整内部控制 |
+| qwen3_relations | explore/qwen3-relations / explore-qwen3-relations | 原生Qwen3-8B的strict train32关系SFT及全文F1；不同基座控制，不称首次全注意力 |
 
 每线维护自己的WORKLOG/experiments/NOTES/evidence，先用已有历史排除重复，随后完成可运行初版和训练内完整对照，不停在调研报告。允许复用成熟代码、模型和现有已核资产；源码/许可/版本保存。常规工程修复自主处理，未知状态恢复原作业，避免重复启动。模型/大型raw留外部，关键结果及时commit/push并核远端。
 
@@ -59,3 +62,7 @@ GP F0终审a3f855负完成；后继F2/F3四折补全已10:32:46.912唯一启动�
 10:44结案与接续：FLA原dev整体并集为 **.753601147974**，低原901；两新增关系均FP，独审562c81ef，原全替换负结论保持。两个质量小包共55成员已从.100实际下载、逐SHA落盘及重开核验，回执0c911b12。DocRE低容量meta-OOF为 **.674068552245**，低base-only完整基线.686338981272；三直接控制与meta集中终审954f7259全部负，F1标签用于meta训练明确披露。两新审查与GP F0/FLA全替换暂列224之后待批量收录。
 
 GP补全11步已344.730秒完整，卡实证释放；因.3连接抖动仅断点回收同一91成员ZIP，不重复训练。A100生成已恢复连接确认第二轮17/22步，A800第三轮原监控健康。GLiNER2.5已在.100完成真实strictload/164原生窗合同，最大612词片唯一120+30探针正在运行；若实际成本可容纳，沿预写方案直接完整164窗和固定两质量终点。
+
+10:49决策：GP四折完整pooled **.731169764822**，较原.731545429370下降.000375665；F2微正/F3负，总2/4非降，固定保留门失败。原两折及91件原结果均保留，不因具备可复用GP48分数而迁full64/原dev。
+
+新[Qwen3关系基座查重](../research/qwen3-dense-attention-readiness-20261024/REPORT.md)确认旧train48→F0关系训练和Task1 F1已做，未找到严格train32关系SFT→完整F1；已有R1也为全注意力，不将候选收益归因为attention消融。原生基座8.190735B＋r16为8.234382B；.100既有缓存可复用。实际CPU124train/80held原生token合同通过，训练403151tokens/max5534，held666591/max14322。已建推explore/qwen3-relations自ff676a0，DocRE负责人转线。CPU与标准CE/indexed工程通过后唯一420+30压力；若24GB/估计容纳，直接fresh2ep2400+30、两完整ACK及80fresh1200+30，预写单臂/强fullsupport整体并集双终点，不逐阶段等待确认。OOM则保失败协调A800，不截样本。

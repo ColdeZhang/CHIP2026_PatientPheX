@@ -24,6 +24,19 @@
 
 总指挥只维护[协调记录](../campaigns/round2-20261023.md)和根台账；每方案的台账、实验、笔记、证据在其目录维护，避免重复。上表指向当前工作分支；达标实现合并前，main 中方案文档仅代表启动基点，不能当作最新过程。下一新实验 ID 为 `E-20261023-010`（跨日使用实际日期）。
 
+## 第八阶段新增工作线
+
+各自完整实验记录在独立分支，当前状态与准入比较以[第八阶段总记录](../campaigns/round2-20261024-stage8-parallel-expansion.md)为准。原三线表中的“进行中”表示总体冲分任务；具体旧配方的结案不因总体目标未达而重开。
+
+| 工作线 | 分支台账 | 当前配方状态 |
+|---|---|---|
+| 跨度模型 | [span_normalization](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/span-normalization/solutions/span_normalization/WORKLOG.md) | 直接追加与四折特征配方负结案 |
+| 文档关系 | [document_relations](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/document-relations/solutions/document_relations/WORKLOG.md) | 三直接控制及meta融合均负结案 |
+| 患者条件生成 | [grounded_generation](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-generation/solutions/grounded_generation/WORKLOG.md) | 进行中 |
+| 患者训练长度 | [patient_schedule](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-schedule/solutions/patient_schedule/WORKLOG.md) | 进行中 |
+| 预训练联合抽取 | [schema_extraction](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/schema-extraction/solutions/schema_extraction/WORKLOG.md) | 完整推断后规范化与质量处理中 |
+| 原生Qwen3关系 | explore/qwen3-relations，solutions/qwen3_relations | 分支已建立，源码/记录准备中 |
+
 ## 历史诊断索引
 
 | 实验 ID | 类型 / 状态 | 要回答的问题 | 结论与证据 |
