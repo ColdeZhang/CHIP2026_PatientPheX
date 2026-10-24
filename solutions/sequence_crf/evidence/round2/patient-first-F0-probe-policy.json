@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-10-24T03:03:01.998584+00:00",
+  "authorization": "root allows exactly one new longest native A100 update if required by new length/actual memory; confirmed5769 versus former5556",
+  "status": "source_frozen_native_CPU_pending_no_GPU_launched",
+  "budget_seconds": 180,
+  "grace_seconds": 30,
+  "optimizer_steps": 1,
+  "learning_rate": 0.0001,
+  "seed": 20261023,
+  "fresh_state_discarded": true,
+  "selected_row": "6063015:relations:0",
+  "full_tokens": 5769,
+  "prefix_tokens": 5695,
+  "supervised_tokens": 74,
+  "no_checkpoint": true,
+  "no_inference_or_quality": true,
+  "base_model_and_runtime": {
+    "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "python": "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "CPU_env": {
+      "PYTHONPATH": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/runtime",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "remote": "sequence-round2/patient-first-F0-longest-probe-v1",
+    "model": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+    "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "formal_training_authorized": false,
+    "probe_only_if_new_length_requires_it": true
+  },
+  "attention": "sdpa",
+  "loss": "native_full_logits_unweighted_assistant_CE",
+  "warmup": "none in single diagnostic; formal old52calls has3warmup and is not yet authorized",
+  "first_OOM_numeric_budget_failure_stop": true,
+  "no_input_truncation_or_allocator_change": true,
+  "actual_native_CPU_receipt_required_before_runplan": true,
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_f0/probe.py",
+    "bytes": 10267,
+    "sha256": "e72abdc416c017a17391bbd87e95490723a42af384298af99dc0915396a3dcbf"
+  },
+  "native_CPU_source": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first_f0/data_contract.py",
+    "bytes": 18550,
+    "sha256": "1d85789a74550b0aa489d4e4edde2de9b3a7ee15bf87cafcb66ae0ff53f8adfd"
+  },
+  "CPU_preparation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/handoff-manifest.json",
+    "bytes": 5474,
+    "sha256": "603a4549c40d75b69d34d863bf275f99ff37e2249f5be5f1483681bc631df97b"
+  },
+  "source_changes": [
+    "new204/5769 fixed data and provenance guards",
+    "same forward/backward/step numerical body; failure-only CUDA memory receipt",
+    "controller file+directory fsync before mutating starts"
+  ]
+}
