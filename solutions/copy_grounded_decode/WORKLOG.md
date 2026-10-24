@@ -1,8 +1,8 @@
 # Copy-grounded decode 台账
 
-当前状态：**V1完整39但37EOS/2cap，按原门rc1关闭、0quality；独立fallback-v2已授权，待源与决策推送后固定归一化/完整评分**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
+当前状态：**独立fallback-v2完整F1已正完成：.704349598608，Δ+.003024221396；V1仍rc1/0quality。GPU已释放，待主线程决定排F0新资源的后继**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
-最近远端检查点：2026-10-24 15:05 UTC，`origin/explore/copy-grounded-decode` 的 `b221c06672d7e4d75219d4d08fdc32f0d7467296` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+最近远端检查点：2026-10-24 15:14 UTC，`origin/explore/copy-grounded-decode` 的 `539c280352d048ba2a581fd763a31d2cc358e5ab` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
@@ -22,3 +22,7 @@
 
 - 15:08:10 V1原child完整39后rc1退出：37EOS/37strict、2cap1600、完整EOS parser failure0；native723.208秒/wrapper725.933秒。GPU0实际15:08:10.053941=0/noapps。原39raw/IDs共89件逐SHA/fsync收齐，collection d28367ba；原V1不归一化、不评分、不改PASS，见 [关闭证据](evidence/V1-closed.json)。此前仅末尾进度见1cap，完整统计更正2cap。
 - 父线程在无新gold/质量下批准独立 [fallback-v2](fallback_v2/decision.json)：这是看到无标签生成失败后的后设整行弃答策略，非原预锁V1通过。所有cap/nonEOS及原strict失败贡献空new，37完整strict行沿原parser；全16/39保留B4。只评既定B4∪validnew∩(G∪S∪Q∪C)，不重生成、不扩1600、不救前缀、不另评有效子集。源/decision先push，后仅必要FP16 Sap180+30与完整freeze后至多1newv2/old0。
+
+- 独立v2 source/decision在da4c5a9c先push；提取37complete/2whole-row-abstain=498 anchors/333quotes、0rejected。实际142必要query plan2d3c22e9在539c2803先push后15:14:29.395233唯一启动；driver2749626/child2749637，8.243秒rc0，15:14:37.640730真实GPU0=0/noapps，13原件collection f0a89b5a。
+- 完整16/39/1189的唯一primary先freeze0b5ea454，后1newv2/old0：Score .704349598608（B4 .701325377212，Δ+.003024221396），新增32=9TP/23FP、删0，mic下降/mac上升；完整终点见 [evidence](evidence/F1-fallback-v2-result.json)。原V1和原39raw保持；无模型重跑、无cap救回、无有效行子集/单臂质量。原dev .8尚未达标，本F1不冒称原dev。
+- 交接入口：仓外 `research/copy-grounded-decode-v1/fallback-v2/final-review-entry.json`；代码 `fallback_v2/postprocess.py`（已执行extract-bind→normalize-bind→assemble→score，禁止重复score）。F0需排F0新pool及匹配B4/G/S/Q/C，由主线程决定，当前不启动。

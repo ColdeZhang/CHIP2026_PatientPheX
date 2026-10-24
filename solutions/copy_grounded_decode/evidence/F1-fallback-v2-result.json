@@ -1,0 +1,174 @@
+{
+  "status": "COMPLETE_F1_POSTHOC_ABSTAINING_PIPELINE_POSITIVE",
+  "at_utc": "2026-10-24T15:15:48.828885+00:00",
+  "original_V1": "FAILED_37_EOS_2_CAP_37_STRICT_ZERO_QUALITY_UNCHANGED",
+  "metrics": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.7434944237918215,
+    "macF1": 0.6589650348520042,
+    "Score": 0.7043495986081215
+  },
+  "baseline": {
+    "menF1": 0.6671911880409127,
+    "docF1": 0.7477477477477478,
+    "micF1": 0.7490421455938697,
+    "macF1": 0.641320427466158,
+    "Score": 0.701325377212172
+  },
+  "delta": {
+    "menF1": 0.0,
+    "docF1": 0.0,
+    "micF1": -0.005547721802048211,
+    "macF1": 0.017644607385846167,
+    "Score": 0.003024221395949489
+  },
+  "new_v2": 1,
+  "old_v2": 0,
+  "coverage": {
+    "documents": 16,
+    "patients": 39,
+    "entities": 1189,
+    "raw": 39,
+    "EOS": 37,
+    "cap": 2,
+    "strict": 37,
+    "complete_EOS_parser_failure": 0,
+    "complete_decisions": 37,
+    "whole_row_abstentions": 2,
+    "exact_anchors": 498,
+    "unique_quotes": 333
+  },
+  "fusion": {
+    "formula": "B4 UNION (constrained_G_valid_rows INTERSECT (original_pure_G UNION S UNION Q UNION C))",
+    "baseline": 524,
+    "new_pure_unscored": 324,
+    "support_union": 657,
+    "intersection": 278,
+    "added": 32,
+    "added_TP": 9,
+    "added_FP": 23,
+    "removed": 0,
+    "added_supported_by_original_G": 25,
+    "added_supported_only_by_other_old_views": 7,
+    "other_arm_quality_computed": false,
+    "nonphenotype_bytes_exact": true,
+    "baseline_prefixes_exact": true
+  },
+  "Sap": {
+    "necessary_queries": 142,
+    "bank_rows": 41099,
+    "FP16": true,
+    "budget_seconds": 180,
+    "grace_seconds": 30,
+    "returncode": 0,
+    "native_seconds": 7.442242302931845,
+    "wrapper_seconds": 8.24258387228474,
+    "gpu_release": {
+      "at_utc": "2026-10-24T15:14:37.640730+00:00",
+      "gpu": "0, GPU-126293b9-6677-8464-cee7-01e693efbf29, 0, 24164, 24576\n1, GPU-fc5d0525-3ec1-074a-9fa3-35d92a9da539, 0, 24164, 24576\n",
+      "processes": "",
+      "disk_free_bytes": 393953779712
+    }
+  },
+  "limitations": [
+    "F1 development endpoint, not original train64/dev16 validation and not .8 success",
+    "Post-hoc whole-row abstention was authorized after unlabeled outputs; not original prelocked V1 pass",
+    "A30/Torch2.7.1 vs original A100/Torch2.6; no pure decoder numeric causal claim",
+    "Finite proposal ancestor48 includesF0 but excludesF1; not puretrain32; F0 must rebuild excludingF0 pool",
+    "F1 repeated-development score; macro improves while micro falls, with9TP/23FP"
+  ],
+  "next": "Wait root decision; noF0 or official upload authorized here; F0 requires fixed matching baseline/support and separately audited excludingF0 pool",
+  "artifacts": {
+    "V1_closure": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/evidence/V1-closed.json",
+      "bytes": 2724,
+      "sha256": "7b461a70b95f6bc229ceeb24273606a60a8158446b9e5cddffe4bf695ad46f1b"
+    },
+    "decision": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/fallback_v2/decision.json",
+      "bytes": 4203,
+      "sha256": "d4f6146f4c6fa51c4779b2c9c60a22b3243cc426ad3f42e338da87e42956443a"
+    },
+    "inference_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/infer-F1-v1/collection.json",
+      "bytes": 37357,
+      "sha256": "d28367ba2ef991a913eafda265fc3cce99334254231329d3fd0a2a3e18c5a83f"
+    },
+    "extraction_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/fallback_v2/extraction-plan.json",
+      "bytes": 4283,
+      "sha256": "3133867e76b0338c038bf4eb12f02fc64c348fbe34dff6d84b731b35bc690fb0"
+    },
+    "extraction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quotes-v1/manifest.json",
+      "bytes": 3035,
+      "sha256": "105dd70ce0066c9257a61a7ce1bdd69732df1dc46c608a17cc692b8c2f00029e"
+    },
+    "normalization_preparation": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/normalization-preparation/manifest.json",
+      "bytes": 3267,
+      "sha256": "ed5cdfe73fa4ff2029d5bebc7778c36bdc509054ac75e1dc0b3b7c14fde75bde"
+    },
+    "Sap_plan": {
+      "path": "/workspace/patientphex-worktrees/explore-copy-grounded-decode/solutions/copy_grounded_decode/normalization100/held-query-plan.json",
+      "bytes": 17592,
+      "sha256": "2d3c22e92cabbb9c3a9037f69155f598bb3d6576f17b64052920ba261a860a17"
+    },
+    "Sap_collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/Sap100-v1/collection.json",
+      "bytes": 6695,
+      "sha256": "f0a89b5a85e6786ca5e2751aaa73497400fe76f7e9dba8651e4ed53ff40a90a3"
+    },
+    "Sap_wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/Sap100-v1/terminal/wrapper-complete.json",
+      "bytes": 758,
+      "sha256": "d771dfce264f0f6a34079c1b64a31534dcd8102a6b9953c53280a5085c2a4e0a"
+    },
+    "normalization": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/normalized-v1/manifest.json",
+      "bytes": 5259,
+      "sha256": "3a1103cea6ecb4984697831c7e5cedbb18e8d65249319752ef6498782b29b201"
+    },
+    "bound": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/bound-inputs.json",
+      "bytes": 10041,
+      "sha256": "b0327ce4ea3f0a0dfb5aa50483177cfceee07d349134a14457783b7e7898d6b1"
+    },
+    "freeze": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/freeze.json",
+      "bytes": 3869,
+      "sha256": "0b5ea454eb3b82f6243120c4be9de6717cbc912a0e64305ce55eb5850260f662"
+    },
+    "prediction": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/prediction.jsonl",
+      "bytes": 141815,
+      "sha256": "0380a1bce8c15d3f8cca0aa06914c2458375149f0e37842ab6ab35817bf0fc1e"
+    },
+    "unscored_pure": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/constrained-new-only.jsonl",
+      "bytes": 153346,
+      "sha256": "fc539ab47c086e189194c4d19cc4b663879e1c9657993144a5eb2e987a9745ff"
+    },
+    "format": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/format.json",
+      "bytes": 425,
+      "sha256": "886818c2274012d7037594b3b5a28f1b4ab4c9c8ef2b4b20bf808e768a98f162"
+    },
+    "evaluation_intent": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/evaluation-intent.json",
+      "bytes": 318,
+      "sha256": "5ea0a37e58c620e866ad7a9d751d907d7dfd9c770be069d4fd83225e4b222727"
+    },
+    "metrics": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/metrics.json",
+      "bytes": 12993,
+      "sha256": "76525410956732b70a455906ff919c417c480dc9b433f86f3f4fc0ce574f1324"
+    },
+    "result": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/copy-grounded-decode-v1/fallback-v2/quality-v1/result.json",
+      "bytes": 1292,
+      "sha256": "9266bae044b6f664a618a736d001a7a25ea0e8fdba8519777d0a852e44bc7585"
+    }
+  }
+}
