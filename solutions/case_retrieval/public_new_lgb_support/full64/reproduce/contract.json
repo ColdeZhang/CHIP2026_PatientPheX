@@ -1,0 +1,60 @@
+{
+  "policy_id": "accepted3049-frozen16-cache-only-byteexact-v1",
+  "status": "FROZEN_PARAMETERS_PENDING_PUBLICATION_NO_EXECUTION",
+  "created_utc": "2026-10-24T06:18:25.267212+00:00",
+  "budget_seconds": 30,
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/public_new_lgb_support/full64/reproduce/reproduce.py",
+    "bytes": 6634,
+    "sha256": "071b4bfa4a548d7bf4441a2ac86e07427293fe1e7e39979c4f95f486c1b60ab7"
+  },
+  "helpers": {
+    "support": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/public_new_lgb_support/control.py",
+      "bytes": 14501,
+      "sha256": "651f9dcc592ebc7fff40d0c031db708d69c13546ca602e8b535d9f39916c8b38"
+    },
+    "replacement": {
+      "path": "/workspace/patientphex-worktrees/round2-case-retrieval/solutions/case_retrieval/public_new_lgb_support/full64/control.py",
+      "bytes": 11974,
+      "sha256": "e03d2730565a1f35d4700c9f94ef3a17dea963e3c2d8bbfbb6ad8e5568a760f7"
+    }
+  },
+  "inputs": {
+    "baseline": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/lightgbm-selector-readiness/full64-dev-control/lightgbm.a179-entities-only.jsonl",
+      "bytes": 140228,
+      "sha256": "0e2c26f8a546af6e8ab343f9883f212792d5b32ad01f4db8d28ac1ee27a2345e"
+    },
+    "raw_keys": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations-dev/raw-addition-keys-unscored.json",
+      "bytes": 7622,
+      "sha256": "ee75b64f5f3e538780c380b31679a526dc84a743b93c9d1add9359ab12eacac1"
+    },
+    "old_keys": {
+      "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/sft-meta1-fusion/public-new-relations-dev/supported-addition-keys.json",
+      "bytes": 1853,
+      "sha256": "141327877ac7dee2687b6441a536e7b0e8172b3963e19153fcb56446466d44e3"
+    }
+  },
+  "expected_prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/public-new-lgb-support-control-20261024/full64-actual-v1/supported.pred.jsonl",
+    "bytes": 140494,
+    "sha256": "3049d9fe20ea84aeed448ab12e80bd0d8cf351cdf087c06dec6375103969571f"
+  },
+  "accepted_review": {
+    "path": "/workspace/patientphex-runs/round2-20261023/validation/public-new-lgb-support-review/review.json",
+    "bytes": 13941,
+    "sha256": "5c04357465df8725fbd6b6e56a2cd229639708382930c95d94f570f02ffa50f6"
+  },
+  "scope": "Only frozen originaldev16 cached baseline0e2c+raw145keys+old35keys. Reuse reviewed entity_support and replace_subset; no raw-text candidate generation, model/NN/tokenizer or scoring closure.",
+  "allowed_helper_calls": [
+    "document_rows",
+    "associations",
+    "entity_support",
+    "replace_subset",
+    "field_span"
+  ],
+  "no_gold_v2_fit_model_predict_NN": true,
+  "target_read_order": "Generate and fsync output first; then read target3049 only for full byte equality check, never use target contents in construction."
+}
