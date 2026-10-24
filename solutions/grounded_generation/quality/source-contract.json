@@ -1,0 +1,147 @@
+{
+  "schema": "grounded-F1-quality-source-contract-v1",
+  "status": "SOURCE_READY_ACTUAL_ENDPOINTS_UNBOUND",
+  "sources": {
+    "support.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/support.py",
+      "bytes": 8690,
+      "sha256": "da33d347655f62cc9b1652562bb39c8f3429ff6e9277d3e77c4fff18987d93d2"
+    },
+    "assemble.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/assemble.py",
+      "bytes": 21711,
+      "sha256": "4e3153d399e56611a5059b0f4c74687068bb95fa3b3652628c66e3a43ccb1ee6"
+    },
+    "score.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/score.py",
+      "bytes": 9627,
+      "sha256": "4749391f262e2ca1e55d159e7fbf4a7cc380acba1c4dfeeececd950e1878a39b"
+    },
+    "contract_cases.py": {
+      "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/contract_cases.py",
+      "bytes": 3236,
+      "sha256": "b38ed89e354cb33792f705f09622c107740d529ea0af6d24f9a53cf5a8fcff4a"
+    }
+  },
+  "plan_template": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/plan-template.json",
+    "bytes": 9952,
+    "sha256": "b42217cb6bd6d0ad13c632e9b0624e24955146edf2b9aa3853bf5045338687cd"
+  },
+  "synthetic_contract": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/synthetic-contract.json",
+    "bytes": 1519,
+    "sha256": "ea74052746164c900babcd3bf5a4d51961a9abf92312950a39cf2a04dfb10ae6"
+  },
+  "readme": {
+    "path": "/workspace/patientphex-worktrees/explore-grounded-generation/solutions/grounded_generation/quality/README.md",
+    "bytes": 5102,
+    "sha256": "1cae78525c9de99ec784eada38e6d4e9a9e2d7bf4d9837617a1e1a6e509b92e7"
+  },
+  "normalization_interface": {
+    "entry": "held_finalize.py",
+    "schema": "grounded-held-normalization-complete-v1",
+    "exact_quote_fields": [
+      "row_id",
+      "pmc_id",
+      "target_patient_id",
+      "anchor_index",
+      "unit_id",
+      "quote",
+      "occurrence_index",
+      "offset",
+      "length",
+      "matching_occurrences_in_unit"
+    ],
+    "additional_fields": [
+      "passage_index",
+      "status",
+      "ids",
+      "identifier",
+      "reason",
+      "match",
+      "policy_sha256",
+      "normalization_policy"
+    ],
+    "manifest_sources_required": [
+      "held_finalize.py",
+      "strict.py",
+      "semantic.py",
+      "public_bank.py"
+    ],
+    "required_actual_refs": [
+      "collection",
+      "extraction_plan",
+      "extraction_manifest",
+      "quotes",
+      "decisions",
+      "normalization_manifest",
+      "normalizations",
+      "semantic_evidence"
+    ],
+    "zero_queries_supported": true,
+    "mapped": "canonical HPO atomic values",
+    "nil": "literal quote, never -1",
+    "abstain": "no relationship, row remains covered"
+  },
+  "fixed_endpoint_order": [
+    "primary",
+    "new-only"
+  ],
+  "keep_rule": "choose highest Score of the two fixed endpoints, tie primary; retain only strictly above strong N; macro disclosed without veto",
+  "baseline_prediction": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/pred.jsonl",
+    "bytes": 154584,
+    "sha256": "f33a30f1f3c505022dbcf846a19e6496b3810627808e97cde595a9ed53d17866"
+  },
+  "baseline_metric": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/quality/diagnostic-fulltext-alone/metrics.json",
+    "bytes": 12922,
+    "sha256": "875292c3eb226b484ff86309cb92e5d28dca6f3857767481d5cb56cf9c68ee86"
+  },
+  "candidate_pool": {
+    "prompts": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/expanded80.jsonl",
+      "bytes": 2796468,
+      "sha256": "2a95bad1683e3a622650346128582a7cff91c872e1f64890b5e380680a5de085"
+    },
+    "plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/plan.json",
+      "bytes": 7636,
+      "sha256": "73ebed7c70608e4f514e252728a5868148b4c392236cbc327f4d0769c47e282d"
+    },
+    "actual": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/qwen35-sft32-full-report-feasibility/full80-v1/terminal/actual-input-and-assets.json",
+      "bytes": 3037,
+      "sha256": "242b684a87408cc61533bc2c422600df76255eb0109d33c0139243961b658722"
+    },
+    "sum_code_map": 587,
+    "sum_code_map_times_patients": 1557
+  },
+  "inherited_byte_functions": [
+    "field_span",
+    "array_spans",
+    "phenotype_spans",
+    "mask_values"
+  ],
+  "verification": {
+    "AST_parse_and_compile": true,
+    "synthetic_counterexamples_passed": true,
+    "real_endpoint_assembly_executed": false,
+    "actual_quality_executed": false,
+    "held_gold_open_or_hash": false,
+    "new_model_or_normalization_execution": false,
+    "remote": false,
+    "git_mutations": false
+  },
+  "required_future_steps": [
+    "Parent bind complete actual39 + extraction + fixed normalizations; freeze/push bound source/plan",
+    "Explicit assemble: complete two predictions and common freeze without gold",
+    "Explicit score: two unique v2 endpoints within original30+TERM1; cached N metrics only"
+  ],
+  "limits": "Source and small synthetic boundary checks do not establish full actual endpoint compatibility, quality improvement, or official performance.",
+  "parent_increment": {
+    "baseline_literal_audit": "Actual pinned f33a baseline412 HPO literals all singleton canonical; no gold or score",
+    "added_assertions": "All baseline lists already canonical/unique; primary exact original prefix; no method/threshold/newarm change"
+  }
+}

@@ -26,3 +26,5 @@
 2026-10-24 CPU首尝试v1在token回放前asset lookup失败5.609秒，完整8件97e8f008已保留；v2只删不存在且不属于tokenizer的generation_config lookup，其他四发布资产及输入/数值不变。独立120+5 source6483fda已push exact。训练器与strict/Sap独立规范化并行准备，后者在DocRE释放.3后才使用已批准120+15 query encode。
 
 2026-10-24 后继推断source：固定39fresh/1600原native，actual epoch2双ACK之后绑定，原CPU held IDs只提取不重编码。raw IDs→native decode→raw落盘→本地exact anchor顺序已写；quality helper只编写固定双端点，不读/哈希gold。正式冻结monitor原来误从output/找driver marker；新增只读`training/observe_formal.py`仅修root路径，trainer/driver/deployment原字节未改。
+
+工程+formal源集中终审9e6a683f已PASS（38安全快照，原CPU8失败+18恢复+GPU60原件）；仅记录pointer，不重运行。10:17:16唯一watcher已看到epoch1/globalstep1/group8成功，后继每180秒。固定双端点quality源码已完成合成边界合同；真实组装/评分仍未执行。actual强N412条均为唯一canonical原子HPO，primary额外断言原关系列表prefix完整，Task1/非关系byteexact。
