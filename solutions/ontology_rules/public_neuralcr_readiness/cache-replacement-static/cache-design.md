@@ -29,3 +29,9 @@
 ## 关系间接依赖已闭环（01:57）
 
 统一独审a09d7978核对冻结提示/来源及逐文原始association子串，确认e9→d531→baac关系完全原留；public-new只来自PubMed/Bioformer的42响应和固定pre-B6401支持保留35，a179新增23仅旧466概念池。因此可原字复用a179的association投影，无需重跑关系NN；不能复用baac/a179实体或旧103列selector。若改变固定支持政策才重算支持。完整review见relation-dependency-review.json；只有实际去掉BioBERT实体候选/6列/执行依赖并fresh HGB+解码后，9966949054参数投影才成立。本阶段仍是静态准备，未实施替换。
+
+## 传输与紧凑存储（静态选择）
+
+以已冻结key文件的严格排序/全SHA绑定行号，缓存可保存无padding的`uint16原始列号 + float32原分数`，每行6字节，408272行数值payload 2449632字节（另少量格式头），不重复词串也不回传14261维logits。列号绑定完整原ontology顺序/None列，分数读回仍为np.float32标量。probe的三块全概率矩阵仅作为服务器外存证据。
+
+服务器已有相同SHA的train64输入时，优先按同一原生AST重新生成同排序/JSON字节的keys，完整SHA必须等于1924f369…，可避免上传16.45MB词串文件。这一CPU生成、紧凑cache与后继NN均尚未执行；全缓存预算仍等实际probe成本。
