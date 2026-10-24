@@ -1,9 +1,9 @@
 """Read only complete compact cache artifacts with bounded 64KiB transfers and full SHA."""
 from pathlib import Path
-import argparse,base64,datetime,gzip,hashlib,json,os,re,sys,time
+import argparse,base64,datetime,gzip,hashlib,json,os,re,shlex,sys,time
 R=Path(__file__).resolve().parent;L=R/'recovered';L.mkdir(exist_ok=True);state=json.loads((R/'run-state.json').read_text());result=json.loads((R/'finalization-result.json').read_text());assert state['status']=='failed_preserved' and state['returncode']==1 and result['status']=='complete_cache_verified_by_CPU_finalization_original_GPU_rc1_preserved' and json.loads((R/'finalization-job.json').read_text())['returncode']==0
-ap=argparse.ArgumentParser();ap.add_argument('--local-input',required=True);ap.add_argument('--chunk-bytes',type=int,default=65536,choices=[16384,65536]);args=ap.parse_args()
-sha=lambda b:hashlib.sha256(b).hexdigest();assert sha((R/'cache-result.json').read_bytes())==result['original_failed_result_still_sha256'];started=time.monotonic();report={'status':'collecting_read_only','started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source_sha256':sha(Path(__file__).read_bytes()),'result_sha256':sha((R/'finalization-result.json').read_bytes()),'verified':{},'chunk_limit':args.chunk_bytes,'attempt_wall_cap_seconds':180,'NN_fit_quality':False}
+ap=argparse.ArgumentParser();ap.add_argument('--local-input',required=True);ap.add_argument('--chunk-bytes',type=int,default=65536,choices=[16384,65536]);ap.add_argument('--transport',choices=['file','command'],default='file');args=ap.parse_args()
+sha=lambda b:hashlib.sha256(b).hexdigest();assert sha((R/'cache-result.json').read_bytes())==result['original_failed_result_still_sha256'];started=time.monotonic();report={'status':'collecting_read_only','started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source_sha256':sha(Path(__file__).read_bytes()),'result_sha256':sha((R/'finalization-result.json').read_bytes()),'verified':{},'transport':args.transport,'chunk_limit':args.chunk_bytes,'attempt_wall_cap_seconds':180,'NN_fit_quality':False}
 def save():report['elapsed_seconds']=time.monotonic()-started;(R/'collection-state.json').write_text(json.dumps(report,indent=2)+'\n')
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');from mcp_client import Client
 c=Client();c.initialize();save()
@@ -17,9 +17,16 @@ try:
     while offset<ref['bytes']:
      assert time.monotonic()-started<180,'bounded read-only attempt wall cap reached'
      amount=min(args.chunk_bytes,ref['bytes']-offset);report['active']={'name':name,'offset':offset,'remaining':ref['bytes']-offset};save()
-     x=c.request('tools/call',{'name':'read_file','arguments':{'mount_id':'476f81cf-09e7-445b-a7f0-d0e12b12e50f','path':ref['path'].removeprefix('/home/zhangyuheng/projects/CHIP2026_PatientPheX/'),'offset':offset,'limit':amount}})
-     if x.get('isError'):raise RuntimeError(str(x.get('content'))[:700])
-     x=x['structuredContent'];b=base64.b64decode(x['content']) if x.get('encoding')=='base64' else x['content'].encode();assert len(b)==amount;out.write(b);out.flush();os.fsync(out.fileno());offset+=len(b)
+     if args.transport=='file':
+      x=c.request('tools/call',{'name':'read_file','arguments':{'mount_id':'476f81cf-09e7-445b-a7f0-d0e12b12e50f','path':ref['path'].removeprefix('/home/zhangyuheng/projects/CHIP2026_PatientPheX/'),'offset':offset,'limit':amount}})
+      if x.get('isError'):raise RuntimeError(str(x.get('content'))[:700])
+      x=x['structuredContent'];b=base64.b64decode(x['content']) if x.get('encoding')=='base64' else x['content'].encode()
+     else:
+      code="import base64,hashlib,json;f=open("+repr(ref['path'])+",'rb');f.seek("+str(offset)+");b=f.read("+str(amount)+");assert len(b)=="+str(amount)+";print(json.dumps({'offset':"+str(offset)+",'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'data':base64.b64encode(b).decode()}))"
+      x=c.request('tools/call',{'name':'run_command','arguments':{'mount_id':'476f81cf-09e7-445b-a7f0-d0e12b12e50f','command':'/home/zhangyuheng/projects/CHIP2026_PatientPheX/public-phenotagger-reuse/.venv/bin/python -c '+shlex.quote(code),'cwd':'public-neuralcr-readiness/full-train64-cache-attempt2','env':{'CUDA_VISIBLE_DEVICES':'','PYTHONPATH':''},'timeout_seconds':10}})
+      if x.get('isError'):raise RuntimeError(str(x.get('content'))[:700])
+      x=x['structuredContent'];assert x['exit_code']==0;z=json.loads(x['stdout']);b=base64.b64decode(z['data'],validate=True);assert z['offset']==offset and z['bytes']==amount and sha(b)==z['sha256']
+     assert len(b)==amount;out.write(b);out.flush();os.fsync(out.fileno());offset+=len(b)
    assert part.stat().st_size==ref['bytes'] and sha(part.read_bytes())==ref['sha256'];part.rename(target)
   report['verified'][name]={'local_path':str(target),'bytes':ref['bytes'],'sha256':ref['sha256']};save()
  canonical=gzip.decompress((L/'top1.npy.gz').read_bytes());ref=result['outputs']['top1.npy'];assert len(canonical)==ref['bytes'] and sha(canonical)==ref['sha256'];p=L/'top1.npy'
