@@ -22,3 +22,4 @@
 - 当前源码 `pilot.py` / `pilot_driver.py` 已实现并通过编译/静核；H69实际3类拒绝均无child；正做source-bound execution/deploy，无GPUstart。Copy owner承诺整链实际release再交接，不能在G47原模型结束时抢卡。
 
 - 12件小payload已在.100原模型host逐SHA核验部署，[入口](evidence/deployed.json)。当前未创建admission/启动意图；唯一启动器要求上游整链release凭据，先freshGPU门再生成5分钟SHA绑定admission；UNKNOWN只查原作业，不自动重发。
+- root对实际pilot/driver/evidence_contract和execution2549842e的增量静核PASS，2780B/SHA df947aee，[独立指针](evidence/source-review.json)；未重CPU/GPU/质量。当前继续等copy47+必要Sap整链release，实际启动不再需要重复预算确认。
