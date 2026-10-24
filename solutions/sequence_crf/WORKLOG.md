@@ -13,7 +13,7 @@
 - **probe输入/源码**：12行唯一编码0.693748秒、44992tokens/530监督，原IDs/labels/rendered/整metadata exact，payload4cfdb1f1；source6f0188d4/hook97a0c5ce/driverafa8c149已独审静态无阻断。[部署原件](patient_balanced_loss/probe-deployment.json)。原H5初次释放后等其机械恢复完成才start，旧快照保留但未作当前gate。
 - **正式两轮完整成功**：proc_afaf0b83-b325-446e-9769-5955d8c8136d / driver19546，08:52:35.025475Z实际driver启动，2400+TERM30（TERM09:32:35.025472/KILL09:33:05.025472）。源fc24e27先push，trainer3eab/同7b99hook、driver43c730、plan e3c80b43；19成员已完整SHA/fsync/reopen。固定124×2/32calls/warmup2/尾4，fresh模型/newLoRA，探针状态丢弃；09:17:01实际rc0/1466.505575秒、124×2/32calls；两epoch含保存699.541837/693.651216秒。69原件全SHA/fsync收回，collection22117c77、formal_reported_success=true；两ACK/四大件实际重开SHA核过，完整Adam/RNG与两adapter留原持久目录，峰allocated25.698GB。09:17:04 GPU2实际0/40339释放。[作业记录](patient_balanced_loss/formal-deployment-start.json)、[操作与后继入口](patient_balanced_loss/OPERATIONS.md)。工程统一终审7a010be3已PASS，仅证明工程/源码，未声明正式或质量成功。
 - **运行位置**：本地 `R/research/patient-balanced-mixed-loss-alpha05/formal-v1`；R=`/workspace/patientphex-runs/round2-20261023`。远端mount476f/project `sequence-round2/patient-balanced-alpha05/formal-v1`，输出formal2ep；不要重启/另namespace重复fit。
-- **下一步**：原formal已完整终态，禁止重启。最终80的三实际收据已唯一绑定：planffb898c3/resultd9ed01c0，source仅三常量变化AST exact；source/plan推送后部署原600+30唯一fresh80。推断须80全fresh且raw-first/原strict EOS与完整PID-CID政策，双端点先冻再唯一评估；失败/超时保留原件，不自动改loss/allocator/预算。当前源prepare与观测并行，不把工程PASS当质量改进。
+- **下一步**：原formal已完整终态，禁止重启。最终80的三实际收据已唯一绑定：planffb898c3/resultd9ed01c0，source仅三常量变化AST exact；source/plan a7bc8e5已push，final80唯一proc_94a0d130/driver38684/child38703于09:20:17.308975启动，TERM09:30:17.308971/KILL09:30:47.308971；恢复只observe原目录，不重复start。推断须80全fresh且raw-first/原strict EOS与完整PID-CID政策，双端点先冻再唯一评估；失败/超时保留原件，不自动改loss/allocator/预算。当前源prepare与观测并行，不把工程PASS当质量改进。
 
 
 ## 当前最佳及官方授权

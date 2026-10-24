@@ -16,6 +16,10 @@
 
 原始 probe 失败72秒和独立修复成功159.844秒分别留在 `probe-v1`、`probe-interface-recovery-v2`，都禁止重跑。工程统一审7a010已通过；这不代表质量达标。
 
+## 最终80（唯一运行中）
+
+proc_94a0d130-8025-49e7-9d6f-a8f8ed8c531f，driver38684/child38703，09:20:17.308975启动，TERM09:30:17.308971/KILL09:30:47.308971。本地 `$R/final80-v1`，远端 `sequence-round2/patient-balanced-alpha05/final80-v1`。只运行 `final80/infer_remote.py observe --directory "$R/final80-v1"`；原终态后 `final80/infer_collect.py --directory "$R/final80-v1"`。任何UNKNOWN仅库存/续原包，不重start。
+
 ## 已授权的后继
 
 最终 epoch2 完整持久确认后，只运行一次新模型 final80，预算600+TERM30。`final80/final_infer.py` 三 actual receipt SHA 已绑定为99fa13b0/e1eda208/71e4bb9f，source217b4618、planffb898c3；唯一bind-resultd9ed01c0保留原件与AST同义检查。以下是首次绑定说明，已完成不得重做：依真实 `training_complete.json`、`epoch-002/checkpoint.json`、`durability-epoch-002.json` 绑定常量，并更新 `final80/input-sources.json` 的相应 refs/source SHA。只做实际身份绑定，不改生成、strict parser 或原80输入。

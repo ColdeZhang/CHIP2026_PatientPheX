@@ -1,0 +1,324 @@
+{
+  "schema": "patient-balanced-alpha05-formal-terminal-summary-v1",
+  "status": "actual_original_formal_complete_2epochs_32steps_durable",
+  "created_at_utc": "2026-10-24T09:20:37.699548+00:00",
+  "scope": "Local summary of the original completed formal job and collected metadata; no training, inference, quality scoring or gold access performed by this summary task.",
+  "original_run": {
+    "managed_process_id": "proc_afaf0b83-b325-446e-9769-5955d8c8136d",
+    "mount": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "remote_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1",
+    "driver_pid": 19546,
+    "training_child_pid": 19564,
+    "managed_start_at_utc": "2026-10-24T08:52:34.823785222Z",
+    "driver_start_at_utc": "2026-10-24T08:52:35.025475+00:00",
+    "wrapper_terminal_at_utc": "2026-10-24T09:17:01.530966+00:00",
+    "returncode": 0,
+    "timed_out": false,
+    "budget_seconds": 2400,
+    "TERM_grace_seconds": 30,
+    "original_deadline_TERM_unix": 1792834355.0254717,
+    "original_deadline_KILL_unix": 1792834385.0254717,
+    "trainer_elapsed_seconds": 1465.0376625061035,
+    "driver_child_elapsed_seconds": 1466.5055746883154,
+    "driver_total_seconds_including_terminal_verification": 1469.5242645964026,
+    "clock_note": "Trainer, supervised child, and controller durations are separate actual clocks; no deadline extension or restart.",
+    "child_exit_before_collection": {
+      "pid": 19564,
+      "process_state": null,
+      "no_running_process": true
+    }
+  },
+  "training": {
+    "epochs": 2,
+    "optimizer_calls": 32,
+    "examples": 124,
+    "train_documents": 32,
+    "patients": 87,
+    "steps_per_epoch": 16,
+    "warmup_steps": 2,
+    "tokens_per_epoch": 400614,
+    "supervised_tokens_per_epoch": 4694,
+    "longest_tokens": 5556,
+    "alpha": 0.5,
+    "rank": 16,
+    "lora_alpha": 32,
+    "gradient_accumulation": 8,
+    "group_sizes": "Original 15 groups of 8 plus final group of 4 per epoch",
+    "train_sha256": "14af86cffe1a8b87af022d13e42f9b910281f0da478e3cc731bc2fbc9ba68c3b",
+    "result_type": "training_only_no_evaluation_score",
+    "base_parameters": 8953803264,
+    "adapter_parameters": 43278336,
+    "total_parameters": 8997081600
+  },
+  "memory": {
+    "device": "NVIDIA A100-SXM4-40GB",
+    "max_gpu_allocated_bytes": 25697804288,
+    "max_gpu_reserved_bytes": 40074477568,
+    "release_at_utc": "2026-10-24T09:17:04.434314+00:00",
+    "target_gpu_inventory_at_release": "2, GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1, 0, 40339, 40960",
+    "target_had_no_process_at_that_observation": true,
+    "note": "Release is a timestamped original observation, not a claim about current GPU occupancy."
+  },
+  "fresh_training": {
+    "resume": null,
+    "started_completed_epochs": 0,
+    "fresh_base_on_initial_run": true,
+    "no_probe_state_or_old_adapter_used": true,
+    "run_control": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/run_controls/1792832014047179466-19564.json",
+      "bytes": 599,
+      "sha256": "c1ddedfd5d358474c3aabe3b71052bc68f4978416e00f4d0e707f314aee90365"
+    },
+    "first_nonzero_update": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/first-nonzero-update.json",
+      "bytes": 413,
+      "sha256": "5d5bddb3314d406ab2dae3ed1a4ec13d83c121237163e1930ddb37b36a69d7ef"
+    },
+    "first_nonzero_step": 2,
+    "no_resume_cli": true,
+    "new_resume_numerical_equivalence_tested": false
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "optimizer_steps": 16,
+      "epoch_training_seconds": 699.5418374538422,
+      "epoch_clock_evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/observation-1792832738058442245.json",
+        "bytes": 13767,
+        "sha256": "66458c99cbcb9d58910c416cf8214b7096c3fa3004288e0b99a232c576bd60cd"
+      },
+      "ACK": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/durability-epoch-001.json",
+        "bytes": 2181,
+        "sha256": "4102239e05a5308c4146eaf77280f3527ce5de8b4ecd97a3b8c51cf188c0ea03"
+      },
+      "ACK_original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/durability-epoch-001.json",
+      "ACK_at_utc": "2026-10-24T09:05:26Z",
+      "checkpoint_metadata": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/epoch-001/checkpoint.json",
+        "bytes": 15129,
+        "sha256": "c3d6e3d86ec21f23f17e29110de6a688094b8aa58a0aa99a88f1f51c7d4035a3"
+      },
+      "checkpoint_original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-001",
+      "durability_status": "PASS_file_and_directory_fsync_rename_and_reopened_SHA",
+      "member_count": 5,
+      "files_directory_and_ancestors_fsynced": true,
+      "all_members_reopened_SHA_verified": true,
+      "persistent_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+      "ancestor_directories_fsynced": [
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+      ],
+      "large_original_members": {
+        "training_state.pt": {
+          "bytes": 346666642,
+          "sha256": "6e8bc19ea683a84180762b1649ae9fb181da2fb551b06460c4aeab21e24259fd",
+          "original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-001/training_state.pt",
+          "not_downloaded": true,
+          "actual_fsynced_and_reopened_SHA": true
+        },
+        "adapter/adapter_model.safetensors": {
+          "bytes": 173181072,
+          "sha256": "ae6bf70b7b30cef8a934bff565b417a0c28f00acebcffb39693dee3b7066c1ef",
+          "original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-001/adapter/adapter_model.safetensors",
+          "not_downloaded": true,
+          "actual_fsynced_and_reopened_SHA": true
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "optimizer_steps": 32,
+      "epoch_training_seconds": 693.6512155532837,
+      "epoch_clock_evidence": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/progress.json",
+        "bytes": 304,
+        "sha256": "b82a39b3387f31c30c71e4250d1afed6872bf65dd0790ee345b03ea50e7a62af"
+      },
+      "ACK": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/durability-epoch-002.json",
+        "bytes": 2181,
+        "sha256": "71e4bb9faccaec19542388139894cf5f10f6fc853fbaf24d4f27febbc37cc5e7"
+      },
+      "ACK_original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/durability-epoch-002.json",
+      "ACK_at_utc": "2026-10-24T09:17:00Z",
+      "checkpoint_metadata": {
+        "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/epoch-002/checkpoint.json",
+        "bytes": 15129,
+        "sha256": "e1eda208e741479389e4f048ea44f67a518ec37295cd9c6bb60b58944f975d83"
+      },
+      "checkpoint_original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-002",
+      "durability_status": "PASS_file_and_directory_fsync_rename_and_reopened_SHA",
+      "member_count": 5,
+      "files_directory_and_ancestors_fsynced": true,
+      "all_members_reopened_SHA_verified": true,
+      "persistent_root": "/home/zhangyuheng/projects/CHIP2026_PatientPheX",
+      "ancestor_directories_fsynced": [
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX"
+      ],
+      "large_original_members": {
+        "training_state.pt": {
+          "bytes": 346666642,
+          "sha256": "e41009e0a6eb66c9592371aca7db3c9c980df247cf6d30c4a67e4179790b00b8",
+          "original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-002/training_state.pt",
+          "not_downloaded": true,
+          "actual_fsynced_and_reopened_SHA": true
+        },
+        "adapter/adapter_model.safetensors": {
+          "bytes": 173181072,
+          "sha256": "69daf1e0f9d72346b98833d3b38cca2f1969e62b1062d279df5f952bd936a8f8",
+          "original_path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-002/adapter/adapter_model.safetensors",
+          "not_downloaded": true,
+          "actual_fsynced_and_reopened_SHA": true
+        }
+      }
+    }
+  ],
+  "runtime_actual": {
+    "executable": "/dataset/miniforge3/envs/vlm-det/bin/python",
+    "gpu_capability": [
+      8,
+      0
+    ],
+    "gpu_name": "NVIDIA A100-SXM4-40GB",
+    "gpu_uuid": "GPU-2c22a952-40e2-952f-854c-ff668b5c9dc1",
+    "modeling_source_sha256": "b4b17fe08d8d54da34a0fce78639666279ae7fd0a9e4ec06fce6602774707ca3",
+    "packages": {
+      "accelerate": "1.15.0",
+      "causal-conv1d": null,
+      "fla-core": null,
+      "flash-linear-attention": null,
+      "huggingface-hub": "1.31.0",
+      "numpy": "2.2.6",
+      "peft": "0.21.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.1",
+      "torch": "2.6.0",
+      "transformers": "5.20.2"
+    },
+    "peft_source_sha256": "d22a1c50dea7a046ce28e71a79dfc20b1d96a2d238a9b457be6a88b6068e04d5",
+    "platform": "Linux-3.10.0-1160.105.1.el7.x86_64-x86_64-with-glibc2.17",
+    "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+    "torch_cuda": "12.4"
+  },
+  "runtime_difference": "Actual formal environment records Torch package 2.6.0 with CUDA 12.4 (the pinned 2.6.0+cu124 environment), Transformers 5.20.2 and PEFT 0.21.2 on A100. Original F1 used A800 Torch 2.7.1+cu126. No bitwise-equivalence claim.",
+  "original_formal_sources": {
+    "trainer": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/train_patient_balanced.py",
+      "bytes": 56051,
+      "sha256": "3eab37084ad45a7e0acde7ce1d1c32fd3023825490f0d87aa76aa4187c1c965a"
+    },
+    "mixed_loss": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/mixed_loss.py",
+      "bytes": 4076,
+      "sha256": "dc98bb97605419de568a5ba736607aa50d1907957f98daa618e12c87446fccd5"
+    },
+    "loss_scope": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/interface_recovery/row_loss_scope_v2.py",
+      "bytes": 4242,
+      "sha256": "7b9900fc4896f53b02f4edcbbd94799258c3bb8f91fec7c3b3768054d4690da8"
+    },
+    "driver": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal_driver.py",
+      "bytes": 6881,
+      "sha256": "43c730f782d09e4be798168c51fba03548a7ca01c33a857329dce098efbb20da"
+    },
+    "remote_operations": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal_remote.py",
+      "bytes": 20547,
+      "sha256": "89bf8fb9b1d4a839f85e6aefbfd07bf834c2b46257faaafeb798dfff506261bb"
+    },
+    "collector": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal_collect.py",
+      "bytes": 15945,
+      "sha256": "9a8d6749f2a7a8fafa251557f32d33e7fb3b1a716d4c52426382c703a95fbc85"
+    }
+  },
+  "evidence": {
+    "collection": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/collection.json",
+      "bytes": 34868,
+      "sha256": "22117c77bd17d48537c0db591d2ad40557dc75d286a48700336a8c9d2cc73a54"
+    },
+    "collected_metadata_files": 69,
+    "member_index": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/member-index.json",
+      "bytes": 33494,
+      "sha256": "476411cc32c5d1d21a4dd7d0b43f84e66b82bdd5242265e5a5cc03b5a1589dfa"
+    },
+    "archive": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/collection-transfer/training-metadata.zip",
+      "bytes": 256650,
+      "sha256": "0c6f3a0b1626a0e3338848112256161925b302d27d11a29700587378a725f400"
+    },
+    "remote_archive": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/.collection/training-metadata.zip",
+      "bytes": 256650,
+      "sha256": "0c6f3a0b1626a0e3338848112256161925b302d27d11a29700587378a725f400"
+    },
+    "package": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/package.json",
+      "bytes": 14183,
+      "sha256": "80ccc04cdaaab6c5989c6b16717489dfa8d9ea93b84737bbef5c993389619169"
+    },
+    "formal_plan": {
+      "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/formal-plan.json",
+      "bytes": 12341,
+      "sha256": "e3c80b438adf1629bff304171dc312dc897eab2fd5b39eb16f33a1934347270b"
+    },
+    "managed_start": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/started.json",
+      "bytes": 348,
+      "sha256": "1e337872d22a8dcfe2ec085f979f421be26930d66713be7a4e0576606c93bd38"
+    },
+    "driver_start": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/driver-started.json",
+      "bytes": 2586,
+      "sha256": "af15b8750b1af623360b827d1abc46c788dd00a29e2fdd7282508d250e532e8a"
+    },
+    "wrapper": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/wrapper-complete.json",
+      "bytes": 6721,
+      "sha256": "f220d0fb8f82303ac93fc2e73a5d70f8d31c8863912fe0192c1345a7c4b075b5"
+    },
+    "training_complete": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/training_complete.json",
+      "bytes": 527,
+      "sha256": "99fa13b0ac7455ae1ea1ec8f49fc308f5e471ef611d81509b4a8d3916d960664"
+    },
+    "run_manifest": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/formal2ep/run_manifest.json",
+      "bytes": 15004,
+      "sha256": "ff31ab7cdbaa25497c6a5fcfeaf2bd5a5a01fa37e92c0c6291a89a88e1e4b0de"
+    },
+    "stdout": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/stdout.log",
+      "bytes": 1729,
+      "sha256": "d82bc1ed989214b2f957fe6b0fc2d088f5fc72457d791ba22c380363d5900097"
+    },
+    "stderr": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/formal-v1/terminal/stderr.log",
+      "bytes": 5085,
+      "sha256": "f4c5fe46e7767c319e46afcca5f92ea1df565d0ea95d698bb6418e36c5ccaeac"
+    },
+    "all_local_collected_file_SHAs_rechecked": true,
+    "formal_reported_success": true,
+    "all_original_nonweight_outputs_included": true,
+    "files_and_ancestors_fsynced": true,
+    "large_members_not_downloaded": 4
+  },
+  "quality": {
+    "actual_training_validation_labels_used": false,
+    "original_driver_no_inference_or_quality": true,
+    "quality_result_not_inferred_from_training_loss": true,
+    "subsequent_final80_and_fixed_two_endpoint_quality_owned_by_parent": true
+  }
+}

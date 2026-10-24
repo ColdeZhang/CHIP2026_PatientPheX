@@ -1,0 +1,87 @@
+{
+  "status": "RUNNING_FINAL80_NOT_QUALITY",
+  "source_plan_checkpoint": "a7bc8e55221d08866cfc3fb426f40b9e1877dc72",
+  "started": {
+    "command": "/dataset/miniforge3/envs/vlm-det/bin/python -u infer_driver.py",
+    "id": "proc_94a0d130-8025-49e7-9d6f-a8f8ed8c531f",
+    "mount_id": "476f81cf-09e7-445b-a7f0-d0e12b12e50f",
+    "pid": 38684,
+    "port": 45221,
+    "project_id": "64baaea6-43e2-435f-9896-7e4935aa5091",
+    "running": true,
+    "started_at": "2026-10-24T09:20:17.094379126Z"
+  },
+  "driver": {
+    "bytes": 1981,
+    "sha256": "9bca55f08d8593a9912dd2c17c852ae471bcca60fe8fb314570b6e55dddafebe",
+    "value": {
+      "at_utc": "2026-10-24T09:20:17.308975+00:00",
+      "driver_pid": 38684,
+      "plan_sha256": "ffb898c3be620f4122bd75e731ff63401140b413332dd5754789f9ca016c48bc",
+      "command": [
+        "/dataset/miniforge3/envs/vlm-det/bin/python",
+        "-u",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/final80-v1/final_infer.py",
+        "--model",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/case-retrieval/qwen35-preparation/models/Qwen3.5-9B",
+        "--source-manifest",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/final80-v1/model-source-manifest.json",
+        "--prompts",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/final80-v1/prompts.jsonl",
+        "--output",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/final80-v1/prediction/responses.jsonl",
+        "--adapter",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-002/adapter",
+        "--token-audit",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/final80-v1/input-token-audit.json",
+        "--training-checkpoint",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/epoch-002/checkpoint.json",
+        "--training-complete",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/training_complete.json",
+        "--training-durability",
+        "/home/zhangyuheng/projects/CHIP2026_PatientPheX/sequence-round2/patient-balanced-alpha05/formal-v1/formal2ep/durability-epoch-002.json",
+        "--max-input-tokens",
+        "14000",
+        "--max-new-tokens",
+        "1600"
+      ],
+      "deadline_TERM_unix": 1792834217.3089714,
+      "deadline_KILL_unix": 1792834247.3089714,
+      "budget_seconds": 600,
+      "grace_seconds": 30,
+      "no_automatic_retry": true
+    }
+  },
+  "child": {
+    "bytes": 96,
+    "sha256": "42eab15e42c6c8d4b79f5da2c6c1ee0bc39c4709cdde8244caf0f15d521b7a26",
+    "value": {
+      "at_utc": "2026-10-24T09:20:17.314272+00:00",
+      "driver_pid": 38684,
+      "child_pid": 38703
+    }
+  },
+  "observation": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/final80-v1/transport/observe-compact-1792833627479234146.response.json",
+    "bytes": 6520,
+    "sha256": "9b7483813560eaaa16e18d0c46fafabd632c22198f8851a6743e51cecdcd4563"
+  },
+  "package": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/final80-v1/package.json",
+    "bytes": 8317,
+    "sha256": "5c1c5000b39f83f8bdef0a654f7e289027b40d2c0eddb282713c3fa13781e1ae"
+  },
+  "deployment": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/final80-v1/deployment.json",
+    "bytes": 778,
+    "sha256": "bc3a4fe8a6b1a64836fd5d17ac83cf555761ebc58be456fb66e13517aa557958"
+  },
+  "plan": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/final80-plan.json",
+    "bytes": 15083,
+    "sha256": "ffb898c3be620f4122bd75e731ff63401140b413332dd5754789f9ca016c48bc"
+  },
+  "no_restart": true,
+  "recovery_command": "python /workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_balanced_loss/final80/infer_remote.py observe --directory /workspace/patientphex-runs/round2-20261023/research/patient-balanced-mixed-loss-alpha05/final80-v1",
+  "followup": "Original terminal only, then infer_collect.py; paired predictions freeze before two unique v2 calls; no official upload"
+}
