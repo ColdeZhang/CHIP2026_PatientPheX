@@ -8,7 +8,7 @@
 - 原32金标38c353ea/969963B和356109e9谱系已核：F2+F3、32文献87患者；F1输入16文献39患者，与训练不交。held/原dev gold没有读取或哈希。
 - 历史边界已核：旧8B窗口抽取/SFT直接并集两折不稳；旧患者HP+quote自由编号严重失败。新机制改变为患者条件证据复制、禁止HP生成、独立规范化，不能只把换9B当创新。
 - 真实schema已核：association只有patient_id→phenotype；实体独立含offset与identifier。目标quote只是按关系选出的弱证据，不能称人工归属证据。用原passage单位ID保全原始offset，避免按gold切句。
-- 目标v2实际85979cdc/.484秒已完成，全87训练行/39held保留：814有效原子键全部有可定位词面，801去重目标，4关系无效/分支外明确列出；原文位置边界7项通过。local token实际c8f29baf/3.253秒：451672完整训练tokens，最长9210，监督11884/max610，held203588/max10080；三Pareto形状9210/399、6521/449、5676/610。原生TF CPU120+5已root授权，源码/计划冻结准备部署；规范化helper仅负责normalization目录的公开本体/同32资产。未开始GPU/训练/推断/评分。CPU回放之后已有单次420+30工程授权：首8真实Adam→3累积→三个Pareto形状14次反向，state丢弃；正式87×2预算待实测。
+- 目标v2实际85979cdc/.484秒已完成，全87训练行/39held保留：814有效原子键全部有可定位词面，801去重目标，4关系无效/分支外明确列出；原文位置边界7项通过。local token实际c8f29baf/3.253秒：451672完整训练tokens，最长9210，监督11884/max610，held203588/max10080；三Pareto形状9210/399、6521/449、5676/610。原生TF CPU120+5与420+30工程已执行完成，正式训练当前尚未启动，held生成/质量未执行。规范化冻结公共银行与624个train-only查询已完整，政策未按scores调整。CPU与14步真实工程均已完整PASS，见下方实际终点；probe状态丢弃，正式87×2/3000+30已批准。
 - 资源：A100 GPU2由root保留；实际新input/答案token census后提出工程压力和完整训练预算，不套旧32.693GB，不截最长样本。其他卡/作业由root调度。
 
 ## 执行与下一步
@@ -18,9 +18,11 @@
 3. 与root协调一次有界真实最难工程检查，fresh正式训练与完整F1推断；不从工程状态续训。
 4. 两完整预测共同冻结后各唯一v2、旧分数复用。主臂N∪new、诊断new-only，Task1/患者/非关系字节保持；另一内部折有益后再full64/原dev验收。
 
-大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前native CPU v2已原proc8bd3ffbe完整rc0/16.244秒，18件全部SHA回收237aaa65；87/39全输入与6数值PASS。GPU14步原proc7d1bc518已完整PASS，242.157秒/peak28.182GBallocated、29.067GBreserved，60件e24c8065全收；10:04:31.503GPU2已释放。root已批准正式87×2/22calls/warmup2/尾7 3000+30及39held1200+30/两个固定质量端点；formal-plan已bind，纯metadata preflight核全87/32输入与实际probe成功，尚未start；未知状态先查原intent，禁止重复启动。
+大文件放 `/workspace/patientphex-runs/round2-20261023/research/grounded-generation-v1`。当前native CPU v2已原proc8bd3ffbe完整rc0/16.244秒，18件全部SHA回收237aaa65；87/39全输入与6数值PASS。GPU14步原proc7d1bc518已完整PASS，242.157秒/peak28.182GBallocated、29.067GBreserved，60件e24c8065全收；10:04:31.503GPU2已释放。root已批准正式87×2/22calls/warmup2/尾7 3000+30及39held1200+30/两个固定质量端点；formal-plan已bind，纯metadata preflight核全87/32输入与实际probe成功，19件原部署已SHA/fsync/reopen，package bd4d90a3；10:10:32启动前inventory明确LUNA_OFFLINE，无start-intent/无GPU模型，最早10:13:37唯一恢复原库存再start。未知状态先查原intent，禁止重复启动。
 
 
 2026-10-24 GPU前澄清：全文先判目标患者的概念，复制quote只作概念词面锚定，不把该处出现当患者归属证据；最近mention只是确定训练代表词面的弱选取规则。首CPU产物targets-v1与源c3b69eb保留，v2仅修正prompt语义，目标/身份/全文不变并逐项对照。170/814处其他患者更近已如实披露。
 
 2026-10-24 CPU首尝试v1在token回放前asset lookup失败5.609秒，完整8件97e8f008已保留；v2只删不存在且不属于tokenizer的generation_config lookup，其他四发布资产及输入/数值不变。独立120+5 source6483fda已push exact。训练器与strict/Sap独立规范化并行准备，后者在DocRE释放.3后才使用已批准120+15 query encode。
+
+2026-10-24 后继推断source：固定39fresh/1600原native，actual epoch2双ACK之后绑定，原CPU held IDs只提取不重编码。raw IDs→native decode→raw落盘→本地exact anchor顺序已写；quality helper只编写固定双端点，不读/哈希gold。正式冻结monitor原来误从output/找driver marker；新增只读`training/observe_formal.py`仅修root路径，trainer/driver/deployment原字节未改。

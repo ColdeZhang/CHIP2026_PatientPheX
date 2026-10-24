@@ -25,6 +25,10 @@ def main():
  assert assets['runner']==ref(__file__)
  assert assets['raw_store']['sha256']==sha(inspect.getsourcefile(publish_json))=='d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43'
  complete=json.loads(Path(assets['training_complete']['path']).read_text());checkpoint=json.loads(Path(assets['checkpoint']['path']).read_text());durable=json.loads(Path(assets['durability']['path']).read_text())
+ wrapper=json.loads(Path(assets['training_wrapper']['path']).read_text())
+ assert wrapper['returncode']==0 and not wrapper['timed_out'] and 'endpoint_error' not in wrapper and wrapper['all_epochs_persistent_and_readback_verified']
+ assert set(wrapper['durability'])=={'1','2'} and wrapper['durability']['2']['receipt']==durable
+ assert wrapper['training_complete_sha256']==assets['training_complete']['sha256']
  assert complete['epochs']==2 and complete['global_step']==22 and complete['rows']==87
  assert complete['source_sha256']==assets['trainer']['sha256']==checkpoint['fingerprint']['source_sha256']
  assert complete['both_epochs_file_directory_fsync_and_reopened_SHA_verified'] and complete['probe_state_used'] is False
@@ -36,7 +40,8 @@ def main():
  assert durable['status']=='PASS_file_and_directory_fsync_rename_and_reopened_SHA'
  assert durable['completed_epochs']==2 and durable['global_step']==22 and durable['checkpoint_metadata_sha256']==assets['checkpoint']['sha256']
  assert durable['all_members_reopened_and_SHA_verified'] and durable['reopened_SHA_all_exact'] and durable['file_directory_fsync']
- ckpt=Path(assets['checkpoint']['path']).resolve().parent;root=Path(p['storage_parent']).resolve();out=Path(p['output_dir']).resolve();out.relative_to(root)
+ ckpt=Path(p['checkpoint_directory']).resolve();root=Path(p['storage_parent']).resolve();out=Path(p['output_dir']).resolve();out.relative_to(root)
+ assert sha(ckpt/'checkpoint.json')==assets['checkpoint']['sha256']
  assert ckpt.name=='epoch-002' and Path(durable['checkpoint']).resolve()==ckpt and Path(durable['persistent_root']).resolve()==root
  assert Path(p['adapter']).resolve()==ckpt/'adapter'
  for name,wanted in checkpoint['files'].items():
@@ -96,7 +101,7 @@ def main():
   text_ids=suffix[:-1] if ended else suffix
   response=native_tok.decode(text_ids,skip_special_tokens=False)
   hresponse=tok.decode(text_ids,skip_special_tokens=False,clean_up_tokenization_spaces=False)
-  record=dict(gen,response=response,published_native_decode=True,HF_decode_equal=response==hresponse,generation=gref,raw_before_parse=True)
+  record=dict({k:v for k,v in gen.items() if k!='decoded_or_parsed'},response=response,published_native_decode=True,HF_decode_equal=response==hresponse,generation=gref,raw_decoded=True,parsed=False,raw_before_parse=True)
   rref=publish_json(row_path(out/'raw',row['row_id']),record,root);raw_refs.append(rref)
   assert response==hresponse,'Actual raw decoder differs; original response already saved'
   records.append(record);print(json.dumps(dict(completed=len(records),total=39,output_tokens=len(suffix),seconds=gen['seconds'])),flush=True)
