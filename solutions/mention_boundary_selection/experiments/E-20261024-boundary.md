@@ -15,3 +15,9 @@
 ## 第一轮完整状态
 
 2026-10-24 15:55:26.766964 UTC，原formal在434更新后完成epoch1持久ACK；adapter174655536 B/SHA59886a2e，training_state349612141 B/SHA52bc9694。504 adapter张量、504 optimizer states/1512 tensor entries与RNG回读exact；ACK1785 B/SHA874860639d890bd9d6e4290ed3f0418c1341321a2d33a439e33a328c26e8acd9。记录耗时3.674663秒不包含最后ACK追加与父链同步尾操作的严格上界。第二轮同一任务继续，未做中途质量或epoch选择。小证据为原ACK对象+字节身份观察，完整原件随终包回收。
+
+## 两轮训练完整与固定推断启动
+
+2026-10-24 16:28:54.633374 UTC完整fresh训练成功：3470×2=6940行、868更新、4,004,840输入tokens、75,668监督tokens。native training_seconds4009.018807，含模型load及最终保存的phase elapsed4015.542905，wrapper4016.458222秒rc0，均在7200预算内。epoch2 ACK16:28:54.585388，1784 B/SHAd87852b017accb585158040284b58fea4b2e2d5cae1d63e6555a14bbc9882120，504 adapter与504 Adam/1512 tensorentries、RNG回读exact。最终adapter174655536 B/SHAbeecfb84824764826ab8f207f4979db09da161dc6395e55b032b77a413bb0579，training_state349612141 B/SHA360544ce073c0b6008c97152ff01df48e621a6b8bf7bf2bf36b4a96a53535a28。保存记录seconds2.972009不作为最终ACK/父链收尾严格上界。
+
+16:28:55.624190原controller唯一启动完整1416推断，timeout PID2754394，独立1800+TERM30预算/deadline16:58:55，使用第二轮最终adapter；首7条仅吞吐观察，未看质量或调参。原formal/complete380452 B/SHA840f132de7b2469608c5bb2a4b27cc8b7c5f94bd2e0d67a4085e4586d249344a，当前小观察摘要移除868updates数组，仅保count，完整原件随终包回收。16:27只读状态一次UNKNOWN后按30秒退避恢复原任务，无重启或预算重置。
