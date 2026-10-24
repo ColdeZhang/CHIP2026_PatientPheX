@@ -1,0 +1,22 @@
+--- original/support.py
++++ metadata_recovery/support.py
+@@ -109,7 +109,18 @@
+     assert baseline['evaluator_version'] == 'patientphex-public-approx-v2'
+     assert baseline['configuration']['body_scope'] == 'all'
+     assert baseline['configuration']['unlinked_document_mode'] == 'text'
+-    assert baseline['prediction_sha256'] == PINS['baseline'] and baseline['gold_sha256'] == GOLD['sha256']
++    # Original public-v2 metrics lacks hashes: bind its actual frozen provenance chain.
++    summary = read(plan['references']['baseline_quality_summary']['path'])
++    frozen = read(plan['references']['baseline_quality_freeze']['path'])
++    bound = read(plan['references']['baseline_evaluation_bound']['path'])
++    endpoint = summary['endpoints']['diagnostic-fulltext-alone']
++    assert endpoint['metrics_file'] == plan['references']['baseline_metrics']
++    assert endpoint['metrics'] == baseline['metrics']
++    assert summary['paired_freeze'] == plan['references']['baseline_quality_freeze']
++    assert frozen['endpoints']['diagnostic-fulltext-alone']['prediction'] == plan['references']['baseline']
++    assert frozen['plan'] == plan['references']['baseline_evaluation_bound']
++    assert bound['gold_path'] == GOLD['path'] and bound['historical_F1_gold_sha256'] == GOLD['sha256']
++    assert bound['references']['input'] == plan['references']['F1_input']
+     assert (baseline['documents'], baseline['patients']) == (16, 39)
+     assert isinstance(plan['actual'], dict) and set(plan['actual']) == {
+         'collection', 'extraction_plan', 'extraction_manifest', 'quotes', 'decisions',
