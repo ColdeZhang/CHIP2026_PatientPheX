@@ -9,13 +9,13 @@
 - **F0作业均已完整结束**：F0 A800原47在11:48:52完整、原watch退出，native593.562秒/wrapper594.451；.3原Sap149在11:55:09释放，native8.413秒/wrapper9.496。106+13原件全SHA回收32aec970/2f33f595；唯一模型与原始失败保留。173纯关系已在独立质量之前交root/calibration，未减B0或按本线结果选源。增量终审64946550已PASS，小包92内容2bb2b4fc已.100持久校验，root负责唯一实际恢复。
 - **full64已授权、CPU完整**：原173train/36纯dev实际209回放16.104秒通过，14件collection a77eaa7b；tinyCPU Adam/scheduler/Python/NumPy/Torch状态恢复通过，CUDA只结构未冒称实测。唯一13反向压力已12:14:37完整PASS/201.284秒：10637/557与6346/646两Pareto，已有Adam/累积梯度，峰29.684GB allocated/34.578GB reserved，状态丢弃；GPU2已真实释放，完整54件collection9e0c83c8已收齐。
 - **正式后继持续授权**：probe成功且实耗可容纳后，fresh173×2/44updates/warmup4/尾5/原LR1e-4，单6000+30共享两epoch与SHM→.100完整ACK；后继原dev纯36/1200+30与必要Sap180+30。只交new-only和完整quote，最终两个原dev质量由root执行，本线不读dev gold/评分。
-- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点9dc10cfc，后继源/计划先推送再启动。
+- F0补包root已唯一实际恢复e3077b；不重复下载。最近远端检查点e43d50fd，后继源/计划先推送再启动。
 
 ## 执行与下一步
 
 1. 原CPU proc07b171cc已完整；collector95847已14件全SHA收齐。无原CPU/GPU重复启动。
 2. `full64_runtime/probe-plan.json`绑定实际CPU、13固定行、两Pareto；完整终点已过；controller b812929b原epoch1已1781.356秒完整，22步/尾5。第二轮13:20:39完整44步，.100双ACK593a538f/5bac5e08齐，原watch13:22:59正常终结；53件完整collection7f2ac0e6已收，全state逻辑恢复实际通过。
-3. 同一参数化训练器/已验indexed两轮持久桥已在运行，绝对deadline不重置。下游36fresh/同政策归一化/完整new-only交付源码已准备；真实两ACK和完整collection之后再绑定实际plan启动。模型/大产物保持仓库外。
+3. full64两轮/双ACK/53件完整回收已结束；原dev36唯一推断13:31:44完整rc0，wrapper371.410秒，GPU2真实释放，原readonlywatch退出。完整原件已收齐，下一步固定全quote解析、train64/b59规范化（root最新指定.100 GPU1，180+30），只给root纯供给，不读gold/评分。
 
 ## 历史阶段记录（准确原时点，非当前作业）
 
@@ -79,3 +79,5 @@ F0持久补包92内容＋1内嵌manifest（共93ZIP条目）2bb2b4fc/1077583B已
 13:23完整训练收口：两wrapper1781.356+1780.597=3561.953秒；双导出61.460/57.119秒，campaign3839.617秒，远小于原6000预算。最终adapter e129d634/statef43373af/checkpoint333e6f2f，双完整.100持久ACK回写源后，53实际件7f2ac0e6全SHA回收。resume逻辑state/全部RNG恢复digest精确e13f39a6，不宣称GPU数值逐位恢复；adapter_config只target_modules集合的序列顺序变化，原bytes/SHA保留。两HTTP实际退出74259355；第二进程峰29.693GB/34.167GB，第一进程完整峰未单记，不拿第二冒充全程。原dev36 plan3a60c75c已实际绑定并先push；固定native/greedy1600/1200+30，尚无新推断或quality。
 
 原dev36推断已2026-10-24T13:25:33.499808+00:00唯一启动proc_cc10bcf5-ba7b-4a60-88fd-6d61cb7d0ec7 / driver62347 / child62357；TERM2026-10-24T13:45:33.499804+00:00/KILL2026-10-24T13:46:03.499804+00:00，1200+30不重置。18成员完整SHA部署，其中5份同服务器已核原件复用仅省传输，响应全部fresh。独立session readonlywatch PID172572实际SID/独占flock f054a624已核，180秒节奏；先看原intent/实际终态，不再start。精确入口evidence/full64-dev36-start.json；当前无新质量。
+
+13:34接续：原36推断在原1200窗内完整成功，无续跑或重生成；原包所有实际成员SHA核过，extraction-plan已冻结。Sap尚无start，按root新队列只将目标绑定GPU1 UUIDfc5d0525，模型/银行/政策/runtime不变，实际fresh门仍必须通过。
