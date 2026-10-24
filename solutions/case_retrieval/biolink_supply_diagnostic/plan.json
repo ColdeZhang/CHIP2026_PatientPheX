@@ -1,7 +1,7 @@
 {
   "schema": "biolink-fixed-F0-strong-pool-supply-v1",
   "execution_ready": true,
-  "source_sha256": "a747b961a3bb4d365a9d67cb7b4ddf3bbdd7d45288d3c484f18455e46c9b5e00",
+  "source_sha256": "2a0f58b5132782b4a242047776a1f79ebab273caad07b7b5e26e8d04b45399aa",
   "references": {
     "biolink_manifest": {
       "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/fold0-biolinklarge-ner8/manifest.json",
@@ -100,5 +100,31 @@
   "expected_ner_entity_records": 1117,
   "CPU_wall_seconds": 60,
   "policy": "One existing-candidate supply census; exact literal supportedIDs, compound split, NO excluded, no alt remapping; NIL spans separate. No fit/NN/v2/originaldev/cut search. All output aggregate, no new artifact pool or predictions.",
-  "successor_authorized": false
+  "successor_authorized": false,
+  "pre_gold_schema_recovery": {
+    "original_failure": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biolink-strong-pool-supply-F0/unique-v1/result.json",
+      "bytes": 810,
+      "sha256": "47dd047f9410d7ff4438470c0d93a5fd0c28d2cd2d1d8783316acc53a10ae8fa"
+    },
+    "original_source": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biolink-strong-pool-supply-F0/unique-v1/original-source.py",
+      "bytes": 10715,
+      "sha256": "a747b961a3bb4d365a9d67cb7b4ddf3bbdd7d45288d3c484f18455e46c9b5e00"
+    },
+    "original_plan": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/biolink-strong-pool-supply-F0/unique-v1/original-plan.json",
+      "bytes": 5241,
+      "sha256": "5fa45a456499396b52ae1181bea67495230405798682c778eebf038645994bc5"
+    },
+    "actual_input_fields": [
+      "pmc_id",
+      "pmid",
+      "patient",
+      "full_text"
+    ],
+    "change": "Replace assumed title/passages with actual pmid/full_text; same identities/candidates/statistics and single future gold read.",
+    "original_gold_reads": 0,
+    "original_statistics_completed": false
+  }
 }

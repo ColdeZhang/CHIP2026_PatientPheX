@@ -72,7 +72,7 @@ def main():
         assert biolink['input_sha256'] == plan['references']['input']['sha256']
         input_rows = rows(blobs['input']); inputs = {str(x['pmc_id']):x for x in input_rows}
         assert len(inputs) == len(input_rows) == 16 and set(inputs) == set(lineage['input_ids'])
-        assert all(set(x) == {'pmc_id','title','patient','passages'} for x in input_rows)
+        assert all(set(x) == {'pmc_id','pmid','patient','full_text'} for x in input_rows)
         pool = rows(gzip.decompress(blobs['strong_pool'])); ner = rows(blobs['biolink_candidates'])
         assert len(pool) == len(ner) == 16
         assert {str(x['pmc_id']) for x in pool} == {str(x['pmc_id']) for x in ner} == set(inputs)
@@ -90,7 +90,7 @@ def main():
                     if str(entity.get('note') or '').upper() == 'NO': stats['note_NO_excluded'] += 1; continue
                     offset,length = entity['offset'],entity['length']
                     assert type(offset) is int and type(length) is int and offset >= 0 and length > 0
-                    passages = [p for p in inputs[pmc]['passages'] if p['offset'] <= offset and offset+length <= p['offset']+len(p['text'])]
+                    passages = [p for p in inputs[pmc]['full_text'] if p['offset'] <= offset and offset+length <= p['offset']+len(p['text'])]
                     assert passages and any(p['text'][offset-p['offset']:offset-p['offset']+length] == entity['text'] for p in passages)
                     span = (pmc,offset,length); spans.add(span)
                     for identifier in entity['identifier'].split(';'):
@@ -109,7 +109,7 @@ def main():
         assert len(gold_data) == plan['gold_bytes']
         if plan.get('gold_sha256'): assert sha(gold_data) == plan['gold_sha256']
         gold = rows(gold_data); assert len(gold) == 16 and {str(x['pmc_id']) for x in gold} == set(inputs)
-        for x in gold: assert {k:x[k] for k in ['pmc_id','title','patient','passages']} == inputs[str(x['pmc_id'])]
+        for x in gold: assert {k:x[k] for k in ['pmc_id','pmid','patient','full_text']} == inputs[str(x['pmc_id'])]
         gold_units,gold_spans,gold_stats = make_sets(gold,False)
         nil_spans = {(str(d['pmc_id']),e['offset'],e['length']) for d in gold for e in d['entities']
                      if str(e.get('note') or '').upper() != 'NO' and e['identifier'] == '-1'}
