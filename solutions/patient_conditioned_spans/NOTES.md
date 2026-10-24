@@ -9,3 +9,5 @@
 7. 模型实际权重、未用 pooler/预训练 head、参数计数均须从加载实证核；禁止仅按模型名称猜资产或门槛。
 
 事前修订：86b37baf 的 balanced-BCE 准备保留且未执行任何 GPU/质量。为保持本次关键变量为患者条件和 latent bag，正式 NER 改用原 GP 的 multilabel categorical loss；完整几何不变，新增高分稀有负例影响/有限梯度 CPU 合同。
+
+8. Baseline预测schema只含pmc_id/entities/association，不含patient定义；覆盖患者应从pure input取。此处首装配KeyError发生在任何预测/金标/评分前，原失败保留，仅修患者全集读取入口。

@@ -15,3 +15,5 @@
 公开Sap41099库已.3→.100同SHA实际复制/fsync重开，1.5245秒；使用原policy .90 cosine/.03 distinct margin及全部字符串保护，无重编码。证据 [工程结果](evidence/probe-complete.json)。
 
 正式790fb2be：12:44:47.459117 UTC / proc_72ec2375-4ed8-4467-b534-21d86c477aeb / driver2739073，native2739081，绝对截止12:59:47.459117+TERM30。D/formal-v1/started.json；只恢复原任务。原38.914秒观察epoch4 step97/256；规范化与训练共享此时钟。
+
+正式完整107.900268秒rc0，12:46:35.358142释放；256更新、全16/39推断及137规范化关系。88件原终包866369B/5b355298全SHA收回。首次装配错误地从预测取patient字段，首个预测/gold/v2前退出；另assembly-interface-recovery保留失败与原源，机械改从pure input核患者，不重模型/规范化，进入assembled-v2两端点。

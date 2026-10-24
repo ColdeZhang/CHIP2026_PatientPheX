@@ -11,7 +11,7 @@ def main():
  for name in ENDPOINTS:
   docs=copy.deepcopy(base)
   for d in docs:
-   pmc=str(d['pmc_id']);expected={str(p['patient_id']) for p in d['patient']};assert expected==set(relations[pmc])=={str(x['patient_id']) for x in d['association']};old=next(x for x in base if str(x['pmc_id'])==pmc)
+   pmc=str(d['pmc_id']);expected={str(p['patient_id']) for p in next(x for x in inp if str(x['pmc_id'])==pmc)['patient']};assert expected==set(relations[pmc])=={str(x['patient_id']) for x in d['association']};old=next(x for x in base if str(x['pmc_id'])==pmc)
    for r in d['association']:
     new=set(relations[pmc][str(r['patient_id'])]);r['phenotype']=sorted((set(r['phenotype'])|new) if name==ENDPOINTS[0] else new)
    assert {k:v for k,v in d.items() if k!='association'}=={k:v for k,v in old.items() if k!='association'}
