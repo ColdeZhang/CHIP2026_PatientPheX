@@ -1,5 +1,7 @@
 # R1 F0 前瞻准备
 
+**当前完整58扩展已在启动前关闭**：F1 union未满足事前后继条件；[关闭证据](final58-preparation/closed-before-start.json)8cbc5a12。已完成58输入/九资产/最长工程与独审fb9edc97均有效，pending计划保持禁用、未产生F0质量，A800 GPU2解除本路线预留。下文为保留的准备历史。
+
 主线程授权在F1进行期间并行准备另一固定折：原58纯提示（d387f5b8、16文献/415概念），旧候选train48排F0；同公开R1基座无本赛训练，发布JSON tokenizer、派生scale1、逐row同seed/4096/有限codec不变。当前仅输入CPU、资产准备及已限定的一条工程探针，不读gold/质量。
 
 实际源.100 UID1006/IP10.5.2.100，目标A800 UID1045/IP10.5.4.7；04:21:52目标SHM237.455GB、项目盘154MB，故模型只写自有 `/dev/shm/patientphex-r1-f0-1045-20261024/models/DeepSeek-R1-0528-Qwen3-8B-5ee5fa4832e6`，脚本小件写project。新命名空间此前不存在，未发现现成自有R1 SHM缓存。
