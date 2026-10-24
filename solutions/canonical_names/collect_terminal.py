@@ -60,6 +60,7 @@ def main():
 REMOTE=r'''
 from pathlib import Path
 import os,json,hashlib,zipfile
+from datetime import datetime,timezone
 root=Path(ROOT);run=root/'run';terminal=run/'driver-result.json'
 assert terminal.is_file(),'Original driver is not terminal; do not freeze a partial campaign'
 driver=json.loads(terminal.read_text())
@@ -86,7 +87,10 @@ if not archive.exists():
 with zipfile.ZipFile(archive) as z:
  idx=json.loads(z.read('member-index.json'));assert set(z.namelist())==set(idx['members'])|{'member-index.json'}
  for n,item in idx['members'].items():assert identity(z.read(n))==item
-print(json.dumps(dict(terminal=True,driver_status=driver['status'],archive=ref(archive),members=len(idx['members']))))
+last_receipt=run/(driver['stages'][-1]['phase']+'-child-result.json')
+print(json.dumps(dict(terminal=True,driver_status=driver['status'],archive=ref(archive),members=len(idx['members']),
+ release_receipt_written_at_utc=datetime.fromtimestamp(last_receipt.stat().st_mtime,timezone.utc).isoformat(),
+ release_receipt=ref(last_receipt),observed_at_utc=datetime.now(timezone.utc).isoformat())))
 '''
 
 if __name__=='__main__':main()
