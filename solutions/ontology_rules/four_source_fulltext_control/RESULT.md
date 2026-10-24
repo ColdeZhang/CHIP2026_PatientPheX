@@ -9,4 +9,4 @@
 
 两臂F1正、F0 Score/micro/macro均降，均未通过“两个fold Score严格升且macro不降”。主两折Score增量合计−.006377310，诊断−.004737188，选择为null。不迁原dev、不继续扫并集/权重/剔除组合。此前全文单臂/旧并集的有限正结果仍有效；训练时加入全文是另外的机制。
 
-完整四pred/固定source/plan/评测在外部R/research/four-source-fulltext-control，终态manifest与本目录summary绑定；独审后补持久备份指针。未来任何迁移仍须保留35条public-new支持。
+完整四pred/固定source/plan/评测在外部R/research/four-source-fulltext-control，终态manifest与本目录summary绑定；统一独审85c55eca通过。39内容+members共40成员的小包107814B/fb246a76已存.100自有目录，逐成员SHA/fsync全通过，见stored-receipt.json。未来任何迁移仍须保留35条public-new支持。
