@@ -11,9 +11,9 @@
 - **首个GPU工程probe已失败收口**：原proc_470248fd/PID4698/child4722，08:31:12→08:32:24，rc1/72.035446秒，未超时/OOM，GPU2实际0MiB/no_process。row01/原index62/2704tokens的完整head已走到loss hook，随后参数guard断言；mixed_loss core未调用，0backward/0Adam/无质量。11原件完整SHA/fsync收回，collection7199bb34；[原失败摘要](patient_balanced_loss/probe-failure-summary.json)。保留原source/plan/全部失败，禁止重启原目录。
 - **独立机械恢复完整通过**：proc_0f960ddf/PID13376，08:43:45→08:46:24，rc0/159.843927秒，12反向+1真实非零Adam，最长5556在已有Adam+3累积梯度下通过；496梯度/state finite、三族B实变/base冻结。12真实call均只有两diagnostic=None，scope全恢复。峰allocated25.699GB/reserved40.077GB，后者接近卡额如实披露；GPU2实际0/40339释放。77原件/ZIP971478f6全SHA/fsync，collection8986ae69；观测LUNA只延迟收件，未重启。原72.035秒失败仍保留。[单份完整终态](patient_balanced_loss/interface_recovery/terminal-summary.json)。
 - **probe输入/源码**：12行唯一编码0.693748秒、44992tokens/530监督，原IDs/labels/rendered/整metadata exact，payload4cfdb1f1；source6f0188d4/hook97a0c5ce/driverafa8c149已独审静态无阻断。[部署原件](patient_balanced_loss/probe-deployment.json)。原H5初次释放后等其机械恢复完成才start，旧快照保留但未作当前gate。
-- **正式两轮唯一运行中**：proc_afaf0b83-b325-446e-9769-5955d8c8136d / driver19546，08:52:35.025475Z实际driver启动，2400+TERM30（TERM09:32:35.025472/KILL09:33:05.025472）。源fc24e27先push，trainer3eab/同7b99hook、driver43c730、plan e3c80b43；19成员已完整SHA/fsync/reopen。固定124×2/32calls/warmup2/尾4，fresh模型/newLoRA，探针状态丢弃；09:05实际已第一轮16/32完整并进入第二轮；epoch1含保存699.541837秒，progress c94273ec，峰allocated25.697GB；两份实际ACK/全state SHA仍待终态统一回收。[作业记录](patient_balanced_loss/formal-deployment-start.json)、[操作与后继入口](patient_balanced_loss/OPERATIONS.md)。工程统一终审7a010be3已PASS，仅证明工程/源码，未声明正式或质量成功。
+- **正式两轮完整成功**：proc_afaf0b83-b325-446e-9769-5955d8c8136d / driver19546，08:52:35.025475Z实际driver启动，2400+TERM30（TERM09:32:35.025472/KILL09:33:05.025472）。源fc24e27先push，trainer3eab/同7b99hook、driver43c730、plan e3c80b43；19成员已完整SHA/fsync/reopen。固定124×2/32calls/warmup2/尾4，fresh模型/newLoRA，探针状态丢弃；09:17:01实际rc0/1466.505575秒、124×2/32calls；两epoch含保存699.541837/693.651216秒。69原件全SHA/fsync收回，collection22117c77、formal_reported_success=true；两ACK/四大件实际重开SHA核过，完整Adam/RNG与两adapter留原持久目录，峰allocated25.698GB。09:17:04 GPU2实际0/40339释放。[作业记录](patient_balanced_loss/formal-deployment-start.json)、[操作与后继入口](patient_balanced_loss/OPERATIONS.md)。工程统一终审7a010be3已PASS，仅证明工程/源码，未声明正式或质量成功。
 - **运行位置**：本地 `R/research/patient-balanced-mixed-loss-alpha05/formal-v1`；R=`/workspace/patientphex-runs/round2-20261023`。远端mount476f/project `sequence-round2/patient-balanced-alpha05/formal-v1`，输出formal2ep；不要重启/另namespace重复fit。
-- **下一步**：只监控原proc_afaf0b83，不重复fit；完整两epoch和两ACK收回后绑定final80实际adapter/三训练收据SHA。推断须80全fresh且raw-first/原strict EOS与完整PID-CID政策，双端点先冻再唯一评估；失败/超时保留原件，不自动改loss/allocator/预算。当前源prepare与观测并行，不把工程PASS当质量改进。
+- **下一步**：原formal已完整终态，禁止重启。最终80的三实际收据已唯一绑定：planffb898c3/resultd9ed01c0，source仅三常量变化AST exact；source/plan推送后部署原600+30唯一fresh80。推断须80全fresh且raw-first/原strict EOS与完整PID-CID政策，双端点先冻再唯一评估；失败/超时保留原件，不自动改loss/allocator/预算。当前源prepare与观测并行，不把工程PASS当质量改进。
 
 
 ## 当前最佳及官方授权
@@ -51,4 +51,4 @@
 
 - [实验索引 E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)、[原证据索引](evidence/round2/README.md)。大日志、raw、完整pred、权重均在R或已核持久locator，不进Git。
 - 最近关键推送核验：`57bd62761c461f6095d00d19b9840d7e2a417230`（第一轮完成与端到端恢复入口）；`fc24e27`是正式训练执行前源/计划，`25a6e074`是v2薄接口PASS与恢复plan。09:11:55原job实际已epoch2/global_step20，PID19546/19564仍在。后续结果按实际完成更新，不为台账自身hash循环提交。
-- 所有既有train/infer/score终态均不可重启或重评。v2工程probe已完整终态，正式两轮唯一proc_afaf0b83运行中；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。
+- 所有既有train/infer/score终态均不可重启或重评。v2工程probe已完整终态，正式两轮唯一proc_afaf0b83已完整结束；不能重跑已完成CPU合同。新GPU或质量阶段由root统一预算与端点。
