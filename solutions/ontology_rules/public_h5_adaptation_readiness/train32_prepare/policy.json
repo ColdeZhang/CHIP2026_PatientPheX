@@ -1,0 +1,56 @@
+{
+  "status": "FROZEN_CPU_DATA_CONTRACT_NOT_TRAINING_AUTHORIZATION",
+  "source": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/prepare_events.py",
+    "bytes": 6604,
+    "sha256": "ffb4c4e89d87ddd3e5cae8e9d443ad702c0f6cd6dd0ccec5d5d9a703909ac918"
+  },
+  "native_cpu_source": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/native_cpu.py",
+    "bytes": 11382,
+    "sha256": "76f6ac389da69f663b3f4a6c8799c31f5ceef63ce791d0edcd3cf7f49630a3a5"
+  },
+  "inputs": {
+    "path": "/workspace/patientphex-worktrees/round2-ontology-rules/solutions/ontology_rules/public_h5_adaptation_readiness/train32_prepare/inputs.json",
+    "bytes": 5761,
+    "sha256": "fb39f5b019ad459829fb649831e2c73cbb372067dd7b03de11dd31348a8a1eef"
+  },
+  "parent_weight_sha256": "d58af55a68840a24b052a775cf0cb32b8993a1fa4823c76aad10d3e6299d7ec3",
+  "training_folds": [
+    2,
+    3
+  ],
+  "held_fold": 1,
+  "reserved_replicate_fold": 0,
+  "head_columns": 17266,
+  "None_column": 17265,
+  "seed": 20261024,
+  "positive": "Single valid canonical HPO, original or official alt/compound collapsing to same canonical; target is all original columns mapping to this canonical.",
+  "unsupported_positive": "NIL/nonHPO/malformed/outsidebranch/multiplecanonical compound/missing originalcolumns are counted and protect same actual input from negatives; no invented None.",
+  "negative_sources": [
+    "explicit official NO",
+    "fixed public PubMed neural canonical false span overlapping any true positive: boundary",
+    "fixed public PubMed neural canonical false span disjoint from positive: candidate nonentity"
+  ],
+  "candidate_lineage": "Public pretrained task-training=false only; never train48 mixed caches containing heldF1 labels.",
+  "actual_query": "Original NLTK sentence/POS tokenization with - / spacing, exact restored offsets, original 2\u20138 POS-filter candidate eligibility; original lower token list, AutoTokenizer4.30.1/tokenizers0.13.3 and native load_data/max32/postpadding.",
+  "conflict_policy": "Deduplicate actual3x32 tensors; exclude any query with positive+negative, multiple supported canonical targets, or unsupported positive protection. Exclude no-native-candidate groups. Report truncation and collisions.",
+  "negative_cap": "All conflict-free NO; boundary and ordinary negative each capped at number of eligible positive uniquequeries, fixed seed+category+tokenSHA sort; one weight1 per actual query. No repeats.",
+  "future_proposed_training": {
+    "authorized": false,
+    "epochs": 1,
+    "batch_size": 64,
+    "optimizer": "fresh native tf.keras Adam",
+    "learning_rate": 5e-06,
+    "all_parameters_trainable": true,
+    "precision": "native float32",
+    "loss": "positive -log(sum softmax probability over equivalent original columns); None same index17265",
+    "scheduler": null,
+    "early_stopping": false,
+    "full_GPU_budget": null,
+    "reason_budget_pending": "Exact architecture has forward actuals but no measured backward/optimizer update; requires separately authorized short engineering probe."
+  },
+  "CPU_native_cap_seconds": 180,
+  "held_F1": "All original16 input documents, all passages/patients retained; no unsupported training filter applied to evaluation.",
+  "new_fit_or_model_calls": 0
+}

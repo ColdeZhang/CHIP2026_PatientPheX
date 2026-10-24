@@ -53,3 +53,5 @@
 - 后继参考FN分解一次0.055596秒rc0：F0 55合法无已解析正例＋47无HPO空间＋16非HPO/文本＋9支持拒；F1 86＋45＋7＋16；集合未解释0，原FN127/154不变。支持优先既有关系训练、另审候选识别适配，不据25正确被gate拒就放宽gate。[小诊断](relation_candidate_space_followup/fn_partition/RESULT.md)。
 
 - 公开原生H5监督适配只读盘点：native接口可行，但原上游训练入口不先load H5、旧19120头builder与17266列/None末列不同，不能直接套。复用历史train64类覆盖，不重读标签；NO词面冲突、canonical多列与固定LGB分布迁移须另冻合同。[可行性](public_h5_adaptation_readiness/README.md)。无数据准备/训练/新GPU。head_index准备另获独审102f5148无阻断，仍未部署/GPU，原formal不改。
+
+- root新授权公开PubMedH5 CPU准备：唯一原生H5/train32 F2+F3；源码/标签合同已冻结，公开缓存负例不混train48谱系。canonical多原列用概率质量监督，真实多canonical/NIL/缺列显式不支持，实际token32冲突整组排除；只CPU，未fit/GPU。候选主端点为替换该源后固定F1强103列LGB，与完整16旧端点比较，held不筛。
