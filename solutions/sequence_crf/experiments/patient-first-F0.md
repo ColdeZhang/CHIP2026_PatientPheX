@@ -61,3 +61,6 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 3900+30含实际保存；按13.935736s最长5769与2×656837总token线性粗估3173.343s、约727s余量，**不是完整吞吐或显存保证**。A100项目持久盘最近free58.139GB，开跑fresh要求≥4GiB，两完整state估1.04GB；首OOM/数值/截止停，不改allocator/精度/loss/长度、不自动重启。每epoch保留adapter、optimizer/scheduler、Python/NumPy/Torch/CUDA RNG和元数据，恢复必须核完整SHA且另由主线程决定，不能声称GPU resume数值等价已测。
 
 固定原58另600+30，只完整持久epoch2可推断。新policy d2b8已在质量前固定primary/oldSFT48∪new，实体947/415CID/1166对不变；finish92b3/uniondf82先共同freeze两fullpred与原raw/来源，再各唯一v2；primary独立提前evaluate受共同freeze+before-both marker硬阻断。旧baseline .6954439475814587直接复用，保持sum(micro+macro)升且macro不降。gold仅独立后置locator，SHA来自旧baseline既有metrics、此时只stat文件大小，未读gold内容或计算其新SHA。10件已核数据/辅助源在A100本地copy并逐SHA，另上传10件新源/输入/plan；实际部署/新formalCPU尚待完成。
+
+
+集中审查发现初版f08只fsync checkpoint所在output，未明确持久化本轮新建output父链。保留before-ancestor-fsync原源/plan后窄补：通过显式PATIENTPHEX_DURABILITY_ROOT绑定A100项目根，核output在其下，在ACK前fsync output→项目根全部父目录；收据记录实际父链，driver再核根匹配。新trainer cc707253、完整run()逐字不变；仅一次新祖先链标准库fixture0.031782s通过（209380ef），旧310fixture不重跑。最终readiness1cb194ea、train4b70dbce、infer69c05df1，原endpoint143638ee不变；正式尚未启动。

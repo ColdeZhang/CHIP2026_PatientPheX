@@ -70,6 +70,9 @@ def main():
                     assert receipt['completed_epochs'] == epoch and receipt['global_step'] == 26*epoch
                     assert receipt['source_sha256'] == complete['source_sha256']
                     assert receipt['file_directory_fsync'] and receipt['reopened_SHA_all_exact']
+                    assert receipt['persistent_root'] == plan['storage_parent']
+                    assert receipt['ancestor_directories_fsynced'][0] == str(output)
+                    assert receipt['ancestor_directories_fsynced'][-1] == plan['storage_parent']
                     assert Path(receipt['checkpoint']) == checkpoint
                     assert receipt['checkpoint_metadata_sha256'] == sha(checkpoint/'checkpoint.json')
                     durability[str(epoch)] = dict(receipt_sha256=sha(receipt_path), receipt=receipt)

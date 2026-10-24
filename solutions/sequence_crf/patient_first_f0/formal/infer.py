@@ -22,7 +22,7 @@ from final_parser import parse_final
 
 REVISION = "c202236235762e1c871ad0ccb60c8ee5ba337b9a"
 TEXT_PARAMETERS = 8_953_803_264
-TRAINER_SHA = "f08c2185b5001a4dc9234fcd8faf83165a2dc4eea22692f9d1ad25fdc75eb8c3"
+TRAINER_SHA = "cc707253ba277a87544d9f9f57f3735217e10b2d4ebd74a35ada8d5967591011"
 
 
 def digest(path):

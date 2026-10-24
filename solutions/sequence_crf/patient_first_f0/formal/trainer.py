@@ -354,6 +354,10 @@ def durable_publish_checkpoint(output,staging,destination):
     # No state deserialization, optimizer/RNG calls or training policy changes.
     output=Path(output);staging=Path(staging);destination=Path(destination)
     if not output.is_dir() or output.is_symlink():raise ValueError('Require own existing checkpoint output directory')
+    persistent_root=Path(os.environ['PATIENTPHEX_DURABILITY_ROOT']).resolve()
+    if not persistent_root.is_dir() or persistent_root==output.resolve():raise ValueError('Require explicit existing persistent ancestor root')
+    output.resolve().relative_to(persistent_root)
+
     if staging.is_symlink() or destination.is_symlink():raise ValueError('Checkpoint paths must not be symlinks')
     if staging.parent.resolve()!=output.resolve() or destination.parent.resolve()!=output.resolve():
         raise ValueError('Checkpoint stage and destination must share the own output parent')
@@ -395,7 +399,13 @@ def durable_publish_checkpoint(output,staging,destination):
     durability_fsync_directory(staging)
     if destination.exists() or receipt_path.exists():raise ValueError('Checkpoint destination/receipt appeared; refuse overwrite')
     staging.replace(destination)
-    durability_fsync_directory(output)
+    # Persist every newly-created ancestor directory entry through the explicit
+    # project filesystem root before acknowledging this complete epoch.
+    synced_ancestors=[];ancestor=output.resolve()
+    while True:
+        durability_fsync_directory(ancestor);synced_ancestors.append(str(ancestor))
+        if ancestor==persistent_root:break
+        ancestor=ancestor.parent
     actual_members=durability_inventory(destination)
     if set(actual_members)!=set(expected):raise ValueError('Checkpoint member inventory differs after publish')
     reopened={}
@@ -410,6 +420,7 @@ def durable_publish_checkpoint(output,staging,destination):
         'checkpoint':str(destination),'source_sha256':source_sha,
         'checkpoint_metadata_sha256':expected['checkpoint.json'],'files':reopened,
         'file_directory_fsync':True,'reopened_SHA_all_exact':True,
+        'persistent_root':str(persistent_root),'ancestor_directories_fsynced':synced_ancestors,
         'at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
         'all_members_reopened_and_SHA_verified':True,'file_fsync_count':len(members),
         'checkpoint_directory_fsync_count':len(directories)+1,
