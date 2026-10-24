@@ -4,7 +4,7 @@
 
 ## 当前任务
 
-**运行中**：`.100 GPU0` 唯一 `proc_fc21328c-407a-4e75-b93f-e5c5da10c8c5`，driver2744449/child2744457，13:52:22.231 UTC 启动；固定 TERM14:52:22.231 / KILL14:52:52.231。实际入口 `a30/infer-plan.json` d5c60e9a，外部 `infer-F1-A30-v1`。只读 watcher 178370 已独立session/flock ready8d4c5f83，180秒观察；恢复先核原PID/intent，不重复start。完整78之前不做quality。
+**F1完整正候选，待独审**：B4 .701325377212→.705226083109（+.003900706），micro/mac同升；新增14=9TP/5FP。77EOS+1cap整行弃答，无重试；全78/362Sap成功，GPU0已14:18:25实际释放。完整入口evidence/F1-result.json。root已授权同模型/政策全94固定F0 3600+30，先CPU47原生身份与F1小备份，尚无F0 start。原dev/官网不扩。
 
 原 train32 grounded 模型 d52、原 F1 16篇/39患者全文输入；固定 seed20261024/25、native nonthinking sampling T.7/p.8/k20/minp0/repetition1/max1600。两完整39经原严格 quote parser 与相同 train32 alias/public41099/b59政策后，唯一主端点 B4(524关系/.701325377212) UNION 两seed literal关系交集。新关系为零则原基底byteexact且0v2；否则完整freeze后1v2/旧0。严格Score正才F0；双折正才full64。
 
@@ -31,3 +31,5 @@
 新78实际入口已经完整绑定；A30计划/源检查点f599620f已远端核。必要Sap按root新队列固定使用同GPU0在9B真实释放后一次180+30，复用原publicbank与train32政策，不等待GPU1、不共驻9B。
 
 13:55原4文件HTTP已实际关闭：原managedPID不存在、准确namespace无进程、端口无监听，closure8f97e1dc，无kill/重开服务。必要Sap normalization_runtime已3f20aee6远端核，15metadata用例通过，仅准备不执行；完整78+真实release之后才绑定/查询。
+
+F1收口：collection19b81037原173件，1411.159s，alloc21.012GB/reserved21.922GB；Sap6ccab164原13件/10.852s。两纯关系253/245、交集163；保护B4原524后538，全部1189实体/39患者/16文献及非关系字节保持。14:19:22完整freeze1527f730后唯一v2，predf9c33866/resultf9e268a2，0单seed/其他arm。汇总脚本首次仅SyntaxError，未写文件/模型/质量；机械修正只整理已有结果。
