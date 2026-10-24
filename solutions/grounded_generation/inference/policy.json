@@ -1,11 +1,19 @@
 {
   "schema": "grounded-generation-inference-v1",
   "fold": "F2+F3 train32 -> complete F1 input16/39patients",
-  "generation": {"do_sample": false, "num_beams": 1, "enable_thinking": false, "max_new_tokens": 1600, "context_truncation": false, "all_rows_fresh": true},
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "enable_thinking": false,
+    "max_new_tokens": 1600,
+    "context_truncation": false,
+    "all_rows_fresh": true
+  },
   "token_budget_basis": "Actual train targets max610 supervised tokens; fixed1600 leaves >2.6x room. Complete actual held input max10080; no length filtering or truncation.",
   "raw_first": "Persist actual generated token IDs/end state before decode; persist published-native decoded text before parsing. Compare native decoder to actual HF decoder, do not fix output text.",
   "response_policy": "Strict single JSON array; no fences/trailing text/NaN. Non-EOS or capped response abstains. Each malformed or unlocatable triple individually abstains; valid exact anchors retained in generated order; duplicate exact anchors collapse.",
   "attribution_boundary": "Target patient is fixed by input row; copied lexical anchor is not human-labeled evidence. Model judges whole report association; mapper cannot override patient identity.",
   "normalization": "Use separately frozen normalization/policy_v1.json: exact public/train32 first, eligible unmatched quote only public frozen Sap fallback; ambiguity and unknown are abstain, NIL only exact training evidence. No held-label calibration.",
-  "quality": "Primary strong fulltext N union normalized new keys; diagnostic normalized new-only. Both retain exact strongN Task1/patient/nonrelation skeleton, all16 documents and39 patients. Freeze both complete predictions before one official local v2 per endpoint. Reuse baseline metrics .676546354662594; strict total Score improvement, disclose macro. No official submission."
+  "quality": "Predeclared primary strong fulltext N union normalized new keys, diagnostic normalized new-only; both retain exact strongN Task1/patient/nonrelation skeleton, all16/39. Freeze both before one local v2 per endpoint; reuse strongN .676546354662594. Select highest Score among these two only when strictly above strongN, tie favors primary. Report primary-hypothesis result separately, all macro values, no originaldev/official action.",
+  "selection_authorization": "Parent /root 2026-10-24 after engineering approved both fixed endpoints; no added arm/threshold search."
 }
