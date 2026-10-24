@@ -53,7 +53,7 @@ print(json.dumps(dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isof
         code='''from pathlib import Path
 import json,subprocess,hashlib,datetime
 p=json.loads(Path('plan.json').read_text());apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,used_memory','--format=csv,noheader,nounits'],text=True);assert p['gpu_uuid'] not in apps
-Path('gpu-release.json').write_text(json.dumps(dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),target=p['gpu_uuid'],target_empty=True))+'\\n')
+Path('gpu-release.json').write_text(json.dumps(dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),target=p['gpu_uuid'],target_empty=True)))
 files=[]
 for name in ['actual-preflight.json','runner-exit.json','responses.jsonl','responses.manifest.json','responses.checkpoint.json','responses.loading.json','complete.json','gpu-release.json']:
  x=Path(name)
