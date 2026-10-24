@@ -2,7 +2,7 @@
 
 当前状态：**固定方案已关闭：F1后设v2 +.003024221396，独立F0 −.012344213304；不进入full64。完整证据已冻结，GPU全链已释放，暂无官方提交**。准备结论见 [REPORT](REPORT.md)，本地证据 [readiness](evidence/readiness.json)，实际 [CPU 合同](evidence/actual-cpu.json)，[真实启动](evidence/GPU-start.json)，唯一 [primary 协议](evidence/protocol.json)；实验 `E-20261024-COPY-GROUNDED-001`。
 
-最近远端检查点：2026-10-24 16:00 UTC，`origin/explore/copy-grounded-decode` 的 `fe146e35c66edb468aa5f1452baf42300920568b` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
+最近远端检查点：2026-10-24 15:59 UTC，`origin/explore/copy-grounded-decode` 的 `45cf30db3e742116584203b23ff2f71f1de06e7a` 经 `git ls-remote` 与本地一致；本行提交可领先该回执一步。
 
 - 2026-10-24：从 main `6f66672f75b23c6c9af2094765c335fde6717650` 建 `explore/copy-grounded-decode`。只做 CPU/no-gold 准备；不训练、不加载模型、不评分、不提交官网。
 - 目标：保持 Grounded 9B train32 epoch2 d52 权重、39 完整 prompt 和三元组语义，只将自由文本生成改为有限原文三元组的 native-token trie 解码。一次候选为 `B4 ∪ (constrained_G ∩ pure_G)`，是否运行由主线程决定。
