@@ -59,11 +59,11 @@ def main():
   selected,decisions,counts=assemble.new_relations(normalized,inputs,BoundStrict,schema,r['normalization_policy']['sha256'])
   lines,base,ids=support.rows(r['baseline']['path']);oldpure=support.jsonl(r['original_pure']['path'])
   sys.path.insert(0,str(Path(r['evaluator']['path']).parent));import evaluate as ev,validate_predictions as va
-  old=pairs(base,ev);goldview=pairs(oldpure,ev)
+  old=pairs(base,ev);original_view=pairs(oldpure,ev)
   mean={(did,pid,key[1]) for (did,pid),keys in selected.items() for key in keys}
-  assert len(old)==524 and len(goldview)==282 and len(base)==16 and sum(len(d['entities']) for d in base)==1189
+  assert len(old)==524 and len(original_view)==282 and len(base)==16 and sum(len(d['entities']) for d in base)==1189
   assert sum(len(d['association']) for d in base)==39 and {str(d['pmc_id']) for d in oldpure}==set(ids)
-  final=primary_keys(old,mean,goldview);add=final-old;spans,mask=support.byte_helpers(r['byte_helper']);rendered=[]
+  final=primary_keys(old,mean,original_view);add=final-old;spans,mask=support.byte_helpers(r['byte_helper']);rendered=[]
   for line,d in zip(lines,base):
    values={a['patient_id']:a['phenotype']+sorted(h for did,pid,h in add if did==str(d['pmc_id']) and pid==a['patient_id']) for a in d['association']}
    rendered.append(support.replace_phenotypes(line,values,spans,mask))
@@ -76,7 +76,7 @@ def main():
   assert pairs(pure,ev)==mean;publish(out/'mean-new-only.jsonl',b''.join((json.dumps(x,ensure_ascii=False)+'\n').encode() for x in pure))
   fmt=va.validate_predictions(inputs,pred,va.read_hpo(r['hpo']['path']));save(out/'format.json',fmt);assert fmt['valid']
   save(out/'bound-inputs.json',dict(source=ref(__file__),execution_plan=ref(S/'execution-plan.json'),references=r,actual=p['actual'],inherited_actual_verifier=ref(G/'quality/assemble.py'),inherited_support=ref(G/'quality/support.py')))
-  save(out/'freeze.json',dict(at_unix=time.time(),prediction=ref(out/'prediction.jsonl'),mean_pure_unscored=ref(out/'mean-new-only.jsonl'),inputs=ref(out/'bound-inputs.json'),source=ref(__file__),formula='B4 UNION (G_meanweights INTERSECT G_originalgreedy)',baseline=524,mean=len(mean),original_G=282,intersection=len(mean&goldview),added=len(add),added_pairs=sorted(add),removed=0,nonphenotype_bytes_exact=True,baseline_prefixes_exact=True,no_gold_opened=True,new_v2=0,old_v2=0,coverage=coverage,normalization_counts=counts,byteexact_to_baseline=raw==Path(r['baseline']['path']).read_bytes()))
+  save(out/'freeze.json',dict(at_unix=time.time(),prediction=ref(out/'prediction.jsonl'),mean_pure_unscored=ref(out/'mean-new-only.jsonl'),inputs=ref(out/'bound-inputs.json'),source=ref(__file__),formula='B4 UNION (G_meanweights INTERSECT G_originalgreedy)',baseline=524,mean=len(mean),original_G=282,intersection=len(mean&original_view),added=len(add),added_pairs=sorted(add),removed=0,nonphenotype_bytes_exact=True,baseline_prefixes_exact=True,no_gold_opened=True,new_v2=0,old_v2=0,coverage=coverage,normalization_counts=counts,byteexact_to_baseline=raw==Path(r['baseline']['path']).read_bytes()))
   print(json.dumps(dict(freeze=ref(out/'freeze.json'),added=len(add),mean=len(mean))))
  else:
   out=D/'quality-v1';f=read(out/'freeze.json');assert f['source']==ref(__file__);checked(f['prediction']);p=read(checked(f['inputs']));r=p['references'];base=read(checked(r['baseline_metrics']))

@@ -5,7 +5,7 @@ from synthesize import ref,save
 MOUNT='476f81cf-09e7-445b-a7f0-d0e12b12e50f'
 PROJECT='/home/zhangyuheng/projects/CHIP2026_PatientPheX'
 REL='grounded-weight-average-v1/F1/cpu-v1';ROOT=PROJECT+'/'+REL
-ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['deploy','start','observe']);ap.add_argument('--directory',required=True,type=Path);a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['deploy','start','observe','collect']);ap.add_argument('--directory',required=True,type=Path);a=ap.parse_args()
 a.directory.mkdir(parents=True,exist_ok=True)
 sys.path.insert(0,'/workspace/CHIP2026_PatientPheX/scripts');from mcp_client import Client
 cl=Client();cl.initialize()
@@ -38,6 +38,19 @@ elif a.stage=='start':
  p=json.loads((source/'cpu-plan.json').read_text());intent=dict(mount_id=MOUNT,cwd=REL,command=shlex.join([p['python'],'-u','cpu_driver.py']),env=p['environment'])
  save(a.directory/'start-intent.json',intent)
  r=call('start_process',intent);save(a.directory/'started.json',r);print(json.dumps(r))
+elif a.stage=='collect':
+ code='from pathlib import Path\nimport json,os,hashlib,base64,zipfile,io\np=Path('+repr(ROOT)+');assert json.loads((p/"wrapper-complete.json").read_text())["returncode"]==0\nnames=["cpu-plan.json","synthesize.py","delta_mean.py","cpu_driver.py","driver-started.json","child-started.json","wrapper-complete.json","stdout.log","stderr.log","output/started.json","output/actual-parents.json","output/tiny-peft.json","output/complete.json","output/adapter/adapter_config.json","output/tiny-save/mean/adapter_config.json","output/tiny-save/mean/adapter_model.safetensors"]\nfiles={};buf=io.BytesIO()\nwith zipfile.ZipFile(buf,"w",zipfile.ZIP_DEFLATED) as z:\n for n in names:\n  b=(p/n).read_bytes();files[n]=dict(bytes=len(b),sha256=hashlib.sha256(b).hexdigest());z.writestr(n,b)\nraw=buf.getvalue();print(json.dumps(dict(files=files,archive_sha256=hashlib.sha256(raw).hexdigest(),archive_bytes=len(raw),content=base64.b64encode(raw).decode())))'
+ r=command(code);raw=base64.b64decode(r.pop('content'));assert len(raw)==r['archive_bytes'] and hashlib.sha256(raw).hexdigest()==r['archive_sha256']
+ target=a.directory/'collected';target.mkdir(exist_ok=False)
+ with zipfile.ZipFile(io.BytesIO(raw)) as z:
+  assert set(z.namelist())==set(r['files'])
+  for n,i in r['files'].items():
+   assert '..' not in Path(n).parts and not Path(n).is_absolute();b=z.read(n);assert len(b)==i['bytes'] and hashlib.sha256(b).hexdigest()==i['sha256'];q=target/n;q.parent.mkdir(parents=True,exist_ok=True)
+   with q.open('xb') as h:h.write(b);h.flush();os.fsync(h.fileno())
+   assert q.read_bytes()==b
+ with (a.directory/'cpu-evidence.zip').open('xb') as h:h.write(raw);h.flush();os.fsync(h.fileno())
+ save(a.directory/'collection.json',dict(**r,archive=ref(a.directory/'cpu-evidence.zip'),local=str(target),all_members_actual_SHA=True,new_adapter_not_downloaded=True,source=ref(__file__)))
+ print(json.dumps(dict(members=len(r['files']),archive_bytes=len(raw),collection=ref(a.directory/'collection.json'))))
 else:
  code='from pathlib import Path\nimport json,os\np=Path('+repr(ROOT)+');names=["driver-started.json","child-started.json","wrapper-complete.json","output/complete.json","output/tiny-peft.json","output/failure.json"]\nfiles={n:json.loads((p/n).read_text()) for n in names if (p/n).exists()}\nprint(json.dumps(dict(files=files,stdout=(p/"stdout.log").read_text()[-1500:] if (p/"stdout.log").exists() else None,stderr=(p/"stderr.log").read_text()[-4000:] if (p/"stderr.log").exists() else None)))'
  r=command(code);save(a.directory/('observation-'+str(time.time_ns())+'.json'),r);print(json.dumps(r))
