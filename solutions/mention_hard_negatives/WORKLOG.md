@@ -1,9 +1,11 @@
 # 当前状态
 
+2026-10-24 13:59 UTC：完整训练与1416推断均已成功，.3GPU0已13:56:44实际释放，当前只恢复原ZIP缺块；24/43块已回收，尚未启动任何quality。实际1273HPO/143NO、无NIL/cap/拒绝；native推断804.881s/wrapper806.054s rc0。原controller e258098b/完整推断7a646f2a，evidence/inference-complete-observed.json保原件指纹。
+
 2026-10-24 UTC；branch explore/mention-hard-negatives，base23b053e6。只改solutions/mention_hard_negatives。
 
 - 真实目标：补足生成头拒绝误提取跨度的监督，判断是否带来强Task1增益；不把训练成功当质量改善。
-- 约束：训练/候选祖先仅F2F3，公开Qwen3-8B，沿既有三状态prompt/trie/原native训练器，完成共冻前不读heldgold；新增GPU只按root最新固定链授权。旧2353 run proc_d77保持独立进行。
+- 约束：训练/候选祖先仅F2F3，公开Qwen3-8B，沿既有三状态prompt/trie/原native训练器，完成共冻前不读heldgold；新增GPU只按root最新固定链授权。旧2353 run proc_d77已完整负结案；本实验数据和规则在其质量前固定，保持独立。
 - 固定样本：2353全部对象/顺序保留，按每文ceil(HPO+NIL/4)追加578；2931总行=2222HPO/44NIL/665NO，无不足配额。每个新增跨度重新核与全部正式注释零重叠、原quote/offset一致。
 - 两轮固定734updates/367每轮/尾3/warmup37；实际每epoch823233tokens/25797监督；新增max369/3，全数据仍383/28，Pareto与原三形状完全相同。完整F1仍固定1416跨度、强B并集/新头替换两端点；达到任一严格胜.728697536469才候选。
 - 源复用：reuse/mention全部原字节，manifest记录精确origin/SHA；只有prepare与CPU新增578行检查是新代码。已有2353编码、1416纯输入及processor/真实FB证据只引用，不重复验证。
@@ -13,4 +15,4 @@
 
 主机差异明确：.100 Torch2.7.1+cu126→.3 Torch2.7.0+cu128，TF4.51.3/tokenizers.21.2/PEFT.15.2及native/common/loss源码逐字一致。该对照含运行环境迁移，不能称纯数据逐位消融；.3同8B完整大形状6155/113、4992/116和68updates/64fresh已有真实证据，且新样本仍被原mention三形状覆盖，因此不另跑FB探针。CPU编码文件跨机复制逐SHA原字节，.3模型复用同机完整13asset SHA及fresh size/mtime/inode身份，不重复下载或整权重hash。
 
-.3连接曾UNKNOWN/LUNA间歇，只读原observer恢复实证训练继续，未重启。GPU0槽继续保留至完整infer真实release，不能把formal末瞬时释放当可接续。现有50s observer补读已完成raw的长度/耗时，66条预估701–734s＜1200（只作资源估计，不读语义质量）；原完整数据/配方不变。
+.3连接曾UNKNOWN/LUNA间歇，只读原observer恢复实证训练继续，未重启。此前GPU0槽保留至完整infer真实release，现在原infer已完整释放。现有50s observer补读已完成raw的长度/耗时，66条预估701–734s＜1200（只作资源估计，不读语义质量）；原完整数据/配方不变。

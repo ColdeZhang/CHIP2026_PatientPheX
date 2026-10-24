@@ -19,3 +19,7 @@ root后续正式授权：空闲.3GPU0，固定4800+30两轮/734/尾3/warmup37，
 ## 两轮正式完成
 
 13:43:16.763233第二持久ACKa1e0bb45（1763B）完整734updates，全部5862行、1,646,466输入tokens、51,594监督，native3410.521524秒/完整3420.725578秒，原formal child rc0。两完整状态原生重开exact；epoch2 adapter2a1a5a09/state390ed7b6精确locator与全SHA见evidence/formal-complete-observed.json。原controller13:43:18.070760转全1416fresh，child1213791/1200+30；不按epoch质量选择，尚无held评测。服务器连接抖动是只读回执失败，后续原状态证明训练继续，不重启、不当方法负。
+
+## 完整推断与回收
+
+13:56:43全1416/16文献39患者完成，1273HPO/143NO，无NIL/cap/拒绝；804.881s，wrapper806.054s rc0。13:56:44.124964 .3GPU0真实4MiB/无该卡进程释放。原proc92 managed已running=false，但工具未给wrapper退出码，不能把只读command rc当作wrapper rc。服务器唯一终包5,587,542B/SHA965d4825；MCP间歇UNKNOWN/LUNA造成分块未齐，仅恢复同包缺块，不重训练/推断/打包。quality尚未启动，所有输出完整后再原两端点共冻2v2。
