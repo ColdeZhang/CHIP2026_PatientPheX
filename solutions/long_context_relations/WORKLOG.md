@@ -13,3 +13,5 @@
 证据外部 R/research/long-context-relations-v1；只小源码/计划/结果指针进Git。原BioClinical GP完整终审957a2f0d与49件小包c54cdecf由root登记，不在本线重复审/复制大state。
 
 工程实际：16:53:37.575758→16:53:59.103917 UTC，6FB/非零Adam1、140参数全变化/梯度finite、563state张量重开回装，峰3.965GB；16:53:59.254489 GPU0=4MiB/noapps。probe db5d273c仅保存丢弃。正式与probe model/common逐字相同，全部data沿原冻结；源准备不占卡，等seed短Sap交接。
+
+正式首次纯I/O source.zip上传16:56明确LUNA_OFFLINE，无deployment ACK、无formal start intent/GPU。原probe终态有效，暂停.3调用；恢复先核原源文件，不重复模型。root静核正式与单质量源码无阻断，并指出prediction文件需先fsync再freeze：已以排他完整写/flush/fsync/父目录同步修正，配方不变、未发生质量调用。

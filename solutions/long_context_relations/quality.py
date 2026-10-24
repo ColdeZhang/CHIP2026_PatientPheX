@@ -1,10 +1,10 @@
 """Single predeclared B4 protected relation union. No candidate/threshold scans."""
 from copy import deepcopy
 from datetime import datetime,timezone
-import gzip,importlib.util,json,math,re,sys
+import gzip,importlib.util,json,math,os,re,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent/'runtime'))
-from common import save,ref
+from common import save,ref,fsync_dir
 
 def atoms(values):
  out=set()
@@ -60,8 +60,9 @@ def main():
  spec=importlib.util.spec_from_file_location('longcontext_relation_v2',p['evaluator']['path']);ev=importlib.util.module_from_spec(spec);sys.path.insert(0,str(Path(p['evaluator']['path']).parent));spec.loader.exec_module(ev)
  report=ev.validate_predictions(inp,prediction);assert report['valid'];save(out/'format.json',report)
  predpath=out/'prediction.jsonl'
- if added:predpath.write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n'for x in prediction))
- else:predpath.write_bytes(Path(p['baseline']['path']).read_bytes())
+ payload=(''.join(json.dumps(x,ensure_ascii=False)+'\n'for x in prediction).encode() if added else Path(p['baseline']['path']).read_bytes())
+ with predpath.open('xb') as f:f.write(payload);f.flush();os.fsync(f.fileno())
+ fsync_dir(out)
  save(out/'added.json',added)
  save(out/'freeze.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),prediction=ref(predpath),scores=ref(scorepath),source=ref(__file__),plan=ref(S/'quality-plan.json'),baseline=p['baseline'],gold_opened=False,cut=0.,single_primary=True))
  old=json.loads(Path(p['baseline_metrics']['path']).read_text())
