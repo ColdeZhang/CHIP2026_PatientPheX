@@ -1,0 +1,186 @@
+{
+  "status": "PASS_stdlib_static_source_draft_NATIVE_CPU_RECEIPT_PENDING",
+  "completed_utc": "2026-10-24T03:08:47.877364+00:00",
+  "elapsed_seconds": 0.14397873300185893,
+  "checker": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/static_check.py",
+    "bytes": 8171,
+    "sha256": "80c6db4ad793081a546b5cf9be42be8e8563acaa531d49f33ce8766e93d4fe38"
+  },
+  "old204_source": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/source-snapshots/old204-trainer.py",
+    "bytes": 25992,
+    "sha256": "9d2e0eeb34e6bfa76ea90cbf6f9ffad996ab527e4746bb936e4f3cbc58724b8b"
+  },
+  "template": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/train_patient_first_f0.py",
+    "bytes": 40304,
+    "sha256": "e1aaf284a8bcf6f6ecc23b6e7360cc73e582431e05b91fdb67258d4beeb78070"
+  },
+  "F1_reference": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/source-snapshots/F1-trainer-reference.py",
+    "bytes": 37047,
+    "sha256": "a3ec17f55ca7007ab1f41879ff07e15586f78d7b3064a584464cd90fa935164e"
+  },
+  "native_data_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/source-snapshots/native-data-contract.py",
+    "bytes": 18550,
+    "sha256": "1d85789a74550b0aa489d4e4edde2de9b3a7ee15bf87cafcb66ae0ff53f8adfd"
+  },
+  "protocol": {
+    "path": "/workspace/patientphex-worktrees/round2-sequence-crf/solutions/sequence_crf/patient_first/frozen/qwen35_relation_cost.py",
+    "bytes": 22367,
+    "sha256": "a2df013eff13c81c86ead1bab6e6473c7ce139eb9aa97d5a5ae797c95692106c"
+  },
+  "exact_diff": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/formal-source-draft/against-old204.diff",
+    "bytes": 24578,
+    "sha256": "e2295222a2057e82f2047dd635b05a3f28c3d19fecaa803a5840c411658fbdf1"
+  },
+  "CONFIG_byteexact": {
+    "sha256": "fee3445cce28b628505f39ac9d34b7dda8d9b927f6c65db02b68d2140793a44f",
+    "bytes": 398,
+    "value": {
+      "max_seq_length": 6144,
+      "batch_size": 1,
+      "gradient_accumulation": 8,
+      "epochs": 2,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "max_grad_norm": 1.0,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "seed": 20261023,
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "in_proj_qkv",
+        "in_proj_z",
+        "in_proj_b",
+        "in_proj_a",
+        "out_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "dtype": "bfloat16",
+      "attention": "sdpa",
+      "quantization": false,
+      "packing": false,
+      "gradient_checkpointing": {
+        "use_reentrant": false
+      }
+    }
+  },
+  "unchanged_functions_byteexact": {
+    "semantic_configuration": {
+      "bytes": 170,
+      "sha256": "619cbe0fb1aaab7846e4d28a1cc51fb68e99e38c2aa53a1debaa546ad595d1db"
+    },
+    "model_files": {
+      "bytes": 1077,
+      "sha256": "634e0edbb54c74d77038f48b2e60306b9bbc8e5df29f6c901050eb44c7515c3b"
+    },
+    "batch_plan": {
+      "bytes": 646,
+      "sha256": "c91047d992200962bf01976ab13abcf82802d1e0d8bb98809be138e586fb6073"
+    },
+    "verify_fingerprint": {
+      "bytes": 158,
+      "sha256": "bf203b01e099f01ffdea77b803b69efcf105114e9b525f6d07ae238db7709561"
+    },
+    "validate_stop_epoch": {
+      "bytes": 478,
+      "sha256": "0be75aa20b045187cbc03d0d832d9a841c2320f324cd8e9aa9d9a294d25d257d"
+    },
+    "epoch_outcome": {
+      "bytes": 478,
+      "sha256": "cf55a46c3ac849f83c3aaab1535a07456102e3883b5c634cc5518c817733f184"
+    },
+    "collate": {
+      "bytes": 657,
+      "sha256": "4dabcf4e0ef04e71dfc2fb69e2a1325f22b2e8bed46d504ed7dbea882db6a95f"
+    }
+  },
+  "load_through_training_complete_span_byteexact": {
+    "start_marker": "status('load_complete_text_base')",
+    "exclusive_end_marker": "except Exception as error:",
+    "bytes": 8863,
+    "sha256": "38b134fc88676b5a84fa5570fe8dd5eb2c3a388a3b6531d16399840a9e31706c",
+    "contains": "fresh public base load, adapter attachment, native full CE/backward, AdamW, 3/52 scheduler, 2epoch26groups, RNG resume, state saves and final metadata"
+  },
+  "schedule": {
+    "examples": 204,
+    "epochs": 2,
+    "optimizer_calls_per_epoch": 26,
+    "total_optimizer_calls": 52,
+    "warmup_steps": 3,
+    "seed": 20261023,
+    "microbatch": 1,
+    "gradient_accumulation": 8,
+    "last_group_microbatches": 4,
+    "orders_identical_to_old204": true,
+    "epoch_group_sha256": [
+      "69acbe1881da1097bd26993f6dad19a560071c9b8cb1638c9e1fb42e3417804d",
+      "1df666e4f4ae224740fbd55306c2fa9a38de0829827e521e475555928726c559"
+    ],
+    "epoch_row_order_sha256": [
+      "07dc27ca8656e2625ee76b90128851807e45b836fc66e47366d10cc5a6c0a826",
+      "e64228ad538696342dac33ed21dbadc82bb45cfec10c8445128a3f051a716795"
+    ]
+  },
+  "fixed_data_refs": {
+    "TRAIN_SHA": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/train204.patient-first.jsonl",
+      "bytes": 2830656,
+      "sha256": "ec64defd2106d65f5c4f6149480b78354484a40a2cc173ad81826ff36503a2d8"
+    },
+    "TRANSPOSITION_SHA": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/summary.json",
+      "bytes": 14864,
+      "sha256": "cf0729e519bf457b618c1d9dfed8b8a2b87c6f424e5d3a590a39de5909ac67f8"
+    },
+    "TRAIN_TOKEN_AUDIT_SHA": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/patient-first-closed-set-F0/cpu-preparation/cpu-v1/train-token-audit.json",
+      "bytes": 268533,
+      "sha256": "4946bf262953db131aa8afbd0a41d383ff9572f56c5fc59d5471c03b84e5f3dd"
+    },
+    "PREPARATION_SHA": {
+      "path": "/workspace/patientphex-runs/round2-20261023/sequence_crf/relation-sft-fold0/manifest.json",
+      "bytes": 16862,
+      "sha256": "528a6364bcbdf0aaff6d27754f65b743c18a18434078815c14592d3c735c33af"
+    }
+  },
+  "native_receipt": {
+    "placeholder": "__NATIVE_CPU_RECEIPT_SHA_PENDING__",
+    "rejected_before_source_data_checks": true,
+    "actual_receipt_not_provided": true,
+    "native_CPU_execution_claimed": false
+  },
+  "H44": {
+    "exact_epoch_NNN_directory_only": true,
+    "old_26steps_per_epoch_guard_retained": true,
+    "no_new_synthetic_cases_executed": true
+  },
+  "scope": {
+    "NN_backends_imported": false,
+    "MCP": false,
+    "GPU": false,
+    "tokenization": false,
+    "training": false,
+    "scoring": false,
+    "new_or_repeated_schema_cases": false,
+    "training_answers_parsed": false,
+    "F0_gold_or_targets_opened": false,
+    "whole_training_file_hashed_only": true
+  },
+  "limitations": [
+    "Static template only; actual native receipt/source runtime/probe/formal budget and execution remain owner tasks.",
+    "Binary labels preserved by prior CPU evidence; new target factorization changes numeric token-mean supervision.",
+    "Fresh-run semantics unchanged; only own-run fingerprint complete epoch resume allowed."
+  ]
+}

@@ -26,3 +26,10 @@ helper纯CPU6.715304s已通过，来源/矩阵/旧native全编码逐字核验。
 ## 实际A100部署中断（未运行CPU/GPU）
 
 原source/计划已push并核02435386。首次实际run_command仅尝试创建自有`sequence-round2/patient-first-F0-longest-probe-v1`及检查磁盘，返回UNKNOWN_OUTCOME；没有进入任何write_file、native CPU或GPU启动。目录可能已建立，不能把未知当“未执行”重调deploy。D0保留完整cpu-deployment.zip/intent与16成员SHA，已通知root并暂停新增MCP。待统一恢复，先只读同目录库存；不存在再建、已空则原位复用，只续接原冻结数据，禁止重启不存在的GPU任务。此连接故障不构成模型质量或显存失败。[状态](../evidence/round2/patient-first-F0-deployment-unknown.json)。
+
+
+## 部分上传恢复及离线正式源草案
+
+03:05 同目录库存实际恢复，UID1045、自有目录已创建且为空、磁盘free58,139,037,696B。复用原377023B/16成员archive，无重复mkdir；part000有成功回执，part001在03:06:41返回UNKNOWN，尚未解包/nativeCPU/GPU。03:08:33间隔至少60秒后的单次库存仍UNKNOWN；遵照主线程持续授权按退避后同目录只读核验，仅补实际缺件，不把未知当未发生。原source02435386与docs f376d212已GitHub lsremote实核。
+
+正式204训练草案e1aaf284保持旧9d2 CONFIG和8863B数值循环逐字一致，52calls/3warmup，新增新schema/三chain/656837full/7612监督绑定。nativeCPU实际收据SHA仍显式pending，入口硬拒绝执行；没有启动正式训练或把旧F1收据移用。旧F0原58 baseline仅定位现有pred63aefe68/metricse16ff5b0，Score .6954439475814587，未重评。
