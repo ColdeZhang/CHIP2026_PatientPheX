@@ -77,3 +77,5 @@
 
 - **公开212统一独审通过**：训练1a953b82+质量完整重装汇总 `e8627dfe`；唯一.674046941负结果正式关闭，不重评。
 - **value权重attempt2实现通过**：两shape内logits exact、CE差≤1.2e−7，全LoRA梯度1.62–1.69%差在预写2%内，非bitwise；同冻结logits poison padding loss/grad exact。原生跨shapeCE也差−.018571，旧失败保留，不归因具体内核。最长5523加权真更新12.181s/peak23.859GB，总96.492s，00:05:03Z A100GPU2空交ontology，watch53301结束。新增独审d71c6e52通过，旧失败ffe5e4c0原样保留；仅工程检查无质量/正式训练；[结果](evidence/round2/json-value-weighted-attempt2-result.json)。
+
+- **value权重唯一正式对照准备**：原124/402594tokens/7170监督不变、值token权重2，其余1，fresh32文献×2ep/32calls/2warmup。A100实际CPU9.571s核所有编码/权重/末4行分母与meta参数，CUDAfalse；2100+30/软2040可恢复partial、只final推断。后继唯一原80 F1对旧.660942003，600+30且不混public62；[冻结计划](evidence/round2/json-value-weighted-formal-plan.json)。源码/计划推送后核UUID空卡启动，探针状态不复用。
