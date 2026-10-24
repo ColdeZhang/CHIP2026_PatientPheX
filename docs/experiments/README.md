@@ -35,7 +35,8 @@
 | 患者条件生成 | [grounded_generation](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-generation/solutions/grounded_generation/WORKLOG.md) | 进行中 |
 | 患者训练长度 | [patient_schedule](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/patient-schedule/solutions/patient_schedule/WORKLOG.md) | 进行中 |
 | 预训练联合抽取 | [schema_extraction](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/schema-extraction/solutions/schema_extraction/WORKLOG.md) | 完整推断后规范化与质量处理中 |
-| 原生Qwen3关系 | explore/qwen3-relations，solutions/qwen3_relations | 分支已建立，源码/记录准备中 |
+| 原生Qwen3关系 | [qwen3_relations](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/qwen3-relations/solutions/qwen3_relations/WORKLOG.md) | CPU/源码已备，真实工程准备中 |
+| 固定关系共识融合 | [relation_consensus](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/relation-consensus/solutions/relation_consensus/WORKLOG.md) | 内部F1正并独审，固定F0复验中 |
 
 ## 历史诊断索引
 

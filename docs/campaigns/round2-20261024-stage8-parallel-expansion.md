@@ -66,3 +66,9 @@ GP补全11步已344.730秒完整，卡实证释放；因.3连接抖动仅断点�
 10:49决策：GP四折完整pooled **.731169764822**，较原.731545429370下降.000375665；F2微正/F3负，总2/4非降，固定保留门失败。原两折及91件原结果均保留，不因具备可复用GP48分数而迁full64/原dev。
 
 新[Qwen3关系基座查重](../research/qwen3-dense-attention-readiness-20261024/REPORT.md)确认旧train48→F0关系训练和Task1 F1已做，未找到严格train32关系SFT→完整F1；已有R1也为全注意力，不将候选收益归因为attention消融。原生基座8.190735B＋r16为8.234382B；.100既有缓存可复用。实际CPU124train/80held原生token合同通过，训练403151tokens/max5534，held666591/max14322。已建推explore/qwen3-relations自ff676a0，DocRE负责人转线。CPU与标准CE/indexed工程通过后唯一420+30压力；若24GB/估计容纳，直接fresh2ep2400+30、两完整ACK及80fresh1200+30，预写单臂/强fullsupport整体并集双终点，不逐阶段等待确认。OOM则保失败协调A800，不截样本。
+
+10:59新机制结果：GLiNER2.5完整F1两端点均负（N∪new .672407143643、关系单臂.459793526949，实体固定），496原件/完整覆盖/规范化与双冻结终审dac8bde8通过。root随后另立固定 `fullsupport ∪ (DocRE30∩schema)`，不改两源原负或阈值，唯一CPU新v2由 **.686338981272→.690618521538**；新增22=10TP/12FP、micro+.003702、macro+.013417，完整16/39/1189、非关系对象保持，独审ae9c4631。首装配pair-reader schema错误发生在pred/gold前，保原失败并只改reader；见H60与新分支explore/relation-consensus（47e27e4/6bcf4c5）。
+
+新共识只在内部开发F1正，原dev仍901。后继固定F0复验：DocRE32全祖先实际排F0（446e470f），所以不重训，仅原model完整held推断；schema相同公开模型/train32(F2F3)规范化policy亦排F0，F0实际172窗/47患者。先.100短schema再Qwen连续工程/训练，.3补DocRE推断与必要Sap；root只评完整共识F0一次，不为这次复验另扫单臂分数。
+
+长训练已闭环：grounded87×2/22updates实际10:47:48完整，2039.028秒、两完整ACK；39fresh10:54:45启动。patient4四份ACK10:56:59全齐，旧watch正常结束，原owner接续80fresh；不重启旧训练。另有[非思考双seed共识准备](../research/nonthinking-consensus-readiness-20261024/REPORT.md)，只读查重未找到同机制，保留为候选，尚无新推断授权/作业。
