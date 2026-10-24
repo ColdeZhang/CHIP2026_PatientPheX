@@ -96,3 +96,13 @@ Qwen3正式32更新/两份完整ACK完成，80fresh推断11:14:28启动。患者
 Grounded强B融合 .695950447742、双采样强B融合 .693653303500、原生Qwen3强B融合 .689312034492均胜同B .686338981272。三条分别独立记录；其中后两条训练/推断完整结束，GPU已释放。主线程在全部输入固定后预写两融合端点，强B保护下至少二源支持达 .701087332488（新增36=18TP18FP，micro .747809152872 /macro .641601241291），严格胜最佳单源；全并集 .684526718071负关闭。见[独立融合记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/parallel-relation-fusion/solutions/parallel_relation_fusion/WORKLOG.md)。原dev901尚未变，三条同权重F0准备中，主融合须在F0严格胜B0 .711507580027才保留。
 
 Root另做强Task1的统一quote增量：42新实体11TP31FP，.728697536469→.727242335488，负闭且已审；[记录](https://github.com/ColdeZhang/CHIP2026_PatientPheX/blob/explore/grounded-task1/solutions/grounded_task1/WORKLOG.md)。小包21成员已实际恢复，融合23成员亦实际恢复；未把任何未达.8实现合并main。
+
+### 11:55 跨折正复验与原dev接续
+
+双采样固定F0完整116条均strict/naturalEOS，807.028秒、11:48:37卡释放；B0 .711507580027→**.721969518388**，新增21=9TP12FP，微/宏同时升。此前F1+.007314亦正。已授权同full64模型1a703b、完整expanded64输入4621fec5、两seed128fresh，.100GPU1原2100+30，主终点仅901整体并入双seed交集，一次完整冻结/一次v2；尚未实际启动或产生原dev新分。分支c3c0654已推，完整raw/质量包已备份核验。
+
+Grounded47条已11:48:52完整，44EOS/3cap，固定解析另有2整行JSON拒绝；不补跑、不修答案，149必要Sap等.3原Qwen58释放。Qwen3 full64 CPU265train/64held实际15.237秒，新增训练最长6155须新形状探针，尚未full64训练。三源全部raw齐后，由validation代理将root固定2of3和仅F1拟合的三bit LR共同冻结，再各唯一F0评分；LR没有使用B1特征或F0标签。
+
+GLiNER2.5实体探针六次真实更新通过，最后wrapper只因无eval的best_metric=inf无法写严格JSON退出；CPU恢复摘要，未重跑GPU。正式fresh320窗×10轮已11:51:38启动，native随机query增强.2保持，完整训练后接原固定F1实体端点。患者响应code原正式也已实际启动，原12:45:04截止不变；MCP UNKNOWN仅恢复观察。
+
+[标准名称约束生成准备](../research/canonical-name-generation-readiness-20261024/REPORT.md)确认未试机制：生成公开名称集合后精确映射，避免自由HP编码；原生token trie已CPU验证，但14个训练患者的NIL/分支外覆盖限制明确，不能替代完整答案。现仅CPU准备，无GPU/模型质量，不宣称涨分。

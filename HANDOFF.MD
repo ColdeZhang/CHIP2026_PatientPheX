@@ -93,6 +93,8 @@
 
 远端部署需等待文件传输真正完成再启动依赖作业：Sap新特征准备曾在异步部署完成前启动，因脚本尚不存在退出，未载模型、未用GPU。启动器现要求成功部署的plan/source收据及前阶段完成标记，失败保存在外部 `ontology_rules/public-sap-feature-control/attempt1-launch-race/`；不能以“已发起传输”替代依赖就绪，也不能把这次工程失败记成模型质量结果。
 
+跨服务器已有副本也要先测真实带宽。2026-10-24 Qwen的182,807,574字节runtime/adapter包经隧道约103秒仅到6MiB，无法在原限时内完成；停止自有接收器、隧道和服务并保留partial后，同一SHA包改私网单文件bearer HTTP，4KiB Range身份核通过，16.043秒完整传完、2617成员逐SHA/fsync。先核真实私网地址与源文件身份，使用短TTL、单文件允许列表和限速，完成后关闭服务、移除临时凭据；不盲延长旧TTL或重下基座。接口连接UNKNOWN时先恢复原意图，不能重复启动接收/训练。证据`stage8-qwen3-relations/f0-readiness/direct-transfer-result.json`；训练与质量另行判断。
+
 ## H14：官方附件元数据中的相对路径不等于可下载 URL
 
 将 `/file/race/documents/...` 直接拼在网站根路径下会下载到 HTML，解压出现 `BadZipFile`。

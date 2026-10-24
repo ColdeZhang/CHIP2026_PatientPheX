@@ -1,0 +1,70 @@
+{
+  "schema": "canonical-name-readiness-terminal-v1",
+  "completed_at_utc": "2026-10-24T11:50:56.281711+00:00",
+  "status": "CPU_READINESS_PASS_NOT_QUALITY",
+  "root_output_directory": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024",
+  "new_mechanism_gap": true,
+  "no_gpu_no_model_weights_no_fit_no_quality": true,
+  "no_held_or_original_dev_gold": true,
+  "no_existing_worktree_or_main_mutation": true,
+  "root_may_ingest_small_files": {
+    "REPORT.md": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/REPORT.md",
+      "bytes": 8150,
+      "sha256": "96a23ebad8de8fd067faa1802ba400f6b08465c0be1caf88792387470ccda42b"
+    },
+    "sources.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/sources.json",
+      "bytes": 11342,
+      "sha256": "a92e16ea200389bb3394a7957741a1bb1814077fef1972164d3b077bbe46d60d"
+    },
+    "census.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/census.json",
+      "bytes": 4556,
+      "sha256": "a974835ece48551401e246a57becebbfb30626227e70e6eeb282fe3d266be030"
+    },
+    "native-contract.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/native-contract.json",
+      "bytes": 2269,
+      "sha256": "ce77820944791f08ce3a6e3df7771e3e91fb8ec4761a0ac2f74162d0cb2554ce"
+    },
+    "schema_contract.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/schema_contract.py",
+      "bytes": 5709,
+      "sha256": "319728fab68aad4ed9a9dc4323aec8180aaf7e960db45647f3814b2ed6339644"
+    },
+    "census.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/census.py",
+      "bytes": 8209,
+      "sha256": "6e805c4b2c72750bf134805056f50e22bd616652f8d249f280ade5a72072ed7c"
+    },
+    "native_contract_check.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/native_contract_check.py",
+      "bytes": 5866,
+      "sha256": "4fa5b0daca1d1585222af16a0c8fe0e7e4e3166eb36b737740765512f2e2c175"
+    }
+  },
+  "external_only_artifacts": {
+    "train32-target-inventory.jsonl": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/train32-target-inventory.jsonl",
+      "bytes": 70687,
+      "sha256": "d8563c27f16ad388f3cf9cbb85fa6daebabe1f276c30d43431b07481e957783f"
+    },
+    "public-name-to-id.json": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/public-name-to-id.json",
+      "bytes": 892320,
+      "sha256": "415038965bcc9e23c16fa8c4f2793419cdccb0745afdda377265b9787bf5d3c3"
+    },
+    "sources/grounded_schema_current.py": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/sources/grounded_schema_current.py",
+      "bytes": 4980,
+      "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+    }
+  },
+  "commands": [
+    "python census.py",
+    "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 TOKENIZERS_PARALLELISM=false cpu-venv/bin/python native_contract_check.py"
+  ],
+  "environment": "Local isolated cpu-venv, tokenizers==0.23.1 only; no MCP connection or remote resource allocation.",
+  "open_work": "Any actual training/generate/quality work requires root scheduling; current F0/full64 positive routes remain first priority."
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "canonical-name-native-CPU-contract-v1",
+  "seconds": 3.3206726209900808,
+  "reused_schema": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/canonical-name-generation-readiness-20261024/sources/grounded_schema_current.py",
+    "sha256": "460dd7cce3208a7aca521f73e6a675959eb649b562312a877eeac0f2af36edbf"
+  },
+  "tokenizer": {
+    "path": "/workspace/patientphex-runs/round2-20261023/case_retrieval/qwen35-preparation/verified-small/tokenizer.json",
+    "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "package": "tokenizers==0.23.1",
+    "eos": 248046,
+    "native_pipeline": true,
+    "auto_wrapper_used": false
+  },
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false"
+  },
+  "trie": {
+    "names": 19119,
+    "nodes": 173381,
+    "entry_variants": 38238
+  },
+  "all_public_singleton_native_roundtrips": 19119,
+  "singleton_segmentation_mismatches": 0,
+  "all_train_target_native_roundtrips": 87,
+  "train_target_segmentation_mismatches": [],
+  "train_answer_tokens": {
+    "including_im_end": true,
+    "min": 2,
+    "max": 309,
+    "sum": 6167
+  },
+  "callback_train_prefix_steps": 6167,
+  "parser_reject_cases": [
+    "unknown",
+    "case_change",
+    "duplicate",
+    "wrong_type",
+    "trailing_prose",
+    "truncated",
+    "cap_even_valid",
+    "not_eos"
+  ],
+  "duplicate_path_blocked": true,
+  "beam_state_reconstructed": true,
+  "user_input_token_lengths": {
+    "train": {
+      "rows": 87,
+      "min": 1367,
+      "max": 8607,
+      "sum": 420996,
+      "scope": "Native USER content tokens only; system/chat template overhead excluded"
+    },
+    "F1_input": {
+      "rows": 39,
+      "min": 3039,
+      "max": 9864,
+      "sum": 195164,
+      "scope": "Native USER content tokens only; system/chat template overhead excluded"
+    }
+  },
+  "max_rss_KiB": 211404,
+  "limits": [
+    "No model load, no actual generate or HF logits processor execution.",
+    "No held or original-dev gold, no quality scores.",
+    "USER lengths exclude template/system; complete train/inference cap must be measured before any fit.",
+    "Trie constrains grammar/name validity only, never semantic correctness or patient attribution."
+  ]
+}
