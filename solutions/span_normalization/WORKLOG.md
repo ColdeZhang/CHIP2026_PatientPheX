@@ -1,7 +1,7 @@
 # Span normalization 工作台账
 
 - 目标：原dev公开v2默认all/text Score≥.8。这里只运行train64内部文献分组验证，尚未打开原dev、未访问官方。
-- 当前：E004三新GP+八评分11步于10:38:31.715630完整结束，344.730秒，全rc0无超时；10:39:20后实际核GPU0=4MiB/noapps已释放。随后MCP再次offline，结果文件回收暂阻，尚未fit/quality；原训练不重启。恢复外部`oof-fourfold-completion/collect_terminal.py`同名ZIP。见[运行指针](evidence/oof-completion-runtime-pointer.json)、[实验](experiments/E-20261024-SPAN-004-fourfold.md)。
+- 当前：E004完整四折负结案，pooled .731545429370→.731169764822（−.000375664548），仅2/4折非降；按事前门关闭，不迁full64/原dev，不扫参数。GPU344.730s、CPU31.036s、91件原包实际恢复SHA通过；小型质量备份和集中独审收尾中。见[结果](evidence/oof-fourfold-result.json)、[实验](experiments/E-20261024-SPAN-004-fourfold.md)。
 - 决策门：已知F1 +.002115173201、F0 −.001065881294之后补另两折，明确研发而非盲测。训练/候选池/旧特征/160树/.3/nested/missing全部保持。两新全预测共冻后各唯一v2，再pooled64唯一v2；复用原F0/F1预测和指标，不逐折选模型。仅pooled严格升且≥3/4折非降才考虑原dev迁移，否则关闭该特征控制。
 - 计算：复用GP13/03/12/02，完整train32 bytes/IDs/config精确核；新GP01只训一次，另新GP01348/GP01248，共3训练/8全边界pass。新GP01两目标使用的训练文件bytes SHA也精确相同。所有原候选保留，包括低于−2分数；不能只存最终实体。
 - 源/备份：最近核远端`explore/span-normalization@c56227230bf40671ab6eb4b79b89928b4d415761`。新completion文件独立，F1/F0已审源SHA不变。外部主目录`/workspace/patientphex-runs/round2-20261023/stage8-span-normalization/`；当前子目录`oof-fourfold-completion/`，服务器同名目录在项目根下。长作业须先查intent/started/terminal，不盲重启UNKNOWN。
@@ -20,7 +20,7 @@ E001全部2133跨度/2134拆ID单元保留。强池外447单元仅12精确TP+3NI
 
 ## 接手注意与下一步
 
-1. 查当前E004部署/运行意图，完成八组CPU token/mapping/覆盖后才唯一启动。源checkpoint先推送；900+30原时钟不隐式延长。实际release同时报root与sequence。
-2. GPU完成全量目标后，`collect_terminal.py`按原ZIP断点恢复，逐SHA核；`run_cpu_quality.py`先两个fit-only冻结，再统一质量入口，不提前看F2分数后改F3。
-3. 完整四折正负结果均保存/commit/push；独立终审集中处理。原dev迁移需先报实际库存和预算，不将内部折当用户0.8。
-4. HPO上下文reranker查重由root的`normalization_methods`完成：旧SapTop8新ID+±180上下文+BiomedBERT CE确已实跑负，不重复开GPU。报告外置`research/context-normalization-gap-20261024/REPORT.md`，SHA c246fe36…；不同于仅旧池same-span ranker未fit。
+1. 当前没有GPU作业，E004原900时钟完整结束并实核释放。原终态/错误与恢复包均保留，禁止重启旧作业。
+2. 完整负结果按固定门保留，补远端小包回执及一次集中增量独审；复用F1 bcb53与F0 a3f855，不重审旧质量/训练。
+3. 原dev .8目标尚未达成。本固定特征控制不继续扫cut/epoch或直接full64；新的实质假设另经root协调，不把内部折当用户验收。
+4. 上下文规范化查重证实旧SapTop8新ID+±180上下文+监督BiomedBERT CE确已负；见[查重指针](evidence/normalization-history-pointer.json)。当前不重复该宽泛GPU提案。
