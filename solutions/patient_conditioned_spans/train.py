@@ -35,13 +35,14 @@ def one_update(model,row,opt):
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--mode',choices=['probe','formal'],required=True);ap.add_argument('--model',required=True);ap.add_argument('--encoded',required=True);ap.add_argument('--output',required=True);ap.add_argument('--plan',required=True);a=ap.parse_args();O=Path(a.output);O.mkdir(parents=True,exist_ok=False);started=time.monotonic();torch.set_num_threads(1);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False;seed(20261024);plan=json.loads(Path(a.plan).read_text());pre=json.loads((Path(a.encoded)/'preparation.json').read_text());train=unpack(Path(a.encoded)/'train.json.gz');held=unpack(Path(a.encoded)/'held.json.gz');assert len(train)==32 and len(held)==16
- assets={n:ref(Path(a.model)/n) for n in ['pytorch_model.bin','config.json','vocab.txt','tokenizer_config.json']};assert assets['pytorch_model.bin']['sha256']==plan['model_files']['pytorch_model.bin'];assert assets['vocab.txt']['sha256']==plan['model_files']['vocab.txt']
+ assets={n:ref(Path(a.model)/n) for n in ['pytorch_model.bin','config.json','vocab.txt','tokenizer_config.json']}
+ assert {n:v['sha256'] for n,v in assets.items()}==plan['model_files']
  encoder,loading=AutoModel.from_pretrained(a.model,local_files_only=True,attn_implementation='eager',add_pooling_layer=False,output_loading_info=True)
  save(O/'loading.json',loading);assert not loading['missing_keys'] and not loading['mismatched_keys'] and not loading['error_msgs'];assert all(k.startswith('cls.') or k in ['pooler.dense.weight','pooler.dense.bias'] for k in loading['unexpected_keys'])
  model=PatientSpanModel(encoder).cuda();model.train();num=sum(p.numel() for p in model.parameters());assert num<=10000000000;opt=torch.optim.AdamW(model.parameters(),lr=3e-5,weight_decay=.01)
  save(O/'initialized.json',{'mode':a.mode,'train_ids':[r['pmc_id'] for r in train],'held_ids':[r['pmc_id'] for r in held],'parameters':num,'encoder_parameters':sum(p.numel() for p in encoder.parameters()),'unused_pretraining_keys':loading['unexpected_keys'],'probe_state_used':False,'torch':torch.__version__,'assets':assets,'plan':ref(a.plan),'source':ref(__file__),'model_source':ref(Path(__file__).with_name('model.py')),'config':pre['configuration']})
  if a.mode=='probe':
-  maximum_windows=max(train,key=lambda r:(len(r['windows']),len(r['candidates'])));maximum_patient_candidates=max(train,key=lambda r:len(r['patients'])*len(r['candidates']));rows={r['pmc_id']:r for r in [maximum_windows,maximum_patient_candidates]};records=[]
+  maximum_windows=max(train,key=lambda r:(len(r['windows']),len(r['candidates'])));maximum_patient_candidates=max(train,key=lambda r:len(r['patients'])*len(r['candidates']));rows={r['pmc_id']:r for r in [maximum_windows,maximum_patient_candidates]};assert set(rows)==set(plan['probe']['documents']);records=[]
   for row in rows.values():
    before=snapshot(model);r=one_update(model,row,opt);r['actual_parameter_changes']=changes(model,before);records.append(r);save(O/'updates.json',records);print(json.dumps(r),flush=True)
   seconds_per_window=max(r['seconds']/r['windows'] for r in records);estimate=seconds_per_window*(300*8+156*.5)+60+120
