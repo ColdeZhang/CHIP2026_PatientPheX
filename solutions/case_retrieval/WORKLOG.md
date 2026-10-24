@@ -1,6 +1,6 @@
 # 病例检索路线：当前工作索引
 
-- **[F0 全文 FLA完整质量](fla_fulltext_F0_control/QUALITY-RESULT.md)**：旧native .696603974744→主/诊断同 **.697299773647**（+.000695799），新增1TP/0FP，同分选primary；仍低同骨架强triple .709556743085，不是globalbest。原58fresh/最长16245门通过，387.541秒rc0/实际GPU释放；321原件全SHA恢复，双pred共冻8c201d5e后2newv2/旧0、CPU.306秒，summaryc7f32fb8。F1已审8ca5be23也主正+.002349900；两折局部正不自动迁原dev/组合/官方。F0统一增量终审4fbaeaf1通过，准备唯一质量小补包；无活动GPU或待评分。
+- **[F0 全文 FLA完整质量](fla_fulltext_F0_control/QUALITY-RESULT.md)**：旧native .696603974744→主/诊断同 **.697299773647**（+.000695799），新增1TP/0FP，同分选primary；仍低同骨架强triple .709556743085，不是globalbest。原58fresh/最长16245门通过，387.541秒rc0/实际GPU释放；321原件全SHA恢复，双pred共冻8c201d5e后2newv2/旧0、CPU.306秒，summaryc7f32fb8。F1已审8ca5be23也主正+.002349900；两折局部正不自动迁原dev/组合/官方。F0统一增量终审4fbaeaf1通过，31件103KB质量小补包53edbb0a/manifestc09f39f0已服务器SHA/fsync/reopen，root独立恢复待办；无活动GPU或待评分。
 
 更新：2026-10-24 UTC。分支 `round2/case-retrieval`；worktree `/workspace/patientphex-worktrees/round2-case-retrieval`。开始新任务先读主仓 `/workspace/CHIP2026_PatientPheX` 的 AGENTS/HANDOFF/总台账，再看本索引与实际状态。
 
