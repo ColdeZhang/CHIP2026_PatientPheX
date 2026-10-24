@@ -1,0 +1,93 @@
+{
+  "status": "CPU_READY_NOT_GPU_OR_TRAINING_AUTHORIZED",
+  "root_input_decision": "original short train124 cb7f67e1 + original expanded-full-report held80 2a95bad1",
+  "source_refs": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/sources.json",
+    "bytes": 6227,
+    "sha256": "0088948bcfcd355665ce84b9bc09df9c358f1e5c3c8f6c82963f2d23e772db06"
+  },
+  "structural_checks": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/structural-result.json",
+    "bytes": 3937,
+    "sha256": "03d497ccc9f7f3564ee3d369f85b2d3bc7e60034bc785009de6f300745e81a7e"
+  },
+  "native_result": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/native-terminal/native-result.json",
+    "bytes": 6549,
+    "sha256": "56d7ce92cfef78cdeb03835dc3520444c3341188c346d9059f37b5de709595b4"
+  },
+  "train": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/train.response-code.jsonl",
+    "bytes": 1876887,
+    "sha256": "f73cb24fa73bcb1342d7cbd35d0ca76ccd7d7ccc5a5afd9abf01a80e46c84e28"
+  },
+  "held": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/held.response-code.jsonl",
+    "bytes": 2893388,
+    "sha256": "54c8cb8c3e273dca62d6972cf24fc520d921fde091f35626931adf5de2676e9b"
+  },
+  "output_contract": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/patient-response-code-readiness-20261024/response_codec.py",
+    "bytes": 4878,
+    "sha256": "da6410ac3a93c6832de950ee03cdba6e7c0388151b10a050fc9859242c9faad6"
+  },
+  "training": {
+    "rows": 124,
+    "documents": 32,
+    "patients": 87,
+    "epochs": 2,
+    "optimizer_calls": 32,
+    "warmup_calls": 2,
+    "seed": 20261023,
+    "rank": 16,
+    "learning_rate": 0.0001,
+    "gradient_accumulation": 8,
+    "standard_CE_formula": true,
+    "token_targets_changed": true,
+    "supervision_tokens": 8138,
+    "input_tokens": 427560,
+    "rejection_cap": 6144,
+    "truncate": false,
+    "fresh_base": true,
+    "old_adapter_or_probe_state_allowed": false
+  },
+  "inference": {
+    "rows": 80,
+    "documents": 16,
+    "patients": 39,
+    "input_tokens": 685372,
+    "max_input_tokens": 14570,
+    "proposed_rejection_cap": 14848,
+    "generation_tokens": 1600,
+    "greedy": true,
+    "all_fresh": true,
+    "truncate": false,
+    "complete_all_patient_and_candidate_space": true,
+    "invalid_output": "strict whole-row abstention, no fabricated candidate completion or second generation",
+    "raw_IDS_response_before_parser": true,
+    "reverse_map_only_after_valid_complete_code_matrix": true
+  },
+  "quality_proposal": {
+    "primary": "new coded-normal-alone vs frozen strong normal N",
+    "diagnostic": "optional root prelaunch choice N union coded-normal; not yet assumed authorized",
+    "strong_N_Score": 0.676546354662594,
+    "historical_fullsupport_Score": 0.6863389812716092,
+    "criterion": "Score strictly higher; macro report; no alternate epoch/cut/third arm",
+    "before_gold": "freeze all chosen complete predictions before unique v2 each, old0"
+  },
+  "resource_proposal": {
+    "probe_seconds": 240,
+    "probe_grace_seconds": 30,
+    "formal_training_with_two_durable_ACK_seconds": 3600,
+    "formal_grace_seconds": 30,
+    "inference_seconds": 1200,
+    "inference_grace_seconds": 30,
+    "engineering_bounds_not_measured_performance": true
+  },
+  "no_GPU": true,
+  "no_fit": true,
+  "no_quality": true,
+  "no_new_gold": true,
+  "no_renderer": true,
+  "main_ingestion_by_root": true
+}

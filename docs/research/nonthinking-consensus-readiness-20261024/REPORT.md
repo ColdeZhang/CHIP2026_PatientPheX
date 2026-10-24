@@ -11,7 +11,7 @@
 | 固定多数票 S22/S23 | N、候选逆序R用同adapter的greedy，加另训patient-first P的greedy；F1 .663841821→.663437055、F0 .709556743→.699390541 | 多输入/多适配器，未随机采样；也不是当前全文G或强fullsupport |
 | Qwen3.5 thinking采样 S24/S25 | 同旧32 adapter，`enable_thinking=True`，单输入seed20261023、T1/p.95/k20/presence1.5、4096上限；触顶、无EOS、未闭think，无质量 | 思考模式的一条格式/成本诊断，不是80×2非思考共识 |
 | 强制结束thinking S26 | 复用已生成4096-token思考前缀，人工闭合后seed20261024续采样512 | 改前缀/结束条件的一条诊断，不能冒称全新非思考输入或第二完整种子 |
-| R1 S27 | DeepSeek-R1-Distill-Qwen-7B，T.6/p.95/k0、逐行seed20261024，一次完整80 | 基座、模式均不同，没有本次同权重两seed投票 |
+| R1 S27 | DeepSeek-R1-0528-Qwen3-8B，T.6/p.95/k0、逐行seed20261024，一次完整80 | 基座、模式均不同，没有本次同权重两seed投票 |
 | native→FLA全文 S3/S13 | 同4f4815b6 adapter、同80输入；两者均`do_sample=False`；native A800与FLA A30 | 是后端/硬件变体，不是两seed。raw中的`native_response`只是同一生成ID的另一解码核，不是额外样本 |
 
 ## 可复用资产与成熟方法
@@ -42,3 +42,5 @@
 | 全文FLA/A30（建议匹配） | 670,122 | 4,720 | 521.774 |
 
 两新全文pass确定需**1,340,244输入tokens**；以既有greedy长度仅作成本代理为9,440输出tokens，2×实测为1,043.548秒。建议预估**1,100–1,400秒**、一次绝对**1,800+TERM30秒**窗口（含加载/采样/保存），模型只加载一次，GPU由root排；这不是已实测采样速度。原A30 greedy80 peak reserved约23.24GiB、allocated19.98GiB，已成功支持最长输入；采样变长仍有风险。极端160×1600达256,000输出tokens，不可能用该经验预算保证跑完；预算不足保不完整状态，不能临时降cap、跳长行或延时。当前不申请额外权重下载、不改predict、不执行任何探针/模型/评分。
+
+主线程校正：原始只读报告把S27的R1简称误写为Distill-Qwen-7B；实际固定模型是R1-0528-Qwen3-8B，见[精确来源校正](correction.json)。原外部84f79f62报告不覆写，错误不影响nonthinking双seed未试的查重结论。
