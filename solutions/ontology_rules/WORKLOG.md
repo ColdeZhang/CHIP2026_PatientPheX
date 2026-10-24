@@ -8,13 +8,13 @@
 - 本路线原dev固定 BioBERT迁移 **.738493753**（旧.737585917），独审7336b280；[证据](evidence/round2/public-phenotagger-biobert-dev-results.json)。主线程当前组合最佳以根台账为准。
 - train64强BioBERT四fold **.730993616**，不能混作原dev指标。每个独立模型≤10B，允许集成，旧全链总上限已撤销。
 
-## 当前：F1全文对照正结案；固定F0复核准备
+## 当前：两折全文输入对照结案；更强缓存对照与训练CPU可行性准备
 
-- 固定F1开发对照：旧 **.660942003 → 全文单独 .676546355 / 事前主臂旧∪全文 .669554799**。主关系micro **.686600221→.694092827**、macro **.542228853→.569187435**，主retain=true；新增19TP+26FP。全文单独虽更高，仍是预定诊断端点，不事后改主选条件。1189实体/全部非关系原字节保持；这不是原dev达标，也不能外推0.8。
-- 原唯一完整80：79fresh＋idx19精确缓存1，80/80严格完整JSON与自然EOS、0整行弃答。wrapper **376.475652秒/rc0**、fresh生成347.081604秒；05:39:04.322610 A800_GPU2实际used1/free81156/无进程。原proc_cce6e47e已完成，不能重启。
-- binder绑定240原始逐行证据后，两个完整pred共同freeze f0ccf03c，再各唯一v2、旧0；summary d2eddae4。独立统一实际终审d655/metadata修订8d19通过。303内容成员包d7cb2131（190297B）已在.100全成员SHA/fsync；8d19及scope66c5两小附录单独持久，不重打包。root已明确授权下述F0复核，仍不自动迁原dev/官方。
-- 外部 `F=R/research/qwen35-sft32-full-report-feasibility/full80-v1`；[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)、[关键结果指针](qwen35_sft32_full_report_readiness/full80/result-pointer.json)、[指标](qwen35_sft32_full_report_readiness/full80/quality-summary.json)。恢复只读原F1终点与job，不再start/评分。
-- root已授权F0：原58/415CID/47PID/1166pairs、947实体，原SFT48 adapter8e32；同全文后缀。当前本地构造58全保，609passages/158markers/0skip、训练48与F0文献无交叉；原A800旧48SHM和.100原件实际SHA全等，不需搬运。native CPU实际7.478秒PASS（wrapper8.124s rc0），195355→505090tokens，max16245唯一idx30，工程cap16384；58行Auto/native/template IDs与双decode全核、不截断。原唯一最长probe proc_50f66d5a已PASS结束37.909523s rc0：16245→130，含prefill9.632724s，allocated22.753GB/reserved24.157GB；05:51:02.874170实际卡释放。全13终点SHA已核，原作业不重启。既定probe条件实际满足，完整58 source1100ee4c/planed429817已冻结，1200+30、idx30缓存1+57fresh，13件6小片实际SHA/fsync通过，唯一proc_76d0ce4c/PID20214/childPGID20224已05:53:31.239376启动，TERM06:13:31.239376+30秒；只读full58-v1/operations.py inspect，不重复start。两endpoint模板e48a97c1绑定实际probe及正式源且仍disabled，gold/质量未读。详见[事前执行政策](qwen35_sft32_full_report_readiness/f0/execution-policy.json)，两完整端点共冻各1v2/旧0，主Score升且macro不降。
+- F1旧 **.660942003 → 全文单独 .676546355 / 事前主臂旧∪全文 .669554799**；主micro与macro均增，新增19TP26FP。80strict/0弃答，376.475652秒rc0；独审原d655/metadata8d19，303内容成员包190297B/d7cb2131与两个小审查附录已在.100完整SHA/fsync。
+- F0旧 **.695443948 → 全文单独 .696603975 / 主旧∪全文 .695988393**，按事前Score升且macro不降门都true；但主micro **.690076336→.682352941** 下降、macro **.639022564→.648923742** 上升，仅新增6TP19FP，Score只+.000544446。58strict/0弃答，277.261910秒rc0；05:58:08.483853 GPU2实际释放。统一独审760cc08d通过，240内容+members共241成员包170467B/0e14e398已在.100逐SHA/fsync。原模型/评分不重跑。
+- 各折原1189/947实体、全部非关系UTF8字节保持；各折两个完整预测共冻后新2v2/旧0。这里只是已知F1/F0开发对照，不能称原dev改善或.8达标；全文alone仍保留事前诊断身份。[实验](experiments/E-20261024-SFT32-FULL-REPORT.md)、[F1指针](qwen35_sft32_full_report_readiness/full80/result-pointer.json)、[F0指针](qwen35_sft32_full_report_readiness/f0/full58/result-pointer.json)。
+- root新授权纯CPU四源控制：取sequence准确old∪reverse∪patient基线F1 .663841820660/F0 .709556743085，预定primary三方∪全文、diagnostic reverse∪patient∪全文（去old）。两折四完整pred共冻后各1v2，旧三方不重评；每臂须两折Score严格升且macro不降，若都过按两折合计增量选择。已知全文结果后的开发性质，不自动迁原dev，未来35条public-new支持不得丢失。精确handoff c1ecab45已收到，source准备中。
+- Qwen35原124/F2+F3/32doc全文训练仅盘点/CPU可行性准备：未找到该exact实际训练终点；旧SFT32局部两轮1149.460秒，原402594 tokens/max5523/监督7170。新124完整输入只改user证据、答案/其他字段保留，原文完整，255markers中254插入+1按固定重叠政策skip；native token计数与同Torch selectedCE数值合同已获CPU授权，尚未实际运行，不以字符比2.63154冒充token。无新训练/GPU授权或新作业。
 
 ## 最近：R1 F1完整负结案，F0扩展不启动
 
@@ -33,5 +33,5 @@
 
 - 强BioBERT+NCR四fold **.730993616→.731229952**，仅2/4非降<事前3/4而关闭；mention净−7TP/−17FP、doc−5TP/−10FP，关系exact。[结案](experiments/E-20261024-PUBLIC-NCR-ADDITION.md)，独审de325a2c。
 - NCR65件关键预测/指标/小HGB/source持久archive在.100 `research/ncr-strong-biobert-control-backup/20261024-terminal-v1/ncr-terminal-v1.tar.gz`，660803B SHA bb9aa427，全成员核验。
-- 最近已核Git远端 **98d450bec26b6750d2b5b6b50c375aee1600b3cc**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
+- 最近已核Git远端 **ef6aaa5bfc98e0b025ce69265a874a48fbfb556f**（push+lsremote exact）。本次结案提交后另核，不为台账自身hash递归提交。
 - 历史：[截至05:11台账](worklog/WORKLOG-through-20261024-0511.md)、[截至04:08](worklog/WORKLOG-through-20261024-0408.md)、[截至03:36](worklog/WORKLOG-through-20261024-0336.md)、[实验](experiments/)、[笔记](NOTES.md)、[证据索引](evidence/round2/README.md)。
