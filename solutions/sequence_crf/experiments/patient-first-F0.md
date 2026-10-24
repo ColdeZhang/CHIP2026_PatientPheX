@@ -64,3 +64,8 @@ source/实际CPU/计划已push+lsremote c72d985c6bc006561d31642bf4874988caf32226
 
 
 集中审查发现初版f08只fsync checkpoint所在output，未明确持久化本轮新建output父链。保留before-ancestor-fsync原源/plan后窄补：通过显式PATIENTPHEX_DURABILITY_ROOT绑定A100项目根，核output在其下，在ACK前fsync output→项目根全部父目录；收据记录实际父链，driver再核根匹配。新trainer cc707253、完整run()逐字不变；仅一次新祖先链标准库fixture0.031782s通过（209380ef），旧310fixture不重跑。最终readiness1cb194ea、train4b70dbce、infer69c05df1，原endpoint143638ee不变；正式尚未启动。
+
+
+## 实际正式部署和CPU预检通过
+
+最终source543e98e已push+lsremote。A100自有formal-v1目录全20成员actualSHA/compile通过（10件同机已核副本copy、10件新源/输入/plan；archive5390d934）。actual formalCPU 9.527084s通过，source cc707、204/48/max5769/656837full/7612监督、26steps/epoch×2、warmup3、总参数8,997,081,600，CUDA未初始化、not_training=true。completeabbe4d58、manifest40409ec4、audit881cf950三件回收SHA exact；未加载权重或执行model forward。显式说明本预检读excluded F0纯input用于ID隔离，不读F0 targets/gold或新质量。完整入口独审收口中，按原条件授权在fresh卡和空间核验后启动；这里尚未宣称正式训练已运行。
