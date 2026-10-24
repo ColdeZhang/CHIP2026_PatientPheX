@@ -1,0 +1,11 @@
+--- attempt1/probe.py
++++ attempt2/probe.py
+@@ -17,7 +17,7 @@
+  sys.path.insert(0,plan['native_module_directory']);sys.path.insert(0,plan['fasttext_runtime'])
+  import numpy as np
+  import h5py
+- import tensorflow.compat.v1 as tf
++ import tensorflow as tf
+  devices=tf.config.list_physical_devices('GPU');assert len(devices)==1,devices
+  tf.config.experimental.set_memory_growth(devices[0],True)
+  tf.keras.mixed_precision.set_global_policy('float32')

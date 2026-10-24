@@ -136,3 +136,7 @@ root采纳同机参考恢复，授权01:57 UTC后仅一次自有run_command；�
 ### GPU attempt1工程API失败（非模型或质量失败），已释放
 
 实际freshGPU2 UUID2c22/0MiB通过。01:58:08.041419→01:58:17.241672Z子程序9.198835秒/rc1，程序8.649069秒，在compat.v1.keras.mixed_precision缺set_global_policy时退出；尚未导入NCR模型/加载权重/任何forward，batches与synthetics均空。实际release GPU2 0/40960MiB、compute_apps无该UUID，已交sequence；源/plan/结果/trace/release原留。root授权最小顶层TF2 precision API修复，先隐藏CUDA实际CPU验证global_policy及原compat层compute/variable dtype，独立attempt2最多170秒+TERM30，两次主程序预算合计<原180秒；须等sequence实际释放再试。完整CPUreadiness PASS不变，无GPU吞吐结果或质量结论。
+
+### GPU attempt2最小修复准备（未运行）
+
+独立`gpu-cost-probe-attempt2`只将探针harness的`import tensorflow.compat.v1 as tf`改为顶层`import tensorflow as tf`；原ncrmodel.py仍原compat.v1、所有数学/权重/输入不变。先同实际GPU overlay且CUDA隐藏检查global_policy=float32、TF32=false，并实际构建原compat Conv1D/Dense与原HierarchicalAggregate的少量变量核compute/variable dtype；0 forward/0模型权重。GPU子程序cap改170秒+TERM30，原9.198835+新主cap=179.198835≤180。现成输入与CPU参考同机hardlink，避免重复传输；仅新小源码/plan上传。源/plan先push，actualCPU通过并且sequence真实释放后才唯一GPU修复版；新具体失败再停。
