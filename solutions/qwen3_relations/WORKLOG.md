@@ -12,3 +12,5 @@
 - GPU唯一控制器已11:01:33.852 UTC启动proc_d5a8edba/PID2729926；probe子PID2729930，原TERM11:08:33.930/KILL11:09:03.930。freshGPU1 0MiB/noapps/free24164MiB，盘408.48GB。部分只读MCP观察UNKNOWN，已恢复原启动回执，无重复start；结果待原job。
 
 - Probe已78.736652s PASS：1原生FB＋13indexed FB＋1Adam，全部Pareto、原14322最长cache prefill通过；13资产共16,397,443,036B全SHA核完。实际同logits loss差4.768e-7在预写容差内，梯度exact；勿称loss bitwise exact。估2ep973.507s<2400；已discard后fresh正式子PID2730123，11:02:53.552177启动，TERM11:42:53.552177/KILL11:43:23.552177。
+
+- epoch1已11:08:43.488205完成16updates并durable ACK：504adapter、504Adam/1512tensor、scheduler与全部RNG重开exact，checkpoint139e8be0，adapter174655536B/Adam等state349612141B；4.228s。原正式窗内继续epoch2，不评分中间checkpoint。
