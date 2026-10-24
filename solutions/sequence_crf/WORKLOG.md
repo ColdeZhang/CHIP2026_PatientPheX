@@ -35,6 +35,6 @@
 
 - 原实验索引：[E-20261023-009](experiments/E-20261023-009.md)、[研究笔记](NOTES.md)。实验材料根为 `/workspace/patientphex-runs/round2-20261023/`；权重、全pred/raw、完整日志留仓库外。
 - 截至本页整理前，已push并lsremote确认 `0def94519a4a198b4623bd353932b5c6b07581c4`，包含完整恢复双质量；终审与新CPU资源本次跟进备份。不要为记录台账自身SHA递归提交。
-- 下一里程碑是full64最长单步实际数值/显存/释放，再汇报正式两轮成本与计划；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
+- 下一里程碑是full64两轮68calls完整持久终点，再原dev64 fresh900+30推断、共同冻结完整raw+单一a179并集后一次v2；逐关键阶段更新本页、实验记录、commit/push。未达原dev .8的实现不合并main，不宣称比赛目标完成。
 
-- full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，正部署源码/实际formalCPU；仍未launch。见 [full64记录](experiments/patient-first-full64.md)。
+- full64 新CPU实际通过：265条/860405 token，最长6166/122监督；已冻结单步240+30新源与6输入，native265实际8.432秒通过，唯一最长probe81.873秒rc0、6166完整一步PASS，峰allocated38.184GB/reserved39.083GB，结束free2.666GB；04:34:44 GPU2实际核空，root据探针已统一授权正式4500+30与原dev64另900+30，实际formalCPU10.454秒通过，正式唯一proc_5b00069a/PID120406于04:42:33.455Z运行；4500+30，近似TERM05:57:33/KILL05:58:03。见 [full64记录](experiments/patient-first-full64.md)。

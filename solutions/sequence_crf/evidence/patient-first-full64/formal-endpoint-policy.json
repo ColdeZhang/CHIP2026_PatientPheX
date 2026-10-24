@@ -1,0 +1,62 @@
+{
+  "schema": "patient-first-full64-originaldev64-single-union-v1",
+  "frozen_at_utc": "2026-10-24T04:40:37.223993+00:00",
+  "status": "frozen_pre_new_patient_first_dev_quality",
+  "new_patient_first_dev_quality_read": false,
+  "quality_arms": [
+    "a179_union_patient_first"
+  ],
+  "development_not_blind": true,
+  "hypothesis": "Append only explicitly observed valid patient-first positives to fixed current a179; originaldev was previously evaluated; no patient-alone quality or further combinations.",
+  "contract": {
+    "rows": 64,
+    "documents": 16,
+    "patients": 36,
+    "entities": 1072,
+    "candidates": 466,
+    "pairs": 1006,
+    "baseline_relations": 391,
+    "preserved_public_new_relations": 35,
+    "cached_rows": 0,
+    "new_rows": 64,
+    "terminal_members": 203
+  },
+  "candidate_rule": "delta(Score)>0",
+  "macro_policy": "Report all metric deltas and explicitly disclose any macro decrease; no macro hard acceptance gate",
+  "target_rule": "Score>=0.8 plus format, provenance and reproducibility independent review PASS before accepted target/merge",
+  "quality_calls": 1,
+  "baseline_quality_calls": 0,
+  "missing_PID": "abstain only for missing key; no fabricated answer",
+  "invalid_row": "whole row abstains; complete raw retained",
+  "baseline_preservation": "Literal union; every old association object and phenotype prefix order retained, all nonassociation fields exact; only appended new relations need lie in original candidate pool",
+  "reference_sha256": {
+    "baseline_pred": "a179a5de5b7271979a0fba851afc269d63125248a56681674e7388d0c6728c39",
+    "baseline_metrics": "e0238759331537bb130583067b56d6646ae7936ade0350c620f804dee02db96f",
+    "baseline_freeze": "7d80529e1d31e1f2abc035ca42fbe9f8d5d72998a6a1a7b1297fecffac812b23",
+    "preservation_contract": "25754c0df8dab007160a0d0bc8cc4aca98aed3b142528abced58d702a47660d4",
+    "prompts": "cbac28e879644d33c781714f33dd69406c5542638ae332a21bffb9e67298d140",
+    "input_token_audit": "c8d834fbf403f96b5f19cc65480df259784821228c973c1b7cc2dcd2630967b8",
+    "cpu_summary": "da72bcb8f891452370d0b97ba4c276a4a7013d172664d9ebce7d8f9f8fb23836",
+    "input": "c0fcad369f0f6b77baae91e4f8fb08ad5cb04ea33c0606c9c32bb2d8eff3d04e",
+    "tokenizer": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "evaluator": "ea061a98aa50098cc2c7fd70a12d13803e8d38c9a21c2190f91e4ecf17541781",
+    "validator": "b3fb9f3315eee38c0cd058fd22d17718ea92427540d413db3d3c0f18450be27f",
+    "hpo": "a5092cbdf605f568403cf7380d9173014015692433b2cc631bc5c1b053876b1b",
+    "train_plan": "661f60f4ae8ec4faecb7124d58073483738af39a525365752ba5bd633112a598",
+    "model_source_manifest": "74e82bd3a6ee45567bde0fd9f4ba298d7638baa3ea961e0557e627066c8763d7",
+    "codec": "60731e1297930415afd8bb8c2a979814d7c8cb9a8c132c6c6debbd85d50cb289",
+    "schema": "25802e682fcd801351377ce3a9f1815a2433c44e8d73c50ab35fba5016358f08",
+    "raw_store": "d52bb0c186d2467b5ae5710a6b7df2ee271783c22ceadadc2e56299295e3af43",
+    "strict_parser": "9a9cc3d89024f2792b4cbf54c893e06c721f404a6a79910c1ca1299664b7acee",
+    "trainer": "9c794287de533eb59e02196bc4177a8a808086b373554a7721ee8e3faee1a9ca",
+    "driver": "c65c141a014c4ba6bd4db2b2645c2387a0b13001a74b7e4cf7b607d77bee027a",
+    "operations": "3ff4745c78d976132e1583c02baa17ebb4569e46f9fa32ce94f30b2afd8f707a",
+    "runner_template": "20b71f1254c62f4eadbd3fcc3916c54ae84b8142d5ee4934bf8813116239d2be",
+    "union_ancestor": "39c3efe0dce6c68a7eb2ba23b43742a11c9401b094eed62fc5a7c668eb3024f5"
+  },
+  "budgets": {
+    "assemble_seconds": 30,
+    "evaluate_seconds": 60
+  },
+  "future_bindings": "Actual completed training and final inference receipts must be bound before execution; no pending SHA accepted"
+}
