@@ -1,0 +1,84 @@
+{
+  "status": "COMPLETE_FIXED_CANDIDATE_SELECTION_DATA_NO_HELD_GOLD",
+  "train_rows": 2931,
+  "held_rows": 1416,
+  "query_count": 2318,
+  "stats": {
+    "HPO_missing": 122,
+    "HPO_empty_OTHER": 117,
+    "HPO_multi_selected": 6,
+    "HPO": 2222,
+    "NIL": 44,
+    "NO": 665
+  },
+  "files": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/prepared-v1/train.jsonl",
+      "bytes": 8863537,
+      "sha256": "12b48f03a23eb27df708ce6e5d4ece2a776312cd43e0752b35e1ac49830de3f3"
+    },
+    "held": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/prepared-v1/held.jsonl",
+      "bytes": 4156914,
+      "sha256": "d5092be9ab55d21bd8f7c73870d53f3f35216e0b755057f652ee130e4cbf07fe"
+    },
+    "target_audit": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/prepared-v1/training-target-audit.json",
+      "bytes": 531744,
+      "sha256": "08382f6f6264d451ef07a8cdf917e44d4cca8bbab40b78422b038773d229d477"
+    }
+  },
+  "source_inputs": {
+    "train": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-hard-negatives-v1/prepared-v1/train.jsonl",
+      "bytes": 4234306,
+      "sha256": "2d50135bafee44e833dced33a1d76ebe90d9380dc8571a96d05fba12f0dae01e"
+    },
+    "held": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/prepared-v1/F1.input.jsonl",
+      "bytes": 1947285,
+      "sha256": "6ff12825202539eb1a309300c3b17030ee08ba450c5cf9bf7de0176baa7e6621"
+    },
+    "cached_query": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-public-top8-readiness-20261024/query-v1-collected/actual/results.json",
+      "bytes": 1885908,
+      "sha256": "277b65f6cc8ec4669d9ccf36e5402ded1ac4af3b9fcffb8ccdbd9a6b7936308b"
+    },
+    "new_query": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-candidate-selection-v1/query-v1-collected/actual/results.json",
+      "bytes": 1533961,
+      "sha256": "e44fcf564dbb0249b0834c640a9a6039877686618aae4a428f8679cfeff3cc42"
+    },
+    "names": {
+      "path": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/prepared-v1/public-names.json",
+      "bytes": 968797,
+      "sha256": "f7a4052f2bf89511ec5d509b778aba687d22d90c9374b2b726680c35f12f7142"
+    }
+  },
+  "unchanged_original_occurrences_context_and_order": true,
+  "no_gold_candidate_insertion": true,
+  "no_extra_training_row_selection": true,
+  "both_endpoint_policy": "future strongB exactentity union allaccepted / new-only exactnonentity shell; jointfreeze before2v2; no quality now",
+  "recipe": {
+    "model": "Qwen/Qwen3-8B",
+    "fresh_base": true,
+    "old_adapters": false,
+    "epochs": 2,
+    "rows": 2931,
+    "updates": 734,
+    "updates_per_epoch": 367,
+    "last_batch_size": 3,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "warmup_steps": 37,
+    "learning_rate": 0.0001,
+    "rank": 16,
+    "lora_alpha": 32,
+    "dropout": 0.05,
+    "seed": 20261023,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "epoch_selection": "epoch2 only, noeval/holdout/earlystop"
+  },
+  "limitation": "New candidate prompt/target and578 negatives jointly differ from2353; Torch host to be bound, no pureprompt causal claim."
+}
