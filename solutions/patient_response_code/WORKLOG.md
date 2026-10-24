@@ -1,8 +1,8 @@
 # 工作台账
 
-当前优先：fresh full64 响应编码组件。完整329 CPU已通过；A100新H51两Pareto源码/实际CPU合同已锁，13件部署成功。原metadata CLAIM在13:31:08 UNKNOWN、13:32:00纯读LUNA；**start_process从未调用，尚无GPU进程**。下一sole-owner观察13:35:05.528，原namespace/claim不重置。源码不变，恢复原记录后唯一启动。
+当前优先：fresh full64 响应编码组件。完整329 CPU通过；原metadata CLAIM已逐字恢复，唯一A100 GPU2 H51已13:37:16.755启动，proc_59b45bec-a90d-42da-a8e4-a34b8929c6bc/PID218274。原240+30，实际TERM13:41:16.967707/KILL13:41:46.967707；不重复模型。完整12步/成本/释放通过后自动原fresh2ep5400链。
 
-- 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`，未调用。
+- 外部根：`R/research/patient-response-code-full64-readiness-v1`；探针实际目录`probe-v1/package`，原claim恢复源`full64/probe/recover_claim.py`已唯一调用；实际原driver/child218274/218313，观测与全部终点收件复用该目录。
 - 固定数据：short265/64篇/173患者/1908CID/5328对；held原dev全文64/16篇/36患者/466CID/1006对。原devgold不读。训练918058tokens/17399监督/max6462，held523821/max13425；native实际.1002.7，A1002.6运行前核所有真实IDs/资产。
 - 条件授权：H51唯一240+30，12FB/首8Adam→3积累含4800/128→最长6462/125；PASS、有真实显存余量且估时<=5400，自动fresh2ep/68calls/每轮尾1/warmup ceil(.05×68)=4，5400+30共享含两完整持久ACK；最终纯64fresh1200+30，零本线quality。正式入口`full64/controller/entry.py`，当前disabled模板不会伪造成功。
 - 已完成：C32 F1 .686618943020、F0 .700893777351，两折各超对应N，均选coded-alone；F0micro下降/宏与总Score升，低于更强完整流程。F1终审187cfa0f/202包、F0终审3f8eabff/89包皆真实持久，入口外部B/F1-final-handoff.json及F0-final-handoff.json。
@@ -28,3 +28,7 @@ A100 originalCPU has neverstarted; explicitLUNA evidence retained. Rootauthorize
 ### 2026-10-24 13:34 UTC — original CLAIM remains metadata-only, full64 source ready
 
 Source checkpoint6aa76b44与probeplan83497912已push；唯一CLI在CLAIM RPC UNKNOWN后未到start_process，纯读13:32:00明确LUNA，原job不存在且不猜成功。新恢复源56249498保持原method/source。full64 trainer/controller/inference readybb34d5a6、78CPUchecks PASS；fresh34×2/warmup4/tail1/两ACK/共享5400及纯64原生13824/1600均实际静态绑定，尚无fakeactivation。私有CPU桥接原server已stoppedtrue、remote/local capability删除/fsync。
+
+### 2026-10-24 13:37 UTC — full64 H51 unique start recovered
+
+13:35与13:37纯读确认4548B/b6967056原CLAIM精确、无driver/child；原start_process从未调用。recover_claim只补首次模型start，返回proc59b45bec/PID218274，实际driver13:37:16.967707启动240+30；原CUDA/plan/方法保持。Formal模板272784a5已push核验；新增full64专属sourcebridge包装器避免继承旧C32已关闭namespace，原transport源码不改。新增pure-component装配只消费最终64strictcanonical、保955实体/36患者/全部非关系字节，零gold/v2/模型。
