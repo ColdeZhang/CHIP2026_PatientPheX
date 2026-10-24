@@ -41,3 +41,5 @@ root已唯一实际读回F1补包，3 read_file，128内容+1embedded全部SHA/f
 F0完整收口没有模型或质量重试；future f0_entry原写入器首次即通过，完整源/实际plan逐阶段预推。原94与195查询各唯一作业，严格弃答保持，不根据已知质量修正。末段独审followup曾因全局7槽满未启动，root协调后续；该资源约束不改变已经完整的负结论。
 
 F0统一独审a8bd9a47/6741B、manifest17580d0f稳定通过完整性和负结案。唯一最小补包74355340/732980B、manifestf984460a/40509B，90内容+1embedded，.100实际逐成员SHA/fsync/reopen收据a4ef2d40/34911B，路径见persistence/F0-receipt.json；旧F1包和大权重不重复。root后续唯一下载恢复，当前不冒称已本地读回远端包。
+
+根已实际服务器下载恢复F0补包：90内容＋1嵌入manifest、3次read_file，逐SHA/fsync/reopen通过，receipt24ee7391；见evidence/F0-actual-restore.json。本线不再下载/补包，F1正/F0负结论不变。
