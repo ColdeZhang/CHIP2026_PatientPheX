@@ -1,0 +1,147 @@
+{
+  "status": "CPU_READY_NO_NEW_GPU_AUTHORIZATION_OR_START",
+  "actual_CPU": {
+    "status": "PASS_INCREMENTAL_HARD_NEGATIVE_NATIVE_INPUTS_ALL578",
+    "plan": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-hard-negatives-v1/cpu-v1/application/cpu-plan.json",
+      "bytes": 7669,
+      "sha256": "08e79b03ee5158fa248a35d855164e8b56d30ee43acc07ea3988a660057dbc54"
+    },
+    "source": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-hard-negatives-v1/cpu-v1/application/cpu_delta.py",
+      "bytes": 6540,
+      "sha256": "229d17d454ad517a00cd1abf84cf47056277347887356570bfd4e070890df3b3"
+    },
+    "reused_original_CPU": {
+      "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-canonical-normalization-v1/cpu-v1/actual/complete.json",
+      "bytes": 4214,
+      "sha256": "67c48940952aea69cd5da939e4c786796ec5e455aa726392ac522445cee736a2"
+    },
+    "runtime": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.51.3",
+      "tokenizers": "0.21.2",
+      "CUDA_initialized": false
+    },
+    "train_rows": 2931,
+    "held_rows": 1416,
+    "training_states": {
+      "HPO": 2222,
+      "NIL": 44,
+      "NO": 665
+    },
+    "new_native_rows": 578,
+    "new_prefixes_checked": 1156,
+    "old2353_encoded_objects_exact_and_same_order": true,
+    "old1416_encoded_reference_exact": true,
+    "new_rows_all_original_char_quotes_no_truncation": true,
+    "all_new_shapes_dominated_by_previous_actual_probe_frontier": true,
+    "appended_max_tokens": 369,
+    "appended_max_supervised": 3,
+    "counts": {
+      "train": {
+        "rows": 2931,
+        "tokens": 823233,
+        "supervised_tokens": 25797,
+        "max_tokens": 383,
+        "max_supervised_tokens": 28,
+        "encoded": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-hard-negatives-v1/cpu-v1/actual/train.encoded.jsonl.gz",
+          "bytes": 601164,
+          "sha256": "86f0e671e7f5e90d1928b5645f7057f1da5c981884e314c715951e105580410b"
+        },
+        "audit": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-hard-negatives-v1/cpu-v1/actual/train.audit.json",
+          "bytes": 1107613,
+          "sha256": "c2a309b6dc45da5fd2fe0b7f98c48c7551dcb0d74a14d4240726e33d4b6331c2"
+        }
+      },
+      "dev": {
+        "rows": 1416,
+        "tokens": 385719,
+        "supervised_tokens": 0,
+        "max_tokens": 386,
+        "max_supervised_tokens": 0,
+        "encoded": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-canonical-normalization-v1/cpu-v1/actual/dev.encoded.jsonl.gz",
+          "bytes": 130819,
+          "sha256": "1f296dc54f1e42c92baf3af19c84539df07688318d43865e27be3d593d7bd028"
+        },
+        "audit": {
+          "path": "/home/zhangyuheng/projects/CHIP2026_PatientPheX/research/mention-canonical-normalization-v1/cpu-v1/actual/dev.audit.json",
+          "bytes": 442005,
+          "sha256": "803e04151fe6beff488eb5445dd86617b37a5ba7594edf45f2833a949a6aca55"
+        }
+      }
+    },
+    "pareto_indices": [
+      2081,
+      1905,
+      1677
+    ],
+    "pareto_shapes": [
+      [
+        333,
+        28
+      ],
+      [
+        336,
+        27
+      ],
+      [
+        383,
+        23
+      ]
+    ],
+    "stress_initial8": [
+      2496,
+      31,
+      171,
+      1687,
+      923,
+      1962,
+      2577,
+      924
+    ],
+    "stress_accumulated3": [
+      1039,
+      2470,
+      695
+    ],
+    "schedule": {
+      "epochs": 2,
+      "updates_per_epoch": 367,
+      "updates": 734,
+      "last_group_size": 3,
+      "warmup_steps": 37
+    },
+    "training_cap": 1024,
+    "inference_total_cap": 1024,
+    "max_new_tokens": 128,
+    "no_model_forward_generate_GPU_fit_quality": true,
+    "old_processor_and_real_FB_proof_reused_not_rerun": true,
+    "seconds": 7.410039342939854
+  },
+  "collection": {
+    "path": "/workspace/patientphex-runs/round2-20261023/research/mention-hard-negatives-v1/cpu-v1-collection.json",
+    "archive": {
+      "bytes": 1169122,
+      "sha256": "40901579a96d88e25854e81c3c1bdec2f08cb6dc5adc852b09465b2ba99a3cd9"
+    },
+    "members": 30
+  },
+  "native_shape_inheritance": {
+    "prior_probe": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/gpu-v1-collected/probe/complete.json",
+    "prior_probe_SHA256": "9a6450e7e5feafc1986e3267e70abcb0f5047d8e0075388a0e03557f20956b26",
+    "new_shapes_dominated": true,
+    "new_FB_probe_executed": false
+  },
+  "estimated_fresh_formal_cost": {
+    "seconds": 4521.224051436409,
+    "formula": "prior_load+cold_first_FB+1.25*(5862*prior_max13_FB+734*prior_actual_Adam)+120s_two_ACK_IO",
+    "prior_cost_ref": "/workspace/patientphex-runs/round2-20261023/research/mention-canonical-normalization-v1/gpu-v1-collected/probe/cost.json",
+    "new_formal_actual_measured": false,
+    "budget_authorized": null
+  },
+  "current_original2353_GPU_run_unchanged": true
+}
