@@ -9,3 +9,5 @@ source/plan62565701已先推送核验，13:04:07共同freeze后唯一1v2、旧0�
 自身12内容小包（含新完整预测）已在.100持久并实际2次read_file回读、逐SHA/fsync/reopen通过，zip31982B，回执[1f66ef85](evidence/F1-backup.json)。旧四源raw/模型沿原完整包继承，不重复备份。
 
 F0原strict58已完整，按原决定绑定[同公式计划](plan-F0.json)。C单臂.700894已知、低当前强B3 .724457；此不是单臂过门替代融合验收。仍只在完整预测冻结后唯一v2，不改formula/source选择。
+
+F0同公式完整正：**.728195628911**（强三源+.003738273579），13新增4TP9FP，micro−.002176/mac+.017129；947实体/47患者/16篇和330旧关系均保留。source-bound计划59622b87先推，13:17:19 freeze c1aeca22后唯一1v2、旧0，见[F0入口](evidence/F0-entry.json)。两开发折均正；允许准备fresh full64编码组件，不把coded单臂升级为更强单模型。
