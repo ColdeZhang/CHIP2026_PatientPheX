@@ -1,6 +1,6 @@
 # 工作台账
 
-当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已rc0完成，原导出服务已接受/待ready恢复。原campaign截止12:45:04.713781 UTC，恢复监控PID162090（watch-recovery-4；具体退避见其events）；未开始第二轮/F1/质量。只改本路线。
+当前：explore/patient-response-code（base main cd4086b）；H51已实测通过，首轮16updates已完成且完整state已.100持久ACK；第二轮唯一proc_eacc8793/PID158377于12:10:35.344602接受。原campaign截止12:45:04.713781 UTC，监控PID162090（watch-recovery-4）；未开始F1/质量。只改本路线。
 
 - 目标：新响应code表示能否超过同任务强N .676546354663。主coded-alone、诊断N∪coded，固定两全量先共冻后各1v2/旧0，最高端点超过N可候选；另报历史fullsupport .686338981，非原dev。
 - 数据：短train124 cb7f→f73cb，全文held80 2a95→54c8，原user整段UTF8/CID-HPO/clinicalPID/mentions不变，旧renderer0调用。原样本顺序保持；只是新的system输出说明＋response表及target患者值。
@@ -56,3 +56,7 @@ Unique recovery CPU server proc_827ccc3e/PID153761 accepted12:03:41.141091Z unde
 ### 2026-10-24 12:07 UTC — read-only recovery classification
 
 Root clarified first pure-read UNKNOWN may retry once after30s;185s applies explicit LUNA, repeated UNKNOWN remains conservatively bounded. Idle watch161802 had no child operation and was explicitly stopped, no remote process touched. New162090/watch-recovery-4 uses separate frozen monitor source3379e477, covers pure inspect/server-ready/export-read failures but never repeats unknown publication/start/ACK mutation. Actual12:06:01.548 ready-read returned explicit LUNA; next12:09:06.548 leaves85.7s in original export phase. No fetch has started; original server may continue while control is offline. Any actual phase failure remains separate from valid first-epoch checkpoint.
+
+### 2026-10-24 12:11 UTC — original phase durable, epoch2 uniquely accepted
+
+Original .100 fetch proc_bb6ac3d4 began12:09:17.227461 and completed ACK12:10:19.359279 (62.004988s), before phase deadline12:10:32.215268. All13 members/520,024,979B full SHA/fsync/reopen passed; ACKadc62307/source-copyf5ca5efe match exactly. Later local observation12:10:34 is not ACK creation time. Original server stop complete; no extra I/O recovery window used. Epoch2 proc_eacc8793-19f3-461b-aa25-39efadbafbc6/PID158377 accepted12:10:35.344602073Z, original whole deadline unchanged and~2069s remaining. It resumes the exact first state/ACK; actual full restore proof will be collected at training terminal, not inferred from start acceptance.
