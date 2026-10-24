@@ -95,3 +95,5 @@
 - indexed第一轮08:45:59 rc0，16更新/2308.345秒；520,022,588 B完整模型/Adam/scheduler/RNG及源码已08:47:46在.100逐文件SHA+fsync+重新打开核实，导出59.364秒。原watch08:47:58唯一启动epoch2 proc_e0b1196d/PID9466，继续原绝对deadline，不重置warmup/预算；尚无新质量。[里程碑](qwen35_sft32_full_report_training_readiness/formal_indexed/epoch1-milestone.json)。
 
 - 08:53按root安排暂转idle释放采样线程，原localwatch PID130118与epoch2远端训练继续。root读取原事件/两ACK后followup本owner执行已授权F1；恢复与故障边界见[继续入口](qwen35_sft32_full_report_training_readiness/formal_indexed/CONTINUATION.md)。没有停止watch或新启动任务。
+
+- 未来全文48/64纯输入CPU23.248秒通过：204行/48篇1,678,769tokens max14,390；265行/64篇2,197,146 max16,245，分别1/2行超原训练cap13824。候选/PID/原文保持，native接口全同；不含答案，不能当完整训练预算。首次漏PYTHONPATH在分词前失败，独立同源env修复及原失败保留；无新GPU/模型/评分。[单份readiness摘要](qwen35_sft32_full_report_training_readiness/FUTURE_SCALE_INPUT_READINESS.md)。
